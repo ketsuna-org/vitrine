@@ -1,34 +1,125 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Porfolio
 
-## Getting Started
+<!-- Replace with your project name -->
 
-First, run the development server:
+**A modern Jekyll website** | *Clean, responsive, and easy to maintain*
 
-```bash
-npm run dev
-# or
-yarn dev
+---
+
+## Features
+
+- GitHub-flavored Markdown support
+- Automatic syntax highlighting
+- Responsive design (mobile-first approach)
+- SEO-optimized structure
+- Built-in blog functionality
+- Customizable through `_config.yml`
+- RSS feed integration
+- Social media sharing capabilities
+
+## Quick Start
+
+### Prerequisites
+- Ruby ≥ 3.0
+- Bundler gem
+- Jekyll ≥ 4.3
+- Node.js & npm for assets compilation
+
+### Installation
+
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+bundle install
+npm install
+
+### Local Development
+
+bundle exec jekyll serve
+Access at http://localhost:4000
+
+## Configuration
+
+Essential `_config.yml` settings:
+```yml
+title: Your Site Title
+description: >-
+A brief description of your website
+baseurl: ""
+url: "https://your-domain.com"
+
+# Optional features
+plugins:
+    jekyll-feed
+    jekyll-seo-tag
+social:
+    github: your-username
+    twitter: your-handle
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content Structure
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+.
+├── _posts/ # Blog posts (YYYY-MM-DD-title.md)
+├── _pages/ # Custom pages (about.md, contact.md)
+├── _data/ # Structured content
+├── _includes/ # Reusable components
+├── _layouts/ # Page templates
+├── assets/ # CSS/JS/images
+└── _config.yml # Site configuration
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Writing Content
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Blog Posts
 
-## Learn More
+layout: post
+title: "My First Post"
+date: 2025-02-09
+categories: [general]
+tags: [jekyll, webdev]
+Content in Markdown format...
 
-To learn more about Next.js, take a look at the following resources:
+### Custom Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+layout: page
+title: About
+permalink: /about/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Our Story
+Section content...
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### GitHub Pages
+1. Enable GitHub Pages in repository settings
+2. Set source branch to `gh-pages`
+3. Add this to `_config.yml`:
+```yml
+    github:
+    repo: https://github.com/your-username/your-repo
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Netlify
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/your-username/your-repo)
+
+## Customization Tips
+
+1. **Themes**: Override theme defaults in `_sass/`
+2. **Navigation**: Edit `_data/navigation.yml`
+3. **SEO**: Use `{% seo %}` tag in layouts
+4. **Analytics**: Add tracking IDs to `_config.yml`
+
+## Contributing
+
+Contributing to this project is prohobited as it is a personal project.
+
+## License
+
+This project is unliscensed. You are free to use it as you wish.
+
+## Acknowled
+
+This project use TailwindCSS v3 for styling and Jekyll for static site generation.
+
+## Support
+
+For any inquiries, reach out to me at [contact@jeremysoler.com](mailto:contact@jeremysoler.com)
