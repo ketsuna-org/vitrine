@@ -95,11 +95,11 @@ Section content...
 3. Add this to `_config.yml`:
 ```yml
     github:
-    repo: https://github.com/your-username/your-repo
+        repo: https://github.com/garder500/portfolio
 ```
 
 ### Netlify
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/your-username/your-repo)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/garder500/portfolio)
 
 ## Customization Tips
 
