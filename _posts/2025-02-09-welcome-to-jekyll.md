@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Salut les pute !"
 date:   2025-02-09 14:18:16 +0100
 categories: jekyll update
 ---
