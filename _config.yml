@@ -23,18 +23,32 @@ email: contact@jeremysoler.com
 description: >- # this means to ignore newlines until "baseurl:"
   Blog and portfolio of Jeremy Soler, a software engineer and entrepreneur.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://jeremysoler.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: garder500
 github_username:  garder500
-
+author: Jérémy Soler
 # Build settings
 ignore_theme_config: true
 # theme: minima
 plugins:
   - jekyll-postcss
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 postcss:
   cache: false
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+paginate: 5  # Posts per page
+paginate_path: "/blog/page:num/"
+
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -44,14 +58,22 @@ postcss:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - package.json
+  - package-lock.json
+  - devenv.nix
+  - devenv.lock
+  - postcss.config.js
+  - tailwind.config.js
+  - README.md
+

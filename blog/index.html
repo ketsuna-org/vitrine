@@ -1,0 +1,42 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: default
+title: Blog
+---
+
+<div class="container mx-auto px-6 py-8">
+  <h1 class="text-3xl font-bold mb-6">Blog Posts</h1>
+
+  <!-- Posts List -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for post in paginator.posts %}
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">
+          <a href="{{ post.url }}" class="hover:text-red-500">{{ post.title }}</a>
+        </h2>
+        <p class="text-gray-700">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination Links (Tailwind Styled) -->
+  <div class="mt-8 flex justify-center space-x-4">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}" class="px-4 py-2 bg-indigo-400 text-gray-600 rounded hover:bg-indigo-500">
+        Previous
+      </a>
+    {% endif %}
+
+    <span class="px-4 py-2 text-gray-600">
+      Page {{ paginator.page }} of {{ paginator.total_pages }}
+    </span>
+
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}" class="px-4 py-2 bg-indigo-400 text-gray-600 rounded hover:bg-indigo-500">
+        Next
+      </a>
+    {% endif %}
+  </div>
+</div>

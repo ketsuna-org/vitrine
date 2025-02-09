@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <link href="{{ '/css/main.css' | relative_url }}" rel="stylesheet">
+    <link href="{{ '/css/highlight.css' | relative_url }}" rel="stylesheet">
+    <link href="{{ '/css/markdown.css' | relative_url }}" rel="stylesheet">
 </head>
 <body class="bg-gray-100 font-sans antialiased flex flex-col min-h-screen">
 
@@ -22,8 +24,17 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-8 flex-grow">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ page.title | default: "Nothing to see here" }}</h1>
-        {{ content }}
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ page.title | default: "Welcome to my blog" }}</h1>
+        <p class="text-gray-700 leading-relaxed mb-6">
+            {% if page.description %}
+              {{ page.description }}
+            {% else %}
+              This is a blog about my journey in learning web development. I will be sharing my experiences, thoughts, and resources that I find helpful along the way. I hope you find this blog useful and inspiring.
+            {% endif %}
+        </p>
+        <div class="markdown-body">
+            {{ content }}
+        </div>
     </main>
 
     <!-- Footer -->
@@ -37,6 +48,5 @@
             </ul>
         </div>
     </footer>
-
 </body>
 </html>
