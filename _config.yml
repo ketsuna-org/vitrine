@@ -27,6 +27,7 @@ url: "https://jeremysoler.com" # the base hostname & protocol for your site, e.g
 twitter_username: garder500
 github_username:  garder500
 author: Jérémy Soler
+
 # Build settings
 ignore_theme_config: true
 # theme: minima

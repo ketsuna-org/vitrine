@@ -8,45 +8,26 @@
     <link href="{{ '/css/highlight.css' | relative_url }}" rel="stylesheet">
     <link href="{{ '/css/markdown.css' | relative_url }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 font-sans antialiased flex flex-col min-h-screen">
+<body class="bg-gray-900 text-purple-100 font-sans antialiased flex flex-col min-h-screen">
 
     <!-- Header -->
-    <header class="bg-white shadow-md py-4">
-        <nav class="container mx-auto px-6 flex items-center justify-between">
-            <a href="{{ '/' | relative_url }}" class="text-2xl font-bold text-gray-800 hover:text-indigo-600 transition duration-200">{{ site.title }}</a>
-            <ul class="flex space-x-4">
-                <li><a href="{{ '/' | relative_url }}" class="text-gray-700 hover:text-indigo-600 transition duration-200">Home</a></li>
-                <li><a href="{{ '/about' | relative_url }}" class="text-gray-700 hover:text-indigo-600 transition duration-200">About</a></li>
-                <li><a href="{{ '/blog' | relative_url }}" class="text-gray-700 hover:text-indigo-600 transition duration-200">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
+    {% include navbar.html %}
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-8 flex-grow">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ page.title | default: "Welcome to my blog" }}</h1>
-        <p class="text-gray-700 leading-relaxed mb-6">
+        <h1 class="text-3xl font-bold text-purple-300 mb-4">{{ page.title | default: "Welcome to my blog" }}</h1>
+        <p class="text-purple-200 leading-relaxed mb-6">
             {% if page.description %}
               {{ page.description }}
-            {% else %}
-              This is a blog about my journey in learning web development. I will be sharing my experiences, thoughts, and resources that I find helpful along the way. I hope you find this blog useful and inspiring.
             {% endif %}
         </p>
-        <div class="markdown-body">
+        <div class="markdown-body bg-gray-800 p-6 rounded-lg shadow-md">
             {{ content }}
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 mt-auto">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.</p>
-            <ul class="flex space-x-4">
-                <li><a href="#" class="hover:text-indigo-300 transition duration-200">Twitter</a></li>
-                <li><a href="#" class="hover:text-indigo-300 transition duration-200">GitHub</a></li>
-                <li><a href="#" class="hover:text-indigo-300 transition duration-200">LinkedIn</a></li>
-            </ul>
-        </div>
-    </footer>
+    {% include footer.html %}
+
 </body>
 </html>

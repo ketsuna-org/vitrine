@@ -9,34 +9,30 @@
 <body class="bg-gray-100 font-sans antialiased flex flex-col min-h-screen">
 
     <!-- Header -->
-    <header class="bg-white shadow-md py-4">
-        <nav class="container mx-auto px-6 flex items-center justify-between">
-            <a href="{{ '/' | relative_url }}" class="text-2xl font-bold text-gray-800 hover:text-indigo-600 transition duration-200">{{ site.title }}</a>
-            <ul class="flex space-x-4">
-                <li><a href="{{ '/' | relative_url }}" class="text-gray-700 hover:text-indigo-600 transition duration-200">Home</a></li>
-                <li><a href="{{ '/about' | relative_url }}" class="text-gray-700 hover:text-indigo-600 transition duration-200">About</a></li>
-                <li><a href="{{ '/blog' | relative_url }}" class="text-gray-700 hover:text-indigo-600 transition duration-200">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
+    {% include navbar.html %}
+
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-8 flex-grow">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ page.title | default: "Nothing to see here" }}</h1>
-        {{ content }}
-    </main>
+    <div class="min-h-screen bg-gray-950 text-gray-100 font-mono antialiased">
+        <main class="max-w-7xl mx-auto py-8">
+          <header class="mb-12 border-b-2 border-purple-600 pb-6">
+            <h1 class="text-4xl font-bold text-purple-400 hover:text-purple-300 transition-colors">
+              {{ page.title | default: "Dev Blog" }}
+            </h1>
+            {% if page.description %}
+            <p class="mt-4 text-gray-400">{{ page.description }}</p>
+            {% endif %}
+          </header>
+
+          <article class="prose prose-invert max-w-none">
+            <div class="p-6 bg-gray-900 rounded-lg shadow-xl border border-gray-800">
+              {{ content }}
+            </div>
+          </article>
+        </main>
+      </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 mt-auto">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.</p>
-            <ul class="flex space-x-4">
-                <li><a href="#" class="hover:text-indigo-300 transition duration-200">Twitter</a></li>
-                <li><a href="#" class="hover:text-indigo-300 transition duration-200">GitHub</a></li>
-                <li><a href="#" class="hover:text-indigo-300 transition duration-200">LinkedIn</a></li>
-            </ul>
-        </div>
-    </footer>
-
+    {% include footer.html %}
 </body>
 </html>
