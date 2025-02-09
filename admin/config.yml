@@ -1,8 +1,9 @@
 backend:
-  name: git-gateway
-  repo: exatombe/portfolio
-  branch: main
-media_folder: public/files #images that are uploaded via Netlify Cms interface will be stored in this folder
+  name: github
+  repo: garder500/portfolio
+  branch: master
+  use_graphql: true
+media_folder: assets #images that are uploaded via Netlify Cms interface will be stored in this folder
 public_folder: files #I dont know
 collections:
   - name: "posts" # Used in routes, e.g., /admin/collections/blog
