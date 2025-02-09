@@ -3,6 +3,7 @@ backend:
   repo: garder500/portfolio
   branch: master
   use_graphql: true
+  base_url: https://decap-proxy.ketsuna.workers.dev
 media_folder: assets #images that are uploaded via Netlify Cms interface will be stored in this folder
 public_folder: files #I dont know
 collections:
