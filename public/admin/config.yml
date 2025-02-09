@@ -7,7 +7,7 @@ public_folder: files #I dont know
 collections:
   - name: "posts" # Used in routes, e.g., /admin/collections/blog
     label: "BlogPost" # Used in the UI
-    folder: "posts" # The path to the folder where the markdown files are stored
+    folder: "_posts" # The path to the folder where the markdown files are stored
     create: true # Allow users to create new markdown files.
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for front matter. You will need to modify fields according to your project.
@@ -19,6 +19,7 @@ collections:
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Author", name: "author", widget: "string", default: "Public"}
       - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "layout", name: "layout", widget: "hidden", default: "post"}
   - name: "home" # Used in routes, e.g., /admin/collections/blog
     label: "Index Page" # Used in the UI
     folder: "data" # The path to the folder where the markdown files are stored
