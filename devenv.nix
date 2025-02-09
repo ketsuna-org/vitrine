@@ -35,6 +35,10 @@
   #   "devenv:enterShell".after = [ "myproj:setup" ];
   # };
 
+  tasks = {
+    "myproj:watch".exec = "bundle exec jekyll serve --livereload";
+  };
+
   # https://devenv.sh/tests/
   enterTest = ''
     echo "Running tests"
