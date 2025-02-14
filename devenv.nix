@@ -36,7 +36,7 @@
   # };
 
   tasks = {
-    "myproj:watch".exec = "bundle exec jekyll serve --livereload";
+    "c:watch".exec = "bundle exec jekyll serve --livereload";
   };
 
   # https://devenv.sh/tests/

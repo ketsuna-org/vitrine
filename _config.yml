@@ -49,7 +49,7 @@ kramdown:
 paginate: 5  # Posts per page
 paginate_path: "/blog/page:num/"
 
-
+future: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
