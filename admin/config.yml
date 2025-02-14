@@ -4,11 +4,15 @@ backend:
   branch: master
   use_graphql: true
   base_url: https://decap-proxy.ketsuna.workers.dev
+  squash_merges: true
+
+site_url: https://jeremysoler.com
+publish_mode: editorial_workflow
 media_folder: assets #images that are uploaded via Netlify Cms interface will be stored in this folder
 public_folder: files #I dont know
 collections:
   - name: "posts" # Used in routes, e.g., /admin/collections/blog
-    label: "BlogPost" # Used in the UI
+    label: "Global Post" # Used in the UI
     folder: "_posts" # The path to the folder where the markdown files are stored
     create: true # Allow users to create new markdown files.
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
@@ -17,8 +21,23 @@ collections:
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Download", name: "download", widget: "string", required: false}
       - {label: "Date", name: "date", widget: "datetime", required: false}
-      - {label: "Categorie", name: "category", widget: "string"}
+      - {label: "tags", name: "tags", widget: "list", required: false}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
-      - {label: "Author", name: "author", widget: "string", default: "Public"}
+      - {label: "Author", name: "author", widget: "string", default: "Garder500"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "layout", name: "layout", widget: "hidden", default: "post"}
+  - name: "tutorials"
+    label: "Tutorials"
+    folder: "tutorials/_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Download", name: "download", widget: "string", required: false}
+      - {label: "Date", name: "date", widget: "datetime", required: false}
+      - {label: "tags", name: "tags", widget: "list", required: false}
+      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Author", name: "author", widget: "string", default: "Garder500"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "layout", name: "layout", widget: "hidden", default: "post"}
