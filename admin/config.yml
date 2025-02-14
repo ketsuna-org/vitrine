@@ -21,8 +21,8 @@ collections:
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Download", name: "download", widget: "string", required: false}
       - {label: "Date", name: "date", widget: "datetime", required: false}
-      - {label: "tags", name: "tags", widget: "list", required: false}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "tags", name: "tags", widget: "list", required: false, allow_add: true}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Author", name: "author", widget: "string", default: "Garder500"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "layout", name: "layout", widget: "hidden", default: "post"}
@@ -36,8 +36,8 @@ collections:
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Download", name: "download", widget: "string", required: false}
       - {label: "Date", name: "date", widget: "datetime", required: false}
-      - {label: "tags", name: "tags", widget: "list", required: false}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "tags", name: "tags", widget: "list", required: false, allow_add: true}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Author", name: "author", widget: "string", default: "Garder500"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "layout", name: "layout", widget: "hidden", default: "post"}
