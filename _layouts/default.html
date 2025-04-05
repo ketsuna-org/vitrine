@@ -5,34 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <link href="{{ '/css/main.css' | relative_url }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="bg-gray-100 font-sans antialiased flex flex-col min-h-screen">
+<body class="text-lg lg:text-base bg-zinc-900 text-zinc-100 lg:px-60 px-10 tracking-tight saturate-[150%]">
 
     <!-- Header -->
     {% include navbar.html %}
 
+    <main>{{content}}</main>
 
-    <!-- Main Content -->
-    <div class="min-h-screen bg-gray-950 text-gray-100 font-mono antialiased">
-        <main class="max-w-7xl mx-auto py-8">
-          <header class="mb-12 border-b-2 border-purple-600 pb-6">
-            <h1 class="text-4xl font-bold text-purple-400 hover:text-purple-300 transition-colors ml-10">
-              {{ page.title | default: "Dev Blog" }}
-            </h1>
-            {% if page.description %}
-            <p class="mt-4 text-gray-400">{{ page.description }}</p>
-            {% endif %}
-          </header>
+    <img src="/assets/texture.jpg" class="object-cover w-screen h-full top-0 left-0 absolute -z-10 opacity-[2%] saturate-0" alt="">
 
-          <article class="prose prose-invert max-w-none">
-            <div class="p-6 bg-gray-900 rounded-lg shadow-xl border border-gray-800">
-              {{ content }}
-            </div>
-          </article>
-        </main>
-      </div>
-
-    <!-- Footer -->
-    {% include footer.html %}
 </body>
 </html>

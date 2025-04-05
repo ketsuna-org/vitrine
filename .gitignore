@@ -6,3 +6,4 @@ vendor
 .devenv
 .direnv
 node_modules/
+.devenv.flake.nix

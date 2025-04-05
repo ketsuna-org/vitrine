@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Home
-project:
+
+projects:
     - title: Portfolio Website
       description: A fully responsive portfolio website built with Jekyll and Tailwind CSS. Features a blog section and dynamic content integration.
       link: https://github.com/garder500/portfolio
@@ -11,64 +12,30 @@ project:
     - title: SafeStore
       description: A Firebase alternative self-hosted on your server written in Golang.
       link: https://github.com/garder500/safestore
-languages: ["JavaScript", "Python", "Golang", "Rust", "PHP", "HTML5 & CSS3", "SQL", "Bash/Shell Scripting"]
-tools: ["VS Code", "Git & GitHub", "Postman", "Docker", "Webpack & Babel"]
-frontend: ["HTML5", "CSS3", "JavaScript (ES6+)", "React.js", "Tailwind CSS", "Vue.js", "Svelte", "Solid.js", "NextJS"]
-backend: ["Node.js", "Express.js", "Nest.Js Fastify", "Gorilla Mux", "Tokio", "NextJS"]
-databases: ["MySQL", "PostgreSQL", "MongoDB", "SQLite", "Redis", "Firebase", "Elasticsearch"]
-devops: ["Docker", "GitHub Actions"]
+
+qualities: [
+  {"title": "HTML/CSS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"},
+  {"title": "Vue", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"},
+  {"title": "React", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"},
+  {"title": "SQL", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"},
+  {"title": "Redis", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg"},
+  {"title": "ElasticSearch", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/elasticsearch/elasticsearch-original.svg"},
+  { "title": "MongoDB", "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"},
+  { "title": "Typescript/Javascript", "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"},
+  { "title": "Golang", "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg" },
+  { "title": "Dart", "image": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg" }
+]
+
+socials: [
+  {"username": "garder500", "link": "https://x.com/garder500", "icon": "fa-brands fa-x-twitter"},
+  {"username": "garder500", "link": "https://github.com/garder500", "icon": "fa-brands fa-github"},
+  {"username": "jeremy-soler", "link": "https://www.linkedin.com/in/jeremy-soler/", "icon": "fa-brands fa-linkedin-in"},
+  {"username": "contact@jeremysoler.com", "link": "mailto:contact@jeremysoler.com", "icon": "fa-solid fa-envelope"}
+]
 
 ---
 
-<div class="bg-gray-900 text-purple-100 min-h-screen py-8 px-6">
-    <p class="text-purple-200 leading-relaxed mb-8">
-        Hello! I'm a passionate developer with a focus on creating efficient, scalable, and user-friendly solutions.
-        Below, you'll find more about my skills, projects, and the tools I use to bring ideas to life.
-    </p>
-    <section class="mb-12">
-        <h2 class="text-3xl font-semibold text-purple-300 mb-4">Skills</h2>
-        <ul class="list-disc list-inside text-purple-200 space-y-2">
-            <li>Frontend Development: {{ page.frontend | join: ', ' }}</li>
-            <li>Backend Development: {{ page.backend | join: ', ' }}</li>
-            <li>Database Management: {{ page.databases | join: ', ' }}</li>
-            <li>Version Control: Git & GitHub</li>
-            <li>DevOps: {{ page.devops | join: ', ' }}</li>
-        </ul>
-    </section>
-    <section class="mb-12">
-        <h2 class="text-3xl font-semibold text-purple-300 mb-4">Projects</h2>
-        <div class="space-y-6">
-        {% for project in page.project %}
-            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-bold text-purple-200">{{ project.title }}</h3>
-                <p class="text-purple-100 mt-2">{{ project.description }}</p>
-                <a href="{{ project.link }}" class="text-purple-400 hover:text-white underline mt-2 block">View Project</a>
-            </div>
-        {% endfor %}
-        </div>
-    </section>
-    <section class="mb-12">
-        <h2 class="text-3xl font-semibold text-purple-300 mb-4">Languages Used</h2>
-        <ul class="grid grid-cols-2 gap-x-8 gap-y-4 text-purple-200">
-            {% for language in page.languages %}
-                <li>{{ language }}</li>
-            {% endfor %}
-        </ul>
-    </section>
-    <section class="mb-12">
-        <h2 class="text-3xl font-semibold text-purple-300 mb-4">Tools I Use</h2>
-        <ul class="grid grid-cols-2 gap-x-8 gap-y-4 text-purple-200">
-            {% for tool in page.tools %}
-                <li>{{ tool }}</li>
-            {% endfor %}
-        </ul>
-    </section>
-    <section class="mb-12">
-        <h2 class="text-3xl font-semibold text-purple-300 mb-4">Get in Touch</h2>
-        <p class="text-purple-200 leading-relaxed">
-            I'm always open to discussing new projects, creative ideas, or opportunities to collaborate.
-            Feel free to reach out via email at
-            <a href="mailto:contact@jeremysoler.com" class="text-purple-400 hover:text-white underline">contact@jeremysoler.com</a>.
-        </p>
-    </section>
-</div>
+{% include hero.html %}
+{% include skills.html %}
+{% include projects.html %}
+{% include footer.html %}

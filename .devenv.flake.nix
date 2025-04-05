@@ -1,19 +1,21 @@
 {
   inputs =
     let
-      version = "1.3.1";
+      version = "1.4.1";
 system = "x86_64-linux";
-devenv_root = "/home/exa/perso/portfolio";
+devenv_root = "/home/exa/perso/portfolio/portfolio";
 devenv_dotfile = ./.devenv;
 devenv_dotfile_string = ".devenv";
 container_name = null;
 devenv_tmpdir = "/run/user/1000/";
-devenv_runtime = "/run/user/1000/devenv-ca98c58";
+devenv_runtime = "/run/user/1000/devenv-c9829d9";
 devenv_istesting = false;
+devenv_direnvrc_latest_version = 1;
 
         in {
-        pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-      pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+        git-hooks.url = "github:cachix/git-hooks.nix";
+      git-hooks.inputs.nixpkgs.follows = "nixpkgs";
+      pre-commit-hooks.follows = "git-hooks";
       nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
       devenv.url = "github:cachix/devenv?dir=src/modules";
       } // (if builtins.pathExists (devenv_dotfile + "/flake.json")
@@ -22,15 +24,16 @@ devenv_istesting = false;
 
       outputs = { nixpkgs, ... }@inputs:
         let
-          version = "1.3.1";
+          version = "1.4.1";
 system = "x86_64-linux";
-devenv_root = "/home/exa/perso/portfolio";
+devenv_root = "/home/exa/perso/portfolio/portfolio";
 devenv_dotfile = ./.devenv;
 devenv_dotfile_string = ".devenv";
 container_name = null;
 devenv_tmpdir = "/run/user/1000/";
-devenv_runtime = "/run/user/1000/devenv-ca98c58";
+devenv_runtime = "/run/user/1000/devenv-c9829d9";
 devenv_istesting = false;
+devenv_direnvrc_latest_version = 1;
 
             devenv =
             if builtins.pathExists (devenv_dotfile + "/devenv.json")
@@ -95,6 +98,11 @@ devenv_istesting = false;
               (pkgs.lib.optionalAttrs (container_name != null) {
                 container.isBuilding = pkgs.lib.mkForce true;
                 containers.${container_name}.isBuilding = true;
+              })
+              ({ options, ... }: {
+                config.devenv = pkgs.lib.optionalAttrs (builtins.hasAttr "direnvrcLatestVersion" options.devenv) {
+                  direnvrcLatestVersion = devenv_direnvrc_latest_version;
+                };
               })
             ] ++ (map importModule (devenv.imports or [ ])) ++ [
               ./devenv.nix

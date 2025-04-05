@@ -1,10 +1,12 @@
-<footer class="bg-gray-800 text-white py-6 mt-auto">
-    <div class="container mx-auto px-6 flex justify-between items-center">
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.</p>
-        <ul class="flex space-x-4">
-            <li><a href="https://x.com/garder500" class="hover:text-indigo-300 transition duration-200" target="_blank">Twitter</a></li>
-            <li><a href="https://github.com/garder500" class="hover:text-indigo-300 transition duration-200" target="_blank">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/jeremy-soler/" class="hover:text-indigo-300 transition duration-200" target="_blank">LinkedIn</a></li>
-        </ul>
-    </div>
+<footer id="footer" class="text-white py-28">
+  <ul class="flex flex-wrap gap-5 justify-center">
+    {% for social in page.socials %}
+      <li class="bg-zinc-800 py-8 hover:bg-zinc-700 cursor-pointer px-4 w-fit h-full transform -skew-x-6 group rounded-lg flex flex-col justify-center items-center relative">
+        <a href="{{social.link}}" class="flex flex-col items-center">
+          <i class="{{social.icon}} text-5xl lg:text-4xl"></i>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
 </footer>
+
