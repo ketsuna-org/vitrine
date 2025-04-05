@@ -15,8 +15,8 @@
     npm ci
   '';
 
-  tasks = {
-    "c:watch".exec = "bundle exec jekyll serve --livereload";
+  scripts = {
+    "watcher".exec = "bundle exec jekyll serve --livereload";
   };
 
 }
