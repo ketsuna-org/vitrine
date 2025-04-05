@@ -3,12 +3,12 @@
     let
       version = "1.4.1";
 system = "x86_64-linux";
-devenv_root = "/home/exa/perso/portfolio/portfolio";
+devenv_root = "/home/exa/perso/portfolio";
 devenv_dotfile = ./.devenv;
 devenv_dotfile_string = ".devenv";
 container_name = null;
 devenv_tmpdir = "/run/user/1000/";
-devenv_runtime = "/run/user/1000/devenv-c9829d9";
+devenv_runtime = "/run/user/1000/devenv-ca98c58";
 devenv_istesting = false;
 devenv_direnvrc_latest_version = 1;
 
@@ -26,12 +26,12 @@ devenv_direnvrc_latest_version = 1;
         let
           version = "1.4.1";
 system = "x86_64-linux";
-devenv_root = "/home/exa/perso/portfolio/portfolio";
+devenv_root = "/home/exa/perso/portfolio";
 devenv_dotfile = ./.devenv;
 devenv_dotfile_string = ".devenv";
 container_name = null;
 devenv_tmpdir = "/run/user/1000/";
-devenv_runtime = "/run/user/1000/devenv-c9829d9";
+devenv_runtime = "/run/user/1000/devenv-ca98c58";
 devenv_istesting = false;
 devenv_direnvrc_latest_version = 1;
 
