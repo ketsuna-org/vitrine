@@ -26,6 +26,11 @@ title: Blog
           {% endif %}
         </div>
 
+         <!-- Display the thumbnail -->
+        {% if post.thumbnail %}
+          <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="mb-4 rounded-lg shadow-md">
+        {% endif %}
+
         <!-- Post Excerpt -->
         <p class="text-[#E9D5FF] mb-4">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
 

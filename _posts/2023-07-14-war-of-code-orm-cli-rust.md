@@ -3,7 +3,7 @@ title: WAR OF CODE - ORM & CLI rust !
 description: Le cahier des charge du premier event war of code
 date: 2023-07-14T21:34:10.846Z
 category: war_of_code
-thumbnail: files/11-database-drivers-and-orms-for-rust-that-are-ready-for-production.avif
+thumbnail: assets/11-database-drivers-and-orms-for-rust-that-are-ready-for-production.avif
 author: Garder500
 layout: post
 toc: false

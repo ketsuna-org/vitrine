@@ -9,7 +9,7 @@ backend:
 site_url: https://jeremysoler.com
 publish_mode: editorial_workflow
 media_folder: assets #images that are uploaded via Netlify Cms interface will be stored in this folder
-public_folder: files #I dont know
+public_folder: assets #I dont know
 collections:
   - name: "posts" # Used in routes, e.g., /admin/collections/blog
     label: "Global Post" # Used in the UI
