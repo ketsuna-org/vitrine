@@ -20,9 +20,9 @@ l'ORM doit aussi posséder un query builder "basique" qui permettra au minimum d
 Le cli fera usage de l'ORM, en créant lui même ces "tables"
 le cli implémentera plusieurs commands :
 
-* config (Setup un fichier .env avec la base de donnée)
-* make:table (Démarre un questionnaire pour créer une entité, l'implémentation est libre, vous pouvez aussi le faire en une seule ligne)
-* make:migration (Créer un fichier SQL à l'aide des fichier rust contenant les tables, (prévoyez une architecture de fichier facile à utilisé pour éviter tout problème) qui sera utilisé pour la commande suivante.
-* migrate --up | migrate --down (Vous devrez donc créer 2 fichier SQL, 1 qui crée VOS commande, et 1 qui permet de les ANNULER)
+* `config` (Setup un fichier .env avec la base de donnée)
+* `make:table` (Démarre un questionnaire pour créer une entité, l'implémentation est libre, vous pouvez aussi le faire en une seule ligne)
+* `make:migration` (Créer un fichier SQL à l'aide des fichier rust contenant les tables, (prévoyez une architecture de fichier facile à utilisé pour éviter tout problème) qui sera utilisé pour la commande suivante.
+* `migrate --up` | `migrate --down` (Vous devrez donc créer 2 fichier SQL, 1 qui crée VOS commande, et 1 qui permet de les ANNULER)
 
 PS : La migration doit vérifier votre base de donnée au préalable, afin de ne pas refaire TOUTE les commandes, qui ne serais pas forcément nescessaire.

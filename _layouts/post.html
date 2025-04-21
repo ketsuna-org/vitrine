@@ -7,25 +7,36 @@
     <link href="{{ '/css/main.css' | relative_url }}" rel="stylesheet">
     <link href="{{ '/css/highlight.css' | relative_url }}" rel="stylesheet">
     <link href="{{ '/css/markdown.css' | relative_url }}" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5306738597992925"
-     crossorigin="anonymous"></script>
-    <script async src="https://fundingchoicesmessages.google.com/i/pub-5306738597992925?ers=1"></script><script>(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
 </head>
-<body class="bg-gray-900 text-purple-100 font-sans antialiased flex flex-col min-h-screen">
+<body class="text-lg lg:text-base bg-zinc-900 text-zinc-100 lg:px-60 px-10 tracking-tight saturate-[150%]">
 
     <!-- Header -->
     {% include navbar.html %}
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-8 flex-grow">
-        <h1 class="text-3xl font-bold text-purple-300 mb-4">{{ page.title | default: "Welcome to my blog" }}</h1>
-        <p class="text-purple-200 leading-relaxed mb-6">
+    <main class="container mx-auto px-6 py-16 flex-grow">
+        <div class="max-w-3xl mx-auto">
+            <!-- Post Title -->
+            <h1 class="text-5xl font-extrabold mb-6 leading-tight text-[#E9D5FF]">
+                {{ page.title | default: "Post Title" }}
+            </h1>
+            <!-- Post Meta -->
+            <div class="mb-8 flex flex-wrap items-center text-[#A78BFA] text-base space-x-4">
+                {% if page.date %}
+                  <span>Published: {{ page.date | date: "%B %d, %Y" }}</span>
+                {% endif %}
+                {% if page.author %}
+                  <span>by {{ page.author }}</span>
+                {% endif %}
+            </div>
+            <!-- Optional Description -->
             {% if page.description %}
-              {{ page.description }}
+              <p class="text-lg text-[#C084FC] mb-8">{{ page.description }}</p>
             {% endif %}
-        </p>
-        <div class="markdown-body bg-gray-800 p-6 rounded-lg shadow-md">
-            {{ content }}
+            <!-- Post Content -->
+            <article class="markdown-body bg-[#232327] rounded-2xl shadow-xl p-10 prose prose-invert prose-lg max-w-none">
+                {{ content }}
+            </article>
         </div>
     </main>
 
