@@ -10,8 +10,6 @@ layout: post
 toc: false
 category: war_of_code
 ---
-# War Of Code | ORM & CLI MySQL
-
 ## La première partie du défi reposera sur la confection d'un ORM
 
 L'orm doit contenir la possibilité de géré ces tables SQL via le code.
