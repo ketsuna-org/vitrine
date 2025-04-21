@@ -14,31 +14,47 @@
     {% include navbar.html %}
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-16 flex-grow">
-        <div class="max-w-3xl mx-auto">
+    <main class="container mx-auto px-2 sm:px-4 md:px-8 py-6 sm:py-10 flex-grow">
+        <div class="flex flex-row gap-8">
+          <!-- TOC Sidebar (Left) -->
+
+
+          <!-- Main Content (Right) -->
+          <div class="flex-1 max-w-full md:max-w-2xl lg:max-w-3xl mx-0 sm:mx-auto">
             <!-- Post Title -->
-            <h1 class="text-5xl font-extrabold mb-6 leading-tight text-[#E9D5FF]">
-                {{ page.title | default: "Post Title" }}
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-5 sm:mb-6 leading-tight text-[#E9D5FF] break-words">
+              {{ page.title | default: "Post Title" }}
             </h1>
             <!-- Post Meta -->
-            <div class="mb-8 flex flex-wrap items-center text-[#A78BFA] text-base space-x-4">
-                {% if page.date %}
-                  <span>Published: {{ page.date | date: "%B %d, %Y" }}</span>
-                {% endif %}
-                {% if page.author %}
-                  <span>by {{ page.author }}</span>
-                {% endif %}
+            <div class="mb-5 sm:mb-6 flex flex-wrap items-center text-[#A78BFA] text-xs sm:text-base space-x-2">
+              {% if page.date %}
+                <span>Published: {{ page.date | date: "%B %d, %Y" }}</span>
+              {% endif %}
+              {% if page.author %}
+                <span>by {{ page.author }}</span>
+              {% endif %}
             </div>
-            <!-- Optional Description -->
-            {% if page.description %}
-              <p class="text-lg text-[#C084FC] mb-8">{{ page.description }}</p>
-            {% endif %}
             <!-- Post Content -->
-            <article class="markdown-body bg-[#232327] rounded-2xl shadow-xl p-10 prose prose-invert prose-lg max-w-none">
-                {{ content }}
+            <article class="markdown-body bg-[#232327] rounded-2xl p-3 max-w-none overflow-x-auto">
+              {{ content | inject_anchors }}
             </article>
+          </div>
+          {% if page.toc %}
+          <nav
+            id="toc-sidebar"
+            class="hidden lg:block sticky top-24 self-start w-64 max-h-[65vh] overflow-y-auto bg-[#232327] text-[#C084FC] rounded-2xl shadow-xl p-4 text-sm"
+            style="z-index:50;"
+          >
+            <h2 class="text-base font-bold mb-3 text-[#C084FC]">Sommaire</h2>
+            {{ content | toc_only }}
+          </nav>
+            {% endif %}
         </div>
-    </main>
+      </main>
+
+
+
+
 
     {% include footer.html %}
 

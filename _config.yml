@@ -37,6 +37,7 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-toc
 
 postcss:
   cache: false

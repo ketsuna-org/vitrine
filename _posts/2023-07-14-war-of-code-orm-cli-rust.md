@@ -6,6 +6,7 @@ category: war_of_code
 thumbnail: files/11-database-drivers-and-orms-for-rust-that-are-ready-for-production.avif
 author: Garder500
 layout: post
+toc: false
 ---
 # War Of Code | ORM & CLI MySQL
 
