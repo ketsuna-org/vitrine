@@ -42,3 +42,4 @@ collections:
       - {label: "Author", name: "author", widget: "string", default: "Garder500"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Generate TOC", name: "toc", widget: "boolean", default: true}
