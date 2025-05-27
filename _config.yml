@@ -18,15 +18,19 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Jeremy Soler
-email: contact@jeremysoler.com
+title: Bot-Creator
+email: contact@ketsuna.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Blog and portfolio of Jeremy Soler, a software engineer and entrepreneur.
+  Bot-Creator is a free and open-source platform that allows you to create
+  Discord bots without any coding knowledge. It is designed to be user-friendly
+  and accessible to everyone, regardless of their technical background.
+  With Bot-Creator, you can easily create and customize your own Discord bots
+  using a simple drag-and-drop interface.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://jeremysoler.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://bot-creator.fr" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: garder500
 github_username:  garder500
-author: Jérémy Soler
+author: Garder500
 
 # Build settings
 ignore_theme_config: true
