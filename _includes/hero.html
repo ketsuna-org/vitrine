@@ -1,36 +1,77 @@
 <div class="flex gap-20 w-full justify-between h-fit items-center py-10">
   <div class="flex flex-col gap-5 lg:gap-2">
     <h1 class="text-5xl font-bold">
-      Hello, I'm <span class="text-purple-500">Jeremy Soler</span>
+      Welcome to <span class="text-blue-400">Bot-Creator</span>
     </h1>
-    <p onclick="alert('Fullstack Developer')" class="w-full lg:w-fit text-xl lg:text-lg hover:cursor-pointer bg-zinc-950 p-2 px-3 rounded-lg font-bold">
-      <span class="text-blue-500" >alert</span>(
-      <span class="text-yellow-500">"Fullstack Developer"</span>);
+    <p onclick="alert('Automate Everything')" class="w-full lg:w-fit text-xl lg:text-lg hover:cursor-pointer bg-slate-900 p-2 px-3 rounded-lg font-bold border border-blue-500/20">
+      <span class="text-blue-400">automate</span>(
+      <span class="text-cyan-300">"everything"</span>);
     </p>
 
-    <p class="max-w-[50rem] mt-5 text-xl lg:text-lg text-zinc-400">
-      I'm a passionate developer with a focus on creating efficient, scalable, and user-friendly solutions. Below, you'll find more about my skills, projects, and the tools I use to bring ideas to life.
+    <p class="max-w-[50rem] mt-5 text-xl lg:text-lg text-slate-300">
+      Transform your workflow with intelligent automation. Bot-Creator empowers you to build sophisticated bots and automated solutions without complex coding. From simple tasks to enterprise-level automation, we make it accessible for everyone.
     </p>
+
+    <div class="flex gap-4 mt-6">
+      <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+        Start Creating
+      </button>
+      <button class="border border-blue-500 text-blue-400 hover:bg-blue-500/10 px-6 py-3 rounded-lg font-semibold transition-colors">
+        Learn More
+      </button>
+    </div>
   </div>
 
   <div class="relative w-[26rem] h-[10rem] hidden 2xl:block">
-    <div class="absolute inset-0 bg-gradient-to-tr from-purple-600 to-purple-500 rounded-lg transform -skew-x-6 "></div>
-     
+    <div class="absolute inset-0 bg-gradient-to-tr from-blue-800 to-blue-600 rounded-lg transform -skew-x-6 shadow-lg shadow-blue-500/20"></div>
+
     <img
-      class="absolute left-[40%] top-[50%] translate-y-[-50%] translate-x-[-25%] blur-xl opacity-40 brightness-0"
-      src="https://cdn3.emoji.gg/unicode/microsoft/rocket.png"
-      alt="Rocket Emoji"
+      class="absolute left-[40%] top-[50%] translate-y-[-50%] translate-x-[-25%] blur-xl opacity-30 brightness-0"
+      src="https://cdn3.emoji.gg/unicode/microsoft/robot.png"
+      alt="Robot Emoji"
     />
 
     <img
       class="absolute left-[40%] top-[50%] translate-y-[-50%] translate-x-[-25%]"
-      src="https://cdn3.emoji.gg/unicode/microsoft/rocket.png"
-      alt="Rocket Emoji"
+      src="https://cdn3.emoji.gg/unicode/microsoft/robot.png"
+      alt="Robot Emoji"
     />
+  </div>
+</div>
 
+<!-- Features Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+  <div class="bg-slate-800/50 p-6 rounded-lg border border-blue-500/20">
+    <div class="text-blue-400 text-2xl mb-3">⚡</div>
+    <h3 class="text-xl font-bold text-white mb-2">Lightning Fast</h3>
+    <p class="text-slate-300">Deploy your bots in minutes, not hours. Our streamlined interface gets you up and running quickly.</p>
+  </div>
 
+  <div class="bg-slate-800/50 p-6 rounded-lg border border-blue-500/20">
+    <div class="text-blue-400 text-2xl mb-3">🔧</div>
+    <h3 class="text-xl font-bold text-white mb-2">No-Code Solution</h3>
+    <p class="text-slate-300">Build powerful automation without writing a single line of code. Visual drag-and-drop interface included.</p>
+  </div>
+
+  <div class="bg-slate-800/50 p-6 rounded-lg border border-blue-500/20">
+    <div class="text-blue-400 text-2xl mb-3">🚀</div>
+    <h3 class="text-xl font-bold text-white mb-2">Enterprise Ready</h3>
+    <p class="text-slate-300">Scale from personal projects to enterprise solutions with robust security and monitoring features.</p>
   </div>
 </div>
 
 <script>
+// Ajout d'animations subtiles au chargement
+document.addEventListener('DOMContentLoaded', function() {
+  const elements = document.querySelectorAll('.bg-slate-800\\/50');
+  elements.forEach((el, index) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      el.style.transition = 'all 0.6s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, index * 200);
+  });
+});
 </script>

@@ -1,13 +1,66 @@
-<nav class="text-lg flex flex-col md:flex-row gap-5 md:justify-between items-center py-8">
-  <h1 class="text-4xl md:text-2xl font-bold text-white">Jeremy Soler</h1>
-  <ul class="flex items-center gap-8 text-white font-bold tracking-tight">
-    <li class="cursor-pointer hover:text-purple-500 transition"><a href="/#skills">Skills</a></li>
-    <li class="cursor-pointer hover:text-purple-500 transition"><a href="/#projects">Projects</a></li>
-    <li class="cursor-pointer hover:text-purple-500 transition"><a href="/blog">Blog</a></li>
-    <li class="rounded-lg bg-white text-zinc-950 px-4 py-3 font-bold hover:bg-purple-500 hover:text-white transition">
-      <a href="/#footer">
-        Contact
+<nav class="text-lg flex flex-col md:flex-row gap-5 md:justify-between items-center py-8 border-b border-blue-500/20">
+  <!-- Logo/Brand -->
+  <div class="flex items-center space-x-3">
+    <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
+      <i class="fas fa-robot text-white text-sm"></i>
+    </div>
+    <h1 class="text-4xl md:text-2xl font-bold text-blue-400 hover:text-blue-300 transition-colors">
+      <a href="/" class="no-underline">Bot-Creator</a>
+    </h1>
+  </div>
+
+  <!-- Navigation Links -->
+  <ul class="flex items-center gap-8 text-slate-200 font-semibold tracking-tight">
+    <li>
+      <a href="/" class="cursor-pointer hover:text-blue-400 transition-colors duration-200 flex items-center space-x-1 {% if page.url == '/' %}text-blue-400{% endif %}">
+        <i class="fas fa-home text-sm"></i>
+        <span>Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="/blog" class="cursor-pointer hover:text-blue-400 transition-colors duration-200 flex items-center space-x-1 {% if page.url contains '/blog' %}text-blue-400{% endif %}">
+        <i class="fas fa-blog text-sm"></i>
+        <span>Blog</span>
       </a>
     </li>
   </ul>
+
+  <!-- Mobile Menu Button -->
+  <button id="mobile-menu-btn" class="md:hidden text-slate-200 hover:text-blue-400 transition-colors">
+    <i class="fas fa-bars text-xl"></i>
+  </button>
 </nav>
+
+<!-- Mobile Menu (Hidden by default) -->
+<div id="mobile-menu" class="md:hidden hidden bg-slate-800/95 backdrop-blur-sm border-b border-blue-500/20">
+  <div class="px-6 py-4 space-y-3">
+    <a href="/" class="block py-2 text-slate-200 hover:text-blue-400 transition-colors {% if page.url == '/' %}text-blue-400{% endif %}">
+      <i class="fas fa-home text-sm mr-3"></i>Home
+    </a>
+    <a href="/blog" class="block py-2 text-slate-200 hover:text-blue-400 transition-colors {% if page.url contains '/blog' %}text-blue-400{% endif %}">
+      <i class="fas fa-blog text-sm mr-3"></i>Blog
+    </a>
+  </div>
+</div>
+
+<script>
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = mobileMenuBtn.querySelector('i');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+
+      // Toggle icon
+      if (mobileMenu.classList.contains('hidden')) {
+        menuIcon.className = 'fas fa-bars text-xl';
+      } else {
+        menuIcon.className = 'fas fa-times text-xl';
+      }
+    });
+  }
+});
+</script>

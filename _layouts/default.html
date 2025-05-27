@@ -6,15 +6,119 @@
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <link href="{{ '/css/main.css' | relative_url }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'slate': {
+                            '800': '#1e293b',
+                            '900': '#0f172a',
+                        },
+                        'blue': {
+                            '400': '#60a5fa',
+                            '500': '#3b82f6',
+                            '600': '#2563eb',
+                            '700': '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="text-lg lg:text-base bg-zinc-900 text-zinc-100 lg:px-60 px-10 tracking-tight saturate-[150%]">
+<body class="text-lg lg:text-base bg-slate-900 text-slate-100 tracking-tight antialiased">
 
-    <!-- Header -->
-    {% include navbar.html %}
+    <!-- Container pour centrer et limiter la largeur -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- Header -->
+        {% include navbar.html %}
 
-    <main>{{content}}</main>
+        <!-- Main Content -->
+        <main class="min-h-screen py-8">
+            {{ content }}
+        </main>
+    </div>
 
-    <img src="/assets/texture.jpg" class="object-cover w-screen h-full top-0 left-0 absolute -z-10 opacity-[2%] saturate-0" alt="">
+    <!-- Scripts -->
+    <script>
+        // Animation d'entrée pour les éléments
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('[data-animate]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            });
 
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+
+    <style>
+        /* Animations personnalisées */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
+        /* Sélection de texte personnalisée */
+        ::selection {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        /* Focus states améliorés */
+        button:focus,
+        a:focus,
+        input:focus,
+        textarea:focus {
+            outline: 2px solid #60a5fa;
+            outline-offset: 2px;
+        }
+
+        /* Amélioration de la lisibilité */
+        p, li {
+            max-width: 65ch;
+        }
+
+        /* Espacement des sections */
+        section {
+            margin-bottom: 3rem;
+        }
+    </style>
 </body>
 </html>

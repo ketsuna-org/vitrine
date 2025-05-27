@@ -7,56 +7,231 @@
     <link href="{{ '/css/main.css' | relative_url }}" rel="stylesheet">
     <link href="{{ '/css/highlight.css' | relative_url }}" rel="stylesheet">
     <link href="{{ '/css/markdown.css' | relative_url }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'slate': {
+                            '800': '#1e293b',
+                            '900': '#0f172a',
+                        },
+                        'blue': {
+                            '400': '#60a5fa',
+                            '500': '#3b82f6',
+                            '600': '#2563eb',
+                            '700': '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="text-lg lg:text-base bg-zinc-900 text-zinc-100 lg:px-60 px-10 tracking-tight saturate-[150%]">
+<body class="text-lg lg:text-base bg-slate-900 text-slate-100 tracking-tight antialiased">
 
-    <!-- Header -->
-    {% include navbar.html %}
+    <!-- Container pour centrer et limiter la largeur -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- Header -->
+        {% include navbar.html %}
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-2 sm:px-4 md:px-8 py-6 sm:py-10 flex-grow">
-        <div class="flex flex-row gap-8">
-          <!-- TOC Sidebar (Left) -->
+        <!-- Main Content -->
+        <main class="py-8 flex-grow">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Main Content -->
+                <div class="flex-1 max-w-none lg:max-w-4xl">
+                    <!-- Breadcrumb Navigation -->
+                    <nav class="mb-6 text-sm">
+                        <ol class="flex items-center space-x-2 text-slate-400">
+                            <li>
+                                <a href="/" class="hover:text-blue-400 transition-colors">
+                                    <i class="fas fa-home mr-1"></i>Home
+                                </a>
+                            </li>
+                            <li class="text-slate-600">
+                                <i class="fas fa-chevron-right"></i>
+                            </li>
+                            <li>
+                                <a href="/blog" class="hover:text-blue-400 transition-colors">Blog</a>
+                            </li>
+                            <li class="text-slate-600">
+                                <i class="fas fa-chevron-right"></i>
+                            </li>
+                            <li class="text-blue-400 font-medium">{{ page.title | truncate: 30 }}</li>
+                        </ol>
+                    </nav>
 
+                    <!-- Post Header -->
+                    <header class="mb-8">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-blue-400 break-words">
+                            {{ page.title | default: "Post Title" }}
+                        </h1>
 
-          <!-- Main Content (Right) -->
-          <div class="flex-1 max-w-full md:max-w-2xl lg:max-w-3xl mx-0 sm:mx-auto">
-            <!-- Post Title -->
-            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold mb-5 sm:mb-6 leading-tight text-[#E9D5FF] break-words">
-              {{ page.title | default: "Post Title" }}
-            </h1>
-            <!-- Post Meta -->
-            <div class="mb-5 sm:mb-6 flex flex-wrap items-center text-[#A78BFA] text-xs sm:text-base space-x-2">
-              {% if page.date %}
-                <span>Published: {{ page.date | date: "%B %d, %Y" }}</span>
-              {% endif %}
-              {% if page.author %}
-                <span>by {{ page.author }}</span>
-              {% endif %}
+                        <!-- Post Meta -->
+                        <div class="flex flex-wrap items-center gap-4 text-blue-300/80 text-sm mb-6">
+                            {% if page.date %}
+                                <span class="flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    {{ page.date | date: "%B %d, %Y" }}
+                                </span>
+                            {% endif %}
+                            {% if page.author %}
+                                <span class="flex items-center">
+                                    <i class="fas fa-user mr-2"></i>
+                                    {{ page.author }}
+                                </span>
+                            {% endif %}
+                            {% if page.reading_time %}
+                                <span class="flex items-center">
+                                    <i class="fas fa-clock mr-2"></i>
+                                    {{ page.reading_time }} min read
+                                </span>
+                            {% endif %}
+                        </div>
+
+                        <!-- Categories/Tags -->
+                        {% if page.categories %}
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                {% for category in page.categories %}
+                                    <span class="px-3 py-1 text-xs bg-blue-600/20 text-blue-300 rounded-full border border-blue-500/30">
+                                        {{ category }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </header>
+
+                    <!-- Post Content -->
+                    <article class="markdown-body bg-slate-800/50 border border-blue-500/20 rounded-xl p-6 lg:p-8 max-w-none overflow-x-auto shadow-lg">
+                        {{ content | inject_anchors }}
+                    </article>
+
+                    <!-- Post Footer -->
+                    <footer class="mt-12 pt-8 border-t border-blue-500/20">
+                        <!-- Share Buttons -->
+                        <div class="flex items-center justify-between flex-wrap gap-4">
+                            <div class="flex items-center space-x-4">
+                                <span class="text-slate-300 font-medium">Share this post:</span>
+                                <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title }}"
+                                   target="_blank"
+                                   class="text-blue-400 hover:text-blue-300 transition-colors">
+                                    <i class="fab fa-twitter text-lg"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}"
+                                   target="_blank"
+                                   class="text-blue-400 hover:text-blue-300 transition-colors">
+                                    <i class="fab fa-linkedin text-lg"></i>
+                                </a>
+                            </div>
+
+                            <!-- Back to Blog -->
+                            <a href="/blog"
+                               class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors">
+                                <i class="fas fa-arrow-left mr-2"></i>
+                                Back to Blog
+                            </a>
+                        </div>
+                    </footer>
+                </div>
+
+                <!-- Table of Contents Sidebar -->
+                {% if page.toc %}
+                <aside class="lg:w-80">
+                    <nav id="toc-sidebar"
+                         class="sticky top-8 bg-slate-800/50 border border-blue-500/20 text-slate-200 rounded-xl shadow-lg p-6 max-h-[70vh] overflow-y-auto">
+                        <h2 class="text-lg font-bold mb-4 text-blue-400 flex items-center">
+                            <i class="fas fa-list mr-2"></i>
+                            Table of Contents
+                        </h2>
+                        <div class="toc-content text-sm">
+                            {{ content | toc_only }}
+                        </div>
+                    </nav>
+                </aside>
+                {% endif %}
             </div>
-            <!-- Post Content -->
-            <article class="markdown-body bg-[#232327] rounded-2xl p-3 max-w-none overflow-x-auto">
-              {{ content | inject_anchors }}
-            </article>
-          </div>
-          {% if page.toc %}
-          <nav
-            id="toc-sidebar"
-            class="hidden lg:block sticky top-24 self-start w-64 max-h-[65vh] overflow-y-auto bg-[#232327] text-[#C084FC] rounded-2xl shadow-xl p-4 text-sm"
-            style="z-index:50;"
-          >
-            <h2 class="text-base font-bold mb-3 text-[#C084FC]">Sommaire</h2>
-            {{ content | toc_only }}
-          </nav>
-            {% endif %}
-        </div>
-      </main>
-
-
-
-
+        </main>
+    </div>
 
     {% include footer.html %}
 
+    <style>
+        /* TOC Styling */
+        .toc-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc-content ul ul {
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .toc-content li {
+            margin: 0.5rem 0;
+        }
+
+        .toc-content a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            transition: all 0.2s;
+        }
+
+        .toc-content a:hover {
+            color: #60a5fa;
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Markdown content improvements */
+        .markdown-body {
+            line-height: 1.7;
+        }
+
+        .markdown-body h1,
+        .markdown-body h2,
+        .markdown-body h3,
+        .markdown-body h4,
+        .markdown-body h5,
+        .markdown-body h6 {
+            color: #60a5fa;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .markdown-body p {
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+        }
+
+        .markdown-body code {
+            background-color: #1e293b;
+            color: #60a5fa;
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+        }
+
+        .markdown-body pre {
+            background-color: #1e293b;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #94a3b8;
+            font-style: italic;
+        }
+    </style>
 </body>
 </html>

@@ -1,12 +1,12 @@
 backend:
   name: github
-  repo: garder500/portfolio
+  repo: ketsuna-org/vitrine
   branch: master
   use_graphql: true
   base_url: https://decap-proxy.ketsuna.workers.dev
   squash_merges: true
 
-site_url: https://jeremysoler.com
+site_url: https://bot-creator.com
 publish_mode: editorial_workflow
 media_folder: assets #images that are uploaded via Netlify Cms interface will be stored in this folder
 public_folder: assets #I dont know
