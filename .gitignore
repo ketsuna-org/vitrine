@@ -3,7 +3,7 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
-.devenv
+.devenv*
 .direnv
 node_modules/
 .devenv.flake.nix

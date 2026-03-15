@@ -1,4 +1,6 @@
 - name: 'Home'
   url: '/'
+- name: 'Download'
+  url: '/download/'
 - name: 'Blog'
   url: '/blog'
