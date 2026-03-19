@@ -1,22 +1,20 @@
 ---
 layout: default
 title: Guides
-description: Learn Bot Creator through practical setup guides, runtime walkthroughs, and product tutorials.
-locale: en
+description: Apprenez Bot Creator avec des guides pratiques de setup, de runtime et de prise en main.
+locale: fr
 translation_key: guides
-content_language: en
+content_language: fr
+permalink: /fr/blog/
 ---
 {% assign t = site.data.locales[page.locale] %}
 {% assign post_list = site.posts %}
-{% if paginator and paginator.posts %}
-  {% assign post_list = paginator.posts %}
-{% endif %}
 
 <section class="site-grid page-section">
   <div class="page-hero compact" data-reveal>
     <div class="eyebrow-row">
       <span class="eyebrow-pill">{{ t.guides.eyebrow }}</span>
-      <span class="meta-chip">Product learning paths</span>
+      <span class="meta-chip">Parcours d'apprentissage produit</span>
     </div>
     <h1>{{ t.guides.title }}</h1>
     <p class="lede">{{ t.guides.subtitle }}</p>
@@ -36,12 +34,12 @@ content_language: en
     </div>
 
     <div class="panel-card" data-reveal>
-      <p class="section-label">Why these guides</p>
-      <h2>Move from setup to runtime with less friction.</h2>
-      <p>The current guide set is focused on the high-friction moves: creating a safe Discord bot token, wiring the first slash command, and understanding when to move from the app to the Docker runner.</p>
+      <p class="section-label">Pourquoi ces guides</p>
+      <h2>Passez du setup a l'execution avec moins de friction.</h2>
+      <p>Le set actuel est concentre sur les etapes a forte friction : creer un bot token Discord proprement, construire la premiere slash command et comprendre quand basculer de l'app vers le runner Docker.</p>
       <div class="button-row">
-        <a class="button button-primary" href="{{ '/download/' | relative_url }}">Open downloads</a>
-        <a class="button button-secondary" href="{{ '/' | relative_url }}">Explore product</a>
+        <a class="button button-primary" href="{{ '/fr/download/' | relative_url }}">Ouvrir les telechargements</a>
+        <a class="button button-secondary" href="{{ '/fr/' | relative_url }}">Voir le produit</a>
       </div>
     </div>
   </div>
@@ -66,17 +64,6 @@ content_language: en
   <div class="panel-card" data-reveal>
     <h2>{{ t.guides.empty_title }}</h2>
     <p>{{ t.guides.empty_body }}</p>
-  </div>
-  {% endif %}
-
-  {% if paginator and paginator.total_pages > 1 %}
-  <div class="button-row">
-    {% if paginator.previous_page %}
-    <a class="button button-secondary" href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
-    {% endif %}
-    {% if paginator.next_page %}
-    <a class="button button-secondary" href="{{ paginator.next_page_path | relative_url }}">Next</a>
-    {% endif %}
   </div>
   {% endif %}
 </section>

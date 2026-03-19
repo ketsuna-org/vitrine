@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Download Bot Creator
-description: Install Bot Creator on mobile, desktop, Linux, or use the Docker runner.
-locale: en
+title: Telecharger Bot Creator
+description: Installez Bot Creator sur mobile, desktop, Linux ou via le runner Docker.
+locale: fr
 translation_key: download
-content_language: en
-permalink: /download/
+content_language: fr
+permalink: /fr/download/
 ---
 {% assign downloads = site.data.downloads %}
 {% assign t = site.data.locales[page.locale] %}
@@ -13,26 +13,26 @@ permalink: /download/
 <section class="site-grid page-section">
   <div class="page-hero" data-reveal>
     <div class="eyebrow-row">
-      <span class="eyebrow-pill">Install paths</span>
-      <span class="meta-chip">Release-driven and runner-ready</span>
+      <span class="eyebrow-pill">Parcours d'installation</span>
+      <span class="meta-chip">Release-driven et runner-ready</span>
     </div>
     <div class="hero-grid">
       <div class="section-stack">
-        <h1>Choose the Bot Creator runtime that matches the machine you want to control.</h1>
-        <p class="lede">The product has two distinct paths: the app itself for building and local runtime control, and the Docker runner for browser-based execution on Linux hardware. Linux builds always point to the latest AppImage, and release redirects stay current without editing page code.</p>
+        <h1>Choisissez le runtime Bot Creator adapte a la machine que vous voulez piloter.</h1>
+        <p class="lede">Le produit a deux chemins distincts : l'application elle-meme pour construire et piloter le runtime en local, et le runner Docker pour une execution browser-based sur materiel Linux. Les builds Linux pointent toujours vers la derniere AppImage, et les redirects GitHub restent a jour sans logique client-side.</p>
         <div class="button-row">
-          <a class="button button-primary" href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Latest release</a>
-          <a class="button button-secondary" href="#runner">Runner setup</a>
+          <a class="button button-primary" href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Derniere release</a>
+          <a class="button button-secondary" href="#runner">Setup runner</a>
         </div>
       </div>
 
       <div class="panel-card">
-        <p class="section-label">Release source</p>
-        <h2>Latest-release redirects keep static pages current.</h2>
-        <p>App and Linux direct downloads use GitHub latest-release redirect URLs. That keeps the website static while still landing on the newest artifact names and hashes.</p>
+        <p class="section-label">Source des builds</p>
+        <h2>Les redirects latest-release gardent la page statique mais actuelle.</h2>
+        <p>Les telechargements directs de l'app et de Linux utilisent des URLs GitHub latest-release. Le site reste statique tout en pointant vers les derniers artefacts et leurs hashes.</p>
         <div class="support-links">
-          <a href="{{ downloads.release_notes_page }}" target="_blank" rel="noopener noreferrer">Release notes</a>
-          <a href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Artifacts and hashes</a>
+          <a href="{{ downloads.release_notes_page }}" target="_blank" rel="noopener noreferrer">Notes de version</a>
+          <a href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Artefacts et hashes</a>
         </div>
       </div>
     </div>
@@ -40,9 +40,9 @@ permalink: /download/
 
   <div class="download-grid">
     <article class="download-card" data-reveal>
-      <span class="download-meta">Mobile apps</span>
-      <h2>Android and iPhone</h2>
-      <p>Use the mobile app when you want the visual builder and runtime control in your pocket.</p>
+      <span class="download-meta">Apps mobiles</span>
+      <h2>Android et iPhone</h2>
+      <p>Choisissez l'app mobile si vous voulez le builder visuel et le controle runtime directement sur votre appareil.</p>
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">Google Play</a>
         <a class="button button-secondary" href="{{ downloads.stores.android_apk.url }}" target="_blank" rel="noopener noreferrer">Latest APK</a>
@@ -51,9 +51,9 @@ permalink: /download/
     </article>
 
     <article class="download-card" data-reveal>
-      <span class="download-meta">Desktop app</span>
-      <h2>Windows desktop flow</h2>
-      <p>Use the Windows app when you want the full local builder with a larger workspace and local runtime management.</p>
+      <span class="download-meta">App desktop</span>
+      <h2>Flux Windows desktop</h2>
+      <p>Utilisez l'application Windows si vous voulez le builder complet en local avec un espace de travail plus large.</p>
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">Microsoft Store</a>
         <a class="button button-secondary" href="{{ downloads.stores.windows_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
@@ -61,9 +61,9 @@ permalink: /download/
     </article>
 
     <article class="download-card" data-reveal>
-      <span class="download-meta">Linux builds</span>
-      <h2>Portable Linux release</h2>
-      <p>Use the AppImage on Linux workstations, lab nodes, or self-hosted machines when you want direct local execution without the store layer.</p>
+      <span class="download-meta">Builds Linux</span>
+      <h2>Release portable Linux</h2>
+      <p>Utilisez l'AppImage sur workstation Linux, machine de labo ou serveur leger quand vous voulez une execution locale directe.</p>
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.linux_appimage.url }}" target="_blank" rel="noopener noreferrer">Latest AppImage</a>
         <a class="button button-secondary" href="{{ downloads.stores.linux_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
@@ -71,12 +71,12 @@ permalink: /download/
     </article>
 
     <article class="download-card" id="runner" data-reveal>
-      <span class="download-meta">Docker runner</span>
-      <h2>Browser-based runner on Linux hardware</h2>
-      <p>The runner exposes a web UI for selecting, starting, and stopping bots. It persists Google Drive tokens and runner logs in the mounted volume, which makes it the right path for Linux servers, Raspberry Pi, and remote hosting.</p>
+      <span class="download-meta">Runner Docker</span>
+      <h2>Runner browser-based sur materiel Linux</h2>
+      <p>Le runner expose une web UI pour selectionner, demarrer et stopper des bots. Les tokens Google Drive et les logs restent dans le volume monte, ce qui en fait le bon chemin pour serveur Linux, Raspberry Pi et hebergement distant.</p>
       <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">Runner docs</a>
-        <a class="button button-secondary" href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Latest release</a>
+        <a class="button button-primary" href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">Docs runner</a>
+        <a class="button button-secondary" href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Derniere release</a>
       </div>
     </article>
   </div>
@@ -85,7 +85,7 @@ permalink: /download/
     <div class="panel-stack">
       <div class="command-card" data-reveal>
         <div class="command-head">
-          <h3>1. Pull the runner image</h3>
+          <h3>1. Recuperer l'image runner</h3>
           <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.pull }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
         </div>
         <pre class="command-block">{{ downloads.runner.commands.pull }}</pre>
@@ -93,7 +93,7 @@ permalink: /download/
 
       <div class="command-card" data-reveal>
         <div class="command-head">
-          <h3>2. Create the persistent volume</h3>
+          <h3>2. Creer le volume persistant</h3>
           <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.volume }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
         </div>
         <pre class="command-block">{{ downloads.runner.commands.volume }}</pre>
@@ -101,7 +101,7 @@ permalink: /download/
 
       <div class="command-card" data-reveal>
         <div class="command-head">
-          <h3>3. Start the runner</h3>
+          <h3>3. Lancer le runner</h3>
           <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.run }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
         </div>
         <pre class="command-block">{{ downloads.runner.commands.run }}</pre>
@@ -109,30 +109,30 @@ permalink: /download/
     </div>
 
     <div class="panel-card" data-reveal>
-      <p class="section-label">Runner onboarding</p>
+      <p class="section-label">Onboarding runner</p>
       <ul class="timeline">
         <li>
           <div>
-            <strong>Pull the image</strong>
-            <span>Fetch the current runner container from GitHub Container Registry.</span>
+            <strong>Recuperer l'image</strong>
+            <span>Telechargez le runner courant depuis GitHub Container Registry.</span>
           </div>
         </li>
         <li>
           <div>
-            <strong>Start the container</strong>
-            <span>Expose port 8080 and mount the persistent volume at <code>/data</code>.</span>
+            <strong>Demarrer le conteneur</strong>
+            <span>Exposez le port 8080 et montez le volume persistant sur <code>/data</code>.</span>
           </div>
         </li>
         <li>
           <div>
-            <strong>Open the web UI</strong>
-            <span>Browse to <code>{{ downloads.runner.web_url }}</code> or tunnel the port from a remote host.</span>
+            <strong>Ouvrir la web UI</strong>
+            <span>Accedez a <code>{{ downloads.runner.web_url }}</code> ou tunnelisez le port depuis un hote distant.</span>
           </div>
         </li>
         <li>
           <div>
-            <strong>Connect Google Drive and run a bot</strong>
-            <span>Authorize once, persist the token cache in the volume, then select and start the bot you want to execute.</span>
+            <strong>Connecter Google Drive puis lancer un bot</strong>
+            <span>Autorisez une fois, gardez le token cache dans le volume, puis selectionnez le bot a executer.</span>
           </div>
         </li>
       </ul>

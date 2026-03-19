@@ -1,13 +1,16 @@
 ---
 title: How to Create a Command in Bot Creator (Step-by-Step)
-description: Learn how to create a clean, reliable slash command in Bot Creator,
-  from basic setup to advanced response workflows and actions.
+description: Learn how to create a clean, reliable slash command in Bot Creator, from basic setup to advanced response workflows and actions.
 date: 2026-03-12T22:12:00.000+01:00
 author: Garder500
 layout: post
 toc: true
+locale: en
+translation_key: guide-create-command
+content_language: en
+categories: [commands, workflow]
 ---
-If you want your bot to feel professional, every command should be clear, predictable, and easy to maintain.  
+If you want your bot to feel professional, every command should be clear, predictable, and easy to maintain.
 This guide shows you exactly how to build a command in Bot Creator.
 
 ## 1. Open the Command Builder
@@ -24,15 +27,15 @@ This guide shows you exactly how to build a command in Bot Creator.
 - **Guild**
 - **Bot DM**
 - **Group DM / Other**
-5. (Optional) Set **Default Member Permissions**.
+5. Optional: set **Default Member Permissions**.
 
-### Name rules
+### Name Rules
 - Max 32 characters
 - No spaces
 - Letters, numbers, and underscores only
 - Do not start with special characters like `_`, `!`, `/`, `#`, `@`, `&`, `%`
 
-## 3. Configure Command Reply
+## 3. Configure the Command Reply
 Choose one response type:
 - **Normal Reply**
 - **Component V2**
@@ -46,15 +49,15 @@ For text replies, use variables like:
 Open **Configure Response Workflow** if you want:
 - Public vs Ephemeral response
 - Auto-defer while actions run
-- Conditional THEN/ELSE responses
+- Conditional THEN and ELSE responses
 
-## 4. Add Command Options (Parameters)
+## 4. Add Command Options
 In **Command Options**, click **Add Option** and configure:
 - Name
 - Description
-- Type (String, Integer, Boolean, User, Channel, Role, Mentionable, Number, Attachment)
+- Type: String, Integer, Boolean, User, Channel, Role, Mentionable, Number, or Attachment
 - Required or optional
-- Choices (if applicable)
+- Choices, if applicable
 
 Keep options focused. Only add parameters users actually need.
 
@@ -73,7 +76,7 @@ You can also:
 - Reply content
 - Variables resolution
 - Option values
-- Visibility (public/ephemeral)
+- Visibility: public or ephemeral
 - Action execution
 
 ## Best Practices
@@ -84,7 +87,7 @@ You can also:
 - Test in both Guild and DM contexts when relevant.
 
 ## Common Errors
-- “Please fill all fields”: Name or description is missing.
-- Command does not appear: check install type/context and bot permissions.
-- Variables not replaced: confirm syntax is exactly `((variableName))`.
+- "Please fill all fields": Name or description is missing.
+- Command does not appear: check install type, context, and bot permissions.
+- Variables are not replaced: confirm syntax is exactly `((variableName))`.
 - Wrong action result: test actions step-by-step in the builder.

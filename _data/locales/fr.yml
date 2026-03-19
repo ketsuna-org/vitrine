@@ -1,0 +1,83 @@
+code: "fr"
+label: "Francais"
+switch_label: "EN"
+language_switch: "English"
+
+paths:
+  home: "/fr/"
+  download: "/fr/download/"
+  guides: "/fr/blog/"
+  privacy: "/fr/privacy/"
+
+meta:
+  site_title: "Bot Creator"
+  site_tagline: "Constructeur local-first de bots Discord"
+  site_description: "Creez, lancez et surveillez des bots Discord sans code depuis mobile, desktop, Linux ou le runner Docker."
+
+nav:
+  home: "Accueil"
+  download: "Telecharger"
+  guides: "Guides"
+  privacy: "Confidentialite"
+  open_menu: "Ouvrir la navigation"
+  close_menu: "Fermer la navigation"
+
+shell:
+  status_badge: "Centre de controle pour bots Discord local-first"
+  primary_cta: "Telecharger Bot Creator"
+  secondary_cta: "Lire les guides"
+  footer_title: "Bot Creator"
+  footer_tagline: "Construisez des slash commands, workflows et automatisations runtime sans developper de backend."
+  footer_product: "Produit"
+  footer_resources: "Ressources"
+  footer_downloads: "Telechargements"
+  footer_legal: "Legal"
+  footer_runner: "Runner Docker"
+  footer_release_notes: "Notes de version"
+  footer_privacy: "Politique de confidentialite"
+  footer_rights: "Pense pour les createurs qui veulent garder le controle en local."
+
+common:
+  open_link: "Ouvrir"
+  copy: "Copier"
+  copied: "Copie"
+  source_language: "Langue source"
+  source_language_en: "Anglais"
+  source_language_fr: "Francais"
+  runtime_label: "Runtime"
+  download_label: "Telechargement"
+
+guides:
+  title: "Guides"
+  eyebrow: "Tutoriels et parcours produit"
+  subtitle: "Apprenez le flux produit, de votre premier bot token jusqu'aux commandes, workflows et actions runtime."
+  featured_title: "Commencez par les bases"
+  featured_tracks:
+    - title: "Creer un bot token"
+      body: "Configurez une application Discord, generez le token proprement et stockez-le dans Bot Creator."
+    - title: "Construire une slash command"
+      body: "Configurez les metadonnees, le workflow de reponse et les actions runtime sans ecrire de code."
+    - title: "Passer de l'app au runner"
+      body: "Utilisez le runner Docker pour une execution browser-based sur une machine Linux."
+  empty_title: "Aucun guide pour le moment"
+  empty_body: "De nouveaux tutoriels apparaitront ici."
+  read_more: "Lire le guide"
+  back_to_guides: "Retour aux guides"
+  share: "Partager"
+  toc: "Sur cette page"
+  published_label: "Publication"
+  author_label: "Auteur"
+  next_title: "Pret a lancer votre bot ?"
+  next_body: "Installez l'application en local ou utilisez le runner Docker pour un runtime Linux distant."
+  next_download: "Ouvrir la page de telechargement"
+  next_home: "Voir le produit"
+  progress_label: "Progression de lecture"
+
+privacy:
+  title: "Confidentialite"
+  subtitle: "Comment Bot Creator utilise les sauvegardes Google Drive, le stockage local et les diagnostics runtime."
+
+not_found:
+  title: "Page introuvable"
+  body: "La route demandee n'existe pas ou a change pendant la refonte."
+  cta: "Retour a l'accueil"

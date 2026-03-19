@@ -1,0 +1,38 @@
+release_page: "https://github.com/ketsuna-org/bot-creator/releases/latest"
+release_notes_page: "https://github.com/ketsuna-org/bot-creator/releases"
+runner_guide_url: "https://github.com/ketsuna-org/bot-creator/blob/main/docs/runner-docker.md"
+docker_image: "ghcr.io/ketsuna-org/bot-creator-runner:latest"
+
+stores:
+  android_play:
+    label: "Google Play"
+    url: "https://play.google.com/store/apps/details?id=fr.botcreator.app"
+  android_apk:
+    label: "Latest APK"
+    url: "https://github.com/ketsuna-org/bot-creator/releases/latest/download/app-release.apk"
+  ios_appstore:
+    label: "App Store"
+    url: "https://apps.apple.com/us/app/bot-creator/id6760181193"
+  windows_store:
+    label: "Microsoft Store"
+    url: "https://apps.microsoft.com/detail/9p6t5wmbmzlr?cid=DevShareMCLPCS&hl=fr-FR&gl=FR"
+  windows_zip:
+    label: "Portable ZIP"
+    url: "https://github.com/ketsuna-org/bot-creator/releases/latest/download/bot_creator-windows-x64-portable.zip"
+  linux_appimage:
+    label: "Latest AppImage"
+    url: "https://github.com/ketsuna-org/bot-creator/releases/latest/download/bot_creator-linux-x86_64.AppImage"
+  linux_zip:
+    label: "Portable ZIP"
+    url: "https://github.com/ketsuna-org/bot-creator/releases/latest/download/bot_creator-linux-x64-portable.zip"
+
+runner:
+  web_url: "http://localhost:8080"
+  commands:
+    pull: "docker pull ghcr.io/ketsuna-org/bot-creator-runner:latest"
+    volume: "docker volume create bot_creator_data"
+    run: "docker run --rm -p 8080:8080 -v bot_creator_data:/data ghcr.io/ketsuna-org/bot-creator-runner:latest"
+  notes:
+    - "Starts a browser-based runner UI for selecting, starting, and stopping bots."
+    - "Persists Google Drive OAuth tokens and runner logs inside the mounted /data volume."
+    - "Best suited for Linux servers, Raspberry Pi, and remote bot hosting setups."

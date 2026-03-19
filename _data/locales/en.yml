@@ -1,0 +1,83 @@
+code: "en"
+label: "English"
+switch_label: "FR"
+language_switch: "Francais"
+
+paths:
+  home: "/"
+  download: "/download/"
+  guides: "/blog/"
+  privacy: "/privacy-policy.html"
+
+meta:
+  site_title: "Bot Creator"
+  site_tagline: "Local-first Discord bot builder"
+  site_description: "Build, run, and monitor Discord bots without code from mobile, desktop, Linux, or the Docker runner."
+
+nav:
+  home: "Home"
+  download: "Download"
+  guides: "Guides"
+  privacy: "Privacy"
+  open_menu: "Open navigation"
+  close_menu: "Close navigation"
+
+shell:
+  status_badge: "Control room for local-first Discord bots"
+  primary_cta: "Download Bot Creator"
+  secondary_cta: "Read the guides"
+  footer_title: "Bot Creator"
+  footer_tagline: "Build slash commands, workflows, and runtime automations without writing a backend."
+  footer_product: "Product"
+  footer_resources: "Resources"
+  footer_downloads: "Downloads"
+  footer_legal: "Legal"
+  footer_runner: "Docker runner"
+  footer_release_notes: "Release notes"
+  footer_privacy: "Privacy policy"
+  footer_rights: "Designed for creators who want local control, not hosted lock-in."
+
+common:
+  open_link: "Open"
+  copy: "Copy"
+  copied: "Copied"
+  source_language: "Source language"
+  source_language_en: "English"
+  source_language_fr: "French"
+  runtime_label: "Runtime"
+  download_label: "Download"
+
+guides:
+  title: "Guides"
+  eyebrow: "Tutorials and product walkthroughs"
+  subtitle: "Learn the product flow, from creating your first bot token to wiring commands, workflows, and runtime actions."
+  featured_title: "Start with the core moves"
+  featured_tracks:
+    - title: "Create a bot token"
+      body: "Set up a Discord application, generate the token safely, and store it inside Bot Creator."
+    - title: "Build your first slash command"
+      body: "Configure command metadata, response workflows, and runtime actions without code."
+    - title: "Move from app to runner"
+      body: "Use the Docker runner when you want a browser-based runtime on Linux hardware."
+  empty_title: "No guides yet"
+  empty_body: "New walkthroughs will appear here."
+  read_more: "Read guide"
+  back_to_guides: "Back to guides"
+  share: "Share"
+  toc: "On this page"
+  published_label: "Published"
+  author_label: "Author"
+  next_title: "Ready to run your bot?"
+  next_body: "Install the app locally or use the Docker runner when you want a remote Linux runtime."
+  next_download: "Open download"
+  next_home: "Explore product"
+  progress_label: "Reading progress"
+
+privacy:
+  title: "Privacy"
+  subtitle: "How Bot Creator uses Google Drive backups, local storage, and runtime diagnostics."
+
+not_found:
+  title: "Page not found"
+  body: "The route you requested does not exist or moved during the redesign."
+  cta: "Return home"
