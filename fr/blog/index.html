@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Guides
-description: Guides pratiques Bot Creator pour le setup, les commandes, les workflows et la voie runner Docker.
+description: Guides pratiques Bot Creator pour le setup, les commandes et le runner Docker.
 locale: fr
 translation_key: guides
 content_language: fr
@@ -27,28 +27,12 @@ permalink: /fr/blog/
     <p>{{ t.guides.english_first_notice }}</p>
   </div>
 
-  <section class="section-shell" data-reveal>
-    <div class="section-header">
-      <p class="section-label">{{ t.guides.featured_title }}</p>
-      <h2 class="section-heading-xl">Commencez par les parcours qui debloquent le reste du produit.</h2>
-      <p class="section-intro">Ces premiers guides aident les nouveaux utilisateurs a passer du setup initial a un bot utile sans se perdre dans la configuration Discord ou le runtime.</p>
-    </div>
-    <div class="story-grid">
-      {% for track in t.guides.featured_tracks %}
-      <article class="guide-track">
-        <h3>{{ track.title }}</h3>
-        <p>{{ track.body }}</p>
-      </article>
-      {% endfor %}
-    </div>
-  </section>
-
   {% if post_list and post_list.size > 0 %}
   <section class="section-shell" data-reveal>
     <div class="section-header">
       <p class="section-label">Tous les guides</p>
-      <h2 class="section-heading-xl">Des tutoriels courts pour des taches produit tres concretes.</h2>
-      <p class="section-intro">Chaque guide est centre sur un resultat unique afin que les utilisateurs puissent avancer vite au lieu de lire une documentation trop generale.</p>
+      <h2 class="section-heading-xl">Des tutoriels courts pour les actions essentielles dans Bot Creator.</h2>
+      <p class="section-intro">Chaque guide vise un resultat clair pour vous faire avancer vite, du setup jusqu'au bot operationnel.</p>
     </div>
     <div class="guide-grid">
       {% for post in post_list %}
@@ -78,8 +62,8 @@ permalink: /fr/blog/
 
   <div class="cta-banner" data-reveal>
     <p class="section-label">Besoin du produit d'abord ?</p>
-    <h2>Installez Bot Creator, puis choisissez le guide qui correspond a votre prochaine etape.</h2>
-    <p>Commencez par l'application, avancez une tache a la fois, puis passez au runner seulement quand le besoin runtime devient concret.</p>
+    <h2>Installez Bot Creator, puis ouvrez le guide qui correspond a votre prochaine etape.</h2>
+    <p>Commencez par l'application pour le setup et le pilotage, puis passez au runner seulement quand l'uptime devient un vrai besoin.</p>
     <div class="button-row">
       <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
       <a class="button button-secondary" href="{{ t.paths.home | relative_url }}">{{ t.nav.home }}</a>

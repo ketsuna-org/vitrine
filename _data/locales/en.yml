@@ -11,8 +11,8 @@ paths:
 
 meta:
   site_title: "Bot Creator"
-  site_tagline: "Local-first Discord bot builder"
-  site_description: "Build, run, and monitor Discord bots without code from mobile, desktop, Linux, or the Docker runner."
+  site_tagline: "Professional Discord bot builder"
+  site_description: "Build commands, manage workflows, and run Discord bots from a professional local-first app."
 
 nav:
   home: "Home"
@@ -23,11 +23,11 @@ nav:
   close_menu: "Close navigation"
 
 shell:
-  status_badge: "Control room for local-first Discord bots"
-  primary_cta: "Download Bot Creator"
-  secondary_cta: "Read the guides"
+  status_badge: "Visual workspace for Discord bot operations"
+  primary_cta: "Download the app"
+  secondary_cta: "View guides"
   footer_title: "Bot Creator"
-  footer_tagline: "Build slash commands, workflows, and runtime automations without writing a backend."
+  footer_tagline: "Create commands, run bots, and manage Discord automation from one clear workspace."
   footer_product: "Product"
   footer_resources: "Resources"
   footer_downloads: "Downloads"
@@ -35,7 +35,7 @@ shell:
   footer_runner: "Docker runner"
   footer_release_notes: "Release notes"
   footer_privacy: "Privacy policy"
-  footer_rights: "Designed for creators who want local control, not hosted lock-in."
+  footer_rights: "Built for teams that want control, clarity, and a clean path to production."
 
 common:
   open_link: "Open"
@@ -51,8 +51,8 @@ common:
 
 guides:
   title: "Guides"
-  eyebrow: "Tutorials and product walkthroughs"
-  subtitle: "Learn the product flow, from creating your first bot token to wiring commands, workflows, and runtime actions."
+  eyebrow: "Product guides and setup walkthroughs"
+  subtitle: "Learn how to set up Bot Creator, build commands, and move to the Docker runner when your runtime needs grow."
   featured_title: "Start with the core moves"
   featured_tracks:
     - title: "Create a bot token"
@@ -70,10 +70,10 @@ guides:
   toc: "On this page"
   published_label: "Published"
   author_label: "Author"
-  next_title: "Ready to run your bot?"
-  next_body: "Install the app locally or use the Docker runner when you want a remote Linux runtime."
-  next_download: "Open download"
-  next_home: "Explore product"
+  next_title: "Next step"
+  next_body: "Ready to build or run your bot with Bot Creator?"
+  next_download: "Download the app"
+  next_home: "See the product"
   progress_label: "Reading progress"
 
 privacy:
@@ -82,5 +82,5 @@ privacy:
 
 not_found:
   title: "Page not found"
-  body: "The route you requested does not exist or moved during the redesign."
+  body: "The page you requested is unavailable or has moved."
   cta: "Return home"

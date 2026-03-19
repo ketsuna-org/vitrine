@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Download Bot Creator
-description: Choose the Bot Creator setup that fits your workflow, from mobile and desktop editing to the advanced Docker runner.
+description: Choose the Bot Creator setup that fits your workflow, from mobile and desktop editing to the Docker runner.
 locale: en
 translation_key: download
 content_language: en
@@ -15,14 +15,14 @@ permalink: /download/
     <div class="section-header">
       <div class="eyebrow-row">
         <span class="eyebrow-pill">Download Bot Creator</span>
-        <span class="meta-chip">Choose your workflow</span>
+        <span class="meta-chip">App first, runner ready</span>
       </div>
-      <h1>Pick the setup that matches how you want to build and run your bot.</h1>
-      <p class="lede">Most people should start with the app on mobile or desktop. The Docker runner is ready when you need remote Linux uptime, but it is an advanced path rather than the required starting point.</p>
+      <h1>Choose the Bot Creator setup that fits your team.</h1>
+      <p class="lede">Most teams should start with the app on mobile or desktop. Linux and the Docker runner are available when you want local workstation control or a longer-lived runtime.</p>
       <div class="hero-points">
-        <span class="hero-point">Mobile and desktop first</span>
-        <span class="hero-point">Linux when you want local control</span>
-        <span class="hero-point">Docker for always-on runtime</span>
+        <span class="hero-point">Mobile and desktop editing</span>
+        <span class="hero-point">Linux workstation support</span>
+        <span class="hero-point">Docker runner for remote uptime</span>
       </div>
     </div>
   </div>
@@ -31,10 +31,10 @@ permalink: /download/
     <article class="download-card" data-reveal>
       <span class="download-meta">Mobile</span>
       <h2>Android and iPhone</h2>
-      <p>Best when you want quick iteration, light edits, and runtime control from the same device you already carry.</p>
+      <p>Use Bot Creator on the device you already carry for quick edits, bot checks, and basic runtime control.</p>
       <ul class="download-list">
-        <li><div>Visual builder and runtime access on the go.</div></li>
-        <li><div>Useful for creators who want to ship and adjust without a laptop nearby.</div></li>
+        <li><div>Build and review bot logic on the go.</div></li>
+        <li><div>Good fit for creators and moderators who need fast access.</div></li>
       </ul>
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">Google Play</a>
@@ -46,10 +46,10 @@ permalink: /download/
     <article class="download-card" data-reveal>
       <span class="download-meta">Desktop</span>
       <h2>Windows workspace</h2>
-      <p>Best when you want a larger screen for editing commands, reviewing action flows, and organizing reusable logic.</p>
+      <p>Use a larger workspace to design commands, review flows, and manage reusable bot logic more comfortably.</p>
       <ul class="download-list">
-        <li><div>Comfortable setup for longer builder sessions.</div></li>
-        <li><div>Good default choice if you are learning the product from scratch.</div></li>
+        <li><div>Best default setup for longer editing sessions.</div></li>
+        <li><div>Strong choice for teams learning the product seriously.</div></li>
       </ul>
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">Microsoft Store</a>
@@ -60,10 +60,10 @@ permalink: /download/
     <article class="download-card" data-reveal>
       <span class="download-meta">Linux</span>
       <h2>AppImage and portable ZIP</h2>
-      <p>Best when you want direct local control on a Linux machine without moving straight into container management.</p>
+      <p>Run the product locally on Linux when you want direct control without moving straight into containers.</p>
       <ul class="download-list">
-        <li><div>Run the app locally on your own workstation.</div></li>
-        <li><div>Useful for creators who already prefer a Linux desktop workflow.</div></li>
+        <li><div>Keep the same visual workflow on your Linux workstation.</div></li>
+        <li><div>Useful when your team already works in a Linux environment.</div></li>
       </ul>
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.linux_appimage.url }}" target="_blank" rel="noopener noreferrer">AppImage</a>
@@ -74,10 +74,10 @@ permalink: /download/
     <article class="download-card" data-reveal>
       <span class="download-meta">Advanced runtime</span>
       <h2>Docker runner</h2>
-      <p>Best when you need a browser-based runner on a Linux server, Raspberry Pi, or remote machine that stays online longer.</p>
+      <p>Use the runner when you need a browser-based runtime on a Linux server, Raspberry Pi, or remote host.</p>
       <ul class="download-list">
-        <li><div>Designed for uptime and remote execution, not as the mandatory first install.</div></li>
-        <li><div>Pairs well with an app-based editing workflow once the bot is ready to stay online.</div></li>
+        <li><div>Designed for uptime and remote execution, not as the first required install.</div></li>
+        <li><div>Pairs well with app-based editing once the bot is ready to stay online.</div></li>
       </ul>
       <div class="download-actions">
         <a class="button button-primary" href="#runner">Open runner setup</a>
@@ -86,41 +86,16 @@ permalink: /download/
     </article>
   </div>
 
-  <section class="section-shell" data-reveal>
-    <div class="section-header">
-      <p class="section-label">Recommended path</p>
-      <h2 class="section-heading-xl">Start with the app, then add infrastructure only when it helps.</h2>
-      <p class="section-intro">The product is intentionally structured so you do not have to make deployment decisions before you have even built the bot logic.</p>
-    </div>
-    <div class="steps-grid">
-      <article class="step-card">
-        <span class="step-index">01</span>
-        <h3>Install the app</h3>
-        <p>Use mobile, Windows, or Linux to configure commands, replies, options, and action chains visually.</p>
-      </article>
-      <article class="step-card">
-        <span class="step-index">02</span>
-        <h3>Keep the workflow local</h3>
-        <p>Store data locally by default, then add backup only if portability between devices becomes important.</p>
-      </article>
-      <article class="step-card">
-        <span class="step-index">03</span>
-        <h3>Move to runner when needed</h3>
-        <p>Adopt the Docker runner once you want a Linux runtime that can stay active on a remote machine.</p>
-      </article>
-    </div>
-  </section>
-
   <section class="section-shell" id="runner" data-reveal>
     <div class="split-grid">
       <article class="panel-card">
         <p class="section-label">Runner setup</p>
-        <h2>Use the runner when you want a browser-based Linux runtime.</h2>
-        <p>The runner path is ideal for always-on execution on Linux hardware. It is especially useful once the bot has moved beyond occasional local testing.</p>
+        <h2>Use the Docker runner when you need remote Linux uptime.</h2>
+        <p>The runner is designed for teams that already manage the bot in the app and want a browser-based runtime on a server, Raspberry Pi, or Linux host.</p>
         <ul class="check-list">
-          <li><div>Good fit for Linux servers, Raspberry Pi, and remote bot hosting setups.</div></li>
-          <li><div>Persists runner state and logs inside a mounted Docker volume.</div></li>
-          <li><div>Works best once your command logic is already configured in the app workflow.</div></li>
+          <li><div>Browser-based runtime for Linux machines and remote hosts.</div></li>
+          <li><div>Logs and runner state persist in the mounted Docker volume.</div></li>
+          <li><div>Best used after the bot workflow is already configured in the app.</div></li>
         </ul>
         <div class="support-links">
           <a href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">Open runner docs</a>
@@ -157,9 +132,9 @@ permalink: /download/
   </section>
 
   <div class="cta-banner" data-reveal>
-    <p class="section-label">Next step</p>
-    <h2>Need help creating the first bot workflow after installation?</h2>
-    <p>Use the guides to move from bot token setup to practical command creation and runner adoption.</p>
+    <p class="section-label">Need guidance</p>
+    <h2>Install the product, then follow the guide that matches your next step.</h2>
+    <p>Start with the app for editing and control. Add the runner only when uptime becomes an operational requirement.</p>
     <div class="button-row">
       <a class="button button-primary" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
       <a class="button button-secondary" href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Latest release</a>

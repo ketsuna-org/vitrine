@@ -8,38 +8,76 @@ backend:
 
 site_url: https://bot-creator.fr
 publish_mode: editorial_workflow
-media_folder: assets #images that are uploaded via Netlify Cms interface will be stored in this folder
-public_folder: assets #I dont know
+media_folder: assets
+public_folder: assets
+
 collections:
-  - name: "posts" # Used in routes, e.g., /admin/collections/blog
-    label: "Global Post" # Used in the UI
-    folder: "_posts" # The path to the folder where the markdown files are stored
-    create: true # Allow users to create new markdown files.
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for front matter. You will need to modify fields according to your project.
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "string"}
-      - {label: "Download", name: "download", widget: "string", required: false}
-      - {label: "Date", name: "date", widget: "datetime", required: false}
-      - {label: "tags", name: "tags", widget: "list", required: false, allow_add: true}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Author", name: "author", widget: "string", default: "Garder500"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "layout", name: "layout", widget: "hidden", default: "post"}
-      - {label: "Generate TOC", name: "toc", widget: "boolean", default: true}
-  - name: "tutorials"
-    label: "Tutorials"
-    folder: "tutorials/_posts"
+  - name: tutorials_en
+    label: Tutorials EN
+    label_singular: English tutorial
+    folder: tutorials/_posts
     create: true
+    filter:
+      field: locale
+      value: en
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "EN | {{title}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "string"}
-      - {label: "Download", name: "download", widget: "string", required: false}
-      - {label: "Date", name: "date", widget: "datetime", required: false}
-      - {label: "tags", name: "tags", widget: "list", required: false, allow_add: true}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Author", name: "author", widget: "string", default: "Garder500"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "layout", name: "layout", widget: "hidden", default: "post"}
-      - {label: "Generate TOC", name: "toc", widget: "boolean", default: true}
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: string }
+      - { label: Date, name: date, widget: datetime, required: false }
+      - {
+          label: Categories,
+          name: categories,
+          widget: list,
+          required: false,
+          allow_add: true,
+        }
+      - { label: Featured Image, name: thumbnail, widget: image, required: false }
+      - { label: Author, name: author, widget: string, default: Garder500 }
+      - {
+          label: Translation Key,
+          name: translation_key,
+          widget: string,
+          hint: Use the same key for the EN and FR versions of the same article,
+        }
+      - { label: Locale, name: locale, widget: hidden, default: en }
+      - { label: Content Language, name: content_language, widget: hidden, default: en }
+      - { label: Layout, name: layout, widget: hidden, default: post }
+      - { label: Generate TOC, name: toc, widget: boolean, default: true }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: tutorials_fr
+    label: Tutoriels FR
+    label_singular: Tutoriel francais
+    folder: tutorials/_posts
+    create: true
+    filter:
+      field: locale
+      value: fr
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "FR | {{title}}"
+    fields:
+      - { label: Titre, name: title, widget: string }
+      - { label: Description, name: description, widget: string }
+      - { label: Date, name: date, widget: datetime, required: false }
+      - {
+          label: Categories,
+          name: categories,
+          widget: list,
+          required: false,
+          allow_add: true,
+        }
+      - { label: Image de couverture, name: thumbnail, widget: image, required: false }
+      - { label: Auteur, name: author, widget: string, default: Garder500 }
+      - {
+          label: Cle de traduction,
+          name: translation_key,
+          widget: string,
+          hint: Utilisez la meme cle pour les versions EN et FR d'un meme article,
+        }
+      - { label: Locale, name: locale, widget: hidden, default: fr }
+      - { label: Langue du contenu, name: content_language, widget: hidden, default: fr }
+      - { label: Layout, name: layout, widget: hidden, default: post }
+      - { label: Generer le sommaire, name: toc, widget: boolean, default: true }
+      - { label: Contenu, name: body, widget: markdown }

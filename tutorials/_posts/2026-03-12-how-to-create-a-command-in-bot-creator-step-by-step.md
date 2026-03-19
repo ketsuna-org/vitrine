@@ -1,6 +1,6 @@
 ---
 title: How to Create a Command in Bot Creator (Step-by-Step)
-description: Learn how to create a clean, reliable slash command in Bot Creator, from basic setup to advanced response workflows and actions.
+description: Build a clean Bot Creator slash command with clear metadata, reliable responses, and reusable actions.
 date: 2026-03-12T22:12:00.000+01:00
 author: Garder500
 layout: post
@@ -10,8 +10,8 @@ translation_key: guide-create-command
 content_language: en
 categories: [commands, workflow]
 ---
-If you want your bot to feel professional, every command should be clear, predictable, and easy to maintain.
-This guide shows you exactly how to build a command in Bot Creator.
+In Bot Creator, a strong command should be clear, predictable, and easy to maintain.
+This guide walks through the full flow, from command metadata to response logic and runtime actions.
 
 ## 1. Open the Command Builder
 1. Go to **Commands**.

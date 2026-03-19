@@ -1,6 +1,6 @@
 ---
 title: How to Create a Discord Bot Token for Bot Creator
-description: Learn how to create, secure, and add a Discord bot token inside Bot Creator.
+description: Create a Discord bot token, secure it correctly, and add it to Bot Creator with a clean setup.
 date: 2025-05-18T18:09:00.000Z
 thumbnail: assets/icon.png
 author: Garder500
@@ -13,8 +13,8 @@ categories: [setup, security]
 ---
 # How to Create a Discord Bot Token
 
-Creating a bot token is an essential step in developing a Discord bot.
-This guide walks you through the full process, from creating the application to securing the token properly inside Bot Creator.
+A bot token is the credential that lets Bot Creator connect to your Discord application.
+This guide walks through the clean setup path, from creating the application to storing the token securely inside the app.
 
 ## Prerequisites
 

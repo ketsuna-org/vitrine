@@ -11,8 +11,8 @@ paths:
 
 meta:
   site_title: "Bot Creator"
-  site_tagline: "Constructeur local-first de bots Discord"
-  site_description: "Creez, lancez et surveillez des bots Discord sans code depuis mobile, desktop, Linux ou le runner Docker."
+  site_tagline: "Constructeur professionnel de bots Discord"
+  site_description: "Creez des commandes, gerez les workflows et pilotez vos bots Discord depuis une application claire et local-first."
 
 nav:
   home: "Accueil"
@@ -23,19 +23,19 @@ nav:
   close_menu: "Fermer la navigation"
 
 shell:
-  status_badge: "Centre de controle pour bots Discord local-first"
-  primary_cta: "Telecharger Bot Creator"
-  secondary_cta: "Lire les guides"
+  status_badge: "Espace de travail visuel pour bots Discord"
+  primary_cta: "Telecharger l'application"
+  secondary_cta: "Voir les guides"
   footer_title: "Bot Creator"
-  footer_tagline: "Construisez des slash commands, workflows et automatisations runtime sans developper de backend."
+  footer_tagline: "Creez des commandes, lancez vos bots et gerez l'automatisation Discord depuis une interface claire."
   footer_product: "Produit"
   footer_resources: "Ressources"
   footer_downloads: "Telechargements"
-  footer_legal: "Legal"
+  footer_legal: "Informations legales"
   footer_runner: "Runner Docker"
   footer_release_notes: "Notes de version"
   footer_privacy: "Politique de confidentialite"
-  footer_rights: "Pense pour les createurs qui veulent garder le controle en local."
+  footer_rights: "Concu pour les equipes qui veulent du controle, de la clarte et une mise en production simple."
 
 common:
   open_link: "Ouvrir"
@@ -51,8 +51,8 @@ common:
 
 guides:
   title: "Guides"
-  eyebrow: "Tutoriels et parcours produit"
-  subtitle: "Apprenez le flux produit, de votre premier bot token jusqu'aux commandes, workflows et actions runtime."
+  eyebrow: "Guides produit et parcours de setup"
+  subtitle: "Apprenez a configurer Bot Creator, creer vos commandes et passer au runner Docker quand votre besoin runtime grandit."
   featured_title: "Commencez par les bases"
   featured_tracks:
     - title: "Creer un bot token"
@@ -70,9 +70,9 @@ guides:
   toc: "Sur cette page"
   published_label: "Publication"
   author_label: "Auteur"
-  next_title: "Pret a lancer votre bot ?"
-  next_body: "Installez l'application en local ou utilisez le runner Docker pour un runtime Linux distant."
-  next_download: "Ouvrir la page de telechargement"
+  next_title: "Et ensuite"
+  next_body: "Pret a creer ou lancer votre bot avec Bot Creator ?"
+  next_download: "Telecharger l'application"
   next_home: "Voir le produit"
   progress_label: "Progression de lecture"
 
@@ -82,5 +82,5 @@ privacy:
 
 not_found:
   title: "Page introuvable"
-  body: "La route demandee n'existe pas ou a change pendant la refonte."
+  body: "La page demandee est indisponible ou a ete deplacee."
   cta: "Retour a l'accueil"

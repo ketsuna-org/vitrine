@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Privacy policy
-description: How Bot Creator handles local storage, Google Drive backups, and runner diagnostics.
+description: How Bot Creator handles local storage, optional backups, and runner diagnostics.
 locale: en
 translation_key: privacy
 content_language: en
@@ -14,8 +14,8 @@ content_language: en
         <span class="eyebrow-pill">Privacy</span>
         <span class="meta-chip">Local-first data model</span>
       </div>
-      <h1>Bot Creator keeps the primary workflow local and uses cloud backup only when you ask for it.</h1>
-      <p class="lede">The product stores bot data, workflows, runtime state, and logs locally by default. Google Drive is used for backup and restore flows, not as a mandatory hosted backend.</p>
+      <h1>Bot Creator keeps bot data local by default and uses cloud backup only when you enable it.</h1>
+      <p class="lede">The product stores bot data, workflows, runtime state, and logs locally by default. Google Drive is available for backup and restore, not as a required hosted backend.</p>
     </div>
   </div>
 
@@ -23,45 +23,32 @@ content_language: en
     <article class="panel-card" data-reveal>
       <p class="section-label">Local storage</p>
       <h2>Your bot data stays on the device or machine running the product.</h2>
-      <p>Bot Creator stores metadata, command configurations, workflows, variables, logs, and runtime-related data inside the local app documents directory or the mounted runner volume.</p>
+      <p>Bot Creator stores metadata, command settings, workflows, variables, logs, and runtime data in the local app directory or the mounted runner volume.</p>
     </article>
 
     <article class="panel-card" data-reveal>
-      <p class="section-label">Google Drive backups</p>
-      <h2>Drive is used for backup and restore only.</h2>
-      <p>When you connect Google Drive, Bot Creator syncs backup data to the AppData folder. On the Docker runner, OAuth tokens persist inside the mounted volume so they survive container restarts.</p>
+      <p class="section-label">Optional backups</p>
+      <h2>Google Drive is used for backup and restore only.</h2>
+      <p>When you connect Google Drive, Bot Creator syncs backup data to the AppData folder. On the runner, OAuth tokens stay in the mounted volume so they survive restarts.</p>
     </article>
 
     <article class="panel-card" data-reveal>
       <p class="section-label">Diagnostics and logs</p>
       <h2>Runtime failures write diagnostics locally.</h2>
-      <p>Startup diagnostics are written locally so failed initialization does not disappear silently. On the runner, logs are written to the volume-backed log file.</p>
+      <p>Startup diagnostics are written locally so failed initialization does not disappear silently. On the runner, logs are written to the persistent volume-backed log file.</p>
     </article>
 
     <article class="panel-card" data-reveal>
-      <p class="section-label">Shared responsibility</p>
-      <h2>You remain responsible for protecting exports and connected accounts.</h2>
-      <p>Bot tokens are sensitive secrets. Protect backups, secure the device or server running the product, and secure the Google account used for backup access.</p>
+      <p class="section-label">Your responsibility</p>
+      <h2>Protect exports, backups, and connected accounts.</h2>
+      <p>Bot tokens are sensitive secrets. Secure the device or server running the product, protect your backups, and secure the Google account used for backup access.</p>
     </article>
   </div>
 
-  <section class="section-shell" data-reveal>
-    <div class="split-grid">
-      <article class="panel-card">
-        <p class="section-label">What Bot Creator does not do</p>
-        <ul class="privacy-list">
-          <li><div>It does not require a dedicated hosted backend to create and run bots.</div></li>
-          <li><div>It does not force cloud sync for the default workflow.</div></li>
-          <li><div>It does not include Google Drive OAuth configuration in the prebuilt Docker image by default.</div></li>
-        </ul>
-      </article>
-
-      <article class="panel-card">
-        <p class="section-label">Contact</p>
-        <h2>Questions about privacy or backups</h2>
-        <p>For product and privacy questions, contact <a href="mailto:contact@ketsuna.com">contact@ketsuna.com</a>.</p>
-        <p class="small-label">Last updated: March 19, 2026</p>
-      </article>
-    </div>
-  </section>
+  <div class="panel-card" data-reveal>
+    <p class="section-label">Contact</p>
+    <h2>Questions about privacy or backups</h2>
+    <p>For product and privacy questions, contact <a href="mailto:contact@ketsuna.com">contact@ketsuna.com</a>.</p>
+    <p class="small-label">Last updated: March 19, 2026</p>
+  </div>
 </section>
