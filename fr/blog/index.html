@@ -12,46 +12,15 @@ permalink: /fr/blog/
 
 <section class="site-grid page-section">
   <div class="page-hero compact" data-reveal>
-    <div class="eyebrow-row">
-      <span class="eyebrow-pill">{{ t.guides.eyebrow }}</span>
-      <span class="meta-chip">Parcours d'apprentissage produit</span>
-    </div>
     <h1>{{ t.guides.title }}</h1>
     <p class="lede">{{ t.guides.subtitle }}</p>
-  </div>
-
-  <div class="split-grid">
-    <div class="panel-card" data-reveal>
-      <p class="section-label">{{ t.guides.featured_title }}</p>
-      <div class="guide-track-list">
-        {% for track in t.guides.featured_tracks %}
-        <article class="guide-track">
-          <h3>{{ track.title }}</h3>
-          <p>{{ track.body }}</p>
-        </article>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="panel-card" data-reveal>
-      <p class="section-label">Pourquoi ces guides</p>
-      <h2>Passez du setup a l'execution avec moins de friction.</h2>
-      <p>Le set actuel est concentre sur les etapes a forte friction : creer un bot token Discord proprement, construire la premiere slash command et comprendre quand basculer de l'app vers le runner Docker.</p>
-      <div class="button-row">
-        <a class="button button-primary" href="{{ '/fr/download/' | relative_url }}">Ouvrir les telechargements</a>
-        <a class="button button-secondary" href="{{ '/fr/' | relative_url }}">Voir le produit</a>
-      </div>
-    </div>
   </div>
 
   {% if post_list and post_list.size > 0 %}
   <div class="guide-grid">
     {% for post in post_list %}
     <article class="guide-card" data-reveal>
-      <div class="eyebrow-row">
-        <span class="meta-chip">{{ post.date | date: "%Y-%m-%d" }}</span>
-        <span class="meta-chip">{{ t.common.source_language }}: {% if post.content_language == 'fr' %}{{ t.common.source_language_fr }}{% else %}{{ t.common.source_language_en }}{% endif %}</span>
-      </div>
+      <span class="meta-chip">{{ post.date | date: "%Y-%m-%d" }}</span>
       <h2>{{ post.title }}</h2>
       <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}</p>
       <div class="download-actions">

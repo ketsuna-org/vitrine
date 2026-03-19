@@ -11,49 +11,26 @@ permalink: /download/
 {% assign t = site.data.locales[page.locale] %}
 
 <section class="site-grid page-section">
-  <div class="page-hero" data-reveal>
-    <div class="eyebrow-row">
-      <span class="eyebrow-pill">Install paths</span>
-      <span class="meta-chip">Release-driven and runner-ready</span>
-    </div>
-    <div class="hero-grid">
-      <div class="section-stack">
-        <h1>Choose the Bot Creator runtime that matches the machine you want to control.</h1>
-        <p class="lede">The product has two distinct paths: the app itself for building and local runtime control, and the Docker runner for browser-based execution on Linux hardware. Linux builds always point to the latest AppImage, and release redirects stay current without editing page code.</p>
-        <div class="button-row">
-          <a class="button button-primary" href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Latest release</a>
-          <a class="button button-secondary" href="#runner">Runner setup</a>
-        </div>
-      </div>
-
-      <div class="panel-card">
-        <p class="section-label">Release source</p>
-        <h2>Latest-release redirects keep static pages current.</h2>
-        <p>App and Linux direct downloads use GitHub latest-release redirect URLs. That keeps the website static while still landing on the newest artifact names and hashes.</p>
-        <div class="support-links">
-          <a href="{{ downloads.release_notes_page }}" target="_blank" rel="noopener noreferrer">Release notes</a>
-          <a href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Artifacts and hashes</a>
-        </div>
-      </div>
-    </div>
+  <div class="page-hero compact" data-reveal>
+    <h1>Download Bot Creator</h1>
+    <p class="lede">Install the app on your device or set up the Docker runner for always-on Linux execution.</p>
   </div>
 
   <div class="download-grid">
     <article class="download-card" data-reveal>
-      <span class="download-meta">Mobile apps</span>
-      <h2>Android and iPhone</h2>
-      <p>Use the mobile app when you want the visual builder and runtime control in your pocket.</p>
+      <span class="download-meta">Mobile</span>
+      <h2>Android &amp; iOS</h2>
+      <p>Visual builder and runtime control on your phone.</p>
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">Google Play</a>
-        <a class="button button-secondary" href="{{ downloads.stores.android_apk.url }}" target="_blank" rel="noopener noreferrer">Latest APK</a>
         <a class="button button-secondary" href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">App Store</a>
       </div>
     </article>
 
     <article class="download-card" data-reveal>
-      <span class="download-meta">Desktop app</span>
-      <h2>Windows desktop flow</h2>
-      <p>Use the Windows app when you want the full local builder with a larger workspace and local runtime management.</p>
+      <span class="download-meta">Desktop</span>
+      <h2>Windows</h2>
+      <p>Full local builder with a larger workspace.</p>
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">Microsoft Store</a>
         <a class="button button-secondary" href="{{ downloads.stores.windows_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
@@ -61,87 +38,51 @@ permalink: /download/
     </article>
 
     <article class="download-card" data-reveal>
-      <span class="download-meta">Linux builds</span>
-      <h2>Portable Linux release</h2>
-      <p>Use the AppImage on Linux workstations, lab nodes, or self-hosted machines when you want direct local execution without the store layer.</p>
+      <span class="download-meta">Linux</span>
+      <h2>AppImage &amp; ZIP</h2>
+      <p>Direct local execution on any Linux machine.</p>
       <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.stores.linux_appimage.url }}" target="_blank" rel="noopener noreferrer">Latest AppImage</a>
+        <a class="button button-primary" href="{{ downloads.stores.linux_appimage.url }}" target="_blank" rel="noopener noreferrer">AppImage</a>
         <a class="button button-secondary" href="{{ downloads.stores.linux_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
       </div>
     </article>
 
     <article class="download-card" id="runner" data-reveal>
-      <span class="download-meta">Docker runner</span>
-      <h2>Browser-based runner on Linux hardware</h2>
-      <p>The runner exposes a web UI for selecting, starting, and stopping bots. It persists Google Drive tokens and runner logs in the mounted volume, which makes it the right path for Linux servers, Raspberry Pi, and remote hosting.</p>
+      <span class="download-meta">Runner</span>
+      <h2>Docker</h2>
+      <p>Browser-based runner for Linux servers or Raspberry Pi.</p>
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">Runner docs</a>
-        <a class="button button-secondary" href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Latest release</a>
       </div>
     </article>
   </div>
 
-  <div class="split-grid">
+  <div class="panel-card" data-reveal>
+    <p class="section-label">Runner setup</p>
     <div class="panel-stack">
-      <div class="command-card" data-reveal>
+      <div class="command-card">
         <div class="command-head">
-          <h3>1. Pull the runner image</h3>
+          <h3>1. Pull the image</h3>
           <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.pull }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
         </div>
         <pre class="command-block">{{ downloads.runner.commands.pull }}</pre>
       </div>
 
-      <div class="command-card" data-reveal>
+      <div class="command-card">
         <div class="command-head">
-          <h3>2. Create the persistent volume</h3>
+          <h3>2. Create volume</h3>
           <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.volume }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
         </div>
         <pre class="command-block">{{ downloads.runner.commands.volume }}</pre>
       </div>
 
-      <div class="command-card" data-reveal>
+      <div class="command-card">
         <div class="command-head">
           <h3>3. Start the runner</h3>
           <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.run }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
         </div>
         <pre class="command-block">{{ downloads.runner.commands.run }}</pre>
       </div>
-    </div>
-
-    <div class="panel-card" data-reveal>
-      <p class="section-label">Runner onboarding</p>
-      <ul class="timeline">
-        <li>
-          <div>
-            <strong>Pull the image</strong>
-            <span>Fetch the current runner container from GitHub Container Registry.</span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <strong>Start the container</strong>
-            <span>Expose port 8080 and mount the persistent volume at <code>/data</code>.</span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <strong>Open the web UI</strong>
-            <span>Browse to <code>{{ downloads.runner.web_url }}</code> or tunnel the port from a remote host.</span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <strong>Connect Google Drive and run a bot</strong>
-            <span>Authorize once, persist the token cache in the volume, then select and start the bot you want to execute.</span>
-          </div>
-        </li>
-      </ul>
-
-      <ul class="support-list">
-        {% for note in downloads.runner.notes %}
-        <li><div>{{ note }}</div></li>
-        {% endfor %}
-      </ul>
     </div>
   </div>
 </section>

@@ -9,51 +9,20 @@ content_language: en
 {% assign t = site.data.locales[page.locale] %}
 {% assign post_list = site.posts %}
 {% if paginator and paginator.posts %}
-  {% assign post_list = paginator.posts %}
+{% assign post_list = paginator.posts %}
 {% endif %}
 
 <section class="site-grid page-section">
   <div class="page-hero compact" data-reveal>
-    <div class="eyebrow-row">
-      <span class="eyebrow-pill">{{ t.guides.eyebrow }}</span>
-      <span class="meta-chip">Product learning paths</span>
-    </div>
     <h1>{{ t.guides.title }}</h1>
     <p class="lede">{{ t.guides.subtitle }}</p>
-  </div>
-
-  <div class="split-grid">
-    <div class="panel-card" data-reveal>
-      <p class="section-label">{{ t.guides.featured_title }}</p>
-      <div class="guide-track-list">
-        {% for track in t.guides.featured_tracks %}
-        <article class="guide-track">
-          <h3>{{ track.title }}</h3>
-          <p>{{ track.body }}</p>
-        </article>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="panel-card" data-reveal>
-      <p class="section-label">Why these guides</p>
-      <h2>Move from setup to runtime with less friction.</h2>
-      <p>The current guide set is focused on the high-friction moves: creating a safe Discord bot token, wiring the first slash command, and understanding when to move from the app to the Docker runner.</p>
-      <div class="button-row">
-        <a class="button button-primary" href="{{ '/download/' | relative_url }}">Open downloads</a>
-        <a class="button button-secondary" href="{{ '/' | relative_url }}">Explore product</a>
-      </div>
-    </div>
   </div>
 
   {% if post_list and post_list.size > 0 %}
   <div class="guide-grid">
     {% for post in post_list %}
     <article class="guide-card" data-reveal>
-      <div class="eyebrow-row">
-        <span class="meta-chip">{{ post.date | date: "%Y-%m-%d" }}</span>
-        <span class="meta-chip">{{ t.common.source_language }}: {% if post.content_language == 'fr' %}{{ t.common.source_language_fr }}{% else %}{{ t.common.source_language_en }}{% endif %}</span>
-      </div>
+      <span class="meta-chip">{{ post.date | date: "%Y-%m-%d" }}</span>
       <h2>{{ post.title }}</h2>
       <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}</p>
       <div class="download-actions">
