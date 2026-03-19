@@ -4,16 +4,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const navPanel = document.querySelector("[data-menu-panel]");
 
   if (navToggle && navShell && navPanel) {
+    const openLabel = navToggle.getAttribute("data-label-open") || navToggle.getAttribute("aria-label") || "Open navigation";
+    const closeLabel = navToggle.getAttribute("data-label-close") || "Close navigation";
+
+    const closeMenu = ({ restoreFocus = false } = {}) => {
+      navShell.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", openLabel);
+
+      if (restoreFocus) {
+        navToggle.focus();
+      }
+    };
+
+    const openMenu = () => {
+      navShell.classList.add("is-open");
+      navToggle.setAttribute("aria-expanded", "true");
+      navToggle.setAttribute("aria-label", closeLabel);
+    };
+
     navToggle.addEventListener("click", () => {
-      const isOpen = navShell.classList.toggle("is-open");
-      navToggle.setAttribute("aria-expanded", String(isOpen));
+      const isOpen = navShell.classList.contains("is-open");
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
     navPanel.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
-        navShell.classList.remove("is-open");
-        navToggle.setAttribute("aria-expanded", "false");
+        closeMenu();
       });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (navShell.classList.contains("is-open") && !navShell.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && navShell.classList.contains("is-open")) {
+        closeMenu({ restoreFocus: true });
+      }
     });
   }
 
@@ -51,6 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
     revealItems.forEach((item) => {
       item.classList.add("reveal");
       observer.observe(item);
+    });
+  } else {
+    revealItems.forEach((item) => {
+      item.classList.add("reveal", "is-visible");
     });
   }
 

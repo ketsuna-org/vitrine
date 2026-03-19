@@ -25,6 +25,44 @@
 - Jekyll ≥ 4.3
 - Node.js & npm for assets compilation
 
+### No Local Ruby/Jekyll (Pixi)
+
+If you do not have Ruby or Jekyll locally, use Pixi:
+
+1. Install Pixi: https://pixi.sh/latest/
+2. On Windows, install MSVC Build Tools:
+
+```powershell
+winget install Microsoft.VisualStudio.2022.BuildTools
+```
+
+Enable the C++ build workload (MSVC and Windows SDK) in the installer.
+
+3. Verify compiler tools:
+
+```bash
+pixi run doctor-win
+```
+
+4. From the project root run:
+
+```bash
+pixi run install-win
+pixi run serve
+```
+
+`install-win` auto-installs Ruby with DevKit if needed, then installs gems and npm packages.
+
+Then open http://127.0.0.1:4000
+
+Optional:
+
+```bash
+pixi run serve-lan
+pixi run build
+pixi run clean
+```
+
 ### Installation
 
 git clone https://github.com/your-username/your-repo.git

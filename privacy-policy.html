@@ -9,25 +9,27 @@ content_language: en
 
 <section class="site-grid page-section">
   <div class="page-hero compact" data-reveal>
-    <div class="eyebrow-row">
-      <span class="eyebrow-pill">Privacy</span>
-      <span class="meta-chip">Local-first data model</span>
+    <div class="section-header">
+      <div class="eyebrow-row">
+        <span class="eyebrow-pill">Privacy</span>
+        <span class="meta-chip">Local-first data model</span>
+      </div>
+      <h1>Bot Creator keeps the primary workflow local and uses cloud backup only when you ask for it.</h1>
+      <p class="lede">The product stores bot data, workflows, runtime state, and logs locally by default. Google Drive is used for backup and restore flows, not as a mandatory hosted backend.</p>
     </div>
-    <h1>Bot Creator keeps the primary workflow local and uses cloud backup only when you ask for it.</h1>
-    <p class="lede">The product stores bot data, workflows, logs, and runtime state locally by default. Google Drive is used for backup and restore flows, not as a mandatory hosted backend.</p>
   </div>
 
   <div class="privacy-grid">
     <article class="panel-card" data-reveal>
       <p class="section-label">Local storage</p>
-      <h2>Bot data lives on the device or machine where you run the product.</h2>
-      <p>Bot Creator stores app metadata, command configurations, workflows, variables, logs, and runtime-related data under the local app documents directory or the mounted runner volume.</p>
+      <h2>Your bot data stays on the device or machine running the product.</h2>
+      <p>Bot Creator stores metadata, command configurations, workflows, variables, logs, and runtime-related data inside the local app documents directory or the mounted runner volume.</p>
     </article>
 
     <article class="panel-card" data-reveal>
       <p class="section-label">Google Drive backups</p>
-      <h2>Google Drive is used for backup and restore flows only.</h2>
-      <p>When you connect Drive, Bot Creator syncs backup data to the AppData folder. On the Docker runner, OAuth tokens are persisted inside the mounted volume so they survive container restarts.</p>
+      <h2>Drive is used for backup and restore only.</h2>
+      <p>When you connect Google Drive, Bot Creator syncs backup data to the AppData folder. On the Docker runner, OAuth tokens persist inside the mounted volume so they survive container restarts.</p>
     </article>
 
     <article class="panel-card" data-reveal>
@@ -38,26 +40,28 @@ content_language: en
 
     <article class="panel-card" data-reveal>
       <p class="section-label">Shared responsibility</p>
-      <h2>You remain responsible for securing exported data and connected accounts.</h2>
-      <p>Bot tokens are sensitive secrets. Treat backups and exports carefully, protect the device or server where the product runs, and secure the Google account used for backup access.</p>
+      <h2>You remain responsible for protecting exports and connected accounts.</h2>
+      <p>Bot tokens are sensitive secrets. Protect backups, secure the device or server running the product, and secure the Google account used for backup access.</p>
     </article>
   </div>
 
-  <div class="split-grid">
-    <article class="panel-card" data-reveal>
-      <p class="section-label">What Bot Creator does not do</p>
-      <ul class="privacy-list">
-        <li><div>It does not require a dedicated hosted backend to create and run bots.</div></li>
-        <li><div>It does not force cloud sync for the default workflow.</div></li>
-        <li><div>It does not include Google Drive OAuth configuration in the prebuilt Docker image by default.</div></li>
-      </ul>
-    </article>
+  <section class="section-shell" data-reveal>
+    <div class="split-grid">
+      <article class="panel-card">
+        <p class="section-label">What Bot Creator does not do</p>
+        <ul class="privacy-list">
+          <li><div>It does not require a dedicated hosted backend to create and run bots.</div></li>
+          <li><div>It does not force cloud sync for the default workflow.</div></li>
+          <li><div>It does not include Google Drive OAuth configuration in the prebuilt Docker image by default.</div></li>
+        </ul>
+      </article>
 
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Contact</p>
-      <h2>Questions about privacy or backups</h2>
-      <p>For product and privacy questions, contact <a href="mailto:contact@ketsuna.com">contact@ketsuna.com</a>.</p>
-      <p class="small-label">Last updated: March 19, 2026</p>
-    </article>
-  </div>
+      <article class="panel-card">
+        <p class="section-label">Contact</p>
+        <h2>Questions about privacy or backups</h2>
+        <p>For product and privacy questions, contact <a href="mailto:contact@ketsuna.com">contact@ketsuna.com</a>.</p>
+        <p class="small-label">Last updated: March 19, 2026</p>
+      </article>
+    </div>
+  </section>
 </section>

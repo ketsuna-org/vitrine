@@ -19,9 +19,10 @@
 {% endif %}
 {% include site_head.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url %}
 <body class="site-body">
+  <a class="skip-link" href="#main-content">{{ t.common.skip_to_content }}</a>
   <div class="site-bg"></div>
   {% include site_header.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url t=t %}
-  <main class="site-main">
+  <main class="site-main" id="main-content" tabindex="-1">
     {{ content }}
   </main>
   {% include site_footer.html t=t %}

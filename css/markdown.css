@@ -1,11 +1,15 @@
 .markdown-body {
-  color: var(--mist-100);
-  font-size: 1.03rem;
-  line-height: 1.8;
+  color: var(--text-100);
+  font-size: 1.04rem;
+  line-height: 1.82;
 }
 
 .markdown-body > :first-child {
   margin-top: 0;
+}
+
+.markdown-body > :last-child {
+  margin-bottom: 0;
 }
 
 .markdown-body h1,
@@ -14,11 +18,12 @@
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  margin: 2rem 0 0.9rem;
-  color: var(--mist-100);
+  margin: 2.4rem 0 0.9rem;
+  color: var(--text-100);
   font-family: var(--font-display);
-  letter-spacing: -0.04em;
-  scroll-margin-top: 7rem;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+  scroll-margin-top: 7.5rem;
 }
 
 .markdown-body h1 {
@@ -26,11 +31,17 @@
 }
 
 .markdown-body h2 {
-  font-size: 1.65rem;
+  font-size: 1.7rem;
 }
 
 .markdown-body h3 {
   font-size: 1.35rem;
+}
+
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-size: 1.1rem;
 }
 
 .markdown-body p,
@@ -38,82 +49,130 @@
 .markdown-body ol,
 .markdown-body table,
 .markdown-body blockquote,
-.markdown-body pre {
-  margin: 0 0 1.2rem;
+.markdown-body pre,
+.markdown-body hr {
+  margin: 0 0 1.3rem;
 }
 
 .markdown-body ul,
 .markdown-body ol {
-  padding-left: 1.35rem;
+  padding-left: 1.4rem;
 }
 
 .markdown-body li {
-  margin-bottom: 0.45rem;
-  color: var(--mist-200);
+  margin-bottom: 0.5rem;
+  color: var(--text-200);
+}
+
+.markdown-body li::marker {
+  color: var(--accent-500);
 }
 
 .markdown-body a {
-  color: var(--mint-300);
+  color: var(--mint-400);
   text-decoration: underline;
-  text-decoration-color: rgba(152, 244, 209, 0.4);
+  text-decoration-color: rgba(113, 229, 190, 0.36);
+  text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
 }
 
+.markdown-body a:hover {
+  color: var(--text-100);
+  text-decoration-color: rgba(113, 229, 190, 0.68);
+}
+
 .markdown-body strong {
-  color: var(--mist-100);
+  color: var(--text-100);
+}
+
+.markdown-body em {
+  color: var(--text-200);
 }
 
 .markdown-body code {
-  padding: 0.14rem 0.4rem;
-  border-radius: 0.5rem;
+  padding: 0.16rem 0.42rem;
+  border-radius: 0.55rem;
   background: rgba(255, 255, 255, 0.06);
-  color: var(--mist-100);
-  font-size: 0.95em;
+  color: var(--text-100);
+  font-family: var(--font-mono);
+  font-size: 0.94em;
 }
 
 .markdown-body pre {
-  padding: 1rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(109, 159, 255, 0.16);
-  background: rgba(5, 12, 24, 0.96);
+  padding: 1rem 1.1rem;
   overflow-x: auto;
+  border: 1px solid rgba(135, 172, 228, 0.18);
+  border-radius: 1rem;
+  background: rgba(4, 9, 19, 0.96);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .markdown-body pre code {
   padding: 0;
   background: transparent;
+  color: inherit;
 }
 
 .markdown-body blockquote {
-  padding: 1rem 1.1rem;
+  padding: 1rem 1.15rem;
   border-left: 3px solid var(--mint-400);
   border-radius: 0 1rem 1rem 0;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--mist-200);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-200);
+}
+
+.markdown-body hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(113, 229, 190, 0.3), rgba(135, 172, 228, 0.12), transparent 70%);
 }
 
 .markdown-body table {
   width: 100%;
   border-collapse: collapse;
   overflow: hidden;
+  border: 1px solid rgba(135, 172, 228, 0.18);
   border-radius: 1rem;
-  border: 1px solid rgba(109, 159, 255, 0.16);
 }
 
 .markdown-body th,
 .markdown-body td {
   padding: 0.9rem 1rem;
   text-align: left;
-  border-bottom: 1px solid rgba(109, 159, 255, 0.1);
+  border-bottom: 1px solid rgba(135, 172, 228, 0.1);
 }
 
 .markdown-body th {
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--mist-100);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-100);
 }
 
 .markdown-body td {
-  color: var(--mist-200);
+  color: var(--text-200);
+}
+
+.markdown-body .anchor {
+  margin-left: 0.35rem;
+  color: var(--text-400);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body .anchor:focus {
+  opacity: 1;
+}
+
+.markdown-body .anchor:hover {
+  color: var(--mint-400);
+}
+
+.toc-content {
+  display: grid;
+  gap: 0.3rem;
 }
 
 .toc-content ul {
@@ -123,30 +182,40 @@
 }
 
 .toc-content ul ul {
-  padding-left: 0.85rem;
   margin-top: 0.25rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid rgba(135, 172, 228, 0.12);
 }
 
 .toc-content li + li {
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
 }
 
 .toc-content a {
   display: block;
-  padding: 0.45rem 0.65rem;
-  border-radius: 0.85rem;
-  color: var(--mist-300);
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.9rem;
+  color: var(--text-300);
+  line-height: 1.45;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .toc-content a:hover,
 .toc-content a:focus {
-  background: rgba(63, 124, 255, 0.1);
-  color: var(--mist-100);
+  background: rgba(89, 182, 255, 0.1);
+  color: var(--text-100);
 }
 
 @media (max-width: 720px) {
   .markdown-body {
     font-size: 1rem;
+  }
+
+  .markdown-body h2 {
+    font-size: 1.5rem;
+  }
+
+  .markdown-body h3 {
+    font-size: 1.25rem;
   }
 }

@@ -19,13 +19,14 @@
 {% endif %}
 {% include site_head.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url markdown=true %}
 <body class="site-body">
+  <a class="skip-link" href="#main-content">{{ t.common.skip_to_content }}</a>
   <div class="site-bg"></div>
   <div class="reading-progress" data-reading-progress>
     <span></span>
   </div>
   {% include site_header.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url t=t %}
 
-  <main class="site-main">
+  <main class="site-main" id="main-content" tabindex="-1">
     <section class="site-grid page-section">
       <div class="page-hero compact" data-reveal>
         <div class="eyebrow-row">

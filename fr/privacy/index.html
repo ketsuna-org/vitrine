@@ -10,25 +10,27 @@ permalink: /fr/privacy/
 
 <section class="site-grid page-section">
   <div class="page-hero compact" data-reveal>
-    <div class="eyebrow-row">
-      <span class="eyebrow-pill">Confidentialite</span>
-      <span class="meta-chip">Modele de donnees local-first</span>
+    <div class="section-header">
+      <div class="eyebrow-row">
+        <span class="eyebrow-pill">Confidentialite</span>
+        <span class="meta-chip">Modele de donnees local-first</span>
+      </div>
+      <h1>Bot Creator garde le workflow principal en local et n'utilise le cloud que lorsque vous le demandez.</h1>
+      <p class="lede">Le produit stocke par defaut les donnees bots, workflows, etat runtime et logs en local. Google Drive sert aux flux de sauvegarde et de restauration, pas a un backend heberge obligatoire.</p>
     </div>
-    <h1>Bot Creator garde le workflow principal en local et n'utilise le cloud que lorsque vous le demandez.</h1>
-    <p class="lede">Le produit stocke par defaut les donnees bots, workflows, logs et etat runtime en local. Google Drive sert aux flux de sauvegarde et de restauration, pas a un backend obligatoire.</p>
   </div>
 
   <div class="privacy-grid">
     <article class="panel-card" data-reveal>
       <p class="section-label">Stockage local</p>
-      <h2>Les donnees bots restent sur l'appareil ou la machine qui execute le produit.</h2>
-      <p>Bot Creator stocke les metadonnees, configurations de commandes, workflows, variables, logs et donnees runtime dans le dossier local de l'application ou dans le volume du runner.</p>
+      <h2>Les donnees de votre bot restent sur l'appareil ou la machine qui execute le produit.</h2>
+      <p>Bot Creator stocke metadonnees, configurations de commandes, workflows, variables, logs et donnees runtime dans le dossier local de l'application ou dans le volume monte du runner.</p>
     </article>
 
     <article class="panel-card" data-reveal>
       <p class="section-label">Sauvegardes Google Drive</p>
-      <h2>Google Drive sert uniquement a la sauvegarde et a la restauration.</h2>
-      <p>Quand vous connectez Drive, Bot Creator synchronise les sauvegardes dans AppData. Sur le runner Docker, les tokens OAuth persistent dans le volume monte pour survivre aux redemarrages.</p>
+      <h2>Drive sert uniquement a la sauvegarde et a la restauration.</h2>
+      <p>Quand vous connectez Google Drive, Bot Creator synchronise les sauvegardes dans AppData. Sur le runner Docker, les tokens OAuth persistent dans le volume monte pour survivre aux redemarrages.</p>
     </article>
 
     <article class="panel-card" data-reveal>
@@ -40,25 +42,27 @@ permalink: /fr/privacy/
     <article class="panel-card" data-reveal>
       <p class="section-label">Responsabilite partagee</p>
       <h2>Vous restez responsable de la securite des exports et des comptes relies.</h2>
-      <p>Les bot tokens sont des secrets sensibles. Protegez vos exports, l'appareil ou le serveur qui execute le produit, et le compte Google utilise pour les sauvegardes.</p>
+      <p>Les bot tokens sont des secrets sensibles. Protegez vos sauvegardes, l'appareil ou le serveur qui execute le produit, et le compte Google utilise pour les sauvegardes.</p>
     </article>
   </div>
 
-  <div class="split-grid">
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Ce que Bot Creator ne fait pas</p>
-      <ul class="privacy-list">
-        <li><div>Le produit ne requiert pas de backend heberge dedie pour creer et executer des bots.</div></li>
-        <li><div>Le produit n'impose pas de synchronisation cloud pour le workflow par defaut.</div></li>
-        <li><div>La configuration OAuth Google Drive n'est pas fournie d'office dans l'image Docker prebuild.</div></li>
-      </ul>
-    </article>
+  <section class="section-shell" data-reveal>
+    <div class="split-grid">
+      <article class="panel-card">
+        <p class="section-label">Ce que Bot Creator ne fait pas</p>
+        <ul class="privacy-list">
+          <li><div>Le produit ne requiert pas de backend heberge dedie pour creer et executer des bots.</div></li>
+          <li><div>Le produit n'impose pas de synchronisation cloud dans le workflow par defaut.</div></li>
+          <li><div>La configuration OAuth Google Drive n'est pas incluse par defaut dans l'image Docker prebuild.</div></li>
+        </ul>
+      </article>
 
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Contact</p>
-      <h2>Questions sur la confidentialite ou les sauvegardes</h2>
-      <p>Pour toute question produit ou confidentialite, contactez <a href="mailto:contact@ketsuna.com">contact@ketsuna.com</a>.</p>
-      <p class="small-label">Derniere mise a jour : 19 mars 2026</p>
-    </article>
-  </div>
+      <article class="panel-card">
+        <p class="section-label">Contact</p>
+        <h2>Questions sur la confidentialite ou les sauvegardes</h2>
+        <p>Pour toute question produit ou confidentialite, contactez <a href="mailto:contact@ketsuna.com">contact@ketsuna.com</a>.</p>
+        <p class="small-label">Derniere mise a jour : 19 mars 2026</p>
+      </article>
+    </div>
+  </section>
 </section>

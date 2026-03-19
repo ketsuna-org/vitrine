@@ -1,36 +1,70 @@
 ---
 layout: default
 title: Guides
-description: Learn Bot Creator through practical setup guides, runtime walkthroughs, and product tutorials.
+description: Practical Bot Creator guides for token setup, command building, workflows, and the Docker runner path.
 locale: en
 translation_key: guides
 content_language: en
 ---
 {% assign t = site.data.locales[page.locale] %}
-{% assign post_list = site.posts %}
+{% assign post_list = site.posts | where: "locale", "en" %}
 {% if paginator and paginator.posts %}
 {% assign post_list = paginator.posts %}
 {% endif %}
 
 <section class="site-grid page-section">
   <div class="page-hero compact" data-reveal>
-    <h1>{{ t.guides.title }}</h1>
-    <p class="lede">{{ t.guides.subtitle }}</p>
+    <div class="section-header">
+      <div class="eyebrow-row">
+        <span class="eyebrow-pill">{{ t.guides.eyebrow }}</span>
+        <span class="meta-chip">English guides</span>
+      </div>
+      <h1>{{ t.guides.title }}</h1>
+      <p class="lede">{{ t.guides.subtitle }}</p>
+    </div>
   </div>
 
+  <section class="section-shell" data-reveal>
+    <div class="section-header">
+      <p class="section-label">{{ t.guides.featured_title }}</p>
+      <h2 class="section-heading-xl">Start with the moves that unlock the rest of the product.</h2>
+      <p class="section-intro">These first guides help new users go from setup to a useful bot flow without getting stuck in Discord configuration or runtime details.</p>
+    </div>
+    <div class="story-grid">
+      {% for track in t.guides.featured_tracks %}
+      <article class="guide-track">
+        <h3>{{ track.title }}</h3>
+        <p>{{ track.body }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
   {% if post_list and post_list.size > 0 %}
-  <div class="guide-grid">
-    {% for post in post_list %}
-    <article class="guide-card" data-reveal>
-      <span class="meta-chip">{{ post.date | date: "%Y-%m-%d" }}</span>
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}</p>
-      <div class="download-actions">
-        <a class="button button-secondary" href="{{ post.url | relative_url }}">{{ t.guides.read_more }}</a>
-      </div>
-    </article>
-    {% endfor %}
-  </div>
+  <section class="section-shell" data-reveal>
+    <div class="section-header">
+      <p class="section-label">All guides</p>
+      <h2 class="section-heading-xl">Short walkthroughs for real setup and runtime tasks.</h2>
+      <p class="section-intro">Each guide focuses on one concrete outcome so users can make progress quickly instead of reading broad, abstract documentation.</p>
+    </div>
+    <div class="guide-grid">
+      {% for post in post_list %}
+      <article class="guide-card" data-reveal>
+        <div class="guide-meta">
+          <span class="meta-chip">{{ post.date | date: "%Y-%m-%d" }}</span>
+          {% if post.categories and post.categories.size > 0 %}
+          <span class="meta-chip">{{ post.categories | first }}</span>
+          {% endif %}
+        </div>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}</p>
+        <div class="download-actions">
+          <a class="button button-secondary" href="{{ post.url | relative_url }}">{{ t.guides.read_more }}</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
   {% else %}
   <div class="panel-card" data-reveal>
     <h2>{{ t.guides.empty_title }}</h2>
@@ -39,7 +73,7 @@ content_language: en
   {% endif %}
 
   {% if paginator and paginator.total_pages > 1 %}
-  <div class="button-row">
+  <div class="button-row" data-reveal>
     {% if paginator.previous_page %}
     <a class="button button-secondary" href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
     {% endif %}
@@ -48,4 +82,14 @@ content_language: en
     {% endif %}
   </div>
   {% endif %}
+
+  <div class="cta-banner" data-reveal>
+    <p class="section-label">Need the product first?</p>
+    <h2>Install Bot Creator, then follow the guide that matches your next task.</h2>
+    <p>Start with the app, learn one concrete action at a time, and move to the runner path only when your runtime needs grow.</p>
+    <div class="button-row">
+      <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
+      <a class="button button-secondary" href="{{ t.paths.home | relative_url }}">{{ t.nav.home }}</a>
+    </div>
+  </div>
 </section>
