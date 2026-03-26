@@ -8,6 +8,7 @@ paths:
   download: "/fr/download/"
   guides: "/fr/blog/"
   privacy: "/fr/privacy/"
+  terms: "/fr/cgv/"
 
 meta:
   site_title: "Bot Creator"
@@ -35,6 +36,7 @@ shell:
   footer_runner: "Runner Docker"
   footer_release_notes: "Notes de version"
   footer_privacy: "Politique de confidentialite"
+  footer_terms: "CGV"
   footer_rights: "Concu pour les equipes qui veulent du controle, de la clarte et une mise en production simple."
 
 common:
@@ -79,6 +81,10 @@ guides:
 privacy:
   title: "Confidentialite"
   subtitle: "Comment Bot Creator utilise les sauvegardes Google Drive, le stockage local et les diagnostics runtime."
+
+terms:
+  title: "Conditions generales de vente"
+  subtitle: "Comment les abonnements payants Bot Creator sont vendus, renouveles et geres via des stores autorises."
 
 not_found:
   title: "Page introuvable"

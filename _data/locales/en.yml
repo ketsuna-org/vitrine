@@ -8,6 +8,7 @@ paths:
   download: "/download/"
   guides: "/blog/"
   privacy: "/privacy-policy.html"
+  terms: "/terms-of-sale.html"
 
 meta:
   site_title: "Bot Creator"
@@ -35,6 +36,7 @@ shell:
   footer_runner: "Docker runner"
   footer_release_notes: "Release notes"
   footer_privacy: "Privacy policy"
+  footer_terms: "Terms of Sale"
   footer_rights: "Built for teams that want control, clarity, and a clean path to production."
 
 common:
@@ -79,6 +81,10 @@ guides:
 privacy:
   title: "Privacy"
   subtitle: "How Bot Creator uses Google Drive backups, local storage, and runtime diagnostics."
+
+terms:
+  title: "Terms of Sale"
+  subtitle: "How Bot Creator paid subscriptions are sold, renewed, and supported through authorized stores."
 
 not_found:
   title: "Page not found"

@@ -591,6 +591,7 @@
   .footer-shell,
   .download-grid,
   .guide-grid,
+  .legal-grid,
   .privacy-grid,
   .metric-grid,
   .feature-grid,
@@ -627,6 +628,7 @@
 
   .download-grid,
   .guide-grid,
+  .legal-grid,
   .privacy-grid,
   .metric-grid,
   .trust-grid,
@@ -647,9 +649,47 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .legal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .download-grid,
   .guide-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .legal-card-wide {
+    grid-column: 1 / -1;
+  }
+
+  .legal-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-top: 1.15rem;
+  }
+
+  .legal-fact {
+    display: grid;
+    gap: 0.3rem;
+    padding: 1rem 1.05rem;
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .legal-fact strong {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-500);
+  }
+
+  .legal-fact span,
+  .legal-fact a {
+    color: var(--text-200);
+    line-height: 1.6;
+    word-break: break-word;
   }
 
   .hero-proof {
@@ -1039,6 +1079,11 @@
     font-weight: 600;
   }
 
+  .panel-card .privacy-list,
+  .panel-card .check-list {
+    margin-top: 1rem;
+  }
+
   .platform-bar a:hover,
   .support-links a:hover,
   .share-row a:hover {
@@ -1415,6 +1460,7 @@
 
     .download-grid,
     .guide-grid,
+    .legal-grid,
     .privacy-grid,
     .metric-grid,
     .feature-grid,
@@ -1430,6 +1476,10 @@
     .not-found-card h1 {
       max-width: none;
       font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .legal-facts {
+      grid-template-columns: 1fr;
     }
 
     .lede {
@@ -1511,6 +1561,10 @@
     .notice-banner {
       padding: 1.1rem;
       border-radius: 18px;
+    }
+
+    .legal-fact {
+      padding: 0.95rem;
     }
 
     .button {
