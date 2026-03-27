@@ -1,237 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-    <link href="{{ '/css/main.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/css/highlight.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/css/markdown.css' | relative_url }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% assign locale = page.locale | default: site.lang | default: 'en' %}
+{% assign t = site.data.locales[locale] %}
+{% assign alternate_locale = 'fr' %}
+{% if locale == 'fr' %}
+  {% assign alternate_locale = 'en' %}
+{% endif %}
+{% assign alternate_t = site.data.locales[alternate_locale] %}
+{% assign alternate_url = alternate_t.paths.home | relative_url %}
+{% if page.translation_key %}
+  {% assign translated_page = site.pages | where: "translation_key", page.translation_key | where: "locale", alternate_locale | first %}
+  {% if translated_page %}
+    {% assign alternate_url = translated_page.url | relative_url %}
+  {% else %}
+    {% assign translated_post = site.posts | where: "translation_key", page.translation_key | where: "locale", alternate_locale | first %}
+    {% if translated_post %}
+      {% assign alternate_url = translated_post.url | relative_url %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+{% include site_head.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url markdown=true %}
+<body class="site-body">
+  <a class="skip-link" href="#main-content">{{ t.common.skip_to_content }}</a>
+  <div class="site-bg"></div>
+  <div class="reading-progress" data-reading-progress>
+    <span></span>
+  </div>
+  {% include site_header.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url t=t %}
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'slate': {
-                            '800': '#1e293b',
-                            '900': '#0f172a',
-                        },
-                        'blue': {
-                            '400': '#60a5fa',
-                            '500': '#3b82f6',
-                            '600': '#2563eb',
-                            '700': '#1d4ed8',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="text-lg lg:text-base bg-slate-900 text-slate-100 tracking-tight antialiased">
+  <main class="site-main" id="main-content" tabindex="-1">
+    <section class="site-grid page-section">
+      <div class="page-hero compact" data-reveal>
+        <div class="eyebrow-row">
+          <span class="eyebrow-pill">{{ t.guides.eyebrow }}</span>
+          <span class="meta-chip">{{ t.common.source_language }}: {% if page.content_language == 'fr' %}{{ t.common.source_language_fr }}{% else %}{{ t.common.source_language_en }}{% endif %}</span>
+        </div>
+        <div class="post-hero-grid">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="{{ t.paths.home | relative_url }}">{{ t.nav.home }}</a>
+              <span>/</span>
+              <a href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
+              <span>/</span>
+              <span>{{ page.title }}</span>
+            </nav>
+            <h1>{{ page.title }}</h1>
+            <p class="lede">{{ page.description | default: t.guides.subtitle }}</p>
+          </div>
 
-    <!-- Container pour centrer et limiter la largeur -->
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <!-- Header -->
-        {% include navbar.html %}
-
-        <!-- Main Content -->
-        <main class="py-8 flex-grow">
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Main Content -->
-                <div class="flex-1 max-w-none lg:max-w-4xl">
-                    <!-- Breadcrumb Navigation -->
-                    <nav class="mb-6 text-sm">
-                        <ol class="flex items-center space-x-2 text-slate-400">
-                            <li>
-                                <a href="/" class="hover:text-blue-400 transition-colors">
-                                    <i class="fas fa-home mr-1"></i>Home
-                                </a>
-                            </li>
-                            <li class="text-slate-600">
-                                <i class="fas fa-chevron-right"></i>
-                            </li>
-                            <li>
-                                <a href="/blog" class="hover:text-blue-400 transition-colors">Blog</a>
-                            </li>
-                            <li class="text-slate-600">
-                                <i class="fas fa-chevron-right"></i>
-                            </li>
-                            <li class="text-blue-400 font-medium">{{ page.title | truncate: 30 }}</li>
-                        </ol>
-                    </nav>
-
-                    <!-- Post Header -->
-                    <header class="mb-8">
-                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-blue-400 break-words">
-                            {{ page.title | default: "Post Title" }}
-                        </h1>
-
-                        <!-- Post Meta -->
-                        <div class="flex flex-wrap items-center gap-4 text-blue-300/80 text-sm mb-6">
-                            {% if page.date %}
-                                <span class="flex items-center">
-                                    <i class="fas fa-calendar-alt mr-2"></i>
-                                    {{ page.date | date: "%B %d, %Y" }}
-                                </span>
-                            {% endif %}
-                            {% if page.author %}
-                                <span class="flex items-center">
-                                    <i class="fas fa-user mr-2"></i>
-                                    {{ page.author }}
-                                </span>
-                            {% endif %}
-                            {% if page.reading_time %}
-                                <span class="flex items-center">
-                                    <i class="fas fa-clock mr-2"></i>
-                                    {{ page.reading_time }} min read
-                                </span>
-                            {% endif %}
-                        </div>
-
-                        <!-- Categories/Tags -->
-                        {% if page.categories %}
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                {% for category in page.categories %}
-                                    <span class="px-3 py-1 text-xs bg-blue-600/20 text-blue-300 rounded-full border border-blue-500/30">
-                                        {{ category }}
-                                    </span>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </header>
-
-                    <!-- Post Content -->
-                    <article class="markdown-body bg-slate-800/50 border border-blue-500/20 rounded-xl p-6 lg:p-8 max-w-none overflow-x-auto shadow-lg">
-                        {{ content | inject_anchors }}
-                    </article>
-
-                    <!-- Post Footer -->
-                    <footer class="mt-12 pt-8 border-t border-blue-500/20">
-                        <!-- Share Buttons -->
-                        <div class="flex items-center justify-between flex-wrap gap-4">
-                            <div class="flex items-center space-x-4">
-                                <span class="text-slate-300 font-medium">Share this post:</span>
-                                <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title }}"
-                                   target="_blank"
-                                   class="text-blue-400 hover:text-blue-300 transition-colors">
-                                    <i class="fab fa-twitter text-lg"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}"
-                                   target="_blank"
-                                   class="text-blue-400 hover:text-blue-300 transition-colors">
-                                    <i class="fab fa-linkedin text-lg"></i>
-                                </a>
-                            </div>
-
-                            <!-- Back to Blog -->
-                            <a href="/blog"
-                               class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors">
-                                <i class="fas fa-arrow-left mr-2"></i>
-                                Back to Blog
-                            </a>
-                        </div>
-                    </footer>
-                </div>
-
-                <!-- Table of Contents Sidebar -->
-                {% if page.toc %}
-                <aside class="lg:w-80">
-                    <nav id="toc-sidebar"
-                         class="sticky top-8 bg-slate-800/50 border border-blue-500/20 text-slate-200 rounded-xl shadow-lg p-6 max-h-[70vh] overflow-y-auto">
-                        <h2 class="text-lg font-bold mb-4 text-blue-400 flex items-center">
-                            <i class="fas fa-list mr-2"></i>
-                            Table of Contents
-                        </h2>
-                        <div class="toc-content text-sm">
-                            {{ content | toc_only }}
-                        </div>
-                    </nav>
-                </aside>
-                {% endif %}
+          <div class="post-meta-panel">
+            {% if page.date %}
+            <div>
+              <span>{{ t.guides.published_label }}</span>
+              <strong>{{ page.date | date: "%Y-%m-%d" }}</strong>
             </div>
-        </main>
-    </div>
+            {% endif %}
+            {% if page.author %}
+            <div>
+              <span>{{ t.guides.author_label }}</span>
+              <strong>{{ page.author }}</strong>
+            </div>
+            {% endif %}
+            {% if page.categories %}
+            <div class="tag-row">
+              {% for category in page.categories %}
+              <span class="meta-chip">{{ category }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
 
-    {% include footer.html %}
+      <div class="post-shell">
+        <article class="article-card" data-reveal>
+          <div class="markdown-body article-prose">
+            {{ content | inject_anchors }}
+          </div>
 
-    <style>
-        /* TOC Styling */
-        .toc-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
+          <div class="post-cta-panel">
+            <div>
+              <p class="section-label">{{ t.guides.next_title }}</p>
+              <h2>{{ t.guides.next_body }}</h2>
+            </div>
+            <div class="button-row">
+              <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.guides.next_download }}</a>
+              <a class="button button-secondary" href="{{ t.paths.home | relative_url }}">{{ t.guides.next_home }}</a>
+            </div>
+          </div>
 
-        .toc-content ul ul {
-            padding-left: 1rem;
-            margin-top: 0.5rem;
-        }
+          <div class="post-footer-row">
+            <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.guides.back_to_guides }}</a>
+            <div class="share-row">
+              <span>{{ t.guides.share }}</span>
+              <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title | uri_escape }}" target="_blank" rel="noopener noreferrer">X</a>
+              <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | uri_escape }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+          </div>
+        </article>
 
-        .toc-content li {
-            margin: 0.5rem 0;
-        }
+        {% if page.toc %}
+        <aside class="toc-card" data-reveal>
+          <p class="section-label">{{ t.guides.toc }}</p>
+          <div class="toc-content" id="toc-sidebar">
+            {{ content | toc_only }}
+          </div>
+        </aside>
+        {% endif %}
+      </div>
+    </section>
+  </main>
 
-        .toc-content a {
-            color: #cbd5e1;
-            text-decoration: none;
-            display: block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.375rem;
-            transition: all 0.2s;
-        }
-
-        .toc-content a:hover {
-            color: #60a5fa;
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-
-        /* Markdown content improvements */
-        .markdown-body {
-            line-height: 1.7;
-        }
-
-        .markdown-body h1,
-        .markdown-body h2,
-        .markdown-body h3,
-        .markdown-body h4,
-        .markdown-body h5,
-        .markdown-body h6 {
-            color: #60a5fa;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .markdown-body p {
-            margin-bottom: 1.5rem;
-            color: #cbd5e1;
-        }
-
-        .markdown-body code {
-            background-color: #1e293b;
-            color: #60a5fa;
-            padding: 0.125rem 0.25rem;
-            border-radius: 0.25rem;
-        }
-
-        .markdown-body pre {
-            background-color: #1e293b;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            overflow-x: auto;
-        }
-
-        .markdown-body blockquote {
-            border-left: 4px solid #3b82f6;
-            padding-left: 1rem;
-            margin: 1.5rem 0;
-            color: #94a3b8;
-            font-style: italic;
-        }
-    </style>
+  {% include site_footer.html t=t %}
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
 </body>
 </html>

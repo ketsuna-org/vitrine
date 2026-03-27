@@ -1,10 +1,11 @@
 ---
 layout: default
-title: Build Discord bots with a visual workspace
-description: Bot Creator helps teams build commands, manage workflows, and run Discord bots from one professional app.
-locale: en
+title: Creez des bots Discord depuis un espace de travail visuel
+description: Bot Creator aide les equipes a creer des commandes, gerer des workflows et piloter des bots Discord depuis une application professionnelle.
+locale: fr
 translation_key: home
-content_language: en
+content_language: fr
+permalink: /fr/
 ---
 {% assign t = site.data.locales[page.locale] %}
 {% assign downloads = site.data.downloads %}
@@ -15,32 +16,32 @@ content_language: en
     <div class="hero-layout">
       <div class="hero-copy">
         <div class="eyebrow-row">
-          <span class="eyebrow-pill">Professional Discord bot builder</span>
-          <span class="meta-chip">Visual editor, local control</span>
+          <span class="eyebrow-pill">Constructeur professionnel de bots Discord</span>
+          <span class="meta-chip">Editeur visuel, controle local</span>
         </div>
-        <h1>Build, run, and manage Discord bots from one professional workspace.</h1>
-        <p class="lede">Bot Creator helps creators, moderators, and small teams ship Discord automation without maintaining a custom backend. Design commands visually, keep day-to-day control in the app, and move to Linux or Docker only when uptime becomes a real requirement.</p>
+        <h1>Creez, lancez et gerez vos bots Discord depuis un espace de travail professionnel.</h1>
+        <p class="lede">Bot Creator aide les createurs, moderateurs et petites equipes a deployer une automatisation Discord sans maintenir un backend sur mesure. Concevez les commandes visuellement, gardez le controle quotidien dans l'application, puis passez a Linux ou Docker seulement quand l'uptime devient un vrai sujet.</p>
         <div class="button-row">
           <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
           <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.shell.secondary_cta }}</a>
         </div>
         <div class="hero-points">
-          <span class="hero-point">Visual command builder</span>
-          <span class="hero-point">Runtime control in one app</span>
-          <span class="hero-point">Local-first by default</span>
+          <span class="hero-point">Builder visuel de commandes</span>
+          <span class="hero-point">Controle runtime dans une seule app</span>
+          <span class="hero-point">Local-first par defaut</span>
         </div>
         <div class="hero-proof">
           <div class="metric-card">
-            <strong>Clear bot setup</strong>
-            <p>Configure commands, variables, and response flows in guided screens that stay understandable as your bot grows.</p>
+            <strong>Configuration claire du bot</strong>
+            <p>Configurez commandes, variables et reponses dans des ecrans guides qui restent lisibles a mesure que le bot evolue.</p>
           </div>
           <div class="metric-card">
-            <strong>Operational control</strong>
-            <p>Start bots, review logs, sync changes, and manage daily actions from the same interface.</p>
+            <strong>Controle operationnel</strong>
+            <p>Demarrez les bots, consultez les logs, synchronisez les changements et pilotez les actions quotidiennes depuis la meme interface.</p>
           </div>
           <div class="metric-card">
-            <strong>Flexible deployment</strong>
-            <p>Work on mobile or desktop first, then adopt Linux or the Docker runner when the bot needs more uptime.</p>
+            <strong>Deploiement flexible</strong>
+            <p>Travaillez d'abord sur mobile ou desktop, puis adoptez Linux ou le runner Docker quand le bot demande plus de disponibilite.</p>
           </div>
         </div>
       </div>
@@ -66,8 +67,8 @@ content_language: en
               <div class="phone-action-list">
                 <div class="phone-action phone-action-start">Start Bot</div>
                 <div class="phone-divider"></div>
-                <div class="phone-action phone-action-muted">View bot logs</div>
-                <div class="phone-action phone-action-muted">View bot stats</div>
+                <div class="phone-action phone-action-muted">Voir les logs du bot</div>
+                <div class="phone-action phone-action-muted">Voir les stats du bot</div>
                 <div class="phone-action phone-action-muted">Sync App</div>
                 <div class="phone-action phone-action-invite">Invite Bot</div>
                 <div class="phone-action phone-action-delete">Delete App</div>
@@ -83,12 +84,12 @@ content_language: en
           </div>
           <div class="phone-side-notes">
             <div class="phone-note">
-              <strong>Product-led interface</strong>
-              <span>The preview reflects the mobile interface used for day-to-day bot management.</span>
+              <strong>Interface produit fidele</strong>
+              <span>L'aperu reprend l'interface mobile utilisee pour piloter le bot au quotidien.</span>
             </div>
             <div class="phone-note">
-              <strong>Everyday control</strong>
-              <span>Start a bot, inspect logs, sync updates, and invite it to a server without leaving the workflow.</span>
+              <strong>Actions quotidiennes</strong>
+              <span>Demarrage du bot, logs, synchronisation et invitation restent accessibles sans quitter le workflow.</span>
             </div>
           </div>
         </div>
@@ -98,22 +99,22 @@ content_language: en
 
   <section class="section-shell" data-reveal>
     <div class="section-header">
-      <p class="section-label">Why Bot Creator</p>
-      <h2 class="section-heading-xl">A clearer way to ship Discord automation.</h2>
-      <p class="section-intro">The product is built for teams that want a reliable workflow from first setup to daily bot operations.</p>
+      <p class="section-label">Pourquoi Bot Creator</p>
+      <h2 class="section-heading-xl">Une facon plus claire de livrer une automatisation Discord.</h2>
+      <p class="section-intro">Le produit est pense pour les equipes qui veulent un workflow fiable, du premier setup jusqu'aux operations quotidiennes.</p>
     </div>
     <div class="feature-grid">
       <article class="feature-card">
-        <h2>Visual command design</h2>
-        <p>Build slash commands, options, and response logic without losing track of permissions, variables, or flows.</p>
+        <h2>Conception visuelle des commandes</h2>
+        <p>Construisez slash commands, options et logique de reponse sans perdre de vue permissions, variables et enchainements.</p>
       </article>
       <article class="feature-card">
-        <h2>Professional day-to-day control</h2>
-        <p>Keep startup actions, logs, sync, and runtime checks in the same product your team already uses to build the bot.</p>
+        <h2>Controle professionnel au quotidien</h2>
+        <p>Gardez demarrage, logs, synchronisation et controles runtime dans le meme produit que celui utilise pour construire le bot.</p>
       </article>
       <article class="feature-card">
-        <h2>Growth without early infrastructure</h2>
-        <p>Start locally, validate the workflow, and add Linux or Docker only when hosting becomes an operational need.</p>
+        <h2>Croissance sans infrastructure prematuree</h2>
+        <p>Commencez en local, validez le workflow, puis ajoutez Linux ou Docker seulement quand l'hebergement devient un besoin operationnel.</p>
       </article>
     </div>
   </section>
@@ -121,21 +122,21 @@ content_language: en
   <section class="section-shell" data-reveal>
     <div class="split-grid">
       <article class="panel-card">
-        <p class="section-label">Control and ownership</p>
-        <h2>Keep your bot workflow understandable.</h2>
-        <p>Bot Creator keeps editing, runtime control, and data handling in one product so you do not have to piece together scripts, dashboards, and hosting glue.</p>
+        <p class="section-label">Controle et propriete</p>
+        <h2>Gardez un workflow bot comprehensible.</h2>
+        <p>Bot Creator rassemble edition, controle runtime et gestion des donnees dans un meme produit pour eviter les scripts disperses, dashboards annexes et glue technique.</p>
         <ul class="check-list">
-          <li><div>Local storage is the default for commands, workflows, variables, and logs.</div></li>
-          <li><div>Google Drive backup is optional when you want portability across devices.</div></li>
-          <li><div>The Docker runner is available once remote Linux uptime becomes necessary.</div></li>
+          <li><div>Le stockage local est la base pour les commandes, workflows, variables et logs.</div></li>
+          <li><div>La sauvegarde Google Drive reste optionnelle quand vous voulez plus de portabilite.</div></li>
+          <li><div>Le runner Docker reste disponible quand un uptime Linux distant devient necessaire.</div></li>
         </ul>
       </article>
 
       <div class="panel-stack">
         <article class="panel-card">
           <p class="section-label">Mobile, desktop, Linux</p>
-          <h2>Use the same product across your devices.</h2>
-          <p>Start with the platform that fits your day-to-day work, then continue with the same workflow elsewhere.</p>
+          <h2>Utilisez le meme produit sur tous vos appareils.</h2>
+          <p>Commencez sur la plateforme qui correspond a votre travail quotidien, puis poursuivez le meme workflow ailleurs.</p>
           <div class="platform-bar">
             <a href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">Android</a>
             <a href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">iOS</a>
@@ -144,9 +145,9 @@ content_language: en
           </div>
         </article>
         <article class="panel-card">
-          <p class="section-label">Guided onboarding</p>
-          <h2>Learn the product fast.</h2>
-          <p>Use the guides for token setup, command creation, and runner adoption when your team is ready.</p>
+          <p class="section-label">Prise en main guidee</p>
+          <h2>Apprenez le produit rapidement.</h2>
+          <p>Utilisez les guides pour le token, la creation de commandes et l'adoption du runner quand votre equipe est prete.</p>
           <div class="button-row">
             <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.shell.secondary_cta }}</a>
           </div>
@@ -159,17 +160,15 @@ content_language: en
   <section class="section-shell" data-reveal>
     <div class="section-header">
       <p class="section-label">{{ t.guides.title }}</p>
-      <h2 class="section-heading-xl">Practical guides for setup, commands, and runtime.</h2>
-      <p class="section-intro">Start with token setup, then move into command creation and runner adoption with short, focused walkthroughs.</p>
+      <h2 class="section-heading-xl">Des guides pratiques pour le setup, les commandes et le runtime.</h2>
+      <p class="section-intro">Commencez par le token, puis avancez vers la creation de commandes et le runner avec des tutoriels courts et utiles.</p>
     </div>
     <div class="story-grid">
       {% for post in latest_posts %}
       <article class="guide-card">
         <div class="guide-meta">
           <span class="meta-chip">{{ post.date | date: "%Y-%m-%d" }}</span>
-          {% if post.categories and post.categories.size > 0 %}
-          <span class="meta-chip">{{ post.categories | first }}</span>
-          {% endif %}
+          <span class="meta-chip language-chip-soft">{{ t.common.source_language_en }}</span>
         </div>
         <h2>{{ post.title }}</h2>
         <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 30 }}</p>
@@ -183,9 +182,9 @@ content_language: en
   {% endif %}
 
   <div class="cta-banner" data-reveal>
-    <p class="section-label">Ready to build</p>
-    <h2>Download Bot Creator and create a bot workflow that stays clear as it grows.</h2>
-    <p>Start in the app, keep control local, and add runner infrastructure only when it gives your team a real operational benefit.</p>
+    <p class="section-label">Pret a construire</p>
+    <h2>Telechargez Bot Creator et creez un workflow bot qui reste clair a mesure qu'il grandit.</h2>
+    <p>Commencez dans l'application, gardez le controle en local et ajoutez le runner seulement quand cela apporte un vrai benefice operationnel.</p>
     <div class="button-row">
       <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
       <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>

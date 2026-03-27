@@ -1,0 +1,21 @@
+{% assign locale = include.locale %}
+{% assign t = site.data.locales[locale] %}
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="{{ '/css/main.css' | relative_url }}" rel="stylesheet">
+  {% if include.markdown %}
+  <link href="{{ '/css/highlight.css' | relative_url }}" rel="stylesheet">
+  <link href="{{ '/css/markdown.css' | relative_url }}" rel="stylesheet">
+  {% endif %}
+  {% seo %}
+  <link rel="alternate" hreflang="{{ include.locale }}" href="{{ page.url | absolute_url }}">
+  <link rel="alternate" hreflang="{{ include.alternate_locale }}" href="{{ include.alternate_url | absolute_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ site.data.locales.en.paths.home | absolute_url }}">
+</head>

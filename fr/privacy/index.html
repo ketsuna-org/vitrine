@@ -1,0 +1,55 @@
+---
+layout: default
+title: Politique de confidentialite
+description: Comment Bot Creator gere le stockage local, les sauvegardes optionnelles et les diagnostics runner.
+locale: fr
+translation_key: privacy
+content_language: fr
+permalink: /fr/privacy/
+---
+
+<section class="site-grid page-section">
+  <div class="page-hero compact" data-reveal>
+    <div class="section-header">
+      <div class="eyebrow-row">
+        <span class="eyebrow-pill">Confidentialite</span>
+        <span class="meta-chip">Modele de donnees local-first</span>
+      </div>
+      <h1>Bot Creator garde les donnees bot en local par defaut et n'utilise le cloud que lorsque vous l'activez.</h1>
+      <p class="lede">Le produit stocke par defaut les donnees bots, workflows, etat runtime et logs en local. Google Drive sert a la sauvegarde et a la restauration, pas a un backend heberge obligatoire.</p>
+    </div>
+  </div>
+
+  <div class="privacy-grid">
+    <article class="panel-card" data-reveal>
+      <p class="section-label">Stockage local</p>
+      <h2>Les donnees de votre bot restent sur l'appareil ou la machine qui execute le produit.</h2>
+      <p>Bot Creator stocke metadonnees, reglages des commandes, workflows, variables, logs et donnees runtime dans le dossier local de l'application ou dans le volume monte du runner.</p>
+    </article>
+
+    <article class="panel-card" data-reveal>
+      <p class="section-label">Sauvegardes optionnelles</p>
+      <h2>Google Drive sert uniquement a la sauvegarde et a la restauration.</h2>
+      <p>Quand vous connectez Google Drive, Bot Creator synchronise les sauvegardes dans AppData. Sur le runner, les tokens OAuth restent dans le volume monte pour survivre aux redemarrages.</p>
+    </article>
+
+    <article class="panel-card" data-reveal>
+      <p class="section-label">Diagnostics et logs</p>
+      <h2>Les echecs runtime ecrivent des diagnostics en local.</h2>
+      <p>Les diagnostics de demarrage sont ecrits localement pour eviter les echecs silencieux. Sur le runner, les logs sont ecrits dans le fichier persistant du volume.</p>
+    </article>
+
+    <article class="panel-card" data-reveal>
+      <p class="section-label">Votre responsabilite</p>
+      <h2>Protegez exports, sauvegardes et comptes relies.</h2>
+      <p>Les bot tokens sont des secrets sensibles. Securisez l'appareil ou le serveur qui execute le produit, protegez vos sauvegardes et le compte Google utilise pour l'acces backup.</p>
+    </article>
+  </div>
+
+  <div class="panel-card" data-reveal>
+    <p class="section-label">Contact</p>
+    <h2>Questions sur la confidentialite ou les sauvegardes</h2>
+    <p>Pour toute question produit ou confidentialite, contactez <a href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>.</p>
+    <p class="small-label">Derniere mise a jour : 19 mars 2026</p>
+  </div>
+</section>

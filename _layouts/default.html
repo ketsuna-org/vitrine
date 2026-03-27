@@ -1,132 +1,31 @@
-<!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% seo %}
-    <meta name="theme-color" content="#0f172a">
-    <link href="{{ '/css/main.css' | relative_url }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'slate': {
-                            '800': '#1e293b',
-                            '900': '#0f172a',
-                        },
-                        'blue': {
-                            '400': '#60a5fa',
-                            '500': '#3b82f6',
-                            '600': '#2563eb',
-                            '700': '#1d4ed8',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-
-<body class="text-lg lg:text-base bg-slate-900 text-slate-100 tracking-tight antialiased">
-
-    <!-- Container pour centrer et limiter la largeur -->
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <!-- Header -->
-        {% include navbar.html %}
-
-        <!-- Main Content -->
-        <main class="min-h-screen py-8">
-            {{ content }}
-        </main>
-    </div>
-
-    <!-- Scripts -->
-    <script>
-        // Animation d'entrée pour les éléments
-        document.addEventListener('DOMContentLoaded', function () {
-            const animatedElements = document.querySelectorAll('[data-animate]');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fade-in');
-                    }
-                });
-            });
-
-            animatedElements.forEach(el => observer.observe(el));
-        });
-    </script>
-
-    <style>
-        /* Animations personnalisées */
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in {
-            animation: fade-in 0.6s ease-out forwards;
-        }
-
-        /* Scrollbar personnalisée */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #2563eb;
-        }
-
-        /* Sélection de texte personnalisée */
-        ::selection {
-            background-color: #3b82f6;
-            color: white;
-        }
-
-        /* Focus states améliorés */
-        button:focus,
-        a:focus,
-        input:focus,
-        textarea:focus {
-            outline: 2px solid #60a5fa;
-            outline-offset: 2px;
-        }
-
-        /* Amélioration de la lisibilité */
-        p,
-        li {
-            max-width: 65ch;
-        }
-
-        /* Espacement des sections */
-        section {
-            margin-bottom: 3rem;
-        }
-    </style>
+{% assign locale = page.locale | default: site.lang | default: 'en' %}
+{% assign t = site.data.locales[locale] %}
+{% assign alternate_locale = 'fr' %}
+{% if locale == 'fr' %}
+  {% assign alternate_locale = 'en' %}
+{% endif %}
+{% assign alternate_t = site.data.locales[alternate_locale] %}
+{% assign alternate_url = alternate_t.paths.home | relative_url %}
+{% if page.translation_key %}
+  {% assign translated_page = site.pages | where: "translation_key", page.translation_key | where: "locale", alternate_locale | first %}
+  {% if translated_page %}
+    {% assign alternate_url = translated_page.url | relative_url %}
+  {% else %}
+    {% assign translated_post = site.posts | where: "translation_key", page.translation_key | where: "locale", alternate_locale | first %}
+    {% if translated_post %}
+      {% assign alternate_url = translated_post.url | relative_url %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+{% include site_head.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url %}
+<body class="site-body">
+  <a class="skip-link" href="#main-content">{{ t.common.skip_to_content }}</a>
+  <div class="site-bg"></div>
+  {% include site_header.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url t=t %}
+  <main class="site-main" id="main-content" tabindex="-1">
+    {{ content }}
+  </main>
+  {% include site_footer.html t=t %}
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
 </body>
-
 </html>

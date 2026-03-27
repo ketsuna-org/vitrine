@@ -1,25 +1,24 @@
 ---
 permalink: /404.html
 layout: default
+title: Page not found
+description: The route you requested does not exist.
+locale: en
+content_language: en
 ---
+{% assign t = site.data.locales[page.locale] %}
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
+<section class="site-grid page-section not-found-shell">
+  <div class="not-found-card" data-reveal>
+    <div class="eyebrow-row">
+      <span class="eyebrow-pill">404</span>
+      <span class="meta-chip">Route unavailable</span>
+    </div>
+    <h1>{{ t.not_found.title }}</h1>
+    <p>{{ t.not_found.body }}</p>
+    <div class="button-row">
+      <a class="button button-primary" href="{{ t.paths.home | relative_url }}">{{ t.not_found.cta }}</a>
+      <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
+    </div>
+  </div>
+</section>

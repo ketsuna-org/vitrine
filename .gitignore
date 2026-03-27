@@ -7,3 +7,5 @@ vendor
 .direnv
 node_modules/
 .devenv.flake.nix
+.pixi/
+.bundle/

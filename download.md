@@ -1,70 +1,143 @@
 ---
 layout: default
-title: Download Bot-Creator
-description: Download Bot-Creator on Google Play, the Microsoft Store, or the App Store to create and host Discord bots without code.
-lang: en
+title: Download Bot Creator
+description: Choose the Bot Creator setup that fits your workflow, from mobile and desktop editing to the Docker runner.
+locale: en
+translation_key: download
+content_language: en
 permalink: /download/
 ---
+{% assign downloads = site.data.downloads %}
+{% assign t = site.data.locales[page.locale] %}
 
-<div class="container mx-auto px-6 py-12 bg-slate-900 min-h-screen">
-  <section class="max-w-5xl mx-auto">
-    <p class="inline-flex items-center rounded-full border border-blue-500/30 bg-slate-800/60 px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
-      Mobile and desktop apps
-    </p>
-
-    <h1 class="mt-6 text-5xl font-extrabold text-white leading-tight max-w-4xl">
-      Download Bot-Creator on your favorite device
-    </h1>
-
-    <p class="mt-6 text-xl text-slate-300 max-w-3xl">
-      Install Bot-Creator on Android, Windows, or iPhone to build, host, and manage Discord bots without code. Start on one device and keep the same workflow wherever you create.
-    </p>
-
-    <div class="mt-10 grid gap-6 md:grid-cols-3">
-      <a href="https://play.google.com/store/apps/details?id=fr.botcreator.app" target="_blank" rel="noopener noreferrer" class="rounded-2xl border border-blue-500/20 bg-slate-800/60 p-6 transition-all hover:border-blue-400/40 hover:shadow-lg hover:shadow-blue-500/10">
-        <p class="text-sm uppercase tracking-[0.2em] text-blue-300">Android</p>
-        <h2 class="mt-4 text-2xl font-bold text-white">Google Play</h2>
-        <p class="mt-3 text-slate-300">Install Bot-Creator on Android and build Discord bots directly from your phone.</p>
-        <span class="mt-6 inline-flex items-center text-blue-300 font-semibold">Open on Google Play</span>
-      </a>
-
-      <a href="https://apps.microsoft.com/detail/9p6t5wmbmzlr?cid=DevShareMCLPCS&hl=fr-FR&gl=FR" target="_blank" rel="noopener noreferrer" class="rounded-2xl border border-blue-500/20 bg-slate-800/60 p-6 transition-all hover:border-blue-400/40 hover:shadow-lg hover:shadow-blue-500/10">
-        <p class="text-sm uppercase tracking-[0.2em] text-blue-300">Windows</p>
-        <h2 class="mt-4 text-2xl font-bold text-white">Microsoft Store</h2>
-        <p class="mt-3 text-slate-300">Get the desktop experience for local hosting, editing, and testing on your PC.</p>
-        <span class="mt-6 inline-flex items-center text-blue-300 font-semibold">Open on Microsoft Store</span>
-      </a>
-
-      <a href="https://apps.apple.com/us/app/bot-creator/id6760181193" target="_blank" rel="noopener noreferrer" class="rounded-2xl border border-blue-500/20 bg-slate-800/60 p-6 transition-all hover:border-blue-400/40 hover:shadow-lg hover:shadow-blue-500/10">
-        <p class="text-sm uppercase tracking-[0.2em] text-blue-300">iPhone</p>
-        <h2 class="mt-4 text-2xl font-bold text-white">App Store</h2>
-        <p class="mt-3 text-slate-300">Download Bot-Creator on iPhone and build Discord automations wherever you are.</p>
-        <span class="mt-6 inline-flex items-center text-blue-300 font-semibold">Open on the App Store</span>
-      </a>
+<section class="site-grid page-section">
+  <div class="page-hero compact" data-reveal>
+    <div class="section-header">
+      <div class="eyebrow-row">
+        <span class="eyebrow-pill">Download Bot Creator</span>
+        <span class="meta-chip">App first, runner ready</span>
+      </div>
+      <h1>Choose the Bot Creator setup that fits your team.</h1>
+      <p class="lede">Most teams should start with the app on mobile or desktop. Linux and the Docker runner are available when you want local workstation control or a longer-lived runtime.</p>
+      <div class="hero-points">
+        <span class="hero-point">Mobile and desktop editing</span>
+        <span class="hero-point">Linux workstation support</span>
+        <span class="hero-point">Docker runner for remote uptime</span>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <section class="max-w-5xl mx-auto mt-16 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-    <div class="rounded-2xl border border-blue-500/20 bg-slate-800/40 p-8">
-      <p class="text-sm uppercase tracking-[0.2em] text-blue-300">Why download</p>
-      <h2 class="mt-4 text-3xl font-bold text-white">A no-code workflow built for Discord bot creators</h2>
-      <ul class="mt-6 space-y-4 text-slate-300">
-        <li>Create commands and events without writing boilerplate code.</li>
-        <li>Manage your bot locally from mobile or desktop.</li>
-        <li>Move faster with a workflow designed for creators, communities, and server admins.</li>
+  <div class="download-grid">
+    <article class="download-card" data-reveal>
+      <span class="download-meta">Mobile</span>
+      <h2>Android and iPhone</h2>
+      <p>Use Bot Creator on the device you already carry for quick edits, bot checks, and basic runtime control.</p>
+      <ul class="download-list">
+        <li><div>Build and review bot logic on the go.</div></li>
+        <li><div>Good fit for creators and moderators who need fast access.</div></li>
       </ul>
-    </div>
+      <div class="download-actions">
+        <a class="button button-primary" href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">Google Play</a>
+        <a class="button button-secondary" href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">App Store</a>
+        <a class="button button-secondary" href="{{ downloads.stores.android_apk.url }}" target="_blank" rel="noopener noreferrer">Latest APK</a>
+      </div>
+    </article>
 
-    <div class="rounded-2xl border border-blue-500/20 bg-slate-800/40 p-8">
-      <p class="text-sm uppercase tracking-[0.2em] text-blue-300">Need more context?</p>
-      <h2 class="mt-4 text-3xl font-bold text-white">Continue on the site</h2>
-      <div class="mt-6 flex flex-col gap-3">
-        <a href="{{ '/' | relative_url }}" class="rounded-lg border border-blue-500/30 px-4 py-3 text-slate-200 hover:border-blue-400/50 hover:text-white transition-colors">Back to homepage</a>
-        <a href="{{ '/blog' | relative_url }}" class="rounded-lg border border-blue-500/30 px-4 py-3 text-slate-200 hover:border-blue-400/50 hover:text-white transition-colors">Read articles and tutorials</a>
-        <a href="{{ '/privacy-policy.html' | relative_url }}" class="rounded-lg border border-blue-500/30 px-4 py-3 text-slate-200 hover:border-blue-400/50 hover:text-white transition-colors">Review privacy policy</a>
+    <article class="download-card" data-reveal>
+      <span class="download-meta">Desktop</span>
+      <h2>Windows workspace</h2>
+      <p>Use a larger workspace to design commands, review flows, and manage reusable bot logic more comfortably.</p>
+      <ul class="download-list">
+        <li><div>Best default setup for longer editing sessions.</div></li>
+        <li><div>Strong choice for teams learning the product seriously.</div></li>
+      </ul>
+      <div class="download-actions">
+        <a class="button button-primary" href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">Microsoft Store</a>
+        <a class="button button-secondary" href="{{ downloads.stores.windows_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
+      </div>
+    </article>
+
+    <article class="download-card" data-reveal>
+      <span class="download-meta">Linux</span>
+      <h2>AppImage and portable ZIP</h2>
+      <p>Run the product locally on Linux when you want direct control without moving straight into containers.</p>
+      <ul class="download-list">
+        <li><div>Keep the same visual workflow on your Linux workstation.</div></li>
+        <li><div>Useful when your team already works in a Linux environment.</div></li>
+      </ul>
+      <div class="download-actions">
+        <a class="button button-primary" href="{{ downloads.stores.linux_appimage.url }}" target="_blank" rel="noopener noreferrer">AppImage</a>
+        <a class="button button-secondary" href="{{ downloads.stores.linux_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
+      </div>
+    </article>
+
+    <article class="download-card" data-reveal>
+      <span class="download-meta">Advanced runtime</span>
+      <h2>Docker runner</h2>
+      <p>Use the runner when you need a browser-based runtime on a Linux server, Raspberry Pi, or remote host.</p>
+      <ul class="download-list">
+        <li><div>Designed for uptime and remote execution, not as the first required install.</div></li>
+        <li><div>Pairs well with app-based editing once the bot is ready to stay online.</div></li>
+      </ul>
+      <div class="download-actions">
+        <a class="button button-primary" href="#runner">Open runner setup</a>
+        <a class="button button-secondary" href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">Runner docs</a>
+      </div>
+    </article>
+  </div>
+
+  <section class="section-shell" id="runner" data-reveal>
+    <div class="split-grid">
+      <article class="panel-card">
+        <p class="section-label">Runner setup</p>
+        <h2>Use the Docker runner when you need remote Linux uptime.</h2>
+        <p>The runner is designed for teams that already manage the bot in the app and want a browser-based runtime on a server, Raspberry Pi, or Linux host.</p>
+        <ul class="check-list">
+          <li><div>Browser-based runtime for Linux machines and remote hosts.</div></li>
+          <li><div>Logs and runner state persist in the mounted Docker volume.</div></li>
+          <li><div>Best used after the bot workflow is already configured in the app.</div></li>
+        </ul>
+        <div class="support-links">
+          <a href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">Open runner docs</a>
+          <a href="{{ downloads.release_notes_page }}" target="_blank" rel="noopener noreferrer">Release notes</a>
+        </div>
+      </article>
+
+      <div class="panel-stack">
+        <div class="command-card">
+          <div class="command-head">
+            <h3>1. Pull the image</h3>
+            <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.pull }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
+          </div>
+          <pre class="command-block">{{ downloads.runner.commands.pull }}</pre>
+        </div>
+
+        <div class="command-card">
+          <div class="command-head">
+            <h3>2. Create the volume</h3>
+            <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.volume }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
+          </div>
+          <pre class="command-block">{{ downloads.runner.commands.volume }}</pre>
+        </div>
+
+        <div class="command-card">
+          <div class="command-head">
+            <h3>3. Start the runner</h3>
+            <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.run }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
+          </div>
+          <pre class="command-block">{{ downloads.runner.commands.run }}</pre>
+        </div>
       </div>
     </div>
   </section>
-</div>
 
-{% include footer.html %}
+  <div class="cta-banner" data-reveal>
+    <p class="section-label">Need guidance</p>
+    <h2>Install the product, then follow the guide that matches your next step.</h2>
+    <p>Start with the app for editing and control. Add the runner only when uptime becomes an operational requirement.</p>
+    <div class="button-row">
+      <a class="button button-primary" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
+      <a class="button button-secondary" href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Latest release</a>
+    </div>
+  </div>
+</section>

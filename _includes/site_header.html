@@ -1,0 +1,40 @@
+{% assign t = include.t %}
+{% assign active_key = page.translation_key %}
+{% if page.layout == 'post' %}
+  {% assign active_key = 'guides' %}
+{% endif %}
+
+<header class="site-header">
+  <div class="site-grid">
+    <div class="nav-shell">
+      <a class="brand-lockup" href="{{ t.paths.home | relative_url }}" aria-label="{{ t.meta.site_title }}">
+        <span class="brand-mark">
+          <img src="{{ '/assets/icon.png' | relative_url }}" alt="" loading="eager" decoding="async">
+        </span>
+        <span class="brand-copy">
+          <span class="brand-title">{{ t.meta.site_title }}</span>
+          <span class="brand-subtitle">{{ t.meta.site_tagline }}</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-menu" aria-label="{{ t.nav.open_menu }}" data-label-open="{{ t.nav.open_menu }}" data-label-close="{{ t.nav.close_menu }}">
+        <span></span>
+        <span></span>
+        <span class="sr-only">{{ t.nav.open_menu }}</span>
+      </button>
+
+      <div class="nav-panel" id="site-menu" data-menu-panel>
+        <nav class="nav-links" aria-label="Primary">
+          <a class="nav-link{% if active_key == 'home' %} is-active{% endif %}" href="{{ t.paths.home | relative_url }}">{{ t.nav.home }}</a>
+          <a class="nav-link{% if active_key == 'download' %} is-active{% endif %}" href="{{ t.paths.download | relative_url }}">{{ t.nav.download }}</a>
+          <a class="nav-link{% if active_key == 'guides' %} is-active{% endif %}" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
+        </nav>
+
+        <div class="nav-actions">
+          {% include language_switcher.html locale=include.locale alternate_locale=include.alternate_locale alternate_url=include.alternate_url %}
+          <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

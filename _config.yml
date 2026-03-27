@@ -18,15 +18,15 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Bot-Creator
-email: contact@ketsuna.com
+title: Bot Creator
+email: contact@bot-creator.fr
 description: >- # this means to ignore newlines until "baseurl:"
-  Bot-Creator helps you create, host, and manage Discord bots without code
-  from your phone or PC.
+  Bot Creator helps you build, run, and monitor Discord bots without code
+  from mobile, desktop, Linux, or the Docker runner.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://bot-creator.fr" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: garder500
-github_username:  garder500
+github_username:  ketsuna-org
 author: Garder500
 lang: en
 
@@ -88,4 +88,3 @@ watch_exclude:
   - .devenv/
   - .direnv/
   - .devenv.flake.nix
-

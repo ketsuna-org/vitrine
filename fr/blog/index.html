@@ -1,41 +1,45 @@
 ---
 layout: default
 title: Guides
-description: Practical Bot Creator guides for setup, command building, and the Docker runner.
-locale: en
+description: Guides pratiques Bot Creator pour le setup, les commandes et le runner Docker.
+locale: fr
 translation_key: guides
-content_language: en
+content_language: fr
+permalink: /fr/blog/
 ---
 {% assign t = site.data.locales[page.locale] %}
 {% assign post_list = site.posts | where: "locale", "en" %}
-{% if paginator and paginator.posts %}
-{% assign post_list = paginator.posts %}
-{% endif %}
 
 <section class="site-grid page-section">
   <div class="page-hero compact" data-reveal>
     <div class="section-header">
       <div class="eyebrow-row">
         <span class="eyebrow-pill">{{ t.guides.eyebrow }}</span>
-        <span class="meta-chip">English guides</span>
+        <span class="meta-chip">Contenu EN pour le moment</span>
       </div>
       <h1>{{ t.guides.title }}</h1>
       <p class="lede">{{ t.guides.subtitle }}</p>
     </div>
   </div>
 
+  <div class="notice-banner" data-reveal>
+    <p class="section-label">Info langue</p>
+    <p>{{ t.guides.english_first_notice }}</p>
+  </div>
+
   {% if post_list and post_list.size > 0 %}
   <section class="section-shell" data-reveal>
     <div class="section-header">
-      <p class="section-label">All guides</p>
-      <h2 class="section-heading-xl">Short walkthroughs for real Bot Creator tasks.</h2>
-      <p class="section-intro">Each guide focuses on one clear outcome so you can move quickly from setup to a working bot.</p>
+      <p class="section-label">Tous les guides</p>
+      <h2 class="section-heading-xl">Des tutoriels courts pour les actions essentielles dans Bot Creator.</h2>
+      <p class="section-intro">Chaque guide vise un resultat clair pour vous faire avancer vite, du setup jusqu'au bot operationnel.</p>
     </div>
     <div class="guide-grid">
       {% for post in post_list %}
       <article class="guide-card" data-reveal>
         <div class="guide-meta">
           <span class="meta-chip">{{ post.date | date: "%Y-%m-%d" }}</span>
+          <span class="meta-chip language-chip-soft">{{ t.common.source_language_en }}</span>
           {% if post.categories and post.categories.size > 0 %}
           <span class="meta-chip">{{ post.categories | first }}</span>
           {% endif %}
@@ -56,21 +60,10 @@ content_language: en
   </div>
   {% endif %}
 
-  {% if paginator and paginator.total_pages > 1 %}
-  <div class="button-row" data-reveal>
-    {% if paginator.previous_page %}
-    <a class="button button-secondary" href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
-    {% endif %}
-    {% if paginator.next_page %}
-    <a class="button button-secondary" href="{{ paginator.next_page_path | relative_url }}">Next</a>
-    {% endif %}
-  </div>
-  {% endif %}
-
   <div class="cta-banner" data-reveal>
-    <p class="section-label">Need the product first?</p>
-    <h2>Install Bot Creator, then open the guide that matches your next task.</h2>
-    <p>Start with the app for setup and control, then move to the runner only when uptime becomes part of the job.</p>
+    <p class="section-label">Besoin du produit d'abord ?</p>
+    <h2>Installez Bot Creator, puis ouvrez le guide qui correspond a votre prochaine etape.</h2>
+    <p>Commencez par l'application pour le setup et le pilotage, puis passez au runner seulement quand l'uptime devient un vrai besoin.</p>
     <div class="button-row">
       <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
       <a class="button button-secondary" href="{{ t.paths.home | relative_url }}">{{ t.nav.home }}</a>

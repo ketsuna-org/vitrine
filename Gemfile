@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+
 # Hello! This is where you manage which Jekyll version is used to run.
 # When you want to use a different version, change it below, save the
 # file and run `bundle install`. Run Jekyll with `bundle exec`, like so:
@@ -20,6 +21,13 @@ group :jekyll_plugins do
   gem 'jekyll-seo-tag'
   gem 'jekyll-sitemap'
   gem 'jekyll-toc'
+end
+
+# Windows patch for jekyll-postcss: load safely after bundler resolves gems
+begin
+  require_relative 'windows_jekyll_postcss_patch' if Gem.win_platform?
+rescue LoadError
+  # Patch not available yet during bundle install, will be loaded at runtime
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

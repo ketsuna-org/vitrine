@@ -1,0 +1,92 @@
+code: "fr"
+label: "Francais"
+switch_label: "EN"
+language_switch: "English"
+
+paths:
+  home: "/fr/"
+  download: "/fr/download/"
+  guides: "/fr/blog/"
+  privacy: "/fr/privacy/"
+  terms: "/fr/cgv/"
+
+meta:
+  site_title: "Bot Creator"
+  site_tagline: "Constructeur professionnel de bots Discord"
+  site_description: "Creez des commandes, gerez les workflows et pilotez vos bots Discord depuis une application claire et local-first."
+
+nav:
+  home: "Accueil"
+  download: "Telecharger"
+  guides: "Guides"
+  privacy: "Confidentialite"
+  open_menu: "Ouvrir la navigation"
+  close_menu: "Fermer la navigation"
+
+shell:
+  status_badge: "Espace de travail visuel pour bots Discord"
+  primary_cta: "Telecharger l'application"
+  secondary_cta: "Voir les guides"
+  footer_title: "Bot Creator"
+  footer_tagline: "Creez des commandes, lancez vos bots et gerez l'automatisation Discord depuis une interface claire."
+  footer_product: "Produit"
+  footer_resources: "Ressources"
+  footer_downloads: "Telechargements"
+  footer_legal: "Informations legales"
+  footer_runner: "Runner Docker"
+  footer_release_notes: "Notes de version"
+  footer_privacy: "Politique de confidentialite"
+  footer_terms: "CGV"
+  footer_rights: "Concu pour les equipes qui veulent du controle, de la clarte et une mise en production simple."
+
+common:
+  open_link: "Ouvrir"
+  copy: "Copier"
+  copied: "Copie"
+  skip_to_content: "Aller au contenu"
+  language_switcher: "Changer de langue"
+  source_language: "Langue source"
+  source_language_en: "Anglais"
+  source_language_fr: "Francais"
+  runtime_label: "Runtime"
+  download_label: "Telechargement"
+
+guides:
+  title: "Guides"
+  eyebrow: "Guides produit et parcours de setup"
+  subtitle: "Apprenez a configurer Bot Creator, creer vos commandes et passer au runner Docker quand votre besoin runtime grandit."
+  featured_title: "Commencez par les bases"
+  featured_tracks:
+    - title: "Creer un bot token"
+      body: "Configurez une application Discord, generez le token proprement et stockez-le dans Bot Creator."
+    - title: "Construire une slash command"
+      body: "Configurez les metadonnees, le workflow de reponse et les actions runtime sans ecrire de code."
+    - title: "Passer de l'app au runner"
+      body: "Utilisez le runner Docker pour une execution browser-based sur une machine Linux."
+  empty_title: "Aucun guide pour le moment"
+  empty_body: "De nouveaux tutoriels apparaitront ici."
+  english_first_notice: "Les guides sont actuellement publies en anglais. Chaque carte affiche clairement la langue du contenu."
+  read_more: "Lire le guide"
+  back_to_guides: "Retour aux guides"
+  share: "Partager"
+  toc: "Sur cette page"
+  published_label: "Publication"
+  author_label: "Auteur"
+  next_title: "Et ensuite"
+  next_body: "Pret a creer ou lancer votre bot avec Bot Creator ?"
+  next_download: "Telecharger l'application"
+  next_home: "Voir le produit"
+  progress_label: "Progression de lecture"
+
+privacy:
+  title: "Confidentialite"
+  subtitle: "Comment Bot Creator utilise les sauvegardes Google Drive, le stockage local et les diagnostics runtime."
+
+terms:
+  title: "Conditions generales de vente"
+  subtitle: "Comment les abonnements payants Bot Creator sont vendus, renouveles et geres via des stores autorises."
+
+not_found:
+  title: "Page introuvable"
+  body: "La page demandee est indisponible ou a ete deplacee."
+  cta: "Retour a l'accueil"

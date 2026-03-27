@@ -1,0 +1,23 @@
+[workspace]
+name = "vitrine"
+version = "0.1.0"
+description = "Bot Creator Jekyll website"
+channels = ["conda-forge"]
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+
+[dependencies]
+nodejs = ">=22,<23"
+git = "*"
+
+[tasks]
+doctor-win = "powershell -ExecutionPolicy Bypass -File ./scripts/doctor-win.ps1"
+install = "powershell -ExecutionPolicy Bypass -File ./scripts/install-win.ps1"
+install-win = "powershell -ExecutionPolicy Bypass -File ./scripts/install-win.ps1"
+serve = "powershell -ExecutionPolicy Bypass -File ./scripts/serve-win.ps1"
+serve-lan = "powershell -ExecutionPolicy Bypass -File ./scripts/serve-win.ps1 -Lan"
+build = "powershell -ExecutionPolicy Bypass -File ./scripts/build-win.ps1"
+clean = "powershell -ExecutionPolicy Bypass -File ./scripts/clean-win.ps1"
+
+[activation.env]
+BUNDLE_PATH = ".bundle/vendor"
+JEKYLL_ENV = "development"

@@ -1,31 +1,21 @@
 module.exports = {
   content: [
-    './_drafts/**/*.html',
+    './_drafts/**/*.{html,md}',
     './_includes/**/*.html',
     './_layouts/**/*.html',
-    './_posts/*.md',
+    './_posts/**/*.{html,md}',
+    './tutorials/_posts/**/*.{html,md}',
+    './fr/**/*.{html,md}',
     './*.md',
     './*.html',
-    './blog/*.html',
+    './blog/**/*.html',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        primary: {
-          600: '#9333ea',  // Purple accent
-          700: '#7e22ce',
-        },
-        dark: {
-          900: '#0a0a0a',   // Dark grey
-          950: '#010101',
-        },
-        purple: {
-          100: '#f3e8ff',
-          600: '#9333ea',
-          700: '#7e22ce'
-        },
-      }
+      fontFamily: {
+        display: ['Space Grotesk', 'IBM Plex Sans', 'sans-serif'],
+        sans: ['IBM Plex Sans', 'Segoe UI', 'sans-serif'],
+      },
     }
   },
   plugins: []
