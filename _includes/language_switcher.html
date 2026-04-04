@@ -2,6 +2,7 @@
 {% assign t = site.data.locales[include.locale] %}
 <div class="language-switcher" role="group" aria-label="{{ t.common.language_switcher }}">
   <span class="language-chip is-active" aria-current="page">{{ include.locale | upcase }}</span>
+  <span class="text-white/20 select-none">|</span>
   <a class="language-chip" href="{{ include.alternate_url }}" lang="{{ alt_locale }}" aria-label="{{ t.language_switch }}">
     {{ alt_locale | upcase }}
   </a>
