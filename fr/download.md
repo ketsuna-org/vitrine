@@ -39,7 +39,6 @@ permalink: /fr/download/
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">Google Play</a>
         <a class="button button-secondary" href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">App Store</a>
-        <a class="button button-secondary" href="{{ downloads.stores.android_apk.url }}" target="_blank" rel="noopener noreferrer">Dernier APK</a>
       </div>
     </article>
 
@@ -52,22 +51,20 @@ permalink: /fr/download/
         <li><div>Une base solide pour les equipes qui veulent prendre le produit en main serieusement.</div></li>
       </ul>
       <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">Microsoft Store</a>
-        <a class="button button-secondary" href="{{ downloads.stores.windows_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
+        <a class="button button-primary" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">Steam</a>
       </div>
     </article>
 
     <article class="download-card" data-reveal>
       <span class="download-meta">Linux</span>
-      <h2>AppImage et ZIP portable</h2>
+      <h2>Steam</h2>
       <p>Lancez le produit localement sur Linux quand vous voulez un controle direct sans passer tout de suite aux conteneurs.</p>
       <ul class="download-list">
         <li><div>Gardez le meme workflow visuel sur votre poste Linux.</div></li>
         <li><div>Utile si votre equipe travaille deja dans un environnement Linux.</div></li>
       </ul>
       <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.stores.linux_appimage.url }}" target="_blank" rel="noopener noreferrer">AppImage</a>
-        <a class="button button-secondary" href="{{ downloads.stores.linux_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
+        <a class="button button-primary" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">Steam</a>
       </div>
     </article>
 

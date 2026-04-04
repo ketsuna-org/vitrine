@@ -39,7 +39,6 @@ permalink: /download/
       <div class="download-actions">
         <a class="button button-primary" href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">Google Play</a>
         <a class="button button-secondary" href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">App Store</a>
-        <a class="button button-secondary" href="{{ downloads.stores.android_apk.url }}" target="_blank" rel="noopener noreferrer">Latest APK</a>
       </div>
     </article>
 
@@ -52,22 +51,20 @@ permalink: /download/
         <li><div>Strong choice for teams learning the product seriously.</div></li>
       </ul>
       <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">Microsoft Store</a>
-        <a class="button button-secondary" href="{{ downloads.stores.windows_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
+        <a class="button button-primary" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">Steam</a>
       </div>
     </article>
 
     <article class="download-card" data-reveal>
       <span class="download-meta">Linux</span>
-      <h2>AppImage and portable ZIP</h2>
+      <h2>Steam</h2>
       <p>Run the product locally on Linux when you want direct control without moving straight into containers.</p>
       <ul class="download-list">
         <li><div>Keep the same visual workflow on your Linux workstation.</div></li>
         <li><div>Useful when your team already works in a Linux environment.</div></li>
       </ul>
       <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.stores.linux_appimage.url }}" target="_blank" rel="noopener noreferrer">AppImage</a>
-        <a class="button button-secondary" href="{{ downloads.stores.linux_zip.url }}" target="_blank" rel="noopener noreferrer">Portable ZIP</a>
+        <a class="button button-primary" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">Steam</a>
       </div>
     </article>
 

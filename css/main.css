@@ -5,37 +5,52 @@
 @tailwind utilities;
 
 :root {
-  --ink-980: #070d18;
-  --ink-950: #0d0b14;
-  --ink-930: #14101d;
-  --ink-900: #1a1526;
-  --ink-870: #221a32;
-  --surface-strong: rgba(26, 21, 38, 0.96);
-  --surface: rgba(25, 20, 37, 0.9);
-  --surface-soft: rgba(255, 255, 255, 0.05);
-  --surface-muted: rgba(255, 255, 255, 0.03);
-  --text-100: #f8f4ff;
-  --text-200: #e5dcf3;
-  --text-300: #b9accf;
-  --text-400: #8d7fa7;
+  /* Deep Dark Backgrounds */
+  --ink-980: #020106;
+  --ink-950: #050308;
+  --ink-930: #0a0512;
+  --ink-900: #10081d;
+  --ink-870: #190c2e;
+  
+  /* Glassmorphism surfaces */
+  --surface-strong: rgba(16, 8, 29, 0.85);
+  --surface: rgba(10, 5, 18, 0.65);
+  --surface-soft: rgba(255, 255, 255, 0.04);
+  --surface-muted: rgba(255, 255, 255, 0.015);
+  
+  /* Bright text */
+  --text-100: #ffffff;
+  --text-200: #eae1f8;
+  --text-300: #cbbce4;
+  --text-400: #9e8dc2;
+  
+  /* Thematic Accents (vibrant glowing purple/blue) */
   --accent-500: #d7a3ff;
   --accent-600: #8f2bdf;
-  --accent-700: #6518a8;
+  --accent-700: #551390;
+  
   --mint-400: #6edb79;
   --mint-500: #41bd55;
-  --signal-blue: #33a2ff;
-  --signal-red: #ff4d42;
-  --amber-400: #ffd278;
-  --line-strong: rgba(187, 145, 234, 0.32);
-  --line-soft: rgba(187, 145, 234, 0.14);
-  --shadow-xl: 0 36px 90px rgba(3, 8, 19, 0.48);
-  --shadow-lg: 0 24px 58px rgba(3, 8, 19, 0.34);
-  --shadow-sm: 0 16px 36px rgba(3, 8, 19, 0.2);
-  --radius-2xl: 32px;
-  --radius-xl: 26px;
-  --radius-lg: 20px;
-  --radius-md: 16px;
-  --radius-sm: 12px;
+  --signal-blue: #3b82f6;
+  --signal-red: #ef4444;
+  --amber-400: #f59e0b;
+  
+  /* Borders and lines */
+  --line-strong: rgba(168, 85, 247, 0.25);
+  --line-soft: rgba(255, 255, 255, 0.06);
+  
+  /* Elaborate glowing shadows */
+  --shadow-xl: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 60px rgba(114, 20, 199, 0.15);
+  --shadow-lg: 0 24px 58px rgba(0, 0, 0, 0.6), 0 0 40px rgba(114, 20, 199, 0.1);
+  --shadow-sm: 0 16px 36px rgba(0, 0, 0, 0.4);
+  
+  /* Border Radius */
+  --radius-2xl: 28px;
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  
   --font-display: "Space Grotesk", "IBM Plex Sans", sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
@@ -148,10 +163,34 @@
     position: fixed;
     inset: 0;
     z-index: -1;
-    background:
-      radial-gradient(circle at top left, rgba(143, 43, 223, 0.24), transparent 32%),
-      radial-gradient(circle at 85% 14%, rgba(51, 162, 255, 0.12), transparent 24%),
-      linear-gradient(180deg, #0b0910 0%, #120d1a 34%, #0d0b14 100%);
+    background: #03010a;
+  }
+
+  .site-bg::before,
+  .site-bg::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.6;
+    animation: blob 15s infinite alternate ease-in-out;
+  }
+
+  .site-bg::before {
+    top: -10%;
+    left: -10%;
+    width: 60vw;
+    height: 60vh;
+    background: radial-gradient(circle, rgba(114,20,199,0.3) 0%, rgba(59,130,246,0.1) 100%);
+  }
+
+  .site-bg::after {
+    bottom: -10%;
+    right: -10%;
+    width: 50vw;
+    height: 50vh;
+    background: radial-gradient(circle, rgba(168,85,247,0.3) 0%, rgba(59,130,246,0.1) 100%);
+    animation-delay: -7s;
   }
 
   .site-main {
@@ -177,9 +216,10 @@
     padding: 0.9rem 1rem;
     border: 1px solid var(--line-soft);
     border-radius: var(--radius-xl);
-    background: rgba(9, 15, 27, 0.82);
-    backdrop-filter: blur(18px);
-    box-shadow: var(--shadow-sm);
+    background: rgba(10, 5, 18, 0.55);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.05);
   }
 
   .brand-lockup {
@@ -200,8 +240,8 @@
     border-radius: 1rem;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.16);
-    background: linear-gradient(180deg, rgba(89, 182, 255, 0.18), rgba(255, 255, 255, 0.08));
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(255, 255, 255, 0.05));
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 20px rgba(168, 85, 247, 0.2);
   }
 
   .brand-mark img {
@@ -221,6 +261,7 @@
     font-size: 1.12rem;
     font-weight: 700;
     letter-spacing: -0.04em;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
   }
 
   .brand-subtitle {
@@ -375,23 +416,36 @@
     font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: -0.01em;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .button:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.02);
   }
 
   .button-primary {
     color: var(--text-100);
     background: linear-gradient(135deg, var(--accent-600), var(--accent-700));
-    box-shadow: 0 12px 28px rgba(143, 43, 223, 0.32);
+    box-shadow: 0 8px 30px rgba(114, 20, 199, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+  }
+
+  .button-primary:hover {
+    box-shadow: 0 12px 40px rgba(168, 85, 247, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #a855f7, var(--accent-600));
   }
 
   .button-secondary {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--line-strong);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
     color: var(--text-100);
+    backdrop-filter: blur(8px);
+  }
+
+  .button-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   }
 
   .button-ghost {
@@ -402,12 +456,15 @@
   .button-ghost:hover {
     transform: none;
     color: var(--text-100);
+    text-shadow: 0 0 10px rgba(215, 163, 255, 0.6);
   }
 
   .page-section {
     display: grid;
     gap: 2rem;
     padding-top: 3.5rem;
+    position: relative;
+    z-index: 10;
   }
 
   .page-hero,
@@ -426,13 +483,21 @@
   .notice-banner {
     position: relative;
     overflow: hidden;
-    padding: 2rem;
-    border: 1px solid var(--line-soft);
+    padding: 2.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-2xl);
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.012)),
-      var(--surface);
-    box-shadow: var(--shadow-lg);
+    background: rgba(10, 5, 18, 0.45);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-card:hover, .panel-card:hover, .download-card:hover, .guide-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(168, 85, 247, 0.2);
+    background: rgba(15, 8, 25, 0.6);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(168, 85, 247, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .page-hero::before,
@@ -445,8 +510,9 @@
     position: absolute;
     inset: 0 auto auto 0;
     width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(215, 163, 255, 0.86), rgba(143, 43, 223, 0.28), transparent 65%);
+    height: 2px;
+    background: linear-gradient(90deg, rgba(215, 163, 255, 0.8), rgba(143, 43, 223, 0.4), transparent 70%);
+    opacity: 0.6;
     pointer-events: none;
   }
 
@@ -622,8 +688,15 @@
   .footer-shell {
     grid-template-columns: minmax(0, 1.6fr) repeat(4, minmax(0, 0.66fr));
     gap: 1.4rem;
-    padding: 2.5rem 0 2rem;
-    border-top: 1px solid var(--line-soft);
+    padding: 3rem 2rem 2rem;
+    background: rgba(8, 4, 15, 0.55);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: none;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    margin-top: 2rem;
   }
 
   .download-grid,
