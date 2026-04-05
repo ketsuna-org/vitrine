@@ -10,11 +10,17 @@ stores:
   steam:
     label: "Steam"
     url: "https://store.steampowered.com/app/YOUR_APP_ID"
+  windows_store:
+    label: "Microsoft Store"
+    url: "https://apps.microsoft.com/detail/9p6t5wmbmzlr?hl=fr-FR&gl=FR"
+  ios_appstore:
+    label: "App Store"
+    url: "https://apps.apple.com/us/app/bot-creator-for-discord/id6760181193"
 
 runner:
   web_url: "http://localhost:8080"
   commands:
-    pull: "docker pull ketsuna-org/bot-creator-runner:latest"
+    pull: "docker pull garder500/bot-creator-runner:latest"
     volume: "docker volume create bot_creator_data"
     run: "docker run --rm -p 8080:8080 -v bot_creator_data:/data ketsuna-org/bot-creator-runner:latest"
   notes:

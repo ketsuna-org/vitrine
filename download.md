@@ -51,7 +51,8 @@ permalink: /download/
         <li><div>Strong choice for teams learning the product seriously.</div></li>
       </ul>
       <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">Steam</a>
+        <a class="button button-primary" href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">Microsoft Store</a>
+        <a class="button button-secondary" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">Steam</a>
       </div>
     </article>
 
