@@ -51,6 +51,68 @@ common:
   runtime_label: "Runtime"
   download_label: "Download"
 
+home:
+  hero:
+    eyebrow: "Local-first Discord builder"
+    badge: "Built for real operations"
+    title: "Build, run, and control Discord bots from one clear workspace."
+    body: "Design slash commands visually, switch to BDScript when you want precision, and keep logs, sync, and runtime control in the same product."
+    secondary_cta: "Read the guides"
+    signals:
+      - "Visual command builder"
+      - "BDScript editing"
+      - "Local-first runtime path"
+    rail_label: "Operating model"
+    rail_title: "A workflow your team can understand on day one."
+    rail_body: "Start inside the app, keep ownership local, and reach for remote infrastructure only when uptime becomes a real need."
+    rail_steps:
+      - title: "Build"
+        body: "Create commands, options, and reusable response logic in one workspace."
+      - title: "Operate"
+        body: "Keep logs, startup controls, and sync checks close to the bot itself."
+      - title: "Scale"
+        body: "Move to the Docker runner for Linux, Raspberry Pi, or remote runtime setups."
+    platform_label: "Available now"
+    platform_note: "Use the app on the devices you already trust and keep the same product model as your workflow grows."
+  capabilities:
+    label: "Product surface"
+    title: "Everything important lives in the same operating model."
+    body: "Bot Creator is designed to reduce stack sprawl: creation, scripting, control, and runtime decisions stay connected instead of spreading across disconnected tools."
+    cards:
+      - title: "Design commands visually"
+        body: "Build slash commands, options, and response flows without losing the shape of the bot."
+      - title: "Write BDScript when it helps"
+        body: "Drop into BDScript for the parts that need precision without abandoning the visual workflow."
+      - title: "Control runtime from the same product"
+        body: "Startup actions, logs, sync, and runtime checks stay near the build surface."
+      - title: "Keep the default local-first"
+        body: "Commands, workflows, variables, and logs stay local unless you deliberately choose otherwise."
+      - title: "Use backup without adopting a backend"
+        body: "Google Drive exists for backup and restore, not as a mandatory hosted layer."
+      - title: "Add infrastructure only when it earns its place"
+        body: "Reach for Linux or the Docker runner when uptime and remote execution become real operational needs."
+  ownership:
+    label: "Control and portability"
+    title: "Keep ownership local, then expand deliberately."
+    body: "Most teams should start with the app, prove the workflow, and only add more surface area when it solves a real problem."
+    cards:
+      - title: "Local-first workflow"
+        body: "The core editing and runtime model is built to work from the app first, not from a server dashboard."
+      - title: "Optional Google Drive backup"
+        body: "Backup and restore stay available when you want portability across devices, without forcing hosted storage."
+      - title: "Runner when uptime matters"
+        body: "The Docker runner is there for longer-lived Linux workloads, Raspberry Pi setups, and remote operation."
+    platform_label: "Platforms and links"
+    platform_title: "Available across the tools your team already uses"
+    platform_body: "Choose the entry point that matches the work today, then keep the product model consistent as you grow."
+    platform_secondary_cta: "Runner docs"
+    platform_tertiary_cta: "Release notes"
+  closing:
+    label: "Start with the app"
+    title: "Download Bot Creator and keep the runner as a later step."
+    body: "Use the app to build and control the bot first. Bring in the Docker runner only when remote uptime becomes part of the job."
+    secondary_cta: "Open the guides"
+
 guides:
   title: "Guides"
   eyebrow: "Product guides and setup walkthroughs"

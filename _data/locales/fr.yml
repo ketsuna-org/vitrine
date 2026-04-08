@@ -51,6 +51,68 @@ common:
   runtime_label: "Runtime"
   download_label: "Telechargement"
 
+home:
+  hero:
+    eyebrow: "Constructeur Discord local-first"
+    badge: "Pense pour les vraies operations"
+    title: "Creez, lancez et pilotez vos bots Discord depuis un espace de travail clair."
+    body: "Concevez les slash commands visuellement, passez au BDScript quand il faut plus de precision, et gardez logs, sync et controle runtime dans le meme produit."
+    secondary_cta: "Lire les guides"
+    signals:
+      - "Constructeur visuel"
+      - "Edition BDScript"
+      - "Parcours runtime local-first"
+    rail_label: "Modele produit"
+    rail_title: "Un workflow que votre equipe comprend des le premier jour."
+    rail_body: "Commencez dans l'application, gardez la propriete en local, puis ajoutez de l'infrastructure distante seulement quand l'uptime devient un vrai sujet."
+    rail_steps:
+      - title: "Creer"
+        body: "Rassemblez commandes, options et logique reutilisable dans un meme espace."
+      - title: "Piloter"
+        body: "Gardez logs, controle de demarrage et verifications de sync pres du bot lui-meme."
+      - title: "Etendre"
+        body: "Passez au runner Docker pour Linux, Raspberry Pi ou un runtime distant."
+    platform_label: "Disponible maintenant"
+    platform_note: "Utilisez l'application sur les appareils deja en place et gardez le meme modele produit quand le workflow evolue."
+  capabilities:
+    label: "Surface produit"
+    title: "Tout ce qui compte reste dans le meme modele de travail."
+    body: "Bot Creator reduit la dispersion de stack : creation, script, controle et decisions runtime restent relies au lieu de partir dans plusieurs outils deconnectes."
+    cards:
+      - title: "Concevoir les commandes visuellement"
+        body: "Construisez slash commands, options et flux de reponse sans perdre la structure du bot."
+      - title: "Ecrire en BDScript quand c'est utile"
+        body: "Passez en BDScript pour les zones qui demandent plus de precision sans quitter le workflow visuel."
+      - title: "Piloter le runtime depuis le meme produit"
+        body: "Demarrage, logs, sync et controles runtime restent proches de la surface de creation."
+      - title: "Garder le local-first par defaut"
+        body: "Commandes, workflows, variables et logs restent en local tant que vous ne choisissez pas autre chose."
+      - title: "Sauvegarder sans adopter un backend"
+        body: "Google Drive sert a la sauvegarde et a la restauration, pas a imposer une couche hebergee."
+      - title: "Ajouter l'infrastructure seulement si elle le merite"
+        body: "Passez a Linux ou au runner Docker quand l'uptime et l'execution distante deviennent de vrais besoins."
+  ownership:
+    label: "Controle et portabilite"
+    title: "Gardez la propriete en local, puis etendez deliberement."
+    body: "La plupart des equipes devraient commencer avec l'application, valider le workflow, puis ajouter de la surface seulement quand elle resout un vrai probleme."
+    cards:
+      - title: "Workflow local-first"
+        body: "Le coeur du modele d'edition et de runtime est pense pour fonctionner depuis l'application, pas depuis un dashboard serveur."
+      - title: "Sauvegarde Google Drive optionnelle"
+        body: "La sauvegarde et la restauration restent disponibles si vous voulez plus de portabilite entre appareils, sans stockage heberge impose."
+      - title: "Runner quand l'uptime compte"
+        body: "Le runner Docker reste disponible pour les charges Linux plus longues, les setups Raspberry Pi et l'operation distante."
+    platform_label: "Plateformes et liens"
+    platform_title: "Disponible sur les outils que votre equipe utilise deja"
+    platform_body: "Choisissez le point d'entree qui correspond au travail du moment, puis gardez le meme modele produit quand vous grandissez."
+    platform_secondary_cta: "Docs runner"
+    platform_tertiary_cta: "Notes de version"
+  closing:
+    label: "Commencer avec l'app"
+    title: "Telechargez Bot Creator et gardez le runner comme etape suivante."
+    body: "Utilisez d'abord l'application pour creer et piloter le bot. Ajoutez le runner Docker seulement quand l'uptime distant entre vraiment dans le travail."
+    secondary_cta: "Ouvrir les guides"
+
 guides:
   title: "Guides"
   eyebrow: "Guides produit et parcours de setup"

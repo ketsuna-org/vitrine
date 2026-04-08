@@ -1,0 +1,128 @@
+{% assign t = site.data.locales[page.locale] %}
+{% assign downloads = site.data.downloads %}
+
+<section class="site-grid home-page">
+  <div class="home-stack">
+    <section class="home-hero" data-reveal>
+      <div class="home-surface home-hero-copy">
+        <div class="home-kicker-row">
+          <span class="home-kicker">{{ t.home.hero.eyebrow }}</span>
+          <span class="home-kicker home-kicker-muted">{{ t.home.hero.badge }}</span>
+        </div>
+
+        <h1 class="home-display">{{ t.home.hero.title }}</h1>
+        <p class="home-intro">{{ t.home.hero.body }}</p>
+
+        <div class="home-action-row">
+          <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
+          <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.home.hero.secondary_cta }}</a>
+        </div>
+
+        <div class="home-signal-row">
+          {% for signal in t.home.hero.signals %}
+          <span class="home-signal">{{ signal }}</span>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="home-hero-rail">
+        <article class="home-surface home-surface-strong home-flow-card">
+          <p class="home-micro">{{ t.home.hero.rail_label }}</p>
+          <h2>{{ t.home.hero.rail_title }}</h2>
+          <p>{{ t.home.hero.rail_body }}</p>
+
+          <ol class="home-flow-list">
+            {% for step in t.home.hero.rail_steps %}
+            <li>
+              <span class="home-flow-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+              <div>
+                <strong>{{ step.title }}</strong>
+                <span>{{ step.body }}</span>
+              </div>
+            </li>
+            {% endfor %}
+          </ol>
+        </article>
+
+        <article class="home-surface home-platform-card">
+          <div class="home-platform-head">
+            <p class="home-micro">{{ t.home.hero.platform_label }}</p>
+            <p>{{ t.home.hero.platform_note }}</p>
+          </div>
+
+          <div class="home-platform-links">
+            <a href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.android_play.label }}</a>
+            <a href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.ios_appstore.label }}</a>
+            <a href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.windows_store.label }}</a>
+            <a href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.steam.label }}</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-section" data-reveal>
+      <div class="home-section-heading">
+        <p class="home-micro">{{ t.home.capabilities.label }}</p>
+        <h2>{{ t.home.capabilities.title }}</h2>
+        <p>{{ t.home.capabilities.body }}</p>
+      </div>
+
+      <div class="home-capability-grid">
+        {% for card in t.home.capabilities.cards %}
+        <article class="home-surface home-capability-card">
+          <span class="home-card-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.body }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="home-section" data-reveal>
+      <div class="home-section-heading">
+        <p class="home-micro">{{ t.home.ownership.label }}</p>
+        <h2>{{ t.home.ownership.title }}</h2>
+        <p>{{ t.home.ownership.body }}</p>
+      </div>
+
+      <div class="home-ownership-grid">
+        {% for card in t.home.ownership.cards %}
+        <article class="home-surface home-detail-card">
+          <p class="home-card-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</p>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.body }}</p>
+        </article>
+        {% endfor %}
+
+        <article class="home-surface home-download-card">
+          <p class="home-micro">{{ t.home.ownership.platform_label }}</p>
+          <h3>{{ t.home.ownership.platform_title }}</h3>
+          <p>{{ t.home.ownership.platform_body }}</p>
+
+          <div class="home-platform-links">
+            <a href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.android_play.label }}</a>
+            <a href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.ios_appstore.label }}</a>
+            <a href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.windows_store.label }}</a>
+            <a href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.steam.label }}</a>
+          </div>
+
+          <div class="home-resource-links">
+            <a href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">{{ t.home.ownership.platform_secondary_cta }}</a>
+            <a href="{{ downloads.release_notes_page }}" target="_blank" rel="noopener noreferrer">{{ t.home.ownership.platform_tertiary_cta }}</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-surface home-cta" data-reveal>
+      <p class="home-micro">{{ t.home.closing.label }}</p>
+      <h2>{{ t.home.closing.title }}</h2>
+      <p>{{ t.home.closing.body }}</p>
+
+      <div class="home-action-row">
+        <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
+        <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.home.closing.secondary_cta }}</a>
+      </div>
+    </section>
+  </div>
+</section>

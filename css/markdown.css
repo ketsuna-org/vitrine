@@ -127,6 +127,16 @@
   background: linear-gradient(90deg, rgba(113, 229, 190, 0.3), rgba(135, 172, 228, 0.12), transparent 70%);
 }
 
+.markdown-body > img,
+.markdown-body p > img:only-child,
+.markdown-body p > a:only-child > img {
+  width: auto;
+  max-width: min(100%, 31rem);
+  max-height: 28rem;
+  margin: 1.5rem auto;
+  border-radius: 1.1rem;
+}
+
 .markdown-body table {
   width: 100%;
   border-collapse: collapse;
@@ -209,6 +219,13 @@
 @media (max-width: 720px) {
   .markdown-body {
     font-size: 1rem;
+  }
+
+  .markdown-body > img,
+  .markdown-body p > img:only-child,
+  .markdown-body p > a:only-child > img {
+    max-width: 100%;
+    max-height: none;
   }
 
   .markdown-body h2 {
