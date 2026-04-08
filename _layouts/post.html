@@ -18,6 +18,28 @@
   {% endif %}
 {% endif %}
 {% include site_head.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url markdown=true %}
+{% assign article_content = content | inject_anchors %}
+{% assign asset_root = '/assets/' | relative_url %}
+{% capture asset_src_double %}src="{{ asset_root }}{% endcapture %}
+{% capture asset_href_double %}href="{{ asset_root }}{% endcapture %}
+{% capture asset_src_single %}src='{{ asset_root }}{% endcapture %}
+{% capture asset_href_single %}href='{{ asset_root }}{% endcapture %}
+{% comment %}
+Normalize Decap CMS uploads after Markdown renders so `assets/...` links resolve
+from the site root instead of the post permalink.
+{% endcomment %}
+{% assign article_content = article_content | replace: 'src="./assets/', asset_src_double %}
+{% assign article_content = article_content | replace: 'src="assets/', asset_src_double %}
+{% assign article_content = article_content | replace: 'src="/assets/', asset_src_double %}
+{% assign article_content = article_content | replace: 'href="./assets/', asset_href_double %}
+{% assign article_content = article_content | replace: 'href="assets/', asset_href_double %}
+{% assign article_content = article_content | replace: 'href="/assets/', asset_href_double %}
+{% assign article_content = article_content | replace: "src='./assets/", asset_src_single %}
+{% assign article_content = article_content | replace: "src='assets/", asset_src_single %}
+{% assign article_content = article_content | replace: "src='/assets/", asset_src_single %}
+{% assign article_content = article_content | replace: "href='./assets/", asset_href_single %}
+{% assign article_content = article_content | replace: "href='assets/", asset_href_single %}
+{% assign article_content = article_content | replace: "href='/assets/", asset_href_single %}
 <body class="site-body">
   <a class="skip-link" href="#main-content">{{ t.common.skip_to_content }}</a>
   <div class="site-bg"></div>
@@ -73,7 +95,7 @@
       <div class="post-shell">
         <article class="article-card" data-reveal>
           <div class="markdown-body article-prose">
-            {{ content | inject_anchors }}
+            {{ article_content }}
           </div>
 
           <div class="post-cta-panel">
