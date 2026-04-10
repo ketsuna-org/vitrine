@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Privacy policy
-description: How Bot Creator handles local storage, optional backups, and runner diagnostics.
+description: How Bot Creator handles local storage, cloud diagnostics, advertising, and user data.
 locale: en
 translation_key: privacy
 content_language: en
@@ -12,10 +12,12 @@ content_language: en
     <div class="section-header">
       <div class="eyebrow-row">
         <span class="eyebrow-pill">Privacy</span>
-        <span class="meta-chip">Local-first data model</span>
+        <span class="meta-chip">Local-first · Cloud diagnostics</span>
       </div>
-      <h1>Bot Creator keeps bot data local by default and uses cloud backup only when you enable it.</h1>
-      <p class="lede">The product stores bot data, workflows, runtime state, and logs locally by default. Google Drive is available for backup and restore, not as a required hosted backend.</p>
+      <h1>Bot Creator keeps bot data on your device while using cloud services for diagnostics, analytics, and
+        advertising.</h1>
+      <p class="lede">Bot configurations, workflows, and runtime state stay local. Diagnostic data, crash reports, and
+        advertising identifiers are transmitted to third-party services described below.</p>
     </div>
   </div>
 
@@ -23,32 +25,104 @@ content_language: en
     <article class="panel-card" data-reveal>
       <p class="section-label">Local storage</p>
       <h2>Your bot data stays on the device or machine running the product.</h2>
-      <p>Bot Creator stores metadata, command settings, workflows, variables, logs, and runtime data in the local app directory or the mounted runner volume.</p>
+      <p>Bot Creator stores metadata, command settings, workflows, variables, and runtime data in the local app
+        directory or the mounted runner volume. Diagnostic and analytics data is sent to third-party services as
+        described in the sections below.</p>
     </article>
 
     <article class="panel-card" data-reveal>
       <p class="section-label">Optional backups</p>
       <h2>Google Drive is used for backup and restore only.</h2>
-      <p>When you connect Google Drive, Bot Creator syncs backup data to the AppData folder. On the runner, OAuth tokens stay in the mounted volume so they survive restarts.</p>
+      <p>When you connect Google Drive, Bot Creator syncs backup data to the AppData folder. On the runner, OAuth tokens
+        stay in the mounted volume so they survive restarts.</p>
     </article>
 
     <article class="panel-card" data-reveal>
-      <p class="section-label">Diagnostics and logs</p>
-      <h2>Runtime failures write diagnostics locally.</h2>
-      <p>Startup diagnostics are written locally so failed initialization does not disappear silently. On the runner, logs are written to the persistent volume-backed log file.</p>
+      <p class="section-label">Diagnostics, analytics &amp; crash reporting</p>
+      <h2>Diagnostic and usage data is collected via Firebase.</h2>
+      <p>Bot Creator uses <strong>Google Analytics for Firebase</strong> and <strong>Firebase Crashlytics</strong> to
+        understand how the app is used and to fix bugs. These services collect device type, operating system version, IP
+        address (anonymized), Firebase Installation ID, in-app actions, and crash stack traces. This data is sent to
+        Google servers.</p>
+    </article>
+
+    <article class="panel-card" data-reveal>
+      <p class="section-label">Advertising &amp; tracking</p>
+      <h2>Ads are served by third-party networks.</h2>
+      <p>Bot Creator displays ads provided by <strong>Google AdMob</strong> and <strong>IronSource</strong>. These SDKs
+        collect advertising identifiers (IDFA on iOS, AAID on Android), IP address, and interaction data to deliver
+        personalized or non-personalized ads. A consent dialog powered by <strong>Google UMP (User Messaging
+          Platform)</strong> is shown at launch so you can choose whether to allow personalized advertising. You can
+        also revoke consent at any time from your device settings.</p>
+    </article>
+
+    <article class="panel-card" data-reveal>
+      <p class="section-label">Ad-funded cloud storage (coming soon)</p>
+      <h2>Watch ads to unlock cloud storage for your bot data.</h2>
+      <p>A future version of Bot Creator will let you watch ads to earn cloud storage for your bot configurations,
+        workflows, and related data. When you opt in, selected data will be stored on <strong>Firebase
+          Firestore</strong> on your behalf. This is a functional feature: cloud storage is provided as a service in
+        exchange for ad views, not for analytics or tracking purposes. You will be clearly informed before any data
+        leaves your device.</p>
     </article>
 
     <article class="panel-card" data-reveal>
       <p class="section-label">Your responsibility</p>
-      <h2>Protect exports, backups, and connected accounts.</h2>
-      <p>Bot tokens are sensitive secrets. Secure the device or server running the product, protect your backups, and secure the Google account used for backup access.</p>
+      <h2>Protect your tokens, exports, backups, and connected accounts.</h2>
+      <p>Bot Creator is a <strong>third-party service</strong> that interacts with the Discord platform. Discord bot
+        tokens are sensitive credentials governed by <a href="https://discord.com/terms" target="_blank"
+          rel="noopener">Discord's Terms of Service</a>. Tokens are stored locally on your device. When you use the
+        cloud runner, your token is transmitted to our servers at startup to connect your bot, but it is <strong>never
+          stored in a database</strong> and only lives in memory for the duration of the session. You are responsible
+        for keeping your tokens, device, backups, and connected Google account secure.</p>
+    </article>
+
+    <article class="panel-card" data-reveal>
+      <p class="section-label">Authentication (coming soon)</p>
+      <h2>Discord sign-in will be available in a future update.</h2>
+      <p>A future version of Bot Creator will offer authentication via <strong>Discord OAuth2</strong>. When enabled,
+        the app will collect your Discord user ID, username, email address, and avatar for authentication and cloud
+        backup of your configurations. This data will be stored on <strong>Firebase Authentication</strong> and
+        <strong>Firestore</strong>. This section will be updated before the feature launches.
+      </p>
     </article>
   </div>
 
   <div class="panel-card" data-reveal>
+    <p class="section-label">Data deletion</p>
+    <h2>Request deletion of your account and data</h2>
+    <p>If you have created an account or wish to have your data removed, send a request to <a
+        href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>. We will process your request within 30 days and
+      confirm once your data has been deleted.</p>
+  </div>
+
+  <div class="panel-card" data-reveal>
+    <p class="section-label">Your rights</p>
+    <h2>GDPR &amp; CCPA rights</h2>
+    <p>If you are located in the European Economic Area, the United Kingdom, or California, you have the right to
+      access, rectify, erase, restrict processing, object to processing, and request portability of your personal data.
+      To exercise any of these rights, contact <a href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>.</p>
+  </div>
+
+  <div class="panel-card" data-reveal>
+    <p class="section-label">Third-party policies</p>
+    <h2>Privacy policies of services we use</h2>
+    <ul>
+      <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>
+        (Firebase, AdMob)</li>
+      <li><a href="https://www.is.com/privacy-policy/" target="_blank" rel="noopener">Unity / IronSource Privacy
+          Policy</a></li>
+      <li><a href="https://discord.com/privacy" target="_blank" rel="noopener">Discord Privacy Policy</a>
+      </li>
+      <li><a href="https://discord.com/terms" target="_blank" rel="noopener">Discord Terms of Service</a></li>
+    </ul>
+  </div>
+
+  <div class="panel-card" data-reveal>
     <p class="section-label">Contact</p>
-    <h2>Questions about privacy or backups</h2>
-    <p>For product and privacy questions, contact <a href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>.</p>
-    <p class="small-label">Last updated: March 19, 2026</p>
+    <h2>Questions about privacy, data, or advertising</h2>
+    <p>For product and privacy questions, contact <a href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>.
+    </p>
+    <p class="small-label">Last updated: April 10, 2026</p>
   </div>
 </section>
