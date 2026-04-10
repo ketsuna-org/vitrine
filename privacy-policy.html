@@ -88,12 +88,32 @@ content_language: en
     </article>
   </div>
 
-  <div class="panel-card" data-reveal>
+  <div class="panel-card" data-reveal id="data-deletion">
     <p class="section-label">Data deletion</p>
-    <h2>Request deletion of your account and data</h2>
-    <p>If you have created an account or wish to have your data removed, send a request to <a
-        href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>. We will process your request within 30 days and
-      confirm once your data has been deleted.</p>
+    <h2>Request deletion of your Bot Creator account and data</h2>
+    <h3>How to request deletion</h3>
+    <p>To request the deletion of the data associated with your <strong>Bot Creator</strong> account, send an email to
+      <a href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a> with the subject line <strong>"Data deletion
+        request"</strong>. Include the email address or Discord username linked to your account so we can identify your
+      data. We will acknowledge your request within 7 days and complete the deletion within 30 days.</p>
+    <h3>Data that will be deleted</h3>
+    <ul>
+      <li>Your user profile (Discord user ID, username, email address, avatar)</li>
+      <li>Cloud-stored bot configurations, workflows, and related data (Firebase Firestore)</li>
+      <li>Authentication credentials (Firebase Authentication)</li>
+      <li>Advertising consent preferences</li>
+    </ul>
+    <h3>Data that may be retained</h3>
+    <ul>
+      <li><strong>Aggregated analytics data</strong> (Google Analytics for Firebase) — anonymized usage statistics that
+        cannot identify you are retained indefinitely for product improvement.</li>
+      <li><strong>Crash reports</strong> (Firebase Crashlytics) — anonymized stack traces are retained for up to 90 days
+        after collection to fix bugs.</li>
+      <li><strong>Legal obligations</strong> — if we are required by law to retain certain data (e.g. transaction
+        records), we will keep only what is legally required for the applicable retention period.</li>
+    </ul>
+    <p>Data stored locally on your device (bot tokens, configurations, logs) is not transmitted to our servers and must
+      be deleted by you directly by uninstalling the app or clearing its data.</p>
   </div>
 
   <div class="panel-card" data-reveal>
