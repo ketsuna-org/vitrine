@@ -1,0 +1,20 @@
+{
+    "applinks": {
+        "details": [
+            {
+                "appIDs": [
+                    "7YG72YLT57.fr.botcreator.app"
+                ],
+                "components": [
+                    {
+                        "/": "/auth/callback",
+                        "?": {
+                            "code": "",
+                            "state": ""
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
