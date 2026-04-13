@@ -1,0 +1,15 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "fr.botcreator.app",
+            "sha256_cert_fingerprints": [
+                "4A:F1:8F:08:B4:C6:F9:63:CD:25:9F:09:71:F3:9B:E1:BD:90:D5:16:BC:9B:34:54:CB:BF:6A:C3:C9:A0:50:13",
+                "62:41:CB:A2:20:87:8A:F8:4E:53:0B:0B:45:F7:F4:C8:E0:2E:84:7E:52:48:04:E1:36:74:16:D4:CE:4B:73:F8"
+            ]
+        }
+    }
+]
