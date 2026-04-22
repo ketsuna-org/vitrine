@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discord OAuth Redirect</title>
+    <meta http-equiv="refresh" content="0;url=botcreator://oauth/main-api/discord" />
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var code = params.get("code");
+            var state = params.get("state");
+            var targetParams = new URLSearchParams();
+
+            if (code !== null) {
+                targetParams.set("code", code);
+            }
+
+            if (state !== null) {
+                targetParams.set("state", state);
+            }
+
+            var query = targetParams.toString();
+            var targetUrl =
+                "botcreator://oauth/main-api/discord" + (query ? "?" + query : "");
+
+            window.location.replace(targetUrl);
+        })();
+    </script>
+</head>
+
+<body>
+    <p>Redirecting to Bot Creator...</p>
+    <p>
+        If redirection does not start automatically,
+        <a id="open-app-link" href="botcreator://oauth/main-api/discord">open the app</a>.
+    </p>
+</body>
+
+</html>
