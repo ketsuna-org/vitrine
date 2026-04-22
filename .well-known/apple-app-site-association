@@ -7,7 +7,7 @@
                 ],
                 "components": [
                     {
-                        "/": "/auth/callback",
+                        "/": "/oauth/main-api/discord",
                         "?": {
                             "code": "",
                             "state": ""
