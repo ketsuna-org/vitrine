@@ -6,14 +6,14 @@
 
 @layer base {
   :root {
-    --primary: #0058be;
-    --primary-dark: #070235;
-    --background: #f8f9ff;
-    --on-background: #0b1c30;
+    --background: #0b1326;
+    --on-background: #dae2fd;
+    --primary: #ddb7ff;
   }
 
   html {
     scroll-behavior: smooth;
+    background-color: var(--background);
   }
 
   body {
@@ -21,50 +21,55 @@
     min-height: 100vh;
     background-color: var(--background);
     color: var(--on-background);
-    font-family: 'Inter', sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
-    color: var(--primary-dark);
+    font-family: "Space Grotesk", sans-serif;
+    color: var(--on-background);
   }
 
   .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
     vertical-align: middle;
   }
 }
 
 @layer components {
-  .glass-header {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(30, 27, 75, 0.05);
+  .neon-glow {
+    box-shadow: 0 0 15px -3px rgba(221, 183, 255, 0.4);
   }
   
-  .glass-card {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 10px 30px rgba(30, 27, 75, 0.03);
+  .neon-glow-strong {
+    box-shadow: 0 0 20px -2px rgba(183, 109, 255, 0.6);
   }
 
-  .hero-glow {
-    background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+  .neon-border {
+    border: 1px solid rgba(221, 183, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .neon-border:hover {
+    border-color: rgba(221, 183, 255, 0.6);
+    box-shadow: 0 0 10px rgba(221, 183, 255, 0.2);
+  }
+
+  .glass-header {
+    background: rgba(23, 31, 51, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(77, 67, 84, 0.5);
   }
 
   .button-primary {
-    @apply bg-primary text-white font-bold px-8 py-3 rounded-lg shadow-ambient transition-all hover:scale-[1.05] hover:shadow-premium-hover active:scale-[0.98];
+    @apply bg-primary text-on-primary font-bold px-6 py-3 rounded-xl shadow-neon transition-all;
+    @apply hover:scale-[1.02] active:scale-[0.98];
   }
 
-  .button-ghost {
-    @apply border border-indigo-deep/10 text-indigo-deep font-bold px-8 py-3 rounded-lg transition-all hover:bg-indigo-deep/5 active:scale-[0.98];
-  }
-
-  .section-label {
-    @apply inline-flex items-center gap-2 rounded-full bg-primary/5 px-4 py-1.5 text-[12px] font-bold uppercase tracking-widest text-primary border border-primary/10;
+  .button-outline {
+    @apply border border-outline bg-transparent text-on-surface font-bold px-8 py-3 rounded-xl transition-all;
+    @apply hover:bg-surface-container active:scale-[0.98];
   }
 }

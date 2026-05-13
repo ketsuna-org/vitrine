@@ -1,9 +1,8 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './_drafts/**/*.{html,md}',
-    './_includes/**/*.html',
     './_layouts/**/*.html',
-    './_posts/**/*.{html,md}',
+    './_includes/**/*.html',
     './tutorials/_posts/**/*.{html,md}',
     './fr/**/*.{html,md}',
     './*.md',
@@ -14,30 +13,39 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "primary": "#0058be", // Electric Blue (Action color)
-        "primary-dark": "#070235", // Deep Navy
-        "indigo-deep": "#1e1b4b",
-        "background": "#f8f9ff",
-        "surface": "#f8f9ff",
-        "on-surface": "#0b1c30",
-        "ghost-slate": "#f8fafc",
+        "primary": "#ddb7ff",
+        "primary-container": "#b76dff",
+        "on-primary-container": "#400071",
+        "secondary": "#c0c1ff",
+        "secondary-container": "#3131c0",
+        "tertiary": "#c4c1fb",
+        "background": "#0b1326",
+        "surface": "#0b1326",
+        "surface-container": "#171f33",
+        "surface-container-low": "#131b2e",
+        "surface-container-high": "#222a3d",
+        "surface-container-highest": "#2d3449",
+        "on-surface": "#dae2fd",
+        "on-surface-variant": "#cfc2d6",
+        "outline": "#988d9f",
+        "outline-variant": "#4d4354",
       },
       fontFamily: {
         "display": ["Space Grotesk", "sans-serif"],
-        "sans": ["Inter", "sans-serif"]
+        "sans": ["Space Grotesk", "sans-serif"]
       },
       borderRadius: {
-        "sm": "0.25rem",
-        "DEFAULT": "0.5rem",
-        "md": "0.75rem",
-        "lg": "1rem",
-        "xl": "1.5rem",
-        "2xl": "2rem",
+        "sm": "0.125rem",
+        "DEFAULT": "0.25rem",
+        "md": "0.375rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "2xl": "1rem",
         "full": "9999px"
       },
       boxShadow: {
-        'ambient': '0 10px 30px rgba(30, 27, 75, 0.05)',
-        'premium-hover': '0 20px 40px rgba(30, 27, 75, 0.1)',
+        'neon': '0 0 15px -3px rgba(221, 183, 255, 0.4)',
+        'neon-strong': '0 0 20px -2px rgba(183, 109, 255, 0.6)',
       }
     },
   },

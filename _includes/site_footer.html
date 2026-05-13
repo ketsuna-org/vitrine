@@ -1,68 +1,37 @@
 {% assign t = include.t %}
 {% assign downloads = site.data.downloads %}
 
-<footer class="border-t border-on-surface/5 bg-white py-24">
+<footer class="border-t border-outline-variant bg-surface-container-lowest py-12">
   <div class="mx-auto max-w-7xl px-6">
-    <div class="grid grid-cols-1 gap-16 lg:grid-cols-4">
-      <!-- Brand & Description -->
-      <div class="lg:col-span-1">
-        <a href="{{ t.paths.home | relative_url }}" class="flex items-center gap-3">
-          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-dark text-white shadow-ambient">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
-            </svg>
-          </div>
-          <span class="text-2xl font-bold tracking-tight text-primary-dark font-display">{{ t.shell.footer_title }}</span>
-        </a>
-        <p class="mt-8 text-[15px] text-on-surface/50 leading-relaxed max-w-xs font-medium">
-          {{ t.shell.footer_tagline }}
-        </p>
-        <div class="mt-10 flex gap-5">
-          <a href="#" class="flex h-11 w-11 items-center justify-center rounded-full bg-ghost-slate text-on-surface/40 hover:bg-primary hover:text-white transition-all shadow-sm">
-            <span class="material-symbols-outlined text-[20px]">language</span>
-          </a>
-          <a href="https://github.com/ketsuna-org/bot-creator" class="flex h-11 w-11 items-center justify-center rounded-full bg-ghost-slate text-on-surface/40 hover:bg-primary hover:text-white transition-all shadow-sm">
-            <span class="material-symbols-outlined text-[20px]">share</span>
-          </a>
+    <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
+      <div class="flex items-center gap-3">
+        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-container text-on-primary-container">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+          </svg>
         </div>
+        <span class="text-lg font-bold tracking-tight text-on-surface font-display">{{ t.meta.site_title }}</span>
       </div>
-
-      <!-- Links Columns -->
-      <div>
-        <h3 class="font-display font-bold text-primary-dark text-lg">{{ t.shell.footer_product }}</h3>
-        <ul class="mt-8 space-y-5 text-[15px] font-semibold text-on-surface/50">
-          <li><a href="{{ t.paths.home | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.home }}</a></li>
-          <li><a href="{{ t.paths.download | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.download }}</a></li>
-          <li><a href="{{ t.paths.guides | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.guides }}</a></li>
-          <li><a href="#" class="hover:text-primary transition-colors">Tarifs</a></li>
-        </ul>
+      
+      <div class="flex flex-wrap justify-center gap-8 text-sm font-medium text-on-surface-variant">
+        <a class="hover:text-primary transition-colors" href="#">Conditions d'utilisation</a>
+        <a class="hover:text-primary transition-colors" href="{{ t.paths.privacy | relative_url }}">{{ t.nav.privacy }}</a>
+        <a class="hover:text-primary transition-colors" href="mailto:contact@bot-creator.fr">Contact</a>
+        <a class="hover:text-primary transition-colors" href="#">Presse</a>
       </div>
-
-      <div>
-        <h3 class="font-display font-bold text-primary-dark text-lg">{{ t.shell.footer_downloads }}</h3>
-        <ul class="mt-8 space-y-5 text-[15px] font-semibold text-on-surface/50">
-          <li><a href="{{ downloads.stores.android_play.url }}" class="hover:text-primary transition-colors">Android</a></li>
-          <li><a href="{{ downloads.stores.ios_appstore.url }}" class="hover:text-primary transition-colors">iOS</a></li>
-          <li><a href="{{ downloads.stores.windows_store.url }}" class="hover:text-primary transition-colors">Windows</a></li>
-          <li><a href="{{ downloads.stores.steam.url }}" class="hover:text-primary transition-colors">Linux</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-display font-bold text-primary-dark text-lg">{{ t.shell.footer_legal }}</h3>
-        <ul class="mt-8 space-y-5 text-[15px] font-semibold text-on-surface/50">
-          <li><a href="{{ t.paths.privacy | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.privacy }}</a></li>
-          <li><a href="{{ t.paths.terms | relative_url }}" class="hover:text-primary transition-colors">CGV</a></li>
-          <li><a href="mailto:contact@bot-creator.fr" class="hover:text-primary transition-colors">Contact</a></li>
-          <li><a href="#" class="hover:text-primary transition-colors">Presse</a></li>
-        </ul>
+      
+      <div class="flex gap-4">
+        <a class="flex h-10 w-10 items-center justify-center rounded-full bg-surface-container text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors" href="#">
+          <span class="material-symbols-outlined text-xl">language</span>
+        </a>
+        <a class="flex h-10 w-10 items-center justify-center rounded-full bg-surface-container text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors" href="https://github.com/ketsuna-org/bot-creator">
+          <span class="material-symbols-outlined text-xl">share</span>
+        </a>
       </div>
     </div>
-
-    <div class="mt-24 border-t border-on-surface/5 pt-12 text-center">
-      <p class="text-[13px] font-bold uppercase tracking-[0.15em] text-on-surface/30">
-        © 2024 {{ t.shell.footer_title }}. DESIGNED FOR EFFICIENCY. PREMIUM EXPERIENCE.
-      </p>
+    
+    <div class="mt-12 text-center text-xs text-on-surface-variant/60">
+      © 2024 {{ t.meta.site_title }}. Tous droits réservés. Design Aetheric Tech.
     </div>
   </div>
 </footer>

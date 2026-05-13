@@ -1,86 +1,73 @@
 {% assign t = site.data.locales[page.locale] %}
 {% assign downloads = site.data.downloads %}
 
-<main class="overflow-x-hidden bg-background">
+<main class="bg-background">
   <!-- Hero Section -->
-  <section class="relative py-24 lg:py-40 hero-glow">
+  <section class="relative overflow-hidden bg-surface py-20 lg:py-32">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="grid items-center gap-16 lg:grid-cols-2">
-        <div class="flex flex-col gap-10" data-reveal>
-          <div class="section-label">
-            <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div class="flex flex-col gap-8">
+          <div class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
             {{ t.home.hero.eyebrow }}
           </div>
-          <h1 class="text-6xl font-bold leading-[1.1] tracking-tight text-primary-dark md:text-7xl lg:text-8xl">
-            {{ t.home.hero.title | replace: 'text-primary', 'text-primary' }}
+          <h1 class="font-display text-5xl font-black leading-tight tracking-tight text-on-surface md:text-6xl lg:text-7xl">
+            Créez vos propres bots <span class="text-primary-container drop-shadow-[0_0_10px_rgba(183,109,255,0.4)]">Discord sans effort</span>
           </h1>
-          <p class="max-w-xl text-xl leading-relaxed text-on-surface/60">
+          <p class="max-w-xl text-lg leading-relaxed text-on-surface-variant md:text-xl">
             {{ t.home.hero.body }}
           </p>
-          <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
-            <a href="{{ t.paths.download | relative_url }}" class="button-primary h-16 min-w-[220px]">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a href="{{ t.paths.download | relative_url }}" class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-on-primary transition-transform hover:scale-[1.02] neon-glow-strong">
               <span class="material-symbols-outlined">smartphone</span>
               {{ t.shell.primary_cta }}
             </a>
-            <a href="#" class="button-ghost h-16 min-w-[220px] flex items-center justify-center gap-2">
+            <a href="#" class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-outline bg-transparent px-8 text-base font-bold text-on-surface transition-colors hover:bg-surface-container">
               <span class="material-symbols-outlined">play_circle</span>
               {{ t.home.hero.secondary_cta }}
             </a>
           </div>
-          <div class="flex items-center gap-6 pt-6">
-            <div class="flex -space-x-4">
-              <div class="h-12 w-12 rounded-full border-4 border-background bg-gray-200 overflow-hidden shadow-sm">
-                <img src="https://i.pravatar.cc/100?u=1" alt="User" class="w-full h-full object-cover">
-              </div>
-              <div class="h-12 w-12 rounded-full border-4 border-background bg-gray-300 overflow-hidden shadow-sm">
-                <img src="https://i.pravatar.cc/100?u=2" alt="User" class="w-full h-full object-cover">
-              </div>
-              <div class="h-12 w-12 rounded-full border-4 border-background bg-gray-400 overflow-hidden shadow-sm">
-                <img src="https://i.pravatar.cc/100?u=3" alt="User" class="w-full h-full object-cover">
-              </div>
+          <div class="flex items-center gap-6 pt-4">
+            <div class="flex -space-x-3">
+              <div class="h-10 w-10 rounded-full border-2 border-surface bg-surface-container-high"></div>
+              <div class="h-10 w-10 rounded-full border-2 border-surface bg-surface-container"></div>
+              <div class="h-10 w-10 rounded-full border-2 border-surface bg-surface-container-low"></div>
             </div>
-            <p class="text-[15px] font-semibold text-on-surface/50">{{ t.home.hero.stats }}</p>
+            <p class="text-sm font-medium text-on-surface-variant">{{ t.home.hero.stats }}</p>
           </div>
         </div>
-        <div class="relative flex justify-center lg:justify-end" data-reveal>
-          <div class="relative z-10 w-full max-w-[480px] overflow-hidden rounded-[2.5rem] border-[16px] border-white bg-white shadow-2xl">
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="relative z-10 w-full max-w-[450px] overflow-hidden rounded-[2.5rem] border-[8px] border-surface-container-highest bg-surface-container shadow-2xl neon-glow">
             <img alt="Interface de l'application" class="aspect-[9/19] w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByibz6K2ybZbLX6DKwEiEhCEVovsbu69bqPZ2H82wNjqZIh9A7CyBA90_2ELaz8RwsrMfpw_3sClQvot2MzGCQ1prvkm3qVNzqi62gyKO3bZLzNUDwQp8nWX9IdsRExJlFrOe_HNhFW6qpkDb9nSB8zyV64Tn_mB0HOnYexJ8ji4wnxgUR5KHYSvRtvE0-b5071WQLjXolkLoaJ3GHuihRy7udZA-aD7g5ywJYMksCz5emPKCaVmY0JCCHYNlbx-aFFq4hiZQq5ss">
           </div>
-          <div class="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-primary/5 blur-3xl"></div>
-          <div class="absolute -right-20 -top-20 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
+          <div class="absolute -bottom-10 -left-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
+          <div class="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-secondary-container/20 blur-3xl"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Showcase Section -->
-  <section class="bg-white py-32">
+  <section class="bg-surface-container-low py-24">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="mb-20 text-center max-w-3xl mx-auto">
-        <h2 class="text-4xl font-bold tracking-tight text-primary-dark sm:text-6xl">{{ t.home.showcase.title }}</h2>
-        <p class="mt-6 text-xl text-on-surface/60 leading-relaxed">{{ t.home.showcase.subtitle }}</p>
+      <div class="mb-16 text-center">
+        <h2 class="font-display text-3xl font-bold tracking-tight text-on-surface sm:text-4xl">{{ t.home.showcase.title }}</h2>
+        <p class="mt-4 text-lg text-on-surface-variant">{{ t.home.showcase.subtitle }}</p>
       </div>
-      <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         {% for card in t.home.showcase.cards %}
-        <div class="group flex flex-col gap-8">
-          <div class="overflow-hidden rounded-[2rem] bg-ghost-slate p-1 shadow-ambient transition-all group-hover:shadow-premium-hover group-hover:-translate-y-2">
-            <div class="overflow-hidden rounded-[1.8rem]">
-              {% if forloop.index == 1 %}
-              <img alt="Visual Builder" class="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTgKqpJhfYZZ172mKV7NZ2VblbHiT_kKOmYoFWb81ehRTzf4NvjoQjaddtwWxSYdiZZcWOgAx4b6qW8sc0Zu6TaTnmpR_vKEg7cotrVLXnu_Y7jD9tOPDW9Otq72v2le2QyoK4JOS6nWvXGU54fFdsNLrA93K_59U6mW_jmxKwO9HkdO-narqiQ-n3znGgIVgXTgbbPnYM8kutKM2X4XiCNXzXahSSEOvHNF0GUKg_Ay_LGej3-QcWauap0Lnxl0zrzDpV3KrgdkQ">
-              {% elsif forloop.index == 2 %}
-              <img alt="Analytics Dashboard" class="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5CXGOk58ofbAsrI_ZSrrx2h1gCgPQyzNZgw3Ir6bcMFSJDTeIagyKK_eoKUoqHB8d0fcW-WqEtwqAQA5Oce_XJrf-vKa8u6Jwnp6TxvwOfP-3MlIIo48Quj9F2dtgV5Wt1qef1Xk0bwljQ1AgFIUlLffYVg6lvc9j7wgxujrakJ5EVzPZMojS1omhNgk_Ykgem6jSPoHJtFCO_JIKyzp_qZnSZGasrxVUzf2he1Vt-XL35gSkjwkRIlQX6iH3wwmXpH9jPt-Cw84">
-              {% else %}
-              <img alt="Template Library" class="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDajxJlCEWA9V_X42XEe_jzRQ2sZfd646VTPNfW46fpNg_6zGpwqQXYwGFcSHxeacp4JldEdVXfwQnUquHz8xN-Zi8JSF9pWVlIzsCRpzcb-Y30lsw4xYQRbgCQ_0GCQfE5a95prnINq-cc8MgBdnvm-JMOB0qRhqhxExxnGqdJSbbVjMsfFYWOKJ0igRdyuxNOrBvg9FhBeL2c5vL2LoxKw0Rvl3nRjnWQNsblKe1xDy7hDF8VfK7xWJ_p2qOdiHoOL0DLJ8styt0">
-              {% endif %}
-            </div>
+        <div class="group flex flex-col gap-4">
+          <div class="overflow-hidden rounded-2xl bg-surface-container border border-outline-variant transition-all group-hover:border-primary/50 group-hover:neon-glow">
+            {% if forloop.index == 1 %}
+            <img alt="Visual Builder" class="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTgKqpJhfYZZ172mKV7NZ2VblbHiT_kKOmYoFWb81ehRTzf4NvjoQjaddtwWxSYdiZZcWOgAx4b6qW8sc0Zu6TaTnmpR_vKEg7cotrVLXnu_Y7jD9tOPDW9Otq72v2le2QyoK4JOS6nWvXGU54fFdsNLrA93K_59U6mW_jmxKwO9HkdO-narqiQ-n3znGgIVgXTgbbPnYM8kutKM2X4XiCNXzXahSSEOvHNF0GUKg_Ay_LGej3-QcWauap0Lnxl0zrzDpV3KrgdkQ">
+            {% elsif forloop.index == 2 %}
+            <img alt="Analytics Dashboard" class="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5CXGOk58ofbAsrI_ZSrrx2h1gCgPQyzNZgw3Ir6bcMFSJDTeIagyKK_eoKUoqHB8d0fcW-WqEtwqAQA5Oce_XJrf-vKa8u6Jwnp6TxvwOfP-3MlIIo48Quj9F2dtgV5Wt1qef1Xk0bwljQ1AgFIUlLffYVg6lvc9j7wgxujrakJ5EVzPZMojS1omhNgk_Ykgem6jSPoHJtFCO_JIKyzp_qZnSZGasrxVUzf2he1Vt-XL35gSkjwkRIlQX6iH3wwmXpH9jPt-Cw84">
+            {% else %}
+            <img alt="Template Library" class="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDajxJlCEWA9V_X42XEe_jzRQ2sZfd646VTPNfW46fpNg_6zGpwqQXYwGFcSHxeacp4JldEdVXfwQnUquHz8xN-Zi8JSF9pWVlIzsCRpzcb-Y30lsw4xYQRbgCQ_0GCQfE5a95prnINq-cc8MgBdnvm-JMOB0qRhqhxExxnGqdJSbbVjMsfFYWOKJ0igRdyuxNOrBvg9FhBeL2c5vL2LoxKw0Rvl3nRjnWQNsblKe1xDy7hDF8VfK7xWJ_p2qOdiHoOL0DLJ8styt0">
+            {% endif %}
           </div>
-          <div class="px-2">
-            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/5 text-primary">
-              <span class="material-symbols-outlined text-[28px]">{{ card.icon }}</span>
-            </div>
-            <h3 class="text-3xl font-bold text-primary-dark tracking-tight">{{ card.title }}</h3>
-            <p class="mt-4 text-[17px] text-on-surface/60 leading-relaxed">{{ card.body }}</p>
-          </div>
+          <h3 class="font-display text-xl font-bold text-on-surface">{{ card.title }}</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">{{ card.body }}</p>
         </div>
         {% endfor %}
       </div>
@@ -88,46 +75,38 @@
   </section>
 
   <!-- Blog/Tutorials Section -->
-  <section class="bg-ghost-slate py-32">
+  <section class="bg-surface py-24">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-        <div class="max-w-2xl">
-          <h2 class="text-4xl font-bold tracking-tight text-primary-dark sm:text-6xl">{{ t.home.blog.title }}</h2>
-          <p class="mt-6 text-xl text-on-surface/60 leading-relaxed">{{ t.home.blog.subtitle }}</p>
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <h2 class="font-display text-3xl font-bold tracking-tight text-on-surface sm:text-4xl">{{ t.home.blog.title }}</h2>
+          <p class="mt-2 text-on-surface-variant">{{ t.home.blog.subtitle }}</p>
         </div>
-        <a class="flex items-center gap-3 font-bold text-primary hover:translate-x-3 transition-transform group" href="{{ t.paths.guides | relative_url }}">
+        <a class="hidden sm:flex items-center gap-2 font-bold text-primary hover:underline" href="{{ t.paths.guides | relative_url }}">
           {{ t.home.blog.view_all }}
-          <span class="material-symbols-outlined group-hover:bg-primary group-hover:text-white rounded-full p-2 transition-all">arrow_forward</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
         </a>
       </div>
-      <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {% for post in t.home.blog.posts %}
-        <article class="group flex flex-col overflow-hidden rounded-[2.5rem] bg-white border border-on-surface/5 shadow-ambient transition-all hover:shadow-premium-hover hover:-translate-y-2">
-          <div class="overflow-hidden">
-            {% if forloop.index == 1 %}
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsJ1JN82nx7qJeph3r_gy-xvqJCSUGWvm5HV8UXt3yD_NLrYC5Isj7cw2d9_MOEDoZkI8aKWNLN4twgR7AUU56nXcBjIkK9QtTdQmROAE2C1UJ2YQlKlMP_gPThs4oIcIHSzpJ9MccikivmK_eXVGB-vAt1rv5lgYcHC3lkOEadS8ol-qOdn3KYcr94vxfHleMkcjjWty4VfnOcLe8UHBmPjDWoG3UwusOEa_KEE-kX9sDy1Z3UNN2NMJ-NRCHvLS9TZu2FM7GPc" alt="" class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-110">
-            {% elsif forloop.index == 2 %}
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTULwqKPVKMm_yIOs51k7VHfbigDKlLgFkUrSa1jRgzlmtP2HNhYtCx8XIJslcP3Vk4-3u8FuIxt5eErAMGlDeQFkJl9WryKvqIKvQics3xCH_K1Ja2TwF3UOhsjeKr6nFXQuJDutofNc6lpdgK99hkrdgi5xc9D8qO-OQyRRSXcG5kXD1CYFhoMQq0towVcmGiQmc6bRzKpbDveL43My_rfNc2e8iqNSEFTAhYyVrdyLiYhljel81ctlB2vRyasNqbx_-QNBANrg" alt="" class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-110">
-            {% else %}
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDHvv6FV58huZ24qOhDF0fR5Z-M51HHA77U4_DPH5QVlx-ThG6tZkuo-whmK_koevsuSBUVwK1DYj62wxKzSbUCUSCFU9A08stMNGQKWYjiq8TxpS1NU3--uhYbEQLtTYt-Bu7EM64xLeVHqpaH_dDZMHfwszk5K7tJPS862WAAuffOHqR1GVtiDjdaTfVtVs5Ixzhkcb8_o-kpYx_km8s-Zb9KpqczEVCRQnOdgMyb6ANxd6HEImv43c41XpiSl4kGV09oVP0uzo" alt="" class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-110">
-            {% endif %}
-          </div>
-          <div class="flex flex-1 flex-col p-10">
-            <div class="mb-5 flex items-center gap-4">
-              <span class="rounded-full bg-primary/5 px-4 py-1 text-[11px] font-bold uppercase tracking-widest text-primary border border-primary/10">
-                {{ post.tag }}
-              </span>
-              <span class="text-xs text-on-surface/40 font-bold uppercase tracking-wider">{{ post.time }}</span>
+        <article class="flex flex-col overflow-hidden rounded-2xl bg-surface-container border border-outline-variant transition-all hover:border-primary/40 hover:neon-glow">
+          {% if forloop.index == 1 %}
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsJ1JN82nx7qJeph3r_gy-xvqJCSUGWvm5HV8UXt3yD_NLrYC5Isj7cw2d9_MOEDoZkI8aKWNLN4twgR7AUU56nXcBjIkK9QtTdQmROAE2C1UJ2YQlKlMP_gPThs4oIcIHSzpJ9MccikivmK_eXVGB-vAt1rv5lgYcHC3lkOEadS8ol-qOdn3KYcr94vxfHleMkcjjWty4VfnOcLe8UHBmPjDWoG3UwusOEa_KEE-kX9sDy1Z3UNN2NMJ-NRCHvLS9TZu2FM7GPc" alt="" class="aspect-video w-full object-cover opacity-80">
+          {% elsif forloop.index == 2 %}
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTULwqKPVKMm_yIOs51k7VHfbigDKlLgFkUrSa1jRgzlmtP2HNhYtCx8XIJslcP3Vk4-3u8FuIxt5eErAMGlDeQFkJl9WryKvqIKvQics3xCH_K1Ja2TwF3UOhsjeKr6nFXQuJDutofNc6lpdgK99hkrdgi5xc9D8qO-OQyRRSXcG5kXD1CYFhoMQq0towVcmGiQmc6bRzKpbDveL43My_rfNc2e8iqNSEFTAhYyVrdyLiYhljel81ctlB2vRyasNqbx_-QNBANrg" alt="" class="aspect-video w-full object-cover opacity-80">
+          {% else %}
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDHvv6FV58huZ24qOhDF0fR5Z-M51HHA77U4_DPH5QVlx-ThG6tZkuo-whmK_koevsuSBUVwK1DYj62wxKzSbUCUSCFU9A08stMNGQKWYjiq8TxpS1NU3--uhYbEQLtTYt-Bu7EM64xLeVHqpaH_dDZMHfwszk5K7tJPS862WAAuffOHqR1GVtiDjdaTfVtVs5Ixzhkcb8_o-kpYx_km8s-Zb9KpqczEVCRQnOdgMyb6ANxd6HEImv43c41XpiSl4kGV09oVP0uzo" alt="" class="aspect-video w-full object-cover opacity-80">
+          {% endif %}
+          <div class="flex flex-1 flex-col p-6">
+            <div class="mb-3 flex items-center gap-2">
+              <span class="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">{{ post.tag }}</span>
+              <span class="text-xs text-on-surface-variant">{{ post.time }}</span>
             </div>
-            <h3 class="mb-5 text-3xl font-bold leading-tight text-primary-dark group-hover:text-primary transition-colors">
-              {{ post.title }}
-            </h3>
-            <p class="mb-8 line-clamp-3 text-[17px] text-on-surface/50 leading-relaxed">
-              {{ post.excerpt }}
-            </p>
-            <a class="mt-auto flex items-center gap-2 text-[15px] font-bold text-primary group/link" href="#">
+            <h3 class="mb-3 font-display text-xl font-bold leading-tight text-on-surface">{{ post.title }}</h3>
+            <p class="mb-6 line-clamp-2 text-sm text-on-surface-variant">{{ post.excerpt }}</p>
+            <a class="mt-auto flex items-center gap-1 text-sm font-bold text-primary group" href="#">
               Lire la suite
-              <span class="material-symbols-outlined text-lg transition-transform group-hover/link:translate-x-2">chevron_right</span>
+              <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">chevron_right</span>
             </a>
           </div>
         </article>
@@ -137,24 +116,24 @@
   </section>
 
   <!-- CTA Section -->
-  <section class="py-32">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="relative overflow-hidden rounded-[3.5rem] bg-indigo-deep px-10 py-24 text-center text-white sm:px-20 shadow-2xl shadow-indigo-deep/30">
-        <div class="relative z-10 mx-auto max-w-3xl">
-          <h2 class="text-5xl font-bold tracking-tight sm:text-7xl">{{ t.home.cta.title }}</h2>
-          <p class="mt-10 text-xl text-white/50 leading-relaxed">{{ t.home.cta.body }}</p>
-          <div class="mt-16 flex flex-col justify-center gap-6 sm:flex-row">
-            <a href="{{ t.paths.download | relative_url }}" class="flex h-16 items-center justify-center rounded-xl bg-primary px-12 text-lg font-bold transition-all hover:scale-105 hover:bg-blue-600 shadow-xl shadow-primary/40">
+  <section class="py-24 bg-surface">
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="relative overflow-hidden rounded-[2rem] bg-surface-container-highest px-8 py-16 text-center text-on-surface sm:px-16 border border-primary/20 neon-glow">
+        <div class="relative z-10 mx-auto max-w-2xl">
+          <h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">{{ t.home.cta.title }}</h2>
+          <p class="mt-6 text-lg text-on-surface-variant">{{ t.home.cta.body }}</p>
+          <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <a href="{{ t.paths.download | relative_url }}" class="flex h-14 items-center justify-center rounded-xl bg-primary-container text-on-primary-container px-8 text-base font-bold transition-transform hover:scale-105 active:scale-95 neon-glow-strong">
               {{ t.home.cta.primary }}
             </a>
-            <a href="#" class="flex h-16 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-12 text-lg font-bold backdrop-blur-sm transition-all hover:bg-white/10">
+            <a href="#" class="flex h-14 items-center justify-center rounded-xl border border-outline bg-white/5 px-8 text-base font-bold backdrop-blur-sm transition-colors hover:bg-white/10">
               {{ t.home.cta.secondary }}
             </a>
           </div>
         </div>
         <!-- Background Decoration -->
-        <div class="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-primary opacity-30 blur-[100px]"></div>
-        <div class="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
+        <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary opacity-20 blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-secondary-container opacity-10 blur-3xl"></div>
       </div>
     </div>
   </section>
