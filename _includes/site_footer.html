@@ -1,54 +1,68 @@
 {% assign t = include.t %}
 {% assign downloads = site.data.downloads %}
 
-<footer class="site-footer">
-  <div class="site-grid">
-    <div class="footer-shell">
-      <div class="footer-brand">
-        <a class="brand-lockup brand-lockup-footer" href="{{ t.paths.home | relative_url }}">
-          <span class="brand-mark">
-            <img src="{{ '/assets/icon.png' | relative_url }}" alt="" loading="lazy" decoding="async">
-          </span>
-          <span class="brand-copy">
-            <span class="brand-title">{{ t.shell.footer_title }}</span>
-          </span>
+<footer class="border-t border-on-surface/5 bg-white py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-16 lg:grid-cols-4">
+      <!-- Brand & Description -->
+      <div class="lg:col-span-1">
+        <a href="{{ t.paths.home | relative_url }}" class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-dark text-white shadow-ambient">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <span class="text-2xl font-bold tracking-tight text-primary-dark font-display">{{ t.shell.footer_title }}</span>
         </a>
-        <p class="footer-copy">{{ t.shell.footer_tagline }}</p>
-        <p class="footer-note">{{ t.shell.footer_rights }}</p>
-        <div class="button-row footer-actions">
-          <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
-          <a class="button button-secondary" href="https://github.com/ketsuna-org/bot-creator" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <p class="mt-8 text-[15px] text-on-surface/50 leading-relaxed max-w-xs font-medium">
+          {{ t.shell.footer_tagline }}
+        </p>
+        <div class="mt-10 flex gap-5">
+          <a href="#" class="flex h-11 w-11 items-center justify-center rounded-full bg-ghost-slate text-on-surface/40 hover:bg-primary hover:text-white transition-all shadow-sm">
+            <span class="material-symbols-outlined text-[20px]">language</span>
+          </a>
+          <a href="https://github.com/ketsuna-org/bot-creator" class="flex h-11 w-11 items-center justify-center rounded-full bg-ghost-slate text-on-surface/40 hover:bg-primary hover:text-white transition-all shadow-sm">
+            <span class="material-symbols-outlined text-[20px]">share</span>
+          </a>
         </div>
       </div>
 
-      <div class="footer-column">
-        <h2>{{ t.shell.footer_product }}</h2>
-        <a href="{{ t.paths.home | relative_url }}">{{ t.nav.home }}</a>
-        <a href="{{ t.paths.download | relative_url }}">{{ t.nav.download }}</a>
-        <a href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
+      <!-- Links Columns -->
+      <div>
+        <h3 class="font-display font-bold text-primary-dark text-lg">{{ t.shell.footer_product }}</h3>
+        <ul class="mt-8 space-y-5 text-[15px] font-semibold text-on-surface/50">
+          <li><a href="{{ t.paths.home | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.home }}</a></li>
+          <li><a href="{{ t.paths.download | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.download }}</a></li>
+          <li><a href="{{ t.paths.guides | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.guides }}</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Tarifs</a></li>
+        </ul>
       </div>
 
-      <div class="footer-column">
-        <h2>{{ t.shell.footer_downloads }}</h2>
-        <a href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">Android</a>
-        <a href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">Windows</a>
-        <a href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">Linux</a>
-        <a href="{{ t.paths.download | relative_url }}#runner">{{ t.shell.footer_runner }}</a>
+      <div>
+        <h3 class="font-display font-bold text-primary-dark text-lg">{{ t.shell.footer_downloads }}</h3>
+        <ul class="mt-8 space-y-5 text-[15px] font-semibold text-on-surface/50">
+          <li><a href="{{ downloads.stores.android_play.url }}" class="hover:text-primary transition-colors">Android</a></li>
+          <li><a href="{{ downloads.stores.ios_appstore.url }}" class="hover:text-primary transition-colors">iOS</a></li>
+          <li><a href="{{ downloads.stores.windows_store.url }}" class="hover:text-primary transition-colors">Windows</a></li>
+          <li><a href="{{ downloads.stores.steam.url }}" class="hover:text-primary transition-colors">Linux</a></li>
+        </ul>
       </div>
 
-      <div class="footer-column">
-        <h2>{{ t.shell.footer_resources }}</h2>
-        <a href="{{ downloads.release_notes_page }}" target="_blank" rel="noopener noreferrer">{{ t.shell.footer_release_notes }}</a>
-        <a href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">{{ t.shell.footer_runner }}</a>
-        <a href="https://github.com/ketsuna-org/bot-creator" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <div>
+        <h3 class="font-display font-bold text-primary-dark text-lg">{{ t.shell.footer_legal }}</h3>
+        <ul class="mt-8 space-y-5 text-[15px] font-semibold text-on-surface/50">
+          <li><a href="{{ t.paths.privacy | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.privacy }}</a></li>
+          <li><a href="{{ t.paths.terms | relative_url }}" class="hover:text-primary transition-colors">CGV</a></li>
+          <li><a href="mailto:contact@bot-creator.fr" class="hover:text-primary transition-colors">Contact</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Presse</a></li>
+        </ul>
       </div>
+    </div>
 
-      <div class="footer-column">
-        <h2>{{ t.shell.footer_legal }}</h2>
-        <a href="{{ t.paths.terms | relative_url }}">{{ t.shell.footer_terms }}</a>
-        <a href="{{ t.paths.privacy | relative_url }}">{{ t.shell.footer_privacy }}</a>
-        <a href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>
-      </div>
+    <div class="mt-24 border-t border-on-surface/5 pt-12 text-center">
+      <p class="text-[13px] font-bold uppercase tracking-[0.15em] text-on-surface/30">
+        © 2024 {{ t.shell.footer_title }}. DESIGNED FOR EFFICIENCY. PREMIUM EXPERIENCE.
+      </p>
     </div>
   </div>
 </footer>

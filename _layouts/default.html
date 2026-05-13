@@ -18,11 +18,10 @@
   {% endif %}
 {% endif %}
 {% include site_head.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url %}
-<body class="site-body">
-  <a class="skip-link" href="#main-content">{{ t.common.skip_to_content }}</a>
-  <div class="site-bg"></div>
+<body class="antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-white focus:text-primary focus:rounded-xl focus:shadow-2xl" href="#main-content">{{ t.common.skip_to_content }}</a>
   {% include site_header.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url t=t %}
-  <main class="site-main" id="main-content" tabindex="-1">
+  <main id="main-content" tabindex="-1">
     {{ content }}
   </main>
   {% include site_footer.html t=t %}

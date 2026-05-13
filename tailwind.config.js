@@ -10,52 +10,36 @@ module.exports = {
     './*.html',
     './blog/**/*.html',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: {
-        display: ['Space Grotesk', 'IBM Plex Sans', 'sans-serif'],
-        sans: ['IBM Plex Sans', 'Segoe UI', 'sans-serif'],
-      },
       colors: {
-        'bot-purple': {
-          dark: '#1e0b38',
-          DEFAULT: '#7214c7',
-          light: '#a855f7',
-          glow: 'rgba(168, 85, 247, 0.4)',
-        },
-        'bot-bg': {
-          darkest: '#050308',
-          dark: '#0a0512',
-          card: 'rgba(20, 15, 30, 0.65)',
-          border: 'rgba(255, 255, 255, 0.08)'
-        }
+        "primary": "#0058be", // Electric Blue (Action color)
+        "primary-dark": "#070235", // Deep Navy
+        "indigo-deep": "#1e1b4b",
+        "background": "#f8f9ff",
+        "surface": "#f8f9ff",
+        "on-surface": "#0b1c30",
+        "ghost-slate": "#f8fafc",
+      },
+      fontFamily: {
+        "display": ["Space Grotesk", "sans-serif"],
+        "sans": ["Inter", "sans-serif"]
+      },
+      borderRadius: {
+        "sm": "0.25rem",
+        "DEFAULT": "0.5rem",
+        "md": "0.75rem",
+        "lg": "1rem",
+        "xl": "1.5rem",
+        "2xl": "2rem",
+        "full": "9999px"
       },
       boxShadow: {
-        'glow-sm': '0 0 10px rgba(168, 85, 247, 0.2)',
-        'glow-md': '0 0 20px rgba(168, 85, 247, 0.3)',
-        'glow-lg': '0 0 40px rgba(168, 85, 247, 0.4)',
-      },
-      animation: {
-        'blob': 'blob 7s infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
-      keyframes: {
-        blob: {
-          '0%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
-          '33%': {
-            transform: 'translate(30px, -50px) scale(1.1)',
-          },
-          '66%': {
-            transform: 'translate(-20px, 20px) scale(0.9)',
-          },
-          '100%': {
-            transform: 'translate(0px, 0px) scale(1)',
-          },
-        }
+        'ambient': '0 10px 30px rgba(30, 27, 75, 0.05)',
+        'premium-hover': '0 20px 40px rgba(30, 27, 75, 0.1)',
       }
-    }
+    },
   },
-  plugins: []
+  plugins: [],
 }

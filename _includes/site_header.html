@@ -4,37 +4,32 @@
   {% assign active_key = 'guides' %}
 {% endif %}
 
-<header class="site-header">
-  <div class="site-grid">
-    <div class="nav-shell">
-      <a class="brand-lockup" href="{{ t.paths.home | relative_url }}" aria-label="{{ t.meta.site_title }}">
-        <span class="brand-mark">
-          <img src="{{ '/assets/icon.png' | relative_url }}" alt="" loading="eager" decoding="async">
-        </span>
-        <span class="brand-copy">
-          <span class="brand-title">{{ t.meta.site_title }}</span>
-          <span class="brand-subtitle">{{ t.meta.site_tagline }}</span>
-        </span>
-      </a>
-
-      <button class="nav-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-menu" aria-label="{{ t.nav.open_menu }}" data-label-open="{{ t.nav.open_menu }}" data-label-close="{{ t.nav.close_menu }}">
-        <span></span>
-        <span></span>
-        <span class="sr-only">{{ t.nav.open_menu }}</span>
-      </button>
-
-      <div class="nav-panel" id="site-menu" data-menu-panel>
-        <nav class="nav-links" aria-label="Primary">
-          <a class="nav-link{% if active_key == 'home' %} is-active{% endif %}" href="{{ t.paths.home | relative_url }}">{{ t.nav.home }}</a>
-          <a class="nav-link{% if active_key == 'download' %} is-active{% endif %}" href="{{ t.paths.download | relative_url }}">{{ t.nav.download }}</a>
-          <a class="nav-link{% if active_key == 'guides' %} is-active{% endif %}" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
-        </nav>
-
-        <div class="nav-actions">
-          {% include language_switcher.html locale=include.locale alternate_locale=include.alternate_locale alternate_url=include.alternate_url %}
-          <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
-        </div>
+<header class="sticky top-0 z-50 w-full glass-header">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+    <a href="{{ t.paths.home | relative_url }}" class="flex items-center gap-3 group">
+      <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-dark text-white shadow-ambient transition-all group-hover:scale-110 group-hover:bg-primary">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+        </svg>
       </div>
+      <span class="text-2xl font-bold tracking-tight text-primary-dark font-display">{{ t.meta.site_title }}</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-12">
+      <a class="text-[15px] font-semibold text-on-surface/70 hover:text-primary transition-colors{% if active_key == 'home' %} text-primary{% endif %}" href="{{ t.paths.home | relative_url }}">Fonctionnalités</a>
+      <a class="text-[15px] font-semibold text-on-surface/70 hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary{% endif %}" href="{{ t.paths.guides | relative_url }}">Tutoriels</a>
+      <a class="text-[15px] font-semibold text-on-surface/70 hover:text-primary transition-colors" href="#">Tarifs</a>
+    </nav>
+
+    <div class="flex items-center gap-5">
+      <button class="hidden sm:block text-[15px] font-bold text-primary-dark hover:text-primary transition-colors">Connexion</button>
+      <a href="{{ t.paths.download | relative_url }}" class="flex h-12 items-center justify-center rounded-lg bg-primary px-7 text-[15px] font-bold text-white shadow-ambient hover:scale-[1.05] hover:shadow-premium-hover active:scale-[0.98] transition-all">
+        S'inscrire
+      </a>
+      
+      <button class="md:hidden flex items-center justify-center p-2 text-on-surface">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
     </div>
   </div>
 </header>

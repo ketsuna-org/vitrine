@@ -1,128 +1,161 @@
 {% assign t = site.data.locales[page.locale] %}
 {% assign downloads = site.data.downloads %}
 
-<section class="site-grid home-page">
-  <div class="home-stack">
-    <section class="home-hero" data-reveal>
-      <div class="home-surface home-hero-copy">
-        <div class="home-kicker-row">
-          <span class="home-kicker">{{ t.home.hero.eyebrow }}</span>
-          <span class="home-kicker home-kicker-muted">{{ t.home.hero.badge }}</span>
-        </div>
-
-        <h1 class="home-display">{{ t.home.hero.title }}</h1>
-        <p class="home-intro">{{ t.home.hero.body }}</p>
-
-        <div class="home-action-row">
-          <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
-          <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.home.hero.secondary_cta }}</a>
-        </div>
-
-        <div class="home-signal-row">
-          {% for signal in t.home.hero.signals %}
-          <span class="home-signal">{{ signal }}</span>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="home-hero-rail">
-        <article class="home-surface home-surface-strong home-flow-card">
-          <p class="home-micro">{{ t.home.hero.rail_label }}</p>
-          <h2>{{ t.home.hero.rail_title }}</h2>
-          <p>{{ t.home.hero.rail_body }}</p>
-
-          <ol class="home-flow-list">
-            {% for step in t.home.hero.rail_steps %}
-            <li>
-              <span class="home-flow-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
-              <div>
-                <strong>{{ step.title }}</strong>
-                <span>{{ step.body }}</span>
+<main class="overflow-x-hidden bg-background">
+  <!-- Hero Section -->
+  <section class="relative py-24 lg:py-40 hero-glow">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid items-center gap-16 lg:grid-cols-2">
+        <div class="flex flex-col gap-10" data-reveal>
+          <div class="section-label">
+            <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+            {{ t.home.hero.eyebrow }}
+          </div>
+          <h1 class="text-6xl font-bold leading-[1.1] tracking-tight text-primary-dark md:text-7xl lg:text-8xl">
+            {{ t.home.hero.title | replace: 'text-primary', 'text-primary' }}
+          </h1>
+          <p class="max-w-xl text-xl leading-relaxed text-on-surface/60">
+            {{ t.home.hero.body }}
+          </p>
+          <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
+            <a href="{{ t.paths.download | relative_url }}" class="button-primary h-16 min-w-[220px]">
+              <span class="material-symbols-outlined">smartphone</span>
+              {{ t.shell.primary_cta }}
+            </a>
+            <a href="#" class="button-ghost h-16 min-w-[220px] flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined">play_circle</span>
+              {{ t.home.hero.secondary_cta }}
+            </a>
+          </div>
+          <div class="flex items-center gap-6 pt-6">
+            <div class="flex -space-x-4">
+              <div class="h-12 w-12 rounded-full border-4 border-background bg-gray-200 overflow-hidden shadow-sm">
+                <img src="https://i.pravatar.cc/100?u=1" alt="User" class="w-full h-full object-cover">
               </div>
-            </li>
-            {% endfor %}
-          </ol>
-        </article>
-
-        <article class="home-surface home-platform-card">
-          <div class="home-platform-head">
-            <p class="home-micro">{{ t.home.hero.platform_label }}</p>
-            <p>{{ t.home.hero.platform_note }}</p>
+              <div class="h-12 w-12 rounded-full border-4 border-background bg-gray-300 overflow-hidden shadow-sm">
+                <img src="https://i.pravatar.cc/100?u=2" alt="User" class="w-full h-full object-cover">
+              </div>
+              <div class="h-12 w-12 rounded-full border-4 border-background bg-gray-400 overflow-hidden shadow-sm">
+                <img src="https://i.pravatar.cc/100?u=3" alt="User" class="w-full h-full object-cover">
+              </div>
+            </div>
+            <p class="text-[15px] font-semibold text-on-surface/50">{{ t.home.hero.stats }}</p>
           </div>
-
-          <div class="home-platform-links">
-            <a href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.android_play.label }}</a>
-            <a href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.ios_appstore.label }}</a>
-            <a href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.windows_store.label }}</a>
-            <a href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.steam.label }}</a>
+        </div>
+        <div class="relative flex justify-center lg:justify-end" data-reveal>
+          <div class="relative z-10 w-full max-w-[480px] overflow-hidden rounded-[2.5rem] border-[16px] border-white bg-white shadow-2xl">
+            <img alt="Interface de l'application" class="aspect-[9/19] w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByibz6K2ybZbLX6DKwEiEhCEVovsbu69bqPZ2H82wNjqZIh9A7CyBA90_2ELaz8RwsrMfpw_3sClQvot2MzGCQ1prvkm3qVNzqi62gyKO3bZLzNUDwQp8nWX9IdsRExJlFrOe_HNhFW6qpkDb9nSB8zyV64Tn_mB0HOnYexJ8ji4wnxgUR5KHYSvRtvE0-b5071WQLjXolkLoaJ3GHuihRy7udZA-aD7g5ywJYMksCz5emPKCaVmY0JCCHYNlbx-aFFq4hiZQq5ss">
           </div>
-        </article>
+          <div class="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-primary/5 blur-3xl"></div>
+          <div class="absolute -right-20 -top-20 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="home-section" data-reveal>
-      <div class="home-section-heading">
-        <p class="home-micro">{{ t.home.capabilities.label }}</p>
-        <h2>{{ t.home.capabilities.title }}</h2>
-        <p>{{ t.home.capabilities.body }}</p>
+  <!-- Showcase Section -->
+  <section class="bg-white py-32">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-20 text-center max-w-3xl mx-auto">
+        <h2 class="text-4xl font-bold tracking-tight text-primary-dark sm:text-6xl">{{ t.home.showcase.title }}</h2>
+        <p class="mt-6 text-xl text-on-surface/60 leading-relaxed">{{ t.home.showcase.subtitle }}</p>
       </div>
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+        {% for card in t.home.showcase.cards %}
+        <div class="group flex flex-col gap-8">
+          <div class="overflow-hidden rounded-[2rem] bg-ghost-slate p-1 shadow-ambient transition-all group-hover:shadow-premium-hover group-hover:-translate-y-2">
+            <div class="overflow-hidden rounded-[1.8rem]">
+              {% if forloop.index == 1 %}
+              <img alt="Visual Builder" class="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTgKqpJhfYZZ172mKV7NZ2VblbHiT_kKOmYoFWb81ehRTzf4NvjoQjaddtwWxSYdiZZcWOgAx4b6qW8sc0Zu6TaTnmpR_vKEg7cotrVLXnu_Y7jD9tOPDW9Otq72v2le2QyoK4JOS6nWvXGU54fFdsNLrA93K_59U6mW_jmxKwO9HkdO-narqiQ-n3znGgIVgXTgbbPnYM8kutKM2X4XiCNXzXahSSEOvHNF0GUKg_Ay_LGej3-QcWauap0Lnxl0zrzDpV3KrgdkQ">
+              {% elsif forloop.index == 2 %}
+              <img alt="Analytics Dashboard" class="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5CXGOk58ofbAsrI_ZSrrx2h1gCgPQyzNZgw3Ir6bcMFSJDTeIagyKK_eoKUoqHB8d0fcW-WqEtwqAQA5Oce_XJrf-vKa8u6Jwnp6TxvwOfP-3MlIIo48Quj9F2dtgV5Wt1qef1Xk0bwljQ1AgFIUlLffYVg6lvc9j7wgxujrakJ5EVzPZMojS1omhNgk_Ykgem6jSPoHJtFCO_JIKyzp_qZnSZGasrxVUzf2he1Vt-XL35gSkjwkRIlQX6iH3wwmXpH9jPt-Cw84">
+              {% else %}
+              <img alt="Template Library" class="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDajxJlCEWA9V_X42XEe_jzRQ2sZfd646VTPNfW46fpNg_6zGpwqQXYwGFcSHxeacp4JldEdVXfwQnUquHz8xN-Zi8JSF9pWVlIzsCRpzcb-Y30lsw4xYQRbgCQ_0GCQfE5a95prnINq-cc8MgBdnvm-JMOB0qRhqhxExxnGqdJSbbVjMsfFYWOKJ0igRdyuxNOrBvg9FhBeL2c5vL2LoxKw0Rvl3nRjnWQNsblKe1xDy7hDF8VfK7xWJ_p2qOdiHoOL0DLJ8styt0">
+              {% endif %}
+            </div>
+          </div>
+          <div class="px-2">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/5 text-primary">
+              <span class="material-symbols-outlined text-[28px]">{{ card.icon }}</span>
+            </div>
+            <h3 class="text-3xl font-bold text-primary-dark tracking-tight">{{ card.title }}</h3>
+            <p class="mt-4 text-[17px] text-on-surface/60 leading-relaxed">{{ card.body }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 
-      <div class="home-capability-grid">
-        {% for card in t.home.capabilities.cards %}
-        <article class="home-surface home-capability-card">
-          <span class="home-card-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
-          <h3>{{ card.title }}</h3>
-          <p>{{ card.body }}</p>
+  <!-- Blog/Tutorials Section -->
+  <section class="bg-ghost-slate py-32">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+        <div class="max-w-2xl">
+          <h2 class="text-4xl font-bold tracking-tight text-primary-dark sm:text-6xl">{{ t.home.blog.title }}</h2>
+          <p class="mt-6 text-xl text-on-surface/60 leading-relaxed">{{ t.home.blog.subtitle }}</p>
+        </div>
+        <a class="flex items-center gap-3 font-bold text-primary hover:translate-x-3 transition-transform group" href="{{ t.paths.guides | relative_url }}">
+          {{ t.home.blog.view_all }}
+          <span class="material-symbols-outlined group-hover:bg-primary group-hover:text-white rounded-full p-2 transition-all">arrow_forward</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+        {% for post in t.home.blog.posts %}
+        <article class="group flex flex-col overflow-hidden rounded-[2.5rem] bg-white border border-on-surface/5 shadow-ambient transition-all hover:shadow-premium-hover hover:-translate-y-2">
+          <div class="overflow-hidden">
+            {% if forloop.index == 1 %}
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsJ1JN82nx7qJeph3r_gy-xvqJCSUGWvm5HV8UXt3yD_NLrYC5Isj7cw2d9_MOEDoZkI8aKWNLN4twgR7AUU56nXcBjIkK9QtTdQmROAE2C1UJ2YQlKlMP_gPThs4oIcIHSzpJ9MccikivmK_eXVGB-vAt1rv5lgYcHC3lkOEadS8ol-qOdn3KYcr94vxfHleMkcjjWty4VfnOcLe8UHBmPjDWoG3UwusOEa_KEE-kX9sDy1Z3UNN2NMJ-NRCHvLS9TZu2FM7GPc" alt="" class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-110">
+            {% elsif forloop.index == 2 %}
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTULwqKPVKMm_yIOs51k7VHfbigDKlLgFkUrSa1jRgzlmtP2HNhYtCx8XIJslcP3Vk4-3u8FuIxt5eErAMGlDeQFkJl9WryKvqIKvQics3xCH_K1Ja2TwF3UOhsjeKr6nFXQuJDutofNc6lpdgK99hkrdgi5xc9D8qO-OQyRRSXcG5kXD1CYFhoMQq0towVcmGiQmc6bRzKpbDveL43My_rfNc2e8iqNSEFTAhYyVrdyLiYhljel81ctlB2vRyasNqbx_-QNBANrg" alt="" class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-110">
+            {% else %}
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDHvv6FV58huZ24qOhDF0fR5Z-M51HHA77U4_DPH5QVlx-ThG6tZkuo-whmK_koevsuSBUVwK1DYj62wxKzSbUCUSCFU9A08stMNGQKWYjiq8TxpS1NU3--uhYbEQLtTYt-Bu7EM64xLeVHqpaH_dDZMHfwszk5K7tJPS862WAAuffOHqR1GVtiDjdaTfVtVs5Ixzhkcb8_o-kpYx_km8s-Zb9KpqczEVCRQnOdgMyb6ANxd6HEImv43c41XpiSl4kGV09oVP0uzo" alt="" class="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-110">
+            {% endif %}
+          </div>
+          <div class="flex flex-1 flex-col p-10">
+            <div class="mb-5 flex items-center gap-4">
+              <span class="rounded-full bg-primary/5 px-4 py-1 text-[11px] font-bold uppercase tracking-widest text-primary border border-primary/10">
+                {{ post.tag }}
+              </span>
+              <span class="text-xs text-on-surface/40 font-bold uppercase tracking-wider">{{ post.time }}</span>
+            </div>
+            <h3 class="mb-5 text-3xl font-bold leading-tight text-primary-dark group-hover:text-primary transition-colors">
+              {{ post.title }}
+            </h3>
+            <p class="mb-8 line-clamp-3 text-[17px] text-on-surface/50 leading-relaxed">
+              {{ post.excerpt }}
+            </p>
+            <a class="mt-auto flex items-center gap-2 text-[15px] font-bold text-primary group/link" href="#">
+              Lire la suite
+              <span class="material-symbols-outlined text-lg transition-transform group-hover/link:translate-x-2">chevron_right</span>
+            </a>
+          </div>
         </article>
         {% endfor %}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="home-section" data-reveal>
-      <div class="home-section-heading">
-        <p class="home-micro">{{ t.home.ownership.label }}</p>
-        <h2>{{ t.home.ownership.title }}</h2>
-        <p>{{ t.home.ownership.body }}</p>
-      </div>
-
-      <div class="home-ownership-grid">
-        {% for card in t.home.ownership.cards %}
-        <article class="home-surface home-detail-card">
-          <p class="home-card-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</p>
-          <h3>{{ card.title }}</h3>
-          <p>{{ card.body }}</p>
-        </article>
-        {% endfor %}
-
-        <article class="home-surface home-download-card">
-          <p class="home-micro">{{ t.home.ownership.platform_label }}</p>
-          <h3>{{ t.home.ownership.platform_title }}</h3>
-          <p>{{ t.home.ownership.platform_body }}</p>
-
-          <div class="home-platform-links">
-            <a href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.android_play.label }}</a>
-            <a href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.ios_appstore.label }}</a>
-            <a href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.windows_store.label }}</a>
-            <a href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">{{ downloads.stores.steam.label }}</a>
+  <!-- CTA Section -->
+  <section class="py-32">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="relative overflow-hidden rounded-[3.5rem] bg-indigo-deep px-10 py-24 text-center text-white sm:px-20 shadow-2xl shadow-indigo-deep/30">
+        <div class="relative z-10 mx-auto max-w-3xl">
+          <h2 class="text-5xl font-bold tracking-tight sm:text-7xl">{{ t.home.cta.title }}</h2>
+          <p class="mt-10 text-xl text-white/50 leading-relaxed">{{ t.home.cta.body }}</p>
+          <div class="mt-16 flex flex-col justify-center gap-6 sm:flex-row">
+            <a href="{{ t.paths.download | relative_url }}" class="flex h-16 items-center justify-center rounded-xl bg-primary px-12 text-lg font-bold transition-all hover:scale-105 hover:bg-blue-600 shadow-xl shadow-primary/40">
+              {{ t.home.cta.primary }}
+            </a>
+            <a href="#" class="flex h-16 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-12 text-lg font-bold backdrop-blur-sm transition-all hover:bg-white/10">
+              {{ t.home.cta.secondary }}
+            </a>
           </div>
-
-          <div class="home-resource-links">
-            <a href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">{{ t.home.ownership.platform_secondary_cta }}</a>
-            <a href="{{ downloads.release_notes_page }}" target="_blank" rel="noopener noreferrer">{{ t.home.ownership.platform_tertiary_cta }}</a>
-          </div>
-        </article>
+        </div>
+        <!-- Background Decoration -->
+        <div class="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-primary opacity-30 blur-[100px]"></div>
+        <div class="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
       </div>
-    </section>
-
-    <section class="home-surface home-cta" data-reveal>
-      <p class="home-micro">{{ t.home.closing.label }}</p>
-      <h2>{{ t.home.closing.title }}</h2>
-      <p>{{ t.home.closing.body }}</p>
-
-      <div class="home-action-row">
-        <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
-        <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.home.closing.secondary_cta }}</a>
-      </div>
-    </section>
-  </div>
-</section>
+    </div>
+  </section>
+</main>
