@@ -8,152 +8,153 @@ content_language: fr
 permalink: /fr/privacy/
 ---
 
-<section class="site-grid page-section">
-  <div class="page-hero compact" data-reveal>
-    <div class="section-header">
-      <div class="eyebrow-row">
-        <span class="eyebrow-pill">Confidentialite</span>
-        <span class="meta-chip">Local-first · Diagnostics cloud</span>
+<main class="min-h-screen py-16 lg:py-24">
+  <div class="mx-auto max-w-4xl px-6">
+    <!-- Header -->
+    <header class="mb-16" data-reveal>
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
+          <span class="material-symbols-outlined text-sm">security</span>
+          Confidentialite
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 border border-outline-variant">
+          Local-first · Diagnostics cloud
+        </span>
       </div>
-      <h1>Bot Creator conserve les donnees bot sur votre appareil tout en utilisant des services cloud pour les
-        diagnostics, l'analytique et la publicite.</h1>
-      <p class="lede">Les configurations de bots, workflows et l'etat runtime restent en local. Les donnees de
-        diagnostic, rapports de plantage et identifiants publicitaires sont transmis aux services tiers decrits
-        ci-dessous.</p>
+      <h1 class="font-display text-3xl font-black leading-tight text-on-surface md:text-5xl lg:text-6xl mb-8">
+        Bot Creator conserve les donnees bot sur votre appareil tout en utilisant des services cloud pour les diagnostics, l'analytique et la publicite.
+      </h1>
+      <p class="text-xl leading-relaxed text-on-surface-variant italic border-l-4 border-primary pl-6 py-2">
+        Les configurations de bots, workflows et l'etat runtime restent en local. Les donnees de diagnostic, rapports de plantage et identifiants publicitaires sont transmis aux services tiers decrits ci-dessous.
+      </p>
+    </header>
+
+    <!-- Content -->
+    <div class="space-y-12">
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Stockage local</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Les donnees de votre bot restent sur l'appareil ou la machine qui execute le produit.</h2>
+        <p class="text-on-surface-variant leading-relaxed">Bot Creator stocke metadonnees, reglages des commandes, workflows, variables et donnees runtime dans le dossier local de l'application ou dans le volume monte du runner. Les donnees de diagnostic et d'analytique sont envoyees a des services tiers comme decrit dans les sections suivantes.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Sauvegardes optionnelles</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Google Drive sert uniquement a la sauvegarde et a la restauration.</h2>
+        <p class="text-on-surface-variant leading-relaxed">Quand vous connectez Google Drive, Bot Creator synchronise les sauvegardes dans AppData. Sur le runner, les tokens OAuth restent dans le volume monte pour survivre aux redemarrages.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Diagnostics, analytique & rapports de plantage</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Les donnees de diagnostic et d'utilisation sont collectees via Firebase.</h2>
+        <p class="text-on-surface-variant leading-relaxed">Bot Creator utilise <strong>Google Analytics for Firebase</strong> et <strong>Firebase Crashlytics</strong> pour comprendre l'utilisation de l'application et corriger les bugs. Ces services collectent le type d'appareil, la version du systeme d'exploitation, l'adresse IP (anonymisee), l'identifiant d'installation Firebase, les actions effectuees dans l'app et les traces de plantage (stack traces). Ces donnees sont envoyees sur les serveurs de Google.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Publicite & suivi</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Les publicites sont fournies par des regies tierces.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-6">Bot Creator affiche des publicites fournies par <strong>Google AdMob</strong> et <strong>IronSource</strong>. Ces SDK collectent des identifiants publicitaires (IDFA sur iOS, AAID sur Android), l'adresse IP et des donnees d'interaction pour diffuser des annonces personnalisees ou non personnalisees. Un dialogue de consentement propulse par <strong>Google UMP (User Messaging Platform)</strong> s'affiche au lancement pour vous permettre de choisir d'autoriser ou non la publicite personnalisee. Vous pouvez egalement revoquer votre consentement a tout moment depuis les parametres de votre appareil.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Stockage cloud finance par la pub (prochainement)</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Regardez des publicites pour debloquer du stockage cloud pour vos donnees bot.</h2>
+        <p class="text-on-surface-variant leading-relaxed">Une future version de Bot Creator vous permettra de regarder des publicites pour obtenir du stockage cloud pour vos configurations de bots, workflows et donnees associees. Lorsque vous activerez cette option, certaines donnees seront stockees sur <strong>Firebase Firestore</strong> pour votre compte. Il s'agit d'une fonctionnalite utilitaire : le stockage cloud est fourni en echange du visionnage de publicites, et non a des fins d'analytique ou de suivi. Vous serez clairement informe avant que toute donnee ne quitte votre appareil.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Votre responsabilite</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Protegez vos tokens, exports, sauvegardes et comptes relies.</h2>
+        <p class="text-on-surface-variant leading-relaxed">Bot Creator est un <strong>service tiers</strong> qui interagit avec la plateforme Discord. Les tokens de bot Discord sont des identifiants sensibles regis par les <a href="https://discord.com/terms" target="_blank" rel="noopener" class="text-primary hover:underline font-bold">Conditions d'utilisation de Discord</a>. Les tokens sont stockes localement sur votre appareil. Lorsque vous utilisez le runner cloud, votre token est transmis a nos serveurs au demarrage pour connecter votre bot, mais il n'est <strong>jamais stocke en base de donnees</strong> et reste uniquement en memoire le temps de la session. Vous etes responsable de la securite de vos tokens, de votre appareil, de vos sauvegardes et de votre compte Google connecte.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Authentification (prochainement)</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">La connexion via Discord sera disponible dans une future mise a jour.</h2>
+        <p class="text-on-surface-variant leading-relaxed">Une future version de Bot Creator proposera l'authentification via <strong>Discord OAuth2</strong>. Lorsqu'elle sera activee, l'application collectera votre identifiant Discord, nom d'utilisateur, adresse e-mail et avatar pour l'authentification et la sauvegarde cloud de vos configurations. Ces donnees seront stockees sur <strong>Firebase Authentication</strong> et <strong>Firestore</strong>. Cette section sera mise a jour avant le lancement de la fonctionnalite.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30 hover:neon-glow" data-reveal id="data-deletion">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Suppression des donnees</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Demander la suppression de votre compte et de vos donnees Bot Creator</h2>
+        <h3 class="text-lg font-bold text-on-surface mb-4">Comment demander la suppression</h3>
+        <p class="text-on-surface-variant leading-relaxed mb-6">Pour demander la suppression des donnees associees a votre compte <strong>Bot Creator</strong>, envoyez un email a <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a> avec pour objet <strong>"Demande de suppression de donnees"</strong>. Indiquez l'adresse e-mail ou le nom d'utilisateur Discord lie a votre compte afin que nous puissions identifier vos donnees. Nous accuserons reception de votre demande sous 7 jours et completerons la suppression sous 30 jours.</p>
+        
+        <h3 class="text-lg font-bold text-on-surface mb-4">Donnees qui seront supprimees</h3>
+        <ul class="space-y-3 mb-6">
+          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
+            <span class="material-symbols-outlined text-primary text-lg">delete</span>
+            <span>Votre profil utilisateur (identifiant Discord, nom d'utilisateur, adresse e-mail, avatar)</span>
+          </li>
+          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
+            <span class="material-symbols-outlined text-primary text-lg">delete</span>
+            <span>Configurations de bots, workflows et donnees associees stockees dans le cloud (Firebase Firestore)</span>
+          </li>
+          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
+            <span class="material-symbols-outlined text-primary text-lg">delete</span>
+            <span>Identifiants d'authentification (Firebase Authentication)</span>
+          </li>
+          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
+            <span class="material-symbols-outlined text-primary text-lg">delete</span>
+            <span>Preferences de consentement publicitaire</span>
+          </li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-on-surface mb-4">Donnees pouvant etre conservees</h3>
+        <ul class="space-y-3 mb-6">
+          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
+            <span class="material-symbols-outlined text-primary text-lg">info</span>
+            <span><strong>Donnees analytiques agregees</strong> (Google Analytics for Firebase) — les statistiques d'utilisation anonymisees, ne permettant pas de vous identifier, sont conservees indefiniment pour l'amelioration du produit.</span>
+          </li>
+          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
+            <span class="material-symbols-outlined text-primary text-lg">info</span>
+            <span><strong>Rapports de plantage</strong> (Firebase Crashlytics) — les traces de plantage anonymisees sont conservees jusqu'a 90 jours apres leur collecte pour la correction de bugs.</span>
+          </li>
+          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
+            <span class="material-symbols-outlined text-primary text-lg">info</span>
+            <span><strong>Obligations legales</strong> — si la loi nous impose de conserver certaines donnees (ex : historique de transactions), seules les donnees legalement requises seront conservees pour la duree applicable.</span>
+          </li>
+        </ul>
+        <p class="text-on-surface-variant text-sm italic">Les donnees stockees localement sur votre appareil (tokens de bot, configurations, logs) ne sont pas transmises a nos serveurs et doivent etre supprimees par vous directement en desinstallant l'application ou en effacant ses donnees.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Vos droits</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Droits RGPD & CCPA</h2>
+        <p class="text-on-surface-variant leading-relaxed">Si vous residez dans l'Espace economique europeen, au Royaume-Uni ou en Californie, vous disposez du droit d'acces, de rectification, d'effacement, de limitation du traitement, d'opposition au traitement et de portabilite de vos donnees personnelles. Pour exercer l'un de ces droits, contactez <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a>.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Politiques des tiers</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Politiques de confidentialite des services utilises</h2>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary">public</span>
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Politique de confidentialite Google (Firebase, AdMob)</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary">public</span>
+            <a href="https://www.is.com/privacy-policy/" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Politique de confidentialite Unity / IronSource</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary">public</span>
+            <a href="https://discord.com/privacy" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Politique de confidentialite Discord</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary">public</span>
+            <a href="https://discord.com/terms" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Conditions d'utilisation Discord</a>
+          </li>
+        </ul>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Contact</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Questions sur la confidentialite, les donnees ou la publicite</h2>
+        <p class="text-on-surface-variant leading-relaxed">Pour toute question produit ou confidentialite, contactez <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a>.</p>
+      </article>
+
+      <footer class="pt-12 border-t border-outline-variant text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/40">
+        Derniere mise a jour : 10 avril 2026
+      </footer>
     </div>
   </div>
-
-  <div class="privacy-grid">
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Stockage local</p>
-      <h2>Les donnees de votre bot restent sur l'appareil ou la machine qui execute le produit.</h2>
-      <p>Bot Creator stocke metadonnees, reglages des commandes, workflows, variables et donnees runtime dans le dossier
-        local de l'application ou dans le volume monte du runner. Les donnees de diagnostic et d'analytique sont
-        envoyees a des services tiers comme decrit dans les sections suivantes.</p>
-    </article>
-
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Sauvegardes optionnelles</p>
-      <h2>Google Drive sert uniquement a la sauvegarde et a la restauration.</h2>
-      <p>Quand vous connectez Google Drive, Bot Creator synchronise les sauvegardes dans AppData. Sur le runner, les
-        tokens OAuth restent dans le volume monte pour survivre aux redemarrages.</p>
-    </article>
-
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Diagnostics, analytique &amp; rapports de plantage</p>
-      <h2>Les donnees de diagnostic et d'utilisation sont collectees via Firebase.</h2>
-      <p>Bot Creator utilise <strong>Google Analytics for Firebase</strong> et <strong>Firebase Crashlytics</strong>
-        pour comprendre l'utilisation de l'application et corriger les bugs. Ces services collectent le type d'appareil,
-        la version du systeme d'exploitation, l'adresse IP (anonymisee), l'identifiant d'installation Firebase, les
-        actions effectuees dans l'app et les traces de plantage (stack traces). Ces donnees sont envoyees sur les
-        serveurs de Google.</p>
-    </article>
-
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Publicite &amp; suivi</p>
-      <h2>Les publicites sont fournies par des regies tierces.</h2>
-      <p>Bot Creator affiche des publicites fournies par <strong>Google AdMob</strong> et <strong>IronSource</strong>.
-        Ces SDK collectent des identifiants publicitaires (IDFA sur iOS, AAID sur Android), l'adresse IP et des donnees
-        d'interaction pour diffuser des annonces personnalisees ou non personnalisees. Un dialogue de consentement
-        propulse par <strong>Google UMP (User Messaging Platform)</strong> s'affiche au lancement pour vous permettre de
-        choisir d'autoriser ou non la publicite personnalisee. Vous pouvez egalement revoquer votre consentement a tout
-        moment depuis les parametres de votre appareil.</p>
-    </article>
-
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Stockage cloud finance par la pub (prochainement)</p>
-      <h2>Regardez des publicites pour debloquer du stockage cloud pour vos donnees bot.</h2>
-      <p>Une future version de Bot Creator vous permettra de regarder des publicites pour obtenir du stockage cloud pour
-        vos configurations de bots, workflows et donnees associees. Lorsque vous activerez cette option, certaines
-        donnees seront stockees sur <strong>Firebase Firestore</strong> pour votre compte. Il s'agit d'une
-        fonctionnalite utilitaire : le stockage cloud est fourni en echange du visionnage de publicites, et non a des
-        fins d'analytique ou de suivi. Vous serez clairement informe avant que toute donnee ne quitte votre appareil.
-      </p>
-    </article>
-
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Votre responsabilite</p>
-      <h2>Protegez vos tokens, exports, sauvegardes et comptes relies.</h2>
-      <p>Bot Creator est un <strong>service tiers</strong> qui interagit avec la plateforme Discord. Les tokens de bot
-        Discord sont des identifiants sensibles regis par les <a href="https://discord.com/terms" target="_blank"
-          rel="noopener">Conditions d'utilisation de Discord</a>. Les tokens sont stockes localement sur votre appareil.
-        Lorsque vous utilisez le runner cloud, votre token est transmis a nos serveurs au demarrage pour connecter votre
-        bot, mais il n'est <strong>jamais stocke en base de donnees</strong> et reste uniquement en memoire le temps de
-        la session. Vous etes responsable de la securite de vos tokens, de votre appareil, de vos sauvegardes et de
-        votre compte Google connecte.</p>
-    </article>
-
-    <article class="panel-card" data-reveal>
-      <p class="section-label">Authentification (prochainement)</p>
-      <h2>La connexion via Discord sera disponible dans une future mise a jour.</h2>
-      <p>Une future version de Bot Creator proposera l'authentification via <strong>Discord OAuth2</strong>. Lorsqu'elle
-        sera activee, l'application collectera votre identifiant Discord, nom d'utilisateur, adresse e-mail et avatar
-        pour l'authentification et la sauvegarde cloud de vos configurations. Ces donnees seront stockees sur
-        <strong>Firebase Authentication</strong> et <strong>Firestore</strong>. Cette section sera mise a jour avant le
-        lancement de la fonctionnalite.
-      </p>
-    </article>
-  </div>
-
-  <div class="panel-card" data-reveal id="data-deletion">
-    <p class="section-label">Suppression des donnees</p>
-    <h2>Demander la suppression de votre compte et de vos donnees Bot Creator</h2>
-    <h3>Comment demander la suppression</h3>
-    <p>Pour demander la suppression des donnees associees a votre compte <strong>Bot Creator</strong>, envoyez un email
-      a <a href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a> avec pour objet <strong>"Demande de
-        suppression de donnees"</strong>. Indiquez l'adresse e-mail ou le nom d'utilisateur Discord lie a votre compte
-      afin que nous puissions identifier vos donnees. Nous accuserons reception de votre demande sous 7 jours et
-      completerons la suppression sous 30 jours.</p>
-    <h3>Donnees qui seront supprimees</h3>
-    <ul>
-      <li>Votre profil utilisateur (identifiant Discord, nom d'utilisateur, adresse e-mail, avatar)</li>
-      <li>Configurations de bots, workflows et donnees associees stockees dans le cloud (Firebase Firestore)</li>
-      <li>Identifiants d'authentification (Firebase Authentication)</li>
-      <li>Preferences de consentement publicitaire</li>
-    </ul>
-    <h3>Donnees pouvant etre conservees</h3>
-    <ul>
-      <li><strong>Donnees analytiques agregees</strong> (Google Analytics for Firebase) — les statistiques d'utilisation
-        anonymisees, ne permettant pas de vous identifier, sont conservees indefiniment pour l'amelioration du produit.
-      </li>
-      <li><strong>Rapports de plantage</strong> (Firebase Crashlytics) — les traces de plantage anonymisees sont
-        conservees jusqu'a 90 jours apres leur collecte pour la correction de bugs.</li>
-      <li><strong>Obligations legales</strong> — si la loi nous impose de conserver certaines donnees (ex : historique
-        de transactions), seules les donnees legalement requises seront conservees pour la duree applicable.</li>
-    </ul>
-    <p>Les donnees stockees localement sur votre appareil (tokens de bot, configurations, logs) ne sont pas transmises a
-      nos serveurs et doivent etre supprimees par vous directement en desinstallant l'application ou en effacant ses
-      donnees.</p>
-  </div>
-
-  <div class="panel-card" data-reveal>
-    <p class="section-label">Vos droits</p>
-    <h2>Droits RGPD &amp; CCPA</h2>
-    <p>Si vous residez dans l'Espace economique europeen, au Royaume-Uni ou en Californie, vous disposez du droit
-      d'acces, de rectification, d'effacement, de limitation du traitement, d'opposition au traitement et de portabilite
-      de vos donnees personnelles. Pour exercer l'un de ces droits, contactez <a
-        href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>.</p>
-  </div>
-
-  <div class="panel-card" data-reveal>
-    <p class="section-label">Politiques des tiers</p>
-    <h2>Politiques de confidentialite des services utilises</h2>
-    <ul>
-      <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Politique de confidentialite
-          Google</a> (Firebase, AdMob)</li>
-      <li><a href="https://www.is.com/privacy-policy/" target="_blank" rel="noopener">Politique de confidentialite Unity
-          / IronSource</a></li>
-      <li><a href="https://discord.com/privacy" target="_blank" rel="noopener">Politique de confidentialite Discord</a>
-      </li>
-      <li><a href="https://discord.com/terms" target="_blank" rel="noopener">Conditions d'utilisation Discord</a></li>
-    </ul>
-  </div>
-
-  <div class="panel-card" data-reveal>
-    <p class="section-label">Contact</p>
-    <h2>Questions sur la confidentialite, les donnees ou la publicite</h2>
-    <p>Pour toute question produit ou confidentialite, contactez <a
-        href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>.</p>
-    <p class="small-label">Derniere mise a jour : 10 avril 2026</p>
-  </div>
-</section>
+</main>

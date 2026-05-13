@@ -10,132 +10,158 @@ permalink: /download/
 {% assign downloads = site.data.downloads %}
 {% assign t = site.data.locales[page.locale] %}
 
-<section class="site-grid page-section">
-  <div class="page-hero compact" data-reveal>
-    <div class="section-header">
-      <div class="eyebrow-row">
-        <span class="eyebrow-pill">Download Bot Creator</span>
-        <span class="meta-chip">App first, runner ready</span>
+<main class="min-h-screen py-16 lg:py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <!-- Header -->
+    <header class="mb-16" data-reveal>
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <span class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
+          <span class="material-symbols-outlined text-sm">download</span>
+          Downloads
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 border border-outline-variant">
+          App first, runner second
+        </span>
       </div>
-      <h1>Choose the Bot Creator setup that fits your team.</h1>
-      <p class="lede">Most teams should start with the app on mobile or desktop. Linux and the Docker runner are available when you want local workstation control or a longer-lived runtime.</p>
-      <div class="hero-points">
-        <span class="hero-point">Mobile and desktop editing</span>
-        <span class="hero-point">Linux workstation support</span>
-        <span class="hero-point">Docker runner for remote uptime</span>
-      </div>
-    </div>
-  </div>
+      <h1 class="font-display text-4xl font-black leading-tight text-on-surface md:text-5xl lg:text-7xl mb-8">
+        Choose the Bot Creator setup that fits your team.
+      </h1>
+      <p class="max-w-3xl text-xl leading-relaxed text-on-surface-variant italic border-l-4 border-primary pl-6 py-2 mb-12">
+        Most teams should start with the app on mobile or desktop. Linux and the Docker runner are available when you want local workstation control or a longer-lived remote runtime.
+      </p>
+    </header>
 
-  <div class="download-grid">
-    <article class="download-card" data-reveal>
-      <span class="download-meta">Mobile</span>
-      <h2>Android and iPhone</h2>
-      <p>Use Bot Creator on the device you already carry for quick edits, bot checks, and basic runtime control.</p>
-      <ul class="download-list">
-        <li><div>Build and review bot logic on the go.</div></li>
-        <li><div>Good fit for creators and moderators who need fast access.</div></li>
-      </ul>
-      <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">Google Play</a>
-        <a class="button button-secondary" href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">App Store</a>
-      </div>
-    </article>
-
-    <article class="download-card" data-reveal>
-      <span class="download-meta">Desktop</span>
-      <h2>Windows workspace</h2>
-      <p>Use a larger workspace to design commands, review flows, and manage reusable bot logic more comfortably.</p>
-      <ul class="download-list">
-        <li><div>Best default setup for longer editing sessions.</div></li>
-        <li><div>Strong choice for teams learning the product seriously.</div></li>
-      </ul>
-      <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.stores.windows_store.url }}" target="_blank" rel="noopener noreferrer">Microsoft Store</a>
-        <a class="button button-secondary" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">Steam</a>
-      </div>
-    </article>
-
-    <article class="download-card" data-reveal>
-      <span class="download-meta">Linux</span>
-      <h2>Steam</h2>
-      <p>Run the product locally on Linux when you want direct control without moving straight into containers.</p>
-      <ul class="download-list">
-        <li><div>Keep the same visual workflow on your Linux workstation.</div></li>
-        <li><div>Useful when your team already works in a Linux environment.</div></li>
-      </ul>
-      <div class="download-actions">
-        <a class="button button-primary" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">Steam</a>
-      </div>
-    </article>
-
-    <article class="download-card" data-reveal>
-      <span class="download-meta">Advanced runtime</span>
-      <h2>Docker runner</h2>
-      <p>Use the runner when you need a browser-based runtime on a Linux server, Raspberry Pi, or remote host.</p>
-      <ul class="download-list">
-        <li><div>Designed for uptime and remote execution, not as the first required install.</div></li>
-        <li><div>Pairs well with app-based editing once the bot is ready to stay online.</div></li>
-      </ul>
-      <div class="download-actions">
-        <a class="button button-primary" href="#runner">Open runner setup</a>
-        <a class="button button-secondary" href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">Runner docs</a>
-      </div>
-    </article>
-  </div>
-
-  <section class="section-shell" id="runner" data-reveal>
-    <div class="split-grid">
-      <article class="panel-card">
-        <p class="section-label">Runner setup</p>
-        <h2>Use the Docker runner when you need remote Linux uptime.</h2>
-        <p>The runner is designed for teams that already manage the bot in the app and want a browser-based runtime on a server, Raspberry Pi, or Linux host.</p>
-        <ul class="check-list">
-          <li><div>Browser-based runtime for Linux machines and remote hosts.</div></li>
-          <li><div>Logs and runner state persist in the mounted Docker volume.</div></li>
-          <li><div>Best used after the bot workflow is already configured in the app.</div></li>
-        </ul>
-        <div class="support-links">
-          <a href="{{ downloads.runner_guide_url }}" target="_blank" rel="noopener noreferrer">Open runner docs</a>
-          <a href="{{ downloads.release_notes_page }}" target="_blank" rel="noopener noreferrer">Release notes</a>
+    <!-- Download Grid -->
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 mb-24">
+      <!-- Mobile -->
+      <article class="flex flex-col rounded-[2.5rem] bg-surface-container border border-outline-variant p-8 transition-all hover:border-primary/40 hover:neon-glow" data-reveal>
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-3xl">smartphone</span>
+        </div>
+        <h2 class="mb-3 text-2xl font-bold text-on-surface">Mobile</h2>
+        <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
+          Build and review bot logic on the go. Best for creators and moderators who need to act fast.
+        </p>
+        <div class="mt-auto space-y-3">
+          <a class="button-primary w-full" href="{{ downloads.stores.android_play.url }}" target="_blank">
+            <span class="material-symbols-outlined text-sm mr-2">phone_android</span>
+            Google Play
+          </a>
+          <a class="button-outline w-full" href="{{ downloads.stores.ios_appstore.url }}" target="_blank">
+            <span class="material-symbols-outlined text-sm mr-2">phone_iphone</span>
+            App Store
+          </a>
         </div>
       </article>
 
-      <div class="panel-stack">
-        <div class="command-card">
-          <div class="command-head">
-            <h3>1. Pull the image</h3>
-            <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.pull }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
-          </div>
-          <pre class="command-block">{{ downloads.runner.commands.pull }}</pre>
+      <!-- Desktop -->
+      <article class="flex flex-col rounded-[2.5rem] bg-surface-container border border-outline-variant p-8 transition-all hover:border-primary/40 hover:neon-glow" data-reveal>
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-3xl">laptop</span>
+        </div>
+        <h2 class="mb-3 text-2xl font-bold text-on-surface">Desktop</h2>
+        <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
+          A spacious workspace for designing commands and organizing logic on Windows and MacOS.
+        </p>
+        <div class="mt-auto space-y-3">
+          <a class="button-primary w-full !text-xs !h-11" href="{{ downloads.stores.windows_store.url }}" target="_blank">
+            <span class="material-symbols-outlined text-sm mr-2">grid_view</span>
+            Microsoft Store
+          </a>
+          <a class="button-outline w-full !text-xs !h-11" href="{{ downloads.stores.steam.url }}" target="_blank">
+            <span class="material-symbols-outlined text-sm mr-2">sports_esports</span>
+            Steam
+          </a>
+        </div>
+      </article>
+
+      <!-- Linux -->
+      <article class="flex flex-col rounded-[2.5rem] bg-surface-container border border-outline-variant p-8 transition-all hover:border-primary/40 hover:neon-glow" data-reveal>
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-3xl">terminal</span>
+        </div>
+        <h2 class="mb-3 text-2xl font-bold text-on-surface">Linux</h2>
+        <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
+          Run the product locally on Linux when you want direct control without moving to containers immediately.
+        </p>
+        <div class="mt-auto space-y-3">
+          <a class="button-primary w-full" href="{{ downloads.stores.steam.url }}" target="_blank">
+            <span class="material-symbols-outlined text-sm mr-2">sports_esports</span>
+            Steam
+          </a>
+        </div>
+      </article>
+
+      <!-- Docker Runner -->
+      <article class="flex flex-col rounded-[2.5rem] bg-surface-container border border-outline-variant p-8 transition-all hover:border-primary/40 hover:neon-glow border-primary/20" data-reveal>
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-3xl">deployed_code</span>
+        </div>
+        <h2 class="mb-3 text-2xl font-bold text-on-surface">Docker Runner</h2>
+        <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
+          Browser-based runtime for Linux servers, Raspberry Pi, or remote hosts. Designed for uptime.
+        </p>
+        <div class="mt-auto space-y-3">
+          <a class="button-primary w-full" href="#runner">
+            <span class="material-symbols-outlined text-sm mr-2">settings</span>
+            Runner Setup
+          </a>
+          <a class="button-outline w-full" href="{{ "/guides/runner-docker-api-only/" | relative_url }}" target="_blank">
+            <span class="material-symbols-outlined text-sm mr-2">description</span>
+            Docs
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Runner Setup -->
+    <section id="runner" class="rounded-[3rem] bg-surface-container-high border border-outline-variant p-8 md:p-16 mb-24 scroll-mt-24" data-reveal>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div>
+          <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Advanced Setup</p>
+          <h2 class="font-display text-4xl font-black text-on-surface mb-6">Docker runner for remote Linux uptime.</h2>
+          <p class="text-on-surface-variant mb-10 leading-relaxed text-lg">
+            The runner is designed for teams that already manage the bot in the app and want a browser-based runtime on a server or Raspberry Pi.
+          </p>
+          <ul class="space-y-6">
+            <li class="flex items-start gap-4">
+              <span class="material-symbols-outlined text-primary">check_circle</span>
+              <div>
+                <p class="text-on-surface font-bold">Browser-based runtime</p>
+                <p class="text-on-surface-variant text-sm">Access your bot control panel from any browser on your network.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="material-symbols-outlined text-primary">check_circle</span>
+              <div>
+                <p class="text-on-surface font-bold">Persistent state</p>
+                <p class="text-on-surface-variant text-sm">Logs and state persist in mounted Docker volumes for reliable operations.</p>
+              </div>
+            </li>
+          </ul>
         </div>
 
-        <div class="command-card">
-          <div class="command-head">
-            <h3>2. Create the volume</h3>
-            <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.volume }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
+        <div class="flex flex-col gap-6">
+          <div class="rounded-3xl bg-surface-container-lowest p-6 border border-outline-variant group">
+            <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">1. Pull the image</p>
+            <div class="flex items-center justify-between gap-4">
+              <code class="text-primary text-sm font-mono truncate">{{ downloads.runner.commands.pull }}</code>
+            </div>
           </div>
-          <pre class="command-block">{{ downloads.runner.commands.volume }}</pre>
-        </div>
-
-        <div class="command-card">
-          <div class="command-head">
-            <h3>3. Start the runner</h3>
-            <button class="copy-button" type="button" data-copy="{{ downloads.runner.commands.run }}" data-copy-label="{{ t.common.copy }}" data-copy-success="{{ t.common.copied }}">{{ t.common.copy }}</button>
+          <div class="rounded-3xl bg-surface-container-lowest p-6 border border-outline-variant group">
+            <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">2. Create the volume</p>
+            <div class="flex items-center justify-between gap-4">
+              <code class="text-primary text-sm font-mono truncate">{{ downloads.runner.commands.volume }}</code>
+            </div>
           </div>
-          <pre class="command-block">{{ downloads.runner.commands.run }}</pre>
+          <div class="rounded-3xl bg-surface-container-lowest p-6 border border-outline-variant group">
+            <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">3. Start the runner</p>
+            <div class="flex items-center justify-between gap-4">
+              <code class="text-primary text-sm font-mono break-all">{{ downloads.runner.commands.run }}</code>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <div class="cta-banner" data-reveal>
-    <p class="section-label">Need guidance</p>
-    <h2>Install the product, then follow the guide that matches your next step.</h2>
-    <p>Start with the app for editing and control. Add the runner only when uptime becomes an operational requirement.</p>
-    <div class="button-row">
-      <a class="button button-primary" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
-      <a class="button button-secondary" href="{{ downloads.release_page }}" target="_blank" rel="noopener noreferrer">Latest release</a>
-    </div>
+    </section>
   </div>
-</section>
+</main>

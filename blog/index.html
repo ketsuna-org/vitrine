@@ -9,71 +9,95 @@ content_language: en
 {% assign t = site.data.locales[page.locale] %}
 {% assign post_list = site.posts | where: "locale", "en" %}
 {% if paginator and paginator.posts %}
-{% assign post_list = paginator.posts %}
+  {% assign post_list = paginator.posts %}
 {% endif %}
 
-<section class="site-grid page-section">
-  <div class="page-hero compact" data-reveal>
-    <div class="section-header">
-      <div class="eyebrow-row">
-        <span class="eyebrow-pill">{{ t.guides.eyebrow }}</span>
-        <span class="meta-chip">English guides</span>
+<main class="min-h-screen py-16 lg:py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <!-- Hero Section -->
+    <header class="mb-16">
+      <div class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20 mb-6">
+        <span class="material-symbols-outlined text-sm">library_books</span>
+        {{ t.guides.eyebrow }}
       </div>
-      <h1>{{ t.guides.title }}</h1>
-      <p class="lede">{{ t.guides.subtitle }}</p>
-    </div>
-  </div>
+      <h1 class="font-display text-4xl font-black leading-tight text-on-surface md:text-5xl lg:text-7xl mb-6">
+        {{ t.guides.title }}
+      </h1>
+      <p class="max-w-3xl text-xl leading-relaxed text-on-surface-variant italic">
+        {{ t.guides.subtitle }}
+      </p>
+    </header>
 
-  {% if post_list and post_list.size > 0 %}
-  <section class="section-shell" data-reveal>
-    <div class="section-header">
-      <p class="section-label">All guides</p>
-      <h2 class="section-heading-xl">Short walkthroughs for real Bot Creator tasks.</h2>
-      <p class="section-intro">Each guide focuses on one clear outcome so you can move quickly from setup to a working bot.</p>
-    </div>
-    <div class="guide-grid">
-      {% for post in post_list %}
-      <article class="guide-card" data-reveal>
-        <div class="guide-meta">
-          <span class="meta-chip">{{ post.date | date: "%Y-%m-%d" }}</span>
-          {% if post.categories and post.categories.size > 0 %}
-          <span class="meta-chip">{{ post.categories | first }}</span>
-          {% endif %}
-        </div>
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}</p>
-        <div class="download-actions">
-          <a class="button button-secondary" href="{{ post.url | relative_url }}">{{ t.guides.read_more }}</a>
-        </div>
-      </article>
-      {% endfor %}
-    </div>
-  </section>
-  {% else %}
-  <div class="panel-card" data-reveal>
-    <h2>{{ t.guides.empty_title }}</h2>
-    <p>{{ t.guides.empty_body }}</p>
-  </div>
-  {% endif %}
+    <!-- Guides Grid -->
+    {% if post_list and post_list.size > 0 %}
+    <section class="mb-24">
+      <div class="mb-12">
+        <h2 class="font-display text-2xl font-bold text-on-surface mb-2">All guides</h2>
+        <p class="text-on-surface-variant">Short walkthroughs for real Bot Creator tasks.</p>
+      </div>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {% for post in post_list %}
+        <article class="group flex flex-col overflow-hidden rounded-2xl bg-surface-container border border-outline-variant transition-all hover:border-primary/40 hover:neon-glow">
+          <div class="flex flex-1 flex-col p-8">
+            <div class="mb-4 flex flex-wrap items-center gap-3">
+              <span class="text-xs font-bold text-on-surface-variant/60">{{ post.date | date: "%Y-%m-%d" }}</span>
+              {% if post.categories and post.categories.size > 0 %}
+              <span class="rounded-full bg-primary/5 px-2 py-0.5 text-[10px] font-bold text-primary border border-primary/10">{{ post.categories | first }}</span>
+              {% endif %}
+            </div>
+            <h3 class="mb-4 font-display text-2xl font-bold leading-tight text-on-surface group-hover:text-primary transition-colors">
+              {{ post.title }}
+            </h3>
+            <p class="mb-8 line-clamp-3 text-sm leading-relaxed text-on-surface-variant">
+              {{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}
+            </p>
+            <a class="mt-auto flex h-12 items-center justify-center rounded-xl bg-surface-container-highest px-6 text-sm font-bold text-on-surface transition-all group-hover:bg-primary group-hover:text-on-primary" href="{{ post.url | relative_url }}">
+              {{ t.guides.read_more }}
+            </a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
 
-  {% if paginator and paginator.total_pages > 1 %}
-  <div class="button-row" data-reveal>
-    {% if paginator.previous_page %}
-    <a class="button button-secondary" href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
+      <!-- Pagination -->
+      {% if paginator and paginator.total_pages > 1 %}
+      <div class="mt-12 flex justify-center gap-4">
+        {% if paginator.previous_page %}
+        <a class="button-outline !px-6" href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
+        {% endif %}
+        {% if paginator.next_page %}
+        <a class="button-outline !px-6" href="{{ paginator.next_page_path | relative_url }}">Next</a>
+        {% endif %}
+      </div>
+      {% endif %}
+    </section>
+    {% else %}
+    <div class="rounded-2xl bg-surface-container border border-outline-variant p-12 text-center">
+      <span class="material-symbols-outlined text-6xl text-on-surface-variant/20 mb-4">folder_open</span>
+      <h2 class="text-2xl font-bold text-on-surface mb-2">{{ t.guides.empty_title }}</h2>
+      <p class="text-on-surface-variant">{{ t.guides.empty_body }}</p>
+    </div>
     {% endif %}
-    {% if paginator.next_page %}
-    <a class="button button-secondary" href="{{ paginator.next_page_path | relative_url }}">Next</a>
-    {% endif %}
-  </div>
-  {% endif %}
 
-  <div class="cta-banner" data-reveal>
-    <p class="section-label">Need the product first?</p>
-    <h2>Install Bot Creator, then open the guide that matches your next task.</h2>
-    <p>Start with the app for setup and control, then move to the runner only when uptime becomes part of the job.</p>
-    <div class="button-row">
-      <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.primary_cta }}</a>
-      <a class="button button-secondary" href="{{ t.paths.home | relative_url }}">{{ t.nav.home }}</a>
-    </div>
+    <!-- CTA Banner -->
+    <section class="rounded-[2.5rem] bg-gradient-to-br from-surface-container-highest to-surface-container border border-primary/20 p-8 md:p-16 text-center neon-glow">
+      <div class="mx-auto max-w-3xl">
+        <p class="text-sm font-bold text-primary uppercase tracking-widest mb-6">Need the product first?</p>
+        <h2 class="font-display text-3xl font-bold text-on-surface md:text-4xl mb-6">
+          Install Bot Creator, then open the guide that matches your next task.
+        </h2>
+        <p class="text-lg text-on-surface-variant mb-10">
+          Start with the app for setup and control, then move to the runner only when uptime becomes part of the job.
+        </p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a href="{{ t.paths.download | relative_url }}" class="button-primary h-14 px-10 text-lg">
+            {{ t.shell.primary_cta }}
+          </a>
+          <a href="{{ t.paths.home | relative_url }}" class="button-outline h-14 px-10 text-lg">
+            {{ t.nav.home }}
+          </a>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
+</main>

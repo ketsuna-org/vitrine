@@ -1,6 +1,4 @@
-release_page: "https://github.com/ketsuna-org/bot-creator/releases/latest"
-release_notes_page: "https://github.com/ketsuna-org/bot-creator/releases"
-runner_guide_url: "https://github.com/ketsuna-org/bot-creator/blob/main/docs/runner-docker.md"
+runner_guide_url: "/guides/runner-docker-api-only/"
 docker_image: "ketsuna-org/bot-creator-runner:latest"
 
 stores:
@@ -16,14 +14,15 @@ stores:
   ios_appstore:
     label: "App Store"
     url: "https://apps.apple.com/us/app/bot-creator-for-discord/id6760181193"
-
+    
 runner:
   web_url: "http://localhost:8080"
   commands:
-    pull: "docker pull garder500/bot-creator-runner:latest"
+    pull: "docker pull ketsuna-org/bot-creator-runner:latest"
     volume: "docker volume create bot_creator_data"
-    run: "docker run --rm -p 8080:8080 -v bot_creator_data:/data ketsuna-org/bot-creator-runner:latest"
+    run: "docker run --rm -p 8080:8080 -e BOT_CREATOR_WEB_HOST=0.0.0.0 -e BOT_CREATOR_API_TOKEN=votre_token -v bot_creator_data:/data ketsuna-org/bot-creator-runner:latest"
   notes:
-    - "Starts a browser-based runner UI for selecting, starting, and stopping bots."
-    - "Persists Google Drive OAuth tokens and runner logs inside the mounted /data volume."
+    - "Exposes a HTTP API for remote control via the Bot Creator application."
+    - "Persists bot configurations, variables, and logs inside the mounted /data volume."
+    - "API-only mode: legacy CLI local ZIP commands are no longer supported."
     - "Best suited for Linux servers, Raspberry Pi, and remote bot hosting setups."

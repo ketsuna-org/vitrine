@@ -9,6 +9,22 @@
     --background: #0b1326;
     --on-background: #dae2fd;
     --primary: #ddb7ff;
+    --on-primary: #490080;
+    --surface: #0b1326;
+    --on-surface: #dae2fd;
+    --surface-container: #171f33;
+    --outline: #988d9f;
+    --outline-variant: #4d4354;
+    
+    /* Legacy variable mappings for markdown.css */
+    --text-100: #dae2fd;
+    --text-200: #cfc2d6;
+    --text-300: #988d9f;
+    --text-400: #4d4354;
+    --accent-500: #ddb7ff;
+    --mint-400: #c0c1ff;
+    --font-display: "Space Grotesk", sans-serif;
+    --font-mono: ui-monospace, monospace;
   }
 
   html {
@@ -64,12 +80,17 @@
   }
 
   .button-primary {
-    @apply bg-primary text-on-primary font-bold px-6 py-3 rounded-xl shadow-neon transition-all;
+    @apply inline-flex items-center justify-center bg-primary text-on-primary font-bold px-6 py-3 min-h-[3rem] rounded-xl shadow-neon transition-all;
     @apply hover:scale-[1.02] active:scale-[0.98];
   }
 
   .button-outline {
-    @apply border border-outline bg-transparent text-on-surface font-bold px-8 py-3 rounded-xl transition-all;
+    @apply inline-flex items-center justify-center border border-outline bg-transparent text-on-surface font-bold px-6 py-3 min-h-[3rem] rounded-xl transition-all;
     @apply hover:bg-surface-container active:scale-[0.98];
+  }
+
+  /* Specific styles for article layout */
+  .post-card {
+    @apply bg-surface-container border border-outline-variant rounded-[2rem] p-8 md:p-12;
   }
 }

@@ -15,7 +15,7 @@ collections:
   - name: tutorials_en
     label: Tutorials EN
     label_singular: English tutorial
-    folder: tutorials/_posts
+    folder: _posts
     create: true
     filter:
       field: locale
@@ -50,7 +50,7 @@ collections:
   - name: tutorials_fr
     label: Tutoriels FR
     label_singular: Tutoriel francais
-    folder: tutorials/_posts
+    folder: _posts
     create: true
     filter:
       field: locale

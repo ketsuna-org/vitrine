@@ -18,117 +18,101 @@
   {% endif %}
 {% endif %}
 {% include site_head.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url markdown=true %}
-{% assign article_content = content | inject_anchors %}
-{% assign asset_root = '/assets/' | relative_url %}
-{% capture asset_src_double %}src="{{ asset_root }}{% endcapture %}
-{% capture asset_href_double %}href="{{ asset_root }}{% endcapture %}
-{% capture asset_src_single %}src='{{ asset_root }}{% endcapture %}
-{% capture asset_href_single %}href='{{ asset_root }}{% endcapture %}
-{% comment %}
-Normalize Decap CMS uploads after Markdown renders so `assets/...` links resolve
-from the site root instead of the post permalink.
-{% endcomment %}
-{% assign article_content = article_content | replace: 'src="./assets/', asset_src_double %}
-{% assign article_content = article_content | replace: 'src="assets/', asset_src_double %}
-{% assign article_content = article_content | replace: 'src="/assets/', asset_src_double %}
-{% assign article_content = article_content | replace: 'href="./assets/', asset_href_double %}
-{% assign article_content = article_content | replace: 'href="assets/', asset_href_double %}
-{% assign article_content = article_content | replace: 'href="/assets/', asset_href_double %}
-{% assign article_content = article_content | replace: "src='./assets/", asset_src_single %}
-{% assign article_content = article_content | replace: "src='assets/", asset_src_single %}
-{% assign article_content = article_content | replace: "src='/assets/", asset_src_single %}
-{% assign article_content = article_content | replace: "href='./assets/", asset_href_single %}
-{% assign article_content = article_content | replace: "href='assets/", asset_href_single %}
-{% assign article_content = article_content | replace: "href='/assets/", asset_href_single %}
-<body class="site-body">
-  <a class="skip-link" href="#main-content">{{ t.common.skip_to_content }}</a>
-  <div class="site-bg"></div>
-  <div class="reading-progress" data-reading-progress>
-    <span></span>
-  </div>
+
+<body class="bg-background text-on-background font-sans antialiased">
   {% include site_header.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url t=t %}
 
-  <main class="site-main" id="main-content" tabindex="-1">
-    <section class="site-grid page-section">
-      <div class="page-hero compact" data-reveal>
-        <div class="eyebrow-row">
-          <span class="eyebrow-pill">{{ t.guides.eyebrow }}</span>
-          <span class="meta-chip">{{ t.common.source_language }}: {% if page.content_language == 'fr' %}{{ t.common.source_language_fr }}{% else %}{{ t.common.source_language_en }}{% endif %}</span>
+  <main id="main-content" class="min-h-screen py-16 lg:py-24" tabindex="-1">
+    <div class="mx-auto max-w-7xl px-6">
+      <!-- Breadcrumbs -->
+      <nav class="mb-8 flex items-center gap-2 text-sm font-medium text-on-surface-variant" aria-label="Breadcrumb">
+        <a href="{{ t.paths.home | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.home }}</a>
+        <span class="material-symbols-outlined text-base">chevron_right</span>
+        <a href="{{ t.paths.guides | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.guides }}</a>
+        <span class="material-symbols-outlined text-base">chevron_right</span>
+        <span class="text-on-surface truncate">{{ page.title }}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
+        <!-- Main Content -->
+        <div class="lg:col-span-8">
+          <article class="post-card neon-border">
+            <header class="mb-12">
+              <div class="mb-6 flex flex-wrap items-center gap-3">
+                <span class="rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
+                  {{ page.categories | first | default: t.guides.eyebrow }}
+                </span>
+                <span class="text-sm text-on-surface-variant">{{ page.date | date: "%Y-%m-%d" }}</span>
+              </div>
+              <h1 class="font-display text-4xl font-black leading-tight text-on-surface md:text-5xl lg:text-6xl mb-6">
+                {{ page.title }}
+              </h1>
+              <p class="text-xl leading-relaxed text-on-surface-variant italic">
+                {{ page.description | default: t.guides.subtitle }}
+              </p>
+            </header>
+
+            <div class="markdown-body article-prose">
+              {{ content }}
+            </div>
+
+            <!-- Footer CTA -->
+            <footer class="mt-16 border-t border-outline-variant pt-12">
+              <div class="flex flex-col gap-8 rounded-2xl bg-surface-container-high p-8 border border-primary/10">
+                <div class="max-w-xl">
+                  <h2 class="text-2xl font-bold text-on-surface mb-2">{{ t.guides.next_body }}</h2>
+                  <p class="text-on-surface-variant">{{ t.guides.next_title }}</p>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                  <a href="{{ t.paths.download | relative_url }}" class="button-primary">
+                    {{ t.guides.next_download }}
+                  </a>
+                  <a href="{{ t.paths.home | relative_url }}" class="button-outline">
+                    {{ t.guides.next_home }}
+                  </a>
+                </div>
+              </div>
+
+              <div class="mt-12 flex items-center justify-between">
+                <a href="{{ t.paths.guides | relative_url }}" class="flex items-center gap-2 font-bold text-on-surface hover:text-primary transition-colors">
+                  <span class="material-symbols-outlined">arrow_back</span>
+                  {{ t.guides.back_to_guides }}
+                </a>
+                <div class="flex items-center gap-4">
+                  <span class="text-sm font-medium text-on-surface-variant">{{ t.guides.share }}</span>
+                  <a href="#" class="h-10 w-10 flex items-center justify-center rounded-full bg-surface-container hover:bg-primary/20 transition-colors">
+                    <span class="material-symbols-outlined text-lg">share</span>
+                  </a>
+                </div>
+              </div>
+            </footer>
+          </article>
         </div>
-        <div class="post-hero-grid">
-          <div>
-            <nav class="breadcrumbs" aria-label="Breadcrumb">
-              <a href="{{ t.paths.home | relative_url }}">{{ t.nav.home }}</a>
-              <span>/</span>
-              <a href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
-              <span>/</span>
-              <span>{{ page.title }}</span>
-            </nav>
-            <h1>{{ page.title }}</h1>
-            <p class="lede">{{ page.description | default: t.guides.subtitle }}</p>
-          </div>
 
-          <div class="post-meta-panel">
-            {% if page.date %}
-            <div>
-              <span>{{ t.guides.published_label }}</span>
-              <strong>{{ page.date | date: "%Y-%m-%d" }}</strong>
-            </div>
-            {% endif %}
-            {% if page.author %}
-            <div>
-              <span>{{ t.guides.author_label }}</span>
-              <strong>{{ page.author }}</strong>
-            </div>
-            {% endif %}
-            {% if page.categories %}
-            <div class="tag-row">
-              {% for category in page.categories %}
-              <span class="meta-chip">{{ category }}</span>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-
-      <div class="post-shell">
-        <article class="article-card" data-reveal>
-          <div class="markdown-body article-prose">
-            {{ article_content }}
-          </div>
-
-          <div class="post-cta-panel">
-            <div>
-              <p class="section-label">{{ t.guides.next_title }}</p>
-              <h2>{{ t.guides.next_body }}</h2>
-            </div>
-            <div class="button-row">
-              <a class="button button-primary" href="{{ t.paths.download | relative_url }}">{{ t.guides.next_download }}</a>
-              <a class="button button-secondary" href="{{ t.paths.home | relative_url }}">{{ t.guides.next_home }}</a>
+        <!-- Sidebar -->
+        <aside class="lg:col-span-4 flex flex-col gap-8">
+          {% if page.toc %}
+          <div class="sticky top-28 rounded-2xl bg-surface-container border border-outline-variant p-6">
+            <h3 class="font-display text-lg font-bold text-on-surface mb-4 uppercase tracking-widest text-xs opacity-60">
+              {{ t.guides.toc }}
+            </h3>
+            <div class="toc-content">
+              {{ content | toc_only }}
             </div>
           </div>
+          {% endif %}
 
-          <div class="post-footer-row">
-            <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.guides.back_to_guides }}</a>
-            <div class="share-row">
-              <span>{{ t.guides.share }}</span>
-              <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title | uri_escape }}" target="_blank" rel="noopener noreferrer">X</a>
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | uri_escape }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </div>
-          </div>
-        </article>
-
-        {% if page.toc %}
-        <aside class="toc-card" data-reveal>
-          <p class="section-label">{{ t.guides.toc }}</p>
-          <div class="toc-content" id="toc-sidebar">
-            {{ content | toc_only }}
+          <div class="rounded-2xl bg-primary/5 border border-primary/10 p-6">
+            <h3 class="font-display text-lg font-bold text-primary mb-2">Besoin d'aide ?</h3>
+            <p class="text-sm text-on-surface-variant mb-4">Rejoignez notre communauté Discord pour obtenir du support en direct.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+              Rejoindre le Discord
+              <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </a>
           </div>
         </aside>
-        {% endif %}
       </div>
-    </section>
+    </div>
   </main>
 
   {% include site_footer.html t=t %}

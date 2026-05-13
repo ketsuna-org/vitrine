@@ -12,7 +12,7 @@
             {{ t.home.hero.eyebrow }}
           </div>
           <h1 class="font-display text-5xl font-black leading-tight tracking-tight text-on-surface md:text-6xl lg:text-7xl">
-            Créez vos propres bots <span class="text-primary-container drop-shadow-[0_0_10px_rgba(183,109,255,0.4)]">Discord sans effort</span>
+            {{ t.home.hero.title }}
           </h1>
           <p class="max-w-xl text-lg leading-relaxed text-on-surface-variant md:text-xl">
             {{ t.home.hero.body }}
@@ -37,8 +37,8 @@
           </div>
         </div>
         <div class="relative flex justify-center lg:justify-end">
-          <div class="relative z-10 w-full max-w-[450px] overflow-hidden rounded-[2.5rem] border-[8px] border-surface-container-highest bg-surface-container shadow-2xl neon-glow">
-            <img alt="Interface de l'application" class="aspect-[9/19] w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByibz6K2ybZbLX6DKwEiEhCEVovsbu69bqPZ2H82wNjqZIh9A7CyBA90_2ELaz8RwsrMfpw_3sClQvot2MzGCQ1prvkm3qVNzqi62gyKO3bZLzNUDwQp8nWX9IdsRExJlFrOe_HNhFW6qpkDb9nSB8zyV64Tn_mB0HOnYexJ8ji4wnxgUR5KHYSvRtvE0-b5071WQLjXolkLoaJ3GHuihRy7udZA-aD7g5ywJYMksCz5emPKCaVmY0JCCHYNlbx-aFFq4hiZQq5ss">
+          <div class="relative z-10 w-full max-w-[420px] overflow-hidden rounded-[3rem] border-[12px] border-surface-container-highest bg-black shadow-2xl neon-glow">
+            <img alt="Bot Creator App Interface" class="w-full" src="{{ '/assets/images/screenshots/hero.png' | relative_url }}">
           </div>
           <div class="absolute -bottom-10 -left-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
           <div class="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-secondary-container/20 blur-3xl"></div>
@@ -57,17 +57,19 @@
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         {% for card in t.home.showcase.cards %}
         <div class="group flex flex-col gap-4">
-          <div class="overflow-hidden rounded-2xl bg-surface-container border border-outline-variant transition-all group-hover:border-primary/50 group-hover:neon-glow">
+          <div class="overflow-hidden rounded-3xl bg-surface-container border border-outline-variant transition-all group-hover:border-primary/50 group-hover:neon-glow">
             {% if forloop.index == 1 %}
-            <img alt="Visual Builder" class="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTgKqpJhfYZZ172mKV7NZ2VblbHiT_kKOmYoFWb81ehRTzf4NvjoQjaddtwWxSYdiZZcWOgAx4b6qW8sc0Zu6TaTnmpR_vKEg7cotrVLXnu_Y7jD9tOPDW9Otq72v2le2QyoK4JOS6nWvXGU54fFdsNLrA93K_59U6mW_jmxKwO9HkdO-narqiQ-n3znGgIVgXTgbbPnYM8kutKM2X4XiCNXzXahSSEOvHNF0GUKg_Ay_LGej3-QcWauap0Lnxl0zrzDpV3KrgdkQ">
+            <img alt="{{ card.title }}" class="w-full object-cover" src="{{ '/assets/images/screenshots/screen1.png' | relative_url }}">
             {% elsif forloop.index == 2 %}
-            <img alt="Analytics Dashboard" class="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5CXGOk58ofbAsrI_ZSrrx2h1gCgPQyzNZgw3Ir6bcMFSJDTeIagyKK_eoKUoqHB8d0fcW-WqEtwqAQA5Oce_XJrf-vKa8u6Jwnp6TxvwOfP-3MlIIo48Quj9F2dtgV5Wt1qef1Xk0bwljQ1AgFIUlLffYVg6lvc9j7wgxujrakJ5EVzPZMojS1omhNgk_Ykgem6jSPoHJtFCO_JIKyzp_qZnSZGasrxVUzf2he1Vt-XL35gSkjwkRIlQX6iH3wwmXpH9jPt-Cw84">
+            <img alt="{{ card.title }}" class="w-full object-cover" src="{{ '/assets/images/screenshots/screen2.png' | relative_url }}">
             {% else %}
-            <img alt="Template Library" class="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDajxJlCEWA9V_X42XEe_jzRQ2sZfd646VTPNfW46fpNg_6zGpwqQXYwGFcSHxeacp4JldEdVXfwQnUquHz8xN-Zi8JSF9pWVlIzsCRpzcb-Y30lsw4xYQRbgCQ_0GCQfE5a95prnINq-cc8MgBdnvm-JMOB0qRhqhxExxnGqdJSbbVjMsfFYWOKJ0igRdyuxNOrBvg9FhBeL2c5vL2LoxKw0Rvl3nRjnWQNsblKe1xDy7hDF8VfK7xWJ_p2qOdiHoOL0DLJ8styt0">
+            <img alt="{{ card.title }}" class="w-full object-cover" src="{{ '/assets/images/screenshots/screen3.png' | relative_url }}">
             {% endif %}
           </div>
-          <h3 class="font-display text-xl font-bold text-on-surface">{{ card.title }}</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">{{ card.body }}</p>
+          <div class="px-2">
+            <h3 class="font-display text-xl font-bold text-on-surface">{{ card.title }}</h3>
+            <p class="mt-2 text-sm text-on-surface-variant leading-relaxed">{{ card.body }}</p>
+          </div>
         </div>
         {% endfor %}
       </div>
@@ -88,24 +90,30 @@
         </a>
       </div>
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {% for post in t.home.blog.posts %}
+        {% assign real_posts = site.posts | where: "locale", page.locale %}
+        {% if real_posts.size == 0 %}
+          {% assign real_posts = site.posts | where: "locale", "en" | limit: 3 %}
+        {% endif %}
+        {% for post in real_posts limit: 3 %}
         <article class="flex flex-col overflow-hidden rounded-2xl bg-surface-container border border-outline-variant transition-all hover:border-primary/40 hover:neon-glow">
-          {% if forloop.index == 1 %}
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsJ1JN82nx7qJeph3r_gy-xvqJCSUGWvm5HV8UXt3yD_NLrYC5Isj7cw2d9_MOEDoZkI8aKWNLN4twgR7AUU56nXcBjIkK9QtTdQmROAE2C1UJ2YQlKlMP_gPThs4oIcIHSzpJ9MccikivmK_eXVGB-vAt1rv5lgYcHC3lkOEadS8ol-qOdn3KYcr94vxfHleMkcjjWty4VfnOcLe8UHBmPjDWoG3UwusOEa_KEE-kX9sDy1Z3UNN2NMJ-NRCHvLS9TZu2FM7GPc" alt="" class="aspect-video w-full object-cover opacity-80">
-          {% elsif forloop.index == 2 %}
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTULwqKPVKMm_yIOs51k7VHfbigDKlLgFkUrSa1jRgzlmtP2HNhYtCx8XIJslcP3Vk4-3u8FuIxt5eErAMGlDeQFkJl9WryKvqIKvQics3xCH_K1Ja2TwF3UOhsjeKr6nFXQuJDutofNc6lpdgK99hkrdgi5xc9D8qO-OQyRRSXcG5kXD1CYFhoMQq0towVcmGiQmc6bRzKpbDveL43My_rfNc2e8iqNSEFTAhYyVrdyLiYhljel81ctlB2vRyasNqbx_-QNBANrg" alt="" class="aspect-video w-full object-cover opacity-80">
-          {% else %}
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDHvv6FV58huZ24qOhDF0fR5Z-M51HHA77U4_DPH5QVlx-ThG6tZkuo-whmK_koevsuSBUVwK1DYj62wxKzSbUCUSCFU9A08stMNGQKWYjiq8TxpS1NU3--uhYbEQLtTYt-Bu7EM64xLeVHqpaH_dDZMHfwszk5K7tJPS862WAAuffOHqR1GVtiDjdaTfVtVs5Ixzhkcb8_o-kpYx_km8s-Zb9KpqczEVCRQnOdgMyb6ANxd6HEImv43c41XpiSl4kGV09oVP0uzo" alt="" class="aspect-video w-full object-cover opacity-80">
-          {% endif %}
+          <div class="overflow-hidden">
+            {% if forloop.index == 1 %}
+            <img src="{{ '/assets/images/screenshots/screen4.png' | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform hover:scale-105">
+            {% elsif forloop.index == 2 %}
+            <img src="{{ '/assets/images/screenshots/screen5.png' | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform hover:scale-105">
+            {% else %}
+            <img src="{{ '/assets/images/screenshots/hero.png' | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform hover:scale-105">
+            {% endif %}
+          </div>
           <div class="flex flex-1 flex-col p-6">
             <div class="mb-3 flex items-center gap-2">
-              <span class="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">{{ post.tag }}</span>
-              <span class="text-xs text-on-surface-variant">{{ post.time }}</span>
+              <span class="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">{{ post.categories | first | default: 'Tutoriel' }}</span>
+              <span class="text-xs text-on-surface-variant">{{ post.date | date: "%Y-%m-%d" }}</span>
             </div>
-            <h3 class="mb-3 font-display text-xl font-bold leading-tight text-on-surface">{{ post.title }}</h3>
-            <p class="mb-6 line-clamp-2 text-sm text-on-surface-variant">{{ post.excerpt }}</p>
-            <a class="mt-auto flex items-center gap-1 text-sm font-bold text-primary group" href="#">
-              Lire la suite
+            <h3 class="mb-3 font-display text-xl font-bold leading-tight text-on-surface line-clamp-2">{{ post.title }}</h3>
+            <p class="mb-6 line-clamp-2 text-sm text-on-surface-variant">{{ post.description | default: post.excerpt | strip_html | truncatewords: 20 }}</p>
+            <a class="mt-auto flex items-center gap-1 text-sm font-bold text-primary group" href="{{ post.url | relative_url }}">
+              {{ t.guides.read_more | default: 'Lire la suite' }}
               <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">chevron_right</span>
             </a>
           </div>

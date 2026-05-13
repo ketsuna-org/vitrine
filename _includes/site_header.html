@@ -1,33 +1,56 @@
 {% assign t = site.data.locales[page.locale] %}
 {% assign active_key = page.translation_key %}
 {% if page.layout == 'post' %}
-  {% assign active_key = 'guides' %}
+{% assign active_key = 'guides' %}
 {% endif %}
 
 <header class="sticky top-0 z-50 w-full glass-header">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <!-- Logo -->
     <a href="{{ t.paths.home | relative_url }}" class="flex items-center gap-3 group">
-      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-container text-on-primary-container neon-glow transition-all group-hover:scale-110">
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
-        </svg>
+      <div
+        class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-container/20 p-1.5 neon-border transition-all group-hover:scale-110 group-hover:bg-primary-container/40">
+        <img src="{{ '/favicon.ico' | relative_url }}" alt="Logo" class="h-full w-full object-contain">
       </div>
-      <span class="text-xl font-bold tracking-tight text-on-surface font-display">{{ t.meta.site_title }}</span>
+      <span class="text-xl font-black tracking-tighter text-on-surface font-display">{{ t.meta.site_title }}</span>
     </a>
 
+    <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center gap-10">
-      <a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'home' %} text-primary{% endif %}" href="{{ t.paths.home | relative_url }}">Fonctionnalités</a>
-      <a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary{% endif %}" href="{{ t.paths.guides | relative_url }}">Tutoriels</a>
-      <a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#">Tarifs</a>
+      <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'home' %} text-primary{% endif %}"
+        href="{{ t.paths.home | relative_url }}">{%if page.locale == 'fr' %} Fonctionnalités {% else %} Features {%
+        endif %}</a>
+      <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary{% endif %}"
+        href="{{ t.paths.guides | relative_url }}">{%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}
+      </a>
+      <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'terms' %} text-primary{% endif %}"
+        href="{{ t.paths.terms | relative_url }}">
+        {%if page.locale == 'fr' %}
+        CGV
+        {% else %}
+        Term Of Sales
+        {% endif %}
     </nav>
 
+    <!-- Actions -->
     <div class="flex items-center gap-4">
-      <button class="hidden sm:block text-sm font-bold text-on-surface px-4">Connexion</button>
-      <a href="{{ t.paths.download | relative_url }}" class="flex h-11 items-center justify-center rounded-xl bg-primary px-6 text-sm font-bold text-on-primary shadow-lg neon-glow hover:scale-[1.02] active:scale-[0.98] transition-all">
-        S'inscrire
+      <!-- Language Switcher -->
+      <a href="{% if page.locale == 'fr' %}/{% else %}/fr/{% endif %}"
+        class="flex h-10 w-10 items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-xs font-bold text-on-surface-variant hover:text-primary transition-colors">
+        {{ t.switch_label }}
       </a>
-      
-      <button class="md:hidden flex items-center justify-center p-2 text-on-surface">
+      <a href="{{ t.paths.download | relative_url }}"
+        class="button-primary !h-11 !px-6 !text-sm !py-0 flex items-center justify-center">
+        {% if page.locale == 'fr' %}
+        Télécharger
+        {% else %}
+        Download
+        {% endif %}
+      </a>
+
+      <!-- Mobile Toggle -->
+      <button
+        class="md:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors">
         <span class="material-symbols-outlined">menu</span>
       </button>
     </div>

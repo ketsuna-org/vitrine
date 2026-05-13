@@ -36,7 +36,7 @@ home:
     title: "Créez vos propres bots <span class='text-primary'>sans code</span>"
     body: "Transformez vos idées en automates puissants avec notre application mobile intuitive. Simple, rapide et sans aucune compétence technique requise."
     secondary_cta: "Voir la démo"
-    stats: "Rejoint par +10,000 créateurs"
+    stats: "Rejoint par +1,000 créateurs"
   showcase:
     title: "Une interface pensée pour la création"
     subtitle: "Simplicité visuelle, puissance fonctionnelle."
@@ -76,6 +76,24 @@ home:
 privacy:
   title: "Confidentialité"
   subtitle: "Comment Bot-Creator protège vos données."
+
+guides:
+  eyebrow: "Tutoriels"
+  title: "Guides et tutoriels produit"
+  subtitle: "Maîtrisez Bot Creator étape par étape."
+  read_more: "Lire la suite"
+  back_to_guides: "Retour aux tutoriels"
+  published_label: "Publié le"
+  author_label: "Par"
+  share: "Partager"
+  toc: "Sommaire"
+  next_title: "Prêt pour l'étape suivante ?"
+  next_body: "Téléchargez l'application et commencez à créer."
+  next_download: "Télécharger l'app"
+  next_home: "Retour à l'accueil"
+  english_first_notice: "La plupart de nos guides techniques sont en anglais pour le moment, mais nous travaillons sur leur traduction."
+  empty_title: "Aucun guide trouvé"
+  empty_body: "Revenez bientôt pour de nouveaux contenus."
 
 terms:
   title: "Conditions Générales de Vente"
