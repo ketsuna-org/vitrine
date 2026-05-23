@@ -1,5 +1,5 @@
 ---
-title: $for & Loop Structures in BDFD (Bot Designer for Discord)
+title: "Loops in BDFD: $for & $loop"
 description: Loop (Function only available on Bot-Creator !)
 category: Arguments & Conditions
 function_syntax: $for[iterations]
@@ -11,208 +11,178 @@ content_language: en
 layout: post
 toc: true
 ---
-Loops are powerful control-flow structures in BDScript (Bot Designer for Discord) used to repeat a block of code a specific number of times. They are invaluable for rendering dynamic content, generating option lists for select menus, formatting complex datasets, and processing collections.
+A **loop** allows your Discord bot to repeat a block of text or actions multiple times. Instead of copy-pasting the same lines over and over, you can use a loop to do it automatically.
 
-BDScript supports two main forms of `$for` loops: **Simple Iteration Loops** and **C-Style Loops**. Both are closed using the `$endfor` (or `$endloop`) delimiter.
+In BDFD, the functions **`$for`** and **`$loop`** are **identical twins**. They work exactly the same way, support the same rules, and can be used completely interchangeably! You can also close either loop with either **`$endfor`** or **`$endloop`**.
+
+Loops are perfect for:
+* Printing repeating lists (like leaderboard slots or store items).
+* Generating multiple buttons or select options.
+* Counting up or down in a message.
 
 ---
 
-## 📊 Loop Architectures at a Glance
+## 💡 Quick Overview of Loop Types
 
-| Feature | Simple Iteration Loop | C-Style Loop |
+BDFD supports two types of loops:
+
+| Loop Type | What it does | Best For |
 | :--- | :--- | :--- |
-| **Syntax** | `$for[iterations]` | `$for[init; condition; update]` |
-| **Control Parameter** | Total execution count | Initialized variables, a logical condition, and update expressions |
-| **State Variables** | `$i`, `$loopIndex`, `$loopIteration`, `$loopCount` | Custom loop variables (e.g., `$i`, `$j`), plus standard state variables |
-| **Best Used For** | Repeating a static number of times or looping based on list/array sizes | Complex numeric intervals, counting downwards, or multi-variable stepping |
+| **Simple Loop** | Repeats a set number of times | Repeating a message or list item a specific number of times. |
+| **Advanced Loop** | Counts using custom starting points, steps, and rules | Counting down, skipping numbers (like counting even numbers), or tracking custom counters. |
 
 ---
 
-## 1. Simple Iteration Loops
+## 1. Simple Loops
 
-The Simple Iteration Loop executes its body a predefined number of times.
+A Simple Loop runs your code a set number of times.
 
-### Syntax
+### How to Write It
+You can write a simple loop using either `$for` or `$loop`:
+
 ```bdfd
-$for[iterations]
-  // Loop body
+$for[number]
+  ... your text or command here ...
 $endfor
 ```
-
-### Parameters
-* **`iterations`**: The number of times to run the loop. 
-  * Can be a static integer literal (e.g., `5`).
-  * Can be a dynamic expression or variable reference (e.g., `$getUserVar[limit]` or `$getVar[count]`).
-
-### State Variables Available Inside the Loop
-During each iteration, the engine provides built-in variables that represent the state of the loop:
-* **`$i`** / **`$loopIndex`** / **`$loopIteration`**: Returns the current iteration index (**0-based**, i.e. `0`, `1`, `2`, ..., `iterations - 1`).
-* **`$loopCount`**: Returns the current iteration number (**1-based**, i.e. `1`, `2`, `3`, ..., `iterations`).
-
-### Code Examples
-
-#### Example A: Simple Repeat
+*OR*
 ```bdfd
-$for[3]
-  Hello World! (Iteration #$loopCount)
-$endfor
+$loop[number]
+  ... your text or command here ...
+$endloop
 ```
-**Output:**
+
+* **`number`**: How many times you want the loop to repeat (e.g., `5`, or a variable like `$getUserVar[hunts]`).
+
+### Useful Shortcut Variables
+Inside the loop, you can use these shortcuts to show the current iteration number:
+* **`$i`** (or `$loopIndex` / `$loopIteration`): Returns the current step, starting at **`0`** (i.e. `0`, `1`, `2`, `3`...).
+* **`$loopCount`**: Returns the current step, starting at **`1`** (i.e. `1`, `2`, `3`, `4`...).
+
+### Practical Examples
+
+#### Example A: Repeating Text (Using `$loop`)
+```bdfd
+$loop[3]
+  Hello! This is message number $loopCount
+$endloop
+```
+**What your bot will send:**
 ```text
-Hello World! (Iteration #1)
-Hello World! (Iteration #2)
-Hello World! (Iteration #3)
+Hello! This is message number 1
+Hello! This is message number 2
+Hello! This is message number 3
 ```
 
-#### Example B: Formatting List Elements
+#### Example B: Creating a Bulleted List (Using `$for`)
 ```bdfd
-$title[📋 Server Tasks]
-$description[
+🏆 **Top Server Goals:**
 $for[5]
-  • Task $loopCount: [Pending]
+  • Goal #$loopCount: [Pending Slot]
 $endfor
-]
 ```
-**Output:**
+**What your bot will send:**
 ```text
-• Task 1: [Pending]
-• Task 2: [Pending]
-• Task 3: [Pending]
-• Task 4: [Pending]
-• Task 5: [Pending]
+🏆 Top Server Goals:
+  • Goal #1: [Pending Slot]
+  • Goal #2: [Pending Slot]
+  • Goal #3: [Pending Slot]
+  • Goal #4: [Pending Slot]
+  • Goal #5: [Pending Slot]
 ```
 
 ---
 
-## 2. C-Style Loops
+## 2. Advanced Loops (C-Style)
 
-C-Style loops offer complete control over loop initialization, step conditions, and stepping values. They are highly flexible and mimic the syntax of traditional programming languages.
+Advanced loops give you full control. You can decide where the loop starts, when it should stop, and how it counts.
 
-### Syntax
+### How to Write It
+Just like simple loops, you can use either `$for` or `$loop` with the three counting settings separated by semicolons:
+
 ```bdfd
-$for[init; condition; update]
-  // Loop body
+$for[start; condition; update]
+  ... your text or command here ...
 $endfor
 ```
-
-### Parameters
-
-#### 1. `init` (Initialization)
-Declares and initializes one or more temporary loop variables. Multiple variables can be initialized using a comma-separated list.
-* *Example:* `i=1`
-* *Example (Multi-variable):* `i=1,j=10`
-
-#### 2. `condition` (Stepping Condition)
-A logical comparison checked before each iteration. The loop body continues executing as long as this expression evaluates to `true`.
-* *Syntax:* `variable operator value`
-* *Supported Comparison Operators:*
-  * `<` (Less Than)
-  * `<=` (Less Than or Equal)
-  * `>` (Greater Than)
-  * `>=` (Greater Than or Equal)
-  * `==` (Equal)
-  * `!=` (Not Equal)
-* *Example:* `i<=5`
-
-#### 3. `update` (Variable Update)
-Determines how the variables change after each iteration. Multiple updates are separated by commas.
-* *Supported Stepping Operators:*
-  * Increment: `++` (e.g., `i++`)
-  * Decrement: `--` (e.g., `i--`)
-  * Compound Addition: `+=` (e.g., `i+=2`)
-  * Compound Subtraction: `-=` (e.g., `i-=3`)
-  * Compound Multiplication: `*=` (e.g., `i*=2`)
-
-### Variable Scoping Inside C-Style Loops
-Any variable declared in the `init` block is available inside the loop body as a native BDScript function. 
-* E.g., if you write `$for[i=1; i<=3; i++]`, you can retrieve the value of `i` during the loop using **`$i`**.
-* If a C-style loop variable has the same name as a default loop state variable (such as `i`), **the C-style variable takes precedence**.
-* To access the default 0-based iteration index regardless of custom variable names, use **`$loopIndex`** or **`$loopIteration`**.
-
-### Code Examples
-
-#### Example A: Standard Incrementing Loop
+*OR*
 ```bdfd
-$for[i=2; i<=10; i+=2]
-  Number: $i
-$endfor
+$loop[start; condition; update]
+  ... your text or command here ...
+$endloop
 ```
-**Output:**
+
+### The Three Settings:
+1. **`start`**: Create your counter variable and set its starting value.
+   * *Example:* `i=1` (creates a counter named `i` starting at 1).
+   * *Example (Multi-counter):* `i=1,j=10` (creates two counters).
+2. **`condition`**: Tells the loop when to keep going. The loop stops as soon as this is no longer true.
+   * *Operators you can use:*
+     * `<` (Less than)
+     * `<=` (Less than or equal to)
+     * `>` (Greater than)
+     * `>=` (Greater than or equal to)
+     * `==` (Equal to)
+     * `!=` (Not equal to)
+   * *Example:* `i<=5` (keep going as long as the counter `i` is 5 or less).
+3. **`update`**: Tells the loop how to count at the end of each step.
+   * *Stepping values you can use:*
+     * `i++` (add 1 to `i`)
+     * `i--` (subtract 1 from `i`)
+     * `i+=2` (add 2 to `i` - useful for skipping numbers)
+     * `i-=3` (subtract 3 from `i`)
+     * `i*=2` (multiply `i` by 2)
+
+### Accessing your Counter Value
+To show the current value of your counter inside the loop, just write its name as a function:
+* If you set `i=1`, use **`$i`** to display its value.
+* If you set `count=10`, use **`$count`** to display its value.
+
+### Practical Examples
+
+#### Example A: Counting Even Numbers (Using `$loop`)
+```bdfd
+Counting by twos:
+$loop[i=2; i<=10; i+=2]
+  - $i
+$endloop
+```
+**What your bot will send:**
 ```text
-Number: 2
-Number: 4
-Number: 6
-Number: 8
-Number: 10
+Counting by twos:
+  - 2
+  - 4
+  - 6
+  - 8
+  - 10
 ```
 
-#### Example B: Decrementing / Countdown Loop
+#### Example B: T-Minus Countdown (Using `$for`)
 ```bdfd
-$for[count=5; count>0; count--]
-  🚀 T-Minus $count...
+$for[seconds=5; seconds>0; seconds--]
+  🚀 Launching in $seconds...
 $endfor
-Blastoff! 🎇
+🔥 BLASTOFF! 🎆
 ```
-**Output:**
+**What your bot will send:**
 ```text
-🚀 T-Minus 5...
-🚀 T-Minus 4...
-🚀 T-Minus 3...
-🚀 T-Minus 2...
-🚀 T-Minus 1...
-Blastoff! 🎇
+🚀 Launching in 5...
+🚀 Launching in 4...
+🚀 Launching in 3...
+🚀 Launching in 2...
+🚀 Launching in 1...
+🔥 BLASTOFF! 🎆
 ```
 
 ---
 
-## ⚙️ Compilation & Execution Semantics (Under the Hood)
+## ⚠️ Important Rules & Safety Tips
 
-The compiler uses a dual-evaluation strategy to maximize performance and maintain safety:
-
-### ⚡ Compile-Time Unrolling
-If the loop boundaries are static and known at compilation time (e.g., `$for[5]` or `$for[i=1; i<=3; i++]`), the compiler **unrolls** the loop directly. 
-* **Benefit**: The bot runner receives a flat, optimized list of actions without loop control overhead, resulting in instantaneous responses.
-
-### 🔄 Dynamic Runtime Execution
-If any loop parameter contains dynamic fields or runtime placeholders (e.g., `$for[$getUserVar[count]]` or `$for[i=1; i<=$var[limit]; i++]`), the compiler transpiles the loop into a dynamic runtime loop action (`BotCreatorActionType.forLoop`).
-* **Benefit**: Allows responsive loops that adapt to user settings, database counters, and API payloads in real time.
-
-> [!IMPORTANT]
-> **Safety Ceilings (Capping)**
-> To prevent infinite loops and denial-of-service errors, the compiler and runner enforce an execution ceiling:
-> * **Maximum Iterations**: Loops are capped at **`100` iterations** by default.
-> * If a dynamic loop exceeds this boundary, execution halts gracefully at 100, and a compilation warning is logged.
+> [!WARNING]
+> **The 100-Loop Limit**
+> To prevent your bot from freezing, lagging, or crashing, BDFD restricts loops (both `$for` and `$loop`) to a maximum of **100 repetitions**. If your loop is set to run more than 100 times, it will automatically stop at 100.
 
 > [!TIP]
-> **Scope Preservation**
-> The compiler scopes temporary operations (such as `$jsonParse`) performed inside the loop body. This ensures that dynamic modifications do not leak or corrupt variables in the parent script after `$endfor` is reached.
-
----
-
-## 🛑 Interrupts and Flow Control
-
-Certain BDScript functions immediately affect loop execution when called inside the body:
-
-* **`$stop`**: Instantly terminates the entire script execution, breaking out of the loop and returning all collected responses up to that point.
-* **`$cooldown[...]`**: If a cooldown is active, the bot halts script execution immediately, bypassing any remaining iterations, and posts the cooldown message.
-
----
-
-## 🔗 Related Structure: JSON Iteration (`$jsonForEach`)
-
-For iterating over complex JSON objects and arrays, BDScript features a dedicated `$jsonForEach` loop, which integrates seamlessly with the compiler's loop architecture:
-
-```bdfd
-$jsonParse[$var[api_response]]
-$jsonForEach[items]
-  Index: $jsonIndex
-  Key: $jsonKey
-  Value: $jsonValue
-$endJsonForEach
-```
-
-### Context Variables in `$jsonForEach`:
-* **`$jsonKey`**: Returns the current object key (or list index).
-* **`$jsonValue`**: Returns the stringified value of the current item.
-* **`$jsonIndex`**: Returns the 0-based iteration index.
-* **`$loopIndex` / `$loopCount`**: Standard loop markers.
+> **Stopping Loops Early**
+> * **`$stop`**: If your bot encounters a `$stop` inside the loop, it will immediately halt the command and send whatever text it has generated so far.
+> * **`$cooldown[...]`**: If a user is on cooldown, BDFD will stop the loop immediately and send your custom cooldown message.
