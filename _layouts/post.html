@@ -103,10 +103,10 @@
           {% endif %}
 
           <div class="rounded-2xl bg-primary/5 border border-primary/10 p-6">
-            <h3 class="font-display text-lg font-bold text-primary mb-2">Besoin d'aide ?</h3>
-            <p class="text-sm text-on-surface-variant mb-4">Rejoignez notre communauté Discord pour obtenir du support en direct.</p>
-            <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
-              Rejoindre le Discord
+            <h3 class="font-display text-lg font-bold text-primary mb-2">{{ t.guides.sidebar_help_title }}</h3>
+            <p class="text-sm text-on-surface-variant mb-4">{{ t.guides.sidebar_help_body }}</p>
+            <a href="https://discord.gg/K37nuphaDP" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+              {{ t.guides.sidebar_help_cta }}
               <span class="material-symbols-outlined text-sm">open_in_new</span>
             </a>
           </div>
@@ -117,5 +117,51 @@
 
   {% include site_footer.html t=t %}
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+
+  <!-- ESM-based Dynamic Mermaid rendering engine -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // Find all markdown-generated mermaid blocks
+    const blocks = document.querySelectorAll('.language-mermaid, .highlighter-rouge.language-mermaid pre');
+    if (blocks.length > 0) {
+      blocks.forEach((block, idx) => {
+        const codeElement = block.querySelector('code') || block;
+        const rawText = codeElement.innerText.trim();
+        
+        // Build dedicated rounded glass container
+        const container = document.createElement('div');
+        container.className = 'mermaid my-8 p-6 bg-[#080d19] border border-outline-variant rounded-2xl flex justify-center shadow-2xl overflow-x-auto';
+        container.id = `mermaid-chart-${idx}`;
+        container.textContent = rawText;
+        
+        // Find the outermost wrapper if highlighter-rouge is used, otherwise replace block itself
+        const targetToReplace = block.closest('.language-mermaid') || block;
+        targetToReplace.parentNode.replaceChild(container, targetToReplace);
+      });
+      
+      // Initialize with neon dark theme matching our deep space visual identity
+      mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+          background: '#080d19',
+          primaryColor: '#ddb7ff',
+          primaryTextColor: '#ffffff',
+          lineColor: '#3870e0',
+          secondaryColor: '#121b2d',
+          tertiaryColor: '#0b1326',
+          nodeBorder: '#ddb7ff33',
+          mainBkg: '#121b2d',
+          actorBkg: '#121b2d',
+          actorBorder: '#ddb7ff44',
+          signalColor: '#ddb7ff',
+          signalLineColor: '#3870e0'
+        }
+      });
+      
+      await mermaid.run();
+    }
+  </script>
 </body>
 </html>

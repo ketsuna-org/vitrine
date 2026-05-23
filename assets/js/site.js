@@ -252,6 +252,52 @@ const initSite = () => {
     wrapper.appendChild(table);
   });
 
+  // Parse GitHub-flavored markdown alerts (e.g. > [!NOTE], > [!TIP])
+  document.querySelectorAll("blockquote").forEach((bq) => {
+    const p = bq.querySelector("p") || bq;
+    const text = p.innerHTML.trim();
+    
+    // Scan if the text starts with the [!TYPE] GFM format
+    const match = text.match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/i);
+    if (match) {
+      const type = match[1].toUpperCase();
+      
+      // Clean out the raw [!TYPE] marker text
+      const cleanHTML = text.replace(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/i, "");
+      p.innerHTML = cleanHTML;
+      
+      // Convert standard blockquote to premium custom glass alert
+      bq.className = `gfm-alert gfm-alert-${type.toLowerCase()}`;
+      
+      // Map BDFD-harmonized Material symbol vector icons & headers
+      let icon = "info";
+      let titleText = "Note";
+      if (type === "TIP") { icon = "lightbulb"; titleText = "Tip"; }
+      else if (type === "IMPORTANT") { icon = "priority_high"; titleText = "Important"; }
+      else if (type === "WARNING") { icon = "warning"; titleText = "Warning"; }
+      else if (type === "CAUTION") { icon = "report"; titleText = "Caution"; }
+
+      // Retrieve document language for localization
+      const lang = document.documentElement.lang || "en";
+      if (lang.startsWith("fr")) {
+        if (type === "NOTE") titleText = "Note";
+        else if (type === "TIP") titleText = "Conseil";
+        else if (type === "IMPORTANT") titleText = "Important";
+        else if (type === "WARNING") titleText = "Avertissement";
+        else if (type === "CAUTION") titleText = "Attention";
+      }
+
+      // Prepend the icon header structure
+      const header = document.createElement("div");
+      header.className = "gfm-alert-header";
+      header.innerHTML = `
+        <span class="material-symbols-outlined text-lg">${icon}</span>
+        <span class="gfm-alert-title">${titleText}</span>
+      `;
+      bq.insertBefore(header, bq.firstChild);
+    }
+  });
+
   const navToggle = document.querySelector("[data-menu-toggle]");
   const navShell = navToggle?.closest(".nav-shell");
   const navPanel = document.querySelector("[data-menu-panel]");

@@ -120,6 +120,9 @@ guides:
   next_download: "Download the app"
   next_home: "See the product"
   progress_label: "Reading progress"
+  sidebar_help_title: "Need help?"
+  sidebar_help_body: "Join our Discord community to get live support and connect with other creators."
+  sidebar_help_cta: "Join the Discord"
 
 privacy:
   title: "Privacy"

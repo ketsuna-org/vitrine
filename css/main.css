@@ -195,4 +195,83 @@
       transform: translateX(0);
     }
   }
+
+  /* GFM Alert Stylings */
+  .gfm-alert {
+    margin: 2rem 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid var(--md-sys-color-outline-variant);
+    border-radius: 0 1.25rem 1.25rem 0;
+    background-color: var(--md-sys-color-surface-container-low);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .gfm-alert-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .gfm-alert-header .material-symbols-outlined {
+    font-size: 1.25rem;
+  }
+
+  .gfm-alert p {
+    margin: 0 !important;
+    font-size: 0.95rem;
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: 1.6;
+  }
+
+  /* GFM Note Color Scheme */
+  .gfm-alert-note {
+    border-left-color: #3870e0;
+    background-color: rgba(56, 112, 224, 0.08);
+  }
+  .gfm-alert-note .gfm-alert-header {
+    color: #3870e0;
+  }
+
+  /* GFM Tip Color Scheme */
+  .gfm-alert-tip {
+    border-left-color: #00b0ff;
+    background-color: rgba(0, 176, 255, 0.08);
+  }
+  .gfm-alert-tip .gfm-alert-header {
+    color: #00b0ff;
+  }
+
+  /* GFM Important Color Scheme */
+  .gfm-alert-important {
+    border-left-color: #a855f7;
+    background-color: rgba(168, 85, 247, 0.08);
+  }
+  .gfm-alert-important .gfm-alert-header {
+    color: #a855f7;
+  }
+
+  /* GFM Warning Color Scheme */
+  .gfm-alert-warning {
+    border-left-color: #f59e0b;
+    background-color: rgba(245, 158, 11, 0.08);
+  }
+  .gfm-alert-warning .gfm-alert-header {
+    color: #f59e0b;
+  }
+
+  /* GFM Caution Color Scheme */
+  .gfm-alert-caution {
+    border-left-color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.08);
+  }
+  .gfm-alert-caution .gfm-alert-header {
+    color: #ef4444;
+  }
 }

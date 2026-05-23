@@ -94,6 +94,9 @@ guides:
   english_first_notice: "La plupart de nos guides techniques sont en anglais pour le moment, mais nous travaillons sur leur traduction."
   empty_title: "Aucun guide trouvé"
   empty_body: "Revenez bientôt pour de nouveaux contenus."
+  sidebar_help_title: "Besoin d'aide ?"
+  sidebar_help_body: "Rejoignez notre communauté Discord pour obtenir du support en direct."
+  sidebar_help_cta: "Rejoindre le Discord"
 
 terms:
   title: "Conditions Générales de Vente"
