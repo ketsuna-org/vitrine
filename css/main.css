@@ -30,6 +30,7 @@
   html {
     scroll-behavior: smooth;
     background-color: var(--background);
+    overflow-x: hidden;
   }
 
   body {
@@ -40,6 +41,12 @@
     font-family: "Space Grotesk", sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -92,5 +99,100 @@
   /* Specific styles for article layout */
   .post-card {
     @apply bg-surface-container border border-outline-variant rounded-[2rem] p-8 md:p-12;
+  }
+
+  /* Centered Mobile Modal Menu Overlay */
+  .nav-panel-mobile {
+    background-color: rgba(11, 19, 38, 0.75) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  /* When the mobile menu is open, fade in the backdrop */
+  .nav-shell.is-open .nav-panel-mobile {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Spring/Elastic scale & slide transition for the modal card container */
+  .nav-panel-mobile > div {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+  }
+
+  .nav-shell.is-open .nav-panel-mobile > div {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  /* Hamburger menu icon toggles based on open state */
+  .nav-shell.is-open .menu-icon-open {
+    display: none !important;
+  }
+
+  .nav-shell.is-open .menu-icon-close {
+    display: block !important;
+  }
+
+  /* Responsive Horizontal Scrollable Tables */
+  .table-responsive-wrapper {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid rgba(77, 67, 84, 0.5);
+    border-radius: 1rem;
+    background-color: rgba(23, 31, 51, 0.4);
+  }
+
+  .table-responsive-wrapper table {
+    min-width: 650px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .table-responsive-wrapper th, 
+  .table-responsive-wrapper td {
+    white-space: normal;
+  }
+
+  /* Hide scrollbar utility for sleek horizontal mobile trays */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none !important;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+
+  /* Mobile Left Category Drawer Overlay base (Scoped to mobile to prevent desktop specificity conflicts) */
+  @media (max-width: 1023px) {
+    #mobile-category-drawer {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #mobile-category-drawer.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Left drawer pane slide animation (Firebase Style) */
+    #mobile-category-drawer-pane {
+      transform: translateX(-100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #mobile-category-drawer.is-active #mobile-category-drawer-pane {
+      transform: translateX(0);
+    }
   }
 }

@@ -8,19 +8,16 @@ content_language: en
 ---
 {% assign t = site.data.locales[page.locale] %}
 {% assign post_list = site.posts | where: "locale", "en" %}
-{% if paginator and paginator.posts %}
-  {% assign post_list = paginator.posts %}
-{% endif %}
 
 <main class="min-h-screen py-16 lg:py-24">
   <div class="mx-auto max-w-7xl px-6">
     <!-- Hero Section -->
-    <header class="mb-16">
+    <header class="mb-12">
       <div class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20 mb-6">
         <span class="material-symbols-outlined text-sm">library_books</span>
         {{ t.guides.eyebrow }}
       </div>
-      <h1 class="font-display text-4xl font-black leading-tight text-on-surface md:text-5xl lg:text-7xl mb-6">
+      <h1 class="font-display text-4xl font-black leading-tight text-on-surface md:text-5xl lg:text-7xl mb-6" id="guides-title-anchor">
         {{ t.guides.title }}
       </h1>
       <p class="max-w-3xl text-xl leading-relaxed text-on-surface-variant italic">
@@ -28,59 +25,183 @@ content_language: en
       </p>
     </header>
 
-    <!-- Guides Grid -->
-    {% if post_list and post_list.size > 0 %}
-    <section class="mb-24">
-      <div class="mb-12">
-        <h2 class="font-display text-2xl font-bold text-on-surface mb-2">All guides</h2>
-        <p class="text-on-surface-variant">Short walkthroughs for real Bot Creator tasks.</p>
+    <!-- Search Engine Bar + Filter Button (Trigger shows on mobile, hidden on desktop) -->
+    <div class="mb-16 flex gap-4 max-w-3xl items-center">
+      <!-- Search Input Container -->
+      <div class="relative flex-grow flex items-center bg-surface-container border border-outline-variant rounded-2xl p-1.5 focus-within:border-primary focus-within:neon-glow transition-all shadow-lg">
+        <span class="material-symbols-outlined text-on-surface-variant/50 ml-4 mr-2">search</span>
+        <input 
+          type="text" 
+          id="wiki-search-input" 
+          placeholder="Search functions, setup guides, and tutorials..." 
+          class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-on-surface-variant/40 pr-4 text-base py-2.5">
       </div>
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {% for post in post_list %}
-        <article class="group flex flex-col overflow-hidden rounded-2xl bg-surface-container border border-outline-variant transition-all hover:border-primary/40 hover:neon-glow">
-          <div class="flex flex-1 flex-col p-8">
-            <div class="mb-4 flex flex-wrap items-center gap-3">
-              <span class="text-xs font-bold text-on-surface-variant/60">{{ post.date | date: "%Y-%m-%d" }}</span>
-              {% if post.categories and post.categories.size > 0 %}
-              <span class="rounded-full bg-primary/5 px-2 py-0.5 text-[10px] font-bold text-primary border border-primary/10">{{ post.categories | first }}</span>
+      
+      <!-- Mobile Category Drawer Trigger (Hidden on Desktop) -->
+      <button 
+        id="mobile-category-drawer-trigger"
+        class="lg:hidden flex h-14 items-center gap-3 bg-surface-container border border-outline-variant rounded-2xl px-5 py-4 text-sm font-bold text-on-surface hover:bg-surface-container-high hover:border-primary/50 active:scale-95 transition-all shadow-lg flex-shrink-0">
+        <span class="material-symbols-outlined text-primary text-base">filter_list</span>
+        <span class="hidden sm:inline">Category: <span id="mobile-active-category-name" class="text-primary font-black">All Guides</span></span>
+      </button>
+    </div>
+
+    <!-- Directory Content Split (Static Sidebar on Desktop, Sliding Drawer on Mobile) -->
+    <div class="flex flex-col lg:flex-row gap-12 items-start relative w-full">
+      
+      <!-- Unified Left Drawer Sidebar element -->
+      <aside 
+        id="mobile-category-drawer" 
+        class="fixed inset-0 z-[120] bg-background/80 backdrop-blur-md flex items-stretch justify-start opacity-0 pointer-events-none transition-opacity duration-300 lg:static lg:z-0 lg:bg-transparent lg:backdrop-blur-none lg:opacity-100 lg:pointer-events-auto lg:transition-none lg:w-72 lg:flex-shrink-0 lg:block">
+        
+        <!-- Drawer Panel -->
+        <div 
+          id="mobile-category-drawer-pane" 
+          class="w-[320px] max-w-[85vw] h-full bg-[#0b1326] border-r border-outline-variant rounded-r-[2rem] p-6 pb-12 shadow-2xl flex flex-col gap-6 overflow-y-auto transform -translate-x-full transition-transform duration-300 cubic-bezier(0.16, 1, 0.3, 1) lg:transform-none lg:transition-none lg:w-full lg:h-auto lg:bg-surface-container lg:border lg:rounded-[2rem] lg:shadow-sm lg:p-6 lg:pb-8 lg:sticky lg:top-28">
+          
+          <!-- Drawer Header (Hidden on Desktop) -->
+          <div class="flex items-center justify-between border-b border-outline-variant pb-4 lg:hidden">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-primary">filter_list</span>
+              <h3 class="font-display text-lg font-black text-on-surface">Select Category</h3>
+            </div>
+            <button 
+              id="mobile-category-drawer-close"
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-surface-container-high border border-outline-variant text-on-surface active:scale-90 transition-all">
+              <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+          </div>
+
+          <!-- Desktop-only Sidebar Header -->
+          <h3 class="hidden lg:block font-display text-xs font-black text-primary uppercase tracking-widest mb-2 px-3">
+            Wiki Directory
+          </h3>
+
+          <!-- Drawer Body List -->
+          <div class="flex flex-col gap-1.5" id="wiki-category-filter-mobile">
+            <!-- All Guides button -->
+            <button 
+              data-category-btn-mobile="all"
+              class="flex items-center gap-3.5 px-5 py-4 lg:px-4 lg:py-3 lg:rounded-xl rounded-2xl text-base lg:text-sm font-bold bg-primary text-on-primary shadow-neon transition-all text-left w-full">
+              <span class="material-symbols-outlined text-lg lg:text-base">grid_view</span>
+              <span>All Guides</span>
+            </button>
+            
+            <!-- Setup Group -->
+            <button 
+              data-category-btn-mobile="Setup"
+              class="flex items-center gap-3.5 px-5 py-4 lg:px-4 lg:py-3 lg:rounded-xl rounded-2xl text-base lg:text-sm font-bold text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-left w-full">
+              <span class="material-symbols-outlined text-lg lg:text-base">settings</span>
+              <span>Setup Walkthroughs</span>
+            </button>
+
+            <!-- Runner Group -->
+            <button 
+              data-category-btn-mobile="Runner"
+              class="flex items-center gap-3.5 px-5 py-4 lg:px-4 lg:py-3 lg:rounded-xl rounded-2xl text-base lg:text-sm font-bold text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-left w-full">
+              <span class="material-symbols-outlined text-lg lg:text-base">dns</span>
+              <span>Docker Runner</span>
+            </button>
+
+            <!-- Functions Title -->
+            <div class="pt-4 border-t border-outline-variant mt-2">
+              <span class="font-display text-[10px] font-black text-on-surface-variant/40 uppercase tracking-widest px-3">
+                BDFD Functions
+              </span>
+            </div>
+
+            <!-- Function Categories -->
+            {% assign func_cats = "Introduction,Components,Embeds,User,Moderation,Channels,Roles,Bot,Server,Blacklists,Arguments & Conditions,Text" | split: "," %}
+            {% for cat in func_cats %}
+            <button 
+              data-category-btn-mobile="{{ cat }}"
+              class="flex items-center gap-3.5 px-5 py-4 lg:px-4 lg:py-3 lg:rounded-xl rounded-2xl text-base lg:text-sm font-bold text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-left w-full">
+              <span class="material-symbols-outlined text-lg lg:text-base">
+                {% if cat == "Introduction" %}info{% elsif cat == "Components" %}layers{% elsif cat == "Embeds" %}code{% elsif cat == "User" %}person{% elsif cat == "Moderation" %}shield{% elsif cat == "Channels" %}chat{% elsif cat == "Roles" %}shield_person{% elsif cat == "Bot" %}smart_toy{% elsif cat == "Server" %}dns{% elsif cat == "Blacklists" %}block{% elsif cat == "Arguments & Conditions" %}rule{% else %}description{% endif %}
+              </span>
+              <span>{{ cat }}</span>
+            </button>
+            {% endfor %}
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Main Results Grid (Fills remaining container space) -->
+      <div class="flex-grow w-full">
+        {% if post_list and post_list.size > 0 %}
+        <!-- Guides Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8" id="wiki-guides-grid">
+          {% for post in post_list %}
+          <article 
+            data-guide-card
+            data-guide-title="{{ post.title | downcase }}"
+            data-guide-desc="{{ post.description | default: '' | downcase }}"
+            data-guide-syntax="{{ post.function_syntax | default: '' | downcase }}"
+            data-guide-category="{{ post.category | default: 'Setup' }}"
+            class="group flex flex-col overflow-hidden rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/40 hover:neon-glow">
+            
+            <div class="overflow-hidden relative bg-surface-container-low aspect-video w-full border-b border-outline-variant">
+              {% if post.thumbnail %}
+              <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform group-hover:scale-105" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'; window.initCanvasFallback && window.initCanvasFallback(this.nextElementSibling);">
+              <canvas class="js-blog-cover aspect-video w-full" style="display: none;" data-title="{{ post.title }}" data-category="{{ post.category | default: 'Setup' }}"></canvas>
+              {% else %}
+              <canvas class="js-blog-cover aspect-video w-full" data-title="{{ post.title }}" data-category="{{ post.category | default: 'Setup' }}"></canvas>
               {% endif %}
             </div>
-            <h3 class="mb-4 font-display text-2xl font-bold leading-tight text-on-surface group-hover:text-primary transition-colors">
-              {{ post.title }}
-            </h3>
-            <p class="mb-8 line-clamp-3 text-sm leading-relaxed text-on-surface-variant">
-              {{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}
-            </p>
-            <a class="mt-auto flex h-12 items-center justify-center rounded-xl bg-surface-container-highest px-6 text-sm font-bold text-on-surface transition-all group-hover:bg-primary group-hover:text-on-primary" href="{{ post.url | relative_url }}">
-              {{ t.guides.read_more }}
-            </a>
-          </div>
-        </article>
-        {% endfor %}
+
+            <div class="flex flex-1 flex-col p-8 md:p-10">
+              <div class="mb-4 flex flex-wrap items-center gap-3">
+                <span class="text-xs font-bold text-on-surface-variant/60">{{ post.date | date: "%Y-%m-%d" }}</span>
+                <span class="rounded-full bg-primary/5 px-3 py-0.5 text-[10px] font-bold text-primary border border-primary/10">
+                  {{ post.category | default: "Setup" }}
+                </span>
+              </div>
+
+              <!-- Function syntax badge (For functional wiki guides) -->
+              {% if post.function_syntax %}
+              <div class="mb-3 font-mono text-sm font-bold text-primary bg-primary-container/10 border border-primary/20 rounded-lg px-3 py-1.5 w-fit neon-border">
+                {{ post.function_syntax }}
+              </div>
+              {% endif %}
+
+              <h3 class="mb-4 font-display text-2xl font-bold leading-tight text-on-surface group-hover:text-primary transition-colors">
+                {{ post.title }}
+              </h3>
+              
+              <p class="mb-8 line-clamp-3 text-sm leading-relaxed text-on-surface-variant">
+                {{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}
+              </p>
+              
+              <a class="mt-auto flex h-12 items-center justify-center rounded-xl bg-surface-container-highest px-6 text-sm font-bold text-on-surface transition-all group-hover:bg-primary group-hover:text-on-primary" href="{{ post.url | relative_url }}">
+                {{ t.guides.read_more }}
+              </a>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+
+        <!-- Dynamic No Results Placeholder -->
+        <div id="wiki-no-results" class="hidden rounded-[2rem] bg-surface-container border border-outline-variant p-16 text-center shadow-inner">
+          <span class="material-symbols-outlined text-6xl text-on-surface-variant/20 mb-4">search_off</span>
+          <h3 class="text-2xl font-bold text-on-surface mb-2">No results found</h3>
+          <p class="text-on-surface-variant">
+            Try adjusting your search query or selecting a different category from the sidebar directory.
+          </p>
+        </div>
+        {% else %}
+        <div class="rounded-2xl bg-surface-container border border-outline-variant p-12 text-center">
+          <span class="material-symbols-outlined text-6xl text-on-surface-variant/20 mb-4">folder_open</span>
+          <h2 class="text-2xl font-bold text-on-surface mb-2">{{ t.guides.empty_title }}</h2>
+          <p class="text-on-surface-variant">{{ t.guides.empty_body }}</p>
+        </div>
+        {% endif %}
       </div>
 
-      <!-- Pagination -->
-      {% if paginator and paginator.total_pages > 1 %}
-      <div class="mt-12 flex justify-center gap-4">
-        {% if paginator.previous_page %}
-        <a class="button-outline !px-6" href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
-        {% endif %}
-        {% if paginator.next_page %}
-        <a class="button-outline !px-6" href="{{ paginator.next_page_path | relative_url }}">Next</a>
-        {% endif %}
-      </div>
-      {% endif %}
-    </section>
-    {% else %}
-    <div class="rounded-2xl bg-surface-container border border-outline-variant p-12 text-center">
-      <span class="material-symbols-outlined text-6xl text-on-surface-variant/20 mb-4">folder_open</span>
-      <h2 class="text-2xl font-bold text-on-surface mb-2">{{ t.guides.empty_title }}</h2>
-      <p class="text-on-surface-variant">{{ t.guides.empty_body }}</p>
     </div>
-    {% endif %}
 
     <!-- CTA Banner -->
-    <section class="rounded-[2.5rem] bg-gradient-to-br from-surface-container-highest to-surface-container border border-primary/20 p-8 md:p-16 text-center neon-glow">
+    <section class="mt-24 rounded-[2.5rem] bg-gradient-to-br from-surface-container-highest to-surface-container border border-primary/20 p-8 md:p-16 text-center neon-glow">
       <div class="mx-auto max-w-3xl">
         <p class="text-sm font-bold text-primary uppercase tracking-widest mb-6">Need the product first?</p>
         <h2 class="font-display text-3xl font-bold text-on-surface md:text-4xl mb-6">
@@ -101,3 +222,146 @@ content_language: en
     </section>
   </div>
 </main>
+
+<!-- Vanilla JS Instant Search and Category Drawer Core -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("wiki-search-input");
+  const categoryButtons = document.querySelectorAll("[data-category-btn-mobile]");
+  const guideCards = document.querySelectorAll("[data-guide-card]");
+  const noResults = document.getElementById("wiki-no-results");
+  const gridContainer = document.getElementById("wiki-guides-grid");
+
+  // Drawer Elements
+  const drawer = document.getElementById("mobile-category-drawer");
+  const drawerTrigger = document.getElementById("mobile-category-drawer-trigger");
+  const drawerClose = document.getElementById("mobile-category-drawer-close");
+  const activeCategoryNameLabel = document.getElementById("mobile-active-category-name");
+
+  let activeCategory = "all";
+  let searchQuery = "";
+
+  const filterGuides = () => {
+    let visibleCount = 0;
+
+    guideCards.forEach(card => {
+      const title = card.getAttribute("data-guide-title");
+      const desc = card.getAttribute("data-guide-desc");
+      const syntax = card.getAttribute("data-guide-syntax");
+      const category = card.getAttribute("data-guide-category");
+
+      const matchesSearch = 
+        title.includes(searchQuery) || 
+        desc.includes(searchQuery) || 
+        syntax.includes(searchQuery);
+
+      const matchesCategory = 
+        activeCategory === "all" || 
+        category.toLowerCase() === activeCategory.toLowerCase();
+
+      if (matchesSearch && matchesCategory) {
+        card.style.display = "flex";
+        visibleCount++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    if (visibleCount === 0) {
+      if (gridContainer) gridContainer.style.display = "none";
+      if (noResults) noResults.classList.remove("hidden");
+    } else {
+      if (gridContainer) gridContainer.style.display = "grid";
+      if (noResults) noResults.classList.add("hidden");
+    }
+  };
+
+  const selectCategory = (chosenCategory, displayName) => {
+    activeCategory = chosenCategory;
+    
+    // Update trigger button label
+    if (activeCategoryNameLabel) {
+      activeCategoryNameLabel.textContent = displayName;
+    }
+
+    // Update Drawer Button Active Styles (Syncs both desktop static sidebar and mobile drawer)
+    categoryButtons.forEach(btn => {
+      const btnCat = btn.getAttribute("data-category-btn-mobile");
+      if (btnCat.toLowerCase() === chosenCategory.toLowerCase()) {
+        btn.classList.add("bg-primary", "text-on-primary", "shadow-neon");
+        btn.classList.remove("text-on-surface-variant", "hover:bg-surface-container-high", "hover:text-on-surface");
+      } else {
+        btn.classList.remove("bg-primary", "text-on-primary", "shadow-neon");
+        btn.classList.add("text-on-surface-variant", "hover:bg-surface-container-high", "hover:text-on-surface");
+      }
+    });
+
+    filterGuides();
+  };
+
+  // 1. Live Text Search Event
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      filterGuides();
+    });
+  }
+
+  // 2. Category Buttons Filter Click Event (Unconditional filter & smooth close on mobile)
+  categoryButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const chosen = btn.getAttribute("data-category-btn-mobile");
+      const name = btn.querySelector("span:not(.material-symbols-outlined)").textContent;
+      selectCategory(chosen, name);
+      
+      // Close drawer if we are in mobile viewport view
+      const isMobileDrawerActive = drawer.classList.contains("is-active");
+      if (isMobileDrawerActive) {
+        closeDrawer();
+        
+        // Smooth scroll back to grid top so results are instantly seen
+        const anchor = document.getElementById("guides-title-anchor");
+        if (anchor) {
+          anchor.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    });
+  });
+
+  // Drawer Control Core
+  const openDrawer = () => {
+    drawer.classList.add("is-active");
+    document.body.style.overflow = "hidden"; // Prevent background body scroll
+  };
+
+  const closeDrawer = () => {
+    drawer.classList.remove("is-active");
+    document.body.style.overflow = ""; // Re-enable body scroll
+  };
+
+  if (drawerTrigger) {
+    drawerTrigger.addEventListener("click", openDrawer);
+  }
+
+  if (drawerClose) {
+    drawerClose.addEventListener("click", closeDrawer);
+  }
+
+  // Close drawer when clicking the blurry overlay background itself
+  if (drawer) {
+    drawer.addEventListener("click", (e) => {
+      // Ensure we only trigger close when clicking the overlay, and ignore on desktop view where it is static
+      if (e.target === drawer && !window.matchMedia("(min-width: 1024px)").matches) {
+        closeDrawer();
+      }
+    });
+  }
+
+  // Close drawer on Escape key press
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawer.classList.contains("is-active")) {
+      closeDrawer();
+    }
+  });
+});
+</script>

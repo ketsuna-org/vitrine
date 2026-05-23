@@ -4,55 +4,104 @@
 {% assign active_key = 'guides' %}
 {% endif %}
 
-<header class="sticky top-0 z-50 w-full glass-header">
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-    <!-- Logo -->
-    <a href="{{ t.paths.home | relative_url }}" class="flex items-center gap-3 group">
-      <div
-        class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-container/20 p-1.5 neon-border transition-all group-hover:scale-110 group-hover:bg-primary-container/40">
-        <img src="{{ '/favicon.ico' | relative_url }}" alt="Logo" class="h-full w-full object-contain">
+<div class="nav-shell">
+  <!-- Sticky Navigation Header -->
+  <header class="sticky top-0 z-50 w-full glass-header">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <!-- Logo -->
+      <a href="{{ t.paths.home | relative_url }}" class="flex items-center gap-3 group">
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-container/20 p-1.5 neon-border transition-all group-hover:scale-110 group-hover:bg-primary-container/40">
+          <img src="{{ '/favicon.ico' | relative_url }}" alt="Logo" class="h-full w-full object-contain">
+        </div>
+        <span class="text-xl font-black tracking-tighter text-on-surface font-display">{{ t.meta.site_title }}</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-10">
+        <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'home' %} text-primary{% endif %}"
+          href="{{ t.paths.home | relative_url }}">{%if page.locale == 'fr' %} Fonctionnalités {% else %} Features {%
+          endif %}</a>
+        <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary{% endif %}"
+          href="{{ t.paths.guides | relative_url }}">{%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}
+        </a>
+        <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'terms' %} text-primary{% endif %}"
+          href="{{ t.paths.terms | relative_url }}">
+          {%if page.locale == 'fr' %}
+          CGV
+          {% else %}
+          Term Of Sales
+          {% endif %}
+        </a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-4">
+        <!-- Language Switcher -->
+        <a href="{% if page.locale == 'fr' %}/{% else %}/fr/{% endif %}"
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-xs font-bold text-on-surface-variant hover:text-primary transition-colors">
+          {{ t.switch_label }}
+        </a>
+        <a href="{{ t.paths.download | relative_url }}"
+          class="button-primary !h-11 !px-6 !text-sm !py-0 flex items-center justify-center">
+          {% if page.locale == 'fr' %}
+          Télécharger
+          {% else %}
+          Download
+          {% endif %}
+        </a>
+
+        <!-- Mobile Toggle Button -->
+        <button
+          data-menu-toggle
+          aria-expanded="false"
+          aria-label="Open navigation"
+          class="md:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined menu-icon-open">menu</span>
+          <span class="material-symbols-outlined menu-icon-close hidden">close</span>
+        </button>
       </div>
-      <span class="text-xl font-black tracking-tighter text-on-surface font-display">{{ t.meta.site_title }}</span>
-    </a>
+    </div>
+  </header>
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-10">
-      <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'home' %} text-primary{% endif %}"
-        href="{{ t.paths.home | relative_url }}">{%if page.locale == 'fr' %} Fonctionnalités {% else %} Features {%
-        endif %}</a>
-      <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary{% endif %}"
-        href="{{ t.paths.guides | relative_url }}">{%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}
-      </a>
-      <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'terms' %} text-primary{% endif %}"
-        href="{{ t.paths.terms | relative_url }}">
-        {%if page.locale == 'fr' %}
-        CGV
-        {% else %}
-        Term Of Sales
-        {% endif %}
-    </nav>
+  <!-- Mobile Full-Screen Modal Menu Overlay (Placed outside header to ensure true viewport fixed layout) -->
+  <div
+    data-menu-panel
+    class="md:hidden fixed inset-0 z-[100] w-screen h-screen flex flex-col items-center justify-center p-8 bg-[#0b1326] backdrop-blur-xl nav-panel-mobile">
+    
+    <!-- Close Button inside Modal -->
+    <button
+      data-menu-close-btn
+      aria-label="Close navigation"
+      class="absolute top-6 right-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high active:scale-95 transition-all shadow-neon">
+      <span class="material-symbols-outlined !text-3xl">close</span>
+    </button>
 
-    <!-- Actions -->
-    <div class="flex items-center gap-4">
-      <!-- Language Switcher -->
-      <a href="{% if page.locale == 'fr' %}/{% else %}/fr/{% endif %}"
-        class="flex h-10 w-10 items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-xs font-bold text-on-surface-variant hover:text-primary transition-colors">
-        {{ t.switch_label }}
-      </a>
-      <a href="{{ t.paths.download | relative_url }}"
-        class="button-primary !h-11 !px-6 !text-sm !py-0 flex items-center justify-center">
-        {% if page.locale == 'fr' %}
-        Télécharger
-        {% else %}
-        Download
-        {% endif %}
-      </a>
+    <!-- Modal Center Wrapper -->
+    <div class="w-full max-w-sm flex flex-col gap-10 items-center justify-center text-center">
+      <!-- Brand Logo & Title -->
+      <div class="flex flex-col items-center gap-3">
+        <div class="h-16 w-16 rounded-2xl bg-primary-container/20 p-2.5 neon-border flex items-center justify-center">
+          <img src="{{ '/favicon.ico' | relative_url }}" alt="Logo" class="h-full w-full object-contain">
+        </div>
+        <span class="text-3xl font-black tracking-tighter text-on-surface font-display">{{ t.meta.site_title }}</span>
+      </div>
 
-      <!-- Mobile Toggle -->
-      <button
-        class="md:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors">
-        <span class="material-symbols-outlined">menu</span>
-      </button>
+      <!-- Navigation Buttons (Centered on Screen) -->
+      <nav class="flex flex-col gap-5 w-full">
+        <a class="flex h-16 w-full items-center justify-center rounded-2xl bg-surface-container border border-outline-variant text-lg font-black uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 hover:neon-glow transition-all active:scale-98{% if active_key == 'home' %} !text-primary border-primary/50 neon-glow bg-surface-container-high{% endif %}"
+          href="{{ t.paths.home | relative_url }}">
+          {%if page.locale == 'fr' %} Fonctionnalités {% else %} Features {% endif %}
+        </a>
+        <a class="flex h-16 w-full items-center justify-center rounded-2xl bg-surface-container border border-outline-variant text-lg font-black uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 hover:neon-glow transition-all active:scale-98{% if active_key == 'guides' %} !text-primary border-primary/50 neon-glow bg-surface-container-high{% endif %}"
+          href="{{ t.paths.guides | relative_url }}">
+          {%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}
+        </a>
+        <a class="flex h-16 w-full items-center justify-center rounded-2xl bg-surface-container border border-outline-variant text-lg font-black uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 hover:neon-glow transition-all active:scale-98{% if active_key == 'terms' %} !text-primary border-primary/50 neon-glow bg-surface-container-high{% endif %}"
+          href="{{ t.paths.terms | relative_url }}">
+          {%if page.locale == 'fr' %} CGV {% else %} Term Of Sales {% endif %}
+        </a>
+      </nav>
     </div>
   </div>
-</header>
+</div>

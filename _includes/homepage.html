@@ -95,14 +95,13 @@
           {% assign real_posts = site.posts | where: "locale", "en" | limit: 3 %}
         {% endif %}
         {% for post in real_posts limit: 3 %}
-        <article class="flex flex-col overflow-hidden rounded-2xl bg-surface-container border border-outline-variant transition-all hover:border-primary/40 hover:neon-glow">
-          <div class="overflow-hidden">
-            {% if forloop.index == 1 %}
-            <img src="{{ '/assets/images/screenshots/screen4.png' | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform hover:scale-105">
-            {% elsif forloop.index == 2 %}
-            <img src="{{ '/assets/images/screenshots/screen5.png' | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform hover:scale-105">
+        <article class="group flex flex-col overflow-hidden rounded-2xl bg-surface-container border border-outline-variant transition-all hover:border-primary/40 hover:neon-glow">
+          <div class="overflow-hidden relative bg-surface-container-low aspect-video w-full border-b border-outline-variant">
+            {% if post.thumbnail %}
+            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform group-hover:scale-105" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'; window.initCanvasFallback && window.initCanvasFallback(this.nextElementSibling);">
+            <canvas class="js-blog-cover aspect-video w-full" style="display: none;" data-title="{{ post.title }}" data-category="{{ post.categories | first | default: 'Tutoriel' }}"></canvas>
             {% else %}
-            <img src="{{ '/assets/images/screenshots/hero.png' | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform hover:scale-105">
+            <canvas class="js-blog-cover aspect-video w-full" data-title="{{ post.title }}" data-category="{{ post.categories | first | default: 'Tutoriel' }}"></canvas>
             {% endif %}
           </div>
           <div class="flex flex-1 flex-col p-6">

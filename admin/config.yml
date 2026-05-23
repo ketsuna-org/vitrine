@@ -25,6 +25,15 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: string }
+      - {
+          label: Primary Category,
+          name: category,
+          widget: select,
+          options: ["Setup", "Runner", "Introduction", "Components", "Embeds", "User", "Moderation", "Channels", "Roles", "Bot", "Server", "Blacklists", "Arguments & Conditions", "Text"],
+          default: "Setup",
+          required: true
+        }
+      - { label: Function Syntax, name: function_syntax, widget: string, required: false, hint: "For BDFD functions, e.g., $ping or $customEmbed[title;text]" }
       - { label: Date, name: date, widget: datetime, required: false }
       - {
           label: Categories,
@@ -60,6 +69,15 @@ collections:
     fields:
       - { label: Titre, name: title, widget: string }
       - { label: Description, name: description, widget: string }
+      - {
+          label: Categorie Principale,
+          name: category,
+          widget: select,
+          options: ["Setup", "Runner", "Introduction", "Components", "Embeds", "User", "Moderation", "Channels", "Roles", "Bot", "Server", "Blacklists", "Arguments & Conditions", "Text"],
+          default: "Setup",
+          required: true
+        }
+      - { label: Syntaxe de la Fonction, name: function_syntax, widget: string, required: false, hint: "Pour les fonctions BDFD, e.g., $ping ou $customEmbed[title;text]" }
       - { label: Date, name: date, widget: datetime, required: false }
       - {
           label: Categories,
