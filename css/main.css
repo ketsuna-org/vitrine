@@ -140,29 +140,6 @@
     display: block !important;
   }
 
-  /* Responsive Horizontal Scrollable Tables */
-  .table-responsive-wrapper {
-    margin-top: 1.5rem;
-    margin-bottom: 2rem;
-    overflow-x: auto;
-    width: 100%;
-    -webkit-overflow-scrolling: touch;
-    border: 1px solid rgba(77, 67, 84, 0.5);
-    border-radius: 1rem;
-    background-color: rgba(23, 31, 51, 0.4);
-  }
-
-  .table-responsive-wrapper table {
-    min-width: 650px;
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .table-responsive-wrapper th, 
-  .table-responsive-wrapper td {
-    white-space: normal;
-  }
-
   /* Hide scrollbar utility for sleek horizontal mobile trays */
   .scrollbar-none::-webkit-scrollbar {
     display: none !important;
@@ -274,4 +251,71 @@
   .gfm-alert-caution .gfm-alert-header {
     color: #ef4444;
   }
+}
+
+/* Responsive Horizontal Scrollable Tables — unlayered to override Tailwind preflight */
+.table-responsive-wrapper {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto !important;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(77, 67, 84, 0.5);
+  border-radius: 1rem;
+  background-color: rgba(23, 31, 51, 0.4);
+}
+
+.table-responsive-wrapper table {
+  min-width: 650px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-responsive-wrapper th,
+.table-responsive-wrapper td {
+  white-space: normal;
+}
+
+/* Sticky first column so row context remains visible while scrolling */
+.table-responsive-wrapper th:first-child,
+.table-responsive-wrapper td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background-clip: padding-box;
+}
+
+.table-responsive-wrapper th:first-child {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.table-responsive-wrapper td:first-child {
+  background: rgba(11, 19, 38, 0.98);
+}
+
+/* Scroll shadow indicator — fades when scrolled to end */
+.table-responsive-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 2rem;
+  border-radius: 0 1rem 1rem 0;
+  background: linear-gradient(to right, transparent, rgba(11, 19, 38, 0.6));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.table-responsive-wrapper.is-scrollable {
+  position: relative;
+}
+
+.table-responsive-wrapper.is-scrollable::after {
+  opacity: 1;
+}
+
+.table-responsive-wrapper.is-scrollable.scrolled-end::after {
+  opacity: 0;
 }

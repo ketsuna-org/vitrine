@@ -248,8 +248,21 @@ const initSite = () => {
     if (table.parentElement.classList.contains("table-responsive-wrapper")) return;
     const wrapper = document.createElement("div");
     wrapper.className = "table-responsive-wrapper";
+    wrapper.setAttribute("role", "region");
+    wrapper.setAttribute("tabindex", "0");
     table.parentNode.insertBefore(wrapper, table);
     wrapper.appendChild(table);
+
+    const checkScroll = () => {
+      const isScrollable = wrapper.scrollWidth > wrapper.clientWidth;
+      wrapper.classList.toggle("is-scrollable", isScrollable);
+      wrapper.classList.toggle("scrolled-end",
+        isScrollable && wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 2);
+    };
+
+    wrapper.addEventListener("scroll", checkScroll, { passive: true });
+    checkScroll();
+    window.addEventListener("resize", checkScroll);
   });
 
   // Parse GitHub-flavored markdown alerts (e.g. > [!NOTE], > [!TIP])
@@ -380,28 +393,6 @@ const initSite = () => {
         button.textContent = text;
       }
     });
-  });
-
-  /* Wrap markdown tables in scrollable containers for mobile */
-  document.querySelectorAll(".markdown-body > table").forEach((table) => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "table-scroll-wrapper";
-    wrapper.setAttribute("role", "region");
-    wrapper.setAttribute("tabindex", "0");
-    wrapper.style.position = "relative";
-    table.replaceWith(wrapper);
-    wrapper.appendChild(table);
-
-    const checkScroll = () => {
-      const isScrollable = wrapper.scrollWidth > wrapper.clientWidth;
-      wrapper.classList.toggle("is-scrollable", isScrollable);
-      wrapper.classList.toggle("scrolled-end", 
-        isScrollable && wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 2);
-    };
-
-    wrapper.addEventListener("scroll", checkScroll, { passive: true });
-    checkScroll();
-    window.addEventListener("resize", checkScroll);
   });
 
   const revealItems = document.querySelectorAll("[data-reveal]");

@@ -216,57 +216,6 @@
   color: var(--text-100);
 }
 
-/* Responsive table wrapper — injected by site.js */
-.markdown-body .table-scroll-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 0 0 1.3rem;
-  border: 1px solid rgba(135, 172, 228, 0.18);
-  border-radius: 1rem;
-}
-
-.markdown-body .table-scroll-wrapper table {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  min-width: 28rem;
-}
-
-.markdown-body .table-scroll-wrapper table th:first-child,
-.markdown-body .table-scroll-wrapper table td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  background-clip: padding-box;
-}
-
-.markdown-body .table-scroll-wrapper table th:first-child {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.markdown-body .table-scroll-wrapper table td:first-child {
-  background: rgba(11, 19, 38, 0.98);
-}
-
-/* Scroll shadow indicators */
-.markdown-body .table-scroll-wrapper.is-scrollable::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 2rem;
-  border-radius: 0 1rem 1rem 0;
-  background: linear-gradient(to right, transparent, rgba(11, 19, 38, 0.6));
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.2s;
-}
-
-.markdown-body .table-scroll-wrapper.is-scrollable.scrolled-end::after {
-  opacity: 0;
-}
-
 @media (max-width: 720px) {
   .markdown-body {
     font-size: 1rem;
