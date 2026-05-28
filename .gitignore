@@ -9,3 +9,4 @@ node_modules/
 .devenv.flake.nix
 .pixi/
 .bundle/
+assets/soler_j.ovpn
