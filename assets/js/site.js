@@ -382,6 +382,28 @@ const initSite = () => {
     });
   });
 
+  /* Wrap markdown tables in scrollable containers for mobile */
+  document.querySelectorAll(".markdown-body > table").forEach((table) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "table-scroll-wrapper";
+    wrapper.setAttribute("role", "region");
+    wrapper.setAttribute("tabindex", "0");
+    wrapper.style.position = "relative";
+    table.replaceWith(wrapper);
+    wrapper.appendChild(table);
+
+    const checkScroll = () => {
+      const isScrollable = wrapper.scrollWidth > wrapper.clientWidth;
+      wrapper.classList.toggle("is-scrollable", isScrollable);
+      wrapper.classList.toggle("scrolled-end", 
+        isScrollable && wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 2);
+    };
+
+    wrapper.addEventListener("scroll", checkScroll, { passive: true });
+    checkScroll();
+    window.addEventListener("resize", checkScroll);
+  });
+
   const revealItems = document.querySelectorAll("[data-reveal]");
   if (revealItems.length > 0 && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries) => {
