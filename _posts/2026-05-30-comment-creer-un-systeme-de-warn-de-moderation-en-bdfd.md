@@ -1,6 +1,6 @@
 ---
 title: "Comment Créer un Système de Warn de Modération en BDFD"
-description: Concevez un système d'avertissements (warns) isolé par serveur pour votre bot Discord. Apprenez à ajouter, lister, retirer et effacer les warns grâce aux variables membres.
+description: Concevez un système d'avertissements (warns) isolé par serveur pour votre bot Discord. Apprenez à ajouter, lister, retirer et effacer les warns grâce aux variables utilisateur par serveur.
 date: 2026-05-30T15:40:00.000+02:00
 author: Garder500
 translation_key: bdfd-warn-guide
@@ -9,30 +9,28 @@ content_language: fr
 layout: post
 category: Moderation
 toc: true
-function_syntax: $setMemberVar[varName;value;userID;guildID]
+function_syntax: $setUserVar[varName;value;userID;guildID]
 ---
 
 Un **système d'avertissements (Warn System)** robuste est la pierre angulaire de tout bot de modération Discord professionnel. Il permet à l'équipe de modération de donner des avertissements formels aux membres enfreignant le règlement, de suivre leur historique, et de prendre des mesures disciplinaires progressives.
 
-Lors de la conception d'un tel système, le principal piège à éviter est la fuite de données : si vous utilisez des variables utilisateur classiques (`$getUserVar`), un membre averti sur le **Serveur A** conservera ses avertissements sur le **Serveur B**.
+Lors de la conception d'un tel système, le principal piège à éviter est la fuite de données : si vous utilisez `$getUserVar` sans préciser le `$guildID`, un membre averti sur le **Serveur A** conservera ses avertissements sur le **Serveur B**.
 
-Pour éviter cela, nous devons utiliser les **variables membres isolées** (`$getMemberVar` / `$setMemberVar`), cloisonnant les données à chaque serveur. Dans ce guide, nous allons concevoir un système de warns complet, sécurisé et professionnel !
+Pour éviter cela, `$getUserVar` et `$setUserVar` acceptent un paramètre `GuildID` optionnel qui **cloisonne la valeur au couple UserID + GuildID**. Dans ce guide, nous allons concevoir un système de warns complet, sécurisé et professionnel !
 
 ---
 
 ## 🗄️ Portée des Données : Éviter les Fuites Inter-Serveurs
 
-Sous le capot de Bot Creator / BDFD, la portée des variables est cruciale. Pour garantir la sécurité de votre outil :
-
 ```mermaid
 graph TD
-    A[Choix de la Variable] --> B[GLOBALE : $getUserVar]
-    A --> C[ISOLÉE : $getMemberVar]
+    A[Choix de la Portée] --> B["GLOBALE : $getUserVar[warns;userID]"]
+    A --> C["ISOLÉE : $getUserVar[warns;userID;guildID]"]
     B --> D[⚠️ Les avertissements s'appliquent sur tous les serveurs partagés par le bot]
     C --> E[✅ Les avertissements sont confinés au couple unique GuildID + UserID]
 ```
 
-En choisissant `$getMemberVar[warns;userID;guildID]`, les données de vos serveurs restent étanches et strictement confinées !
+En passant `$guildID` en troisième argument, les données de chaque serveur restent étanches et strictement confinées !
 
 ---
 
@@ -70,9 +68,9 @@ $else
     $endif
 
     // Lecture, incrémentation et écriture en base de données
-    $var[warnsActuels;$getMemberVar[warns;$var[cible];$guildID]]
+    $var[warnsActuels;$getUserVar[warns;$var[cible];$guildID]]
     $var[nouveauxWarns;$calculate[$var[warnsActuels] + 1]]
-    $setMemberVar[warns;$var[nouveauxWarns];$var[cible];$guildID]
+    $setUserVar[warns;$var[nouveauxWarns];$var[cible];$guildID]
 
     // Notification privée par DM à la cible
     $dm[$var[cible]]
@@ -115,7 +113,7 @@ Affiche le total des avertissements d'un membre sur le serveur actuel.
 $nomention
 $var[cible;$findUser[$message;yes]]
 
-$var[infractions;$getMemberVar[warns;$var[cible];$guildID]]
+$var[infractions;$getUserVar[warns;$var[cible];$guildID]]
 
 $title[🗃️ Casier de Modération]
 $color[#3b82f6]
@@ -153,13 +151,13 @@ $var[cible;$findUser[$message;no]]
 $if[$var[cible]==]
   ❌ Veuillez spécifier un membre valide ! Exemple : `!unwarn @pseudo`
 $else
-  $var[warnsActuels;$getMemberVar[warns;$var[cible];$guildID]]
+  $var[warnsActuels;$getUserVar[warns;$var[cible];$guildID]]
 
   $if[$var[warnsActuels]<=0]
     ❌ **$username[$var[cible]]** ne possède aucun avertissement actif à retirer !
   $else
     $var[nouveauxWarns;$calculate[$var[warnsActuels] - 1]]
-    $setMemberVar[warns;$var[nouveauxWarns];$var[cible];$guildID]
+    $setUserVar[warns;$var[nouveauxWarns];$var[cible];$guildID]
 
     $title[✅ Avertissement Annulé]
     $color[#10b981]
@@ -192,13 +190,12 @@ $var[cible;$findUser[$message;no]]
 $if[$var[cible]==]
   ❌ Veuillez spécifier un membre ! Exemple : `!clearwarns @pseudo`
 $else
-  $var[warnsActuels;$getMemberVar[warns;$var[cible];$guildID]]
+  $var[warnsActuels;$getUserVar[warns;$var[cible];$guildID]]
 
   $if[$var[warnsActuels]<=0]
     ❌ Le casier de **$username[$var[cible]]** est déjà parfaitement vierge !
   $else
-    // Réinitialisation de la variable membre
-    $resetMemberVar[warns;$var[cible];$guildID]
+    $setUserVar[warns;0;$var[cible];$guildID]
 
     $title[🧹 Historique de Modération Effacé]
     $color[#6366f1]
