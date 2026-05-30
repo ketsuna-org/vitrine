@@ -55,7 +55,7 @@ Donne un avertissement à un membre, incrémente son compteur d'infractions, enr
 $nomention
 $onlyPerms[kickmembers;❌ Vous devez disposer de la permission d'exclure des membres pour donner un avertissement !]
 
-$var[cible;$findMember[$message;no]]
+$var[cible;$findUser[$message;no]]
 
 $if[$var[cible]==]
   ❌ Veuillez spécifier un membre valide !
@@ -113,7 +113,7 @@ Affiche le total des avertissements d'un membre sur le serveur actuel.
 
 ```bdfd
 $nomention
-$var[cible;$findMember[$message;yes]]
+$var[cible;$findUser[$message;yes]]
 
 $var[infractions;$getMemberVar[warns;$var[cible];$guildID]]
 
@@ -148,7 +148,7 @@ Diminue de `1` le compteur d'avertissements d'un membre. Pratique pour corriger 
 $nomention
 $onlyPerms[kickmembers;❌ Vous devez disposer de la permission d'exclure des membres pour annuler un avertissement !]
 
-$var[cible;$findMember[$message;no]]
+$var[cible;$findUser[$message;no]]
 
 $if[$var[cible]==]
   ❌ Veuillez spécifier un membre valide ! Exemple : `!unwarn @pseudo`
@@ -187,7 +187,7 @@ Efface complètement l'historique d'infractions d'un membre, remettant son compt
 $nomention
 $onlyPerms[banmembers;❌ Seuls les modérateurs habilités à bannir peuvent effacer le casier des avertissements !]
 
-$var[cible;$findMember[$message;no]]
+$var[cible;$findUser[$message;no]]
 
 $if[$var[cible]==]
   ❌ Veuillez spécifier un membre ! Exemple : `!clearwarns @pseudo`

@@ -14,7 +14,7 @@ function_syntax: $findUser[query;fallbackToAuthor]
 
 L'un des aspects les plus cruciaux des commandes interactives sur Discord consiste à identifier avec précision *qui* la commande doit cibler. Lorsqu'un utilisateur tape `!avatar @pseudo`, `!avatar 123456789012345678`, ou simplement `!avatar`, votre bot doit savoir traiter chacun de ces cas avec élégance.
 
-Dans ce guide, nous allons explorer les techniques avancées de ciblage des utilisateurs avec Bot Designer for Discord (BDFD) / Bot Creator à l'aide de `$mentioned`, `$findUser`, `$findMember` et `$authorID`.
+Dans ce guide, nous allons explorer les techniques avancées de ciblage des utilisateurs avec Bot Designer for Discord (BDFD) / Bot Creator à l'aide de `$mentioned`, `$findUser` et `$authorID`.
 
 ---
 
@@ -26,8 +26,7 @@ BDFD offre plusieurs fonctions pour extraire des identifiants (IDs) d'utilisateu
 | :--- | :--- | :--- |
 | **`$authorID`** | Retourne instantanément l'ID de l'auteur de la commande. | Définir un repli (fallback) par défaut. |
 | **`$mentioned[index]`** | Récupère l'ID de l'utilisateur directement **mentionné** (ping) dans le message. | Commandes strictes nécessitant uniquement un ping. |
-| **`$findUser[query;fallback]`** | Recherche globale par texte (ID, pseudo, mention) et renvoie un ID. | Commandes utilitaires flexibles (`!whois`, `!avatar`). |
-| **`$findMember[query;fallback]`** | Recherche restreinte uniquement au serveur Discord actuel. | Outils de modération (`!warn`, `!ban`, `!kick`). |
+| **`$findUser[query;fallback]`** | Recherche globale par texte (ID, pseudo, mention) et renvoie un ID. | Commandes flexibles et outils de modération (`!warn`, `!ban`, `!kick`). |
 
 ---
 
@@ -79,29 +78,25 @@ $addTimestamp
 
 ---
 
-## 3. Recherche Interne au Serveur (`$findMember`)
+## 3. Recherche Robuste pour Modération (`$findUser`)
 
-Pour les commandes de modération, cibler un utilisateur globalement ne suffit pas ; la cible **doit** faire partie du serveur. `$findMember` fonctionne de manière identique à `$findUser` mais limite sa recherche aux membres du serveur actuel :
+Pour les commandes de modération, `$findUser` est indispensable pour cibler un membre de manière sécurisée et flexible :
 
-```bdfd
-$findMember[requête;repliSurAuteur]
-```
-
-### Exemple de Code : Commande d'Exclusion Locale (Kick)
+### Exemple de Code : Commande d'Exclusion (Kick)
 ```bdfd
 $nomention
 $onlyPerms[kickmembers;❌ Vous devez disposer de la permission d'exclure des membres !]
 
-$var[targetID;$findMember[$message;no]]
+$var[targetID;$findUser[$message;no]]
 
 $if[$var[targetID]==]
-  ❌ Membre introuvable ! Veuillez fournir un pseudo valide, un pseudo de serveur, une mention ou un identifiant.
+  ❌ Membre introuvable ! Veuillez fournir un pseudo valide, une mention ou un identifiant.
 $else
     $if[$var[targetID]==$authorID]
       ❌ Vous ne pouvez pas vous exclure vous-même !
     $else
       $kick[$var[targetID]]
-      ✅ **$username[$var[targetID]]** a été exclu du serveur avec succès.
+      ✅ **$username[$var[targetID]]** a été exclu avec succès.
     $endif
 $endif
 ```

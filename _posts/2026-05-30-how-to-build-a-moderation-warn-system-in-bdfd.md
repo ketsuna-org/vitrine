@@ -55,7 +55,7 @@ Issues a warning to a member, increments their infraction counter, logs the reas
 $nomention
 $onlyPerms[kickmembers;❌ You need the `Kick Members` permission to warn users!]
 
-$var[target;$findMember[$message;no]]
+$var[target;$findUser[$message;no]]
 
 $if[$var[target]==]
   ❌ Please specify a valid member to warn! 
@@ -113,7 +113,7 @@ Checks and displays the current warning count of a server member.
 
 ```bdfd
 $nomention
-$var[target;$findMember[$message;yes]]
+$var[target;$findUser[$message;yes]]
 
 $var[infractions;$getMemberVar[warns;$var[target];$guildID]]
 
@@ -148,7 +148,7 @@ Decrements a member's active warning count by `1`. Useful for resolving accident
 $nomention
 $onlyPerms[kickmembers;❌ You need the `Kick Members` permission to unwarn users!]
 
-$var[target;$findMember[$message;no]]
+$var[target;$findUser[$message;no]]
 
 $if[$var[target]==]
   ❌ Please specify a valid member! Usage: `!unwarn @user`
@@ -187,7 +187,7 @@ Completely wipes clean a member's infraction record, resetting their warnings co
 $nomention
 $onlyPerms[banmembers;❌ Only administrators or ban-capable staff can clear infraction histories!]
 
-$var[target;$findMember[$message;no]]
+$var[target;$findUser[$message;no]]
 
 $if[$var[target]==]
   ❌ Please specify a member! Usage: `!clearwarns @user`

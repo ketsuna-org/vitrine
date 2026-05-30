@@ -14,7 +14,7 @@ function_syntax: $findUser[query;fallbackToAuthor]
 
 One of the most critical aspects of interactive Discord commands is identifying *who* the command should target. When a user runs `!avatar @username`, `!avatar 123456789012345678`, or simply `!avatar`, your bot should process each of these inputs gracefully.
 
-In this guide, we will explore advanced user targeting techniques in Bot Designer for Discord (BDFD) / Bot Creator using `$mentioned`, `$findUser`, `$findMember`, and `$authorID`.
+In this guide, we will explore advanced user targeting techniques in Bot Designer for Discord (BDFD) / Bot Creator using `$mentioned`, `$findUser`, and `$authorID`.
 
 ---
 
@@ -26,8 +26,7 @@ BDFD offers several distinct functions to retrieve user IDs from command argumen
 | :--- | :--- | :--- |
 | **`$authorID`** | Instantly retrieves the ID of the command initiator. | Command context fallbacks, setting defaults. |
 | **`$mentioned[index]`** | Retrieves the ID of the user directly **pinged** in the command. | Strict, mention-only commands. |
-| **`$findUser[query;fallback]`** | Searches globally by raw text (IDs, usernames, or pings) and returns an ID. | Flexible user utility commands (`!whois`, `!avatar`). |
-| **`$findMember[query;fallback]`** | Searches within the current server context only. | Moderation tools (`!warn`, `!ban`, `!kick`). |
+| **`$findUser[query;fallback]`** | Searches globally by raw text (IDs, usernames, or pings) and returns an ID. | Flexible commands and moderation tools (`!warn`, `!ban`, `!kick`). |
 
 ---
 
@@ -79,29 +78,25 @@ $addTimestamp
 
 ---
 
-## 3. Server-Only Member Searches (`$findMember`)
+## 3. Robust Lookup for Moderation (`$findUser`)
 
-For moderation commands, targeting users globally isn't enough; they *must* belong to the current server. `$findMember` functions similarly to `$findUser` but limits its lookup to the guild:
+For moderation commands, `$findUser` is essential to target a member securely and flexibly:
 
-```bdfd
-$findMember[query;fallbackToAuthor]
-```
-
-### Code Example: Server-Only Kick Command
+### Code Example: Kick Command
 ```bdfd
 $nomention
 $onlyPerms[kickmembers;❌ You need the `Kick Members` permission to run this!]
 
-$var[targetID;$findMember[$message;no]]
+$var[targetID;$findUser[$message;no]]
 
 $if[$var[targetID]==]
-  ❌ Member not found! Please provide a valid username, server nickname, mention, or ID.
+  ❌ Member not found! Please provide a valid username, mention, or ID.
 $else
     $if[$var[targetID]==$authorID]
       ❌ You cannot kick yourself!
     $else
       $kick[$var[targetID]]
-      ✅ **$username[$var[targetID]]** has been kicked from the server.
+      ✅ **$username[$var[targetID]]** has been kicked.
     $endif
 $endif
 ```
