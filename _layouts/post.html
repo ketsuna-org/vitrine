@@ -163,5 +163,39 @@
       await mermaid.run();
     }
   </script>
+  <!-- Custom BDFD Syntax Highlighter -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bdfdBlocks = document.querySelectorAll('.language-bdfd, .language-bds, .highlighter-rouge.language-bdfd pre code');
+      bdfdBlocks.forEach(block => {
+        const codeElement = block.querySelector('code') || block;
+        let text = codeElement.textContent;
+
+        // Escape HTML
+        let html = text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+
+        // Highlights Comments: // single line comments
+        html = html.replace(/(\/\/.*)/g, '<span class="bdfd-comment">$1</span>');
+
+        // Highlights Placeholders: ((varName))
+        html = html.replace(/(\(\([a-zA-Z0-9._|()[\];/\-]+\)\))/g, '<span class="bdfd-placeholder">$1</span>');
+
+        // Highlights Functions: $title, $getMemberVar, etc.
+        html = html.replace(/(\$[a-zA-Z0-9_]+)/g, '<span class="bdfd-function">$1</span>');
+
+        // Highlights Numbers and Cooldown Durations: e.g. 500, 24h
+        html = html.replace(/\b(\d+(?:h|m|s|d)?)\b/g, '<span class="bdfd-number">$1</span>');
+
+        // Highlights Punctuation: [, ], ;
+        html = html.replace(/([\[\];])/g, '<span class="bdfd-punctuation">$1</span>');
+
+        codeElement.innerHTML = html;
+      });
+    });
+  </script>
 </body>
 </html>
+
