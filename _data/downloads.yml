@@ -7,10 +7,7 @@ stores:
     url: "https://play.google.com/store/apps/details?id=fr.botcreator.app"
   steam:
     label: "Steam"
-    url: "https://store.steampowered.com/app/YOUR_APP_ID"
-  windows_store:
-    label: "Microsoft Store"
-    url: "https://apps.microsoft.com/detail/9p6t5wmbmzlr?hl=fr-FR&gl=FR"
+    url: "https://store.steampowered.com/app/4597050/Bot_Creator_For_Discord/"
   ios_appstore:
     label: "App Store"
     url: "https://apps.apple.com/us/app/bot-creator-for-discord/id6760181193"

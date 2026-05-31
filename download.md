@@ -64,11 +64,7 @@ permalink: /download/
           A spacious workspace for designing commands and organizing logic on Windows and MacOS.
         </p>
         <div class="mt-auto space-y-3">
-          <a class="button-primary w-full !text-xs !h-11" href="{{ downloads.stores.windows_store.url }}" target="_blank">
-            <span class="material-symbols-outlined text-sm mr-2">grid_view</span>
-            Microsoft Store
-          </a>
-          <a class="button-outline w-full !text-xs !h-11" href="{{ downloads.stores.steam.url }}" target="_blank">
+          <a class="button-primary w-full !text-xs !h-11" href="{{ downloads.stores.steam.url }}" target="_blank">
             <span class="material-symbols-outlined text-sm mr-2">sports_esports</span>
             Steam
           </a>
