@@ -1,0 +1,239 @@
+{% assign locale = page.locale | default: site.lang | default: 'en' %}
+{% assign t = site.data.locales[locale] %}
+{% include site_head.html locale=locale markdown=true %}
+
+<body class="bg-background text-on-background font-sans antialiased">
+  {% include site_header.html locale=locale t=t %}
+
+  <main id="main-content" class="min-h-screen py-16 lg:py-24" tabindex="-1">
+    <div class="mx-auto max-w-[90rem] px-6">
+      <!-- Breadcrumbs -->
+      <nav class="mb-8 flex items-center gap-2 text-sm font-medium text-on-surface-variant" aria-label="Breadcrumb">
+        <a href="{{ t.paths.home | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.home }}</a>
+        <span class="material-symbols-outlined text-base">chevron_right</span>
+        <a href="{{ t.paths.docs | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.docs }}</a>
+        <span class="material-symbols-outlined text-base">chevron_right</span>
+        {% if page.category %}
+        <a href="{{ t.paths.docs | relative_url }}#{{ page.category | slugify }}" class="hover:text-primary transition-colors">{{ page.category }}</a>
+        <span class="material-symbols-outlined text-base">chevron_right</span>
+        {% endif %}
+        <span class="text-on-surface truncate">{{ page.title }}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
+        <!-- Main Content -->
+        <div class="lg:col-span-8">
+          <article class="post-card neon-border">
+            <header class="mb-10">
+              <div class="mb-6 flex flex-wrap items-center gap-3">
+                <span class="rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
+                  {{ page.category | default: "Function" }}
+                </span>
+                <span class="rounded-full bg-surface-container-high px-3 py-0.5 text-[10px] font-bold text-on-surface-variant/60 border border-outline-variant">
+                  {{ page.function_name | default: page.title }}
+                </span>
+              </div>
+              <h1 class="font-display text-4xl font-black leading-tight text-on-surface md:text-5xl lg:text-6xl mb-6">
+                {{ page.title }}
+              </h1>
+              {% if page.description %}
+              <p class="text-xl leading-relaxed text-on-surface-variant italic">
+                {{ page.description }}
+              </p>
+              {% endif %}
+            </header>
+
+            <!-- Syntax Block -->
+            {% if page.syntax %}
+            <div class="mb-10 rounded-2xl bg-[#080d19] border border-primary/20 p-6 font-mono">
+              <div class="text-[10px] font-black text-primary uppercase tracking-widest mb-3">Syntax</div>
+              <code class="text-lg font-bold text-on-surface">{{ page.syntax }}</code>
+            </div>
+            {% endif %}
+
+            <!-- Parameters Table -->
+            {% if page.parameters %}
+            <section class="mb-12">
+              <h2 class="font-display text-2xl font-bold text-on-surface mb-6">Parameters</h2>
+              <div class="overflow-x-auto rounded-2xl border border-outline-variant">
+                <table class="w-full text-left text-sm">
+                  <thead class="bg-surface-container-high">
+                    <tr>
+                      <th class="px-6 py-4 font-bold text-on-surface">Parameter</th>
+                      <th class="px-6 py-4 font-bold text-on-surface">Type</th>
+                      <th class="px-6 py-4 font-bold text-on-surface">Required</th>
+                      <th class="px-6 py-4 font-bold text-on-surface">Default</th>
+                      <th class="px-6 py-4 font-bold text-on-surface">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-outline-variant">
+                    {% for param in page.parameters %}
+                    <tr class="{% if forloop.last == false %}border-b border-outline-variant{% endif %} hover:bg-surface-container/50 transition-colors">
+                      <td class="px-6 py-4 font-mono font-bold text-primary">{{ param.name }}</td>
+                      <td class="px-6 py-4">
+                        <span class="rounded-full bg-primary/5 px-3 py-0.5 text-xs font-bold text-primary border border-primary/10">{{ param.type }}</span>
+                      </td>
+                      <td class="px-6 py-4">
+                        {% if param.required %}
+                        <span class="inline-flex items-center gap-1 text-red-400 font-bold text-xs">
+                          <span class="material-symbols-outlined text-sm">check_circle</span> Required
+                        </span>
+                        {% else %}
+                        <span class="text-on-surface-variant/40 text-xs">Optional</span>
+                        {% endif %}
+                      </td>
+                      <td class="px-6 py-4 font-mono text-sm text-on-surface-variant">
+                        {% if param.default %}<code>{{ param.default }}</code>{% else %}<span class="text-on-surface-variant/30">—</span>{% endif %}
+                      </td>
+                      <td class="px-6 py-4 text-on-surface-variant">
+                        {{ param.description }}
+                        {% if param.enum %}
+                        <div class="mt-2 flex flex-wrap gap-1">
+                          {% assign enum_values = param.enum | split: ", " %}
+                          {% for val in enum_values %}
+                          <code class="rounded-md bg-surface-container-high px-2 py-0.5 text-[11px] font-mono text-primary border border-primary/10">{{ val }}</code>
+                          {% endfor %}
+                        </div>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            {% endif %}
+
+            <!-- Return Value -->
+            {% if page.returns %}
+            <section class="mb-12">
+              <h2 class="font-display text-2xl font-bold text-on-surface mb-6">Return Value</h2>
+              <div class="rounded-2xl bg-surface-container border border-outline-variant p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="rounded-full bg-primary/10 px-3 py-0.5 text-xs font-bold text-primary border border-primary/10">{{ page.returns.type }}</span>
+                </div>
+                <p class="text-on-surface-variant">{{ page.returns.description }}</p>
+              </div>
+            </section>
+            {% endif %}
+
+            <!-- Content (examples, notes, etc.) -->
+            <div class="markdown-body article-prose">
+              {{ content }}
+            </div>
+
+            <!-- Examples from frontmatter -->
+            {% if page.examples %}
+            <section class="mt-12">
+              <h2 class="font-display text-2xl font-bold text-on-surface mb-6">Examples</h2>
+              {% for example in page.examples %}
+              <div class="mb-8 rounded-2xl bg-surface-container border border-outline-variant overflow-hidden">
+                {% if example.title %}
+                <div class="bg-surface-container-high px-6 py-3 border-b border-outline-variant">
+                  <h3 class="font-bold text-on-surface text-sm">{{ example.title }}</h3>
+                </div>
+                {% endif %}
+                {% if example.code %}
+                <div class="p-6">
+                  <pre class="language-bdfd"><code>{{ example.code | escape }}</code></pre>
+                </div>
+                {% endif %}
+                {% if example.description %}
+                <div class="px-6 pb-6 text-sm text-on-surface-variant">{{ example.description }}</div>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </section>
+            {% endif %}
+
+            <!-- Related Functions -->
+            {% if page.related %}
+            <footer class="mt-16 border-t border-outline-variant pt-12">
+              <h3 class="font-display text-lg font-bold text-on-surface mb-4">Related Functions</h3>
+              <div class="flex flex-wrap gap-3">
+                {% for func_name in page.related %}
+                {% assign related_doc = site.docs | where: "function_name", func_name | first %}
+                {% if related_doc %}
+                <a href="{{ related_doc.url | relative_url }}" class="inline-flex items-center gap-2 rounded-xl bg-surface-container border border-outline-variant px-4 py-2 text-sm font-mono font-bold text-primary hover:bg-primary/10 hover:border-primary/30 transition-all">
+                  ${{ func_name }}
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                {% else %}
+                <span class="inline-flex items-center gap-2 rounded-xl bg-surface-container border border-outline-variant px-4 py-2 text-sm font-mono font-bold text-on-surface-variant/40">
+                  ${{ func_name }}
+                </span>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </footer>
+            {% endif %}
+          </article>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="lg:col-span-4 flex flex-col gap-8">
+          <!-- Quick nav -->
+          <div class="sticky top-28 rounded-2xl bg-surface-container border border-outline-variant p-6">
+            <h3 class="font-display text-xs font-black text-on-surface-variant/60 uppercase tracking-widest mb-4">On this page</h3>
+            <nav class="flex flex-col gap-2 text-sm">
+              {% if page.syntax %}<a href="#syntax" class="text-on-surface-variant hover:text-primary transition-colors">Syntax</a>{% endif %}
+              {% if page.parameters %}<a href="#parameters" class="text-on-surface-variant hover:text-primary transition-colors">Parameters</a>{% endif %}
+              {% if page.returns %}<a href="#returns" class="text-on-surface-variant hover:text-primary transition-colors">Return Value</a>{% endif %}
+              {% if page.examples %}<a href="#examples" class="text-on-surface-variant hover:text-primary transition-colors">Examples</a>{% endif %}
+              {% if page.related %}<a href="#related" class="text-on-surface-variant hover:text-primary transition-colors">Related Functions</a>{% endif %}
+            </nav>
+          </div>
+
+          <!-- Category sidebar: list all functions in same category -->
+          {% assign category_docs = site.docs | where: "category", page.category %}
+          {% if category_docs.size > 1 %}
+          <div class="rounded-2xl bg-surface-container border border-outline-variant p-6">
+            <h3 class="font-display text-xs font-black text-on-surface-variant/60 uppercase tracking-widest mb-4">{{ page.category }} Functions</h3>
+            <nav class="flex flex-col gap-1">
+              {% for doc in category_docs %}
+              <a href="{{ doc.url | relative_url }}" class="block rounded-xl px-3 py-2 text-sm font-mono font-bold transition-all {% if doc.url == page.url %}bg-primary/10 text-primary border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface{% endif %}">
+                {{ doc.title }}
+              </a>
+              {% endfor %}
+            </nav>
+          </div>
+          {% endif %}
+
+          <div class="rounded-2xl bg-primary/5 border border-primary/10 p-6">
+            <h3 class="font-display text-lg font-bold text-primary mb-2">{{ t.guides.sidebar_help_title }}</h3>
+            <p class="text-sm text-on-surface-variant mb-4">{{ t.guides.sidebar_help_body }}</p>
+            <a href="https://discord.gg/K37nuphaDP" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+              {{ t.guides.sidebar_help_cta }}
+              <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  {% include site_footer.html t=t %}
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+
+  <!-- BDFD Syntax Highlighter -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bdfdBlocks = document.querySelectorAll('.language-bdfd');
+      bdfdBlocks.forEach(block => {
+        const codeElement = block.querySelector('code') || block;
+        let text = codeElement.textContent;
+        let html = text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+        html = html.replace(/(\/\/.*)/g, '<span class="bdfd-comment">$1</span>');
+        html = html.replace(/(\(\([a-zA-Z0-9._|()[\]\;\/\-]+\)\))/g, '<span class="bdfd-placeholder">$1</span>');
+        html = html.replace(/(\$[a-zA-Z0-9_]+)/g, '<span class="bdfd-function">$1</span>');
+        html = html.replace(/\b(\d+(?:h|m|s|d)?)\b/g, '<span class="bdfd-number">$1</span>');
+        html = html.replace(/([\[\];])/g, '<span class="bdfd-punctuation">$1</span>');
+        codeElement.innerHTML = html;
+      });
+    });
+  </script>
+</body>
+</html>

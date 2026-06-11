@@ -7,6 +7,7 @@ paths:
   home: "/"
   download: "/download/"
   guides: "/blog/"
+  docs: "/docs/"
   privacy: "/privacy-policy.html"
   terms: "/terms-of-sale.html"
 
@@ -19,6 +20,7 @@ nav:
   home: "Home"
   download: "Download"
   guides: "Guides"
+  docs: "Docs"
   privacy: "Privacy"
   open_menu: "Open navigation"
   close_menu: "Close navigation"

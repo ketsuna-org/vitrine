@@ -25,6 +25,9 @@
         <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary{% endif %}"
           href="{{ t.paths.guides | relative_url }}">{%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}
         </a>
+        <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'docs' %} text-primary{% endif %}"
+          href="{{ t.paths.docs | relative_url }}">{%if page.locale == 'fr' %} Docs {% else %} Docs {% endif %}
+        </a>
         <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'terms' %} text-primary{% endif %}"
           href="{{ t.paths.terms | relative_url }}">
           {%if page.locale == 'fr' %}
