@@ -1,4 +1,4 @@
-{% assign t = site.data.locales[page.locale] %}
+{% assign t = site.data.locales[page.locale] | default: site.data.locales[site.lang] %}
 {% assign active_key = page.translation_key %}
 {% if page.layout == 'post' %}
 {% assign active_key = 'guides' %}
