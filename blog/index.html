@@ -10,7 +10,7 @@ content_language: en
 {% assign post_list = site.posts | where: "locale", "en" %}
 
 <main class="min-h-screen py-16 lg:py-24">
-  <div class="mx-auto max-w-7xl px-6">
+  <div class="mx-auto max-w-[90rem] px-6">
     <!-- Hero Section -->
     <header class="mb-12">
       <div class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20 mb-6">
@@ -111,13 +111,13 @@ content_language: en
             </div>
 
             <!-- Function Categories -->
-            {% assign func_cats = "Introduction,Components,Embeds,User,Moderation,Channels,Roles,Bot,Server,Blacklists,Arguments & Conditions,Text" | split: "," %}
+            {% assign func_cats = "Introduction,Components,Embeds,Image & Canvas,User,Moderation,Channels,Roles,Bot,Server,Blacklists,Arguments & Conditions,Text" | split: "," %}
             {% for cat in func_cats %}
             <button 
               data-category-btn-mobile="{{ cat }}"
               class="flex items-center gap-3.5 px-5 py-4 lg:px-4 lg:py-3 lg:rounded-xl rounded-2xl text-base lg:text-sm font-bold text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all text-left w-full">
               <span class="material-symbols-outlined text-lg lg:text-base">
-                {% if cat == "Introduction" %}info{% elsif cat == "Components" %}layers{% elsif cat == "Embeds" %}code{% elsif cat == "User" %}person{% elsif cat == "Moderation" %}shield{% elsif cat == "Channels" %}chat{% elsif cat == "Roles" %}shield_person{% elsif cat == "Bot" %}smart_toy{% elsif cat == "Server" %}dns{% elsif cat == "Blacklists" %}block{% elsif cat == "Arguments & Conditions" %}rule{% else %}description{% endif %}
+                {% if cat == "Introduction" %}info{% elsif cat == "Components" %}layers{% elsif cat == "Embeds" %}code{% elsif cat == "Image & Canvas" %}palette{% elsif cat == "User" %}person{% elsif cat == "Moderation" %}shield{% elsif cat == "Channels" %}chat{% elsif cat == "Roles" %}shield_person{% elsif cat == "Bot" %}smart_toy{% elsif cat == "Server" %}dns{% elsif cat == "Blacklists" %}block{% elsif cat == "Arguments & Conditions" %}rule{% else %}description{% endif %}
               </span>
               <span>{{ cat }}</span>
             </button>
@@ -131,7 +131,7 @@ content_language: en
       <div class="flex-grow w-full">
         {% if post_list and post_list.size > 0 %}
         <!-- Guides Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8" id="wiki-guides-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8" id="wiki-guides-grid">
           {% for post in post_list %}
           <article 
             data-guide-card
