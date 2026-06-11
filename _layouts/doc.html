@@ -51,9 +51,9 @@
 
             <!-- Syntax Block -->
             {% if page.syntax %}
-            <div class="mb-10 rounded-2xl bg-[#080d19] border border-primary/20 p-6 font-mono">
+            <div class="mb-10 rounded-2xl bg-[#080d19] border border-primary/20 p-6 font-mono overflow-x-auto">
               <div class="text-[10px] font-black text-primary uppercase tracking-widest mb-3">Syntax</div>
-              <code class="text-lg font-bold text-on-surface">{{ page.syntax }}</code>
+              <code class="text-lg font-bold text-on-surface whitespace-nowrap">{{ page.syntax }}</code>
             </div>
             {% endif %}
 
@@ -140,7 +140,7 @@
                 </div>
                 {% endif %}
                 {% if example.code %}
-                <div class="p-6">
+                <div class="p-6 overflow-x-auto">
                   <pre class="language-bdfd"><code>{{ example.code | escape }}</code></pre>
                 </div>
                 {% endif %}
