@@ -456,3 +456,202 @@ if (document.readyState === "loading") {
 } else {
   initSite();
 }
+
+// ============================================================================
+// Discord Auth Module
+// ============================================================================
+
+window.DiscordAuth = (function() {
+  const API_BASE = 'https://api.bot-creator.fr';
+  const STORAGE_KEYS = {
+    TOKEN: 'bc_token',
+    OWNER_ID: 'bc_owner_id',
+    USER: 'bc_user'
+  };
+
+  // Get current session from localStorage
+  function getSession() {
+    try {
+      const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
+      const ownerId = localStorage.getItem(STORAGE_KEYS.OWNER_ID);
+      const userJson = localStorage.getItem(STORAGE_KEYS.USER);
+      const user = userJson ? JSON.parse(userJson) : null;
+
+      if (token && ownerId && user) {
+        return { token, ownerId, user };
+      }
+      return null;
+    } catch (e) {
+      console.error('[DiscordAuth] Failed to read session:', e);
+      return null;
+    }
+  }
+
+  // Clear session from localStorage
+  function clearSession() {
+    localStorage.removeItem(STORAGE_KEYS.TOKEN);
+    localStorage.removeItem(STORAGE_KEYS.OWNER_ID);
+    localStorage.removeItem(STORAGE_KEYS.USER);
+  }
+
+  // Update header UI based on auth state
+  function updateHeaderUI(user) {
+    const loginContainer = document.getElementById('discord-login-container');
+    const userContainer = document.getElementById('discord-user-container');
+    const loginBtnMobile = document.getElementById('discord-login-btn-mobile');
+    const userContainerMobile = document.getElementById('discord-user-container-mobile');
+
+    if (user) {
+      // Show user UI
+      if (loginContainer) loginContainer.classList.add('hidden');
+      if (userContainer) userContainer.classList.remove('hidden');
+      if (loginBtnMobile) loginBtnMobile.classList.add('hidden');
+      if (userContainerMobile) {
+        userContainerMobile.classList.remove('hidden');
+        userContainerMobile.classList.add('flex');
+      }
+
+      // Update user info - desktop
+      const avatarImg = document.getElementById('discord-user-avatar');
+      const usernameEl = document.getElementById('discord-username');
+
+      if (avatarImg) {
+        if (user.avatar) {
+          avatarImg.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`;
+          avatarImg.style.display = 'block';
+        } else {
+          avatarImg.style.display = 'none';
+        }
+      }
+
+      if (usernameEl) {
+        const displayName = user.global_name || user.username;
+        usernameEl.textContent = displayName;
+        usernameEl.title = `@${user.username}`;
+      }
+
+      // Update user info - mobile
+      const avatarImgMobile = document.getElementById('discord-user-avatar-mobile');
+      const usernameElMobile = document.getElementById('discord-username-mobile');
+      const usernameRawMobile = document.getElementById('discord-username-raw-mobile');
+
+      if (avatarImgMobile) {
+        if (user.avatar) {
+          avatarImgMobile.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`;
+          avatarImgMobile.style.display = 'block';
+        } else {
+          avatarImgMobile.style.display = 'none';
+        }
+      }
+
+      if (usernameElMobile) {
+        usernameElMobile.textContent = user.global_name || user.username;
+      }
+
+      if (usernameRawMobile) {
+        usernameRawMobile.textContent = user.username;
+      }
+    } else {
+      // Show login button
+      if (loginContainer) loginContainer.classList.remove('hidden');
+      if (userContainer) userContainer.classList.add('hidden');
+      if (loginBtnMobile) {
+        loginBtnMobile.classList.remove('hidden');
+      }
+      if (userContainerMobile) {
+        userContainerMobile.classList.add('hidden');
+        userContainerMobile.classList.remove('flex');
+      }
+    }
+  }
+
+  // Start Discord OAuth flow
+  async function loginWithDiscord() {
+    try {
+      const response = await fetch(`${API_BASE}/auth/discord/start`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          redirect_uri: window.location.origin + '/auth/callback'
+        })
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error || err.message || 'Failed to start OAuth');
+      }
+
+      const data = await response.json();
+      window.location.href = data.authorization_url;
+    } catch (error) {
+      console.error('[DiscordAuth] Login failed:', error);
+      alert('Failed to start Discord login: ' + error.message);
+    }
+  }
+
+  // Logout user
+  function logout() {
+    clearSession();
+    updateHeaderUI(null);
+    // Optionally redirect to home or reload
+    if (window.location.pathname !== '/') {
+      window.location.href = '/';
+    }
+  }
+
+  // Initialize auth on page load
+  function init() {
+    const session = getSession();
+    if (session) {
+      updateHeaderUI(session.user);
+    }
+
+    // Bind logout buttons
+    const logoutBtn = document.getElementById('discord-logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', logout);
+    }
+
+    const logoutBtnMobile = document.getElementById('discord-logout-btn-mobile');
+    if (logoutBtnMobile) {
+      logoutBtnMobile.addEventListener('click', function() {
+        logout();
+        // Close mobile menu after logout
+        const closeBtn = document.querySelector('[data-menu-close-btn]');
+        if (closeBtn) closeBtn.click();
+      });
+    }
+
+    // Bind login buttons
+    const loginBtn = document.getElementById('discord-login-btn');
+    if (loginBtn) {
+      loginBtn.addEventListener('click', loginWithDiscord);
+    }
+
+    const loginBtnMobile = document.getElementById('discord-login-btn-mobile');
+    if (loginBtnMobile) {
+      loginBtnMobile.addEventListener('click', function() {
+        loginWithDiscord();
+        // Close mobile menu before redirect
+        const closeBtn = document.querySelector('[data-menu-close-btn]');
+        if (closeBtn) closeBtn.click();
+      });
+    }
+  }
+
+  return {
+    init,
+    loginWithDiscord,
+    logout,
+    getSession,
+    clearSession,
+    updateHeaderUI
+  };
+})();
+
+// Initialize auth module
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", window.DiscordAuth.init);
+} else {
+  window.DiscordAuth.init();
+}
