@@ -73,6 +73,41 @@ home:
       - title: "Template Library"
         body: "Don't start from scratch. Use our pre-configured templates for common tasks."
         icon: "library_books"
+  features:
+    title: "Designed for power. Engineered for privacy."
+    subtitle: "A professional tool suite that gives you complete command over your automations."
+    items:
+      - title: "Local-First Architecture"
+        body: "Your bot tokens, command configurations, and databases reside entirely on your local device or self-hosted runner. We never touch your private keys, guaranteeing total data ownership and zero middleman risk."
+        icon: "security"
+      - title: "Hybrid Scripting Engine"
+        body: "Build visually with drag-and-drop logical blocks, or write precise commands using our custom script parser. Fully compatible with BDFD syntaxes, giving you the best of both visual and code-based editing."
+        icon: "code"
+      - title: "Unified Multi-Device Sync"
+        body: "Create commands on the go using the mobile app, refine them on your desktop workspace, and deploy to a lightweight Docker runner for 24/7 uptime on any server or Raspberry Pi."
+        icon: "sync_alt"
+  how_it_works:
+    title: "Build and deploy in three simple steps"
+    subtitle: "An intuitive workflow from initial setup to 24/7 production hosting."
+    steps:
+      - title: "1. Create your application"
+        body: "Register your bot on Discord's developer portal, copy your secret bot token, and safely input it into our local editor. No server setup required."
+      - title: "2. Design your commands"
+        body: "Build slash commands or event handlers using our drag-and-drop builder. For advanced functionality, write scripts with full auto-completion support."
+      - title: "3. Host with Docker"
+        body: "Export your configurations to our lightweight Docker image. Spin it up on any VPS, home server, or Raspberry Pi for 100% remote uptime."
+  faq:
+    title: "Frequently Asked Questions"
+    subtitle: "Everything you need to know about Bot Creator."
+    items:
+      - q: "Do I need coding skills to use Bot Creator?"
+        a: "No! You can design powerful bots using our visual drag-and-drop editor. For power users, our scripting language is easy to learn and fully documented."
+      - q: "Is my bot token safe?"
+        a: "Yes. Bot Creator is local-first. We do not store or transmit your tokens or configuration data. Everything remains on your device or your server."
+      - q: "How do I run my bot 24/7?"
+        a: "While you can run the bot from the app, we recommend using our Docker runner. You can host it on any VPS, home server, or Raspberry Pi."
+      - q: "Can I import BDFD syntax?"
+        a: "Yes! Our scripting parser is designed to be highly compatible with standard BDScript/BDFD formatting rules."
   blog:
     title: "Blog & Tutorials"
     subtitle: "Learn how to master mobile automation."

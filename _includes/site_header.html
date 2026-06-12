@@ -4,154 +4,115 @@
 {% assign active_key = 'guides' %}
 {% endif %}
 
-<div class="nav-shell">
-  <!-- Sticky Navigation Header -->
-  <header class="sticky top-0 z-50 w-full glass-header">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-      <!-- Logo -->
-      <a href="{{ t.paths.home | relative_url }}" class="flex items-center gap-3 group">
-        <div
-          class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-container/20 p-1.5 neon-border transition-all group-hover:scale-110 group-hover:bg-primary-container/40">
-          <img src="{{ '/favicon.ico' | relative_url }}" alt="Logo" class="h-full w-full object-contain">
-        </div>
-        <span class="text-xl font-black tracking-tighter text-on-surface font-display">{{ t.meta.site_title }}</span>
+<!-- Sticky Navigation Header — Dark Corporate -->
+<header class="nav-shell bg-surface-container-lowest border-b border-outline sticky top-0 z-50">
+  <div class="max-w-container-max mx-auto px-gutter flex justify-between items-center h-16">
+    <!-- Logo -->
+    <a href="{{ t.paths.home | relative_url }}" class="flex items-center gap-3 group">
+      <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 p-1.5 transition-all group-hover:bg-primary/20">
+        <img src="{{ '/favicon.ico' | relative_url }}" alt="Logo" class="h-full w-full object-contain">
+      </div>
+      <span class="text-xl font-bold text-primary">{{ t.meta.site_title }}</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-lg">
+      <a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'home' %} text-primary font-bold{% endif %}"
+        href="{{ t.paths.home | relative_url }}">{%if page.locale == 'fr' %} Fonctionnalités {% else %} Features {% endif %}</a>
+      <a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary font-bold{% endif %}"
+        href="{{ t.paths.guides | relative_url }}">{%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}</a>
+      <a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'docs' %} text-primary font-bold{% endif %}"
+        href="{{ t.paths.docs | relative_url }}">{%if page.locale == 'fr' %} Docs {% else %} Docs {% endif %}</a>
+      <a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'terms' %} text-primary font-bold{% endif %}"
+        href="{{ t.paths.terms | relative_url }}">
+        {%if page.locale == 'fr' %}
+        CGV
+        {% else %}
+        Term Of Sales
+        {% endif %}
+      </a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-md">
+      <!-- Language Switcher -->
+      <a href="{% if page.locale == 'fr' %}/{% else %}/fr/{% endif %}"
+        class="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-container border border-outline-variant hover:border-primary/50 transition-colors"
+        title="{% if page.locale == 'fr' %}Switch to English{% else %}Passer en Français{% endif %}">
+        {% if page.locale == 'fr' %}
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/gb.svg" alt="English" class="w-5 h-3.5 rounded-sm object-cover">
+        {% else %}
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/fr.svg" alt="Français" class="w-5 h-3.5 rounded-sm object-cover">
+        {% endif %}
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-10">
-        <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'home' %} text-primary{% endif %}"
-          href="{{ t.paths.home | relative_url }}">{%if page.locale == 'fr' %} Fonctionnalités {% else %} Features {%
-          endif %}</a>
-        <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary{% endif %}"
-          href="{{ t.paths.guides | relative_url }}">{%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}
-        </a>
-        <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'docs' %} text-primary{% endif %}"
-          href="{{ t.paths.docs | relative_url }}">{%if page.locale == 'fr' %} Docs {% else %} Docs {% endif %}
-        </a>
-        <a class="text-sm font-bold tracking-wide uppercase text-on-surface-variant/80 hover:text-primary transition-colors{% if active_key == 'terms' %} text-primary{% endif %}"
-          href="{{ t.paths.terms | relative_url }}">
-          {%if page.locale == 'fr' %}
-          CGV
-          {% else %}
-          Term Of Sales
-          {% endif %}
-        </a>
-      </nav>
 
-      <!-- Actions -->
-      <div class="flex items-center gap-4">
-        <!-- Language Switcher -->
-        <a href="{% if page.locale == 'fr' %}/{% else %}/fr/{% endif %}"
-          class="flex h-10 w-10 items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-xs font-bold text-on-surface-variant hover:text-primary transition-colors">
-          {{ t.switch_label }}
-        </a>
 
-        <!-- Discord Login Button (shown when not authenticated) -->
-        <div id="discord-login-container" class="hidden sm:flex items-center gap-2">
-          <button id="discord-login-btn" class="flex h-11 px-4 items-center justify-center gap-2 rounded-xl bg-[#5865F2] text-white text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-[#5865F2]/30">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-            </svg>
-            <span>{% if page.locale == 'fr' %}Connexion{% else %}Login{% endif %}</span>
-          </button>
-        </div>
+      <a href="{{ t.paths.download | relative_url }}"
+        class="bg-primary text-on-primary px-sm py-2 rounded-lg hover:brightness-110 transition-all text-sm font-bold flex items-center justify-center h-11">
+        {% if page.locale == 'fr' %}
+        Télécharger
+        {% else %}
+        Download
+        {% endif %}
+      </a>
 
-        <!-- Discord User Display (shown when authenticated) -->
-        <div id="discord-user-container" class="hidden items-center gap-3">
-          <button id="discord-logout-btn" class="flex h-11 px-3 items-center justify-center gap-2 rounded-xl bg-surface-container border border-outline-variant text-on-surface-variant text-sm font-bold hover:bg-surface-container-high transition-colors" title="{% if page.locale == 'fr' %}Se déconnecter{% else %}Logout{% endif %}">
-            <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 0;">logout</span>
-          </button>
-          <div class="flex items-center gap-3 pl-2 border-l border-outline-variant">
-            <img id="discord-user-avatar" src="" alt="" class="h-9 w-9 rounded-full object-cover border-2 border-primary/50 hidden" onerror="this.style.display='none'">
-            <div class="flex flex-col items-end">
-              <span id="discord-username" class="text-sm font-bold text-on-surface"></span>
-            </div>
-          </div>
-        </div>
-
-        <a href="{{ t.paths.download | relative_url }}"
-          class="button-primary !h-11 !px-6 !text-sm !py-0 flex items-center justify-center">
-          {% if page.locale == 'fr' %}
-          Télécharger
-          {% else %}
-          Download
-          {% endif %}
-        </a>
-
-        <!-- Mobile Toggle Button -->
-        <button
-          data-menu-toggle
-          aria-expanded="false"
-          aria-label="Open navigation"
-          class="md:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors">
-          <span class="material-symbols-outlined menu-icon-open">menu</span>
-          <span class="material-symbols-outlined menu-icon-close hidden">close</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Full-Screen Modal Menu Overlay (Placed outside header to ensure true viewport fixed layout) -->
-  <div
-    data-menu-panel
-    class="md:hidden fixed inset-0 z-[100] w-screen h-screen flex flex-col items-center justify-center p-8 bg-[#0b1326] backdrop-blur-xl nav-panel-mobile">
-    
-    <!-- Close Button inside Modal -->
-    <button
-      data-menu-close-btn
-      aria-label="Close navigation"
-      class="absolute top-6 right-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high active:scale-95 transition-all shadow-neon">
-      <span class="material-symbols-outlined !text-3xl">close</span>
-    </button>
-
-    <!-- Modal Center Wrapper -->
-    <div class="w-full max-w-sm flex flex-col gap-10 items-center justify-center text-center">
-      <!-- Brand Logo & Title -->
-      <div class="flex flex-col items-center gap-3">
-        <div class="h-16 w-16 rounded-2xl bg-primary-container/20 p-2.5 neon-border flex items-center justify-center">
-          <img src="{{ '/favicon.ico' | relative_url }}" alt="Logo" class="h-full w-full object-contain">
-        </div>
-        <span class="text-3xl font-black tracking-tighter text-on-surface font-display">{{ t.meta.site_title }}</span>
-      </div>
-
-      <!-- Navigation Buttons (Centered on Screen) -->
-      <nav class="flex flex-col gap-5 w-full">
-        <a class="flex h-16 w-full items-center justify-center rounded-2xl bg-surface-container border border-outline-variant text-lg font-black uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 hover:neon-glow transition-all active:scale-98{% if active_key == 'home' %} !text-primary border-primary/50 neon-glow bg-surface-container-high{% endif %}"
-          href="{{ t.paths.home | relative_url }}">
-          {%if page.locale == 'fr' %} Fonctionnalités {% else %} Features {% endif %}
-        </a>
-        <a class="flex h-16 w-full items-center justify-center rounded-2xl bg-surface-container border border-outline-variant text-lg font-black uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 hover:neon-glow transition-all active:scale-98{% if active_key == 'guides' %} !text-primary border-primary/50 neon-glow bg-surface-container-high{% endif %}"
-          href="{{ t.paths.guides | relative_url }}">
-          {%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}
-        </a>
-        <a class="flex h-16 w-full items-center justify-center rounded-2xl bg-surface-container border border-outline-variant text-lg font-black uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 hover:neon-glow transition-all active:scale-98{% if active_key == 'terms' %} !text-primary border-primary/50 neon-glow bg-surface-container-high{% endif %}"
-          href="{{ t.paths.terms | relative_url }}">
-          {%if page.locale == 'fr' %} CGV {% else %} Term Of Sales {% endif %}
-        </a>
-
-        <!-- Discord Login Button (mobile) -->
-        <button id="discord-login-btn-mobile" class="flex h-16 w-full items-center justify-center gap-3 rounded-2xl bg-[#5865F2] text-white text-lg font-black uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-[#5865F2]/30">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-          </svg>
-          {% if page.locale == 'fr' %}Connexion Discord{% else %}Login with Discord{% endif %}
-        </button>
-
-        <!-- Discord User Display (mobile) -->
-        <div id="discord-user-container-mobile" class="hidden flex flex-col gap-4">
-          <div class="flex items-center justify-center gap-4 p-4 rounded-2xl bg-surface-container border border-outline-variant">
-            <img id="discord-user-avatar-mobile" src="" alt="" class="h-12 w-12 rounded-full object-cover border-2 border-primary/50 hidden" onerror="this.style.display='none'">
-            <div class="flex flex-col items-start">
-              <span id="discord-username-mobile" class="text-lg font-bold text-on-surface"></span>
-              <span class="text-xs text-on-surface-variant">@<span id="discord-username-raw-mobile"></span></span>
-            </div>
-          </div>
-          <button id="discord-logout-btn-mobile" class="flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-surface-container border border-outline-variant text-on-surface-variant font-bold hover:bg-surface-container-high transition-all">
-            <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 0;">logout</span>
-            {% if page.locale == 'fr' %}Se déconnecter{% else %}Logout{% endif %}
-          </button>
-        </div>
-      </nav>
+      <!-- Mobile Toggle Button -->
+      <button
+        data-menu-toggle
+        aria-expanded="false"
+        aria-label="Open navigation"
+        class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors">
+        <span class="material-symbols-outlined menu-icon-open">menu</span>
+        <span class="material-symbols-outlined menu-icon-close hidden">close</span>
+      </button>
     </div>
   </div>
+
+  <!-- Mobile Full-Screen Modal Menu Overlay -->
+  <div
+    data-menu-panel
+    class="nav-panel-mobile md:hidden fixed inset-0 z-[100] w-screen h-screen flex flex-col items-center justify-center p-8 bg-surface-container-lowest">
+
+  <!-- Close Button inside Modal -->
+  <button
+    data-menu-close-btn
+    aria-label="Close navigation"
+    class="absolute top-6 right-6 flex h-14 w-14 items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high active:scale-95 transition-all shadow-neon">
+    <span class="material-symbols-outlined !text-3xl">close</span>
+  </button>
+
+  <!-- Modal Center Wrapper -->
+  <div class="w-full max-w-sm flex flex-col gap-10 items-center justify-center text-center">
+    <!-- Brand Logo & Title -->
+    <div class="flex flex-col items-center gap-3">
+      <div class="h-16 w-16 rounded-xl bg-primary/10 p-2.5 flex items-center justify-center">
+        <img src="{{ '/favicon.ico' | relative_url }}" alt="Logo" class="h-full w-full object-contain">
+      </div>
+      <span class="text-3xl font-bold text-primary">{{ t.meta.site_title }}</span>
+    </div>
+
+    <!-- Navigation Buttons (Centered on Screen) -->
+    <nav class="flex flex-col gap-5 w-full">
+      <a class="flex h-16 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-lg font-bold uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98{% if active_key == 'home' %} !text-primary border-primary/50 bg-surface-container-high{% endif %}"
+        href="{{ t.paths.home | relative_url }}">
+        {%if page.locale == 'fr' %} Fonctionnalités {% else %} Features {% endif %}
+      </a>
+      <a class="flex h-16 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-lg font-bold uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98{% if active_key == 'guides' %} !text-primary border-primary/50 bg-surface-container-high{% endif %}"
+        href="{{ t.paths.guides | relative_url }}">
+        {%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}
+      </a>
+      <a class="flex h-16 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-lg font-bold uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98{% if active_key == 'docs' %} !text-primary border-primary/50 bg-surface-container-high{% endif %}"
+        href="{{ t.paths.docs | relative_url }}">
+        Docs
+      </a>
+      <a class="flex h-16 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-lg font-bold uppercase tracking-wider text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98{% if active_key == 'terms' %} !text-primary border-primary/50 bg-surface-container-high{% endif %}"
+        href="{{ t.paths.terms | relative_url }}">
+        {%if page.locale == 'fr' %} CGV {% else %} Term Of Sales {% endif %}
+      </a>
+
+
+    </nav>
+  </div>
 </div>
+</header>

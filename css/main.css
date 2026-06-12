@@ -6,31 +6,39 @@
 
 @layer base {
   :root {
-    --background: #0b1326;
-    --on-background: #dae2fd;
-    --primary: #ddb7ff;
-    --on-primary: #490080;
-    --surface: #0b1326;
-    --on-surface: #dae2fd;
-    --surface-container: #171f33;
-    --outline: #988d9f;
-    --outline-variant: #4d4354;
-    
+    /* MongoDB/Linear corporate dark palette — CSS custom properties */
+    --background:              #0d1117;
+    --on-background:           #c9d1d9;
+    --primary:                 #7c8aff;
+    --on-primary:              #ffffff;
+    --surface:                 #0d1117;
+    --on-surface:              #c9d1d9;
+    --surface-container:       #1c2128;
+    --surface-container-low:   #161b22;
+    --surface-container-high:  #21262d;
+    --surface-container-highest: #292e36;
+    --surface-variant:         #21262d;
+    --on-surface-variant:      #8b949e;
+    --outline:                 #30363d;
+    --outline-variant:         #21262d;
+    --tertiary:                #0d1117;
+    --on-tertiary:             #c9d1d9;
+
     /* Legacy variable mappings for markdown.css */
-    --text-100: #dae2fd;
-    --text-200: #cfc2d6;
-    --text-300: #988d9f;
-    --text-400: #4d4354;
-    --accent-500: #ddb7ff;
-    --mint-400: #c0c1ff;
-    --font-display: "Space Grotesk", sans-serif;
-    --font-mono: ui-monospace, monospace;
+    --text-100:    #c9d1d9;
+    --text-200:    #8b949e;
+    --text-300:    #6e7681;
+    --text-400:    #484f58;
+    --accent-500:  #7c8aff;
+    --mint-400:    #8b949e;
+    --font-display: "Inter", sans-serif;
+    --font-mono:    "JetBrains Mono", monospace;
   }
 
   html {
     scroll-behavior: smooth;
     background-color: var(--background);
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
@@ -38,10 +46,10 @@
     min-height: 100vh;
     background-color: var(--background);
     color: var(--on-background);
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Inter", sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   img {
@@ -50,7 +58,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Inter", sans-serif;
     color: var(--on-background);
   }
 
@@ -58,37 +66,62 @@
     font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
     vertical-align: middle;
   }
+
+  /* Custom scrollbar — dark corporate style */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--surface-container);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--outline);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--on-surface-variant);
+  }
 }
 
 @layer components {
+  /* =========================================================================
+     Neon → Corporate shadow replacements (class names preserved)
+     ========================================================================= */
   .neon-glow {
-    box-shadow: 0 0 15px -3px rgba(221, 183, 255, 0.4);
+    box-shadow: 0 1px 3px rgba(124, 138, 255, 0.08), 0 1px 2px rgba(0, 0, 0, 0.3);
   }
-  
+
   .neon-glow-strong {
-    box-shadow: 0 0 20px -2px rgba(183, 109, 255, 0.6);
+    box-shadow: 0 2px 8px rgba(124, 138, 255, 0.12), 0 2px 4px rgba(0, 0, 0, 0.4);
   }
 
   .neon-border {
-    border: 1px solid rgba(221, 183, 255, 0.2);
-    transition: all 0.3s ease;
+    border: 1px solid var(--outline-variant);
+    transition: all 0.2s ease;
   }
-  
+
   .neon-border:hover {
-    border-color: rgba(221, 183, 255, 0.6);
-    box-shadow: 0 0 10px rgba(221, 183, 255, 0.2);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px rgba(124, 138, 255, 0.18);
   }
 
+  /* =========================================================================
+     Header — dark corporate sticky bar
+     ========================================================================= */
   .glass-header {
-    background: rgba(23, 31, 51, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(77, 67, 84, 0.5);
+    background: rgba(22, 27, 34, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--outline);
   }
 
+  /* =========================================================================
+     Buttons
+     ========================================================================= */
   .button-primary {
-    @apply inline-flex items-center justify-center bg-primary text-on-primary font-bold px-6 py-3 min-h-[3rem] rounded-xl shadow-neon transition-all;
-    @apply hover:scale-[1.02] active:scale-[0.98];
+    @apply inline-flex items-center justify-center bg-primary text-on-primary font-bold px-6 py-3 min-h-[3rem] rounded-xl transition-all;
+    @apply hover:brightness-110 active:scale-[0.98];
   }
 
   .button-outline {
@@ -96,30 +129,33 @@
     @apply hover:bg-surface-container active:scale-[0.98];
   }
 
-  /* Specific styles for article layout */
+  /* =========================================================================
+     Post card
+     ========================================================================= */
   .post-card {
-    @apply bg-surface-container border border-outline-variant rounded-[2rem] p-8 md:p-12;
+    @apply bg-surface-container-low border border-outline-variant rounded-[2rem] p-8 md:p-12;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
-  /* Centered Mobile Modal Menu Overlay */
+  /* =========================================================================
+     Mobile nav panel overlay
+     ========================================================================= */
   .nav-panel-mobile {
-    background-color: rgba(11, 19, 38, 0.75) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.65) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
-  /* When the mobile menu is open, fade in the backdrop */
   .nav-shell.is-open .nav-panel-mobile {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
   }
 
-  /* Spring/Elastic scale & slide transition for the modal card container */
   .nav-panel-mobile > div {
     transform: translateY(20px) scale(0.95);
     opacity: 0;
@@ -131,7 +167,6 @@
     opacity: 1;
   }
 
-  /* Hamburger menu icon toggles based on open state */
   .nav-shell.is-open .menu-icon-open {
     display: none !important;
   }
@@ -140,7 +175,7 @@
     display: block !important;
   }
 
-  /* Hide scrollbar utility for sleek horizontal mobile trays */
+  /* Hide scrollbar utility */
   .scrollbar-none::-webkit-scrollbar {
     display: none !important;
   }
@@ -149,7 +184,9 @@
     scrollbar-width: none !important;
   }
 
-  /* Mobile Left Category Drawer Overlay base (Scoped to mobile to prevent desktop specificity conflicts) */
+  /* =========================================================================
+     Mobile left category / sidebar drawer
+     ========================================================================= */
   @media (max-width: 1023px) {
     #mobile-category-drawer {
       opacity: 0;
@@ -162,7 +199,6 @@
       pointer-events: auto;
     }
 
-    /* Left drawer pane slide animation (Firebase Style) */
     #mobile-category-drawer-pane {
       transform: translateX(-100%);
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -173,14 +209,43 @@
     }
   }
 
-  /* GFM Alert Stylings */
+  /* MongoDB-style persistent sidebar */
+  .docs-sidebar {
+    @apply w-64 lg:w-72 flex-shrink-0 self-stretch;
+  }
+
+  .docs-sidebar-inner {
+    @apply sticky top-24 overflow-y-auto h-[calc(100vh-8rem)] pr-2;
+  }
+
+  @media (max-width: 1023px) {
+    .docs-sidebar {
+      @apply fixed inset-0 z-[120] bg-background/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300;
+    }
+
+    .docs-sidebar.is-active {
+      @apply opacity-100 pointer-events-auto;
+    }
+
+    .docs-sidebar-inner {
+      @apply w-[320px] max-w-[85vw] h-full bg-surface-container-lowest border-r border-outline-variant rounded-r-xl p-6 pb-12 shadow-2xl transform -translate-x-full transition-transform duration-300 overflow-y-auto;
+    }
+
+    .docs-sidebar.is-active .docs-sidebar-inner {
+      @apply translate-x-0;
+    }
+  }
+
+  /* =========================================================================
+     GFM alerts — dark theme colors
+     ========================================================================= */
   .gfm-alert {
     margin: 2rem 0;
     padding: 1.25rem 1.5rem;
-    border-left: 4px solid var(--md-sys-color-outline-variant);
-    border-radius: 0 1.25rem 1.25rem 0;
-    background-color: var(--md-sys-color-surface-container-low);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid var(--outline);
+    border-radius: 0 0.5rem 0.5rem 0;
+    background-color: var(--surface-container-low);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -203,66 +268,63 @@
   .gfm-alert p {
     margin: 0 !important;
     font-size: 0.95rem;
-    color: var(--md-sys-color-on-surface-variant);
+    color: var(--on-surface-variant);
     line-height: 1.6;
   }
 
-  /* GFM Note Color Scheme */
+  /* GFM variant colors — dark theme */
   .gfm-alert-note {
-    border-left-color: #3870e0;
-    background-color: rgba(56, 112, 224, 0.08);
+    border-left-color: #58a6ff;
+    background-color: rgba(56, 139, 253, 0.08);
   }
   .gfm-alert-note .gfm-alert-header {
-    color: #3870e0;
+    color: #58a6ff;
   }
 
-  /* GFM Tip Color Scheme */
   .gfm-alert-tip {
-    border-left-color: #00b0ff;
-    background-color: rgba(0, 176, 255, 0.08);
+    border-left-color: #3fb950;
+    background-color: rgba(63, 185, 80, 0.08);
   }
   .gfm-alert-tip .gfm-alert-header {
-    color: #00b0ff;
+    color: #3fb950;
   }
 
-  /* GFM Important Color Scheme */
   .gfm-alert-important {
-    border-left-color: #a855f7;
-    background-color: rgba(168, 85, 247, 0.08);
+    border-left-color: #a371f7;
+    background-color: rgba(163, 113, 247, 0.08);
   }
   .gfm-alert-important .gfm-alert-header {
-    color: #a855f7;
+    color: #a371f7;
   }
 
-  /* GFM Warning Color Scheme */
   .gfm-alert-warning {
-    border-left-color: #f59e0b;
-    background-color: rgba(245, 158, 11, 0.08);
+    border-left-color: #d29922;
+    background-color: rgba(210, 153, 34, 0.08);
   }
   .gfm-alert-warning .gfm-alert-header {
-    color: #f59e0b;
+    color: #d29922;
   }
 
-  /* GFM Caution Color Scheme */
   .gfm-alert-caution {
-    border-left-color: #ef4444;
-    background-color: rgba(239, 68, 68, 0.08);
+    border-left-color: #f85149;
+    background-color: rgba(248, 81, 73, 0.08);
   }
   .gfm-alert-caution .gfm-alert-header {
-    color: #ef4444;
+    color: #f85149;
   }
-}
 
-/* Responsive Horizontal Scrollable Tables — unlayered to override Tailwind preflight */
+/* =========================================================================
+   Responsive horizontal scrollable tables
+   ========================================================================= */
 .table-responsive-wrapper {
   margin-top: 1.5rem;
   margin-bottom: 2rem;
   overflow-x: auto !important;
   width: 100%;
   -webkit-overflow-scrolling: touch;
-  border: 1px solid rgba(77, 67, 84, 0.5);
-  border-radius: 1rem;
-  background-color: rgba(23, 31, 51, 0.4);
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  background-color: var(--surface-container-low);
 }
 
 .table-responsive-wrapper table {
@@ -276,7 +338,7 @@
   white-space: normal;
 }
 
-/* Sticky first column so row context remains visible while scrolling */
+/* Sticky first column */
 .table-responsive-wrapper th:first-child,
 .table-responsive-wrapper td:first-child {
   position: sticky;
@@ -286,14 +348,14 @@
 }
 
 .table-responsive-wrapper th:first-child {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--surface-container-high);
 }
 
 .table-responsive-wrapper td:first-child {
-  background: rgba(11, 19, 38, 0.98);
+  background: var(--surface-container-low);
 }
 
-/* Scroll shadow indicator — fades when scrolled to end */
+/* Scroll shadow indicator */
 .table-responsive-wrapper::after {
   content: '';
   position: absolute;
@@ -301,8 +363,8 @@
   right: 0;
   bottom: 0;
   width: 2rem;
-  border-radius: 0 1rem 1rem 0;
-  background: linear-gradient(to right, transparent, rgba(11, 19, 38, 0.6));
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: linear-gradient(to right, transparent, rgba(13, 17, 23, 0.8));
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s;
@@ -320,54 +382,34 @@
   opacity: 0;
 }
 
-/* Discord Auth Styles */
-@keyframes discordPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.1); opacity: 0.8; }
+
+
+/* =========================================================================
+   Dark code block — elements using bg-[#080d19] are now on dark bg,
+   keep light text for contrast
+   ========================================================================= */
+.bg-\[\#080d19\] {
+  color: #dae2fd !important;
 }
 
-.discord-login-btn {
-  position: relative;
-  overflow: hidden;
+.bg-\[\#080d19\] code {
+  color: #dae2fd !important;
 }
 
-.discord-login-btn:hover {
-  box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+/* =========================================================================
+   Sidebar toggle button (mobile)
+   ========================================================================= */
+.sidebar-toggle {
+  @apply lg:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors;
 }
 
-.discord-login-btn:active {
-  transform: scale(0.98);
+/* =========================================================================
+   Homepage Hero Title Gradient
+   ========================================================================= */
+.home-hero-title span {
+  background: linear-gradient(135deg, #7c8aff 0%, #a5b4fc 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(124, 138, 255, 0.25));
 }
-
-/* Discord avatar with fallback */
-.discord-avatar-fallback {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #5865F2 0%, #3ba55c 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 14px;
-  color: white;
-}
-
-/* Auth callback page styles */
-#auth-callback-container {
-  animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-pulse {
-  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
 }

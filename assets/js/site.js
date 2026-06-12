@@ -38,37 +38,37 @@ window.drawPremiumBlogCover = function(canvas) {
       ctx.closePath();
     };
 
-    // 1. Sleek Cyberpunk Deep Blue/Indigo background
+    // 1. Dark corporate background
     const bgGrad = ctx.createLinearGradient(0, 0, baseWidth, baseHeight);
-    bgGrad.addColorStop(0, "#080d19");
-    bgGrad.addColorStop(1, "#121b2d");
+    bgGrad.addColorStop(0, "#0d1117");
+    bgGrad.addColorStop(1, "#161b22");
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, baseWidth, baseHeight);
 
-    // 2. High-fidelity neon mesh gradient radial glows
-    // Glow 1: Top Right (Brilliant Lavender)
+    // 2. Subtle gradient glows (Dark corporate)
+    // Glow 1: Top Right (Primary tint)
     const glow1 = ctx.createRadialGradient(baseWidth * 0.8, baseHeight * 0.25, 20, baseWidth * 0.8, baseHeight * 0.25, 180);
-    glow1.addColorStop(0, "rgba(221, 183, 255, 0.22)");
-    glow1.addColorStop(1, "rgba(221, 183, 255, 0)");
+    glow1.addColorStop(0, "rgba(124, 138, 255, 0.06)");
+    glow1.addColorStop(1, "rgba(124, 138, 255, 0)");
     ctx.fillStyle = glow1;
     ctx.fillRect(0, 0, baseWidth, baseHeight);
 
-    // Glow 2: Bottom Left (Tech Indigo/Blue)
+    // Glow 2: Bottom Left (Secondary tint)
     const glow2 = ctx.createRadialGradient(baseWidth * 0.2, baseHeight * 0.8, 10, baseWidth * 0.2, baseHeight * 0.8, 220);
-    glow2.addColorStop(0, "rgba(49, 49, 192, 0.32)");
-    glow2.addColorStop(1, "rgba(49, 49, 192, 0)");
+    glow2.addColorStop(0, "rgba(139, 148, 158, 0.08)");
+    glow2.addColorStop(1, "rgba(139, 148, 158, 0)");
     ctx.fillStyle = glow2;
     ctx.fillRect(0, 0, baseWidth, baseHeight);
 
-    // Glow 3: Center Mid (Luminous Sky Blue)
+    // Glow 3: Center Mid (Primary lighter)
     const glow3 = ctx.createRadialGradient(baseWidth * 0.6, baseHeight * 0.6, 30, baseWidth * 0.6, baseHeight * 0.6, 140);
-    glow3.addColorStop(0, "rgba(192, 193, 255, 0.16)");
-    glow3.addColorStop(1, "rgba(192, 193, 255, 0)");
+    glow3.addColorStop(0, "rgba(124, 138, 255, 0.04)");
+    glow3.addColorStop(1, "rgba(124, 138, 255, 0)");
     ctx.fillStyle = glow3;
     ctx.fillRect(0, 0, baseWidth, baseHeight);
 
-    // 3. Technical Cyber Grid overlay
-    ctx.strokeStyle = "rgba(152, 141, 159, 0.05)";
+    // 3. Subtle grid overlay
+    ctx.strokeStyle = "rgba(124, 138, 255, 0.03)";
     ctx.lineWidth = 1;
     const gridSize = 24;
     for (let x = 0; x < baseWidth; x += gridSize) {
@@ -85,7 +85,7 @@ window.drawPremiumBlogCover = function(canvas) {
     }
 
     // 4. Subtle background decorative circuit/sine wave
-    ctx.strokeStyle = "rgba(221, 183, 255, 0.08)";
+    ctx.strokeStyle = "rgba(124, 138, 255, 0.05)";
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(0, baseHeight * 0.62);
@@ -96,7 +96,7 @@ window.drawPremiumBlogCover = function(canvas) {
     ctx.stroke();
 
     // Graphic decorative corner HUD frames
-    ctx.strokeStyle = "rgba(221, 183, 255, 0.15)";
+    ctx.strokeStyle = "rgba(124, 138, 255, 0.08)";
     ctx.lineWidth = 2;
     const margin = 24;
     const bracketSize = 12;
@@ -118,8 +118,8 @@ window.drawPremiumBlogCover = function(canvas) {
     // 5. Stylized Vector Bot Icon in the bottom-right quadrant
     const botX = baseWidth - 100;
     const botY = baseHeight - 115;
-    ctx.strokeStyle = "rgba(221, 183, 255, 0.12)";
-    ctx.fillStyle = "rgba(221, 183, 255, 0.02)";
+    ctx.strokeStyle = "rgba(124, 138, 255, 0.06)";
+    ctx.fillStyle = "rgba(124, 138, 255, 0.02)";
     ctx.lineWidth = 2;
 
     // Head (rounded rect using backward-compatible function)
@@ -134,22 +134,22 @@ window.drawPremiumBlogCover = function(canvas) {
     ctx.stroke();
 
     // Antenna beacon (glowing bulb)
-    ctx.fillStyle = "rgba(221, 183, 255, 0.18)";
-    ctx.strokeStyle = "rgba(221, 183, 255, 0.4)";
+    ctx.fillStyle = "rgba(124, 138, 255, 0.1)";
+    ctx.strokeStyle = "rgba(124, 138, 255, 0.25)";
     ctx.beginPath();
     ctx.arc(botX + 30, botY + 2, 5, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
 
     // Bot Ears/Side-connectors
-    ctx.strokeStyle = "rgba(221, 183, 255, 0.1)";
+    ctx.strokeStyle = "rgba(124, 138, 255, 0.05)";
     ctx.beginPath();
     ctx.rect(botX - 4, botY + 30, 4, 15);
     ctx.rect(botX + 60, botY + 30, 4, 15);
     ctx.stroke();
 
     // Eyes
-    ctx.fillStyle = "rgba(221, 183, 255, 0.25)";
+    ctx.fillStyle = "rgba(124, 138, 255, 0.15)";
     ctx.beginPath();
     ctx.arc(botX + 18, botY + 35, 5, 0, Math.PI * 2);
     ctx.arc(botX + 42, botY + 35, 5, 0, Math.PI * 2);
@@ -157,7 +157,7 @@ window.drawPremiumBlogCover = function(canvas) {
 
     // 6. Title and Guides Watermark
     ctx.font = "bold 9px 'Space Grotesk', system-ui, -apple-system, sans-serif";
-    ctx.fillStyle = "rgba(221, 183, 255, 0.35)";
+    ctx.fillStyle = "rgba(124, 138, 255, 0.15)";
     ctx.fillText("BOT CREATOR // RUNNER", baseWidth - 150, margin + 6);
 
     // 7. Category badge
@@ -172,25 +172,25 @@ window.drawPremiumBlogCover = function(canvas) {
     const badgeH = 20;
 
     // Badge frame & fill (rounded rect using backward-compatible function)
-    ctx.fillStyle = "rgba(221, 183, 255, 0.08)";
-    ctx.strokeStyle = "rgba(221, 183, 255, 0.25)";
+    ctx.fillStyle = "rgba(124, 138, 255, 0.08)";
+    ctx.strokeStyle = "rgba(124, 138, 255, 0.18)";
     ctx.lineWidth = 1;
     roundedRect(badgeX, badgeY, badgeW, badgeH, 6);
     ctx.fill();
     ctx.stroke();
 
     // Badge text drawing
-    ctx.fillStyle = "#ddb7ff";
-    ctx.shadowColor = "rgba(221, 183, 255, 0.3)";
-    ctx.shadowBlur = 4;
+    ctx.fillStyle = "#7c8aff";
+    ctx.shadowColor = "rgba(124, 138, 255, 0.15)";
+    ctx.shadowBlur = 3;
     ctx.fillText(catText, badgeX + padX, badgeY + padY + 9);
     ctx.shadowBlur = 0; // reset shadow
 
     // 8. Wrapped Title Text
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#c9d1d9";
     ctx.font = "900 24px 'Space Grotesk', system-ui, -apple-system, sans-serif";
-    ctx.shadowColor = "rgba(255, 255, 255, 0.15)";
-    ctx.shadowBlur = 8;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
+    ctx.shadowBlur = 4;
 
     const maxWidth = baseWidth - margin * 2 - 40;
     const words = title.split(" ");
@@ -221,15 +221,15 @@ window.drawPremiumBlogCover = function(canvas) {
     ctx.shadowBlur = 0; // reset shadow
   } catch (e) {
     console.error("Canvas cover illustration drawing crashed:", e);
-    ctx.fillStyle = "#0c1326";
+    ctx.fillStyle = "#0d1117";
     ctx.fillRect(0, 0, baseWidth, baseHeight);
-    ctx.strokeStyle = "#ddb7ff";
+    ctx.strokeStyle = "#7c8aff";
     ctx.lineWidth = 2;
     ctx.strokeRect(10, 10, baseWidth - 20, baseHeight - 20);
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#c9d1d9";
     ctx.font = "bold 16px sans-serif";
     ctx.fillText("Failed to load illustration", 30, 50);
-    ctx.fillStyle = "rgba(221, 183, 255, 0.6)";
+    ctx.fillStyle = "rgba(124, 138, 255, 0.5)";
     ctx.font = "12px monospace";
     ctx.fillText(e.message, 30, 80);
   }
@@ -457,201 +457,4 @@ if (document.readyState === "loading") {
   initSite();
 }
 
-// ============================================================================
-// Discord Auth Module
-// ============================================================================
 
-window.DiscordAuth = (function() {
-  const API_BASE = 'https://api.bot-creator.fr';
-  const STORAGE_KEYS = {
-    TOKEN: 'bc_token',
-    OWNER_ID: 'bc_owner_id',
-    USER: 'bc_user'
-  };
-
-  // Get current session from localStorage
-  function getSession() {
-    try {
-      const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
-      const ownerId = localStorage.getItem(STORAGE_KEYS.OWNER_ID);
-      const userJson = localStorage.getItem(STORAGE_KEYS.USER);
-      const user = userJson ? JSON.parse(userJson) : null;
-
-      if (token && ownerId && user) {
-        return { token, ownerId, user };
-      }
-      return null;
-    } catch (e) {
-      console.error('[DiscordAuth] Failed to read session:', e);
-      return null;
-    }
-  }
-
-  // Clear session from localStorage
-  function clearSession() {
-    localStorage.removeItem(STORAGE_KEYS.TOKEN);
-    localStorage.removeItem(STORAGE_KEYS.OWNER_ID);
-    localStorage.removeItem(STORAGE_KEYS.USER);
-  }
-
-  // Update header UI based on auth state
-  function updateHeaderUI(user) {
-    const loginContainer = document.getElementById('discord-login-container');
-    const userContainer = document.getElementById('discord-user-container');
-    const loginBtnMobile = document.getElementById('discord-login-btn-mobile');
-    const userContainerMobile = document.getElementById('discord-user-container-mobile');
-
-    if (user) {
-      // Show user UI
-      if (loginContainer) loginContainer.classList.add('hidden');
-      if (userContainer) userContainer.classList.remove('hidden');
-      if (loginBtnMobile) loginBtnMobile.classList.add('hidden');
-      if (userContainerMobile) {
-        userContainerMobile.classList.remove('hidden');
-        userContainerMobile.classList.add('flex');
-      }
-
-      // Update user info - desktop
-      const avatarImg = document.getElementById('discord-user-avatar');
-      const usernameEl = document.getElementById('discord-username');
-
-      if (avatarImg) {
-        if (user.avatar) {
-          avatarImg.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`;
-          avatarImg.style.display = 'block';
-        } else {
-          avatarImg.style.display = 'none';
-        }
-      }
-
-      if (usernameEl) {
-        const displayName = user.global_name || user.username;
-        usernameEl.textContent = displayName;
-        usernameEl.title = `@${user.username}`;
-      }
-
-      // Update user info - mobile
-      const avatarImgMobile = document.getElementById('discord-user-avatar-mobile');
-      const usernameElMobile = document.getElementById('discord-username-mobile');
-      const usernameRawMobile = document.getElementById('discord-username-raw-mobile');
-
-      if (avatarImgMobile) {
-        if (user.avatar) {
-          avatarImgMobile.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`;
-          avatarImgMobile.style.display = 'block';
-        } else {
-          avatarImgMobile.style.display = 'none';
-        }
-      }
-
-      if (usernameElMobile) {
-        usernameElMobile.textContent = user.global_name || user.username;
-      }
-
-      if (usernameRawMobile) {
-        usernameRawMobile.textContent = user.username;
-      }
-    } else {
-      // Show login button
-      if (loginContainer) loginContainer.classList.remove('hidden');
-      if (userContainer) userContainer.classList.add('hidden');
-      if (loginBtnMobile) {
-        loginBtnMobile.classList.remove('hidden');
-      }
-      if (userContainerMobile) {
-        userContainerMobile.classList.add('hidden');
-        userContainerMobile.classList.remove('flex');
-      }
-    }
-  }
-
-  // Start Discord OAuth flow
-  async function loginWithDiscord() {
-    try {
-      const response = await fetch(`${API_BASE}/auth/discord/start`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          redirect_uri: window.location.origin + '/auth/callback'
-        })
-      });
-
-      if (!response.ok) {
-        const err = await response.json();
-        throw new Error(err.error || err.message || 'Failed to start OAuth');
-      }
-
-      const data = await response.json();
-      window.location.href = data.authorization_url;
-    } catch (error) {
-      console.error('[DiscordAuth] Login failed:', error);
-      alert('Failed to start Discord login: ' + error.message);
-    }
-  }
-
-  // Logout user
-  function logout() {
-    clearSession();
-    updateHeaderUI(null);
-    // Optionally redirect to home or reload
-    if (window.location.pathname !== '/') {
-      window.location.href = '/';
-    }
-  }
-
-  // Initialize auth on page load
-  function init() {
-    const session = getSession();
-    if (session) {
-      updateHeaderUI(session.user);
-    }
-
-    // Bind logout buttons
-    const logoutBtn = document.getElementById('discord-logout-btn');
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', logout);
-    }
-
-    const logoutBtnMobile = document.getElementById('discord-logout-btn-mobile');
-    if (logoutBtnMobile) {
-      logoutBtnMobile.addEventListener('click', function() {
-        logout();
-        // Close mobile menu after logout
-        const closeBtn = document.querySelector('[data-menu-close-btn]');
-        if (closeBtn) closeBtn.click();
-      });
-    }
-
-    // Bind login buttons
-    const loginBtn = document.getElementById('discord-login-btn');
-    if (loginBtn) {
-      loginBtn.addEventListener('click', loginWithDiscord);
-    }
-
-    const loginBtnMobile = document.getElementById('discord-login-btn-mobile');
-    if (loginBtnMobile) {
-      loginBtnMobile.addEventListener('click', function() {
-        loginWithDiscord();
-        // Close mobile menu before redirect
-        const closeBtn = document.querySelector('[data-menu-close-btn]');
-        if (closeBtn) closeBtn.click();
-      });
-    }
-  }
-
-  return {
-    init,
-    loginWithDiscord,
-    logout,
-    getSession,
-    clearSession,
-    updateHeaderUI
-  };
-})();
-
-// Initialize auth module
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", window.DiscordAuth.init);
-} else {
-  window.DiscordAuth.init();
-}

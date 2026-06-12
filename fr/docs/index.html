@@ -1,11 +1,11 @@
 ---
 layout: with-sidebar
 title: Documentation
-description: BDFD function reference — syntax, parameters, and examples for every function in Bot Creator.
-locale: en
+description: Référence des fonctions BDFD — syntaxe, paramètres et exemples pour chaque fonction de Bot Creator.
+locale: fr
 translation_key: docs
-content_language: en
-permalink: /docs/
+content_language: fr
+permalink: /fr/docs/
 ---
 
 {% assign t = site.data.locales[page.locale] %}
@@ -16,13 +16,13 @@ permalink: /docs/
 <header class="mb-16">
   <div class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20 mb-6">
     <span class="material-symbols-outlined text-sm">menu_book</span>
-    Function Reference
+    Référence des Fonctions
   </div>
   <h1 class="font-display text-4xl font-black leading-tight text-on-surface md:text-5xl lg:text-7xl mb-6" id="docs-title-anchor">
     Documentation
   </h1>
   <p class="max-w-3xl text-xl leading-relaxed text-on-surface-variant italic">
-    Complete reference for every BDFD function — syntax, parameter types, enum values, and practical examples.
+    Référence complète de chaque fonction BDFD — syntaxe, types de paramètres, valeurs d'énumération et exemples pratiques.
   </p>
 </header>
 
@@ -33,7 +33,7 @@ permalink: /docs/
     <input
       type="text"
       id="docs-search-input"
-      placeholder="Search functions by name, e.g. canvasCreate, drawText..."
+      placeholder="Rechercher des fonctions par nom, ex: canvasCreate, drawText..."
       class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-on-surface-variant/40 pr-4 text-base py-2.5">
   </div>
 </div>
@@ -63,7 +63,7 @@ permalink: /docs/
         {% else %}function{% endif %}
       </span>
       <h2 class="font-display text-3xl font-bold text-on-surface">{{ cat }}</h2>
-      <span class="text-sm font-bold text-on-surface-variant/40">({{ cat_docs.size }} functions)</span>
+      <span class="text-sm font-bold text-on-surface-variant/40">({{ cat_docs.size }} fonctions)</span>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -99,9 +99,9 @@ permalink: /docs/
 <!-- No Results -->
 <div id="docs-no-results" class="hidden rounded-xl bg-surface-container-low border border-outline-variant p-16 text-center shadow-inner">
   <span class="material-symbols-outlined text-6xl text-on-surface-variant/20 mb-4">search_off</span>
-  <h3 class="text-2xl font-bold text-on-surface mb-2">No functions found</h3>
+  <h3 class="text-2xl font-bold text-on-surface mb-2">Aucune fonction trouvée</h3>
   <p class="text-on-surface-variant">
-    Try a different search term. Function names are case-insensitive.
+    Essayez un autre mot clé. La recherche n'est pas sensible à la casse.
   </p>
 </div>
 
@@ -109,9 +109,9 @@ permalink: /docs/
 <!-- Empty state -->
 <div class="rounded-xl bg-surface-container-low border border-outline-variant p-16 text-center shadow-inner">
   <span class="material-symbols-outlined text-6xl text-on-surface-variant/20 mb-4">construction</span>
-  <h2 class="text-2xl font-bold text-on-surface mb-2">Documentation coming soon</h2>
+  <h2 class="text-2xl font-bold text-on-surface mb-2">Documentation bientôt disponible</h2>
   <p class="text-on-surface-variant">
-    We're building the function reference. Check back soon or browse the <a href="{{ t.paths.guides | relative_url }}" class="text-primary font-bold hover:underline">Guides</a> for tutorials.
+    Nous créons actuellement la référence des fonctions BDFD. Revenez bientôt ou parcourez nos <a href="{{ t.paths.guides | relative_url }}" class="text-primary font-bold hover:underline">Tutoriels</a>.
   </p>
 </div>
 {% endif %}
@@ -119,12 +119,12 @@ permalink: /docs/
 <!-- CTA -->
 <section class="mt-24 rounded-xl bg-surface-container-high p-8 md:p-16 text-center shadow-lg">
   <div class="relative z-10 mx-auto max-w-3xl">
-    <p class="text-sm font-bold text-on-surface-variant/70 uppercase tracking-widest mb-6">Need the product first?</p>
+    <p class="text-sm font-bold text-on-surface-variant/70 uppercase tracking-widest mb-6">Besoin du produit d'abord ?</p>
     <h2 class="font-display text-3xl font-bold text-on-surface md:text-4xl mb-6">
-      Install Bot Creator, then use the docs to build your commands.
+      Installez Bot Creator, puis utilisez la documentation pour créer vos commandes.
     </h2>
     <p class="text-lg text-on-surface-variant/70 mb-10">
-      The function reference pairs with the visual editor — every function here is available in the BDFD script panel.
+      La référence des fonctions s'associe à l'éditeur visuel — chaque fonction listée ici est disponible dans le panneau de script BDFD.
     </p>
     <div class="flex flex-col justify-center gap-4 sm:flex-row">
       <a href="{{ t.paths.download | relative_url }}" class="button-primary h-14 px-10 text-lg">
@@ -137,7 +137,7 @@ permalink: /docs/
   </div>
 </section>
 
-<!-- Search -->
+<!-- Search script -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("docs-search-input");

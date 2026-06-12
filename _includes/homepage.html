@@ -1,75 +1,154 @@
 {% assign t = site.data.locales[page.locale] %}
 {% assign downloads = site.data.downloads %}
 
-<main class="bg-background">
+<main class="bg-background overflow-x-hidden">
   <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-surface py-20 lg:py-32">
-    <div class="mx-auto max-w-7xl px-6">
-      <div class="grid items-center gap-12 lg:grid-cols-2">
-        <div class="flex flex-col gap-8">
-          <div class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
-            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
-            {{ t.home.hero.eyebrow }}
+  <section class="relative overflow-hidden bg-surface py-24 lg:py-36">
+    <!-- Grid pattern background -->
+    <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%237c8aff\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); background-size: 60px 60px;"></div>
+    
+    <!-- Deep glowing backdrop elements -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[130px] pointer-events-none opacity-60"></div>
+    <div class="absolute bottom-10 right-10 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none opacity-40"></div>
+
+    <div class="mx-auto max-w-7xl px-6 relative z-10">
+      <div class="grid items-center gap-16 lg:grid-cols-12">
+        <div class="flex flex-col gap-8 lg:col-span-7">
+          <!-- Animated Badging -->
+          <div class="inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-primary/10 to-purple-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20 shadow-[0_0_15px_rgba(124,138,255,0.05)]">
+            <span class="material-symbols-outlined text-sm animate-pulse text-purple-400" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+            <span>{{ t.home.hero.eyebrow }}</span>
           </div>
-          <h1 class="font-display text-5xl font-black leading-tight tracking-tight text-on-surface md:text-6xl lg:text-7xl">
+          
+          <h1 class="home-hero-title font-display text-5xl font-black leading-tight tracking-tight text-on-surface md:text-6xl lg:text-7xl">
             {{ t.home.hero.title }}
           </h1>
+          
           <p class="max-w-xl text-lg leading-relaxed text-on-surface-variant md:text-xl">
             {{ t.home.hero.body }}
           </p>
+          
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <a href="{{ t.paths.download | relative_url }}" class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-on-primary transition-transform hover:scale-[1.02] neon-glow-strong">
+            <a href="{{ t.paths.download | relative_url }}" class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-on-primary shadow-md hover:shadow-lg hover:shadow-primary/10 hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:scale-98 transition-all duration-200">
               <span class="material-symbols-outlined">smartphone</span>
               {{ t.shell.primary_cta }}
             </a>
-            <a href="#" class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-outline bg-transparent px-8 text-base font-bold text-on-surface transition-colors hover:bg-surface-container">
-              <span class="material-symbols-outlined">play_circle</span>
+            <a href="{{ t.paths.guides | relative_url }}" class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-outline-variant bg-surface-container-low px-8 text-base font-bold text-on-surface hover:bg-surface-container hover:border-primary/30 hover:-translate-y-0.5 active:translate-y-0 active:scale-98 transition-all duration-200">
+              <span class="material-symbols-outlined">menu_book</span>
               {{ t.home.hero.secondary_cta }}
             </a>
           </div>
-          <div class="flex items-center gap-6 pt-4">
+          
+          <div class="flex items-center gap-6 pt-4 border-t border-outline-variant/30 mt-4">
             <div class="flex -space-x-3">
-              <div class="h-10 w-10 rounded-full border-2 border-surface bg-surface-container-high"></div>
-              <div class="h-10 w-10 rounded-full border-2 border-surface bg-surface-container"></div>
-              <div class="h-10 w-10 rounded-full border-2 border-surface bg-surface-container-low"></div>
+              <div class="h-10 w-10 rounded-full border-2 border-surface bg-gradient-to-tr from-primary to-purple-400 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">BC</div>
+              <div class="h-10 w-10 rounded-full border-2 border-surface bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-primary shadow-sm">🤖</div>
+              <div class="h-10 w-10 rounded-full border-2 border-surface bg-surface-container flex items-center justify-center text-[10px] font-bold text-purple-400 shadow-sm">🚀</div>
             </div>
             <p class="text-sm font-medium text-on-surface-variant">{{ t.home.hero.stats }}</p>
           </div>
         </div>
-        <div class="relative flex justify-center lg:justify-end">
-          <div class="relative z-10 w-full max-w-[420px] overflow-hidden rounded-[3rem] border-[12px] border-surface-container-highest bg-black shadow-2xl neon-glow">
-            <img alt="Bot Creator App Interface" class="w-full" src="{{ '/assets/images/screenshots/hero.png' | relative_url }}">
+        
+        <!-- App Mockup Frame -->
+        <div class="relative flex justify-center lg:justify-end lg:col-span-5 w-full" data-reveal>
+          <div class="relative z-10 w-full max-w-[440px] overflow-hidden rounded-2xl border border-outline-variant/60 bg-[#080d19] shadow-2xl shadow-primary/5 transition-all duration-500 hover:scale-[1.02] hover:border-primary/30">
+            <!-- Window Chrome Titlebar -->
+            <div class="flex items-center gap-2 px-4 py-3.5 border-b border-outline-variant/30 bg-surface-container-low/80 backdrop-blur-sm">
+              <div class="h-3 w-3 rounded-full bg-red-500/80"></div>
+              <div class="h-3 w-3 rounded-full bg-yellow-500/80"></div>
+              <div class="h-3 w-3 rounded-full bg-green-500/80"></div>
+              <div class="mx-auto text-[10px] font-mono tracking-wider text-on-surface-variant/40 select-none">bot-creator.app</div>
+            </div>
+            <!-- Image with subtle glow overlay -->
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-950">
+              <img alt="Bot Creator App Interface" class="w-full h-full object-cover opacity-95" src="{{ '/assets/images/screenshots/hero.png' | relative_url }}">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#080d19]/60 via-transparent to-transparent pointer-events-none"></div>
+            </div>
           </div>
-          <div class="absolute -bottom-10 -left-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
-          <div class="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-secondary-container/20 blur-3xl"></div>
+          <!-- Background aura glows -->
+          <div class="absolute -bottom-10 -left-10 h-72 w-72 rounded-full bg-primary/10 blur-[100px] pointer-events-none"></div>
+          <div class="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-purple-500/10 blur-[120px] pointer-events-none"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Showcase Section -->
-  <section class="bg-surface-container-low py-24">
+  <!-- Showcase Section - Bento Cards -->
+  <section class="bg-surface-container-low py-24 border-y border-outline-variant/30">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="mb-16 text-center">
-        <h2 class="font-display text-3xl font-bold tracking-tight text-on-surface sm:text-4xl">{{ t.home.showcase.title }}</h2>
-        <p class="mt-4 text-lg text-on-surface-variant">{{ t.home.showcase.subtitle }}</p>
+      <div class="mb-20 text-center">
+        <h2 class="font-display text-4xl font-black tracking-tight text-on-surface sm:text-5xl">{{ t.home.showcase.title }}</h2>
+        <p class="mt-4 text-lg text-on-surface-variant max-w-2xl mx-auto">{{ t.home.showcase.subtitle }}</p>
       </div>
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
         {% for card in t.home.showcase.cards %}
-        <div class="group flex flex-col gap-4">
-          <div class="overflow-hidden rounded-3xl bg-surface-container border border-outline-variant transition-all group-hover:border-primary/50 group-hover:neon-glow">
-            {% if forloop.index == 1 %}
-            <img alt="{{ card.title }}" class="w-full object-cover" src="{{ '/assets/images/screenshots/screen1.png' | relative_url }}">
-            {% elsif forloop.index == 2 %}
-            <img alt="{{ card.title }}" class="w-full object-cover" src="{{ '/assets/images/screenshots/screen2.png' | relative_url }}">
-            {% else %}
-            <img alt="{{ card.title }}" class="w-full object-cover" src="{{ '/assets/images/screenshots/screen3.png' | relative_url }}">
-            {% endif %}
+        <div class="group flex flex-col gap-5 transition-all duration-300 hover:-translate-y-1">
+          <div class="overflow-hidden rounded-2xl bg-surface-container border border-outline-variant/60 shadow-sm transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-lg group-hover:shadow-primary/5">
+            <!-- Image frame simulating an app screen -->
+            <div class="relative border-b border-outline-variant/30 bg-[#0c1222] overflow-hidden">
+              {% if forloop.index == 1 %}
+              <img alt="{{ card.title }}" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ '/assets/images/screenshots/screen1.png' | relative_url }}">
+              {% elsif forloop.index == 2 %}
+              <img alt="{{ card.title }}" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ '/assets/images/screenshots/screen2.png' | relative_url }}">
+              {% else %}
+              <img alt="{{ card.title }}" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" src="{{ '/assets/images/screenshots/screen3.png' | relative_url }}">
+              {% endif %}
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container/20 to-transparent opacity-60 pointer-events-none"></div>
+            </div>
           </div>
           <div class="px-2">
-            <h3 class="font-display text-xl font-bold text-on-surface">{{ card.title }}</h3>
-            <p class="mt-2 text-sm text-on-surface-variant leading-relaxed">{{ card.body }}</p>
+            <h3 class="font-display text-xl font-bold text-on-surface flex items-center gap-2 group-hover:text-primary transition-colors duration-200">
+              <span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 0;">
+                {% if forloop.index == 1 %}category{% elsif forloop.index == 2 %}dashboard{% else %}terminal{% endif %}
+              </span>
+              {{ card.title }}
+            </h3>
+            <p class="mt-2.5 text-sm text-on-surface-variant leading-relaxed">{{ card.body }}</p>
           </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid Section -->
+  <section class="bg-surface py-24 border-b border-outline-variant/30">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-20 text-center">
+        <h2 class="font-display text-4xl font-black tracking-tight text-on-surface sm:text-5xl leading-tight">{{ t.home.features.title }}</h2>
+        <p class="mt-4 text-lg text-on-surface-variant max-w-2xl mx-auto">{{ t.home.features.subtitle }}</p>
+      </div>
+      
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {% for item in t.home.features.items %}
+        <div class="flex flex-col gap-4 p-8 rounded-2xl bg-surface-container-low border border-outline-variant/50 hover:border-primary/30 transition-all duration-300">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary mb-2 shadow-sm">
+            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 0;">{{ item.icon }}</span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-on-surface">{{ item.title }}</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">{{ item.body }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works Section -->
+  <section class="bg-surface-container-low py-24 border-b border-outline-variant/30">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-20 text-center">
+        <span class="text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">{% if page.locale == 'fr' %}Workflow{% else %}Workflow{% endif %}</span>
+        <h2 class="font-display text-4xl font-black tracking-tight text-on-surface sm:text-5xl leading-tight mt-6">{{ t.home.how_it_works.title }}</h2>
+        <p class="mt-4 text-lg text-on-surface-variant max-w-2xl mx-auto">{{ t.home.how_it_works.subtitle }}</p>
+      </div>
+      
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {% for step in t.home.how_it_works.steps %}
+        <div class="flex flex-col gap-4 bg-surface-container p-8 rounded-2xl border border-outline-variant/50 hover:border-primary/30 transition-all duration-300">
+          <div class="text-xs font-bold text-primary uppercase tracking-widest">{% if page.locale == 'fr' %}Étape{% else %}Step{% endif %} {{ forloop.index }}</div>
+          <h3 class="font-display text-2xl font-bold text-on-surface mt-2">{{ step.title }}</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed mt-2">{{ step.body }}</p>
         </div>
         {% endfor %}
       </div>
@@ -79,41 +158,46 @@
   <!-- Blog/Tutorials Section -->
   <section class="bg-surface py-24">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="flex items-end justify-between mb-12">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
         <div>
-          <h2 class="font-display text-3xl font-bold tracking-tight text-on-surface sm:text-4xl">{{ t.home.blog.title }}</h2>
-          <p class="mt-2 text-on-surface-variant">{{ t.home.blog.subtitle }}</p>
+          <h2 class="font-display text-4xl font-black tracking-tight text-on-surface sm:text-5xl">{{ t.home.blog.title }}</h2>
+          <p class="mt-3 text-lg text-on-surface-variant">{{ t.home.blog.subtitle }}</p>
         </div>
-        <a class="hidden sm:flex items-center gap-2 font-bold text-primary hover:underline" href="{{ t.paths.guides | relative_url }}">
-          {{ t.home.blog.view_all }}
-          <span class="material-symbols-outlined">arrow_forward</span>
+        <a class="inline-flex items-center gap-2 font-bold text-primary group hover:underline" href="{{ t.paths.guides | relative_url }}">
+          <span>{{ t.home.blog.view_all }}</span>
+          <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
-      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      
+      <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {% assign real_posts = site.posts | where: "locale", page.locale %}
         {% if real_posts.size == 0 %}
           {% assign real_posts = site.posts | where: "locale", "en" | limit: 3 %}
         {% endif %}
         {% for post in real_posts limit: 3 %}
-        <article class="group flex flex-col overflow-hidden rounded-2xl bg-surface-container border border-outline-variant transition-all hover:border-primary/40 hover:neon-glow">
-          <div class="overflow-hidden relative bg-surface-container-low aspect-video w-full border-b border-outline-variant">
+        <article class="group flex flex-col overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/60 transition-all duration-300 hover:-translate-y-2 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+          <div class="overflow-hidden relative bg-[#080d19] aspect-video w-full border-b border-outline-variant/30">
             {% if post.thumbnail %}
-            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform group-hover:scale-105" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'; window.initCanvasFallback && window.initCanvasFallback(this.nextElementSibling);">
+            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="aspect-video w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-[1.04]" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'; window.initCanvasFallback && window.initCanvasFallback(this.nextElementSibling);">
             <canvas class="js-blog-cover aspect-video w-full" style="display: none;" data-title="{{ post.title }}" data-category="{{ post.categories | first | default: 'Tutoriel' }}"></canvas>
             {% else %}
             <canvas class="js-blog-cover aspect-video w-full" data-title="{{ post.title }}" data-category="{{ post.categories | first | default: 'Tutoriel' }}"></canvas>
             {% endif %}
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-60 pointer-events-none"></div>
           </div>
           <div class="flex flex-1 flex-col p-6">
-            <div class="mb-3 flex items-center gap-2">
-              <span class="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20">{{ post.categories | first | default: 'Tutoriel' }}</span>
-              <span class="text-xs text-on-surface-variant">{{ post.date | date: "%Y-%m-%d" }}</span>
+            <div class="mb-4 flex items-center gap-3">
+              <span class="rounded-full bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20 shadow-sm">{{ post.categories | first | default: 'Tutoriel' }}</span>
+              <span class="text-xs text-on-surface-variant flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs">calendar_today</span>
+                {{ post.date | date: "%Y-%m-%d" }}
+              </span>
             </div>
-            <h3 class="mb-3 font-display text-xl font-bold leading-tight text-on-surface line-clamp-2">{{ post.title }}</h3>
-            <p class="mb-6 line-clamp-2 text-sm text-on-surface-variant">{{ post.description | default: post.excerpt | strip_html | truncatewords: 20 }}</p>
-            <a class="mt-auto flex items-center gap-1 text-sm font-bold text-primary group" href="{{ post.url | relative_url }}">
-              {{ t.guides.read_more | default: 'Lire la suite' }}
-              <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">chevron_right</span>
+            <h3 class="mb-3 font-display text-xl font-bold leading-tight text-on-surface line-clamp-2 group-hover:text-primary transition-colors duration-200">{{ post.title }}</h3>
+            <p class="mb-6 line-clamp-2 text-sm text-on-surface-variant/90 leading-relaxed">{{ post.description | default: post.excerpt | strip_html | truncatewords: 20 }}</p>
+            <a class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-primary" href="{{ post.url | relative_url }}">
+              <span>{{ t.guides.read_more | default: 'Lire la suite' }}</span>
+              <span class="material-symbols-outlined text-base transition-transform duration-200 group-hover:translate-x-1">chevron_right</span>
             </a>
           </div>
         </article>
@@ -122,25 +206,59 @@
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section class="bg-surface-container-low py-24 border-t border-outline-variant/30">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-20 text-center">
+        <h2 class="font-display text-4xl font-black tracking-tight text-on-surface sm:text-5xl leading-tight">{{ t.home.faq.title }}</h2>
+        <p class="mt-4 text-lg text-on-surface-variant max-w-2xl mx-auto">{{ t.home.faq.subtitle }}</p>
+      </div>
+      
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        {% for item in t.home.faq.items %}
+        <div class="flex flex-col gap-3 p-8 rounded-2xl bg-surface-container border border-outline-variant/50 hover:border-primary/20 transition-all duration-300">
+          <h3 class="font-display text-xl font-bold text-on-surface flex items-start gap-3">
+            <span class="material-symbols-outlined text-primary mt-0.5" style="font-variation-settings: 'FILL' 1;">help</span>
+            {{ item.q }}
+          </h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed pl-8">{{ item.a }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Section -->
-  <section class="py-24 bg-surface">
-    <div class="mx-auto max-w-5xl px-6">
-      <div class="relative overflow-hidden rounded-[2rem] bg-surface-container-highest px-8 py-16 text-center text-on-surface sm:px-16 border border-primary/20 neon-glow">
+  <section class="py-24 bg-surface relative overflow-hidden border-t border-outline-variant/30">
+    <!-- Glowing accent behind CTA card -->
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+    
+    <div class="mx-auto max-w-5xl px-6 relative z-10">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-lowest px-8 py-16 text-center sm:px-16 border border-outline-variant/60 shadow-2xl shadow-primary/5">
+        <!-- Inner glow patches -->
+        <div class="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-primary/10 blur-[80px] pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-purple-500/10 blur-[80px] pointer-events-none"></div>
+
         <div class="relative z-10 mx-auto max-w-2xl">
-          <h2 class="font-display text-4xl font-bold tracking-tight sm:text-5xl">{{ t.home.cta.title }}</h2>
-          <p class="mt-6 text-lg text-on-surface-variant">{{ t.home.cta.body }}</p>
-          <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <a href="{{ t.paths.download | relative_url }}" class="flex h-14 items-center justify-center rounded-xl bg-primary-container text-on-primary-container px-8 text-base font-bold transition-transform hover:scale-105 active:scale-95 neon-glow-strong">
+          <span class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 mb-6 shadow-sm">
+            <span class="material-symbols-outlined text-sm">bolt</span>
+            {{ t.home.hero.eyebrow }}
+          </span>
+          <h2 class="font-display text-4xl font-black tracking-tight text-on-surface sm:text-5xl leading-tight">
+            {{ t.home.cta.title }}
+          </h2>
+          <p class="mt-6 text-lg text-on-surface-variant/90 leading-relaxed">{{ t.home.cta.body }}</p>
+          <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:items-center">
+            <a href="{{ t.paths.download | relative_url }}" class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl bg-primary text-on-primary px-8 text-base font-bold shadow-md hover:shadow-lg hover:shadow-primary/10 hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:scale-98 transition-all duration-200">
+              <span class="material-symbols-outlined">download</span>
               {{ t.home.cta.primary }}
             </a>
-            <a href="#" class="flex h-14 items-center justify-center rounded-xl border border-outline bg-white/5 px-8 text-base font-bold backdrop-blur-sm transition-colors hover:bg-white/10">
+            <a href="{{ t.paths.docs | relative_url }}" class="flex h-14 min-w-[200px] items-center justify-center gap-2 rounded-xl border border-outline-variant bg-surface-container-low px-8 text-base font-bold text-on-surface hover:bg-surface-container hover:border-primary/30 hover:-translate-y-0.5 active:translate-y-0 active:scale-98 transition-all duration-200">
+              <span class="material-symbols-outlined">menu_book</span>
               {{ t.home.cta.secondary }}
             </a>
           </div>
         </div>
-        <!-- Background Decoration -->
-        <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary opacity-20 blur-3xl"></div>
-        <div class="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-secondary-container opacity-10 blur-3xl"></div>
       </div>
     </div>
   </section>

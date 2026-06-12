@@ -1,0 +1,201 @@
+{% assign locale = page.locale | default: site.lang | default: 'en' %}
+{% assign t = site.data.locales[locale] %}
+{% assign all_docs = site.docs | sort: "function_name" %}
+{% assign categories = all_docs | map: "category" | uniq | sort %}
+{% assign post_list = site.posts | where: "locale", locale %}
+{% if post_list.size == 0 %}
+  {% assign post_list = site.posts | where: "locale", "en" %}
+{% endif %}
+
+<div class="flex flex-col gap-6">
+  <!-- Sidebar Search Bar -->
+  <div class="relative flex items-center bg-surface-container border border-outline-variant rounded-lg p-1.5 focus-within:border-primary transition-all">
+    <span class="material-symbols-outlined text-on-surface-variant/50 ml-2 mr-1.5 text-lg">search</span>
+    <input
+      type="text"
+      id="sidebar-search-input"
+      placeholder="Search..."
+      class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-on-surface-variant/40 pr-2 text-sm py-1">
+  </div>
+
+  <!-- GUIDES SECTION -->
+  <div class="sidebar-group">
+    <button class="sidebar-header flex items-center justify-between w-full text-xs font-bold text-on-surface-variant/50 uppercase tracking-widest mb-2 px-2 py-1 hover:text-on-surface transition-colors" data-toggle-target="guides-list">
+      <span class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">library_books</span>
+        {% if locale == 'fr' %}Guides & Tutoriels{% else %}Guides & Tutorials{% endif %}
+      </span>
+      <span class="material-symbols-outlined text-sm transition-transform duration-200 transform rotate-180" id="guides-list-arrow">expand_more</span>
+    </button>
+    <ul id="guides-list" class="flex flex-col gap-1 pl-2">
+      {% for post in post_list %}
+        <li>
+          <a href="{{ post.url | relative_url }}"
+             class="sidebar-item block px-3 py-2 rounded-lg text-sm transition-all {% if page.url == post.url %}bg-primary/10 text-primary font-bold border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
+             data-search-term="{{ post.title | downcase }} {{ post.description | default: '' | downcase }}">
+            {{ post.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- BDFD FUNCTIONS SECTION -->
+  <div class="sidebar-group">
+    <div class="flex items-center justify-between w-full text-xs font-bold text-on-surface-variant/50 uppercase tracking-widest mb-2 px-2 py-1">
+      <span class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">code</span>
+        {% if locale == 'fr' %}Référence des Fonctions{% else %}Function Reference{% endif %}
+      </span>
+    </div>
+    
+    <div class="flex flex-col gap-3">
+      {% for cat in categories %}
+        {% assign cat_docs = all_docs | where: "category", cat %}
+        {% if cat_docs.size > 0 %}
+          {% assign is_active_cat = false %}
+          {% for doc in cat_docs %}
+            {% if page.url == doc.url %}{% assign is_active_cat = true %}{% endif %}
+          {% endfor %}
+          
+          {% assign cat_slug = cat | slugify %}
+          <div class="sidebar-cat-group">
+            <button class="sidebar-cat-header flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-toggle-target="cat-list-{{ cat_slug }}">
+              <span class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-base text-primary/70">
+                  {% assign cat_lower = cat | downcase %}
+                  {% if cat_lower contains "image" or cat_lower contains "canvas" %}palette
+                  {% elsif cat_lower contains "intro" %}info
+                  {% elsif cat_lower contains "component" %}layers
+                  {% elsif cat_lower contains "embed" %}code
+                  {% elsif cat_lower contains "user" %}person
+                  {% elsif cat_lower contains "moderation" or cat_lower contains "mod" %}shield
+                  {% elsif cat_lower contains "channel" %}chat
+                  {% elsif cat_lower contains "role" %}shield_person
+                  {% elsif cat_lower contains "bot" %}smart_toy
+                  {% elsif cat_lower contains "server" %}dns
+                  {% elsif cat_lower contains "blacklist" %}block
+                  {% elsif cat_lower contains "argument" or cat_lower contains "condition" %}rule
+                  {% elsif cat_lower contains "text" %}description
+                  {% else %}function{% endif %}
+                </span>
+                <span>{{ cat }}</span>
+              </span>
+              <span class="material-symbols-outlined text-sm transition-transform duration-200 transform {% if is_active_cat or page.url == '/docs/' %}rotate-180{% endif %}" id="cat-list-{{ cat_slug }}-arrow">expand_more</span>
+            </button>
+            
+            <ul id="cat-list-{{ cat_slug }}" class="flex flex-col gap-1 pl-4 mt-1 {% unless is_active_cat or page.url == '/docs/' %}hidden{% endunless %}">
+              {% for doc in cat_docs %}
+                <li>
+                  <a href="{{ doc.url | relative_url }}"
+                     class="sidebar-item block px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all {% if page.url == doc.url %}bg-primary/10 text-primary border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
+                     data-search-term="{{ doc.title | downcase }} {{ doc.description | default: '' | downcase }} {{ doc.function_name | default: '' | downcase }}">
+                    {{ doc.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Scroll active item into view on load
+  const activeItem = document.querySelector('#docs-sidebar .bg-primary\\/10');
+  if (activeItem) {
+    setTimeout(() => {
+      activeItem.scrollIntoView({ block: 'nearest' });
+    }, 100);
+  }
+
+  // Collapsible Categories
+  const toggleButtons = document.querySelectorAll("[data-toggle-target]");
+  toggleButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-toggle-target");
+      const targetList = document.getElementById(targetId);
+      const arrow = document.getElementById(targetId + "-arrow");
+      if (targetList) {
+        const isHidden = targetList.classList.contains("hidden");
+        if (isHidden) {
+          targetList.classList.remove("hidden");
+          if (arrow) arrow.classList.add("rotate-180");
+        } else {
+          targetList.classList.add("hidden");
+          if (arrow) arrow.classList.remove("rotate-180");
+        }
+      }
+    });
+  });
+
+  // Sidebar search
+  const searchInput = document.getElementById("sidebar-search-input");
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const sidebarGroups = document.querySelectorAll(".sidebar-group, .sidebar-cat-group");
+      const items = document.querySelectorAll(".sidebar-item");
+
+      if (!query) {
+        // Reset to original states
+        items.forEach(item => {
+          item.closest("li").style.display = "";
+        });
+        // Restore category list visibility based on active category
+        sidebarGroups.forEach(group => {
+          const list = group.querySelector("ul");
+          if (list) {
+            const hasActive = list.querySelector("a.bg-primary\\/10");
+            if (hasActive || list.id === "guides-list") {
+              list.classList.remove("hidden");
+              const arrow = document.getElementById(list.id + "-arrow");
+              if (arrow) arrow.classList.add("rotate-180");
+            } else {
+              if (list.id !== "guides-list") {
+                list.classList.add("hidden");
+                const arrow = document.getElementById(list.id + "-arrow");
+                if (arrow) arrow.classList.remove("rotate-180");
+              }
+            }
+          }
+        });
+        return;
+      }
+
+      // Hide/Show items based on search term
+      items.forEach(item => {
+        const searchTerm = item.getAttribute("data-search-term") || "";
+        const matches = searchTerm.includes(query);
+        item.closest("li").style.display = matches ? "" : "none";
+      });
+
+      // Expand all categories containing matching visible items
+      sidebarGroups.forEach(group => {
+        const list = group.querySelector("ul");
+        if (list) {
+          let visibleChildren = 0;
+          list.querySelectorAll("li").forEach(li => {
+            if (li.style.display !== "none") {
+              visibleChildren++;
+            }
+          });
+
+          if (visibleChildren > 0) {
+            list.classList.remove("hidden");
+            const arrow = document.getElementById(list.id + "-arrow");
+            if (arrow) arrow.classList.add("rotate-180");
+          } else {
+            list.classList.add("hidden");
+            const arrow = document.getElementById(list.id + "-arrow");
+            if (arrow) arrow.classList.remove("rotate-180");
+          }
+        }
+      });
+    });
+  }
+});
+</script>

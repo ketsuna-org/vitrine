@@ -1,42 +1,15 @@
 {% assign t = include.t %}
 {% assign downloads = site.data.downloads %}
 
-<footer class="border-t border-outline-variant bg-surface-container-low py-12">
-  <div class="mx-auto max-w-7xl px-6">
-    <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
-      <!-- Logo -->
-      <a href="{{ t.paths.home | relative_url }}" class="flex items-center gap-3 group">
-        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-container/20 p-1 neon-border">
-          <img src="{{ '/favicon.ico' | relative_url }}" alt="Logo" class="h-full w-full object-contain">
-        </div>
-        <span class="text-lg font-bold tracking-tight text-on-surface font-display">{{ t.meta.site_title }}</span>
-      </a>
-
-      <!-- Links -->
-      <div class="flex flex-wrap justify-center gap-8 text-sm font-medium text-on-surface-variant">
-        <a class="hover:text-primary transition-colors" href="{{ t.paths.terms | relative_url }}">Conditions
-          d'utilisation</a>
-        <a class="hover:text-primary transition-colors" href="{{ t.paths.privacy | relative_url }}">{{ t.nav.privacy
-          }}</a>
-        <a class="hover:text-primary transition-colors" href="mailto:contact@bot-creator.fr">Contact</a>
-        <a class="hover:text-primary transition-colors" href="#">Presse</a>
-      </div>
-
-      <!-- Socials -->
-      <div class="flex gap-4">
-        <a class="flex h-10 w-10 items-center justify-center rounded-full bg-surface-container text-on-surface-variant hover:bg-primary-container/20 hover:text-primary transition-all border border-outline-variant"
-          href="#">
-          <span class="material-symbols-outlined text-xl">language</span>
-        </a>
-        <a class="flex h-10 w-10 items-center justify-center rounded-full bg-surface-container text-on-surface-variant hover:bg-primary-container/20 hover:text-primary transition-all border border-outline-variant"
-          href="https://discord.gg/duDs2hwddt">
-          <span class="material-symbols-outlined text-xl">share</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="mt-12 text-center text-[10px] uppercase tracking-widest text-on-surface-variant/40">
-      © 2024 {{ t.meta.site_title }}. Built with passion by Aetheric Tech.
-    </div>
+<footer class="bg-surface-container-low w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center gap-md border-t border-outline-variant">
+  <div>
+    <div class="font-bold text-on-surface text-lg">{{ t.meta.site_title }}</div>
+    <div class="text-on-surface-variant text-sm">© 2024 {{ t.meta.site_title }}. Built with passion by Aetheric Tech.</div>
   </div>
+  <nav class="flex flex-wrap gap-md">
+    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="{{ t.paths.terms | relative_url }}">Conditions d'utilisation</a>
+    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="{{ t.paths.privacy | relative_url }}">{{ t.nav.privacy }}</a>
+    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="mailto:contact@bot-creator.fr">Contact</a>
+    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="#">Presse</a>
+  </nav>
 </footer>

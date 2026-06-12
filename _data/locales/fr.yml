@@ -28,7 +28,7 @@ nav:
 shell:
   status_badge: "Nouveau : Interface Drag & Drop"
   primary_cta: "Télécharger l'app"
-  secondary_cta: "Voir la démo"
+  secondary_cta: "Lire les guides"
   footer_title: "Bot-Creator"
   footer_tagline: "Simplicité visuelle, puissance fonctionnelle."
 
@@ -37,7 +37,7 @@ home:
     eyebrow: "Nouveau : Interface Drag & Drop"
     title: "Créez vos propres bots <span class='text-primary'>sans code</span>"
     body: "Transformez vos idées en automates puissants avec notre application mobile intuitive. Simple, rapide et sans aucune compétence technique requise."
-    secondary_cta: "Voir la démo"
+    secondary_cta: "Lire les guides"
     stats: "Rejoint par +1,000 créateurs"
   showcase:
     title: "Une interface pensée pour la création"
@@ -52,6 +52,41 @@ home:
       - title: "Bibliothèque de Modèles"
         body: "Ne partez pas de zéro. Utilisez nos modèles pré-configurés pour les tâches les plus courantes."
         icon: "library_books"
+  features:
+    title: "Conçu pour la puissance. Pensé pour la vie privée."
+    subtitle: "Une suite d'outils professionnels qui vous donne le contrôle total sur vos automatisations."
+    items:
+      - title: "Architecture locale d'abord"
+        body: "Vos tokens de bot, configurations de commandes et bases de données résident entièrement sur votre appareil local ou runner auto-hébergé. Nous n'accédons jamais à vos clés privées, garantissant la sécurité de vos données."
+        icon: "security"
+      - title: "Moteur de script hybride"
+        body: "Construisez visuellement avec des blocs logiques glisser-déposer, ou écrivez des commandes précises via notre parseur de script personnalisé. Compatible avec la syntaxe BDFD pour un contrôle total."
+        icon: "code"
+      - title: "Synchronisation multi-appareils"
+        body: "Créez vos commandes en déplacement sur mobile, affinez-les sur votre espace de travail desktop, et déployez-les sur un runner Docker léger pour un fonctionnement 24h/24 et 7j/7."
+        icon: "sync_alt"
+  how_it_works:
+    title: "Créez et déployez en trois étapes simples"
+    subtitle: "Un workflow intuitif de la configuration initiale jusqu'à la mise en production 24h/24."
+    steps:
+      - title: "1. Créez votre application"
+        body: "Enregistrez votre bot sur le portail développeur de Discord, copiez votre token secret, et saisissez-le dans l'éditeur local. Aucune configuration de serveur requise."
+      - title: "2. Concevez vos commandes"
+        body: "Construisez des commandes slash et des gestionnaires d'événements via notre éditeur visuel. Pour aller plus loin, écrivez vos scripts avec auto-complétion."
+      - title: "3. Hébergez avec Docker"
+        body: "Exportez vos configurations sur notre image Docker légère. Lancez-la sur un VPS, serveur domestique ou Raspberry Pi pour un uptime garanti."
+  faq:
+    title: "Questions Fréquentes"
+    subtitle: "Tout ce que vous devez savoir sur Bot Creator."
+    items:
+      - q: "Ai-je besoin de savoir programmer ?"
+        a: "Non ! Vous pouvez concevoir des bots complets via notre constructeur visuel. Pour les utilisateurs avancés, notre langage de script est simple et documenté."
+      - q: "Mon token de bot est-il sécurisé ?"
+        a: "Oui. Bot Creator est local-first. Nous ne stockons ni ne transmettons vos tokens. Tout reste en local sur votre appareil ou votre propre serveur."
+      - q: "Comment faire tourner mon bot 24h/24 ?"
+        a: "Pour un uptime constant, utilisez notre runner Docker. Vous pouvez l'héberger sur n'importe quel VPS, serveur personnel ou Raspberry Pi."
+      - q: "Puis-je importer la syntaxe BDFD ?"
+        a: "Oui ! Notre interpréteur de scripts est conçu pour être compatible avec les règles de formatage standards de BDScript/BDFD."
   blog:
     title: "Blog et Tutoriels"
     subtitle: "Apprenez à maîtriser l'automatisation mobile."

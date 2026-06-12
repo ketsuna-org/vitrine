@@ -10,7 +10,7 @@ permalink: /download/
 {% assign downloads = site.data.downloads %}
 {% assign t = site.data.locales[page.locale] %}
 
-<main class="min-h-screen py-16 lg:py-24">
+<main class="min-h-screen py-16 lg:py-24 bg-background">
   <div class="mx-auto max-w-7xl px-6">
     <!-- Header -->
     <header class="mb-16" data-reveal>
@@ -27,22 +27,22 @@ permalink: /download/
         Choose the Bot Creator setup that fits your team.
       </h1>
       <p class="max-w-3xl text-xl leading-relaxed text-on-surface-variant italic border-l-4 border-primary pl-6 py-2 mb-12">
-        Most teams should start with the app on mobile or desktop. Linux and the Docker runner are available when you want local workstation control or a longer-lived remote runtime.
+        Most teams should start with the app on mobile or desktop. The Docker runner is available when you want local workstation control or a longer-lived remote runtime.
       </p>
     </header>
 
     <!-- Download Grid -->
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 mb-24">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mb-24">
       <!-- Mobile -->
-      <article class="flex flex-col rounded-[2.5rem] bg-surface-container border border-outline-variant p-8 transition-all hover:border-primary/40 hover:neon-glow" data-reveal>
-        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+      <article class="flex flex-col rounded-xl bg-surface-container-low border border-outline-variant p-8 transition-all hover:border-primary/30 hover:shadow-md" data-reveal>
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
           <span class="material-symbols-outlined text-3xl">smartphone</span>
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Mobile</h2>
         <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
           Build and review bot logic on the go. Best for creators and moderators who need to act fast.
         </p>
-        <div class="mt-auto space-y-3">
+        <div class="mt-auto flex flex-col justify-end gap-3 h-[6.75rem]">
           <a class="button-primary w-full" href="{{ downloads.stores.android_play.url }}" target="_blank">
             <span class="material-symbols-outlined text-sm mr-2">phone_android</span>
             Google Play
@@ -55,32 +55,15 @@ permalink: /download/
       </article>
 
       <!-- Desktop -->
-      <article class="flex flex-col rounded-[2.5rem] bg-surface-container border border-outline-variant p-8 transition-all hover:border-primary/40 hover:neon-glow" data-reveal>
-        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+      <article class="flex flex-col rounded-xl bg-surface-container-low border border-outline-variant p-8 transition-all hover:border-primary/30 hover:shadow-md" data-reveal>
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
           <span class="material-symbols-outlined text-3xl">laptop</span>
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Desktop</h2>
         <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
-          A spacious workspace for designing commands and organizing logic on Windows and MacOS.
+          A spacious workspace for designing commands and organizing logic on Windows, MacOS, and Linux.
         </p>
-        <div class="mt-auto space-y-3">
-          <a class="button-primary w-full !text-xs !h-11" href="{{ downloads.stores.steam.url }}" target="_blank">
-            <span class="material-symbols-outlined text-sm mr-2">sports_esports</span>
-            Steam
-          </a>
-        </div>
-      </article>
-
-      <!-- Linux -->
-      <article class="flex flex-col rounded-[2.5rem] bg-surface-container border border-outline-variant p-8 transition-all hover:border-primary/40 hover:neon-glow" data-reveal>
-        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-          <span class="material-symbols-outlined text-3xl">terminal</span>
-        </div>
-        <h2 class="mb-3 text-2xl font-bold text-on-surface">Linux</h2>
-        <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
-          Run the product locally on Linux when you want direct control without moving to containers immediately.
-        </p>
-        <div class="mt-auto space-y-3">
+        <div class="mt-auto flex flex-col justify-end gap-3 h-[6.75rem]">
           <a class="button-primary w-full" href="{{ downloads.stores.steam.url }}" target="_blank">
             <span class="material-symbols-outlined text-sm mr-2">sports_esports</span>
             Steam
@@ -88,16 +71,17 @@ permalink: /download/
         </div>
       </article>
 
+
       <!-- Docker Runner -->
-      <article class="flex flex-col rounded-[2.5rem] bg-surface-container border border-outline-variant p-8 transition-all hover:border-primary/40 hover:neon-glow border-primary/20" data-reveal>
-        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+      <article class="flex flex-col rounded-xl bg-surface-container-low border border-outline-variant p-8 transition-all hover:border-primary/30 hover:shadow-md border-primary/20" data-reveal>
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
           <span class="material-symbols-outlined text-3xl">deployed_code</span>
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Docker Runner</h2>
         <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
           Browser-based runtime for Linux servers, Raspberry Pi, or remote hosts. Designed for uptime.
         </p>
-        <div class="mt-auto space-y-3">
+        <div class="mt-auto flex flex-col justify-end gap-3 h-[6.75rem]">
           <a class="button-primary w-full" href="#runner">
             <span class="material-symbols-outlined text-sm mr-2">settings</span>
             Runner Setup
@@ -111,7 +95,7 @@ permalink: /download/
     </div>
 
     <!-- Runner Setup -->
-    <section id="runner" class="rounded-[3rem] bg-surface-container-high border border-outline-variant p-8 md:p-16 mb-24 scroll-mt-24" data-reveal>
+    <section id="runner" class="rounded-xl bg-surface-container-low border border-outline-variant p-8 md:p-16 mb-24 scroll-mt-24 shadow-sm" data-reveal>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
         <div>
           <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Advanced Setup</p>
@@ -138,23 +122,46 @@ permalink: /download/
         </div>
 
         <div class="flex flex-col gap-6">
-          <div class="rounded-3xl bg-surface-container-lowest p-6 border border-outline-variant group">
-            <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">1. Pull the image</p>
-            <div class="flex items-center justify-between gap-4">
-              <code class="text-primary text-sm font-mono truncate">{{ downloads.runner.commands.pull }}</code>
+          <!-- Step 1 -->
+          <div class="rounded-xl bg-surface-container p-6 border border-outline-variant flex flex-col justify-between">
+            <div>
+              <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-3">1. Pull the image</p>
+              <div class="bg-surface-container-low rounded-lg p-3 border border-outline-variant overflow-x-auto mb-3">
+                <code class="text-primary text-sm font-mono whitespace-nowrap">{{ downloads.runner.commands.pull }}</code>
+              </div>
             </div>
+            <button data-copy="{{ downloads.runner.commands.pull }}" data-copy-success="{% if page.locale == 'fr' %}Copié !{% else %}Copied!{% endif %}" class="button-outline !h-10 !px-4 text-xs font-bold w-fit flex items-center gap-2 self-end">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span>{% if page.locale == 'fr' %}Copier{% else %}Copy{% endif %}</span>
+            </button>
           </div>
-          <div class="rounded-3xl bg-surface-container-lowest p-6 border border-outline-variant group">
-            <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">2. Create the volume</p>
-            <div class="flex items-center justify-between gap-4">
-              <code class="text-primary text-sm font-mono truncate">{{ downloads.runner.commands.volume }}</code>
+
+          <!-- Step 2 -->
+          <div class="rounded-xl bg-surface-container p-6 border border-outline-variant flex flex-col justify-between">
+            <div>
+              <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-3">2. Create the volume</p>
+              <div class="bg-surface-container-low rounded-lg p-3 border border-outline-variant overflow-x-auto mb-3">
+                <code class="text-primary text-sm font-mono whitespace-nowrap">{{ downloads.runner.commands.volume }}</code>
+              </div>
             </div>
+            <button data-copy="{{ downloads.runner.commands.volume }}" data-copy-success="{% if page.locale == 'fr' %}Copié !{% else %}Copied!{% endif %}" class="button-outline !h-10 !px-4 text-xs font-bold w-fit flex items-center gap-2 self-end">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span>{% if page.locale == 'fr' %}Copier{% else %}Copy{% endif %}</span>
+            </button>
           </div>
-          <div class="rounded-3xl bg-surface-container-lowest p-6 border border-outline-variant group">
-            <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">3. Start the runner</p>
-            <div class="flex items-center justify-between gap-4">
-              <code class="text-primary text-sm font-mono break-all">{{ downloads.runner.commands.run }}</code>
+
+          <!-- Step 3 -->
+          <div class="rounded-xl bg-surface-container p-6 border border-outline-variant flex flex-col justify-between">
+            <div>
+              <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-3">3. Start the runner</p>
+              <div class="bg-surface-container-low rounded-lg p-3 border border-outline-variant overflow-x-auto mb-3">
+                <code class="text-primary text-sm font-mono whitespace-nowrap">{{ downloads.runner.commands.run }}</code>
+              </div>
             </div>
+            <button data-copy="{{ downloads.runner.commands.run }}" data-copy-success="{% if page.locale == 'fr' %}Copié !{% else %}Copied!{% endif %}" class="button-outline !h-10 !px-4 text-xs font-bold w-fit flex items-center gap-2 self-end">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span>{% if page.locale == 'fr' %}Copier{% else %}Copy{% endif %}</span>
+            </button>
           </div>
         </div>
       </div>
