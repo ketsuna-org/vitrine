@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasDrawArc
+title: $canvasDrawArc[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasDrawArc

@@ -27,17 +27,51 @@
       </span>
       <span class="material-symbols-outlined text-sm transition-transform duration-200 transform rotate-180" id="guides-list-arrow">expand_more</span>
     </button>
-    <ul id="guides-list" class="flex flex-col gap-1 pl-2">
-      {% for post in post_list %}
-        <li>
-          <a href="{{ post.url | relative_url }}"
-             class="sidebar-item block px-3 py-2 rounded-lg text-sm transition-all {% if page.url == post.url %}bg-primary/10 text-primary font-bold border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
-             data-search-term="{{ post.title | downcase }} {{ post.description | default: '' | downcase }}">
-            {{ post.title }}
-          </a>
-        </li>
+
+    <div id="guides-list" class="flex flex-col gap-3">
+      {% assign post_categories = post_list | map: "category" | uniq | sort %}
+      {% for cat in post_categories %}
+        {% assign cat_posts = post_list | where: "category", cat %}
+        {% if cat_posts.size > 0 %}
+          {% assign cat_slug = cat | slugify %}
+          <div class="sidebar-cat-group">
+            <button class="sidebar-cat-header flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-toggle-target="guide-cat-list-{{ cat_slug }}">
+              <span class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-base text-primary/70">
+                  {% assign cat_lower = cat | downcase %}
+                  {% if cat_lower contains "image" or cat_lower contains "canvas" %}palette
+                  {% elsif cat_lower contains "intro" or cat_lower contains "start" %}rocket_launch
+                  {% elsif cat_lower contains "component" %}layers
+                  {% elsif cat_lower contains "embed" %}code
+                  {% elsif cat_lower contains "user" %}person
+                  {% elsif cat_lower contains "moderation" or cat_lower contains "mod" %}shield
+                  {% elsif cat_lower contains "setup" or cat_lower contains "sécurité" or cat_lower contains "security" %}settings
+                  {% elsif cat_lower contains "bot" %}smart_toy
+                  {% elsif cat_lower contains "music" %}music_note
+                  {% elsif cat_lower contains "argument" or cat_lower contains "condition" %}rule
+                  {% elsif cat_lower contains "runner" or cat_lower contains "docker" %}terminal
+                  {% else %}article{% endif %}
+                </span>
+                <span>{{ cat }}</span>
+              </span>
+              <span class="material-symbols-outlined text-sm transition-transform duration-200{% if page.category == cat %} rotate-180{% endif %}" id="guide-cat-list-{{ cat_slug }}-arrow">expand_more</span>
+            </button>
+
+            <ul id="guide-cat-list-{{ cat_slug }}" class="flex flex-col gap-1 pl-4 mt-1{% unless page.category == cat %} hidden{% endunless %}">
+              {% for post in cat_posts %}
+                <li>
+                  <a href="{{ post.url | relative_url }}"
+                     class="sidebar-item block px-3 py-1.5 rounded-lg text-sm transition-all {% if page.url == post.url %}bg-primary/10 text-primary font-bold border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
+                     data-search-term="{{ post.title | downcase }} {{ post.description | default: '' | downcase }}">
+                    {{ post.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
       {% endfor %}
-    </ul>
+    </div>
   </div>
 
   <!-- BDFD FUNCTIONS SECTION -->

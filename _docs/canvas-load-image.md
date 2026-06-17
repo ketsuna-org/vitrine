@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasLoadImage
+title: $canvasLoadImage[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasLoadImage

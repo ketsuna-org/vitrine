@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasChartPie
+title: $canvasChartPie[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasChartPie

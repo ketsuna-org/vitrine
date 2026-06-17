@@ -3,6 +3,8 @@
 {% if page.layout == 'post' %}
 {% assign active_key = 'guides' %}
 {% endif %}
+{% assign guide_categories = site.posts | map: "category" | uniq | sort %}
+{% assign doc_categories = site.docs | map: "category" | uniq | sort %}
 
 <!-- Sticky Navigation Header — Dark Corporate -->
 <header class="nav-shell bg-surface-container-lowest border-b border-outline sticky top-0 z-50">
@@ -19,10 +21,39 @@
     <nav class="hidden md:flex items-center gap-lg">
       <a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'home' %} text-primary font-bold{% endif %}"
         href="{{ t.paths.home | relative_url }}">{%if page.locale == 'fr' %} Fonctionnalités {% else %} Features {% endif %}</a>
-      <a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary font-bold{% endif %}"
-        href="{{ t.paths.guides | relative_url }}">{%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}</a>
-      <a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'docs' %} text-primary font-bold{% endif %}"
-        href="{{ t.paths.docs | relative_url }}">{%if page.locale == 'fr' %} Docs {% else %} Docs {% endif %}</a>
+      <!-- Guides Dropdown -->
+      <div class="relative group">
+        <button class="flex items-center gap-1 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'guides' %} text-primary font-bold{% endif %}">
+          <span>{%if page.locale == 'fr' %} Guides {% else %} Guides {% endif %}</span>
+          <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+        </button>
+        <div class="absolute top-full left-0 mt-2 w-56 rounded-xl bg-surface-container-lowest border border-outline-variant shadow-neon opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+          <a href="{{ t.paths.guides | relative_url }}" class="block px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+            {% if page.locale == 'fr' %}Tous les guides{% else %}All Guides{% endif %}
+          </a>
+          <div class="border-t border-outline-variant my-1 mx-3"></div>
+          {% for cat in guide_categories %}
+          <a href="{{ t.paths.guides | relative_url }}#{{ cat | slugify }}" class="block px-4 py-2 text-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">{{ cat }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Docs Dropdown -->
+      <div class="relative group">
+        <button class="flex items-center gap-1 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'docs' %} text-primary font-bold{% endif %}">
+          <span>{%if page.locale == 'fr' %} Docs {% else %} Docs {% endif %}</span>
+          <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+        </button>
+        <div class="absolute top-full left-0 mt-2 w-56 rounded-xl bg-surface-container-lowest border border-outline-variant shadow-neon opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+          <a href="{{ t.paths.docs | relative_url }}" class="block px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+            {% if page.locale == 'fr' %}Toutes les fonctions{% else %}All Functions{% endif %}
+          </a>
+          <div class="border-t border-outline-variant my-1 mx-3"></div>
+          {% for cat in doc_categories %}
+          <a href="{{ t.paths.docs | relative_url }}#{{ cat | slugify }}" class="block px-4 py-2 text-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">{{ cat }}</a>
+          {% endfor %}
+        </div>
+      </div>
       <a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors{% if active_key == 'terms' %} text-primary font-bold{% endif %}"
         href="{{ t.paths.terms | relative_url }}">
         {%if page.locale == 'fr' %}

@@ -7,6 +7,7 @@ translation_key: FR
 locale: fr
 content_language: fr
 layout: post
+category: Reference
 toc: true
 ---
 # Variables disponibles par événement (Exhaustif)

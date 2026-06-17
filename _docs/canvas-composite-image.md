@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasCompositeImage
+title: $canvasCompositeImage[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasCompositeImage

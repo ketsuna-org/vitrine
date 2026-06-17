@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $attachImage
+title: $attachImage[]
 translation_key: docs
 category: Image & Canvas
 function_name: attachImage

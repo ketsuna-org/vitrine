@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasContainer
+title: $canvasContainer[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasContainer

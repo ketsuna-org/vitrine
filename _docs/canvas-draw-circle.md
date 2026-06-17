@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasDrawCircle
+title: $canvasDrawCircle[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasDrawCircle

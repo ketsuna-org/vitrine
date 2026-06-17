@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasDrawRoundedRect
+title: $canvasDrawRoundedRect[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasDrawRoundedRect

@@ -5,6 +5,7 @@ date: 2025-05-18T18:09:00.000Z
 thumbnail: assets/icon.png
 author: Garder500
 layout: post
+category: Setup
 toc: true
 locale: fr
 translation_key: guide-create-bot-token

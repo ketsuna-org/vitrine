@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasCreate
+title: $canvasCreate[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasCreate

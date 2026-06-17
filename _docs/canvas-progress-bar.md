@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasProgressBar
+title: $canvasProgressBar[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasProgressBar

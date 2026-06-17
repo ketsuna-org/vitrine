@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasChartLine
+title: $canvasChartLine[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasChartLine

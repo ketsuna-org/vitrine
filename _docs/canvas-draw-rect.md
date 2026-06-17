@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasDrawRect
+title: $canvasDrawRect[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasDrawRect

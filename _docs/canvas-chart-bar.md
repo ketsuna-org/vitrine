@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: $canvasChartBar
+title: $canvasChartBar[]
 translation_key: docs
 category: Image & Canvas
 function_name: canvasChartBar

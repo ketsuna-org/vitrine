@@ -200,6 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       const chosen = btn.getAttribute("data-sidebar-cat");
       selectCategory(chosen);
+      window.location.hash = chosen;
 
       // On mobile, close the sidebar drawer after selection
       const sidebar = document.getElementById("docs-sidebar");
@@ -209,5 +210,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // Handle direct navigation with #category-slug hash
+  if (window.location.hash) {
+    const hashCat = window.location.hash.substring(1);
+    selectCategory(hashCat);
+  }
 });
 </script>
