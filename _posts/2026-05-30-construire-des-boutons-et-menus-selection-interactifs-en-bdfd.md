@@ -7,7 +7,7 @@ translation_key: bdfd-components-guide
 locale: fr
 content_language: fr
 layout: post
-category: Components
+category: "Building Commands"
 toc: true
 function_syntax: $addButton[newRow;customID;label;style;disabled;emoji]
 ---

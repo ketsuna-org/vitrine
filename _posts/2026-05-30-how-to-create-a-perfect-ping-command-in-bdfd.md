@@ -7,7 +7,7 @@ translation_key: bdfd-ping-guide
 locale: en
 content_language: en
 layout: post
-category: Bot
+category: "Getting Started"
 toc: true
 function_syntax: $ping
 ---

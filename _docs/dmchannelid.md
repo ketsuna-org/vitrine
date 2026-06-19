@@ -2,7 +2,7 @@
 layout: doc
 title: $dmChannelID
 translation_key: docs
-category: "Messages & DM"
+category: "Embed & Message"
 function_name: dmChannelID
 syntax: $dmChannelID[userID]
 description: Retrieves the DM channel ID (private conversation) between the bot and a user. Automatically creates the DM channel if it does not exist yet.

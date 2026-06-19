@@ -2,7 +2,7 @@
 layout: doc
 title: $serverChannelExists
 translation_key: docs
-category: "Server & Channels"
+category: "Entity Info"
 function_name: serverChannelExists
 syntax: $serverChannelExists[name;guildID]
 description: Checks if a channel with a given name exists on a server (guild). Returns true/false.

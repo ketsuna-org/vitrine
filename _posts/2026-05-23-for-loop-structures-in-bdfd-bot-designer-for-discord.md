@@ -1,7 +1,7 @@
 ---
 title: "Loops in BDFD: $for & $loop"
 description: Loop (Function only available on Bot-Creator !)
-category: Arguments & Conditions
+category: "Building Commands"
 function_syntax: $for[iterations]
 date: 2026-05-23T02:30:00.000+02:00
 author: Garder500

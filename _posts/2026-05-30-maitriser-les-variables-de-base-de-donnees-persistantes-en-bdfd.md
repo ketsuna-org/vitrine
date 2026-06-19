@@ -7,7 +7,7 @@ translation_key: bdfd-db-guide
 locale: fr
 content_language: fr
 layout: post
-category: User
+category: "Advanced Topics"
 toc: true
 function_syntax: $getUserVar[varName;userID]
 ---

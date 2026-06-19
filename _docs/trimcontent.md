@@ -2,7 +2,7 @@
 layout: doc
 title: $trimContent
 translation_key: docs
-category: "Text Manipulation"
+category: "Math & Text"
 function_name: trimContent
 syntax: $trimContent[text]
 description: Removes leading and trailing spaces from a text (trim). Does not modify spaces within the text.

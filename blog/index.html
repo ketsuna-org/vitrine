@@ -40,7 +40,7 @@ content_language: en
 {% if post_list and post_list.size > 0 %}
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8" id="wiki-guides-grid">
   {% for post in post_list %}
-  {% assign post_cat = post.category | default: post.categories | first | default: "Setup" %}
+  {% assign post_cat = post.categories | first | default: "Misc" %}
   <article
     data-guide-card
     data-guide-title="{{ post.title | downcase }}"

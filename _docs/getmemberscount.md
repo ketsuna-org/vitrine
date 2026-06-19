@@ -2,7 +2,7 @@
 layout: doc
 title: $getMembersCount
 translation_key: docs
-category: "Server & Channels"
+category: "Entity Info"
 function_name: getMembersCount
 syntax: $getMembersCount
 description: Returns the total number of members on the server (including bots). Possible alias of $membersCount.

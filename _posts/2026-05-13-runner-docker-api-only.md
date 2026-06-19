@@ -5,12 +5,12 @@ date: 2026-05-13T18:10:00.000Z
 thumbnail: assets/images/blog_analytics_neon.png
 author: Garder500
 layout: post
-category: Runner
+category: "Reference & Deployment"
 toc: true
 locale: fr
 translation_key: docker-runner-api-only
 content_language: fr
-categories: [setup, docker, runner]
+
 permalink: /fr/guides/runner-docker-api-only/
 ---
 

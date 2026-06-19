@@ -2,7 +2,7 @@
 layout: doc
 title: $embeddedURL
 translation_key: docs
-category: "Embeds"
+category: "Embed & Message"
 function_name: embeddedURL
 syntax: $embeddedURL[url;(embedIndex)]
 description: Sets the clickable URL of an embed's title. When the user clicks on the title of the embed, they are redirected to this URL.

@@ -47,21 +47,20 @@ permalink: /docs/
   <section id="{{ cat | slugify }}" class="docs-category-section">
     <div class="mb-8 flex items-center gap-3">
       <span class="material-symbols-outlined text-primary text-3xl">
-        {% if cat == "Image & Canvas" %}palette
-        {% elsif cat == "Introduction" %}info
-        {% elsif cat == "Components" %}layers
-        {% elsif cat == "Embeds" %}code
-        {% elsif cat == "User" %}person
-        {% elsif cat == "Moderation" %}shield
-        {% elsif cat == "Channels" %}chat
-        {% elsif cat == "Roles" %}shield_person
-        {% elsif cat == "Bot" %}smart_toy
-        {% elsif cat == "Server" %}dns
-        {% elsif cat == "Blacklists" %}block
-        {% elsif cat == "Arguments & Conditions" %}rule
-        {% elsif cat == "Text" %}description
-        {% elsif cat == "Music" %}music_note
-        {% elsif cat == "HTTP & JSON" %}http
+        {% assign cat_lower = cat | downcase %}
+        {% if cat_lower contains "image" or cat_lower contains "canvas" %}palette
+        {% elsif cat_lower contains "embed" or cat_lower contains "message" %}code
+        {% elsif cat_lower contains "moderation" %}shield
+        {% elsif cat_lower contains "math" or cat_lower contains "text" %}calculate
+        {% elsif cat_lower contains "http" or cat_lower contains "json" %}http
+        {% elsif cat_lower contains "variable" %}database
+        {% elsif cat_lower contains "control" or cat_lower contains "loop" %}alt_route
+        {% elsif cat_lower contains "music" %}music_note
+        {% elsif cat_lower contains "webhook" or cat_lower contains "integration" %}cable
+        {% elsif cat_lower contains "date" or cat_lower contains "time" %}schedule
+        {% elsif cat_lower contains "flag" or cat_lower contains "debug" %}bug_report
+        {% elsif cat_lower contains "entity" or cat_lower contains "user" or cat_lower contains "server" or cat_lower contains "channel" %}person
+        {% elsif cat_lower contains "misc" %}widgets
         {% else %}function{% endif %}
       </span>
       <h2 class="font-display text-3xl font-bold text-on-surface">{{ cat }}</h2>

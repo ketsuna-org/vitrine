@@ -2,7 +2,7 @@
 layout: doc
 title: $getSlowmode
 translation_key: docs
-category: "Server & Channels"
+category: "Entity Info"
 function_name: getSlowmode
 syntax: $getSlowmode[(channelID)]
 description: Gets the slowmode value of a channel in seconds. Returns the minimum delay between two messages.

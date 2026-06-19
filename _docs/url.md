@@ -2,7 +2,7 @@
 layout: doc
 title: $url
 translation_key: docs
-category: "Context & Commands"
+category: "Variables"
 function_name: url
 syntax: $url
 description: "Returns the URL of the web page currently loaded in the bot's context. Useful in web interactions or dashboards."

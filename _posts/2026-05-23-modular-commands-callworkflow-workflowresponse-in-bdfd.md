@@ -1,7 +1,7 @@
 ---
 title: "Modular Commands: `$callWorkflow` & `$workflowResponse` in BDFD"
 description: $callWorkflow / $workflowResponse are functions only available on Bot-Creator !
-category: Arguments & Conditions
+category: "Building Commands"
 function_syntax: $callWorkflow
 date: 2026-05-23T02:46:00.000+02:00
 author: Garder500

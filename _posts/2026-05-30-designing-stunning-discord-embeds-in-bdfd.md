@@ -7,7 +7,7 @@ translation_key: bdfd-embeds-guide
 locale: en
 content_language: en
 layout: post
-category: Embeds
+category: "Building Commands"
 toc: true
 function_syntax: $title[text]
 ---

@@ -2,7 +2,7 @@
 layout: doc
 title: $removeLinks
 translation_key: docs
-category: "Text Manipulation"
+category: "Math & Text"
 function_name: removeLinks
 syntax: $removeLinks
 description: Removes all URLs (HTTP/HTTPS links) from a text. Useful for anti-spam moderation.

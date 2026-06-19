@@ -2,7 +2,7 @@
 layout: doc
 title: $authorOfMessage
 translation_key: docs
-category: "Messages & DM"
+category: "Embed & Message"
 function_name: authorOfMessage
 syntax: $authorOfMessage[messageID]
 description: Returns the ID of the author of a specific message, identified by its ID.

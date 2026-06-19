@@ -2,7 +2,7 @@
 layout: doc
 title: $useChannel
 translation_key: docs
-category: "Context & Commands"
+category: "Variables"
 function_name: useChannel
 syntax: $useChannel[channelID]
 description: Changes the channel context for the current command. Subsequent functions (like $sendMessage) will execute in this channel.

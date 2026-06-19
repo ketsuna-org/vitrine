@@ -7,7 +7,7 @@ translation_key: FR
 locale: fr
 content_language: fr
 layout: post
-category: Reference
+category: "Reference & Deployment"
 toc: true
 ---
 # Variables disponibles par événement (Exhaustif)

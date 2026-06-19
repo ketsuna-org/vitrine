@@ -2,7 +2,7 @@
 layout: doc
 title: $unEscape
 translation_key: docs
-category: "Text Manipulation"
+category: "Math & Text"
 function_name: unEscape
 syntax: $unEscape[text]
 description: Converts the escape sequences in a string into their real characters. For example, \n becomes a real line break.

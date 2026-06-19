@@ -2,7 +2,7 @@
 layout: doc
 title: $noMentionMessage
 translation_key: docs
-category: "Context & Commands"
+category: "Variables"
 function_name: noMentionMessage
 syntax: $noMentionMessage
 description: Gets the content of the message without mentions. Replaces mentions of users, roles, and channels with their textual names.

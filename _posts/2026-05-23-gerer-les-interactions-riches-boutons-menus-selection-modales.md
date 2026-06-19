@@ -7,7 +7,7 @@ translation_key: rich_interactions
 locale: fr
 content_language: fr
 layout: post
-category: Introduction
+category: "Building Commands"
 toc: true
 ---
 

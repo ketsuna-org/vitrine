@@ -2,12 +2,9 @@
 title: Docker Runner (API only)
 description: Learn how to configure and run the Bot Creator Runner in API mode
   via Docker for optimal bot synchronization.
-category: Runner
+category: "Reference & Deployment"
 date: 2026-05-13T18:10:00.000Z
-categories:
-  - setup
-  - docker
-  - runner
+
 thumbnail: assets/images/blog_analytics_neon.png
 author: Garder500
 translation_key: docker-runner-api-only

@@ -39,17 +39,10 @@
               <span class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-base text-primary/70">
                   {% assign cat_lower = cat | downcase %}
-                  {% if cat_lower contains "image" or cat_lower contains "canvas" %}palette
-                  {% elsif cat_lower contains "intro" or cat_lower contains "start" %}rocket_launch
-                  {% elsif cat_lower contains "component" %}layers
-                  {% elsif cat_lower contains "embed" %}code
-                  {% elsif cat_lower contains "user" %}person
-                  {% elsif cat_lower contains "moderation" or cat_lower contains "mod" %}shield
-                  {% elsif cat_lower contains "setup" or cat_lower contains "sécurité" or cat_lower contains "security" %}settings
-                  {% elsif cat_lower contains "bot" %}smart_toy
-                  {% elsif cat_lower contains "music" %}music_note
-                  {% elsif cat_lower contains "argument" or cat_lower contains "condition" %}rule
-                  {% elsif cat_lower contains "runner" or cat_lower contains "docker" %}terminal
+                  {% if cat_lower contains "getting" or cat_lower contains "start" %}rocket_launch
+                  {% elsif cat_lower contains "building" %}code
+                  {% elsif cat_lower contains "advanced" %}auto_awesome
+                  {% elsif cat_lower contains "reference" or cat_lower contains "deployment" %}library_books
                   {% else %}article{% endif %}
                 </span>
                 <span>{{ cat }}</span>
@@ -99,18 +92,18 @@
                 <span class="material-symbols-outlined text-base text-primary/70">
                   {% assign cat_lower = cat | downcase %}
                   {% if cat_lower contains "image" or cat_lower contains "canvas" %}palette
-                  {% elsif cat_lower contains "intro" %}info
-                  {% elsif cat_lower contains "component" %}layers
-                  {% elsif cat_lower contains "embed" %}code
-                  {% elsif cat_lower contains "user" %}person
-                  {% elsif cat_lower contains "moderation" or cat_lower contains "mod" %}shield
-                  {% elsif cat_lower contains "channel" %}chat
-                  {% elsif cat_lower contains "role" %}shield_person
-                  {% elsif cat_lower contains "bot" %}smart_toy
-                  {% elsif cat_lower contains "server" %}dns
-                  {% elsif cat_lower contains "blacklist" %}block
-                  {% elsif cat_lower contains "argument" or cat_lower contains "condition" %}rule
-                  {% elsif cat_lower contains "text" %}description
+                  {% elsif cat_lower contains "embed" or cat_lower contains "message" %}code
+                  {% elsif cat_lower contains "moderation" %}shield
+                  {% elsif cat_lower contains "math" or cat_lower contains "text" %}calculate
+                  {% elsif cat_lower contains "http" or cat_lower contains "json" %}http
+                  {% elsif cat_lower contains "variable" %}database
+                  {% elsif cat_lower contains "control" or cat_lower contains "loop" %}alt_route
+                  {% elsif cat_lower contains "music" %}music_note
+                  {% elsif cat_lower contains "webhook" or cat_lower contains "integration" %}cable
+                  {% elsif cat_lower contains "date" or cat_lower contains "time" %}schedule
+                  {% elsif cat_lower contains "flag" or cat_lower contains "debug" %}bug_report
+                  {% elsif cat_lower contains "entity" or cat_lower contains "user" or cat_lower contains "server" or cat_lower contains "channel" %}person
+                  {% elsif cat_lower contains "misc" %}widgets
                   {% else %}function{% endif %}
                 </span>
                 <span>{{ cat }}</span>

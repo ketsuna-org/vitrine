@@ -7,7 +7,7 @@ translation_key: bdfd-warn-guide
 locale: en
 content_language: en
 layout: post
-category: Moderation
+category: "Advanced Topics"
 toc: true
 function_syntax: $setUserVar[varName;value;userID;guildID]
 ---

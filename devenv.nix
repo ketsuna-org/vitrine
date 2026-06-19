@@ -6,6 +6,7 @@
     pkgs.nodejs
      ];
 
+  env.JEKYLL_ENV = "production";
 
   languages.ruby.enable = true;
 

@@ -2,7 +2,7 @@
 layout: doc
 title: $input
 translation_key: docs
-category: "Context & Commands"
+category: "Variables"
 function_name: input
 syntax: $input
 description: Gets the full text of the command input by the user, after the prefix and the command name. Equivalent to $message without the command name.

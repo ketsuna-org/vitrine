@@ -2,7 +2,7 @@
 layout: doc
 title: $canvasSetPixel
 translation_key: docs
-category: "Canvas"
+category: "Image & Canvas"
 function_name: canvasSetPixel
 syntax: $canvasSetPixel[x;y;color]
 description: Sets the color of a specific pixel on the canvas.

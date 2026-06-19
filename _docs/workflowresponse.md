@@ -2,7 +2,7 @@
 layout: doc
 title: $workflowResponse
 translation_key: docs
-category: "Workflows & Automations"
+category: "Control Flow"
 function_name: workflowResponse
 syntax: $workflowResponse
 description: Returns the last response or value produced by a BDFD workflow. Useful for chaining workflows or retrieving results.

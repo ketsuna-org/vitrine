@@ -2,7 +2,7 @@
 layout: doc
 title: $c
 translation_key: docs
-category: "Math & Calculations"
+category: "Math & Text"
 function_name: c
 syntax: $c[expression]
 description: Alias of $calculate. Performs a mathematical calculation and returns the result. Supports basic operations, mathematical functions, and variables.

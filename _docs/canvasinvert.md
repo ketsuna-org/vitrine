@@ -2,7 +2,7 @@
 layout: doc
 title: $canvasInvert
 translation_key: docs
-category: "Canvas"
+category: "Image & Canvas"
 function_name: canvasInvert
 syntax: $canvasInvert
 description: Inverts the colors of the current canvas (negative). No parameters.

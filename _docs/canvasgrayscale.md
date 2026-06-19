@@ -2,7 +2,7 @@
 layout: doc
 title: $canvasGrayscale
 translation_key: docs
-category: "Canvas"
+category: "Image & Canvas"
 function_name: canvasGrayscale
 syntax: $canvasGrayscale
 description: Converts the current canvas to grayscale. No parameters.

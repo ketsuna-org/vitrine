@@ -2,7 +2,7 @@
 layout: doc
 title: $enabled
 translation_key: docs
-category: "Commands"
+category: "Variables"
 function_name: enabled
 syntax: $enabled[yes/no]
 description: Enables or disables a command. When disabled (no), the command is no longer executable by users.

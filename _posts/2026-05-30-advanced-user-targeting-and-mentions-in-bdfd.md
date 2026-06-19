@@ -7,7 +7,7 @@ translation_key: bdfd-targeting-guide
 locale: en
 content_language: en
 layout: post
-category: User
+category: "Advanced Topics"
 toc: true
 function_syntax: $findUser[query;fallbackToAuthor]
 ---

@@ -2,7 +2,7 @@
 layout: doc
 title: $removeContains
 translation_key: docs
-category: "Text Manipulation"
+category: "Math & Text"
 function_name: removeContains
 syntax: $removeContains[text]
 description: Removes all occurrences of a string in a given text. Searches and replaces with an empty string.

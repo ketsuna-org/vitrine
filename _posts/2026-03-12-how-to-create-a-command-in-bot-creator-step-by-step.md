@@ -4,12 +4,12 @@ description: Build a clean Bot Creator slash command with clear metadata, reliab
 date: 2026-03-12T22:12:00.000+01:00
 author: Garder500
 layout: post
-category: Commands
+category: "Getting Started"
 toc: true
 locale: en
 translation_key: guide-create-command
 content_language: en
-categories: [commands, workflow]
+
 ---
 In Bot Creator, a strong command should be clear, predictable, and easy to maintain.
 This guide walks through the full flow, from command metadata to response logic and runtime actions.

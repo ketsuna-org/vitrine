@@ -7,7 +7,7 @@ translation_key: EN
 locale: en
 content_language: en
 layout: post
-category: Reference
+category: "Reference & Deployment"
 toc: true
 ---
 Event variables are resolved in templates using the ((variableName)) syntax. They are automatically injected by the Runner's event dispatcher whenever the corresponding event occurs on Discord.

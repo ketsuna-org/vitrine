@@ -2,7 +2,7 @@
 layout: doc
 title: $attachImage
 translation_key: docs
-category: "Canvas"
+category: "Image & Canvas"
 function_name: attachImage
 syntax: $attachImage[name;url;(spoiler)]
 description: Attaches a remote image to the response message using a name and a URL.

@@ -2,7 +2,7 @@
 layout: doc
 title: $i
 translation_key: docs
-category: "Loops & Iteration"
+category: "Control Flow"
 function_name: i
 syntax: $i
 description: Alias of $loopIndex. Returns the current index (iteration number) in a $forEach, $while, or $repeat loop.

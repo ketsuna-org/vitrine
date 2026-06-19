@@ -2,7 +2,7 @@
 layout: doc
 title: $dm
 translation_key: docs
-category: "Messages & DM"
+category: "Embed & Message"
 function_name: dm
 syntax: $dm[userID;content]
 description: Sends a private message (DM) to a user. The bot must be able to DM the target user.

@@ -2,7 +2,7 @@
 layout: doc
 title: $canvasRotate
 translation_key: docs
-category: "Canvas"
+category: "Image & Canvas"
 function_name: canvasRotate
 syntax: $canvasRotate[degrees]
 description: Rotates the canvas by a given angle in degrees.
