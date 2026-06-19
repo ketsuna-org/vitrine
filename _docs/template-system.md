@@ -50,6 +50,7 @@ Placeholders are resolved in:
 Bot Creator provides a rich set of runtime variables. Here are the most commonly used:
 
 ### Context
+
 | Variable | Description |
 |----------|-------------|
 | `((userId))` | ID of the user who triggered the command |
@@ -61,6 +62,7 @@ Bot Creator provides a rich set of runtime variables. Here are the most commonly
 | `((messageId))` | ID of the triggering message |
 
 ### Bot
+
 | Variable | Description |
 |----------|-------------|
 | `((bot.id))` | Bot's user ID |
@@ -70,6 +72,7 @@ Bot Creator provides a rich set of runtime variables. Here are the most commonly
 | `((bot.uptime))` | Time since the bot started (formatted HH:MM:SS) |
 
 ### Time
+
 | Variable | Description |
 |----------|-------------|
 | `((getTimestamp))` | Current Unix timestamp (seconds) |
