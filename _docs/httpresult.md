@@ -26,11 +26,11 @@ examples:
   - title: Extract a top-level field
     code: |
       $httpGet[https://api.github.com/users/octocat]
-      $description[Login: $httpResult[login] — Repos: $httpResult[public_repos]]
+      $description[Login: "$httpResult[login] — Repos: $httpResult[public_repos]]"
   - title: Access nested JSON fields
     code: |
       $httpGet[https://api.github.com/repos/bot-maker/bot-creator]
-      $description[Owner: $httpResult[owner;login] — Stars: $httpResult[stargazers_count]]
+      $description[Owner: "$httpResult[owner;login] — Stars: $httpResult[stargazers_count]]"
   - title: Array indexing
     code: |
       $httpGet[https://jsonplaceholder.typicode.com/posts]

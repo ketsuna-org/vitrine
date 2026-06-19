@@ -10,7 +10,7 @@ parameters:
   - name: variable
     type: string
     required: true
-    description: Nom de la variable globale utilisateur sur laquelle baser le classement (ex: score, coins, xp).
+    description: "Nom de la variable globale utilisateur sur laquelle baser le classement (ex: score, coins, xp)."
   - name: sort
     type: string
     required: false

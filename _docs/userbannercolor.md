@@ -9,7 +9,7 @@ description: Retourne la couleur d'accent de la bannière de profil de l'utilisa
 parameters: []
 returns:
   - type: string
-    description: Couleur hexadécimale (ex: "#5865F2"), ou chaîne vide si pas de bannière.
+    description: "Couleur hexadécimale (ex: \"#5865F2\"), ou chaîne vide si pas de bannière."
 related:
   - $userBanner
   - $userAvatar

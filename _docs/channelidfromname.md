@@ -18,7 +18,7 @@ related:
   - $channelExists
 examples:
   - description: Obtenir l'ID d'un salon par nom
-    code: $sendMessage[ID de général : $channelIDFromName[général]]
+    code: "$sendMessage[ID de général : $channelIDFromName[général]]"
   - description: Envoyer un message dans un salon par nom
     code: |
       $channelSendMessage[$channelIDFromName[annonces];Nouvelle annonce !]

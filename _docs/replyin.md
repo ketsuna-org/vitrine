@@ -10,7 +10,7 @@ parameters:
   - name: duration
     type: string
     required: true
-    description: Délai avant la réponse. Format : "5s", "1m", "2h".
+    description: "Délai avant la réponse. Format : \"5s\", \"1m\", \"2h\"."
 returns:
   type: void
   description: Programme l'envoi différé d'une réponse au message.

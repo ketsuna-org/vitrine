@@ -21,7 +21,7 @@ related:
   - $channelPosition
 examples:
   - description: Position d'un rôle
-    code: $sendMessage[Position Admin : $rolePosition[$roleID[Admin]]]
+    code: "$sendMessage[Position Admin : $rolePosition[$roleID[Admin]]]"
   - description: Comparer deux rôles
     code: |
       $if[$rolePosition[$roleID[Admin]]>$rolePosition[$roleID[Modo]]]

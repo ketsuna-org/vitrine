@@ -5,7 +5,7 @@ translation_key: docs
 category: "Date & Time"
 function_name: year
 syntax: $year
-description: Retourne l'année actuelle (ex: 2026). Résolu au runtime.
+description: "Retourne l'année actuelle (ex: 2026). Résolu au runtime."
 parameters: []
 returns:
   - type: number (string)

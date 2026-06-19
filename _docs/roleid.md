@@ -21,11 +21,11 @@ related:
   - $getRole
 examples:
   - description: ID d'un rôle par nom
-    code: $sendMessage[ID Admin : $roleID[Admin]]
+    code: "$sendMessage[ID Admin : $roleID[Admin]]"
   - description: ID d'un rôle par mention
-    code: $sendMessage[ID rôle : $roleID[<@&123456789012345678>]]
+    code: "$sendMessage[ID rôle : $roleID[<@&123456789012345678>]]"
   - description: ID dans un autre serveur
-    code: $sendMessage[ID rôle : $roleID[Admin;123456789012345678]]
+    code: "$sendMessage[ID rôle : $roleID[Admin;123456789012345678]]"
 ---
 
 # $roleID

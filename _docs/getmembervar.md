@@ -5,7 +5,7 @@ translation_key: docs
 category: "Variables"
 function_name: getMemberVar
 syntax: $getMemberVar[name] or $getMemberVar[name;User ID] or $getMemberVar[name;User ID;Guild ID]
-description: Reads the value of a guild-member-scoped variable. Alias: $getGuildMemberVar. Returns the stored value for the current member, or a specific member when IDs are provided.
+description: "Reads the value of a guild-member-scoped variable. Alias: $getGuildMemberVar. Returns the stored value for the current member, or a specific member when IDs are provided."
 parameters:
   - name: name
     type: string

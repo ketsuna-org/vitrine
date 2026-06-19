@@ -23,7 +23,7 @@ examples:
   - description: Envoyer un message simple
     code: $webhookSend[https://discord.com/api/webhooks/123/abc;Hello World !]
   - description: Envoyer un message avec variables
-    code: $webhookSend[$webhookURL;$username a envoyé : $message]
+    code: "$webhookSend[$webhookURL;$username a envoyé : $message]"
   - description: Envoyer avec des sauts de ligne
     code: |
       $webhookSend[https://discord.com/api/webhooks/123/abc;

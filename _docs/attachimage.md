@@ -8,7 +8,7 @@ syntax: $attachImage[name;url;(spoiler)]
 description: Attache une image au message de réponse en utilisant un nom et une URL distante.
 parameters:
   - name: name
-    description: Nom du fichier attaché (ex: image.png).
+    description: "Nom du fichier attaché (ex: image.png)."
   - name: url
     description: URL de l'image à attacher. Doit être accessible publiquement.
   - name: spoiler

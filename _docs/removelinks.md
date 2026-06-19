@@ -16,7 +16,7 @@ related:
   - $ignoreLinks
 examples:
   - description: Supprimer les liens d'un message
-    code: $sendMessage[Message sans liens : $removeLinks]
+    code: "$sendMessage[Message sans liens : $removeLinks]"
 ---
 # $removeLinks
 

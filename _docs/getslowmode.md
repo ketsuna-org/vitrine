@@ -18,7 +18,7 @@ related:
   - $channelID
 examples:
   - description: Vérifier le slowmode
-    code: $sendMessage[Slowmode : $getSlowmode secondes]
+    code: "$sendMessage[Slowmode : $getSlowmode secondes]"
 ---
 # $getSlowmode
 

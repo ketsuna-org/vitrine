@@ -18,9 +18,9 @@ related:
   - $channelType
 examples:
   - description: Sujet du salon courant
-    code: $sendMessage[Sujet : $channelTopic]
+    code: "$sendMessage[Sujet : $channelTopic]"
   - description: Sujet d'un salon spécifique
-    code: $sendMessage[Sujet : $channelTopic[123456789012345678]]
+    code: "$sendMessage[Sujet : $channelTopic[123456789012345678]]"
 ---
 
 # $channelTopic

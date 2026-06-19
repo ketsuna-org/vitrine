@@ -16,7 +16,7 @@ related:
   - $serverURL
 examples:
   - description: Afficher l'URL courante
-    code: $sendMessage[URL actuelle : $url]
+    code: "$sendMessage[URL actuelle : $url]"
 ---
 # $url
 

@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: deleteChannels
 syntax: $deleteChannels[channelID1;channelID2;...]
-description: Supprime un ou plusieurs canaux par leur ID. Alias : $deleteChannelsByName pour la suppression par nom.
+description: "Supprime un ou plusieurs canaux par leur ID. Alias : $deleteChannelsByName pour la suppression par nom."
 parameters:
   - name: channelID1;channelID2;...
     description: Liste des IDs de canaux à supprimer, séparés par des points-virgules.

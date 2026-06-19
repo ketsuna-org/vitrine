@@ -21,9 +21,9 @@ related:
   - $findRole
 examples:
   - description: Nom d'un rôle
-    code: $sendMessage[Rôle : $roleName[123456789012345678]]
+    code: "$sendMessage[Rôle : $roleName[123456789012345678]]"
   - description: Nom du rôle à partir de $getRole
-    code: $sendMessage[Votre rôle : $roleName[$getRole[$authorID;1]]]
+    code: "$sendMessage[Votre rôle : $roleName[$getRole[$authorID;1]]]"
 ---
 
 # $roleName

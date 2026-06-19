@@ -35,6 +35,6 @@ examples:
     code: |
       $httpAddHeader[Authorization;Bearer my-token-here]
       $httpDelete[https://api.example.com/items/42]
-      $description[Status: $httpStatus — Response: $httpResult]
+      $description[Status: "$httpStatus — Response: $httpResult]"
 ---
 $httpDelete sends a synchronous HTTP DELETE request to remove the resource identified by the URL. The response body is often empty or contains a confirmation message. Use $httpStatus to verify whether the deletion succeeded (typically a 200 or 204 status code). Custom headers such as Authorization can be set beforehand with $httpAddHeader.

@@ -9,7 +9,7 @@ description: Retourne le discriminateur legacy de l'utilisateur (code à 4 chiff
 parameters: []
 returns:
   - type: string
-    description: Le discriminateur à 4 chiffres (ex: "1234") ou "0" pour les comptes pompom.
+    description: "Le discriminateur à 4 chiffres (ex: \"1234\") ou \"0\" pour les comptes pompom."
 related:
   - $userTag
   - $userName

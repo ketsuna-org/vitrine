@@ -16,7 +16,7 @@ related:
   - $message
 examples:
   - description: Timestamp d'édition
-    code: $sendMessage[Édité le : $messageEditedTimestamp]
+    code: "$sendMessage[Édité le : $messageEditedTimestamp]"
   - description: Vérifier si édité
     code: |
       $if[$messageEditedTimestamp!=]

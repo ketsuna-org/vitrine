@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: modifyChannel
 syntax: $modifyChannel[channelID;name;(topic);(categoryID);(nsfw);(slowmode)]
-description: Modifie les propriétés d'un canal existant : nom, sujet, catégorie, statut NSFW et slowmode.
+description: "Modifie les propriétés d'un canal existant : nom, sujet, catégorie, statut NSFW et slowmode."
 parameters:
   - name: channelID
     description: L'ID du canal à modifier.

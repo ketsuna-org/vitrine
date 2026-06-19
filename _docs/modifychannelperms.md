@@ -12,7 +12,7 @@ parameters:
   - name: roleOrUserID
     description: L'ID du rôle ou de l'utilisateur.
   - name: permissions
-    description: Liste de permissions avec + (autoriser) ou - (refuser), séparées par des espaces. Exemple : +sendmessages -viewchannel.
+    description: "Liste de permissions avec + (autoriser) ou - (refuser), séparées par des espaces. Exemple : +sendmessages -viewchannel."
 returns:
   - type: aucun
     description: Ne retourne rien. Les permissions sont modifiées.

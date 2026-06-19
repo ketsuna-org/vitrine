@@ -17,7 +17,7 @@ related:
   - $channelTopic
 examples:
   - description: Slowmode du salon courant
-    code: $sendMessage[Slowmode : $slowmode secondes]
+    code: "$sendMessage[Slowmode : $slowmode secondes]"
   - description: Vérifier si slowmode actif
     code: |
       $if[$slowmode>0]

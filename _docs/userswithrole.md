@@ -23,9 +23,9 @@ related:
   - $roleName
 examples:
   - description: Membres avec le rôle Admin
-    code: $sendMessage[Admins : $usersWithRole[$roleID[Admin]]]
+    code: "$sendMessage[Admins : $usersWithRole[$roleID[Admin]]]"
   - description: Compter les membres d'un rôle
-    code: $sendMessage[Nombre d'admins : $length[$usersWithRole[$roleID[Admin];,]]]
+    code: "$sendMessage[Nombre d'admins : $length[$usersWithRole[$roleID[Admin];,]]]"
   - description: Liste avec retours à la ligne
     code: $sendMessage[Admins :\n$usersWithRole[$roleID[Admin];\n]]
 ---

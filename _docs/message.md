@@ -16,7 +16,7 @@ related:
   - $argsCheck
 examples:
   - description: Afficher le contenu du message
-    code: $sendMessage[Vous avez dit : $message]
+    code: "$sendMessage[Vous avez dit : $message]"
   - description: Vérifier un mot dans le message
     code: |
       $if[$message==bonjour]

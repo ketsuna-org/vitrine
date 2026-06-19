@@ -9,7 +9,7 @@ description: Retourne la région vocale du serveur Discord (obsolète — Discor
 parameters: []
 returns:
   type: string
-  description: Le nom de la région du serveur (ex: "europe", "us-west"). Peut retourner "automatic" sur les serveurs récents.
+  description: "Le nom de la région du serveur (ex: \"europe\", \"us-west\"). Peut retourner \"automatic\" sur les serveurs récents."
 related:
   - $serverInfo
   - $serverVerificationLevel

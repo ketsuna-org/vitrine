@@ -19,7 +19,7 @@ related:
   - $categoryCount
 examples:
   - description: Nombre de rôles
-    code: $sendMessage[Total rôles : $roleCount]
+    code: "$sendMessage[Total rôles : $roleCount]"
   - description: Comparaison
     code: $sendMessage[$roleCount rôles pour $memberCount membres.]
 ---

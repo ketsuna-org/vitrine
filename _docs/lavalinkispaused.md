@@ -32,6 +32,6 @@ examples:
       $endif
   - title: Display player status
     code: |
-      $sendMessage[Paused: $lavalinkIsPaused[] | Looping: $lavalinkIsLooping[]]
+      $sendMessage[Paused: "$lavalinkIsPaused[] | Looping: $lavalinkIsLooping[]]"
 ---
 Returns "true" if the music player is currently paused, and "false" if it is actively playing or stopped. Useful for building toggle commands and status displays.

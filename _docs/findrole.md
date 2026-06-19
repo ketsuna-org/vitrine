@@ -21,7 +21,7 @@ related:
   - $findChannel
 examples:
   - description: Trouver un rôle par nom partiel
-    code: $sendMessage[Rôle trouvé : $findRole[mod]]
+    code: "$sendMessage[Rôle trouvé : $findRole[mod]]"
   - description: Attribuer un rôle trouvé
     code: |
       $roleGrant[$authorID;$findRole[VIP]]

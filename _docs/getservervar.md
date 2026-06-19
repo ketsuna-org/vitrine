@@ -5,7 +5,7 @@ translation_key: docs
 category: "Variables"
 function_name: getServerVar
 syntax: $getServerVar[name] or $getServerVar[name;Guild ID]
-description: Reads the value of a guild-scoped variable. Alias: $getGuildVar. Returns the stored value for the current server, or a specific server when a Guild ID is provided.
+description: "Reads the value of a guild-scoped variable. Alias: $getGuildVar. Returns the stored value for the current server, or a specific server when a Guild ID is provided."
 parameters:
   - name: name
     type: string

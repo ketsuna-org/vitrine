@@ -27,13 +27,13 @@ examples:
       $var[b;2]
       $var[c;3]
       Nombre total : $variablesCount
-      Résultat: Nombre total : 3
+      Résultat: "Nombre total : 3"
   - title: Compter les variables temporaires
     code: |
       $var[x;10]
       $var[y;20]
       Temporaires : $variablesCount[temp]
-      Résultat: Temporaires : 2
+      Résultat: "Temporaires : 2"
   - title: Dans une condition
     code: |
       $if[$variablesCount>0]

@@ -8,7 +8,7 @@ syntax: $thumbnail[url;(embedIndex)]
 description: Définit la miniature (thumbnail) d'un embed Discord. La miniature est une petite image carrée affichée en haut à droite de l'embed.
 parameters:
   - name: url
-    description: URL de l'image miniature. Formats supportés : PNG, JPG, GIF, WebP. L'image sera redimensionnée en petit carré.
+    description: "URL de l'image miniature. Formats supportés : PNG, JPG, GIF, WebP. L'image sera redimensionnée en petit carré."
   - name: embedIndex
     description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
 returns:

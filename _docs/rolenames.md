@@ -20,7 +20,7 @@ related:
   - $channelNames
 examples:
   - description: Liste des rôles
-    code: $sendMessage[Rôles : $roleNames]
+    code: "$sendMessage[Rôles : $roleNames]"
   - description: Liste avec retour à la ligne
     code: $sendMessage[Rôles :\n$roleNames[\n]]
 ---

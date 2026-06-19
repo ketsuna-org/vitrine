@@ -21,7 +21,7 @@ related:
   - $channelNames
 examples:
   - description: Salons de la catégorie courante
-    code: $sendMessage[Salons : $categoryChannels[$categoryID]]
+    code: "$sendMessage[Salons : $categoryChannels[$categoryID]]"
   - description: Avec séparateur retour à la ligne
     code: $sendMessage[Salons :\n$categoryChannels[$categoryID;\n]]
 ---

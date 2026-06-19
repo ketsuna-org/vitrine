@@ -29,7 +29,7 @@ examples:
   - title: Basic text splitting
     code: |
       $textSplit[hello world foo bar; ]
-      $sendMessage[Word 1: $splitText[0], Word 2: $splitText[1]]
+      $sendMessage[Word 1: "$splitText[0], Word 2: $splitText[1]]"
       Result: "Word 1: hello, Word 2: world"
   - title: Split by newline
     code: |

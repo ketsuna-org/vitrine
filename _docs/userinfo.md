@@ -8,7 +8,7 @@ syntax: $userInfo[userID;(property)]
 description: Retourne un objet JSON contenant les informations d'un utilisateur, ou une propriété spécifique si demandée.
 parameters:
   - name: userID
-    description: L'ID de l'utilisateur cible (optionnel, défaut : utilisateur déclencheur).
+    description: "L'ID de l'utilisateur cible (optionnel, défaut : utilisateur déclencheur)."
   - name: property
     description: "Optionnel. Nom de la propriété à extraire (ex: \"username\", \"id\", \"bot\", \"avatar\"). Si omis, retourne l'objet JSON complet."
 returns:

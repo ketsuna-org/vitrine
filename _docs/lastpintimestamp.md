@@ -18,7 +18,7 @@ related:
   - $messageEditedTimestamp
 examples:
   - description: Dernier pin du salon
-    code: $sendMessage[Dernier pin : $lastPinTimestamp]
+    code: "$sendMessage[Dernier pin : $lastPinTimestamp]"
   - description: Vérifier si des messages épinglés
     code: |
       $if[$lastPinTimestamp!=]

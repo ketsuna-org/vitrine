@@ -37,7 +37,7 @@ examples:
     code: |
       $httpAddHeader[Authorization;Bearer sk-abc123xyz]
       $httpGet[https://api.example.com/v1/me]
-      $description[User: $httpResult[username] — Status: $httpStatus]
+      $description[User: "$httpResult[username] — Status: $httpStatus]"
   - title: Multiple headers for a POST
     code: |
       $httpAddHeader[Content-Type;application/json]

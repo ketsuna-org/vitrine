@@ -11,7 +11,7 @@ parameters:
     description: L'ID de l'utilisateur dont on souhaite connaître le statut.
 returns:
   - type: string
-    description: 'Le statut de l''utilisateur : "online", "idle", "dnd", "offline" ou "invisible".'
+    description: "'Le statut de l''utilisateur : \"online\", \"idle\", \"dnd\", \"offline\" ou \"invisible\".'"
 related:
   - $userID
   - $findUser

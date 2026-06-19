@@ -18,9 +18,9 @@ related:
   - $channelCount
 examples:
   - description: Position du salon courant
-    code: $sendMessage[Position : $channelPosition]
+    code: "$sendMessage[Position : $channelPosition]"
   - description: Position d'un salon spécifique
-    code: $sendMessage[Position : $channelPosition[123456789012345678]]
+    code: "$sendMessage[Position : $channelPosition[123456789012345678]]"
 ---
 
 # $channelPosition

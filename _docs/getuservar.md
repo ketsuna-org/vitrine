@@ -18,7 +18,7 @@ parameters:
   - name: Guild ID
     type: snowflake
     required: false
-    description: The Discord guild/server ID. When provided with a User ID, the variable is read in guild-member scope (scope: guildMember, context: guildId:userId). Otherwise ignored.
+    description: "The Discord guild/server ID. When provided with a User ID, the variable is read in guild-member scope (scope: guildMember, context: guildId:userId). Otherwise ignored."
 returns:
   type: string
   description: The stored value of the variable. Returns the default value (if defined in Bot Creator UI) when no value has been set. Returns an empty string if the variable does not exist and no default is defined.

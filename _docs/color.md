@@ -8,7 +8,7 @@ syntax: $color[hexColor;(embedIndex)]
 description: Définit la couleur de la barre latérale gauche d'un embed Discord. La couleur peut être spécifiée en hexadécimal ou en entier décimal.
 parameters:
   - name: hexColor
-    description: Couleur au format hexadécimal (ex: "FF0000" pour rouge, "#5865F2" pour le bleu Discord) ou entier décimal.
+    description: "Couleur au format hexadécimal (ex: \"FF0000\" pour rouge, \"#5865F2\" pour le bleu Discord) ou entier décimal."
   - name: embedIndex
     description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
 returns:

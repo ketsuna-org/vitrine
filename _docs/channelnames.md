@@ -18,7 +18,7 @@ related:
   - $roleNames
 examples:
   - description: Liste des salons (séparateur virgule)
-    code: $sendMessage[Salons : $channelNames]
+    code: "$sendMessage[Salons : $channelNames]"
   - description: Liste avec retour à la ligne
     code: $sendMessage[Salons :\n$channelNames[\n]]
 ---

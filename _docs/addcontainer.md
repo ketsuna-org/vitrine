@@ -14,7 +14,7 @@ parameters:
   - name: accentColor
     type: string
     required: false
-    description: Couleur d'accentuation en hexadécimal (ex: "#5865F2"). Applique une bordure colorée au conteneur.
+    description: "Couleur d'accentuation en hexadécimal (ex: \"#5865F2\"). Applique une bordure colorée au conteneur."
   - name: spoiler
     type: string
     required: false

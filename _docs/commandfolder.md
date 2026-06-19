@@ -9,7 +9,7 @@ description: Retourne le nom du dossier contenant la commande en cours d'exécut
 parameters: []
 returns:
   - type: string
-    description: Le nom du dossier de la commande (ex: Modération, Fun, Admin).
+    description: "Le nom du dossier de la commande (ex: Modération, Fun, Admin)."
 related:
   - $commandName
   - $commandTrigger
@@ -20,7 +20,7 @@ examples:
       $sendMessage[Dossier : $commandFolder]
   - description: Catégorie dans l'aide
     code: |
-      $sendMessage[Catégorie : $commandFolder | Commande : $commandName]
+      $sendMessage[Catégorie: "$commandFolder | Commande : $commandName]"
 ---
 
 # $commandFolder

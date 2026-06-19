@@ -32,7 +32,7 @@ examples:
   - title: Variable inexistante (échec silencieux)
     code: |
       Valeur: "$var[inconnue]"
-      Résultat: Valeur: ""
+      Résultat: "Valeur: \"\""
   - title: Variable numérique
     code: |
       $var[score;100]

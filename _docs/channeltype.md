@@ -11,7 +11,7 @@ parameters:
     description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
 returns:
   - type: string
-    description: Le type du salon (ex: text, voice, category, news, stage, forum, dm).
+    description: "Le type du salon (ex: text, voice, category, news, stage, forum, dm)."
 related:
   - $channelName
   - $channelID
@@ -19,7 +19,7 @@ related:
   - $findChannel
 examples:
   - description: Type du salon courant
-    code: $sendMessage[Type : $channelType]
+    code: "$sendMessage[Type : $channelType]"
   - description: Vérifier si salon textuel
     code: |
       $if[$channelType==text]

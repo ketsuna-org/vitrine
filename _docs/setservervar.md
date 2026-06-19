@@ -5,7 +5,7 @@ translation_key: docs
 category: "Variables"
 function_name: setServerVar
 syntax: $setServerVar[name;value] or $setServerVar[name;value;Guild ID]
-description: Stores a value into a guild-scoped variable. Alias: $setGuildVar. Writes to the current server's variable, or to a specific server when a Guild ID is provided.
+description: "Stores a value into a guild-scoped variable. Alias: $setGuildVar. Writes to the current server's variable, or to a specific server when a Guild ID is provided."
 parameters:
   - name: name
     type: string

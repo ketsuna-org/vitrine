@@ -5,12 +5,12 @@ translation_key: docs
 category: "Control Flow"
 function_name: cooldown
 syntax: $cooldown[duration;(errorMessage)]
-description: Enforces a cooldown on command execution. Available in three scopes: per-user ($cooldown), per-guild ($serverCooldown), and global ($globalCooldown).
+description: "Enforces a cooldown on command execution. Available in three scopes: per-user ($cooldown), per-guild ($serverCooldown), and global ($globalCooldown)."
 parameters:
   - name: duration
     type: string
     required: true
-    description: Cooldown duration. Format examples: "10s" (seconds), "5m" (minutes), "1h" (hours), "2d" (days). Can also accept raw milliseconds like "300000ms".
+    description: "Cooldown duration. Format examples: \"10s\" (seconds), \"5m\" (minutes), \"1h\" (hours), \"2d\" (days). Can also accept raw milliseconds like \"300000ms\"."
   - name: errorMessage
     type: string
     required: false

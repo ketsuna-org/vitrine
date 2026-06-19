@@ -19,9 +19,9 @@ related:
   - $findChannel
 examples:
   - description: Nom du salon courant
-    code: $sendMessage[Salon : #$channelName]
+    code: "$sendMessage[Salon : #$channelName]"
   - description: Nom d'un salon spécifique par ID
-    code: $sendMessage[Le salon est : $channelName[123456789012345678]]
+    code: "$sendMessage[Le salon est : $channelName[123456789012345678]]"
 ---
 
 # $channelName

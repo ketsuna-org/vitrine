@@ -26,7 +26,7 @@ examples:
       $var[age;25]
       $var[ville;Paris]
       $listVar
-      Résultat: nom: "Alice", age: "25", ville: "Paris"
+      Résultat: "nom: \"Alice\", age: \"25\", ville: \"Paris\""
   - title: Avec un séparateur personnalisé
     code: |
       $var[x;10]

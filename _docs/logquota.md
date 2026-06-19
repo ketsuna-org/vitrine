@@ -16,7 +16,7 @@ related:
   - $optOff
 examples:
   - description: Vérifier le quota de logs
-    code: $sendMessage[Quota logs : $logQuota]
+    code: "$sendMessage[Quota logs : $logQuota]"
 ---
 # $logQuota
 

@@ -31,7 +31,7 @@ examples:
     code: |
       $httpAddHeader[Content-Type;application/json]
       $httpPatch[https://jsonplaceholder.typicode.com/posts/1;{"title":"Partially Updated"}]
-      $description[New title: $httpResult[title] (Status: $httpStatus)]
+      $description[New title: "$httpResult[title] (Status: $httpStatus)]"
   - title: Patch with JSON merge
     code: |
       $httpAddHeader[Content-Type;application/json]

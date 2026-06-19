@@ -9,7 +9,7 @@ description: Retourne la liste des émojis personnalisés disponibles sur le ser
 parameters: []
 returns:
   type: string (liste)
-  description: Une chaîne contenant tous les émojis personnalisés du serveur, formatés pour Discord (ex: "<:nom:id>").
+  description: "Une chaîne contenant tous les émojis personnalisés du serveur, formatés pour Discord (ex: \"<:nom:id>\")."
 related:
   - $emojiCount
   - $serverInfo
@@ -20,7 +20,7 @@ examples:
       $sendMessage[$serverEmojis]
   - description: Compter et afficher les émojis
     code: |
-      $sendMessage[Nombre d'émojis : $emojiCount. Liste : $serverEmojis]
+      $sendMessage[Nombre d'émojis: "$emojiCount. Liste : $serverEmojis]"
 ---
 
 # $serverEmojis[] — Liste des Émojis du Serveur

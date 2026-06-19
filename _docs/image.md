@@ -8,7 +8,7 @@ syntax: $image[url;(embedIndex)]
 description: Définit la grande image d'un embed Discord. L'image apparaît en bas de l'embed, sous les fields et la description, en pleine largeur.
 parameters:
   - name: url
-    description: URL de l'image à afficher. Formats supportés : PNG, JPG, GIF, WebP.
+    description: "URL de l'image à afficher. Formats supportés : PNG, JPG, GIF, WebP."
   - name: embedIndex
     description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
 returns:

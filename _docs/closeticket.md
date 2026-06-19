@@ -8,7 +8,7 @@ syntax: $closeTicket[(errorMessage)]
 description: Ferme et supprime le ticket (canal) courant. Si le canal n'est pas un ticket, un message d'erreur optionnel peut être affiché.
 parameters:
   - name: errorMessage
-    description: (Optionnel) Message affiché si la commande est exécutée hors d'un ticket. Défaut : "Ce canal n'est pas un ticket."
+    description: "(Optionnel) Message affiché si la commande est exécutée hors d'un ticket. Défaut : \"Ce canal n'est pas un ticket.\""
 returns:
   - type: aucun
     description: Ne retourne rien. Le canal est supprimé.

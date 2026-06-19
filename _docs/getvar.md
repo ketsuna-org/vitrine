@@ -27,7 +27,7 @@ examples:
   - title: Lire une variable globale
     code: |
       Welcome message: $getVar[welcomeMessage]
-      Résultat: Welcome message: Bienvenue sur le serveur !
+      Résultat: "Welcome message: Bienvenue sur le serveur !"
   - title: Lire une variable utilisateur
     code: |
       $getVar[coins;$authorID]

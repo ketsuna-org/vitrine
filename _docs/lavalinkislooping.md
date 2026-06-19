@@ -31,6 +31,6 @@ examples:
       $endif
   - title: Display player status
     code: |
-      $sendMessage[Paused: $lavalinkIsPaused[] | Looping: $lavalinkIsLooping[]]
+      $sendMessage[Paused: "$lavalinkIsPaused[] | Looping: $lavalinkIsLooping[]]"
 ---
 Returns "true" if the music player has looping enabled (either track loop or queue loop). Returns "false" if loop mode is off. Use $setMusicLoop to change the loop mode.

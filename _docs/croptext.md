@@ -5,7 +5,7 @@ translation_key: docs
 category: "Math & Text"
 function_name: cropText
 syntax: $cropText[text;maxLength;(suffix)]
-description: Truncates text to a maximum length and optionally appends a suffix (default: "...") when truncation occurs.
+description: "Truncates text to a maximum length and optionally appends a suffix (default: \"...\") when truncation occurs."
 parameters:
   - name: text
     type: string

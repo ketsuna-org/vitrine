@@ -10,7 +10,7 @@ parameters:
   - name: categoryID
     description: L'ID de la catégorie où le canal de ticket sera créé.
   - name: name
-    description: (Optionnel) Le nom du canal de ticket. Par défaut : "ticket-{username}".
+    description: "(Optionnel) Le nom du canal de ticket. Par défaut : \"ticket-{username}\"."
   - name: message
     description: (Optionnel) Message de bienvenue envoyé dans le ticket à sa création.
 returns:

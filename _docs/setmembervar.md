@@ -5,7 +5,7 @@ translation_key: docs
 category: "Variables"
 function_name: setMemberVar
 syntax: $setMemberVar[name;value] or $setMemberVar[name;value;User ID] or $setMemberVar[name;value;User ID;Guild ID]
-description: Stores a value into a guild-member-scoped variable. Alias: $setGuildMemberVar. Writes to the current member's variable, or to a specific member when IDs are provided.
+description: "Stores a value into a guild-member-scoped variable. Alias: $setGuildMemberVar. Writes to the current member's variable, or to a specific member when IDs are provided."
 parameters:
   - name: name
     type: string

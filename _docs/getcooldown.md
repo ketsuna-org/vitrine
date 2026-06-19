@@ -10,7 +10,7 @@ parameters:
   - name: type
     type: string
     required: false
-    description: Optional cooldown scope to query. Valid values: "user", "global", "server". If omitted, returns the remaining time of the most recently triggered cooldown.
+    description: "Optional cooldown scope to query. Valid values: \"user\", \"global\", \"server\". If omitted, returns the remaining time of the most recently triggered cooldown."
 returns:
   type: string
   description: The remaining cooldown time in seconds as a string (e.g., "45", "2.5"). Returns "0" if no cooldown is active.

@@ -16,7 +16,7 @@ related:
   - $disableInnerSpaceRemoval
 examples:
   - description: Obtenir le message sans mentions
-    code: $sendMessage[Message sans mentions : $noMentionMessage]
+    code: "$sendMessage[Message sans mentions : $noMentionMessage]"
 ---
 # $noMentionMessage
 

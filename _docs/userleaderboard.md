@@ -10,7 +10,7 @@ parameters:
   - name: variable
     type: string
     required: true
-    description: Nom de la variable sur laquelle baser le classement (ex: score, level, balance).
+    description: "Nom de la variable sur laquelle baser le classement (ex: score, level, balance)."
   - name: sort
     type: string
     required: false

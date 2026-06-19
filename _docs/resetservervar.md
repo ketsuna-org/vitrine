@@ -5,7 +5,7 @@ translation_key: docs
 category: "Variables"
 function_name: resetServerVar
 syntax: $resetServerVar[name] or $resetServerVar[name;Guild ID]
-description: Resets a guild-scoped variable to its default value (as defined in the Bot Creator Variables UI). Alias: $resetGuildVar.
+description: "Resets a guild-scoped variable to its default value (as defined in the Bot Creator Variables UI). Alias: $resetGuildVar."
 parameters:
   - name: name
     type: string

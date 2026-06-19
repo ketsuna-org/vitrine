@@ -10,7 +10,7 @@ parameters:
   - name: duration
     type: string
     required: true
-    description: Délai avant suppression. Format : "5s" (secondes), "1m" (minutes), "2h" (heures).
+    description: "Délai avant suppression. Format : \"5s\" (secondes), \"1m\" (minutes), \"2h\" (heures)."
 returns:
   type: void
   description: Programme la suppression différée du message courant.

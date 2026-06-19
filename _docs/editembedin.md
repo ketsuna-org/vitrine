@@ -10,7 +10,7 @@ parameters:
   - name: duration
     type: string
     required: true
-    description: Délai avant édition de l'embed. Format : "5s", "1m", "2h".
+    description: "Délai avant édition de l'embed. Format : \"5s\", \"1m\", \"2h\"."
 returns:
   type: void
   description: Programme l'édition différée de l'embed du message courant.

@@ -10,15 +10,15 @@ parameters:
   - name: name
     description: Le nom du canal à créer (1 à 100 caractères).
   - name: type
-    description: (Optionnel) Type de canal. 0=texte, 2=vocal, 4=catégorie, 5=annonce, 13=scène. Défaut : 0.
+    description: "(Optionnel) Type de canal. 0=texte, 2=vocal, 4=catégorie, 5=annonce, 13=scène. Défaut : 0."
   - name: categoryID
     description: (Optionnel) ID de la catégorie parente. 0 ou vide pour aucune catégorie.
   - name: topic
     description: (Optionnel) Sujet/description du canal (max 1024 caractères).
   - name: nsfw
-    description: (Optionnel) true/false pour marquer le canal comme NSFW. Défaut : false.
+    description: "(Optionnel) true/false pour marquer le canal comme NSFW. Défaut : false."
   - name: slowmode
-    description: (Optionnel) Délai de slowmode en secondes (0 à 21600). Défaut : 0.
+    description: "(Optionnel) Délai de slowmode en secondes (0 à 21600). Défaut : 0."
 returns:
   - type: snowflake (string)
     description: L'ID du canal créé, ou chaîne vide en cas d'échec.

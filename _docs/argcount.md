@@ -20,7 +20,7 @@ examples:
     code: |
       Commande: !ban @user Spam 7d
       Nombre d'arguments : $argCount
-      Résultat: Nombre d'arguments : 3
+      Résultat: "Nombre d'arguments : 3"
   - title: Condition simple sur le nombre d'arguments
     code: |
       $if[$argCount==0]

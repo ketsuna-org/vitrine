@@ -19,9 +19,9 @@ related:
   - $lastPinTimestamp
 examples:
   - description: Dernier message du salon
-    code: $sendMessage[Dernier message ID : $lastMessageID]
+    code: "$sendMessage[Dernier message ID : $lastMessageID]"
   - description: Dernier message d'un autre salon
-    code: $sendMessage[Dernier message : $lastMessageID[123456789012345678]]
+    code: "$sendMessage[Dernier message : $lastMessageID[123456789012345678]]"
 ---
 
 # $lastMessageID

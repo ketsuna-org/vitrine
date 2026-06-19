@@ -5,7 +5,7 @@ translation_key: docs
 category: "Components"
 function_name: editSelectMenu
 syntax: $editSelectMenu[customId;placeholder;minValues;maxValues]
-description: Modifie les propriétés d'un menu de sélection (select menu) existant : texte indicatif, nombre minimum et maximum de valeurs sélectionnables.
+description: "Modifie les propriétés d'un menu de sélection (select menu) existant : texte indicatif, nombre minimum et maximum de valeurs sélectionnables."
 parameters:
   - name: customId
     description: L'ID personnalisé du select menu à modifier.

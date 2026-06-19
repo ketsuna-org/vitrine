@@ -15,7 +15,7 @@ related:
   - $channelCategoryID
 examples:
   - description: Nombre de catégories
-    code: $sendMessage[Catégories : $categoryCount]
+    code: "$sendMessage[Catégories : $categoryCount]"
   - description: Comparaison salons vs catégories
     code: $sendMessage[$categoryCount catégories pour $channelCount salons.]
 ---

@@ -15,7 +15,7 @@ related:
   - $isMessageEdited
 examples:
   - description: Type du message
-    code: $sendMessage[Type : $messageType]
+    code: "$sendMessage[Type : $messageType]"
   - description: Vérifier si message système
     code: |
       $if[$messageType!=0]

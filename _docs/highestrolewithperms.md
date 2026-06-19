@@ -8,7 +8,7 @@ syntax: $highestRoleWithPerms[permission1;permission2;...]
 description: Retourne l'ID du rôle le plus haut de l'utilisateur qui possède les permissions spécifiées.
 parameters:
   - name: permissions
-    description: Liste des permissions requises, séparées par des points-virgules (ex: "Administrator", "ManageMessages").
+    description: "Liste des permissions requises, séparées par des points-virgules (ex: \"Administrator\", \"ManageMessages\")."
 returns:
   - type: snowflake (string)
     description: L'ID du rôle le plus haut possédant les permissions spécifiées, ou chaîne vide si aucun rôle ne correspond.

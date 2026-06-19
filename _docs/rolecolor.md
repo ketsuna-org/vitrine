@@ -13,7 +13,7 @@ parameters:
     description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
 returns:
   - type: string
-    description: La couleur hexadécimale du rôle (ex: #5865F2), ou chaîne vide si pas de couleur.
+    description: "La couleur hexadécimale du rôle (ex: #5865F2), ou chaîne vide si pas de couleur."
 related:
   - $roleInfo
   - $roleName
@@ -21,7 +21,7 @@ related:
   - $color
 examples:
   - description: Couleur d'un rôle
-    code: $sendMessage[Couleur Admin : $roleColor[$roleID[Admin]]]
+    code: "$sendMessage[Couleur Admin : $roleColor[$roleID[Admin]]]"
   - description: Embed avec couleur du rôle
     code: |
       $title[Info rôle]

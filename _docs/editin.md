@@ -10,7 +10,7 @@ parameters:
   - name: duration
     type: string
     required: true
-    description: Durée avant édition. Format : "5s" (secondes), "1m" (minutes), "2h" (heures).
+    description: "Durée avant édition. Format : \"5s\" (secondes), \"1m\" (minutes), \"2h\" (heures)."
   - name: messageId
     type: string
     required: false

@@ -31,7 +31,7 @@ examples:
     code: |
       $httpAddHeader[Content-Type;application/json]
       $httpPut[https://jsonplaceholder.typicode.com/posts/1;{"id":1,"title":"Updated Title","body":"New content","userId":1}]
-      $description[Updated: $httpResult[title] (Status: $httpStatus)]
+      $description[Updated: "$httpResult[title] (Status: $httpStatus)]"
   - title: Upload raw content
     code: |
       $httpAddHeader[Content-Type;text/plain]

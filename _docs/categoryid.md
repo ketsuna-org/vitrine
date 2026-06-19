@@ -19,7 +19,7 @@ related:
   - $categoryCount
 examples:
   - description: Catégorie du salon courant
-    code: $sendMessage[Catégorie ID : $categoryID]
+    code: "$sendMessage[Catégorie ID : $categoryID]"
   - description: Vérifier appartenance
     code: |
       $if[$categoryID!=]

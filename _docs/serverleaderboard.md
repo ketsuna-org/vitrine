@@ -10,7 +10,7 @@ parameters:
   - name: variable
     type: string
     required: true
-    description: Nom de la variable (user-scoped ou guild-scoped) sur laquelle baser le classement (ex: xp, messages, warns).
+    description: "Nom de la variable (user-scoped ou guild-scoped) sur laquelle baser le classement (ex: xp, messages, warns)."
   - name: sort
     type: string
     required: false

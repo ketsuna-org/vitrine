@@ -10,7 +10,7 @@ parameters:
   - name: functionName
     type: string
     required: true
-    description: The name of the function/event to await. Examples: "button" (wait for a button click), "reaction" (wait for a reaction), "message" (wait for a new message).
+    description: "The name of the function/event to await. Examples: \"button\" (wait for a button click), \"reaction\" (wait for a reaction), \"message\" (wait for a new message)."
   - name: userID
     type: string
     required: false

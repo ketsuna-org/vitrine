@@ -10,7 +10,7 @@ parameters:
   - name: duration
     type: string
     required: true
-    description: The new remaining cooldown duration. Format: "10s", "5m", "1h", "2d", "500ms". This replaces the current remaining time.
+    description: "The new remaining cooldown duration. Format: \"10s\", \"5m\", \"1h\", \"2d\", \"500ms\". This replaces the current remaining time."
 returns:
   type: void
   description: Updates the active cooldown's remaining time. Returns nothing directly.

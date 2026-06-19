@@ -8,9 +8,9 @@ syntax: $addField[name;value;(inline);(index)]
 description: Ajoute un champ (field) à un embed Discord. Les fields permettent de structurer des informations en paires nom/valeur dans l'embed.
 parameters:
   - name: name
-    description: Titre/nom du field. Longueur maximale : 256 caractères.
+    description: "Titre/nom du field. Longueur maximale : 256 caractères."
   - name: value
-    description: Valeur/contenu du field. Longueur maximale : 1024 caractères. Supporte le markdown.
+    description: "Valeur/contenu du field. Longueur maximale : 1024 caractères. Supporte le markdown."
   - name: inline
     description: "Optionnel. 'yes' pour afficher le field en ligne (côte à côte, max 3 par ligne), 'no' (défaut) pour un field pleine largeur."
   - name: index

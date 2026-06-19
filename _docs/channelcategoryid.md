@@ -19,7 +19,7 @@ related:
   - $channelID
 examples:
   - description: Catégorie du salon courant
-    code: $sendMessage[Catégorie ID : $channelCategoryID]
+    code: "$sendMessage[Catégorie ID : $channelCategoryID]"
   - description: Vérifier si dans une catégorie
     code: |
       $if[$channelCategoryID!=]

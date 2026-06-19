@@ -24,14 +24,14 @@ related:
   - $usersWithRole
 examples:
   - description: Premier rôle de l'auteur
-    code: $sendMessage[Votre plus haut rôle : $roleName[$getRole[$authorID;1]]]
+    code: "$sendMessage[Votre plus haut rôle : $roleName[$getRole[$authorID;1]]]"
   - description: Vérifier si un utilisateur a un rôle
     code: |
       $if[$getRole[$authorID;1]==$roleID[Admin]]
         $sendMessage[Vous êtes administrateur.]
       $endif
   - description: Lister tous les rôles d'un utilisateur
-    code: $sendMessage[Tous vos rôles : ...]
+    code: "$sendMessage[Tous vos rôles : ...]"
 ---
 
 # $getRole

@@ -10,7 +10,7 @@ parameters:
   - name: name
     description: Le nom du thread à créer (1 à 100 caractères).
   - name: autoArchiveDuration
-    description: (Optionnel) Durée en minutes avant archivage automatique. Valeurs acceptées : 60, 1440, 4320, 10080. Défaut : 1440 (24h).
+    description: "(Optionnel) Durée en minutes avant archivage automatique. Valeurs acceptées : 60, 1440, 4320, 10080. Défaut : 1440 (24h)."
   - name: messageID
     description: (Optionnel) L'ID du message à partir duquel créer le thread. Si omis, utilise le message de la commande.
 returns:

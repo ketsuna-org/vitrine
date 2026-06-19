@@ -5,7 +5,7 @@ translation_key: docs
 category: "Variables"
 function_name: resetMemberVar
 syntax: $resetMemberVar[name] or $resetMemberVar[name;User ID] or $resetMemberVar[name;User ID;Guild ID]
-description: Resets a guild-member-scoped variable to its default value (as defined in the Bot Creator Variables UI). Alias: $resetGuildMemberVar.
+description: "Resets a guild-member-scoped variable to its default value (as defined in the Bot Creator Variables UI). Alias: $resetGuildMemberVar."
 parameters:
   - name: name
     type: string

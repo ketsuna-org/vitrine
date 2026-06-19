@@ -24,11 +24,11 @@ related:
   - $isMentionable
 examples:
   - description: Nom du rôle
-    code: $sendMessage[Nom : $roleInfo[123456789012345678;name]]
+    code: "$sendMessage[Nom : $roleInfo[123456789012345678;name]]"
   - description: Couleur du rôle
-    code: $sendMessage[Couleur : $roleInfo[123456789012345678;color]]
+    code: "$sendMessage[Couleur : $roleInfo[123456789012345678;color]]"
   - description: Rôle mentionnable ?
-    code: $sendMessage[Mentionnable : $roleInfo[123456789012345678;mentionable]]
+    code: "$sendMessage[Mentionnable : $roleInfo[123456789012345678;mentionable]]"
 ---
 
 # $roleInfo

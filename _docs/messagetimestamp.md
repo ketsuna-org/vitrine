@@ -16,9 +16,9 @@ related:
   - $lastPinTimestamp
 examples:
   - description: Timestamp du message
-    code: $sendMessage[Timestamp : $messageTimestamp]
+    code: "$sendMessage[Timestamp : $messageTimestamp]"
   - description: Date formatée
-    code: $sendMessage[Envoyé le : $formatDate[$messageTimestamp;DD/MM/YYYY à HH:mm]]
+    code: "$sendMessage[Envoyé le : $formatDate[$messageTimestamp;DD/MM/YYYY à HH:mm]]"
 ---
 
 # $messageTimestamp

@@ -18,9 +18,9 @@ related:
   - $categoryChannels
 examples:
   - description: Nombre total de salons
-    code: $sendMessage[Total salons : $channelCount]
+    code: "$sendMessage[Total salons : $channelCount]"
   - description: Salons dans une catégorie
-    code: $sendMessage[Salons dans la catégorie : $channelCount[123456789012345678]]
+    code: "$sendMessage[Salons dans la catégorie : $channelCount[123456789012345678]]"
 ---
 
 # $channelCount

@@ -9,7 +9,7 @@ description: Retourne le code de l'URL personnalisée (vanity URL) du serveur Di
 parameters: []
 returns:
   type: string
-  description: Le code de l'URL personnalisée (ex: "mon-serveur" pour discord.gg/mon-serveur). Retourne une chaîne vide si le serveur n'en a pas.
+  description: "Le code de l'URL personnalisée (ex: \"mon-serveur\" pour discord.gg/mon-serveur). Retourne une chaîne vide si le serveur n'en a pas."
 related:
   - $serverSplash
   - $serverBanner

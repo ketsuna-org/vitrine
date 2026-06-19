@@ -30,7 +30,7 @@ examples:
     code: |
       $textSplit[;]
       $sendMessage[Elements: $getTextSplitLength]
-      Result: "Elements: 0" (or "Elements: 1" depending on implementation)
+      Result: "\"Elements: 0\" (or \"Elements: 1\" depending on implementation)"
 ---
 # $getTextSplitLength — Count Split Elements
 

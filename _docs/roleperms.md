@@ -20,7 +20,7 @@ related:
   - $rolePosition
 examples:
   - description: Permissions d'un rôle
-    code: $sendMessage[Perms Admin : $rolePerms[$roleID[Admin]]]
+    code: "$sendMessage[Perms Admin : $rolePerms[$roleID[Admin]]]"
   - description: Vérifier une permission spécifique
     code: |
       $if[$checkContains[$rolePerms[$roleID[Membre]];Administrator]]

@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: editThread
 syntax: $editThread[threadID;name;(archived);(locked);(autoArchiveDuration)]
-description: Modifie les propriétés d'un fil de discussion existant : nom, statut d'archivage, verrouillage et durée d'archivage automatique.
+description: "Modifie les propriétés d'un fil de discussion existant : nom, statut d'archivage, verrouillage et durée d'archivage automatique."
 parameters:
   - name: threadID
     description: L'ID du thread à modifier.

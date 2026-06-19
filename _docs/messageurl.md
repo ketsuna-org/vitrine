@@ -16,7 +16,7 @@ related:
   - $guildID
 examples:
   - description: Lien du message
-    code: $sendMessage[Lien : $messageURL]
+    code: "$sendMessage[Lien : $messageURL]"
   - description: Lien cliquable en embed
     code: |
       $title[Message]

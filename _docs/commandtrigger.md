@@ -9,7 +9,7 @@ description: Retourne le déclencheur (trigger) de la commande en cours d'exécu
 parameters: []
 returns:
   - type: string
-    description: Le trigger de la commande (ex: !help, /ban, ?ping).
+    description: "Le trigger de la commande (ex: !help, /ban, ?ping)."
 related:
   - $commandName
   - $commandType

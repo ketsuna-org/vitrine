@@ -27,13 +27,13 @@ examples:
       $for[item;apple;banana;cherry]
         $sendMessage[Item $loopCount: $item]
       $endFor
-      Result: sends "Item 1: apple", "Item 2: banana", "Item 3: cherry"
+      Result: "sends \"Item 1: apple\", \"Item 2: banana\", \"Item 3: cherry\""
   - title: Iterate using loop index
     code: |
       $for[name;Alice;Bob;Charlie]
         $sendMessage[$loopIndex: $name]
       $endFor
-      Result: sends "0: Alice", "1: Bob", "2: Charlie"
+      Result: "sends \"0: Alice\", \"1: Bob\", \"2: Charlie\""
   - title: Break loop early with $stop
     code: |
       $for[entry;red;green;blue;yellow]

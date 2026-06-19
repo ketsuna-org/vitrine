@@ -10,7 +10,7 @@ parameters:
   - name: property
     type: string
     required: false
-    description: La propriété à récupérer (ex: "name", "id", "icon", "ownerID", etc.). Si omise, retourne un objet JSON contenant toutes les informations.
+    description: "La propriété à récupérer (ex: \"name\", \"id\", \"icon\", \"ownerID\", etc.). Si omise, retourne un objet JSON contenant toutes les informations."
 returns:
   type: string/object
   description: La valeur de la propriété demandée, ou l'objet serveur complet si aucun argument.

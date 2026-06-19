@@ -10,7 +10,7 @@ parameters:
   - name: operator
     type: string
     required: true
-    description: The comparison operator. Supported values: ==, !=, >, <, >=, <=.
+    description: "The comparison operator. Supported values: ==, !=, >, <, >=, <=."
   - name: value1
     type: string | number
     required: true

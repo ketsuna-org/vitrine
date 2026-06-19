@@ -18,9 +18,9 @@ related:
   - $categoryChannels
 examples:
   - description: Catégorie parente du salon courant
-    code: $sendMessage[Catégorie ID : $parentID]
+    code: "$sendMessage[Catégorie ID : $parentID]"
   - description: Nom de la catégorie parente
-    code: $sendMessage[Catégorie : $channelName[$parentID]]
+    code: "$sendMessage[Catégorie : $channelName[$parentID]]"
 ---
 
 # $parentID

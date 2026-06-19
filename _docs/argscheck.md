@@ -10,7 +10,7 @@ parameters:
   - name: operator
     type: string
     required: true
-    description: The comparison operator. Must be one of: >, >=, <, <=. Determines how the argument count is compared to the expected count.
+    description: "The comparison operator. Must be one of: >, >=, <, <=. Determines how the argument count is compared to the expected count."
   - name: count
     type: number
     required: true

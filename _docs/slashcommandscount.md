@@ -20,7 +20,7 @@ examples:
       $sendMessage[Commandes slash : $slashCommandsCount]
   - description: Comparaison prefix/slash
     code: |
-      $sendMessage[Slash: $slashCommandsCount | Prefix: $math[$commandsCount-$slashCommandsCount]]
+      $sendMessage[Slash: "$slashCommandsCount | Prefix: $math[$commandsCount-$slashCommandsCount]]"
 ---
 
 # $slashCommandsCount

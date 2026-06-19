@@ -19,7 +19,7 @@ related:
   - $findRole
 examples:
   - description: Trouver un salon par nom partiel
-    code: $sendMessage[Salon trouvé : $findChannel[gén]]
+    code: "$sendMessage[Salon trouvé : $findChannel[gén]]"
   - description: Envoyer dans un salon trouvé
     code: $channelSendMessage[$findChannel[logs];Message automatique]
   - description: Vérifier si trouvé

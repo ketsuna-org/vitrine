@@ -10,7 +10,7 @@ parameters:
   - name: duration
     type: string
     required: true
-    description: The pause duration. Format: "1s" (seconds), "500ms" (milliseconds), "2m" (minutes). Default unit is seconds if no suffix is provided.
+    description: "The pause duration. Format: \"1s\" (seconds), \"500ms\" (milliseconds), \"2m\" (minutes). Default unit is seconds if no suffix is provided."
 returns:
   type: void
   description: Suspends execution for the specified duration. Returns nothing directly.

@@ -34,7 +34,7 @@ examples:
       Commande: !ban @user Spam
       Utilisateur: $args[0]
       Raison: $args[1]
-      Résultat: Utilisateur: @user, Raison: Spam
+      Résultat: "Utilisateur: @user, Raison: Spam"
   - title: Combinaison avec slash command fallback
     code: |
       $args[0;cible]

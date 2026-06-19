@@ -9,7 +9,7 @@ description: Retourne la liste des permissions effectives de l'utilisateur sur l
 parameters: []
 returns:
   - type: list/array
-    description: Liste des noms de permissions (ex: "Administrator", "ManageMessages", "KickMembers").
+    description: "Liste des noms de permissions (ex: \"Administrator\", \"ManageMessages\", \"KickMembers\")."
 related:
   - $memberPerms
   - $userRoles

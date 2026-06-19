@@ -16,7 +16,7 @@ related:
   - $argsCheck
 examples:
   - description: Récupérer l'input complet
-    code: $sendMessage[Vous avez tapé : $input]
+    code: "$sendMessage[Vous avez tapé : $input]"
 ---
 # $input
 

@@ -9,7 +9,7 @@ description: Retourne la version du runtime Node.js sur lequel le bot s'exécute
 parameters: []
 returns:
   - type: string
-    description: La version de Node.js (ex: v18.15.0).
+    description: "La version de Node.js (ex: v18.15.0)."
 related:
   - $botNode
   - $scriptLanguage
@@ -20,7 +20,7 @@ examples:
       $sendMessage[Node.js : $nodeVersion]
   - description: Debug info
     code: |
-      $sendMessage[Runtime: $nodeVersion | Node: $botNode | Lang: $scriptLanguage]
+      $sendMessage[Runtime: "$nodeVersion | Node: $botNode | Lang: $scriptLanguage]"
 ---
 
 # $nodeVersion

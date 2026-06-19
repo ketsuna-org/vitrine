@@ -21,7 +21,7 @@ related:
   - $color
 examples:
   - description: Couleur du rôle de l'auteur
-    code: $sendMessage[Votre couleur : $colorRole[$authorID]]
+    code: "$sendMessage[Votre couleur : $colorRole[$authorID]]"
   - description: Embed avec la couleur du rôle
     code: |
       $title[Profil]

@@ -20,7 +20,7 @@ examples:
       $sendMessage[Bot sur le nœud : $botNode]
   - description: Information debug
     code: |
-      $sendMessage[Node: $botNode | Runtime: $nodeVersion | Lang: $scriptLanguage]
+      $sendMessage[Node: "$botNode | Runtime: $nodeVersion | Lang: $scriptLanguage]"
 ---
 
 # $botNode

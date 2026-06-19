@@ -16,9 +16,9 @@ related:
   - $lastMessageID
 examples:
   - description: ID du message
-    code: $sendMessage[Message ID : $messageID]
+    code: "$sendMessage[Message ID : $messageID]"
   - description: Lien direct vers le message
-    code: $sendMessage[Lien : $messageURL]
+    code: "$sendMessage[Lien : $messageURL]"
 ---
 
 # $messageID
