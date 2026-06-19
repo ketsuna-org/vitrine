@@ -2,6 +2,8 @@
   color: var(--text-100);
   font-size: 1.04rem;
   line-height: 1.82;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .markdown-body > :first-child {
