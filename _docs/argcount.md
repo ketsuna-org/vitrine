@@ -35,9 +35,9 @@ $if[$argCount!=0]
 Pair `$argCount` with `$argsCheck` for comprehensive validation:
 
 ```
-$argsCheck[>=;1;Error: to the moins 1 argument required]
+$argsCheck[>=;1;Error: at least 1 argument required]
 $if[$argCount>3]
-Trop of arguments (max 3).
+Too many arguments (max 3).
 $stop
 $endif
 ```

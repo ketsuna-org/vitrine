@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: botTyping
 syntax: $botTyping
-description: Déclenche l'indicateur of saisie (typing indicator) in the channel courant. Montre to the users only the bot est en train of écrire.
+description: Triggers the typing indicator in the current channel, showing users that the bot is typing.
 ---
 
 # $botTyping
 
-The `$botTyping[]` function **trigger l'indicateur of saisie** ("Bot is typing...") in the channel where la command est executede.
+The `$botTyping[]` function **triggers the typing indicator** ("Bot is typing...") in the channel where the command is executed.
 
 ## Syntax
 
@@ -20,53 +20,53 @@ $botTyping
 
 ## Parameters
 
-Cette function ne prend auca parameter.
+This function does not take any parameters.
 
 ## Return value
 
-Cette function does not return a value.
+This function does not return a value.
 
 ## Behavior
 
-- L'indicateur of saisie dure environ 10 seconds or up to l'envoi of a message.
-- Utile pour simuler a delay of traitement or donner un feedback visual.
-- L'indicateur s'stops automatically if a message is sent.
+- The typing indicator lasts about 10 seconds or until a message is sent.
+- Useful to simulate a processing delay or to provide visual feedback.
+- The indicator stops automatically if a message is sent.
 
 ## Examples
 
-### Traitement with feedback
+### Processing with feedback
 
 ```bdfd
 $botTyping
 $wait[3]
-$sendMessage[Traitement terminé ! Voici the results...]
+$sendMessage[Processing completed! Here are the results...]
 ```
 
-### Simulation of recherche
+### Search simulation
 
 ```bdfd
 $botTyping
 $wait[2]
-$sendMessage[🔍 Recherche in the base of datas...]
+$sendMessage[🔍 Searching the database...]
 $botTyping
 $wait[2]
-$sendMessage[✅ Results founds !]
+$sendMessage[✅ Results found!]
 ```
 
-### Enstringment with action longue
+### Long action execution
 
 ```bdfd
 $botTyping
 $let[result;$httpGet[https://api.example.com/data]]
 $if[$result!=]
-  $sendMessage[Datas récupérées with success.]
+  $sendMessage[Data retrieved successfully.]
 $else
-  $sendMessage[Error during la récupération.]
+  $sendMessage[Error during retrieval.]
 $endif
 ```
 
 ## Notes
 
-- L'indicateur est purement cosmétique, no effet on the processing réel.
-- Particulièrement utile for commands with `$wait[]` or calls API.
-- Ne functionne que in thes canaux text.
+- The indicator is purely cosmetic and has no effect on actual processing.
+- Particularly useful for commands with `$wait[]` or API calls.
+- Only works in text channels.

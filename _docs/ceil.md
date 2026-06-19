@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: ceil
 syntax: $ceil[value]
-description: Arrondit a namebre to l'integer supérieur (troncature vers le haut).
+description: Rounds a number up to the next integer.
 ---
 
 # $ceil[]
 
-The `$ceil[]` function retourne the most petit integer supérieur or égal to the value data. Elle « monte » toudays vers l'integer supérieur.
+The `$ceil[]` function returns the smallest integer greater than or equal to the given value. It always rounds up to the next integer.
 
 ## Syntax
 
@@ -22,17 +22,17 @@ $ceil[value]
 
 | Parameter | Type   | Required | Description                            |
 |-----------|--------|-------------|----------------------------------------|
-| `value`  | number | Yes         | The namebre to round vers le haut.     |
+| `value`  | number | Yes         | The number to round up.     |
 
 ## Behavior
 
-- Pour a namebre positif : monte to l'integer supérieur dès qu'there are une partie decimale. `$ceil[3.1]` → `4`.
-- Pour a namebre négatif : monte vers l'integer supérieur (moins négatif). `$ceil[-3.9]` → `-3`.
-- Pour an integer : returns the integer lui-même.
+- For a positive number: rounds up to the next integer if there is any decimal part. `$ceil[3.1]` → `4`.
+- For a negative number: rounds up toward zero (less negative). `$ceil[-3.9]` → `-3`.
+- For an integer: returns the integer itself.
 
 ## Examples
 
-**Number positif :**
+**Positive number:**
 ```
 $ceil[3.1]
 → 4
@@ -41,7 +41,7 @@ $ceil[3.9]
 → 4
 ```
 
-**Number négatif :**
+**Negative number:**
 ```
 $ceil[-3.9]
 → -3
@@ -50,13 +50,13 @@ $ceil[-3.1]
 → -3
 ```
 
-**Integer :**
+**Integer:**
 ```
 $ceil[5]
 → 5
 ```
 
-## Compareason floor / ceil / round
+## Comparison of floor / ceil / round
 
 | Value | $floor[] | $ceil[] | $round[] |
 |--------|----------|---------|----------|
@@ -66,9 +66,9 @@ $ceil[5]
 | `-3.2` | `-4`     | `-3`    | `-3`     |
 | `-3.5` | `-4`     | `-3`    | `-3`*    |
 
-*Le behavior exact of `$round[]` for values to `.5` peut dépendre of l'implémentation.
+*The exact behavior of `$round[]` for values ending in `.5` may depend on the implementation.
 
 ## Notes
 
-- The result est toudays an integer (sous forme of string).
-- Utile when vous avez besoin of « l'integer of after », par example to calculate a namebre of pages nécessaires.
+- The result is always an integer (in the form of a string).
+- Useful when you need the "next integer," for example, to calculate the number of pages needed.

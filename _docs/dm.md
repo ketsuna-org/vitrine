@@ -5,11 +5,12 @@ translation_key: docs
 category: "Messages & DM"
 function_name: dm
 syntax: $dm[userID;content]
-description: Sends a message private (DM) to a user. The bot must pouvoir DM the user cible.
+description: Sends a private message (DM) to a user. The bot must be able to DM the target user.
 ---
+
 # $dm
 
-The `$dm[]` function **envoyer a message private** to a user Discord.
+The `$dm[]` function **sends a private message** to a Discord user.
 
 ## Syntax
 
@@ -21,52 +22,52 @@ $dm[userID;content]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user destinataire. |
-| `content` | Le contenu of the message (markdown, mentions supportés). |
+| `userID` | The ID of the recipient. |
+| `content` | The content of the message (markdown and mentions supported). |
 
 ## Return value
 
-- **Type** : Snowflake (string)
+- **Type**: Snowflake (string)
 - The ID of the message sent.
-- String vide if the DM est impossible (user bloqué, DMs fermés).
+- Empty string if the DM is impossible (user blocked, DMs closed).
 
 ## Behavior
 
-- The bot must pouvoir envoyer DMs to the user (pas bloqué, DMs ouverts).
-- Les embeds définis before `$dm[]` sont included.
-- If the user a fermé their DMs, la function échoue silencieusement.
+- The bot must be able to send DMs to the user (not blocked, DMs open).
+- Embeds defined before `$dm[]` are included.
+- If the user has closed their DMs, the function fails silently.
 
 ## Examples
 
-### DM simple to the author
+### Simple DM to the author
 
 ```bdfd
-$dm[$authorID;Merci of avoir utilisé la command !]
+$dm[$authorID;Thank you for using the command!]
 ```
 
 ### DM with embed
 
 ```bdfd
 $title[📬 Notification]
-$description[Votre demande a bien été prise into account.\n\nUn modérateur vous répondra sous peu.]
+$description[Your request has been successfully received.\n\nA moderator will reply to you shortly.]
 $color[#5865F2]
-$footer[Équipe $serverName]
+$footer[$serverName Team]
 $dm[$authorID;]
 ```
 
-### DM to a user mentionné
+### DM to a mentioned user
 
 ```bdfd
 $if[$mentioned[1]!=]
-  $dm[$mentioned[1];$username vous a sent this message : $noMentionMessage]
-  $sendMessage[DM sent with success !]
+  $dm[$mentioned[1];$username sent you this message: $noMentionMessage]
+  $sendMessage[DM sent successfully!]
 $else
-  $sendMessage[Mentionnez a user.]
+  $sendMessage[Please mention a user.]
 $endif
 ```
 
 ## Notes
 
-- Contrairement to `$sendMessage`, le DM n'apparaît pas in the channel courant.
-- Limit of 2000 becauseactères par message.
-- For DM of bienvenue, check that the user accepte les DMs.
+- Unlike `$sendMessage`, the DM does not appear in the current channel.
+- Limit of 2000 characters per message.
+- For welcome DMs, check that the user accepts DMs.

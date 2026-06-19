@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildName
 syntax: $guildName
-description: Alias of $serverName. Returns the nom of the server Discord.
+description: Alias of $serverName. Returns the name of the Discord server.
 ---
 
-# $guildName[] — Name of the Server (Alias)
+# $guildName[] — Server Name (Alias)
 
-`$guildName[]` est un alias of `$serverName[]`. Il retourne the name of the server Discord in thequel the command est executed.
+`$guildName[]` is an alias of `$serverName[]`. It returns the name of the Discord server in which the command is executed.
 
 ## Syntax
 
@@ -20,26 +20,26 @@ $guildName
 
 ## Parameters
 
-Aucun parameter.
+No parameters.
 
 ## Return Value
 
-- **Type** : `string`
-- The name current of the server.
+- **Type**: `string`
+- The current name of the server.
 
-## Utilisation
+## Usage
 
-### Message of bienvenue
+### Welcome Message
 
 ```bdfd
-$sendMessage[Bienvenue on **$guildName**, $username ! 🎉]
+$sendMessage[Welcome to **$guildName**, $username! 🎉]
 ```
 
-### Embed custom
+### Custom Embed
 
 ```bdfd
-$title[$guildName — Informations]
-$description[Tout ce que vous devez savoir on $guildName]
+$title[$guildName — Information]
+$description[Everything you need to know about $guildName]
 $addField[ID;$guildID;yes]
 $addField[Members;$membersCount;yes]
 $thumbnail[$guildIcon]
@@ -56,13 +56,13 @@ $log[New command executed on $guildName ($guildID)]
 ### Condition
 
 ```bdfd
-$if[$guildName==Mon Server]
-$sendMessage[Vous êtes on the server principal !]
+$if[$guildName==My Server]
+$sendMessage[You are on the main server!]
 $endif
 ```
 
 ## Notes
 
-- `$guildName[]` and `$serverName[]` sont interchangeables.
-- Le terme "guild" provient of l'API Discord (Discord API Guilds).
-- The name retourné est toudays the name current, reflétant tout changement récent.
+- `$guildName[]` and `$serverName[]` are interchangeable.
+- The term "guild" comes from the Discord API (Discord API Guilds).
+- The name returned is always the current name, reflecting any recent change.

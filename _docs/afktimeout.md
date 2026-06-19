@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: afkTimeout
 syntax: $afkTimeout
-description: Returns the delay of inactivité (en seconds) before qu'un member soit déplacé vers the channel AFK.
+description: Returns the inactivity delay (in seconds) before a member is moved to the AFK channel.
 ---
 
-# $afkTimeout[] — Delay AFK
+# $afkTimeout[] — AFK Delay
 
-`$afkTimeout[]` returns the delay of inactivité configured on the server, after lequel un member inactif in a channel vocal est automatically déplacé vers the channel AFK.
+`$afkTimeout[]` returns the inactivity delay configured on the server, after which an inactive member in a voice channel is automatically moved to the AFK channel.
 
 ## Syntax
 
@@ -24,10 +24,10 @@ No parameters.
 
 ## Return value
 
-- **Type** : `integer`
-- Le delay en seconds. The values possibles sont : 60, 300, 900, 1800, 3600.
+- **Type**: `integer`
+- The delay in seconds. Possible values are: 60, 300, 900, 1800, 3600.
 
-| Secondes | Équivaslow |
+| Seconds | Equivalent |
 |----------|------------|
 | 60 | 1 minute |
 | 300 | 5 minutes |
@@ -37,7 +37,7 @@ No parameters.
 
 ## Usage
 
-### Affichage formatted
+### Formatted display
 
 ```bdfd
 $var[timeout;$afkTimeout]
@@ -48,30 +48,30 @@ $var[timeoutText;$round[$divide[$var[timeout];60]] minute(s)]
 $else
 $var[timeoutText;$var[timeout] second(s)]
 $endif
-$sendMessage[💤 Delay AFK : **$var[timeoutText]**]
+$sendMessage[💤 AFK Delay: **$var[timeoutText]**]
 ```
 
-### Configuration of the server
+### Server configuration
 
 ```bdfd
-$title[⚙️ Parameters of $serverName]
-$addField[💤 Channel AFK;$if[$afkChannelID!=]<#$afkChannelID>$elseAucun$endif;yes]
-$addField[⏱️ Delay AFK;$round[$divide[$afkTimeout;60]] minutes;yes]
+$title[⚙️ Settings of $serverName]
+$addField[💤 AFK Channel;$if[$afkChannelID!=]<#$afkChannelID>$elseNone$endif;yes]
+$addField[⏱️ AFK Delay;$round[$divide[$afkTimeout;60]] minutes;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Alerte si delay très court
+### Alert if delay is very short
 
 ```bdfd
 $if[$afkTimeout<=60]
-$sendMessage[⚠️ Le delay AFK est très court (1 minute). The members will be déplacés quickly.]
+$sendMessage[⚠️ The AFK delay is very short (1 minute). Members will be moved quickly.]
 $endif
 ```
 
 ## Notes
 
-- The channel AFK est configured separatedment ; use `$afkChannelID[]` for the récupérer.
-- If no channel AFK n'est configured, le timeout does not have of effet.
-- Discord limit les values possibles to la list ci-dessus (no value custome).
-- Les members in the channel AFK sont mis en sourdine automatically.
+- The AFK channel is configured separately; use `$afkChannelID[]` to retrieve it.
+- If no AFK channel is configured, the timeout has no effect.
+- Discord limits the possible values to the list above (no custom values).
+- Members in the AFK channel are automatically muted.

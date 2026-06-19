@@ -8,9 +8,9 @@ syntax: $addCheckboxGroupOption[menuId;label;value;(description);(default)]
 description: Adds an individual option to a checkbox group in a modal. The menuId can be omitted to target the last group created.
 ---
 
-# $addCheckboxGroupOption[] — Option of Group Checkbox
+# $addCheckboxGroupOption[] — Checkbox Group Option
 
-`$addCheckboxGroupOption[]` ajoute une option to a checkbox group created with `$addModalCheckboxGroup[]`. Each option apparaît like a checkbox distincte with its own label.
+`$addCheckboxGroupOption[]` adds an option to a checkbox group created with `$addModalCheckboxGroup[]`. Each option appears as a distinct checkbox with its own label.
 
 ## Syntax
 
@@ -22,15 +22,15 @@ $addCheckboxGroupOption[menuId;label;value;(description);(default)]
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `menuId` | No | Last group | Identifier of the group parent. |
+| `menuId` | No | Last group | Identifier of the parent group. |
 | `label` | Yes | — | Text displayed for this option. |
-| `value` | Yes | — | Value retournée when the option est cochée. |
-| `description` | No | — | Text descriptif optional. |
-| `default` | No | `no` | `yes` si cochée by default. |
+| `value` | Yes | — | Value returned when the option is checked. |
+| `description` | No | — | Optional description text. |
+| `default` | No | `no` | `yes` if checked by default. |
 
 ## Return value
 
-Ajoute the option to the group parent. Pas of value of return directe.
+Adds the option to the parent group. No direct return value.
 
 ## Usage
 
@@ -39,37 +39,38 @@ Ajoute the option to the group parent. Pas of value of return directe.
 ```bdfd
 $newModal[Config;config_modal]
 $addModalCheckboxGroup[notifications;Notifications;no]
-$addCheckboxGroupOption[notifications;Messages privates;dm;Recevoir les notifications of messages privates;yes]
-$addCheckboxGroupOption[notifications;Mentions;mentions;Notifications of @mention;yes]
-$addCheckboxGroupOption[notifications;Annonces;announce;Annonces of the server;no]
+$addCheckboxGroupOption[notifications;Private messages;dm;Receive private message notifications;yes]
+$addCheckboxGroupOption[notifications;Mentions;mentions;Notifications for @mentions;yes]
+$addCheckboxGroupOption[notifications;Announcements;announce;Server announcements;no]
 ```
 
 ### Without menuId (last group)
 
 ```bdfd
-$newModal[Préférences;pref_modal]
-$addModalCheckboxGroup[themes;Thèmes visuals;no]
-$addCheckboxGroupOption[;Minimal;minimal;Design épuré;no]
-$addCheckboxGroupOption[;Colored;colorful;Design vibrant;yes]
-$addCheckboxGroupOption[;Sombre;dark;Mode sombre;yes]
+$newModal[Preferences;pref_modal]
+$addModalCheckboxGroup[themes;Visual Themes;no]
+$addCheckboxGroupOption[;Minimal;minimal;Clean design;no]
+$addCheckboxGroupOption[;Colored;colorful;Vibrant design;yes]
+$addCheckboxGroupOption[;Dark;dark;Dark mode;yes]
 ```
 
 ### Multiple distinct groups
 
 ```bdfd
-$newModal[Sondage complete;full_survey]
-$addModalCheckboxGroup[platform;Plateformes;yes]
+$newModal[Full Survey;full_survey]
+$addModalCheckboxGroup[platform;Platforms;yes]
 $addCheckboxGroupOption[platform;Discord;discord;;yes]
 $addCheckboxGroupOption[platform;Twitter;twitter;;no]
 
-$addModalCheckboxGroup[content;Type of contenu;no]
+$addModalCheckboxGroup[content;Content Type;no]
 $addCheckboxGroupOption[content;Articles;articles]
-$addCheckboxGroupOption[content;Vidéos;videos]
+$addCheckboxGroupOption[content;Videos;videos]
 $addCheckboxGroupOption[content;Podcasts;podcasts]
 ```
 
 ## Notes
 
-- Si `menuId` est omitted (string vide), the option is addede to the last group created.
-- Maximum 25 options par group.
-- Les values of options cochées are retrieved via `$input[menuId]`, separated by commas.
+- If `menuId` is omitted (empty string), the option is added to the last group created.
+- Maximum of 25 options per group.
+- The values of checked options are retrieved via `$input[menuId]`, separated by commas.
+

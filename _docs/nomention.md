@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $noMention
 
-Désactive les mentions in the response. Lors of une response (reply), the user ne sera pas pingé/mentionné.
+Disables user mentions in the reply. When replying to a message, the user will not be pinged/mentioned.
 
 ## Syntax
 
@@ -16,50 +16,50 @@ $noMention
 
 ## Description
 
-`$noMention` est un **flag** (without arguments) qui s'utilise before `$sendMessage`, generally en combinaison with `$reply`. Il empêche la mention/ping of the user in a response, ce qui est utile pour responses silencieuses.
+`$noMention` is a **flag** (without arguments) that is used before `$sendMessage`, generally in combination with `$reply`. It prevents pinging/mentioning the user in a reply, which is useful for silent replies.
 
-Par default, `$reply` ping l'auteur of the message cible. `$noMention` supprime ce comportement.
+By default, `$reply` pings the author of the target message. `$noMention` disables this behavior.
 
 ## Examples
 
-### Response silencieuse
+### Silent Reply
 
-```
+```bdfd
 $reply
 $noMention
-$sendMessage[Voici votre response, without notification]
+$sendMessage[Here is your reply, without a notification]
 ```
 
-### Response discrète with embeds
+### Discrete reply with embeds
 
-```
+```bdfd
 $reply
 $noMention
-$newEmbed[title=Result;description=Opération terminée;color=#2ECC71]
+$newEmbed[title=Result;description=Operation completed;color=#2ECC71]
 $sendMessage[]
 ```
 
-### Dans une interaction
+### In an interaction
 
-```
+```bdfd
 $onInteraction
-$if[$customID==btn_sislow]
+$if[$customID==btn_silent]
   $reply
   $noMention
-  $sendMessage[Action effectuée silencieusement]
+  $sendMessage[Action performed silently]
 $endif
 ```
 
-## Compareason
+## Comparison
 
-| Flag | Effet |
+| Flag | Effect |
 |------|-------|
-| *(no)* | Comportement default |
-| `$noMention` | Désactive all mentions |
-| `$allowMention` | Active les mentions (explicite) |
+| *(none)* | Default behavior |
+| `$noMention` | Disables all user mentions |
+| `$allowMention` | Enables user mentions (explicit) |
 
 ## Notes
 
-- `$noMention` désactive le ping user, pas les autres types of mentions (@everyone, @role).
-- Particulièrement utile with `$reply` pour responses non intrusives.
-- Flag to placer before `$sendMessage`.
+- `$noMention` disables user pings, not other types of mentions (like `@everyone` or `@role`).
+- Particularly useful with `$reply` for non-intrusive responses.
+- Flag should be placed before `$sendMessage`.

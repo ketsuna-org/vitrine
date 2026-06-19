@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildCount
 syntax: $guildCount
-description: Alias of $serverCount. Returns the number total of servers in thesquels the bot est présent.
+description: Alias of $serverCount. Returns the total number of servers the bot is present on.
 ---
 
 # $guildCount[] — Number of Servers (Alias)
 
-`$guildCount[]` est un alias of `$serverCount[]`. Il retourne the namebre total of servers Discord on lesquels the bot est installé.
+`$guildCount[]` is an alias of `$serverCount[]`. It returns the total number of Discord servers the bot is installed on.
 
 ## Syntax
 
@@ -20,44 +20,44 @@ $guildCount
 
 ## Parameters
 
-Aucun parameter.
+No parameters.
 
 ## Return Value
 
-- **Type** : `integer`
-- The namebre of servers auxquels the bot appartient.
+- **Type**: `integer`
+- The number of servers the bot belongs to.
 
-## Utilisation
+## Usage
 
-### Affichage simple
+### Simple Display
 
 ```bdfd
-$sendMessage[🤖 Présent on **$guildCount** servers !]
+$sendMessage[🤖 Present on **$guildCount** servers!]
 ```
 
-### Statistiques of the bot
+### Bot Statistics
 
 ```bdfd
-$title[📊 Statistiques of the Bot]
-$addField[🌐 Guildes;$guildCount;yes]
+$title[📊 Bot Statistics]
+$addField[🌐 Guilds;$guildCount;yes]
 $addField[🔢 Shard;$shardID;yes]
 $addField[📶 Ping;$ping ms;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Condition of popularité
+### Popularity Condition
 
 ```bdfd
 $if[$guildCount>=50]
-$sendMessage[🎉 +$guildCount servers ! Merci to all !]
+$sendMessage[🎉 +$guildCount servers! Thank you all!]
 $else
-$sendMessage[Bot présent on $guildCount servers.]
+$sendMessage[Bot present on $guildCount servers.]
 $endif
 ```
 
 ## Notes
 
-- `$guildCount[]` and `$serverCount[]` sont strictement identicals.
-- Le compte est global (all shards confondus).
-- Se met to day automatically durings joins/leaves of the bot.
+- `$guildCount[]` and `$serverCount[]` are strictly identical.
+- The count is global (all shards combined).
+- Updates automatically during bot joins/leaves.

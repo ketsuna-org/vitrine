@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: sort
 syntax: $sort[separator;(direction)]
-description: Sorts elements (separated by the given delimitr) and returns them as a single string.
+description: Sorts elements (separated by the given delimiter) and returns them as a single string.
 ---
 # $sort — Sort Elements
 
-`$sort` takes a delimitd list of values, sorts them, and returns them as a string using the same delimitr. It is primarily designed for numeric sorting but can be used with any comparable values.
+`$sort` takes a delimited list of values, sorts them, and returns them as a string using the same delimiter. It is primarily designed for numeric sorting but can be used with any comparable values.
 
 ## Syntax
 
@@ -26,7 +26,7 @@ $textSplit[5;2;8;1;3;]
 $sort[;;(direction)]
 ```
 
-Alternatively, `$sort` can operate on a delimitd string directly:
+Alternatively, `$sort` can operate on a delimited string directly:
 
 ```
 $sort[5,2,8,1,3;,;(asc)]
@@ -34,7 +34,7 @@ $sort[5,2,8,1,3;,;(asc)]
 
 ## Parameters
 
-- **separator** *(string, required)* — The delimitr separating the values.
+- **separator** *(string, required)* — The delimiter separating the values.
 - **direction** *(string, optional)* — `"asc"` or `"ascending"` for ascending; `"desc"` or `"descending"` for descending. Default: **descending (numerical)**.
 
 ## Return Value

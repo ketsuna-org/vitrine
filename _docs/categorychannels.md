@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: categoryChannels
 syntax: $categoryChannels[categoryID;(separator)]
-description: Returns the list noms of channels appartenant to une catégorie specific.
+description: Returns the list of channel names belonging to a specific category.
 ---
 
 # $categoryChannels
 
-The `$categoryChannels` function returns the **list of channels** appartenant to une catégorie specific, identifiée par its ID.
+The `$categoryChannels` function returns a list of channels belonging to a specific category, identified by its ID.
 
 ## Syntax
 
@@ -22,48 +22,48 @@ $categoryChannels[categoryID;(separator)]
 
 | Parameter | Description |
 |---|---|
-| `categoryID` | The ID of the catégorie. Required. |
-| `separator` | Optional. Separator between thes noms of channels. Par default: `, `. |
+| `categoryID` | The ID of the category. Required. |
+| `separator` | Optional. Separator between the channel names. Default is `, `. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `string` | Les noms of channels of la catégorie, separateds par le délimitur. |
+| `string` | The channel names in the category, separated by the delimiter. |
 
 ## Examples
 
-### Channels of la catégorie courante
+### Channels in the current category
 
 ```bdfd
-$sendMessage[**Channels in cette catégorie :** $categoryChannels[$categoryID]]
+$sendMessage[**Channels in this category:** $categoryChannels[$categoryID]]
 ```
 
-### List with retours to la ligne
+### List with newlines
 
 ```bdfd
 $sendMessage[
-**Channels of la catégorie :**
+**Channels in the category:**
 $categoryChannels[$categoryID;
 ]]
 ```
 
-### Channels of une catégorie specific
+### Channels of a specific category
 
 ```bdfd
-$sendMessage[Channels admin : $categoryChannels[123456789012345678]]
+$sendMessage[Admin channels: $categoryChannels[123456789012345678]]
 ```
 
-### Vérifier if a catégorie est vide
+### Check if a category is empty
 
 ```bdfd
 $if[$categoryChannels[$categoryID]==]
-  $sendMessage[Cette catégorie ne contains auca channel.]
+  $sendMessage[This category does not contain any channels.]
 $endif
 ```
 
 ## Notes
 
-- Ne list que les channels visibles par the bot.
-- La catégorie elle-même is not includede in the list.
-- Pour listr all channels of the server, use `$channelNames`.
+- Only lists channels visible to the bot.
+- The category itself is not included in the list.
+- To list all channels on the server, use `$channelNames`.

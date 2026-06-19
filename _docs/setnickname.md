@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: setNickname
 syntax: $setNickname[nickname;(userID)]
-description: Modifies the pseudo (nickname) of a user on the server.
+description: Modifies the nickname of a user on the server.
 ---
 
 # $setNickname
 
-The function `$setNickname` **modifie le pseudo (surnom)** of a user on the server Discord. The pseudo est propre to each server and n'affecte pas the name of user global. The bot doit avoir la permission `ManageNicknames`.
+The function `$setNickname` **modifies the nickname** of a user on the Discord server. The nickname is specific to each server and does not affect the global username. The bot must have the `Manage Nicknames` permission.
 
 ## Syntax
 
@@ -22,51 +22,51 @@ $setNickname[nickname;(userID)]
 
 | Parameter | Description |
 |---|---|
-| `nickname` | Le new pseudo to appliquer. Required. Laisser vide pour réinitialiser le pseudo. |
-| `userID` | Optional. The ID of the user cible. Si omitted, vise the user mentionné. |
+| `nickname` | The new nickname to apply. Required. Leave empty to reset the nickname. |
+| `userID` | Optional. The ID of the target user. If omitted, the mentioned user is targeted. |
 
 ## Return Value
 
-Aucune. The pseudo est modified.
+None. The nickname is modified.
 
 ## Examples
 
-### Changement simple
+### Simple change
 
 ```bdfd
 $setNickname[Gentil Member;$mentioned[1]]
-$sendMessage[Pseudo of <@$mentioned[1]> changé en "Gentil Member".]
+$sendMessage[Nickname of <@$mentioned[1]> changed to "Gentil Member".]
 ```
 
-### Réinitialiser le pseudo
+### Resetting the nickname
 
 ```bdfd
 $setNickname[;$mentioned[1]]
-$sendMessage[Pseudo of <@$mentioned[1]> réinitialisé.]
+$sendMessage[Nickname of <@$mentioned[1]> reset.]
 ```
 
-### Command of modération
+### Moderation command
 
 ```bdfd
 $if[$argsCount<1]
-  $sendMessage[Usage: !nick <@mention> <new pseudo>]
+  $sendMessage[Usage: !nick <@mention> <new nickname>]
   $stop
 $endif
 
 $setNickname[$replaceText[$message;-;$mentioned[1];];$mentioned[1]]
-$sendMessage[✅ Pseudo modified.]
+$sendMessage[✅ Nickname modified.]
 ```
 
-### Attributeion of un pseudo with préfixe
+### Applying a nickname with a prefix
 
 ```bdfd
 $setNickname[[Member] $username;$mentioned[1]]
-$sendMessage[Pseudo formatted appliqué.]
+$sendMessage[Formatted nickname applied.]
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ManageNicknames`.
-- The bot ne peut pas modifier le pseudo of a user ayant un role supérieur to the sien.
-- Pour changer the name of user global of the bot, utilisez `$changeUsername`.
-- Laisser `nickname` vide réinitialise le pseudo to the nom of user default.
+- The bot must have the `Manage Nicknames` permission.
+- The bot cannot modify the nickname of a user with a higher role than its own.
+- To change the global username of the bot, use `$changeUsername`.
+- Leaving `nickname` empty resets the nickname to the default username.

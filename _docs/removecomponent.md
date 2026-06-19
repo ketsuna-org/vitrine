@@ -74,7 +74,7 @@ $endInteraction
 ## Notes
 
 - The `customId` must match exactly the one defined when creating the component (`$addButton[customId;...]`, `$addTextInput[customId;...]`, etc.).
-- If the component doesn't exist, the function fails sislowly.
+- If the component doesn't exist, the function fails silently.
 - Used primarily in `$onInteraction` handlers to modify the message after a user action.
 - To remove all buttons at once, use `$removeButtons[]`.
 - To remove everything, use `$removeAllComponents[]`.

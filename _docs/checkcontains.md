@@ -56,6 +56,6 @@ $checkContains[$toLowercase[$message];$toLowercase[Admin]]
 ## Common Pitfalls
 
 - **Case sensitivity**: "Hello" does not contain "hello". Use `$toLowercase` if case-insensitive matching is needed.
-- **Partial matches**: `$checkContains[sword;word]` returns `"true"`. Use exact equality checks or delimitrs if you need whole-word matching.
+- **Partial matches**: `$checkContains[sword;word]` returns `"true"`. Use exact equality checks or delimiters if you need whole-word matching.
 - **Empty search string**: An empty needle always returns `"true"`. Guard against empty user input if it matters.
 - **Type coercion**: Both arguments are treated as strings. If you pass a number, it is converted to its string representation first.

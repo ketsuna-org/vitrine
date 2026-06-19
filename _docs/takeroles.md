@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: takeRoles
 syntax: $takeRoles[userID;role1;role2;...]
-description: Retire several roles to un user en a single opération.
+description: Removes several roles from a user in a single operation.
 ---
 
 # $takeRoles
 
-The function `$takeRoles` **retire several roles en une fois** to un user on the server Discord. The bot doit avoir la permission `ManageRoles`.
+The `$takeRoles` function **removes multiple roles at once** from a user on the Discord server. The bot must have the `ManageRoles` permission.
 
 ## Syntax
 
@@ -22,43 +22,43 @@ $takeRoles[userID;role1;role2;...]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user cible. Required. |
-| `role1;role2;...` | Les IDs roles to retirer, separateds par `;`. Required. |
+| `userID` | The ID of the target user. Required. |
+| `role1;role2;...` | The IDs of the roles to remove, separated by `;`. Required. |
 
 ## Return Value
 
-Aucune. Tous les roles spécifiés sont retirés.
+None. All specified roles are removed.
 
 ## Examples
 
-### Retrait multiple simple
+### Simple Multiple Removal
 
 ```bdfd
-$takeRoles[$mentioned[1];$roleID[Muet];$roleID[Averti];$roleID[Surveillance]]
-$sendMessage[Toutes les sanctions of <@$mentioned[1]> were levées.]
+$takeRoles[$mentioned[1];$roleID[Muted];$roleID[Warned];$roleID[Monitored]]
+$sendMessage[All sanctions for <@$mentioned[1]> have been lifted.]
 ```
 
-### Nettoyage of roles
+### Role Cleanup
 
 ```bdfd
 $if[$isAdmin==true]
-  $takeRoles[$mentioned[1];$roleID[VIP];$roleID[Staff];$roleID[Modo]]
-  $sendMessage[Tous les roles special retirés of <@$mentioned[1]>.]
+  $takeRoles[$mentioned[1];$roleID[VIP];$roleID[Staff];$roleID[Mod]]
+  $sendMessage[All special roles removed from <@$mentioned[1]>.]
 $endif
 ```
 
-### Retrait conditionnel
+### Conditional Removal
 
 ```bdfd
-$takeRoles[$authorID;$roleID[Old];$roleID[Inactif]]
-$giveRole[$authorID;$roleID[Actif]]
-$sendMessage[Roles mis to day !]
+$takeRoles[$authorID;$roleID[Old];$roleID[Inactive]]
+$giveRole[$authorID;$roleID[Active]]
+$sendMessage[Roles updated!]
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ManageRoles`.
-- Les roles sont separateds par `;`.
-- Pour retirer a single role, `$takeRole` est plus simple.
-- Les roles non possédés par the user sont ignorés silencieusement.
-- Pour redefine completement les roles, utilisez `$setUserRoles`.
+- The bot must have the `ManageRoles` permission.
+- The role IDs are separated by `;`.
+- To remove a single role, `$takeRole` is simpler.
+- Roles not possessed by the user are silently ignored.
+- To completely redefine a user's roles, use `$setUserRoles`.

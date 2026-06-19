@@ -32,7 +32,7 @@ No parameters.
 
 ## Behavior
 
-- The function select menus a category **randomly** from all existing categories on the server.
+- The function selects a category **randomly** from all existing categories on the server.
 - The result changes on each call (non-deterministic).
 - Only **categories** (GUILD_CATEGORY type) are concerned, not text or voice channels.
 - If no category-type channel exists on the server, the function may return an empty value.

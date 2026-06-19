@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookTitle
 syntax: $webhookTitle[text]
-description: Sets the titre of the embed for the prochain message sent via $webhookSend.
+description: Sets the title of the embed for the next message sent via $webhookSend.
 ---
 
 # $webhookTitle
 
-The function `$webhookTitle[]` allows **define the titre** of the embed for the prochain message webhook.
+The `$webhookTitle` function allows you to **set the title** of the embed for the next webhook message.
 
 ## Syntax
 
@@ -22,47 +22,47 @@ $webhookTitle[text]
 
 | Parameter | Description |
 |---|---|
-| `text` | Le titre of the embed. Maximum 256 becauseactères. Supports thes emojis and les variables. |
+| `text` | The title of the embed. Maximum 256 characters. Supports emojis and variables. |
 
 ## Return Value
 
-This function ne retourne pas of value. Elle définit le titre of the prochain embed.
+This function does not return a value. It only sets the title of the next embed.
 
 ## Behavior
 
-- Le titre apparaît en haut of the embed, en text plus grand and en gras.
-- Si no titre n'est défini mais qu'une description l'est, the embed sera created without titre.
-- Le titre est réinitialisé after each `$webhookSend[]`.
+- The title appears at the top of the embed, in larger, bold text.
+- If no title is defined but a description is, the embed will be created without a title.
+- The title is reset after each `$webhookSend`.
 
 ## Examples
 
-### Titre dynamic
+### Dynamic title
 
 ```bdfd
-$webhookTitle[🔨 Action of modération]
+$webhookTitle[🔨 Moderation Action]
 $webhookDescription[
-**Action :** $message[1]
-**User :** $userName[$mentioned[1]]
-**Reason :** $noMentionMessage
+**Action:** $message[1]
+**User:** $userName[$mentioned[1]]
+**Reason:** $noMentionMessage
 ]
 $webhookColor[#ED4245]
-$webhookFooter[Modération • $username]
+$webhookFooter[Moderation • $username]
 $webhookSend[$modHook;]
 ```
 
-### Titre with emoji
+### Title with emoji
 
 ```bdfd
-$webhookTitle[✅ Tâche terminée]
-$webhookDescription[La sauvegarde automatique datas was effectuée with success.]
+$webhookTitle[✅ Task Completed]
+$webhookDescription[The automatic data backup was completed successfully.]
 $webhookColor[#57F287]
 $webhookSend[$webhookURL;]
 ```
 
-### Embeds multiple (conceptuel)
+### Multiple embeds (conceptual)
 
 ```bdfd
-$webhookTitle[Premier embed]
+$webhookTitle[First embed]
 $webhookDescription[Content of the first embed.]
 $webhookSend[$webhookURL;]
 
@@ -74,6 +74,6 @@ $webhookSend[$webhookURL;]
 
 ## Notes
 
-- Maximum 256 becauseactères for the titre.
-- Le titre est en gras and plus grand que la description.
-- Un embed peut exister without titre (description only), mais un titre seul (without description) functionne also.
+- Maximum 256 characters for the title.
+- The title is bold and larger than the description.
+- An embed can exist without a title (description only), but a title alone (without description) also works.

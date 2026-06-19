@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: ignoreChannels
 syntax: $ignoreChannels[channelID1;channelID2;...]
-description: Function guard qui ignore silencieusement l'exécution of the command si it is triggerede in the un channels listés.
+description: A function guard that silently ignores command execution if it is triggered in one of the listed channels.
 ---
 
 # $ignoreChannels
 
-The function guard `$ignoreChannels` interrompt **silencieusement** l'exécution of the command si elle is usede in the un channels spécifiés. Contrairement to `$onlyForChannels` qui fait une whitelist, `$ignoreChannels` fait une **blacklist** of channels.
+The function guard `$ignoreChannels` **silently** interrupts the execution of the command if it is used in one of the specified channels. Unlike `$onlyForChannels` which acts as a whitelist, `$ignoreChannels` acts as a **blacklist** of channels.
 
 ## Syntax
 
@@ -22,40 +22,40 @@ $ignoreChannels[channelID1;channelID2;...]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `channelID1;channelID2;...` | Snowflake[] | IDs channels to ignorer, separateds par `;`. |
+| `channelID1;channelID2;...` | Snowflake[] | Channel IDs to ignore, separated by `;`. |
 
 ## Behavior
 
-- Si le channel courant est in the list, the command est interrompue **without no message** (silence total).
-- Si le channel is not in the list, the command continue normalement.
-- Aucun error message n'est supporté — le guard est strictement silencieux.
+- If the current channel is in the list, the command execution is stopped **without any message** (total silence).
+- If the channel is not in the list, the command continues normally.
+- No error message is supported — the guard is strictly silent.
 
 ## Examples
 
-### Interdire les channels of discussion générale
+### Restricting commands in general discussion channels
 
 ```bdfd
 $ignoreChannels[123456789012345678]
-$sendMessage[Command of modération executed.]
+$sendMessage[Moderation command executed.]
 ```
 
-### Plusieurs channels blacklistés
+### Multiple blacklisted channels
 
 ```bdfd
 $ignoreChannels[111111111111111111;222222222222222222;333333333333333333]
 $ban[$mentioned[1]]
 ```
 
-### Ignorer les channels of annonces
+### Ignore announcement channels
 
 ```bdfd
 $ignoreChannels[123456789012345678;987654321098765432]
-$sendMessage[Action effectuée.]
+$sendMessage[Action completed.]
 ```
 
 ## Notes
 
-- `$ignoreChannels` est une **blacklist** silencieuse. Pour une **whitelist** with error message, utilisez `$onlyForChannels`.
-- Aucun error message n'est sent to the user. Si vous voulez notifier the user, utilisez `$onlyForChannels` with a error message.
-- À placer en début of command, before toute autre logique.
-- Pratique pour désenable commands in channels specifics without spammer les users.
+- `$ignoreChannels` is a silent **blacklist**. For a **whitelist** with an error message, use `$onlyForChannels`.
+- No error message is sent to the user. If you want to notify the user, use `$onlyForChannels` with an error message.
+- Place this at the beginning of the command, before any other logic.
+- Convenient for disabling commands in specific channels without spamming users.

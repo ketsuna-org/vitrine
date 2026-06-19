@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleInfo
 syntax: $roleInfo[roleID;property;(guildID)]
-description: Returns ae property specific of a role Discord sous forme of JSON object or of value.
+description: Returns a specific property of a Discord role.
 ---
 
 # $roleInfo
 
-The function `$roleInfo` retourne une **property specific** of a role Discord. Elle allows to accéder to diverses information like the name, the color, the position or les permissions.
+The function `$roleInfo` returns a **specific property** of a Discord role. It allows you to access various information such as the name, color, position, or permissions.
 
 ## Syntax
 
@@ -22,56 +22,56 @@ $roleInfo[roleID;property;(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role cible. Required. |
-| `property` | La property to récupérer (voir ci-dessous). Required. |
-| `guildID` | Optional. The ID of the server cible. |
+| `roleID` | The ID of the target role. Required. |
+| `property` | The property to retrieve (see below). Required. |
+| `guildID` | Optional. The ID of the target server. |
 
-## Propertys availables
+## Properties Available
 
-| Property | Description | Type of retour |
+| Property | Description | Return Type |
 |---|---|---|
-| `name` | Nom of the role | `string` |
-| `color` | Couleur en hexadecimal | `string` |
-| `position` | Position hiérarchique | `integer` |
-| `permissions` | Permissions brutes | `integer` |
-| `mentionable` | Role mentionnable | `string` (`"true"`/`"false"`) |
-| `hoist` | Displayed separatedment | `string` (`"true"`/`"false"`) |
-| `managed` | Géré par une intégration | `string` (`"true"`/`"false"`) |
+| `name` | Name of the role | `string` |
+| `color` | Color in hexadecimal | `string` |
+| `position` | Hierarchical position | `integer` |
+| `permissions` | Raw permissions | `integer` |
+| `mentionable` | Whether the role is mentionable | `string` (`"true"`/`"false"`) |
+| `hoist` | Whether the role is displayed separately | `string` (`"true"`/`"false"`) |
+| `managed` | Whether the role is managed by an integration | `string` (`"true"`/`"false"`) |
 | `id` | ID of the role | `snowflake` |
 
 ## Return Value
 
-The type dépend of la property demandée (string, integer, boolean en string).
+The type depends on the requested property (string, integer, or boolean represented as a string).
 
 ## Examples
 
-### Informations of base
+### Basic Information
 
 ```bdfd
 $sendMessage[
-**Role :** $roleInfo[$roleID[Admin];name]
-**Couleur :** $roleInfo[$roleID[Admin];color]
-**Position :** $roleInfo[$roleID[Admin];position]
+**Role:** $roleInfo[$roleID[Admin];name]
+**Color:** $roleInfo[$roleID[Admin];color]
+**Position:** $roleInfo[$roleID[Admin];position]
 ]
 ```
 
-### Vérifier if a role est displayed separatedment
+### Check if a role is displayed separately
 
 ```bdfd
 $if[$roleInfo[$roleID[Admin];hoist]==true]
-  $sendMessage[Ce role est displayed separatedment in the list members.]
+  $sendMessage[This role is displayed separately in the member list.]
 $endif
 ```
 
-### Role géré par intégration
+### Role managed by an integration
 
 ```bdfd
 $if[$roleInfo[123456789012345678;managed]==true]
-  $sendMessage[Ce role est géré par une intégration (bot).]
+  $sendMessage[This role is managed by an integration (bot).]
 $endif
 ```
 
 ## Notes
 
-- Les propertys `mentionable`, `hoist` and `managed` retournent strings `"true"`/`"false"`.
-- Pour les permissions, le format brut (integer) est retourné. Utilisez `$rolePerms` for a format plus lisible.
+- The properties `mentionable`, `hoist`, and `managed` return strings `"true"` or `"false"`.
+- For permissions, the raw integer format is returned. Use `$rolePerms` for a more readable format.

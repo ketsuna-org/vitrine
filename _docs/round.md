@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: round
 syntax: $round[value]
-description: Arrondit un number to l'integer le plus proche. The values to.5 sont arrondies vers le haut or according to l'arrondi bancaire according to l'implémentation.
+description: Rounds a number to the nearest integer. Values ending in .5 are rounded up or according to banker's rounding depending on the implementation.
 ---
 
 # $round[]
 
-The function `$round[]` arrondit un number to l'integer le plus proche according to les règles of arrondi standard.
+The function `$round[]` rounds a number to the nearest integer according to standard rounding rules.
 
 ## Syntax
 
@@ -22,17 +22,17 @@ $round[value]
 
 | Parameter | Type   | Required | Description                      |
 |-----------|--------|-------------|----------------------------------|
-| `value`  | number | Yes         | The namebre to arrondir.            |
+| `value`  | number | Yes         | The number to round.            |
 
 ## Behavior
 
-- Si la partie decimale est **strictement inférieure to.5** : arrondi vers le bas.
-- Si la partie decimale est **supérieure or égale to.5** : arrondi vers le haut.
-- Pour un integer : retourne l'integer lui-même.
+- If the decimal part is **strictly less than .5**: rounds down.
+- If the decimal part is **greater than or equal to .5**: rounds up.
+- For an integer: returns the integer itself.
 
 ## Examples
 
-**Arrondi vers le haut :**
+**Rounding up:**
 ```
 $round[3.5]
 → 4
@@ -44,7 +44,7 @@ $round[3.9]
 → 4
 ```
 
-**Arrondi vers le bas :**
+**Rounding down:**
 ```
 $round[3.4]
 → 3
@@ -53,7 +53,7 @@ $round[3.1]
 → 3
 ```
 
-**Number négatif :**
+**Negative number:**
 ```
 $round[-3.4]
 → -3
@@ -62,7 +62,7 @@ $round[-3.6]
 → -4
 ```
 
-## Compareason floor / ceil / round
+## Comparison: floor / ceil / round
 
 | Value | $floor[] | $ceil[] | $round[] |
 |--------|----------|---------|----------|
@@ -72,10 +72,10 @@ $round[-3.6]
 | `-3.2` | `-4`     | `-3`    | `-3`     |
 | `-3.5` | `-4`     | `-3`    | `-3`*    |
 
-*Le comportement exact for the values to `.5` peut dépendre of l'implémentation Java sous-jacente (`Math.round`).
+*The exact behavior for values ending in `.5` may depend on the underlying Java implementation (`Math.round`).
 
 ## Notes
 
-- The result est toudays un integer (sous forme of string).
-- Utilisez `$floor[]` pour toudays round vers le bas, `$ceil[]` pour toudays round vers le haut.
-- Pour un controle plus fin (number of decimales), utilisez `$calculate[]`.
+- The result is always an integer (in the form of a string).
+- Use `$floor[]` to always round down, and `$ceil[]` to always round up.
+- For finer control (number of decimal places), use `$calculate[]`.

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Messages & DM"
 function_name: authorOfMessage
 syntax: $authorOfMessage[messageID]
-description: Returns the ID of the author of a message specific, identifié par its ID.
+description: Returns the ID of the author of a specific message, identified by its ID.
 ---
 # $authorOfMessage
 
-The `$authorOfMessage[]` function returns the **ID of the author** of a message donné.
+The `$authorOfMessage[]` function returns the **author ID** of a given message.
 
 ## Syntax
 
@@ -21,57 +21,57 @@ $authorOfMessage[messageID]
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message cible. |
+| `messageID` | The ID of the target message. |
 
 ## Return value
 
-- **Type** : Snowflake (string)
-- The ID of the user auteur of the message.
-- String vide if the message est introuvable.
+- **Type**: Snowflake (string)
+- The user ID of the author of the message.
+- Empty string if the message is not found.
 
 ## Examples
 
-### Récupérer the author
+### Retrieving the author
 
 ```bdfd
 $let[author;$authorOfMessage[$message[1]]]
-$sendMessage[This message has been sent par <@$author>]
+$sendMessage[This message was sent by <@$author>]
 ```
 
-### Vérifier le owner of a message
+### Verify the owner of a message
 
 ```bdfd
 $if[$authorOfMessage[$messageID]==$authorID]
-  $sendMessage[This message vous appartient.]
+  $sendMessage[This message belongs to you.]
 $else
-  $sendMessage[This message ne vous appartient pas.]
+  $sendMessage[This message does not belong to you.]
 $endif
 ```
 
-### Log of suppression
+### Log of deletion
 
 ```bdfd
 $let[msgID;$message[1]]
 $let[author;$authorOfMessage[$msgID]]
-$channelSendMessage[123456789;Message $msgID deleted — Auteur : <@$author>]
+$channelSendMessage[123456789;Message $msgID deleted — Author: <@$author>]
 ```
 
-### Command info message
+### Message info command
 
 ```bdfd
 $let[msgID;$message[1]]
 $let[author;$authorOfMessage[$msgID]]
-$title[📋 Info Message]
+$title[📋 Message Info]
 $description[
-**ID** : $msgID
-**Auteur** : <@$author> ($author)
-**Contenu** : $getMessage[$msgID]
+**ID**: $msgID
+**Author**: <@$author> ($author)
+**Content**: $getMessage[$msgID]
 ]
 $sendMessage[]
 ```
 
 ## Notes
 
-- The bot must have accès to the canal contenant the message.
-- Les messages en DM can be consultés if the bot y a accès.
-- For the message courant, `$authorID` est plus direct.
+- The bot must have access to the channel containing the message.
+- DM messages can be accessed if the bot has access.
+- For the current message, `$authorID` is more direct.

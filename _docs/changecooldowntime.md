@@ -31,7 +31,7 @@ Increase the cooldown for users who trigger anti-spam rules:
 $cooldown[30s]
 $if[$messageLength>500]
 $changeCooldownTime[5m]
-$sendMessage[⚠️ Messages longs : cooldown étendu to 5 minutes.]
+$sendMessage[⚠️ Long messages: cooldown extended to 5 minutes.]
 $endif
 ```
 
@@ -40,10 +40,10 @@ $endif
 Admins can reset their cooldown:
 
 ```
-$cooldown[60s;⏳ Cooldown actif.]
+$cooldown[60s;⏳ Cooldown active.]
 $if[$hasPerms[$authorID;Administrator]]
 $changeCooldownTime[1s]
-$sendMessage[🔓 Cooldown contourné (admin).]
+$sendMessage[🔓 Cooldown bypassed (admin).]
 $endif
 ```
 

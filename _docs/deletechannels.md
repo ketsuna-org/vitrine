@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: deleteChannels
 syntax: $deleteChannels[channelID1;channelID2;...]
-description: "Deletes a or multiple canaux par their ID. Alias : $deleteChannelsByName for the suppression by name."
+description: "Deletes one or multiple channels by their ID. Alias: $deleteChannelsByName for deletion by name."
 ---
 
 # $deleteChannels
 
-The `$deleteChannels[]` function **supprimer un or multiple canaux** par their ID. A alias `$deleteChannelsByName[]` existe for the suppression by name.
+The `$deleteChannels[]` function **deletes one or multiple channels** by their ID. An alias `$deleteChannelsByName[]` exists for deleting channels by name.
 
 ## Syntax
 
@@ -22,55 +22,55 @@ $deleteChannels[channelID1;channelID2;...]
 
 | Parameter | Description |
 |---|---|
-| `channelID1;channelID2;...` | IDs canaux to delete, separateds par `;`. |
+| `channelID1;channelID2;...` | Channel IDs to delete, separated by `;`. |
 
 ## Return value
 
-Cette function does not return a value.
+This function does not return a value.
 
 ## Behavior
 
-- The bot must have the permission `MANAGE_CHANNELS`.
-- La suppression est **irréversible**.
-- If a ID est invalid, les autres canaux valids sont when même deleteds.
+- The bot must have the `MANAGE_CHANNELS` permission.
+- Deletion is **irreversible**.
+- If an ID is invalid, the other valid channels are still deleted.
 
 ## Examples
 
-### Suppression simple
+### Simple deletion
 
 ```bdfd
 $deleteChannels[$channelID]
-$sendMessage[Canal deleted.]
+$sendMessage[Channel deleted.]
 ```
 
-### Nettoyage of tickets
+### Ticket cleanup
 
 ```bdfd
 $deleteChannels[$ticketID]
-$sendMessage[Ticket fermé and canal deleted.]
+$sendMessage[Ticket closed and channel deleted.]
 ```
 
-### Suppression conditionnelle
+### Conditional deletion
 
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
   $deleteChannels[$mentionedChannels[1]]
-  $sendMessage[Canaux deleteds.]
+  $sendMessage[Channels deleted.]
 $else
-  $sendMessage[Permission refusée.]
+  $sendMessage[Permission denied.]
 $endif
 ```
 
-### Suppression by name (alias)
+### Deletion by name (alias)
 
 ```bdfd
 $deleteChannelsByName[ticket-*]
-$sendMessage[All canaux of ticket deleteds.]
+$sendMessage[All ticket channels deleted.]
 ```
 
 ## Notes
 
-- **Action irréversible** : use with précaution.
-- Les canaux deleteds ne can PAS être restaurés via the API.
-- For catégories, la suppression supprime also all canaux enfants.
-- L'alias `$deleteChannelsByName[]` accepte wildbecauseds (`*`).
+- **Irreversible action**: use with caution.
+- Deleted channels cannot be restored via the API.
+- For categories, deletion also deletes all child channels.
+- The alias `$deleteChannelsByName[]` accepts wildcards (`*`).

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: repliedMessageID
 syntax: $repliedMessageID
-description: Returns the ID of the message the user replied to. Allows referencing the sourthis message in a command triggered by a reply.
+description: Returns the ID of the message the user replied to. Allows referencing the source message in a command triggered by a reply.
 ---
 
 # $repliedMessageID
 
-The `$repliedMessageID` function allows **retrieving the sourthis message ID** when a user replies to a message with a command.
+The `$repliedMessageID` function allows **retrieving the source message ID** when a user replies to a message with a command.
 
 ## Syntax
 

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addMediaGalleryItem
 syntax: $addMediaGalleryItem[url;(description);(spoiler);(galleryId)]
-description: Adds a élément (image) to a gallery média. Si galleryId est omitted, l'élément is added to la last galerie createde.
+description: Adds an element (image) to a media gallery. If galleryId is omitted, the element is added to the last gallery created.
 ---
 
-# $addMediaGalleryItem[] — Élément of Galerie
+# $addMediaGalleryItem[] — Gallery Item
 
-`$addMediaGalleryItem[]` ajoute an image to a gallery média createde with `$addMediaGallery[]`. Each élément devient une "page" navigable in the gallery.
+`$addMediaGalleryItem[]` adds an image to a media gallery created with `$addMediaGallery[]`. Each element becomes a navigable "page" in the gallery.
 
 ## Syntax
 
@@ -23,13 +23,13 @@ $addMediaGalleryItem[url;(description);(spoiler);(galleryId)]
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
 | `url` | Yes | — | URL of the image. |
-| `description` | No | — | Description / text alternatif. |
-| `spoiler` | No | `no` | `yes` pour spoiler. |
-| `galleryId` | No | Last gallery | ID of the galerie cible. |
+| `description` | No | — | Description / alternative text. |
+| `spoiler` | No | `no` | `yes` to spoiler. |
+| `galleryId` | No | Last gallery | ID of the target gallery. |
 
 ## Return value
 
-Ajoute the image to la galerie. Pas of value of return directe.
+Adds the image to the gallery. No direct return value.
 
 ## Usage
 
@@ -37,11 +37,11 @@ Ajoute the image to la galerie. Pas of value of return directe.
 
 ```bdfd
 $addMediaGallery[before_after]
-$addMediaGalleryItem[https://cdn.example.com/before.jpg;Avant rénovation;no;before_after]
-$addMediaGalleryItem[https://cdn.example.com/after.jpg;Après rénovation;no;before_after]
+$addMediaGalleryItem[https://cdn.example.com/before.jpg;Before renovation;no;before_after]
+$addMediaGalleryItem[https://cdn.example.com/after.jpg;After renovation;no;before_after]
 ```
 
-### Without galleryId (last galerie)
+### Without galleryId (last gallery)
 
 ```bdfd
 $addMediaGallery
@@ -54,25 +54,26 @@ $addMediaGalleryItem[https://site.com/img3.png;Capture 3]
 
 ```bdfd
 $addMediaGallery[designs]
-$addMediaGalleryItem[https://cdn.example.com/d1.png;Design mobile;no;designs]
-$addMediaGalleryItem[https://cdn.example.com/d2.png;Design desktop;no;designs]
+$addMediaGalleryItem[https://cdn.example.com/d1.png;Mobile design;no;designs]
+$addMediaGalleryItem[https://cdn.example.com/d2.png;Desktop design;no;designs]
 
 $addMediaGallery[logos]
-$addMediaGalleryItem[https://cdn.example.com/logo_light.png;Logo clair;no;logos]
-$addMediaGalleryItem[https://cdn.example.com/logo_dark.png;Logo sombre;no;logos]
+$addMediaGalleryItem[https://cdn.example.com/logo_light.png;Light logo;no;logos]
+$addMediaGalleryItem[https://cdn.example.com/logo_dark.png;Dark logo;no;logos]
 ```
 
 ### With spoiler
 
 ```bdfd
 $addMediaGallery[nsfw_content]
-$addMediaGalleryItem[$var[excludedsive01];Contenu excludedsif 1;yes;nsfw_content]
-$addMediaGalleryItem[$var[excludedsive02];Contenu excludedsif 2;yes;nsfw_content]
+$addMediaGalleryItem[$var[exclusive01];Exclusive Content 1;yes;nsfw_content]
+$addMediaGalleryItem[$var[exclusive02];Exclusive Content 2;yes;nsfw_content]
 ```
 
 ## Notes
 
-- `galleryId` can be omitted ; l'élément target alors la galerie la plus recently createde.
-- If no galerie n'has been createde, le behavior est indéfini.
-- Le `spoiler` masque the image until the user clicks dessus (pratique pour contenu sensible).
-- Les URLs must be accessibles publicment.
+- `galleryId` can be omitted; the element will target the most recently created gallery.
+- If no gallery has been created, the behavior is undefined.
+- The `spoiler` parameter hides the image until the user clicks on it (useful for sensitive content).
+- URLs must be publicly accessible.
+

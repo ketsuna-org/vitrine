@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: findChannel
 syntax: $findChannel[query]
-description: Recherche un channel par nom partial or complete and retourne son ID. Insensible to la casse.
+description: Searches for a channel by partial or full name and returns its ID. Case-insensitive.
 ---
 
 # $findChannel
 
-The function `$findChannel` recherche un channel Discord par **nom partial or complete** and retourne son ID. The recherche est insensible to la casse.
+The `$findChannel` function searches for a Discord channel by its **partial or full name** and returns its ID. The search is case-insensitive.
 
 ## Syntax
 
@@ -22,51 +22,51 @@ $findChannel[query]
 
 | Parameter | Description |
 |---|---|
-| `query` | The name or une partie of the nom of the channel to rechercher. |
+| `query` | The name or part of the name of the channel to search for. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the channel found, or `""` si no channel ne correspond. |
+| `snowflake` (string) | The ID of the channel found, or an empty string (`""`) if no channel matches. |
 
 ## Examples
 
-### Recherche par nom partial
+### Partial Name Search
 
 ```bdfd
-$sendMessage[Channel correspondant to "gén" : $findChannel[gén]]
+$sendMessage[Channel matching "gen": $findChannel[gen]]
 ```
 
-### Envoyer un message in a channel found
+### Send a message in a found channel
 
 ```bdfd
-$channelSendMessage[$findChannel[logs];Nouvel event enregistré.]
+$channelSendMessage[$findChannel[logs];New event logged.]
 ```
 
-### Vérifier si the channel existe
+### Verify if the channel exists
 
 ```bdfd
-$if[$findChannel[annonces]!=]
-  $sendMessage[Channel annonces found : <#$findChannel[annonces]>]
+$if[$findChannel[announcements]!=]
+  $sendMessage[Channel announcements found: <#$findChannel[announcements]>]
 $else
-  $sendMessage[Aucun channel ne correspond to "annonces".]
+  $sendMessage[No channel matches "announcements".]
 $endif
 ```
 
-### Utilisation like fallback
+### Usage as a fallback
 
 ```bdfd
-$if[$channelIDFromName[général]!=]
-  $sendMessage[Channel général : $channelIDFromName[général]]
+$if[$channelIDFromName[general]!=]
+  $sendMessage[General channel: $channelIDFromName[general]]
 $else
-  $sendMessage[Recherche étendue : $findChannel[gén]]
+  $sendMessage[Extended search: $findChannel[gen]]
 $endif
 ```
 
 ## Notes
 
-- Si several channels correspondent, le **first** found est retourné.
-- Pour une recherche exact, préférez `$channelIDFromName`.
-- Pratique when the user ne connaît pas the name exact of the channel.
-- Le préfixe `#` ne doit pas être included in the requête.
+- If multiple channels match, the **first** one found is returned.
+- For an exact search, use `$channelIDFromName` instead.
+- Useful when the user does not know the exact name of the channel.
+- The `#` prefix should not be included in the query.

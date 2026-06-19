@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isEmojiAnimated
 syntax: $isEmojiAnimated[emoji]
-description: Checks if un emoji custom est animé.
+description: Checks if a custom emoji is animated.
 ---
 
 # $isEmojiAnimated
 
-The function `$isEmojiAnimated[emoji]` **vérifie if a emoji custom est animé**. The emojis animés Discord commencent par `<a:` instead of `<:`.
+The function `$isEmojiAnimated[emoji]` **checks if a custom emoji is animated**. Discord animated emojis start with `<a:` instead of `<:`.
 
 ## Syntax
 
@@ -22,62 +22,62 @@ $isEmojiAnimated[emoji]
 
 | Parameter | Description |
 |---|---|
-| `emoji` | L'emoji to tester, sous sa forme Discord (`<:nom:id>` or `<a:nom:id>`). |
+| `emoji` | The emoji to test, in its Discord form (`<:name:id>` or `<a:name:id>`). |
 
 ## Return Value
 
-- **Type** : Boolean
-- `true` si l'emoji est animé.
-- `false` si l'emoji est static, standard (Unicode), or invalid.
+- **Type**: Boolean
+- `true` if the emoji is animated.
+- `false` if the emoji is static, standard (Unicode), or invalid.
 
 ## Behavior
 
-- Functionne only with thes emojis customs Discord.
-- Les emojis Unicode standards (😀, 🎉) retournent `false`.
-- Le format attendu est la mention of emoji complete.
+- Works only with Discord custom emojis.
+- Standard Unicode emojis (😀, 🎉) return `false`.
+- The expected format is the full emoji mention.
 
 ## Examples
 
-### Vérification of un emoji
+### Emoji Check
 
 ```bdfd
 $var[emoji;$message[1]]
 $if[$isEmojiAnimated[$var[emoji]]==true]
-  $sendMessage[🎞️ $var[emoji] est un emoji animé !]
+  $sendMessage[🎞️ $var[emoji] is an animated emoji!]
 $else
-  $sendMessage[🖼️ $var[emoji] est un emoji static or standard.]
+  $sendMessage[🖼️ $var[emoji] is a static or standard emoji.]
 $endif
 ```
 
-### Statistiques of emoji
+### Emoji Statistics
 
 ```bdfd
-$title[📊 Info Emoji]
+$title[📊 Emoji Info]
 $description[
-**Emoji :** $message[1]
-**Animé :** $if[$isEmojiAnimated[$message[1]]==true]Oui$elseNon$endif
-**Nom :** $emojiName[$message[1]]
-**ID :** $emojiID[$message[1]]
+**Emoji:** $message[1]
+**Animated:** $if[$isEmojiAnimated[$message[1]]==true]Yes$elseNo$endif
+**Name:** $emojiName[$message[1]]
+**ID:** $emojiID[$message[1]]
 ]
 $sendMessage[]
 ```
 
-### Filtrer les emojis animés
+### Filter Animated Emojis
 
 ```bdfd
 $var[emoji;$message[1]]
 $if[$isEmojiAnimated[$var[emoji]]==true]
-  $sendMessage[✅ Emoji animé détecté !]
+  $sendMessage[✅ Animated emoji detected!]
   $sendMessage[$var[emoji]]
 $else
-  $sendMessage[❌ Seuls les emojis animés sont alloweds in cette command.]
+  $sendMessage[❌ Only animated emojis are allowed in this command.]
 $endif
 ```
 
 ## Notes
 
-- Format animé : `<a:nom:id>` → `true`.
-- Format static : `<:nom:id>` → `false`.
-- Emoji Unicode : `😀` → `false`.
-- Pour obtenir the name of un emoji, utilisez `$emojiName[]`.
-- Pour obtenir the ID of un emoji, utilisez `$emojiID[]`.
+- Animated format: `<a:name:id>` → `true`.
+- Static format: `<:name:id>` → `false`.
+- Unicode emoji: `😀` → `false`.
+- To get the name of an emoji, use `$emojiName[]`.
+- To get the ID of an emoji, use `$emojiID[]`.

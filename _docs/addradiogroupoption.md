@@ -8,9 +8,9 @@ syntax: $addRadioGroupOption[menuId;label;value;(description);(default)]
 description: Adds an individual option to a group of radio buttons in a modal. The menuId can be omitted to target the last group created.
 ---
 
-# $addRadioGroupOption[] — Option of Group Radio
+# $addRadioGroupOption[] — Radio Group Option
 
-`$addRadioGroupOption[]` ajoute une option to a group of radio buttons created with `$addModalRadioGroup[]`. A single option of the group can be selectionnée to la fois.
+`$addRadioGroupOption[]` adds an option to a radio button group created with `$addModalRadioGroup[]`. Only a single option in the group can be selected at a time.
 
 ## Syntax
 
@@ -22,52 +22,53 @@ $addRadioGroupOption[menuId;label;value;(description);(default)]
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `menuId` | No | Last group | Identifier of the group radio parent. |
+| `menuId` | No | Last group | Identifier of the parent radio group. |
 | `label` | Yes | — | Text displayed for the option. |
-| `value` | Yes | — | Value retournée si selectionnée. |
-| `description` | No | — | Description optionalle. |
-| `default` | No | `no` | `yes` si selectionnée by default. |
+| `value` | Yes | — | Value returned if selected. |
+| `description` | No | — | Optional description. |
+| `default` | No | `no` | `yes` if selected by default. |
 
 ## Return value
 
-Ajoute the option to the group parent. The value selectionnée est accessible via `$input[menuId]`.
+Adds the option to the parent group. The selected value is accessible via `$input[menuId]`.
 
 ## Usage
 
-### Group with options détaillées
+### Group with detailed options
 
 ```bdfd
-$newModal[Abonnement;sub_modal]
-$addModalRadioGroup[tier;Level of abonnement;yes]
-$addRadioGroupOption[tier;Gratuit;free;Functionnalités of base;yes]
-$addRadioGroupOption[tier;Pro;pro;Tout illimité, support prioritaire;no]
-$addRadioGroupOption[tier;Enterprise;ent;Solution on mesure, SLA garanti;no]
+$newModal[Subscription;sub_modal]
+$addModalRadioGroup[tier;Subscription level;yes]
+$addRadioGroupOption[tier;Free;free;Basic features;yes]
+$addRadioGroupOption[tier;Pro;pro;Unlimited access, priority support;no]
+$addRadioGroupOption[tier;Enterprise;ent;Custom solution, guaranteed SLA;no]
 ```
 
-### Without menuId explicite
+### Without explicit menuId
 
 ```bdfd
 $newModal[Feedback;feedback_modal]
 $addModalRadioGroup[satisfaction;Satisfaction;yes]
-$addRadioGroupOption[;Très satisfait;5;Excelslow !;no]
-$addRadioGroupOption[;Satisfait;4;Bon;no]
-$addRadioGroupOption[;Neutre;3;Moyen;no]
-$addRadioGroupOption[;Insatisfait;2;Peut mieux faire;no]
-$addRadioGroupOption[;Très insatisfait;1;À revoir;no]
+$addRadioGroupOption[;Very satisfied;5;Excellent!;no]
+$addRadioGroupOption[;Satisfied;4;Good;no]
+$addRadioGroupOption[;Neutral;3;Average;no]
+$addRadioGroupOption[;Unsatisfied;2;Could do better;no]
+$addRadioGroupOption[;Very unsatisfied;1;Needs review;no]
 ```
 
-### Option by default conditionnelle
+### Conditional default option
 
 ```bdfd
-$newModal[Langue;lang_modal]
-$addModalRadioGroup[local;Langue of the interface;yes]
-$addRadioGroupOption[;Français;fr;;yes]
+$newModal[Language;lang_modal]
+$addModalRadioGroup[local;Interface language;yes]
+$addRadioGroupOption[;French;fr;;yes]
 $addRadioGroupOption[;English;en;;no]
 ```
 
 ## Notes
 
-- A single option peut avoir `default` to `yes` in a même group radio.
-- Si `menuId` est vide, the option target the last group created.
-- La value retournée est le `value` of the option selectionnée (not the `label`).
-- Maximum 25 options par group radio.
+- Only a single option can have `default` set to `yes` in the same radio group.
+- If `menuId` is empty, the option targets the last group created.
+- The returned value is the `value` of the selected option (not the `label`).
+- Maximum of 25 options per radio group.
+

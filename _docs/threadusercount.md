@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: threadUserCount
 syntax: $threadUserCount[threadID]
-description: Returns the number of members in a fil of discussion (thread). Utile pour suivre la participation to the discussions.
+description: Returns the number of members in a thread. Useful for tracking participation in discussions.
 ---
 
 # $threadUserCount
 
-The function `$threadUserCount[]` allows **count the namebre of members** présents in a fil of discussion.
+The function `$threadUserCount[]` returns the **number of members** present in a thread.
 
 ## Syntax
 
@@ -22,54 +22,55 @@ $threadUserCount[threadID]
 
 | Parameter | Description |
 |---|---|
-| `threadID` | The ID of the thread to analyser. |
+| `threadID` | The ID of the thread to analyze. |
 
 ## Return Value
 
-- **Type** : Integer
-- The namebre of members in the thread.
-- `0` if the thread est vide or inaccessible.
+- **Type**: Integer
+- The number of members in the thread.
+- `0` if the thread is empty or inaccessible.
 
 ## Behavior
 
-- Counts all users ayant rejoint le thread (public) or y ayant été ajoutés (private).
-- Inclut the bot lui-même s'il a rejoint le thread.
-- The bot doit avoir accès to the thread.
+- Counts all users who have joined the thread (public) or have been added to it (private).
+- Includes the bot itself if it has joined the thread.
+- The bot must have access to the thread.
 
 ## Examples
 
-### Résumé of thread
+### Thread Summary
 
 ```bdfd
-$title[Activité of the thread]
+$title[Thread Activity]
 $description[
-**Members :** $threadUserCount[$threadID] participants
-**Messages :** $threadMessageCount[$threadID] messages
+**Members:** $threadUserCount[$threadID] participants
+**Messages:** $threadMessageCount[$threadID] messages
 ]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Alerte of popularité
+### Popularity Alert
 
 ```bdfd
 $let[userCount;$threadUserCount[$threadID]]
 $if[$userCount>=10]
-  $sendMessage[Ce thread a attiré $userCount participants ! 🔥]
+  $sendMessage[This thread has attracted $userCount participants! 🔥]
 $endif
 ```
 
-### Surveillance of participation
+### Participation Monitoring
 
 ```bdfd
 $let[members;$threadUserCount[$threadID]]
 $let[messages;$threadMessageCount[$threadID]]
 $let[ratio;$round[$divide[$messages;$members]]]
-$sendMessage[Moyenne of $ratio messages par participant.]
+$sendMessage[Average of $ratio messages per participant.]
 ```
 
 ## Notes
 
-- Dans les threads publics, le compte inclut all users ayant ouvert le thread.
-- Utile with `$threadMessageCount[]` pour évaluer l'engagement.
-- Les members qui quittent un thread public ne sont plus comptés.
+- In public threads, the count includes all users who have opened the thread.
+- Useful alongside `$threadMessageCount[]` to evaluate engagement.
+- Members who leave a public thread are no longer counted.
+

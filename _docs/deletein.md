@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: deleteIn
 syntax: $deleteIn[duration]
-description: Programme la suppression automatique of a message after a delay spécifié. The message is deleted par the bot once le delay écoulé.
+description: Schedules the automatic deletion of a message after a specified duration. The message is deleted by the bot once the delay has elapsed.
 ---
 
-# $deleteIn[] — Suppression Différée of Message
+# $deleteIn[] — Delayed Message Deletion
 
-`$deleteIn[]` programme la suppression automatique of the message after a delay donné. Idéal for notifications temporarys, messages éphémères, or nettoyage automatique.
+`$deleteIn[]` schedules the automatic deletion of the message after a given delay. Ideal for temporary notifications, ephemeral messages, or automatic cleanup.
 
 ## Syntax
 
@@ -22,64 +22,64 @@ $deleteIn[duration]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `duration` | Yes | Delay before suppression. Format : number + unité. |
+| `duration` | Yes | Delay before deletion. Format: number + unit. |
 
-## Format of durée
+## Duration Format
 
-| Format | Unité | Example |
+| Format | Unit | Example |
 |--------|-------|---------|
-| `Xs` | Secondes | `5s`, `30s`, `60s` |
+| `Xs` | Seconds | `5s`, `30s`, `60s` |
 | `Xm` | Minutes | `1m`, `5m`, `15m` |
-| `Xh` | Times | `1h`, `2h` |
+| `Xh` | Hours | `1h`, `2h` |
 
 ## Return value
 
-Programme la suppression différée of the message. The message is deleted automatically to l'échéance.
+Schedules the delayed deletion of the message. The message is automatically deleted at expiry.
 
 ## Usage
 
-### Notification temporary
+### Temporary notification
 
 ```bdfd
-$sendMessage[✅ Command executede with success]
+$sendMessage[✅ Command executed successfully]
 $deleteIn[5s]
 ```
 
-### Message error éphémère
+### Ephemeral error message
 
 ```bdfd
-$sendMessage[❌ Error : Vous n'avez pas the permission requirede]
+$sendMessage[❌ Error: You do not have the required permission]
 $deleteIn[10s]
 ```
 
-### Alerte qui s'efface
+### Self-clearing alert
 
 ```bdfd
-$sendMessage[🔔 New mise to day available !]
+$sendMessage[🔔 New update available!]
 $deleteIn[30s]
 ```
 
-### Avec embeds
+### With embeds
 
 ```bdfd
-$title[Message temporary]
-$description[Ce contenu disparaîtra in 10 seconds]
+$title[Temporary Message]
+$description[This content will disappear in 10 seconds]
 $color[#E74C3C]
-$footer[Auto-suppression...]
+$footer[Auto-deletion...]
 $deleteIn[10s]
 ```
 
-### Bienvenue éphémère
+### Ephemeral welcome message
 
 ```bdfd
-$sendMessage[Bienvenue $username ! Pensez to lire le règlement.]
+$sendMessage[Welcome $username! Please remember to read the rules.]
 $deleteIn[1m]
 ```
 
 ## Notes
 
-- `$deleteIn[]` deletes the message **courant** (celui qui vient of être sent).
-- The duration maximale est generally of 15 minutes.
-- Une fois programmée, la suppression cannot être annulée.
-- La suppression échoue silencieusement if the bot does not have the permission `MANAGE_MESSAGES`.
-- Combinez with `$sendMessage` for messages auto-destructeurs.
+- `$deleteIn[]` deletes the **current** message (the one that was just sent).
+- The maximum duration is generally 15 minutes.
+- Once scheduled, the deletion cannot be cancelled.
+- The deletion fails silently if the bot does not have the `MANAGE_MESSAGES` permission.
+- Combine with `$sendMessage` for self-destructing messages.

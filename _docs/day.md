@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: day
 syntax: $day
-description: Returns the day current of the months (1 to 31). Resolved to the runtime.
+description: Returns the current day of the month (1 to 31). Resolved at runtime.
 ---
 
 # $day[]
 
-The `$day[]` function returns the day current of the months (de 1 to 31).
+The `$day[]` function returns the current day of the month (1 to 31).
 
-> **Important:** Cette function utilise l'identifier special `((day))` qui est resolved to the **runtime**.
+> **Important:** This function uses the special identifier `((day))` which is resolved at **runtime**.
 
 ## Syntax
 
@@ -20,38 +20,38 @@ The `$day[]` function returns the day current of the months (de 1 to 31).
 $day
 ```
 
-> **Note :** Cette function ne prend auca parameter.
+> **Note:** This function does not take any parameters.
 
 ## Return value
 
-A number between 1 and 31 representing le day current of the months.
+A number between 1 and 31 representing the current day of the month.
 
 ## Examples
 
-### Jour simple
+### Simple day
 
 ```bdfd
-Jour : $day
+Day: $day
 ```
 
-### Message conditionnel
+### Conditional message
 
 ```bdfd
 $if[$day==1]
-🎉 This is le first of the months !
+🎉 This is the first of the month!
 $else
-📅 Nous sommes le $day of the months.
+📅 Today is day $day of the month.
 $endif
 ```
 
-### Jour in an embed
+### Day in an embed
 
 ```bdfd
-$title[📅 Audayd'hui]
-$description[Nous sommes le day **$day** of the months]
+$title[📅 Today]
+$description[Today is day **$day** of the month]
 ```
 
 ## Notes
 
-- La value dépend of the date système of the server exécutant the bot.
-- Returns `1` for the first day of the months, `31` for the last day possible.
+- The value depends on the system date of the server running the bot.
+- Returns `1` for the first day of the month, and up to `31` for the last day.

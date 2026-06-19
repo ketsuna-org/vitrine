@@ -15,7 +15,7 @@ $wait is a simple but essential function for introducing timed delays in command
 2. The command **pauses** for the specified duration.
 3. After the delay, execution continues with the next line.
 
-All variables, scopes, and states are preserved during the wait. The delay is applied server-side and does not consume resources on the clinkt.
+All variables, scopes, and states are preserved during the wait. The delay is applied server-side and does not consume resources on the client.
 
 ## Duration Format
 
@@ -26,7 +26,7 @@ All variables, scopes, and states are preserved during the wait. The delay is ap
 | Minutes | `1m`, `2m` | Exactly N minutes |
 | Default (no suffix) | `3` | Treated as "3s" (seconds) |
 
-The default unit when no suffix is provided is seconds. `$wait[3]` is equivaslow to `$wait[3s]`.
+The default unit when no suffix is provided is seconds. `$wait[3]` is equivalent to `$wait[3s]`.
 
 ## Important: Use with $defer
 
@@ -35,14 +35,14 @@ If your command uses `$wait` and the total execution time may exceed Discord's 3
 ```
 $defer
 $wait[5s]
-$sendMessage[Terminé after 5 seconds.]
+$sendMessage[Done after 5 seconds.]
 ```
 
 Without `$defer`, Discord will show "This interaction failed" because no response was sent within the 3-second window.
 
 ## When to Use
 
-- **Sequential messaging**: Send multipthe messages with delays between them.
+- **Sequential messaging**: Send multiple messages with delays between them.
 - **Countdowns**: Create a countdown effect with multiple `$wait` and `$sendMessage` calls.
 - **Rate limiting simulation**: Slow down automated processes.
 - **UI pacing**: Make bot responses feel more natural by introducing human-like delays.

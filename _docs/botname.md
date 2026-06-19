@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botName
 syntax: $botName
-description: Returns the name of user of the bot.
+description: Returns the username of the bot.
 ---
 
 # $botName
 
-The `$botName` function **retourne the name of user current of the bot** tel qu'il apparaît on Discord.
+The `$botName` function **returns the current username of the bot** as it appears on Discord.
 
 ## Syntax
 
@@ -20,39 +20,39 @@ $botName
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
-- **Type** : String
-- The name of user of the bot (ex: `MonSuperBot`).
+- **Type**: String
+- The username of the bot (e.g., `MySuperBot`).
 
 ## Behavior
 
-- Returns the username of the bot, pas the name of affichage server (nickname).
-- The name est celui configured in the portail développeur Discord.
-- Se met to day automatically if the bot est renommé.
+- Returns the username of the bot, not the server display name (nickname).
+- The name is the one configured in the Discord Developer Portal.
+- Updates automatically if the bot is renamed.
 
 ## Examples
 
-### Message of bienvenue
+### Welcome message
 
 ```bdfd
-$title[👋 Bienvenue on $serverName !]
+$title[👋 Welcome to $serverName!]
 $description[
-Je suis **$botName**, votre assistant.
-Tapez `!help` pour voir mes commands.
+I am **$botName**, your assistant.
+Type `!help` to see my commands.
 ]
 $thumbnail[$botAvatar]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Page of information
+### About page
 
 ```bdfd
-$title[🤖 À propos of $botName]
-$addField[Nom;$botName;yes]
+$title[🤖 About $botName]
+$addField[Name;$botName;yes]
 $addField[ID;$botID;yes]
 $addField[Owner;<@$botOwnerID>;yes]
 $addField[Commands;$commandsCount;yes]
@@ -62,15 +62,15 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Présentation
+### Introduction
 
 ```bdfd
-$sendMessage[Bonday ! Je suis $botName, un bot polyvaslow created with BDFD. 💪]
+$sendMessage[Hello! I am $botName, a versatile bot created with BDFD. 💪]
 ```
 
 ## Notes
 
-- `$botName` est en lecture seule.
-- Pour changer the name of the bot, use `$changeUsername[]`.
-- Pour obtenir the ID of the bot, use `$botID`.
+- `$botName` is read-only.
+- To change the name of the bot, use `$changeUsername[]`.
+- To get the ID of the bot, use `$botID`.
 - For the avatar, use `$botAvatar`.

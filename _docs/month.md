@@ -1,18 +1,18 @@
 ---
 layout: doc
-title: $month[]
+title: $month
 translation_key: docs
 category: "Date & Time"
 function_name: month
 syntax: $month
-description: Returns the months current sous forme of numéro (1 to 12). Resolved to the runtime.
+description: Returns the current month as a number (1 to 12). Resolved at runtime.
 ---
 
-# $month[]
+# $month
 
-The function `$month[]` retourne le numéro of the months current (de 1 to 12).
+The function `$month` returns the number of the current month (from 1 to 12).
 
-> **Important:** This function utilise l'identifier special `((month))` qui est resolved to the **runtime**.
+> **Important:** This function uses the special identifier `((month))` which is resolved at **runtime**.
 
 ## Syntax
 
@@ -20,45 +20,45 @@ The function `$month[]` retourne le numéro of the months current (de 1 to 12).
 $month
 ```
 
-> **Note :** This function ne prend no parameter.
+> **Note:** This function takes no parameters.
 
 ## Return Value
 
-A number between 1 and 12 représentant le months current :
+A number between 1 and 12 representing the current month:
 
-| Value | Mois |
+| Value | Month |
 |--------|------|
-| 1 | Janvier |
-| 2 | Février |
-| 3 | Mars |
-| 4 | Avril |
-| 5 | Mai |
-| 6 | Juin |
-| 7 | Juillet |
-| 8 | Août |
-| 9 | Septembre |
-| 10 | Octobre |
-| 11 | Novembre |
-| 12 | Décembre |
+| 1 | January |
+| 2 | February |
+| 3 | March |
+| 4 | April |
+| 5 | May |
+| 6 | June |
+| 7 | July |
+| 8 | August |
+| 9 | September |
+| 10 | October |
+| 11 | November |
+| 12 | December |
 
 ## Examples
 
-### Mois simple
+### Simple Month
 
 ```bdfd
-Mois current : $month
+Current month: $month
 ```
 
-### Message saisonnier
+### Seasonal Message
 
 ```bdfd
 $if[$month>=6&&$month<=8]
-☀️ C'est l'été !
+☀️ It is summer!
 $elseif[$month==12||$month<=2]
-❄️ C'est l'hiver !
+❄️ It is winter!
 $endif
 ```
 
 ## Notes
 
-- The value dépend of la date système of the server exécutant the bot.
+- The value depends on the system date of the server running the bot.

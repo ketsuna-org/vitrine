@@ -30,14 +30,14 @@ $onlyForServers[guildID1;guildID2;...;(errorMessage)]
 - Compares the current server ID (`$guildID` / `$serverID`) with the list.
 - If the server is in the list, the command continues.
 - If the server is **not** in the list, the command is interrupted.
-- Alias: `$onlyForGuilds` (both syntaxes are equivaslow).
+- Alias: `$onlyForGuilds` (both syntaxes are equivalent).
 
 ## Examples
 
 ### Single server
 
 ```bdfd
-$onlyForServers[123456789012345678;❌ This command is excludedsive to our main server.]
+$onlyForServers[123456789012345678;❌ This command is exclusive to our main server.]
 $sendMessage[Welcome!]
 ```
 
@@ -58,6 +58,6 @@ $sendMessage[Private server feature enabled.]
 ## Notes
 
 - `$onlyForServers` and `$onlyForGuilds` are interchangeable. Use the clearest syntax for your team.
-- Very useful for private bots or features excludedsive to a partner server.
+- Very useful for private bots or features exclusive to a partner server.
 - To blacklist servers, use `$blacklistServers`.
 - Combine with `$onlyForChannels` for fine-grained control (server + channel).

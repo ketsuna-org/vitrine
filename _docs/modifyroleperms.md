@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: modifyRolePerms
 syntax: $modifyRolePerms[roleID;permissions]
-description: Modifies thes permissions of a role existing.
+description: Modifies the permissions of an existing role.
 ---
 
 # $modifyRolePerms
 
-The function `$modifyRolePerms` **modifie les permissions** of a role existing on the server Discord. The bot doit avoir la permission `ManageRoles`.
+The function `$modifyRolePerms` **modifies the permissions** of an existing role on the Discord server. The bot must have the `ManageRoles` permission.
 
 ## Syntax
 
@@ -22,52 +22,52 @@ $modifyRolePerms[roleID;permissions]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role to modifier. Required. |
-| `permissions` | List permissions to the format `permission=value`, separatedes par `;`. Required. |
+| `roleID` | The ID of the role to modify. Required. |
+| `permissions` | List of permissions in the format `permission=value`, separated by `;`. Required. |
 
 ## Return Value
 
-Aucune. The permissions of the role sont mises to day.
+None. The permissions of the role are updated.
 
 ## Examples
 
-### Désenable the envoi of messages
+### Disabling sending of messages
 
 ```bdfd
-$modifyRolePerms[$roleID[Muet];sendmessages=no;sendmessagesinthreads=no]
-$sendMessage[✅ The role Muet ne peut plus envoyer of messages.]
+$modifyRolePerms[$roleID[Muted];sendmessages=no;sendmessagesinthreads=no]
+$sendMessage[✅ The Muted role can no longer send messages.]
 ```
 
-### Activer permissions of modération
+### Enabling moderation permissions
 
 ```bdfd
-$modifyRolePerms[$roleID[Modo];banmembers=yes;kickmembers=yes;managemessages=yes]
-$sendMessage[✅ Permissions of modération enabledes for the role Modo.]
+$modifyRolePerms[$roleID[Mod];banmembers=yes;kickmembers=yes;managemessages=yes]
+$sendMessage[✅ Moderation permissions enabled for the Mod role.]
 ```
 
-### Restrict un role
+### Restricting a role
 
 ```bdfd
-$modifyRolePerms[$roleID[Restreint];sendmessages=no;connect=no;speak=no]
-$sendMessage[✅ Role Restreint configured.]
+$modifyRolePerms[$roleID[Restricted];sendmessages=no;connect=no;speak=no]
+$sendMessage[✅ Restricted role configured.]
 ```
 
-### Command of gestion permissions
+### Permission management command
 
 ```bdfd
 $if[$isAdmin==true]
   $modifyRolePerms[$roleID[$message[1]];$message[2]]
-  $sendMessage[Permissions mises to day.]
+  $sendMessage[Permissions updated.]
 $else
-  $sendMessage[Permission refusée.]
+  $sendMessage[Permission denied.]
 $endif
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ManageRoles`.
-- Format permissions : `permission=yes` or `permission=no`.
-- Les permissions sont separatedes par `;`.
-- Pour modifier les propertys of the role (nom, couleur), utilisez `$modifyRole`.
-- Pour voir les permissions currentles of a role, utilisez `$rolePerms`.
-- Les permissions non spécifiées restent inchangées.
+- The bot must have the `ManageRoles` permission.
+- Permission format: `permission=yes` or `permission=no`.
+- Permissions are separated by `;`.
+- To modify role properties (name, color), use `$modifyRole`.
+- To view the current permissions of a role, use `$rolePerms`.
+- Permissions that are not specified remain unchanged.

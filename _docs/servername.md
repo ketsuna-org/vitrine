@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverName
 syntax: $serverName
-description: Returns the nom of the server (guild) in thequel the command est executed.
+description: Returns the name of the server (guild) in which the command is executed.
 ---
 
 # $serverName[] — Name of the Server
 
-`$serverName[]` retourne the name of the server Discord in thequel the command est executed.
+`$serverName[]` returns the name of the Discord server in which the command is executed.
 
 ## Syntax
 
@@ -20,26 +20,26 @@ $serverName
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
-- **Type** : `string`
-- The name current of the server.
+- **Type**: `string`
+- The current name of the server.
 
-## Utilisation
+## Usage
 
-### Message of bienvenue
+### Welcome message
 
 ```bdfd
-$sendMessage[Bienvenue on **$serverName** ! Nous sommes hourux of vous count parmi nous.]
+$sendMessage[Welcome to **$serverName**! We are glad to have you with us.]
 ```
 
-### Embed with the nom of the server
+### Embed with the server name
 
 ```bdfd
-$title[$serverName — Règlement]
-$description[Merci of lire attentivement le règlement of $serverName.]
+$title[$serverName — Rules]
+$description[Please read the rules of $serverName carefully.]
 $color[#E74C3C]
 $sendEmbedMessage
 ```
@@ -47,21 +47,21 @@ $sendEmbedMessage
 ### Logs
 
 ```bdfd
-$log[The command was executed on the server : $serverName]
+$log[The command was executed on the server: $serverName]
 ```
 
 ### Condition on the name
 
 ```bdfd
-$if[$serverName==Mon Server]
-$sendMessage[Bienvenue on the server principal !]
+$if[$serverName==My Server]
+$sendMessage[Welcome to the main server!]
 $else
-$sendMessage[Bienvenue on $serverName !]
+$sendMessage[Welcome to $serverName!]
 $endif
 ```
 
 ## Notes
 
-- `$serverName[]` est un alias of `$guildName[]`.
-- The value retournée est dynamic : elle reflète the name current of the server, même s'il was changé récemment.
-- Utile pour personnaliser les messages en function of the server.
+- `$serverName[]` is an alias of `$guildName[]`.
+- The returned value is dynamic: it reflects the current name of the server, even if it was recently changed.
+- Useful for customizing messages based on the server.

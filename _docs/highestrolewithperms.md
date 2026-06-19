@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: highestRoleWithPerms
 syntax: $highestRoleWithPerms[permission1;permission2;...]
-description: Returns the ID of the role le plus haut of the user qui possède les permissions spécifiées.
+description: Returns the ID of the user's highest role that possesses the specified permissions.
 ---
 
 # $highestRoleWithPerms
 
-The function `$highestRoleWithPerms[]` retourne l'**ID of the role le plus élevé** of the user qui possède une or several permissions specifics.
+The `$highestRoleWithPerms` function returns the **ID of the highest role** of the user that has one or more specified permissions.
 
 ## Syntax
 
@@ -22,50 +22,50 @@ $highestRoleWithPerms[permission1;permission2;...]
 
 | Parameter | Description |
 |---|---|
-| `permissions` | Une or several permissions Discord, separatedes par points-virgules. Toutes les permissions listées must be présentes on the role. |
+| `permissions` | One or more Discord permissions, separated by semicolons. All listed permissions must be present on the role. |
 
 ## Return Value
 
-- **Type** : Snowflake (string numérique) or string vide
-- The ID of the role correspondant le plus haut
-- String vide si no role ne possède all permissions demandées
+- **Type**: Snowflake (numeric string) or empty string
+- The ID of the highest matching role.
+- An empty string if no role has all the requested permissions.
 
 ## Behavior
 
-- Parcourt les roles of the user of the plus haut to the plus bas.
-- Returns the **first** role (le plus haut) qui possède **all** les permissions spécifiées.
-- Les noms of permissions sont en anglais (nomenclature API Discord).
+- Checks the user's roles from highest to lowest.
+- Returns the **first** (highest) role that has **all** the specified permissions.
+- Permission names must be in English (Discord API terminology).
 
 ## Examples
 
-### Trouver the role modérateur
+### Find a moderator role
 
 ```bdfd
 $let[modRole;$highestRoleWithPerms[ManageMessages]]
 $if[$modRole!=]
-  $sendMessage[Votre role of modération : $roleName[$modRole]]
+  $sendMessage[Your moderation role: $roleName[$modRole]]
 $else
-  $sendMessage[Vous n'avez pas of role of modération.]
+  $sendMessage[You do not have a moderation role.]
 $endif
 ```
 
-### Vérifier the role admin
+### Check for admin role
 
 ```bdfd
 $if[$highestRoleWithPerms[Administrator]!=]
-  $sendMessage[Vous avez un role administrator.]
+  $sendMessage[You have an administrator role.]
 $endif
 ```
 
-### Role with permissions of ban
+### Role with ban permissions
 
 ```bdfd
 $let[banRole;$highestRoleWithPerms[BanMembers]]
 $if[$banRole!=]
-  $title[Role of ban]
+  $title[Ban Role]
   $description[
-  **Role :** $roleName[$banRole]
-  **ID :** $banRole
+  **Role:** $roleName[$banRole]
+  **ID:** $banRole
   ]
   $color[#ED4245]
   $sendMessage[]
@@ -74,6 +74,6 @@ $endif
 
 ## Notes
 
-- Les permissions sont cumulatives : the role doit avoir **all** les permissions listées.
-- Si vous voulez un role ayant **l'une or l'autre** permission, faites two calls separateds.
-- Pour the role le plus bas with ces permissions, utilisez `$lowestRoleWithPerms[]`.
+- Permissions are cumulative: the role must have **all** the listed permissions.
+- If you want a role that has **one or another** permission, make two separate calls.
+- To get the lowest role with these permissions, use `$lowestRoleWithPerms[]`.

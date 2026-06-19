@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: memberNick
 syntax: $memberNick
-description: Returns the pseudo (surnom) of the member on the server. Équivaslow to $nickname.
+description: Returns the nickname of the member on the server. Equivalent to $nickname.
 ---
 
 # $memberNick
 
-The variable `$memberNick` retourne le **pseudo (surnom)** of the member on the server current. Elle est équivaslowe to `$nickname`.
+The function `$memberNick` returns the **nickname** of the member on the current server. It is equivalent to `$nickname`.
 
 ## Syntax
 
@@ -20,35 +20,35 @@ $memberNick
 
 ## Return Value
 
-- **Type** : String of becauseactères
-- Le pseudo server of the member if set, otherwise une **string vide**
+- **Type** : String of characters
+- The server nickname of the member if set, otherwise an **empty string**
 
 ## Behavior
 
-- `$memberNick` ne prend **no argument**.
-- Functionnellement identical to `$nickname`.
-- Returns aiquement le pseudo **specific to the server**.
+- `$memberNick` takes **no arguments**.
+- Functionally identical to `$nickname`.
+- Returns only the nickname **specific to the server**.
 
 ## Examples
 
-### Message with pseudo
+### Message with nickname
 
 ```bdfd
 $if[$memberNick!=]
-  $sendMessage[Bonday $memberNick !]
+  $sendMessage[Hello $memberNick!]
 $else
-  $sendMessage[Bonday $userName !]
+  $sendMessage[Hello $userName!]
 $endif
 ```
 
-### Embed member
+### Member embed
 
 ```bdfd
-$title[Informations member]
+$title[Member Information]
 $author[$memberNick;$userAvatar]
 $description[
-**ID :** $memberID
-**Permissions :** $memberPerms
+**ID:** $memberID
+**Permissions:** $memberPerms
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -56,5 +56,6 @@ $sendMessage[]
 
 ## Notes
 
-- `$memberNick` and `$nickname` sont interchangeables.
-- Pour l'affichage général, `$displayName` est recommended because il ne retourne never une string vide.
+- `$memberNick` and `$nickname` are interchangeable.
+- For general display, `$displayName` is recommended because it never returns an empty string.
+

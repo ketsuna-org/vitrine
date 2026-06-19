@@ -29,29 +29,29 @@ When `errorMessage` is provided and the condition fails, the message is sent to 
 $onlyIf[condition]
 ```
 
-When no error message is provided and the condition fails, execution stops sislowly. The user receives no response. Use this when you want to sislowly reject invalid input without cluttering the chat.
+When no error message is provided and the condition fails, execution stops silently. The user receives no response. Use this when you want to silently reject invalid input without cluttering the chat.
 
 ## Common Patterns
 
 ### Permission Guards
 
 ```bdfd
-$onlyIf[$hasPerms[$authorID;BanMembers];❌ Permission BanMembers requirede.]
-$onlyIf[$authorID!=$mentioned[1];❌ Vous ne pouvez pas vous bannir vous-même.]
+$onlyIf[$hasPerms[$authorID;BanMembers];❌ BanMembers permission required.]
+$onlyIf[$authorID!=$mentioned[1];❌ You cannot ban yourself.]
 ```
 
 ### Input Validation
 
 ```bdfd
-$onlyIf[$isNumber[$message]==true;❌ Veuillez entrer un number.]
-$onlyIf[$message>=1;❌ The namebre must be >= 1.]
-$onlyIf[$message<=100;❌ The namebre must be <= 100.]
+$onlyIf[$isNumber[$message]==true;❌ Please enter a number.]
+$onlyIf[$message>=1;❌ The number must be >= 1.]
+$onlyIf[$message<=100;❌ The number must be <= 100.]
 ```
 
 ### Channel/Role Restrictions
 
 ```bdfd
-$onlyIf[$channelID==123456789012345678;❌ Cette command ne can be utilisée que in <#123456789012345678>.]
+$onlyIf[$channelID==123456789012345678;❌ This command can only be used in <#123456789012345678>.]
 ```
 
 ## Comparison with $if / $stop
@@ -59,14 +59,14 @@ $onlyIf[$channelID==123456789012345678;❌ Cette command ne can be utilisée que
 Without `$onlyIf`:
 ```
 $if[$hasPerms[$authorID;Administrator]==false]
-❌ Permission refusée.
+❌ Permission denied.
 $stop
 $endif
 ```
 
-With `$onlyIf` (equivaslow, cleaner):
+With `$onlyIf` (equivalent, cleaner):
 ```
-$onlyIf[$hasPerms[$authorID;Administrator];❌ Permission refusée.]
+$onlyIf[$hasPerms[$authorID;Administrator];❌ Permission denied.]
 ```
 
 `$onlyIf` is the idiomatic way to write guards — it is shorter, more readable, and signals intent clearly: "only continue if this condition holds."

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addThumbnail
 syntax: $addThumbnail[url;(description);(spoiler)]
-description: Ajoute an image miniature (thumbnail) inside of a section of container. Ce is not le thumbnail of an embed classique mais a component visual autonome.
+description: Adds a thumbnail image inside a container section. This is not the thumbnail of a classic embed but a standalone visual component.
 ---
 
-# $addThumbnail[] — Miniature Visualle
+# $addThumbnail[] — Visual Thumbnail
 
-`$addThumbnail[]` insère an image miniature in a section of container. Cette function ajoute a component of image autonome — distinct of the thumbnail of embed traditionnel set par `$thumbnail[]`.
+`$addThumbnail[]` inserts a thumbnail image in a container section. This function adds a standalone image component — distinct from the traditional embed thumbnail set by `$thumbnail[]`.
 
 ## Syntax
 
@@ -22,17 +22,17 @@ $addThumbnail[url;(description);(spoiler)]
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `url` | Yes | — | URL of the image (must be a URL valid). |
-| `description` | No | — | Text alternatif for the accessibilité. |
-| `spoiler` | No | `no` | `yes` pour hide the image. |
+| `url` | Yes | — | URL of the image (must be a valid URL). |
+| `description` | No | — | Alternative text for accessibility. |
+| `spoiler` | No | `no` | `yes` to hide the image. |
 
 ## Return value
 
-Ajoute the image miniature to la section courante of the container. The image est rendue en petit format.
+Adds the thumbnail image to the current section of the container. The image is rendered in a small format.
 
 ## Usage
 
-### Avatar user
+### User avatar
 
 ```bdfd
 $addContainer[profile;#5865F2;no]
@@ -41,42 +41,43 @@ $addThumbnail[$authorAvatar;Avatar of $username]
 $addField[User;$username;no]
 ```
 
-### Icon of server
+### Server icon
 
 ```bdfd
 $addContainer[server_info;#2ECC71;no]
 $addSection
-$addThumbnail[$serverIcon;Icon of the server]
+$addThumbnail[$serverIcon;Server icon]
 $addField[Server;$serverName;yes]
 $addField[Members;$membersCount;yes]
 ```
 
-### Image spoiler
+### Spoiler image
 
 ```bdfd
 $addContainer[secret_content;#E74C3C;no]
 $addSection
-$addThumbnail[$var[hidden_image];Image secrète;yes]
-$addTextDisplay[Cliquez pour révéler the image...]
+$addThumbnail[$var[hidden_image];Secret image;yes]
+$addTextDisplay[Click to reveal the image...]
 ```
 
-### Dans une mise en page complex
+### In a complex layout
 
 ```bdfd
 $addContainer[catalog;#9B59B6;no]
 
 $addSection
-$addThumbnail[https://cdn.example.com/item1.png;Épée of feu]
-$addField[Épée of feu;5000 or;yes]
+$addThumbnail[https://cdn.example.com/item1.png;Fire sword]
+$addField[Fire sword;5000 gold;yes]
 
 $addSection
-$addThumbnail[https://cdn.example.com/item2.png;Bouclier of glace]
-$addField[Bouclier of glace;3500 or;yes]
+$addThumbnail[https://cdn.example.com/item2.png;Ice shield]
+$addField[Ice shield;3500 gold;yes]
 ```
 
 ## Notes
 
-- Doit être utilisé in a section (`$addSection`) inside of a container (`$addContainer`).
-- Ne pas confondre with `$thumbnail[]` qui définit le thumbnail of an embed classique.
-- The URL must point vers an image accessible publicment (PNG, JPEG, GIF, WebP).
-- Pour a gallery of images multiple, use `$addMediaGallery[]`.
+- Must be used in a section (`$addSection`) inside a container (`$addContainer`).
+- Do not confuse this with `$thumbnail[]` which defines the thumbnail of a classic embed.
+- The URL must point to a publicly accessible image (PNG, JPEG, GIF, WebP).
+- For a gallery of multiple images, use `$addMediaGallery[]`.
+

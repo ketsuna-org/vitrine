@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: alternativeParsing
 syntax: $alternativeParsing
-description: Active un mode of parsing alternatif for the command in progress. Utile pour résoudre certains conflits of syntax or comportements inattendus of the parseur BDFD.
+description: Enables an alternative parsing mode for the current command. Useful for resolving certain syntax conflicts or unexpected behaviors of the BDFD parser.
 ---
 # $alternativeParsing
 
-The `$alternativeParsing` function active un **mode of parsing alternatif** for the command in progress. Ce mode utilise une logique of traitement differente qui peut résoudre problèmes of compatibilité.
+The `$alternativeParsing` function enables an **alternative parsing mode** for the current command. This mode uses a different processing logic that can resolve compatibility issues.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ $alternativeParsing
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
@@ -27,33 +27,33 @@ None.
 
 ## Behavior
 
-- Change la façon dont BDFD interprète and exécute the code of the command.
-- Peut résoudre bugs liés to the crochets `[]` imbriqués or to the becauseactères special.
-- Effet limité to la command in progress.
+- Changes how BDFD interprets and executes the command code.
+- Can resolve bugs related to nested brackets `[]` or special characters.
+- Effect is limited to the current command.
 
 ## Examples
 
-### Résoudre un confreads of crochets
+### Resolving a bracket conflict
 
 ```bdfd
 $alternativeParsing
 $sendMessage[$replaceText[Hello [World];[ ];-]]
 ```
 
-### Command with syntax complex
+### Command with complex syntax
 
 ```bdfd
 $alternativeParsing
-$if[$checkContains[$input;[==true]
-  $sendMessage[Contenu détecté.]
+$if[$checkContains[$message;[;]==true]
+  $sendMessage[Content detected.]
 $else
-  $sendMessage[Aucun contenu.]
+  $sendMessage[No content.]
 $endif
 ```
 
 ## Notes
 
-- À use when le parsing standard cause of errors inexpliquées.
-- Peut légèrement raslowir l'execution.
-- À placer en début of command, before tout autre code.
-- Alternative to `$optOff` for problèmes purement syntaxiques.
+- Use when standard parsing causes unexplained errors.
+- Can slightly slow down execution.
+- To be placed at the beginning of the command, before any other code.
+- Alternative to `$optOff` for purely syntax-related issues.

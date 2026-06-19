@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyBotChannelPerms
 syntax: $onlyBotChannelPerms[permission1;permission2;...;(errorMessage)]
-description: Function guard qui stops l'exécution si the bot ne possède pas les permissions spécifiées in the channel courant.
+description: A guard function that stops execution if the bot does not have the specified permissions in the current channel.
 ---
 
 # $onlyBotChannelPerms
 
-The function guard `$onlyBotChannelPerms` vérifie que le **bot** possède les permissions spécifiées **in the channel courant**. Contrairement to `$onlyBotPerms` qui vérifie les permissions globals to the server, this function vérifie les overwrites of channel.
+The guard function `$onlyBotChannelPerms` checks if the **bot** has the specified permissions **in the current channel**. Unlike `$onlyBotPerms` which checks server-wide permissions, this function respects channel permission overwrites.
 
 ## Syntax
 
@@ -22,46 +22,46 @@ $onlyBotChannelPerms[permission1;permission2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `permission1;permission2;...` | String[] | Permissions of channel que the bot doit avoir in ce channel. Separator `;`. |
-| `errorMessage` | String (optional) | Message sent si the bot manque of permissions. |
+| `permission1;permission2;...` | String[] | Channel permissions that the bot must have in this channel. Separator `;`. |
+| `errorMessage` | String (optional) | The message sent if the bot lacks any of the permissions. |
 
 ## Behavior
 
-- Checks les permissions effectives of the bot in the **channel où the command est executed**.
-- Prend en compte les overwrites of channel (permissions specifics modifiant l'héritage roles).
-- Si une permission manque, the command est interrompue.
-- Functionne even if the bot a la permission to the level server mais que le channel a un overwrite of refus.
+- Checks the effective permissions of the bot in the **channel where the command is executed**.
+- Takes channel overwrites into account (specific channel permissions modifying role inheritance).
+- If any permission is missing, the command execution is halted.
+- Works even if the bot has the permission server-wide, but the channel has a deny overwrite.
 
 ## Examples
 
-### Vérifier la capacité of envoyer embeds
+### Checking embed creation capability
 
 ```bdfd
-$onlyBotChannelPerms[SendMessages;EmbedLinks;❌ Je ne peux pas poster of embeds in ce channel.]
-$title[Annonce]
-$description[Ceci est une annonce importante.]
+$onlyBotChannelPerms[SendMessages;EmbedLinks;❌ I cannot post embeds in this channel.]
+$title[Announcement]
+$description[This is an important announcement.]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérifier les permissions vocales
+### Checking voice permissions
 
 ```bdfd
-$onlyBotChannelPerms[Connect;Speak;❌ Je n'ai pas accès to ce channel vocal.]
+$onlyBotChannelPerms[Connect;Speak;❌ I do not have access to this voice channel.]
 $joinVC[$voiceChannelID]
-$sendMessage[Connexion to the channel vocal...]
+$sendMessage[Connecting to the voice channel...]
 ```
 
-### Upload of files
+### File uploads
 
 ```bdfd
-$onlyBotChannelPerms[AttachFiles;❌ Je ne peux pas envoyer of files ici.]
-$attachment[./rapport.pdf]
-$sendMessage[Voici le rapport.]
+$onlyBotChannelPerms[AttachFiles;❌ I cannot send files here.]
+$attachment[./report.pdf]
+$sendMessage[Here is the report.]
 ```
 
 ## Notes
 
-- `$onlyBotChannelPerms` vérifie les permissions of **channel**, `$onlyBotPerms` vérifie les permissions of **server**.
-- Les permissions of channel incluent : `SendMessages`, `EmbedLinks`, `AttachFiles`, `AddReactions`, `UseExternalEmojis`, `Connect`, `Speak`, `Stream`, `UseVAD`, `PrioritySpeaker`, `MuteMembers`, `DeafenMembers`, `MoveMembers`, `ViewChannel`, `ReadMessageHistory`, `SendTTSMessages`, `UseApplicationCommands`, `ManageMessages`, `ManageChannels`, `CreateInstantInvite`, `UseEmbeddedActivities`.
-- Combinez with `$onlyBotPerms` for ae vérification complete (server + channel).
+- `$onlyBotChannelPerms` checks **channel** permissions, while `$onlyBotPerms` checks **server** permissions.
+- Channel permissions include: `SendMessages`, `EmbedLinks`, `AttachFiles`, `AddReactions`, `UseExternalEmojis`, `Connect`, `Speak`, `Stream`, `UseVAD`, `PrioritySpeaker`, `MuteMembers`, `DeafenMembers`, `MoveMembers`, `ViewChannel`, `ReadMessageHistory`, `SendTTSMessages`, `UseApplicationCommands`, `ManageMessages`, `ManageChannels`, `CreateInstantInvite`, `UseEmbeddedActivities`.
+- Combine with `$onlyBotPerms` for a complete check (server + channel).

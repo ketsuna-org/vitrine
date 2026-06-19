@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: categoryID
 syntax: $categoryID[(channelID)]
-description: Alias of $channelCategoryID. Returns the ID of the catégorie parente of a channel.
+description: Alias of $channelCategoryID. Returns the ID of the parent category of a channel.
 ---
 
 # $categoryID
 
-The `$categoryID` function est un **alias** of `$channelCategoryID`. Elle returns the ID of the catégorie to laquelle appartient the channel courant (or the channel spécifié).
+The `$categoryID` function is an **alias** of `$channelCategoryID`. It returns the ID of the category to which the current (or specified) channel belongs.
 
 ## Syntax
 
@@ -22,39 +22,39 @@ $categoryID[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the catégorie parente, or `""` if the channel is not in a catégorie. |
+| `snowflake` (string) | The ID of the parent category, or an empty string if the channel is not in a category. |
 
 ## Examples
 
-### Obtenir the ID of the catégorie
+### Get the ID of the category
 
 ```bdfd
-$sendMessage[ID catégorie : $categoryID]
+$sendMessage[Category ID: $categoryID]
 ```
 
-### Display the name of la catégorie
+### Display the name of the category
 
 ```bdfd
 $if[$categoryID!=]
-  $sendMessage[Catégorie : $channelName[$categoryID]]
+  $sendMessage[Category: $channelName[$categoryID]]
 $else
-  $sendMessage[Ce channel is not in a catégorie.]
+  $sendMessage[This channel is not in a category.]
 $endif
 ```
 
-### Listr les channels of la même catégorie
+### List channels in the same category
 
 ```bdfd
-$sendMessage[Autres channels in cette catégorie : $categoryChannels[$categoryID]]
+$sendMessage[Other channels in this category: $categoryChannels[$categoryID]]
 ```
 
 ## Notes
 
-- `$categoryID` and `$parentID` sont alias of `$channelCategoryID`.
-- Returns a string vide for channels hors catégorie and les DM.
+- `$categoryID` and `$parentID` are aliases of `$channelCategoryID`.
+- Returns an empty string for channels not in a category and DMs.

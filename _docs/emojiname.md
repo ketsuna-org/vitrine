@@ -10,7 +10,7 @@ description: Gets the name of a custom emoji from its ID. Returns the name text 
 
 # $emojiName
 
-The `$emojiName[]` function **récupérer the name of a custom emoji** from its ID Discord.
+The `$emojiName[]` function **retrieves the name of a custom emoji** from its Discord ID.
 
 ## Syntax
 
@@ -22,19 +22,19 @@ $emojiName[emojiID]
 
 | Parameter | Description |
 |---|---|
-| `emojiID` | The ID Discord of the emoji (les chiffres in `<:nom:ID>`). |
+| `emojiID` | The Discord ID of the emoji (the digits in `<:name:ID>`). |
 
 ## Return value
 
-- **Type** : String
-- The emoji name custom.
-- String vide if the emoji does not exist or is not accessible.
+- **Type**: String
+- The name of the custom emoji.
+- An empty string if the emoji does not exist or is not accessible.
 
 ## Behavior
 
-- Extracted the name since the ID of the emoji.
-- Functionne for emojis of any server accessible par the bot.
-- The ID can be extracted of a message contenant the emoji.
+- Extracts the name from the emoji's ID.
+- Works for emojis from any server that the bot has access to.
+- The ID can be extracted from a message containing the emoji.
 
 ## Examples
 
@@ -44,25 +44,25 @@ $emojiName[emojiID]
 $let[emojiID;$message[1]]
 $let[name;$emojiName[$emojiID]]
 $if[$name!=]
-  Emoji détecté : **$name** (ID: $emojiID)
+  Emoji detected: **$name** (ID: $emojiID)
 $else
-  Emoji non found.
+  Emoji not found.
 $endif
 ```
 
-### Log of emojis utilisés
+### Log of emojis used
 
 ```bdfd
 $let[id;$message[1]]
 $if[$id!=]
-  $sendMessage[$channelID[logs];📊 Emoji **$emojiName[$id]** utilisé par $userName in $channelName.]
+  $sendMessage[$channelID[logs];📊 Emoji **$emojiName[$id]** used by $userName in $channelName.]
 $endif
 ```
 
 ### List of emojis
 
 ```bdfd
-$title[📋 Emojis of the server]
+$title[📋 Server Emojis]
 $description[
 $textSplit[$serverEmojis[,];, ]
   $index. $splitText[$index] — $emojiName[$splitText[$index]]
@@ -73,6 +73,6 @@ $sendMessage[]
 
 ## Notes
 
-- Ne functionne qu'with the emojis customs, pas les emojis Unicode.
-- L'emoji must be on a server auquel the bot a accès.
-- Pratique for logs and les statistiques of usage of emojis.
+- Only works with custom emojis, not Unicode emojis.
+- The emoji must be on a server that the bot has access to.
+- Useful for logs and emoji usage statistics.

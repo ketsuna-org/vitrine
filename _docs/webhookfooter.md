@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookFooter
 syntax: $webhookFooter[text]
-description: Sets the text of the pied of page (footer) of the embed for the prochain message sent via $webhookSend.
+description: Sets the text of the footer of the embed for the next message sent via $webhookSend.
 ---
 
 # $webhookFooter
 
-The function `$webhookFooter[]` allows **define the pied of page** (footer) of the embed for the prochain message webhook.
+The `$webhookFooter` function allows you to **set the footer** of the embed for the next webhook message.
 
 ## Syntax
 
@@ -22,46 +22,46 @@ $webhookFooter[text]
 
 | Parameter | Description |
 |---|---|
-| `text` | Le text of the footer. Maximum 2048 becauseactères. Supports thes variables BDFD. |
+| `text` | The text of the footer. Maximum 2048 characters. Supports BDFD variables. |
 
 ## Return Value
 
-This function ne retourne pas of value. Elle définit le footer of the prochain embed.
+This function does not return a value. It only sets the footer of the next embed.
 
 ## Behavior
 
-- Le footer apparaît en bas of the embed, en text plus petit and grisé.
-- Idéal for the information of timestamp, signature or source.
-- Le footer est réinitialisé after each `$webhookSend[]`.
+- The footer appears at the bottom of the embed, in smaller, grayed-out text.
+- Ideal for timestamp information, signatures, or sources.
+- The footer is reset after each `$webhookSend`.
 
 ## Examples
 
-### Footer informatif
+### Informative footer
 
 ```bdfd
-$webhookTitle[Log of command]
+$webhookTitle[Command Log]
 $webhookDescription[
-**Command :** $commandName
-**User :** $username ($authorID)
-**Canal :** $channelName
+**Command:** $commandName
+**User:** $username ($authorID)
+**Channel:** $channelName
 ]
-$webhookFooter[Logger • $date[$day]/$date[$month]/$date[$year] to $date[$hour]:$date[$minute]]
+$webhookFooter[Logger • $date[$day]/$date[$month]/$date[$year] at $date[$hour]:$date[$minute]]
 $webhookColor[#5865F2]
 $webhookSend[$logHook;]
 ```
 
-### Footer of signature
+### Signature footer
 
 ```bdfd
-$webhookTitle[Bienvenue !]
-$webhookDescription[Bienvenue on **$serverName**, $username ! Nous sommes now $membersCount members !]
-$webhookFooter[Merci of lire le règlement in $channelName[$rulesChannelID]]
+$webhookTitle[Welcome!]
+$webhookDescription[Welcome to **$serverName**, $username! We are now $membersCount members!]
+$webhookFooter[Please read the rules in $channelName[$rulesChannelID]]
 $webhookColor[#57F287]
 $webhookSend[$welcomeHook;]
 ```
 
 ## Notes
 
-- Le footer est displayed en text plus petit and of couleur grise par Discord.
-- Maximum 2048 becauseactères.
-- Contrairement to the titre and to la description, le footer ne supporte pas le markdown.
+- The footer is displayed in smaller, gray text by Discord.
+- Maximum 2048 characters.
+- Unlike the title and description, the footer does not support markdown.

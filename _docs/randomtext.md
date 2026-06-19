@@ -32,7 +32,7 @@ A string corresponding to one of the options in the list, chosen randomly.
 
 - Each option has an equal probability of being selected.
 - Options are separated by semicolons (`;`).
-- All characters are allowed in options, but be becauseeful with the semicolon which acts as a separator.
+- All characters are allowed in options, but be careful with the semicolon which acts as a separator.
 
 ## Examples
 

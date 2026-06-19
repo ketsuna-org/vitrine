@@ -5,11 +5,12 @@ translation_key: docs
 category: "Components"
 function_name: editButton
 syntax: $editButton[idOrUrl;label;(style);(disabled);(emoji)]
-description: Modifies a button existing of a message. Allows changer le label, le style, the state disabled and the emoji of a button.
+description: Modifies an existing button on a message. Allows changing the label, style, disabled state, and emoji of a button.
 ---
+
 # $editButton
 
-The `$editButton[]` function **modifier a button** existing on a message.
+The `$editButton[]` function **modifies a button** that already exists on a message.
 
 ## Syntax
 
@@ -21,41 +22,41 @@ $editButton[idOrUrl;label;(style);(disabled);(emoji)]
 
 | Parameter | Description |
 |---|---|
-| `idOrUrl` | Custom ID of the bouton (or URL for Link buttons). |
-| `label` | New text displayed on the bouton. |
-| `style` | *(Optional)* Style : `primary`, `secondary`, `success`, `danger`, `link`. |
-| `disabled` | *(Optional)* `true` pour griser le bouton, `false` (default). |
+| `idOrUrl` | Custom ID of the button (or URL for Link buttons). |
+| `label` | New text displayed on the button. |
+| `style` | *(Optional)* Style: `primary`, `secondary`, `success`, `danger`, `link`. |
+| `disabled` | *(Optional)* `true` to disable the button, `false` by default. |
 | `emoji` | *(Optional)* Emoji to display to the left of the label. |
 
 ## Behavior
 
-- Le bouton ciblé doit exister in the message in progress of édition.
-- La modification est appliquée during l'édition of the message (via `$editMessage` or similar).
+- The target button must exist in the message currently being edited.
+- The modification is applied during the message editing process (via `$editMessage` or similar).
 - All parameters except `idOrUrl` and `label` are optional.
 
 ## Examples
 
-### Désenable a button after clic
+### Disable a button after click
 
 ```bdfd
-$editButton[accept;✅ Accepté;success;true;✅]
-$editButton[refuse;❌ Refusé;danger;true;❌]
+$editButton[accept;✅ Accepted;success;true;✅]
+$editButton[refuse;❌ Refused;danger;true;❌]
 ```
 
-### Changer le style of a button
+### Changing the style of a button
 
 ```bdfd
-$editButton[action;In progress...;secondary;true;⏳]
+$editButton[action;Processing...;secondary;true;⏳]
 ```
 
-### Réinitialiser a button
+### Resetting a button
 
 ```bdfd
-$editButton[reset;🔄 Recommencer;primary;false;🔄]
+$editButton[reset;🔄 Restart;primary;false;🔄]
 ```
 
 ## Notes
 
-- Works with `$onInteraction` for mises to day dynamics.
-- For Link buttons, use the URL like first parameter.
-- Use with `$editMessage` pour appliquer les changements.
+- Works with `$onInteraction` for dynamic updates.
+- For Link buttons, use the URL as the first parameter.
+- Use with `$editMessage` to apply the changes.

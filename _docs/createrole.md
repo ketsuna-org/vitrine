@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: createRole
 syntax: $createRole[name;(color);(hoist);(mentionable)]
-description: Creates a new role on the server Discord.
+description: Creates a new role on the Discord server.
 ---
 
 # $createRole
 
-The `$createRole` function **crée un new role** on the server Discord and retourne its ID. The bot must have the permission `ManageRoles`.
+The `$createRole` function **creates a new role** on the Discord server and returns its ID. The bot must have the `ManageRoles` permission.
 
 ## Syntax
 
@@ -23,55 +23,55 @@ $createRole[name;(color);(hoist);(mentionable)]
 | Parameter | Description |
 |---|---|
 | `name` | The name of the role to create. Required. |
-| `color` | Optional. Hex coloradecimale (ex: `"#FF0000"`, `"#3498DB"`). |
-| `hoist` | Optional. `"yes"` to display separatedment in the list members. Default `"no"`. |
-| `mentionable` | Optional. `"yes"` pour rendre the role mentionnable. Default `"no"`. |
+| `color` | Optional. Hex color (e.g., `"#FF0000"`, `"#3498DB"`). |
+| `hoist` | Optional. `"yes"` to display separately in the member list. Default `"no"`. |
+| `mentionable` | Optional. `"yes"` to make the role mentionable. Default `"no"`. |
 
 ## Return value
 
-- **Type** : ID of the role created
-- The ID can be stored in a variable for ae usage ultérieure.
+- **Type**: ID of the created role
+- The ID can be stored in a variable for future use.
 
 ## Examples
 
-### Création simple
+### Simple creation
 
 ```bdfd
 $createRole[Member VIP]
-$sendMessage[✅ Role "Member VIP" created !]
+$sendMessage[✅ Role "Member VIP" created!]
 ```
 
-### Création with all options
+### Creation with all options
 
 ```bdfd
 $var[newRole;$createRole[Staff;#E74C3C;yes;yes]]
 $giveRole[$authorID;$var[newRole]]
-$sendMessage[Role Staff created and attribué !]
+$sendMessage[Staff role created and assigned!]
 ```
 
-### Création with conditions
+### Creation with conditions
 
 ```bdfd
 $if[$isAdmin==true]
   $var[role;$createRole[$message[1];$message[2];no;no]]
-  $sendMessage[Role created with the ID : $var[role]]
+  $sendMessage[Role created with the ID: $var[role]]
 $else
-  $sendMessage[Permission refusée.]
+  $sendMessage[Permission denied.]
 $endif
 ```
 
-### Créer a role of couleur
+### Create a colored role
 
 ```bdfd
-$createRole[Couleur Custome;#9B59B6;no;no]
-$sendMessage[Role of couleur created !]
+$createRole[Custom Color;#9B59B6;no;no]
+$sendMessage[Colored role created!]
 ```
 
 ## Notes
 
-- The bot must have the permission `ManageRoles`.
-- The name of the role is required, les autres parameters are optional.
-- The color must be in the format hexadecimal `#RRGGBB`.
-- `hoist` : displays thes members of the role in a section separatede of la list members.
-- `mentionable` : allows mentionner the role with `@role`.
-- Use le return (ID of the role) with `$giveRole` pour attribuer immediately le new role.
+- The bot must have the `ManageRoles` permission.
+- The name of the role is required; the other parameters are optional.
+- The color must be in the hexadecimal format `#RRGGBB`.
+- `hoist`: displays the members of the role in a separate section of the member list.
+- `mentionable`: allows mentioning the role with `@role`.
+- Use the returned value (ID of the role) with `$giveRole` to assign the new role immediately.

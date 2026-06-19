@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: modifyRole
 syntax: $modifyRole[roleID;name;(color);(hoist);(mentionable)]
-description: Modifies thes propertys of a role existing.
+description: Modifies the properties of an existing role.
 ---
 
 # $modifyRole
 
-The function `$modifyRole` **modifie les propertys of a role existing** (nom, couleur, affichage, mentionnabilité). The bot doit avoir la permission `ManageRoles`.
+The function `$modifyRole` **modifies the properties of an existing role** (name, color, display, mentionability). The bot must have the `ManageRoles` permission.
 
 ## Syntax
 
@@ -22,54 +22,54 @@ $modifyRole[roleID;name;(color);(hoist);(mentionable)]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role to modifier. Required. |
-| `name` | Le new nom of the role. Required. |
-| `color` | Optional. New couleur hexadecimale. |
-| `hoist` | Optional. `"yes"` or `"no"` for the affichage separated. |
-| `mentionable` | Optional. `"yes"` or `"no"` for the mentionnabilité. |
+| `roleID` | The ID of the role to modify. Required. |
+| `name` | The new name of the role. Required. |
+| `color` | Optional. New hex color code. |
+| `hoist` | Optional. `"yes"` or `"no"` to display role members separately from online members. |
+| `mentionable` | Optional. `"yes"` or `"no"` to make the role mentionable. |
 
 ## Return Value
 
-Aucune. The propertys of the role sont mises to day.
+None. The properties of the role are updated.
 
 ## Examples
 
-### Renommer un role
+### Renaming a role
 
 ```bdfd
 $modifyRole[$roleID[VIP];Super VIP]
-$sendMessage[✅ Role renommé en "Super VIP".]
+$sendMessage[✅ Role renamed to "Super VIP".]
 ```
 
-### Changer the color
+### Changing the color
 
 ```bdfd
 $modifyRole[$roleID[Staff];Staff;#FFD700]
-$sendMessage[✅ Couleur of the role Staff changée en or.]
+$sendMessage[✅ Color of the Staff role changed to gold.]
 ```
 
-### Modification complete
+### Modifying all properties
 
 ```bdfd
-$modifyRole[$roleID[Modérateur];Modérateur;#E74C3C;yes;yes]
-$sendMessage[✅ Role Modérateur entièrement mis to day.]
+$modifyRole[$roleID[Moderator];Moderator;#E74C3C;yes;yes]
+$sendMessage[✅ Moderator role fully updated.]
 ```
 
-### Command of modification
+### Modification command
 
 ```bdfd
 $if[$isAdmin==true]
   $modifyRole[$roleID[$message[1]];$message[2];$message[3]]
   $sendMessage[Role modified.]
 $else
-  $sendMessage[Permission refusée.]
+  $sendMessage[Permission denied.]
 $endif
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ManageRoles`.
-- The parameter `name` est required even if vous ne changez pas the name.
-- Pour modifier only les permissions, utilisez `$modifyRolePerms`.
-- Pour create a new role, utilisez `$createRole`.
-- Pour supprimer un role, utilisez `$deleteRole`.
+- The bot must have the `ManageRoles` permission.
+- The `name` parameter is required even if you are not changing the name.
+- To modify only the permissions, use `$modifyRolePerms`.
+- To create a new role, use `$createRole`.
+- To delete a role, use `$deleteRole`.

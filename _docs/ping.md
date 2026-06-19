@@ -28,7 +28,7 @@ A number representing the WebSocket latency in milliseconds.
 
 | Latency | Status |
 |---------|--------|
-| < 100 ms | Excelslow |
+| < 100 ms | Excellent |
 | 100-200 ms | Good |
 | 200-400 ms | Average |
 | > 400 ms | High |

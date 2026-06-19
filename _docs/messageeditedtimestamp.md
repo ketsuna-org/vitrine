@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: messageEditedTimestamp
 syntax: $messageEditedTimestamp
-description: Returns the timestamp of la last édition of the message déclencheur, or une string vide si non édité.
+description: Returns the timestamp of the last edit of the triggering message, or an empty string if it has not been edited.
 ---
 
 # $messageEditedTimestamp
 
-The function `$messageEditedTimestamp` retourne le **timestamp of la last édition** of the message déclencheur. Si the message n'a never été édité, elle retourne une string vide.
+The function `$messageEditedTimestamp` returns the **timestamp of the last edit** of the triggering message. If the message has never been edited, it returns an empty string.
 
 ## Syntax
 
@@ -20,44 +20,45 @@ $messageEditedTimestamp
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` or `""` | Timestamp en milliseconds, or string vide si the message n'a pas été édité. |
+| `integer` or `""` | Timestamp in milliseconds, or an empty string if the message has not been edited. |
 
 ## Examples
 
-### Display la date of édition
+### Display the edit date
 
 ```bdfd
 $if[$messageEditedTimestamp!=]
-  $sendMessage[Message édité le $formatDate[$messageEditedTimestamp;DD/MM/YYYY to HH:mm]]
+  $sendMessage[Message edited on $formatDate[$messageEditedTimestamp;MM/DD/YYYY at HH:mm]]
 $else
-  $sendMessage[Message original (non édité).]
+  $sendMessage[Original message (not edited).]
 $endif
 ```
 
-### Display en format relatif
+### Display in relative format
 
 ```bdfd
 $if[$messageEditedTimestamp!=]
-  $sendMessage[Édité <t:$truncate[$messageEditedTimestamp/1000]:R>]
+  $sendMessage[Edited <t:$truncate[$messageEditedTimestamp/1000]:R>]
 $endif
 ```
 
-### Log éditions
+### Log edits
 
 ```bdfd
 $if[$messageEditedTimestamp!=]
-  $channelSendMessage[$channelIDFromName[logs];$username a édité son message (ID: $messageID) le $formatDate[$messageEditedTimestamp;DD/MM/YYYY HH:mm]]
+  $channelSendMessage[$channelIDFromName[logs];$username edited their message (ID: $messageID) on $formatDate[$messageEditedTimestamp;MM/DD/YYYY HH:mm]]
 $endif
 ```
 
 ## Notes
 
-- Returns ae string **vide** (`""`) si never édité, pas `0`.
-- Utilisez `$isMessageEdited` for a test booléadditionally simple.
-- Le timestamp est en milliseconds ; divisez par `1000` for the seconds.
+- Returns an **empty** string (`""`) if never edited, not `0`.
+- Use `$isMessageEdited` for a simpler boolean test.
+- The timestamp is in milliseconds; divide by `1000` for seconds.
+

@@ -13,14 +13,14 @@ $onlyIfMessageContains is a convenience guard that checks whether the user's ent
 
 1. The function checks if `text` appears anywhere within `$message` (the full user message).
 2. If the text **is found** → execution continues.
-3. If the text is **not found** → execution stops sislowly (no message is sent).
+3. If the text is **not found** → execution stops silently (no message is sent).
 
 The matching is **case-sensitive** and works like a simple substring search. For example, `$onlyIfMessageContains[hello]` will match `hello world` but not `Hello World` or `hell`.
 
 ## When to Use
 
 - **Quick keyword gates**: require that the message mentions a specific word before processing.
-- **Format validation**: ensure the message contains expected delimitrs or markers (like `@` for mentions, `#` for channels, etc.).
+- **Format validation**: ensure the message contains expected delimiters or markers (like `@` for mentions, `#` for channels, etc.).
 - **Category filtering**: route commands based on message content tags.
 
 ## When Not to Use
@@ -38,7 +38,7 @@ $stop
 $endif
 ```
 
-With `$onlyIfMessageContains` (equivaslow, cleaner):
+With `$onlyIfMessageContains` (equivalent, cleaner):
 ```
 $onlyIfMessageContains[!admin]
 ```

@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addStringSelect
 
-Creates a select menu of type "string" — a menu déroulant with of options textuelles prédéfinies.
+Creates a select menu of type "string" — a dropdown menu with predefined text options.
 
 ## Syntax
 
@@ -19,48 +19,48 @@ $addStringSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
 | `customId` | Custom identifier for the interaction | Yes |
-| `placeholder` | Text displayed when rien n'est selectionné | Yes |
-| `minValues` | Minimum number of options to selectionner (default: 1) | No |
-| `maxValues` | Maximum number of options to selectionner (default: 1) | No |
-| `disabled` | `true` to disable le menu, `false` (default) | No |
+| `placeholder` | Text displayed when nothing is selected | Yes |
+| `minValues` | Minimum number of options to select (default: 1) | No |
+| `maxValues` | Maximum number of options to select (default: 1) | No |
+| `disabled` | `true` to disable the menu, `false` (default) | No |
 
 ## Description
 
-A **string select** est un select menu où les options sont strings of becauseactères définies par le développeur. Après avoir created le menu with `$addStringSelect`, ajoutez les options with `$addStringSelectOption`.
+A **string select** is a select menu where the options are character strings defined by the developer. After creating the menu with `$addStringSelect`, add options using `$addStringSelectOption`.
 
-Contrairement to `$newSelectMenu` + `$addSelectMenuOption`, `$addStringSelect` and `$addStringSelectOption` utilisent une API simplifiée où le `menuId` is optional in `$addStringSelectOption`.
+Unlike `$newSelectMenu` + `$addSelectMenuOption`, `$addStringSelect` and `$addStringSelectOption` use a simplified API where the `menuId` is optional in `$addStringSelectOption`.
 
 ## Examples
 
-### Menu simple
+### Simple menu
 
 ```
-$addStringSelect[menu_pays;Choisissez un pays]
+$addStringSelect[menu_pays;Choose a country]
 $addStringSelectOption[France;fr]
-$addStringSelectOption[Belgique;be]
-$addStringSelectOption[Suisse;ch]
+$addStringSelectOption[Belgium;be]
+$addStringSelectOption[Switzerland;ch]
 $addStringSelectOption[Canada;ca]
-$sendMessage[Selectionnez votre pays]
+$sendMessage[Select your country]
 ```
 
-### Menu to selection multiple
+### Menu with multiple selection
 
 ```
-$addStringSelect[menu_hobbies;Vos loisirs;1;5]
-$addStringSelectOption[Lecture;reading;;📚]
+$addStringSelect[menu_hobbies;Your hobbies;1;5]
+$addStringSelectOption[Reading;reading;;📚]
 $addStringSelectOption[Sport;sport;;⚽]
-$addStringSelectOption[Musique;music;;🎵]
-$addStringSelectOption[Jeux vidéo;gaming;;🎮]
-$addStringSelectOption[Cinéma;cinema;;🎬]
-$sendMessage[Quels sont vos loisirs ?]
+$addStringSelectOption[Music;music;;🎵]
+$addStringSelectOption[Video games;gaming;;🎮]
+$addStringSelectOption[Cinema;cinema;;🎬]
+$sendMessage[What are your hobbies?]
 ```
 
 ### Disabled menu
 
 ```
-$addStringSelect[menu_indispo;Inavailable;1;1;true]
+$addStringSelect[menu_indispo;Unavailable;1;1;true]
 $addStringSelectOption[Option A;a]
-$sendMessage[Ce menu est temporarily désenabled]
+$sendMessage[This menu is temporarily disabled]
 ```
 
 ## Handling the interaction
@@ -68,12 +68,13 @@ $sendMessage[Ce menu est temporarily désenabled]
 ```
 $onInteraction
 $if[$customID==menu_pays]
-  $sendMessage[Vous avez choisi : $message]
+  $sendMessage[You chose: $message]
 $endif
 ```
 
 ## Notes
 
-- Les options sont ajoutées with `$addStringSelectOption`.
-- Maximum 25 options par menu.
-- Use `$addActionRow` to placer le menu on a row specific.
+- Options are added using `$addStringSelectOption`.
+- Maximum of 25 options per menu.
+- Use `$addActionRow` to place the menu on a specific row.
+

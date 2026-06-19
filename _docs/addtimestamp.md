@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addTimestamp
 syntax: $addTimestamp[(timestamp);(embedIndex)]
-description: Adds a timestamp (timestamp) en bas of a Discord embed. Par default, displays the date and the hour currentles.
+description: Adds a timestamp at the bottom of a Discord embed. By default, it displays the current date and time.
 ---
 
 # $addTimestamp[]
 
-The `$addTimestamp[]` function ajoute un **timestamp** (timestamp) in the pied of the Discord embed. Par default, il displays the date and the hour currentles. The timestamp is displayed en bas of the embed, next to of the footer s'it is présent.
+The `$addTimestamp[]` function adds a **timestamp** to the footer of a Discord embed. By default, it displays the current date and time. The timestamp is displayed at the bottom of the embed, next to the footer if it is present.
 
 ## Syntax
 
@@ -22,36 +22,36 @@ $addTimestamp[(timestamp);(embedIndex)]
 
 | Parameter | Description |
 |---|---|
-| `timestamp` | Optional. `now` (by default) for the hour currentle, or a timestamp Unix en seconds for ae date specific. |
-| `embedIndex` | Optional. Index of the embed ciblé (0 by default). |
+| `timestamp` | Optional. `now` (by default) for the current time, or a Unix timestamp in seconds for a specific date. |
+| `embedIndex` | Optional. Index of the targeted embed (0 by default). |
 
 ## Return value
 
-Modifies the response in progress of construction. Returns nothing.
+Modifies the response currently being constructed. Returns nothing.
 
 ## Behavior
 
-- If no parameter n'is provided (`$addTimestamp`), the date and the hour currentles are used.
-- Le timestamp s'displays en bas of the embed, sous les fields and the footer.
-- Discord formate automatically le timestamp in the fuseau horaire of the user qui le voit.
+- If no parameter is provided (`$addTimestamp`), the current date and time are used.
+- The timestamp is displayed at the bottom of the embed, below the fields and the footer.
+- Discord automatically formats the timestamp in the timezone of the user viewing it.
 
 ## Examples
 
-### Timestamp current
+### Current timestamp
 
 ```bdfd
 $title[Logs]
-$description[Une action of modération has been effectuée.]
+$description[A moderation action has been performed.]
 $addTimestamp
 $color[#ED4245]
 $sendMessage[]
 ```
 
-### Timestamp with date specific
+### Timestamp with a specific date
 
 ```bdfd
-$title[Event passé]
-$description[Cet event a eu lieu le 19 novembre 2023.]
+$title[Past Event]
+$description[This event took place on November 19, 2023.]
 $addTimestamp[1700000000]
 $color[#5865F2]
 $sendMessage[]
@@ -60,10 +60,10 @@ $sendMessage[]
 ### Timestamp with footer
 
 ```bdfd
-$title[Bienvenue !]
+$title[Welcome!]
 $description[
-Bienvenue on the server **$serverName**, $username !
-Nous sommes ravis of t'accueillir parmi nous.
+Welcome to the server **$serverName**, $username!
+We are delighted to welcome you among us.
 ]
 $footer[$serverName;$serverIcon]
 $addTimestamp
@@ -71,16 +71,16 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Embed of log with timestamp dynamic
+### Log embed with a dynamic timestamp
 
 ```bdfd
 $title[🔨 Moderation Log]
 $description[
-**Modérateur :** $username
-**Action :** Kick
-**Reason :** Non-respect règles
+**Moderator:** $username
+**Action:** Kick
+**Reason:** Breaking the rules
 ]
-$addField[User concerné;$var[target];yes]
+$addField[Target user;$var[target];yes]
 $addField[ID;$var[targetID];yes]
 $footer[Moderation Bot v2.0]
 $addTimestamp
@@ -90,7 +90,8 @@ $sendMessage[]
 
 ## Notes
 
-- Le timestamp est automatically localisé par Discord according to the fuseau horaire of each user.
-- Use `$getTimestamp[]` to obtain un timestamp Unix current to passer like parameter.
-- Combinez with `$footer[]` for a pied of embed complete (text + icon + timestamp).
-- Le format of affichage (relatif "there are 2 hours" or absolu "19/11/2023") dépend of la version of Discord of the destinataire.
+- The timestamp is automatically localized by Discord according to each user's timezone.
+- Use `$getTimestamp` to obtain the current Unix timestamp to pass as a parameter.
+- Combine this with `$footer[]` for a complete embed footer (text + icon + timestamp).
+- The display format (relative like "2 hours ago" or absolute like "11/19/2023") depends on the recipient's Discord client version.
+

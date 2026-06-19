@@ -5,14 +5,14 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverRegion
 syntax: $serverRegion
-description: Returns the région vocale of the server Discord (obsolète — Discord utilise désormais le système of régions automatiques par canal vocal).
+description: Returns the voice region of the Discord server (deprecated — Discord now uses automatic voice regions per channel).
 ---
 
-# $serverRegion[] — Région of the Server
+# $serverRegion[] — Server Region
 
-`$serverRegion[]` retourne la région vocale configurede for the server Discord.
+`$serverRegion[]` returns the configured voice region for the Discord server.
 
-> **Note** : Dethen la mise to day of Discord en 2023, la région n'est plus configurede to the level of the server mais to the level of each canal vocal individualment. This function peut therefore retourner "automatic" on the plupart servers modernes.
+> **Note**: Since Discord's 2023 update, the region is no longer configured at the server level but at the individual voice channel level instead. This function may therefore return "automatic" on most modern servers.
 
 ## Syntax
 
@@ -22,28 +22,28 @@ $serverRegion
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
-- **Type** : `string`
-- La région of the server (ex: `"europe"`, `"us-west"`, `"automatic"`, etc.).
+- **Type**: `string`
+- The region of the server (e.g., `"europe"`, `"us-west"`, `"automatic"`, etc.).
 
-## Utilisation
+## Usage
 
-### Affichage simple
+### Simple display
 
 ```bdfd
-$sendMessage[🌍 Région : $serverRegion]
+$sendMessage[🌍 Region: $serverRegion]
 ```
 
-### Embed informatif
+### Informative embed
 
 ```bdfd
-$title[Informations on $serverName]
-$addField[Région;$serverRegion;yes]
-$addField[Level of vérification;$serverVerificationLevel;yes]
-$addField[Level of boost;$boostLevel;yes]
+$title[Information on $serverName]
+$addField[Region;$serverRegion;yes]
+$addField[Verification Level;$serverVerificationLevel;yes]
+$addField[Boost Level;$boostLevel;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
 $sendEmbedMessage
@@ -52,12 +52,12 @@ $sendEmbedMessage
 ### Logs
 
 ```bdfd
-$log[Server $serverName — Région : $serverRegion]
+$log[Server $serverName — Region: $serverRegion]
 ```
 
 ## Notes
 
-- La région détermine la localisation géographique servers vocaux, ce qui affecte la latence.
-- **Obsolète** : Discord a migré vers un système of régions automatiques par canal vocal. The value retournée peut ne plus être pertinente.
-- Values possibles historiques : `brazil`, `europe`, `hongkong`, `india`, `japan`, `russia`, `singapore`, `southafrica`, `sydney`, `us-central`, `us-east`, `us-south`, `us-west`.
-- Pour les servers récents, the value sera generally `"automatic"`.
+- The region determines the geographical location of voice servers, which affects latency.
+- **Deprecated**: Discord migrated to a system of automatic regions per voice channel. The returned value may no longer be relevant.
+- Historically possible values: `brazil`, `europe`, `hongkong`, `india`, `japan`, `russia`, `singapore`, `southafrica`, `sydney`, `us-central`, `us-east`, `us-south`, `us-west`.
+- For recent servers, the value will generally be `"automatic"`.

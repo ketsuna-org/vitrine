@@ -5,14 +5,14 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverSplash
 syntax: $serverSplash
-description: Returns the URL of the image of fond of invite (splash) of the server Discord. Available only for the servers partenaires or vérifiés with a level of boost suffisant.
+description: Returns the URL of the invite splash image of the Discord server. Available only for partnered or verified servers with a sufficient boost level.
 ---
 
-# $serverSplash[] — Image of Invite of the Server
+# $serverSplash[] — Server Invite Splash Image
 
-`$serverSplash[]` retourne the URL of the image of fond qui s'displays on the page of invite Discord of the server (when a user clique on a link of invite).
+`$serverSplash[]` returns the URL of the background image that appears on the Discord invite page of the server (when a user clicks an invite link).
 
-> **Prérequired** : This functionnalité est réservée to the servers partenaires Discord or vérifiés, with a level of boost suffisant.
+> **Prerequisite**: This feature is reserved for Discord partnered or verified servers, or servers with a sufficient boost level.
 
 ## Syntax
 
@@ -22,29 +22,29 @@ $serverSplash
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
-- **Type** : `string`
-- The URL of the image splash, or une string vide si non available.
+- **Type**: `string`
+- The URL of the splash image, or an empty string if not available.
 
-## Utilisation
+## Usage
 
-### Affichage simple
+### Simple display
 
 ```bdfd
 $if[$serverSplash!=]
-$sendMessage[Splash of invite : $serverSplash]
+$sendMessage[Invite splash: $serverSplash]
 $else
-$sendMessage[Ce server n'a pas of splash of invite.]
+$sendMessage[This server does not have an invite splash image.]
 $endif
 ```
 
 ### Embed with splash
 
 ```bdfd
-$title[$serverName — Rejoignez-nous !]
+$title[$serverName — Join us!]
 $description[$serverDescription]
 $image[$serverSplash]
 $thumbnail[$serverIcon]
@@ -52,13 +52,13 @@ $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Page of invite custome
+### Custom invite page
 
 ```bdfd
 $title[🌟 Invite — $serverName]
-$description[Vous êtes invité to rejoindre $serverName !]
+$description[You are invited to join $serverName!]
 $image[$serverSplash]
-$addField[Link of invite;discord.gg/$serverVanityURL;yes]
+$addField[Invite Link;discord.gg/$serverVanityURL;yes]
 $addField[Members;$membersCount;yes]
 $color[#9B59B6]
 $sendEmbedMessage
@@ -66,7 +66,7 @@ $sendEmbedMessage
 
 ## Notes
 
-- L'image splash est distincte of la banner : elle apparaît specifically on the page of invite.
-- Réservée to the servers partenaires or vérifiés (badge Partenaire or Vérifié).
-- Si the server is not éligible, the function retourne une string vide.
-- Dimensions recommendedes : 1920x1080px (ratio 16:9).
+- The splash image is distinct from the server banner: it specifically appears on the invite page.
+- Reserved for partnered or verified servers (Partner or Verified badge), or those with sufficient boosts.
+- If the server is not eligible or has no splash image, the function returns an empty string.
+- Recommended dimensions: 1920x1080px (16:9 ratio).

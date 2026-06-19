@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $newSelectMenu
 
-Creates a new menu of sélection (select menu) in the ligne of action courante. A select menu allows to the user of choisir parmi une list of options prédéfinies.
+Creates a new select menu in the current action row. A select menu allows users to choose from a list of predefined options.
 
 ## Syntax
 
@@ -18,53 +18,53 @@ $newSelectMenu[customId;placeholder;(minValues);(maxValues)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customId` | Identifier custom for the interaction | Yes |
-| `placeholder` | Text displayed when noe option n'est selectede | Yes |
-| `minValues` | Number minimum of options sélectionnables (default: 1) | No |
-| `maxValues` | Number maximum of options sélectionnables (default: 1) | No |
+| `customId` | Custom identifier for the interaction | Yes |
+| `placeholder` | Text displayed when no option is selected | Yes |
+| `minValues` | Minimum number of options that must be chosen (default: 1) | No |
+| `maxValues` | Maximum number of options that can be chosen (default: 1) | No |
 
 ## Description
 
-`$newSelectMenu` initialise un menu déroulant in the message. Après l'avoir created, utilisez `$addSelectMenuOption` pour ajouter options. The menu est then sent with `$sendMessage`.
+`$newSelectMenu` initializes a drop-down menu in the message. After creating it, use `$addSelectMenuOption` to add options. The menu is then sent along with a message.
 
 ## Examples
 
-### Menu simple
+### Simple Menu
 
-```
-$newSelectMenu[menu_couleur;Choisissez une couleur]
-$addSelectMenuOption[menu_couleur;Rouge;red;The color rouge;🔴]
-$addSelectMenuOption[menu_couleur;Bleu;blue;The color bleue;🔵]
-$addSelectMenuOption[menu_couleur;Vert;green;The color verte;🟢]
-$sendMessage[Sélectionnez votre couleur préférée]
-```
-
-### Menu to sélection multiple
-
-```
-$newSelectMenu[menu_fruits;Choisissez vos fruits;1;3]
-$addSelectMenuOption[menu_fruits;Pomme;apple;;🍎]
-$addSelectMenuOption[menu_fruits;Banane;banana;;🍌]
-$addSelectMenuOption[menu_fruits;Orange;orange;;🍊]
-$addSelectMenuOption[menu_fruits;Raisin;grape;;🍇]
-$addSelectMenuOption[menu_fruits;Fraise;strawberry;;🍓]
-$sendMessage[Sélectionnez 1 to 3 fruits]
+```bdfd
+$newSelectMenu[color_menu;Choose a color]
+$addSelectMenuOption[color_menu;Red;red;The color red;🔴]
+$addSelectMenuOption[color_menu;Blue;blue;The color blue;🔵]
+$addSelectMenuOption[color_menu;Green;green;The color green;🟢]
+$sendMessage[Select your favorite color]
 ```
 
-## Gestion of l'interaction
+### Multiple Selection Menu
 
-Utilisez `$onInteraction` pour traiter la sélection :
-
+```bdfd
+$newSelectMenu[fruits_menu;Choose your fruits;1;3]
+$addSelectMenuOption[fruits_menu;Apple;apple;;🍎]
+$addSelectMenuOption[fruits_menu;Banana;banana;;🍌]
+$addSelectMenuOption[fruits_menu;Orange;orange;;🍊]
+$addSelectMenuOption[fruits_menu;Grape;grape;;🍇]
+$addSelectMenuOption[fruits_menu;Strawberry;strawberry;;🍓]
+$sendMessage[Select 1 to 3 fruits]
 ```
+
+## Interaction Handling
+
+Use `$onInteraction` to process the selection:
+
+```bdfd
 $onInteraction
-$if[$customID==menu_couleur]
-  $sendMessage[Vous avez choisi : $message]
+$if[$customID==color_menu]
+  $sendMessage[You chose: $message]
 $endif
 ```
 
 ## Notes
 
-- Chaque menu doit avoir un `customId` unique pour identifier l'interaction.
-- Un seul select menu par ligne of action.
-- Jusqu'à 25 options can be ajoutées par menu.
-- Pour les select menus of type specific (users, roles, channels), utilisez les functions dédiées ($addUserSelect, $addRoleSelect, etc.).
+- Each menu must have a unique `customId` to identify the interaction.
+- Only one select menu is allowed per action row.
+- Up to 25 options can be added per menu.
+- For specialized select menus (users, roles, channels), use dedicated functions (e.g. `$addUserSelect`, `$addRoleSelect`, etc.).

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: footer
 syntax: $footer[text;(iconURL);(embedIndex)]
-description: Sets the pied of page (footer) of a Discord embed, with optionallement une icon. The footer apparaît en bas of the embed.
+description: Sets the footer of a Discord embed, optionally with an icon. The footer appears at the bottom of the embed.
 ---
 
 # $footer[]
 
-The function `$footer[]` définit le **pied of page** (footer) of a Discord embed. The footer apparaît tout en bas of the embed and peut inclure une petite icon to gauche of the text.
+The `$footer[]` function defines the **footer** of a Discord embed. The footer appears at the bottom of the embed and can include a small icon to the left of the text.
 
 ## Syntax
 
@@ -22,51 +22,51 @@ $footer[text;(iconURL);(embedIndex)]
 
 | Parameter | Description |
 |---|---|
-| `text` | Text of the footer. Longueur maximale : 2048 becauseactères. |
-| `iconURL` | Optional. URL of the icon of the footer. Doit être une URL valid pointant vers une image. |
-| `embedIndex` | Optional. Index of the embed ciblé (0 default). |
+| `text` | Text of the footer. Maximum length: 2048 characters. |
+| `iconURL` | Optional. URL of the footer's icon. Must be a valid URL pointing to an image. |
+| `embedIndex` | Optional. Index of the target embed (Default: 1). |
 
 ## Return Value
 
-Modifies the response in progress of construction. Returns nothing directly.
+Modifies the response currently being constructed. Returns nothing directly.
 
 ## Behavior
 
-- Le footer est displayed en bas of the embed, in a police plus petite.
-- Si une `iconURL` est fournie, une petite icon becauserée apparaît to gauche of the text.
-- Pour modifier only l'icon after avoir défini le footer, utilisez `$footerIcon[]`.
+- The footer is displayed at the bottom of the embed in a smaller font.
+- If an `iconURL` is provided, a small squared icon appears to the left of the text.
+- To modify only the icon after defining the footer, use `$footerIcon[]`.
 
 ## Examples
 
-### Footer simple
+### Simple footer
 
 ```bdfd
-$title[Profil user]
+$title[User Profile]
 $description[
-**Nom :** $username
-**ID :** $authorID
+**Name:** $username
+**ID:** $authorID
 ]
-$footer[Demandé par $username]
+$footer[Requested by $username]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Footer with icon custome
+### Footer with custom icon
 
 ```bdfd
 $title[Information]
-$description[Ce bot was created with BDFD.]
-$footer[Propulsé par Bot Designer for Discord;https://bdfd.com/logo.png]
+$description[This bot was created with BDFD.]
+$footer[Powered by Bot Designer for Discord;https://bdfd.com/logo.png]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Footer with avatar dynamic
+### Footer with dynamic avatar
 
 ```bdfd
 $title[Command executed]
-$description[The command was traitée with success.]
-$footer[Exécuté par $username;$authorAvatar]
+$description[The command was processed successfully.]
+$footer[Executed by $username;$authorAvatar]
 $addTimestamp
 $color[#57F287]
 $sendMessage[]
@@ -74,6 +74,6 @@ $sendMessage[]
 
 ## Notes
 
-- Le footer est often combiné with `$addTimestamp[]` pour display the date en bas of an embed.
-- Si vous souhaitez changer l'icon without modifier le text of the footer, utilisez `$footerIcon[]`.
-- The URL of the icon must be une image accessible publicment (PNG, JPG, GIF, WebP).
+- The footer is often combined with `$addTimestamp[]` to display the date at the bottom of an embed.
+- If you wish to change the icon without modifying the footer text, use `$footerIcon[]`.
+- The URL of the icon must be a publicly accessible image (PNG, JPG, GIF, WebP).

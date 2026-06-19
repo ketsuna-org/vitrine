@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalTextInput
 syntax: $addModalTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
-description: Adds a field of saisie of text to a modal Discord. Supports thes styles "short" (a row) and "paragraph" (multi-lignes).
+description: Adds a text input field to a Discord modal. Supports the "short" (single row) and "paragraph" (multi-line) styles.
 ---
 
-# $addModalTextInput[] — Champ Text in a Modal
+# $addModalTextInput[] — Modal Text Input
 
-`$addModalTextInput[]` ajoute a field of saisie of text inside of a modal previously initialisé with `$newModal[]`. Discord supporte two styles of champs text : court (single-line) and paragraphe (multi-line).
+`$addModalTextInput[]` adds a text input field inside a modal previously initialized with `$newModal[]`. Discord supports two styles of text fields: short (single-line) and paragraph (multi-line).
 
 ## Syntax
 
@@ -22,51 +22,52 @@ $addModalTextInput[customId;label;(style);(placeholder);(default);(required);(mi
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Yes | — | Unique identifier to retrieve the value after soumission. |
-| `label` | Yes | — | Text of l'label above of the field. |
-| `style` | No | `short` | `short` pour a row, `paragraph` pour multi-lignes. |
-| `placeholder` | No | — | Text indicatif in the champ vide. |
-| `default` | No | — | Value pré-remplie. |
-| `required` | No | `yes` | `yes` si required, `no` otherwise. |
-| `minLength` | No | — | Minimum number of becauseactères. |
-| `maxLength` | No | — | Maximum number of becauseactères. |
+| `customId` | Yes | — | Unique identifier to retrieve the value after submission. |
+| `label` | Yes | — | Label text above the field. |
+| `style` | No | `short` | `short` for a single line, `paragraph` for multiple lines. |
+| `placeholder` | No | — | Placeholder text in the empty field. |
+| `default` | No | — | Pre-filled value. |
+| `required` | No | `yes` | `yes` if required, `no` otherwise. |
+| `minLength` | No | — | Minimum number of characters. |
+| `maxLength` | No | — | Maximum number of characters. |
 
 ## Return value
 
-Ajoute le composant TextInput to the modal in progress. The value saisie est accessible via `$input[customId]` in the gestionnaire of interaction of the modal.
+Adds the TextInput component to the current modal. The input value is accessible via `$input[customId]` in the modal's interaction handler.
 
 ## Usage
 
-### Champ court required
+### Required short field
 
 ```bdfd
 $newModal[Contact;contact_form]
-$addModalTextInput[name;Nom complete;short;John Doe;;yes;2;50]
-$addModalTextInput[email;Adresse email;short;contact@site.com;;yes;5;100]
+$addModalTextInput[name;Full name;short;John Doe;;yes;2;50]
+$addModalTextInput[email;Email address;short;contact@site.com;;yes;5;100]
 ```
 
-### Zone of text libre
+### Free text area
 
 ```bdfd
 $newModal[Feedback;feedback_form]
-$addModalTextInput[comments;Vos commentaires;paragraph;Écrivez votre message ici...;;yes;10;1000]
+$addModalTextInput[comments;Your comments;paragraph;Write your message here...;;yes;10;1000]
 ```
 
-### Champ optional with placeholder
+### Optional field with placeholder
 
 ```bdfd
-$newModal[Profil;profile_form]
-$addModalTextInput[website;Site web;short;https://...;;no;0;200]
+$newModal[Profile;profile_form]
+$addModalTextInput[website;Website;short;https://...;;no;0;200]
 ```
 
 ## Validation
 
-- `minLength` and `maxLength` appliquent une validation côté clinkt Discord.
-- Si `required` est `yes`, le modal cannot être soumis without value.
-- Les limits Discord : `label` max 45 becauseactères, `placeholder` max 100 becauseactères, `minLength` 0-4000, `maxLength` 1-4000.
+- `minLength` and `maxLength` apply client-side validation in Discord.
+- If `required` is `yes`, the modal cannot be submitted without a value.
+- Discord limits: `label` max 45 characters, `placeholder` max 100 characters, `minLength` 0-4000, `maxLength` 1-4000.
 
 ## Notes
 
-- Doit être called after `$newModal[]` and before toute autre function qui finalise le modal.
-- Le `customId` must be unique to the sein of the modal.
-- Maximum 5 lignes of components (5 `$addModalTextInput`) par modal according to Discord.
+- Must be called after `$newModal[]` and before any other function that finalizes the modal.
+- The `customId` must be unique within the modal.
+- Maximum of 5 rows of components (5 `$addModalTextInput` calls) per modal according to Discord.
+

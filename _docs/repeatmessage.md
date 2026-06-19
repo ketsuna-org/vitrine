@@ -63,8 +63,8 @@ $repeatMessage[10;Test message $getTextSplitIndex]
 
 ## Important Notes
 
-- **Rate Limits**: Discord enforces rate limits on message sending (typically 5 messages per 5 seconds per channel). Sending too many messages too quickly may cause the bot to be rate-limitd or the command to fail. Use `$repeatMessage` sparingly.
+- **Rate Limits**: Discord enforces rate limits on message sending (typically 5 messages per 5 seconds per channel). Sending too many messages too quickly may cause the bot to be rate-limited or the command to fail. Use `$repeatMessage` sparingly.
 - **No return value**: Do not use `$repeatMessage` inside expressions or as arguments to other functions expecting a value.
-- **Best for small counts**: Stick to small `count` values (1–5). For larger counts, consider sending a singthe message with repeated content using `$joinSplitText` or a loop.
+- **Best for small counts**: Stick to small `count` values (1–5). For larger counts, consider sending a single message with repeated content using `$joinSplitText` or a loop.
 - **Discord ToS**: Excessive message spamming may violate Discord's Terms of Service. Use responsibly.
 - **Channel context**: Messages are sent to the channel where the command was triggered.

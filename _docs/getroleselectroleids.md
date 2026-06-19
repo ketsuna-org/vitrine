@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getRoleSelectRoleIDs
 syntax: $getRoleSelectRoleIDs[(separator)]
-description: Gets all IDs roles selecteds par the user via un menu of sélection of roles to choix multiple.
+description: Gets all role IDs selected by the user via a multi-select role menu.
 ---
 
 # $getRoleSelectRoleIDs
 
-The function `$getRoleSelectRoleIDs[]` allows **récupérer l'ensemble IDs roles** selecteds par the user in a menu of sélection of roles to choix multiple.
+The function `$getRoleSelectRoleIDs[]` retrieves all **role IDs** selected by the user in a multi-select role menu.
 
 ## Syntax
 
@@ -22,23 +22,23 @@ $getRoleSelectRoleIDs[(separator)]
 
 | Parameter | Description |
 |---|---|
-| `separator` | Optional - Le separator between each ID. Par default `, ` (virgule + espace). |
+| `separator` | Optional - The separator between each ID. Defaults to `, ` (comma + space). |
 
 ## Return Value
 
-- **Type** : String
-- La list of all IDs roles selecteds.
-- String vide si no role n'was selected.
+- **Type**: String
+- The list of all selected role IDs.
+- An empty string if no role was selected.
 
 ## Behavior
 
-- Utilisé with a menu of sélection of roles configured with `maxValues > 1`.
-- Returns all IDs en a single string with the separator spécifié.
-- Compatible with `$textSplit[]` pour itérer on each role.
+- Used with a role select menu configured with `maxValues > 1`.
+- Returns all IDs in a single string with the specified separator.
+- Compatible with `$textSplit[]` to iterate over each role.
 
 ## Examples
 
-### Attributeion of several roles
+### Assigning multiple roles
 
 ```bdfd
 $onInteraction[role_select]
@@ -46,20 +46,20 @@ $let[roles;$getRoleSelectRoleIDs[,]]
 
 $textSplit[$roles;,]
   $giveRole[$authorID;$splitText[$index]]
-  + Role ajouté : $roleName[$splitText[$index]]
+  + Role added: $roleName[$splitText[$index]]
 $endTextSplit
 
-$sendMessage[✅ Tous les roles were attribués !]
+$sendMessage[✅ All roles have been assigned!]
 ```
 
-### Affichage roles selecteds
+### Displaying selected roles
 
 ```bdfd
 $onInteraction[role_select]
 $let[list;$getRoleSelectRoleIDs[, ]]
 $let[count;$length[$splitText[$list;, ]]]
 
-$title[🎭 $count role(s) selected(s)]
+$title[🎭 $count role(s) selected]
 $description[
 $textSplit[$list;, ]
   $index. $roleName[$splitText[$index]]
@@ -71,6 +71,6 @@ $sendMessage[]
 
 ## Notes
 
-- Pour une sélection unique, utilisez `$getRoleSelectRoleID[]`.
-- Le separator can be n'importe quelle string of becauseactères.
-- Utile for the systèmes of auto-roles with sélection multiple.
+- For a single selection, use `$getRoleSelectRoleID[]`.
+- The separator can be any string of characters.
+- Useful for auto-role systems with multiple selections.

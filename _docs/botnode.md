@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botNode
 syntax: $botNode
-description: Returns the identifier of the nœud (runner) on lequel the bot est executed.
+description: Returns the identifier of the node (runner) on which the bot is executed.
 ---
 
 # $botNode
 
-The `$botNode` function **returns the identifier of the nœud (runner)** on lequel the bot BDFD est currently executed. Each bot est assigné to un runner specific of l'infrastructure BDFD.
+The `$botNode` function **returns the identifier of the node (runner)** on which the BDFD bot is currently running. Each bot is assigned to a specific runner of the BDFD infrastructure.
 
 ## Syntax
 
@@ -20,67 +20,67 @@ $botNode
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
-- **Type** : String
-- L'identifier of the nœud (ex: `node-14`, `us-east-3`).
+- **Type**: String
+- The identifier of the node (e.g., `node-14`, `us-east-3`).
 
 ## Behavior
 
-- Le nœud est attribué automatically par BDFD.
-- Peut changer lors of une migration or maintenance.
-- Utile for the diagnostic and the support technique.
+- The node is assigned automatically by BDFD.
+- It can change during a migration or maintenance.
+- Useful for diagnostics and technical support.
 
 ## Examples
 
-### Page of information technique
+### Technical Information Page
 
 ```bdfd
-$title[🔧 Informations techniques]
+$title[🔧 Technical Information]
 $addField[🤖 Bot;$botName;yes]
 $addField[🆔 ID;$botID;yes]
 $addField[📦 Node;$botNode;yes]
 $addField[⚡ Runtime;$nodeVersion;yes]
-$addField[📝 Langage;$scriptLanguage;yes]
-$footer[Hosting expire : $hostingExpireTime]
+$addField[📝 Language;$scriptLanguage;yes]
+$footer[Hosting expires: $hostingExpireTime]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Command debug (réservée owner)
+### Debug command (owner only)
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Réservé to the owner.]
+  $sendEphemeral[❌ Reserved for the owner.]
   $stop
 $endif
 
 $title[🛠️ Debug Bot]
 $description[
-**Nom :** $botName
-**ID :** $botID
-**Node :** $botNode
-**Runtime :** $nodeVersion
-**Langage :** $scriptLanguage
-**Commands :** $commandsCount
-**CPU :** $cpu
-**RAM :** $ram
+**Name:** $botName
+**ID:** $botID
+**Node:** $botNode
+**Runtime:** $nodeVersion
+**Language:** $scriptLanguage
+**Commands:** $commandsCount
+**CPU:** $cpu
+**RAM:** $ram
 ]
 $sendMessage[]
 ```
 
-### Signature of message
+### Message signature
 
 ```bdfd
-$sendMessage[Message traité par $botName]
+$sendMessage[Message processed by $botName]
 $footer[Node: $botNode | $nodeVersion]
 ```
 
 ## Notes
 
-- Le nœud est géré automatically par BDFD.
-- En cas of problème of performance, indiquez votre `$botNode` to the support BDFD.
+- The node is managed automatically by BDFD.
+- In case of performance issues, provide your `$botNode` to BDFD support.
 - For the version of the runtime, use `$nodeVersion`.
-- For the langage of script, use `$scriptLanguage`.
+- For the script language, use `$scriptLanguage`.

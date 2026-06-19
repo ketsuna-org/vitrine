@@ -17,7 +17,7 @@ When the runtime encounters `$skipActions[count]`:
 
 1. The `count` parameter is resolved (it can be a literal, variable, or expression).
 2. The execution pointer advances by `count` positions in the current action list.
-3. Any actions between `$skipActions` and the target are completeely bypassed.
+3. Any actions between `$skipActions` and the target are completely bypassed.
 4. Execution resumes normally after the skipped actions.
 
 Actions are counted within the **current execution block**. Nested blocks (inside `$if`, `$for`, or `$try`) have their own action indexing, and `$skipActions` only affects the immediate enclosing block.
@@ -36,7 +36,7 @@ If `count` resolves to a non-numeric value or an integer less than 0, behavior i
 
 - **Role-based access control**: Skip admin-only actions for regular users.
 - **Feature flags**: Skip experimental feature blocks when a flag is disabled.
-- **Error recovery**: Skip a block of actions that depend on a failed prerequiredite.
+- **Error recovery**: Skip a block of actions that depend on a failed prerequisite.
 - **Loop control**: Skip processing for certain iterations without breaking the loop.
 
 ## $skipActions vs $stop

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorUsername
 syntax: $authorUsername
-description: Returns the name of user global of the author of the message that triggered the command.
+description: Returns the global username of the author of the message that triggered the command.
 ---
 
 # $authorUsername
 
-The variable `$authorUsername` returns the **nom of user global** of the author of the message that triggered the command.
+The variable `$authorUsername` returns the **global username** of the author of the message that triggered the command.
 
 ## Syntax
 
@@ -20,25 +20,25 @@ $authorUsername
 
 ## Return value
 
-- **Type** : String of becauseactères
-- The name of user global of the author
+- **Type**: Character string
+- The global username of the author
 
 ## Behavior
 
-- `$authorUsername` ne prend **no argument**.
-- Équivaslow to `$userName` for commands textuelles.
-- Returns the name of user **global** (not the pseudo server).
+- `$authorUsername` takes **no arguments**.
+- Equivalent to `$username` for text commands.
+- Returns the **global** username (not the server nickname).
 
 ## Examples
 
-### Message of the author
+### Message from the author
 
 ```bdfd
-$title[Command executede]
+$title[Command executed]
 $author[$authorUsername;$authorAvatar]
 $description[
-**Auteur :** $authorUsername#$discriminator
-**ID :** $authorID
+**Author:** $authorUsername#$discriminator
+**ID:** $authorID
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -46,6 +46,6 @@ $sendMessage[]
 
 ## Notes
 
-- Pour obtenir le pseudo server of the author, use `$nickname` or `$displayName`.
-- `$authorUsername` est utile pour référencer explicitement the author of the message in thes logs or embeds.
-- Dans la plupart cas, `$userName` and `$authorUsername` sont interchangeables.
+- To get the server nickname of the author, use `$nickname` or `$displayName`.
+- `$authorUsername` is useful for explicitly referencing the author of the message in logs or embeds.
+- In most cases, `$username` and `$authorUsername` are interchangeable.

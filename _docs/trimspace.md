@@ -25,7 +25,7 @@ $trimSpace[text]
 
 - **Type**: `string`
 - Returns the text with all leading and trailing whitespace removed.
-- Whitespace includes: spaces, tabs (`\t`), newlines (`\n`), and becauseriage returns (`\r`).
+- Whitespace includes: spaces, tabs (`\t`), newlines (`\n`), and carriage returns (`\r`).
 
 ## Usage
 

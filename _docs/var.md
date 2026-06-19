@@ -21,12 +21,12 @@ Note: only the first semicolon acts as the name/value separator. If your value c
 
 ## Scope and Lifetime
 
-Temporary variables are scoped to the current execution context. They are not shared with other commands, scheduled tasks, or concurrent invocations. When the command finishes execution, all temporary variables are disbecauseded.
+Temporary variables are scoped to the current execution context. They are not shared with other commands, scheduled tasks, or concurrent invocations. When the command finishes execution, all temporary variables are discarded.
 
 ## Case Insensitivity
 
 Variable names are case-insensitive. `$var[Name]`, `$var[NAME]`, and `$var[name]` all refer to the same variable.
 
-## Sislow Failure
+## Silent Failure
 
 When reading a variable that does not exist, `$var` returns an empty string rather than throwing an error. This means you should always validate if a variable exists before relying on its value, for example using `$varExists[]`.

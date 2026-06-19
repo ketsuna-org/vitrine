@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: getRoleColor
 syntax: $getRoleColor[roleID]
-description: Gets the couleur hexadecimale of a role Discord. Returns the couleur to the format #RRGGBB.
+description: Gets the hexadecimal color of a Discord role. Returns the color in #RRGGBB format.
 ---
 
 # $getRoleColor
 
-The function `$getRoleColor[]` allows **récupérer the color hexadecimale** of a role Discord.
+The function `$getRoleColor[]` retrieves the **hexadecimal color** of a Discord role.
 
 ## Syntax
 
@@ -22,47 +22,47 @@ $getRoleColor[roleID]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID Discord of the role. |
+| `roleID` | The Discord ID of the role. |
 
 ## Return Value
 
-- **Type** : String
-- The color to the format hexadecimal `#RRGGBB`.
-- `#000000` (noir) si the role n'a pas of couleur définie (couleur default).
+- **Type**: String
+- The color in hexadecimal `#RRGGBB` format.
+- `#000000` (black) if the role has no defined color (default color).
 
 ## Behavior
 
-- Extracted the color configurede for the role.
-- Returns `#000000` for the roles without couleur (transparent default).
-- The color est utilisable directly in `$color[]` or tout autre context nécessitant une couleur.
+- Extracts the color configured for the role.
+- Returns `#000000` for roles without a color (default transparent).
+- The color is usable directly in `$color[]` or any other context requiring a color.
 
 ## Examples
 
-### Affichage simple
+### Simple display
 
 ```bdfd
 $let[roleID;$roleID[Admin]]
-Couleur of the role **$roleName[$roleID]** : $getRoleColor[$roleID]
+Color of the role **$roleName[$roleID]**: $getRoleColor[$roleID]
 ```
 
 ### Embed colored according to the role
 
 ```bdfd
 $let[roleID;$highestRole[$authorID]]
-$title[👤 Profil of $userName]
+$title[👤 Profile of $userName]
 $description[
-**Role principal :** $roleName[$roleID]
-**Couleur :** $getRoleColor[$roleID]
+**Main role:** $roleName[$roleID]
+**Color:** $getRoleColor[$roleID]
 ]
 $color[$getRoleColor[$roleID]]
 $thumbnail[$userAvatar[$authorID]]
 $sendMessage[]
 ```
 
-### Palette of roles
+### Role palette
 
 ```bdfd
-$title[🎨 Couleurs roles]
+$title[🎨 Role Colors]
 $description[
 $textSplit[$serverRoles[,];, ]
   $index. $roleName[$splitText[$index]] — $getRoleColor[$splitText[$index]]
@@ -71,7 +71,7 @@ $endTextSplit
 $sendMessage[]
 ```
 
-### Embed dynamic
+### Dynamic embed
 
 ```bdfd
 $let[color;$getRoleColor[$highestRole[$authorID]]]
@@ -80,7 +80,7 @@ $if[$color==#000000]
   $let[color;#5865F2]
 $endif
 
-$title[Titre]
+$title[Title]
 $description[Description]
 $color[$color]
 $sendMessage[]
@@ -88,6 +88,6 @@ $sendMessage[]
 
 ## Notes
 
-- Si the role a une couleur default (pas of couleur), `$getRoleColor` retourne `#000000`.
-- Bonus : utilisez `$if[$getRoleColor[$roleID]==#000000]` pour détecter les roles without couleur.
-- The color est compatible with the function `$color[]` embeds.
+- If the role has a default color (no color), `$getRoleColor` returns `#000000`.
+- Tip: use `$if[$getRoleColor[$roleID]==#000000]` to detect roles without a color.
+- The color is compatible with the embed `$color[]` function.

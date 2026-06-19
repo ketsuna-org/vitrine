@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: addMessageReactions
 syntax: $addMessageReactions[channelID;messageID;emoji1;...]
-description: Adds one or more reactions to a message specific identifié par its ID of canal and of message.
+description: Adds one or more reactions to a specific message identified by its channel and message IDs.
 ---
 
 # $addMessageReactions
 
-The `$addMessageReactions[]` function **ajouter of reactions to n'importe which message** in the server, identifié par son canal and its ID.
+The `$addMessageReactions[]` function **adds reactions to any message** on the server, identified by its channel and message ID.
 
 ## Syntax
 
@@ -22,29 +22,29 @@ $addMessageReactions[channelID;messageID;emoji1;emoji2;...]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the canal contenant the message cible. |
-| `messageID` | The ID of the message on lequel ajouter les réactions. |
-| `emoji1;emoji2;...` | List of emojis to add, separateds par `;`. |
+| `channelID` | The ID of the channel containing the target message. |
+| `messageID` | The ID of the message to add the reactions to. |
+| `emoji1;emoji2;...` | List of emojis to add, separated by `;`. |
 
 ## Return value
 
-Cette function does not return a value.
+This function does not return a value.
 
 ## Behavior
 
-- Allows réagir to of messages olds or in of autres canaux.
-- The bot must have accès to the canal and the permission `ADD_REACTIONS`.
-- The message doit exister and not avoir été deleted.
+- Allows reacting to old messages or messages in other channels.
+- The bot must have access to the channel and the `ADD_REACTIONS` permission.
+- The message must exist and not have been deleted.
 
 ## Examples
 
-### Réagir to a message of rules
+### Reacting to a rules message
 
 ```bdfd
 $addMessageReactions[$rulesChannelID;123456789012345678;✅]
 ```
 
-### Réaction to a message stocké
+### Reaction to a stored message
 
 ```bdfd
 $let[msgID;$getUserVar[lastMessageID]]
@@ -52,15 +52,16 @@ $let[chanID;$getUserVar[lastChannelID]]
 $addMessageReactions[$chanID;$msgID;👍;👎]
 ```
 
-### Réagir to a message of giveaway
+### Reacting to a giveaway message
 
 ```bdfd
 $addMessageReactions[$giveawayChannel;123456789;🎉]
-$sendMessage[Réagissez with 🎉 pour participer !]
+$sendMessage[React with 🎉 to participate!]
 ```
 
 ## Notes
 
-- `$addMessageReactions[]` est la function la plus flexible for réactions because elle target n'importe which message.
-- For the message of response of the bot, préférez `$addReactions[]`.
-- For the message déclencheur, use `$addCmdReactions[]`.
+- `$addMessageReactions[]` is the most flexible function for reactions because it can target any message.
+- For the bot's own response message, prefer `$addReactions[]`.
+- For the trigger message, use `$addCmdReactions[]`.
+

@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $deleteMessage
 
-Deletes a message specific. The bot must have the permission of gérer les messages in the channel.
+Deletes a specific message. The bot must have permission to manage messages in the channel.
 
 ## Syntax
 
@@ -22,27 +22,27 @@ $deleteMessage[messageId]
 
 ## Description
 
-`$deleteMessage` supprime permanently a message Discord. The bot must disposer of the permission `MANAGE_MESSAGES` to delete les messages of autres users. Il peut toudays supprimer their propres messages.
+`$deleteMessage` permanently deletes a Discord message. The bot must have the `MANAGE_MESSAGES` permission to delete other users' messages. It can always delete its own messages.
 
 ## Examples
 
-### Suppression of the message déclencheur
+### Deletion of the triggering message
 
 ```
 $deleteMessage[$messageID]
-Command executede discrètement.
+Command executed discreetly.
 ```
 
-### Suppression after action
+### Deletion after action
 
 ```
-$sendMessage[Traitement in progress...]
+$sendMessage[Processing...]
 $wait[3s]
 $deleteMessage[$sentMessageId]
-$sendMessage[Traitement terminé !]
+$sendMessage[Processing complete!]
 ```
 
-### Suppression in a interaction
+### Deletion in an interaction
 
 ```
 $onInteraction
@@ -52,7 +52,7 @@ $if[$customID==btn_delete]
 $endif
 ```
 
-### Suppression of a message specific
+### Deletion of a specific message
 
 ```
 $deleteMessage[123456789012345678]
@@ -60,8 +60,8 @@ $deleteMessage[123456789012345678]
 
 ## Notes
 
-- Le parameter `messageId` is required.
-- The bot must have `MANAGE_MESSAGES` to delete les messages autres.
-- Les messages deleteds cannot être récupérés.
-- Pour supprimer the user's message qui a executed la command, use `$messageID`.
-- Après suppression, it is courant of envoyer a confirmation éphémère.
+- The `messageId` parameter is required.
+- The bot must have `MANAGE_MESSAGES` to delete other users' messages.
+- Deleted messages cannot be recovered.
+- To delete the user's message that triggered the command, use `$messageID`.
+- After deletion, it is common to send an ephemeral confirmation.

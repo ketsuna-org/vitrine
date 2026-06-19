@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: categoryCount
 syntax: $categoryCount
-description: Returns the namebre of catégories on the server Discord.
+description: Returns the number of categories on the Discord server.
 ---
 
 # $categoryCount
 
-The `$categoryCount` function returns the **number total of catégories** présentes on the server Discord.
+The `$categoryCount` function returns the **total number of categories** present on the Discord server.
 
 ## Syntax
 
@@ -26,35 +26,35 @@ No parameters.
 
 | Type | Description |
 |---|---|
-| `integer` | The namebre of catégories on the server. |
+| `integer` | The number of categories on the server. |
 
 ## Examples
 
-### Number of catégories
+### Number of categories
 
 ```bdfd
-$sendMessage[Ce server a $categoryCount catégories.]
+$sendMessage[This server has $categoryCount categories.]
 ```
 
-### Compareason channels / catégories
+### Comparison of channels and categories
 
 ```bdfd
 $sendMessage[
-**Statistiques of the server :**
-Catégories : $categoryCount
-Channels : $channelCount
+**Server Statistics:**
+Categories: $categoryCount
+Channels: $channelCount
 ]
 ```
 
-### Server without catégories
+### Server without categories
 
 ```bdfd
 $if[$categoryCount==0]
-  $sendMessage[Ce server n'a noe catégorie.]
+  $sendMessage[This server has no categories.]
 $endif
 ```
 
 ## Notes
 
-- Ne compte que les channels of type `category`.
-- Utile pour statistiques or a affichage of structure of the server.
+- Only counts channels of type `category`.
+- Useful for statistics or displaying the server structure.

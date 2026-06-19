@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: channelSendMessage
 syntax: $channelSendMessage[channelID;content]
-description: Sends a message in a channel specific. Contrairement to $sendMessage qui répond in the channel courant, cette function target any canal.
+description: Sends a message in a specific channel. Unlike $sendMessage which responds in the current channel, this function targets any channel.
 ---
 
 # $channelSendMessage
 
-The `$channelSendMessage[]` function **envoyer a message in a channel specific**, different of the canal où la command has been executede.
+The `$channelSendMessage[]` function **sends a message to a specific channel**, which can be different from the channel where the command was executed.
 
 ## Syntax
 
@@ -22,64 +22,64 @@ $channelSendMessage[channelID;content]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the canal cible. |
-| `content` | Le contenu of the message (markdown, mentions, emojis supportés). Max 2000 becauseactères. |
+| `channelID` | The ID of the target channel. |
+| `content` | The content of the message (markdown, mentions, and emojis are supported). Max 2000 characters. |
 
 ## Return value
 
-- **Type** : Snowflake (string)
-- The ID of the message sent.
-- String vide si échec (canal inaccessible, permissions).
+- **Type**: Snowflake (string)
+- The ID of the sent message.
+- Empty string on failure (inaccessible channel, missing permissions).
 
 ## Behavior
 
-- The bot must have accès to the canal target and the permission `SEND_MESSAGES`.
-- The message is sent like a message normal of the bot.
-- Les functions of embed (`$title`, `$description`, etc.) placées before `$channelSendMessage[]` sont appliquées.
+- The bot must have access to the target channel and the `SEND_MESSAGES` permission.
+- The message is sent like a normal message from the bot.
+- Embed functions (`$title`, `$description`, etc.) placed before `$channelSendMessage[]` will be applied.
 
 ## Examples
 
-### Logs of modération
+### Moderation logs
 
 ```bdfd
 $let[logChannel;123456789012345678]
-$title[⚠️ Action of modération]
+$title[⚠️ Moderation Action]
 $description[
-**Modérateur :** $username
-**Action :** Ban
-**User :** $userName[$mentioned[1]]
-**Reason :** $noMentionMessage
+**Moderator:** $username
+**Action:** Ban
+**User:** $userName[$mentioned[1]]
+**Reason:** $noMentionMessage
 ]
 $color[#ED4245]
 $channelSendMessage[$logChannel;]
-$sendMessage[User banni.]
+$sendMessage[User banned.]
 ```
 
-### Notification of bienvenue
+### Welcome notification
 
 ```bdfd
 $let[welcomeChannel;123456789]
-$title[👋 Bienvenue !]
-$description[Bienvenue on **$serverName**, $username ! Tu es le member #$membersCount !]
+$title[👋 Welcome!]
+$description[Welcome to **$serverName**, $username! You are member #$membersCount!]
 $thumbnail[$authorAvatar]
 $color[#57F287]
 $channelSendMessage[$welcomeChannel;]
 ```
 
-### Envoi vers un canal mentionné
+### Send to a mentioned channel
 
 ```bdfd
 $if[$mentionedChannels[1]!=]
-  $channelSendMessage[$mentionedChannels[1];Message transféré par $username :
+  $channelSendMessage[$mentionedChannels[1];Message forwarded by $username:
 >>> $noMentionMessage]
-  $sendMessage[Message sent in <#$mentionedChannels[1]>]
+  $sendMessage[Message sent to <#$mentionedChannels[1]>]
 $else
-  $sendMessage[Aucun canal mentionné.]
+  $sendMessage[No channel mentioned.]
 $endif
 ```
 
 ## Notes
 
-- `$channelSendMessage[]` ne répond pas to the user — combinez with `$sendMessage[]` for a feedback.
-- Maximum 2000 becauseactères par message.
-- Pour récupérer a message, use `$getMessage[]`.
+- `$channelSendMessage[]` does not respond to the user — combine it with `$sendMessage[]` to provide feedback.
+- Maximum of 2000 characters per message.
+- To retrieve a message, use `$getMessage[]`.

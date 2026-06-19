@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getCustomStatus
 syntax: $getCustomStatus[(userID)]
-description: Gets the status custom (text and emoji) of a user Discord. Returns the text of the status custom.
+description: Gets the custom status (text and emoji) of a Discord user. Returns the text of the custom status.
 ---
 
 # $getCustomStatus
 
-The function `$getCustomStatus[]` allows **récupérer le status custom** of a user Discord. The status custom est un text libre (et optionally un emoji) que the user définit in son profil.
+The `$getCustomStatus[]` function allows you to **retrieve the custom status** of a Discord user. The custom status is a custom text (and optionally an emoji) that the user sets in their profile.
 
 ## Syntax
 
@@ -22,60 +22,60 @@ $getCustomStatus[(userID)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | Optional - The ID of the user cible. Par default l'auteur of the command. |
+| `userID` | Optional - The ID of the target user. Default: the command author. |
 
 ## Return Value
 
-- **Type** : String
-- Le text of the status custom of the user.
-- String vide si the user n'a pas défini of status custom.
+- **Type**: String
+- The custom status text of the user.
+- An empty string if the user has not set a custom status.
 
 ## Behavior
 
-- Reads the status custom dethen la présence Discord of the user.
-- Ne retourne que le text, pas l'emoji optionally associé.
-- The user must be visible par the bot (partage of server, présence accessible).
+- Reads the custom status from the Discord presence of the user.
+- Only returns the text, not the optionally associated emoji.
+- The user must be visible to the bot (shared server, presence accessible).
 
 ## Examples
 
-### Affichage simple
+### Simple display
 
 ```bdfd
-$title[💬 Status custom]
+$title[💬 Custom Status]
 $let[status;$getCustomStatus[$authorID]]
 $if[$status!=]
-  Votre status custom : **$status**
+  Your custom status: **$status**
 $else
-  Vous n'avez pas défini of status custom.
+  You have not set a custom status.
 $endif
 $sendMessage[]
 ```
 
-### Carte of profil enrichie
+### Rich profile card
 
 ```bdfd
 $title[👤 $userName[$mentioned[1]]]
 $description[
-**Status :** $userStatus[$mentioned[1]]
-**Status perso :** $getCustomStatus[$mentioned[1]]
-**HypeSquad :** $hypeSquad[$mentioned[1]]
+**Status:** $userStatus[$mentioned[1]]
+**Custom Status:** $getCustomStatus[$mentioned[1]]
+**HypeSquad:** $hypeSquad[$mentioned[1]]
 ]
 $thumbnail[$userAvatar[$mentioned[1]]]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Log of changement of status
+### Status change log
 
 ```bdfd
 $let[newStatus;$getCustomStatus[$authorID]]
 $if[$newStatus!=]
-  📝 **$userName** a changé son status custom : *$newStatus*
+  📝 **$userName** changed their custom status: *$newStatus*
 $endif
 ```
 
 ## Notes
 
-- Le status custom est distinct of the status of présence (online, occupé, etc.) qui est récupéré via `$userStatus[]`.
-- Si the user a défini un emoji in son status, seul le text est retourné.
-- Le status custom peut contain atil 128 becauseactères.
+- The custom status is distinct from the presence status (online, dnd, etc.) which is retrieved via `$userStatus[]`.
+- If the user has set an emoji in their status, only the text is returned.
+- The custom status can contain up to 128 characters.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyForRoles
 syntax: $onlyForRoles[roleID1;roleID2;...;(errorMessage)]
-description: Function guard qui stops l'exécution si the user ne possède no roles spécifiés.
+description: A guard function that stops execution if the user does not possess any of the specified roles.
 ---
 
 # $onlyForRoles
 
-The function guard `$onlyForRoles` vérifie que the user possède **au moins un** roles Discord spécifiés. Si the user n'a no of ces roles, the command est interrompue.
+The guard function `$onlyForRoles` checks if the user has **at least one** of the specified Discord roles. If the user does not have any of these roles, the command execution is halted.
 
 ## Syntax
 
@@ -22,44 +22,44 @@ $onlyForRoles[roleID1;roleID2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `roleID1;roleID2;...` | Snowflake[] | IDs roles alloweds, separateds par `;`. |
-| `errorMessage` | String (optional) | Message sent si the user n'a no roles. |
+| `roleID1;roleID2;...` | Snowflake[] | The IDs of the allowed roles, separated by `;`. |
+| `errorMessage` | String (optional) | The message sent if the user has none of the roles. |
 
 ## Behavior
 
-- Checks les roles of the user déclencheur.
-- La vérification est of type **OU** : the user n'a besoin que of a single role parmi ceux listés.
-- Si the user a to the moins un role of la list, the command continue.
-- Si the user n'a **no** roles listés, the command est interrompue.
+- Checks the roles of the triggering user.
+- The check is an **OR** operation: the user only needs to have at least one of the listed roles.
+- If the user has at least one role from the list, the command continues.
+- If the user has **none** of the listed roles, the command execution is halted.
 
 ## Examples
 
-### Command réservée to the modérateurs
+### Command reserved for moderators
 
 ```bdfd
-$onlyForRoles[123456789012345678;❌ Seuls les modérateurs can use cette command.]
+$onlyForRoles[123456789012345678;❌ Only moderators can use this command.]
 $mute[$mentioned[1];Reason]
-$sendMessage[$mentioned[1] was mute.]
+$sendMessage[$mentioned[1] was muted.]
 ```
 
-### Plusieurs roles alloweds (Modo or Admin)
+### Multiple allowed roles (Mod or Admin)
 
 ```bdfd
-$onlyForRoles[111111111111111111;222222222222222222;❌ Permissions insuffisantes.]
+$onlyForRoles[111111111111111111;222222222222222222;❌ Insufficient permissions.]
 $clear[100]
 ```
 
-### Command staff with message of redirection
+### Staff command with redirect message
 
 ```bdfd
-$onlyForRoles[123456789012345678;❌ Command réservée to the staff. Faites un ticket pour toute demande.]
-$sendMessage[Bienvenue in the panneau staff.]
+$onlyForRoles[123456789012345678;❌ Command reserved for staff. Please open a ticket for any inquiries.]
+$sendMessage[Welcome to the staff panel.]
 ```
 
 ## Notes
 
-- La vérification est **OU** (a single role suffit), contrairement to `$onlyPerms` qui fait un **ET** on the permissions.
-- Pour check par nom of role dynamicment, utilisez `$hasRole[$authorID;Name of the Role]`.
-- `$onlyForRoleIDs` est un alias of `$onlyForRoles`.
-- Pour blacklistr roles, utilisez `$blacklistRoles` or `$blacklistRoleIDs`.
-- Combinez with `$onlyForChannels` pour restrict to la fois par role and par channel.
+- The check is an **OR** check (a single role is enough), unlike `$onlyPerms` which performs an **AND** operation on permissions.
+- To check by role name dynamically, use `$hasRole[$authorID;Role Name]`.
+- `$onlyForRoleIDs` is an alias of `$onlyForRoles`.
+- To blacklist roles, use `$blacklistRoles` or `$blacklistRoleIDs`.
+- Combine with `$onlyForChannels` to restrict a command by both role and channel.

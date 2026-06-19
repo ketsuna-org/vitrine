@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userPerms
 syntax: $userPerms
-description: Returns the list permissions effectives of the user on the server current.
+description: Returns the list of effective permissions of the user on the current server.
 ---
 
 # $userPerms
 
-The variable `$userPerms` retourne la **list permissions effectives** of the user on the server. The permissions sont calculatedes en combinant les permissions of all their roles and les overwrites of channel.
+The `$userPerms` function returns the **list of effective permissions** of the user on the server. The permissions are calculated by combining the permissions of all their roles and channel overrides.
 
 ## Syntax
 
@@ -20,54 +20,54 @@ $userPerms
 
 ## Return Value
 
-- **Type** : List of noms of permissions, separateds par virgules
+- **Type**: List of permission names, separated by commas
 - Example: `SendMessages, ReadMessageHistory, AddReactions, UseExternalEmojis`
-- List permissions standard of l'API Discord (https://discord.com/developers/docs/topics/permissions)
+- Standard permission list from the Discord API.
 
 ## Behavior
 
-- `$userPerms` ne prend **no argument**.
-- Returns thes **permissions effectives** (résultantes of all roles).
-- Si the user a la permission `Administrator`, all autres permissions sont implicitement includedes.
+- `$userPerms` takes **no arguments**.
+- Returns the **effective permissions** (resulting from all roles).
+- If the user has the `Administrator` permission, all other permissions are implicitly included.
 
 ## Examples
 
-### Display les permissions
+### Display permissions
 
 ```bdfd
 $title[Permissions of $userName]
 $description[
-**Permissions :**
+**Permissions:**
 $userPerms
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Restrict une command to the modérateurs
+### Restrict a command to moderators
 
 ```bdfd
 $if[$checkContains[$userPerms;BanMembers]==true]
   $ban[$mentioned]
-  $sendMessage[<@$mentioned> was banni.]
+  $sendMessage[<@$mentioned> was banned.]
 $else
-  $sendMessage[Vous n'avez pas la permission of bannir members.]
+  $sendMessage[You do not have permission to ban members.]
 $endif
 ```
 
-### Vérifier several permissions
+### Check multiple permissions
 
 ```bdfd
 $if[$checkContains[$userPerms;ManageMessages]==true]
   $deleteMessage[$messageID[$mentioned]]
   $sendMessage[Message deleted.]
 $else
-  $sendMessage[Permission ManageMessages requirede.]
+  $sendMessage[ManageMessages permission required.]
 $endif
 ```
 
 ## Notes
 
-- Les noms of permissions sont en **anglais** (nomenclature API Discord).
-- Pour une simple vérification admin, utilisez `$isAdmin` or `$checkContains[$userPerms;Administrator]`.
-- `$userPerms` and `$memberPerms` retournent le même result for the user déclencheur.
+- Permission names are in **English** (Discord API nomenclature).
+- For a simple admin check, use `$isAdmin` or `$checkContains[$userPerms;Administrator]`.
+- `$userPerms` and `$memberPerms` return the same result for the triggering user.

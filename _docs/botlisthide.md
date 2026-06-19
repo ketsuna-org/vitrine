@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botListHide
 syntax: $botListHide
-description: Masque the bot of la list public bots BDFD (bot list).
+description: Hides the bot from the public BDFD bot list.
 ---
 
 # $botListHide
 
-The `$botListHide` function **retire the bot of la list public bots BDFD** (Bot List). A fois hidden, the bot n'apparaît plus in the annuaire communautaire.
+The `$botListHide` function **removes the bot from the public BDFD bot list**. Once hidden, the bot will no longer appear in the community directory.
 
 ## Syntax
 
@@ -20,45 +20,45 @@ $botListHide
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
-None. The bot est hidden of la list public.
+None. The bot is hidden from the public list.
 
 ## Behavior
 
-- Action irréversible via script (contactez le support pour ré-display the bot).
-- The bot continue of functionner normalement.
-- Seule la visibilité in the annuaire BDFD est affectée.
+- Irreversible action via script (contact support to make the bot visible again).
+- The bot continues to function normally.
+- Only visibility in the BDFD directory is affected.
 
 ## Examples
 
-### Masquage simple
+### Simple hiding
 
 ```bdfd
 $botListHide
-$sendMessage[🔒 The bot has been retiré of la list public BDFD.]
+$sendMessage[🔒 The bot has been removed from the public BDFD list.]
 ```
 
-### Command owner sécurisée
+### Secured owner command
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Cette command est réservée to the owner.]
+  $sendEphemeral[❌ This command is reserved for the owner.]
   $stop
 $endif
 
 $botListHide
-$sendMessage[✅ **$botName** has been hidden of la bot list BDFD.
-⚠️ Cette action est définitive. Contactez le support pour annuler.]
+$sendMessage[✅ **$botName** has been hidden from the BDFD bot list.
+⚠️ This action is permanent. Contact support to undo.]
 ```
 
-### Panneau of configuration
+### Configuration panel
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Réservé to the owner.]
+  $sendEphemeral[❌ Reserved for the owner.]
   $stop
 $endif
 
@@ -68,7 +68,7 @@ $if[$var[action]==hide]
   $sendMessage[🔒 Bot hidden.]
 $elseif[$var[action]==desc]
   $botListDescription[$message[2]]
-  $sendMessage[📝 Description mise to day.]
+  $sendMessage[📝 Description updated.]
 $else
   $sendMessage[❌ Usage: !botconfig <hide|desc> [text]]
 $endif
@@ -76,7 +76,7 @@ $endif
 
 ## Notes
 
-- `$botListHide` est définitif via script.
-- Pour gérer la description, use `$botListDescription[]`.
-- The bot reste pleinement functionnel même hidden.
-- Use cette function si vous ne souhaitez pas que votre bot apparaisse in the annuaire public.
+- `$botListHide` is permanent via script.
+- To manage the description, use `$botListDescription[]`.
+- The bot remains fully functional even when hidden.
+- Use this function if you do not want your bot to appear in the public directory.

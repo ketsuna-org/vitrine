@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverNames
 syntax: $serverNames
-description: Returns the list noms of all servers in thesquels the bot est présent, separateds par virgules.
+description: Returns the names of all servers in which the bot is present, separated by commas.
 ---
 
-# $serverNames[] — Noms of Tous les Servers
+# $serverNames[] — Names of All Servers
 
-`$serverNames[]` retourne la list complete noms of all servers Discord on lesquels the bot est installé.
+`$serverNames[]` returns the complete list of names of all Discord servers where the bot is installed.
 
 ## Syntax
 
@@ -20,42 +20,42 @@ $serverNames
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
-- **Type** : `string`
-- Une string contenant all noms of servers, separateds par virgules (ex: `"Server A, Server B, Server C"`).
+- **Type**: `string`
+- A string containing all server names, separated by commas (e.g., `"Server A, Server B, Server C"`).
 
-## Utilisation
+## Usage
 
-### Affichage simple
+### Simple display
 
 ```bdfd
-$sendMessage[🌐 Mes servers : $serverNames]
+$sendMessage[🌐 My servers: $serverNames]
 ```
 
-### Embed list servers
+### Embed list of servers
 
 ```bdfd
 $title[🌐 Servers of the Bot]
 $description[$serverNames]
-$footer[Total : $serverCount servers]
+$footer[Total: $serverCount servers]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Vérifier la présence on a server
+### Check presence on a server
 
 ```bdfd
-$if[$serverNames$contains[Communauté Gaming]]
-$sendMessage[✅ The bot est bien on the Communauté Gaming !]
+$if[$serverNames$contains[Gaming Community]]
+$sendMessage[✅ The bot is indeed on the Gaming Community!]
 $else
-$sendMessage[❌ The bot is not on the Communauté Gaming.]
+$sendMessage[❌ The bot is not on the Gaming Community.]
 $endif
 ```
 
-### Statistiques with list
+### Statistics with server list
 
 ```bdfd
 $title[📊 Bot Statistics]
@@ -68,8 +68,8 @@ $sendEmbedMessage
 
 ## Notes
 
-- La list can be très longue si the bot est on of many servers — attention to la limit of 2000 becauseactères par message Discord.
-- Les noms sont separateds par `", "` (virgule + espace).
-- Pour the namebre total without the list, utilisez `$serverCount[]`.
-- Utilisez `$contains[]` pour check the présence of un nom specific, mais attention to the noms partials.
-- Les noms can contain becauseactères special and emojis.
+- The list can be very long if the bot is on many servers — watch out for the Discord message limit of 2000 characters.
+- The names are separated by `", "` (comma + space).
+- To get the total number of servers without the list, use `$serverCount[]`.
+- Use `$contains[]` to check the presence of a specific name, but be careful with partial matches.
+- The names can contain special characters and emojis.

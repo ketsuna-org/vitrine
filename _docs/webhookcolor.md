@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookColor
 syntax: $webhookColor[hexColor]
-description: Sets the couleur of la barre latérale of the embed for the prochain message sent via $webhookSend.
+description: Sets the color of the sidebar of the embed for the next message sent via $webhookSend.
 ---
 
 # $webhookColor
 
-The function `$webhookColor[]` allows **define the color of the embed** (barre latérale gauche) for the prochain message webhook.
+The `$webhookColor` function allows you to **set the color of the embed** (left sidebar) for the next webhook message.
 
 ## Syntax
 
@@ -22,36 +22,36 @@ $webhookColor[hexColor]
 
 | Parameter | Description |
 |---|---|
-| `hexColor` | Code couleur hexadecimal, with or without the préfixe `#`. Examples: `#FF0000`, `5865F2`, `00FF00`. |
+| `hexColor` | Hexadecimal color code, with or without the `#` prefix. Examples: `#FF0000`, `5865F2`, `00FF00`. |
 
 ## Return Value
 
-This function ne retourne pas of value. Elle définit the color of the prochain embed.
+This function does not return a value. It only sets the color of the next embed.
 
 ## Behavior
 
-- The color s'applique to la barre latérale gauche of the embed.
-- Si no embed n'est défini (pas of `$webhookTitle` or `$webhookDescription`), the color est ignorée.
-- The color est réinitialisée after each `$webhookSend[]`.
+- The color applies to the left sidebar of the embed.
+- If no embed is defined (no `$webhookTitle` or `$webhookDescription`), the color is ignored.
+- The color is reset after each `$webhookSend`.
 
 ## Examples
 
-### Embed colored
+### Colored embed
 
 ```bdfd
 $webhookTitle[Success]
-$webhookDescription[L'opération was effectuée with success.]
+$webhookDescription[The operation was completed successfully.]
 $webhookColor[#57F287]
-$webhookFooter[✅ Opération réussie]
+$webhookFooter[✅ Operation successful]
 $webhookSend[$webhookURL;]
 ```
 
-### Couleurs conditionnelles
+### Conditional colors
 
 ```bdfd
 $if[$checkContains[$message;error]==true]
   $webhookColor[#ED4245]
-  $webhookTitle[Error détectée]
+  $webhookTitle[Error Detected]
 $else
   $webhookColor[#5865F2]
   $webhookTitle[Information]
@@ -62,6 +62,6 @@ $webhookSend[$logHook;]
 
 ## Notes
 
-- Utilisez couleurs cohérentes for the lisibilité : rouge pour errors, vert pour success, bleu pour info.
-- The color default of Discord est `#000000` (pas of barre colored).
-- Les couleurs trop claires can be peu visibles en thème clair.
+- Use consistent colors for readability: red for errors, green for success, blue for info.
+- The default Discord color is `#000000` (no colored sidebar).
+- Very light colors may be hard to see in light theme.

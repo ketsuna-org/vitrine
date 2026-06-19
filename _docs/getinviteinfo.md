@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: getInviteInfo
 syntax: $getInviteInfo[code]
-description: Gets information on a invite Discord from son code. Returns détails like the name of the server, the namebre of members, etc.
+description: Gets information about a Discord invite from its code. Returns details like the server name, number of members, etc.
 ---
 
 # $getInviteInfo
 
-The function `$getInviteInfo[]` allows **récupérer information** on a invite Discord from son code.
+The function `$getInviteInfo[]` allows **retrieving information** about a Discord invite from its code.
 
 ## Syntax
 
@@ -22,35 +22,35 @@ $getInviteInfo[code]
 
 | Parameter | Description |
 |---|---|
-| `code` | Le code of invite (ex: `abc123` pour `discord.gg/abc123`). |
+| `code` | The invite code (e.g. `abc123` for `discord.gg/abc123`). |
 
 ## Return Value
 
 - **Type** : String
-- Informations on the invite : nom of the server, description, number of members, etc.
-- String vide si l'invite est invalid or expirée.
+- Information about the invite: server name, description, number of members, etc.
+- Empty string if the invite is invalid or expired.
 
 ## Behavior
 
-- Works with n'importe quel code of invite Discord valid.
-- Ne requires pas que the bot soit on the server cible.
-- Returns information publics only.
+- Works with any valid Discord invite code.
+- Does not require the bot to be on the target server.
+- Returns public information only.
 
 ## Examples
 
-### Vérifier une invite
+### Check an invite
 
 ```bdfd
 $let[info;$getInviteInfo[$message[1]]]
 $if[$info!=]
-  $sendMessage[Informations on the invite :
+  $sendMessage[Invite information:
 >>> $info]
 $else
-  $sendMessage[❌ Invite invalid or expirée.]
+  $sendMessage[❌ Invalid or expired invite.]
 $endif
 ```
 
-### Détection of spam of invite
+### Invite spam detection
 
 ```bdfd
 $if[$checkContains[$message;discord.gg]==true]
@@ -58,16 +58,16 @@ $if[$checkContains[$message;discord.gg]==true]
   $let[code;$replaceText[$message;https://discord.gg/;]]
   $let[info;$getInviteInfo[$code]]
   $if[$info!=]
-    $sendMessage[⚠️ $username, les invites externals are not allowedes. \
-(Invite vers : $info)]
+    $sendMessage[⚠️ $username, external invites are not allowed. \
+(Invite to: $info)]
   $else
-    $sendMessage[⚠️ $username, les invites are not allowedes.]
+    $sendMessage[⚠️ $username, invites are not allowed.]
   $endif
 $endif
 ```
 
 ## Notes
 
-- L'invite must be valid and non expirée.
-- Utile for the modération anti-spam of invites.
-- Les information retournées dépendent of ce que the server rend public.
+- The invite must be valid and not expired.
+- Useful for anti-spam invite moderation.
+- The returned information depends on what the server makes public.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isSlash
 syntax: $isSlash
-description: Checks if the command was triggerede par une command slash.
+description: Checks if the command was triggered via a slash command.
 ---
 
 # $isSlash
 
-The function `$isSlash` **vérifie si the command in progress was triggerede via une command slash** (application command) plutôt qu'une command prefix classique.
+The function `$isSlash` **checks if the current command was triggered via a slash command** (application command) rather than a classic prefix command.
 
 ## Syntax
 
@@ -20,73 +20,73 @@ $isSlash
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return Value
 
-- **Type** : Boolean
-- `true` si the command was invoquée via `/command`.
-- `false` si elle was invoquée via le préfixe (`!command`, `?command`, etc.).
+- **Type**: Boolean
+- `true` if the command was invoked via `/command`.
+- `false` if it was invoked via prefix (`!command`, `?command`, etc.).
 
 ## Behavior
 
-- Allows to adapter le comportement according to the mode of invocation.
-- Utile pour envoyer responses éphémères en slash (`$sendEphemeral[]`).
-- Sans parameter : context of the command in progress only.
+- Allows adapting behavior based on the invocation mode.
+- Useful for sending ephemeral responses in slash mode (`$sendEphemeral[]`).
+- No parameters: current command context only.
 
 ## Examples
 
-### Response adaptative
+### Adaptive Response
 
 ```bdfd
 $if[$isSlash==true]
-  $sendEphemeral[✅ Action effectuée with success !]
+  $sendEphemeral[✅ Action completed successfully!]
 $else
-  $sendMessage[✅ Action effectuée with success !]
+  $sendMessage[✅ Action completed successfully!]
 $endif
 ```
 
-### Log of diagnostic
+### Diagnostic Log
 
 ```bdfd
 $if[$isSlash==true]
-  $log[Command /$commandName executed par $userName]
+  $log[Command /$commandName executed by $userName]
 $else
-  $log[Command $commandTrigger executed par $userName]
+  $log[Command $commandTrigger executed by $userName]
 $endif
 ```
 
-### Message of information
+### Info Message
 
 ```bdfd
 $var[type;$if[$isSlash==true]Slash$elsePrefix$endif]
-$title[ℹ️ Information command]
+$title[ℹ️ Command Information]
 $description[
-**Nom :** $commandName
-**Type :** $var[type]
-**Folder :** $commandFolder
+**Name:** $commandName
+**Type:** $var[type]
+**Folder:** $commandFolder
 ]
 $color[$if[$isSlash==true]#5865F2$else#57F287$endif]
 $sendMessage[]
 ```
 
-### Command hybride
+### Hybrid Command
 
 ```bdfd
-;; Cette command functionne en prefix and en slash
+;; This command works in prefix and slash mode
 $if[$isSlash==true]
   $var[args;$slashOption[1]]
 $else
   $var[args;$message[1]]
 $endif
 
-;; Traitement commun
-$sendMessage[Vous avez fourni : $var[args]]
+;; Common processing
+$sendMessage[You provided: $var[args]]
 ```
 
 ## Notes
 
-- `$isSlash` ne prend pas of parameters.
-- Pour obtenir the type précis of the command, utilisez `$commandType`.
-- Les responses éphémères (`$sendEphemeral[]`) ne functionnent qu'en slash.
-- `$isSlash` est évalué in the context of the command in progress of exécution.
+- `$isSlash` takes no parameters.
+- To get the precise command type, use `$commandType`.
+- Ephemeral responses (`$sendEphemeral[]`) only work in slash mode.
+- `$isSlash` is evaluated in the context of the currently executing command.

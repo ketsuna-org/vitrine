@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: blacklistServers
 syntax: $blacklistServers[guildID1;guildID2;...;(errorMessage)]
-description: Function guard qui blacklist servers. If the command est executede in a server blacklisté, it is interrompue.
+description: Guard function that blacklists servers. If the command is executed on a blacklisted server, it is interrupted.
 ---
 
 # $blacklistServers
 
-The function guard `$blacklistServers` bloque l'execution of the command in thes servers listés. If the command est executede in a server blacklisté, it is interrompue.
+The guard function `$blacklistServers` blocks the execution of the command on the listed servers. If the command is executed on a blacklisted server, it is interrupted.
 
 ## Syntax
 
@@ -22,40 +22,40 @@ $blacklistServers[guildID1;guildID2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `guildID1;guildID2;...` | Snowflake[] | IDs servers to blacklistr. |
-| `errorMessage` | String (optional) | Message if the server est blacklisté. |
+| `guildID1;guildID2;...` | Snowflake[] | IDs of servers to blacklist. |
+| `errorMessage` | String (optional) | Message sent if the server is blacklisted. |
 
 ## Behavior
 
-- Compare the ID of the server courant (`$guildID`/`$serverID`) with the list.
-- If the server est in the list, la command est interrompue.
-- If a message error is provided, il is sent ; otherwise, silence.
+- Compares the ID of the current server (`$guildID`/`$serverID`) with the list.
+- If the server is in the list, the command is interrupted.
+- If an error message is provided, it is sent; otherwise, it remains silent.
 
 ## Examples
 
-### Bloquer a server
+### Block a server
 
 ```bdfd
-$blacklistServers[123456789012345678;❌ Command désenablede on ce server.]
-$sendMessage[Command executede.]
+$blacklistServers[123456789012345678;❌ Command disabled on this server.]
+$sendMessage[Command executed.]
 ```
 
-### Blacklist multi-servers
+### Multi-server blacklist
 
 ```bdfd
 $blacklistServers[111111111111111111;222222222222222222]
 $sendMessage[OK.]
 ```
 
-### Blacklist dynamic via variable
+### Dynamic blacklist via variable
 
 ```bdfd
-$blacklistServers[$getGlobalVar[blacklistdServers];❌ Server blacklisté.]
-$sendMessage[Bienvenue.]
+$blacklistServers[$getGlobalVar[blacklistedServers];❌ Server blacklisted.]
+$sendMessage[Welcome.]
 ```
 
 ## Notes
 
-- Pour whitelistr servers (autoriser only certains servers), use `$onlyForServers`.
-- La blacklist of server est utile for bots publics in order to désenable commands on servers problématiques.
-- Combinez with of variables globals to manage la blacklist dynamicment without modifier the code.
+- To whitelist servers (only allow certain servers), use `$onlyForServers`.
+- Server blacklisting is useful for public bots to disable commands on problematic servers.
+- Combine it with global variables to manage the blacklist dynamically without modifying the code.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyBotPerms
 syntax: $onlyBotPerms[permission1;permission2;...;(errorMessage)]
-description: Function guard qui stops l'exécution si the bot ne possède pas all permissions spécifiées on the server.
+description: A guard function that stops execution if the bot does not have all specified permissions on the server.
 ---
 
 # $onlyBotPerms
 
-The function guard `$onlyBotPerms` vérifie que le **bot lui-même** possède all permissions Discord spécifiées on the server. Si the bot manque of une permission, the command est interrompue.
+The guard function `$onlyBotPerms` checks if the **bot itself** has all the specified Discord permissions on the server. If the bot lacks any of these permissions, the command execution is halted.
 
 ## Syntax
 
@@ -22,44 +22,44 @@ $onlyBotPerms[permission1;permission2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `permission1;permission2;...` | String[] | List permissions Discord separatedes par `;`. The bot doit posséder **all** ces permissions. |
-| `errorMessage` | String (optional) | Message sent si the bot n'a pas les permissions requiredes. Si omitted, silence. |
+| `permission1;permission2;...` | String[] | List of Discord permissions separated by `;`. The bot must possess **all** of these permissions. |
+| `errorMessage` | String (optional) | The message sent if the bot does not have the required permissions. If omitted, the bot remains silent. |
 
 ## Behavior
 
-- Checks les permissions globals of the bot on the server (pas only in the channel courant).
-- La permission `Administrator` couvre implicitement all autres.
-- Si the bot n'a pas les permissions, the command s'stops immédiatement.
-- Différence with `$onlyPerms` : `$onlyPerms` vérifie l'**user**, `$onlyBotPerms` vérifie le **bot**.
+- Checks the global permissions of the bot on the server (not just in the current channel).
+- The `Administrator` permission implicitly covers all other permissions.
+- If the bot lacks the permissions, the command execution stops immediately.
+- Difference from `$onlyPerms`: `$onlyPerms` checks the **user**, while `$onlyBotPerms` checks the **bot**.
 
 ## Examples
 
-### Vérification before un ban
+### Check before banning
 
 ```bdfd
-$onlyBotPerms[BanMembers;❌ Je n'ai pas la permission **BanMembers**. Contactez un admin.]
+$onlyBotPerms[BanMembers;❌ I do not have the **BanMembers** permission. Please contact an admin.]
 $ban[$mentioned[1]]
 ```
 
-### Vérification multi-permissions
+### Multi-permission check
 
 ```bdfd
-$onlyBotPerms[ManageMessages;ReadMessageHistory;❌ J'ai besoin of gérer les messages.]
+$onlyBotPerms[ManageMessages;ReadMessageHistory;❌ I need permissions to manage messages.]
 $clear[50]
-$sendMessage[Nettoyage terminé.]
+$sendMessage[Clean up completed.]
 ```
 
-### Command of création of role
+### Role creation command
 
 ```bdfd
-$onlyBotPerms[ManageRoles;❌ Je ne peux pas create of roles without the permission **ManageRoles**.]
+$onlyBotPerms[ManageRoles;❌ I cannot create roles without the **ManageRoles** permission.]
 $createRole[New Role;#5865F2]
 $sendMessage[Role created successfully.]
 ```
 
 ## Notes
 
-- À use systématiquement before toute action nécessitant permissions specifics of the bot (ban, kick, gestion of roles, suppression of messages, etc.).
-- Pour les permissions specifics to the **channel** (ex: `SendMessages`, `ViewChannel`), utilisez `$onlyBotChannelPerms`.
-- Les noms of permissions sont en PascalCase (`ManageMessages`, `BanMembers`, etc.).
-- Équivaslow to `$onlyIf[$hasPerms[$botID;Permission]==true]` mais plus concis.
+- Use this systematically before any action requiring specific bot permissions (banning, kicking, managing roles, deleting messages, etc.).
+- For permissions specific to the **channel** (e.g. `SendMessages`, `ViewChannel`), use `$onlyBotChannelPerms`.
+- Permission names must be in PascalCase (`ManageMessages`, `BanMembers`, etc.).
+- Equivalent to `$onlyIf[$hasPerms[$botID;Permission]==true]` but more concise.

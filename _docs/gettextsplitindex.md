@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: getTextSplitIndex
 syntax: $getTextSplitIndex
-description: Returns the current index during text-spreads iteration within loops. Useful for tracking position inside a spreads loop.
+description: Returns the current index during split text iteration within loops. Useful for tracking position inside a split text loop.
 ---
-# $getTextSplitIndex — Current Spreads Iteration Index
+# $getTextSplitIndex — Current Split Text Iteration Index
 
-`$getTextSplitIndex` returns the current position (index) during text-spreads iteration. It is typically used inside a spreads loop to know which element is being processed.
+`$getTextSplitIndex` returns the current position (index) during split text iteration. It is typically used inside a split text loop to know which element is being processed.
 
 ## Syntax
 
@@ -22,12 +22,12 @@ This function takes **no parameters**.
 ## Return Value
 
 - **Type**: `string` (representing a number)
-- Returns the zero-based index of the current element in a spreads iteration.
-- Returns `"0"` if called outside a spreads loop context.
+- Returns the zero-based index of the current element in a split text iteration.
+- Returns `"0"` if called outside a split text loop context.
 
 ## Usage
 
-When iterating over spreads elements, `$getTextSplitIndex` tells you the position:
+When iterating over split text elements, `$getTextSplitIndex` tells you the position:
 
 ```
 $textSplit[red;green;blue;yellow;]
@@ -70,5 +70,5 @@ $endif
 ## Important Notes
 
 - **Zero-based**: The first element is at index `0`, not `1`. Add 1 for human-readable numbering.
-- **Loop context only**: Meaningful values are only available inside a spreads iteration loop.
+- **Loop context only**: Meaningful values are only available inside a split text iteration loop.
 - **No parameter**: This function takes no arguments — calling it with any brackets `$getTextSplitIndex[]` may cause unexpected behavior.

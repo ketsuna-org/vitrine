@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isTicket
 syntax: $isTicket
-description: Checks if le canal courant est un canal of ticket ouvert with $newTicket.
+description: Checks if the current channel is a ticket channel opened with $newTicket.
 ---
 
 # $isTicket
 
-The function `$isTicket` **vérifie if the canal courant est un ticket** created via the function `$newTicket[]` of BDFD. The tickets sont canaux éphémères utilisés for the support.
+The function `$isTicket` checks if the current channel is a ticket created via the `$newTicket[]` function in BDFD. Tickets are temporary channels used for support.
 
 ## Syntax
 
@@ -20,61 +20,61 @@ $isTicket
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return Value
 
-- **Type** : Boolean
-- `true` if the canal courant est un ticket BDFD.
-- `false` si ce is not un ticket (canal normal, DM, etc.).
+- **Type**: Boolean
+- `true` if the current channel is a BDFD ticket.
+- `false` if it is not a ticket (normal channel, DM, etc.).
 
 ## Behavior
 
-- Reconnaît only les tickets createds via `$newTicket[]`.
-- Utile pour restrict or adapter commands to the context ticket.
-- Les tickets sont identifiés par un marqueur internal BDFD.
+- Only recognizes tickets created via `$newTicket[]`.
+- Useful for restricting or adapting commands to the ticket context.
+- Tickets are identified by an internal BDFD marker.
 
 ## Examples
 
-### Command réservée to the tickets
+### Command restricted to tickets
 
 ```bdfd
 $if[$isTicket==false]
-  $sendMessage[❌ Cette command ne can be utilisée que in a ticket.]
+  $sendMessage[❌ This command can only be used in a ticket.]
   $stop
 $endif
 
-;; Logique of the command
-$sendMessage[📋 Traitement of the ticket in progress...]
+;; Command logic
+$sendMessage[📋 Processing the ticket...]
 ```
 
-### Bouton of fermeture contextuel
+### Contextual close button
 
 ```bdfd
 $if[$isTicket==true]
-  $addButton[close;Fermer le ticket;danger]
-  $sendMessage[📌 Ticket actif - Utilisez le bouton ci-dessous pour fermer.]
+  $addButton[close;Close Ticket;danger]
+  $sendMessage[📌 Active ticket - Use the button below to close it.]
 $else
-  $sendMessage[❌ Vous n'êtes pas in a canal of ticket.]
+  $sendMessage[❌ You are not in a ticket channel.]
 $endif
 ```
 
-### Information of the canal
+### Channel information
 
 ```bdfd
-$title[📋 Info Canal]
+$title[📋 Channel Info]
 $description[
-**Nom :** $channelName
-**ID :** $channelID
-**Ticket :** $if[$isTicket==true]✅ Oui$else❌ Non$endif
-**NSFW :** $if[$isNSFW==true]🔞 Oui$else✅ Non$endif
+**Name:** $channelName
+**ID:** $channelID
+**Ticket:** $if[$isTicket==true]✅ Yes$else❌ No$endif
+**NSFW:** $if[$isNSFW==true]🔞 Yes$else✅ No$endif
 ]
 $sendMessage[]
 ```
 
 ## Notes
 
-- Ne détecte que les tickets createds par `$newTicket[]`.
-- Pour fermer un ticket, utilisez `$closeTicket[]`.
-- Pour create a ticket, utilisez `$newTicket[]`.
-- Functionne only in a server (pas en DM).
+- Only detects tickets created by `$newTicket[]`.
+- To close a ticket, use `$closeTicket[]`.
+- To create a ticket, use `$newTicket[]`.
+- Only works in a server (not in DMs).

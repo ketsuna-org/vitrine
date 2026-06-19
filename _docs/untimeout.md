@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: unTimeout
 syntax: $unTimeout[userID]
-description: Retire le timeout of a user before son expiration.
+description: Removes the timeout of a user before its expiration.
 ---
 
 # $unTimeout
 
-The function `$unTimeout` **retire le timeout** of a user before son expiration, restaurant sa capacité to envoyer messages and parler en vocal. The bot doit avoir la permission `ModerateMembers`.
+The function `$unTimeout` **removes the timeout** of a user before its expiration, restoring their ability to send messages and speak in voice. The bot must have the `ModerateMembers` permission.
 
 ## Syntax
 
@@ -22,41 +22,41 @@ $unTimeout[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user to libérer of the timeout. Required. |
+| `userID` | The ID of the user to free from timeout. Required. |
 
 ## Return Value
 
-Aucune. The user est libéré of the timeout.
+None. The user is freed from timeout.
 
 ## Examples
 
-### Retrait simple
+### Simple removal
 
 ```bdfd
 $unTimeout[$mentioned[1]]
-$sendMessage[✅ <@$mentioned[1]> n'est plus en timeout.]
+$sendMessage[✅ <@$mentioned[1]> is no longer in timeout.]
 ```
 
-### Retrait conditionnel
+### Conditional removal
 
 ```bdfd
 $if[$isTimedOut[$mentioned[1]]==true]
   $unTimeout[$mentioned[1]]
-  $sendMessage[Timeout retiré.]
+  $sendMessage[Timeout removed.]
 $else
-  $sendMessage[Cet user is not en timeout.]
+  $sendMessage[This user is not in timeout.]
 $endif
 ```
 
-### Command of pardon
+### Pardon command
 
 ```bdfd
 $unTimeout[$mentioned[1]]
-$sendMessage[🙏 Pardon accordé. <@$mentioned[1]> peut of new participer.]
+$sendMessage[🙏 Pardon granted. <@$mentioned[1]> can participate again.]
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ModerateMembers`.
-- Utilisez `$isTimedOut` pour check if a user est en timeout before of caller `$unTimeout`.
-- N'a of effet que si the user est currentlement en timeout.
+- The bot must have the `ModerateMembers` permission.
+- Use `$isTimedOut` to check if a user is in timeout before calling `$unTimeout`.
+- Only has effect if the user is currently in timeout.

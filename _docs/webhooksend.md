@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookSend
 syntax: $webhookSend[webhookURL;content]
-description: Sends a message via un webhook Discord. Allows to envoyer of the contenu formatted, embeds and files vers un canal external or internal via une URL of webhook.
+description: Sends a message via a Discord webhook. Allows sending formatted content, embeds, and files to an external or internal channel using a webhook URL.
 ---
 
 # $webhookSend
 
-The function `$webhookSend[]` allows to **envoyer un message via un webhook** Discord. C'est le point of entrée principal pour use thes webhooks with BDFD.
+The `$webhookSend` function allows you to **send a message via a Discord webhook**. This is the main entry point for using webhooks with BDFD.
 
 ## Syntax
 
@@ -22,43 +22,43 @@ $webhookSend[webhookURL;content]
 
 | Parameter | Description |
 |---|---|
-| `webhookURL` | The URL complete of the webhook Discord (`https://discord.com/api/webhooks/ID/TOKEN`). |
-| `content` | Le text content of the message to envoyer. Supports the markdown and les emojis. |
+| `webhookURL` | The complete URL of the Discord webhook (`https://discord.com/api/webhooks/ID/TOKEN`). |
+| `content` | The text content of the message to send. Supports markdown and emojis. |
 
 ## Return Value
 
-This function ne retourne pas of value directly. The message est sent via l'API of webhook Discord.
+This function does not return a value directly. The message is sent via the Discord webhook API.
 
 ## Behavior
 
-- Si le webhook est invalid or expiré, l'envoi échoue silencieusement.
-- Le contenu peut inclure sauts of ligne, of the markdown and mentions.
-- Les functions of embed webhook (`$webhookTitle`, `$webhookDescription`, etc.) must be placées **before** `$webhookSend[]` in the code.
-- `$webhookSend[]` must be la **last** function webhook callée, because elle déclenche l'envoi.
+- If the webhook is invalid or expired, the sending fails silently.
+- The content can include line breaks, markdown, and mentions.
+- Webhook embed functions (`$webhookTitle`, `$webhookDescription`, etc.) must be placed **before** `$webhookSend` in the code.
+- `$webhookSend` must be the **last** webhook function called, because it triggers the actual delivery.
 
 ## Examples
 
-### Envoi simple
+### Simple sending
 
 ```bdfd
-$webhookSend[https://discord.com/api/webhooks/123456/abcdef;Hello World !]
+$webhookSend[https://discord.com/api/webhooks/123456/abcdef;Hello World!]
 ```
 
-### Envoi with embed
+### Sending with embed
 
 ```bdfd
-$webhookTitle[Titre of the embed]
-$webhookDescription[Description détaillée ici]
+$webhookTitle[Title of the embed]
+$webhookDescription[Detailed description here]
 $webhookColor[#5865F2]
-$webhookFooter[Pied of page]
+$webhookFooter[Footer text]
 $webhookSend[https://discord.com/api/webhooks/123456/abcdef;]
 ```
 
-### Envoi conditionnel
+### Conditional sending
 
 ```bdfd
 $if[$checkContains[$message;!annonce]==true]
-  $webhookTitle[New annonce]
+  $webhookTitle[New announcement]
   $webhookDescription[$message]
   $webhookSend[$webhookURL;]
 $endif
@@ -66,7 +66,7 @@ $endif
 
 ## Notes
 
-- Les URLs of webhook sont sensibles : ne les exposez never in of the code public.
-- Stockez les URLs of webhook in variables of environnement or constantes.
-- Un webhook peut envoyer until 10 embeds par message.
-- La limit of becauseactères par message est of 2000 for the contenu text.
+- Webhook URLs are sensitive: never expose them in public code.
+- Store webhook URLs in environment variables or constants.
+- A webhook can send up to 10 embeds per message.
+- The limit of characters per message is 2000 for the text content.

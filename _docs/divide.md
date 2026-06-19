@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: divide
 syntax: $divide[a;b]
-description: Divise la first value par la second (a / b). If the diviseur est 0, retourne 0 instead of produire an error.
+description: Divides the first value by the second (a / b). If the divisor is 0, it returns 0 instead of generating an error.
 ---
 
 # $divide[]
 
-The `$divide[]` function effectue une division : `a / b`. It is protégée contre la division par zéro : instead of produire an error, elle retourne simply `0`.
+The `$divide[]` function performs a division: `a / b`. It is protected against division by zero: instead of generating an error, it simply returns `0`.
 
 ## Syntax
 
@@ -22,36 +22,36 @@ $divide[a;b]
 
 | Parameter | Type   | Required | Description                      |
 |-----------|--------|-------------|----------------------------------|
-| `a`       | number | Yes         | Le dividende (numérateur).       |
-| `b`       | number | Yes         | Le diviseur (dénominateur).      |
+| `a`       | number | Yes         | The dividend (numerator).       |
+| `b`       | number | Yes         | The divisor (denominator).      |
 
 ## Behavior
 
 - Returns the quotient `a / b`.
-- The result can be a namebre decimal.
-- **Si `b = 0`, retourne `0`** without générer error. This is une protection intégrée.
+- The result can be a decimal number.
+- **If `b = 0`, it returns `0`** without generating an error. This is a built-in protection.
 
 ## Examples
 
-**Division simple :**
+**Simple division:**
 ```
 $divide[10;2]
 → 5
 ```
 
-**Result decimal :**
+**Decimal result:**
 ```
 $divide[10;3]
 → 3.333333...
 ```
 
-**Division par zéro (protégée) :**
+**Division by zero (protected):**
 ```
 $divide[42;0]
 → 0
 ```
 
-**Calcul of moyenne :**
+**Average calculation:**
 ```
 $divide[$sum[12;15;18];3]
 → 15
@@ -59,5 +59,5 @@ $divide[$sum[12;15;18];3]
 
 ## Notes
 
-- La protection contre la division par zéro évite les crashs accidentels, mais warning: `0` can be un result légitime or a indicateur error according to the context.
-- Pour un contrôthe most fin, use `$calculate[a / b]` (qui peut se comporter différemment).
+- Protection against division by zero prevents accidental crashes, but note: `0` can be a legitimate result or an error indicator depending on the context.
+- For finer control, use `$calculate[a / b]` (which may behave differently).

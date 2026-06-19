@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $editMessage
 
-Modifies a message existing sent par the bot. Remplace le contenu et/or les embeds and components of the message cible.
+Modifies an existing message sent by the bot. Replaces the content and/or the embeds and components of the target message.
 
 ## Syntax
 
@@ -23,55 +23,55 @@ $editMessage[messageId;newContent]
 
 ## Description
 
-`$editMessage` allows mettre to day a message previously sent par the bot. Tout like `$sendMessage`, les embeds and components construits before the call sont included in the modification.
+`$editMessage` allows updating a message previously sent by the bot. Just like `$sendMessage`, the embeds and components built before the call are included in the modification.
 
-The `messageId` can be obtenu via :
-- `$sentMessageId` after un `$sendMessage`
-- Une variable stockée
-- The ID of the message déclencheur (`$messageID`)
+The `messageId` can be obtained via:
+- `$sentMessageId` after a `$sendMessage`
+- A stored variable
+- The ID of the triggering message (`$messageID`)
 
 ## Examples
 
-### Édition simple
+### Simple edit
 
 ```
-$editMessage[123456789012345678;Contenu mis to day !]
+$editMessage[123456789012345678;Updated content!]
 ```
 
-### Édition after envoi
+### Edit after sending
 
 ```
-$sendMessage[Message original]
-$editMessage[$sentMessageId;Message modified !]
+$sendMessage[Original message]
+$editMessage[$sentMessageId;Modified message!]
 ```
 
-### Édition with newx embeds
+### Edit with new embeds
 
 ```
-$newEmbed[title=Mise to day;description=Les information ont changé;color=#FFA500]
+$newEmbed[title=Update;description=The information has changed;color=#FFA500]
 $editMessage[$sentMessageId;]
 ```
 
-### Édition with buttons mis to day
+### Edit with updated buttons
 
 ```
 $addActionRow
-$addButtonCV2[btn_done;Terminé;success;true]
-$editMessage[$sentMessageId;Action complétée ✅]
+$addButtonCV2[btn_done;Done;success;true]
+$editMessage[$sentMessageId;Action completed ✅]
 ```
 
-### Dans $onInteraction
+### In $onInteraction
 
 ```
 $onInteraction
 $if[$customID==btn_edit]
-  $editMessage[$messageID;Message édité par interaction]
+  $editMessage[$messageID;Message edited by interaction]
 $endif
 ```
 
 ## Notes
 
-- The bot ne peut modifier que their propres messages.
-- Si `newContent` est vide and qu'aucan embed/composant n'is provided, the message peut devenir vide (behavior according to version).
-- Les embeds and components remplacent completeely ceux of the message original.
-- Use `$sentMessageId` juste after `$sendMessage` to retrieve the ID of the last message sent.
+- The bot can only modify its own messages.
+- If `newContent` is empty and no embed/component is provided, the message may become empty (behavior depending on version).
+- Embeds and components completely replace those of the original message.
+- Use `$sentMessageId` right after `$sendMessage` to retrieve the ID of the last message sent.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: memberCount
 syntax: $memberCount
-description: Returns the number total of members (users + bots) on the server Discord.
+description: Returns the total number of members (users + bots) on the Discord server.
 ---
 
 # $memberCount[] — Number of Members
 
-`$memberCount[]` retourne the namebre total of members présents on the server Discord, incluant to la fois les users humains and les bots.
+`$memberCount` returns the total number of members present on the Discord server, including both human users and bots.
 
 ## Syntax
 
@@ -20,67 +20,68 @@ $memberCount
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
 - **Type** : `integer`
-- The namebre total of members (users + bots).
+- The total number of members (users + bots).
 
-## Utilisation
+## Usage
 
-### Affichage simple
+### Simple display
 
 ```bdfd
-$sendMessage[👥 **$memberCount** members on ce server !]
+$sendMessage[👥 **$memberCount** members on this server!]
 ```
 
-### Embed statistiques
+### Statistics embed
 
 ```bdfd
-$title[📊 Statistiques of $serverName]
-$addField[👥 Total members;$memberCount;yes]
+$title[📊 $serverName Statistics]
+$addField[👥 Total Members;$memberCount;yes]
 $addField[🟢 Online;$onlineMembers;yes]
 $addField[🤖 Bots;$botCount;yes]
-$addField[👤 Humains;$sub[$memberCount;$botCount];yes]
+$addField[👤 Humans;$sub[$memberCount;$botCount];yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Message of bienvenue custom
+### Custom welcome message
 
 ```bdfd
-$sendMessage[Bienvenue $username ! Tu es le **$memberCount**ème member ! 🎉]
+$sendMessage[Welcome $username! You are member #$memberCount! 🎉]
 ```
 
-### Condition of taille
+### Server size check
 
 ```bdfd
 $if[$memberCount>=1000]
-$sendMessage[🌟 Ce server a plus of 1000 members !]
+$sendMessage[🌟 This server has more than 1000 members!]
 $elseIf[$memberCount>=100]
-$sendMessage[👍 Ce server a plus of 100 members.]
+$sendMessage[👍 This server has more than 100 members.]
 $else
-$sendMessage[🌱 Ce server est encore petit mais en croissance !]
+$sendMessage[🌱 This server is still growing!]
 $endif
 ```
 
-### Jalon (milestone)
+### Milestone checks
 
 ```bdfd
 $if[$memberCount==100]
-$sendMessage[🎉 **100 MEMBRES !** Félicitations to toute la communauté !]
+$sendMessage[🎉 **100 MEMBERS!** Congratulations to the entire community!]
 $elseIf[$memberCount==500]
-$sendMessage[🚀 **500 MEMBRES !** Merci to all pour votre soutien !]
+$sendMessage[🚀 **500 MEMBERS!** Thank you all for your support!]
 $elseIf[$memberCount==1000]
-$sendMessage[🌟 **1000 MEMBRES !** Quel cap incroyable !]
+$sendMessage[🌟 **1000 MEMBERS!** What an incredible milestone!]
 $endif
 ```
 
 ## Notes
 
-- `$memberCount[]` and `$membersCount[]` sont identicals.
-- Le compte inclut all members, y compris les bots.
-- Pour obtenir only the namebre of humains, faites `$sub[$memberCount;$botCount]`.
-- Pour obtenir the namebre of members online, utilisez `$onlineMembers[]`.
+- `$memberCount` and `$membersCount` are identical.
+- The count includes all members, including bots.
+- To get only the number of human users, use `$sub[$memberCount;$botCount]`.
+- To get the number of online members, use `$onlineMembers`.
+

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: addReactions
 syntax: $addReactions[emoji1;emoji2;...]
-description: Adds one or more reactions to the message of response of the bot (the message sent par la command in progress). The emojis are added séquentiellement.
+description: Adds one or more reactions to the bot's response message (the message sent by the current command). The emojis are added sequentially.
 ---
 
 # $addReactions
 
-The `$addReactions[]` function **ajouter of reactions** to the message of response sent par the bot in the command in progress.
+The `$addReactions[]` function **adds reactions** to the response message sent by the bot in the current command.
 
 ## Syntax
 
@@ -22,45 +22,45 @@ $addReactions[emoji1;emoji2;...]
 
 | Parameter | Description |
 |---|---|
-| `emoji1;emoji2;...` | List of emojis separateds par `;`. Supports thes emojis Unicode and customs. |
+| `emoji1;emoji2;...` | List of emojis separated by `;`. Supports Unicode and custom emojis. |
 
 ## Return value
 
-Cette function does not return a value. The réactions sont ajoutées to the message of response of the bot.
+This function does not return a value. The reactions are added to the bot's response message.
 
 ## Behavior
 
-- Les réactions sont ajoutées in the order spécifié.
+- Reactions are added in the specified order.
 - The bot must have the permission `ADD_REACTIONS` in the channel.
-- Les emojis customs must be accessibles to the bot (présents on a server commun).
-- If a emoji est invalid, les réactions nextes can not être ajoutées.
+- Custom emojis must be accessible to the bot (present on a shared server).
+- If an emoji is invalid, subsequent reactions may not be added.
 
 ## Examples
 
-### Réactions to un sondage
+### Reactions to a poll
 
 ```bdfd
-$title[Sondage]
+$title[Poll]
 $description[$message]
 $addReactions[👍;👎;🤷]
 $sendMessage[]
 ```
 
-### Réactions of confirmation
+### Confirmation reactions
 
 ```bdfd
 $if[$checkContains[$message;!delete]==true]
   $title[Confirmation]
-  $description[Êtes-vous sûr of vouloir supprimer ?]
+  $description[Are you sure you want to delete?]
   $addReactions[✅;❌]
   $sendMessage[]
 $endif
 ```
 
-### Réactions to une annonce
+### Reactions to an announcement
 
 ```bdfd
-$title[📢 Annonce]
+$title[📢 Announcement]
 $description[$noMentionMessage]
 $addReactions[📢;👀]
 $sendMessage[]
@@ -68,6 +68,7 @@ $sendMessage[]
 
 ## Notes
 
-- `$addReactions[]` s'applique to the message of response of the bot (celui sent par `$sendMessage[]`).
-- Pour ajouter of reactions to the user's command message, use `$addCmdReactions[]`.
-- Pour of messages specifics, use `$addMessageReactions[]`.
+- `$addReactions[]` applies to the response message of the bot (the one sent by `$sendMessage[]`).
+- To add reactions to the user's command message, use `$addCmdReactions[]`.
+- For specific messages, use `$addMessageReactions[]`.
+

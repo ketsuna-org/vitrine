@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: kick
 syntax: $kick[userID;(reason)]
-description: Expulse un user of the server Discord.
+description: Kicks a user from the Discord server.
 ---
 
 # $kick
 
-The function `$kick` **expulse (kick) un user** of the server Discord. Contrairement to the ban, the user peut revenir with ae new invite. The bot doit avoir la permission `KickMembers`.
+The function `$kick` **kicks a user** from the Discord server. Unlike a ban, the user can rejoin with a new invite. The bot must have the `Kick Members` permission.
 
 ## Syntax
 
@@ -22,23 +22,23 @@ $kick[userID;(reason)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user to expulser. Required. |
-| `reason` | Optional. The reason of l'expulsion. |
+| `userID` | The ID of the user to kick. Required. |
+| `reason` | Optional. The reason for the kick. |
 
 ## Return Value
 
-Aucune. The user est expulsé of the server.
+None. The user is kicked from the server.
 
 ## Examples
 
-### Expulsion simple
+### Simple kick
 
 ```bdfd
-$kick[$mentioned[1];Non-respect règles]
-$sendMessage[<@$mentioned[1]> was expulsé.]
+$kick[$mentioned[1];Rules violation]
+$sendMessage[<@$mentioned[1]> has been kicked.]
 ```
 
-### Command of expulsion with confirmation
+### Kick command with confirmation
 
 ```bdfd
 $if[$argsCount<1]
@@ -47,23 +47,23 @@ $if[$argsCount<1]
 $endif
 
 $kick[$mentioned[1];$replaceText[$message;-;$mentioned[1];]]
-$sendMessage[✅ Expulsion effectuée.]
+$sendMessage[✅ Kick completed successfully.]
 ```
 
-### Vérification before expulsion
+### Check before kick
 
 ```bdfd
 $if[$isAdmin==true]
-  $kick[$mentioned[1];Abus]
-  $sendMessage[Member expulsé.]
+  $kick[$mentioned[1];Abuse]
+  $sendMessage[Member kicked.]
 $else
-  $sendMessage[Permission refusée. Admin required.]
+  $sendMessage[Permission denied. Admin required.]
 $endif
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `KickMembers`.
-- The user expulsé can be réinvité.
-- Utilisez `$ban` for ae kick permanent.
-- Pour expulser the user mentionné without specify the ID, utilisez `$kickMention`.
+- The bot must have the `Kick Members` permission.
+- The kicked user can be re-invited.
+- Use `$ban` for a permanent ban.
+- To kick the mentioned user without specifying the ID, use `$kickMention`.

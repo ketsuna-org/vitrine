@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: year
 syntax: $year
-description: "Returns the year currentle (ex: 2026). Resolved to the runtime."
+description: "Returns the current year (e.g., 2026). Resolved at runtime."
 ---
 
 # $year[]
 
-The function `$year[]` retourne l'year currentle.
+The `$year` function returns the current year.
 
-> **Important:** This function utilise l'identifier special `((year))` qui est resolved to the **runtime**.
+> **Important:** This function uses the special identifier `((year))` which is resolved at **runtime**.
 
 ## Syntax
 
@@ -20,33 +20,33 @@ The function `$year[]` retourne l'year currentle.
 $year
 ```
 
-> **Note :** This function ne prend no parameter.
+> **Note:** This function takes no parameters.
 
 ## Return Value
 
-The year currentle (for example `2026`), sous forme of string of becauseactères.
+The current year (for example `2026`), in the form of a string.
 
 ## Examples
 
-### Année simple
+### Simple year
 
 ```bdfd
-Nous sommes en $year.
+We are in the year $year.
 ```
 
-### Calcul of âge
+### Age calculation
 
 ```bdfd
-Vous êtes né en 2000 ? Vous avez $sub[$year;2000] ans !
+Were you born in 2000? You are $sub[$year;2000] years old!
 ```
 
-### Copyright dynamic
+### Dynamic copyright
 
 ```bdfd
-$footer[© $year - MonBot]
+$footer[© $year - MyBot]
 ```
 
 ## Notes
 
-- L'year est basée on the horloge système of the server exécutant the bot.
-- Utile for the footers of copyright dynamics.
+- The year is based on the system clock of the server running the bot.
+- Useful for dynamic copyright footers.

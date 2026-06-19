@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: clearReactions
 syntax: $clearReactions[messageID]
-description: Supprime all réactions of a message specific. Ne can be utilisé que to delete les réactions ajoutées par the bot lui-même in the plupart cas.
+description: Removes all reactions from a specific message. Usually requires appropriate permissions to clear reactions from other users.
 ---
 
 # $clearReactions
 
-The `$clearReactions[]` function **supprimer all réactions** of a message en a single opération.
+The `$clearReactions[]` function **removes all reactions** from a message in a single operation.
 
 ## Syntax
 
@@ -22,45 +22,45 @@ $clearReactions[messageID]
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message dont on souhaite supprimer all réactions. |
+| `messageID` | The ID of the message from which you want to remove all reactions. |
 
 ## Return value
 
-Cette function does not return a value.
+This function does not return a value.
 
 ## Behavior
 
-- Supprime TOUTES les réactions of the message, y compris celles of autres users if the bot a the permission `MANAGE_MESSAGES`.
-- If the bot does not have `MANAGE_MESSAGES`, seules les réactions of the bot can be deletedes.
-- Utile pour réinitialiser un système of réaction (sondage, giveaway, etc.).
+- Removes ALL reactions from the message, including those of other users if the bot has the `MANAGE_MESSAGES` permission.
+- If the bot does not have `MANAGE_MESSAGES`, only the bot's own reactions can be deleted.
+- Useful for resetting a reaction system (poll, giveaway, etc.).
 
 ## Examples
 
-### Réinitialiser un sondage
+### Resetting a poll
 
 ```bdfd
 $clearReactions[$messageID]
 $addMessageReactions[$channelID;$messageID;👍;👎;🤷]
-$sendMessage[Les votes have been réinitialisés.]
+$sendMessage[The votes have been reset.]
 ```
 
-### Nettoyage automatique
+### Automatic cleanup
 
 ```bdfd
 $clearReactions[$messageID]
 $addReactions[✅]
-$editMessage[Terminé !]
+$editMessage[Finished!]
 ```
 
-### Suppression after fermeture
+### Removal after closing
 
 ```bdfd
 $clearReactions[$messageID]
-$sendMessage[Ce sondage est now fermé.]
+$sendMessage[This poll is now closed.]
 ```
 
 ## Notes
 
-- `$clearReactions[]` supprime all réactions, pas only celles of the bot.
-- Requires the permission `MANAGE_MESSAGES` to delete les réactions of autres users.
-- Pour supprimer une réaction specific, use `$removeReaction[]`.
+- `$clearReactions[]` removes all reactions, not just the bot's.
+- Requires the `MANAGE_MESSAGES` permission to delete other users' reactions.
+- To delete a specific reaction, use `$removeReaction[]`.

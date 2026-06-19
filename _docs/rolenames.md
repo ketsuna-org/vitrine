@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleNames
 syntax: $roleNames[(separator);(guildID)]
-description: Returns the list of all noms of roles of the server, separateds par un délimitur personnalisable.
+description: Returns a list of all role names on the server, separated by a customizable delimiter.
 ---
 
 # $roleNames
 
-The function `$roleNames` retourne la **list complete noms** of all roles of the server, separateds par un délimitur personnalisable.
+The function `$roleNames` returns the **complete list of names** of all roles on the server, separated by a customizable delimiter.
 
 ## Syntax
 
@@ -22,45 +22,45 @@ $roleNames[(separator);(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `separator` | Optional. The separator between each nom of role. Par default: `, `. |
-| `guildID` | Optional. The ID of the server cible. Par default: server courant. |
+| `separator` | Optional. The separator between each role name. Default: `, `. |
+| `guildID` | Optional. The ID of the target server. Default: current server. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | Tous les noms of roles concaténés with the separator choisi. |
+| `string` | All role names concatenated with the chosen separator. |
 
 ## Examples
 
-### List simple
+### Simple list
 
 ```bdfd
-$sendMessage[**Roles of the server :** $roleNames]
+$sendMessage[**Roles on the server:** $roleNames]
 ```
 
-### List with retours to la ligne
+### List with line breaks
 
 ```bdfd
-$sendMessage[**List roles :**
+$sendMessage[**List of roles:**
 $roleNames[
 ]]
 ```
 
-### Avec separator custom
+### With custom separator
 
 ```bdfd
-$sendMessage[Roles : $roleNames[ | ]]
+$sendMessage[Roles: $roleNames[ | ]]
 ```
 
-### Compter and listr
+### Count and list
 
 ```bdfd
-$sendMessage[The server a $roleCount roles : $roleNames[, ]]
+$sendMessage[The server has $roleCount roles: $roleNames[, ]]
 ```
 
 ## Notes
 
-- The role `@everyone` est generally included in the list.
-- Les roles sont listés according to leur ordre hiérarchique (du plus haut to the plus bas).
-- Pour les IDs plutôt que les noms, utilisez une autre approche.
+- The `@everyone` role is generally included in the list.
+- Roles are listed according to their hierarchical order (from highest to lowest).
+- To get IDs instead of names, use a different approach.

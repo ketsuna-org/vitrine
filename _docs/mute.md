@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: mute
 syntax: $mute[userID;(reason)]
-description: Rend muet un user on the server.
+description: Mutes a user on the server.
 ---
 
 # $mute
 
-The function `$mute` **rend muet un user** on the server Discord. Cela l'empêche of parler in thes channels vocaux. The bot doit avoir la permission `MuteMembers`.
+The function `$mute` **mutes a user** on the Discord server. This prevents them from speaking in voice channels. The bot must have the `MuteMembers` permission.
 
 ## Syntax
 
@@ -22,23 +22,23 @@ $mute[userID;(reason)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user to rendre muet. Required. |
-| `reason` | Optional. The reason of la sourdine. |
+| `userID` | The ID of the user to mute. Required. |
+| `reason` | Optional. The reason for the mute. |
 
 ## Return Value
 
-Aucune. The user est rendu muet.
+None. The user is muted.
 
 ## Examples
 
-### Mute simple
+### Simple Mute
 
 ```bdfd
 $mute[$mentioned[1];Spam vocal]
-$sendMessage[<@$mentioned[1]> was rendu muet pour spam vocal.]
+$sendMessage[<@$mentioned[1]> was muted for voice spam.]
 ```
 
-### Mute with command modération
+### Mute with moderation command
 
 ```bdfd
 $if[$argsCount<1]
@@ -47,24 +47,24 @@ $if[$argsCount<1]
 $endif
 
 $mute[$mentioned[1];$replaceText[$message;-;$mentioned[1];]]
-$sendMessage[🔇 <@$mentioned[1]> est now muet.]
+$sendMessage[🔇 <@$mentioned[1]> is now muted.]
 ```
 
-### Vérification before mute
+### Verification before mute
 
 ```bdfd
 $if[$isAdmin==true]
-  $mute[$mentioned[1];Non-respect règles vocales]
-  $sendMessage[Member rendu muet.]
+  $mute[$mentioned[1];Violation of voice rules]
+  $sendMessage[Member muted.]
 $else
-  $sendMessage[Permission refusée.]
+  $sendMessage[Permission denied.]
 $endif
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `MuteMembers`.
-- Le mute empêche of parler en vocal, pas of écrire in thes channels textuels.
-- Pour empêcher l'envoi of messages, créez un role without permission of écriture and utilisez `$giveRole`.
-- Pour retirer le mute, utilisez `$unmute`.
-- Pour un silence temporary, utilisez `$timeout`.
+- The bot must have the `MuteMembers` permission.
+- The mute prevents users from speaking in voice channels, not from writing in text channels.
+- To prevent sending messages, create a role without write permissions and use `$giveRole`.
+- To unmute the user, use `$unmute`.
+- For a temporary timeout, use `$timeout`.

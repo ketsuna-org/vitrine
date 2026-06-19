@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: customEmoji
 syntax: $customEmoji[name;(id)]
-description: Generates le markup of a custom emoji in the format <:nom:ID> pour affichage in a message. If the ID est omitted, the bot cherche the emoji on the server courant.
+description: Generates the markup of a custom emoji in the format <:name:ID> for display in a message. If the ID is omitted, the bot searches for the emoji on the current server.
 ---
 
 # $customEmoji
 
-The `$customEmoji[]` function **générer le markup of a custom emoji** utilisable in a message or an embed. Elle returns the format `<:nom:ID>` qui will be rendu like emoji par Discord.
+The `$customEmoji[]` function **generates the markup of a custom emoji** usable in a message or an embed. It returns the format `<:name:ID>` which will be rendered as an emoji by Discord.
 
 ## Syntax
 
@@ -22,39 +22,39 @@ $customEmoji[name;(id)]
 
 | Parameter | Description |
 |---|---|
-| `name` | The emoji name custom. |
-| `id` | Optional - The ID of the emoji. If omitted, recherché on the server by name. |
+| `name` | The custom emoji name. |
+| `id` | Optional - The ID of the emoji. If omitted, it is searched for on the server by name. |
 
 ## Return value
 
-- **Type** : String
-- Le markup `<:nom:ID>` (or `<a:nom:ID>` for animés) affichable in Discord.
-- String vide or nom text if the emoji est introuvable.
+- **Type**: String
+- The markup `<:name:ID>` (or `<a:name:ID>` for animated ones) displayable in Discord.
+- Empty string or text name if the emoji is not found.
 
 ## Behavior
 
-- Without ID, la function cherche the emoji by name on the server courant.
-- Avec ID, elle génère directly le markup.
-- Les emojis animés sont automatically détectés and formatteds with `<a:...>`.
+- Without an ID, the function searches for the emoji by name on the current server.
+- With an ID, it directly generates the markup.
+- Animated emojis are automatically detected and formatted with `<a:...>`.
 
 ## Examples
 
-### Simple display
+## Simple display
 
 ```bdfd
-$title[Bienvenue !]
+$title[Welcome!]
 $description[
-$customEmoji[wave] Bienvenue on the server $customEmoji[party] !
+$customEmoji[wave] Welcome to the server $customEmoji[party]!
 ]
 $sendMessage[]
 ```
 
-### Avec ID explicite
+### With explicit ID
 
 ```bdfd
 $let[emoji;$customEmoji[boost;123456789012345678]]
-$title[🚀 Boost détecté $emoji]
-$description[Merci pour ton boost !]
+$title[🚀 Boost detected $emoji]
+$description[Thank you for your boost!]
 $color[#F47FFF]
 $sendMessage[]
 ```
@@ -64,26 +64,26 @@ $sendMessage[]
 ```bdfd
 $title[📋 Menu]
 $description[
-$customEmoji[rules] Règlement
-$customEmoji[announce] Annonces
-$customEmoji[chat] Discussion générale
+$customEmoji[rules] Rules
+$customEmoji[announce] Announcements
+$customEmoji[chat] General Discussion
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Emoji conditionnel
+### Conditional emoji
 
 ```bdfd
 $if[$emojiExists[verified]==true]
   $customEmoji[verified]
 $else
   ✅
-$endif User vérifié
+$endif Verified User
 ```
 
 ## Notes
 
-- If the emoji does not exist on the server and qu'aucan ID n'is provided, le markup ne s'affichera pas correctment.
-- For emojis of autres servers, the ID is required.
-- The bot must have accès to the server hébergeant the emoji for the résoudre by name.
+- If the emoji does not exist on the server and no ID is provided, the markup will not display correctly.
+- For emojis from other servers, the ID is required.
+- The bot must have access to the server hosting the emoji to resolve it by name.

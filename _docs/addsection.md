@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addSection
 syntax: $addSection[(id)]
-description: Crée a section inside of a container. The sections allow organize le contenu (champs, text, thumbnails) of manière structurée in a visual container.
+description: Creates a section inside a container. Sections allow organizing content (fields, text, thumbnails) in a structured way within a visual container.
 ---
 
-# $addSection[] — Section in a Conteneur
+# $addSection[] — Section inside a Container
 
-`$addSection[]` crée a section inside of a container previously initialisé with `$addContainer[]`. The sections structurent visually le contenu and can contain of fields, of the text, and médias.
+`$addSection[]` creates a section inside a container previously initialized with `$addContainer[]`. Sections visually structure content and can contain fields, text, and media.
 
 ## Syntax
 
@@ -26,18 +26,18 @@ $addSection[(id)]
 
 ## Return value
 
-Initialise a section in the container courant. The components nexts are added to cette section.
+Initializes a section in the current container. Subsequent components are added to this section.
 
 ## Usage
 
-### Conteneur with a section
+### Container with a section
 
 ```bdfd
 $addContainer[user_info;#E67E22;no]
 $addSection
-$addField[Pseudo;$username;no]
+$addField[Username;$username;no]
 $addField[ID;$authorID;no]
-$addField[Date of inscription;$creationDate;no]
+$addField[Registration date;$creationDate;no]
 ```
 
 ### Multi-section container
@@ -47,7 +47,7 @@ $addContainer[embed;#9B59B6;no]
 
 $addSection[header]
 $addThumbnail[$authorAvatar]
-$addTextDisplay[**Profil of $username**]
+$addTextDisplay[**Profile of $username**]
 
 $addSection[stats]
 $addField[Messages;$var[msg_count];yes]
@@ -57,23 +57,24 @@ $addSection[footer]
 $addTextDisplay[📅 Member since $memberJoinDate]
 ```
 
-### Sections in a message complex
+### Sections in a complex message
 
 ```bdfd
 $addContainer[shop;#3498DB;no]
 
 $addSection[item1]
-$addField[Article;Épée légendaire;yes]
-$addField[Prix;5000 pièces of or;yes]
+$addField[Article;Legendary sword;yes]
+$addField[Price;5000 gold coins;yes]
 
 $addSection[item2]
-$addField[Article;Bouclier mystique;yes]
-$addField[Prix;3500 pièces of or;yes]
+$addField[Article;Mystic shield;yes]
+$addField[Price;3500 gold coins;yes]
 ```
 
 ## Notes
 
-- Doit être utilisé inside of a container (`$addContainer`).
-- Multiple sections can coexister in a même container.
-- Each section can contain of fields (`$addField`), of the text (`$addTextDisplay`), or a thumbnail (`$addThumbnail`).
-- L'ordre of ajout détermine the order of affichage in the message.
+- Must be used inside a container (`$addContainer`).
+- Multiple sections can coexist in the same container.
+- Each section can contain fields (`$addField`), text (`$addTextDisplay`), or a thumbnail (`$addThumbnail`).
+- The order of addition determines the display order in the message.
+

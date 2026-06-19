@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: deleteRole
 syntax: $deleteRole[roleID]
-description: Supprime a role of the Discord server.
+description: Deletes a role from the Discord server.
 ---
 
 # $deleteRole
 
-The `$deleteRole` function **supprime permanently a role** of the Discord server. Cette action est irréversible. The bot must have the permission `ManageRoles`.
+The `$deleteRole` function **permanently deletes a role** from the Discord server. This action is irreversible. The bot must have the `ManageRoles` permission.
 
 ## Syntax
 
@@ -26,18 +26,18 @@ $deleteRole[roleID]
 
 ## Return value
 
-None. The role is deleted of the server.
+None. The role is deleted from the server.
 
 ## Examples
 
-### Suppression simple
+### Simple deletion
 
 ```bdfd
 $deleteRole[$roleID[Old Staff]]
 $sendMessage[🗑️ Role "Old Staff" deleted.]
 ```
 
-### Suppression with vérification of existence
+### Deletion with existence check
 
 ```bdfd
 $if[$roleExists[$roleID[VIP]]==true]
@@ -48,25 +48,25 @@ $else
 $endif
 ```
 
-### Command of suppression sécurisée
+### Secure deletion command
 
 ```bdfd
 $if[$isAdmin==true]
   $if[$roleExists[$roleID[$message[1]]]==true]
     $deleteRole[$roleID[$message[1]]]
-    $sendMessage[✅ Role deleted with success.]
+    $sendMessage[✅ Role deleted successfully.]
   $else
-    $sendMessage[Role introuvable.]
+    $sendMessage[Role not found.]
   $endif
 $else
-  $sendMessage[Permission refusée. Admin required.]
+  $sendMessage[Permission denied. Admin required.]
 $endif
 ```
 
 ## Notes
 
-- The bot must have the permission `ManageRoles`.
-- **Action irréversible** : the role est permanently deleted.
-- The bot cannot supprimer a role supérieur its own.
-- Use `$roleExists` to check the existence before suppression.
-- To modify a role without le supprimer, use `$modifyRole`.
+- The bot must have the `ManageRoles` permission.
+- **Irreversible action**: the role is permanently deleted.
+- The bot cannot delete a role higher than its own.
+- Use `$roleExists` to check the existence before deletion.
+- To modify a role without deleting it, use `$modifyRole`.

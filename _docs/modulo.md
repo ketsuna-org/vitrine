@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: modulo
 syntax: $modulo[a;b]
-description: Calculates the reste of la division euclidienne of a par b (a % b). Si b = 0, retourne 0.
+description: Calculates the remainder of the division of a by b (a % b). If b = 0, returns 0.
 ---
 
 # $modulo[]
 
-The function `$modulo[]` retourne le reste of la division euclidienne of `a` par `b` (opération modulo : `a % b`). Comme `$divide[]`, it is protégée contre la division par zéro.
+The function `$modulo[]` returns the remainder of the division of `a` by `b` (modulo operation: `a % b`). Like `$divide[]`, it is protected against division by zero.
 
 ## Syntax
 
@@ -22,48 +22,48 @@ $modulo[a;b]
 
 | Parameter | Type   | Required | Description        |
 |-----------|--------|-------------|--------------------|
-| `a`       | number | Yes         | Le dividende.      |
-| `b`       | number | Yes         | Le diviseur.       |
+| `a`       | number | Yes         | The dividend.      |
+| `b`       | number | Yes         | The divisor.       |
 
 ## Behavior
 
-- Returns the reste of `a` divisé par `b`.
-- Si `b = 0`, retourne `0` (protection intégrée).
-- The result a toudays le even ifgne que le dividende `a`.
+- Returns the remainder of `a` divided by `b`.
+- If `b = 0`, returns `0` (built-in protection).
+- The result always has the same sign as the dividend `a`.
 
 ## Examples
 
-**Modulo simple :**
+**Simple modulo:**
 ```
 $modulo[17;5]
 → 2
 ```
 
-**Détection pair/impair :**
+**Even/odd detection:**
 ```
 $modulo[$getVar[number];2]
-→ 0 si pair, 1 si impair
+→ 0 if even, 1 if odd
 ```
 
-**Avec multiple exacts :**
+**With exact multiples:**
 ```
 $modulo[20;5]
 → 0
 ```
 
-**Modulo par zéro (protégé) :**
+**Modulo by zero (protected):**
 ```
 $modulo[42;0]
 → 0
 ```
 
-## Cas of usage courants
+## Common Use Cases
 
-- Vérifier if a number est divisible par un autre.
-- Alterner comportements (pair/impair).
-- Boucler une list (index % taille).
-- Calculer cycles (all N itérations).
+- Checking if a number is divisible by another.
+- Alternating behaviors (even/odd).
+- Cycling through a list (index % size).
+- Calculating cycles (every N iterations).
 
 ## Notes
 
-- Pour les numbers négatifs, le comportement suit la définition mathématique standard : `$modulo[-17;5]` → `-2`.
+- For negative numbers, the behavior follows standard mathematical definitions: `$modulo[-17;5]` → `-2`.

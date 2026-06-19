@@ -10,7 +10,7 @@ description: Returns the type of a channel Discord (text, voice, category, dm, e
 
 # $channelType
 
-The `$channelType` function returns the **type** of a channel Discord. The types possibles incluent `text`, `voice`, `category`, `news`, `stage`, `forum` and `dm`.
+The `$channelType` function returns the **type** of a Discord channel. Possible types include `text`, `voice`, `category`, `news`, `stage`, `forum`, and `dm`.
 
 ## Syntax
 
@@ -22,43 +22,43 @@ $channelType[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `string` | The type of the channel. Values possibles : `text`, `voice`, `category`, `news`, `stage`, `forum`, `dm`, `group_dm`. |
+| `string` | The type of the channel. Possible values: `text`, `voice`, `category`, `news`, `stage`, `forum`, `dm`, `group_dm`. |
 
 ## Examples
 
 ### Display the type of the channel
 
 ```bdfd
-$sendMessage[Ce channel est of type : **$channelType**]
+$sendMessage[This channel is of type: **$channelType**]
 ```
 
-### Vérifier si channel vocal
+### Check if voice channel
 
 ```bdfd
 $if[$channelType==voice]
-  $sendMessage[Vous êtes in a channel vocal.]
+  $sendMessage[You are in a voice channel.]
 $else
-  $sendMessage[Vous n'êtes pas in a channel vocal.]
+  $sendMessage[You are not in a voice channel.]
 $endif
 ```
 
-### Vérifier si catégorie
+### Check if category
 
 ```bdfd
 $if[$channelType==category]
-  $sendMessage[Cette command cannot être utilisée in a catégorie.]
+  $sendMessage[This command cannot be used on a category.]
   $stop
 $endif
 ```
 
 ## Notes
 
-- Les types sont retournés en minuscules.
-- Utile pour conditionner le behavior of a command according to the type of channel.
-- Les channels of type `dm` do not have of catégorie parente.
+- Channel types are returned in lowercase.
+- Useful for conditioning the behavior of a command based on the channel type.
+- Channels of type `dm` do not have a parent category.

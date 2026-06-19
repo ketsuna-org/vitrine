@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: nodeVersion
 syntax: $nodeVersion
-description: Returns the version of the runtime Node.js on lequel the bot s'exécute.
+description: Returns the Node.js runtime version on which the bot is running.
 ---
 
 # $nodeVersion
 
-The function `$nodeVersion` **retourne la version currentle of the runtime Node.js** on lequel the bot BDFD est executed.
+The function `$nodeVersion` **returns the current Node.js runtime version** on which the BDFD bot is running.
 
 ## Syntax
 
@@ -20,22 +20,22 @@ $nodeVersion
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return Value
 
 - **Type** : String
-- La version of Node.js (ex: `v18.15.0`, `v20.10.0`).
+- The Node.js version (e.g. `v18.15.0`, `v20.10.0`).
 
 ## Behavior
 
-- Returns the version complete with the préfixe `v`.
-- La version est déterminée par l'infrastructure BDFD (non modifiable).
-- Utile for the débogage and la compatibilité functionnalités.
+- Returns the full version prefixed with `v`.
+- The version is determined by the BDFD infrastructure (cannot be modified).
+- Useful for debugging and checking feature compatibility.
 
 ## Examples
 
-### Compatibilité of functionnalité
+### Feature Compatibility Check
 
 ```bdfd
 $var[version;$nodeVersion]
@@ -43,28 +43,28 @@ $var[major;$textSplit[$var[version];v]]
 $var[major;$textSplit[$var[major];.;1]]
 
 $if[$var[major]>=18]
-  $sendMessage[✅ Votre runtime supporte les lasts functionnalités.]
+  $sendMessage[✅ Your runtime supports the latest features.]
 $else
-  $sendMessage[⚠️ Runtime old. Certaines functions can be limitées.]
+  $sendMessage[⚠️ Outdated runtime. Some features may be limited.]
 $endif
 ```
 
-### Information technique
+### Technical Info
 
 ```bdfd
-$title[🛠️ Environnement technique]
+$title[🛠️ Technical Environment]
 $description[
 **Bot :** $botName
 **Node :** $botNode
 **Runtime :** $nodeVersion
-**Langage :** $scriptLanguage
+**Language :** $scriptLanguage
 **Commands :** $commandsCount
 ]
-$footer[Infrastructure BDFD]
+$footer[BDFD Infrastructure]
 $sendMessage[]
 ```
 
-### Log of démarrage
+### Startup Log
 
 ```bdfd
 $log[🚀 $botName started | Node: $botNode | Runtime: $nodeVersion | Lang: $scriptLanguage]
@@ -72,7 +72,7 @@ $log[🚀 $botName started | Node: $botNode | Runtime: $nodeVersion | Lang: $scr
 
 ## Notes
 
-- Version en lecture seule, gérée par BDFD.
-- Mise to day automatique par l'infrastructure BDFD.
-- Pour information on the nœud, utilisez `$botNode`.
-- Pour le langage of script, utilisez `$scriptLanguage`.
+- Read-only version managed by BDFD.
+- Automatically updated by the BDFD infrastructure.
+- For information on the bot node, use `$botNode`.
+- For the script language, use `$scriptLanguage`.

@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $ephemeral
 
-Rend the response éphémère (visible only par the user qui triggered the interaction). S'utilise like flag before `$sendMessage`.
+Makes the response ephemeral (visible only to the user who triggered the interaction). Used as a flag before `$sendMessage`.
 
 ## Syntax
 
@@ -16,54 +16,54 @@ $ephemeral
 
 ## Description
 
-`$ephemeral` est un **flag** (without arguments) qui, placé before `$sendMessage`, rend the message visible only par the user cible. The message apparaît with the mention "Only you can see this" and disparaît after un certain temps or when the user ferme Discord.
+`$ephemeral` is a **flag** (without arguments) that, when placed before `$sendMessage`, makes the message visible only to the target user. The message appears with the label "Only you can see this" and disappears after some time or when the user closes Discord.
 
-Cette function est particularly utile pour :
-- Les messages of confirmation discrets
-- Les errors or avertissements
-- Les responses to interactions on buttons/select menus
-- Les information sensibles
+This function is particularly useful for:
+- Discrete confirmation messages
+- Errors or warnings
+- Responses to interactions on buttons or select menus
+- Sensitive information
 
 ## Examples
 
-### Response éphémère simple
+### Simple ephemeral response
 
 ```
 $ephemeral
-$sendMessage[This message est visible only par vous.]
+$sendMessage[This message is visible only to you.]
 ```
 
-### Avec embeds
+### With embeds
 
 ```
 $ephemeral
-$newEmbed[title=Information;description=Datas privatees;color=#9B59B6]
+$newEmbed[title=Information;description=Private data;color=#9B59B6]
 $sendMessage[]
 ```
 
-### Dans une interaction
+### In an interaction
 
 ```
 $onInteraction
 $if[$customID==btn_secret]
   $ephemeral
-  $sendMessage[🔒 Action secrète effectuée !]
+  $sendMessage[🔒 Secret action completed!]
 $endif
 ```
 
-### Message error éphémère
+### Ephemeral error message
 
 ```
 $if[$argsCount==0]
   $ephemeral
-  $sendMessage[❌ Vous devez provide a argument !]
+  $sendMessage[❌ You must provide an argument!]
   $stop
 $endif
 ```
 
 ## Notes
 
-- Functionne only in the context of interactions (slash commands, buttons, select menus).
-- Ne functionne PAS for commands to préfixe classiques (message commands).
-- Le flag must be placé before `$sendMessage`.
-- Pratique pour garder les channels propres of messages système.
+- Only works in the context of interactions (slash commands, buttons, select menus).
+- Does NOT work for classic prefix commands (message commands).
+- The flag must be placed before `$sendMessage`.
+- Practical for keeping channels clean of system messages.

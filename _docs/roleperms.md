@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: rolePerms
 syntax: $rolePerms[roleID;(guildID)]
-description: Returns thes permissions of a role Discord sous forme of list textuelle or of value brute.
+description: Returns the permissions of a Discord role as a text list or a raw value.
 ---
 
 # $rolePerms
 
-The function `$rolePerms` retourne les **permissions** of a role Discord, soit sous forme of list textuelle, soit sous forme of value entière brute.
+The function `$rolePerms` returns the **permissions** of a Discord role, either as a text list or as a raw integer value.
 
 ## Syntax
 
@@ -23,65 +23,65 @@ $rolePerms[roleID;(guildID)]
 | Parameter | Description |
 |---|---|
 | `roleID` | The ID of the role. Required. |
-| `guildID` | Optional. The ID of the server cible. |
+| `guildID` | Optional. The ID of the target server. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | La list permissions of the role. |
+| `string` | The list of permissions of the role. |
 
-## Permissions courantes
+## Common Permissions
 
 | Permission | Description |
 |---|---|
-| `Administrator` | Toutes les permissions |
-| `ManageGuild` | Gérer the server |
-| `ManageRoles` | Gérer les roles |
-| `ManageChannels` | Gérer les channels |
-| `KickMembers` | Expulser members |
-| `BanMembers` | Bannir members |
-| `ManageMessages` | Gérer les messages |
-| `MentionEveryone` | Mentionner @everyone |
-| `SendMessages` | Envoyer messages |
-| `ReadMessages` | Voir les channels |
-| `Connect` | Se connecter en vocal |
+| `Administrator` | All permissions |
+| `ManageGuild` | Manage the server |
+| `ManageRoles` | Manage roles |
+| `ManageChannels` | Manage channels |
+| `KickMembers` | Kick members |
+| `BanMembers` | Ban members |
+| `ManageMessages` | Manage messages |
+| `MentionEveryone` | Mention @everyone |
+| `SendMessages` | Send messages |
+| `ReadMessages` | View channels |
+| `Connect` | Connect to voice channels |
 
 ## Examples
 
-### Display les permissions
+### Display permissions
 
 ```bdfd
-$sendMessage[Permissions of the role Admin : $rolePerms[$roleID[Admin]]]
+$sendMessage[Permissions of the Admin role: $rolePerms[$roleID[Admin]]]
 ```
 
-### Vérifier une permission
+### Check a permission
 
 ```bdfd
 $if[$checkContains[$rolePerms[$roleID[Member]];Administrator]]
-  $sendMessage[⚠️ The role Member a la permission Administrator !]
+  $sendMessage[⚠️ The Member role has the Administrator permission!]
 $else
-  $sendMessage[Permissions standards.]
+  $sendMessage[Standard permissions.]
 $endif
 ```
 
-### Vérifier if a role peut gérer les messages
+### Check if a role can manage messages
 
 ```bdfd
-$if[$checkContains[$rolePerms[$roleID[Modo]];ManageMessages]]
-  $sendMessage[Les modérateurs can gérer les messages.]
+$if[$checkContains[$rolePerms[$roleID[Mod]];ManageMessages]]
+  $sendMessage[Moderators can manage messages.]
 $endif
 ```
 
-### List formattede
+### Formatted list
 
 ```bdfd
-$sendMessage[**Permissions of $roleName[$roleID[Admin]] :**
+$sendMessage[**Permissions of $roleName[$roleID[Admin]]:**
 $rolePerms[$roleID[Admin]]]
 ```
 
 ## Notes
 
-- Le format exact peut varier according to the version of BDFD.
-- Pour obtenir the value entière brute, utilisez `$roleInfo[ID;permissions]`.
-- À use with `$checkContains` pour tester permissions specifics.
+- The exact format may vary depending on the version of BDFD.
+- To obtain the raw integer value, use `$roleInfo[ID;permissions]`.
+- Use with `$checkContains` to test for specific permissions.

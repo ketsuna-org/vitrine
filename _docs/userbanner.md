@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userBanner
 syntax: $userBanner
-description: Returns the URL of the banner of profil of the user qui triggered the command.
+description: Returns the URL of the profile banner of the user who triggered the command.
 ---
 
 # $userBanner
 
-The variable `$userBanner` retourne l'**URL of the banner of profil** of the user. The banner est l'image of arrière-plan qui apparaît on the profils Discord (réservée to the abonnés Nitro).
+The `$userBanner` function returns the **URL of the profile banner** of the user. The banner is the background image that appears on Discord profiles (reserved for Nitro subscribers).
 
 ## Syntax
 
@@ -20,19 +20,19 @@ $userBanner
 
 ## Return Value
 
-- **Type** : String of becauseactères (URL) or string vide
-- Si the user a une banner Nitro, retourne son URL CDN Discord
-- Si the user n'a pas of banner, retourne une string vide
+- **Type**: String (URL) or empty string
+- If the user has a Nitro banner, it returns its Discord CDN URL.
+- If the user does not have a banner, it returns an empty string.
 
 ## Behavior
 
-- `$userBanner` ne prend **no argument**.
-- Les banners sont une functionnalité réservée to the abonnés **Discord Nitro**.
-- Si noe banner n'est définie, the variable retourne une string vide.
+- `$userBanner` takes **no arguments**.
+- Banners are a feature reserved for **Discord Nitro** subscribers.
+- If no banner is set, the function returns an empty string.
 
 ## Examples
 
-### Display la banner si elle existe
+### Display the banner if it exists
 
 ```bdfd
 $if[$userBanner!=]
@@ -41,17 +41,17 @@ $if[$userBanner!=]
   $color[$userBannerColor]
   $sendMessage[]
 $else
-  $sendMessage[$userName n'a pas of banner of profil.]
+  $sendMessage[$userName does not have a profile banner.]
 $endif
 ```
 
-### Profil complete with banner
+### Complete profile with banner
 
 ```bdfd
-$title[Profil of $userName]
+$title[Profile of $userName]
 $description[
-**Nom :** $userName
-**ID :** $userID
+**Name:** $userName
+**ID:** $userID
 ]
 $image[$userBanner]
 $thumbnail[$userAvatar]
@@ -61,6 +61,6 @@ $sendMessage[]
 
 ## Notes
 
-- Seuls les users with a abonnement **Discord Nitro** can define ae banner.
-- Vérifiez toudays si `$userBanner` est non vide before of l'use like image.
-- `$userBannerColor` retourne the color of accent associée to la banner.
+- Only users with a **Discord Nitro** subscription can set a banner.
+- Always check if `$userBanner` is not empty before using it as an image.
+- `$userBannerColor` returns the accent color associated with the banner.

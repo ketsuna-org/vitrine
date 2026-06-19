@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botListDescription
 syntax: $botListDescription[text]
-description: Sets or returns the description of the bot displayede in the list bots BDFD.
+description: Sets or returns the description of the bot displayed in the BDFD bot list.
 ---
 
 # $botListDescription
 
-The `$botListDescription[text]` function **définit or returns the description of the bot** telle qu'elle apparaît on the list public bots BDFD (bot list).
+The `$botListDescription[text]` function **sets or returns the description of the bot** as it appears on the public BDFD bot list.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ The `$botListDescription[text]` function **définit or returns the description o
 $botListDescription[text]
 ```
 
-Pour lire la description currentle :
+To read the current description:
 
 ```
 $botListDescription
@@ -28,23 +28,23 @@ $botListDescription
 
 | Parameter | Description |
 |---|---|
-| `text` | Optional - La new description to set. If omitted, returns the description currentle. |
+| `text` | Optional - The new description to set. If omitted, returns the current description. |
 
 ## Return value
 
-- **Type** : String
-- Si called without parameter : la description currentle.
-- Si called with parameter : rien (la description est mise to day).
+- **Type**: String
+- If called without a parameter: the current description.
+- If called with a parameter: nothing (the description is updated).
 
 ## Behavior
 
-- La description est visible on the page public of the bot in the BDFD Bot List.
-- Limit of becauseactères : generally 200-300 becauseactères.
-- Le markdown basique can be supporté according to the list.
+- The description is visible on the bot's public page in the BDFD Bot List.
+- Character limit: generally 200-300 characters.
+- Basic markdown may be supported depending on the list.
 
 ## Examples
 
-### Définir la description
+### Set the description
 
 ```bdfd
 $var[desc;$message[1]]
@@ -54,10 +54,10 @@ $if[$var[desc]==]
 $endif
 
 $botListDescription[$var[desc]]
-$sendMessage[✅ Description of the bot mise to day !]
+$sendMessage[✅ Bot description updated!]
 ```
 
-### Display la description currentle
+### Display the current description
 
 ```bdfd
 $title[📋 Description of the bot]
@@ -68,20 +68,20 @@ $footer[Use !setdesc to modify]
 $sendMessage[]
 ```
 
-### Command owner to manage la visibilité
+### Owner command to manage visibility
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Réservé to the owner.]
+  $sendEphemeral[❌ Reserved for the owner.]
   $stop
 $endif
 
 $var[action;$message[1]]
 $if[$var[action]==set]
   $botListDescription[$message[2]]
-  $sendMessage[✅ Description mise to day.]
+  $sendMessage[✅ Description updated.]
 $elseif[$var[action]==show]
-  $sendMessage[📋 **Description currentle :**
+  $sendMessage[📋 **Current description:**
   $botListDescription]
 $else
   $sendMessage[❌ Usage: !botlist <set|show> [description]]
@@ -90,7 +90,7 @@ $endif
 
 ## Notes
 
-- Without parameter, la function returns the description currentle.
-- Avec parameter, elle écrase la description previouse.
-- Pour hide the bot of la list, use `$botListHide`.
-- La mise to day peut prendre quelques minutes before of être visible.
+- Without parameters, the function returns the current description.
+- With a parameter, it overwrites the previous description.
+- To hide the bot from the list, use `$botListHide`.
+- The update may take a few minutes before becoming visible.

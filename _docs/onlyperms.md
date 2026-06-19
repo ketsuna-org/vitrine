@@ -10,7 +10,7 @@ description: Guard function that stops command execution if the user does not ha
 
 # $onlyPerms
 
-The guard function `$onlyPerms` checks that the user has **all** the listd Discord permissions. If any permission is missing, the command is interrupted.
+The guard function `$onlyPerms` checks that the user has **all** the listed Discord permissions. If any permission is missing, the command is interrupted.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $onlyPerms[permission1;permission2;...;(errorMessage)]
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `permission1;permission2;...` | String[] | List of Discord permissions separated by `;`. The user must have **all** of these permissions. |
-| `errorMessage` | String (optional) | Message sent to the user if permissions are insufficient. If omitted, the bot remains sislow. |
+| `errorMessage` | String (optional) | Message sent to the user if permissions are insufficient. If omitted, the bot remains silent. |
 
 **Common Discord permissions:** `Administrator`, `BanMembers`, `KickMembers`, `ManageMessages`, `ManageChannels`, `ManageRoles`, `ManageGuild`, `ModerateMembers`, `MuteMembers`, `DeafenMembers`, `MoveMembers`, `ManageNicknames`, `ManageWebhooks`, `ManageGuildExpressions`, `ViewAuditLog`, `ViewGuildInsights`.
 
@@ -31,7 +31,7 @@ $onlyPerms[permission1;permission2;...;(errorMessage)]
 
 - Checks the user's permissions **in the server**, not in the channel.
 - If the user has the `Administrator` permission, **all** other permissions are implicitly granted.
-- The check is an **AND** type: all listd permissions are required.
+- The check is an **AND** type: all listed permissions are required.
 
 ## Examples
 
@@ -51,7 +51,7 @@ $clear[50]
 $sendMessage[50 messages deleted.]
 ```
 
-### Without error message (sislow)
+### Without error message (silent)
 
 ```bdfd
 $onlyPerms[KickMembers]

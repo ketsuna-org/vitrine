@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: allowUserMentions
 syntax: $allowUserMentions
-description: Autorise les mentions of users in the message in progress. Without this call, les mentions of users in the contenu of the message ne notifieront pas les personnes concernées.
+description: Allows user mentions in the current message. Without this call, mentioning users in the message content will not notify the concerned individuals.
 ---
 
-# $allowUserMentions[] — Autoriser les Mentions of Users
+# $allowUserMentions[] — Allow User Mentions
 
-`$allowUserMentions[]` active la notification of users lorsqu'they are mentionnés in the message. Without this call, les tags like `<@userId>` apparaissent visually mais ne déclenchent **pas** of notification.
+`$allowUserMentions[]` enables user notifications when they are mentioned in the message. Without this call, tags like `<@userId>` appear visually but do **not** trigger a notification.
 
 ## Syntax
 
@@ -24,67 +24,67 @@ No parameters.
 
 ## Return value
 
-Active l'permission of mention of users for the prochain message. Users mentionnés recevront une notification.
+Enables user mentions for the next message. Mentioned users will receive a notification.
 
 ## Usage
 
-### Notification personnelle
+### Personal notification
 
 ```bdfd
 $allowUserMentions
-$sendMessage[<@$authorID> Votre profil has been mis to day with success !]
+$sendMessage[<@$authorID> Your profile has been successfully updated!]
 ```
 
-### Response to une command
+### Response to a command
 
 ```bdfd
 $allowUserMentions
 $title[Confirmation]
-$description[<@$authorID>, votre command #$var[orderId] has been confirmée.]
-$addField[Status;En préparation;yes]
+$description[<@$authorID>, your order #$var[orderId] has been confirmed.]
+$addField[Status;In preparation;yes]
 $color[#2ECC71]
 ```
 
-### Mention multiple
+### Multiple mentions
 
 ```bdfd
 $allowUserMentions
-$sendMessage[<@$var[winner1]> and <@$var[winner2]> ont gagné le giveaway ! 🎉]
+$sendMessage[<@$var[winner1]> and <@$var[winner2]> won the giveaway! 🎉]
 ```
 
-### Combinaison with RoleMentions
+### Combination with RoleMentions
 
 ```bdfd
 $allowUserMentions
 $allowRoleMentions
-$sendMessage[<@$authorID> a suggéré une idée. <@&$roleID[Admin]> merci of vérifier.]
+$sendMessage[<@$authorID> suggested an idea. <@&$roleID[Admin]> please check.]
 ```
 
-### Conditionnel
+### Conditional
 
 ```bdfd
 $if[$var[notify]==yes]
 $allowUserMentions
-$sendMessage[<@$var[targetId]> Vous avez un new message !]
+$sendMessage[<@$var[targetId]> You have a new message!]
 $else
 $noMentions
-$sendMessage[Vous avez un new message (notification silencieuse)]
+$sendMessage[You have a new message (silent notification)]
 $endif
 ```
 
-## Controle mentions
+## Mention Control
 
-| Function | Effet |
+| Function | Effect |
 |----------|-------|
-| `$allowRoleMentions` | Active les notifications for mentions of roles |
-| `$allowUserMentions` | Active les notifications for mentions of users |
-| `$allowMentions` | Active all mentions (roles + users) |
-| `$noMentions` | Désactive all notifications of mentions |
+| `$allowRoleMentions` | Enables notifications for role mentions |
+| `$allowUserMentions` | Enables notifications for user mentions |
+| `$allowMentions` | Enables all mentions (roles + users) |
+| `$noMentions` | Disables all mention notifications |
 
 ## Notes
 
-- Without cette function, `<@userId>` s'displays like mention visualle mais without ping sonore/notification.
-- L'effet est **ponctuel** : il ne s'applique qu'au prochain message sent.
-- For annonces importantes, combinez with `$allowRoleMentions[]`.
-- Pour envoyer a message totalement silencieux (même for users mentionnés), use `$noMentions[]`.
-- Respectez les règles of votre server concernant les pings abusifs.
+- Without this function, `<@userId>` displays as a visual mention but without an audible ping or notification.
+- The effect is **one-time**: it only applies to the next message sent.
+- For important announcements, combine it with `$allowRoleMentions[]`.
+- To send a completely silent message (even for mentioned users), use `$noMentions[]`.
+- Respect your server rules regarding excessive pinging.

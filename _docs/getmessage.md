@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: getMessage
 syntax: $getMessage[channelID;messageID]
-description: Gets the text content of a message specific par son ID of canal and of message.
+description: Gets the text content of a message specified by its channel and message ID.
 ---
 
 # $getMessage
 
-The function `$getMessage[]` allows **récupérer le text content** of a message from son ID of canal and of message.
+The function `$getMessage[]` retrieves the **text content** of a message from its channel and message ID.
 
 ## Syntax
 
@@ -22,47 +22,47 @@ $getMessage[channelID;messageID]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the canal contenant the message. |
-| `messageID` | The ID of the message to récupérer. |
+| `channelID` | The ID of the channel containing the message. |
+| `messageID` | The ID of the message to retrieve. |
 
 ## Return Value
 
-- **Type** : String
-- Le text content of the message.
-- String vide si the message n'existe pas, was deleted, or est inaccessible.
+- **Type**: String
+- The text content of the message.
+- An empty string if the message does not exist, was deleted, or is inaccessible.
 
 ## Behavior
 
-- Returns aiquement le contenu text (pas les embeds, pièces jointes, etc.).
-- The bot doit avoir accès to the canal and la permission `READ_MESSAGE_HISTORY`.
-- The message doit avoir moins of 14 days (limitation API Discord for the messages non épinglés).
+- Returns only the text content (not embeds, attachments, etc.).
+- The bot must have access to the channel and the `READ_MESSAGE_HISTORY` permission.
+- The message must be less than 14 days old (Discord API limitation for unpinned messages).
 
 ## Examples
 
-### Citer un message
+### Quoting a message
 
 ```bdfd
 $let[msgContent;$getMessage[$channelID;$noMentionMessage]]
 $if[$msgContent!=]
-  $title[Message cité]
+  $title[Quoted Message]
   $description[>>> $msgContent]
-  $footer[Message ID : $noMentionMessage]
+  $footer[Message ID: $noMentionMessage]
   $color[#5865F2]
   $sendMessage[]
 $else
-  $sendMessage[Message introuvable.]
+  $sendMessage[Message not found.]
 $endif
 ```
 
-### Log of message deleted
+### Log of deleted message
 
 ```bdfd
 $let[msgContent;$getMessage[$channelID;$messageID]]
 $if[$msgContent!=]
-  $title[🗑️ Message récupéré]
+  $title[🗑️ Retrieved Message]
   $description[
-  **Auteur :** $username
-  **Contenu :**
+  **Author:** $username
+  **Content:**
 >>> $msgContent
   ]
   $color[#ED4245]
@@ -70,19 +70,19 @@ $if[$msgContent!=]
 $endif
 ```
 
-### Vérification of contenu
+### Content verification
 
 ```bdfd
 $let[target;$getMessage[$channelID;$message[1]]]
 $if[$checkContains[$target;http]==true]
-  $sendMessage[⚠️ This message contains un link.]
+  $sendMessage[⚠️ This message contains a link.]
 $else
-  $sendMessage[✅ Aucun link détecté.]
+  $sendMessage[✅ No links detected.]
 $endif
 ```
 
 ## Notes
 
-- Limité to the 14 lasts days for the messages non épinglés (restriction API Discord).
-- Ne récupère pas les embeds, only le text brut.
-- Utile for the systèmes of citation, logs and modération.
+- Limited to the last 14 days for unpinned messages (Discord API restriction).
+- Does not retrieve embeds, only raw text.
+- Useful for citation systems, logs, and moderation.

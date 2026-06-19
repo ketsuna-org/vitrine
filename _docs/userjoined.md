@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userJoined
 syntax: $userJoined
-description: Returns the date to laquelle the user a rejoint the server Discord current.
+description: Returns the date when the user joined the current Discord server.
 ---
 
 # $userJoined
 
-The variable `$userJoined` retourne la **date of arrivée** of the user on the server Discord où the command est executed.
+The `$userJoined` function returns the **join date** of the user on the Discord server where the command is executed.
 
 ## Syntax
 
@@ -20,36 +20,36 @@ $userJoined
 
 ## Return Value
 
-- **Type** : Date/string of becauseactères
-- Format : dépend of the context (date lisible or timestamp)
+- **Type**: Date/String
+- Format: depends on the context (readable date or timestamp)
 
 ## Behavior
 
-- `$userJoined` ne prend **no argument**.
-- Returns the date to laquelle the user a rejoint le **server current**.
-- Requires que the user soit member of the server.
+- `$userJoined` takes **no arguments**.
+- Returns the date when the user joined the **current server**.
+- Requires the user to be a member of the server.
 
 ## Examples
 
-### Message of bienvenue
+### Welcome message
 
 ```bdfd
-$title[New member !]
+$title[New member!]
 $author[$userName;$userAvatar]
 $description[
-Bienvenue on the server **$serverName** !
-Tu as rejoint le **$userJoined**.
+Welcome to the server **$serverName**!
+You joined on **$userJoined**.
 ]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Oldneté of the member
+### Member tenure
 
 ```bdfd
-$title[Votre oldneté]
+$title[Your Join Date]
 $description[
-Vous êtes member dethen le **$userJoined**.
+You have been a member since **$userJoined**.
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -57,6 +57,6 @@ $sendMessage[]
 
 ## Notes
 
-- `$userJoined` donne la date of arrivée on the **server**.
-- Pour la date of création of the compte Discord, utilisez `$userJoinedDiscord`.
-- Utile for the commands of information on the members and les messages of bienvenue.
+- `$userJoined` gives the join date on the **server**.
+- For the creation date of the Discord account, use `$userJoinedDiscord`.
+- Useful for member information commands and welcome messages.

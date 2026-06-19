@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addButtonCV2
 
-Ajoute a button interactif to the message en utilisant le style Component V2. Ce bouton est toudays added to la action row courante.
+Adds an interactive button to the message using the Component V2 style. This button is always added to the current action row.
 
 ## Syntax
 
@@ -18,64 +18,65 @@ $addButtonCV2[customIdOrURL;label;(style);(disabled);(emoji)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customIdOrURL` | ID custom to manage le clic, or URL pour a button link | Yes |
+| `customIdOrURL` | Custom ID to handle the click, or URL for a link button | Yes |
 | `label` | Text displayed on the button | Yes |
-| `style` | Style : `primary` (default), `secondary`, `success`, `danger`, `link` | No |
-| `disabled` | `true` to disable le bouton, `false` (default) | No |
-| `emoji` | Emoji to display before le label | No |
+| `style` | Style: `primary` (default), `secondary`, `success`, `danger`, `link` | No |
+| `disabled` | `true` to disable the button, `false` (default) | No |
+| `emoji` | Emoji to display before the label | No |
 
 ## Difference from $addButton
 
-Contrairement to `$addButton` (legacy), `$addButtonCV2` ne possède no parameter `newRow`. Pour organize les buttons on multiple lignes, use `$addActionRow` before each group.
+Unlike `$addButton` (legacy), `$addButtonCV2` does not have a `newRow` parameter. To organize buttons on multiple lines, use `$addActionRow` before each group.
 
 ## Examples
 
 ### Simple button
 
 ```
-$addButtonCV2[mon_bouton;Cliquez ici;primary]
-$sendMessage[Appuyez on the bouton]
+$addButtonCV2[my_button;Click here;primary]
+$sendMessage[Press the button]
 ```
 
-### Multiple buttons on of rows distinctes
+### Multiple buttons on distinct rows
 
 ```
 $addActionRow
-$addButtonCV2[btn_yes;✅ Oui;success]
-$addButtonCV2[btn_no;❌ Non;danger]
+$addButtonCV2[btn_yes;✅ Yes;success]
+$addButtonCV2[btn_no;❌ No;danger]
 
 $addActionRow
-$addButtonCV2[btn_maybe;🤔 Peut-être;secondary]
-$sendMessage[Faites votre choix]
+$addButtonCV2[btn_maybe;🤔 Maybe;secondary]
+$sendMessage[Make your choice]
 ```
 
 ### Link button
 
 ```
-$addButtonCV2[https://discord.com;Site Discord;link;false;🌐]
-$sendMessage[Visitez le site]
+$addButtonCV2[https://discord.com;Discord Website;link;false;🌐]
+$sendMessage[Visit the website]
 ```
 
 ### Disabled button
 
 ```
-$addButtonCV2[btn_disabled;Inavailable;primary;true;🚫]
-$sendMessage[Functionnalité to venir]
+$addButtonCV2[btn_disabled;Unavailable;primary;true;🚫]
+$sendMessage[Feature coming soon]
 ```
 
 ## Handling interactions
 
-The clics on the buttons sont gérés via l'event `$onInteraction` :
+Clicks on buttons are handled via the `$onInteraction` event:
 
 ```
 $onInteraction
-$if[$customID==mon_bouton]
-  $sendMessage[Vous avez cliqué !]
+$if[$customID==my_button]
+  $sendMessage[You clicked!]
 $endif
 ```
 
 ## Notes
 
-- Pas of parameter `newRow` : use `$addActionRow` for the placement.
-- Max 5 buttons par action row.
-- API recommendede for newx développements.
+- No `newRow` parameter: use `$addActionRow` for layout control.
+- Max 5 buttons per action row.
+- Recommended API for new developments.
+

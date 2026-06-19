@@ -10,7 +10,7 @@ description: Adds one or more reactions to the user's command message (the messa
 
 # $addCmdReactions
 
-The `$addCmdReactions[]` function **ajouter of reactions directly to the user's message** qui triggered the command.
+The `$addCmdReactions[]` function **adds reactions directly to the user's message** that triggered the command.
 
 ## Syntax
 
@@ -22,25 +22,25 @@ $addCmdReactions[emoji1;emoji2;...]
 
 | Parameter | Description |
 |---|---|
-| `emoji1;emoji2;...` | List of emojis separateds par `;`. Supports thes emojis Unicode and customs. |
+| `emoji1;emoji2;...` | List of emojis separated by `;`. Supports Unicode and custom emojis. |
 
 ## Return value
 
-Cette function does not return a value. The réactions sont ajoutées to the command message.
+This function does not return a value. The reactions are added to the command message.
 
 ## Behavior
 
-- Contrairement to `$addReactions[]`, cette function target the message **déclencheur** (user's message).
-- Utile pour donner un feedback visual fast without envoyer of message.
+- Unlike `$addReactions[]`, this function targets the **trigger** message (the user's message).
+- Useful for giving quick visual feedback without sending a message.
 - The bot must have the permission `ADD_REACTIONS` in the channel.
 
 ## Examples
 
-### Sislow feedback
+### Simple feedback
 
 ```bdfd
 $addCmdReactions[✅]
-$suppressErrors[Action effectuée.]
+$suppressErrors[Action completed.]
 ```
 
 ### Conditional feedback
@@ -51,7 +51,7 @@ $if[$checkContains[$userPerms;Administrator]==true]
   $ban[$mentioned[1]]
 $else
   $addCmdReactions[❌]
-  $ephemeral[Vous n'avez pas the permission.]
+  $ephemeral[You do not have permission.]
 $endif
 ```
 
@@ -66,6 +66,7 @@ $addCmdReactions[✅]
 
 ## Notes
 
-- `$addCmdReactions[]` ne functionne que if the message déclencheur existe encore.
-- Ne requires pas of envoyer a message of response.
-- Idéal for commands fasts où un simple emoji suffit like confirmation.
+- `$addCmdReactions[]` only works if the trigger message still exists.
+- Does not require sending a response message.
+- Ideal for quick commands where a simple emoji is enough for confirmation.
+

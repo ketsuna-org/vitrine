@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: boostCount
 syntax: $boostCount
-description: Returns the namebre of boosts (améliorations of server) actifs on the server courant.
+description: Returns the number of active boosts (server boosts) on the current server.
 ---
 
 # $boostCount
 
-The `$boostCount` function **récupérer the namebre of boosts** (améliorations of server Nitro) actifs on the server courant.
+The `$boostCount` function **retrieves the number of active server boosts** (Nitro server boosts) on the current server.
 
 ## Syntax
 
@@ -24,54 +24,54 @@ No parameters.
 
 ## Return value
 
-- **Type** : String (number)
-- The namebre of boosts Nitro currently actifs on the server.
+- **Type**: String (number)
+- The number of Nitro boosts currently active on the server.
 
 ## Behavior
 
-- Counts the boosts of all members qui ont boosté the server.
-- Each user peut apporter 1 or 2 boosts according to son level Nitro.
-- La value influence le level of boost of the server ($boostTier).
+- Counts the boosts of all members who have boosted the server.
+- Each user can provide 1 or 2 boosts depending on their Nitro tier.
+- The value influences the boost level of the server ($boostTier).
 
 ## Examples
 
-### Statistiques of boost
+### Boost Statistics
 
 ```bdfd
-$title[🚀 Boosts of the server]
+$title[🚀 Server Boosts]
 $description[
-**Number of boosts :** $boostCount
-**Level :** Level $boostTier
-**Prochain level :** $boostRequired boosts required
+**Number of boosts:** $boostCount
+**Level:** Level $boostTier
+**Next level:** $boostRequired boosts required
 ]
 $thumbnail[$serverIcon]
 $color[#F47FFF]
 $sendMessage[]
 ```
 
-### Message of remerciement
+### Thank-you message
 
 ```bdfd
-$title[💜 Boost détecté !]
+$title[💜 Boost detected!]
 $description[
-Merci **$userName** pour ton boost ! 
-The server compte now **$boostCount** boosts and est to the **level $boostTier** !
+Thank you **$username** for your boost! 
+The server now has **$boostCount** boosts and is at **level $boostTier**!
 ]
 $color[#9B59B6]
 $sendMessage[$channelID[boosts]]
 ```
 
-### Barre of progression
+### Progress bar
 
 ```bdfd
 $let[current;$boostCount]
 $let[needed;$boostRequired]
 
-$title[📈 Progression boosts]
+$title[📈 Boost Progression]
 $description[
-**$current / $needed** boosts for the prochain level
+**$current / $needed** boosts for the next level
 
-Progression : $math[$current*100/$needed]%
+Progression: $math[$current*100/$needed]%
 ]
 $color[#F47FFF]
 $sendMessage[]
@@ -79,6 +79,6 @@ $sendMessage[]
 
 ## Notes
 
-- Les boosts sont liés to the abonnements Nitro members.
-- Le boost est retiré if the member quitte the server or stops son abonnement.
-- For the level current, use `$boostTier` (1, 2 or 3).
+- Boosts are tied to members' Nitro subscriptions.
+- The boost is removed if the member leaves the server or stops their subscription.
+- For the current level, use `$boostTier` (1, 2, or 3).

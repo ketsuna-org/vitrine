@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: message
 syntax: $message
-description: Returns the text content brut of the message déclencheur of the command.
+description: Returns the raw text content of the message that triggered the command.
 ---
 
 # $message
 
-The function `$message` retourne le **text content brut** of the message that triggered l'exécution of the command. Cela inclut le préfixe and the name of the command, ainsi que all arguments.
+The function `$message` returns the **raw text content** of the message that triggered the execution of the command. This includes all arguments after the prefix and command name.
 
 ## Syntax
 
@@ -20,47 +20,48 @@ $message
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | Le text complete of the message déclencheur. |
+| `string` | The full text of the triggering message (excluding the command name and prefix). |
 
 ## Examples
 
 ### Display the message received
 
 ```bdfd
-$sendMessage[Message received : $message]
+$sendMessage[Message received: $message]
 ```
 
-### Vérifier un contenu specific
+### Check specific content
 
 ```bdfd
-$if[$message==bonday]
-  $sendMessage[Bonday to vous !]
+$if[$message==hello]
+  $sendMessage[Hello to you!]
 $else
-  $sendMessage[Vous avez dit : $message]
+  $sendMessage[You said: $message]
 $endif
 ```
 
-### Log of the message
+### Log the message
 
 ```bdfd
-$channelSendMessage[$channelIDFromName[logs];$username a dit : $message]
+$channelSendMessage[$channelIDFromName[logs];$username said: $message]
 ```
 
-### Utilisation with $argsCheck
+### Usage with $argsCheck
 
 ```bdfd
-$argsCheck[>;Text;Votre message after the command]
-$sendMessage[Argument : $message]
+$argsCheck[>;Text;Your message after the command]
+$sendMessage[Argument: $message]
 ```
 
 ## Notes
 
-- `$message` contains the text **complete** of the message, pas only les arguments.
-- Si vous souhaitez only les arguments after the command, utilisez `$argsCheck` and `$message` or `$messageSlice[]`.
-- Dans les interactions (buttons, select menus), `$message` peut ne pas retourner le contenu attendu.
+- `$message` contains the **full** text of the arguments, not just individual words.
+- If you only want a slice of the arguments, use `$messageSlice[]`.
+- In interactions (buttons, select menus), `$message` may not return the expected content.
+

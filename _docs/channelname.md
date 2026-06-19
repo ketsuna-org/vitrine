@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelName
 syntax: $channelName[(channelID)]
-description: Returns the name of the channel Discord courant or of a channel specific via its ID.
+description: Returns the name of the current Discord channel or of a specific channel via its ID.
 ---
 
 # $channelName
 
-The `$channelName` function returns the **nom** of a channel Discord. Par default, elle retourne the name of the channel où la command est executede, mais elle peut also retourner the name of a channel specific if a ID is provided.
+The `$channelName` function returns the **name** of a Discord channel. By default, it returns the name of the channel where the command is executed, but it can also return the name of a specific channel if an ID is provided.
 
 ## Syntax
 
@@ -22,38 +22,38 @@ $channelName[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `string` | The name of the channel (ex: `général`, `annonces`). |
+| `string` | The name of the channel (e.g., `general`, `announcements`). |
 
 ## Examples
 
-### Nom of the channel courant
+### Name of the current channel
 
 ```bdfd
-$sendMessage[Bienvenue in #$channelName !]
+$sendMessage[Welcome to #$channelName!]
 ```
 
-### Nom of a channel specific
+### Name of a specific channel
 
 ```bdfd
-$sendMessage[The channel est : $channelName[123456789012345678]]
+$sendMessage[The channel is: $channelName[123456789012345678]]
 ```
 
-### Vérifier the name of a channel
+### Check the name of a channel
 
 ```bdfd
-$if[$channelName==général]
-  $sendMessage[Vous êtes in the channel général.]
+$if[$channelName==general]
+  $sendMessage[You are in the general channel.]
 $endif
 ```
 
 ## Notes
 
-- For channels textuels, the name is displayed without le préfixe `#`. Ajoutez-le manually si besoin.
-- The name of channels vocaux s'displays of la même manière (ex: `Vocal 1`).
-- Pour listr all channels, use `$channelNames`.
+- For text channels, the name is returned without the `#` prefix. Add it manually if needed.
+- The name of voice channels is displayed in the same way (e.g., `Voice 1`).
+- To list all channels, use `$channelNames`.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Canvas"
 function_name: canvasInvert
 syntax: $canvasInvert
-description: Inverse les couleurs of the canvas courant (négatif). Pas of parameters.
+description: Inverts the colors of the current canvas (negative). No parameters.
 ---
 
 # $canvasInvert
 
-The `$canvasInvert` function **inverse les couleurs of the canvas courant**, produisant un effet négatif. Each pixel voit their composantes R, G, B replacedes par `255 - value`.
+The `$canvasInvert` function **inverts the colors of the current canvas**, producing a negative effect. Each pixel has its R, G, B components replaced by `255 - value`.
 
 ## Syntax
 
@@ -20,52 +20,52 @@ $canvasInvert
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
-None. The canvas est modified directly.
+None. The canvas is modified directly.
 
 ## Behavior
 
-- Each canal RGB est reversed : le blanc devient noir, le rouge devient cyan, etc.
-- Caller `$canvasInvert` twice of suite restaure the image originale.
-- Les pixels transparents are not affectés.
+- Each RGB channel is inverted: white becomes black, red becomes cyan, etc.
+- Calling `$canvasInvert` twice in a row restores the original image.
+- Transparent pixels are not affected.
 
 ## Examples
 
-### Inversion simple
+### Simple inversion
 
 ```bdfd
 $canvasLoad[$attachment]
 $canvasInvert
 $attachCanvas[]
-$sendMessage[🔄 Image reversede !]
+$sendMessage[🔄 Image inverted!]
 ```
 
-### Effet négatif temporary
+### Temporary negative effect
 
 ```bdfd
 $canvasLoad[$attachment]
 $canvasInvert
-$attachCanvas[negatif.png]
-$canvasInvert  ;; Return to l'original
+$attachCanvas[negative.png]
+$canvasInvert  ;; Return to original
 $attachCanvas[original.png]
-$sendMessage[🔁 Original + Négatif :]
+$sendMessage[🔁 Original + Negative:]
 ```
 
-### Combinaison of effets
+### Combination of effects
 
 ```bdfd
 $canvasLoad[$attachment]
 $canvasGrayscale
 $canvasInvert
 $attachCanvas[]
-$sendMessage[🎞️ Levelx of gris + Négatif !]
+$sendMessage[🎞️ Grayscale + Negative!]
 ```
 
 ## Notes
 
-- Le canvas must have été created or loaded to the préalable.
-- L'inversion est réversible (ré-caller la function).
-- Pour un effet partial, use `$canvasSetPixel[]` pour reverse pixels specifics.
+- The canvas must be created or loaded beforehand.
+- Inversion is reversible (re-call the function).
+- For a partial effect, use `$canvasSetPixel[]` to invert specific pixels.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverID
 syntax: $serverID
-description: Returns the identifier unique (Snowflake) of the server Discord in thequel the command est executed.
+description: Returns the unique identifier (Snowflake) of the Discord server where the command was executed.
 ---
 
-# $serverID[] — Identifier of the Server
+# $serverID[] — Server Identifier
 
-`$serverID[]` retourne l'identifier unique (Snowflake) of the server Discord courant. Cet ID est un number on 18-19 chiffres qui identifie of manière permanent the server.
+`$serverID[]` returns the unique identifier (Snowflake) of the current Discord server. This ID is an 18-19 digit number that permanently identifies the server.
 
 ## Syntax
 
@@ -20,46 +20,46 @@ $serverID
 
 ## Parameters
 
-Aucun parameter.
+No parameters.
 
 ## Return Value
 
-- **Type** : `string`
-- The ID of the server sous forme of string numérique.
+- **Type**: `string`
+- The ID of the server in the form of a numeric string.
 
-## Utilisation
+## Usage
 
-### Affichage of the ID
+### Display the ID
 
 ```bdfd
-$sendMessage[ID of the server : $serverID]
+$sendMessage[ID of the server: $serverID]
 ```
 
-### Restrict une command to un server specific
+### Restrict a command to a specific server
 
 ```bdfd
 $if[$serverID!=123456789012345678]
-$sendMessage[Cette command is not available on ce server.]
-$stop
+  $sendMessage[This command is not available on this server.]
+  $stop
 $endif
-$sendMessage[Command executed with success !]
+$sendMessage[Command executed successfully!]
 ```
 
 ### Logs with identifier
 
 ```bdfd
-$log[Action effectuée on the server $serverID ($serverName)]
+$log[Action performed on server $serverID ($serverName)]
 ```
 
-### Link vers un channel of the server
+### Link to a channel of the server
 
 ```bdfd
-$sendMessage[Rejoignez the channel général : https://discord.com/channels/$serverID/$channelID[général]]
+$sendMessage[Join the general channel: https://discord.com/channels/$serverID/$channelID[general]]
 ```
 
 ## Notes
 
-- `$serverID[]` est un alias of `$guildID[]`.
-- The ID est invariant : il ne change never, contrairement to the nom of the server.
-- Utile pour identifier of manière fiable un server in thes conditions and les logs.
-- Utilisable pour construire URLs Discord (channels, messages, etc.).
+- `$serverID[]` is an alias of `$guildID[]`.
+- The ID is invariant: it never changes, unlike the name of the server.
+- Useful for reliably identifying a server in conditions and logs.
+- Can be used to construct Discord URLs (channels, messages, etc.).

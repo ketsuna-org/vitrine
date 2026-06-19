@@ -41,8 +41,8 @@ You can combine units: `2m30s` = 2 minutes and 30 seconds.
 
 The second parameter is optional:
 
-- **With message**: `$cooldown[10s;⏳ Attendez 10 seconds.]` — sends the message and stops.
-- **Without message**: `$cooldown[10s]` — stops sislowly, the user sees nothing.
+- **With message**: `$cooldown[10s;⏳ Please wait 10 seconds.]` — sends the message and stops.
+- **Without message**: `$cooldown[10s]` — stops silently, and the user sees nothing.
 
 Always provide a clear error message for a better user experience. Use `$getCooldown` to display the remaining time dynamically.
 
@@ -53,8 +53,8 @@ Like `$onlyIf` and `$argsCheck`, place cooldown functions at the **top** of your
 ## Example: Full Command with Cooldown
 
 ```
-$cooldown[30s;⏳ Cooldown actif. Réessayez in $getCooldown seconds.]
-$onlyIf[$message!=;❌ Vous devez provide a message.]
-Traitement of votre message: $message
-$sendMessage[✅ Traitement terminé !]
+$cooldown[30s;⏳ Cooldown is active. Try again in $getCooldown seconds.]
+$onlyIf[$message!=;❌ You must provide a message.]
+Processing your message: $message
+$sendMessage[✅ Processing complete!]
 ```

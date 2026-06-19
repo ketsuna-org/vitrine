@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: editEmbedIn
 syntax: $editEmbedIn[duration]
-description: Programme l'édition of the embed of a message after a delay spécifié. Contrairement to $editIn[], seul the embed est modified — le contenu text of the message reste inchangé.
+description: Schedules the editing of a message's embed after a specified delay. Unlike $editIn[], only the embed is modified — the text content of the message remains unchanged.
 ---
 
-# $editEmbedIn[] — Édition Différée of Embed
+# $editEmbedIn[] — Delayed Embed Editing
 
-`$editEmbedIn[]` programme la mise to day of the embed of a message after a delay. Seul the embed est modified — le text of the message (sent via `$sendMessage`) is not affecté.
+`$editEmbedIn[]` schedules the update of the embed of a message after a delay. Only the embed is modified — the text of the message (sent via `$sendMessage`) is not affected.
 
 ## Syntax
 
@@ -22,74 +22,74 @@ $editEmbedIn[duration]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `duration` | Yes | Delay before édition. Format : number + unité. |
+| `duration` | Yes | Delay before editing. Format: number + unit. |
 
-## Format of durée
+## Duration Format
 
-| Format | Unité | Example |
+| Format | Unit | Example |
 |--------|-------|---------|
-| `Xs` | Secondes | `3s`, `10s` |
+| `Xs` | Seconds | `3s`, `10s` |
 | `Xm` | Minutes | `1m`, `5m` |
-| `Xh` | Times | `1h` |
+| `Xh` | Hours | `1h` |
 
 ## Return value
 
-Programme l'édition différée of the embed. The new embed est set after the call to `$editEmbedIn[]`.
+Schedules the delayed editing of the embed. The new embed is defined after the call to `$editEmbedIn[]`.
 
 ## Difference from $editIn[]
 
 | $editEmbedIn[] | $editIn[] |
 |---------------|-----------|
-| Modifies only the embed | Modifies tout the message (text + embed) |
-| Préserve le text of the message | Remplace tout le contenu |
-| Idéal pour mises to day visualles | Idéal pour transitions completes |
+| Modifies only the embed | Modifies the entire message (text + embed) |
+| Preserves the text of the message | Replaces the entire content |
+| Ideal for visual updates | Ideal for complete transitions |
 
 ## Usage
 
 ### Progress indicator
 
 ```bdfd
-$sendMessage[Mise to day in progress...]
+$sendMessage[Updating...]
 $title[Progression]
-$description[🟡 Traitement of data...]
+$description[🟡 Processing data...]
 $color[#F1C40F]
 $editEmbedIn[5s]
 $title[Progression]
-$description[🟢 Terminé with success !]
+$description[🟢 Completed successfully!]
 $color[#2ECC71]
 ```
 
-### Changement of status
+### Status change
 
 ```bdfd
-$title[🔍 Recherche in progress]
-$description[Analyse of la base of datas...]
+$title[🔍 Search in progress]
+$description[Analyzing database...]
 $color[#3498DB]
-$footer[Patientez...]
+$footer[Please wait...]
 $editEmbedIn[3s]
-$title[✅ Recherche terminée]
-$description[3 results founds]
+$title[✅ Search completed]
+$description[3 results found]
 $color[#2ECC71]
-$footer[Terminé]
+$footer[Completed]
 ```
 
-### Transition visualle
+### Visual transition
 
 ```bdfd
-$sendMessage[Préparation of the rapport...]
-$title[Rapport Mensuel]
-$description[📊 Génération in progress...]
+$sendMessage[Preparing report...]
+$title[Monthly Report]
+$description[📊 Generating...]
 $color[#E67E22]
 $editEmbedIn[5s]
-$title[Rapport Mensuel - Juin 2026]
-$description[✅ Rapport generated with success\n\n📈 Croissance : +15%\n💰 Revenus : 12 450€\n👥 Newx members : 230]
+$title[Monthly Report - June 2026]
+$description[✅ Report generated successfully\n\n📈 Growth: +15%\n💰 Revenue: 12,450€\n👥 New members: 230]
 $color[#27AE60]
-$footer[Generated le $date]
+$footer[Generated on $date]
 ```
 
 ## Notes
 
-- `$editEmbedIn[]` ne modifie que the embed ; le contenu text (first argument of `$sendMessage`) reste intact.
-- Le new embed remplace entièrement l'old (no fusion).
-- To modify to la fois text and embed, use `$editIn[]`.
-- The duration maximale est generally of 15 minutes.
+- `$editEmbedIn[]` only modifies the embed; the text content (first argument of `$sendMessage`) remains intact.
+- The new embed completely replaces the old one (no merging).
+- To modify both the text and the embed at the same time, use `$editIn[]`.
+- The maximum duration is generally 15 minutes.

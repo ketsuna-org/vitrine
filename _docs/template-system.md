@@ -11,7 +11,7 @@ description: >
 
 # Template System — `((...))` Placeholders
 
-Placeholders let you inserves dynamic values into messages, embeds, and action
+Placeholders let you insert dynamic values into messages, embeds, and action
 parameters. They are resolved at runtime — when your bot actually runs the
 command or workflow.
 
@@ -138,20 +138,34 @@ path to extract nested values:
 
 ---
 
-## Template functions
+## Template functions — parentheses syntax
 
-Template functions transform values inline. They use the syntax
-`functionName(arg1, arg2,...)`.
+Template functions use `functionName(arg1, arg2, ...)` with comma-separated
+arguments.
 
 ### Text functions
 
 | Function | Description | Example |
 |----------|-------------|---------|
 | `lowercase(text)` | Converts to lowercase | `((lowercase(userName)))` |
-| `uppercase(text)` | Converts to uppercase | `((uppercase(userName)))` |
+| `uppercase(text)` | Converts to UPPERCASE | `((uppercase(userName)))` |
+| `titlecase(text)` | Converts to Title Case | `((titlecase(channelName)))` |
 | `trim(text)` | Removes leading/trailing spaces | `((trim(userInput)))` |
 | `replace(text, old, new)` | Replaces all occurrences | `((replace(title, "_", " ")))` |
 | `contains(text, needle)` | Returns `"true"` if found (case-insensitive) | `((contains(role, "admin")))` |
+| `charcount(text)` | Number of characters (alias: `length`) | `((charcount(userName)))` |
+| `linescount(text)` | Number of lines | `((linescount(description)))` |
+| `split(text, sep, index?)` | Splits and optionally gets one part | `((split(tags, ",", 0)))` |
+| `croptext(text, max, suffix?)` | Truncates text, adds suffix | `((croptext(bio, 100, "...")))` |
+| `numberseparator(num, sep?)` | Formats number with thousands separator | `((numberseparator(memberCount, " ")))` |
+| `url(mode, text)` | URL-encodes or decodes text | `((url("encode", rawText)))` |
+| `bytecount(text)` | Number of UTF-8 bytes | `((bytecount(message)))` |
+
+**Aliases:**
+- `lower` = `lowercase`, `tolowercase` (bracket: `[tolowercase]`)
+- `upper` = `uppercase`, `touppercase` (bracket: `[touppercase]`)
+- `title` = `titlecase`, `totitlecase` (bracket: `[totitlecase]`)
+- `charcounts` = `charcount` (bracket: `[charcount]`)
 
 ### Array / list functions
 
@@ -163,9 +177,12 @@ These work on JSON arrays (e.g. HTTP responses, stored lists).
 | `at(array, index)` | Element at position | `((at(query.items.$, 0)))` |
 | `first(array)` | First element | `((first(query.items.$)))` |
 | `last(array)` | Last element | `((last(query.items.$)))` |
-| `slice(array, start, end?)` | Sub-array or substring | `((slice(tags.$, 1, 3)))` |
+| `slice(array, start, end?)` | Sub-array | `((slice(tags.$, 1, 3)))` |
 | `join(array, separator)` | Joins elements into a string | `((join(tags.$, ", ")))` |
 | `sum(array)` | Sum of numeric elements | `((sum(scores.$)))` |
+
+**Note:** `slice()` also works on strings: `((slice("hello", 1, 4)))` → `"ell"`.
+`sum()` also accepts multiple arguments: `((sum(10, 20, 30)))` → `60`.
 
 ### Formatting functions
 
@@ -203,15 +220,15 @@ Item placeholders within the template:
 - `format` — `"webp"` (default), `"png"`, `"jpg"`, or `"gif"` (animated only)
 - `size` — power of 2 from 16 to 4096 (default 1024)
 
----
-
-## Random functions
+### Random functions
 
 | Function | Description | Example |
 |----------|-------------|---------|
-| `coin()` | Random true/false — returns `"true"` or `""` | `((coin()))` |
-| `randomchoice(a, b,...)` | Picks one argument at random | `((randomchoice("Yes", "No", "Maybe")))` |
+| `coin()` | Random `"true"` or `""` | `((coin()))` |
+| `random()` | Alias for `coin()` | `((random()))` |
+| `randomchoice(a, b, ...)` | Picks one argument at random | `((randomchoice("Yes", "No", "Maybe")))` |
 | `randomint(min, max)` | Random integer in `[min, max]` | `((randomint(1, 100)))` |
+| `randomtext(a, b, c)` | Picks one at random (bracket variant) | `[randomtext;Heads;Tails]` |
 
 **Notes:**
 - Use `coin()` when you need a true/false condition (returns `"true"` or empty).
@@ -222,14 +239,103 @@ Item placeholders within the template:
 
 ---
 
-## Completee examples
+## Template functions — bracket syntax
+
+Bracket-syntax functions use `functionName[arg1;arg2;...]` with semicolon-separated
+arguments. These are typically used for math, logic, and system queries.
+
+### Math functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `calculate[expr]` | Evaluates a math expression | `[calculate;5 * (2 + 3)]` → `25` |
+| `ceil[num]` | Rounds up to nearest integer | `[ceil;3.2]` → `4` |
+| `floor[num]` | Rounds down to nearest integer | `[floor;3.8]` → `3` |
+| `round[num]` | Rounds to nearest integer | `[round;3.5]` → `4` |
+| `sqrt[num]` | Square root | `[sqrt;16]` → `4` |
+| `max[a;b]` | Larger of two numbers | `[max;42;17]` → `42` |
+| `min[a;b]` | Smaller of two numbers | `[min;42;17]` → `17` |
+| `modulo[a;b]` | Remainder after division | `[modulo;10;3]` → `1` |
+| `multi[a;b]` | Multiplication | `[multi;6;7]` → `42` |
+| `divide[a;b]` | Division | `[divide;10;2]` → `5` |
+| `sub[a;b]` | Subtraction | `[sub;10;3]` → `7` |
+| `sum[a;b;c]` | Sum of multiple numbers | `[sum;1;2;3;4]` → `10` |
+| `random[min;max]` | Random integer in `[min, max]` | `[random;1;100]` |
+
+**Note:** Use `calculate[]` for complex expressions with variables:
+`[calculate;((userVarBalance)) * 1.2]`.
+
+### Logic functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `checkcondition[expr]` | Evaluates a comparison expression | `[checkcondition;((age))>=18]` → `"true"` or `"false"` |
+| `and[cond1;cond2;...]` | True if ALL conditions are true | `[and;((a))>=10;((b))>=5]` |
+| `or[cond1;cond2;...]` | True if ANY condition is true | `[or;((role))==admin;((role))==mod]` |
+
+**checkcondition operators:**
+
+| Operator | Meaning |
+|----------|---------|
+| `>=` | Greater or equal |
+| `<=` | Less or equal |
+| `==` | Equals |
+| `!=` | Not equals |
+| `>` | Greater than |
+| `<` | Less than |
+| `contains` | String contains (case-insensitive) |
+| `notContains` | String does not contain |
+| `startsWith` | String starts with |
+| `endsWith` | String ends with |
+
+**Examples:**
+
+```text
+# Numeric comparison
+[checkcondition;((hour))>=12]
+→ "true" if it's PM, "false" if AM
+
+# String comparison
+[checkcondition;((userName))==Alice]
+→ "true" if the user is Alice
+
+# Combined with and/or
+[and;[checkcondition;((score))>=50];[checkcondition;((level))>=10]]
+→ "true" if both conditions pass
+```
+
+### Utility functions
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `date[]` | Current date as `YYYY-MM-DD` | `[date]` → `2026-06-19` |
+| `trimcontent[text]` | Removes spaces (alias: `trimspace`) | `[trimcontent;  hello  ]` → `hello` |
+| `charcount[text]` | Character count (bracket variant) | `[charcount;hello]` → `5` |
+| `linescount[text]` | Line count (bracket variant) | `[linescount;((description))]` |
+| `croptext[text;max;suffix?]` | Truncates text with suffix | `[croptext;((bio));50;...]` |
+| `bytecount[text]` | UTF-8 byte count | `[bytecount;((message))]` |
+| `url[mode;text]` | URL encode/decode | `[url;encode;hello world]` → `hello%20world` |
+| `tolowercase[text]` | Lowercase (bracket variant) | `[tolowercase;HELLO]` → `hello` |
+| `touppercase[text]` | Uppercase (bracket variant) | `[touppercase;hello]` → `HELLO` |
+| `totitlecase[text]` | Title case (bracket variant) | `[totitlecase;hello world]` → `Hello World` |
+| `randomtext[choice1;choice2;...]` | Picks one at random | `[randomtext;Yes;No;Maybe]` |
+| `listvar[separator?]` | Lists all variable names | `[listvar;, ]` |
+| `userperms[userId?;amount?;sep?]` | Lists user's permissions | `[userperms;((author.id));5;, ]` |
+| `servernames[amount?;sep?]` | Lists server names | `[servernames;10;, ]` |
+| `variablescount[type]` | Counts variables by scope | `[variablescount;global]` |
+
+**`variablescount` scope values:** `global`, `user`, `guild` (or `server`), `channel`.
+
+---
+
+## Complete examples
 
 ### Welcome message
 ```text
 Welcome ((userName)) to ((guild.name))! We now have ((bot.guildCount)) members.
 ```
 
-### User becaused
+### User info with fallbacks
 ```text
 **Author:** ((author.username | userName))
 **ID:** ((author.id | userId))
@@ -251,6 +357,12 @@ Welcome ((userName)) to ((guild.name))! We now have ((bot.guildCount)) members.
 }
 ```
 
+### Title case with bracket syntax
+```text
+((titlecase(channel.name)))         — parentheses syntax
+[totitlecase;((channel.name))]      — bracket syntax equivalent
+```
+
 ### Conditional with coin
 ```text
 $if[$checkCondition[((coin()))==true]]
@@ -258,6 +370,26 @@ $if[$checkCondition[((coin()))==true]]
 $else
   Better luck next time!
 $endif
+```
+
+### Math with variables
+```text
+Your balance with 20% bonus: [calculate;((userVarBalance)) * 1.2]
+```
+
+### Combined logic check
+```text
+[and;[checkcondition;((score))>=50];[checkcondition;((level))>=10]]
+```
+
+### URL encoding
+```text
+Search URL: https://google.com/search?q=[url;encode;((searchTerm))]
+```
+
+### Count variables
+```text
+You have [variablescount;user] user variables set.
 ```
 
 ---
@@ -273,7 +405,7 @@ $endif
 | Invalid JSON | `""` |
 | Unknown function | `""` |
 | Array/object as final value | JSON-serialized string |
-| Embed URL without scheme | Field sislowly ignored |
+| Embed URL without scheme | Field silently ignored |
 
 ---
 
@@ -285,6 +417,8 @@ $endif
 - Use `coin()` for true/false conditions (not `random()`)
 - When you need to **store and reuse** a random value, use the `$calculate` action
   with `random`, `randomFloat`, or `randomString` operations
+- For complex math, use `calculate[]` — it evaluates full expressions with
+  support for parentheses and all standard operators
 - For HTTP responses that return arrays of objects, prefer `formatEach()` over
   manual indices:
   ```text
@@ -294,3 +428,5 @@ $endif
   # Avoid
   ((items.$[0].name)), ((items.$[1].name)), ((items.$[2].name))
   ```
+- Use bracket syntax (`[func;arg1;arg2]`) for math, logic, and system functions;
+  use parentheses syntax (`func(arg1, arg2)`) for text and array manipulation

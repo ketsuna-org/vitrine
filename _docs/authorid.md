@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorID
 syntax: $authorID
-description: Returns the ID Discord of the author of the message that triggered the command.
+description: Returns the Discord ID of the author of the message that triggered the command.
 ---
 
 # $authorID
 
-The variable `$authorID` returns the **ID Discord** of the author of the message that triggered l'execution of the command.
+The variable `$authorID` returns the **Discord ID** of the author of the message that triggered the execution of the command.
 
 ## Syntax
 
@@ -20,39 +20,39 @@ $authorID
 
 ## Return value
 
-- **Type** : Snowflake (string numérique of 17-19 chiffres)
-- The ID unique of the author of the message
+- **Type**: Snowflake (numeric string of 17-19 digits)
+- The unique ID of the message author
 
 ## Behavior
 
-- `$authorID` ne prend **no argument**.
-- Dans le context of a command textuelle, `$authorID` est the ID of the personne qui a sent the message.
-- Dans la plupart cas simples, `$authorID` and `$userID` sont identicals.
+- `$authorID` takes **no arguments**.
+- In the context of a text command, `$authorID` is the ID of the person who sent the message.
+- In most simple cases, `$authorID` and `$userID` are identical.
 
 ## Examples
 
-### Profil of the author
+### Profile of the author
 
 ```bdfd
-$title[Profil of $authorUsername]
+$title[Profile of $authorUsername]
 $author[$authorUsername;$authorAvatar]
 $description[
-**ID :** $authorID
-**Tag :** $authorTag
+**ID:** $authorID
+**Tag:** $authorTag
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérification of the owner
+### Owner verification
 
 ```bdfd
 $if[$authorID==123456789012345678]
-  $sendMessage[Bonday owner !]
+  $sendMessage[Hello owner!]
 $endif
 ```
 
 ## Notes
 
-- `$authorID` est the ID of the **auteur of the message**, tandis que `$userID` est the ID of the **user déclencheur**. Dans les commands textuelles, they are identicals.
-- Use `$authorID` to more than clarté sémantique in the code lié to the messages.
+- `$authorID` is the ID of the **author of the message**, whereas `$userID` is the ID of the **triggering user**. In text commands, they are identical.
+- Use `$authorID` for better semantic clarity in message-related code.

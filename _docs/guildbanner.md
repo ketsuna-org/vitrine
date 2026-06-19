@@ -5,14 +5,14 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildBanner
 syntax: $guildBanner
-description: Alias of $serverBanner. Returns the URL of the banner of the server Discord (requires the level of boost 2+).
+description: Alias of $serverBanner. Returns the URL of the banner of the Discord server (requires boost level 2+).
 ---
 
-# $guildBanner[] — Banner of the Server (Alias)
+# $guildBanner[] — Server Banner (Alias)
 
-`$guildBanner[]` est un alias of `$serverBanner[]`. Il retourne the URL of the banner of the server Discord.
+`$guildBanner[]` is an alias of `$serverBanner[]`. It returns the URL of the banner of the Discord server.
 
-> **Prérequired** : Level of boost 2 or plus required.
+> **Prerequisite** : Boost level 2 or higher required.
 
 ## Syntax
 
@@ -22,14 +22,14 @@ $guildBanner
 
 ## Parameters
 
-Aucun parameter.
+No parameters.
 
 ## Return Value
 
 - **Type** : `string`
-- The URL of the banner, or une string vide si non available.
+- The URL of the banner, or an empty string if not available.
 
-## Utilisation
+## Usage
 
 ### Embed with banner
 
@@ -42,7 +42,7 @@ $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Fallback icon si pas of banner
+### Fallback to icon if no banner
 
 ```bdfd
 $if[$guildBanner!=]
@@ -58,6 +58,6 @@ $sendEmbedMessage
 
 ## Notes
 
-- `$guildBanner[]` and `$serverBanner[]` sont interchangeables.
-- La banner est une image horizontale (ratio ~16:9) displayede en haut of la list channels.
-- Si the server n'a pas le level required, the function retourne une string vide.
+- `$guildBanner[]` and `$serverBanner[]` are interchangeable.
+- The banner is a horizontal image (ratio ~16:9) displayed at the top of the channel list.
+- If the server does not have the required level, the function returns an empty string.

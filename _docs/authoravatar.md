@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorAvatar
 syntax: $authorAvatar
-description: Returns the URL of the avatar global of the author of the message that triggered the command.
+description: Returns the URL of the global avatar of the author of the message that triggered the command.
 ---
 
 # $authorAvatar
 
-The variable `$authorAvatar` returns the **URL of the avatar global** of the author of the message that triggered the command.
+The variable `$authorAvatar` returns the **URL of the global avatar** of the author of the message that triggered the command.
 
 ## Syntax
 
@@ -20,19 +20,19 @@ $authorAvatar
 
 ## Return value
 
-- **Type** : String of becauseactères (URL)
-- URL of the avatar of the author (CDN Discord)
-- Avatar by default if the auteur does not have of avatar custom
+- **Type**: Character string (URL)
+- URL of the avatar of the author (Discord CDN)
+- Default avatar if the author does not have a custom avatar
 
 ## Behavior
 
-- `$authorAvatar` ne prend **no argument**.
-- Équivaslow to `$userAvatar` for commands textuelles.
-- The URL pointe vers les CDN Discord.
+- `$authorAvatar` takes **no arguments**.
+- Equivalent to `$userAvatar` for text commands.
+- The URL points to the Discord CDN.
 
 ## Examples
 
-### Avatar en grand
+### Large avatar
 
 ```bdfd
 $title[Avatar of $authorUsername]
@@ -41,25 +41,25 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Auteur of embed with avatar
+### Author of embed with avatar
 
 ```bdfd
 $author[$authorUsername;$authorAvatar]
 $title[Message]
-$description[Contenu of the message...]
+$description[Message content...]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Profil complete
+### Complete profile
 
 ```bdfd
 $author[$authorUsername;$authorAvatar]
-$title[Profil of $authorUsername]
+$title[Profile of $authorUsername]
 $thumbnail[$authorAvatar]
 $description[
-**Nom :** $authorUsername
-**ID :** $authorID
+**Name:** $authorUsername
+**ID:** $authorID
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -67,6 +67,6 @@ $sendMessage[]
 
 ## Notes
 
-- For the avatar specific to the server, use `$userServerAvatar`.
-- Les parameters `?size=` can be added to the URL pour changer la resolvedtion.
-- L'avatar can be modified par the user to tout moment.
+- For the server-specific avatar, use `$userServerAvatar`.
+- Parameters like `?size=` can be added to the URL to change the resolution.
+- The avatar can be modified by the user at any time.

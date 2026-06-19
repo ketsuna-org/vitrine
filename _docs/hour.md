@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: hour
 syntax: $hour
-description: Returns the hour currentle (0 to 23). Resolved to the runtime.
+description: Returns the current hour (0 to 23). Resolved at runtime.
 ---
 
 # $hour[]
 
-The function `$hour[]` retourne l'hour currentle to the format 24 hours (de 0 to 23).
+The `$hour` function returns the current hour in 24-hour format (from 0 to 23).
 
-> **Important:** This function utilise l'identifier special `((hour))` qui est resolved to the **runtime**.
+> **Important:** This function uses the special identifier `((hour))` which is resolved at **runtime**.
 
 ## Syntax
 
@@ -20,41 +20,41 @@ The function `$hour[]` retourne l'hour currentle to the format 24 hours (de 0 to
 $hour
 ```
 
-> **Note :** This function ne prend no parameter.
+> **Note:** This function takes no parameters.
 
 ## Return Value
 
-A number between 0 and 23 représentant l'hour currentle.
+A number between 0 and 23 representing the current hour.
 
-| Value | Signification |
+| Value | Meaning |
 |--------|---------------|
-| 0 | Minuit |
-| 12 | Midi |
-| 23 | 23h |
+| 0 | Midnight |
+| 12 | Noon |
+| 23 | 11 PM |
 
 ## Examples
 
-### Time simple
+### Simple time
 
 ```bdfd
-Il est $hour hours.
+It is $hour o'clock.
 ```
 
-### Message according to the moment of la daynée
+### Message according to the time of day
 
 ```bdfd
 $if[$hour>=6&&$hour<12]
-☀️ Bonday ! Bonne matinée !
+☀️ Good morning!
 $elseif[$hour>=12&&$hour<18]
-🌤️ Bon after-midi !
+🌤️ Good afternoon!
 $elseif[$hour>=18&&$hour<22]
-🌅 Bonne soirée !
+🌅 Good evening!
 $else
-🌙 Bonne nuit !
+🌙 Good night!
 $endif
 ```
 
 ## Notes
 
-- Format 24 hours : `0` = minuit, `12` = midi, `23` = 23h.
-- L'hour dépend of the fuseau horaire of the server exécutant the bot.
+- 24-hour format: `0` = midnight, `12` = noon, `23` = 11 PM.
+- The hour depends on the time zone of the server hosting the bot.

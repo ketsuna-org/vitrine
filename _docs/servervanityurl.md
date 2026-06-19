@@ -5,14 +5,14 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverVanityURL
 syntax: $serverVanityURL
-description: Returns the code of the URL custome (vanity URL) of the server Discord. Available only for the servers of level boost 3 or les servers partenaires/vérifiés.
+description: Returns the custom URL code (vanity URL) of the Discord server. Available only for level 3 boosted servers or partnered/verified servers.
 ---
 
-# $serverVanityURL[] — URL Custome of the Server
+# $serverVanityURL[] — Custom URL of the Server
 
-`$serverVanityURL[]` retourne le code of the URL custome (vanity URL) of the server. Cette URL courte allows create a link of invite facile to mémoriser (ex: `discord.gg/mon-server`).
+`$serverVanityURL[]` returns the custom URL code (vanity URL) of the server. This short URL allows creating an easy-to-remember invite link (e.g., `discord.gg/my-server`).
 
-> **Prérequired** : Server level boost 3, or server partenaire/vérifié Discord.
+> **Prerequisite**: Server boost level 3, or Discord partnered/verified server.
 
 ## Syntax
 
@@ -22,31 +22,31 @@ $serverVanityURL
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
-- **Type** : `string`
-- Le code of the URL custome (ex: `"mon-server"`), or une string vide si non available.
+- **Type**: `string`
+- The code of the custom URL (e.g., `"my-server"`), or an empty string if not available.
 
-## Utilisation
+## Usage
 
-### Link of invite
+### Invite link
 
 ```bdfd
 $if[$serverVanityURL!=]
-$sendMessage[🔗 Rejoignez-nous : **discord.gg/$serverVanityURL**]
+$sendMessage[🔗 Join us: **discord.gg/$serverVanityURL**]
 $else
-$sendMessage[Ce server n'a pas of URL custome.]
+$sendMessage[This server does not have a custom URL.]
 $endif
 ```
 
-### Embed of invite
+### Invite embed
 
 ```bdfd
 $title[🌟 $serverName]
 $description[$serverDescription]
-$addField[Rejoindre;discord.gg/$serverVanityURL;yes]
+$addField[Join;discord.gg/$serverVanityURL;yes]
 $addField[Members;$membersCount;yes]
 $thumbnail[$serverIcon]
 $image[$serverSplash]
@@ -54,10 +54,10 @@ $color[#9B59B6]
 $sendEmbedMessage
 ```
 
-### Page of accueil
+### Welcome page
 
 ```bdfd
-$title[Informations on $serverName]
+$title[Information on $serverName]
 $addField[🌟 URL;discord.gg/$serverVanityURL;yes]
 $addField[👑 Owner;<@$serverOwner>;yes]
 $addField[👥 Members;$membersCount;yes]
@@ -68,8 +68,8 @@ $sendEmbedMessage
 
 ## Notes
 
-- The URL complete est `discord.gg/<code>` or `https://discord.gg/<code>`.
-- Le code est configured in thes parameters of the server (onglet "Aperçu" → "URL custome of invite").
-- Requires the level of boost 3 or le status Partenaire/Vérifié.
-- Le code est unique to travers tout Discord.
-- Si the server n'a pas of URL custome, utilisez `$createInvite[]` pour générer un link of invite standard.
+- The complete URL is `discord.gg/<code>` or `https://discord.gg/<code>`.
+- The code is configured in the server settings (under "Overview" → "Custom Invite Link").
+- Requires boost level 3 or Partnered/Verified status.
+- The code is unique across all of Discord.
+- If the server does not have a custom URL, use `$createInvite[]` to generate a standard invite link.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: messageURL
 syntax: $messageURL
-description: Returns the URL of jump (link direct) vers the message déclencheur.
+description: Returns the jump URL (direct link) to the triggering message.
 ---
 
 # $messageURL
 
-The function `$messageURL` retourne l'**URL of jump** (link direct) vers the message that triggered the command. Ce link allows to accéder directly to the message in Discord.
+The function `$messageURL` returns the **jump URL** (direct link) to the message that triggered the command. This link allows users to navigate directly to the message in Discord.
 
 ## Syntax
 
@@ -20,30 +20,30 @@ $messageURL
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | URL to the format `https://discord.com/channels/{guildID}/{channelID}/{messageID}`. |
+| `string` | URL format: `https://discord.com/channels/{guildID}/{channelID}/{messageID}`. |
 
 ## Examples
 
-### Link direct
+### Direct link
 
 ```bdfd
-$sendMessage[Message original : $messageURL]
+$sendMessage[Original message: $messageURL]
 ```
 
-### Dans un embed
+### In an embed
 
 ```bdfd
-$title[Message signalé]
+$title[Reported Message]
 $description[
-**Auteur :** $username
-**Contenu :** $message
-**Link :** [Cliquez ici]($messageURL)
+**Author:** $username
+**Content:** $message
+**Link:** [Click here]($messageURL)
 ]
 $color[#ED4245]
 $sendMessage[]
@@ -52,11 +52,12 @@ $sendMessage[]
 ### Log with link
 
 ```bdfd
-$channelSendMessage[$channelIDFromName[logs];Message of $username : $messageURL]
+$channelSendMessage[$channelIDFromName[logs];Message by $username: $messageURL]
 ```
 
 ## Notes
 
-- Format : `https://discord.com/channels/{guildID}/{channelID}/{messageID}`.
-- En DM, le format utilise the ID of the channel DM.
-- Le link ne functionne que si the user a accès to the channel.
+- Format: `https://discord.com/channels/{guildID}/{channelID}/{messageID}`.
+- In DMs, the format uses the DM channel ID.
+- The link only works if the user has access to the channel.
+

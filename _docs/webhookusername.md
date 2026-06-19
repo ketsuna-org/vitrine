@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookUsername
 syntax: $webhookUsername[name]
-description: Sets the nom of user displayed for the prochain message sent via $webhookSend.
+description: Sets the username displayed for the next message sent via $webhookSend.
 ---
 
 # $webhookUsername
 
-The function `$webhookUsername[]` allows **define the name of user** qui sera displayed for the prochain message sent via `$webhookSend[]`.
+The `$webhookUsername` function allows you to **set the username** that will be displayed for the next message sent via `$webhookSend`.
 
 ## Syntax
 
@@ -22,29 +22,29 @@ $webhookUsername[name]
 
 | Parameter | Description |
 |---|---|
-| `name` | The name to afficher. Maximum 80 becauseactères. Supports thes emojis and variables. |
+| `name` | The name to display. Maximum 80 characters. Supports emojis and variables. |
 
 ## Return Value
 
-This function ne retourne pas of value. Elle définit the name for the prochain `$webhookSend[]`.
+This function does not return a value. It only sets the name for the next `$webhookSend`.
 
 ## Behavior
 
-- The name remplace the name default of the webhook pour cet envoi.
-- The name est réinitialisé after each `$webhookSend[]`.
-- Si no nom n'est défini, the name original of the webhook is used.
+- The name replaces the default name of the webhook for this sending.
+- The name is reset after each `$webhookSend`.
+- If no name is defined, the original name of the webhook is used.
 
 ## Examples
 
-### Nom fixe
+### Fixed name
 
 ```bdfd
-$webhookUsername[📢 Annonces of the server]
-$webhookContent[New mise to day available !]
+$webhookUsername[📢 Server Announcements]
+$webhookContent[New update available!]
 $webhookSend[$webhookURL;]
 ```
 
-### Nom dynamic
+### Dynamic name
 
 ```bdfd
 $webhookUsername[$username (via webhook)]
@@ -53,10 +53,10 @@ $webhookContent[$message]
 $webhookSend[$webhookURL;]
 ```
 
-### Anonymisation
+### Anonymization
 
 ```bdfd
-$webhookUsername[Message anonyme]
+$webhookUsername[Anonymous Message]
 $webhookAvatarURL[https://cdn.example.com/anonymous.png]
 $webhookContent[$noMentionMessage]
 $webhookSend[$confessionHook;]
@@ -64,6 +64,6 @@ $webhookSend[$confessionHook;]
 
 ## Notes
 
-- The name ne peut pas dépasser 80 becauseactères.
-- Les webhooks with noms usurpant roles officiels (Admin, Modérateur) can be trompeurs — utilisez-les of manière éthique.
-- Combinez with `$webhookAvatarURL[]` for ae personnalisation complete.
+- The name cannot exceed 80 characters.
+- Webhooks with names impersonating official roles (Admin, Moderator) can be misleading — use them ethically.
+- Combine with `$webhookAvatarURL[]` for a complete customization.

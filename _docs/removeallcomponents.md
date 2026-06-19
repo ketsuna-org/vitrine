@@ -50,7 +50,7 @@ $editMessage[⏰ This panel has expired. Interaction is no longer possible.]
 $endInteraction
 ```
 
-### Completee cleanup
+### Complete cleanup
 
 ```bdfd
 $addTextInput[query;Search;short;Search...;;yes;2;100]

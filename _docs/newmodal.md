@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: newModal
 syntax: $newModal[title;customId]
-description: Creates a new modal (fenêtre pop-up interactive) with a titre and un identifier custom pour gérer les soumissions.
+description: Creates a new modal (interactive pop-up window) with a title and a custom identifier to handle submissions.
 ---
 
 # $newModal[] — Create a Modal
 
-The function `$newModal[]` initialise un new modal Discord. A modal est une fenêtre pop-up interactive qui se superpose to l'interface user. Il must be le first call before of ajouter components tels que champs text, sélecteurs or cases to cocher.
+The function `$newModal[]` initializes a new Discord modal. A modal is an interactive pop-up window that overlays the user interface. It must be the first call before adding components such as text fields, selectors, or checkboxes.
 
 ## Syntax
 
@@ -22,42 +22,42 @@ $newModal[title;customId]
 
 | Parameter | Description |
 |-----------|-------------|
-| `title` | Le titre displayed en haut of the modal. Required. |
-| `customId` | Identifier unique custom for the modal. Utilisé in thes interactions pour identifier quel modal was soumis. Required. |
+| `title` | The title displayed at the top of the modal. Required. |
+| `customId` | A unique custom identifier for the modal. Used in interactions to identify which modal was submitted. Required. |
 
 ## Return Value
 
-This function ne retourne pas of value directly. Elle initialise un context internal in thequel les functions of ajout of components (`$addModalTextInput`, `$addModalSelect`, etc.) opèrent.
+This function does not return a value directly. It initializes an internal context in which the functions to add components (`$addModalTextInput`, etc.) operate.
 
-## Utilisation
+## Usage
 
-### Modal of base
+### Basic Modal
 
 ```bdfd
-$newModal[Inscription;signup_modal]
-$addModalTextInput[username;Nom of user;short;Entrez votre pseudo...;;yes;3;32]
-$addModalTextInput[email;Email;short;exemple@email.com;;yes;5;100]
+$newModal[Registration;signup_modal]
+$addModalTextInput[username;Username;short;Enter your username...;;yes;3;32]
+$addModalTextInput[email;Email;short;example@email.com;;yes;5;100]
 ```
 
-### Modal with affichage text
+### Modal with display text
 
 ```bdfd
 $newModal[Confirmation;confirm_modal]
-$addModalTextDisplay[Veuillez check thes information before of confirmer.]
-$addModalTextInput[code;Code of vérification;short;XXXX;;yes;4;4]
+$addModalTextDisplay[Please check the information before confirming.]
+$addModalTextInput[code;Verification Code;short;XXXX;;yes;4;4]
 ```
 
-### Modal sent via une command slash or un bouton
+### Modal sent via a slash command or a button
 
 ```bdfd
-$newModal[Avis produit;review_modal]
-$addModalTextInput[rating;Note (1-5);short;;1;;1;1]
-$addModalTextInput[review;Votre avis;paragraph;Partagez votre expérience...;;yes;10;500]
+$newModal[Product Review;review_modal]
+$addModalTextInput[rating;Rating (1-5);short;;1;;1;1]
+$addModalTextInput[review;Your Review;paragraph;Share your experience...;;yes;10;500]
 ```
 
-## Notes importantes
+## Important Notes
 
-- `$newModal[]` must be la **first** function callée in the construction of un modal.
-- Tous les components ajoutés after `$newModal[]` appartiennent to ce modal until ce qu'un new `$newModal[]` soit callé.
-- Le `customId` est essentiel pour traiter les datas soumises in a gestionnaire of interaction.
-- Les modals sont generally triggereds via interactions (buttons, commands slash, menus).
+- `$newModal[]` must be the **first** function called when constructing a modal.
+- All components added after `$newModal[]` belong to that modal until a new `$newModal[]` is called.
+- The `customId` is essential for processing the submitted data in an interaction handler.
+- Modals are generally triggered via interactions (buttons, slash commands, select menus).

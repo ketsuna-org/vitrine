@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleExists
 syntax: $roleExists[roleID;(guildID)]
-description: Checks if un role existe on the server. Returns "true" or "false".
+description: Checks if a role exists on the server. Returns "true" or "false".
 ---
 
 # $roleExists
 
-The function `$roleExists` vérifie if a **role Discord existe** on the server from son ID.
+The function `$roleExists` checks if a **Discord role exists** on the server using its ID.
 
 ## Syntax
 
@@ -22,39 +22,39 @@ $roleExists[roleID;(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role to vérifier. Required. |
-| `guildID` | Optional. The ID of the server cible. Si omitted, the server courant. |
+| `roleID` | The ID of the role to check. Required. |
+| `guildID` | Optional. The ID of the target server. If omitted, the current server is used. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | `"true"` si the role existe, `"false"` otherwise. |
+| `string` | `"true"` if the role exists, `"false"` otherwise. |
 
 ## Examples
 
-### Vérification simple
+### Simple Check
 
 ```bdfd
 $if[$roleExists[123456789012345678]==true]
-  $sendMessage[The role $roleName[123456789012345678] existe.]
+  $sendMessage[The role $roleName[123456789012345678] exists.]
 $else
-  $sendMessage[Ce role n'existe pas.]
+  $sendMessage[This role does not exist.]
 $endif
 ```
 
-### Vérifier before of attribuer un role
+### Check before granting a role
 
 ```bdfd
 $if[$roleExists[$roleID[Member]]==true]
   $roleGrant[$authorID;$roleID[Member]]
-  $sendMessage[Role Member attribué !]
+  $sendMessage[Member role granted!]
 $else
-  $sendMessage[The role Member n'existe pas. Contactez un administrator.]
+  $sendMessage[The Member role does not exist. Please contact an administrator.]
 $endif
 ```
 
-### Dans un autre server
+### On another server
 
 ```bdfd
 $if[$roleExists[123456789012345678;987654321098765432]==true]
@@ -64,5 +64,5 @@ $endif
 
 ## Notes
 
-- Returns ae string `"true"` or `"false"`.
-- Utile before of use `$roleGrant` or of autres functions manipulant les roles.
+- Returns a string of `"true"` or `"false"`.
+- Useful before using `$roleGrant` or other functions that manipulate roles.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Variables"
 function_name: userLeaderboard
 syntax: $userLeaderboard[variable] or $userLeaderboard[variable;sort]
-description: Displays the position of the user courant in a classement basé on a variable, with thes users proches.
+description: Displays the position of the current user in a leaderboard based on a variable, along with nearby users.
 ---
 
 # $userLeaderboard
 
-The function `$userLeaderboard` displays the position of l'**user courant** in a classement, entouré users qui le précèdent and le suivent immédiatement. Contrairement to `$globalUserLeaderboard` or `$serverLeaderboard` qui retournent le classement complete, this function se concbetween on the context immédiat of the user.
+The `$userLeaderboard` function displays the position of the **current user** in a leaderboard, surrounded by the users who immediately precede and follow them. Unlike `$globalUserLeaderboard` or `$serverLeaderboard` which return the full leaderboard, this function focuses on the user's immediate context.
 
 ## Syntax
 
@@ -21,52 +21,52 @@ $userLeaderboard[variable;sort]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `variable` | Yes | The name of the variable to classer |
-| `sort` | No | `desc` (décroissant, default) or `asc` (croissant) |
+| `variable` | Yes | The name of the variable to rank |
+| `sort` | No | `desc` (descending, default) or `asc` (ascending) |
 
-## Functionnement
+## How It Works
 
-1. `$userLeaderboard` est un **placeholder** resolved to the runtime par l'action leaderboard.
-2. The système identifie the position of the user courant in the classement.
-3. Il retourne un voisinage autour of cette position (the user + quelques voisins au-dessus and en dessous).
-4. The user courant est identifiable par son nom of user or son ID in thes lignes retournées.
+1. `$userLeaderboard` is a **placeholder** resolved at runtime by the leaderboard action.
+2. The system identifies the position of the current user in the leaderboard.
+3. It returns a neighborhood around that position (the user + a few neighbors above and below).
+4. The current user is identifiable by their username or ID in the returned lines.
 
-## Utilisation typique
+## Typical Usage
 
 ```
 $textSplit[$userLeaderboard[score;desc];\n]
 ```
 
-Puis parcours entrées with `$splitText`, `$getLeaderboardPosition` and `$getLeaderboardValue`.
+Then loop through the entries with `$splitText`, `$getLeaderboardPosition`, and `$getLeaderboardValue`.
 
-## Cas of usage
+## Use Cases
 
-- 📊 **Array of bord personnel** : montrer to the user où il se situe
-- 🎯 **Motivation** : display thes voisins directs pour encourager la compétition
-- 🏆 **Messages of félicitations** : détecter si the user est on the podium
-- 📈 **Suivi of progression** : voir l'ébecauset with thes joueurs devant soi
+- 📊 **Personal dashboard**: show the user where they stand.
+- 🎯 **Motivation**: display direct neighbors to encourage competition.
+- 🏆 **Congratulation messages**: detect if the user is on the podium.
+- 📈 **Progression tracking**: see the gap with players ahead of you.
 
-## Compareason with thes autres leaderboards
+## Comparison with other leaderboards
 
-| Function | Périmètre | Returns |
+| Function | Scope | Returns |
 |----------|-----------|----------|
-| `$userLeaderboard` | User courant | Voisinage autour of the user |
-| `$serverLeaderboard` | Server courant | Classement complete of the server |
-| `$globalUserLeaderboard` | Tous les users | Classement global complete |
+| `$userLeaderboard` | Current user | Neighborhood around the user |
+| `$serverLeaderboard` | Current server | Complete leaderboard of the server |
+| `$globalUserLeaderboard` | All users | Complete global leaderboard |
 
-## Notes importantes
+## Important Notes
 
-- The user doit avoir une value définie for the variable spécifiée, otherwise il n'apparaîtra pas in the classement.
-- The namebre of entrées retournées autour of the user dépend of la configuration of the bot.
-- `$getLeaderboardPosition` and `$getLeaderboardValue` functionnent normalement during l'itération.
-- Pour un classement complete, préférez `$globalUserLeaderboard` or `$serverLeaderboard`.
+- The user must have a value set for the specified variable, otherwise they will not appear in the leaderboard.
+- The number of entries returned around the user depends on the bot's configuration.
+- `$getLeaderboardPosition` and `$getLeaderboardValue` work normally during iteration.
+- For a complete leaderboard, prefer `$globalUserLeaderboard` or `$serverLeaderboard`.
 
-## Voir also
+## See Also
 
-- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rang in the classement actif
-- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Value in the classement actif
-- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Classement global complete
-- [`$serverLeaderboard`](/docs/serverleaderboard) — Classement complete of the server
-- [`$textSplit`](/docs/textsplit) — Parser the result
-- [`$getUserVar`](/docs/getuservar) — Lire une variable user
-- [`$setUserVar`](/docs/setuservar) — Définir une variable user
+- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rank in the active leaderboard
+- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Value in the active leaderboard
+- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Complete global leaderboard
+- [`$serverLeaderboard`](/docs/serverleaderboard) — Complete server leaderboard
+- [`$textSplit`](/docs/textsplit) — Parse the result
+- [`$getUserVar`](/docs/getuservar) — Read a user variable
+- [`$setUserVar`](/docs/setuservar) — Set a user variable

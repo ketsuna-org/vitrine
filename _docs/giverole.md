@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: giveRole
 syntax: $giveRole[userID;roleID]
-description: Donne un role to un user on the server.
+description: Assigns a role to a user on the server.
 ---
 
 # $giveRole
 
-The function `$giveRole` **attribue un role** to un user on the server Discord. The bot doit avoir la permission `ManageRoles`.
+The function `$giveRole` assigns a role to a user on the Discord server. The bot must have the `ManageRoles` permission.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ The function `$giveRole` **attribue un role** to un user on the server Discord. 
 $giveRole[userID;roleID]
 ```
 
-Ou with a seul parameter (the user mentionné est visé) :
+Or with a single parameter (targeting the mentioned user):
 
 ```
 $giveRole[roleID]
@@ -28,55 +28,55 @@ $giveRole[roleID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user cible. Si omitted, vise the user mentionné. |
-| `roleID` | The ID of the role to attribuer. Required. |
+| `userID` | The ID of the target user. If omitted, targets the mentioned user. |
+| `roleID` | The ID of the role to assign. Required. |
 
 ## Return Value
 
-Aucune. The role est attribué.
+None. The role is assigned.
 
 ## Examples
 
-### Attributeion simple
+### Simple assignment
 
 ```bdfd
-$giveRole[$mentioned[1];$roleID[Confirmé]]
-$sendMessage[<@$mentioned[1]> a received the role Confirmé !]
+$giveRole[$mentioned[1];$roleID[Confirmed]]
+$sendMessage[<@$mentioned[1]> has received the Confirmed role!]
 ```
 
-### Auto-attributeion for the auteur
+### Auto-assignment for the author
 
 ```bdfd
 $giveRole[$roleID[Member]]
-$sendMessage[$userName, vous avez now the role Member.]
+$sendMessage[$userName, you now have the Member role.]
 ```
 
-### Command of attributeion with vérification
+### Assignment command with verification
 
 ```bdfd
 $if[$roleExists[$roleID[$message[2]]]==true]
   $giveRole[$mentioned[1];$roleID[$message[2]]]
-  $sendMessage[Role attribué with success.]
+  $sendMessage[Role assigned successfully.]
 $else
-  $sendMessage[Ce role n'existe pas.]
+  $sendMessage[This role does not exist.]
 $endif
 ```
 
-### Attributeion after vérification of hiérarchie
+### Assignment after hierarchy check
 
 ```bdfd
 $if[$rolePosition[$getRole[$authorID;1]]>$rolePosition[$roleID[Staff]]]
   $giveRole[$mentioned[1];$roleID[Staff]]
-  $sendMessage[<@$mentioned[1]> est now Staff !]
+  $sendMessage[<@$mentioned[1]> is now Staff!]
 $else
-  $sendMessage[Vous n'avez pas la permission of promouvoir members.]
+  $sendMessage[You do not have permission to promote members.]
 $endif
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ManageRoles`.
-- The bot ne peut pas attribuer un role supérieur to son propre role le plus haut.
-- Pour attribuer several roles to la fois, utilisez `$giveRoles`.
-- Pour remplacer all roles of a user, utilisez `$setUserRoles`.
-- Équivaslow functionnel to `$roleGrant`.
+- The bot must have the `ManageRoles` permission.
+- The bot cannot assign a role higher than its own highest role.
+- To assign multiple roles at once, use `$giveRoles`.
+- To replace all roles of a user, use `$setUserRoles`.
+- Functional equivalent to `$roleGrant`.

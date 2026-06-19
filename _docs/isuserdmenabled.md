@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isUserDmEnabled
 syntax: $isUserDmEnabled[userID]
-description: Checks if les messages privates (DM) of a user sont ouverts.
+description: Checks if the private messages (DMs) of a user are open.
 ---
 
 # $isUserDmEnabled
 
-The function `$isUserDmEnabled[userID]` **vérifie if a user accepte les messages privates** (DMs) of la part of members of the même server or of the bot.
+The function `$isUserDmEnabled[userID]` checks if a user accepts private messages (DMs) from members of the same server or from the bot.
 
 ## Syntax
 
@@ -22,60 +22,60 @@ $isUserDmEnabled[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user to vérifier. |
+| `userID` | The ID of the user to check. |
 
 ## Return Value
 
-- **Type** : Boolean
-- `true` if thes DMs of the user sont ouverts for the bot.
-- `false` if thes DMs sont fermés or inaccessibles.
+- **Type**: Boolean
+- `true` if the user's DMs are open to the bot.
+- `false` if the DMs are closed or inaccessible.
 
 ## Behavior
 
-- Checks if the bot peut envoyer un message private to cet user.
-- Un user peut fermer their DMs via their parameters of confidentialité Discord.
-- The bot doit share to the moins un server with the user.
+- Checks if the bot can send a private message to this user.
+- A user can close their DMs via their Discord privacy settings.
+- The bot must share at least one server with the user.
 
 ## Examples
 
-### Notification conditionnelle
+### Conditional notification
 
 ```bdfd
 $if[$isUserDmEnabled[$mentioned[1]]==true]
-  $sendDM[$mentioned[1];📬 Vous avez received un avertissement on **$serverName** : $message[2]]
-  $sendMessage[✅ Avertissement sent en DM to <@$mentioned[1]>.]
+  $sendDM[$mentioned[1];📬 You have received a warning on **$serverName**: $message[2]]
+  $sendMessage[✅ Warning sent in DMs to <@$mentioned[1]>.]
 $else
-  $sendMessage[⚠️ Impossible of envoyer un DM to <@$mentioned[1]>. Notification public.]
+  $sendMessage[⚠️ Cannot send a DM to <@$mentioned[1]>. Public notification instead.]
 $endif
 ```
 
-### Vérification before envoi
+### Check before sending
 
 ```bdfd
 $var[userID;$mentioned[1]]
 $var[contenu;$message[2]]
 $if[$isUserDmEnabled[$var[userID]]==true]
   $sendDM[$var[userID];$var[contenu]]
-  $sendEphemeral[✅ Message sent en private.]
+  $sendEphemeral[✅ Message sent privately.]
 $else
-  $sendEphemeral[❌ Cet user a désenabled their DMs.]
+  $sendEphemeral[❌ This user has disabled their DMs.]
 $endif
 ```
 
-### Boucle of notification
+### Notification loop
 
 ```bdfd
 $for[i;1;$mentionedCount;1]
   $if[$isUserDmEnabled[$mentioned[$for[i]]]==true]
-    $sendDM[$mentioned[$for[i]];Rcall : réunion tomorrow to 14h]
+    $sendDM[$mentioned[$for[i]];Reminder: meeting tomorrow at 14:00]
   $endif
 $endfor
-$sendMessage[✅ Rcalls sents to the members availables.]
+$sendMessage[✅ Reminders sent to the available members.]
 ```
 
 ## Notes
 
-- Les DMs can be fermés par parameter of confidentialité user.
-- The bot ne peut pas forcer l'ouverture DMs of a user.
-- Pour envoyer un message private, utilisez `$sendDM[]`.
-- Si les DMs sont fermés, `$sendDM[]` échouera silencieusement.
+- DMs can be closed by user privacy settings.
+- The bot cannot force open a user's DMs.
+- To send a private message, use `$sendDM[]`.
+- If DMs are closed, `$sendDM[]` will fail silently.

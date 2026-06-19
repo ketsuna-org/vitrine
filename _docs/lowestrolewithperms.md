@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: lowestRoleWithPerms
 syntax: $lowestRoleWithPerms[permission1;permission2;...]
-description: Returns the ID of the role le plus bas of the user qui possède les permissions spécifiées.
+description: Returns the ID of the lowest role of the user that possesses the specified permissions.
 ---
 
 # $lowestRoleWithPerms
 
-The function `$lowestRoleWithPerms[]` retourne l'**ID of the role le plus bas** of the user qui possède une or several permissions specifics.
+The function `$lowestRoleWithPerms[]` returns the **ID of the lowest role** of the user that possesses one or more specific permissions.
 
 ## Syntax
 
@@ -22,49 +22,49 @@ $lowestRoleWithPerms[permission1;permission2;...]
 
 | Parameter | Description |
 |---|---|
-| `permissions` | Une or several permissions Discord, separatedes par points-virgules. Toutes les permissions listées must be présentes on the role. |
+| `permissions` | One or more Discord permissions, separated by semicolons. All listed permissions must be present on the role. |
 
 ## Return Value
 
-- **Type** : Snowflake (string numérique) or string vide
-- The ID of the role le plus bas possédant all permissions demandées
-- String vide si no role ne correspond
+- **Type** : Snowflake (numeric string) or empty string
+- The ID of the lowest role possessing all requested permissions
+- Empty string if no role matches
 
 ## Behavior
 
-- Parcourt les roles of the user of the plus bas to the plus haut.
-- Returns the **first** role (le plus bas) qui possède **all** les permissions spécifiées.
-- Les noms of permissions sont en anglais (nomenclature API Discord).
+- Scans the user's roles from lowest to highest.
+- Returns the **first** (lowest) role that possesses **all** specified permissions.
+- Permission names are in English (matching the Discord API nomenclature).
 
 ## Examples
 
-### Trouver the role with accès vocal le plus bas
+### Find the lowest role with voice access
 
 ```bdfd
 $let[voiceRole;$lowestRoleWithPerms[Connect;Speak]]
 $if[$voiceRole!=]
-  $sendMessage[Votre role vocal le plus bas : $roleName[$voiceRole]]
+  $sendMessage[Your lowest voice role: $roleName[$voiceRole]]
 $endif
 ```
 
-### Vérifier les permissions of base
+### Check basic permissions
 
 ```bdfd
 $let[basicRole;$lowestRoleWithPerms[SendMessages;ReadMessageHistory]]
 $if[$basicRole!=]
-  $sendMessage[The role $roleName[$basicRole] vous donne accès to the messages.]
+  $sendMessage[The role $roleName[$basicRole] grants you message access.]
 $endif
 ```
 
-### Compareason highest/lowest
+### Comparison between highest/lowest
 
 ```bdfd
 $let[highest;$highestRoleWithPerms[ManageMessages]]
 $let[lowest;$lowestRoleWithPerms[ManageMessages]]
-$title[Permissions of modération]
+$title[Moderation Permissions]
 $description[
-**Role le plus haut :** $roleName[$highest]
-**Role le plus bas :** $roleName[$lowest]
+**Highest Role:** $roleName[$highest]
+**Lowest Role:** $roleName[$lowest]
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -72,6 +72,7 @@ $sendMessage[]
 
 ## Notes
 
-- Utile pour déterminer le level minimum auquel une permission est accordée.
-- Si `$highestRoleWithPerms[]` and `$lowestRoleWithPerms[]` retournent le même ID, a single role possède ces permissions.
-- Idéal for the systèmes of hiérarchie and of vérification of permissions granulaires.
+- Useful for determining the minimum level at which a permission is granted.
+- If `$highestRoleWithPerms[]` and `$lowestRoleWithPerms[]` return the same ID, only a single role possesses those permissions.
+- Ideal for permission hierarchy and granular verification systems.
+

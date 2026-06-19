@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userReacted
 syntax: $userReacted[messageID;userID;emoji]
-description: Checks if un user specific a réagi with a emoji donné on a message. Returns true or false.
+description: Checks if a specific user reacted with a given emoji on a message. Returns true or false.
 ---
 
 # $userReacted
 
-The function `$userReacted[]` allows **check if a user a réagi** with a emoji specific on a message donné.
+The `$userReacted` function checks if a user has reacted with a specific emoji on a given message.
 
 ## Syntax
 
@@ -22,50 +22,50 @@ $userReacted[messageID;userID;emoji]
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message on lequel check the réaction. |
-| `userID` | The ID of the user to vérifier. |
-| `emoji` | L'emoji to check (unicode or `nom:ID` for the emojis customs). |
+| `messageID` | The ID of the message on which to check the reaction. |
+| `userID` | The ID of the user to check. |
+| `emoji` | The emoji to check (Unicode or `name:ID` for custom emojis). |
 
 ## Return Value
 
-- **Type** : String (boolean)
-- `true` si the user a réagi with the emoji spécifié.
-- `false` si the user n'a pas réagi or a réagi with a autre emoji.
+- **Type**: String (boolean)
+- `true` if the user has reacted with the specified emoji.
+- `false` if the user has not reacted or has reacted with a different emoji.
 
 ## Behavior
 
-- Checks la list réactions of the message for the emoji donné.
-- Functionne with thes emojis unicode standards (✅, ❌, 👍, etc.).
-- Functionne with thes emojis customs of the server.
-- The message must be accessible par the bot.
+- Checks the reaction list of the message for the given emoji.
+- Works with standard Unicode emojis (✅, ❌, 👍, etc.).
+- Works with custom server emojis.
+- The message must be accessible to the bot.
 
 ## Examples
 
-### Système of vérification par réaction
+### Verification system via reaction
 
 ```bdfd
 $nominalTrigger
-$let[msgID;$sendMessage[✅ Réagissez pour accepter les règles.]]
+$let[msgID;$sendMessage[✅ React to accept the rules.]]
 $addCmdReactions[✅]
 
 $onReactionAdd[✅]
 $if[$userReacted[$msgID;$authorID;✅]==true]
   $giveRole[$authorID;$roleID[Member]]
-  $sendDM[$authorID;Bienvenue ! Vous avez accepté les règles.]
+  $sendDM[$authorID;Welcome! You have accepted the rules.]
 $endif
 ```
 
-### Sondage interactif
+### Interactive poll
 
 ```bdfd
-$let[pollMsg;$sendMessage[Votez pour votre choix !]]
+$let[pollMsg;$sendMessage[Vote for your choice!]]
 $addCmdReactions[👍;👎]
 
 $let[voted;$userReacted[$pollMsg;$authorID;👍]]
 $if[$voted==true]
-  $sendMessage[Merci pour votre vote 👍 !]
+  $sendMessage[Thanks for your vote 👍!]
 $else
-  $sendMessage[Vous n'avez pas encore voté 👍.]
+  $sendMessage[You have not voted 👍 yet.]
 $endif
 ```
 
@@ -73,14 +73,14 @@ $endif
 
 ```bdfd
 $if[$userReacted[$giveawayMsg;$authorID;🎉]==true]
-  $sendMessage[✅ Vous participez to the giveaway !]
+  $sendMessage[✅ You are participating in the giveaway!]
 $else
-  $sendMessage[❌ Vous devez réagir with 🎉 pour participer.]
+  $sendMessage[❌ You must react with 🎉 to participate.]
 $endif
 ```
 
 ## Notes
 
-- Pour les emojis customs, utilisez le format `nom:ID`.
-- The function est sensible to la casse for the noms of emojis customs.
-- The bot doit avoir accès to the message (même channel) pour check thes réactions.
+- For custom emojis, use the `name:ID` format.
+- The function is case-sensitive for custom emoji names.
+- The bot must have access to the message (in the same channel) to check reactions.

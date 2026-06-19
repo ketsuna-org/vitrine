@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorBanner
 syntax: $authorBanner
-description: Returns the URL of the banner of profil of the author of the message. Réservé to the abonnés Nitro.
+description: Returns the URL of the profile banner of the author of the message. Reserved for Nitro subscribers.
 ---
 
 # $authorBanner
 
-The variable `$authorBanner` returns the **URL of the banner of profil** of the author of the message. The banners sont réservées to the abonnés Discord Nitro.
+The variable `$authorBanner` returns the **URL of the profile banner** of the author of the message. Banners are reserved for Discord Nitro subscribers.
 
 ## Syntax
 
@@ -20,19 +20,19 @@ $authorBanner
 
 ## Return value
 
-- **Type** : String of becauseactères (URL) or string vide
-- URL CDN Discord if the auteur a une banner Nitro
-- String vide if the auteur does not have of banner
+- **Type**: Character string (URL) or empty string
+- Discord CDN URL if the author has a Nitro banner
+- Empty string if the author does not have a banner
 
 ## Behavior
 
-- `$authorBanner` ne prend **no argument**.
-- Équivaslow to `$userBanner` for commands textuelles.
-- Seuls les abonnés Nitro can define ae banner.
+- `$authorBanner` takes **no arguments**.
+- Equivalent to `$userBanner` for text commands.
+- Only Nitro subscribers can define a banner.
 
 ## Examples
 
-### Display la banner
+### Display the banner
 
 ```bdfd
 $if[$authorBanner!=]
@@ -41,16 +41,16 @@ $if[$authorBanner!=]
   $color[$userBannerColor]
   $sendMessage[]
 $else
-  $sendMessage[$authorUsername does not have of banner Nitro.]
+  $sendMessage[$authorUsername does not have a Nitro banner.]
 $endif
 ```
 
-### Profil complete
+### Complete profile
 
 ```bdfd
 $author[$authorUsername;$authorAvatar]
-$title[Profil of $authorUsername]
-$description[**ID :** $authorID]
+$title[Profile of $authorUsername]
+$description[**ID:** $authorID]
 $image[$authorBanner]
 $thumbnail[$authorAvatar]
 $color[$userBannerColor]
@@ -59,5 +59,5 @@ $sendMessage[]
 
 ## Notes
 
-- Vérifiez toudays si `$authorBanner` est non vide before of l'use like image of embed.
-- For the couleur of accent of la banner, use `$userBannerColor`.
+- Always check if `$authorBanner` is not empty before using it as an embed image.
+- For the accent color of the banner, use `$userBannerColor`.

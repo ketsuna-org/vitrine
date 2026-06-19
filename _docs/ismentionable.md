@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: isMentionable
 syntax: $isMentionable[roleID;(guildID)]
-description: Checks if un role est mentionnable. Returns "true" or "false".
+description: "Checks if a role is mentionable. Returns \"true\" or \"false\"."
 ---
 
 # $isMentionable
 
-The function `$isMentionable` vérifie if a role Discord est **mentionnable** par les members of the server. A role mentionnable can be utilisé in thes messages with `@Role`.
+The function `$isMentionable` checks if a Discord role is **mentionable** by server members. A mentionable role can be used in messages with `@Role`.
 
 ## Syntax
 
@@ -23,48 +23,48 @@ $isMentionable[roleID;(guildID)]
 | Parameter | Description |
 |---|---|
 | `roleID` | The ID of the role. Required. |
-| `guildID` | Optional. The ID of the server cible. |
+| `guildID` | Optional. The ID of the target server. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | `"true"` si the role est mentionnable, `"false"` otherwise. |
+| `string` | `"true"` if the role is mentionable, `"false"` otherwise. |
 
 ## Examples
 
-### Vérifier un role
+### Check a role
 
 ```bdfd
-$if[$isMentionable[$roleID[Annonces]]==true]
-  $sendMessage[The role Annonces est mentionnable.]
+$if[$isMentionable[$roleID[Announcements]]==true]
+  $sendMessage[The Announcements role is mentionable.]
 $else
-  $sendMessage[The role Annonces is not mentionnable.]
+  $sendMessage[The Announcements role is not mentionable.]
 $endif
 ```
 
-### Listr les roles mentionnables
+### List mentionable roles
 
 ```bdfd
-$sendMessage[The role Admin est $isMentionable[$roleID[Admin]].]
+$sendMessage[The Admin role is $isMentionable[$roleID[Admin]].]
 ```
 
-### Alerter si non mentionnable
+### Alert if not mentionable
 
 ```bdfd
 $if[$isMentionable[$roleID[Modo]]==false]
-  $sendMessage[⚠️ The role Modo is not mentionnable. The members ne can pas le ping.]
+  $sendMessage[⚠️ The Modo role is not mentionable. Members cannot ping it.]
 $endif
 ```
 
-### Récupérer via $roleInfo
+### Retrieve via $roleInfo
 
 ```bdfd
-$sendMessage[Mentionnable : $roleInfo[123456789012345678;mentionable]]
+$sendMessage[Mentionable: $roleInfo[123456789012345678;mentionable]]
 ```
 
 ## Notes
 
-- Returns ae string `"true"` or `"false"`.
-- Équivaslow to `$roleInfo[roleID;mentionable]`.
-- Utile pour check before of envoyer une mention of role.
+- Returns a string `"true"` or `"false"`.
+- Equivalent to `$roleInfo[roleID;mentionable]`.
+- Useful for checking before sending a role mention.

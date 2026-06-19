@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: title
 syntax: $title[text;(embedIndex)]
-description: Sets the titre of a Discord embed. The titre apparaît en haut of the embed, en gras and with ae taille of police plus grande que la description.
+description: Sets the title of a Discord embed. The title appears at the top of the embed, in bold and with a larger font size than the description.
 ---
 
 # $title[]
 
-The function `$title[]` définit le **titre** of a Discord embed. The titre est le text le plus visible of the embed, displayed en haut, en gras and with ae police plus grande.
+The function `$title[]` sets the **title** of a Discord embed. The title is the most visible text of the embed, displayed at the top in bold with a larger font.
 
 ## Syntax
 
@@ -22,48 +22,48 @@ $title[text;(embedIndex)]
 
 | Parameter | Description |
 |---|---|
-| `text` | Le text of the titre. Vous pouvez use the syntaxe markdown Discord (gras, italique, souligné, etc.). |
-| `embedIndex` | Optional. Index of the embed to modifier (0 default). Utilisez cet index pour construire several embeds in a même message (maximum 10). |
+| `text` | The text of the title. You can use Discord markdown syntax (bold, italics, underline, etc.). |
+| `embedIndex` | Optional. Index of the embed to modify (default is 0). Use this index to build multiple embeds in the same message (maximum of 10). |
 
 ## Return Value
 
-This function returns nothing : elle modifies the response in progress of construction. The embed est sent via `$sendMessage[]`.
+This function returns nothing; it modifies the response currently being constructed. The embed is sent via `$sendMessage[]`.
 
 ## Behavior
 
-- `$title[]` est une **response mutation** : elle s'ajoute to the response in progress and sera sente lors of the prochain `$sendMessage[]`.
-- Si vous callez `$title[]` several fois before un `$sendMessage[]`, seul le last call sera pris en compte for the embed concerné.
-- L'ordre calls est important: placez `$title[]` before `$description[]`, `$color[]`, etc.
+- `$title[]` is a **response mutation**: it is added to the response currently in progress and will be sent upon the next `$sendMessage[]` call.
+- If you call `$title[]` multiple times before a `$sendMessage[]`, only the last call will be applied to that specific embed.
+- The order of calls is important: place `$title[]` before `$description[]`, `$color[]`, etc.
 
 ## Examples
 
-### Embed simple with titre
+### Simple Embed with Title
 
 ```bdfd
-$title[Bienvenue on the server !]
-$description[Merci of nous avoir rejoints 🎉]
+$title[Welcome to the server!]
+$description[Thank you for joining us 🎉]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Titre with mise en forme markdown
+### Title with Markdown Formatting
 
 ```bdfd
-$title[**Annonce importante** — *À lire absolument* 📢]
-$description[Voici les lasts news of the server.]
+$title[**Important Announcement** — *Must Read* 📢]
+$description[Here is the latest news of the server.]
 $color[#FF0000]
 $sendMessage[]
 ```
 
-### Multi-embed : titres differents for each embed
+### Multi-embed: Different Titles for Each Embed
 
 ```bdfd
-$title[Premier embed;0]
+$title[First embed;0]
 $description[Content of the first embed;0]
 $color[#5865F2;0]
 
-$title[Deuxième embed;1]
-$description[Content of the twoième embed;1]
+$title[Second embed;1]
+$description[Content of the second embed;1]
 $color[#57F287;1]
 
 $sendMessage[]
@@ -71,6 +71,7 @@ $sendMessage[]
 
 ## Notes
 
-- La longueur maximale of the titre est of **256 becauseactères**.
-- Si le text est vide, le titre ne sera pas displayed in the embed.
-- Pour un embed without titre, omettez simplement l'call to `$title[]`.
+- The maximum length of the title is **256 characters**.
+- If the text is empty, the title will not be displayed in the embed.
+- For an embed without a title, simply omit the call to `$title[]`.
+

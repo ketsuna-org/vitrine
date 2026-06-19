@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: unpinMessage
 syntax: $unpinMessage[messageID]
-description: Retire un message épinglé of la list messages épinglés of the canal.
+description: Removes a pinned message from the pinned messages list of the channel.
 ---
 
 # $unpinMessage
 
-The function `$unpinMessage[]` allows **retirer un message of la list messages épinglés** of un canal.
+The function `$unpinMessage[]` allows **removing a message from the pinned messages list** of a channel.
 
 ## Syntax
 
@@ -22,39 +22,39 @@ $unpinMessage[messageID]
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message to désépingler. |
+| `messageID` | The ID of the message to unpin. |
 
 ## Return Value
 
-This function ne retourne pas of value.
+This function does not return a value.
 
 ## Behavior
 
-- The bot doit avoir la permission `MANAGE_MESSAGES`.
-- The message is not deleted, only retiré épingles.
-- Si the message is not épinglé, rien ne se passe.
+- The bot must have the `MANAGE_MESSAGES` permission.
+- The message is not deleted, only unpinned.
+- If the message is not pinned, nothing happens.
 
 ## Examples
 
-### Désépingler after action
+### Unpin After Action
 
 ```bdfd
 $unpinMessage[$noMentionMessage]
-$sendMessage[Message désépinglé.]
+$sendMessage[Message unpinned.]
 ```
 
-### Nettoyage automatique
+### Automatic Cleanup
 
 ```bdfd
 $unpinMessage[$messageID]
-$editMessage[This message n'est plus of actualité.]
+$editMessage[This message is no longer relevant.]
 ```
 
-### Rotation of annonces
+### Announcement Rotation
 
 ```bdfd
 $unpinMessage[$oldAnnouncementID]
-$title[New annonce]
+$title[New Announcement]
 $description[$noMentionMessage]
 $sendMessage[]
 $pinMessage[$messageID]
@@ -62,6 +62,6 @@ $pinMessage[$messageID]
 
 ## Notes
 
-- Les users are not notifiés when a message est désépinglé.
-- Un message can be ré-épinglé after avoir été désépinglé.
-- Combinez with `$pinMessage[]` pour gérer les annonces tournantes.
+- Users are not notified when a message is unpinned.
+- A message can be re-pinned after having been unpinned.
+- Combine with `$pinMessage[]` to manage rotating announcements.

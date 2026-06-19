@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getRole
 syntax: $getRole[userID;index;(guildID)]
-description: Returns the ID of a role of a user according to son index (position) in the list roles of the member.
+description: Returns the ID of a role of a user according to their index (position) in the member's list of roles.
 ---
 
 # $getRole
 
-The function `$getRole` retourne l'**ID of a role** of a user depending on sa **position** in sa list of roles. The index `1` correspond to the role le plus élevé hiérarchiquement, `2` to the twoième, and ainsi of suite.
+The function `$getRole` returns the **ID of a role** of a user depending on their **position** in their list of roles. The index `1` corresponds to the highest role hierarchically, `2` to the second, and so on.
 
 ## Syntax
 
@@ -23,57 +23,57 @@ $getRole[userID;index;(guildID)]
 | Parameter | Description |
 |---|---|
 | `userID` | The ID of the user. Required. |
-| `index` | The position of the role (1 = plus haut, 2 = twoième...). Required. |
-| `guildID` | Optional. The ID of the server cible. |
+| `index` | The position of the role (1 = highest, 2 = second...). Required. |
+| `guildID` | Optional. The ID of the target server. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the role to the position data, or `""` si l'index est invalid. |
+| `snowflake` (string) | The ID of the role at the given position, or `""` if the index is invalid. |
 
 ## Examples
 
-### Role le plus élevé
+### Highest role
 
 ```bdfd
-$sendMessage[Votre role le plus haut : $roleName[$getRole[$authorID;1]]]
+$sendMessage[Your highest role: $roleName[$getRole[$authorID;1]]]
 ```
 
-### Vérifier si admin
+### Check if admin
 
 ```bdfd
 $if[$getRole[$authorID;1]==$roleID[Admin]]
-  $sendMessage[Vous êtes administrator !]
+  $sendMessage[You are an administrator!]
 $else
-  $sendMessage[Vous n'êtes pas administrator.]
+  $sendMessage[You are not an administrator.]
 $endif
 ```
 
-### Role secondary
+### Secondary role
 
 ```bdfd
-$sendMessage[Votre twoième role : $roleName[$getRole[$authorID;2]]]
+$sendMessage[Your second role: $roleName[$getRole[$authorID;2]]]
 ```
 
-### Couleur of the role principal
+### Color of the main role
 
 ```bdfd
-$title[Profil]
-$description[Couleur of votre role principal]
+$title[Profile]
+$description[Color of your main role]
 $color[$roleColor[$getRole[$authorID;1]]]
 $sendMessage[]
 ```
 
-### Role of un autre user
+### Role of another user
 
 ```bdfd
-$sendMessage[Role principal of <@$mentioned[1]> : $roleName[$getRole[$mentioned[1];1]]]
+$sendMessage[Main role of <@$mentioned[1]>: $roleName[$getRole[$mentioned[1];1]]]
 ```
 
 ## Notes
 
-- L'index commence to `1` (pas `0`).
-- Si the user n'a pas of role (only @everyone), `$getRole` peut retourner une string vide.
-- Pour obtenir the color of the role le plus haut, utilisez directly `$colorRole[$userID]`.
-- Pour listr all roles of a user, itérez with ae boucle.
+- The index starts at `1` (not `0`).
+- If the user has no roles (only @everyone), `$getRole` may return an empty string.
+- To get the color of the highest role, use `$colorRole[$userID]` directly.
+- To list all roles of a user, iterate with a loop.

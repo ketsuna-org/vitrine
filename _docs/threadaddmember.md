@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: threadAddMember
 syntax: $threadAddMember[threadID;userID]
-description: Adds a member to un fil of discussion (thread). Utile for the threads privates où les members must be ajoutés manually.
+description: Adds a member to a thread. Useful for private threads where members must be added manually.
 ---
 
 # $threadAddMember
 
-The function `$threadAddMember[]` allows to **ajouter un user to un thread**. Particulièrement utile for the threads privates.
+The function `$threadAddMember[]` allows you to **add a user to a thread**. It is particularly useful for private threads.
 
 ## Syntax
 
@@ -22,48 +22,49 @@ $threadAddMember[threadID;userID]
 
 | Parameter | Description |
 |---|---|
-| `threadID` | The ID of the thread cible. |
-| `userID` | The ID of the user to ajouter. |
+| `threadID` | The ID of the target thread. |
+| `userID` | The ID of the user to add. |
 
 ## Return Value
 
-This function ne retourne pas of value.
+This function does not return any value.
 
 ## Behavior
 
-- Pour les threads publics, les users can rejoindre librement ; this function est rarement nécessaire.
-- Pour les threads privates, seuls les members ajoutés can voir and participer to the thread.
-- The bot doit avoir la permission `MANAGE_THREADS` or être le créateur of the thread private.
+- For public threads, users can join freely; this function is rarely needed.
+- For private threads, only added members can view and participate in the thread.
+- The bot must have the `MANAGE_THREADS` permission or be the creator of the private thread.
 
 ## Examples
 
-### Ajouter le créateur
+### Adding the Creator
 
 ```bdfd
 $let[thread;$startThread[Support - $username;1440]]
 $threadAddMember[$thread;$authorID]
-$channelSendMessage[$thread;Votre thread of support est prêt, $username !]
+$channelSendMessage[$thread;Your support thread is ready, $username!]
 ```
 
-### Ajouter modérateurs
+### Adding Moderators
 
 ```bdfd
 $threadAddMember[$threadID;$mentioned[1]]
-$sendMessage[<$mentioned[1]> was ajouté to the thread.]
+$sendMessage[<@$mentioned[1]> has been added to the thread.]
 ```
 
-### Ajout automatique of équipe
+### Automatic Staff Addition
 
 ```bdfd
 $let[thread;$startThread[Ticket #$random[1000;9999];1440]]
 $threadAddMember[$thread;$authorID]
 $threadAddMember[$thread;MODERATOR_ROLE_ID_1]
 $threadAddMember[$thread;MODERATOR_ROLE_ID_2]
-$channelSendMessage[$thread;Bienvenue ! A member of l'équipe vous assistera.]
+$channelSendMessage[$thread;Welcome! A member of the staff will assist you.]
 ```
 
 ## Notes
 
-- Dans les threads publics, les members can rejoindre without invite.
-- `$threadAddMember[]` n'sends pas of notification to the user ajouté.
-- Pour retirer un member, utilisez `$threadRemoveMember[]`.
+- In public threads, members can join without an invitation.
+- `$threadAddMember[]` does not send a notification to the added user.
+- To remove a member, use `$threadRemoveMember[]`.
+

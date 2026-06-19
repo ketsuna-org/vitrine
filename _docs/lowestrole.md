@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: lowestRole
 syntax: $lowestRole
-description: Returns the ID of the role le plus bas (hiérarchiquement) of the user on the server (hors @everyone).
+description: Returns the ID of the lowest role (hierarchically) of the user on the server (excluding @everyone).
 ---
 
 # $lowestRole
 
-The variable `$lowestRole` retourne l'**ID of the role le plus bas** in the hiérarchie roles of the user on the server (en excludedant generally `@everyone`).
+The function `$lowestRole` returns the **ID of the lowest role** in the role hierarchy of the user on the server (generally excluding `@everyone`).
 
 ## Syntax
 
@@ -20,38 +20,39 @@ $lowestRole
 
 ## Return Value
 
-- **Type** : Snowflake (string numérique)
-- The ID of the role le plus bas of the user (hors `@everyone`)
+- **Type** : Snowflake (numeric string)
+- The ID of the lowest role of the user (excluding `@everyone`)
 
 ## Behavior
 
-- `$lowestRole` ne prend **no argument**.
-- Returns the role non-`@everyone` le plus bas in the hiérarchie.
-- Si the user n'a qu'a single role (or only `@everyone`), le comportement peut varier.
+- `$lowestRole` takes **no arguments**.
+- Returns the lowest non-`@everyone` role in the hierarchy.
+- If the user has only the `@everyone` role, the behavior may vary.
 
 ## Examples
 
-### Listr la hiérarchie complete
+### Show the role hierarchy
 
 ```bdfd
-$title[Hiérarchie roles]
+$title[Role Hierarchy]
 $description[
-**User :** $userName
-**Role le plus haut :** $roleName[$highestRole]
-**Role le plus bas :** $roleName[$lowestRole]
+**User:** $userName
+**Highest Role:** $roleName[$highestRole]
+**Lowest Role:** $roleName[$lowestRole]
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérifier the role le plus bas
+### Check the lowest role
 
 ```bdfd
-$sendMessage[Votre role le plus bas est : $roleName[$lowestRole] (ID: $lowestRole)]
+$sendMessage[Your lowest role is: $roleName[$lowestRole] (ID: $lowestRole)]
 ```
 
 ## Notes
 
-- `$lowestRole` kicks generally the role `@everyone`.
-- La hiérarchie roles est définie in thes parameters of the server.
-- Pour obtenir un role with permissions specifics, utilisez `$lowestRoleWithPerms[]`.
+- `$lowestRole` generally excludes the `@everyone` role.
+- The role hierarchy is defined in the server's settings.
+- To retrieve a role with specific permissions, use `$lowestRoleWithPerms[]`.
+

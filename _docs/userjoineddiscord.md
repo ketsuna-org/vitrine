@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userJoinedDiscord
 syntax: $userJoinedDiscord
-description: Returns the date of création of the compte Discord of the user (date of inscription on the plateforme).
+description: Returns the creation date of the user's Discord account (the registration date on the platform).
 ---
 
 # $userJoinedDiscord
 
-The variable `$userJoinedDiscord` retourne la **date of création** of the compte Discord of the user — it is-à-dire la date to laquelle il s'est inscrit on the plateforme Discord.
+The `$userJoinedDiscord` function returns the **creation date** of the user's Discord account — that is to say, the date they registered on the Discord platform.
 
 ## Syntax
 
@@ -20,42 +20,42 @@ $userJoinedDiscord
 
 ## Return Value
 
-- **Type** : Date/string of becauseactères
-- La date of enregistrement of the compte on Discord
+- **Type**: Date/String
+- The registration date of the account on Discord.
 
 ## Behavior
 
-- `$userJoinedDiscord` ne prend **no argument**.
-- La date est dérivée of the **snowflake** of the ID user (les firsts bits encodent un timestamp Epoch).
-- Functionne pour tout user dont the ID est connu, même without membership server.
+- `$userJoinedDiscord` takes **no arguments**.
+- The date is derived from the user ID **snowflake** (the first bits encode an Epoch timestamp).
+- Works for any user whose ID is known, even without server membership.
 
 ## Examples
 
-### Display l'âge of the compte
+### Display account age
 
 ```bdfd
-$title[Informations of the compte]
+$title[Account Information]
 $description[
-**Nom :** $userName
-**Counts created le :** $userJoinedDiscord
-**Member dethen le :** $userJoined
+**Name:** $userName
+**Account created on:** $userJoinedDiscord
+**Member since:** $userJoined
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérifier un compte récent
+### Check for a recent account
 
 ```bdfd
 $if[$userJoinedDiscord < 01/01/2024]
-  $sendMessage[Counts created before 2024.]
+  $sendMessage[Account created before 2024.]
 $else
-  $sendMessage[Counts récent.]
+  $sendMessage[Recent account.]
 $endif
 ```
 
 ## Notes
 
-- `$userJoinedDiscord` = date of création of the **compte** on Discord.
-- `$userJoined` = date of arrivée on the **server**.
-- The ID Discord (snowflake) encode la date of création, therefore cette information est toudays available.
+- `$userJoinedDiscord` = creation date of the **account** on Discord.
+- `$userJoined` = join date on the **server**.
+- The Discord ID (snowflake) encodes the creation date, therefore this information is always available.

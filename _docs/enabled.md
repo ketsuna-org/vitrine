@@ -5,11 +5,11 @@ translation_key: docs
 category: "Commands"
 function_name: enabled
 syntax: $enabled[yes/no]
-description: Active or désactive une command. Quand désenablede (no), la command is no longer exécutable par users.
+description: Enables or disables a command. When disabled (no), the command is no longer executable by users.
 ---
 # $enabled
 
-The `$enabled[]` function **enable or désactiver** la command in thequelle elle is placede.
+The `$enabled[]` function **enables or disables** the command in which it is placed.
 
 ## Syntax
 
@@ -21,7 +21,7 @@ $enabled[yes/no]
 
 | Parameter | Description |
 |---|---|
-| `yes/no` | `yes` to enable la command, `no` for the désactiver. |
+| `yes/no` | `yes` to enable the command, `no` to disable it. |
 
 ## Return value
 
@@ -29,19 +29,19 @@ None.
 
 ## Behavior
 
-- `$enabled[no]` rend la command invisible and inexécutable.
-- `$enabled[yes]` la réactive.
-- Can be combiné with conditions for ae activation contextuelle.
+- `$enabled[no]` makes the command invisible and inexecutable.
+- `$enabled[yes]` reactivates it.
+- Can be combined with conditions for conditional activation.
 
 ## Examples
 
-### Désenable temporarily
+### Disable temporarily
 
 ```bdfd
 $enabled[no]
 ```
 
-### Activation conditionnelle par role
+### Conditional activation by role
 
 ```bdfd
 $if[$hasRole[$authorID;Admin]==true]
@@ -51,7 +51,7 @@ $else
 $endif
 ```
 
-### Command of maintenance
+### Maintenance mode command
 
 ```bdfd
 $var[maintenance;$getVar[maintenance]]
@@ -68,6 +68,6 @@ $endif
 
 ## Notes
 
-- Une command désenablede n'apparaît pas in thes suggestions.
-- Contrairement to `$onlyIf[]` qui laisse la command visible mais bloque l'execution, `$enabled[no]` la masque totalement.
-- Utile for commands en maintenance or saisonnières.
+- A disabled command does not appear in command suggestions.
+- Unlike `$onlyIf[]` which keeps the command visible but blocks execution, `$enabled[no]` hides it completely.
+- Useful for commands in maintenance or seasonal commands.

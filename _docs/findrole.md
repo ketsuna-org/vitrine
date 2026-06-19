@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: findRole
 syntax: $findRole[query;(guildID)]
-description: Recherche un role par nom partial or complete and retourne son ID. Insensible to la casse.
+description: Searches for a role by partial or full name and returns its ID. Case-insensitive.
 ---
 
 # $findRole
 
-The function `$findRole` recherche un role Discord par **nom partial or complete** and retourne son ID. The recherche est insensible to la casse.
+The `$findRole` function searches for a Discord role by its **partial or full name** and returns its ID. The search is case-insensitive.
 
 ## Syntax
 
@@ -22,56 +22,56 @@ $findRole[query;(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `query` | The name or partie of the nom of the role to rechercher. |
-| `guildID` | Optional. The ID of the server cible. |
+| `query` | The name or part of the name of the role to search for. |
+| `guildID` | Optional. The ID of the target server. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the role found, or `""` si no. |
+| `snowflake` (string) | The ID of the role found, or an empty string (`""`) if none is found. |
 
 ## Examples
 
-### Recherche par nom partial
+### Partial Name Search
 
 ```bdfd
-$sendMessage[Role correspondant to "mod" : $findRole[mod]]
+$sendMessage[Role matching "mod": $findRole[mod]]
 ```
 
-### Attribuer un role found
+### Assign a found role
 
 ```bdfd
 $if[$findRole[VIP]!=]
   $roleGrant[$authorID;$findRole[VIP]]
-  $sendMessage[Role VIP attribué !]
+  $sendMessage[VIP role assigned!]
 $else
-  $sendMessage[Role VIP introuvable.]
+  $sendMessage[VIP role not found.]
 $endif
 ```
 
-### Vérifier l'existence
+### Verify Existence
 
 ```bdfd
 $if[$findRole[admin]!=]
-  $sendMessage[Role found : $roleName[$findRole[admin]]]
+  $sendMessage[Role found: $roleName[$findRole[admin]]]
 $else
-  $sendMessage[Aucun role ne correspond to "admin".]
+  $sendMessage[No role matches "admin".]
 $endif
 ```
 
 ### Fallback with $roleID
 
 ```bdfd
-$if[$roleID[Modérateur]!=]
-  $sendMessage[ID exact : $roleID[Modérateur]]
+$if[$roleID[Moderator]!=]
+  $sendMessage[Exact ID: $roleID[Moderator]]
 $else
-  $sendMessage[Recherche étendue : $findRole[mod]]
+  $sendMessage[Extended search: $findRole[mod]]
 $endif
 ```
 
 ## Notes
 
-- Si several roles correspondent, le **first** found est retourné.
-- Pour une recherche exact, préférez `$roleID`.
-- Très pratique when the name exact of the role est incertain.
+- If multiple roles match, the **first** one found is returned.
+- For an exact search, use `$roleID` instead.
+- Very useful when the exact name of the role is uncertain.

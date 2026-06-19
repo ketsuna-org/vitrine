@@ -1,18 +1,18 @@
 ---
 layout: doc
-title: $minute[]
+title: $minute
 translation_key: docs
 category: "Date & Time"
 function_name: minute
 syntax: $minute
-description: Returns the minute currentle (0 to 59). Resolved to the runtime.
+description: Returns the current minute (0 to 59). Resolved at runtime.
 ---
 
-# $minute[]
+# $minute
 
-The function `$minute[]` retourne la minute currentle (de 0 to 59).
+The function `$minute` returns the current minute (from 0 to 59).
 
-> **Important:** This function utilise l'identifier special `((minute))` qui est resolved to the **runtime**.
+> **Important:** This function uses the special identifier `((minute))` which is resolved at **runtime**.
 
 ## Syntax
 
@@ -20,37 +20,37 @@ The function `$minute[]` retourne la minute currentle (de 0 to 59).
 $minute
 ```
 
-> **Note :** This function ne prend no parameter.
+> **Note:** This function takes no parameters.
 
 ## Return Value
 
-A number between 0 and 59 représentant la minute currentle.
+A number between 0 and 59 representing the current minute.
 
 ## Examples
 
-### Minute simple
+### Simple Minute
 
 ```bdfd
-Minute currentle : $minute
+Current minute: $minute
 ```
 
-### Time and minutes combinées
+### Combined hours and minutes
 
 ```bdfd
-Il est $hour h $minute
+The time is $hour:$minute
 ```
 
-### Format with zéro devant
+### Formatting with a leading zero
 
 ```bdfd
 $if[$minute<10]
-Il est $hour:0$minute
+The time is $hour:0$minute
 $else
-Il est $hour:$minute
+The time is $hour:$minute
 $endif
 ```
 
 ## Notes
 
-- Utilisez `$time[]` pour obtenir l'hour complete to the format `HH:MM:SS`.
-- Combinée with `$hour[]` and `$second[]`, this function allows create horloges customes.
+- Use `$time` to obtain the full time in the `HH:MM:SS` format.
+- Combined with `$hour` and `$second`, this function allows you to create custom clocks.

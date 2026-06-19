@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelExists
 syntax: $channelExists[channelID]
-description: Checks if a channel Discord existe on the server. Returns "true" or "false".
+description: Checks if a Discord channel exists on the server. Returns "true" or "false".
 ---
 
 # $channelExists
 
-The `$channelExists` function vérifie if a **channel Discord existe** on the server from its ID. Utile pour s'assurer qu'a channel target est toudays valid before of interagir avec.
+The `$channelExists` function checks if a **Discord channel exists** on the server by its ID. Useful for ensuring a target channel is always valid before interacting with it.
 
 ## Syntax
 
@@ -22,38 +22,38 @@ $channelExists[channelID]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the channel to vérifier. Required. |
+| `channelID` | The ID of the channel to check. Required. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `string` | `"true"` if the channel existe on the server, `"false"` otherwise. |
+| `string` | `"true"` if the channel exists on the server, `"false"` otherwise. |
 
 ## Examples
 
-### Vérification simple
+### Simple check
 
 ```bdfd
 $if[$channelExists[123456789012345678]==true]
-  $sendMessage[The channel est valid.]
+  $sendMessage[The channel is valid.]
 $else
   $sendMessage[The channel does not exist.]
 $endif
 ```
 
-### Vérifier before of envoyer a message
+### Check before sending a message
 
 ```bdfd
 $if[$channelExists[123456789012345678]==true]
-  $channelSendMessage[123456789012345678;Message automatique]
+  $channelSendMessage[123456789012345678;Automated message]
 $else
-  $sendMessage[The channel of logs n'existe plus !]
+  $sendMessage[The log channel no longer exists!]
 $endif
 ```
 
 ## Notes
 
-- La value retournée est a string `"true"` or `"false"`.
-- Ne vérifie que les channels of the server courant.
-- Utile in thes systèmes of logs or of configuration où les IDs sont stockés.
+- The returned value is a string `"true"` or `"false"`.
+- Only checks channels on the current server.
+- Useful in log or configuration systems where IDs are stored.

@@ -38,12 +38,12 @@ $argsCheck is a guard function that enforces argument count constraints at the b
 Without `$argsCheck`:
 ```
 $if[$argCount<2]
-Error : to the moins 2 arguments required.
+Error: at least 2 arguments required.
 $stop
 $endif
 ```
 
-With `$argsCheck` (equivaslow, cleaner):
+With `$argsCheck` (equivalent, cleaner):
 ```
-$argsCheck[>=;2;Error : to the moins 2 arguments required.]
+$argsCheck[>=;2;Error: at least 2 arguments required.]
 ```

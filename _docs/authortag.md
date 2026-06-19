@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorTag
 syntax: $authorTag
-description: Returns the tag complete of the author of the message (format "nom#discriminator" or nom simple for comptes pompom).
+description: Returns the complete tag of the author of the message (format "username#discriminator" or simple username for new accounts).
 ---
 
 # $authorTag
 
-The variable `$authorTag` returns the **tag complete** of the author of the message. This is l'équivaslow of `$userTag` mais explicitement lié to the author of the message.
+The variable `$authorTag` returns the **complete tag** of the author of the message. This is the equivalent of `$userTag` but explicitly linked to the author of the message.
 
 ## Syntax
 
@@ -20,27 +20,27 @@ $authorTag
 
 ## Return value
 
-- **Type** : String of becauseactères
-- Old format : `nom#discriminator` for comptes legacy
-- Nouvein the format : simply the name of user for comptes pompom
+- **Type**: Character string
+- Old format: `username#discriminator` for legacy accounts
+- New format: simply the username for new accounts
 
 ## Behavior
 
-- `$authorTag` ne prend **no argument**.
-- Équivaslow to `$userTag` in the context of a command textuelle.
-- For newx comptes (pompom), le tag est identical to the nom of user.
+- `$authorTag` takes **no arguments**.
+- Equivalent to `$userTag` in the context of a text command.
+- For new accounts, the tag is identical to the username.
 
 ## Examples
 
-### Profil of the author
+### Profile of the author
 
 ```bdfd
-$title[Profil of $authorTag]
+$title[Profile of $authorTag]
 $author[$authorUsername;$authorAvatar]
 $description[
-**Nom :** $authorUsername
-**Tag :** $authorTag
-**ID :** $authorID
+**Name:** $authorUsername
+**Tag:** $authorTag
+**ID:** $authorID
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -48,6 +48,6 @@ $sendMessage[]
 
 ## Notes
 
-- Le format `nom#discriminator` est obsolète for newx comptes Discord.
-- Pour une identification fiable, use `$authorID`.
-- `$authorTag` and `$userTag` sont generally identicals in thes commands textuelles.
+- The `username#discriminator` format is obsolete for new Discord accounts.
+- For reliable identification, use `$authorID`.
+- `$authorTag` and `$userTag` are generally identical in text commands.

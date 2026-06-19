@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: threadMessageCount
 syntax: $threadMessageCount[threadID]
-description: Returns the number total of messages in a fil of discussion (thread). Inclut les messages of the thread only, pas ceux of the canal parent.
+description: Returns the total number of messages in a thread. Includes messages within the thread only, not those in the parent channel.
 ---
 
 # $threadMessageCount
 
-The function `$threadMessageCount[]` allows **count the namebre of messages** in a fil of discussion.
+The function `$threadMessageCount[]` returns the **total number of messages** in a thread.
 
 ## Syntax
 
@@ -22,55 +22,56 @@ $threadMessageCount[threadID]
 
 | Parameter | Description |
 |---|---|
-| `threadID` | The ID of the thread to analyser. |
+| `threadID` | The ID of the thread to analyze. |
 
 ## Return Value
 
-- **Type** : Integer
-- The namebre total of messages in the thread.
-- `0` if the thread est vide or inaccessible.
+- **Type**: Integer
+- The total number of messages in the thread.
+- `0` if the thread is empty or inaccessible.
 
 ## Behavior
 
-- Counts only les messages in the thread, pas ceux of the canal parent.
-- Inclut les messages système (création of the thread, ajout of members, etc.).
-- The bot doit avoir accès to the thread pour count thes messages.
+- Counts only messages within the thread, not those in the parent channel.
+- Includes system messages (thread creation, added members, etc.).
+- The bot must have access to the thread to count these messages.
 
 ## Examples
 
-### Statistiques of thread
+### Thread Statistics
 
 ```bdfd
-$title[Statistiques of the thread]
+$title[Thread Statistics]
 $description[
-**Messages :** $threadMessageCount[$threadID]
-**Members :** $threadUserCount[$threadID]
+**Messages:** $threadMessageCount[$threadID]
+**Members:** $threadUserCount[$threadID]
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérification of activité
+### Activity Check
 
 ```bdfd
 $let[msgCount;$threadMessageCount[$threadID]]
 $if[$msgCount<=1]
-  $channelSendMessage[$threadID;Ce thread semble inactif. N'hésitez pas to poser vos questions !]
+  $channelSendMessage[$threadID;This thread seems inactive. Feel free to ask your questions!]
 $endif
 ```
 
-### Archivage auto
+### Auto Archiving
 
 ```bdfd
 $let[msgCount;$threadMessageCount[$threadID]]
 $if[$msgCount>=100]
   $editThread[$threadID;[$threadName];true;true]
-  $sendMessage[Thread archivé automatically (100 messages atteints).]
+  $sendMessage[Thread archived automatically (100 messages reached).]
 $endif
 ```
 
 ## Notes
 
-- Utile for the statistiques and la gestion automatique threads.
-- Les messages deleteds are not comptés.
-- Pour the namebre of members, utilisez `$threadUserCount[]`.
+- Useful for statistics and automatic thread management.
+- Deleted messages are not counted.
+- To get the number of members, use `$threadUserCount[]`.
+

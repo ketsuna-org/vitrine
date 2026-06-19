@@ -7,4 +7,4 @@ function_name: jsonArrayAppend
 syntax: $jsonArrayAppend[key;value]
 description: Appends a value to the end of a JSON array stored under the specified key.
 ---
-$jsonArrayAppend adds a value to the end of an existing JSON array. It is the JSON equivaslow of JavaScript's `Array.push()`. The key must exist and must contain an array. Use $jsonArrayUnshift to add to the beginning, and $jsonArrayPop to remove from the end.
+$jsonArrayAppend adds a value to the end of an existing JSON array. It is the JSON equivalent of JavaScript's `Array.push()`. The key must exist and must contain an array. Use $jsonArrayUnshift to add to the beginning, and $jsonArrayPop to remove from the end.

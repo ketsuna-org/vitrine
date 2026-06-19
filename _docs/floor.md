@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: floor
 syntax: $floor[value]
-description: Arrondit un number to l'integer inférieur (troncature vers le bas).
+description: Rounds a number down to the nearest integer.
 ---
 
 # $floor[]
 
-The function `$floor[]` retourne le plus grand integer inférieur or égal to the value data. Elle « descend » toudays vers l'integer inférieur.
+The `$floor[]` function returns the greatest integer less than or equal to the given value. It always rounds down to the lower integer.
 
 ## Syntax
 
@@ -22,17 +22,17 @@ $floor[value]
 
 | Parameter | Type   | Required | Description                            |
 |-----------|--------|-------------|----------------------------------------|
-| `value`  | number | Yes         | The namebre to round vers le bas.      |
+| `value`  | number | Yes         | The number to round down.      |
 
 ## Behavior
 
-- Pour un number positif : deletes the partie decimale. `$floor[3.9]` → `3`.
-- Pour un number négatif : descend vers l'integer inférieur (plus négatif). `$floor[-3.1]` → `-4`.
-- Pour un integer : retourne l'integer lui-même.
+- For a positive number: removes the decimal part. `$floor[3.9]` → `3`.
+- For a negative number: rounds down to the next lower integer (more negative). `$floor[-3.1]` → `-4`.
+- For an integer: returns the integer itself.
 
 ## Examples
 
-**Number positif :**
+**Positive number:**
 ```
 $floor[3.9]
 → 3
@@ -41,7 +41,7 @@ $floor[3.1]
 → 3
 ```
 
-**Number négatif :**
+**Negative number:**
 ```
 $floor[-3.1]
 → -4
@@ -50,13 +50,13 @@ $floor[-3.9]
 → -4
 ```
 
-**Integer :**
+**Integer:**
 ```
 $floor[5]
 → 5
 ```
 
-## Compareason floor / ceil / round
+## Comparison floor / ceil / round
 
 | Value | $floor[] | $ceil[] | $round[] |
 |--------|----------|---------|----------|
@@ -66,9 +66,9 @@ $floor[5]
 | `-3.2` | `-4`     | `-3`    | `-3`     |
 | `-3.5` | `-4`     | `-3`    | `-3`*    |
 
-*Le comportement exact of `$round[]` for the values to `.5` peut dépendre of l'implémentation.
+*The exact behavior of `$round[]` for values ending in `.5` may depend on the implementation.
 
 ## Notes
 
-- The result est toudays un integer (sous forme of string).
-- Utile for the calculs of pagination, of levelx, or toute situation nécessitant un integer.
+- The result is always an integer (as a string).
+- Useful for calculations of pagination, levels, or any situation requiring an integer.

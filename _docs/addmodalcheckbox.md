@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalCheckbox
 syntax: $addModalCheckbox[customId;label;(default)]
-description: Adds an checkbox individual to a modal Discord.
+description: Adds an individual checkbox to a Discord modal.
 ---
 
-# $addModalCheckbox[] — Case to Cocher in a Modal
+# $addModalCheckbox[] — Modal Checkbox
 
-`$addModalCheckbox[]` ajoute une checkbox unique to a modal. Contrairement to `$addModalCheckboxGroup[]` qui crée a group, cette function crée a single checkbox isolée.
+`$addModalCheckbox[]` adds a single checkbox to a modal. Unlike `$addModalCheckboxGroup[]` which creates a group, this function creates a single isolated checkbox.
 
 ## Syntax
 
@@ -23,32 +23,32 @@ $addModalCheckbox[customId;label;(default)]
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
 | `customId` | Yes | — | Unique identifier to retrieve the state. |
-| `label` | Yes | — | Text displayed next to of la case. |
-| `default` | No | `no` | `yes` si cochée by default, `no` otherwise. |
+| `label` | Yes | — | Text displayed next to the checkbox. |
+| `default` | No | `no` | `yes` if checked by default, `no` otherwise. |
 
 ## Return value
 
-Adds ae checkbox to the modal. The value soumise est `yes` or `no`, accessible via `$input[customId]`.
+Adds a checkbox to the modal. The submitted value is `yes` or `no`, accessible via `$input[customId]`.
 
 ## Usage
 
-### Checkbox simple
+### Simple checkbox
 
 ```bdfd
-$newModal[Inscription;register_modal]
-$addModalTextInput[name;Nom;short;;;yes;2;50]
-$addModalCheckbox[newsletter;Recevoir la newsletter;yes]
-$addModalCheckbox[tos;Accepter les conditions;no]
+$newModal[Registration;register_modal]
+$addModalTextInput[name;Name;short;;;yes;2;50]
+$addModalCheckbox[newsletter;Subscribe to newsletter;yes]
+$addModalCheckbox[tos;Accept Terms of Service;no]
 ```
 
-### Vérification of the state
+### Verifying the state
 
 ```bdfd
 $onInteraction[modal_register]
 $if[$input[tos]==yes]
-  $sendMessage[Conditions acceptées ✓]
+  $sendMessage[Terms accepted ✓]
 $else
-  $sendMessage[Vous devez accepter les conditions !]
+  $sendMessage[You must accept the terms!]
 $endif
 $endInteraction
 ```
@@ -56,5 +56,6 @@ $endInteraction
 ## Notes
 
 - For groups of checkboxes with multiple options, use `$addModalCheckboxGroup[]` and `$addCheckboxGroupOption[]`.
-- L'state retourné est a string : `yes` or `no`.
-- La checkbox individual compte like a component in the limit of 5 components par modal.
+- The returned state is a string: `yes` or `no`.
+- An individual checkbox counts as a component towards the limit of 5 components per modal.
+

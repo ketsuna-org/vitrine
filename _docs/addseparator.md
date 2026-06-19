@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addSeparator
 
-Adds a separator visual in the action row courante. Utile pour espacer or group visually of components.
+Adds a visual separator in the current action row. Useful to space out or visually group components.
 
 ## Syntax
 
@@ -18,56 +18,57 @@ $addSeparator[(divider);(spacing)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `divider` | `"yes"` to display a row of séparation, `"no"` (default) | No |
-| `spacing` | Taille of l'espacement en pixels (values : `sm`, `md`, `lg`) | No |
+| `divider` | `"yes"` to display a separation line, `"no"` (default) | No |
+| `spacing` | Size of the spacing (values: `sm`, `md`, `lg`) | No |
 
 ## Description
 
-`$addSeparator` insère un espace or a row of séparation between thes components of une même action row. Il ne crée no new row — pour cela, use `$addActionRow`.
+`$addSeparator` inserts a space or a separation line between components of the same action row. It does not create a new row — for that, use `$addActionRow`.
 
-## Options of spacing
+## Spacing options
 
-| Value | Taille approximative |
+| Value | Approximate size |
 |--------|---------------------|
-| `sm` | Petit espacement |
-| `md` | Espacement moyen |
-| `lg` | Grand espacement |
+| `sm` | Small spacing |
+| `md` | Medium spacing |
+| `lg` | Large spacing |
 
 ## Examples
 
-### Separator simple
+### Simple separator
 
 ```
 $addActionRow
-$addButtonCV2[btn_left;Gauche;primary]
+$addButtonCV2[btn_left;Left;primary]
 $addSeparator
-$addButtonCV2[btn_right;Droite;secondary]
-$sendMessage[Buttons espacés]
+$addButtonCV2[btn_right;Right;secondary]
+$sendMessage[Spaced buttons]
 ```
 
-### Avec ligne of séparation
+### With a separation line
 
 ```
 $addActionRow
 $addButtonCV2[btn_1;Option A;success]
 $addSeparator[yes]
 $addButtonCV2[btn_2;Option B;danger]
-$sendMessage[Options separatedes par a row]
+$sendMessage[Options separated by a line]
 ```
 
-### Espacement large
+### Large spacing
 
 ```
 $addActionRow
 $addTextDisplay[Text to the left]
 $addSeparator[no;lg]
-$addTextDisplay[Text to droite]
-$sendMessage[Text bien espacé]
+$addTextDisplay[Text to the right]
+$sendMessage[Well-spaced text]
 ```
 
 ## Notes
 
-- Le separator s'insère in the action row courante.
-- Ne compte pas in the limit of 5 components par ligne.
-- La ligne of séparation (`divider: yes`) est une fine ligne horizontal.
-- Compatible with all components : buttons, select menus, text displays.
+- The separator is inserted in the current action row.
+- It does not count towards the limit of 5 components per line.
+- The separation line (`divider: yes`) is a thin horizontal line.
+- Compatible with all components: buttons, select menus, text displays.
+

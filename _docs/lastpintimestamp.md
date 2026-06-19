@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: lastPinTimestamp
 syntax: $lastPinTimestamp[(channelID)]
-description: Returns the timestamp of the last message épinglé in the channel courant or spécifié.
+description: Returns the timestamp of the last pinned message in the current or specified channel.
 ---
 
 # $lastPinTimestamp
 
-The function `$lastPinTimestamp` retourne le **timestamp of the last message épinglé** in a channel Discord. Si no message n'est épinglé, elle retourne une string vide.
+The function `$lastPinTimestamp` returns the **timestamp of the last pinned message** in a Discord channel. If no message is pinned, it returns an empty string.
 
 ## Syntax
 
@@ -22,27 +22,27 @@ $lastPinTimestamp[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the channel cible. Si omitted, the channel courant is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` or `""` | Timestamp en milliseconds of the last pin, or string vide si no. |
+| `integer` or `""` | Timestamp in milliseconds of the last pin, or an empty string if none. |
 
 ## Examples
 
-### Display la date of the last pin
+### Display the date of the last pin
 
 ```bdfd
 $if[$lastPinTimestamp!=]
-  $sendMessage[Last message épinglé le $formatDate[$lastPinTimestamp;DD/MM/YYYY to HH:mm]]
+  $sendMessage[Last pinned message on $formatDate[$lastPinTimestamp;MM/DD/YYYY at HH:mm]]
 $else
-  $sendMessage[Aucun message épinglé in ce channel.]
+  $sendMessage[No pinned messages in this channel.]
 $endif
 ```
 
-### Format relatif Discord
+### Discord relative format
 
 ```bdfd
 $if[$lastPinTimestamp!=]
@@ -50,16 +50,17 @@ $if[$lastPinTimestamp!=]
 $endif
 ```
 
-### Vérifier un autre channel
+### Check another channel
 
 ```bdfd
 $if[$lastPinTimestamp[123456789012345678]!=]
-  $sendMessage[The channel a messages épinglés.]
+  $sendMessage[The channel has pinned messages.]
 $endif
 ```
 
 ## Notes
 
-- Le timestamp est en **milliseconds** (divisez par 1000 for the seconds).
-- Returns ae string vide (`""`) si no message n'est épinglé.
-- Utile pour check the activité of épinglage in a channel.
+- The timestamp is in **milliseconds** (divide by 1000 for seconds).
+- Returns an empty string (`""`) if no message is pinned.
+- Useful for checking pinning activity in a channel.
+

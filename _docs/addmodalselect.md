@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalSelect
 syntax: $addModalSelect[customId;label;(placeholder);(required)]
-description: Ajoute a menu déroulant (select/dropdown) to a modal Discord. The options sont ajoutées with $addSelectMenuOption[].
+description: Adds a dropdown menu (select/dropdown) to a Discord modal. The options are added using $addSelectMenuOption[].
 ---
 
-# $addModalSelect[] — Menu Déroulant in a Modal
+# $addModalSelect[] — Modal Dropdown Menu
 
-`$addModalSelect[]` ajoute a menu déroulant (select menu) to a modal. The options of the menu sont définies with `$addSelectMenuOption[]` after this call.
+`$addModalSelect[]` adds a dropdown menu (select menu) to a modal. The menu options are defined using `$addSelectMenuOption[]` after this call.
 
 ## Syntax
 
@@ -22,50 +22,51 @@ $addModalSelect[customId;label;(placeholder);(required)]
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Yes | — | Unique identifier to retrieve the value after soumission. |
-| `label` | Yes | — | Text displayed above of the menu. |
-| `placeholder` | No | — | Text indicatif in the menu non selectionné. |
-| `required` | No | `yes` | `yes` si required, `no` otherwise. |
+| `customId` | Yes | — | Unique identifier to retrieve the value after submission. |
+| `label` | Yes | — | Text displayed above the menu. |
+| `placeholder` | No | — | Placeholder text when the menu is not selected. |
+| `required` | No | `yes` | `yes` if required, `no` otherwise. |
 
 ## Return value
 
-Ajoute le composant Select to the modal in progress. The value selectionnée est accessible via `$input[customId]` in the gestionnaire of interaction.
+Adds the Select component to the current modal. The selected value is accessible via `$input[customId]` in the interaction handler.
 
 ## Usage
 
-### Menu déroulant with options
+### Dropdown menu with options
 
 ```bdfd
-$newModal[Préférences;pref_modal]
-$addModalSelect[language;Langue;Choisissez votre langue...;yes]
-$addSelectMenuOption[Français;fr;Langue française]
+$newModal[Preferences;pref_modal]
+$addModalSelect[language;Language;Choose your language...;yes]
+$addSelectMenuOption[French;fr;French language]
 $addSelectMenuOption[English;en;English language]
-$addSelectMenuOption[Español;es;Idioma español]
+$addSelectMenuOption[Spanish;es;Spanish language]
 ```
 
-### Menu optional
+### Optional menu
 
 ```bdfd
-$newModal[Sondage;survey_modal]
-$addModalTextDisplay[Question bonus (optionalle) :]
-$addModalSelect[os;Système of exploitation;Selectionnez votre OS;no]
+$newModal[Survey;survey_modal]
+$addModalTextDisplay[Bonus question (optional):]
+$addModalSelect[os;Operating system;Select your OS;no]
 $addSelectMenuOption[Windows;win]
 $addSelectMenuOption[macOS;mac]
 $addSelectMenuOption[Linux;linux]
 ```
 
-### Récupération of the value
+### Retrieving the value
 
 ```bdfd
 $onInteraction[modal_submit]
 $var[lang;$input[language]]
-$sendMessage[Langue selectionnée : $var[lang]]
+$sendMessage[Selected language: $var[lang]]
 $endInteraction
 ```
 
 ## Notes
 
-- Doit être suivi of calls to `$addSelectMenuOption[]` to set les choix availables.
-- Le `customId` must be unique to the sein of the modal.
-- Maximum 25 options par menu déroulant (limitation Discord).
-- La value retournée par `$input[]` est la `value` of the option selectionnée, pas son `label`.
+- Must be followed by calls to `$addSelectMenuOption[]` to set the available choices.
+- The `customId` must be unique within the modal.
+- Maximum of 25 options per dropdown menu (Discord limitation).
+- The value returned by `$input[]` is the `value` of the selected option, not its `label`.
+

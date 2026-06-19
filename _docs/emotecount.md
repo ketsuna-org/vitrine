@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: emojiCount
 syntax: $emojiCount / $emoteCount
-description: Returns the namebre total of emojis customs on the server courant. $emoteCount est un alias of $emojiCount.
+description: Returns the total number of custom emojis on the current server. $emoteCount is an alias of $emojiCount.
 ---
 
 # $emojiCount / $emoteCount
 
-The `$emojiCount` function (alias `$emoteCount`) allows **récupérer the namebre total of emojis customs** présents on the server courant.
+The `$emojiCount` function (alias `$emoteCount`) allows you to **retrieve the total number of custom emojis** present on the current server.
 
 ## Syntax
 
@@ -28,56 +28,56 @@ No parameters.
 
 ## Return value
 
-- **Type** : String (number)
-- The namebre total of emojis customs on the server.
-- Inclut to la fois les emojis statics and animés.
+- **Type**: String (number)
+- The total number of custom emojis on the server.
+- Includes both static and animated emojis.
 
 ## Behavior
 
-- `$emoteCount` est un alias exact of `$emojiCount` (même behavior).
-- Counts all emojis customs of the server.
-- Utile pour check the usage slots of emojis availables.
+- `$emoteCount` is an exact alias of `$emojiCount` (same behavior).
+- Counts all custom emojis of the server.
+- Useful for checking the usage slots of available emojis.
 
 ## Examples
 
-### Statistiques of emojis
+### Emoji Statistics
 
 ```bdfd
-$title[🎨 Emojis of the server]
+$title[🎨 Server Emojis]
 $description[
-**Number total :** $emojiCount
-**Limit :** 50 emojis (plus for servers boostés)
-**Slots restants :** $math[50-$emojiCount]
+**Total number:** $emojiCount
+**Limit:** 50 emojis (more for boosted servers)
+**Remaining slots:** $math[50-$emojiCount]
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Alerte of limit
+### Limit alert
 
 ```bdfd
 $if[$emojiCount>=50]
-  $sendMessage[⚠️ La limit of emojis est atteinte ($emojiCount/50). Supprimez of emojis inutilisés.]
+  $sendMessage[⚠️ The emoji limit has been reached ($emojiCount/50). Delete some unused emojis.]
 $else
-  $sendMessage[✅ $math[50-$emojiCount] slots of emojis availables.]
+  $sendMessage[✅ $math[50-$emojiCount] emoji slots available.]
 $endif
 ```
 
-### Affichage with alias
+### Display using alias
 
 ```bdfd
-$title[📊 Infos server]
+$title[📊 Server Info]
 $description[
-**Members :** $membersCount
-**Channels :** $channelCount
-**Roles :** $roleCount
-**Emojis :** $emoteCount
+**Members:** $membersCount
+**Channels:** $channelCount
+**Roles:** $roleCount
+**Emojis:** $emoteCount
 ]
 $sendMessage[]
 ```
 
 ## Notes
 
-- Les two noms (`$emojiCount` and `$emoteCount`) sont interchangeables.
-- La limit of base est 50 emojis, extensible with the boosts of the server.
-- Les emojis animés and statics partagent limits separatedes.
+- The two names (`$emojiCount` and `$emoteCount`) are interchangeable.
+- The base limit is 50 emojis, which increases with server boosts.
+- Animated and static emojis share separate limits.

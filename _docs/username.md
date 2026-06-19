@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userName
 syntax: $userName
-description: Returns the nom of user global Discord of the user qui triggered the command.
+description: Returns the global Discord username of the user who triggered the command.
 ---
 
 # $userName
 
-The variable `$userName` retourne le **nom of user global** Discord of the user qui triggered the command.
+The `$userName` function returns the **global Discord username** of the user who triggered the command.
 
 ## Syntax
 
@@ -20,35 +20,35 @@ $userName
 
 ## Return Value
 
-- **Type** : String of becauseactères
-- The name of user global Discord (ex: "JeanDupont")
+- **Type**: String
+- The global Discord username (e.g., "JeanDupont")
 
 ## Behavior
 
-- `$userName` ne prend **no argument**.
-- Returns the nom of user **global** (celui visible partout on Discord, without the discriminateur).
-- Si the user a un pseudo on the server, `$userName` retourne when même son nom global. Utilisez `$nickname` for the pseudo server, or `$displayName` for the nom of affichage (pseudo if set, otherwise nom global).
+- `$userName` takes **no arguments**.
+- Returns the **global** username (the one visible everywhere on Discord, without the discriminator).
+- If the user has a nickname on the server, `$userName` still returns their global username. Use `$nickname` for the server nickname, or `$displayName` for the display name (nickname if set, otherwise global username).
 
 ## Examples
 
-### Message of bienvenue
+### Welcome message
 
 ```bdfd
-$title[Bienvenue $userName !]
-$description[Nous sommes ravis of t'accueillir on the server 🎉]
+$title[Welcome $userName!]
+$description[We are delighted to welcome you to the server 🎉]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Create a embed custom
+### Create a custom embed
 
 ```bdfd
 $author[$userName;$userAvatar]
-$title[Profil user]
+$title[User Profile]
 $description[
-**Nom :** $userName
-**ID :** $userID
-**Tag :** $userTag
+**Name:** $userName
+**ID:** $userID
+**Tag:** $userTag
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -56,7 +56,7 @@ $sendMessage[]
 
 ## Notes
 
-- The name of user est défini par the user and can be modified to tout moment.
-- Longueur maximale : 32 becauseactères.
-- Pour une identification fiable, utilisez `$userID` plutôt que `$userName`.
-- Ne pas confondre with `$nickname` (pseudo specific to the server) and `$displayName` (le meilleur two).
+- The username is set by the user and can be modified at any time.
+- Maximum length: 32 characters.
+- For reliable identification, use `$userID` rather than `$userName`.
+- Do not confuse with `$nickname` (server-specific nickname) and `$displayName` (the best of both).

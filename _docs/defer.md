@@ -7,7 +7,7 @@ function_name: defer
 syntax: $defer
 description: Defers the interaction response, giving the bot extra time to process a command before Discord's 3-second timeout. Must be called at the very beginning of a command.
 ---
-$defer is essential for any command that may take longer than 3 seconds to execute. Discord enforces a strict 3-second timeout on interaction responses: if your bot doesn't respond within that window, the interaction fails with "This interaction failed." `$defer` tells Discord "I got your command, I'm working on it" — resetting the timeout and giving you up to 15 minutes to completee processing.
+$defer is essential for any command that may take longer than 3 seconds to execute. Discord enforces a strict 3-second timeout on interaction responses: if your bot doesn't respond within that window, the interaction fails with "This interaction failed." `$defer` tells Discord "I got your command, I'm working on it" — resetting the timeout and giving you up to 15 minutes to complete processing.
 
 ## How It Works
 
@@ -22,7 +22,7 @@ When called, `$defer` sends a deferred response via `BotCreatorActionType.respon
 
 - **Must be the FIRST line** of your command. Any code before `$defer` may cause the 3-second timeout to trigger before the defer is sent.
 - **Only once per command**. Calling `$defer` multiple times has no additional effect.
-- **Use `$sendMessage` after**, not before. The actual response content is sent after your processing completees.
+- **Use `$sendMessage` after**, not before. The actual response content is sent after your processing completes.
 
 ## Common Use Cases
 
@@ -36,7 +36,7 @@ When called, `$defer` sends a deferred response via `BotCreatorActionType.respon
 Without `$defer` (will fail):
 ```
 $wait[5s]
-$sendMessage[Terminé !]
+$sendMessage[Done!]
 ```
 → Discord shows "This interaction failed" because no response was sent within 3 seconds.
 
@@ -44,7 +44,7 @@ With `$defer` (works):
 ```
 $defer
 $wait[5s]
-$sendMessage[Terminé !]
+$sendMessage[Done!]
 ```
 → The interaction is acknowledged immediately, and the message is sent when ready.
 

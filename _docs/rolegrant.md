@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: roleGrant
 syntax: $roleGrant[userID;roleID;(guildID)]
-description: Attribue un role to un member of the server.
+description: Assigns a role to a member of the server.
 ---
 
 # $roleGrant
 
-The function `$roleGrant` **attribue un role** to un member of the server Discord. The bot doit avoir la permission `ManageRoles` pour effectuer cette action.
+The function `$roleGrant` **assigns a role** to a member of the Discord server. The bot must have the `ManageRoles` permission to perform this action.
 
 ## Syntax
 
@@ -22,55 +22,55 @@ $roleGrant[userID;roleID;(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the member cible. Required. |
-| `roleID` | The ID of the role to attribuer. Required. |
-| `guildID` | Optional. The ID of the server cible. |
+| `userID` | The ID of the target member. Required. |
+| `roleID` | The ID of the role to assign. Required. |
+| `guildID` | Optional. The ID of the target server. |
 
 ## Return Value
 
-Aucune. The function effectue l'action of attributeion.
+None. The function performs the assignment action.
 
 ## Examples
 
-### Attributeion simple
+### Simple assignment
 
 ```bdfd
 $roleGrant[$authorID;$roleID[Member]]
-$sendMessage[Vous avez now the role Member !]
+$sendMessage[You now have the Member role!]
 ```
 
-### Vérification before attributeion
+### Verification before assignment
 
 ```bdfd
 $if[$roleExists[$roleID[VIP]]==true]
   $roleGrant[$authorID;$roleID[VIP]]
-  $sendMessage[Role VIP attribué with success !]
+  $sendMessage[VIP role successfully assigned!]
 $else
-  $sendMessage[The role VIP n'existe pas.]
+  $sendMessage[The VIP role does not exist.]
 $endif
 ```
 
-### Attributeion to un autre member
+### Assigning to another member
 
 ```bdfd
-$roleGrant[$mentioned[1];$roleID[Muet]]
-$sendMessage[<@$mentioned[1]> was rendu muet.]
+$roleGrant[$mentioned[1];$roleID[Muted]]
+$sendMessage[<@$mentioned[1]> has been muted.]
 ```
 
-### Avec vérification of hiérarchie
+### With hierarchy check
 
 ```bdfd
-$if[$rolePosition[$getRole[$authorID;1]]>$rolePosition[$roleID[Modo]]]
-  $roleGrant[$mentioned[1];$roleID[Modo]]
-  $sendMessage[<@$mentioned[1]> est now Modérateur !]
+$if[$rolePosition[$getRole[$authorID;1]]>$rolePosition[$roleID[Mod]]]
+  $roleGrant[$mentioned[1];$roleID[Mod]]
+  $sendMessage[<@$mentioned[1]> is now a Moderator!]
 $else
-  $sendMessage[Vous n'avez pas la permission of promouvoir modérateurs.]
+  $sendMessage[You do not have permission to promote moderators.]
 $endif
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ManageRoles`.
-- The bot ne peut pas attribuer un role supérieur to son propre role le plus haut.
-- Si le member a déjà the role, rien ne se passe.
-- Pour retirer un role, utilisez `$roleRemove`.
+- The bot must have the `ManageRoles` permission.
+- The bot cannot assign a role higher than its own highest role.
+- If the member already has the role, nothing happens.
+- To remove a role, use `$roleRemove`.

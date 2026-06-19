@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: unBan
 syntax: $unBan[userID]
-description: Débans a user of the server en utilisant son ID. The user pourra rejoindre the server to new with ae new invite.
+description: Unbans a user from the server using their ID. The user will be able to rejoin the server with a new invite.
 ---
 
 # $unBan
 
-The function `$unBan[]` allows **débannir un user** of the server en utilisant son ID Discord. A fois débanni, the user pourra rejoindre the server with ae new invite.
+The function `$unBan[]` allows you to **unban a user** from the server using their Discord ID. Once unbanned, the user will be able to rejoin the server with a new invite.
 
 ## Syntax
 
@@ -22,75 +22,76 @@ $unBan[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID Discord of the user to débannir. |
+| `userID` | The Discord ID of the user to unban. |
 
 ## Return Value
 
-- **Type** : String (vide en cas of success)
-- String vide if the déban réussit.
-- Error message si the user is not banni or si the bot manque of permissions.
+- **Type**: String (empty on success)
+- An empty string if the unban is successful.
+- An error message if the user is not banned or if the bot lacks permissions.
 
 ## Behavior
 
-- The bot doit avoir la permission `BAN_MEMBERS`.
-- The user must be in the list bans of the server.
-- The ID can be récupéré via `$mentioned[]`, `$findUser[]` or tout autre moyen.
-- The user ne receives pas of notification of déban.
+- The bot must have the `BAN_MEMBERS` permission.
+- The user must be in the server's ban list.
+- The ID can be retrieved via `$mentioned[]`, `$findUser[]`, or any other method.
+- The user does not receive an unban notification.
 
 ## Examples
 
-### Déban simple
+### Simple Unban
 
 ```bdfd
 $if[$checkContains[$userPerms;BanMembers]==true]
   $unBan[$mentioned[1]]
-  $sendMessage[✅ **$userName[$mentioned[1]]** was débanni.]
+  $sendMessage[✅ **$userName[$mentioned[1]]** was unbanned.]
 $else
-  $sendMessage[❌ Permission refusée.]
+  $sendMessage[❌ Permission denied.]
 $endif
 ```
 
-### Déban with confirmation
+### Unban with Confirmation
 
 ```bdfd
 $let[target;$mentioned[1]]
 
 $if[$isBanned[$target]==true]
   $unBan[$target]
-  $title[🔓 Déban]
+  $title[🔓 Unban]
   $description[
-  **User :** $userName[$target] ($target)
-  **Oldne reason :** $getBanReason[$target]
-  **Débanni par :** $userName[$authorID]
+  **User:** $userName[$target] ($target)
+  **Previous Reason:** $getBanReason[$target]
+  **Unbanned by:** $userName[$authorID]
   ]
   $color[#57F287]
   $sendMessage[]
 $else
-  $sendMessage[❌ Cet user is not banni.]
+  $sendMessage[❌ This user is not banned.]
 $endif
 ```
 
-### Command with ID manuel
+### Command with Manual ID
 
 ```bdfd
 $if[$message!=]
   $let[exists;$userExists[$message]]
   $if[$exists==true]
     $unBan[$message]
-    $sendMessage[✅ User **$message** débanni.]
+    $sendMessage[✅ User **$message** unbanned.]
   $elseif[$isBanned[$message]==true]
     $unBan[$message]
-    $sendMessage[✅ User **$message** débanni.]
+    $sendMessage[✅ User **$message** unbanned.]
   $else
-    $sendMessage[❌ ID invalid or user non banni.]
+    $sendMessage[❌ Invalid ID or user not banned.]
   $endif
 $else
-  $sendMessage[Veuillez provide a ID user.]
+  $sendMessage[Please provide a user ID.]
 $endif
 ```
 
 ## Notes
 
-- The user débanni ne rejoint pas automatically the server ; il doit use ae invite.
-- Ne functionne que si the user est in the list bans.
-- The ID est le seul moyen fiable, because un user banni is not on the server.
+- The unbanned user does not automatically rejoin the server; they must use an invite.
+- Works only if the user is in the ban list.
+- The ID is the only reliable method, because a banned user is no longer in the server.
+

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: logQuota
 syntax: $logQuota
-description: Displays thes information on the quota of logs restant for the application BDFD. Utile pour surveiller la consommation.
+description: Displays information on the remaining log quota for the BDFD application. Useful for monitoring consumption.
 ---
 # $logQuota
 
-The function `$logQuota` retourne les **information on the quota of logs** of votre application BDFD.
+The function `$logQuota` returns the **log quota information** of your BDFD application.
 
 ## Syntax
 
@@ -19,45 +19,45 @@ $logQuota
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return Value
 
 - **Type** : String / Number
-- The namebre of logs restants or le pourcentage of quota utilisé.
+- The number of remaining logs or the percentage of used quota.
 
 ## Behavior
 
-- Returns thes statistiques of consommation of logs.
-- Utile pour surveiller si vous approchez of la limit of votre plan.
-- The value exact dépend of the plan BDFD (gratuit, premium, etc.).
+- Returns log consumption statistics.
+- Useful for monitoring if you are approaching your plan's limit.
+- The exact value depends on the BDFD plan (free, premium, etc.).
 
 ## Examples
 
-### Display le quota
+### Display the quota
 
 ```bdfd
-$sendMessage[Logs restants : $logQuota]
+$sendMessage[Logs remaining: $logQuota]
 ```
 
-### Alerte quota bas
+### Low quota alert
 
 ```bdfd
 $if[$logQuota<100]
-  $sendMessage[⚠️ Warning: quota of logs bas ($logQuota restants).]
+  $sendMessage[⚠️ Warning: low log quota ($logQuota remaining).]
 $else
-  $sendMessage[Logs restants : $logQuota]
+  $sendMessage[Logs remaining: $logQuota]
 $endif
 ```
 
-### Dashboard admin
+### Admin dashboard
 
 ```bdfd
-$title[📊 Status of the bot]
+$title[📊 Bot Status]
 $description[
-**Logs restants** : $logQuota
-**RAM utilisée** : $ram
-**Uptime** : $uptime
+**Logs Remaining**: $logQuota
+**RAM Used**: $ram
+**Uptime**: $uptime
 ]
 $color[#FEE75C]
 $sendMessage[]
@@ -65,6 +65,7 @@ $sendMessage[]
 
 ## Notes
 
-- Le quota of logs varie according to votre abonnement BDFD.
-- Chaque `$log[]` consomme un log.
-- Surveillez votre quota pour éviter les pertes of logs en production.
+- The log quota varies according to your BDFD subscription.
+- Every `$log[]` call consumes a log.
+- Monitor your quota to avoid losing logs in production.
+

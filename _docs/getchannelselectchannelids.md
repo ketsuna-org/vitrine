@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getChannelSelectChannelIDs
 syntax: $getChannelSelectChannelIDs[(separator)]
-description: Gets all IDs canaux selecteds par the user via un menu of sélection of canaux. Returns ae list separatede par le délimitur spécifié.
+description: Gets all channel IDs selected by the user via a channel select menu. Returns a list separated by the specified delimiter.
 ---
 
 # $getChannelSelectChannelIDs
 
-The function `$getChannelSelectChannelIDs[]` allows **récupérer l'ensemble IDs canaux** choisis par the user in a menu of sélection of canaux to choix multiple.
+The `$getChannelSelectChannelIDs[]` function allows you to **retrieve all the channel IDs** chosen by the user in a multi-choice channel select menu.
 
 ## Syntax
 
@@ -22,32 +22,32 @@ $getChannelSelectChannelIDs[(separator)]
 
 | Parameter | Description |
 |---|---|
-| `separator` | Optional - Le becauseactère or la string qui sépare each ID. Par default `, ` (virgule + espace). |
+| `separator` | Optional - The character or string that separates each ID. Default: `, ` (comma + space). |
 
 ## Return Value
 
-- **Type** : String
-- La list of all IDs canaux selecteds, separateds par le délimitur.
-- String vide si no canal n'was selected.
+- **Type**: String
+- The list of all selected channel IDs, separated by the delimiter.
+- An empty string if no channel was selected.
 
 ## Behavior
 
-- Utilisé when le menu of sélection of canaux autorise les choix multiple (`maxValues > 1`).
-- Returns all IDs en a single string with the separator spécifié.
-- Compatible with `$textSplit[]` pour itérer on each canal.
+- Used when the channel select menu allows multiple choices (`maxValues > 1`).
+- Returns all IDs in a single string with the specified separator.
+- Compatible with `$textSplit[]` to iterate over each channel.
 
 ## Examples
 
-### List canaux selecteds
+### List of selected channels
 
 ```bdfd
 $onInteraction[channel_select]
 $let[channels;$getChannelSelectChannelIDs[, ]]
-$title[📋 Canaux selecteds]
+$title[📋 Selected Channels]
 $description[
-**IDs :** $channels
+**IDs:** $channels
 
-**List :**
+**List:**
 $textSplit[$channels;, ]
 > <#[$splitText[$index]]>
 $endTextSplit
@@ -56,20 +56,20 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Boucler on each canal
+### Loop through each channel
 
 ```bdfd
 $onInteraction[channel_select]
 $let[list;$getChannelSelectChannelIDs[,]]
 $let[count;$length[$splitText[$list;,]]]
-J'ai bien enregistré **$count** canal(s).
+I have registered **$count** channel(s).
 $textSplit[$list;,]
-  Canal $index : $channelName[$splitText[$index]]
+  Channel $index: $channelName[$splitText[$index]]
 $endTextSplit
 ```
 
 ## Notes
 
-- Si le menu n'accepte qu'a single choix, utilisez `$getChannelSelectChannelID[]`.
-- Le separator custom allows une intégration facile with of autres functions.
-- Idéal for the configurations multi-canaux (logs, channels alloweds, etc.).
+- If the menu only accepts a single choice, use `$getChannelSelectChannelID[]`.
+- The custom separator allows easy integration with other functions.
+- Ideal for multi-channel configurations (logs, allowed channels, etc.).

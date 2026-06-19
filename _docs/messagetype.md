@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: messageType
 syntax: $messageType
-description: Returns the type of the message déclencheur sous forme of integer (0 = message normal, 1 = ajout member, etc.).
+description: Returns the type of the triggering message as an integer (0 = normal message, 7 = member joined, etc.).
 ---
 
 # $messageType
 
-The function `$messageType` retourne le **type** of the message déclencheur sous forme of integer. The type `0` correspond to un message user normal, les autres types correspondent to messages système Discord.
+The function `$messageType` returns the **type** of the triggering message as an integer. Type `0` corresponds to a normal user message, while other types correspond to Discord system messages.
 
 ## Syntax
 
@@ -20,7 +20,7 @@ $messageType
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
@@ -28,49 +28,50 @@ Aucun parameter.
 |---|---|
 | `integer` | The type of the message. |
 
-## Types courants
+## Common Types
 
-| Type | Signification |
+| Type | Meaning |
 |---|---|
-| `0` | Message normal (DEFAULT) |
-| `1` | Ajout of un member to the group DM (RECIPIENT_ADD) |
-| `2` | Retrait of un member of the group DM (RECIPIENT_REMOVE) |
-| `3` | Message of call vocal (CALL) |
-| `4` | Changement of nom of channel (CHANNEL_NAME_CHANGE) |
-| `5` | Changement of icon of channel (CHANNEL_ICON_CHANGE) |
-| `6` | Message épinglé (CHANNEL_PINNED_MESSAGE) |
-| `7` | New member (GUILD_MEMBER_JOIN) |
-| `8` | Boost server (USER_PREMIUM_GUILD_SUBSCRIPTION) |
-| `9` | Boost level 1 (GUILD_TIER_1) |
-| `10` | Boost level 2 (GUILD_TIER_2) |
-| `11` | Boost level 3 (GUILD_TIER_3) |
+| `0` | Normal message (DEFAULT) |
+| `1` | Member added to group DM (RECIPIENT_ADD) |
+| `2` | Member removed from group DM (RECIPIENT_REMOVE) |
+| `3` | Voice call message (CALL) |
+| `4` | Channel name changed (CHANNEL_NAME_CHANGE) |
+| `5` | Channel icon changed (CHANNEL_ICON_CHANGE) |
+| `6` | Pinned message notification (CHANNEL_PINNED_MESSAGE) |
+| `7` | New member joined (GUILD_MEMBER_JOIN) |
+| `8` | Server boost (USER_PREMIUM_GUILD_SUBSCRIPTION) |
+| `9` | Boost level 1 reached (GUILD_TIER_1) |
+| `10` | Boost level 2 reached (GUILD_TIER_2) |
+| `11` | Boost level 3 reached (GUILD_TIER_3) |
 
 ## Examples
 
 ### Display the type
 
 ```bdfd
-$sendMessage[Type of message : $messageType]
+$sendMessage[Message type: $messageType]
 ```
 
-### Ignorer les messages système
+### Ignore system messages
 
 ```bdfd
 $if[$messageType!=0]
   $stop
 $endif
-$sendMessage[Message user traité.]
+$sendMessage[User message processed.]
 ```
 
-### Réagir to the arrivées
+### React to new joins
 
 ```bdfd
 $if[$messageType==7]
-  $sendMessage[Bienvenue $username !]
+  $sendMessage[Welcome $username!]
 $endif
 ```
 
 ## Notes
 
-- Utile pour filter thes messages système and ne traiter que les messages users.
-- Returns a integer, pas une string descriptive.
+- Useful for filtering system messages to process only user messages.
+- Returns an integer, not a descriptive string.
+

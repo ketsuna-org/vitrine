@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botID
 syntax: $botID
-description: Returns the ID user of the bot.
+description: Returns the user ID of the bot.
 ---
 
 # $botID
 
-The `$botID` function **returns the ID Discord (snowflake) of the bot**. Cet identifier est unique and permanent.
+The `$botID` function **returns the Discord ID (snowflake) of the bot**. This identifier is unique and permanent.
 
 ## Syntax
 
@@ -20,62 +20,62 @@ $botID
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
-- **Type** : String
-- The ID Discord of the bot (17-20 chiffres). Ex: `1234567890123456789`.
+- **Type**: String
+- The Discord ID of the bot (17-20 digits). E.g., `1234567890123456789`.
 
 ## Behavior
 
-- The ID est attribué par Discord to la création of l'application.
-- Il ne change never, même if the bot est renommé.
-- Utilisable for mentions (`<@ID>`), les invites, les API.
+- The ID is assigned by Discord upon the creation of the application.
+- It never changes, even if the bot is renamed.
+- It can be used for mentions (`<@ID>`), invites, and APIs.
 
 ## Examples
 
-### Debug / Information
+### Technical Information
 
 ```bdfd
-$title[🔍 Informations techniques]
+$title[🔍 Technical Information]
 $description[
-**Nom :** $botName
-**ID :** $botID
-**Owner :** $botOwnerID
-**Node :** $botNode
+**Name:** $botName
+**ID:** $botID
+**Owner:** $botOwnerID
+**Node:** $botNode
 ]
 $footer[Bot ID: $botID]
 $sendMessage[]
 ```
 
-### Link of invite custom
+### Custom Invite Link
 
 ```bdfd
-$sendMessage[🔗 **Invitez-moi :**
-https://discord.com/oauth2/authorize?clinkt_id=$botID&permissions=8&scope=bot%20applications.commands]
+$sendMessage[🔗 **Invite me:**
+https://discord.com/oauth2/authorize?client_id=$botID&permissions=8&scope=bot%20applications.commands]
 ```
 
-### Vérification of identité
+### Identity Verification
 
 ```bdfd
 $if[$authorID==$botID]
-  $sendMessage[Je ne réponds pas to mes propres messages !]
+  $sendMessage[I do not reply to my own messages!]
   $stop
 $endif
 
-$sendMessage[Message received, $userName !]
+$sendMessage[Message received, $userName!]
 ```
 
-### Emoji custom with ID
+### Mention the Bot
 
 ```bdfd
-$sendMessage[🤖 <@$botID> est online !]
+$sendMessage[🤖 <@$botID> is online!]
 ```
 
 ## Notes
 
-- `$botID` est constant and ne change never.
-- Pour obtenir the ID of the owner, use `$botOwnerID`.
-- For the nom, use `$botName`.
-- Mention of the bot : `<@$botID>`.
+- `$botID` is constant and never changes.
+- To get the owner's ID, use `$botOwnerID`.
+- For the name, use `$botName`.
+- Mentioning the bot: `<@$botID>`.

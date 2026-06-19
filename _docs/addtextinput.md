@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addTextInput
 syntax: $addTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
-description: Adds a field of saisie of text directly in a message (composant of message, non modal). Supports thes styles "short" and "paragraph".
+description: Adds a text input field directly in a message (message component, non-modal). Supports the "short" and "paragraph" styles.
 ---
 
-# $addTextInput[] — Champ Text in a Message
+# $addTextInput[] — Message Text Input
 
-`$addTextInput[]` ajoute a component of saisie of text directly in a Discord message. Contrairement to `$addModalTextInput[]` qui requires a modal, cette function insère le champ text like composant interactif of the message.
+`$addTextInput[]` adds a text input component directly in a Discord message. Unlike `$addModalTextInput[]` which requires a modal, this function inserts the text field as an interactive component of the message.
 
 ## Syntax
 
@@ -23,59 +23,60 @@ $addTextInput[customId;label;(style);(placeholder);(default);(required);(minLeng
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
 | `customId` | Yes | — | Unique identifier of the field. |
-| `label` | Yes | — | Text of l'label. |
+| `label` | Yes | — | Label text. |
 | `style` | No | `short` | `short` or `paragraph`. |
-| `placeholder` | No | — | Text indicatif. |
-| `default` | No | — | Value by default. |
+| `placeholder` | No | — | Placeholder text. |
+| `default` | No | — | Default value. |
 | `required` | No | `yes` | `yes` or `no`. |
-| `minLength` | No | — | Number min of becauseactères. |
-| `maxLength` | No | — | Number max of becauseactères. |
+| `minLength` | No | — | Minimum number of characters. |
+| `maxLength` | No | — | Maximum number of characters. |
 
 ## Return value
 
-Ajoute le TextInput to the message. The value saisie is retrievede via `$input[customId]` in the handler of interaction.
+Adds the TextInput to the message. The input value is retrieved via `$input[customId]` in the interaction handler.
 
 ## Usage
 
-### Champ of recherche
+### Search field
 
 ```bdfd
-$title[Recherche]
-$description[Entrez votre terme of recherche ci-dessous]
-$addTextInput[query;Terme of recherche;short;Rechercher...;;yes;2;100]
-$addButton[search;Rechercher;Primary;;search_action]
+$title[Search]
+$description[Enter your search term below]
+$addTextInput[query;Search term;short;Search...;;yes;2;100]
+$addButton[search;Search;Primary;;search_action]
 ```
 
-### Formulaire of feedback
+### Feedback form
 
 ```bdfd
 $title[Feedback]
-$description[Nous voulons votre avis !]
-$addTextInput[name;Votre nom;short;Anonyme;;no;0;50]
-$addTextInput[message;Votre message;paragraph;Écrivez votre feedback...;;yes;10;1000]
-$addButton[submit;Envoyer;Success]
+$description[We want your opinion!]
+$addTextInput[name;Your name;short;Anonymous;;no;0;50]
+$addTextInput[message;Your message;paragraph;Write your feedback here...;;yes;10;1000]
+$addButton[submit;Send;Success]
 ```
 
-### Traitement of the response
+### Processing the response
 
 ```bdfd
 $onInteraction[search_action]
 $var[query;$input[query]]
-$sendMessage[Results pour : **$var[query]**]
+$sendMessage[Results for: **$var[query]**]
 $endInteraction
 ```
 
-## Différences with $addModalTextInput[]
+## Differences with $addModalTextInput[]
 
 | Message TextInput | Modal TextInput |
 |-------------------|-----------------|
-| Directly in the message | Dans a modal (pop-up) |
-| Souvent accompagné of buttons | Soumis with the bouton Submit of the modal |
-| Pas of limit of 5 components | Limité to 5 components par modal |
+| Directly in the message | In a modal (pop-up) |
+| Often accompanied by buttons | Submitted with the modal's Submit button |
+| No limit of 5 components | Limited to 5 components per modal |
 
 ## Notes
 
-- Le `customId` must be unique to the sein of the message.
-- La value is retrievede via `$input[customId]` in a `$onInteraction`.
-- `minLength` and `maxLength` sont validés côté clinkt Discord.
-- Label max 45 becauseactères, placeholder max 100 becauseactères.
+- The `customId` must be unique within the message.
+- The value is retrieved via `$input[customId]` in a `$onInteraction` handler.
+- `minLength` and `maxLength` are validated on the Discord client side.
+- Label max 45 characters, placeholder max 100 characters.
+

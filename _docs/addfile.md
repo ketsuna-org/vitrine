@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addFile
 syntax: $addFile[url;(spoiler)]
-description: Attache a file (image, document, etc.) to a message Discord as a composant visual. The file is displayed directly in the message.
+description: Attaches a file (image, document, etc.) to a Discord message as a visual component. The file is displayed directly in the message.
 ---
 
-# $addFile[] — Pièce Jointe File
+# $addFile[] — File Attachment
 
-`$addFile[]` attache a file (image, PDF, document, etc.) to a message. The file est téléloaded since the URL fournie and displayed like attachment in the message Discord.
+`$addFile[]` attaches a file (image, PDF, document, etc.) to a message. The file is downloaded from the provided URL and displayed as an attachment in the Discord message.
 
 ## Syntax
 
@@ -23,33 +23,33 @@ $addFile[url;(spoiler)]
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
 | `url` | Yes | — | URL of the file to attach. |
-| `spoiler` | No | `no` | `yes` pour spoiler le file. |
+| `spoiler` | No | `no` | `yes` to spoiler the file. |
 
 ## Return value
 
-Ajoute le file like attachment to the message. Discord displays the file according to its type (aperçu for images, icon + nom for documents).
+Adds the file as an attachment to the message. Discord displays the file according to its type (preview for images, icon + name for documents).
 
 ## Usage
 
-### Joindre an image
+### Attaching an image
 
 ```bdfd
 $addFile[https://cdn.example.com/chart.png]
-$sendMessage[Voici le graphique demandé]
+$sendMessage[Here is the requested chart]
 ```
 
 ### PDF document
 
 ```bdfd
 $addFile[https://docs.example.com/rapport-2024.pdf]
-$sendMessage[Rapport annuel ci-joint]
+$sendMessage[Annual report attached]
 ```
 
 ### Spoiler file
 
 ```bdfd
 $addFile[https://cdn.example.com/spoiler_endgame.png;yes]
-$sendMessage[Warning: spoiler of fin !]
+$sendMessage[Warning: ending spoiler!]
 ```
 
 ### Multiple files
@@ -57,28 +57,29 @@ $sendMessage[Warning: spoiler of fin !]
 ```bdfd
 $addFile[https://files.example.com/logs.txt]
 $addFile[https://files.example.com/config.json]
-$sendMessage[Files of configuration]
+$sendMessage[Configuration files]
 ```
 
 ### With embed and file
 
 ```bdfd
-$title[Rapport mensuel]
-$description[Voici le rapport détaillé of the months]
+$title[Monthly Report]
+$description[Here is the detailed report of the month]
 $color[#5865F2]
 $addFile[https://reports.example.com/monthly.pdf]
 ```
 
-## Supported fithe types
+## Supported file types
 
-- Images : PNG, JPEG, GIF, WebP
-- Documents : PDF, TXT, CSV, JSON, XML
-- Archives : ZIP (limité)
-- Taille max : ~25 Mo (selon le level of boost of the server)
+- Images: PNG, JPEG, GIF, WebP
+- Documents: PDF, TXT, CSV, JSON, XML
+- Archives: ZIP (limited)
+- Max size: ~25 MB (depending on the server's boost level)
 
 ## Notes
 
-- The URL must be accessible publicment.
-- Multiple `$addFile[]` can be utilisés in a même message.
-- À not confondre with `$addModalFileUpload[]` qui est for modals interactifs.
-- Le spoiler masque le file until the user clicks for the révéler.
+- The URL must be publicly accessible.
+- Multiple `$addFile[]` calls can be used in the same message.
+- Do not confuse this with `$addModalFileUpload[]`, which is for interactive modals.
+- The spoiler hides the file until the user clicks to reveal it.
+

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: blacklistIDs
 syntax: $blacklistIDs[userID1;userID2;...;(errorMessage)]
-description: Function guard qui blacklist of users by ID. If the user déclencheur est in the list, la command est interrompue.
+description: Guard function that blacklists users by ID. If the triggering user is in the list, the command is interrupted.
 ---
 
 # $blacklistIDs
 
-The function guard `$blacklistIDs` bloque l'execution of the command for users dont the ID figure in the list. Contrairement to `$onlyForIDs` qui whitelist, `$blacklistIDs` fait une **blacklist**.
+The guard function `$blacklistIDs` blocks the execution of the command for users whose ID is in the list. Unlike `$onlyForIDs` which whitelists, `$blacklistIDs` acts as a **blacklist**.
 
 ## Syntax
 
@@ -22,33 +22,33 @@ $blacklistIDs[userID1;userID2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID1;userID2;...` | Snowflake[] | IDs of users to blacklistr, separateds par `;`. |
-| `errorMessage` | String (optional) | Message sent to the user blacklisté. If omitted, silence. |
+| `userID1;userID2;...` | Snowflake[] | IDs of users to blacklist, separated by `;`. |
+| `errorMessage` | String (optional) | Message sent to the blacklisted user. If omitted, it remains silent. |
 
 ## Behavior
 
-- Compare the ID of the user déclencheur with the list noire.
-- If the ID correspond, la command est interrompue.
-- If a message error is provided, il is sent before l'interruption.
-- Without message error, le guard est silencieux.
+- Compares the ID of the triggering user with the blacklist.
+- If the ID matches, the command is interrupted.
+- If an error message is provided, it is sent before the interruption.
+- Without an error message, the guard is silent.
 
 ## Examples
 
-### Blacklist simple
+### Simple blacklist
 
 ```bdfd
-$blacklistIDs[123456789012345678;❌ Vous avez été blacklisté of cette command.]
-$sendMessage[Traitement effectué.]
+$blacklistIDs[123456789012345678;❌ You have been blacklisted from this command.]
+$sendMessage[Processing completed.]
 ```
 
-### Blacklist multiple with list external
+### Multiple blacklist with external list
 
 ```bdfd
-$blacklistIDs[$getGlobalUserVar[blacklist];❌ Accès révoqué.]
-$sendMessage[Bienvenue.]
+$blacklistIDs[$getGlobalUserVar[blacklist];❌ Access revoked.]
+$sendMessage[Welcome.]
 ```
 
-### Without message (silencieux)
+### Without message (silent)
 
 ```bdfd
 $blacklistIDs[111111111111111111;222222222222222222]
@@ -57,7 +57,7 @@ $sendMessage[OK.]
 
 ## Notes
 
-- `$blacklistIDs` and `$blacklistUsers` sont interchangeables.
-- Pour une blacklist persistante, combinez with `$getGlobalUserVar` or `$getServerUserVar`.
-- Pour blacklistr a role integer, use `$blacklistRoles` or `$blacklistRoleIDs`.
-- L'inverse of cette function est `$onlyForIDs` (whitelist).
+- `$blacklistIDs` and `$blacklistUsers` are interchangeable.
+- For a persistent blacklist, combine it with `$getGlobalUserVar` or `$getServerUserVar`.
+- To blacklist an entire role, use `$blacklistRoles` or `$blacklistRoleIDs`.
+- The opposite of this function is `$onlyForIDs` (whitelist).

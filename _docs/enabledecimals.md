@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: enableDecimals
 syntax: $enableDecimals
-description: Active l'affichage decimales in the results of calculs. Par default, BDFD arrondit the results numériques.
+description: Enables decimal display in calculation results. By default, BDFD rounds numerical results.
 ---
 # $enableDecimals
 
-The `$enableDecimals` function **active l'affichage decimales** in thes calculs for the command in progress.
+The `$enableDecimals` function **enables decimal display** in calculations for the current command.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ $enableDecimals
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
@@ -27,38 +27,38 @@ None.
 
 ## Behavior
 
-- Without `$enableDecimals`, BDFD arrondit the results of `$calculate[]`.
-- Avec `$enableDecimals`, the results incluent les decimales.
-- L'effet is limitd to la command in progress.
+- Without `$enableDecimals`, BDFD rounds the results of `$calculate[]`.
+- With `$enableDecimals`, the results include decimals.
+- The effect is limited to the current command.
 
 ## Examples
 
-### Calcul with decimales
+### Calculation with decimals
 
 ```bdfd
 $enableDecimals
 $sendMessage[10 ÷ 3 = $calculate[10/3]]
-; Displays : 10 ÷ 3 = 3.3333333333333335
+; Displays: 10 ÷ 3 = 3.3333333333333335
 ```
 
-### Without decimale (default)
+### Without decimals (default)
 
 ```bdfd
 $sendMessage[10 ÷ 3 = $calculate[10/3]]
-; Displays : 10 ÷ 3 = 3
+; Displays: 10 ÷ 3 = 3
 ```
 
-### Compareason before/after
+### Comparison before/after
 
 ```bdfd
-$let[sans;$calculate[10/3]]
+$let[without;$calculate[10/3]]
 $enableDecimals
-$let[avec;$calculate[10/3]]
-$sendMessage[Without : $without | Avec : $avec]
+$let[with;$calculate[10/3]]
+$sendMessage[Without: $without | With: $with]
 ```
 
 ## Notes
 
-- À placer before les calculs concernés.
-- Pour round to N decimales, use `$round[$calculate[...];N]`.
-- Impacte also les divisions in thes conditions `$if[]`.
+- Place before the calculations concerned.
+- To round to N decimals, use `$round[$calculate[...];N]`.
+- Also affects divisions in `$if[]` conditions.

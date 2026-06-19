@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addButton
 
-Ajoute a button interactif to the message (legacy style). Allows controler le placement via le parameter `newRow`.
+Adds an interactive button to the message (legacy style). Allows controlling the placement via the `newRow` parameter.
 
 ## Syntax
 
@@ -18,51 +18,52 @@ $addButton[newRow;customIdOrURL;label;(style);(disabled);(emoji);(messageId)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `newRow` | `"yes"` crée une new row before le bouton, `"no"` ajoute to la ligne courante | Yes |
-| `customIdOrURL` | ID custom to manage le clic, or URL pour a button link | Yes |
+| `newRow` | `"yes"` creates a new row before the button, `"no"` adds it to the current line | Yes |
+| `customIdOrURL` | Custom ID to handle the click, or URL for a link button | Yes |
 | `label` | Text displayed on the button | Yes |
-| `style` | Style of the bouton : `primary` (default), `secondary`, `success`, `danger`, `link` | No |
-| `disabled` | `true` to disable le bouton, `false` (default) | No |
-| `emoji` | Emoji to display before le label | No |
-| `messageId` | ID of the message target (for the édition) | No |
+| `style` | Style of the button: `primary` (default), `secondary`, `success`, `danger`, `link` | No |
+| `disabled` | `true` to disable the button, `false` (default) | No |
+| `emoji` | Emoji to display before the label | No |
+| `messageId` | Target message ID (for editing) | No |
 
 ## Available styles
 
-| Style | Couleur | Usage typique |
-|-------|---------|---------------|
-| `primary` | Bleu/violet | Action main |
-| `secondary` | Gris | Action secondary |
-| `success` | Vert | Confirmation |
-| `danger` | Rouge | Action destructive |
-| `link` | Gris (link) | URL external |
+| Style | Color | Typical usage |
+|-------|-------|---------------|
+| `primary` | Blue/violet | Main action |
+| `secondary` | Grey | Secondary action |
+| `success` | Green | Confirmation |
+| `danger` | Red | Destructive action |
+| `link` | Grey (link) | External URL |
 
 ## Examples
 
 ### Simple button
 
 ```
-$addButton[no;mon_bouton;Cliquez ici;primary;false;😊]
-$sendMessage[Appuyez on the bouton]
+$addButton[no;my_button;Click here;primary;false;😊]
+$sendMessage[Press the button]
 ```
 
-### New ligne with two buttons
+### New line with two buttons
 
 ```
-$addButton[no;btn_ok;✅ Validr;success]
-$addButton[no;btn_no;❌ Refuser;danger]
-$sendMessage[Choisissez une option]
+$addButton[no;btn_ok;✅ Validate;success]
+$addButton[no;btn_no;❌ Decline;danger]
+$sendMessage[Choose an option]
 ```
 
-### Bouton disabled with emoji
+### Disabled button with emoji
 
 ```
-$addButton[no;btn_lock;🔒 Verrouillé;secondary;true]
-$sendMessage[Action non available]
+$addButton[no;btn_lock;🔒 Locked;secondary;true]
+$sendMessage[Action not available]
 ```
 
 ## Notes
 
-- Ce legacy style is kept pour rétrocompatibilité.
-- For newx bots, prefer `$addButtonCV2` qui offre une API plus propre.
-- Le parameter `newRow` allows controlling finement la disposition.
-- Max 5 buttons par action row.
+- This legacy style is kept for backward compatibility.
+- For new bots, prefer `$addButtonCV2` which offers a cleaner API.
+- The `newRow` parameter allows fine-grained control of the layout.
+- Max 5 buttons per action row.
+

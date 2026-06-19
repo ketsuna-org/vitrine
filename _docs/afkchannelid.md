@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: afkChannelID
 syntax: $afkChannelID
-description: Returns the identifier (ID) of the channel AFK configured on the server Discord.
+description: Returns the identifier (ID) of the AFK channel configured on the Discord server.
 ---
 
-# $afkChannelID[] — Channel AFK
+# $afkChannelID[] — AFK Channel
 
-`$afkChannelID[]` returns the ID of the channel vocal AFK (Away From Keyboard) of the server. The members inactifs in a channel vocal sont automatically déplacés vers ce channel after le delay set par `$afkTimeout[]`.
+`$afkChannelID[]` returns the ID of the AFK (Away From Keyboard) voice channel of the server. Inactive members in a voice channel are automatically moved to this channel after the delay set by `$afkTimeout[]`.
 
 ## Syntax
 
@@ -20,46 +20,48 @@ $afkChannelID
 
 ## Parameters
 
-No parameters.
+| Parameter | Description | Required |
+|-----------|-------------|:-----------:|
+| None | | |
 
 ## Return value
 
-- **Type** : `string`
-- The ID of the channel AFK, or a string vide si non configured.
+- **Type**: `string`
+- The ID of the AFK channel, or an empty string if not configured.
 
 ## Usage
 
-### Affichage of the channel AFK
+### Displaying the AFK channel
 
 ```bdfd
 $if[$afkChannelID!=]
-$sendMessage[💤 Channel AFK : <#$afkChannelID> (delay : $afkTimeout seconds)]
+$sendMessage[💤 AFK Channel: <#$afkChannelID> (delay: $afkTimeout seconds)]
 $else
-$sendMessage[ℹ️ Auca channel AFK n'est configured on ce server.]
+$sendMessage[ℹ️ No AFK channel is configured on this server.]
 $endif
 ```
 
-### Embed configuration server
+### Server configuration embed
 
 ```bdfd
 $title[⚙️ Configuration of $serverName]
-$addField[💤 Channel AFK;$if[$afkChannelID!=]<#$afkChannelID>$elseNon configured$endif;yes]
-$addField[⏱️ Delay AFK;$afkTimeout seconds;yes]
-$addField[📋 Channel règles;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNon configured$endif;yes]
-$addField[📢 Channel système;$if[$systemChannelID!=]<#$systemChannelID>$elseNon configured$endif;yes]
+$addField[💤 AFK Channel;$if[$afkChannelID!=]<#$afkChannelID>$elseNot configured$endif;yes]
+$addField[⏱️ AFK Delay;$afkTimeout seconds;yes]
+$addField[📋 Rules Channel;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNot configured$endif;yes]
+$addField[📢 System Channel;$if[$systemChannelID!=]<#$systemChannelID>$elseNot configured$endif;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Log of configuration
+### Configuration log
 
 ```bdfd
-$log[Configuration server $serverName | AFK: $afkChannelID | Timeout: $afkTimeout | Règles: $rulesChannelID | Système: $systemChannelID]
+$log[Server configuration $serverName | AFK: $afkChannelID | Timeout: $afkTimeout | Rules: $rulesChannelID | System: $systemChannelID]
 ```
 
 ## Notes
 
-- The channel AFK must be a channel vocal.
-- If no channel AFK n'est configured, la function retourne a string vide.
-- Le delay before déplacement est donné par `$afkTimeout[]` (en seconds).
-- Les members in the channel AFK sont automatically mis en sourdine par Discord.
+- The AFK channel must be a voice channel.
+- If no AFK channel is configured, the function returns an empty string.
+- The delay before moving is given by `$afkTimeout[]` (in seconds).
+- Members in the AFK channel are automatically muted by Discord.

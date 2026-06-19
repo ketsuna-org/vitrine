@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getUserStatus
 syntax: $getUserStatus[userID]
-description: Returns the status online (online, idle, dnd, offline) of the user spécifié.
+description: Returns the presence status (online, idle, dnd, offline) of the specified user.
 ---
 
 # $getUserStatus
 
-The function `$getUserStatus[]` retourne le **status of présence** of a user on Discord.
+The function `$getUserStatus[]` returns the **presence status** of a user on Discord.
 
 ## Syntax
 
@@ -22,27 +22,27 @@ $getUserStatus[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user dont on souhaite connaître le status. |
+| `userID` | The ID of the user whose status you want to know. |
 
 ## Return Value
 
-- **Type** : String of becauseactères
-- Values possibles :
+- **Type**: String
+- Possible values:
   - `online` — Online (🟢)
-  - `idle` — Inactif/Absent (🟡)
-  - `dnd` — Ne pas déranger (🔴)
+  - `idle` — Idle (🟡)
+  - `dnd` — Do Not Disturb (🔴)
   - `offline` — Offline (⚫)
-  - `invisible` — Invisible (apparaît like offline)
+  - `invisible` — Invisible (appears offline)
 
 ## Behavior
 
-- Requires the **ID user** en parameter.
-- Le status reflète la présence en temps réel on Discord.
-- Le status `invisible` est rapporté like `offline` for the autres users.
+- Requires the **user ID** as a parameter.
+- The status reflects the real-time presence on Discord.
+- The `invisible` status is reported as `offline` to other users.
 
 ## Examples
 
-### Display le status with emoji
+### Display the status with an emoji
 
 ```bdfd
 $let[status;$getUserStatus[$userID]]
@@ -57,32 +57,32 @@ $else
 $endif
 
 $title[Status of $userName]
-$description[**Status :** $emoji $status]
+$description[**Status:** $emoji $status]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérifier le status of a user mentionné
+### Check the status of a mentioned user
 
 ```bdfd
 $if[$mentioned!=]
   $let[status;$getUserStatus[$mentioned]]
-  $sendMessage[<@$mentioned> est currentlement : **$status**]
+  $sendMessage[<@$mentioned> is currently: **$status**]
 $else
-  $sendMessage[Mentionnez un user.]
+  $sendMessage[Please mention a user.]
 $endif
 ```
 
-### Ne pas déranger
+### Do not disturb
 
 ```bdfd
 $if[$getUserStatus[$mentioned]==dnd]
-  $sendMessage[⚠️ Cet user est en mode Ne pas déranger.]
+  $sendMessage[⚠️ This user is in Do Not Disturb mode.]
 $endif
 ```
 
 ## Notes
 
-- Le status `offline` peut signifier que the user est réellement déconnected or en mode invisible.
-- Les users can hide theur status according to leurs parameters of confidentialité.
-- Utile for the commands qui nécessitent of savoir if a user is available (ex: envoi of messages privates conditionnels).
+- The `offline` status can mean that the user is actually disconnected or in invisible mode.
+- Users can hide their status based on their privacy settings.
+- Useful for commands that need to know if a user is available (e.g., sending conditional direct messages).

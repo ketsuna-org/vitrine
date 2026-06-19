@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getAttachments
 syntax: $getAttachments[messageID]
-description: Gets thes URLs pièces jointes of a message specific. Returns ae list of URLs separatedes par virgules.
+description: Gets the URLs of a specific message's attachments. Returns a list of comma-separated URLs.
 ---
 
 # $getAttachments
 
-The function `$getAttachments[]` allows **récupérer les URLs pièces jointes** (images, files, vidéos) of a message Discord.
+The `$getAttachments[]` function allows you to **retrieve the URLs of attachments** (images, files, videos) of a Discord message.
 
 ## Syntax
 
@@ -22,59 +22,59 @@ $getAttachments[messageID]
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message contenant les pièces jointes to récupérer. |
+| `messageID` | The ID of the message containing the attachments to retrieve. |
 
 ## Return Value
 
-- **Type** : String
-- Les URLs completes pièces jointes, separatedes par `, `.
-- String vide si the message ne contains noe pièce jointe.
+- **Type**: String
+- The full URLs of the attachments, separated by `, `.
+- An empty string if the message contains no attachments.
 
 ## Behavior
 
-- Returns all URLs files attachés to the message.
-- Works with all types of files supportés par Discord (images, vidéos, documents, etc.).
-- Chaque URL est une URL directe vers le file on the servers Discord.
+- Returns all URLs of files attached to the message.
+- Works with all types of files supported by Discord (images, videos, documents, etc.).
+- Each URL is a direct link to the file on Discord's servers.
 
 ## Examples
 
-### Récupération simple
+### Simple retrieval
 
 ```bdfd
 $let[atts;$getAttachments[$messageID]]
 $if[$atts!=]
-  Pièces jointes : $atts
+  Attachments: $atts
 $else
-  Aucune pièce jointe in this message.
+  No attachments in this message.
 $endif
 ```
 
-### Boucle on the pièces jointes
+### Loop through attachments
 
 ```bdfd
 $let[atts;$getAttachments[$messageID]]
 $if[$atts!=]
   $textSplit[$atts;, ]
-    📎 Pièce jointe $index : $splitText[$index]
+    📎 Attachment $index: $splitText[$index]
   $endTextSplit
 $endif
 ```
 
-### Sauvegarde of image
+### Save image
 
 ```bdfd
 $let[url;$getAttachments[$noMentionMessage]]
 $if[$url!=]
   $let[first;$splitText[$url;, ;1]]
   $image[$first]
-  $sendMessage[Image récupérée :]
+  $sendMessage[Image retrieved:]
 $else
-  $sendMessage[Aucune image founde.]
+  $sendMessage[No image found.]
 $endif
 ```
 
 ## Notes
 
-- Les URLs Discord expirent after un certain temps (quelques hours to quelques days).
-- Pour un usage permanent, téléchargez and hébergez les files ailleurs.
-- Utilisez `$textSplit[]` pour traiter each pièce jointe individualment.
+- Discord attachment URLs expire after some time (a few hours to a few days).
+- For permanent usage, download and host the files elsewhere.
+- Use `$textSplit[]` to process each attachment individually.

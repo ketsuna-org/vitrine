@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverOwner
 syntax: $serverOwner
-description: Returns the identifier (ID) of the owner of the server Discord.
+description: Returns the identifier (ID) of the owner of the Discord server.
 ---
 
 # $serverOwner[] — Owner of the Server
 
-`$serverOwner[]` retourne l'identifier Discord of the owner of the server. Cet ID can be utilisé pour mentionner le owner, check permissions or restrict commands.
+`$serverOwner[]` returns the Discord identifier (ID) of the owner of the server. This ID can be used to mention the owner, check permissions, or restrict commands.
 
 ## Syntax
 
@@ -20,37 +20,37 @@ $serverOwner
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
-- **Type** : `string`
+- **Type**: `string`
 - The ID (Snowflake) of the owner of the server.
 
-## Utilisation
+## Usage
 
-### Mention of the owner
+### Mention the owner
 
 ```bdfd
-$sendMessage[👑 Owner of the server : <@$serverOwner>]
+$sendMessage[👑 Owner of the server: <@$serverOwner>]
 ```
 
-### Restrict une command to the owner
+### Restrict a command to the owner
 
 ```bdfd
 $if[$authorID!=$serverOwner]
-$sendMessage[⛔ Seul le owner of the server peut use cette command.]
+$sendMessage[⛔ Only the server owner can use this command.]
 $stop
 $endif
-$sendMessage[Command owner executed.]
+$sendMessage[Owner command executed.]
 ```
 
-### Embed informatif
+### Informative embed
 
 ```bdfd
-$title[Informations on $serverName]
-$description[Server géré par <@$serverOwner>]
-$addField[ID Server;$serverID;yes]
+$title[Information on $serverName]
+$description[Server managed by <@$serverOwner>]
+$addField[Server ID;$serverID;yes]
 $addField[Owner;$serverOwner;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
@@ -60,12 +60,12 @@ $sendEmbedMessage
 ### Notification to the owner
 
 ```bdfd
-$sendMessage[<@$serverOwner>, un user demande votre attention.]
+$sendMessage[<@$serverOwner>, a user is requesting your attention.]
 ```
 
 ## Notes
 
-- Le owner est the user qui a created the server or to qui la property was transférée.
-- The ID of the owner est invariant as long as la property is not transférée.
-- Utilisez `$username[$serverOwner]` pour obtenir the name of the owner without the mentionner.
-- Pour check if the user courant est le owner, vous pouvez also use `$isOwner[]`.
+- The owner is the user who created the server or to whom the ownership was transferred.
+- The ID of the owner remains unchanged as long as the ownership is not transferred.
+- Use `$username[$serverOwner]` to get the name of the owner without mentioning them.
+- To check if the current user is the owner, you can also use `$isOwner[]`.

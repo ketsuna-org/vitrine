@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: disableInnerSpaceRemoval
 syntax: $disableInnerSpaceRemoval
-description: Désactive la suppression automatique espaces internals in thes parameters functions BDFD. Par default, BDFD nettoie les espaces superflus.
+description: Disables the automatic removal of spaces inside BDFD function parameters. By default, BDFD trims leading and trailing spaces.
 ---
 # $disableInnerSpaceRemoval
 
-The `$disableInnerSpaceRemoval` function **désactive la suppression automatique espaces** in thes parameters. Par default, BDFD nettoie les espaces en début/fin of parameters.
+The `$disableInnerSpaceRemoval` function **disables the automatic removal of spaces** in parameters. By default, BDFD trims spaces at the beginning and end of parameters.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ $disableInnerSpaceRemoval
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
@@ -27,24 +27,24 @@ None.
 
 ## Behavior
 
-- Without cette function : `$sendMessage[  Hello  ]` devient `Hello`
-- Avec cette function : les espaces internals and périphériques sont conservés.
-- Utile for the mise en forme of text (art ASCII, indentation, etc.).
+- Without this function: `$sendMessage[  Hello  ]` becomes `Hello`
+- With this function: leading, trailing, and internal spaces are preserved.
+- Useful for text formatting (ASCII art, indentation, etc.).
 
 ## Examples
 
-### Conserver l'indentation
+### Preserving indentation
 
 ```bdfd
 $disableInnerSpaceRemoval
 $sendMessage[
 ╔══════════════╗
-║   Bienvenue   ║
+║   Welcome    ║
 ╚══════════════╝
 ]
 ```
 
-### Préserver les espaces in a text
+### Preserving spaces in text
 
 ```bdfd
 $disableInnerSpaceRemoval
@@ -54,20 +54,20 @@ $codeBlock
 ```]
 ```
 
-### Compareason
+### Comparison
 
 ```bdfd
 ; Without $disableInnerSpaceRemoval
 $sendMessage[  Hello  World  ]
-; Result : Hello World
+; Result: Hello World
 
 $disableInnerSpaceRemoval
 $sendMessage[  Hello  World  ]
-; Result :   Hello  World
+; Result:   Hello  World  
 ```
 
 ## Notes
 
-- Effet limité to la command in progress.
-- À placer at the beginning si toute la command requires the préservation of espaces.
-- Ne désactive pas the processing becauseactères special (voir `$disableSpecialEscaping`).
+- Effect is limited to the current command.
+- Place at the beginning if the entire command requires space preservation.
+- Does not disable the processing of special characters (see `$disableSpecialEscaping`).

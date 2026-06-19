@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookAvatarURL
 syntax: $webhookAvatarURL[url]
-description: Sets the URL of the avatar for the prochain message sent via $webhookSend. Doit être placé before l'call to $webhookSend.
+description: Sets the URL of the avatar for the next message sent via $webhookSend. Must be placed before the call to $webhookSend.
 ---
 
 # $webhookAvatarURL
 
-The function `$webhookAvatarURL[]` allows **define l'avatar** qui sera utilisé lors of the prochain envoi via `$webhookSend[]`.
+The `$webhookAvatarURL` function allows you to **set the avatar** that will be used during the next delivery via `$webhookSend`.
 
 ## Syntax
 
@@ -22,31 +22,31 @@ $webhookAvatarURL[url]
 
 | Parameter | Description |
 |---|---|
-| `url` | The URL of the image to use like avatar. Formats supportés : PNG, JPG, GIF, WEBP. |
+| `url` | The URL of the image to use as an avatar. Supported formats: PNG, JPG, GIF, WEBP. |
 
 ## Return Value
 
-This function ne retourne pas of value. Elle définit l'avatar for the prochain call to `$webhookSend[]` only.
+This function does not return a value. It only sets the avatar for the next call to `$webhookSend`.
 
 ## Behavior
 
-- The URL must be accessible publicment.
-- L'image est téléloadede par Discord at the time of l'envoi.
-- L'avatar est réinitialisé after each `$webhookSend[]`.
-- Si the URL est invalid, l'avatar default of the webhook is used.
+- The URL must be publicly accessible.
+- The image is downloaded by Discord at the time of sending.
+- The avatar is reset after each `$webhookSend`.
+- If the URL is invalid, the default avatar of the webhook is used.
 
 ## Examples
 
-### Avatar custom
+### Custom avatar
 
 ```bdfd
 $webhookAvatarURL[https://cdn.example.com/avatars/notif.png]
-$webhookUsername[Système]
-$webhookContent[New notification !]
+$webhookUsername[System]
+$webhookContent[New notification!]
 $webhookSend[$webhookURL;]
 ```
 
-### Avatar dynamic
+### Dynamic avatar
 
 ```bdfd
 $webhookAvatarURL[$authorAvatar]
@@ -55,18 +55,18 @@ $webhookContent[$message]
 $webhookSend[$webhookURL;]
 ```
 
-### Avatar of server
+### Server avatar
 
 ```bdfd
 $webhookAvatarURL[$serverIcon]
 $webhookUsername[$serverName]
-$webhookTitle[Bienvenue !]
-$webhookDescription[Bienvenue on $serverName, $username !]
+$webhookTitle[Welcome!]
+$webhookDescription[Welcome to $serverName, $username!]
 $webhookSend[$welcomeHook;]
 ```
 
 ## Notes
 
-- L'avatar défini ne s'applique qu'au **prochain** `$webhookSend[]`.
-- Pour envois répétés with the même avatar, incluez `$webhookAvatarURL[]` before each `$webhookSend[]`.
-- The size maximale of l'image est of 8 Mo.
+- The defined avatar only applies to the **next** `$webhookSend`.
+- For repeated sendings with the same avatar, include `$webhookAvatarURL[]` before each `$webhookSend[]`.
+- The maximum image size is 8 MB.

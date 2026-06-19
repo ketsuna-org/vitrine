@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyForRoleIDs
 syntax: $onlyForRoleIDs[roleID1;roleID2;...;(errorMessage)]
-description: Function guard qui stops l'exécution si the user ne possède no roles spécifiés par ID. Alias of $onlyForRoles.
+description: A guard function that stops execution if the user does not possess any of the specified roles by ID. Alias of $onlyForRoles.
 ---
 
 # $onlyForRoleIDs
 
-The function guard `$onlyForRoleIDs` vérifie que the user possède **au moins un** roles spécifiés par leur ID. C'est un alias direct of `$onlyForRoles`.
+The guard function `$onlyForRoleIDs` checks if the user has **at least one** of the specified roles by their ID. It is a direct alias of `$onlyForRoles`.
 
 ## Syntax
 
@@ -22,33 +22,33 @@ $onlyForRoleIDs[roleID1;roleID2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `roleID1;roleID2;...` | Snowflake[] | IDs roles alloweds. |
-| `errorMessage` | String (optional) | Message si no role n'est found. |
+| `roleID1;roleID2;...` | Snowflake[] | The IDs of the allowed roles. |
+| `errorMessage` | String (optional) | The message sent if no matching role is found. |
 
 ## Behavior
 
-- Checks if the user possède to the moins un roles listés.
-- Vérification of type **OU** : a single role suffit.
-- Alias exact of `$onlyForRoles`.
+- Checks if the user possesses at least one of the listed roles.
+- This is an **OR** check: having a single matching role is sufficient.
+- Exact alias of `$onlyForRoles`.
 
 ## Examples
 
-### Command staff
+### Staff command
 
 ```bdfd
-$onlyForRoleIDs[123456789012345678;❌ Réservé to the staff.]
+$onlyForRoleIDs[123456789012345678;❌ Reserved for staff.]
 $ban[$mentioned[1]]
 ```
 
 ### Multi-roles
 
 ```bdfd
-$onlyForRoleIDs[111111111111111111;222222222222222222;❌ Accès refusé.]
+$onlyForRoleIDs[111111111111111111;222222222222222222;❌ Access denied.]
 $clear[100]
 ```
 
 ## Notes
 
-- `$onlyForRoleIDs` and `$onlyForRoles` sont interchangeables.
-- Pour blacklistr roles par ID, utilisez `$blacklistRoleIDs`.
-- Pour autoriser users specifics plutôt que roles, utilisez `$onlyForIDs`.
+- `$onlyForRoleIDs` and `$onlyForRoles` are interchangeable.
+- To blacklist roles by ID, use `$blacklistRoleIDs`.
+- To allow specific users instead of roles, use `$onlyForIDs`.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: hasRole
 syntax: $hasRole[userID;roleID]
-description: Checks if un user possède un role specific on the server.
+description: Checks if a user has a specific role on the server.
 ---
 
 # $hasRole
 
-The function `$hasRole[userID;roleID]` **vérifie if a user possède un role specific** on the server. Elle est couramment utilisée for the systèmes of permission.
+The function `$hasRole[userID;roleID]` **checks if a user has a specific role** on the server. It is commonly used for permission systems.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ The function `$hasRole[userID;roleID]` **vérifie if a user possède un role spe
 $hasRole[userID;roleID]
 ```
 
-Ou with a seul parameter (vérifie l'auteur) :
+Or with a single parameter (checks the author):
 
 ```
 $hasRole[roleID]
@@ -28,66 +28,66 @@ $hasRole[roleID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | Optional - The ID of the user. Default: auteur of the command. |
-| `roleID` | The ID of the role to vérifier. Required. |
+| `userID` | Optional - The ID of the user. Default: author of the command. |
+| `roleID` | The ID of the role to check. Required. |
 
 ## Return Value
 
-- **Type** : Boolean
-- `true` si the user possède the role.
-- `false` si the role is not attribué, n'existe pas, or si the user est introuvable.
+- **Type**: Boolean
+- `true` if the user has the role.
+- `false` if the role is not assigned, does not exist, or if the user is not found.
 
 ## Behavior
 
-- Checks in the list roles of the user on the server courant.
-- Functionne only in a context of server.
-- Insensible to la casse of the nom of role (si `$roleID[Nom]` is used).
+- Checks in the user's role list on the current server.
+- Works only in a server context.
+- Case-insensitive for the role name (if `$roleID[Name]` is used).
 
 ## Examples
 
-### Portail administrator
+### Admin Portal
 
 ```bdfd
 $if[$hasRole[$authorID;$roleID[Admin]]==true]
-  $title[🔧 Panneau Admin]
+  $title[🔧 Admin Panel]
   $description[
-  Commands availables :
-  - `!ban <user>` - Bannir un member
-  - `!kick <user>` - Expulser un member
-  - `!warn <user> <reason>` - Avertir
+  Available commands:
+  - `!ban <user>` - Ban a member
+  - `!kick <user>` - Kick a member
+  - `!warn <user> <reason>` - Warn
   ]
   $sendMessage[]
 $else
-  $sendEphemeral[❌ Accès réservé to the Administrators.]
+  $sendEphemeral[❌ Access reserved for Administrators.]
 $endif
 ```
 
-### Command of staff
+### Staff Command
 
 ```bdfd
 $if[$hasRole[$roleID[Staff]]==false]
-  $sendMessage[❌ Permission refusée. Role Staff required.]
+  $sendMessage[❌ Permission denied. Staff role required.]
   $stop
 $endif
 
 ;; Command executed
-$ban[$mentioned[1];Banni par $userName]
-$sendMessage[🔨 <@$mentioned[1]> was banni.]
+$ban[$mentioned[1];Banned by $userName]
+$sendMessage[🔨 <@$mentioned[1]> was banned.]
 ```
 
-### Vérification multi-roles
+### Multi-Role Check
 
 ```bdfd
 $if[$hasRole[$mentioned[1];$roleID[Modo]]==true]
-  $sendMessage[<@$mentioned[1]> est Modérateur.]
+  $sendMessage[<@$mentioned[1]> is Moderator.]
 $elseif[$hasRole[$mentioned[1];$roleID[Admin]]==true]
-  $sendMessage[<@$mentioned[1]> est Administrator.]
+  $sendMessage[<@$mentioned[1]> is Administrator.]
 $else
-  $sendMessage[<@$mentioned[1]> est un member standard.]
+  $sendMessage[<@$mentioned[1]> is a standard member.]
 $endif
 ```
 
-### Badge of role
+### Role Badge
 
 ```bdfd
 $if[$hasRole[$roleID[VIP]]==true]
@@ -103,7 +103,7 @@ $sendMessage[$var[badge] $userName]
 
 ## Notes
 
-- `$hasRole[userID;roleID]` requiert que the bot thense voir les roles of the server.
-- Pour attribuer un role, utilisez `$giveRole[]` or `$giveRoles[]`.
-- Pour retirer un role, utilisez `$takeRole[]` or `$takeRoles[]`.
-- `$hasRole` est often utilisé like garde en début of command with `$stop`.
+- `$hasRole[userID;roleID]` requires the bot to be able to see the server's roles.
+- To assign a role, use `$giveRole[]` or `$giveRoles[]`.
+- To remove a role, use `$takeRole[]` or `$takeRoles[]`.
+- `$hasRole` is often used as a guard at the beginning of commands with `$stop`.

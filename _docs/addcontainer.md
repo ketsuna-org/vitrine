@@ -8,9 +8,9 @@ syntax: $addContainer[(id);(accentColor);(spoiler)]
 description: Creates a visual container in a Discord message. The containers can group sections and display a colored border. Supports spoiler mode.
 ---
 
-# $addContainer[] — Conteneur Visual
+# $addContainer[] — Visual Container
 
-`$addContainer[]` crée a container in a Discord message. The containers offrent une structuration visualle with a colored border optionalle and the ability of être hiddens derrière un spoiler.
+`$addContainer[]` creates a container in a Discord message. Containers offer visual structure with an optional colored border and the ability to be hidden behind a spoiler.
 
 ## Syntax
 
@@ -24,11 +24,11 @@ $addContainer[(id);(accentColor);(spoiler)]
 |-----------|-------------|--------|-------------|
 | `id` | No | — | Container identifier. |
 | `accentColor` | No | — | Hex color of the border (ex: `#FF0000`). |
-| `spoiler` | No | `no` | `yes` pour masquer, `no` otherwise. |
+| `spoiler` | No | `no` | `yes` to mask, `no` otherwise. |
 
 ## Return value
 
-Initialise a container. The components added afterward (sections, thumbnails, galeries) s'insèrent in ce container.
+Initializes a container. Components added afterward (sections, thumbnails, galleries) insert into this container.
 
 ## Usage
 
@@ -48,7 +48,7 @@ $addContainer[profile;#5865F2;no]
 $addSection
 $addThumbnail[$authorAvatar]
 $addField[User;$username;no]
-$addField[Rejoint le;$memberJoinDate;no]
+$addField[Joined on;$memberJoinDate;no]
 ```
 
 ### Spoiler container
@@ -56,7 +56,7 @@ $addField[Rejoint le;$memberJoinDate;no]
 ```bdfd
 $addContainer[secret;;yes]
 $addSection
-$addTextDisplay[**Spoiler Alert !** Cliquez pour révéler le contenu.]
+$addTextDisplay[**Spoiler Alert!** Click to reveal the content.]
 ```
 
 ### Multiple containers
@@ -64,16 +64,17 @@ $addTextDisplay[**Spoiler Alert !** Cliquez pour révéler le contenu.]
 ```bdfd
 $addContainer[header;#2ECC71;no]
 $addSection
-$addField[Titre;Bienvenue on the server;no]
+$addField[Title;Welcome to the server;no]
 
 $addContainer[body;#3498DB;no]
 $addSection
-$addField[Description;Nous sommes ravis of vous accueillir !;no]
+$addField[Description;We are delighted to welcome you!;no]
 ```
 
 ## Notes
 
-- Les containers sont a functionnalité visualle propre to BDFD ; ils ne font pas partie of the API Discord native.
-- Un container can contain multiple sections ($addSection).
-- The color `accentColor` must be in the format hexadecimal with `#`.
-- Le spoiler mode masque tout le content of the container until the user clicks dessus.
+- Containers are a visual feature specific to BDFD; they are not part of the native Discord API.
+- A container can contain multiple sections ($addSection).
+- The `accentColor` must be a hexadecimal format starting with `#`.
+- Spoiler mode hides all content in the container until the user clicks on it.
+

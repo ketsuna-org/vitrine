@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addStringSelectOption
 
-Adds an option to un select menu of type string, created with `$addStringSelect`.
+Adds an option to a select menu of type string, created with `$addStringSelect`.
 
 ## Syntax
 
@@ -19,57 +19,58 @@ $addStringSelectOption[label;value;(description);(emoji);(default);(menuId)]
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
 | `label` | Text displayed for the option | Yes |
-| `value` | Value rsente during la selection | Yes |
-| `description` | Description displayede sous le label | No |
+| `value` | Value sent during selection | Yes |
+| `description` | Description displayed under the label | No |
 | `emoji` | Emoji displayed to the left of the label | No |
-| `default` | `true` pour préselectionner, `false` (default) | No |
-| `menuId` | Identifier of the menu target (si multiple menus) | No |
+| `default` | `true` to preselect, `false` (default) | No |
+| `menuId` | Identifier of the target menu (if multiple menus) | No |
 
 ## Description
 
-`$addStringSelectOption` ajoute une option to the last menu string select created with `$addStringSelect`. Si multiple menus are used, précisez le `menuId` to target a menu specific.
+`$addStringSelectOption` adds an option to the last string select menu created with `$addStringSelect`. If multiple menus are used, specify the `menuId` to target a specific menu.
 
 ## Examples
 
-### Options simples
+### Simple options
 
 ```
-$addStringSelect[menu_boisson;Choisissez une boisson]
-$addStringSelectOption[Café;coffee;Chaud and corsé;☕]
-$addStringSelectOption[Thé;tea;Infusion parfumée;🍵]
-$addStringSelectOption[Jus of orange;oj;Fraîchement pressé;🍊]
-$addStringSelectOption[Eau;water;Plate or gazeuse;💧]
-$sendMessage[Que voulez-vous boire ?]
+$addStringSelect[menu_boisson;Choose a drink]
+$addStringSelectOption[Coffee;coffee;Hot and strong;☕]
+$addStringSelectOption[Tea;tea;Flavored infusion;🍵]
+$addStringSelectOption[Orange juice;oj;Freshly squeezed;🍊]
+$addStringSelectOption[Water;water;Still or sparkling;💧]
+$sendMessage[What would you like to drink?]
 ```
 
-### Option by default
+### Default option
 
 ```
 $addStringSelect[menu_volume;Volume]
-$addStringSelectOption[Faible;low;;🔈]
-$addStringSelectOption[Moyen;medium;;🔉;true]
-$addStringSelectOption[Fort;high;;🔊]
-$sendMessage[Réglez le volume]
+$addStringSelectOption[Low;low;;🔈]
+$addStringSelectOption[Medium;medium;;🔉;true]
+$addStringSelectOption[High;high;;🔊]
+$sendMessage[Set the volume]
 ```
 
 ### Multiple menus with menuId
 
 ```
-$addStringSelect[menu_entree;Entrée]
-$addStringSelectOption[Salade;salade;;🥗]
-$addStringSelectOption[Soupe;soupe;;🍜]
+$addStringSelect[menu_entree;Starter]
+$addStringSelectOption[Salad;salad;;🥗]
+$addStringSelectOption[Soup;soup;;🍜]
 
 $addActionRow
-$addStringSelect[menu_plat;Plat]
-$addStringSelectOption[Viande;viande;;🥩;;menu_plat]
-$addStringSelectOption[Poisson;poisson;;🐟;;menu_plat]
-$addStringSelectOption[Végétarien;veggie;;🥬;;menu_plat]
+$addStringSelect[menu_plat;Main course]
+$addStringSelectOption[Meat;meat;;🥩;;menu_plat]
+$addStringSelectOption[Fish;fish;;🐟;;menu_plat]
+$addStringSelectOption[Vegetarian;veggie;;🥬;;menu_plat]
 
-$sendMessage[Composez votre menu]
+$sendMessage[Compose your menu]
 ```
 
 ## Notes
 
-- Si `menuId` is not spécifié, the option is addede to the last `$addStringSelect` created.
-- Maximum 25 options par menu.
-- Les `value` sont accessibles via `$message` in `$onInteraction`.
+- If `menuId` is not specified, the option is added to the last `$addStringSelect` created.
+- Maximum of 25 options per menu.
+- The `value` fields are accessible via `$message` in `$onInteraction`.
+

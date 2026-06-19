@@ -7,7 +7,7 @@ function_name: eval
 syntax: $eval[bdfdCode]
 description: Dynamically parses and executes a string of BDFD code at runtime. The code is treated as a sub-script and executed inline.
 ---
-$eval is a metaprogramming function that enables **dynamic code execution** in BDFD. It takes a string of BDFD code and runs it as if it were writtlively in the command. This opens up powerful patterns like template rendering, code generation, and late-binding of function calls.
+$eval is a metaprogramming function that enables **dynamic code execution** in BDFD. It takes a string of BDFD code and runs it as if it were written directly in the command. This opens up powerful patterns like template rendering, code generation, and late-binding of function calls.
 
 ## How It Works
 
@@ -41,15 +41,15 @@ $eval[$var[command]]
 
 ### Template Rendering
 
-Define reusabthe message templates with placeholders:
+Define reusable message templates with placeholders:
 
 ```
 $varSet[template;$title[$var[title]]
 $description[$var[body]]
 $color[$var[color]]]
 
-$varSet[title;Bienvenue]
-$varSet[body;Bienvenue on the server !]
+$varSet[title;Welcome]
+$varSet[body;Welcome to the server!]
 $varSet[color;#00FF00]
 $eval[$var[template]]
 ```
@@ -60,9 +60,9 @@ Defer decisions about what code to run until runtime:
 
 ```
 $varSet[action;$if[$var[condition]==true
-$sendMessage[Condition vraie]
+$sendMessage[Condition true]
 $else
-$sendMessage[Condition fausse]
+$sendMessage[Condition false]
 $endif]
 $eval[$var[action]]
 ```
@@ -95,4 +95,4 @@ $eval[$var[action]]
 | Arguments | Embedded in code string | Passed as parameters |
 | Performance | Slower (parses at runtime) | Faster (pre-parsed) |
 | Safety | Risk of injection | Safe (static reference) |
-| Flexibility | Maximum (any code) | Limitd to predefined workflows |
+| Flexibility | Maximum (any code) | Limited to predefined workflows |

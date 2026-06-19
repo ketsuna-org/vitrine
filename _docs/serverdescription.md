@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverDescription
 syntax: $serverDescription
-description: Returns the description of the server Discord (configurede in thes parameters of the server).
+description: Returns the description of the Discord server (configured in the server settings).
 ---
 
-# $serverDescription[] — Description of the Server
+# $serverDescription[] — Server Description
 
-`$serverDescription[]` retourne la description textuelle of the server Discord telle que configurede in thes parameters of the server (section "Aperçu").
+`$serverDescription[]` returns the text description of the Discord server as configured in the server settings (under the "Overview" section).
 
 ## Syntax
 
@@ -20,22 +20,22 @@ $serverDescription
 
 ## Parameters
 
-Aucun parameter.
+No parameters.
 
 ## Return Value
 
-- **Type** : `string`
-- La description of the server, or une string vide si noe description n'est définie.
+- **Type**: `string`
+- The description of the server, or an empty string if no description is set.
 
-## Utilisation
+## Usage
 
-### Display la description
+### Display the description
 
 ```bdfd
-$sendMessage[📝 Description : $serverDescription]
+$sendMessage[📝 Description: $serverDescription]
 ```
 
-### Embed informatif
+### Informational Embed
 
 ```bdfd
 $title[$serverName]
@@ -47,29 +47,29 @@ $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Vérifier if ae description existe
+### Check if a description exists
 
 ```bdfd
 $if[$serverDescription==]
-$sendMessage[Ce server n'a pas of description.]
+  $sendMessage[This server does not have a description.]
 $else
-$sendMessage[**$serverName** : $serverDescription]
+  $sendMessage[**$serverName**: $serverDescription]
 $endif
 ```
 
-### Restrict par mot-key in the description
+### Filter by keyword in the description
 
 ```bdfd
 $if[$toLowercase[$serverDescription]$contains[gaming]]
-$sendMessage[Ce server est dédié to the gaming !]
+  $sendMessage[This server is dedicated to gaming!]
 $else
-$sendMessage[Ce server is not catégorisé gaming.]
+  $sendMessage[This server is not categorized as gaming.]
 $endif
 ```
 
 ## Notes
 
-- La description est optionalle : all servers n'en ont pas.
-- La longueur maximale of une description of server est of 1000 becauseactères.
-- Utile pour display information contextuelles on the server in embeds or commands of aide.
-- Can be combinée with `$serverInfo[]` pour obtenir information plus completes.
+- The description is optional; not all servers have one.
+- The maximum length of a server description is 1,000 characters.
+- Useful for displaying contextual information about the server in embeds or help commands.
+- Can be combined with other functions for more complete server information.

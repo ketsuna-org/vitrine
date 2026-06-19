@@ -5,14 +5,14 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverBanner
 syntax: $serverBanner
-description: Returns the URL of the banner of the server Discord (available only for the servers of level boost 2 or plus).
+description: Returns the URL of the Discord server banner (available only for servers with boost level 2 or higher).
 ---
 
-# $serverBanner[] — Banner of the Server
+# $serverBanner[] — Server Banner
 
-`$serverBanner[]` retourne the URL of the banner of the server Discord. The banner est une image horizontale displayede en haut of la list channels on the clinkts of bureau.
+`$serverBanner[]` returns the URL of the Discord server banner. The banner is a horizontal image displayed at the top of the channel list on desktop clients.
 
-> **Prérequired** : The server must be to the level of boost 2 or plus pour pouvoir define ae banner custome.
+> **Prerequisite**: The server must be boost level 2 or higher to be able to set a custom banner.
 
 ## Syntax
 
@@ -22,16 +22,16 @@ $serverBanner
 
 ## Parameters
 
-Aucun parameter.
+No parameters.
 
 ## Return Value
 
-- **Type** : `string`
-- The URL of the banner of the server, or une string vide si the server n'en a pas.
+- **Type**: `string`
+- The URL of the server banner, or an empty string if the server does not have one.
 
-## Utilisation
+## Usage
 
-### Affichage in a embed
+### Display in an embed
 
 ```bdfd
 $title[$serverName]
@@ -41,10 +41,10 @@ $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Page of accueil of the server
+### Server welcome page
 
 ```bdfd
-$title[🏠 Bienvenue on $serverName]
+$title[🏠 Welcome to $serverName]
 $description[$serverDescription]
 $image[$serverBanner]
 $addField[Members;$membersCount;yes]
@@ -55,13 +55,13 @@ $footer[$serverName]
 $sendEmbedMessage
 ```
 
-### Vérification and fallback
+### Check and fallback
 
 ```bdfd
 $if[$serverBanner==]
-$var[bannerURL;$serverIcon]
+  $var[bannerURL;$serverIcon]
 $else
-$var[bannerURL;$serverBanner]
+  $var[bannerURL;$serverBanner]
 $endif
 $title[$serverName]
 $image[$var[bannerURL]]
@@ -70,7 +70,7 @@ $sendEmbedMessage
 
 ## Notes
 
-- `$serverBanner[]` est un alias of `$guildBanner[]`.
-- Requires a level of boost server of level 2 or 3.
-- La banner est differente of l'icon (l'icon est becauserée, la banner est rectangulaire, ratio ~16:9).
-- Si the server n'a pas of banner, prévoyez un fallback (icon of the server or image default).
+- `$serverBanner[]` is an alias of `$guildBanner[]`.
+- Requires a server boost level of 2 or 3.
+- The banner is different from the icon (the icon is square, while the banner is rectangular with a ~16:9 ratio).
+- If the server does not have a banner, plan a fallback (such as the server icon or a default image).

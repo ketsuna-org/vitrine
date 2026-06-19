@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: disableSpecialEscaping
 syntax: $disableSpecialEscaping
-description: Désactive l'échappement automatique becauseactères special (crochets, points-virgules, etc.) in thes parameters. The becauseactères sont interprétés littéralement.
+description: Disables the automatic escaping of special characters (brackets, semicolons, etc.) in parameters. The characters are interpreted literally.
 ---
 # $disableSpecialEscaping
 
-The `$disableSpecialEscaping` function **désactive l'échappement automatique** becauseactères special in the command. This allows using `[`, `]`, `;`, etc. without qu'ils soient interprétés like délimiturs of syntax BDFD.
+The `$disableSpecialEscaping` function **disables the automatic escaping** of special characters in the command. This allows using `[`, `]`, `;`, etc. without them being interpreted as BDFD syntax delimiters.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ $disableSpecialEscaping
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
@@ -27,37 +27,37 @@ None.
 
 ## Behavior
 
-- Without cette function, `[` and `]` déclenchent the syntax functions BDFD.
-- Avec, ces becauseactères sont traités like of the text brut.
-- **Attention** : les vraies functions BDFD ne sont plus interprétées after `$disableSpecialEscaping`.
+- Without this function, `[` and `]` trigger BDFD function syntax.
+- With it, these characters are treated as raw text.
+- **Warning**: actual BDFD functions are no longer interpreted after `$disableSpecialEscaping`.
 
 ## Examples
 
-### Display crochets littéraux
+### Displaying literal brackets
 
 ```bdfd
 $disableSpecialEscaping
-$sendMessage[Le format est [optional] in the doc]
-; Displays : Le format est [optional] in the doc
+$sendMessage[The format is [optional] in the doc]
+; Displays: The format is [optional] in the doc
 ```
 
-### Message with syntax of code
+### Message with code syntax
 
 ```bdfd
 $disableSpecialEscaping
 $sendMessage[Use $if[condition] for conditions.]
 ```
 
-### Combinaison with of autres flags
+### Combination with other flags
 
 ```bdfd
 $disableSpecialEscaping
 $disableInnerSpaceRemoval
-$sendMessage[Format brut : [value]; parameter = true]
+$sendMessage[Raw format: [value]; parameter = true]
 ```
 
 ## Notes
 
-- Irréversible in the command : all functions after `$disableSpecialEscaping` sont désenabledes.
-- Placez cette function en **fin of code**, after all functions BDFD.
-- Alternative : use `$unEscape[]` pour portions specifics of text.
+- Irreversible in the command: all functions after `$disableSpecialEscaping` are disabled.
+- Place this function at the **end of the code**, after all other BDFD functions.
+- Alternative: use `$unEscape[]` for specific portions of text.

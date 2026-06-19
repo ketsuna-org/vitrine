@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: lastMessageID
 syntax: $lastMessageID[(channelID)]
-description: Returns the ID of the last message sent in the channel courant or in a channel spécifié.
+description: Returns the ID of the last message sent in the current channel or in a specified channel.
 ---
 
 # $lastMessageID
 
-The function `$lastMessageID` retourne l'**ID of the last message** sent in a channel Discord. Par default, elle target the channel courant.
+The function `$lastMessageID` returns the **ID of the last message** sent in a Discord channel. By default, it targets the current channel.
 
 ## Syntax
 
@@ -22,44 +22,45 @@ $lastMessageID[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the channel cible. Si omitted, the channel courant is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the last message of the channel. |
+| `snowflake` (string) | The ID of the last message in the channel. |
 
 ## Examples
 
-### Last message of the channel courant
+### Last message of the current channel
 
 ```bdfd
-$sendMessage[Last message in ce channel : $lastMessageID]
+$sendMessage[Last message in this channel: $lastMessageID]
 ```
 
-### Last message of a channel specific
+### Last message of a specific channel
 
 ```bdfd
-$sendMessage[Activité in #annonces : last message $lastMessageID[123456789012345678]]
+$sendMessage[Activity in #announcements: last message $lastMessageID[123456789012345678]]
 ```
 
-### Vérifier l'activité récente
+### Check recent activity
 
 ```bdfd
 $if[$lastMessageID==$messageID]
-  $sendMessage[Votre message est le last of the channel !]
+  $sendMessage[Your message is the last one in this channel!]
 $endif
 ```
 
-### Link of the last message
+### Link to the last message
 
 ```bdfd
-$sendMessage[Last message : https://discord.com/channels/$guildID/$channelID/$lastMessageID]
+$sendMessage[Last message: https://discord.com/channels/$guildID/$channelID/$lastMessageID]
 ```
 
 ## Notes
 
-- Si the channel est vide (no message), le comportement peut varier.
-- Utile pour surveiller l'activité or lier le last message.
-- The bot doit avoir accès to the channel pour obtenir cette information.
+- If the channel is empty (no messages), the behavior may vary.
+- Useful for monitoring activity or linking to the last message.
+- The bot must have access to the channel to retrieve this information.
+

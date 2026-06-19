@@ -5,11 +5,11 @@ translation_key: docs
 category: "Components"
 function_name: customID
 syntax: $customID
-description: Returns the ID custom (customId) of the composant of interaction qui triggered le callback (bouton, select menu, modal). S'utilise in $onInteraction.
+description: Returns the custom ID (customId) of the interaction component that triggered the callback (button, select menu, modal). Used in $onInteraction.
 ---
 # $customID
 
-The `$customID` function returns the **customId** of the composant (bouton, select menu, modal) qui triggered une interaction.
+The `$customID` function returns the **customId** of the component (button, select menu, modal) that triggered an interaction.
 
 ## Syntax
 
@@ -19,30 +19,30 @@ $customID
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
-- **Type** : String
-- Le customId set during la création of the composant.
+- **Type**: String
+- The customId set during the creation of the component.
 
 ## Behavior
 
-- Doit être utilisé in a callback `$onInteraction`.
-- Allows différencier quel bouton/menu has been utilisé.
+- Must be used in an `$onInteraction` callback.
+- Allows differentiating which button/menu was used.
 
 ## Examples
 
-### Gestionnaire of interaction
+### Interaction handler
 
 ```bdfd
 $onInteraction
 $if[$customID==accept]
-  $sendMessage[Demande acceptée.]
+  $sendMessage[Request accepted.]
 $elseIf[$customID==refuse]
-  $sendMessage[Demande refusée.]
+  $sendMessage[Request denied.]
 $elseIf[$customID==info]
-  $sendMessage[More information bientôt.]
+  $sendMessage[More information soon.]
 $endif
 ```
 
@@ -50,22 +50,22 @@ $endif
 
 ```bdfd
 $onInteraction
-$log[Interaction receivede — customID: $customID — par $username]
+$log[Interaction received — customID: $customID — by $username]
 ```
 
-### Switch dynamic
+### Dynamic switch
 
 ```bdfd
 $onInteraction
 $switch[$customID;
-  confirm;$sendMessage[✅ Confirmé];
-  cancel;$sendMessage[❌ Annulé];
+  confirm;$sendMessage[✅ Confirmed];
+  cancel;$sendMessage[❌ Cancelled];
   delete;$deleteChannels[$channelID]
 ]
 ```
 
 ## Notes
 
-- Équivaslow functionnel to `$interactionData[customId]`.
-- Essentiel for systèmes of buttons and menus interactifs.
-- Le customId est set par le développeur in `$addButton[]`, `$addSelectMenu[]`, etc.
+- Functional equivalent to `$interactionData[customId]`.
+- Essential for systems of buttons and interactive menus.
+- The customId is set by the developer in `$addButton[]`, `$addSelectMenu[]`, etc.

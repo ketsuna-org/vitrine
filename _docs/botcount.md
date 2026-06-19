@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botCount
 syntax: $botCount
-description: Returns the namebre of bots présents on the server Discord.
+description: Returns the number of bots present on the Discord server.
 ---
 
 # $botCount[] — Number of Bots
 
-`$botCount[]` retourne the namebre of comptes bots présents on the server Discord.
+`$botCount[]` returns the number of bot accounts present on the Discord server.
 
 ## Syntax
 
@@ -24,43 +24,43 @@ No parameters.
 
 ## Return value
 
-- **Type** : `integer`
-- The namebre of bots on the server.
+- **Type**: `integer`
+- The number of bots on the server.
 
 ## Usage
 
 ### Simple display
 
 ```bdfd
-$sendMessage[🤖 **$botCount** bots on ce server.]
+$sendMessage[🤖 **$botCount** bots on this server.]
 ```
 
-### Ratio humains/bots
+### Human/Bot Ratio
 
 ```bdfd
 $var[humans;$sub[$membersCount;$botCount]]
 $title[📊 Composition of $serverName]
-$addField[👤 Humains;$var[humans];yes]
+$addField[👤 Humans;$var[humans];yes]
 $addField[🤖 Bots;$botCount;yes]
 $addField[👥 Total;$membersCount;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Alerte si trop of bots
+### Alert if too many bots
 
 ```bdfd
 $if[$botCount>$var[humans]]
-$sendMessage[⚠️ Il y a more than bots ($botCount) que of humains ($var[humans]) !]
+$sendMessage[⚠️ There are more bots ($botCount) than humans ($var[humans])!]
 $endif
 ```
 
-### Embed statistiques complete
+### Complete Statistics
 
 ```bdfd
-$title[📊 Statistiques of $serverName]
+$title[📊 Statistics for $serverName]
 $addField[👥 Total;$membersCount;yes]
-$addField[👤 Humains;$sub[$membersCount;$botCount];yes]
+$addField[👤 Humans;$sub[$membersCount;$botCount];yes]
 $addField[🤖 Bots;$botCount;yes]
 $addField[🟢 Online;$onlineMembers;yes]
 $thumbnail[$serverIcon]
@@ -70,6 +70,6 @@ $sendEmbedMessage
 
 ## Notes
 
-- Un "bot" est déterminé par le flag `bot` set on the compte user Discord.
-- Pour obtenir the namebre of humains, soustrayez `$botCount` of the total : `$sub[$membersCount;$botCount]`.
-- The bot comptant lui-même est included in ce total.
+- A "bot" is determined by the `bot` flag set on the Discord user account.
+- To get the number of humans, subtract `$botCount` from the total: `$sub[$membersCount;$botCount]`.
+- The bot running the command is included in this total.

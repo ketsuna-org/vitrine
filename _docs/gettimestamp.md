@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: getTimestamp
 syntax: $getTimestamp
-description: Returns the timestamp Unix current en seconds. Resolved to the runtime.
+description: Returns the current Unix timestamp in seconds. Resolved at runtime.
 ---
 
 # $getTimestamp[]
 
-The function `$getTimestamp[]` retourne le timestamp Unix current en seconds. The timestamp Unix represents the namebre of seconds écoulées dethen le 1er janvier 1970 to 00:00:00 UTC (epoch).
+The function `$getTimestamp[]` returns the current Unix timestamp in seconds. The Unix timestamp represents the number of seconds elapsed since January 1, 1970, at 00:00:00 UTC (epoch).
 
-> **Important:** This function utilise l'identifier special `((getTimestamp))` qui est resolved to the **runtime**.
+> **Important:** This function uses the special identifier `((getTimestamp))` which is resolved at **runtime**.
 
 ## Syntax
 
@@ -20,29 +20,29 @@ The function `$getTimestamp[]` retourne le timestamp Unix current en seconds. Th
 $getTimestamp
 ```
 
-> **Note :** This function ne prend no parameter.
+> **Note:** This function does not take any parameters.
 
 ## Return Value
 
-A integer représentant le timestamp Unix current en seconds.
+An integer representing the current Unix timestamp in seconds.
 
 ## Examples
 
-### Timestamp simple
+### Simple timestamp
 
 ```bdfd
-Timestamp current : $getTimestamp
+Current timestamp: $getTimestamp
 ```
 
-### Calcul of durée
+### Duration calculation
 
 ```bdfd
 $let[now;$getTimestamp]
 $let[event;1718697600]
-Temps restant : $sub[$get[event];$get[now]] seconds
+Time remaining: $sub[$get[event];$get[now]] seconds
 ```
 
-### Stocker un timestamp
+### Store a timestamp
 
 ```bdfd
 $setUserVar[lastCommand;$getTimestamp]
@@ -50,5 +50,5 @@ $setUserVar[lastCommand;$getTimestamp]
 
 ## Notes
 
-- Le timestamp est en **seconds** (pas en milliseconds).
-- Utile for the calculs of durée, les cooldowns, or le stockage of timestamps.
+- The timestamp is in **seconds** (not milliseconds).
+- Useful for duration calculations, cooldowns, or storing timestamps.

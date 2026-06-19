@@ -5,7 +5,7 @@ translation_key: docs
 category: "Control Flow"
 function_name: callWorkflow
 syntax: $callWorkflow[name;arg1;arg2;...]
-description: Calls another workflow by name, optionally passing arguments. The called workflow executes and can return a value. Execution resumes in the caller after the called workflow completees.
+description: Calls another workflow by name, optionally passing arguments. The called workflow executes and can return a value. Execution resumes in the caller after the called workflow completes.
 ---
 $callWorkflow enables modular command design by allowing one workflow to invoke another as a subroutine. This promotes code reuse, separation of concerns, and cleaner organization of complex bot logic.
 

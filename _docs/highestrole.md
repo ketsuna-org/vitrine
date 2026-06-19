@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: highestRole
 syntax: $highestRole
-description: Returns the ID of the role le plus haut (hiérarchiquement) of the user on the server.
+description: Returns the ID of the user's highest role (hierarchically) on the server.
 ---
 
 # $highestRole
 
-The variable `$highestRole` retourne l'**ID of the role le plus élevé** in the hiérarchie roles of the user on the server.
+The `$highestRole` function returns the **ID of the highest role** in the server's role hierarchy for the current user.
 
 ## Syntax
 
@@ -20,53 +20,53 @@ $highestRole
 
 ## Return Value
 
-- **Type** : Snowflake (string numérique)
-- The ID of the role le plus haut of the user
-- Inclut `@everyone` si the user n'a no autre role
+- **Type**: Snowflake (numeric string)
+- The ID of the user's highest role.
+- Includes `@everyone` if the user has no other roles.
 
 ## Behavior
 
-- `$highestRole` ne prend **no argument**.
-- La hiérarchie est déterminée par the position roles in thes parameters of the server Discord.
-- Si the user a several roles, retourne celui qui est le plus haut in the list.
+- `$highestRole` takes **no arguments**.
+- The hierarchy is determined by the role positions in the Discord server settings.
+- If the user has multiple roles, it returns the one that is highest in the list.
 
 ## Examples
 
-### Display the role principal
+### Display the highest role
 
 ```bdfd
-$title[Profil of $userName]
+$title[Profile of $userName]
 $author[$userName;$userAvatar]
 $description[
-**Role le plus haut :** <@&$highestRole>
-**Nom of the role :** $roleName[$highestRole]
+**Highest Role:** <@&$highestRole>
+**Role Name:** $roleName[$highestRole]
 ]
 $color[$roleColor[$highestRole]]
 $sendMessage[]
 ```
 
-### Vérifier la hiérarchie
+### Check hierarchy
 
 ```bdfd
 $if[$highestRole==123456789012345678]
-  $sendMessage[Vous êtes member of the staff !]
+  $sendMessage[You are a staff member!]
 $else
-  $sendMessage[Role principal : $roleName[$highestRole]]
+  $sendMessage[Highest role: $roleName[$highestRole]]
 $endif
 ```
 
-### Compareason of roles
+### Comparison of roles
 
 ```bdfd
 $let[modRole;123456789012345678]
 $if[$rolePosition[$highestRole]>=$rolePosition[$modRole]]
-  $sendMessage[Vous avez un role supérieur or égal to Modérateur.]
+  $sendMessage[You have a role greater than or equal to Moderator.]
 $endif
 ```
 
 ## Notes
 
-- L'ordre roles est défini in thes parameters of the server (Drag & Drop in the interface Discord).
-- The role `@everyone` est toudays le plus bas, unless roles sont placés en dessous (réorganisation manuelle).
-- Pour the role le plus bas, utilisez `$lowestRole`.
-- Utilisez `$roleName[$highestRole]` pour obtenir the name of the role.
+- The role order is defined in the server settings (Drag & Drop in the Discord interface).
+- The `@everyone` role is always the lowest, unless other roles are placed below it (manual reordering).
+- For the lowest role, use `$lowestRole`.
+- Use `$roleName[$highestRole]` to get the name of the role.

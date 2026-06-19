@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: thumbnail
 syntax: $thumbnail[url;(embedIndex)]
-description: Sets the miniature (thumbnail) of a Discord embed. The miniature est une petite image becauserée displayede en haut to droite of the embed.
+description: Sets the thumbnail of a Discord embed. The thumbnail is a small square image displayed at the top right of the embed.
 ---
 
 # $thumbnail[]
 
-The function `$thumbnail[]` définit la **miniature** (thumbnail) of a Discord embed. The miniature est une petite image becauserée qui s'displays in the coin supérieur droit of the embed.
+The function `$thumbnail[]` sets the **thumbnail** of a Discord embed. The thumbnail is a small square image displayed at the top right corner of the embed.
 
 ## Syntax
 
@@ -22,76 +22,77 @@ $thumbnail[url;(embedIndex)]
 
 | Parameter | Description |
 |---|---|
-| `url` | URL of the image to use like miniature. Doit être une URL directe vers un file image. |
-| `embedIndex` | Optional. Index of the embed ciblé (0 default). |
+| `url` | URL of the image to use as the thumbnail. Must be a direct URL to an image file. |
+| `embedIndex` | Optional. Index of the targeted embed (default is 0). |
 
 ## Return Value
 
-Modifies the response in progress of construction. Returns nothing.
+Modifies the response currently being constructed. Returns nothing.
 
 ## Behavior
 
-- Le thumbnail apparaît en haut to droite of the embed.
-- L'image est automatically redimensionnée en un petit becauseré.
-- Un seul thumbnail par embed : le last call écrase le previous.
+- The thumbnail appears at the top right of the embed.
+- The image is automatically resized into a small square.
+- Only one thumbnail is allowed per embed; the last call overwrites the previous one.
 
-## Différence between $thumbnail[] and $image[]
+## Difference Between $thumbnail[] and $image[]
 
-| Function | Position | Taille |
+| Function | Position | Size |
 |---|---|---|
-| `$thumbnail[]` | En haut to droite | Petite (becauseré, ~80x80px) |
-| `$image[]` | En bas of the embed | Grande, pleine largeur |
+| `$thumbnail[]` | Top right | Small (square, ~80x80px) |
+| `$image[]` | Bottom of the embed | Large, full width |
 
 ## Examples
 
-### Thumbnail with avatar user
+### Thumbnail with User Avatar
 
 ```bdfd
-$title[Profil of $username]
+$title[Profile of $username]
 $description[
-**Nom :** $username
-**ID :** $authorID
-**Counts created :** $creationDate[$authorID]
+**Username:** $username
+**ID:** $authorID
+**Account Created:** $creationDate[$authorID]
 ]
 $thumbnail[$authorAvatar]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Thumbnail with icon of the server
+### Thumbnail with Server Icon
 
 ```bdfd
-$title[Bienvenue on $serverName]
+$title[Welcome to $serverName]
 $description[
-Bienvenue on the server **$serverName** !
-Nous sommes now **$membersCount** members !
+Welcome to the server **$serverName**!
+We are now **$membersCount** members!
 ]
 $thumbnail[$serverIcon]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Thumbnail and image combinés
+### Combining Thumbnail and Image
 
 ```bdfd
-$title[New mise to day]
+$title[New Update]
 $description[
-**Version 2.0** est now available !
+**Version 2.0** is now available!
 
-- Corrections of bugs
-- News functionnalités
-- Performances améliorées
+- Bug fixes
+- New features
+- Performance improvements
 ]
 $thumbnail[https://cdn.example.com/update-icon.png]
 $image[https://cdn.example.com/update-banner.png]
-$footer[Publié le $time]
+$footer[Published at $time]
 $color[#FEE75C]
 $sendMessage[]
 ```
 
 ## Notes
 
-- The URL must be accessible publicment.
-- Formats supportés : PNG, JPEG, GIF, WebP.
-- Le thumbnait is idéal pour display a avatar, un logo or une icon représentative.
-- Pour une grande image en pleine largeur, utilisez `$image[]`.
+- The URL must be publicly accessible.
+- Supported formats: PNG, JPEG, GIF, WebP.
+- The thumbnail is ideal for displaying an avatar, a logo, or a representative icon.
+- For a large full-width image, use `$image[]`.
+

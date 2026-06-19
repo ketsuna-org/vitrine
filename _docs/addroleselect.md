@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addRoleSelect
 
-Creates a select menu of roles. Allows users to choisir un or multipthe roles of the server since a list déroulante.
+Creates a select menu of roles. Allows users to choose one or multiple roles on the server from a dropdown list.
 
 ## Syntax
 
@@ -19,38 +19,38 @@ $addRoleSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
 | `customId` | Custom identifier for the interaction | Yes |
-| `placeholder` | Text displayed when rien n'est selectionné | Yes |
-| `minValues` | Minimum number of roles to selectionner (default: 1) | No |
-| `maxValues` | Maximum number of roles to selectionner (default: 1) | No |
-| `disabled` | `true` to disable le menu, `false` (default) | No |
+| `placeholder` | Text displayed when nothing is selected | Yes |
+| `minValues` | Minimum number of roles to select (default: 1) | No |
+| `maxValues` | Maximum number of roles to select (default: 1) | No |
+| `disabled` | `true` to disable the menu, `false` (default) | No |
 
 ## Description
 
-A **role select** displays la list of roles of the server. The user peut en selectionner un or several. The IDs of roles selectionnés sont retournés in `$onInteraction`.
+A **role select** displays the list of roles on the server. The user can select one or several. The IDs of the selected roles are returned in `$onInteraction`.
 
-Idéal for systèmes of self-roles, la selection of départements, or les menus of notification.
+Ideal for self-role systems, department selection, or notification menus.
 
 ## Examples
 
-### Attributeion of role
+### Role assignment
 
 ```
-$addRoleSelect[menu_role;Choisissez votre role]
-$sendMessage[Selectionnez votre role principal]
+$addRoleSelect[menu_role;Choose your role]
+$sendMessage[Select your main role]
 ```
 
-### Self-roles multiple
+### Multiple self-roles
 
 ```
 $addRoleSelect[menu_notifs;Notifications;1;3]
-$sendMessage[Choisissez les notifications to recevoir]
+$sendMessage[Choose the notifications to receive]
 ```
 
 ### Disabled menu
 
 ```
-$addRoleSelect[menu_role_disabled;Selection fermée;1;1;true]
-$sendMessage[Les inscriptions sont closes]
+$addRoleSelect[menu_role_disabled;Selection closed;1;1;true]
+$sendMessage[Registrations are closed]
 ```
 
 ## Handling the interaction
@@ -59,13 +59,14 @@ $sendMessage[Les inscriptions sont closes]
 $onInteraction
 $if[$customID==menu_role]
   $giveRole[$authorID;$message]
-  $sendMessage[Vous avez received the role <@&$message> !]
+  $sendMessage[You have received the role <@&$message>!]
 $endif
 ```
 
 ## Notes
 
-- Les values retournées sont of IDs of roles Discord.
+- The returned values are Discord role IDs.
 - Use `<@&ID>` to mention a role.
-- Seuls les roles only the bot peut gérer apparaîtront (hiérarchie of roles).
-- Parfait for systèmes of self-roles and menus of inscription.
+- Only the roles that the bot can manage will appear (role hierarchy).
+- Perfect for self-role systems and registration menus.
+

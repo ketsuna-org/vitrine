@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookContent
 syntax: $webhookContent[text]
-description: Sets the text content of the prochain message sent via $webhookSend. Alternative to the second parameter of $webhookSend.
+description: Sets the text content of the next message sent via $webhookSend. Alternative to the second parameter of $webhookSend.
 ---
 
 # $webhookContent
 
-The function `$webhookContent[]` allows **define the text content** of a message webhook, like alternative to the second parameter of `$webhookSend[]`.
+The `$webhookContent` function allows you to **set the text content** of a webhook message, as an alternative to the second parameter of `$webhookSend`.
 
 ## Syntax
 
@@ -22,49 +22,49 @@ $webhookContent[text]
 
 | Parameter | Description |
 |---|---|
-| `text` | Le text of the message. Supports the markdown, les emojis and les mentions. Maximum 2000 becauseactères. |
+| `text` | The text of the message. Supports markdown, emojis, and mentions. Maximum 2000 characters. |
 
 ## Return Value
 
-This function ne retourne pas of value. Elle définit le contenu for the prochain `$webhookSend[]`.
+This function does not return a value. It only sets the content for the next `$webhookSend`.
 
 ## Behavior
 
-- Le contenu défini remplace le second parameter of `$webhookSend[]`.
-- Supports tout le formatage markdown Discord.
-- Si `$webhookContent[]` and `$webhookSend[url;text]` sont all two utilisés, le contenu of `$webhookContent[]` est prioritaire.
+- The defined content replaces the second parameter of `$webhookSend`.
+- Supports all Discord markdown formatting.
+- If both `$webhookContent` and `$webhookSend[url;text]` are used, the content of `$webhookContent` takes priority.
 
 ## Examples
 
-### Contenu simple
+### Simple content
 
 ```bdfd
-$webhookContent[Ceci est un message sent via webhook !]
+$webhookContent[This is a message sent via webhook!]
 $webhookSend[$webhookURL;]
 ```
 
-### Contenu formatted
+### Formatted content
 
 ```bdfd
-$webhookUsername[Annonces]
+$webhookUsername[Announcements]
 $webhookAvatarURL[$serverIcon]
-$webhookContent[📢 **New annonce** of $username !
+$webhookContent[📢 **New announcement** from $username!
 >>> $message]
 $webhookSend[$webhookURL;]
 ```
 
-### Avec embed and contenu
+### With embed and content
 
 ```bdfd
-$webhookContent[Voici les détails ci-dessous :]
-$webhookTitle[Détails importants]
-$webhookDescription[Les information détaillées se trouvent ici.]
+$webhookContent[Here are the details below:]
+$webhookTitle[Important Details]
+$webhookDescription[The detailed information can be found here.]
 $webhookColor[#FEE75C]
 $webhookSend[$webhookURL;]
 ```
 
 ## Notes
 
-- La limit est of 2000 becauseactères for the contenu text.
-- Le contenu text apparaît au-dessus of the embed s'il y en a un.
-- Utilisez `>>> ` pour create a bloc of citation in the contenu.
+- The limit is 2000 characters for the text content.
+- The text content appears above the embed if there is one.
+- Use `>>> ` to create a block quote in the content.

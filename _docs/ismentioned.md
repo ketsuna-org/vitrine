@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: isMentioned
 syntax: $isMentioned
-description: Returns "true" si the user qui triggered the command was mentionné in the message, "false" otherwise.
+description: "Returns \"true\" if the user who triggered the command was mentioned in the message, \"false\" otherwise."
 ---
 
 # $isMentioned
 
-The variable `$isMentioned` retourne `"true"` si the user qui triggered the command was **mentionné** in the message (via `@mention`).
+The variable `$isMentioned` returns `"true"` if the user who triggered the command was **mentioned** in the message (via `@mention`).
 
 ## Syntax
 
@@ -21,22 +21,22 @@ $isMentioned
 ## Return Value
 
 - **Type** : String `"true"` or `"false"`
-- `"true"` : the user déclencheur est mentionné in the message
-- `"false"` : the user déclencheur is not mentionné
+- `"true"` : the triggering user is mentioned in the message
+- `"false"` : the triggering user is not mentioned
 
 ## Behavior
 
-- `$isMentioned` ne prend **no argument**.
-- Checks if l'**user déclencheur** fait partie mentions of the message.
-- Détecte les mentions directes (`@user`), pas les `@everyone`/`@here`.
+- `$isMentioned` takes **no arguments**.
+- Checks if the **triggering user** is part of the message mentions.
+- Detects direct mentions (`@user`), not `@everyone`/`@here`.
 
 ## Examples
 
-### Réagir to une mention
+### React to a mention
 
 ```bdfd
 $if[$isMentioned==true]
-  $sendMessage[Hé <@$userID>, vous avez été mentionné !]
+  $sendMessage[Hey <@$userID>, you were mentioned!]
 $endif
 ```
 
@@ -44,14 +44,14 @@ $endif
 
 ```bdfd
 $if[$isMentioned==true]
-  $sendMessage[Que then-je faire pour vous, $userName ?]
+  $sendMessage[What can I do for you, $userName?]
 $else
-  $sendMessage[Mentionnez-moi pour attirer mon attention !]
+  $sendMessage[Mention me to get my attention!]
 $endif
 ```
 
 ## Notes
 
-- `$isMentioned` vérifie si the user **déclencheur** est mentionné, pas si the bot est mentionné.
-- Pour savoir qui was mentionné, utilisez `$mentioned` (first mention) or `$mentions` (all mentions).
-- Ne détecte pas les mentions `@everyone` or `@here`.
+- `$isMentioned` checks if the **triggering** user is mentioned, not if the bot is mentioned.
+- To know who was mentioned, use `$mentioned` (first mention) or `$mentions` (all mentions).
+- Does not detect `@everyone` or `@here` mentions.

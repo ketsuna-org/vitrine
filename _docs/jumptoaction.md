@@ -54,13 +54,13 @@ $jumpToAction[processing]
 $stop
 
 [processing]
-Traitement of : $message
+Processing: $message
 ```
 
 ## Important Notes
 
 - **No automatic return**: unlike a function call, `$jumpToAction` does not return to the caller. Use `$callWorkflow` if you need call/return semantics.
-- **Same workflow only**: jumps are limitd to actions within the same workflow. For cross-workflow jumps, use `$callWorkflow`.
+- **Same workflow only**: jumps are limited to actions within the same workflow. For cross-workflow jumps, use `$callWorkflow`.
 - **Action placement**: target actions must be defined in the workflow. The exact placement (before or after the jump) depends on the Bot Creator workflow editor.
 
 ## Comparison with $callWorkflow

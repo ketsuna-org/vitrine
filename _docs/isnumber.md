@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isNumber
 syntax: $isNumber[value]
-description: Checks if une value est un number (integer or decimal, positif or négatif).
+description: Checks if a value is a number (integer or decimal, positive or negative).
 ---
 
 # $isNumber
 
-The function `$isNumber[value]` **vérifie if ae value est un number**, qu'il soit integer, decimal, positif or négatif. Plus permissive que `$isInteger[]`.
+The function `$isNumber[value]` **checks if a value is a number**, whether integer, decimal, positive or negative. More permissive than `$isInteger[]`.
 
 ## Syntax
 
@@ -22,40 +22,40 @@ $isNumber[value]
 
 | Parameter | Description |
 |---|---|
-| `value` | The value to tester. |
+| `value` | The value to test. |
 
 ## Return Value
 
 - **Type** : Boolean
-- `true` si `value` est un number (ex: `42`, `-7`, `3.14`, `0.001`)
-- `false` si `value` est of the text, un boolean, or vide.
+- `true` if `value` is a number (e.g. `42`, `-7`, `3.14`, `0.001`)
+- `false` if `value` is text, a boolean, or empty.
 
 ## Behavior
 
-- Accepte les integers and les décimaux.
-- Accepte les numbers négatifs.
-- N'accepte pas la notation scientifique (`1e5`).
-- N'accepte pas les separators of milliers (`1,000`).
+- Accepts integers and decimals.
+- Accepts negative numbers.
+- Does not accept scientific notation (`1e5`).
+- Does not accept thousands separators (`1,000`).
 
 ## Examples
 
-### Validation of un prix
+### Price validation
 
 ```bdfd
-$var[prix;$message[1]]
-$if[$isNumber[$var[prix]]==true]
-  $if[$var[prix]>=0]
-    $var[taxe;$math[$var[prix]*0.2]]
-    $sendMessage[💰 Prix: $var[prix]€ | TVA: $var[taxe]€ | Total: $math[$var[prix]+$var[taxe]]€]
+$var[price;$message[1]]
+$if[$isNumber[$var[price]]==true]
+  $if[$var[price]>=0]
+    $var[tax;$math[$var[price]*0.2]]
+    $sendMessage[💰 Price: $var[price]€ | VAT: $var[tax]€ | Total: $math[$var[price]+$var[tax]]€]
   $else
-    $sendMessage[❌ Le prix must be positif.]
+    $sendMessage[❌ The price must be positive.]
   $endif
 $else
-  $sendMessage[❌ Veuillez entrer un number valid.]
+  $sendMessage[❌ Please enter a valid number.]
 $endif
 ```
 
-### Calculatrice simple
+### Simple calculator
 
 ```bdfd
 $var[a;$message[1]]
@@ -64,11 +64,11 @@ $if[$isNumber[$var[a]]==true&&$isNumber[$var[b]]==true]
   $sendMessage[📊 $var[a] + $var[b] = $math[$var[a]+$var[b]]]
   $sendMessage[📊 $var[a] × $var[b] = $math[$var[a]*$var[b]]]
 $else
-  $sendMessage[❌ Veuillez entrer two numbers valids.]
+  $sendMessage[❌ Please enter two valid numbers.]
 $endif
 ```
 
-### Détection of type complete
+### Complete type detection
 
 ```bdfd
 $var[val;$message[1]]
@@ -85,8 +85,8 @@ $endif
 
 ## Notes
 
-- `$isNumber[42]` retourne `true`.
-- `$isNumber[3.14]` retourne `true`.
-- `$isNumber[-5.5]` retourne `true`.
-- `$isNumber[true]` retourne `false`.
-- Pour n'accepter que les integers, utilisez `$isInteger[]`.
+- `$isNumber[42]` returns `true`.
+- `$isNumber[3.14]` returns `true`.
+- `$isNumber[-5.5]` returns `true`.
+- `$isNumber[true]` returns `false`.
+- To accept only integers, use `$isInteger[]`.

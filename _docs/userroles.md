@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userRoles
 syntax: $userRoles
-description: Returns the list IDs roles attribués to the user on the server current.
+description: Returns the list of role IDs assigned to the user on the current server.
 ---
 
 # $userRoles
 
-The variable `$userRoles` retourne la **list IDs of roles** attribués to the user on the server où the command est executed.
+The `$userRoles` function returns the **list of role IDs** assigned to the user on the server where the command is executed.
 
 ## Syntax
 
@@ -20,49 +20,49 @@ $userRoles
 
 ## Return Value
 
-- **Type** : List of snowflakes (strings numériques), separateds par virgules
+- **Type**: List of snowflakes (numerical strings), separated by commas
 - Example: `123456789,987654321,555555555`
-- Inclut the role `@everyone` and all roles attribués
+- Includes the `@everyone` role and all assigned roles.
 
 ## Behavior
 
-- `$userRoles` ne prend **no argument**.
-- Returns thes IDs of **all** les roles of the user on the server.
-- L'ordre peut correspondre to la hiérarchie (du plus bas to the plus haut).
+- `$userRoles` takes **no arguments**.
+- Returns the IDs of **all** the roles of the user on the server.
+- The order may correspond to the hierarchy (from lowest to highest).
 
 ## Examples
 
-### Display les IDs roles
+### Display role IDs
 
 ```bdfd
 $title[Roles of $userName]
 $description[
-The user possède les roles nexts :
+The user has the following roles:
 `$userRoles`
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérifier un role specific
+### Check for a specific role
 
 ```bdfd
 $if[$checkContains[$userRoles;123456789012345678]==true]
-  $sendMessage[Vous avez the role VIP !]
+  $sendMessage[You have the VIP role!]
 $else
-  $sendMessage[Vous n'avez pas the role VIP.]
+  $sendMessage[You do not have the VIP role.]
 $endif
 ```
 
-### Compter les roles
+### Count roles
 
 ```bdfd
 $let[count;$arrayCount[$splitText[$userRoles;,]]]
-$sendMessage[Vous avez $count roles on ce server.]
+$sendMessage[You have $count roles on this server.]
 ```
 
 ## Notes
 
-- Les IDs sont snowflakes numériques, pas noms of roles.
-- Utilisez `$roleName[ID]` pour obtenir the name of a role from son ID.
-- Pour check thes permissions, utilisez `$userPerms` qui est plus directly exploitable.
+- The IDs are numerical snowflakes, not role names.
+- Use `$roleName[ID]` to get the name of a role from its ID.
+- To check permissions, use `$userPerms` which is more directly exploitable.

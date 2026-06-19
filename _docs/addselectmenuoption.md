@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addSelectMenuOption
 
-Adds an option to un select menu existing, created with `$newSelectMenu`.
+Adds an option to an existing select menu created with `$newSelectMenu`.
 
 ## Syntax
 
@@ -18,51 +18,51 @@ $addSelectMenuOption[menuId;label;value;(description);(emoji);(default)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `menuId` | Identifier of the menu target (celui of `$newSelectMenu`) | Yes |
+| `menuId` | Identifier of the target menu (the one from `$newSelectMenu`) | Yes |
 | `label` | Text displayed for the option | Yes |
-| `value` | Value rsente when the option est choisie | Yes |
-| `description` | Description supplémentaire displayede sous le label | No |
+| `value` | Value sent when the option is chosen | Yes |
+| `description` | Additional description displayed under the label | No |
 | `emoji` | Emoji displayed to the left of the label | No |
-| `default` | `true` pour préselectionner cette option, `false` (default) | No |
+| `default` | `true` to preselect this option, `false` (default) | No |
 
 ## Description
 
-Cette function must be called after `$newSelectMenu` pour peupler le menu. Each call ajoute une option to the menu spécifié par `menuId`.
+This function must be called after `$newSelectMenu` to populate the menu. Each call adds an option to the menu specified by `menuId`.
 
 ## Examples
 
 ### Options with descriptions
 
 ```
-$newSelectMenu[menu_lang;Choisissez un langage]
-$addSelectMenuOption[menu_lang;JavaScript;js;Langage web dynamic;🟨]
-$addSelectMenuOption[menu_lang;Python;py;Langage polyvaslow;🐍]
-$addSelectMenuOption[menu_lang;Rust;rs;Langage système performant;🦀]
-$sendMessage[Quel langage préférez-vous ?]
+$newSelectMenu[menu_lang;Choose a language]
+$addSelectMenuOption[menu_lang;JavaScript;js;Dynamic web language;🟨]
+$addSelectMenuOption[menu_lang;Python;py;Polyvalent language;🐍]
+$addSelectMenuOption[menu_lang;Rust;rs;High-performance system language;🦀]
+$sendMessage[Which language do you prefer?]
 ```
 
 ### Option by default
 
 ```
-$newSelectMenu[menu_theme;Thème;1;1]
-$addSelectMenuOption[menu_theme;Clair;light;Mode clair;☀️]
-$addSelectMenuOption[menu_theme;Sombre;dark;Mode sombre;🌙;true]
-$sendMessage[Choisissez votre thème]
+$newSelectMenu[menu_theme;Theme;1;1]
+$addSelectMenuOption[menu_theme;Light;light;Light mode;☀️]
+$addSelectMenuOption[menu_theme;Dark;dark;Dark mode;🌙;true]
+$sendMessage[Choose your theme]
 ```
 
 ### Menu with emojis only
 
 ```
-$newSelectMenu[menu_react;Réaction fast]
+$newSelectMenu[menu_react;Quick reaction]
 $addSelectMenuOption[menu_react;Like;like;;👍]
 $addSelectMenuOption[menu_react;Love;love;;❤️]
 $addSelectMenuOption[menu_react;Laugh;laugh;;😂]
 $addSelectMenuOption[menu_react;Wow;wow;;😮]
-$sendMessage[Réagissez to this message]
+$sendMessage[React to this message]
 ```
 
 ## Notes
 
-- Le `menuId` doit correspondre exactly to the `customId` of the `$newSelectMenu`.
-- Maximum 25 options par menu.
-- Les `value` sont les values receivedes in `$onInteraction`.
+- The `menuId` must correspond exactly to the `customId` of `$newSelectMenu`.
+- Maximum of 25 options per menu.
+- The `value` fields are the values received in `$onInteraction`.

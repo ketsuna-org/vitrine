@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleCount
 syntax: $roleCount[(guildID)]
-description: Returns the number total of roles on the server Discord.
+description: Returns the total number of roles on the Discord server.
 ---
 
 # $roleCount
 
-The function `$roleCount` retourne le **number total of roles** présents on the server Discord, incluant the role `@everyone`.
+The function `$roleCount` returns the **total number of roles** present on the Discord server, including the `@everyone` role.
 
 ## Syntax
 
@@ -22,43 +22,43 @@ $roleCount[(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `guildID` | Optional. The ID of the server cible. Si omitted, the server courant. |
+| `guildID` | Optional. The ID of the target server. If omitted, the current server is used. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` | The namebre of roles on the server. |
+| `integer` | The number of roles on the server. |
 
 ## Examples
 
 ### Number of roles
 
 ```bdfd
-$sendMessage[Ce server a $roleCount roles.]
+$sendMessage[This server has $roleCount roles.]
 ```
 
-### Statistiques of the server
+### Server statistics
 
 ```bdfd
 $sendMessage[
-**Stats of the server :**
-Members : $memberCount
-Roles : $roleCount
-Channels : $channelCount
+**Server Stats:**
+Members: $memberCount
+Roles: $roleCount
+Channels: $channelCount
 ]
 ```
 
-### Vérifier la limit of roles
+### Check role limit
 
 ```bdfd
 $if[$roleCount>=250]
-  $sendMessage[⚠️ Warning: ce server approche of la limit of 250 roles Discord.]
+  $sendMessage[⚠️ Warning: This server is approaching the Discord limit of 250 roles.]
 $endif
 ```
 
 ## Notes
 
-- Inclut the role `@everyone` in the compte.
-- La limit Discord est of 250 roles par server.
-- Utile pour statistiques or vérifications administratives.
+- Includes the `@everyone` role in the count.
+- The Discord limit is 250 roles per server.
+- Useful for statistics or administrative checks.

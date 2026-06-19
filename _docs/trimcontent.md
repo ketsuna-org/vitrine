@@ -5,11 +5,12 @@ translation_key: docs
 category: "Text Manipulation"
 function_name: trimContent
 syntax: $trimContent[text]
-description: Supprime les espaces en début and fin of un text (trim). Ne modifie pas les espaces to l'intérieur of the text.
+description: Removes leading and trailing spaces from a text (trim). Does not modify spaces within the text.
 ---
+
 # $trimContent
 
-The function `$trimContent[]` **supprime les espaces** en début and fin of une string (trim).
+The function `$trimContent[]` **removes leading and trailing spaces** from a string (trim).
 
 ## Syntax
 
@@ -21,36 +22,36 @@ $trimContent[text]
 
 | Parameter | Description |
 |---|---|
-| `text` | Le text to nettoyer (espaces en début/fin deleteds). |
+| `text` | The text to clean (leading/trailing spaces will be removed). |
 
 ## Return Value
 
-- **Type** : String
-- Le text without espaces to the début ni to la fin.
+- **Type**: String
+- The text without leading or trailing spaces.
 
 ## Behavior
 
-- Ne touche PAS to the espaces between thes mots.
-- Supprime espaces, tabulations, and retours to la ligne en début/fin.
-- Très utile after une extraction or une concaténation.
+- Does NOT affect spaces between words.
+- Removes spaces, tabs, and newlines at the beginning/end.
+- Very useful after extraction or concatenation.
 
 ## Examples
 
-### Nettoyage simple
+### Simple Cleaning
 
 ```bdfd
-$sendMessage[Result : "$trimContent[   Hello World   ]"]
-; Displays : Result : "Hello World"
+$sendMessage[Result: "$trimContent[   Hello World   ]"]
+; Displays: Result: "Hello World"
 ```
 
-### Nettoyer une entrée user
+### Cleaning User Input
 
 ```bdfd
 $let[input;$trimContent[$message[2]]]
-$sendMessage[Argument nettoyé : "$input"]
+$sendMessage[Cleaned argument: "$input"]
 ```
 
-### Compareason without espaces
+### Comparison Without Spaces
 
 ```bdfd
 $if[$trimContent[$message[1]]==admin]
@@ -58,7 +59,7 @@ $if[$trimContent[$message[1]]==admin]
 $endif
 ```
 
-### Nettoyage after extraction
+### Cleaning After Extraction
 
 ```bdfd
 $let[extracted;$subString[$message;0;10]]
@@ -68,6 +69,7 @@ $sendMessage[$clean]
 
 ## Notes
 
-- Plus efficace que `$replaceText[text; ;]` because il ne modifie que les extrémités.
-- Pour supprimer all espaces (y compris internals), utilisez `$replaceText[text; ;]`.
-- Pour conserver TOUS les espaces, utilisez `$disableInnerSpaceRemoval`.
+- More efficient than `$replaceText[text; ;]` because it only modifies the ends.
+- To remove all spaces (including internal ones), use `$replaceText[text; ;]`.
+- To preserve all spaces, use `$disableInnerSpaceRemoval`.
+

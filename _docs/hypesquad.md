@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: hypeSquad
 syntax: $hypeSquad[(userID)]
-description: Returns the maison HypeSquad to laquelle appartient the user (Bravery, Brilliance, Balance) or "None" s'il n'en fait pas partie.
+description: Returns the HypeSquad house to which the user belongs (Bravery, Brilliance, Balance) or "None" if they are not part of any.
 ---
 
 # $hypeSquad
 
-The function `$hypeSquad[]` allows **connaître la maison HypeSquad** of a user Discord. Returns `Bravery`, `Brilliance`, `Balance` or `None`.
+The function `$hypeSquad[]` allows you to **find the HypeSquad house** of a Discord user. Returns `Bravery`, `Brilliance`, `Balance` or `None`.
 
 ## Syntax
 
@@ -22,56 +22,56 @@ $hypeSquad[(userID)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | Optional - The ID of the user. Par default l'auteur of the command. |
+| `userID` | Optional - The ID of the user. By default, the author of the command. |
 
 ## Return Value
 
-- **Type** : String
-- `Bravery` - Maison of the Courage (violet)
-- `Brilliance` - Maison of la Brillance (orange)
-- `Balance` - Maison of l'Équilibre (vert)
-- `None` - The user n'a pas rejoint of maison HypeSquad.
+- **Type**: String
+- `Bravery` - House of Courage (purple)
+- `Brilliance` - House of Brilliance (orange)
+- `Balance` - House of Balance (green)
+- `None` - The user has not joined a HypeSquad house.
 
 ## Behavior
 
-- Checks le profil Discord of the user pour déterminer sa maison HypeSquad.
-- La participation to HypeSquad est une option of profil Discord, distincte of the programme HypeSquad Events.
-- Returns `None` si the user n'a pas choisi of maison.
+- Checks the Discord profile of the user to determine their HypeSquad house.
+- Participation in HypeSquad is a Discord profile option, distinct from the HypeSquad Events program.
+- Returns `None` if the user has not chosen a house.
 
 ## Examples
 
-### Affichage simple
+### Simple display
 
 ```bdfd
 $title[🏠 HypeSquad]
-$description[Votre maison HypeSquad : **$hypeSquad**]
+$description[Your HypeSquad house: **$hypeSquad**]
 $sendMessage[]
 ```
 
-### Emoji custom according to the maison
+### Custom message according to the house
 
 ```bdfd
 $let[house;$hypeSquad[$authorID]]
 
 $if[$house==Bravery]
-  🟣 Maison of the Courage
+  🟣 House of Courage
 $elseif[$house==Brilliance]
-  🟠 Maison of la Brillance
+  🟠 House of Brilliance
 $elseif[$house==Balance]
-  🟢 Maison of l'Équilibre
+  🟢 House of Balance
 $else
-  ⚪ Aucune maison HypeSquad
+  ⚪ No HypeSquad house
 $endif
 ```
 
-### Fiche user complete
+### Complete user info
 
 ```bdfd
 $title[👤 $userName[$mentioned[1]]]
 $description[
-**ID :** $mentioned[1]
-**HypeSquad :** $hypeSquad[$mentioned[1]]
-**Badges :** $userBadges[$mentioned[1]]
+**ID:** $mentioned[1]
+**HypeSquad:** $hypeSquad[$mentioned[1]]
+**Badges:** $userBadges[$mentioned[1]]
 ]
 $thumbnail[$userAvatar[$mentioned[1]]]
 $sendMessage[]
@@ -79,6 +79,6 @@ $sendMessage[]
 
 ## Notes
 
-- Requires que the user ait configured sa maison HypeSquad in their parameters Discord.
-- Distinct badges (le badge HypeSquad est géré par `$hasBadge` / `$userBadges`).
-- Les noms of maisons sont retournés en anglais (Bravery, Brilliance, Balance).
+- Requires that the user has configured their HypeSquad house in their Discord settings.
+- Distinct badges (the HypeSquad badge is managed by `$hasBadge` / `$userBadges`).
+- House names are returned in English (Bravery, Brilliance, Balance).

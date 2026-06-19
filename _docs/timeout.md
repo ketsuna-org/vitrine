@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: timeout
 syntax: $timeout[userID;duration;(reason)]
-description: Met un user en timeout (silence temporary).
+description: Temporarily times out a user (temporary silence).
 ---
 
 # $timeout
 
-The function `$timeout` **met un user en timeout** on Discord. Pendant the duration spécifiée, the user ne peut ni envoyer of messages, ni parler en vocal, ni réagir. The bot doit avoir la permission `ModerateMembers`.
+The function `$timeout` times out a user on Discord. During the specified duration, the user cannot send messages, speak in voice channels, or react. The bot must have the `ModerateMembers` permission.
 
 ## Syntax
 
@@ -23,52 +23,53 @@ $timeout[userID;duration;(reason)]
 | Parameter | Description |
 |---|---|
 | `userID` | The ID of the user. Required. |
-| `duration` | Duration of the timeout. Required. Formats acceptés : `s` (seconds), `m` (minutes), `h` (hours), `d` (days). Examples: `"60s"`, `"5m"`, `"1h"`, `"7d"`. |
-| `reason` | Optional. The reason of the timeout. |
+| `duration` | Duration of the timeout. Required. Accepted formats: `s` (seconds), `m` (minutes), `h` (hours), `d` (days). Examples: `"60s"`, `"5m"`, `"1h"`, `"7d"`. |
+| `reason` | Optional. The reason for the timeout. |
 
 ## Return Value
 
-Aucune. The user est mis en timeout for the durée spécifiée.
+None. The user is timed out for the specified duration.
 
 ## Examples
 
-### Timeout of 5 minutes
+### Timeout of 5 Minutes
 
 ```bdfd
 $timeout[$mentioned[1];5m;Spam in the chat]
-$sendMessage[⏳ <@$mentioned[1]> est en timeout pour 5 minutes.]
+$sendMessage[⏳ <@$mentioned[1]> has been timed out for 5 minutes.]
 ```
 
-### Timeout of une hour
+### Timeout of One Hour
 
 ```bdfd
-$timeout[$mentioned[1];1h;Comportement toxique]
-$sendMessage[⏳ Timeout of 1 hour appliqué.]
+$timeout[$mentioned[1];1h;Toxic behavior]
+$sendMessage[⏳ 1-hour timeout applied.]
 ```
 
-### Timeout of 7 days
+### Timeout of 7 Days
 
 ```bdfd
-$timeout[$mentioned[1];7d;Non-respect répété règles]
-$sendMessage[⏳ Timeout of 7 days appliqué. Prochaine infraction = ban.]
+$timeout[$mentioned[1];7d;Repeatedly breaking the rules]
+$sendMessage[⏳ 7-day timeout applied. Next infraction will result in a ban.]
 ```
 
-### Command of timeout modulable
+### Customizable Timeout Command
 
 ```bdfd
 $if[$argsCount<2]
-  $sendMessage[Usage: !timeout <@mention> <durée> <reason>]
+  $sendMessage[Usage: !timeout <@mention> <duration> <reason>]
   $stop
 $endif
 
 $timeout[$mentioned[1];$message[2];$message[3]]
-$sendMessage[Timeout appliqué.]
+$sendMessage[Timeout applied.]
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ModerateMembers`.
-- The duration maximale est of 28 days (limit Discord).
-- Formats of durée : `s` seconds, `m` minutes, `h` hours, `d` days.
-- Pour retirer le timeout before la fin, utilisez `$unTimeout`.
-- Contrairement to the mute, le timeout empêche also l'envoi of messages textuels.
+- The bot must have the `ModerateMembers` permission.
+- The maximum duration is 28 days (Discord limit).
+- Duration formats: `s` (seconds), `m` (minutes), `h` (hours), `d` (days).
+- To remove a timeout early, use `$unTimeout`.
+- Unlike a mute, a timeout also prevents sending text messages.
+

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: sum
 syntax: $sum[value1;value2;...]
-description: Calculates the somme of all values fournies.
+description: Calculates the sum of all provided values.
 ---
 
 # $sum[]
 
-The function `$sum[]` additionne all values numériques qui lui sont passées. Elle est variadique, ce qui signifie qu'elle accepte un number illimité of arguments.
+The function `$sum[]` adds up all numerical values passed to it. It is variadic, meaning it accepts an unlimited number of arguments.
 
 ## Syntax
 
@@ -22,42 +22,42 @@ $sum[value1;value2;...]
 
 | Parameter | Type   | Required | Description                                              |
 |-----------|--------|-------------|----------------------------------------------------------|
-| `values` | number | Yes         | List of values numériques separatedes par `;`. Variadique. |
+| `values` | number | Yes         | List of numerical values separated by `;`. Variadic. |
 
 ## Behavior
 
-- Additionne all values in the ordre où they are fournies.
-- Si noe value is notsée, retourne `0`.
-- Les values non numériques sont ignorées or convertedes en `0` according to the context.
-- Supports thes numbers décimaux.
+- Adds all values in the order they are provided.
+- If no value is passed, it returns `0`.
+- Non-numerical values are ignored or converted to `0` depending on the context.
+- Supports decimal numbers.
 
 ## Examples
 
-**Somme simple :**
+**Simple sum:**
 ```
 $sum[5;10;15]
 → 30
 ```
 
-**Avec a single value :**
+**With a single value:**
 ```
 $sum[42]
 → 42
 ```
 
-**Sans argument :**
+**Without arguments:**
 ```
 $sum[]
 → 0
 ```
 
-**Dans un context pratique (total of un panier) :**
+**In a practical context (cart total):**
 ```
 $sum[$getVar[item1];$getVar[item2];$getVar[item3]]
 ```
 
 ## Notes
 
-- The result est toudays une string of becauseactères représentant un number.
-- Pour opérations plus complexs, utilisez `$calculate[]`.
-- Les points-virgules `;` sont requireds like separators.
+- The result is always a string of characters representing a number.
+- For more complex operations, use `$calculate[]`.
+- Semicolons `;` are required as separators.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: ignoreLinks
 syntax: $ignoreLinks
-description: Function guard qui stops silencieusement l'exécution si the message déclencheur contains un link HTTP/HTTPS.
+description: A function guard that silently stops execution if the triggering message contains an HTTP/HTTPS link.
 ---
 
 # $ignoreLinks
 
-The function guard `$ignoreLinks` détecte la présence of **links HTTP/HTTPS** in the message déclencheur. Si un link est found, the command est interrompue silencieusement.
+The function guard `$ignoreLinks` detects the presence of **HTTP/HTTPS links** in the triggering message. If a link is found, command execution is silently interrupted.
 
 ## Syntax
 
@@ -20,47 +20,47 @@ $ignoreLinks
 
 ## Parameters
 
-Aucun parameter. `$ignoreLinks` s'utilise seul.
+No parameters. `$ignoreLinks` is used on its own.
 
 ## Behavior
 
-- Analyse le contenu of the message to la recherche of `http://` or `https://`.
-- Si un link est found, the command est immédiatement interrompue **without message**.
-- Si no link n'est found, the command continue normalement.
-- Détecte all links standards (HTTP and HTTPS), mais pas les links `discord.gg`, `ftp://`, etc.
+- Analyzes the content of the message searching for `http://` or `https://`.
+- If a link is found, the command is immediately interrupted **without a message**.
+- If no link is found, the command continues normally.
+- Detects all standard links (HTTP and HTTPS), but not links like `discord.gg`, `ftp://`, etc.
 
 ## Examples
 
-### Command anti-spam links
+### Anti-link spam command
 
 ```bdfd
 $ignoreLinks
-$sendMessage[Votre message was traité (no link détecté).]
+$sendMessage[Your message was processed (no link detected).]
 ```
 
-### Avec error message custom
+### With custom error message
 
 ```bdfd
-$if[$messageContains[https://;$messageContains[http://]]==true
-  $sendMessage[❌ Les links sont forbiddens in cette command.]
+$if[$messageContains[https://;http://]==true]
+  $sendMessage[❌ Links are forbidden in this command.]
   $stop
 $endif
-$sendMessage[Traitement OK.]
+$sendMessage[Processing OK.]
 ```
 
-### Log tentatives with links
+### Log attempts with links
 
 ```bdfd
-$if[$messageContains[https://;$messageContains[http://]]==true
-  $log[Link bloqué : $message — Auteur : $userName ($authorID)]
+$if[$messageContains[https://;http://]==true]
+  $log[Link blocked: $message — Author: $userName ($authorID)]
   $stop
 $endif
-$sendMessage[Message traité.]
+$sendMessage[Message processed.]
 ```
 
 ## Notes
 
-- `$ignoreLinks` est **silencieux** : the user ne receives noe notification. Pour informer the user, utilisez la vérification manuelle with `$messageContains`.
-- Ne détecte pas les links sous forme `discord.gg/invite` or les links Markdown hiddens `[text](https://...)`. Pour couvrir ces cas, utilisez `$messageContains`.
-- `$ignoreLinks` vérifie only the message déclencheur, pas les embeds ni les pièces jointes.
-- Idéal for the channels où les links sont forbiddens (prévention spam/phishing).
+- `$ignoreLinks` is **silent**: the user receives no notification. To inform the user, use manual checking with `$messageContains`.
+- It does not detect links in the format `discord.gg/invite` or hidden Markdown links `[text](https://...)`. To cover these cases, use `$messageContains`.
+- `$ignoreLinks` only checks the triggering message, not embeds or attachments.
+- Ideal for channels where links are forbidden (spam/phishing prevention).

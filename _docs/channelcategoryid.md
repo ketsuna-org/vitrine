@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelCategoryID
 syntax: $channelCategoryID[(channelID)]
-description: Returns the ID of the catégorie parente of a channel Discord.
+description: Returns the ID of the parent category of a Discord channel.
 ---
 
 # $channelCategoryID
 
-The `$channelCategoryID` function returns the **ID of the catégorie parente** of a channel Discord. If the channel n'appartient to noe catégorie, la function retourne a string vide.
+The `$channelCategoryID` function returns the **ID of the parent category** of a Discord channel. If the channel does not belong to any category, the function returns an empty string.
 
 ## Syntax
 
@@ -22,48 +22,48 @@ $channelCategoryID[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the catégorie parente, or `""` si noe. |
+| `snowflake` (string) | The ID of the parent category, or `""` if none. |
 
 ## Examples
 
-### Obtenir la catégorie parente
+### Get the parent category
 
 ```bdfd
-$sendMessage[ID of the catégorie : $channelCategoryID]
+$sendMessage[Category ID: $channelCategoryID]
 ```
 
-### Name of the catégorie parente
+### Name of the parent category
 
 ```bdfd
-$sendMessage[Catégorie : $channelName[$channelCategoryID]]
+$sendMessage[Category name: $channelName[$channelCategoryID]]
 ```
 
-### Vérifier l'appartenance to une catégorie
+### Check category membership
 
 ```bdfd
 $if[$channelCategoryID==123456789012345678]
-  $sendMessage[Ce channel est in the catégorie Administration.]
+  $sendMessage[This channel is in the Administration category.]
 $else
-  $sendMessage[Ce channel est in a autre catégorie.]
+  $sendMessage[This channel is in another category.]
 $endif
 ```
 
-### Channel hors catégorie
+### Channel not in a category
 
 ```bdfd
 $if[$channelCategoryID==]
-  $sendMessage[Ce channel n'appartient to noe catégorie.]
+  $sendMessage[This channel does not belong to any category.]
 $endif
 ```
 
 ## Notes
 
-- `$parentID` and `$categoryID` sont alias of `$channelCategoryID`.
-- Les channels DM do not have of catégorie parente.
-- Les catégories elles-mêmes do not have of catégorie parente.
+- `$parentID` and `$categoryID` are aliases of `$channelCategoryID`.
+- DM channels do not have a parent category.
+- Categories themselves do not have a parent category.

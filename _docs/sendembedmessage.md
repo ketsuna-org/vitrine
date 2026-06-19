@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: sendEmbedMessage
 syntax: $sendEmbedMessage[(channelId);(messageId)]
-description: Sends a embed construit (via $title, $description, $addField, etc.) in a canal specific. Optionallement, peut éditer un message existing if a messageId est fourni.
+description: Sends a constructed embed (via $title, $description, $addField, etc.) to a specific channel. Optionally edits an existing message if a messageId is provided.
 ---
 
-# $sendEmbedMessage[] — Envoyer un Embed
+# $sendEmbedMessage[] — Send an Embed
 
-`$sendEmbedMessage[]` sends the embed previously construit in a canal Discord. C'est la méthode main pour envoyer messages riches (embeds) of manière ciblée, distincte of `$sendMessage[]`.
+`$sendEmbedMessage[]` sends the previously constructed embed to a Discord channel. This is the primary method for sending rich messages (embeds) to a target channel, distinct from `$sendMessage[]`.
 
 ## Syntax
 
@@ -22,66 +22,66 @@ $sendEmbedMessage[(channelId);(messageId)]
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `channelId` | No | Canal courant | ID of the canal of destination. |
-| `messageId` | No | New message | ID of a message to éditer. |
+| `channelId` | No | Current channel | ID of the destination channel. |
+| `messageId` | No | New message | ID of a message to edit. |
 
 ## Return Value
 
-- **Type** : `string`
-- Returns the identifier of the message created or édité. Utilisable pour opérations ultérieures.
+- **Type**: `string`
+- Returns the identifier of the message created or edited. Can be used for subsequent operations.
 
-## Utilisation
+## Usage
 
-### Embed simple in the canal courant
+### Simple embed in the current channel
 
 ```bdfd
-$title[State of the server]
-$description[Tout functionne normalement]
+$title[Server Status]
+$description[All systems functioning normally]
 $color[#2ECC71]
 $addField[Uptime;$uptime;yes]
-$addField[Joueurs;$var[players];yes]
+$addField[Players;$var[players];yes]
 $sendEmbedMessage
 ```
 
-### Embed in a canal specific
+### Embed in a specific channel
 
 ```bdfd
-$title[New member]
-$description[$username a rejoint the server !]
+$title[New Member]
+$description[$username has joined the server!]
 $addField[ID;$authorID;yes]
 $thumbnail[$authorAvatar]
 $color[#5865F2]
-$sendEmbedMessage[$channelID[bienvenue]]
+$sendEmbedMessage[$channelID[welcome]]
 ```
 
-### Édition of an embed existing
+### Editing an existing embed
 
 ```bdfd
-$title[Classement - Mis to day]
-$description[Classement actualisé]
-$addField[1er;$var[top1];yes]
-$addField[2ème;$var[top2];yes]
-$addField[3ème;$var[top3];yes]
+$title[Leaderboard - Updated]
+$description[Updated leaderboard]
+$addField[1st;$var[top1];yes]
+$addField[2nd;$var[top2];yes]
+$addField[3rd;$var[top3];yes]
 $color[#F1C40F]
-$footer[Mis to day to $time]
-$sendEmbedMessage[$channelID[classement];$var[leaderboard_msg_id]]
+$footer[Updated at $time]
+$sendEmbedMessage[$channelID[leaderboard];$var[leaderboard_msg_id]]
 ```
 
-### Capture of the ID pour usage ultérieur
+### Capturing the ID for later use
 
 ```bdfd
-$title[Message éditable]
-$description[This message sera mis to day]
+$title[Editable Message]
+$description[This message will be updated]
 $var[msgId;$sendEmbedMessage]
 $editEmbedIn[10s]
-$title[Message éditable - Mis to day]
-$description[La mise to day was effectuée]
+$title[Editable Message - Updated]
+$description[The update was successful]
 $color[#27AE60]
 ```
 
 ## Notes
 
-- The embed must be construit **before** l'call to `$sendEmbedMessage[]` (avec `$title[]`, `$description[]`, `$addField[]`, etc.).
-- Si no embed n'est défini, the message sera vide (comportement to éviter).
-- The value of retour (message ID) est utile pour éditions or suppressions ultérieures.
-- Pour envoyer to la fois of the text and un embed, utilisez `$sendMessage[]` qui peut combiner les two.
+- The embed must be constructed **before** calling `$sendEmbedMessage[]` (using `$title[]`, `$description[]`, `$addField[]`, etc.).
+- If no embed is defined, the message will be empty (which should be avoided).
+- The return value (message ID) is useful for subsequent edits or deletions.
+- To send both text and an embed, use `$sendMessage[]` which can combine both.

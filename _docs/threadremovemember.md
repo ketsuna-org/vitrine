@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: threadRemoveMember
 syntax: $threadRemoveMember[threadID;userID]
-description: Retire un member of un fil of discussion (thread). The user ne pourra plus voir ni participer to the thread private.
+description: Removes a member from a thread. The user will no longer be able to view or participate in the private thread.
 ---
 
 # $threadRemoveMember
 
-The function `$threadRemoveMember[]` allows **retirer un user of un thread**. The user ne pourra plus accéder to the thread private.
+The function `$threadRemoveMember[]` allows you to **remove a user from a thread**. The user will no longer be able to access the private thread.
 
 ## Syntax
 
@@ -22,38 +22,39 @@ $threadRemoveMember[threadID;userID]
 
 | Parameter | Description |
 |---|---|
-| `threadID` | The ID of the thread cible. |
-| `userID` | The ID of the user to retirer. |
+| `threadID` | The ID of the target thread. |
+| `userID` | The ID of the user to remove. |
 
 ## Return Value
 
-This function ne retourne pas of value.
+This function does not return any value.
 
 ## Behavior
 
-- Functionne mainment for the threads privates.
-- Dans un thread public, les users ne can pas être retirés (ils can toudays le voir).
-- The bot doit avoir `MANAGE_THREADS` or être le créateur of the thread private.
+- Works primarily for private threads.
+- In a public thread, users cannot be removed (they can always view it).
+- The bot must have the `MANAGE_THREADS` permission or be the creator of the private thread.
 
 ## Examples
 
-### Fermer un ticket
+### Closing a Ticket
 
 ```bdfd
 $threadRemoveMember[$threadID;$authorID]
-$editThread[$threadID;[Fermé] Ticket;true;true]
-$sendMessage[Ticket fermé and user retiré.]
+$editThread[$threadID;[Closed] Ticket;true;true]
+$sendMessage[Ticket closed and user removed.]
 ```
 
-### Retrait after resolvedtion
+### Removal After Resolution
 
 ```bdfd
 $threadRemoveMember[$threadID;$mentioned[1]]
-$channelSendMessage[$threadID;<$mentioned[1]> was retiré of the thread.]
+$channelSendMessage[$threadID;<@$mentioned[1]> has been removed from the thread.]
 ```
 
 ## Notes
 
-- Dans les threads publics, `$threadRemoveMember[]` peut ne pas avoir of effet visible.
-- The user retiré ne receives pas of notification.
-- Pour les threads privates, it is la méthode appropriée pour gérer l'accès.
+- In public threads, `$threadRemoveMember[]` may not have any visible effect.
+- The removed user does not receive a notification.
+- For private threads, this is the appropriate method to manage access.
+

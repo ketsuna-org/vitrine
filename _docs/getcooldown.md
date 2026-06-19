@@ -32,7 +32,7 @@ If no type is specified, `$getCooldown` returns the remaining time of the **cool
 The most common use of `$getCooldown` is inside the cooldown error message itself. However, note that **when the cooldown triggers, execution stops before reaching the message**. The value of `$getCooldown` is resolved at the moment `$cooldown` evaluates, so it works:
 
 ```
-$cooldown[30s;⏳ Réessayez in $getCooldown seconds.]
+$cooldown[30s;⏳ Try again in $getCooldown seconds.]
 ```
 
 When the cooldown is active, `$getCooldown` returns the remaining time and embeds it in the error message.

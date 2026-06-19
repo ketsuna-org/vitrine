@@ -5,11 +5,11 @@ translation_key: docs
 category: "Context & Commands"
 function_name: noMentionMessage
 syntax: $noMentionMessage
-description: Gets the contenu of the message without thes mentions. Remplace les mentions of users, roles and canaux par leurs noms textuels.
+description: Gets the content of the message without mentions. Replaces mentions of users, roles, and channels with their textual names.
 ---
 # $noMentionMessage
 
-The function `$noMentionMessage` retourne le **contenu of the message** en remplaçant all mentions par leurs noms textuels.
+The function `$noMentionMessage` returns the **message content** by replacing all mentions with their plain text equivalents.
 
 ## Syntax
 
@@ -19,51 +19,51 @@ $noMentionMessage
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return Value
 
 - **Type** : String
-- The message with thes mentions convertedes.
+- The message with mentions converted.
 
 ## Behavior
 
 - `<@userID>` → `@username`
 - `<#channelID>` → `#channel-name`
 - `<@&roleID>` → `@role-name`
-- Empêche les pings intempestifs in thes logs or messages relayés.
+- Prevents unwanted pings in logs or relayed messages.
 
 ## Examples
 
-### Log without ping
+### Logging without pinging
 
 ```bdfd
 $let[logChannel;123456789]
-$title[📋 New message]
+$title[📋 New Message]
 $description[
-**Auteur :** $username
-**Contenu :** $noMentionMessage
+**Author:** $username
+**Content:** $noMentionMessage
 ]
 $channelSendMessage[$logChannel;]
 ```
 
-### Command say sécurisée
+### Secure say command
 
 ```bdfd
 $sendMessage[$noMentionMessage]
 ```
 
-### Relayer un message
+### Relaying a message
 
 ```bdfd
-$title[Message relayé of $username]
+$title[Relayed message from $username]
 $description[$noMentionMessage]
-$footer[Dethen <#$channelID>]
+$footer[From <#$channelID>]
 $channelSendMessage[123456789;]
 ```
 
 ## Notes
 
-- `$noMentionMessage` évite que the bot ne pingue accidentellement users.
-- Contrairement to `$message`, les mentions sont resolvedes en noms.
-- Pour désenable completement les mentions, combinez with `$suppressMentions`.
+- `$noMentionMessage` prevents the bot from accidentally pinging users.
+- Unlike `$message`, mentions are resolved to names.
+- To completely disable mentions, combine with `$suppressMentions`.

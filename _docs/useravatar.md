@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userAvatar
 syntax: $userAvatar
-description: Returns the URL of the avatar global of the user qui triggered the command.
+description: Returns the global avatar URL of the user who triggered the command.
 ---
 
 # $userAvatar
 
-The variable `$userAvatar` retourne l'**URL of the avatar global** of the user qui triggered the command.
+The variable `$userAvatar` returns the **global avatar URL** of the user who triggered the command.
 
 ## Syntax
 
@@ -20,19 +20,19 @@ $userAvatar
 
 ## Return Value
 
-- **Type** : String of becauseactères (URL)
-- URL of the image of avatar Discord to the format PNG or WebP
-- Si the user n'a pas of avatar custom, retourne l'avatar default Discord (couleur basée on the discriminateur/ID)
+- **Type**: String (URL)
+- URL of the Discord avatar image in PNG or WebP format
+- If the user does not have a custom avatar, returns the default Discord avatar (color based on the discriminator/ID)
 
 ## Behavior
 
-- `$userAvatar` ne prend **no argument**.
-- The URL retournée pointe vers les CDN Discord (`cdn.discordapp.com`).
-- L'avatar est l'image **global** of the user, pas celle specific to the server (voir `$userServerAvatar`).
+- `$userAvatar` takes **no arguments**.
+- The returned URL points to the Discord CDN (`cdn.discordapp.com`).
+- The avatar is the **global** image of the user, not the server-specific one (see `$userServerAvatar`).
 
 ## Examples
 
-### Display l'avatar en grand
+### Display Avatar in Large
 
 ```bdfd
 $title[Avatar of $userName]
@@ -41,15 +41,15 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Display l'avatar en miniature in a profil
+### Display Avatar as Thumbnail in a Profile
 
 ```bdfd
 $author[$userName;$userAvatar]
-$title[Profil user]
+$title[User Profile]
 $thumbnail[$userAvatar]
 $description[
-**Nom :** $userName
-**ID :** $userID
+**Name:** $userName
+**ID:** $userID
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -57,6 +57,6 @@ $sendMessage[]
 
 ## Notes
 
-- Les URLs of avatar Discord can be modifiedes en ajoutant `?size=256` or `?size=1024` pour changer la resolvedtion.
-- Pour l'avatar specific to the server (if set), utilisez `$userServerAvatar`.
-- The user peut changer son avatar to tout moment.
+- Discord avatar URLs can be modified by adding `?size=256` or `?size=1024` to change the resolution.
+- For the server-specific avatar (if set), use `$userServerAvatar`.
+- The user can change their avatar at any time.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverEmojis
 syntax: $serverEmojis
-description: Returns the list emojis customs availables on the server Discord.
+description: Returns a list of custom emojis available on the Discord server.
 ---
 
-# $serverEmojis[] — List Emojis of the Server
+# $serverEmojis[] — Server Emojis List
 
-`$serverEmojis[]` retourne la list complete emojis customs of the server, formatteds pour être displayeds in Discord.
+`$serverEmojis[]` returns the complete list of custom emojis on the server, formatted to be displayed in Discord.
 
 ## Syntax
 
@@ -20,42 +20,42 @@ $serverEmojis
 
 ## Parameters
 
-Aucun parameter.
+No parameters.
 
 ## Return Value
 
-- **Type** : `string`
-- Une string contenant all emojis customs of the server, chacun to the format `<:nom:id>` (or `<a:nom:id>` for the emojis animés).
+- **Type**: `string`
+- A string containing all custom emojis on the server, each in the format `<:name:id>` (or `<a:name:id>` for animated emojis).
 
-## Utilisation
+## Usage
 
 ### Display all emojis
 
 ```bdfd
-$sendMessage[🎨 Emojis of the server : $serverEmojis]
+$sendMessage[🎨 Emojis of the server: $serverEmojis]
 ```
 
-### Embed catalogue of emojis
+### Emoji catalog embed
 
 ```bdfd
 $title[Emojis of $serverName]
 $description[$serverEmojis]
-$footer[Total : $emojiCount emojis]
+$footer[Total: $emojiCount emojis]
 $color[#F1C40F]
 $sendEmbedMessage
 ```
 
-### Condition on the namebre of emojis
+### Check emoji count
 
 ```bdfd
 $if[$emojiCount>=50]
-$sendMessage[🎉 Ce server a une riche collection of emojis ! ($emojiCount)]
+  $sendMessage[🎉 This server has a rich collection of emojis! ($emojiCount)]
 $else
-$sendMessage[The server a $emojiCount emojis customs.]
+  $sendMessage[The server has $emojiCount custom emojis.]
 $endif
 ```
 
-### Info server with emojis
+### Server info with emojis
 
 ```bdfd
 $title[$serverName]
@@ -69,7 +69,7 @@ $sendEmbedMessage
 
 ## Notes
 
-- La list can be très longue si the server a beaucoup of emojis — attention to la limit of 2000 becauseactères messages Discord.
-- Les emojis animés sont préfixés par `<a:` instead of `<:`.
-- Pour obtenir only the namebre of emojis without the list, utilisez `$emojiCount[]`.
-- La limit of emojis par server dépend of the level of boost (50 default, until 250 to the level 3).
+- The list can be very long if the server has many emojis — watch out for the Discord 2,000-character message limit.
+- Animated emojis are prefixed with `<a:` instead of `<:`.
+- To get only the number of emojis without the list, use `$emojiCount[]`.
+- The emoji limit per server depends on the boost level (50 by default, up to 250 at level 3).

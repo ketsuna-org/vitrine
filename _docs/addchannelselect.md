@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addChannelSelect
 
-Creates a select menu of channels. Allows users to choisir un or multipthe channels of the server.
+Creates a select menu of channels. Allows users to choose one or multiple channels on the server.
 
 ## Syntax
 
@@ -19,54 +19,54 @@ $addChannelSelect[customId;placeholder;(minValues);(maxValues);(disabled);(chann
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
 | `customId` | Custom identifier for the interaction | Yes |
-| `placeholder` | Text displayed when rien n'est selectionné | Yes |
-| `minValues` | Minimum number of channels to selectionner (default: 1) | No |
-| `maxValues` | Maximum number of channels to selectionner (default: 1) | No |
-| `disabled` | `true` to disable le menu, `false` (default) | No |
-| `channelTypes` | Types of channels displayeds, separated by commas | No |
+| `placeholder` | Text displayed when nothing is selected | Yes |
+| `minValues` | Minimum number of channels to select (default: 1) | No |
+| `maxValues` | Maximum number of channels to select (default: 1) | No |
+| `disabled` | `true` to disable the menu, `false` (default) | No |
+| `channelTypes` | Types of channels displayed, separated by commas | No |
 
 ## Channel types (channelTypes)
 
 | Type | Description |
 |------|-------------|
-| `text` | Channels textuels |
-| `voice` | Channels vocaux |
-| `category` | Catégories |
-| `news` | Channels of annonces |
-| `stage` | Channels of scène |
+| `text` | Text channels |
+| `voice` | Voice channels |
+| `category` | Categories |
+| `news` | Announcement channels |
+| `stage` | Stage channels |
 | `forum` | Forums |
-| `thread` | Fils of discussion |
+| `thread` | Thread channels |
 
-Par default, all types are displayed.
+By default, all types are displayed.
 
 ## Examples
 
-### Selection of channel
+### Channel selection
 
 ```
-$addChannelSelect[menu_channel;Choisissez a channel]
-$sendMessage[Selectionnez a channel]
+$addChannelSelect[menu_channel;Choose a channel]
+$sendMessage[Select a channel]
 ```
 
-### Channel textuel only
+### Text channel only
 
 ```
-$addChannelSelect[menu_text;Channel textuel;1;1;false;text]
-$sendMessage[Choisissez a channel textuel]
+$addChannelSelect[menu_text;Text channel;1;1;false;text]
+$sendMessage[Choose a text channel]
 ```
 
 ### Voice and stage channels
 
 ```
-$addChannelSelect[menu_vocal;Channel vocal;1;3;false;voice,stage]
-$sendMessage[Selectionnez of channels vocaux]
+$addChannelSelect[menu_vocal;Voice channel;1;3;false;voice,stage]
+$sendMessage[Select voice channels]
 ```
 
 ### Disabled menu
 
 ```
-$addChannelSelect[menu_chan_disabled;Inavailable;1;1;true]
-$sendMessage[Ce menu is disabled]
+$addChannelSelect[menu_chan_disabled;Unavailable;1;1;true]
+$sendMessage[This menu is disabled]
 ```
 
 ## Handling the interaction
@@ -74,13 +74,14 @@ $sendMessage[Ce menu is disabled]
 ```
 $onInteraction
 $if[$customID==menu_channel]
-  $sendMessage[Channel selectionné : <#$message>]
+  $sendMessage[Selected channel: <#$message>]
 $endif
 ```
 
 ## Notes
 
-- Les values retournées sont of IDs of channels Discord.
+- The returned values are Discord channel IDs.
 - Use `<#ID>` to mention a channel.
-- Le parameter `channelTypes` allows filtering precisely les channels displayeds.
-- Pratique for commands of configuration, logs, or redirections.
+- The `channelTypes` parameter allows filtering precisely which channels are displayed.
+- Useful for configuration, logs, or redirection commands.
+

@@ -10,7 +10,7 @@ description: Adds a new custom emoji to the server from a URL. Optionally restri
 
 # $addEmoji
 
-The `$addEmoji[]` function **ajouter un new custom emoji** to the server from a URL of image. The emoji can be public or restreint to a specific role.
+The `$addEmoji[]` function **adds a new custom emoji** to the server from an image URL. The emoji can be public or restricted to a specific role.
 
 ## Syntax
 
@@ -22,22 +22,22 @@ $addEmoji[name;url;(roleID)]
 
 | Parameter | Description |
 |---|---|
-| `name` | The emoji name (2 to 32 becauseactères, alphanumérique + underscores). |
-| `url` | The URL of the image (PNG, JPEG, GIF). The image must be accessible publicment. |
-| `roleID` | Optional - ID of the role allowed to use the emoji. If omitted, emoji public. |
+| `name` | The emoji name (2 to 32 characters, alphanumeric + underscores). |
+| `url` | The URL of the image (PNG, JPEG, GIF). The image must be publicly accessible. |
+| `roleID` | Optional - ID of the role allowed to use the emoji. If omitted, the emoji is public. |
 
 ## Return value
 
-- **Type** : String
-- Le markup of the emoji created in the format `<:nom:ID>` on success.
-- Message error if the URL est invalid, the name déjà pris or les permissions insuffisantes.
+- **Type**: String
+- The markup of the created emoji in the format `<:name:ID>` on success.
+- An error message if the URL is invalid, the name is already taken, or permissions are insufficient.
 
 ## Behavior
 
 - The bot must have the permission `MANAGE_EMOJIS_AND_STICKERS`.
-- The name must be unique parmi les emojis of the server.
-- Limit of 50 emojis standard (plus for servers boostés).
-- Les GIFs animés sont acceptés and créent an emoji animé.
+- The name must be unique among the server's emojis.
+- Limit of 50 standard emojis (more for boosted servers).
+- Animated GIFs are accepted and create an animated emoji.
 
 ## Examples
 
@@ -48,7 +48,7 @@ $if[$checkContains[$userPerms;ManageEmojisAndStickers]==true]
   $let[emoji;$addEmoji[cool;https://example.com/cool.png]]
   $sendMessage[✅ Emoji added : $emoji]
 $else
-  $sendMessage[❌ Permission refusée.]
+  $sendMessage[❌ Permission denied.]
 $endif
 ```
 
@@ -62,7 +62,7 @@ $if[$url!=]
   $let[emoji;$addEmoji[$emojiName;$firstUrl]]
   $sendMessage[✅ Emoji created : $emoji]
 $else
-  $sendMessage[❌ Aucan image founde. Joignez an image to votre message.]
+  $sendMessage[❌ No image found. Please attach an image to your message.]
 $endif
 ```
 
@@ -72,9 +72,9 @@ $endif
 $let[staffRole;$roleID[Staff]]
 $let[emoji;$addEmoji[confidential;https://example.com/lock.png;$staffRole]]
 $if[$emoji!=]
-  $sendMessage[✅ Emoji **$emoji** created and réservé to the role <@&$staffRole>.]
+  $sendMessage[✅ Emoji **$emoji** created and restricted to the role <@&$staffRole>.]
 $else
-  $sendMessage[❌ Error during la création of the emoji.]
+  $sendMessage[❌ Error during emoji creation.]
 $endif
 ```
 
@@ -83,11 +83,11 @@ $endif
 ```bdfd
 $let[name;$message]
 $if[$length[$name]<2]
-  $sendMessage[❌ The name must be to the moins 2 becauseactères.]
+  $sendMessage[❌ The name must be at least 2 characters.]
 $elseif[$length[$name]>32]
-  $sendMessage[❌ The name must not exceed 32 becauseactères.]
+  $sendMessage[❌ The name must not exceed 32 characters.]
 $elseif[$emojiExists[$name]==true]
-  $sendMessage[❌ Un emoji nommé **$name** existe déjà.]
+  $sendMessage[❌ An emoji named **$name** already exists.]
 $else
   $let[emoji;$addEmoji[$name;$getAttachments[$noMentionMessage]]]
   $sendMessage[✅ Emoji **$emoji** created !]
@@ -96,7 +96,8 @@ $endif
 
 ## Notes
 
-- The URL must point directly vers an image (extension.png,.jpg,.gif).
-- The server a une limit of emojis according to son level of boost.
-- Les emojis animés comptent in a limit separatede.
-- The name ne must contain only lettres, chiffres and underscores.
+- The URL must point directly to an image (with extension .png, .jpg, .gif).
+- The server has an emoji limit according to its boost level.
+- Animated emojis count toward a separate limit.
+- The name must only contain letters, numbers, and underscores.
+

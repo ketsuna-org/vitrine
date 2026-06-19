@@ -5,12 +5,12 @@ translation_key: docs
 category: "Variables"
 function_name: serverLeaderboard
 syntax: $serverLeaderboard[variable] or $serverLeaderboard[variable;sort]
-description: Generates a classement users of the server courant basé on a variable, sorted par ordre décroissant default.
+description: Generates a leaderboard of users on the current server based on a variable, sorted in descending order by default.
 ---
 
 # $serverLeaderboard
 
-The function `$serverLeaderboard` génère un classement users **limité to the server Discord courant** (guild). Contrairement to `$globalUserLeaderboard` qui couvre all users of the bot, this function restreint le périmètre to the members of the server où the command est executed.
+The function `$serverLeaderboard` generates a leaderboard of users **limited to the current Discord server** (guild). Unlike `$globalUserLeaderboard` which covers all users of the bot across all servers, this function restricts the scope to the members of the server where the command was executed.
 
 ## Syntax
 
@@ -21,62 +21,62 @@ $serverLeaderboard[variable;sort]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `variable` | Yes | The name of the variable to classer (user-scoped or guild-scoped) |
-| `sort` | No | `desc` (décroissant, default) or `asc` (croissant) |
+| `variable` | Yes | The name of the variable to rank (user-scoped or guild-scoped) |
+| `sort` | No | `desc` (descending, default) or `asc` (ascending) |
 
-## Functionnement
+## How It Works
 
-1. `$serverLeaderboard` est un **placeholder** : it is replaced to the runtime par l'action leaderboard dédiée.
-2. The système ne considère que les variables users **members of the server courant**.
-3. The entrées sont sortedes according to the direction spécifiée.
-4. The result est une string multiligne où each ligne represents une entrée of the classement.
+1. `$serverLeaderboard` acts as a **placeholder**: it is replaced at runtime by the dedicated leaderboard action.
+2. The system only considers user variables for **members of the current server**.
+3. The entries are sorted according to the specified direction.
+4. The result is a multi-line string where each line represents an entry in the leaderboard.
 
-The format of each ligne est typiquement the name of user, exploitable via `$textSplit`.
+The format of each line is typically the user's name, which can be parsed using `$textSplit`.
 
-## Utilisation typique
+## Typical Usage
 
 ```
 $textSplit[$serverLeaderboard[xp;desc];\n]
 ```
 
-Puis parcours with `$splitText`, `$getLeaderboardPosition` and `$getLeaderboardValue`.
+Then iterate through the list using `$splitText`, `$getLeaderboardPosition`, and `$getLeaderboardValue`.
 
-## Persistance datas
+## Data Persistence
 
-The variables can be of two types :
+The variables can be of two types:
 
-- **User-scoped** : propres to each user, définies with [`$setUserVar`](/docs/setuservar). Example: XP gagné on the server.
-- **Guild-scoped** : propres to the server, définies with functions of variables of server.
+- **User-scoped**: specific to each user, defined with [`$setUserVar`](/docs/setuservar). Example: XP earned on the server.
+- **Guild-scoped**: specific to the server, defined using server variable functions.
 
-Exemple of mise to day of XP server :
+Example of updating server XP:
 ```
 $setUserVar[xp;$sum[$getUserVar[xp];$random[10;50]];$authorID]
 ```
 
-## Tri
+## Sorting
 
-- **`desc`** (default) : values les plus élevées en first (XP, messages, pièces).
-- **`asc`** : values les plus basses en first (warns, temps, pénalités).
+- **`desc`** (default): Highest values first (XP, messages, coins).
+- **`asc`**: Lowest values first (warns, times, penalties).
 
-## Cas of usage courants
+## Common Use Cases
 
-- 🎮 **Leaderboard XP** : motiver l'activité on the server
-- 💬 **Top messages** : récompenser les members les plus actifs
-- 🛡️ **Modération** : surveiller les members with the plus of warns
-- 🎯 **Events** : classements temporarys pour concours
+- 🎮 **XP Leaderboard**: Motivate activity on the server.
+- 💬 **Top Messages**: Reward the most active members.
+- 🛡️ **Moderation**: Monitor members with the most warns.
+- 🎯 **Events**: Temporary leaderboards for contests.
 
-## Notes importantes
+## Important Notes
 
-- Seuls les members **currents** of the server sont included in the classement.
-- Les users qui n'ont pas the variable spécifiée sont ignorés.
-- Pour un classement all servers confondus, utilisez [`$globalUserLeaderboard`](/docs/globaluserleaderboard).
-- Pour voir the position of a user specific, utilisez [`$userLeaderboard`](/docs/userleaderboard).
+- Only **current** members of the server are included in the leaderboard.
+- Users who do not have the specified variable set are ignored.
+- For a cross-server leaderboard, use [`$globalUserLeaderboard`](/docs/globaluserleaderboard).
+- To check the rank of a specific user, use [`$userLeaderboard`](/docs/userleaderboard).
 
-## Voir also
+## See Also
 
-- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rang in the classement actif
-- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Value in the classement actif
-- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Classement global inter-servers
-- [`$userLeaderboard`](/docs/userleaderboard) — Position of the user courant
-- [`$textSplit`](/docs/textsplit) — Parser the result
-- [`$setUserVar`](/docs/setuservar) — Définir une variable user
+- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rank in the active leaderboard
+- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Value in the active leaderboard
+- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Cross-server global leaderboard
+- [`$userLeaderboard`](/docs/userleaderboard) — Rank of the current user
+- [`$textSplit`](/docs/textsplit) — Parse the result
+- [`$setUserVar`](/docs/setuservar) — Set a user variable

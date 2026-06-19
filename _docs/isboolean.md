@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isBoolean
 syntax: $isBoolean[value]
-description: Checks if une value est strictement un boolean (true or false).
+description: Checks if a value is strictly a boolean (true or false).
 ---
 
 # $isBoolean
 
-The function `$isBoolean[value]` **vérifie if ae value est un boolean** (`true` or `false`). Elle retourne `true` si the value est strictement un boolean, `false` in all autres cas (number, text, etc.).
+The function `$isBoolean[value]` **checks if a value is a boolean** (`true` or `false`). It returns `true` if the value is strictly a boolean, and `false` in all other cases (number, text, etc.).
 
 ## Syntax
 
@@ -22,19 +22,19 @@ $isBoolean[value]
 
 | Parameter | Description |
 |---|---|
-| `value` | The value to tester. |
+| `value` | The value to test. |
 
 ## Return Value
 
-- **Type** : Boolean
-- `true` si `value` est `true` or `false`
-- `false` si `value` est un number, une string of becauseactères, or vide.
+- **Type**: Boolean
+- `true` if `value` is `true` or `false`.
+- `false` if `value` is a number, a character string, or empty.
 
 ## Behavior
 
-- Seuls les littéraux `true` and `false` sont reconnus like booleans.
-- `"true"` (string) n'est **pas** un boolean.
-- `0` and `1` ne sont **pas** booleans (utilisez `$isNumber[]` pour ces cas).
+- Only the literals `true` and `false` are recognized as booleans.
+- `"true"` (string) is **not** a boolean.
+- `0` and `1` are **not** booleans (use `$isNumber[]` for those cases).
 
 ## Examples
 
@@ -42,39 +42,39 @@ $isBoolean[value]
 
 ```bdfd
 $if[$isBoolean[$message[1]]==true]
-  $sendMessage[✅ $message[1] est un boolean valid.]
+  $sendMessage[✅ $message[1] is a valid boolean.]
 $else
-  $sendMessage[❌ $message[1] is not un boolean. Attendu : true or false.]
+  $sendMessage[❌ $message[1] is not a boolean. Expected: true or false.]
 $endif
 ```
 
-### Vérifier une variable
+### Checking a variable
 
 ```bdfd
 $var[actif;true]
 $if[$isBoolean[$var[actif]]==true]
-  $sendMessage[The variable est un boolean.]
+  $sendMessage[The variable is a boolean.]
 $endif
 ```
 
-### Type checking avancé
+### Advanced type checking
 
 ```bdfd
 $var[val;$message[1]]
 $if[$isBoolean[$var[val]]==true]
-  $sendMessage[📌 Boolean détecté : $var[val]]
+  $sendMessage[📌 Boolean detected: $var[val]]
 $elseif[$isInteger[$var[val]]==true]
-  $sendMessage[🔢 Integer détecté : $var[val]]
+  $sendMessage[🔢 Integer detected: $var[val]]
 $elseif[$isNumber[$var[val]]==true]
-  $sendMessage[🔣 Number détecté : $var[val]]
+  $sendMessage[🔣 Number detected: $var[val]]
 $else
-  $sendMessage[📝 Text détecté : $var[val]]
+  $sendMessage[📝 Text detected: $var[val]]
 $endif
 ```
 
 ## Notes
 
-- `$isBoolean[true]` retourne `true`.
-- `$isBoolean[false]` retourne `true`.
-- `$isBoolean[0]` retourne `false` (0 est un number).
-- `$isBoolean[]` (vide) retourne `false`.
+- `$isBoolean[true]` returns `true`.
+- `$isBoolean[false]` returns `true`.
+- `$isBoolean[0]` returns `false` (0 is a number).
+- `$isBoolean[]` (empty) returns `false`.

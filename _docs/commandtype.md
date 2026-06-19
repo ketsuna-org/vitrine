@@ -10,7 +10,7 @@ description: Returns the type of the command in progress (prefix or slash).
 
 # $commandType
 
-The `$commandType` function **returns the type of the command in progress** : `prefix` for commands textuelles classiques, `slash` for commands slash Discord.
+The `$commandType` function **returns the type of the command currently being executed**: `prefix` for classic text commands, or `slash` for Discord slash commands.
 
 ## Syntax
 
@@ -20,71 +20,71 @@ $commandType
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
-- **Type** : String
-- `prefix` : command triggerede par un préfixe text (`!`, `?`, etc.).
-- `slash` : command triggerede via the interface slash Discord (`/`).
+- **Type**: String
+- `prefix`: Command triggered by a text prefix (`!`, `?`, etc.).
+- `slash`: Command triggered via the Discord slash interface (`/`).
 
 ## Behavior
 
-- Allows adapter le behavior according to the type of invocation.
-- Équivaslow functionnel to `$if[$isSlash==true]slash$elseprefix$endif`.
+- Allows adapting the behavior based on the invocation type.
+- Functionally equivalent to `$if[$isSlash==true]slash$elseprefix$endif`.
 
 ## Examples
 
-### Response adaptative
+### Adaptive response
 
 ```bdfd
 $if[$commandType==slash]
-  $sendEphemeral[✅ Opération réussie !]
+  $sendEphemeral[✅ Operation successful!]
 $else
-  $sendMessage[✅ Opération réussie !]
+  $sendMessage[✅ Operation successful!]
 $endif
 ```
 
-### Log différencié
+### Differentiated log
 
 ```bdfd
 $if[$commandType==slash]
-  $log[🔹 SLASH /$commandName par $userName]
+  $log[🔹 SLASH /$commandName by $username]
 $else
-  $log[🔸 PREFIX $commandTrigger par $userName]
+  $log[🔸 PREFIX $commandTrigger by $username]
 $endif
 ```
 
-### Aide contextuelle
+### Contextual help
 
 ```bdfd
-$title[⚙️ Détails of the command]
-$addField[Nom;$commandName;yes]
+$title[⚙️ Command details]
+$addField[Name;$commandName;yes]
 $addField[Trigger;$commandTrigger;yes]
 $addField[Type;$if[$commandType==slash]🔹 Slash$else🔸 Prefix$endif;yes]
 $addField[Folder;$commandFolder;yes]
-$footer[Langage : $scriptLanguage]
+$footer[Language: $scriptLanguage]
 $sendMessage[]
 ```
 
-### Command hybride with arguments
+### Hybrid command with arguments
 
 ```bdfd
-;; Récupération arguments according to the type
+;; Retrieve arguments based on the type
 $if[$commandType==slash]
-  $var[arg1;$slashOption[cible]]
+  $var[arg1;$slashOption[target]]
   $var[arg2;$slashOption[reason]]
 $else
   $var[arg1;$message[1]]
   $var[arg2;$message[2]]
 $endif
 
-$sendMessage[🎯 Cible : $var[arg1] | Reason : $var[arg2]]
+$sendMessage[🎯 Target: $var[arg1] | Reason: $var[arg2]]
 ```
 
 ## Notes
 
-- Values possibles : `prefix` or `slash`.
-- Pour un test boolean simple, use `$isSlash`.
-- Les responses éphémères (`$sendEphemeral[]`) ne functionnent qu'en type `slash`.
-- The type est set in the console BDFD during la création of the command.
+- Possible values: `prefix` or `slash`.
+- For a simple boolean check, use `$isSlash`.
+- Ephemeral responses (`$sendEphemeral[]`) only work with `slash` commands.
+- The type is configured in the BDFD console when creating the command.

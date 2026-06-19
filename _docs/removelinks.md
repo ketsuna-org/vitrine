@@ -68,6 +68,6 @@ $channelSendMessage[123456789;Message from $username: $removeLinks]
 
 ## Notes
 
-- To completeely block links (not just remove them), use `$ignoreLinks`.
+- To completely block links (not just remove them), use `$ignoreLinks`.
 - To remove other patterns, use `$removeContains[]`.
 - Does not remove Discord links (channel mentions, etc.).

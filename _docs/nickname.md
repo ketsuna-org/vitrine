@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: nickname
 syntax: $nickname
-description: Returns the pseudo (surnom) of the user on the server current. Returns ae string vide si no pseudo n'est défini.
+description: Returns the nickname of the user on the current server. Returns an empty string if no nickname is set.
 ---
 
 # $nickname
 
-The variable `$nickname` retourne le **pseudo (surnom)** of the user on the server current. Contrairement to `$displayName`, elle retourne une string vide si the user n'a pas of pseudo custom.
+The variable `$nickname` returns the **nickname** of the user on the current server. Unlike `$displayName`, it returns an empty string if the user does not have a custom nickname.
 
 ## Syntax
 
@@ -20,36 +20,36 @@ $nickname
 
 ## Return Value
 
-- **Type** : String of becauseactères
-- Le pseudo server if set, otherwise une **string vide**
+- **Type** : String
+- The server nickname if set, otherwise an **empty string**
 
 ## Behavior
 
-- `$nickname` ne prend **no argument**.
-- Returns aiquement le pseudo **specific to the server**.
-- Si the user utilise son nom global (pas of pseudo), retourne `""` (string vide).
-- La longueur maximale of un pseudo est of 32 becauseactères.
+- `$nickname` takes **no arguments**.
+- Returns only the nickname **specific to the server**.
+- If the user uses their global username (no nickname set), it returns `""` (an empty string).
+- The maximum length of a nickname is 32 characters.
 
 ## Examples
 
-### Détecter la présence of un pseudo
+### Detecting if a nickname is set
 
 ```bdfd
 $if[$nickname!=]
-  $sendMessage[Bonday $nickname ! (pseudo: $nickname, nom: $userName)]
+  $sendMessage[Hello $nickname! (nickname: $nickname, username: $userName)]
 $else
-  $sendMessage[Bonday $userName !]
+  $sendMessage[Hello $userName!]
 $endif
 ```
 
-### Display les information of nom
+### Displaying name details
 
 ```bdfd
-$title[Noms of $userName]
+$title[Names of $userName]
 $description[
-**Nom global :** $userName
-**Pseudo server :** $nickname
-**Nom of affichage :** $displayName
+**Global Username:** $userName
+**Server Nickname:** $nickname
+**Display Name:** $displayName
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -57,6 +57,6 @@ $sendMessage[]
 
 ## Notes
 
-- Ne pas confondre `$nickname` (pseudo server only) with `$displayName` (pseudo or nom global).
-- Pour l'affichage in thes messages, `$displayName` est generally préférable because il ne sera never vide.
-- Utile for the commands où vous voulez explicitement savoir si the user a un pseudo or non.
+- Do not confuse `$nickname` (server nickname only) with `$displayName` (nickname or global name).
+- For displaying names in messages, `$displayName` is generally preferred because it will never be empty.
+- Useful for commands where you want to explicitly check if the user has set a server nickname.

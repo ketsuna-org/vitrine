@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: time
 syntax: $time
-description: Returns the hour currentle to the format HH:MM:SS. Resolved to the runtime.
+description: Returns the current time in HH:MM:SS format. Resolved at runtime.
 ---
 
 # $time[]
 
-The function `$time[]` retourne l'hour currentle to the format `HH:MM:SS` (hours:minutes:seconds).
+The function `$time[]` returns the current time in `HH:MM:SS` (hours:minutes:seconds) format.
 
-> **Important:** This function utilise l'identifier special `((time))` qui est resolved to the **runtime**, it is-à-dire to each exécution of the command.
+> **Important:** This function uses the special identifier `((time))` which is resolved at **runtime**, meaning at each execution of the command.
 
 ## Syntax
 
@@ -20,36 +20,37 @@ The function `$time[]` retourne l'hour currentle to the format `HH:MM:SS` (hours
 $time
 ```
 
-> **Note :** This function ne prend no parameter.
+> **Note:** This function takes no parameters.
 
 ## Return Value
 
-A string of becauseactères to the format `HH:MM:SS` (ex: `14:30:05`).
+A string in the format `HH:MM:SS` (e.g., `14:30:05`).
 
 ## Examples
 
-### Time simple
+### Simple Time
 
 ```bdfd
-Il est $time.
+It is $time.
 ```
 
-### Embed with the hour
+### Embed with Time
 
 ```bdfd
-$title[🕐 Horloge of the server]
-$description[Time currentle : **$time**]
-$footer[Format 24h]
+$title[🕐 Server Clock]
+$description[Current time: **$time**]
+$footer[24h Format]
 ```
 
-### Timestamp complete
+### Complete Timestamp
 
 ```bdfd
-📅 $date to $time
+📅 $date at $time
 ```
 
 ## Notes
 
-- `$time[]` est l'équivaslow of `$hour:$minute:$second` en a single function.
-- L'hour est basée on the fuseau horaire of the server exécutant the bot.
-- Pour un timestamp Unix, utilisez `$getTimestamp[]`.
+- `$time[]` is the equivalent of `$hour:$minute:$second` combined into a single function.
+- The time is based on the timezone of the server running the bot.
+- For a Unix timestamp, use `$getTimestamp[]`.
+

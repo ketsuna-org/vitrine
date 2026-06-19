@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: footerIcon
 syntax: $footerIcon[url;(embedIndex)]
-description: Modifies l'icon of the footer of an embed after que celui-ci was défini with $footer[]. Allows changer only l'image without modifier le text.
+description: Modifies the footer icon of an embed after it has been defined with $footer[]. Allows changing only the image without modifying the text.
 ---
 
 # $footerIcon[]
 
-The function `$footerIcon[]` allows **modifier only l'icon** of un footer déjà défini with `$footer[]`. Elle est utile when vous souhaitez define ae icon dynamic without répéter le text of the footer.
+The `$footerIcon[]` function allows you to **modify only the icon** of a footer already defined with `$footer[]`. It is useful when you want to define a dynamic icon without repeating the footer text.
 
 ## Syntax
 
@@ -22,45 +22,45 @@ $footerIcon[url;(embedIndex)]
 
 | Parameter | Description |
 |---|---|
-| `url` | URL of the image to use like icon of the footer. |
-| `embedIndex` | Optional. Index of the embed ciblé (0 default). |
+| `url` | URL of the image to use as the footer's icon. |
+| `embedIndex` | Optional. Index of the target embed (Default: 1). |
 
 ## Return Value
 
-Modifies the response in progress of construction. Returns nothing.
+Modifies the response currently being constructed. Returns nothing.
 
-## Quand use $footerIcon[]
+## When to use $footerIcon[]
 
-- Vous avez déjà défini le footer with `$footer[text]` and souhaitez ajouter or changer l'icon.
-- L'icon dépend of a variable dynamic (avatar, status, etc.).
-- Vous voulez separate the logique of the text and of l'icon for a comoreover lisible.
+- You have already defined the footer with `$footer[text]` and want to add or change the icon.
+- The icon depends on a dynamic variable (avatar, status, etc.).
+- You want to separate the logic of the text and the icon for better readability.
 
 ## Examples
 
-### Icon dynamic basée on the user
+### Dynamic icon based on the user
 
 ```bdfd
-$title[Profil]
+$title[Profile]
 $description[
-**Nom :** $username
-**Tag :** $discriminator
+**Name:** $username
+**Tag:** $discriminator
 ]
-$footer[Demandé par $username]
+$footer[Requested by $username]
 $footerIcon[$authorAvatar]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Icon conditionnelle
+### Conditional icon
 
 ```bdfd
-$title[Status of the server]
-$description[The server est opérationnel.]
-$footer[Last vérification : $time]
+$title[Server Status]
+$description[The server is operational.]
+$footer[Last check: $time]
 $if[$var[status]==online]
-$footerIcon[https://cdn.example.com/green.png]
+  $footerIcon[https://cdn.example.com/green.png]
 $else
-$footerIcon[https://cdn.example.com/red.png]
+  $footerIcon[https://cdn.example.com/red.png]
 $endif
 $color[#57F287]
 $sendMessage[]
@@ -68,6 +68,6 @@ $sendMessage[]
 
 ## Notes
 
-- `$footerIcon[]` must be callé **after** `$footer[]`, otherwise there is no of footer on lequel appliquer l'icon.
-- Si `$footerIcon[]` est callé before `$footer[]`, l'icon sera ignorée.
-- The URL doit pointer vers une image accessible publicment.
+- `$footerIcon[]` must be called **after** `$footer[]`, otherwise there is no footer to apply the icon to.
+- If `$footerIcon[]` is called before `$footer[]`, the icon will be ignored.
+- The URL must point to a publicly accessible image.

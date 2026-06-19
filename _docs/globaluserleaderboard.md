@@ -5,12 +5,12 @@ translation_key: docs
 category: "Variables"
 function_name: globalUserLeaderboard
 syntax: $globalUserLeaderboard[variable] or $globalUserLeaderboard[variable;sort]
-description: Generates a classement global of all users basé on a variable, sorted par ordre décroissant default.
+description: Generates a global ranking of all users based on a variable, sorted in descending order by default.
 ---
 
 # $globalUserLeaderboard
 
-The function `$globalUserLeaderboard` génère un classement global of all users of the bot, basé on the values of a variable user. C'est l'outil principal pour create classements inter-servers and motiver la compétition between users.
+The function `$globalUserLeaderboard` generates a global ranking of all users of the bot, based on the values of a user variable. It is the primary tool to create cross-server leaderboards and motivate competition between users.
 
 ## Syntax
 
@@ -21,61 +21,61 @@ $globalUserLeaderboard[variable;sort]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `variable` | Yes | The name of the variable global user to classer |
-| `sort` | No | `desc` (décroissant, default) or `asc` (croissant) |
+| `variable` | Yes | The name of the global user variable to rank |
+| `sort` | No | `desc` (descending, default) or `asc` (ascending) |
 
-## Functionnement
+## How It Works
 
-1. `$globalUserLeaderboard` est un **placeholder** : it is replaced to the runtime par l'action leaderboard dédiée.
-2. The système parcourt les variables globals of **all users** of the bot.
-3. The entrées sont sortedes according to the direction spécifiée.
-4. The result est une string multiligne où each ligne represents une entrée of the classement.
+1. `$globalUserLeaderboard` is a **placeholder**: it is replaced at runtime by the dedicated leaderboard action.
+2. The system scans the global variables of **all users** of the bot.
+3. The entries are sorted according to the specified direction.
+4. The result is a multiline string where each line represents an entry of the leaderboard.
 
-The format of each ligne est typiquement :
+The format of each line is typically:
 ```
-nomuser
+username
 ```
-Ou potentiellement un format combiné according to the configuration of the bot.
+Or potentially a combined format depending on the bot configuration.
 
-## Utilisation typique
+## Typical Usage
 
-The pattern classique pour exploiter un leaderboard :
+The classic pattern to use a leaderboard:
 
 ```
 $textSplit[$globalUserLeaderboard[score;desc];\n]
 ```
 
-Puis on parcourt les éléments with `$splitText[index]`, `$getLeaderboardPosition` and `$getLeaderboardValue`.
+Then iterate through the elements with `$splitText[index]`, `$getLeaderboardPosition` and `$getLeaderboardValue`.
 
-## Persistance datas
+## Data Persistence
 
-Pour que le classement soit pertinent, les variables user must be alimentées to the préalable via :
+For the ranking to be meaningful, user variables must be populated beforehand via:
 
-- [`$setUserVar`](/docs/setuservar) — Définir une variable for a user
-- [`$getUserVar`](/docs/getuservar) — Lire une variable user
+- [`$setUserVar`](/docs/setuservar) — Set a variable for a user
+- [`$getUserVar`](/docs/getuservar) — Read a user variable
 
-Exemple of mise to day of score :
+Example of score update:
 ```
 $setUserVar[score;$sum[$getUserVar[score];10];$authorID]
 ```
 
-## Tri
+## Sorting
 
-- **`desc`** (default) : les plus grandes values en first — idéal for the scores, XP, pièces.
-- **`asc`** : les plus petites values en first — utile for the temps, les pénalités, or les classements reverseds.
+- **`desc`** (default): highest values first — ideal for scores, XP, coins.
+- **`asc`**: lowest values first — useful for time, penalties, or reversed rankings.
 
-## Notes importantes
+## Important Notes
 
-- Les users qui n'ont pas the variable spécifiée sont ignorés of the classement.
-- The namebre of entrées retournées dépend of la configuration of the bot and of l'action leaderboard.
-- Pour un classement limité to un server specific, utilisez [`$serverLeaderboard`](/docs/serverleaderboard).
-- Pour voir only the position of the user courant, utilisez [`$userLeaderboard`](/docs/userleaderboard).
+- Users who do not have the specified variable are ignored in the ranking.
+- The number of entries returned depends on the bot configuration and the leaderboard action.
+- For a ranking limited to a specific server, use [`$serverLeaderboard`](/docs/serverleaderboard).
+- To see only the current user's position, use [`$userLeaderboard`](/docs/userleaderboard).
 
-## Voir also
+## See Also
 
-- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rang in the classement actif
-- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Value in the classement actif
-- [`$serverLeaderboard`](/docs/serverleaderboard) — Classement limité to the server
-- [`$userLeaderboard`](/docs/userleaderboard) — Position of the user courant
-- [`$textSplit`](/docs/textsplit) — Parser the result
-- [`$setUserVar`](/docs/setuservar) — Définir une variable user
+- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rank in the active leaderboard
+- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Value in the active leaderboard
+- [`$serverLeaderboard`](/docs/serverleaderboard) — Ranking limited to the server
+- [`$userLeaderboard`](/docs/userleaderboard) — Current user's position
+- [`$textSplit`](/docs/textsplit) — Parse the result
+- [`$setUserVar`](/docs/setuservar) — Set a user variable

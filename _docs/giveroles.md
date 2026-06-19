@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: giveRoles
 syntax: $giveRoles[userID;role1;role2;...]
-description: Donne several roles to un user en a single opération.
+description: Assigns several roles to a user in a single operation.
 ---
 
 # $giveRoles
 
-The function `$giveRoles` **attribue several roles en une fois** to un user. C'est la version multi-roles of `$giveRole`. The bot doit avoir la permission `ManageRoles`.
+The function `$giveRoles` assigns multiple roles at once to a user. It is the multi-role version of `$giveRole`. The bot must have the `ManageRoles` permission.
 
 ## Syntax
 
@@ -22,44 +22,44 @@ $giveRoles[userID;role1;role2;...]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user cible. Required. |
-| `role1;role2;...` | Les IDs roles to attribuer, separateds par `;`. Required. |
+| `userID` | The ID of the target user. Required. |
+| `role1;role2;...` | The IDs of the roles to assign, separated by `;`. Required. |
 
 ## Return Value
 
-Aucune. Tous les roles spécifiés sont attribués.
+None. All specified roles are assigned.
 
 ## Examples
 
-### Attributeion multiple simple
+### Simple multiple assignment
 
 ```bdfd
 $giveRoles[$mentioned[1];$roleID[Member];$roleID[Notifications]]
-$sendMessage[<@$mentioned[1]> a received les roles Member and Notifications.]
+$sendMessage[<@$mentioned[1]> has received the Member and Notifications roles.]
 ```
 
-### Attributeion groupée with condition
+### Grouped assignment with a condition
 
 ```bdfd
 $if[$isAdmin==true]
   $giveRoles[$mentioned[1];$roleID[Modo];$roleID[Staff];$roleID[VIP]]
-  $sendMessage[Tous les roles of staff attribués to <@$mentioned[1]>.]
+  $sendMessage[All staff roles assigned to <@$mentioned[1]>.]
 $else
-  $sendMessage[Permission refusée.]
+  $sendMessage[Permission denied.]
 $endif
 ```
 
-### Command of bienvenue
+### Welcome command
 
 ```bdfd
 $giveRoles[$authorID;$roleID[Member];$roleID[New];$roleID[Auto]]
-$sendMessage[Bienvenue $userName ! Roles default attribués.]
+$sendMessage[Welcome $userName! Default roles assigned.]
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ManageRoles`.
-- Les roles sont separateds par `;` in the syntaxe.
-- Pour attribuer a single role, `$giveRole` est plus simple.
-- Pour remplacer all roles existings, utilisez `$setUserRoles`.
-- Les roles déjà possédés par the user sont ignorés.
+- The bot must have the `ManageRoles` permission.
+- The roles are separated by `;` in the syntax.
+- To assign a single role, `$giveRole` is simpler.
+- To replace all existing roles, use `$setUserRoles`.
+- Roles already possessed by the user are ignored.

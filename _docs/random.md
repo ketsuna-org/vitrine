@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: random
 syntax: $random[min;max]
-description: Generates a random integer between min and max (includedive). The value is evaluated at compile-time only.
+description: Generates a random integer between min and max (inclusive). The value is evaluated at compile-time only.
 ---
 
 # $random[]
 
-The `$random[]` function generates a random integer between `min` and `max`, with both values being **includedive**.
+The `$random[]` function generates a random integer between `min` and `max`, with both values being **inclusive**.
 
 **Important:** This function is evaluated at **compile-time**, meaning the value is determined once when the code is compiled. It will not change if the code is executed multiple times without recompilation.
 
@@ -24,17 +24,17 @@ $random[min;max]
 
 | Parameter | Description |
 |-----------|-------------|
-| `min` | The lower bound of the random range (includedive). |
-| `max` | The upper bound of the random range (includedive). |
+| `min` | The lower bound of the random range (inclusive). |
+| `max` | The upper bound of the random range (inclusive). |
 
 ## Return Value
 
-A random integer as a string, between `min` and `max` (includedive bounds).
+A random integer as a string, between `min` and `max` (inclusive bounds).
 
 ## Behavior
 
 - Values are evaluated only once at the time of command compilation.
-- Both `min` and `max` bounds are includedive in the possible range.
+- Both `min` and `max` bounds are inclusive in the possible range.
 - If `max` is less than `min`, the behavior may be unpredictable.
 
 ## Examples

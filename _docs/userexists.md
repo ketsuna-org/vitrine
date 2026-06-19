@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userExists
 syntax: $userExists[userID/mention]
-description: Checks if the user spécifié (par ID or mention) existe on Discord and retourne "true" or "false".
+description: Checks if the specified user (by ID or mention) exists on Discord and returns "true" or "false".
 ---
 
 # $userExists
 
-The function `$userExists[]` vérifie if a user Discord existe, from un **ID** or of une **mention**.
+The `$userExists` function checks if a Discord user exists, based on an **ID** or a **mention**.
 
 ## Syntax
 
@@ -22,47 +22,47 @@ $userExists[userID/mention]
 
 | Parameter | Description |
 |---|---|
-| `userID/mention` | The ID numérique (snowflake) or la mention (`<@ID>`) of the user to vérifier. |
+| `userID/mention` | The numerical ID (snowflake) or the mention (`<@ID>`) of the user to check. |
 
 ## Return Value
 
-- **Type** : String `"true"` or `"false"`
-- `"true"` si the user existe and est connu of the bot
-- `"false"` si the ID est invalid or the user introuvable
+- **Type**: String `"true"` or `"false"`
+- `"true"` if the user exists and is known to the bot.
+- `"false"` if the ID is invalid or the user is not found.
 
 ## Behavior
 
-- La vérification se base on the users accessibles to the bot (cache servers partagés).
-- Un user peut exister on Discord without être on the server of the bot — in this case, the result dépend of the context.
+- The verification is based on the users accessible to the bot (shared server cache).
+- A user can exist on Discord without being on the bot's server — in this case, the result depends on the context.
 
 ## Examples
 
-### Vérifier une mention
+### Check a mention
 
 ```bdfd
 $if[$userExists[$mentioned]==true]
-  $title[Informations on <@$mentioned>]
+  $title[Information on <@$mentioned>]
   $description[
-  **ID :** $mentioned
-  **Nom :** $userName[$mentioned]
+  **ID:** $mentioned
+  **Name:** $userName[$mentioned]
   ]
   $color[#5865F2]
   $sendMessage[]
 $else
-  $sendMessage[Je ne trouve pas cet user.]
+  $sendMessage[I cannot find this user.]
 $endif
 ```
 
-### Vérifier un ID fixe
+### Check a static ID
 
 ```bdfd
 $if[$userExists[123456789012345678]==true]
-  $sendMessage[Le owner existe toudays !]
+  $sendMessage[The owner still exists!]
 $endif
 ```
 
 ## Notes
 
-- Utilisez `$userExists[]` pour validr les entrées user before of exécuter actions qui pourraient échouer.
-- `$userExists[]` ne vérifie pas si the user est **member of the server**, only s'il existe on Discord and est connu of the bot.
-- Function utile pour éviter les errors in thes commands utilisant IDs fournis par the user.
+- Use `$userExists` to validate user inputs before executing actions that might fail.
+- `$userExists` does not check if the user is a **member of the server**, only if they exist on Discord and are known to the bot.
+- This function is useful for preventing errors in commands that use user-provided IDs.

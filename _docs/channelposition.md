@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelPosition
 syntax: $channelPosition[(channelID)]
-description: Returns the position of a channel in the list of channels Discord.
+description: Returns the position of a channel in the Discord channel list.
 ---
 
 # $channelPosition
 
-The `$channelPosition` function returns the **position** of a channel in the list of channels of the server. The position `0` correspond to the channel the most haut, and les numbers augmentent en descendant.
+The `$channelPosition` function returns the **position** of a channel in the server's channel list. Position `0` corresponds to the topmost channel, and the numbers increase as you go down.
 
 ## Syntax
 
@@ -22,41 +22,41 @@ $channelPosition[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `integer` | The position of the channel in the list (0 = tout at the top). |
+| `integer` | The position of the channel in the list (0 = at the top). |
 
 ## Examples
 
 ### Display the position
 
 ```bdfd
-$sendMessage[Ce channel est en position $channelPosition]
+$sendMessage[This channel is at position $channelPosition]
 ```
 
 ### Comparer les positions
 
 ```bdfd
 $if[$channelPosition==0]
-  $sendMessage[Ce channel est tout at the top of the server !]
+  $sendMessage[This channel is at the very top of the server!]
 $else
-  $sendMessage[Ce channel est en position #$channelPosition]
+  $sendMessage[This channel is at position #$channelPosition]
 $endif
 ```
 
-### Channel the most haut of une catégorie
+### Top channel in a category
 
 ```bdfd
-$sendMessage[Position in the catégorie : $channelPosition]
+$sendMessage[Position in the category: $channelPosition]
 ```
 
 ## Notes
 
-- The position est relative to the order of affichage in Discord.
-- Les catégories ont leur propre système of positionnement.
-- The position peut changer if a administrator réorganise les channels.
-- Les channels sont sorteds par position within leur catégorie parente.
+- The position is relative to the display order in Discord.
+- Categories have their own positioning system.
+- The position can change if an administrator reorganizes the channels.
+- Channels are sorted by position within their parent category.

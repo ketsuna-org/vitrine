@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: mentions
 syntax: $mentions
-description: Returns the list of all IDs users mentionnés in the message, separateds par virgules.
+description: Returns the list of all user IDs mentioned in the message, separated by commas.
 ---
 
 # $mentions
 
-The variable `$mentions` retourne la **list of all IDs users mentionnés** in the command message.
+The function `$mentions` returns the **list of all user IDs mentioned** in the command message.
 
 ## Syntax
 
@@ -20,30 +20,30 @@ $mentions
 
 ## Return Value
 
-- **Type** : List of snowflakes separateds par virgules
+- **Type** : List of snowflakes separated by commas
 - Example: `123456789,987654321,555555555`
-- String vide si noe mention user
+- Empty string if no users are mentioned
 
 ## Behavior
 
-- `$mentions` ne prend **no argument**.
-- Returns all mentions user of the message.
-- Pour obtenir only la first mention, utilisez `$mentioned`.
+- `$mentions` takes **no arguments**.
+- Returns all user mentions of the message.
+- To retrieve only the first mention, use `$mentioned`.
 
 ## Examples
 
-### Traiter all mentions
+### Process all mentions
 
 ```bdfd
 $if[$mentions!=]
   $let[count;$arrayCount[$splitText[$mentions;,]]]
-  $sendMessage[$count user(s) mentionné(s) : $mentions]
+  $sendMessage[$count user(s) mentioned: $mentions]
 $else
-  $sendMessage[Aucun user mentionné.]
+  $sendMessage[No users mentioned.]
 $endif
 ```
 
-### Boucle on the mentions
+### Loop through mentions
 
 ```bdfd
 $let[mentionsList;$splitText[$mentions;,]]
@@ -51,12 +51,12 @@ $let[i;0]
 $let[total;$arrayCount[$mentionsList]]
 $while[$i<$total]
   $let[target;$arrayGet[$mentionsList;$i]]
-  $sendMessage[User : <@$target>]
+  $sendMessage[User: <@$target>]
   $let[i;$sum[$i;1]]
 $endwhile
 ```
 
-### Command multi-cibles
+### Multi-target command
 
 ```bdfd
 $if[$mentions!=]
@@ -68,14 +68,15 @@ $if[$mentions!=]
     $kick[$id]
     $let[i;$sum[$i;1]]
   $endwhile
-  $sendMessage[$total user(s) expulsé(s).]
+  $sendMessage[$total user(s) kicked.]
 $else
-  $sendMessage[Mentionnez to the moins un user.]
+  $sendMessage[Mention at least one user.]
 $endif
 ```
 
 ## Notes
 
-- `$mentions` retourne all IDs of un coup, separateds par virgules.
-- Pour itérer, utilisez `$splitText[$mentions;,]` pour obtenir un array.
-- Ne détecte pas les mentions `@everyone` or `@here`.
+- `$mentions` returns all IDs at once, separated by commas.
+- To iterate, use `$splitText[$mentions;,]` to create an array.
+- Does not detect `@everyone` or `@here` mentions.
+

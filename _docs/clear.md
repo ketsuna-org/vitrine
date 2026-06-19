@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: clear
 syntax: $clear[amount;(userID);(removePinned)]
-description: Supprime a namebre spécifié of messages in the channel.
+description: Deletes a specified number of messages in the channel.
 ---
 
 # $clear
 
-The `$clear` function **supprime a namebre spécifié of messages** in the channel courant. Cette function est dédiée to la suppression of messages (modération), to not confondre with the function variable `$clear` of the même nom. The bot must have the permission `ManageMessages`.
+The `$clear` function **deletes a specified number of messages** in the current channel. This function is dedicated to bulk-deleting messages (moderation), not to be confused with the variable function `$clear` of the same name. The bot must have the `ManageMessages` permission.
 
 ## Syntax
 
@@ -23,8 +23,8 @@ $clear[amount;(userID);(removePinned)]
 | Parameter | Description |
 |---|---|
 | `amount` | Number of messages to delete (1-100). Required. |
-| `userID` | Optional. Filtre : ne supprime que les messages of cet user. |
-| `removePinned` | Optional. `"yes"` pour inclure les messages épinglés. Default `"no"`. |
+| `userID` | Optional. Filter: only deletes messages from this user. |
+| `removePinned` | Optional. `"yes"` to include pinned messages. Default is `"no"`. |
 
 ## Return value
 
@@ -32,21 +32,21 @@ None. The messages are deleted.
 
 ## Examples
 
-### Suppression simple
+### Simple deletion
 
 ```bdfd
 $clear[50]
-$sendMessage[🧹 50 messages have been nettoyés.]
+$sendMessage[🧹 50 messages have been cleared.]
 ```
 
-### Suppression ciblée par user
+### Targeted deletion by user
 
 ```bdfd
 $clear[100;$mentioned[1]]
-$sendMessage[🧹 Messages of <@$mentioned[1]> deleteds.]
+$sendMessage[🧹 Messages from <@$mentioned[1]> deleted.]
 ```
 
-### Command of nettoyage with vérification
+### Clear command with verification
 
 ```bdfd
 $if[$argsCount<1]
@@ -56,24 +56,24 @@ $endif
 
 $if[$isAdmin==true]
   $clear[$message[1]]
-  $sendMessage[🧹 $message[1] messages deleteds.]
+  $sendMessage[🧹 $message[1] messages deleted.]
 $else
-  $sendMessage[Permission refusée.]
+  $sendMessage[Permission denied.]
 $endif
 ```
 
-### Suppression incluant les épinglés
+### Deletion including pinned messages
 
 ```bdfd
 $clear[10;;yes]
-$sendMessage[10 messages deleteds (épinglés included).]
+$sendMessage[10 messages deleted (pinned included).]
 ```
 
 ## Notes
 
-- The bot must have the permission `ManageMessages`.
-- Maximum 100 messages par call (limitation Discord).
-- Les messages of more than 14 days cannot être deleteds par the API Discord.
-- `removePinned` by default `"no"` : les messages épinglés are ignored.
-- Si `userID` est omitted, laissez le point-virgule vide (ex: `$clear[10;;yes]`).
-- Cette function `$clear` est dédiée to la modération. Pour vider a variable, voir `$clear` in the catégorie Variables.
+- The bot must have the `ManageMessages` permission.
+- Maximum 100 messages per call (Discord API limitation).
+- Messages older than 14 days cannot be deleted by the Discord API.
+- `removePinned` defaults to `"no"`: pinned messages are ignored.
+- If `userID` is omitted, leave the semicolon field empty (e.g., `$clear[10;;yes]`).
+- This `$clear` function is dedicated to moderation. To clear a variable, see `$clear` in the Variables category.

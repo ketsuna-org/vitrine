@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: isBooster
 syntax: $isBooster
-description: Returns "true" si the user est un booster of the server (Nitro Boost), "false" otherwise.
+description: Returns "true" if the user is a server booster (Nitro Boost), and "false" otherwise.
 ---
 
 # $isBooster
 
-The variable `$isBooster` retourne `"true"` si the user est un **Nitro Booster** of the server current.
+The function `$isBooster` returns `"true"` if the user is a **Nitro Booster** of the current server.
 
 ## Syntax
 
@@ -20,48 +20,48 @@ $isBooster
 
 ## Return Value
 
-- **Type** : String `"true"` or `"false"`
-- `"true"` : the user booste the server
-- `"false"` : the user ne booste pas the server
+- **Type**: String `"true"` or `"false"`
+- `"true"`: The user boosts the server.
+- `"false"`: The user does not boost the server.
 
 ## Behavior
 
-- `$isBooster` ne prend **no argument**.
-- La détection se base on the roles of booster or le status of boost of the member.
-- Un user peut booster several servers simultanément (selon son abonnement Nitro).
+- `$isBooster` takes **no arguments**.
+- Detection is based on the booster role or the member's boost status.
+- A user can boost multiple servers simultaneously (depending on their Nitro subscription).
 
 ## Examples
 
-### Remerciement automatique
+### Automatic thank you
 
 ```bdfd
 $if[$isBooster==true]
-  $title[Merci for the boost ! 🚀]
+  $title[Thanks for the boost! 🚀]
   $description[
-  Grâce to vous, the server bénéficie of :
-  - Plus of emojis
-  - Meilleure qualité audio
-  - Banner server
-  - Et plus encore !
+  Thanks to you, the server benefits from:
+  - More emojis
+  - Better audio quality
+  - Server banner
+  - And much more!
   ]
   $color[#F47FFF]
   $sendMessage[]
 $endif
 ```
 
-### Channel excludedsif boosters
+### Exclusive channel for boosters
 
 ```bdfd
 $if[$isBooster==true]
-  $sendMessage[Bienvenue in the channel excludedsif boosters !]
+  $sendMessage[Welcome to the exclusive boosters channel!]
 $else
-  $sendMessage[Ce channel est réservé to the boosters of the server.]
+  $sendMessage[This channel is reserved for server boosters.]
   $stop
 $endif
 ```
 
 ## Notes
 
-- The color classique of the boost Nitro est `#F47FFF` (rose/magenta).
-- Les boosters ont often un badge special (visible with `$userBadges`).
-- Utile pour create beforeages excludedsifs to the boosters (channels, roles, commands).
+- The classic color of the Nitro boost is `#F47FFF` (pink/magenta).
+- Boosters often have a special badge (visible with `$userBadges`).
+- Useful for creating exclusive perks for boosters (channels, roles, commands).

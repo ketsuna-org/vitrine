@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: allMembersCount
 syntax: $allMembersCount
-description: Returns the namebre total of members on the server (incluant les bots). Contrairement to $membersCount, cette function compte also les bots.
+description: Returns the total number of members on the server (including bots). Unlike $membersCount, this function also counts bots.
 ---
 
 # $allMembersCount
 
-The `$allMembersCount` function **récupérer the namebre total of members** on the server, en incluant les bots.
+The `$allMembersCount` function **retrieves the total number of members** on the server, including bots.
 
 ## Syntax
 
@@ -24,60 +24,60 @@ No parameters.
 
 ## Return value
 
-- **Type** : String (number)
-- The namebre total of members (users + bots) présents on the server.
+- **Type**: String (number)
+- The total number of members (users + bots) present on the server.
 
 ## Behavior
 
-- Counts all members of the server, y compris les bots.
-- Diffère of `$membersCount` qui ne compte que users humains.
-- La value est mise to day en temps réel.
+- Counts all members of the server, including bots.
+- Differs from `$membersCount` which only counts human users.
+- The value is updated in real time.
 
 ## Examples
 
 ### Simple display
 
 ```bdfd
-$title[📊 Statistiques of the server]
+$title[📊 Server Statistics]
 $description[
-**Members totaux :** $allMembersCount
-**Humains :** $membersCount
-**Bots :** $botCount
+**Total Members:** $allMembersCount
+**Humans:** $membersCount
+**Bots:** $botCount
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Compareason humains vs bots
+### Comparison of humans vs bots
 
 ```bdfd
 $let[humans;$membersCount]
 $let[bots;$botCount]
 $let[total;$allMembersCount]
 
-$title[👥 Composition of the server]
+$title[👥 Server Composition]
 $description[
-**Total :** $total members
-**👤 Humains :** $humans ($math[$humans*100/$total]%)
-**🤖 Bots :** $bots ($math[$bots*100/$total]%)
+**Total:** $total members
+**👤 Humans:** $humans ($math[$humans*100/$total]%)
+**🤖 Bots:** $bots ($math[$bots*100/$total]%)
 ]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Compteur of bienvenue
+### Welcome counter
 
 ```bdfd
-$title[🎉 Bienvenue on $serverName !]
+$title[🎉 Welcome to $serverName!]
 $description[
-Tu es le **$allMembersCountᵉ** member of the server !
+You are member number **$allMembersCount** of the server!
 ]
 $thumbnail[$userAvatar[$authorID]]
-$sendMessage[$channelID[bienvenue]]
+$sendMessage[$channelID[welcome]]
 ```
 
 ## Notes
 
-- N'inclut que les members encore présents on the server.
-- Pour avoir only les humains, use `$membersCount`.
-- Pour avoir only les bots, use `$botCount`.
+- Only includes members currently present on the server.
+- To get only humans, use `$membersCount`.
+- To get only bots, use `$botCount`.

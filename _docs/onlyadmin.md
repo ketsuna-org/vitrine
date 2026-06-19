@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyAdmin
 syntax: $onlyAdmin
-description: Function guard qui stops l'exécution of the command si the user is not administrator of the server.
+description: A guard function that stops command execution if the user is not an administrator of the server.
 ---
 
 # $onlyAdmin
 
-The function guard `$onlyAdmin` stops immédiatement l'exécution of the command si the user qui l'triggerede ne possède pas la permission **Administrator** on the server.
+The guard function `$onlyAdmin` immediately stops the execution of the command if the user who triggered it does not have the **Administrator** permission on the server.
 
 ## Syntax
 
@@ -20,50 +20,50 @@ $onlyAdmin
 
 ## Parameters
 
-Aucun parameter. `$onlyAdmin` s'utilise seul, without argument.
+No parameters. `$onlyAdmin` is used alone, without arguments.
 
 ## Behavior
 
-- Si the user est administrator, the command continue normalement.
-- Si the user n'est **pas** administrator, the command est immédiatement interrompue (`$stop` implicite).
-- Aucun error message n'est sent default — the bot reste silencieux.
-- Équivaslow functionnel to `$onlyPerms[Administrator]` mais plus lisible and concis.
+- If the user is an administrator, the command continues normally.
+- If the user is **not** an administrator, the command is immediately interrupted (implicit `$stop`).
+- No error message is sent by default — the bot remains silent.
+- Functional equivalent to `$onlyPerms[administrator]` but more readable and concise.
 
 ## Examples
 
-### Réserver une command to the admins
+### Restricting a command to administrators
 
 ```bdfd
 $onlyAdmin
 $ban[$mentioned[1]]
-$sendMessage[<@$mentioned[1]> was banni.]
+$sendMessage[<@$mentioned[1]> was banned.]
 ```
 
-### Panneau of administration
+### Administration Panel
 
 ```bdfd
 $onlyAdmin
-$title[⚙️ Panneau Admin]
+$title[⚙️ Admin Panel]
 $description[
-**Commands availables :**
+**Available Commands:**
 `!ban`, `!kick`, `!mute`, `!config`
 ]
 $color[#ED4245]
 $sendMessage[]
 ```
 
-### Command hybride (admin or role modérateur)
+### Hybrid Command (Admin or Moderator role)
 
 ```bdfd
 $if[$isAdmin==false]
   $onlyForRoles[123456789012345678]
 $endif
-$sendMessage[Action of modération allowede.]
+$sendMessage[Moderation action allowed.]
 ```
 
 ## Notes
 
-- `$onlyAdmin` vérifie only la permission `Administrator`. Pour check of autres permissions, utilisez `$onlyPerms`.
-- Le owner of the server est implicitement administrator and passes ce guard.
-- Pour ajouter un error message custom, préférez `$onlyPerms[Administrator;Error message]`.
-- À placer **en haut** of the command, before toute autre logique.
+- `$onlyAdmin` only checks the `Administrator` permission. To check other permissions, use `$onlyPerms`.
+- The owner of the server is implicitly an administrator and passes this guard.
+- To add a custom error message, use `$onlyPerms[administrator;Error message]` instead.
+- Place this function at the **very top** of the command, before any other logic.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: hasPerms
 syntax: $hasPerms[userID;permission1;permission2;...]
-description: Checks if un user possède all permissions spécifiées. Returns "true" or "false". Vérification inline, n'interrompt pas the command.
+description: Checks if a user has all specified permissions. Returns "true" or "false". Inline check, does not interrupt the command.
 ---
 
 # $hasPerms
 
-The function `$hasPerms` est une **vérification inline** of permissions. Contrairement to the guards (`$onlyPerms`, `$onlyBotPerms`), elle n'interrompt pas the command mais retourne `"true"` or `"false"`, permettant une gestion conditionnelle fine.
+The function `$hasPerms` is an **inline permission check**. Unlike guards (`$onlyPerms`, `$onlyBotPerms`), it does not interrupt the command but returns `"true"` or `"false"`, allowing fine-grained conditional management.
 
 ## Syntax
 
@@ -22,68 +22,68 @@ $hasPerms[userID;permission1;permission2;...]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID` | Snowflake | The ID of the user dont on veut check thes permissions. |
-| `permission1;permission2;...` | String[] | List permissions to vérifier. **Toutes** les permissions must be présentes. |
+| `userID` | Snowflake | The ID of the user whose permissions to check. |
+| `permission1;permission2;...` | String[] | List of permissions to verify. **All** permissions must be present. |
 
 ## Return Value
 
-- **Type** : String `"true"` or `"false"`
-- `"true"` : the user possède **all** les permissions listées
-- `"false"` : il manque to the moins une permission
+- **Type**: String `"true"` or `"false"`
+- `"true"`: the user has **all** listed permissions
+- `"false"`: at least one permission is missing
 
 ## Behavior
 
-- Checks les permissions globals of the user on the server.
-- La vérification est of type **ET** : all permissions listées sont requiredes.
-- La permission `Administrator` satisfait implicitement all autres.
-- **N'interrompt pas** the command (contrairement to `$onlyPerms`).
+- Checks the global permissions of the user on the server.
+- The check is of type **AND**: all listed permissions are required.
+- The `Administrator` permission implicitly satisfies all others.
+- **Does not interrupt** the command (unlike `$onlyPerms`).
 
 ## Examples
 
-### Vérification conditionnelle simple
+### Simple Conditional Check
 
 ```bdfd
 $if[$hasPerms[$authorID;BanMembers]==true]
   $ban[$mentioned[1];$noMentionMessage]
-  $sendMessage[Member banni.]
+  $sendMessage[Member banned.]
 $else
-  $sendMessage[❌ Vous n'avez pas la permission of bannir.]
+  $sendMessage[❌ You do not have permission to ban.]
 $endif
 ```
 
-### Multi-permissions
+### Multi-Permission Check
 
 ```bdfd
 $if[$hasPerms[$authorID;ManageMessages;ManageChannels]==true]
   $clear[$message[1]]
-  $sendMessage[$message[1] messages deleteds.]
+  $sendMessage[$message[1] messages deleted.]
 $else
-  $sendMessage[❌ Permissions insuffisantes.]
+  $sendMessage[❌ Insufficient permissions.]
 $endif
 ```
 
-### Vérifier les permissions of the bot
+### Check Bot Permissions
 
 ```bdfd
 $if[$hasPerms[$botID;KickMembers]==false]
-  $sendMessage[⚠️ Je n'ai pas la permission of expulser. Veuillez check mes permissions.]
+  $sendMessage[⚠️ I do not have permission to kick. Please check my permissions.]
   $stop
 $endif
 $kick[$mentioned[1]]
 ```
 
-### Log conditionnel
+### Conditional Log
 
 ```bdfd
 $if[$hasPerms[$authorID;Administrator]==true]
-  $log[Action admin : $userName a utilisé the command.]
+  $log[Admin action: $userName used the command.]
 $endif
 ```
 
 ## Notes
 
-- `$hasPerms` est une function **inline** : elle ne bloque pas the command. Utilisez-la with `$if` pour create comportements conditionnels.
-- Pour the bot, utilisez `$botID` like `userID`.
-- Les noms of permissions sont en **PascalCase** (`BanMembers`, `KickMembers`, `ManageMessages`, etc.).
-- Pour une vérification with interruption automatique, utilisez `$onlyPerms` (user) or `$onlyBotPerms` (bot).
-- `$checkUserPerms` est un alias of `$hasPerms`.
+- `$hasPerms` is an **inline** function: it does not block the command. Use it with `$if` to create conditional behaviors.
+- For the bot, use `$botID` as the `userID`.
+- Permission names are in **PascalCase** (`BanMembers`, `KickMembers`, `ManageMessages`, etc.).
+- For a check with automatic interruption, use `$onlyPerms` (user) or `$onlyBotPerms` (bot).
+- `$checkUserPerms` is an alias of `$hasPerms`.

@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: date
 syntax: $date
-description: Returns the date currentle. Cette function est resolvede to the runtime.
+description: Returns the current date. This function is resolved at runtime.
 ---
 
 # $date[]
 
-The `$date[]` function retourne the date currentle.
+The `$date[]` function returns the current date.
 
-> **Important:** Cette function utilise l'identifier special `((date))` qui est resolved to the **runtime**, i.e. to each execution of the command. The value peut varier of une execution to l'autre.
+> **Important:** This function uses the special identifier `((date))` which is resolved at **runtime**, i.e., at each execution of the command. The value can vary from one execution to another.
 
 ## Syntax
 
@@ -20,38 +20,38 @@ The `$date[]` function retourne the date currentle.
 $date
 ```
 
-> **Note :** Cette function ne prend auca parameter.
+> **Note:** This function does not take any parameters.
 
 ## Return value
 
-The date currentle, resolvede to each execution.
+The current date, resolved at each execution.
 
-## Difference from les functions specifics
+## Difference from specific functions
 
-`$date[]` retourne the date complete. Pour obtenir of components specifics of the date, use :
+`$date[]` returns the full date. To get specific components of the date, use:
 
 | Function | Returns |
 |----------|----------|
-| `$day` | Le day of the months (1-31) |
-| `$month` | Le months (1-12) |
-| `$year` | L'year (ex: 2026) |
+| `$day` | The day of the month (1-31) |
+| `$month` | The month (1-12) |
+| `$year` | The year (e.g., 2026) |
 
 ## Examples
 
-### Date simple
+### Simple date
 
 ```bdfd
-Nous sommes le $date
+The current date is $date
 ```
 
 ### Date in an embed
 
 ```bdfd
-$title[📅 Informations]
-$description[Date currentle : $date]
-$footer[Time of the server]
+$title[📅 Information]
+$description[Current date: $date]
+$footer[Server time]
 ```
 
 ## Notes
 
-- La date est basée on the horloge système of the server exécutant the bot.
+- The date is based on the system clock of the server running the bot.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: newTicket
 syntax: $newTicket[categoryID;(name);(message)]
-description: Creates a ticket sous forme of un new canal text in a catégorie. The créateur of the ticket receives automatically les permissions of accès.
+description: Creates a ticket as a new text channel in a category. The creator of the ticket automatically receives access permissions.
 ---
 
 # $newTicket
 
-The function `$newTicket[]` allows **create a ticket** sous forme of un canal text dédié in a catégorie specific.
+The function `$newTicket` allows you to **create a ticket** as a dedicated text channel in a specific category.
 
 ## Syntax
 
@@ -22,44 +22,44 @@ $newTicket[categoryID;(name);(message)]
 
 | Parameter | Description |
 |---|---|
-| `categoryID` | ID of the catégorie où create the canal of ticket. |
-| `name` | Optional - Name of the canal. Default: `ticket-{username}`. |
-| `message` | Optional - Message of bienvenue automatique in the ticket. |
+| `categoryID` | The ID of the category where the ticket channel should be created. |
+| `name` | Optional - The name of the channel. Default: `ticket-{username}`. |
+| `message` | Optional - An automatic welcome message inside the ticket. |
 
 ## Return Value
 
 - **Type** : Snowflake (string)
-- The ID of the canal of ticket created.
-- String vide en cas of échec (permissions, catégorie invalid).
+- The ID of the created ticket channel.
+- An empty string if it fails (due to permissions, invalid category, etc.).
 
 ## Behavior
 
-- The bot doit avoir `MANAGE_CHANNELS` pour create the canal.
-- Le créateur of the ticket (the user of the command) receives automatically accès to the canal.
-- Les autres members ne voient pas le ticket default.
+- The bot must have the `MANAGE_CHANNELS` permission to create the channel.
+- The ticket creator (the user who ran the command) automatically receives access to the channel.
+- Other members cannot see the ticket by default.
 
 ## Examples
 
-### Ticket of support simple
+### Simple support ticket
 
 ```bdfd
-$let[ticket;$newTicket[123456789;support-$username;Bienvenue $username ! \
-A member of l'équipe vous assistera bientôt. \
-Veuillez décrire votre problème en détail.]]
+$let[ticket;$newTicket[123456789;support-$username;Welcome $username! \
+A staff member will assist you shortly. \
+Please describe your issue in detail.]]
 $if[$ticket!=]
-  $sendMessage[✅ Ticket created : <#$ticket>]
+  $sendMessage[✅ Ticket created: <#$ticket>]
 $else
-  $sendMessage[❌ Error during la création of the ticket.]
+  $sendMessage[❌ Error during the creation of the ticket.]
 $endif
 ```
 
-### Ticket with notification staff
+### Ticket with staff notification
 
 ```bdfd
 $let[ticket;$newTicket[123456789;ticket-$username]]
 $if[$ticket!=]
-  $channelSendMessage[$staffChannel;📩 New ticket of $username : <#$ticket>]
-  $sendMessage[Votre ticket was created : <#$ticket>]
+  $channelSendMessage[$staffChannel;📩 New ticket by $username: <#$ticket>]
+  $sendMessage[Your ticket has been created: <#$ticket>]
 $endif
 ```
 
@@ -68,19 +68,19 @@ $endif
 ```bdfd
 $let[userTickets;$getUserVar[ticketCount]]
 $if[$userTickets>=3]
-  $sendMessage[❌ Vous avez déjà 3 tickets ouverts. Veuillez en fermer un before of en create a new.]
+  $sendMessage[❌ You already have 3 open tickets. Please close one before creating a new one.]
 $else
   $let[ticket;$newTicket[123456789;ticket-$username]]
   $if[$ticket!=]
     $setUserVar[ticketCount;$sum[$userTickets;1]]
-    $sendMessage[✅ Ticket #$sum[$userTickets;1] created : <#$ticket>]
+    $sendMessage[✅ Ticket #$sum[$userTickets;1] created: <#$ticket>]
   $endif
 $endif
 ```
 
 ## Notes
 
-- Les tickets sont canaux text classiques, pas threads.
-- Les permissions sont automatically configuredes for the créateur.
-- Pour fermer un ticket, utilisez `$closeTicket[]`.
-- Idéal for the systèmes of support, réclamations and modmails.
+- Tickets are regular text channels, not threads.
+- Permissions are automatically configured for the creator.
+- To close a ticket, use `$closeTicket[]`.
+- Ideal for support systems, appeals, and modmails.

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: removeSplitTextElement
 syntax: $removeSplitTextElement[index]
-description: Removes the element at the specified index from the current text spreads array.
+description: Removes the element at the specified index from the current split text array.
 ---
-# $removeSplitTextElement — Remove Spreads Element
+# $removeSplitTextElement — Remove Split Text Element
 
-`$removeSplitTextElement` deletes a single element from the current text spreads array. After removal, the array shrinks by one, and all subsequent elements shift down to fill the gap.
+`$removeSplitTextElement` deletes a single element from the current split text array. After removal, the array shrinks by one, and all subsequent elements shift down to fill the gap.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $removeSplitTextElement[index]
 
 ## Behavior
 
-- **Action-only**: This function modifies the spreads array directly and does not return a value.
+- **Action-only**: This function modifies the split text array directly and does not return a value.
 - Elements after the removed one shift left by one position.
 - The total length decreases by 1.
 - Removing an out-of-bounds index has no effect.
@@ -80,6 +80,6 @@ $sendMessage[$joinSplitText[ ]]
 ## Important Notes
 
 - **Index shift**: After removal, all higher indices shift down. If you need to remove multiple elements, work from highest index to lowest to avoid index corruption.
-- **Out-of-bounds**: Removing an invalid index sislowly does nothing.
+- **Out-of-bounds**: Removing an invalid index silently does nothing.
 - **No return**: Do not use inline; it's an action function.
-- **Permanent for this execution**: The removal cannot be undone within the same command, but the original text is not permanently lost — it can be re-spreads from the source.
+- **Permanent for this execution**: The removal cannot be undone within the same command, but the original text is not permanently lost — it can be re-split from the source.

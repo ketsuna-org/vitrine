@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: allowRoleMentions
 syntax: $allowRoleMentions
-description: Autorise les mentions of roles in the message in progress. Without this call, les mentions of roles in the contenu of the message ne notifieront pas les members.
+description: Allows role mentions in the current message. Without this call, mentioning roles in the message content will not notify the members.
 ---
 
-# $allowRoleMentions[] — Autoriser les Mentions of Roles
+# $allowRoleMentions[] — Allow Role Mentions
 
-`$allowRoleMentions[]` active la notification members lorsqu'a role est mentionné in the message. Without this call, les tags of roles like `<@&roleId>` are displayed mais ne déclenchent **pas** of notification.
+`$allowRoleMentions[]` enables member notifications when a role is mentioned in the message. Without this call, role tags like `<@&roleId>` are displayed but do **not** trigger a notification.
 
 ## Syntax
 
@@ -24,51 +24,51 @@ No parameters.
 
 ## Return value
 
-Active l'permission of mention of roles for the prochain message sent. The roles mentionnés in the contenu notifieront leurs members.
+Enables role mentions for the next message sent. Roles mentioned in the content will notify their members.
 
 ## Usage
 
-### Annonce with ping
+### Announcement with ping
 
 ```bdfd
 $allowRoleMentions
-$sendMessage[<@&$roleID[Modo]> Un rapport has been soumis, merci of vérifier.]
+$sendMessage[<@&$roleID[Moderator]> A report has been submitted, please check.]
 ```
 
-### Notification of event
+### Event notification
 
 ```bdfd
 $allowRoleMentions
-$title[🎉 Event of the server]
-$description[<@&$roleID[Event_Ping]> Un new event commence in 1 hour !]
-$addField[Détails;Tournoi hebdomadaire;yes]
-$addField[Récompense;5000 pièces of or;yes]
+$title[🎉 Server Event]
+$description[<@&$roleID[Event_Ping]> A new event begins in 1 hour!]
+$addField[Details;Weekly tournament;yes]
+$addField[Reward;5000 gold coins;yes]
 $color[#F1C40F]
 ```
 
-### Rcall with mention
+### Reminder with mention
 
 ```bdfd
 $allowRoleMentions
-$sendMessage[⏰ <@&$roleID[Staff]> Réunion staff in 10 minutes !]
+$sendMessage[⏰ <@&$roleID[Staff]> Staff meeting in 10 minutes!]
 ```
 
-### Message conditionnel
+### Conditional message
 
 ```bdfd
 $if[$var[important]==yes]
 $allowRoleMentions
-$sendMessage[<@&$roleID[Everyone_Important]> Alerte critique !]
+$sendMessage[<@&$roleID[Everyone_Important]> Critical alert!]
 $else
 $noMentions
-$sendMessage[Mise to day mineure available]
+$sendMessage[Minor update available]
 $endif
 ```
 
 ## Notes
 
-- Without `$allowRoleMentions[]`, les roles mentionnés apparaissent like text mais without notification.
-- L'effet s'applique only to the prochain message sent (via `$sendMessage` or functions of envoi).
-- Pour interdire explicitement toute mention, use `$noMentions[]`.
-- `$allowRoleMentions[]` n'affecte que les **mentions of roles**. For users, use `$allowUserMentions[]`.
-- Pratique for annonces importantes tout en évitant les pings abusifs in thes messages ordinaires.
+- Without `$allowRoleMentions[]`, mentioned roles appear as text but do not trigger a notification.
+- The effect only applies to the next message sent (via `$sendMessage` or other sending functions).
+- To explicitly disable all mentions, use `$noMentions[]`.
+- `$allowRoleMentions[]` only affects **role mentions**. For users, use `$allowUserMentions[]`.
+- Useful for important announcements while avoiding accidental pings in ordinary messages.

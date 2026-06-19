@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getMentionableSelectUserID
 syntax: $getMentionableSelectUserID[(index)]
-description: Gets the ID of the entité mentionnable (user or role) selectede via un menu of sélection mentionnable (mentionable select).
+description: Gets the ID of the mentionable entity (user or role) selected via a mentionable select menu.
 ---
 
 # $getMentionableSelectUserID
 
-The function `$getMentionableSelectUserID[]` allows **récupérer the ID of the entité mentionnable** selectede par the user via un menu of sélection mentionnable (users + roles).
+The function `$getMentionableSelectUserID[]` allows **retrieving the ID of the mentionable entity** selected by the user via a mentionable select menu (users + roles).
 
 ## Syntax
 
@@ -22,50 +22,50 @@ $getMentionableSelectUserID[(index)]
 
 | Parameter | Description |
 |---|---|
-| `index` | Optional - L'index of l'entité in the sélection (1 = first). Par default 1. |
+| `index` | Optional - The index of the entity in the selection (1 = first). Default 1. |
 
 ## Return Value
 
 - **Type** : String (Snowflake ID)
-- The ID Discord of the user or of the role selected.
-- String vide si no mentionnable n'was selected.
+- The Discord ID of the selected user or role.
+- Empty string if no mentionable was selected.
 
 ## Behavior
 
-- Utilisé in thes interactions with a menu of type `mentionable`.
-- Le menu mentionnable accepte to la fois users and roles.
-- The ID retourné can be un ID user or un ID of role according to ce que the user a choisi.
+- Used in interactions with a menu of type `mentionable`.
+- The mentionable menu accepts both users and roles.
+- The returned ID can be a user ID or a role ID depending on what the user chose.
 
 ## Examples
 
-### Récupération simple
+### Simple retrieval
 
 ```bdfd
 $nominalTrigger
-$addMentionableSelectMenu[mention_select;1;Choisissez un user or role]
-$sendMessage[Sélectionnez une entité :]
+$addMentionableSelectMenu[mention_select;1;Choose a user or role]
+$sendMessage[Select an entity:]
 
 $onInteraction[mention_select]
 $let[id;$getMentionableSelectUserID]
-$title[Entité selectede]
-$description[ID : $id]
+$title[Selected entity]
+$description[ID: $id]
 $sendMessage[]
 ```
 
-### Vérification of the type of entité
+### Check the entity type
 
 ```bdfd
 $onInteraction[mention_select]
 $let[id;$getMentionableSelectUserID]
 $if[$hasRole[$id;$guildID]==true]
-  Il s'agit of a role : @&$id
+  This is a role: @&$id
 $else
-  Il s'agit of a user : <@$id>
+  This is a user: <@$id>
 $endif
 ```
 
 ## Notes
 
-- L'index commence to 1.
-- Pour les sélections multiple, use `$getMentionableSelectUserIDs[]`.
-- The ID retourné peut correspondre to un user OU un role.
+- The index starts at 1.
+- For multiple selections, use `$getMentionableSelectUserIDs[]`.
+- The returned ID may correspond to a user OR a role.

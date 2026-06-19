@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: setUserRoles
 syntax: $setUserRoles[userID;role1;role2;...]
-description: Sets the list exact roles of a user, remplaçant all their roles currents.
+description: Sets the exact list of roles for a user, replacing all of their current roles.
 ---
 
 # $setUserRoles
 
-The function `$setUserRoles` **remplace all roles of a user** par une new list. Contrairement to `$giveRoles` qui ajoute roles, `$setUserRoles` retire first all roles existings before of attribuer ceux spécifiés. The bot doit avoir la permission `ManageRoles`.
+The function `$setUserRoles` **replaces all roles of a user** with a new list. Unlike `$giveRoles` which adds roles, `$setUserRoles` first removes all existing roles before assigning the specified ones. The bot must have the `Manage Roles` permission.
 
 ## Syntax
 
@@ -22,52 +22,52 @@ $setUserRoles[userID;role1;role2;...]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user cible. Required. |
-| `role1;role2;...` | List IDs of roles to définir, separateds par `;`. |
+| `userID` | The ID of the target user. Required. |
+| `role1;role2;...` | List of role IDs to set, separated by `;`. |
 
 ## Return Value
 
-Aucune. The roles of the user sont replaceds.
+None. The user's roles are replaced.
 
 ## Examples
 
-### Réinitialisation roles
+### Resetting roles
 
 ```bdfd
 $setUserRoles[$mentioned[1];$roleID[Member]]
-$sendMessage[<@$mentioned[1]> n'a plus que the role Member.]
+$sendMessage[<@$mentioned[1]> now only has the Member role.]
 ```
 
-### Définition of un set of roles
+### Setting a specific set of roles
 
 ```bdfd
-$setUserRoles[$mentioned[1];$roleID[Member];$roleID[VIP];$roleID[Actif]]
-$sendMessage[Roles of <@$mentioned[1]> mis to day.]
+$setUserRoles[$mentioned[1];$roleID[Member];$roleID[VIP];$roleID[Active]]
+$sendMessage[Roles of <@$mentioned[1]> updated.]
 ```
 
-### Promotion of un member
+### Promoting a member
 
 ```bdfd
 $if[$isAdmin==true]
-  $setUserRoles[$mentioned[1];$roleID[Modérateur];$roleID[Staff]]
-  $sendMessage[<@$mentioned[1]> est now Modérateur !]
+  $setUserRoles[$mentioned[1];$roleID[Moderator];$roleID[Staff]]
+  $sendMessage[<@$mentioned[1]> is now a Moderator!]
 $else
-  $sendMessage[Permission refusée.]
+  $sendMessage[Permission denied.]
 $endif
 ```
 
-### Nettoyage complete
+### Clearing all roles
 
 ```bdfd
 $setUserRoles[$mentioned[1]]
-$sendMessage[Tous les roles of <@$mentioned[1]> were retirés.]
+$sendMessage[All roles of <@$mentioned[1]> have been removed.]
 ```
 
 ## Notes
 
-- The bot doit avoir la permission `ManageRoles`.
-- **Tous les roles existings sont retirés** before of appliquer les newx.
-- Pour simplement ajouter roles, préférez `$giveRoles`.
-- Pour retirer roles specifics, préférez `$takeRoles`.
-- Laisser la list of roles vide retire all roles (except the role @everyone).
-- The role @everyone ne peut pas être retiré.
+- The bot must have the `Manage Roles` permission.
+- **All existing roles are removed** before applying the new ones.
+- To simply add roles, use `$giveRoles` instead.
+- To remove specific roles, use `$takeRoles` instead.
+- Leaving the role list empty removes all roles (except the @everyone role).
+- The @everyone role cannot be removed.

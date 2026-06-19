@@ -86,5 +86,5 @@ $sendMessage[]
 
 - Empty string = no premium.
 - For hosting, use `$hostingExpireTime`.
-- BDFD premium offers: more commands, more servers, excludedsive features.
+- BDFD premium offers: more commands, more servers, exclusive features.
 - `$dateDiff[$premiumExpireTime]` returns the number of days remaining.

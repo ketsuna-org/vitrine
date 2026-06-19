@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: isAdmin
 syntax: $isAdmin
-description: Returns "true" si the user possède la permission Administrator on the server, "false" otherwise.
+description: Returns "true" if the user has the Administrator permission on the server, and "false" otherwise.
 ---
 
 # $isAdmin
 
-The variable `$isAdmin` retourne `"true"` si the user possède la permission **Administrator** on the server Discord.
+The function `$isAdmin` returns `"true"` if the user has the **Administrator** permission on the Discord server.
 
 ## Syntax
 
@@ -20,36 +20,36 @@ $isAdmin
 
 ## Return Value
 
-- **Type** : String `"true"` or `"false"`
-- `"true"` : the user a la permission `Administrator`
-- `"false"` : the user n'a pas cette permission
+- **Type**: String `"true"` or `"false"`
+- `"true"`: The user has the `Administrator` permission.
+- `"false"`: The user does not have this permission.
 
 ## Behavior
 
-- `$isAdmin` ne prend **no argument**.
-- La permission `Administrator` donne **all** les permissions on the server.
-- Un owner of server est implicitement administrator (retourne `"true"`).
+- `$isAdmin` takes **no arguments**.
+- The `Administrator` permission grants **all** permissions on the server.
+- The server owner is implicitly an administrator (returns `"true"`).
 
 ## Examples
 
-### Restrict une command
+### Restricting a command
 
 ```bdfd
 $if[$isAdmin==true]
   $ban[$mentioned]
-  $sendMessage[<@$mentioned> was banni.]
+  $sendMessage[<@$mentioned> was banned.]
 $else
-  $sendMessage[Seuls les administrators can use cette command.]
+  $sendMessage[Only administrators can use this command.]
 $endif
 ```
 
-### Display un menu admin
+### Displaying an admin menu
 
 ```bdfd
 $if[$isAdmin==true]
-  $title[Panneau of administration]
+  $title[Administration Panel]
   $description[
-  **Commands availables :**
+  **Available commands:**
   `/ban`, `/kick`, `/mute`, `/config`
   ]
   $color[#ED4245]
@@ -57,16 +57,16 @@ $if[$isAdmin==true]
 $endif
 ```
 
-### Log actions admin
+### Logging admin actions
 
 ```bdfd
 $if[$isAdmin==true]
-  $log[Action admin effectuée par $userName (ID: $userID)]
+  $log[Admin action performed by $userName (ID: $userID)]
 $endif
 ```
 
 ## Notes
 
-- `$isAdmin` vérifie only la permission `Administrator`, pas les autres permissions individuals.
-- Pour check une permission specific (ex: `BanMembers`, `ManageMessages`), utilisez `$checkContains[$userPerms;PermissionName]`.
-- Équivaslow to `$checkContains[$userPerms;Administrator]==true`.
+- `$isAdmin` only checks for the `Administrator` permission, not other individual permissions.
+- To check for a specific permission (e.g., `BanMembers`, `ManageMessages`), use `$checkContains[$userPerms;PermissionName]`.
+- Equivalent to `$checkContains[$userPerms;Administrator]==true`.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelNSFW
 syntax: $channelNSFW[(channelID)]
-description: Returns "true" if the channel est marqué NSFW, "false" otherwise.
+description: Returns "true" if the channel is marked as NSFW, "false" otherwise.
 ---
 
 # $channelNSFW
 
-The `$channelNSFW` function vérifie if a channel Discord est marqué like **NSFW** (Not Safe For Work). Elle retourne `"true"` or `"false"` sous forme of string.
+The `$channelNSFW` function checks if a Discord channel is marked as **NSFW** (Not Safe For Work). It returns `"true"` or `"false"` in the form of a string.
 
 ## Syntax
 
@@ -22,45 +22,45 @@ $channelNSFW[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `string` | `"true"` if the channel est NSFW, `"false"` otherwise. |
+| `string` | `"true"` if the channel is NSFW, `"false"` otherwise. |
 
 ## Examples
 
-### Vérification simple
+### Simple check
 
 ```bdfd
 $if[$channelNSFW==true]
-  $sendMessage[⚠️ Ce channel est marqué NSFW. Contenu sensible possible.]
+  $sendMessage[⚠️ This channel is marked as NSFW. Sensitive content is allowed.]
 $else
-  $sendMessage[Ce channel est tout public.]
+  $sendMessage[This channel is safe for work (SFW).]
 $endif
 ```
 
-### Bloquer une command en channel NSFW
+### Block a command in an NSFW channel
 
 ```bdfd
 $if[$channelNSFW==true]
-  $sendMessage[Cette command cannot être utilisée en channel NSFW.]
+  $sendMessage[This command cannot be used in NSFW channels.]
   $stop
 $endif
 ```
 
-### Vérifier a channel specific
+### Check a specific channel
 
 ```bdfd
 $if[$channelNSFW[123456789012345678]==true]
-  $sendMessage[The channel target est NSFW.]
+  $sendMessage[The target channel is NSFW.]
 $endif
 ```
 
 ## Notes
 
-- La value retournée est une **string** `"true"` or `"false"`, pas un boolean.
-- Les channels vocaux can also être marqués NSFW.
-- Utile pour restrict the accès to certaines commands according to the type of channel.
+- The returned value is a **string** `"true"` or `"false"`, not a boolean.
+- Voice channels can also be marked as NSFW.
+- Useful for restricting access to certain commands depending on the channel type.

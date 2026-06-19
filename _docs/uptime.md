@@ -5,12 +5,12 @@ translation_key: docs
 category: "Misc"
 function_name: uptime
 syntax: $uptime
-description: Returns the durée écoulée dethen le démarrage of the bot.
+description: Returns the elapsed time since the bot started.
 ---
 
 # $uptime[]
 
-The function `$uptime[]` retourne the duration écoulée dethen le last démarrage (or redémarrage) of the bot.
+The function `$uptime[]` returns the elapsed time since the last start (or restart) of the bot.
 
 ## Syntax
 
@@ -18,49 +18,49 @@ The function `$uptime[]` retourne the duration écoulée dethen le last démarra
 $uptime
 ```
 
-> **Note :** This function ne prend no parameter.
+> **Note:** This function takes no parameters.
 
 ## Return Value
 
-A string of becauseactères formattede indiquant the duration of functionnement, for example :
+A formatted string indicating the uptime duration, for example:
 
 - `2 hours, 15 minutes, 30 seconds`
 - `3 days, 5 hours, 42 minutes`
 - `45 seconds`
 
-The format exact peut varier according to the duration.
+The exact format may vary according to the duration.
 
 ## Examples
 
-### Uptime simple
+### Simple uptime
 
 ```bdfd
-The bot est online dethen $uptime.
+The bot has been online for $uptime.
 ```
 
-### Embed of status
+### Status embed
 
 ```bdfd
-$title[📊 Status of the Bot]
+$title[📊 Bot Status]
 $addField[⏱️ Uptime;$uptime]
 $addField[🏓 Ping;$ping ms]
 $color[#5865F2]
 ```
 
-### Command info complete
+### Complete info command
 
 ```bdfd
-$title[🤖 Informations]
+$title[🤖 Information]
 $description[
-**Uptime :** $uptime
-**Ping :** $ping ms
-**Servers :** $guildCount
-**Users :** $allMembersCount
+**Uptime:** $uptime
+**Ping:** $ping ms
+**Servers:** $guildCount
+**Users:** $allMembersCount
 ]
 ```
 
 ## Notes
 
-- L'uptime est réinitialisé to each redémarrage of the bot.
-- Le format of sortie est automatically adapté to the duration (seconds, minutes, hours, days).
-- Pour la latence of the bot, utilisez `$ping[]`.
+- The uptime is reset on each bot restart.
+- The output format is automatically adapted to the duration (seconds, minutes, hours, days).
+- For bot latency, use `$ping[]`.

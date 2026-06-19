@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: messageID
 syntax: $messageID
-description: Returns the ID (snowflake) of the message déclencheur of the command.
+description: Returns the ID (snowflake) of the message that triggered the command.
 ---
 
 # $messageID
 
-The function `$messageID` retourne l'**identifier unique** (snowflake) of the message that triggered l'exécution of the command.
+The function `$messageID` returns the **unique identifier** (snowflake) of the message that triggered the execution of the command.
 
 ## Syntax
 
@@ -20,43 +20,44 @@ $messageID
 
 ## Parameters
 
-Aucun parameter.
+None.
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the message déclencheur. |
+| `snowflake` (string) | The ID of the triggering message. |
 
 ## Examples
 
-### Display the ID of the message
+### Display the message ID
 
 ```bdfd
-$sendMessage[ID of the message : $messageID]
+$sendMessage[Message ID: $messageID]
 ```
 
-### Link direct vers the message
+### Direct link to the message
 
 ```bdfd
-$sendMessage[Link of the message : https://discord.com/channels/$guildID/$channelID/$messageID]
+$sendMessage[Link to the message: https://discord.com/channels/$guildID/$channelID/$messageID]
 ```
 
-### Log of the ID
+### Log the ID
 
 ```bdfd
-$channelSendMessage[$channelIDFromName[logs];Message $messageID traité par $username.]
+$channelSendMessage[$channelIDFromName[logs];Message $messageID processed by $username.]
 ```
 
-### Supprimer the message after traitement
+### Delete the message after processing
 
 ```bdfd
 $deleteMessage[$channelID;$messageID]
-$sendMessage[Message traité and deleted.]
+$sendMessage[Message processed and deleted.]
 ```
 
 ## Notes
 
-- The ID est unique and allows to identifier précisément un message.
-- Utilisable with `$deleteMessage`, `$editMessage` or `$messageURL`.
-- Dans les interactions (buttons), `$messageID` retourne the ID of the message of origine.
+- The ID is unique and allows you to precisely identify a message.
+- Can be used with `$deleteMessage`, `$editMessage`, or `$messageURL`.
+- In interactions (buttons), `$messageID` returns the ID of the original message.
+

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: sub
 syntax: $sub[a;b]
-description: Soustrait la twoième value of la first (a - b).
+description: Subtracts the second value from the first (a - b).
 ---
 
 # $sub[]
 
-The function `$sub[]` effectue une soustraction between two values : `a - b`.
+The function `$sub[]` performs a subtraction between two values: `a - b`.
 
 ## Syntax
 
@@ -22,42 +22,42 @@ $sub[a;b]
 
 | Parameter | Type   | Required | Description                        |
 |-----------|--------|-------------|------------------------------------|
-| `a`       | number | Yes         | The value of départ (minuend).     |
-| `b`       | number | Yes         | The value to soustraire (subtrahend). |
+| `a`       | number | Yes         | The starting value (minuend).     |
+| `b`       | number | Yes         | The value to subtract (subtrahend). |
 
 ## Behavior
 
 - Returns `a - b`.
-- The result can be négatif.
-- Supports thes numbers décimaux.
-- Si les values are not numériques, le comportement est indéfini.
+- The result can be negative.
+- Supports decimal numbers.
+- If the values are not numerical, the behavior is undefined.
 
 ## Examples
 
-**Soustraction simple :**
+**Simple subtraction:**
 ```
 $sub[10;3]
 → 7
 ```
 
-**Result négatif :**
+**Negative result:**
 ```
 $sub[5;10]
 → -5
 ```
 
-**Avec decimales :**
+**With decimals:**
 ```
 $sub[10.5;3.2]
 → 7.3
 ```
 
-**Calcul of bénéfice :**
+**Profit calculation:**
 ```
-$sub[$getVar[revenu];$getVar[depense]]
+$sub[$getVar[revenue];$getVar[expense]]
 ```
 
 ## Notes
 
-- Seulement two arguments sont acceptés. Pour soustraire several values, stringz les calls : `$sub[$sub[a;b];c]` or utilisez `$calculate[a - b - c]`.
-- Le separator est le point-virgule `;`.
+- Only two arguments are accepted. To subtract several values, nest the calls: `$sub[$sub[a;b];c]` or use `$calculate[a - b - c]`.
+- The separator is the semicolon `;`.

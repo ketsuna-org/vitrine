@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: createChannel
 syntax: $createChannel[name;(type);(categoryID);(topic);(nsfw);(slowmode)]
-description: Creates a new canal on the server. Supports thes canaux text, vocaux, of catégorie, of annonce and of scène.
+description: Creates a new channel on the server. Supports text, voice, category, announcement, and stage channels.
 ---
 
 # $createChannel
 
-The `$createChannel[]` function **create a new canal** on the server Discord.
+The `$createChannel[]` function **creates a new channel** on the Discord server.
 
 ## Syntax
 
@@ -22,60 +22,60 @@ $createChannel[name;(type);(categoryID);(topic);(nsfw);(slowmode)]
 
 | Parameter | Description |
 |---|---|
-| `name` | Name of the canal (1 to 100 becauseactères). |
-| `type` | Optional - Type : `0`=text, `2`=vocal, `4`=catégorie, `5`=annonce, `13`=scène. Default: `0`. |
-| `categoryID` | Optional - ID of the catégorie parente. |
-| `topic` | Optional - Sujet/description of the canal (max 1024). |
-| `nsfw` | Optional - `true`/`false` for the marquage NSFW. |
-| `slowmode` | Optional - Delay en seconds (0-21600). |
+| `name` | Name of the channel (1 to 100 characters). |
+| `type` | Optional - Type: `0`=text, `2`=voice, `4`=category, `5`=announcement, `13`=stage. Default: `0`. |
+| `categoryID` | Optional - ID of the parent category. |
+| `topic` | Optional - Topic/description of the channel (max 1024). |
+| `nsfw` | Optional - `true`/`false` for NSFW marking. |
+| `slowmode` | Optional - Delay in seconds (0-21600). |
 
 ## Return value
 
-- **Type** : Snowflake (string)
-- The ID of the canal created.
-- String vide si échec (permissions insuffisantes).
+- **Type**: Snowflake (string)
+- The ID of the created channel.
+- Empty string if failed (insufficient permissions).
 
 ## Behavior
 
-- The bot must have the permission `MANAGE_CHANNELS`.
-- Les canaux of annonce (type 5) nécessitent a server communautaire.
-- Les canaux of scène (type 13) sont canaux vocaux special.
+- The bot must have the `MANAGE_CHANNELS` permission.
+- Announcement channels (type 5) require a community server.
+- Stage channels (type 13) are special voice channels.
 
 ## Examples
 
-### Canal of logs
+### Log channel
 
 ```bdfd
 $let[logChan;$createChannel[logs-bot;0;123456789;;false;0]]
 $if[$logChan!=]
-  $channelSendMessage[$logChan;Système of logs enabled.]
-  $sendMessage[Canal of logs created : <#$logChan>]
+  $channelSendMessage[$logChan;Log system enabled.]
+  $sendMessage[Log channel created: <#$logChan>]
 $else
-  $sendMessage[Error : permission MANAGE_CHANNELS requirede.]
+  $sendMessage[Error: MANAGE_CHANNELS permission required.]
 $endif
 ```
 
-### Canal of ticket dynamic
+### Dynamic ticket channel
 
 ```bdfd
-$let[ticketChan;$createChannel[ticket-$username;0;123456789;Ticket of $username;false;0]]
+$let[ticketChan;$createChannel[ticket-$username;0;123456789;Ticket for $username;false;0]]
 $if[$ticketChan!=]
-  $channelSendMessage[$ticketChan;Bienvenue $username ! Décrivez votre problème.]
-  $sendMessage[Ticket created : <#$ticketChan>]
+  $channelSendMessage[$ticketChan;Welcome $username! Describe your issue.]
+  $sendMessage[Ticket created: <#$ticketChan>]
 $endif
 ```
 
-### Catégorie + canaux
+### Category + channels
 
 ```bdfd
-$let[cat;$createChannel[New Projet;4;0]]
+$let[cat;$createChannel[New Project;4;0]]
 $let[chat;$createChannel[discussion;0;$cat]]
-$let[vocal;$createChannel[Vocal;2;$cat]]
-$sendMessage[Catégorie and canaux createds !]
+$let[voice;$createChannel[Voice;2;$cat]]
+$sendMessage[Category and channels created!]
 ```
 
 ## Notes
 
-- Les noms of canaux sont converteds en minuscules and les espaces replaceds par tirets.
-- Maximum 500 canaux par server.
-- Pour supprimer, use `$deleteChannels[]`.
+- Channel names are converted to lowercase and spaces are replaced by hyphens.
+- Maximum 500 channels per server.
+- To delete, use `$deleteChannels[]`.

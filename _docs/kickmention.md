@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: kickMention
 syntax: $kickMention
-description: Expulse the user mentionné in the message.
+description: Kicks the user mentioned in the message.
 ---
 
 # $kickMention
 
-The function `$kickMention` **expulse automatically the user mentionné** in the message déclencheur. C'est un raccourci pratique qui évite of specify a ID. The bot doit avoir la permission `KickMembers`.
+The function `$kickMention` **automatically kicks the user mentioned** in the triggering message. This is a convenient shortcut that avoids the need to specify an ID. The bot must have the `Kick Members` permission.
 
 ## Syntax
 
@@ -20,31 +20,31 @@ $kickMention
 
 ## Parameters
 
-Aucun parameter. The function détecte automatically the user mentionné.
+No parameters. The function automatically detects the mentioned user.
 
 ## Return Value
 
-Aucune. The user mentionné est expulsé.
+None. The mentioned user is kicked.
 
 ## Examples
 
-### Expulsion simple
+### Simple kick
 
 ```bdfd
 $kickMention
-$sendMessage[Member expulsé with success !]
+$sendMessage[Member kicked successfully!]
 ```
 
-### Expulsion with reason default
+### Kick with default reason
 
 ```bdfd
 $kickMention
-$sendMessage[<@$mentioned[1]> was expulsé pour non-respect règles.]
+$sendMessage[<@$mentioned[1]> has been kicked for violating the rules.]
 ```
 
 ## Notes
 
-- The message déclencheur doit contain ae mention of user.
-- The bot doit avoir la permission `KickMembers`.
-- Pour expulser un user specific par ID, utilisez `$kick`.
-- Si noe mention n'est présente, le comportement can be indéfini.
+- The triggering message must contain a user mention.
+- The bot must have the `Kick Members` permission.
+- To kick a specific user by ID, use `$kick`.
+- If no mention is present, the behavior may be undefined.

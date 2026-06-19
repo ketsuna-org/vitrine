@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getChannelSelectChannelID
 syntax: $getChannelSelectChannelID[(index)]
-description: Gets the ID of the canal selected par the user via un menu of sélection of canaux (channel select). Allows to obtenir the result of une interaction.
+description: Gets the ID of the channel selected by the user via a channel select menu. Allows getting the result of an interaction.
 ---
 
 # $getChannelSelectChannelID
 
-The function `$getChannelSelectChannelID[]` allows **récupérer the ID of the canal** choisi par the user in a menu of sélection of canaux (select menu of type channel).
+The `$getChannelSelectChannelID[]` function allows you to **retrieve the ID of the channel** chosen by the user in a channel select menu.
 
 ## Syntax
 
@@ -22,45 +22,45 @@ $getChannelSelectChannelID[(index)]
 
 | Parameter | Description |
 |---|---|
-| `index` | Optional - L'index of the canal in the sélection (1 = first). Par default 1. |
+| `index` | Optional - The index of the channel in the selection (1 = first). Default: 1. |
 
 ## Return Value
 
-- **Type** : String (Snowflake ID)
-- The ID Discord of the canal selected.
-- String vide si no canal n'was selected.
+- **Type**: String (Snowflake ID)
+- The Discord ID of the selected channel.
+- An empty string if no channel was selected.
 
 ## Behavior
 
-- Utilisé in thes interactions of type `$onInteraction[]` or `$selectMenuInteractionID[]`.
-- Functionne with thes menus of sélection of canaux (type `channel` in `$addChannelSelectMenu[]`).
-- Si the user sélectionne several canaux, use `$getChannelSelectChannelIDs[]` pour all récupérer.
+- Used in interactions of type `$onInteraction[]` or `$selectMenuInteractionID[]`.
+- Works with channel select menus (type `channel` in `$addChannelSelectMenu[]`).
+- If the user selects multiple channels, use `$getChannelSelectChannelIDs[]` to retrieve all of them.
 
 ## Examples
 
-### Récupération simple
+### Simple retrieval
 
 ```bdfd
-$nominalTrigger
-$addChannelSelectMenu[channel_select;1;Sélectionnez un canal to surveiller]
-$sendMessage[Veuillez choisir un canal :]
+$nomentionMessage
+$addChannelSelectMenu[channel_select;1;Select a channel to monitor]
+$sendMessage[Please choose a channel:]
 
 $onInteraction[channel_select]
 $let[channelID;$getChannelSelectChannelID]
-$title[Canal selected]
+$title[Selected Channel]
 $description[
-**ID :** $channelID
-**Nom :** $channelName[$channelID]
+**ID:** $channelID
+**Name:** $channelName[$channelID]
 ]
 $sendMessage[]
 ```
 
-### Gestion of several sélections
+### Handling multiple selections
 
 ```bdfd
 $onInteraction[channel_select]
 $let[count;$length[$splitText[$getChannelSelectChannelIDs[,];,]]]
-Vous avez selected **$count** canal(s) :
+You have selected **$count** channel(s):
 $textSplit[$getChannelSelectChannelIDs[,];,]
 > <#[$splitText[$index]]> (ID: $splitText[$index])
 $endTextSplit
@@ -68,7 +68,7 @@ $endTextSplit
 
 ## Notes
 
-- L'index commence to 1 (pas 0).
-- Functionne only in thes callbacks of interaction.
-- Pour les sélections multiple, préférez `$getChannelSelectChannelIDs[]`.
-- Le canal retourné can be of n'importe quel type (text, vocal, catégorie, etc.).
+- The index starts at 1 (not 0).
+- Only works in interaction callbacks.
+- For multiple selections, use `$getChannelSelectChannelIDs[]` instead.
+- The returned channel can be of any type (text, voice, category, etc.).

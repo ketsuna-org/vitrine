@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: banID
 syntax: $banID[userID;(reason)]
-description: Bans a user par its ID user.
+description: Bans a user by their user ID.
 ---
 
 # $banID
 
-The `$banID` function **bans a user par its ID Discord**, même s'il is not présent on the server. The bot must have the permission `BanMembers`.
+The `$banID` function **bans a user by their Discord ID**, even if they are not present on the server. The bot must have the `BanMembers` permission.
 
 ## Syntax
 
@@ -22,12 +22,12 @@ $banID[userID;(reason)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID Discord of the user to ban. Required. |
+| `userID` | The Discord ID of the user to ban. Required. |
 | `reason` | Optional. The ban reason. |
 
 ## Return value
 
-None. The user est banni of the server.
+None. The user is banned from the server.
 
 ## Examples
 
@@ -35,19 +35,19 @@ None. The user est banni of the server.
 
 ```bdfd
 $banID[123456789012345678;Raid]
-$sendMessage[User 123456789012345678 banni pour raid.]
+$sendMessage[User 123456789012345678 banned for raiding.]
 ```
 
-### Ban préventif
+### Preventive ban
 
 ```bdfd
 $banID[$message[1]]
-$sendMessage[User $message[1] banni préventivement.]
+$sendMessage[User $message[1] preventively banned.]
 ```
 
 ## Notes
 
-- Allows bannir a user qui is no longer on the server.
-- Utile for bans préventifs.
-- The bot must have the permission `BanMembers`.
-- Contrairement to `$ban`, ne allows no supprimer les messages.
+- Allows banning a user who is no longer on the server.
+- Useful for preventive bans.
+- The bot must have the `BanMembers` permission.
+- Unlike `$ban`, this does not delete messages.

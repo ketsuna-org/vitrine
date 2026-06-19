@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleID
 syntax: $roleID[name;(guildID)]
-description: Returns the ID of a role Discord from son nom or of une mention. Insensible to la casse.
+description: Returns the ID of a Discord role from its name or mention. Case-insensitive.
 ---
 
 # $roleID
 
-The function `$roleID` retourne l'**ID** of a role Discord from son **nom** or of une **mention**. The recherche est insensible to la casse.
+The function `$roleID` returns the **ID** of a Discord role from its **name** or **mention**. The search is case-insensitive.
 
 ## Syntax
 
@@ -22,47 +22,47 @@ $roleID[name;(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `name` | The name of the role or une mention brute (`<@&id>`). |
-| `guildID` | Optional. The ID of the server cible. Si omitted, the server courant. |
+| `name` | The name of the role or a raw mention (`<@&id>`). |
+| `guildID` | Optional. The ID of the target server. If omitted, the current server is used. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the role, or `""` si introuvable. |
+| `snowflake` (string) | The ID of the role, or `""` if not found. |
 
 ## Examples
 
-### Obtenir the ID of a role
+### Get the ID of a role
 
 ```bdfd
-$sendMessage[ID of the role Admin : $roleID[Admin]]
+$sendMessage[ID of the Admin role: $roleID[Admin]]
 ```
 
-### Vérifier if a role existe
+### Check if a role exists
 
 ```bdfd
 $if[$roleID[Member]!=]
-  $sendMessage[The role Member existe !]
+  $sendMessage[The Member role exists!]
 $else
-  $sendMessage[Role Member introuvable.]
+  $sendMessage[Member role not found.]
 $endif
 ```
 
-### À partir of une mention
+### From a mention
 
 ```bdfd
-$sendMessage[ID extracted of la mention : $roleID[<@&123456789012345678>]]
+$sendMessage[ID extracted from the mention: $roleID[<@&123456789012345678>]]
 ```
 
-### Dans un autre server
+### On another server
 
 ```bdfd
-$sendMessage[ID role on autre server : $roleID[Modo;987654321098765432]]
+$sendMessage[Role ID on another server: $roleID[Mod;987654321098765432]]
 ```
 
 ## Notes
 
-- Si several roles portent le même nom, seul le first found est retourné.
-- La mention brute (`<@&id>`) est acceptée like parameter.
-- Utilisez `$findRole` for ae recherche par nom partial.
+- If multiple roles have the exact same name, only the first found is returned.
+- A raw mention (`<@&id>`) is accepted as a parameter.
+- Use `$findRole` for a partial name search.

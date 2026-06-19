@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getEmbedData
 syntax: $getEmbedData[messageID;embedIndex;field]
-description: Extracted les datas of un champ specific of an embed in a message. Allows lire le titre, la description, les champs, etc. of an embed existing.
+description: Extracts the data of a specific field of an embed in a message. Allows reading the title, description, fields, etc., of an existing embed.
 ---
 
 # $getEmbedData
 
-The function `$getEmbedData[]` allows to **extraire les datas of an embed** présent in a message Discord. Extrêmement utile pour lire and réuse the contenu of embeds existings.
+The `$getEmbedData[]` function allows you to **extract data from an embed** present in a Discord message. Extremely useful for reading and reusing the content of existing embeds.
 
 ## Syntax
 
@@ -22,50 +22,50 @@ $getEmbedData[messageID;embedIndex;field]
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message contenant the embed. |
-| `embedIndex` | L'index of the embed (1 = first, 2 = twoième...). |
-| `field` | Le champ to extraire parmi : `title`, `description`, `footer`, `author`, `color`, `field:<nom>`, `image`, `thumbnail`, `url`, `timestamp`. |
+| `messageID` | The ID of the message containing the embed. |
+| `embedIndex` | The index of the embed (1 = first, 2 = second...). |
+| `field` | The field to extract, among: `title`, `description`, `footer`, `author`, `color`, `field:<name>`, `image`, `thumbnail`, `url`, `timestamp`. |
 
 ## Return Value
 
-- **Type** : String
-- The value of the field extracted of the embed.
-- String vide if the champ n'existe pas or si l'index est invalid.
+- **Type**: String
+- The value of the field extracted from the embed.
+- An empty string if the field does not exist or if the index is invalid.
 
 ## Behavior
 
-- Reads thes embeds of a message existing (y compris ceux sents par of autres bots).
-- Pour les champs nommés (`fields`), utilisez la syntaxe `field:Nom of the field`.
-- L'index of embed commence to 1.
+- Reads embeds from an existing message (including those sent by other bots).
+- For named fields (`fields`), use the syntax `field:Name of the field`.
+- The index of the embed starts at 1.
 
 ## Examples
 
-### Lire le titre and la description
+### Read the title and description
 
 ```bdfd
 $let[title;$getEmbedData[$messageID;1;title]]
 $let[desc;$getEmbedData[$messageID;1;description]]
 
-$title[📋 Embed détecté]
+$title[📋 Embed detected]
 $description[
-**Titre :** $title
-**Description :** $desc
+**Title:** $title
+**Description:** $desc
 ]
 $sendMessage[]
 ```
 
-### Extraire un champ nommé
+### Extract a named field
 
 ```bdfd
 $let[score;$getEmbedData[$messageID;1;field:Score]]
 $if[$score!=]
-  Le score est : **$score**
+  The score is: **$score**
 $else
-  Champ "Score" non found.
+  Field "Score" not found.
 $endif
 ```
 
-### Récupérer les médias
+### Retrieve media
 
 ```bdfd
 $let[image;$getEmbedData[$noMentionMessage;1;image]]
@@ -79,7 +79,7 @@ $if[$thumb!=]
 $endif
 ```
 
-### Re-create a embed
+### Recreate an embed
 
 ```bdfd
 $let[title;$getEmbedData[$messageID;1;title]]
@@ -96,6 +96,6 @@ $sendMessage[]
 
 ## Notes
 
-- Functionne on the messages of n'importe quel auteur (users, bots, webhooks).
-- The message must be in a canal accessible par the bot.
-- The value `color` est retournée to the format hexadecimal (#RRGGBB).
+- Works on messages from any author (users, bots, webhooks).
+- The message must be in a channel accessible by the bot.
+- The `color` value is returned in hexadecimal format (#RRGGBB).

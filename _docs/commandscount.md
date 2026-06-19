@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandsCount
 syntax: $commandsCount
-description: Returns the namebre total of commands (prefix + slash) of the bot.
+description: Returns the total number of commands (prefix + slash) of the bot.
 ---
 
 # $commandsCount
 
-The `$commandsCount` function **retourne the namebre total of commands** enregistrées on the bot, incluant les commands prefix and slash.
+The `$commandsCount` function **returns the total number of commands** registered for the bot, including both prefix and slash commands.
 
 ## Syntax
 
@@ -20,26 +20,26 @@ $commandsCount
 
 ## Parameters
 
-Aucun.
+None.
 
 ## Return value
 
-- **Type** : Integer
-- The namebre total of commands (ex: `42`).
+- **Type**: Integer
+- The total number of commands (e.g., `42`).
 
 ## Behavior
 
-- Counts all commands, qu'elles soient prefix or slash.
-- Se met to day automatically when commands sont ajoutées/deletedes.
-- Inclut les commands in all folders.
+- Counts all commands, whether they are prefix or slash.
+- Updates automatically when commands are added or deleted.
+- Includes commands in all folders.
 
 ## Examples
 
-### Page of information of the bot
+### Bot information page
 
 ```bdfd
 $title[🤖 $botName]
-$addField[📊 Statistiques;;yes]
+$addField[📊 Statistics;;yes]
 $addField[Total commands;$commandsCount;yes]
 $addField[Slash;$slashCommandsCount;yes]
 $addField[Prefix;$math[$commandsCount-$slashCommandsCount];yes]
@@ -48,47 +48,47 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Compareason servers/commands
+### Comparison of servers and commands
 
 ```bdfd
-$title[📈 Statistiques globals]
+$title[📈 Global Statistics]
 $description[
-**Servers :** $guildCount
-**Users :** $membersCount
-**Commands :** $commandsCount
-**Slash :** $slashCommandsCount
-**Runtime :** $nodeVersion
+**Servers:** $guildCount
+**Users:** $membersCount
+**Commands:** $commandsCount
+**Slash:** $slashCommandsCount
+**Runtime:** $nodeVersion
 ]
 $sendMessage[]
 ```
 
-### Annonce of mise to day
+### Update announcement
 
 ```bdfd
-$sendMessage[🎉 **Mise to day !**
-The bot dispose now of **$commandsCount commands** !
+$sendMessage[🎉 **New Update!**
+The bot now has **$commandsCount commands**!
 
-Tapez `/help` for découvrir.]
+Type `/help` to discover them.]
 ```
 
-### Limit of commands (premium)
+### Command limit (premium)
 
 ```bdfd
 $if[$premiumExpireTime==]
   $if[$commandsCount>=50]
-    $sendMessage[⚠️ Limit of 50 commands atteinte (version gratuite).
-    Passez premium pour débloquer more than commands.]
+    $sendMessage[⚠️ Limit of 50 commands reached (free version).
+    Upgrade to premium to unlock more commands.]
   $else
-    $sendMessage[📊 $commandsCount/50 commands utilisées.]
+    $sendMessage[📊 $commandsCount/50 commands used.]
   $endif
 $else
-  $sendMessage[💎 $commandsCount commands (Premium - illimité).]
+  $sendMessage[💎 $commandsCount commands (Premium - unlimited).]
 $endif
 ```
 
 ## Notes
 
-- Inclut all commands (prefix ET slash).
-- For commands slash only, use `$slashCommandsCount`.
-- For the list noms, use `$botCommands`.
-- La limit varie according to l'abonnement (gratuit/premium).
+- Includes all commands (prefix AND slash).
+- For slash commands only, use `$slashCommandsCount`.
+- To get the list of names, use `$botCommands`.
+- The limit varies depending on the subscription (free/premium).

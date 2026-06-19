@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookCreate
 syntax: $webhookCreate[channelID;name;(avatarURL)]
-description: Creates a new webhook in a canal spécifié and retourne son URL. The webhook created peut then être utilisé with $webhookSend pour envoyer messages.
+description: Creates a new webhook in a specified channel and returns its URL. The created webhook can then be used with $webhookSend to send messages.
 ---
 
 # $webhookCreate
 
-The function `$webhookCreate[]` allows **create a new webhook** in a canal Discord and retourne son URL complete.
+The `$webhookCreate` function allows you to **create a new webhook** in a Discord channel and returns its complete URL.
 
 ## Syntax
 
@@ -22,46 +22,46 @@ $webhookCreate[channelID;name;(avatarURL)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the canal où create the webhook. |
-| `name` | The name of the webhook (2 to 80 becauseactères). |
-| `avatarURL` | Optional - URL of the image of avatar of the webhook. |
+| `channelID` | The ID of the channel where the webhook will be created. |
+| `name` | The name of the webhook (2 to 80 characters). |
+| `avatarURL` | Optional - URL of the avatar image of the webhook. |
 
 ## Return Value
 
-- **Type** : String (URL)
-- The URL complete of the webhook to the format `https://discord.com/api/webhooks/ID/TOKEN`
-- String vide or error si the bot n'a pas la permission `MANAGE_WEBHOOKS`.
+- **Type**: String (URL)
+- The complete URL of the webhook in the format `https://discord.com/api/webhooks/ID/TOKEN`
+- Empty string or error if the bot does not have the `MANAGE_WEBHOOKS` permission.
 
 ## Behavior
 
-- Requires the permission `MANAGE_WEBHOOKS` in the canal cible.
-- The name doit faire between 2 and 80 becauseactères.
-- L'avatar must be une URL valid pointant vers une image (PNG, JPG, GIF, WEBP).
-- Un canal peut avoir until 10 webhooks (server) or 100 (communauté).
+- Requires the `MANAGE_WEBHOOKS` permission in the target channel.
+- The name must be between 2 and 80 characters.
+- The avatar must be a valid URL pointing to an image (PNG, JPG, GIF, WEBP).
+- A channel can have up to 10 webhooks (or 100 for community-enabled servers).
 
 ## Examples
 
-### Création simple
+### Simple creation
 
 ```bdfd
-$let[hook;$webhookCreate[$channelID;Logger of the server]]
+$let[hook;$webhookCreate[$channelID;Server Logger]]
 $if[$hook!=]
-  $webhookSend[$hook;Webhook of logs created successfully !]
+  $webhookSend[$hook;Webhook for logs created successfully!]
 $else
-  $sendMessage[Échec : permission MANAGE_WEBHOOKS requirede.]
+  $sendMessage[Failure: MANAGE_WEBHOOKS permission required.]
 $endif
 ```
 
-### Création with stockage
+### Creation with storage
 
 ```bdfd
 $let[logHook;$webhookCreate[$channelID;Logs;$serverIcon]]
 $setUserVar[logWebhook;$logHook]
-$sendMessage[Webhook of logs configured !]
+$sendMessage[Webhook of logs configured!]
 ```
 
 ## Notes
 
-- Les webhooks createds par the bot sont liés to the bot.
-- Un webhook ne peut pas être transféré to un autre canal after création.
-- Supprimez les webhooks inutilisés with `$webhookDelete[]`.
+- Webhooks created by the bot are linked to the bot.
+- A webhook cannot be moved to another channel after creation.
+- Delete unused webhooks with `$webhookDelete[]`.

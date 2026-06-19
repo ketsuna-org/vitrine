@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelCount
 syntax: $channelCount[(categoryID)]
-description: Returns the namebre total of channels on the server, or the namebre of channels in a catégorie specific.
+description: Returns the total number of channels on the server, or the number of channels in a specific category.
 ---
 
 # $channelCount
 
-The `$channelCount` function returns the **number of channels** on the server Discord. En fournissant an ID of catégorie, elle peut also count thes channels of une catégorie specific.
+The `$channelCount` function returns the **number of channels** on the Discord server. By providing a category ID, it can also count the channels in a specific category.
 
 ## Syntax
 
@@ -22,40 +22,40 @@ $channelCount[(categoryID)]
 
 | Parameter | Description |
 |---|---|
-| `categoryID` | Optional. The ID of une catégorie pour count only their channels. If omitted, compte all channels of the server. |
+| `categoryID` | Optional. The ID of a category to count only its channels. If omitted, all channels on the server are counted. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `integer` | The namebre of channels correspondant to the filtre. |
+| `integer` | The number of channels matching the filter. |
 
 ## Examples
 
-### Number total of channels
+### Total number of channels
 
 ```bdfd
-$sendMessage[Ce server compte $channelCount channels.]
+$sendMessage[This server has $channelCount channels.]
 ```
 
-### Channels in a catégorie
+### Channels in a category
 
 ```bdfd
-$sendMessage[La catégorie contains $channelCount[123456789012345678] channels.]
+$sendMessage[The category contains $channelCount[123456789012345678] channels.]
 ```
 
-### Compareason
+### Comparison
 
 ```bdfd
 $if[$channelCount>50]
-  $sendMessage[Ce server est immense ! ($channelCount channels)]
+  $sendMessage[This server is huge! ($channelCount channels)]
 $else
-  $sendMessage[Ce server a $channelCount channels.]
+  $sendMessage[This server has $channelCount channels.]
 $endif
 ```
 
 ## Notes
 
-- Counts all types of channels (textuels, vocaux, etc.), except les catégories elles-mêmes.
-- Pour count thes catégories, use `$categoryCount`.
-- Les channels privates (non visibles par the bot) are not comptés.
+- Counts all types of channels (text, voice, etc.), except the categories themselves.
+- To count categories, use `$categoryCount`.
+- Private channels (not visible to the bot) are not counted.
