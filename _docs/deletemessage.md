@@ -6,37 +6,37 @@ category: "Embed & Message"
 
 # $deleteMessage
 
-Supprime un message spécifique. Le bot doit avoir la permission de gérer les messages dans le salon.
+Deletes a message spécifique. The bot must have the permission de gérer les messages in the channel.
 
-## Syntaxe
+## Syntax
 
 ```
 $deleteMessage[messageId]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `messageId` | ID du message à supprimer | Oui |
+| `messageId` | ID of the message to delete | Yes |
 
 ## Description
 
-`$deleteMessage` supprime définitivement un message Discord. Le bot doit disposer de la permission `MANAGE_MESSAGES` pour supprimer les messages d'autres utilisateurs. Il peut toujours supprimer ses propres messages.
+`$deleteMessage` supprime permanently a message Discord. The bot must disposer de the permission `MANAGE_MESSAGES` to delete les messages d'autres users. Il peut toudays supprimer their propres messages.
 
-## Exemples
+## Examples
 
-### Suppression du message déclencheur
+### Suppression of the message déclencheur
 
 ```
 $deleteMessage[$messageID]
-Commande exécutée discrètement.
+Command executede discrètement.
 ```
 
-### Suppression après action
+### Suppression after action
 
 ```
-$sendMessage[Traitement en cours...]
+$sendMessage[Traitement in progress...]
 $wait[3s]
 $deleteMessage[$sentMessageId]
 $sendMessage[Traitement terminé !]
@@ -48,11 +48,11 @@ $sendMessage[Traitement terminé !]
 $onInteraction
 $if[$customID==btn_delete]
   $deleteMessage[$messageID]
-  $sendMessage[Message supprimé][ephemeral]
+  $sendMessage[Message deleted][ephemeral]
 $endif
 ```
 
-### Suppression d'un message spécifique
+### Suppression of a message spécifique
 
 ```
 $deleteMessage[123456789012345678]
@@ -60,8 +60,8 @@ $deleteMessage[123456789012345678]
 
 ## Notes
 
-- Le paramètre `messageId` est obligatoire.
-- Le bot doit avoir `MANAGE_MESSAGES` pour supprimer les messages des autres.
-- Les messages supprimés ne peuvent pas être récupérés.
-- Pour supprimer le message de l'utilisateur qui a exécuté la commande, utilisez `$messageID`.
-- Après suppression, il est courant d'envoyer une confirmation éphémère.
+- Le parameter `messageId` is required.
+- The bot must have `MANAGE_MESSAGES` to delete les messages des autres.
+- Les messages deleteds cannot être récupérés.
+- Pour supprimer the message of the user qui a executed la command, use `$messageID`.
+- Après suppression, it is courant d'envoyer a confirmation éphémère.

@@ -5,46 +5,46 @@ translation_key: docs
 category: "Messages & DM"
 function_name: authorOfMessage
 syntax: $authorOfMessage[messageID]
-description: Retourne l'ID de l'auteur d'un message spécifique, identifié par son ID.
+description: Returns the ID de the author of a message spécifique, identifié par its ID.
 ---
 # $authorOfMessage
 
-La fonction `$authorOfMessage[]` retourne l'**ID de l'auteur** d'un message donné.
+The `$authorOfMessage[]` function returns the **ID de the author** of a message donné.
 
-## Syntaxe
+## Syntax
 
 ```
 $authorOfMessage[messageID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `messageID` | L'ID du message cible. |
+| `messageID` | The ID of the message cible. |
 
-## Valeur de retour
+## Return value
 
-- **Type** : Snowflake (chaîne)
-- L'ID de l'utilisateur auteur du message.
-- Chaîne vide si le message est introuvable.
+- **Type** : Snowflake (string)
+- The ID of the user auteur of the message.
+- String vide if the message est introuvable.
 
-## Exemples
+## Examples
 
-### Récupérer l'auteur
+### Récupérer the author
 
 ```bdfd
 $let[author;$authorOfMessage[$message[1]]]
-$sendMessage[Ce message a été envoyé par <@$author>]
+$sendMessage[This message has been sent par <@$author>]
 ```
 
-### Vérifier le propriétaire d'un message
+### Vérifier le owner of a message
 
 ```bdfd
 $if[$authorOfMessage[$messageID]==$authorID]
-  $sendMessage[Ce message vous appartient.]
+  $sendMessage[This message vous appartient.]
 $else
-  $sendMessage[Ce message ne vous appartient pas.]
+  $sendMessage[This message ne vous appartient pas.]
 $endif
 ```
 
@@ -53,10 +53,10 @@ $endif
 ```bdfd
 $let[msgID;$message[1]]
 $let[author;$authorOfMessage[$msgID]]
-$channelSendMessage[123456789;Message $msgID supprimé — Auteur : <@$author>]
+$channelSendMessage[123456789;Message $msgID deleted — Auteur : <@$author>]
 ```
 
-### Commande info message
+### Command info message
 
 ```bdfd
 $let[msgID;$message[1]]
@@ -72,6 +72,6 @@ $sendMessage[]
 
 ## Notes
 
-- Le bot doit avoir accès au canal contenant le message.
-- Les messages en DM peuvent être consultés si le bot y a accès.
-- Pour le message courant, `$authorID` est plus direct.
+- The bot must have accès au canal contenant the message.
+- Les messages en DM can be consultés if the bot y a accès.
+- For the message courant, `$authorID` est plus direct.

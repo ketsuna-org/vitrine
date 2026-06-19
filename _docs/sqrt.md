@@ -5,34 +5,34 @@ translation_key: docs
 category: "Math & Text"
 function_name: sqrt
 syntax: $sqrt[value]
-description: Calcule la racine carrée d'un nombre.
+description: Calculates the racine becauserée d'un number.
 ---
 
 # $sqrt[]
 
-La fonction `$sqrt[]` calcule la racine carrée d'un nombre positif ou nul.
+The function `$sqrt[]` calcule la racine becauserée d'un number positif or nul.
 
-## Syntaxe
+## Syntax
 
 ```
-$sqrt[valeur]
+$sqrt[value]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type   | Obligatoire | Description                                    |
+| Parameter | Type   | Required | Description                                    |
 |-----------|--------|-------------|------------------------------------------------|
-| `valeur`  | number | Oui         | Le nombre dont on veut la racine carrée. ≥ 0.  |
+| `value`  | number | Yes         | The namebre dont on veut la racine becauserée. ≥ 0.  |
 
-## Comportement
+## Behavior
 
-- Retourne la racine carrée de la valeur sous forme de nombre décimal (double précision).
-- Pour les carrés parfaits, le résultat est un entier : `$sqrt[16]` → `4`.
-- Pour les autres valeurs, le résultat est un nombre décimal : `$sqrt[2]` → `1.4142135...`.
+- Returns the racine becauserée de the value sous forme de decimal number (double précision).
+- Pour les becauserés parfaits, the result est un integer : `$sqrt[16]` → `4`.
+- Pour les autres values, the result est un decimal number : `$sqrt[2]` → `1.4142135...`.
 - Pour `0`, retourne `0`.
-- Pour les nombres négatifs, le comportement est indéfini (peut retourner `NaN` ou une erreur).
+- Pour les numbers négatifs, le comportement est indéfini (peut retourner `NaN` or une error).
 
-## Exemples
+## Examples
 
 **Carré parfait :**
 ```
@@ -65,7 +65,7 @@ $sqrt[$calculate[$getVar[a]^2 + $getVar[b]^2]]
 
 ## Notes
 
-- Ne pas utiliser avec des nombres négatifs.
-- Pour la puissance (carré), utilisez `$calculate[value^2]` ou `$multi[value;value]`.
+- Ne pas utiliser avec des numbers négatifs.
+- Pour la thensance (becauseré), utilisez `$calculate[value^2]` or `$multi[value;value]`.
 - Pour d'autres racines (cubique, etc.), utilisez `$calculate[value^(1/3)]`.
 - La précision est celle d'un `double` Java (~15 chiffres significatifs).

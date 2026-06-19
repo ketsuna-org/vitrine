@@ -5,61 +5,61 @@ translation_key: docs
 category: "Math & Text"
 function_name: random
 syntax: $random[min;max]
-description: Génère un nombre entier aléatoire entre min et max (inclus). La valeur est évaluée au compile-time uniquement.
+description: Generates a random integer between min and max (includedive). The value is evaluated at compile-time only.
 ---
 
 # $random[]
 
-La fonction `$random[]` génère un nombre entier aléatoire compris entre `min` et `max`, ces deux valeurs étant **incluses**.
+The `$random[]` function generates a random integer between `min` and `max`, with both values being **includedive**.
 
-**Important :** Cette fonction est évaluée au **compile-time**, ce qui signifie que la valeur est déterminée une seule fois lors de la compilation du code. Elle ne changera pas si le code est exécuté plusieurs fois sans recompilation.
+**Important:** This function is evaluated at **compile-time**, meaning the value is determined once when the code is compiled. It will not change if the code is executed multiple times without recompilation.
 
-## Syntaxe
+## Syntax
 
 ```
 $random[min;max]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |-----------|-------------|
-| `min` | La borne inférieure de la plage aléatoire (incluse). |
-| `max` | La borne supérieure de la plage aléatoire (incluse). |
+| `min` | The lower bound of the random range (includedive). |
+| `max` | The upper bound of the random range (includedive). |
 
-## Valeur de retour
+## Return Value
 
-Un nombre entier aléatoire sous forme de chaîne de caractères, compris entre `min` et `max` (bornes incluses).
+A random integer as a string, between `min` and `max` (includedive bounds).
 
-## Comportement
+## Behavior
 
-- Les valeurs sont évaluées une seule fois au moment de la compilation de la commande.
-- Les deux bornes `min` et `max` sont incluses dans la plage possible.
-- Si `max` est inférieur à `min`, le comportement peut être imprévisible.
+- Values are evaluated only once at the time of command compilation.
+- Both `min` and `max` bounds are includedive in the possible range.
+- If `max` is less than `min`, the behavior may be unpredictable.
 
-## Exemples
+## Examples
 
-### Nombre aléatoire entre 1 et 100
+### Random number between 1 and 100
 
 ```bdfd
 $random[1;100]
 ```
 
-### Lancer de dé
+### Dice roll
 
 ```bdfd
-🎲 Vous avez fait un **$random[1;6]** !
+🎲 You rolled a **$random[1;6]**!
 ```
 
-### Sélection aléatoire dans un embed
+### Random selection in an embed
 
 ```bdfd
-$title[Tirage au sort]
-$description[Le numéro gagnant est : **$random[1000;9999]**]
-$footer[🎉 Félicitations au gagnant !]
+$title[Prize draw]
+$description[The winning number is: **$random[1000;9999]**]
+$footer[🎉 Congratulations to the winner!]
 ```
 
 ## Notes
 
-- Utilisez `$randomString[]` pour générer des chaînes alphanumériques aléatoires.
-- Utilisez `$randomText[]` pour choisir aléatoirement parmi une liste d'options textuelles.
+- Use `$randomString[]` to generate random alphanumeric strings.
+- Use `$randomText[]` to randomly choose from a list of text options.

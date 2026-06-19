@@ -5,45 +5,45 @@ translation_key: docs
 category: "Context & Commands"
 function_name: useChannel
 syntax: $useChannel[channelID]
-description: Change le contexte de canal pour la commande en cours. Les fonctions suivantes (comme $sendMessage) s'exécuteront dans ce canal.
+description: Change le context de canal for the command in progress. The functions nextes (comme $sendMessage) s'exécuteront dans ce canal.
 ---
 # $useChannel
 
-La fonction `$useChannel[]` **change le contexte du canal** pour le reste de l'exécution de la commande. Toutes les fonctions qui interagissent avec "le canal courant" (comme `$sendMessage`) utiliseront alors le canal spécifié.
+The function `$useChannel[]` **change le context du canal** for the reste de l'exécution of the command. Toutes les functions qui interagissent avec "le canal courant" (comme `$sendMessage`) utiliseront alors le canal spécifié.
 
-## Syntaxe
+## Syntax
 
 ```
 $useChannel[channelID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | L'ID du canal cible. |
+| `channelID` | The ID of the canal cible. |
 
-## Valeur de retour
+## Return Value
 
-Aucune. Le contexte est modifié.
+Aucune. The context est modified.
 
-## Comportement
+## Behavior
 
-- Change le canal courant pour **toute la suite** de la commande.
+- Change le canal courant pour **toute la suite** of the command.
 - Affecte `$sendMessage`, `$title`, `$description`, etc.
-- Le changement est local à l'exécution de la commande en cours.
+- Le changement est local at execution of the command in progress.
 
-## Exemples
+## Examples
 
 ### Rediriger les logs
 
 ```bdfd
 $let[logChannel;123456789012345678]
 $useChannel[$logChannel]
-$title[📋 Log de commande]
+$title[📋 Log de command]
 $description[
-**Utilisateur :** $username
-**Commande :** $message
+**User :** $username
+**Command :** $message
 **Canal :** <#$channelID>
 **Date :** $day/$month/$year
 ]
@@ -55,10 +55,10 @@ $sendMessage[]
 
 ```bdfd
 $useChannel[$dmChannelID[$authorID]]
-$sendMessage[Votre ticket a été créé ! Un staff vous contactera bientôt.]
+$sendMessage[Votre ticket was created ! A staff vous contactera bientôt.]
 ```
 
-### Réponse dans un canal d'annonce
+### Response dans un canal d'annonce
 
 ```bdfd
 $if[$hasPerms[$authorID;Administrator]==true]
@@ -71,6 +71,6 @@ $endif
 
 ## Notes
 
-- `$channelSendMessage[]` est souvent plus sûr pour des envois ponctuels sans changer tout le contexte.
-- Utilisez `$useChannel[]` quand plusieurs fonctions doivent s'exécuter dans le même canal cible.
-- Le canal original est "oublié" pour le reste de la commande.
+- `$channelSendMessage[]` est oftadditionally sûr pour des envois ponctuels without changer tout le context.
+- Utilisez `$useChannel[]` when several functions doivent s'exécuter in the même canal cible.
+- Le canal original est "oublié" for the reste of the command.

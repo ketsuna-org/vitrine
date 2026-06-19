@@ -6,67 +6,67 @@ category: "Embed & Message"
 
 # $addUserSelect
 
-Crée un menu de sélection d'utilisateurs. Permet aux utilisateurs de choisir un ou plusieurs membres du serveur depuis une liste déroulante.
+Creates a select menu d'users. Allows users to choisir un or multiple members of the server since a list déroulante.
 
-## Syntaxe
+## Syntax
 
 ```
 $addUserSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customId` | Identifiant personnalisé pour l'interaction | Oui |
-| `placeholder` | Texte affiché quand rien n'est sélectionné | Oui |
-| `minValues` | Nombre minimum d'utilisateurs à sélectionner (défaut : 1) | Non |
-| `maxValues` | Nombre maximum d'utilisateurs à sélectionner (défaut : 1) | Non |
-| `disabled` | `true` pour désactiver le menu, `false` (défaut) | Non |
+| `customId` | Custom identifier for the interaction | Yes |
+| `placeholder` | Text displayed when rien n'est selectionné | Yes |
+| `minValues` | Minimum number d'users à selectionner (default: 1) | No |
+| `maxValues` | Maximum number d'users à selectionner (default: 1) | No |
+| `disabled` | `true` to disable le menu, `false` (default) | No |
 
 ## Description
 
-Un **user select** affiche une liste des membres du serveur. L'utilisateur peut en sélectionner un ou plusieurs. Les IDs des utilisateurs sélectionnés sont retournés dans `$onInteraction`.
+A **user select** displays a list des members of the server. The user peut en selectionner un or several. The IDs of users selectionnés sont retournés dans `$onInteraction`.
 
-## Exemples
+## Examples
 
-### Sélection d'un utilisateur
+### Selection of a user
 
 ```
-$addUserSelect[menu_user;Choisissez un membre]
-$sendMessage[Sélectionnez un utilisateur]
+$addUserSelect[menu_user;Choisissez un member]
+$sendMessage[Selectionnez a user]
 ```
 
-### Sélection multiple
+### Selection multiple
 
 ```
 $addUserSelect[menu_mods;Choisissez des modérateurs;1;5]
-$sendMessage[Sélectionnez 1 à 5 modérateurs]
+$sendMessage[Selectionnez 1 à 5 modérateurs]
 ```
 
-### Menu désactivé
+### Disabled menu
 
 ```
-$addUserSelect[menu_user_disabled;Sélection désactivée;1;1;true]
-$sendMessage[Ce menu est temporairement indisponible]
+$addUserSelect[menu_user_disabled;Selection désenablede;1;1;true]
+$sendMessage[Ce menu est temporarily inavailable]
 ```
 
-## Gestion de l'interaction
+## Handling the interaction
 
 ```
 $onInteraction
 $if[$customID==menu_user]
-  $sendMessage[Utilisateur sélectionné : <@$message>]
+  $sendMessage[User selectionné : <@$message>]
 $endif
 
 $if[$customID==menu_mods]
-  $sendMessage[Modérateurs sélectionnés : $message]
+  $sendMessage[Modérateurs selectionnés : $message]
 $endif
 ```
 
 ## Notes
 
-- Les valeurs retournées sont des IDs d'utilisateurs Discord.
-- Utilisez `<@ID>` pour mentionner l'utilisateur dans un message.
-- Pour la sélection multiple, les IDs sont séparés par des virgules (ou selon la configuration du bot).
-- Un seul select menu par ligne d'action.
+- Les values retournées sont of IDs d'users Discord.
+- Use `<@ID>` to mention the user in a message.
+- For the selection multiple, les IDs sont separated by commas (or selon la configuration of the bot).
+- A single select menu par action row.

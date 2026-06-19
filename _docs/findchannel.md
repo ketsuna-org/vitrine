@@ -5,52 +5,52 @@ translation_key: docs
 category: "Entity Info"
 function_name: findChannel
 syntax: $findChannel[query]
-description: Recherche un salon par nom partiel ou complet et retourne son ID. Insensible à la casse.
+description: Recherche un channel par nom partial or complete and retourne son ID. Insensible à la casse.
 ---
 
 # $findChannel
 
-La fonction `$findChannel` recherche un salon Discord par **nom partiel ou complet** et retourne son ID. La recherche est insensible à la casse.
+The function `$findChannel` recherche un channel Discord par **nom partial or complete** and retourne son ID. The recherche est insensible à la casse.
 
-## Syntaxe
+## Syntax
 
 ```
 $findChannel[query]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `query` | Le nom ou une partie du nom du salon à rechercher. |
+| `query` | The name or une partie du nom of the channel à rechercher. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | L'ID du salon trouvé, ou `""` si aucun salon ne correspond. |
+| `snowflake` (string) | The ID of the channel found, or `""` si no channel ne correspond. |
 
-## Exemples
+## Examples
 
-### Recherche par nom partiel
-
-```bdfd
-$sendMessage[Salon correspondant à "gén" : $findChannel[gén]]
-```
-
-### Envoyer un message dans un salon trouvé
+### Recherche par nom partial
 
 ```bdfd
-$channelSendMessage[$findChannel[logs];Nouvel événement enregistré.]
+$sendMessage[Channel correspondant à "gén" : $findChannel[gén]]
 ```
 
-### Vérifier si le salon existe
+### Envoyer un message dans un channel found
+
+```bdfd
+$channelSendMessage[$findChannel[logs];Nouvel event enregistré.]
+```
+
+### Vérifier si the channel existe
 
 ```bdfd
 $if[$findChannel[annonces]!=]
-  $sendMessage[Salon annonces trouvé : <#$findChannel[annonces]>]
+  $sendMessage[Channel annonces found : <#$findChannel[annonces]>]
 $else
-  $sendMessage[Aucun salon ne correspond à "annonces".]
+  $sendMessage[Aucun channel ne correspond à "annonces".]
 $endif
 ```
 
@@ -58,7 +58,7 @@ $endif
 
 ```bdfd
 $if[$channelIDFromName[général]!=]
-  $sendMessage[Salon général : $channelIDFromName[général]]
+  $sendMessage[Channel général : $channelIDFromName[général]]
 $else
   $sendMessage[Recherche étendue : $findChannel[gén]]
 $endif
@@ -66,7 +66,7 @@ $endif
 
 ## Notes
 
-- Si plusieurs salons correspondent, le **premier** trouvé est retourné.
-- Pour une recherche exacte, préférez `$channelIDFromName`.
-- Pratique quand l'utilisateur ne connaît pas le nom exact du salon.
-- Le préfixe `#` ne doit pas être inclus dans la requête.
+- Si several channels correspondent, le **first** found est retourné.
+- Pour une recherche exact, préférez `$channelIDFromName`.
+- Pratique when the user ne connaît pas the name exact of the channel.
+- Le préfixe `#` ne doit pas être included in the requête.

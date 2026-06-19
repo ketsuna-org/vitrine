@@ -5,54 +5,54 @@ translation_key: docs
 category: "Entity Info"
 function_name: getUserSelectUserID
 syntax: $getUserSelectUserID[(index)]
-description: Récupère l'ID de l'utilisateur sélectionné via un menu de sélection d'utilisateurs (user select).
+description: Gets the ID of the user selected via un menu de sélection d'users (user select).
 ---
 
 # $getUserSelectUserID
 
-La fonction `$getUserSelectUserID[]` permet de **récupérer l'ID de l'utilisateur** choisi via un menu de sélection d'utilisateurs (user select menu).
+The function `$getUserSelectUserID[]` allows **récupérer the ID of the user** choisi via un menu de sélection d'users (user select menu).
 
-## Syntaxe
+## Syntax
 
 ```
 $getUserSelectUserID[(index)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `index` | Optionnel - L'index de l'utilisateur dans la sélection (1 = premier). Par défaut 1. |
+| `index` | Optional - L'index of the user in the sélection (1 = first). Par default 1. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String (Snowflake ID)
-- L'ID Discord de l'utilisateur sélectionné.
-- Chaîne vide si aucun utilisateur n'a été sélectionné.
+- The ID Discord of the user selected.
+- String vide si no user n'was selected.
 
-## Comportement
+## Behavior
 
-- Utilisé dans les interactions avec un menu de type `user` créé via `$addUserSelectMenu[]`.
-- L'utilisateur sélectionné peut être n'importe quel membre du serveur.
-- Pour les sélections multiples, utiliser `$getUserSelectUserIDs[]`.
+- Utilisé in thes interactions with a menu de type `user` created via `$addUserSelectMenu[]`.
+- The user selected can be n'importe quel member of the server.
+- Pour les sélections multiple, utiliser `$getUserSelectUserIDs[]`.
 
-## Exemples
+## Examples
 
-### Vérification d'utilisateur
+### Vérification d'user
 
 ```bdfd
 $nominalTrigger
-$addUserSelectMenu[user_select;1;Sélectionnez un utilisateur]
-$sendMessage[Choisissez un utilisateur à vérifier :]
+$addUserSelectMenu[user_select;1;Sélectionnez un user]
+$sendMessage[Choisissez un user à vérifier :]
 
 $onInteraction[user_select]
 $let[userID;$getUserSelectUserID]
-$title[👤 Fiche utilisateur]
+$title[👤 Fiche user]
 $description[
 **Nom :** $userName[$userID]
 **ID :** $userID
 **A rejoint le :** $memberJoinDate[$userID]
-**Rôles :** $userRoles[$userID]
+**Roles :** $userRoles[$userID]
 ]
 $thumbnail[$userAvatar[$userID]]
 $color[#5865F2]
@@ -64,14 +64,14 @@ $sendMessage[]
 ```bdfd
 $onInteraction[user_select]
 $let[target;$getUserSelectUserID]
-$sendDM[$target;⚠️ Vous avez reçu un avertissement sur **$serverName**.]
-$title[✅ Avertissement envoyé]
-$description[Un DM a été envoyé à **$userName[$target]**.]
+$sendDM[$target;⚠️ Vous avez received un avertissement sur **$serverName**.]
+$title[✅ Avertissement sent]
+$description[Un DM was sent à **$userName[$target]**.]
 $sendMessage[]
 ```
 
 ## Notes
 
 - L'index commence à 1.
-- Pour récupérer tous les utilisateurs d'une sélection multiple, utiliser `$getUserSelectUserIDs[]`.
-- L'utilisateur doit être membre du serveur pour être sélectionnable.
+- Pour récupérer all users d'une sélection multiple, utiliser `$getUserSelectUserIDs[]`.
+- The user must be member of the server pour être sélectionnable.

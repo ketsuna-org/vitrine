@@ -5,33 +5,33 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: disableInnerSpaceRemoval
 syntax: $disableInnerSpaceRemoval
-description: Désactive la suppression automatique des espaces internes dans les paramètres des fonctions BDFD. Par défaut, BDFD nettoie les espaces superflus.
+description: Désactive la suppression automatique des espaces internals in thes parameters des functions BDFD. Par default, BDFD nettoie les espaces superflus.
 ---
 # $disableInnerSpaceRemoval
 
-La fonction `$disableInnerSpaceRemoval` **désactive la suppression automatique des espaces** dans les paramètres. Par défaut, BDFD nettoie les espaces en début/fin de paramètres.
+The `$disableInnerSpaceRemoval` function **désactive la suppression automatique des espaces** in thes parameters. Par default, BDFD nettoie les espaces en début/fin de parameters.
 
-## Syntaxe
+## Syntax
 
 ```
 $disableInnerSpaceRemoval
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
-Aucune.
+None.
 
-## Comportement
+## Behavior
 
-- Sans cette fonction : `$sendMessage[  Hello  ]` devient `Hello`
-- Avec cette fonction : les espaces internes et périphériques sont conservés.
-- Utile pour la mise en forme de texte (art ASCII, indentation, etc.).
+- Without cette function : `$sendMessage[  Hello  ]` devient `Hello`
+- Avec cette function : les espaces internals and périphériques sont conservés.
+- Utile for the mise en forme de text (art ASCII, indentation, etc.).
 
-## Exemples
+## Examples
 
 ### Conserver l'indentation
 
@@ -44,7 +44,7 @@ $sendMessage[
 ]
 ```
 
-### Préserver les espaces dans un texte
+### Préserver les espaces dans un text
 
 ```bdfd
 $disableInnerSpaceRemoval
@@ -54,20 +54,20 @@ $codeBlock
 ```]
 ```
 
-### Comparaison
+### Compareason
 
 ```bdfd
-; Sans $disableInnerSpaceRemoval
+; Without $disableInnerSpaceRemoval
 $sendMessage[  Hello  World  ]
-; Résultat : Hello World
+; Result : Hello World
 
 $disableInnerSpaceRemoval
 $sendMessage[  Hello  World  ]
-; Résultat :   Hello  World
+; Result :   Hello  World
 ```
 
 ## Notes
 
-- Effet limité à la commande en cours.
-- À placer au début si toute la commande nécessite la préservation d'espaces.
-- Ne désactive pas le traitement des caractères spéciaux (voir `$disableSpecialEscaping`).
+- Effet limité à la command in progress.
+- À placer at the beginning si toute la command requires the préservation d'espaces.
+- Ne désactive pas the processing des becauseactères special (voir `$disableSpecialEscaping`).

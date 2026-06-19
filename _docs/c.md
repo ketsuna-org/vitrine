@@ -5,29 +5,29 @@ translation_key: docs
 category: "Math & Calculations"
 function_name: c
 syntax: $c[expression]
-description: Alias de $calculate. Effectue un calcul mathématique et retourne le résultat. Supporte les opérations de base, les fonctions mathématiques et les variables.
+description: Alias de $calculate. Effectue un calcul mathématique and returns the result. Supporte les opérations de base, les functions mathématiques and les variables.
 aliases:
   - $calculate
 ---
 # $c (alias de $calculate)
 
-La fonction `$c[]` est un **alias raccourci** de `$calculate[]`. Elle effectue des calculs mathématiques et retourne le résultat.
+The `$c[]` function est un **alias raccourci** de `$calculate[]`. Elle effectue des calculs mathématiques and returns the result.
 
-## Syntaxe
+## Syntax
 
 ```
 $c[expression]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
 | `expression` | Expression mathématique à évaluer. |
 
 ## Opérateurs supportés
 
-| Opérateur | Description | Exemple |
+| Opérateur | Description | Example |
 |---|---|---|
 | `+` | Addition | `$c[2+3]` → `5` |
 | `-` | Soustraction | `$c[10-4]` → `6` |
@@ -36,7 +36,7 @@ $c[expression]
 | `%` | Modulo | `$c[10%3]` → `1` |
 | `^` | Puissance | `$c[2^10]` → `1024` |
 
-## Exemples
+## Examples
 
 ### Calculs de base
 
@@ -46,19 +46,19 @@ $sendMessage[100 / 4 = $c[100/4]]
 $sendMessage[2^8 = $c[2^8]]
 ```
 
-### Calcul avec décimales
+### Calcul avec decimales
 
 ```bdfd
 $enableDecimals
 $sendMessage[22/7 = $c[22/7]]
 ```
 
-### Système de niveaux
+### Système de levelx
 
 ```bdfd
 $let[xp;$getVar[xp]]
 $let[level;$c[$var[xp]/100]]
-$sendMessage[Niveau : $round[$var[level];0]]
+$sendMessage[Level : $round[$var[level];0]]
 ```
 
 ### Calcul avec variables
@@ -72,6 +72,6 @@ $sendMessage[Total : $var[total]€]
 
 ## Notes
 
-- `$c[]` est strictement identique à `$calculate[]` — juste plus court.
-- Sans `$enableDecimals`, les résultats sont arrondis.
-- Supporte les parenthèses pour les priorités : `$c[(2+3)*4]` → `20`.
+- `$c[]` est strictement identical à `$calculate[]` — juste plus court.
+- Without `$enableDecimals`, the results sont arrondis.
+- Supporte les parenthèses for priorités : `$c[(2+3)*4]` → `20`.

@@ -5,34 +5,34 @@ translation_key: docs
 category: "Entity Info"
 function_name: mentioned
 syntax: $mentioned
-description: Retourne l'ID du premier utilisateur mentionné dans le message. Équivalent au premier élément de $mentions.
+description: Returns the ID of the first user mentionné in the message. Équivaslow au first élément de $mentions.
 ---
 
 # $mentioned
 
-La variable `$mentioned` retourne l'**ID du premier utilisateur mentionné** dans le message de commande.
+The variable `$mentioned` retourne l'**ID of the first user mentionné** in the message de command.
 
-## Syntaxe
+## Syntax
 
 ```
 $mentioned
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Snowflake (chaîne numérique) ou chaîne vide
-- ID du premier utilisateur mentionné (`<@ID>`)
-- Chaîne vide si aucune mention utilisateur n'est présente
+- **Type** : Snowflake (string numérique) or string vide
+- ID of the first user mentionné (`<@ID>`)
+- String vide si noe mention user n'est présente
 
-## Comportement
+## Behavior
 
-- `$mentioned` ne prend **aucun argument**.
-- Retourne uniquement la **première** mention utilisateur.
-- Pour obtenir toutes les mentions, utilisez `$mentions`.
+- `$mentioned` ne prend **no argument**.
+- Returns aiquement la **first** mention user.
+- Pour obtenir all mentions, utilisez `$mentions`.
 
-## Exemples
+## Examples
 
-### Agir sur l'utilisateur mentionné
+### Agir sur the user mentionné
 
 ```bdfd
 $if[$mentioned!=]
@@ -45,28 +45,28 @@ $if[$mentioned!=]
   $color[#5865F2]
   $sendMessage[]
 $else
-  $sendMessage[Vous devez mentionner un utilisateur.]
+  $sendMessage[Vous devez mentionner un user.]
 $endif
 ```
 
-### Kick du premier mentionné
+### Kick du first mentionné
 
 ```bdfd
 $if[$mentioned!=]
   $if[$checkContains[$userPerms;KickMembers]==true]
     $kick[$mentioned]
-    $sendMessage[<@$mentioned> a été expulsé.]
+    $sendMessage[<@$mentioned> was expulsé.]
   $else
     $sendMessage[Permission refusée.]
   $endif
 $else
-  $sendMessage[Mentionnez l'utilisateur à expulser.]
+  $sendMessage[Mentionnez the user à expulser.]
 $endif
 ```
 
 ## Notes
 
-- `$mentioned` est pratique pour les commandes qui n'attendent qu'une seule cible.
-- Si plusieurs utilisateurs sont mentionnés, seul le premier est retourné.
-- Utilisez `$userExists[$mentioned]` pour valider que l'utilisateur mentionné existe.
-- Ne détecte pas les mentions `@everyone` ou `@here`.
+- `$mentioned` est pratique for the commands qui n'attendent qu'a single cible.
+- Si several users sont mentionnés, seul le first est retourné.
+- Utilisez `$userExists[$mentioned]` pour validr que the user mentionné existe.
+- Ne détecte pas les mentions `@everyone` or `@here`.

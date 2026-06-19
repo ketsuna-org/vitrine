@@ -5,34 +5,34 @@ translation_key: docs
 category: "Entity Info"
 function_name: botCount
 syntax: $botCount
-description: Retourne le nombre de bots présents sur le serveur Discord.
+description: Returns the namebre de bots présents on the server Discord.
 ---
 
-# $botCount[] — Nombre de Bots
+# $botCount[] — Number de Bots
 
-`$botCount[]` retourne le nombre de comptes bots présents sur le serveur Discord.
+`$botCount[]` retourne the namebre de comptes bots présents on the server Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $botCount
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+No parameters.
 
-## Valeur de retour
+## Return value
 
 - **Type** : `integer`
-- Le nombre de bots sur le serveur.
+- The namebre de bots on the server.
 
-## Utilisation
+## Usage
 
-### Affichage simple
+### Simple display
 
 ```bdfd
-$sendMessage[🤖 **$botCount** bots sur ce serveur.]
+$sendMessage[🤖 **$botCount** bots sur ce server.]
 ```
 
 ### Ratio humains/bots
@@ -51,18 +51,18 @@ $sendEmbedMessage
 
 ```bdfd
 $if[$botCount>$var[humans]]
-$sendMessage[⚠️ Il y a plus de bots ($botCount) que d'humains ($var[humans]) !]
+$sendMessage[⚠️ Il y a more than bots ($botCount) que d'humains ($var[humans]) !]
 $endif
 ```
 
-### Embed statistiques complet
+### Embed statistiques complete
 
 ```bdfd
 $title[📊 Statistiques de $serverName]
 $addField[👥 Total;$membersCount;yes]
 $addField[👤 Humains;$sub[$membersCount;$botCount];yes]
 $addField[🤖 Bots;$botCount;yes]
-$addField[🟢 En ligne;$onlineMembers;yes]
+$addField[🟢 Online;$onlineMembers;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
 $sendEmbedMessage
@@ -70,6 +70,6 @@ $sendEmbedMessage
 
 ## Notes
 
-- Un "bot" est déterminé par le flag `bot` défini sur le compte utilisateur Discord.
-- Pour obtenir le nombre d'humains, soustrayez `$botCount` du total : `$sub[$membersCount;$botCount]`.
-- Le bot comptant lui-même est inclus dans ce total.
+- Un "bot" est déterminé par le flag `bot` set on the compte user Discord.
+- Pour obtenir the namebre d'humains, soustrayez `$botCount` du total : `$sub[$membersCount;$botCount]`.
+- The bot comptant lui-même est included dans ce total.

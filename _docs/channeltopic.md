@@ -5,50 +5,50 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelTopic
 syntax: $channelTopic[(channelID)]
-description: Retourne le sujet (topic) d'un salon textuel Discord.
+description: Returns the sujet (topic) of a channel textuel Discord.
 ---
 
 # $channelTopic
 
-La fonction `$channelTopic` retourne le **sujet** (topic) d'un salon textuel Discord. Le sujet est le texte affiché en haut du salon, généralement utilisé pour décrire son utilité.
+The `$channelTopic` function returns the **sujet** (topic) of a channel textuel Discord. The sujet est le text displayed at the top of the channel, generally utilisé pour décrire son utilité.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelTopic[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel. L'ID du salon cible. Si omis, le salon courant est utilisé. |
+| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `string` | Le sujet du salon. Retourne une chaîne vide si aucun sujet n'est défini ou si le salon n'est pas textuel. |
+| `string` | Le sujet of the channel. Returns a string vide si no sujet n'est set or if the channel is not textuel. |
 
-## Exemples
+## Examples
 
 ### Afficher le sujet
 
 ```bdfd
-$sendMessage[**Sujet du salon :** $channelTopic]
+$sendMessage[**Sujet of the channel :** $channelTopic]
 ```
 
-### Vérifier si un sujet existe
+### Vérifier if a sujet existe
 
 ```bdfd
 $if[$channelTopic!=]
   $sendMessage[Sujet : $channelTopic]
 $else
-  $sendMessage[Ce salon n'a pas de sujet.]
+  $sendMessage[Ce channel does not have de sujet.]
 $endif
 ```
 
-### Sujet dans un embed
+### Sujet in an embed
 
 ```bdfd
 $title[#$channelName]
@@ -59,6 +59,6 @@ $sendMessage[]
 
 ## Notes
 
-- Ne fonctionne que pour les salons de type `text` et `news`.
-- Pour les salons vocaux, les catégories, etc., la fonction retourne une chaîne vide.
-- Longueur maximale d'un sujet : 1024 caractères.
+- Ne functionne que for channels de type `text` and `news`.
+- For channels vocaux, les catégories, etc., la function retourne a string vide.
+- Longueur maximale d'un sujet : 1024 becauseactères.

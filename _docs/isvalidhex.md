@@ -5,62 +5,62 @@ translation_key: docs
 category: "Math & Text"
 function_name: isValidHex
 syntax: $isValidHex[value]
-description: Vérifie si une chaîne est un code couleur hexadécimal valide.
+description: Checks if une string est un code couleur hexadecimal valid.
 ---
 
 # $isValidHex
 
-La fonction `$isValidHex[value]` **vérifie si une chaîne est un code couleur hexadécimal valide** au format `#RRGGBB` (ou `RRGGBB` sans le dièse).
+The function `$isValidHex[value]` **vérifie if ae string est un code couleur hexadecimal valid** au format `#RRGGBB` (or `RRGGBB` without the dièse).
 
-## Syntaxe
+## Syntax
 
 ```
 $isValidHex[value]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `value` | La chaîne à tester, avec ou sans le préfixe `#`. |
+| `value` | La string à tester, avec or without the préfixe `#`. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Booléen
-- `true` si la chaîne est un hexadécimal 6-caractères valide (0-9, A-F).
-- `false` si la chaîne contient des caractères invalides, est trop courte/longue, ou vide.
+- **Type** : Boolean
+- `true` if the string est un hexadecimal 6-becauseactères valid (0-9, A-F).
+- `false` if the string contains des becauseactères invalids, est trop courte/longue, or vide.
 
-## Comportement
+## Behavior
 
-- Accepte `#RRGGBB` et `RRGGBB` (6 caractères hexadécimaux).
-- Les lettres sont insensibles à la casse (A-F ou a-f).
-- Ne valide pas les formats courts (`#FFF`).
-- Ne valide pas les formats avec alpha (`#RRGGBBAA`).
+- Accepte `#RRGGBB` and `RRGGBB` (6 becauseactères hexadécimaux).
+- Les lettres sont insensibles à la casse (A-F or a-f).
+- Ne valid pas les formats courts (`#FFF`).
+- Ne valid pas les formats avec alpha (`#RRGGBBAA`).
 
-## Exemples
+## Examples
 
-### Validation avant utilisation
+### Validation before utilisation
 
 ```bdfd
 $var[couleur;$message[1]]
 $if[$isValidHex[$var[couleur]]==true]
   $embedAddField[Couleur;$var[couleur];yes]
   $color[$var[couleur]]
-  $sendMessage[✅ Embed avec la couleur $var[couleur].]
+  $sendMessage[✅ Embed with the couleur $var[couleur].]
 $else
-  $sendMessage[❌ Couleur invalide. Format attendu : #RRGGBB]
+  $sendMessage[❌ Couleur invalid. Format attendu : #RRGGBB]
 $endif
 ```
 
-### Commande de rôle coloré
+### Command de role coloré
 
 ```bdfd
 $var[couleur;$message[1]]
 $if[$isValidHex[$var[couleur]]==true]
   $modifyRole[$roleID[Couleur];color;$var[couleur]]
-  $sendMessage[🎨 La couleur du rôle a été changée en $var[couleur] !]
+  $sendMessage[🎨 The color of the role was changée en $var[couleur] !]
 $else
-  $sendMessage[❌ Format invalide. Exemple : !couleur #FF5733]
+  $sendMessage[❌ Format invalid. Example: !couleur #FF5733]
 $endif
 ```
 
@@ -75,7 +75,7 @@ $if[$isValidHex[$var[hex]]==true]
   $addTimestamp[]
   $sendMessage[]
 $else
-  $sendMessage[❌ Format hex invalide. Usage : !couleur #5865F2]
+  $sendMessage[❌ Format hex invalid. Usage : !couleur #5865F2]
 $endif
 ```
 
@@ -84,5 +84,5 @@ $endif
 - `$isValidHex[#FF0000]` retourne `true`.
 - `$isValidHex[ff0000]` retourne `true`.
 - `$isValidHex[#FFF]` retourne `false` (format court non supporté).
-- `$isValidHex[#GG0000]` retourne `false` (G n'est pas hex).
+- `$isValidHex[#GG0000]` retourne `false` (G is not hex).
 - `$isValidHex[]` (vide) retourne `false`.

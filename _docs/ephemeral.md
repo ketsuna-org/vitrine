@@ -6,9 +6,9 @@ category: "Embed & Message"
 
 # $ephemeral
 
-Rend la réponse éphémère (visible uniquement par l'utilisateur qui a déclenché l'interaction). S'utilise comme flag avant `$sendMessage`.
+Rend the response éphémère (visible only par the user qui a déclenché the interaction). S'utilise comme flag before `$sendMessage`.
 
-## Syntaxe
+## Syntax
 
 ```
 $ephemeral
@@ -16,28 +16,28 @@ $ephemeral
 
 ## Description
 
-`$ephemeral` est un **flag** (sans arguments) qui, placé avant `$sendMessage`, rend le message visible uniquement par l'utilisateur cible. Le message apparaît avec la mention "Only you can see this" et disparaît après un certain temps ou quand l'utilisateur ferme Discord.
+`$ephemeral` est un **flag** (without arguments) qui, placé before `$sendMessage`, rend the message visible only par the user cible. The message apparaît with the mention "Only you can see this" and disparaît after un certain temps or when the user ferme Discord.
 
-Cette fonction est particulièrement utile pour :
+Cette function est particularly utile pour :
 - Les messages de confirmation discrets
-- Les erreurs ou avertissements
-- Les réponses à des interactions sur boutons/selects
+- Les errors or avertissements
+- Les responses à des interactions sur buttons/select menus
 - Les informations sensibles
 
-## Exemples
+## Examples
 
-### Réponse éphémère simple
+### Response éphémère simple
 
 ```
 $ephemeral
-$sendMessage[Ce message est visible uniquement par vous.]
+$sendMessage[This message est visible only par vous.]
 ```
 
 ### Avec embeds
 
 ```
 $ephemeral
-$newEmbed[title=Information;description=Données privées;color=#9B59B6]
+$newEmbed[title=Information;description=Datas privatees;color=#9B59B6]
 $sendMessage[]
 ```
 
@@ -51,7 +51,7 @@ $if[$customID==btn_secret]
 $endif
 ```
 
-### Message d'erreur éphémère
+### Message error éphémère
 
 ```
 $if[$argsCount==0]
@@ -63,7 +63,7 @@ $endif
 
 ## Notes
 
-- Fonctionne uniquement dans le contexte d'interactions (slash commands, boutons, selects).
-- Ne fonctionne PAS pour les commandes à préfixe classiques (message commands).
-- Le flag doit être placé avant `$sendMessage`.
-- Pratique pour garder les salons propres des messages système.
+- Functionne only in the context d'interactions (slash commands, buttons, select menus).
+- Ne functionne PAS for commands à préfixe classiques (message commands).
+- Le flag must be placé before `$sendMessage`.
+- Pratique pour garder les channels propres of messages système.

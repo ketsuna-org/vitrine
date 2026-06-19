@@ -5,27 +5,27 @@ translation_key: docs
 category: "Entity Info"
 function_name: shardID
 syntax: $shardID
-description: Retourne l'identifiant du shard actuel sur lequel la commande est exécutée. Les shards sont utilisés pour répartir la charge des bots sur de nombreux serveurs.
+description: Returns the identifier du shard current sur lequel the command est executed. The shards are used pour répartir la charge des bots sur de many servers.
 ---
 
-# $shardID[] — Identifiant du Shard
+# $shardID[] — Identifier of the Shard
 
-`$shardID[]` retourne l'identifiant du shard Discord sur lequel le bot exécute la commande. Le sharding est une technique utilisée par Discord pour répartir la charge des bots populaires sur plusieurs processus.
+`$shardID[]` retourne l'identifier du shard Discord sur lequel the bot exécute the command. The sharding est une technique utilisée par Discord pour répartir la charge des bots populaires sur several processus.
 
-## Syntaxe
+## Syntax
 
 ```
 $shardID
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `integer`
-- L'ID du shard courant, commençant à 0.
+- The ID of the shard courant, commençant à 0.
 
 ## Utilisation
 
@@ -35,12 +35,12 @@ Aucun paramètre.
 $sendMessage[🔢 Shard : **$shardID**]
 ```
 
-### Statistiques du bot
+### Statistiques of the bot
 
 ```bdfd
 $title[📊 Statistiques du Bot]
 $addField[🔢 Shard;$shardID;yes]
-$addField[🌐 Serveurs (ce shard);$serverCount;yes]
+$addField[🌐 Servers (ce shard);$serverCount;yes]
 $addField[📶 Ping;$ping ms;yes]
 $color[#2ECC71]
 $sendEmbedMessage
@@ -49,7 +49,7 @@ $sendEmbedMessage
 ### Log avec shard
 
 ```bdfd
-$log[Shard $shardID — Commande exécutée sur $serverName]
+$log[Shard $shardID — Command executed sur $serverName]
 ```
 
 ### Debug
@@ -57,17 +57,17 @@ $log[Shard $shardID — Commande exécutée sur $serverName]
 ```bdfd
 $title[🐛 Debug Info]
 $addField[Shard;$shardID;yes]
-$addField[Serveur;$serverName ($serverID);yes]
-$addField[Salon;$channelID;yes]
-$addField[Utilisateur;$username ($authorID);yes]
+$addField[Server;$serverName ($serverID);yes]
+$addField[Channel;$channelID;yes]
+$addField[User;$username ($authorID);yes]
 $color[#E74C3C]
 $sendEmbedMessage
 ```
 
 ## Notes
 
-- Si votre bot n'est pas shardé (moins de ~2500 serveurs), `$shardID[]` retournera probablement `0`.
-- Le sharding devient nécessaire lorsque le bot atteint un grand nombre de serveurs (plus de 2500).
-- Chaque shard gère un sous-ensemble des serveurs du bot.
-- L'ID de shard est utile pour le débogage et l'identification de problèmes sur des shards spécifiques.
-- Les commandes sont toujours exécutées dans le contexte d'un seul shard.
+- Si votre bot is not shardé (moins de ~2500 servers), `$shardID[]` retournera probably `0`.
+- Le sharding devient nécessaire when the bot atteint un grand number de servers (plus de 2500).
+- Chaque shard gère un sous-ensemble des servers of the bot.
+- The ID de shard est utile for the débogage and l'identification de problèmes sur des shards spécifiques.
+- Les commands sont toudays executeds in the context d'a single shard.

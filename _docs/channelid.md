@@ -5,55 +5,55 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelID
 syntax: $channelID
-description: Retourne l'ID du salon Discord dans lequel la commande est exécutée.
+description: Returns the ID of the channel Discord in thequel la command est executede.
 ---
 
 # $channelID
 
-La fonction `$channelID` retourne l'**identifiant unique** (snowflake) du salon Discord dans lequel la commande est actuellement exécutée.
+The `$channelID` function returns the **unique identifier** (snowflake) of the channel Discord in thequel la command est currently executede.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelID
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+No parameters.
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `snowflake` | L'ID du salon courant, sous forme de chaîne de chiffres (ex: `123456789012345678`). |
+| `snowflake` | The ID of the channel courant, sous forme de string de chiffres (ex: `123456789012345678`). |
 
-## Exemples
+## Examples
 
-### Afficher l'ID du salon
-
-```bdfd
-$sendMessage[ID de ce salon : $channelID]
-```
-
-### Lien direct vers le salon
+### Afficher the ID of the channel
 
 ```bdfd
-$sendMessage[Lien du salon : https://discord.com/channels/$guildID/$channelID]
+$sendMessage[ID de ce channel : $channelID]
 ```
 
-### Comparaison avec un salon spécifique
+### Link direct vers the channel
+
+```bdfd
+$sendMessage[Link of the channel : https://discord.com/channels/$guildID/$channelID]
+```
+
+### Compareason with a channel spécifique
 
 ```bdfd
 $if[$channelID==123456789012345678]
-  $sendMessage[Ceci est le salon principal !]
+  $sendMessage[This is the channel principal !]
 $else
-  $sendMessage[Vous êtes dans le salon $channelID]
+  $sendMessage[Vous êtes in the channel $channelID]
 $endif
 ```
 
 ## Notes
 
-- L'ID retourné est celui du salon où la commande a été **déclenchée**, même si le bot interagit ensuite avec d'autres salons.
-- En messages privés (DM), `$channelID` retourne l'ID du canal DM.
-- Utile à combiner avec `$findChannel` ou `$channelSendMessage` pour des opérations multi-salons.
+- The ID retourné est celui of the channel où la command has been **déclenchée**, même if the bot interagit then avec d'autres channels.
+- En messages privates (DM), `$channelID` returns the ID of the canal DM.
+- Utile à combiner avec `$findChannel` or `$channelSendMessage` pour des opérations multi-channels.

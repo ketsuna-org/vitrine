@@ -5,52 +5,52 @@ translation_key: docs
 category: "Misc"
 function_name: ping
 syntax: $ping
-description: Retourne la latence WebSocket du bot en millisecondes.
+description: Returns the bot's WebSocket latency in milliseconds.
 ---
 
 # $ping[]
 
-La fonction `$ping[]` retourne la latence WebSocket actuelle du bot, exprimée en millisecondes (ms). Cette valeur représente le temps de communication entre le bot et les serveurs Discord.
+The `$ping[]` function returns the bot's current WebSocket latency, expressed in milliseconds (ms). This value represents the communication time between the bot and Discord's servers.
 
-## Syntaxe
+## Syntax
 
 ```
 $ping
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note:** This function takes no parameters.
 
-## Valeur de retour
+## Return Value
 
-Un nombre représentant la latence WebSocket en millisecondes.
+A number representing the WebSocket latency in milliseconds.
 
-## Interprétation
+## Interpretation
 
-| Latence | État |
-|---------|------|
-| < 100 ms | Excellente |
-| 100-200 ms | Bonne |
-| 200-400 ms | Moyenne |
-| > 400 ms | Élevée |
+| Latency | Status |
+|---------|--------|
+| < 100 ms | Excelslow |
+| 100-200 ms | Good |
+| 200-400 ms | Average |
+| > 400 ms | High |
 
-## Exemples
+## Examples
 
-### Commande ping simple
+### Simple ping command
 
 ```bdfd
-🏓 Pong ! Latence : $ping ms
+🏓 Pong! Latency: $ping ms
 ```
 
-### Embed détaillé
+### Detailed embed
 
 ```bdfd
-$title[🏓 Pong !]
-$description[Latence WebSocket : **$ping ms**]
+$title[🏓 Pong!]
+$description[WebSocket latency: **$ping ms**]
 $color[$if[$ping<100]#00FF00$elseif[$ping<200]#FFFF00$else#FF0000$endif]
 $footer[🤖 $username]
 ```
 
-### Indicateur visuel
+### Visual indicator
 
 ```bdfd
 $if[$ping<100]
@@ -64,6 +64,6 @@ $endif
 
 ## Notes
 
-- Il s'agit de la latence **WebSocket** (connexion temps réel), pas du temps de réponse HTTP.
-- La latence peut varier selon la charge des serveurs Discord et la localisation du serveur hébergeant le bot.
-- Pour connaître la durée de fonctionnement du bot, utilisez `$uptime[]`.
+- This is the **WebSocket** latency (real-time connection), not the HTTP response time.
+- Latency may vary depending on Discord server load and the location of the server hosting the bot.
+- To check the bot's uptime, use `$uptime[]`.

@@ -5,50 +5,50 @@ translation_key: docs
 category: "Messages & DM"
 function_name: dmChannelID
 syntax: $dmChannelID[userID]
-description: Récupère l'ID du canal DM (conversation privée) entre le bot et un utilisateur. Crée le canal DM automatiquement s'il n'existe pas encore.
+description: Retrieves the ID of the canal DM (conversation privatee) between the bot and a user. Crée le canal DM automatically s'il does not exist encore.
 ---
 # $dmChannelID
 
-La fonction `$dmChannelID[]` retourne l'**ID du canal DM** (conversation privée) entre le bot et un utilisateur donné.
+The `$dmChannelID[]` function returns the **ID of the canal DM** (conversation privatee) between the bot and a user donné.
 
-## Syntaxe
+## Syntax
 
 ```
 $dmChannelID[userID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur dont on veut le canal DM. |
+| `userID` | The ID of the user dont on veut le canal DM. |
 
-## Valeur de retour
+## Return value
 
-- **Type** : Snowflake (chaîne)
-- L'ID du canal DM.
-- Crée automatiquement le DM si nécessaire.
+- **Type** : Snowflake (string)
+- The ID of the canal DM.
+- Crée automatically le DM if necessary.
 
-## Comportement
+## Behavior
 
-- Crée le canal DM si la conversation n'existe pas encore.
-- Utile pour combiner avec `$useChannel[]` ou `$channelSendMessage[]`.
-- N'échoue pas si l'utilisateur a fermé ses DMs (le canal est créé, mais l'envoi peut échouer).
+- Crée le canal DM if the conversation does not exist encore.
+- Utile pour combiner avec `$useChannel[]` or `$channelSendMessage[]`.
+- N'échoue pas if the user a fermé their DMs (le canal is created, mais l'envoi peut échouer).
 
-## Exemples
+## Examples
 
-### Récupérer l'ID DM
+### Récupérer the ID DM
 
 ```bdfd
 $let[dmChannel;$dmChannelID[$authorID]]
-$sendMessage[Votre conversation privée avec le bot : $dmChannel]
+$sendMessage[Votre conversation privatee with the bot : $dmChannel]
 ```
 
-### Envoyer dans le DM via useChannel
+### Envoyer in the DM via useChannel
 
 ```bdfd
 $useChannel[$dmChannelID[$authorID]]
-$sendMessage[Ce message est envoyé en privé.]
+$sendMessage[This message is sent en private.]
 ```
 
 ### Logging de canal DM
@@ -59,6 +59,6 @@ $log[DM ouvert avec <@$authorID> - Canal : $dmChannelID[$authorID]]
 
 ## Notes
 
-- Le canal DM est persistant une fois créé par Discord.
-- Pour envoyer un message privé, `$dm[]` est plus simple.
-- Utilisez `$dmChannelID[]` quand vous avez besoin de l'ID pour d'autres opérations.
+- Le canal DM est persistant once created par Discord.
+- Pour envoyer a message private, `$dm[]` est plus simple.
+- Use `$dmChannelID[]` when vous avez besoin de the ID pour d'autres opérations.

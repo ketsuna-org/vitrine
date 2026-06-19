@@ -5,35 +5,35 @@ translation_key: docs
 category: "Entity Info"
 function_name: botNode
 syntax: $botNode
-description: Retourne l'identifiant du nœud (runner) sur lequel le bot est exécuté.
+description: Returns the identifier du nœud (runner) sur lequel the bot est executed.
 ---
 
 # $botNode
 
-La fonction `$botNode` **retourne l'identifiant du nœud (runner)** sur lequel le bot BDFD est actuellement exécuté. Chaque bot est assigné à un runner spécifique de l'infrastructure BDFD.
+The `$botNode` function **returns the identifier du nœud (runner)** sur lequel the bot BDFD est currently executed. Each bot est assigné à un runner spécifique de l'infrastructure BDFD.
 
-## Syntaxe
+## Syntax
 
 ```
 $botNode
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- L'identifiant du nœud (ex: `node-14`, `us-east-3`).
+- L'identifier du nœud (ex: `node-14`, `us-east-3`).
 
-## Comportement
+## Behavior
 
-- Le nœud est attribué automatiquement par BDFD.
-- Peut changer lors d'une migration ou maintenance.
-- Utile pour le diagnostic et le support technique.
+- Le nœud est attribué automatically par BDFD.
+- Peut changer lors d'une migration or maintenance.
+- Utile for the diagnostic and the support technique.
 
-## Exemples
+## Examples
 
 ### Page d'information technique
 
@@ -49,11 +49,11 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Commande debug (réservée owner)
+### Command debug (réservée owner)
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Réservé au propriétaire.]
+  $sendEphemeral[❌ Réservé au owner.]
   $stop
 $endif
 
@@ -64,7 +64,7 @@ $description[
 **Node :** $botNode
 **Runtime :** $nodeVersion
 **Langage :** $scriptLanguage
-**Commandes :** $commandsCount
+**Commands :** $commandsCount
 **CPU :** $cpu
 **RAM :** $ram
 ]
@@ -80,7 +80,7 @@ $footer[Node: $botNode | $nodeVersion]
 
 ## Notes
 
-- Le nœud est géré automatiquement par BDFD.
-- En cas de problème de performance, indiquez votre `$botNode` au support BDFD.
-- Pour la version du runtime, utilisez `$nodeVersion`.
-- Pour le langage de script, utilisez `$scriptLanguage`.
+- Le nœud est géré automatically par BDFD.
+- En cas de problème of performance, indiquez votre `$botNode` au support BDFD.
+- For the version du runtime, use `$nodeVersion`.
+- For the langage de script, use `$scriptLanguage`.

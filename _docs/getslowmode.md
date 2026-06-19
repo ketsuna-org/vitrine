@@ -5,44 +5,44 @@ translation_key: docs
 category: "Server & Channels"
 function_name: getSlowmode
 syntax: $getSlowmode[(channelID)]
-description: Récupère la valeur du mode lent (slowmode) d'un canal, en secondes. Retourne le délai minimum entre deux messages.
+description: Gets the value du mode slow (slowmode) d'un canal, en seconds. Returns the delay minimum between two messages.
 ---
 # $getSlowmode
 
-La fonction `$getSlowmode[]` retourne la **valeur du mode lent** (slowmode) d'un canal, en secondes.
+The function `$getSlowmode[]` retourne la **value du mode slow** (slowmode) d'un canal, en seconds.
 
-## Syntaxe
+## Syntax
 
 ```
 $getSlowmode[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | *(Optionnel)* ID du canal. Défaut : canal courant. |
+| `channelID` | *(Optional)* ID of the canal. Default: canal courant. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Nombre (chaîne)
-- Le slowmode en secondes (`0`, `5`, `10`, `15`, `30`, `60`, `120`, `300`, `600`, `900`, `1800`, `3600`, `7200`, `21600`).
+- **Type** : Number (string)
+- Le slowmode en seconds (`0`, `5`, `10`, `15`, `30`, `60`, `120`, `300`, `600`, `900`, `1800`, `3600`, `7200`, `21600`).
 
-## Exemples
+## Examples
 
 ### Vérification simple
 
 ```bdfd
-$sendMessage[Slowmode actuel : $getSlowmode secondes]
+$sendMessage[Slowmode current : $getSlowmode seconds]
 ```
 
-### Comparaison
+### Compareason
 
 ```bdfd
 $if[$getSlowmode==0]
   $sendMessage[Ce canal n'a pas de slowmode.]
 $else
-  $sendMessage[Ce canal a un slowmode de $getSlowmode secondes.]
+  $sendMessage[Ce canal a un slowmode de $getSlowmode seconds.]
 $endif
 ```
 
@@ -57,7 +57,7 @@ $sendMessage[Slowmode du canal de logs : $getSlowmode[123456789]s]
 ```bdfd
 $if[$getSlowmode>0]
   $title[⏱️ Canal en slowmode]
-  $description[Le canal <#$channelID> a un slowmode de **$getSlowmode secondes**.]
+  $description[Le canal <#$channelID> a un slowmode de **$getSlowmode seconds**.]
   $color[#FEE75C]
   $sendMessage[]
 $endif
@@ -65,6 +65,6 @@ $endif
 
 ## Notes
 
-- `0` signifie slowmode désactivé.
-- Les valeurs possibles sont limitées par Discord (5s, 10s, 15s, 30s, 1m, 2m, 5m, 10m, 15m, 30m, 1h, 2h, 6h).
+- `0` signifie slowmode désenabled.
+- Les values possibles sont limitées par Discord (5s, 10s, 15s, 30s, 1m, 2m, 5m, 10m, 15m, 30m, 1h, 2h, 6h).
 - Pour modifier le slowmode, utilisez `$modifyChannel[]`.

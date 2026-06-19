@@ -5,49 +5,49 @@ translation_key: docs
 category: "Entity Info"
 function_name: isHoisted
 syntax: $isHoisted
-description: Retourne "true" si le rôle le plus haut de l'utilisateur est affiché séparément dans la liste des membres, "false" sinon.
+description: Returns "true" si the role le plus haut of the user est displayed separatedment in the list des members, "false" otherwise.
 ---
 
 # $isHoisted
 
-La variable `$isHoisted` retourne `"true"` si le rôle le plus haut de l'utilisateur est **affiché séparément** (hoisted) dans la liste des membres du serveur.
+The variable `$isHoisted` retourne `"true"` si the role le plus haut of the user est **displayed separatedment** (hoisted) in the list des members of the server.
 
-## Syntaxe
+## Syntax
 
 ```
 $isHoisted
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne `"true"` ou `"false"`
-- `"true"` : le rôle est affiché séparément dans la sidebar des membres
-- `"false"` : le rôle n'est pas mis en avant
+- **Type** : String `"true"` or `"false"`
+- `"true"` : the role est displayed separatedment in the sidebar des members
+- `"false"` : the role is not mis en before
 
-## Comportement
+## Behavior
 
-- `$isHoisted` ne prend **aucun argument**.
-- Un rôle "hoisted" apparaît dans une section séparée de la liste des membres en ligne.
-- La propriété "hoist" est configurée dans les paramètres du rôle sur Discord.
+- `$isHoisted` ne prend **no argument**.
+- Un role "hoisted" apparaît dans une section separatede de la list des members online.
+- La property "hoist" est configurede in thes parameters of the role on Discord.
 
-## Exemples
+## Examples
 
-### Vérifier le statut hoist
+### Vérifier le status hoist
 
 ```bdfd
 $if[$isHoisted==true]
-  $sendMessage[Votre rôle principal est visible séparément.]
+  $sendMessage[Votre role principal est visible separatedment.]
 $else
-  $sendMessage[Votre rôle est dans la catégorie générale des membres.]
+  $sendMessage[Votre role est in the catégorie générale des members.]
 $endif
 ```
 
 ### Détection pour tri
 
 ```bdfd
-$title[Statut des rôles]
+$title[Status des roles]
 $description[
-**Rôle principal hoisted :** $isHoisted
+**Role principal hoisted :** $isHoisted
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -55,6 +55,6 @@ $sendMessage[]
 
 ## Notes
 
-- Le "hoist" est une propriété de **rôle**, pas directement de l'utilisateur.
-- `$isHoisted` vérifie si le **rôle le plus haut** de l'utilisateur est hoisted.
-- Utile pour les classements ou les systèmes de hiérarchie visuelle.
+- Le "hoist" est une property de **role**, pas directly of the user.
+- `$isHoisted` vérifie if the **role le plus haut** of the user est hoisted.
+- Utile for the classements or les systèmes de hiérarchie visuelle.

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: joinSplitText
 syntax: $joinSplitText[separator]
-description: Joins all elements from the current text split back into a single string, separated by the given delimiter.
+description: Joins all elements from the current text spreads back into a single string, separated by the given delimitr.
 ---
-# $joinSplitText — Join Split Elements
+# $joinSplitText — Join Spreads Elements
 
-`$joinSplitText` recombines all elements from the current `$textSplit` result into a single string. It's the inverse operation of splitting — useful when you need to transform a split array back into a delimited string, often with a different separator.
+`$joinSplitText` recombines all elements from the current `$textSplit` result into a single string. It's the inverse operation of splitting — useful when you need to transform a spreads array back into a delimitd string, often with a different separator.
 
 ## Syntax
 
@@ -25,7 +25,7 @@ $joinSplitText[separator]
 
 - **Type**: `string`
 - Returns the joined string. If `$textSplit` produced `N` elements, the result contains all `N` elements with `(N-1)` separators between them.
-- Returns an **empty string** if no split has been performed (split array is empty/missing).
+- Returns an **empty string** if no spreads has been performed (spreads array is empty/missing).
 
 ## Usage
 
@@ -39,9 +39,9 @@ $joinSplitText[ | ] → "one | two | three | four"
 
 ## Common Patterns
 
-### Changing Delimiters
+### Changing Delimitrs
 
-Transform a semicolon-delimited list into a comma-delimited one:
+Transform a semicolon-delimitd list into a comma-delimitd one:
 
 ```
 $textSplit[$getUserVar[data];;]
@@ -70,6 +70,6 @@ $sendMessage[$joinSplitText[ ]]
 
 ## Important Notes
 
-- **Current split only**: `$joinSplitText` operates on the most recent `$textSplit` result.
+- **Current spreads only**: `$joinSplitText` operates on the most recent `$textSplit` result.
 - **Respects modifications**: If elements were changed via `$editSplitText` or removed via `$removeSplitTextElement`, the joined result reflects those changes.
 - **Empty separator**: `$joinSplitText[]` with no argument produces a concatenated string with nothing between elements.

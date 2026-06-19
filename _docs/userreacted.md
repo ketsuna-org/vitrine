@@ -5,41 +5,41 @@ translation_key: docs
 category: "Entity Info"
 function_name: userReacted
 syntax: $userReacted[messageID;userID;emoji]
-description: Vérifie si un utilisateur spécifique a réagi avec un emoji donné sur un message. Retourne true ou false.
+description: Checks if un user spécifique a réagi with a emoji donné sur un message. Returns true or false.
 ---
 
 # $userReacted
 
-La fonction `$userReacted[]` permet de **vérifier si un utilisateur a réagi** avec un emoji spécifique sur un message donné.
+The function `$userReacted[]` allows **vérifier if a user a réagi** with a emoji spécifique sur un message donné.
 
-## Syntaxe
+## Syntax
 
 ```
 $userReacted[messageID;userID;emoji]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `messageID` | L'ID du message sur lequel vérifier la réaction. |
-| `userID` | L'ID de l'utilisateur à vérifier. |
-| `emoji` | L'emoji à vérifier (unicode ou `nom:ID` pour les emojis personnalisés). |
+| `messageID` | The ID of the message sur lequel vérifier la réaction. |
+| `userID` | The ID of the user à vérifier. |
+| `emoji` | L'emoji à vérifier (unicode or `nom:ID` for the emojis customs). |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : String (booléen)
-- `true` si l'utilisateur a réagi avec l'emoji spécifié.
-- `false` si l'utilisateur n'a pas réagi ou a réagi avec un autre emoji.
+- **Type** : String (boolean)
+- `true` si the user a réagi with the emoji spécifié.
+- `false` si the user n'a pas réagi or a réagi with a autre emoji.
 
-## Comportement
+## Behavior
 
-- Vérifie la liste des réactions du message pour l'emoji donné.
-- Fonctionne avec les emojis unicode standards (✅, ❌, 👍, etc.).
-- Fonctionne avec les emojis personnalisés du serveur.
-- Le message doit être accessible par le bot.
+- Checks la list des réactions of the message for the emoji donné.
+- Functionne with thes emojis unicode standards (✅, ❌, 👍, etc.).
+- Functionne with thes emojis customs of the server.
+- The message must be accessible par the bot.
 
-## Exemples
+## Examples
 
 ### Système de vérification par réaction
 
@@ -50,7 +50,7 @@ $addCmdReactions[✅]
 
 $onReactionAdd[✅]
 $if[$userReacted[$msgID;$authorID;✅]==true]
-  $giveRole[$authorID;$roleID[Membre]]
+  $giveRole[$authorID;$roleID[Member]]
   $sendDM[$authorID;Bienvenue ! Vous avez accepté les règles.]
 $endif
 ```
@@ -69,7 +69,7 @@ $else
 $endif
 ```
 
-### Condition pour un giveaway
+### Condition for a giveaway
 
 ```bdfd
 $if[$userReacted[$giveawayMsg;$authorID;🎉]==true]
@@ -81,6 +81,6 @@ $endif
 
 ## Notes
 
-- Pour les emojis personnalisés, utilisez le format `nom:ID`.
-- La fonction est sensible à la casse pour les noms d'emojis personnalisés.
-- Le bot doit avoir accès au message (même salon) pour vérifier les réactions.
+- Pour les emojis customs, utilisez le format `nom:ID`.
+- The function est sensible à la casse for the noms d'emojis customs.
+- The bot doit avoir accès au message (même channel) pour vérifier les réactions.

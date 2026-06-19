@@ -5,37 +5,37 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildCount
 syntax: $guildCount
-description: Alias de $serverCount. Retourne le nombre total de serveurs dans lesquels le bot est présent.
+description: Alias de $serverCount. Returns the number total de servers in thesquels the bot est présent.
 ---
 
-# $guildCount[] — Nombre de Serveurs (Alias)
+# $guildCount[] — Number de Servers (Alias)
 
-`$guildCount[]` est un alias de `$serverCount[]`. Il retourne le nombre total de serveurs Discord sur lesquels le bot est installé.
+`$guildCount[]` est un alias de `$serverCount[]`. Il retourne the namebre total de servers Discord sur lesquels the bot est installé.
 
-## Syntaxe
+## Syntax
 
 ```
 $guildCount
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `integer`
-- Le nombre de serveurs auxquels le bot appartient.
+- The namebre de servers auxquels the bot appartient.
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[🤖 Présent sur **$guildCount** serveurs !]
+$sendMessage[🤖 Présent sur **$guildCount** servers !]
 ```
 
-### Statistiques du bot
+### Statistiques of the bot
 
 ```bdfd
 $title[📊 Statistiques du Bot]
@@ -50,14 +50,14 @@ $sendEmbedMessage
 
 ```bdfd
 $if[$guildCount>=50]
-$sendMessage[🎉 +$guildCount serveurs ! Merci à tous !]
+$sendMessage[🎉 +$guildCount servers ! Merci à all !]
 $else
-$sendMessage[Bot présent sur $guildCount serveurs.]
+$sendMessage[Bot présent sur $guildCount servers.]
 $endif
 ```
 
 ## Notes
 
-- `$guildCount[]` et `$serverCount[]` sont strictement identiques.
-- Le compte est global (tous les shards confondus).
-- Se met à jour automatiquement lors des joins/leaves du bot.
+- `$guildCount[]` and `$serverCount[]` sont strictement identicals.
+- Le compte est global (all shards confondus).
+- Se met à day automatically durings joins/leaves of the bot.

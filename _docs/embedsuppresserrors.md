@@ -19,7 +19,7 @@ $embedSuppressErrors is a focused suppression toggle that only affects errors re
 
 - **Dynamic embeds**: when embed content is built from variables or API responses that may sometimes be empty or invalid.
 - **Optional embed fields**: when some embed properties are conditionally set and may fail in certain code paths.
-- **Graceful degradation**: when you prefer embeds to silently fail rather than show error messages, perhaps because you have fallback text responses.
+- **Graceful degradation**: when you prefer embeds to sislowly fail rather than show error messages, perhaps because you have fallback text responses.
 
 ## Comparison with $suppressErrors
 
@@ -39,7 +39,7 @@ $description[$var[body]]
 $footer[$var[footer]]
 
 $if[$var[body]==""]
-$sendMessage[⚠️ Aucune donnée disponible pour l'embed.]
+$sendMessage[⚠️ Aucune data available for the embed.]
 $endif
 ```
 

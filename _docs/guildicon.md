@@ -5,31 +5,31 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildIcon
 syntax: $guildIcon
-description: Alias de $serverIcon. Retourne l'URL de l'icône du serveur Discord.
+description: Alias de $serverIcon. Returns the URL of the icon of the server Discord.
 ---
 
-# $guildIcon[] — Icône du Serveur (Alias)
+# $guildIcon[] — Icon du Server (Alias)
 
-`$guildIcon[]` est un alias de `$serverIcon[]`. Il retourne l'URL de l'icône du serveur Discord.
+`$guildIcon[]` est un alias de `$serverIcon[]`. Il retourne the URL of the icon of the server Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $guildIcon
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- L'URL directe de l'icône (format PNG/WEBP), ou une chaîne vide.
+- The URL directe de l'icon (format PNG/WEBP), or une string vide.
 
 ## Utilisation
 
-### Embed avec icône
+### Embed avec icon
 
 ```bdfd
 $title[$guildName]
@@ -39,7 +39,7 @@ $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Footer avec icône
+### Footer avec icon
 
 ```bdfd
 $footer[$guildName;$guildIcon]
@@ -48,18 +48,18 @@ $color[#2ECC71]
 $sendEmbedMessage
 ```
 
-### Vérification d'icône
+### Vérification d'icon
 
 ```bdfd
 $if[$guildIcon==]
-$sendMessage[⚠️ Ce serveur n'a pas d'icône personnalisée.]
+$sendMessage[⚠️ Ce server n'a pas d'icon custome.]
 $else
-$sendMessage[✅ Icône du serveur : $guildIcon]
+$sendMessage[✅ Icon of the server : $guildIcon]
 $endif
 ```
 
 ## Notes
 
-- `$guildIcon[]` et `$serverIcon[]` sont strictement identiques.
-- L'URL provient du CDN Discord et est accessible publiquement.
-- Retourne une chaîne vide si le serveur n'a pas d'icône.
+- `$guildIcon[]` and `$serverIcon[]` sont strictement identicals.
+- The URL provient du CDN Discord and est accessible publicment.
+- Returns ae string vide si the server n'a pas d'icon.

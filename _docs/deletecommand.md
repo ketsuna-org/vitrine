@@ -5,48 +5,48 @@ translation_key: docs
 category: "Moderation"
 function_name: deleteCommand
 syntax: $deleteCommand
-description: Supprime le message de commande de l'utilisateur (le message qui a déclenché le trigger). Utile pour garder les canaux propres.
+description: Deletes the message de command of the user (the message qui a déclenché le trigger). Utile pour garder les canaux propres.
 ---
 
 # $deleteCommand
 
-La fonction `$deleteCommand[]` permet de **supprimer le message de commande** de l'utilisateur qui a déclenché le trigger.
+The `$deleteCommand[]` function **supprimer the message de command** of the user qui a déclenché le trigger.
 
-## Syntaxe
+## Syntax
 
 ```
 $deleteCommand
 ```
 
-## Paramètres
+## Parameters
 
-Cette fonction ne prend aucun paramètre.
+Cette function ne prend auca parameter.
 
-## Valeur de retour
+## Return value
 
-Cette fonction ne retourne pas de valeur.
+Cette function does not return a value.
 
-## Comportement
+## Behavior
 
-- Supprime immédiatement le message de l'utilisateur ayant déclenché la commande.
-- Le bot doit avoir la permission `MANAGE_MESSAGES` dans le canal.
-- Si le message a déjà été supprimé, rien ne se passe.
+- Supprime immediately the message of the user ayant déclenché la command.
+- The bot must have the permission `MANAGE_MESSAGES` in the channel.
+- If the message a déjà été deleted, rien ne se passe.
 
-## Exemples
+## Examples
 
-### Commande propre
+### Command propre
 
 ```bdfd
 $deleteCommand
-$sendMessage[Résultat de votre commande...]
+$sendMessage[Result de votre command...]
 ```
 
-### Feedback silencieux
+### Sislow feedback
 
 ```bdfd
 $deleteCommand
 $addReactions[✅]
-$ephemeral[Commande exécutée avec succès.]
+$ephemeral[Command executede avec success.]
 ```
 
 ### Protection anti-spam
@@ -54,10 +54,10 @@ $ephemeral[Commande exécutée avec succès.]
 ```bdfd
 $deleteCommand
 $if[$checkContains[$userPerms;Administrator]==false]
-  $sendMessage[Cette commande est réservée aux administrateurs.]
+  $sendMessage[Cette command est réservée aux administrators.]
   $suppressErrors[]
 $else
-  $sendMessage[Commande admin exécutée.]
+  $sendMessage[Command admin executede.]
 $endif
 ```
 
@@ -67,12 +67,12 @@ $endif
 $deleteCommand
 $channelSendMessage[$modChannel;Message anonyme :
 >>> $noMentionMessage]
-$ephemeral[Votre message a été envoyé à l'équipe de modération.]
+$ephemeral[Votre message has been sent à l'équipe de modération.]
 ```
 
 ## Notes
 
-- Fonctionne uniquement si le bot a `MANAGE_MESSAGES`.
-- Idéal pour les commandes de modération, les systèmes de confession ou les modmails.
-- Le message est supprimé avant que le bot n'envoie sa réponse.
-- Si combiné avec `$addCmdReactions[]`, placez `$deleteCommand` après ou avant selon le comportement souhaité.
+- Functionne only if the bot a `MANAGE_MESSAGES`.
+- Idéal for commands de modération, les systèmes de confession or les modmails.
+- The message is deleted before only the bot n'sends sa response.
+- Si combiné avec `$addCmdReactions[]`, placez `$deleteCommand` after or before selon le behavior souhaité.

@@ -5,40 +5,40 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandName
 syntax: $commandName
-description: Retourne le nom de la commande en cours d'exécution.
+description: Returns the name of the command in progress d'execution.
 ---
 
 # $commandName
 
-La fonction `$commandName` **retourne le nom de la commande en cours d'exécution**, tel que défini dans l'éditeur BDFD.
+The `$commandName` function **retourne the name of the command in progress d'execution**, such as set in the éditeur BDFD.
 
-## Syntaxe
+## Syntax
 
 ```
 $commandName
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- Le nom de la commande (ex: `help`, `ban`, `ping`).
+- The name of the command (ex: `help`, `ban`, `ping`).
 
-## Comportement
+## Behavior
 
-- Retourne le nom interne de la commande, pas le trigger.
-- Le nom est celui défini dans la console BDFD.
-- Utile pour les logs, l'aide contextuelle, la détection.
+- Returns the name internal of the command, not the trigger.
+- The name est celui set in the console BDFD.
+- Utile for logs, l'aide contextuelle, la détection.
 
-## Exemples
+## Examples
 
-### Log d'exécution
+### Log d'execution
 
 ```bdfd
-$log[📌 $userName ($authorID) a exécuté /$commandName dans #$channelName sur $serverName]
+$log[📌 $userName ($authorID) a executed /$commandName dans #$channelName sur $serverName]
 ```
 
 ### Aide contextuelle
@@ -46,21 +46,21 @@ $log[📌 $userName ($authorID) a exécuté /$commandName dans #$channelName sur
 ```bdfd
 $title[❓ Aide : $commandName]
 $description[
-**Commande :** $commandName
+**Command :** $commandName
 **Type :** $commandType
-**Dossier :** $commandFolder
+**Folder :** $commandFolder
 **Trigger :** $commandTrigger
 ]
 $footer[Utilisée par $userName]
 $sendMessage[]
 ```
 
-### Gestion d'erreurs personnalisée
+### Gestion errors custome
 
 ```bdfd
 $if[$message[1]==]
-  $sendMessage[❌ Usage correct : $commandTrigger <paramètre>
-  Tapez `!help $commandName` pour plus d'informations.]
+  $sendMessage[❌ Usage correct : $commandTrigger <parameter>
+  Tapez `!help $commandName` pour more information.]
   $stop
 $endif
 ```
@@ -74,21 +74,21 @@ $setVar[usage_$commandName;$var[count]]
 $log[📊 $commandName utilisée $var[count] fois]
 ```
 
-### Détection pour comportement spécifique
+### Détection pour behavior spécifique
 
 ```bdfd
 $if[$commandName==help]
-  $sendMessage[📚 Voici la liste des commandes...]
+  $sendMessage[📚 Voici la list des commands...]
 $elseif[$commandName==ping]
-  $sendMessage[🏓 Pong ! Latence : $ping ms]
+  $sendMessage[🏓 Pong ! Latency : $ping ms]
 $else
-  $sendMessage[Commande $commandName exécutée.]
+  $sendMessage[Command $commandName executede.]
 $endif
 ```
 
 ## Notes
 
-- `$commandName` retourne le nom interne, pas le trigger (préfixe).
-- En slash, le nom correspond à celui de l'application command.
-- Pour le type (prefix/slash), utilisez `$commandType`.
-- Pour le dossier, utilisez `$commandFolder`.
+- `$commandName` retourne the name internal, not the trigger (préfixe).
+- En slash, the name correspond à celui de l'application command.
+- For the type (prefix/slash), use `$commandType`.
+- For the folder, use `$commandFolder`.

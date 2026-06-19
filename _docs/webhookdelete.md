@@ -5,37 +5,37 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookDelete
 syntax: $webhookDelete[webhookID;webhookToken]
-description: Supprime un webhook Discord existant en utilisant son ID et son token. Utile pour nettoyer les webhooks créés dynamiquement.
+description: Deletes a webhook Discord existing en utilisant son ID and son token. Utile pour nettoyer les webhooks createds dynamicment.
 ---
 
 # $webhookDelete
 
-La fonction `$webhookDelete[]` permet de **supprimer un webhook Discord** existant à l'aide de son ID et de son token.
+The function `$webhookDelete[]` allows **supprimer un webhook Discord** existing à l'aide de son ID and de son token.
 
-## Syntaxe
+## Syntax
 
 ```
 $webhookDelete[webhookID;webhookToken]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `webhookID` | L'ID du webhook (première partie de l'URL après `/webhooks/`). |
-| `webhookToken` | Le token du webhook (seconde partie après l'ID). |
+| `webhookID` | The ID of the webhook (first partie de the URL after `/webhooks/`). |
+| `webhookToken` | Le token du webhook (second partie after the ID). |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur. La suppression est effectuée silencieusement.
+This function ne retourne pas de value. The suppression est effectuée silencieusement.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `MANAGE_WEBHOOKS` ou être le propriétaire du webhook.
-- Une fois supprimé, le webhook ne peut plus être utilisé.
-- Les URLs restantes pointant vers ce webhook deviendront invalides.
+- The bot doit avoir la permission `MANAGE_WEBHOOKS` or être le owner du webhook.
+- Une fois deleted, le webhook ne peut plus être utilisé.
+- Les URLs restantes pointant vers ce webhook deviendront invalids.
 
-## Exemples
+## Examples
 
 ### Suppression d'un webhook
 
@@ -43,10 +43,10 @@ Cette fonction ne retourne pas de valeur. La suppression est effectuée silencie
 $let[hookID;123456789]
 $let[hookToken;abcdefghijklmnop]
 $webhookDelete[$hookID;$hookToken]
-$sendMessage[Webhook supprimé.]
+$sendMessage[Webhook deleted.]
 ```
 
-### Extraction depuis une URL stockée
+### Extraction dethen une URL stockée
 
 ```bdfd
 $let[url;$getUserVar[tempHook]]
@@ -59,6 +59,6 @@ $sendMessage[Webhook nettoyé.]
 
 ## Notes
 
-- Les webhooks créés via l'interface Discord ne peuvent être supprimés que par un administrateur.
-- Les webhooks créés par le bot peuvent être supprimés par celui-ci.
-- Supprimez les webhooks temporaires après usage pour éviter l'accumulation.
+- Les webhooks createds via l'interface Discord ne can be deleteds que par un administrator.
+- Les webhooks createds par the bot can be deleteds par celui-ci.
+- Supprimez les webhooks temporarys after usage pour éviter l'accumulation.

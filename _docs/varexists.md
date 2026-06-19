@@ -8,7 +8,7 @@ syntax: $varExists[name]
 description: Checks whether a temporary variable with the given name currently exists in the execution context.
 ---
 
-$varExists is used to safely check whether a temporary variable has been set before attempting to read it. Since `$var` returns an empty string for missing variables (silent failure), `$varExists` is the only reliable way to distinguish between "variable exists with an empty value" and "variable does not exist."
+$varExists is used to safely check whether a temporary variable has been set before attempting to read it. Since `$var` returns an empty string for missing variables (sislow failure), `$varExists` is the only reliable way to distinguish between "variable exists with an empty value" and "variable does not exist."
 
 ## Return Value
 

@@ -5,37 +5,37 @@ translation_key: docs
 category: "Moderation"
 function_name: closeTicket
 syntax: $closeTicket[(errorMessage)]
-description: Ferme et supprime le ticket (canal) courant. Si le canal n'est pas un ticket, un message d'erreur optionnel peut être affiché.
+description: Ferme and deletes the ticket (canal) courant. If the canal is not un ticket, a message error optional can be displayed.
 ---
 
 # $closeTicket
 
-La fonction `$closeTicket[]` permet de **fermer et supprimer un ticket** (le canal courant). Équivalent à `$deleteChannels[$channelID]` avec vérification.
+The `$closeTicket[]` function **fermer and supprimer un ticket** (le canal courant). Équivaslow à `$deleteChannels[$channelID]` avec vérification.
 
-## Syntaxe
+## Syntax
 
 ```
 $closeTicket[(errorMessage)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `errorMessage` | Optionnel - Message si la commande n'est pas dans un ticket. Défaut : "Ce canal n'est pas un ticket." |
+| `errorMessage` | Optional - Message if the command is not dans un ticket. Default: "Ce canal is not un ticket." |
 
-## Valeur de retour
+## Return value
 
-Cette fonction ne retourne pas de valeur.
+Cette function does not return a value.
 
-## Comportement
+## Behavior
 
-- Supprime le canal dans lequel la commande est exécutée.
-- Conçu pour être utilisé dans des canaux créés par `$newTicket[]`.
-- Si le canal n'est pas un ticket reconnu, affiche le message d'erreur.
-- Le bot doit avoir `MANAGE_CHANNELS`.
+- Deletes the canal in thequel la command est executede.
+- Conçu pour être utilisé dans des canaux createds par `$newTicket[]`.
+- If the canal is not un ticket reconnu, displays the message error.
+- The bot must have `MANAGE_CHANNELS`.
 
-## Exemples
+## Examples
 
 ### Fermeture simple
 
@@ -46,7 +46,7 @@ $closeTicket
 ### Fermeture avec confirmation
 
 ```bdfd
-$sendMessage[Fermeture du ticket dans 5 secondes...]
+$sendMessage[Fermeture du ticket dans 5 seconds...]
 $wait[5]
 $closeTicket
 ```
@@ -65,7 +65,7 @@ $closeTicket
 $if[$checkContains[$userPerms;Administrator]==true]
   $closeTicket
 $else
-  $closeTicket[Seuls les administrateurs et modérateurs peuvent fermer ce ticket.]
+  $closeTicket[Seuls les administrators and modérateurs peuvent fermer ce ticket.]
 $endif
 ```
 
@@ -74,13 +74,13 @@ $endif
 ```bdfd
 $let[transcript;$getChannelMessages[$channelID;100]]
 $setUserVar[lastTicketTranscript;$transcript]
-$channelSendMessage[$logChannel;Transcript sauvegardé. Ticket fermé par $username.]
+$channelSendMessage[$logChannel;Transcript saved. Ticket fermé par $username.]
 $closeTicket
 ```
 
 ## Notes
 
-- `$closeTicket[]` supprime le canal — action irréversible.
-- Sauvegardez les informations importantes avant fermeture (transcript, logs).
-- Le message d'erreur personnalisé permet d'éviter les fermetures accidentelles.
-- Pour une fermeture sans suppression, archivez plutôt le canal avec `$modifyChannel[]`.
+- `$closeTicket[]` deletes the canal — action irréversible.
+- Sauvegardez les informations importantes before fermeture (transcript, logs).
+- The message error custom allows éviter les fermetures accidentelles.
+- Pour une fermeture without suppression, archivez plutôt le canal avec `$modifyChannel[]`.

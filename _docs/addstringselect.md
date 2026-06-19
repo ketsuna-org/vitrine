@@ -6,31 +6,31 @@ category: "Embed & Message"
 
 # $addStringSelect
 
-Crée un menu de sélection de type "string" — un menu déroulant avec des options textuelles prédéfinies.
+Creates a select menu de type "string" — a menu déroulant avec of options textuelles prédéfinies.
 
-## Syntaxe
+## Syntax
 
 ```
 $addStringSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customId` | Identifiant personnalisé pour l'interaction | Oui |
-| `placeholder` | Texte affiché quand rien n'est sélectionné | Oui |
-| `minValues` | Nombre minimum d'options à sélectionner (défaut : 1) | Non |
-| `maxValues` | Nombre maximum d'options à sélectionner (défaut : 1) | Non |
-| `disabled` | `true` pour désactiver le menu, `false` (défaut) | Non |
+| `customId` | Custom identifier for the interaction | Yes |
+| `placeholder` | Text displayed when rien n'est selectionné | Yes |
+| `minValues` | Minimum number d'options à selectionner (default: 1) | No |
+| `maxValues` | Maximum number d'options à selectionner (default: 1) | No |
+| `disabled` | `true` to disable le menu, `false` (default) | No |
 
 ## Description
 
-Un **string select** est un menu de sélection où les options sont des chaînes de caractères définies par le développeur. Après avoir créé le menu avec `$addStringSelect`, ajoutez les options avec `$addStringSelectOption`.
+A **string select** est un select menu où les options sont des strings de becauseactères définies par le développeur. Après avoir created le menu avec `$addStringSelect`, ajoutez les options avec `$addStringSelectOption`.
 
-Contrairement à `$newSelectMenu` + `$addSelectMenuOption`, `$addStringSelect` et `$addStringSelectOption` utilisent une API simplifiée où le `menuId` est optionnel dans `$addStringSelectOption`.
+Contrairement à `$newSelectMenu` + `$addSelectMenuOption`, `$addStringSelect` and `$addStringSelectOption` utilisent une API simplifiée où le `menuId` is optional dans `$addStringSelectOption`.
 
-## Exemples
+## Examples
 
 ### Menu simple
 
@@ -40,10 +40,10 @@ $addStringSelectOption[France;fr]
 $addStringSelectOption[Belgique;be]
 $addStringSelectOption[Suisse;ch]
 $addStringSelectOption[Canada;ca]
-$sendMessage[Sélectionnez votre pays]
+$sendMessage[Selectionnez votre pays]
 ```
 
-### Menu à sélection multiple
+### Menu à selection multiple
 
 ```
 $addStringSelect[menu_hobbies;Vos loisirs;1;5]
@@ -55,15 +55,15 @@ $addStringSelectOption[Cinéma;cinema;;🎬]
 $sendMessage[Quels sont vos loisirs ?]
 ```
 
-### Menu désactivé
+### Disabled menu
 
 ```
-$addStringSelect[menu_indispo;Indisponible;1;1;true]
+$addStringSelect[menu_indispo;Inavailable;1;1;true]
 $addStringSelectOption[Option A;a]
-$sendMessage[Ce menu est temporairement désactivé]
+$sendMessage[Ce menu est temporarily désenabled]
 ```
 
-## Gestion de l'interaction
+## Handling the interaction
 
 ```
 $onInteraction
@@ -76,4 +76,4 @@ $endif
 
 - Les options sont ajoutées avec `$addStringSelectOption`.
 - Maximum 25 options par menu.
-- Utilisez `$addActionRow` pour placer le menu sur une ligne spécifique.
+- Use `$addActionRow` to placer le menu sur a row spécifique.

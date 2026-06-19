@@ -5,40 +5,40 @@ translation_key: docs
 category: "Components"
 function_name: editSelectMenu
 syntax: $editSelectMenu[customId;placeholder;minValues;maxValues]
-description: "Modifie les propriétés d'un menu de sélection (select menu) existant : texte indicatif, nombre minimum et maximum de valeurs sélectionnables."
+description: "Modifies thes propertys d'un select menu (select menu) existing : text indicatif, minimum number and maximum de values selectionnables."
 ---
 # $editSelectMenu
 
-La fonction `$editSelectMenu[]` permet de **modifier un menu de sélection** (select menu) existant.
+The `$editSelectMenu[]` function **modifier un select menu** (select menu) existing.
 
-## Syntaxe
+## Syntax
 
 ```
 $editSelectMenu[customId;placeholder;minValues;maxValues]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `customId` | L'ID personnalisé du select menu à modifier. |
-| `placeholder` | Texte indicatif affiché avant sélection. |
-| `minValues` | Nombre minimum de sélections requises. |
-| `maxValues` | Nombre maximum de sélections autorisées. |
+| `customId` | The ID custom du select menu to modify. |
+| `placeholder` | Text indicatif displayed before selection. |
+| `minValues` | Minimum number de selections requiredes. |
+| `maxValues` | Maximum number de selections allowedes. |
 
-## Valeur de retour
+## Return value
 
-Aucune. Le select menu est modifié.
+None. The select menu est modified.
 
-## Comportement
+## Behavior
 
-- Le select menu ciblé doit exister dans le message.
-- `minValues` doit être ≤ `maxValues`.
-- `maxValues` ne peut pas dépasser 25 (limite Discord).
+- Le select menu ciblé doit exister in the message.
+- `minValues` must be ≤ `maxValues`.
+- `maxValues` cannot dépasser 25 (limit Discord).
 
-## Exemples
+## Examples
 
-### Mise à jour après sélection
+### Mise à day after selection
 
 ```bdfd
 $editSelectMenu[langMenu;Langue choisie !;0;1]
@@ -50,14 +50,14 @@ $editSelectMenu[langMenu;Langue choisie !;0;1]
 $editSelectMenu[closedMenu;Fermé;0;0]
 ```
 
-### Réinitialiser un select menu dynamique
+### Réinitialiser un select menu dynamic
 
 ```bdfd
-$editSelectMenu[categoryMenu;Sélectionnez une catégorie;1;3]
+$editSelectMenu[categoryMenu;Selectionnez une catégorie;1;3]
 ```
 
 ## Notes
 
-- Utilisez avec `$editMessage` pour appliquer les modifications.
-- Pour modifier les options du menu, utilisez `$editSelectMenuOption[]`.
-- `maxValues=1` crée un menu à choix unique, `>1` un menu à choix multiples.
+- Use avec `$editMessage` pour appliquer les modifications.
+- To modify les options du menu, use `$editSelectMenuOption[]`.
+- `maxValues=1` crée a menu à choix unique, `>1` a menu à choix multiple.

@@ -5,64 +5,64 @@ translation_key: docs
 category: "Entity Info"
 function_name: executionTime
 syntax: $executionTime
-description: Retourne le temps d'exécution de la commande actuelle en millisecondes. Permet de mesurer les performances du code BDFD.
+description: Returns the time d'execution of the current command in milliseconds. Allows mesurer les performance of the BDFD code.
 ---
 
 # $executionTime
 
-La fonction `$executionTime` permet de **mesurer le temps d'exécution** total de la commande en cours, en millisecondes.
+The `$executionTime` function **mesurer the time d'execution** total of the command in progress, in milliseconds.
 
-## Syntaxe
+## Syntax
 
 ```
 $executionTime
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+No parameters.
 
-## Valeur de retour
+## Return value
 
-- **Type** : String (nombre)
-- Le temps d'exécution en millisecondes (ms).
-- Inclut le temps de traitement de l'ensemble de la commande (parsing + exécution).
+- **Type** : String (number)
+- Le temps d'execution in milliseconds (ms).
+- Inclut the time de traitement de the whole of the command (parsing + execution).
 
-## Comportement
+## Behavior
 
-- Mesure le temps écoulé depuis le début du traitement de la commande jusqu'à l'appel de la fonction.
-- Utile pour le débogage et l'optimisation des performances.
-- La valeur est un entier représentant les millisecondes.
+- Mesure the time écoulé since the beginning of the processing of the command up to the call de la function.
+- Utile for the debugging and the optimization of performance.
+- La value est an integer representing les milliseconds.
 
-## Exemples
+## Examples
 
-### Affichage simple
+### Simple display
 
 ```bdfd
 $title[⚡ Performance]
 $description[
-**Temps d'exécution :** $executionTime ms
+**Temps d'execution :** $executionTime ms
 **Ping API :** $botPing ms
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Footer dynamique
+### Dynamic footer
 
 ```bdfd
 $title[📊 Statistiques]
-$description[Commande complexe avec beaucoup de données...]
-$footer[⏱️ Exécuté en $executionTime ms]
+$description[Command complex avec beaucoup de datas...]
+$footer[⏱️ Executed en $executionTime ms]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Condition de lenteur
+### Slowness condition
 
 ```bdfd
 $if[$executionTime>1000]
-  $sendMessage[⚠️ Cette commande est lente (>1s). Optimisation recommandée.]
+  $sendMessage[⚠️ Cette command est slowe (>1s). Optimization recommendede.]
 $else
   $sendMessage[✅ Performance normale : $executionTime ms]
 $endif
@@ -70,6 +70,6 @@ $endif
 
 ## Notes
 
-- Le temps mesuré dépend de la complexité de la commande et de la latence réseau.
-- `$executionTime` mesure le temps côté bot, pas la latence utilisateur.
-- Pour la latence WebSocket/API, utilisez `$botPing` ou `$ping`.
+- Le temps measured dépend de la complexité of the command and de la latency network.
+- `$executionTime` mesure the time côté bot, not the latency user.
+- For the latency WebSocket/API, use `$botPing` or `$ping`.

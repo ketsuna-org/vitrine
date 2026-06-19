@@ -5,35 +5,35 @@ translation_key: docs
 category: "Math & Text"
 function_name: multi
 syntax: $multi[a;b]
-description: Multiplie deux valeurs (a * b).
+description: Multiplie two values (a * b).
 ---
 
 # $multi[]
 
-La fonction `$multi[]` multiplie deux valeurs entre elles : `a * b`.
+The function `$multi[]` multiplie two values between elles : `a * b`.
 
-> **Note importante :** Cette fonction est purement mathématique. Elle ne doit pas être confondue avec une condition multi-cas (if/switch). Pour les branchements conditionnels, utilisez `$if[]`, `$elseif[]` et `$else[]`.
+> **Note importante :** This function est purement mathématique. Elle ne doit pas être confondue with ae condition multi-cas (if/switch). Pour les branchements conditionnels, utilisez `$if[]`, `$elseif[]` and `$else[]`.
 
-## Syntaxe
+## Syntax
 
 ```
 $multi[a;b]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type   | Obligatoire | Description            |
+| Parameter | Type   | Required | Description            |
 |-----------|--------|-------------|------------------------|
-| `a`       | number | Oui         | Le premier facteur.    |
-| `b`       | number | Oui         | Le second facteur.     |
+| `a`       | number | Yes         | Le first facteur.    |
+| `b`       | number | Yes         | Le second facteur.     |
 
-## Comportement
+## Behavior
 
-- Retourne le produit `a * b`.
-- Supporte les nombres décimaux.
-- Si l'un des arguments est `0`, le résultat est `0`.
+- Returns the produit `a * b`.
+- Supporte les numbers décimaux.
+- Si l'un des arguments est `0`, the result est `0`.
 
-## Exemples
+## Examples
 
 **Multiplication simple :**
 ```
@@ -41,7 +41,7 @@ $multi[6;7]
 → 42
 ```
 
-**Avec des décimales :**
+**Avec des decimales :**
 ```
 $multi[2.5;4]
 → 10
@@ -60,5 +60,5 @@ $multi[100;0]
 
 ## Notes
 
-- Seulement deux arguments. Pour multiplier plus de valeurs, chaînez : `$multi[$multi[a;b];c]` ou utilisez `$calculate[a * b * c]`.
-- Le séparateur est le point-virgule `;`.
+- Seulement two arguments. Pour multiplier plus de values, stringz : `$multi[$multi[a;b];c]` or utilisez `$calculate[a * b * c]`.
+- Le separator est le point-virgule `;`.

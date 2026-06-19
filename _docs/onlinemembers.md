@@ -5,41 +5,41 @@ translation_key: docs
 category: "Entity Info"
 function_name: onlineMembers
 syntax: $onlineMembers
-description: Retourne le nombre de membres actuellement en ligne sur le serveur Discord (statut "en ligne", "inactif" ou "ne pas déranger").
+description: Returns the number de members currentlement online on the server Discord (status "online", "inactif" or "ne pas déranger").
 ---
 
-# $onlineMembers[] — Membres en Ligne
+# $onlineMembers[] — Members en Ligne
 
-`$onlineMembers[]` retourne le nombre de membres actuellement en ligne sur le serveur. Sont considérés comme "en ligne" les membres avec les statuts En ligne, Inactif (idle) et Ne pas déranger (dnd).
+`$onlineMembers[]` retourne the namebre de members currentlement online on the server. Sont considérés comme "online" les members with thes statuss Online, Inactif (idle) and Ne pas déranger (dnd).
 
-## Syntaxe
+## Syntax
 
 ```
 $onlineMembers
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `integer`
-- Le nombre de membres en ligne.
+- The namebre de members online.
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[🟢 **$onlineMembers** membres en ligne sur $onlineMembers/$membersCount]
+$sendMessage[🟢 **$onlineMembers** members online sur $onlineMembers/$membersCount]
 ```
 
 ### Embed statistiques
 
 ```bdfd
 $title[📊 Activité sur $serverName]
-$addField[🟢 En ligne;$onlineMembers;yes]
+$addField[🟢 Online;$onlineMembers;yes]
 $addField[👥 Total;$membersCount;yes]
 $addField[📊 Ratio;$round[$multi[$divide[$onlineMembers;$membersCount];100]]%;yes]
 $thumbnail[$serverIcon]
@@ -52,9 +52,9 @@ $sendEmbedMessage
 ```bdfd
 $var[activityRate;$round[$multi[$divide[$onlineMembers;$membersCount];100]]]
 $if[$var[activityRate]>=50]
-$sendMessage[🔥 $var[activityRate]% des membres sont en ligne !]
+$sendMessage[🔥 $var[activityRate]% des members sont online !]
 $else
-$sendMessage[💤 Seulement $var[activityRate]% des membres sont en ligne.]
+$sendMessage[💤 Seulement $var[activityRate]% des members sont online.]
 $endif
 ```
 
@@ -62,7 +62,7 @@ $endif
 
 ```bdfd
 $title[📋 Dashboard — $serverName]
-$addField[🟢 En ligne;$onlineMembers;yes]
+$addField[🟢 Online;$onlineMembers;yes]
 $addField[👥 Total;$membersCount;yes]
 $addField[🤖 Bots;$botCount;yes]
 $addField[🚀 Boosts;$serverBoostCount;yes]
@@ -72,7 +72,7 @@ $sendEmbedMessage
 
 ## Notes
 
-- Inclut les statuts "en ligne", "inactif" (idle) et "ne pas déranger" (dnd).
-- N'inclut pas les membres invisibles (offline/statut invisible) — Discord ne les expose pas.
-- Utile pour évaluer l'activité en temps réel du serveur.
+- Inclut les statuss "online", "inactif" (idle) and "ne pas déranger" (dnd).
+- N'inclut pas les members invisibles (offline/status invisible) — Discord ne les expose pas.
+- Utile pour évaluer l'activité en temps réel of the server.
 - Pour le ratio, faites `$onlineMembers / $membersCount * 100`.

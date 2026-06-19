@@ -6,63 +6,63 @@ category: "Embed & Message"
 
 # $addButton
 
-Ajoute un bouton interactif au message (style legacy). Permet de contrôler le placement via le paramètre `newRow`.
+Ajoute a button interactif au message (legacy style). Allows controler le placement via le parameter `newRow`.
 
-## Syntaxe
+## Syntax
 
 ```
 $addButton[newRow;customIdOrURL;label;(style);(disabled);(emoji);(messageId)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `newRow` | `"yes"` crée une nouvelle ligne avant le bouton, `"no"` ajoute à la ligne courante | Oui |
-| `customIdOrURL` | ID personnalisé pour gérer le clic, ou URL pour un bouton lien | Oui |
-| `label` | Texte affiché sur le bouton | Oui |
-| `style` | Style du bouton : `primary` (défaut), `secondary`, `success`, `danger`, `link` | Non |
-| `disabled` | `true` pour désactiver le bouton, `false` (défaut) | Non |
-| `emoji` | Emoji à afficher avant le label | Non |
-| `messageId` | ID du message cible (pour l'édition) | Non |
+| `newRow` | `"yes"` crée une new row before le bouton, `"no"` ajoute à la ligne courante | Yes |
+| `customIdOrURL` | ID custom to manage le clic, or URL pour a button link | Yes |
+| `label` | Text displayed on the button | Yes |
+| `style` | Style du bouton : `primary` (default), `secondary`, `success`, `danger`, `link` | No |
+| `disabled` | `true` to disable le bouton, `false` (default) | No |
+| `emoji` | Emoji to display before le label | No |
+| `messageId` | ID of the message cible (for the édition) | No |
 
-## Styles disponibles
+## Available styles
 
 | Style | Couleur | Usage typique |
 |-------|---------|---------------|
-| `primary` | Bleu/violet | Action principale |
-| `secondary` | Gris | Action secondaire |
+| `primary` | Bleu/violet | Action main |
+| `secondary` | Gris | Action secondary |
 | `success` | Vert | Confirmation |
 | `danger` | Rouge | Action destructive |
-| `link` | Gris (lien) | URL externe |
+| `link` | Gris (link) | URL external |
 
-## Exemples
+## Examples
 
-### Bouton simple
+### Simple button
 
 ```
 $addButton[no;mon_bouton;Cliquez ici;primary;false;😊]
-$sendMessage[Appuyez sur le bouton]
+$sendMessage[Appuyez on the bouton]
 ```
 
-### Nouvelle ligne avec deux boutons
+### New ligne avec two buttons
 
 ```
-$addButton[no;btn_ok;✅ Valider;success]
+$addButton[no;btn_ok;✅ Validr;success]
 $addButton[no;btn_no;❌ Refuser;danger]
 $sendMessage[Choisissez une option]
 ```
 
-### Bouton désactivé avec emoji
+### Bouton disabled avec emoji
 
 ```
 $addButton[no;btn_lock;🔒 Verrouillé;secondary;true]
-$sendMessage[Action non disponible]
+$sendMessage[Action non available]
 ```
 
 ## Notes
 
-- Ce style legacy est conservé pour rétrocompatibilité.
-- Pour les nouveaux bots, privilégiez `$addButtonCV2` qui offre une API plus propre.
-- Le paramètre `newRow` permet de contrôler finement la disposition.
-- Max 5 boutons par ligne d'action.
+- Ce legacy style is kept pour rétrocompatibilité.
+- For newx bots, prefer `$addButtonCV2` qui offre une API plus propre.
+- Le parameter `newRow` allows controlling finement la disposition.
+- Max 5 buttons par action row.

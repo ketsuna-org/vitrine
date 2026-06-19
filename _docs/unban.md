@@ -5,92 +5,92 @@ translation_key: docs
 category: "Moderation"
 function_name: unBan
 syntax: $unBan[userID]
-description: Débannit un utilisateur du serveur en utilisant son ID. L'utilisateur pourra rejoindre le serveur à nouveau avec une nouvelle invitation.
+description: Débans a user of the server en utilisant son ID. The user pourra rejoindre the server à new with ae new invite.
 ---
 
 # $unBan
 
-La fonction `$unBan[]` permet de **débannir un utilisateur** du serveur en utilisant son ID Discord. Une fois débanni, l'utilisateur pourra rejoindre le serveur avec une nouvelle invitation.
+The function `$unBan[]` allows **débannir un user** of the server en utilisant son ID Discord. A fois débanni, the user pourra rejoindre the server with ae new invite.
 
-## Syntaxe
+## Syntax
 
 ```
 $unBan[userID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID Discord de l'utilisateur à débannir. |
+| `userID` | The ID Discord of the user à débannir. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : String (vide en cas de succès)
-- Chaîne vide si le débannissement réussit.
-- Message d'erreur si l'utilisateur n'est pas banni ou si le bot manque de permissions.
+- **Type** : String (vide en cas de success)
+- String vide if the déban réussit.
+- Error message si the user is not banni or si the bot manque de permissions.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `BAN_MEMBERS`.
-- L'utilisateur doit être dans la liste des bannissements du serveur.
-- L'ID peut être récupéré via `$mentioned[]`, `$findUser[]` ou tout autre moyen.
-- L'utilisateur ne reçoit pas de notification de débannissement.
+- The bot doit avoir la permission `BAN_MEMBERS`.
+- The user must be in the list des bans of the server.
+- The ID can be récupéré via `$mentioned[]`, `$findUser[]` or tout autre moyen.
+- The user ne receives pas de notification de déban.
 
-## Exemples
+## Examples
 
-### Débannissement simple
+### Déban simple
 
 ```bdfd
 $if[$checkContains[$userPerms;BanMembers]==true]
   $unBan[$mentioned[1]]
-  $sendMessage[✅ **$userName[$mentioned[1]]** a été débanni.]
+  $sendMessage[✅ **$userName[$mentioned[1]]** was débanni.]
 $else
   $sendMessage[❌ Permission refusée.]
 $endif
 ```
 
-### Débannissement avec confirmation
+### Déban avec confirmation
 
 ```bdfd
 $let[target;$mentioned[1]]
 
 $if[$isBanned[$target]==true]
   $unBan[$target]
-  $title[🔓 Débannissement]
+  $title[🔓 Déban]
   $description[
-  **Utilisateur :** $userName[$target] ($target)
-  **Ancienne raison :** $getBanReason[$target]
+  **User :** $userName[$target] ($target)
+  **Oldne reason :** $getBanReason[$target]
   **Débanni par :** $userName[$authorID]
   ]
   $color[#57F287]
   $sendMessage[]
 $else
-  $sendMessage[❌ Cet utilisateur n'est pas banni.]
+  $sendMessage[❌ Cet user is not banni.]
 $endif
 ```
 
-### Commande avec ID manuel
+### Command avec ID manuel
 
 ```bdfd
 $if[$message!=]
   $let[exists;$userExists[$message]]
   $if[$exists==true]
     $unBan[$message]
-    $sendMessage[✅ Utilisateur **$message** débanni.]
+    $sendMessage[✅ User **$message** débanni.]
   $elseif[$isBanned[$message]==true]
     $unBan[$message]
-    $sendMessage[✅ Utilisateur **$message** débanni.]
+    $sendMessage[✅ User **$message** débanni.]
   $else
-    $sendMessage[❌ ID invalide ou utilisateur non banni.]
+    $sendMessage[❌ ID invalid or user non banni.]
   $endif
 $else
-  $sendMessage[Veuillez fournir un ID utilisateur.]
+  $sendMessage[Veuillez fournir un ID user.]
 $endif
 ```
 
 ## Notes
 
-- L'utilisateur débanni ne rejoint pas automatiquement le serveur ; il doit utiliser une invitation.
-- Ne fonctionne que si l'utilisateur est dans la liste des bannissements.
-- L'ID est le seul moyen fiable, car un utilisateur banni n'est pas sur le serveur.
+- The user débanni ne rejoint pas automatically the server ; il doit utiliser une invite.
+- Ne functionne que si the user est in the list des bans.
+- The ID est le seul moyen fiable, because un user banni is not on the server.

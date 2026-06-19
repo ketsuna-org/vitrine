@@ -5,53 +5,53 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addContainer
 syntax: $addContainer[(id);(accentColor);(spoiler)]
-description: Crée un conteneur visuel dans un message Discord. Les conteneurs peuvent regrouper des sections et afficher une bordure colorée. Supporte le mode spoiler.
+description: Crée a container visuel in a Discord message. The conteneurs peuvent regrouper des sections and afficher a border colorée. Supporte le mode spoiler.
 ---
 
 # $addContainer[] — Conteneur Visuel
 
-`$addContainer[]` crée un conteneur dans un message Discord. Les conteneurs offrent une structuration visuelle avec une bordure colorée optionnelle et la possibilité d'être masqués derrière un spoiler.
+`$addContainer[]` crée a container in a Discord message. The conteneurs offrent une structuration visuelle with a bordure colorée optionalle and the possibilité d'être hiddens derrière un spoiler.
 
-## Syntaxe
+## Syntax
 
 ```
 $addContainer[(id);(accentColor);(spoiler)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Défaut | Description |
+| Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `id` | Non | — | Identifiant du conteneur. |
-| `accentColor` | Non | — | Couleur hex de la bordure (ex: `#FF0000`). |
-| `spoiler` | Non | `no` | `yes` pour masquer, `no` sinon. |
+| `id` | No | — | Container identifier. |
+| `accentColor` | No | — | Hex color of the border (ex: `#FF0000`). |
+| `spoiler` | No | `no` | `yes` pour masquer, `no` otherwise. |
 
-## Valeur de retour
+## Return value
 
-Initialise un conteneur. Les composants ajoutés après (sections, thumbnails, galeries) s'insèrent dans ce conteneur.
+Initialise a container. The components added afterward (sections, thumbnails, galeries) s'insèrent dans ce conteneur.
 
-## Utilisation
+## Usage
 
-### Conteneur basique
+### Basic container
 
 ```bdfd
 $addContainer
 $addSection
-$addField[Statut;En ligne;yes]
+$addField[Status;Online;yes]
 $addField[Uptime;24h;yes]
 ```
 
-### Conteneur avec couleur d'accent
+### Container with accent color
 
 ```bdfd
 $addContainer[profile;#5865F2;no]
 $addSection
 $addThumbnail[$authorAvatar]
-$addField[Utilisateur;$username;no]
+$addField[User;$username;no]
 $addField[Rejoint le;$memberJoinDate;no]
 ```
 
-### Conteneur spoiler
+### Spoiler container
 
 ```bdfd
 $addContainer[secret;;yes]
@@ -59,12 +59,12 @@ $addSection
 $addTextDisplay[**Spoiler Alert !** Cliquez pour révéler le contenu.]
 ```
 
-### Conteneurs multiples
+### Multiple containers
 
 ```bdfd
 $addContainer[header;#2ECC71;no]
 $addSection
-$addField[Titre;Bienvenue sur le serveur;no]
+$addField[Titre;Bienvenue on the server;no]
 
 $addContainer[body;#3498DB;no]
 $addSection
@@ -73,7 +73,7 @@ $addField[Description;Nous sommes ravis de vous accueillir !;no]
 
 ## Notes
 
-- Les conteneurs sont une fonctionnalité visuelle propre à BDFD ; ils ne font pas partie de l'API Discord native.
-- Un conteneur peut contenir plusieurs sections ($addSection).
-- La couleur `accentColor` doit être au format hexadécimal avec `#`.
-- Le mode spoiler masque tout le contenu du conteneur jusqu'à ce que l'utilisateur clique dessus.
+- Les conteneurs sont a functionnalité visuelle propre à BDFD ; ils ne font pas partie of the API Discord native.
+- Un conteneur can contain multiple sections ($addSection).
+- The color `accentColor` must be in the format hexadecimal avec `#`.
+- Le mode spoiler masque tout le content of the conteneur until the user clicks dessus.

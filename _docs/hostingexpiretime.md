@@ -5,38 +5,38 @@ translation_key: docs
 category: "Entity Info"
 function_name: hostingExpireTime
 syntax: $hostingExpireTime
-description: Retourne la date d'expiration de l'hébergement du bot.
+description: Returns the date d'expiration de l'hébergement of the bot.
 ---
 
 # $hostingExpireTime
 
-La fonction `$hostingExpireTime` **retourne la date d'expiration de l'hébergement** du bot sur la plateforme BDFD. Après cette date, le bot s'arrête si l'hébergement n'est pas renouvelé.
+The function `$hostingExpireTime` **retourne la date d'expiration de l'hébergement** of the bot sur la plateforme BDFD. Après cette date, the bot s'stops si l'hébergement is not renouvelé.
 
-## Syntaxe
+## Syntax
 
 ```
 $hostingExpireTime
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
 - La date d'expiration au format timestamp (ex: `2026-12-31T23:59:59.000Z`).
-- Peut être formatée avec `$formatDate[]`.
+- Can be formattede avec `$formatDate[]`.
 
-## Comportement
+## Behavior
 
-- Retourne la date jusqu'à laquelle l'hébergement payant est actif.
+- Returns the date until laquelle l'hébergement payant est actif.
 - Les bots gratuits peuvent ne pas avoir de date d'expiration.
-- Mise à jour automatique après renouvellement.
+- Mise à day automatique after renewment.
 
-## Exemples
+## Examples
 
-### Affichage formaté
+### Affichage formatted
 
 ```bdfd
 $var[expire;$hostingExpireTime]
@@ -45,11 +45,11 @@ $if[$var[expire]==]
 $else
   $sendMessage[📅 **Hébergement :**
   > Expire le $formatDate[$var[expire];DD/MM/YYYY à HH:mm]
-  > Jours restants : $dateDiff[$var[expire]] jours]
+  > Jours restants : $dateDiff[$var[expire]] days]
 $endif
 ```
 
-### Alerte propriétaire
+### Alerte owner
 
 ```bdfd
 $var[expire;$hostingExpireTime]
@@ -57,19 +57,19 @@ $if[$var[expire]==]
   $stop
 $endif
 
-$var[jours;$dateDiff[$var[expire]]]
-$if[$var[jours]<=3]
-  $sendDM[$botOwnerID;🚨 **URGENT** - L'hébergement de **$botName** expire dans $var[jours] jours !]
-$elseif[$var[jours]<=7]
-  $sendDM[$botOwnerID;⚠️ L'hébergement de **$botName** expire dans $var[jours] jours.]
+$var[days;$dateDiff[$var[expire]]]
+$if[$var[days]<=3]
+  $sendDM[$botOwnerID;🚨 **URGENT** - L'hébergement de **$botName** expire dans $var[days] days !]
+$elseif[$var[days]<=7]
+  $sendDM[$botOwnerID;⚠️ L'hébergement de **$botName** expire dans $var[days] days.]
 $endif
 ```
 
 ### Page information
 
 ```bdfd
-$title[🤖 Statut de $botName]
-$addField[🟢 Statut;En ligne;yes]
+$title[🤖 Status de $botName]
+$addField[🟢 Status;Online;yes]
 $addField[📦 Node;$botNode;yes]
 $var[expire;$hostingExpireTime]
 $if[$var[expire]==]
@@ -84,7 +84,7 @@ $sendMessage[]
 
 ## Notes
 
-- Si l'hébergement est gratuit, la fonction peut retourner une chaîne vide.
-- Utilisez `$dateDiff[$hostingExpireTime]` pour obtenir les jours restants.
+- Si l'hébergement est gratuit, the function peut retourner une string vide.
+- Utilisez `$dateDiff[$hostingExpireTime]` pour obtenir les days restants.
 - Pour le premium, utilisez `$premiumExpireTime`.
-- Les valeurs retournées sont en UTC.
+- Les values retournées sont en UTC.

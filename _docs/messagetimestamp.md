@@ -5,58 +5,58 @@ translation_key: docs
 category: "Entity Info"
 function_name: messageTimestamp
 syntax: $messageTimestamp
-description: Retourne le timestamp (horodatage) de création du message déclencheur.
+description: Returns the timestamp (timestamp) de création of the message déclencheur.
 ---
 
 # $messageTimestamp
 
-La fonction `$messageTimestamp` retourne le **timestamp** (horodatage) de création du message déclencheur, en millisecondes depuis l'époque Unix.
+The function `$messageTimestamp` retourne le **timestamp** (timestamp) de création of the message déclencheur, en milliseconds dethen l'époque Unix.
 
-## Syntaxe
+## Syntax
 
 ```
 $messageTimestamp
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` | Timestamp Unix en millisecondes. |
+| `integer` | Timestamp Unix en milliseconds. |
 
-## Exemples
+## Examples
 
 ### Afficher le timestamp brut
 
 ```bdfd
-$sendMessage[Timestamp du message : $messageTimestamp]
+$sendMessage[Timestamp of the message : $messageTimestamp]
 ```
 
 ### Formater la date
 
 ```bdfd
-$sendMessage[Message envoyé le $formatDate[$messageTimestamp;DD/MM/YYYY à HH:mm:ss]]
+$sendMessage[Message sent le $formatDate[$messageTimestamp;DD/MM/YYYY à HH:mm:ss]]
 ```
 
-### Calculer l'âge du message
+### Calculer l'âge of the message
 
 ```bdfd
-$sendMessage[Âge du message : $truncate[$sub[$dateNow;$messageTimestamp]/1000] secondes.]
+$sendMessage[Âge of the message : $truncate[$sub[$dateNow;$messageTimestamp]/1000] seconds.]
 ```
 
 ### Afficher en format relatif Discord
 
 ```bdfd
-$sendMessage[Message envoyé <t:$truncate[$messageTimestamp/1000]:R>]
+$sendMessage[Message sent <t:$truncate[$messageTimestamp/1000]:R>]
 ```
 
 ## Notes
 
-- Le timestamp est retourné en **millisecondes**. Divisez par `1000` pour obtenir des secondes.
-- À utiliser avec `$formatDate` pour un affichage lisible.
-- `$dateNow` retourne le timestamp actuel, utile pour calculer des durées.
+- Le timestamp est retourné en **milliseconds**. Divisez par `1000` pour obtenir des seconds.
+- À utiliser avec `$formatDate` for a affichage lisible.
+- `$dateNow` retourne le timestamp current, utile pour calculer des durées.
 - Pour le timestamp d'édition, utilisez `$messageEditedTimestamp`.

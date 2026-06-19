@@ -5,71 +5,71 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverInfo
 syntax: $serverInfo[property]
-description: Retourne une propriété spécifique de l'objet serveur (ou l'objet complet sans argument). Permet d'accéder dynamiquement aux informations du serveur.
+description: Returns ae property spécifique de l'object server (or l'object complete without argument). Allows to accéder dynamicment aux informations of the server.
 ---
 
-# $serverInfo[] — Informations du Serveur
+# $serverInfo[] — Informations du Server
 
-`$serverInfo[]` est une fonction polyvalente qui permet d'accéder aux informations du serveur. Sans argument, elle retourne l'objet complet ; avec un nom de propriété, elle retourne la valeur spécifique.
+`$serverInfo[]` est une function polyvaslowe qui allows to accéder aux informations of the server. Sans argument, elle retourne l'object complete ; with a nom de property, elle retourne the value spécifique.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverInfo
-$serverInfo[propriété]
+$serverInfo[property]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Défaut | Description |
+| Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `propriété` | Non | — | Nom de la propriété à récupérer. |
+| `property` | No | — | Name of the property à récupérer. |
 
-## Propriétés disponibles
+## Propertys availables
 
-| Propriété | Description | Équivalent |
+| Property | Description | Équivaslow |
 |-----------|-------------|------------|
-| `name` | Nom du serveur | `$serverName` |
-| `id` | ID du serveur | `$serverID` |
-| `icon` | URL de l'icône | `$serverIcon` |
-| `ownerID` | ID du propriétaire | `$serverOwner` |
-| `description` | Description du serveur | `$serverDescription` |
-| `region` | Région du serveur | `$serverRegion` |
-| `verificationLevel` | Niveau de vérification | `$serverVerificationLevel` |
-| `memberCount` | Nombre de membres | `$membersCount` |
-| `boostCount` | Nombre de boosts | `$serverBoostCount` |
-| `boostLevel` | Niveau de boost | `$boostLevel` |
-| `emojiCount` | Nombre d'émojis | `$emojiCount` |
-| `banner` | URL de la bannière | `$serverBanner` |
-| `vanityURL` | Code URL personnalisée | `$serverVanityURL` |
+| `name` | Nom of the server | `$serverName` |
+| `id` | ID of the server | `$serverID` |
+| `icon` | URL of the icon | `$serverIcon` |
+| `ownerID` | ID of the owner | `$serverOwner` |
+| `description` | Description of the server | `$serverDescription` |
+| `region` | Région of the server | `$serverRegion` |
+| `verificationLevel` | Level de vérification | `$serverVerificationLevel` |
+| `memberCount` | Number de members | `$membersCount` |
+| `boostCount` | Number de boosts | `$serverBoostCount` |
+| `boostLevel` | Level de boost | `$boostLevel` |
+| `emojiCount` | Number d'emojis | `$emojiCount` |
+| `banner` | URL of the banner | `$serverBanner` |
+| `vanityURL` | Code URL custome | `$serverVanityURL` |
 
 ## Utilisation
 
-### Récupérer une propriété
+### Récupérer une property
 
 ```bdfd
-$sendMessage[Nom du serveur : **$serverInfo[name]**]
-$sendMessage[Propriétaire : <@$serverInfo[ownerID]>]
+$sendMessage[Nom of the server : **$serverInfo[name]**]
+$sendMessage[Owner : <@$serverInfo[ownerID]>]
 ```
 
-### Récupérer toutes les informations
+### Récupérer all informations
 
 ```bdfd
-$title[Informations complètes du serveur]
-$description[Données brutes du serveur]
-$addField[Objet serveur;$serverInfo;no]
+$title[Informations completes of the server]
+$description[Datas brutes of the server]
+$addField[Object server;$serverInfo;no]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Utilisation dynamique
+### Utilisation dynamic
 
 ```bdfd
 $var[prop;$message[1]]
 $if[$var[prop]!=]
 $sendMessage[$serverInfo[$var[prop]]]
 $else
-$sendMessage[Usage : !serverinfo <propriété>]
+$sendMessage[Usage : !serverinfo <property>]
 $endif
 ```
 
@@ -79,10 +79,10 @@ $endif
 $title[$serverInfo[name]]
 $description[$serverInfo[description]]
 $addField[🆔 ID;$serverInfo[id];yes]
-$addField[👑 Propriétaire;<@$serverInfo[ownerID]>;yes]
-$addField[👥 Membres;$serverInfo[memberCount];yes]
+$addField[👑 Owner;<@$serverInfo[ownerID]>;yes]
+$addField[👥 Members;$serverInfo[memberCount];yes]
 $addField[🚀 Boosts;$serverInfo[boostCount] (Niv. $serverInfo[boostLevel]);yes]
-$addField[🎨 Émojis;$serverInfo[emojiCount];yes]
+$addField[🎨 Emojis;$serverInfo[emojiCount];yes]
 $addField[🔒 Vérification;$serverInfo[verificationLevel];yes]
 $thumbnail[$serverInfo[icon]]
 $image[$serverInfo[banner]]
@@ -92,7 +92,7 @@ $sendEmbedMessage
 
 ## Notes
 
-- `$serverInfo[]` sans argument retourne un objet JSON brut — utile pour le débogage ou le logging.
-- Les noms de propriétés sont sensibles à la casse (camelCase).
-- Préférez les fonctions dédiées (`$serverName`, `$serverID`, etc.) pour un usage simple — `$serverInfo[]` est utile pour des accès dynamiques.
-- Toutes les propriétés ne sont pas toujours disponibles (ex: `banner` si niveau boost insuffisant).
+- `$serverInfo[]` without argument retourne un JSON object brut — utile for the débogage or le logging.
+- Les noms de propertys sont sensibles à la casse (camelCase).
+- Préférez les functions dédiées (`$serverName`, `$serverID`, etc.) for a usage simple — `$serverInfo[]` est utile pour des accès dynamics.
+- Toutes les propertys are not toudays availables (ex: `banner` si level boost insuffisant).

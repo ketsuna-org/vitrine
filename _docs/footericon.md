@@ -5,39 +5,39 @@ translation_key: docs
 category: "Embed & Message"
 function_name: footerIcon
 syntax: $footerIcon[url;(embedIndex)]
-description: Modifie l'icône du footer d'un embed après que celui-ci a été défini avec $footer[]. Permet de changer uniquement l'image sans modifier le texte.
+description: Modifies l'icon du footer of an embed after que celui-ci was défini avec $footer[]. Allows changer only l'image without modifier le text.
 ---
 
 # $footerIcon[]
 
-La fonction `$footerIcon[]` permet de **modifier uniquement l'icône** d'un footer déjà défini avec `$footer[]`. Elle est utile lorsque vous souhaitez définir une icône dynamique sans répéter le texte du footer.
+The function `$footerIcon[]` allows **modifier only l'icon** d'un footer déjà défini avec `$footer[]`. Elle est utile when vous souhaitez définir une icon dynamic without répéter le text du footer.
 
-## Syntaxe
+## Syntax
 
 ```
 $footerIcon[url;(embedIndex)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `url` | URL de l'image à utiliser comme icône du footer. |
-| `embedIndex` | Optionnel. Index de l'embed ciblé (0 par défaut). |
+| `url` | URL of the image à utiliser comme icon du footer. |
+| `embedIndex` | Optional. Index of the embed ciblé (0 default). |
 
-## Valeur de retour
+## Return Value
 
-Modifie la réponse en cours de construction. Ne retourne rien.
+Modifies the response in progress de construction. Returns nothing.
 
 ## Quand utiliser $footerIcon[]
 
-- Vous avez déjà défini le footer avec `$footer[text]` et souhaitez ajouter ou changer l'icône.
-- L'icône dépend d'une variable dynamique (avatar, statut, etc.).
-- Vous voulez séparer la logique du texte et de l'icône pour un code plus lisible.
+- Vous avez déjà défini le footer avec `$footer[text]` and souhaitez ajouter or changer l'icon.
+- L'icon dépend of a variable dynamic (avatar, status, etc.).
+- Vous voulez séparer la logique du text and de l'icon for a comoreover lisible.
 
-## Exemples
+## Examples
 
-### Icône dynamique basée sur l'utilisateur
+### Icon dynamic basée sur the user
 
 ```bdfd
 $title[Profil]
@@ -51,11 +51,11 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Icône conditionnelle
+### Icon conditionnelle
 
 ```bdfd
-$title[Statut du serveur]
-$description[Le serveur est opérationnel.]
+$title[Status of the server]
+$description[The server est opérationnel.]
 $footer[Dernière vérification : $time]
 $if[$var[status]==online]
 $footerIcon[https://cdn.example.com/green.png]
@@ -68,6 +68,6 @@ $sendMessage[]
 
 ## Notes
 
-- `$footerIcon[]` doit être appelé **après** `$footer[]`, sinon il n'y a pas de footer sur lequel appliquer l'icône.
-- Si `$footerIcon[]` est appelé avant `$footer[]`, l'icône sera ignorée.
-- L'URL doit pointer vers une image accessible publiquement.
+- `$footerIcon[]` must be callé **after** `$footer[]`, otherwise there is no de footer sur lequel appliquer l'icon.
+- Si `$footerIcon[]` est callé before `$footer[]`, l'icon sera ignorée.
+- The URL doit pointer vers une image accessible publicment.

@@ -5,76 +5,76 @@ translation_key: docs
 category: "Embed & Message"
 function_name: removeComponent
 syntax: $removeComponent[customId]
-description: Supprime un composant spécifique (bouton, menu, champ texte, etc.) d'un message en utilisant son identifiant personnalisé (customId).
+description: Removes a specific component (button, menu, text field, etc.) from a message using its custom identifier (customId).
 ---
 
-# $removeComponent[] — Supprimer un Composant
+# $removeComponent[] — Remove a Component
 
-`$removeComponent[]` retire un composant spécifique d'un message en se basant sur son `customId`. Cela permet de désactiver ou retirer dynamiquement des boutons, menus, ou champs de saisie après une interaction.
+`$removeComponent[]` removes a specific component from a message based on its `customId`. This allows dynamically disabling or removing buttons, menus, or input fields after an interaction.
 
-## Syntaxe
+## Syntax
 
 ```
 $removeComponent[customId]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Description |
-|-----------|-------------|-------------|
-| `customId` | Oui | Identifiant du composant à supprimer (défini lors de sa création). |
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `customId` | Yes | Identifier of the component to remove (defined at its creation). |
 
-## Valeur de retour
+## Return Value
 
-Supprime le composant du message. Si aucun composant avec ce `customId` n'existe, rien ne se passe.
+Removes the component from the message. If no component with this `customId` exists, nothing happens.
 
-## Utilisation
+## Usage
 
-### Suppression après clic
+### Removal after click
 
 ```bdfd
 $onInteraction[confirm_btn]
 $removeComponent[confirm_btn]
 $removeComponent[cancel_btn]
-$editMessage[✅ Action confirmée !]
+$editMessage[✅ Action confirmed!]
 $endInteraction
 ```
 
-### Désactiver un bouton après usage
+### Disable a button after use
 
 ```bdfd
 $onInteraction[claim_reward]
 $removeComponent[claim_reward]
-$sendMessage[$username a récupéré la récompense !]
+$sendMessage[$username has claimed the reward!]
 $endInteraction
 ```
 
-### Supprimer plusieurs composants spécifiques
+### Remove multiple specific components
 
 ```bdfd
 $onInteraction[reset_form]
 $removeComponent[name_input]
 $removeComponent[email_input]
 $removeComponent[submit_btn]
-$editMessage[Formulaire réinitialisé]
+$editMessage[Form reset]
 $endInteraction
 ```
 
-### Menu qui disparaît après sélection
+### Menu that disappears after selection
 
 ```bdfd
 $onInteraction[select_role]
 $removeComponent[role_menu]
 $var[role;$input[role_menu]]
 $giveRole[$authorID;$var[role]]
-$editMessage[Rôle **$var[role]** attribué !]
+$editMessage[Role **$var[role]** assigned!]
 $endInteraction
 ```
 
 ## Notes
 
-- Le `customId` doit correspondre exactement à celui défini lors de la création du composant (`$addButton[customId;...]`, `$addTextInput[customId;...]`, etc.).
-- Si le composant n'existe pas, la fonction échoue silencieusement.
-- Utilisé principalement dans les handlers `$onInteraction` pour modifier le message après une action utilisateur.
-- Pour supprimer tous les boutons d'un coup, utilisez `$removeButtons[]`.
-- Pour tout supprimer, utilisez `$removeAllComponents[]`.
+- The `customId` must match exactly the one defined when creating the component (`$addButton[customId;...]`, `$addTextInput[customId;...]`, etc.).
+- If the component doesn't exist, the function fails sislowly.
+- Used primarily in `$onInteraction` handlers to modify the message after a user action.
+- To remove all buttons at once, use `$removeButtons[]`.
+- To remove everything, use `$removeAllComponents[]`.

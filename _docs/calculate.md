@@ -5,28 +5,28 @@ translation_key: docs
 category: "Math & Text"
 function_name: calculate
 syntax: $calculate[expression]
-description: Évalue une expression mathématique complète (opérateurs, fonctions, comparaisons).
+description: Évalue une expression mathématique complete (opérateurs, functions, compareasons).
 ---
 
 # $calculate[]
 
-La fonction `$calculate[]` est la fonction mathématique la plus puissante de BDFD. Elle permet d'évaluer des expressions mathématiques complètes en utilisant un parser mathématique intégré.
+The `$calculate[]` function est la function mathématique la plus thensante de BDFD. Elle allows évaluer des expressions mathématiques completes en utilisant un parser mathématique intégré.
 
-## Syntaxe
+## Syntax
 
 ```
 $calculate[expression]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre   | Type   | Obligatoire | Description                                                    |
+| Parameter   | Type   | Required | Description                                                    |
 |-------------|--------|-------------|----------------------------------------------------------------|
-| `expression`| string | Oui         | L'expression mathématique à évaluer.                           |
+| `expression`| string | Yes         | L'expression mathématique à évaluer.                           |
 
 ## Opérateurs supportés
 
-| Opérateur | Description       | Exemple           |
+| Opérateur | Description       | Example           |
 |-----------|-------------------|--------------------|
 | `+`       | Addition          | `5 + 3` → `8`     |
 | `-`       | Soustraction      | `10 - 4` → `6`    |
@@ -35,24 +35,24 @@ $calculate[expression]
 | `%`       | Modulo            | `17 % 5` → `2`    |
 | `^`       | Puissance         | `2 ^ 8` → `256`   |
 
-## Fonctions supportées
+## Functions supportées
 
 `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `abs`, `sqrt`, `log`, `log10`, `floor`, `ceil`, `round`, `min`, `max`, `exp`
 
-## Comparaisons
+## Compareasons
 
-Les comparaisons retournent `"true"` ou `"false"` :
+The compareasons retournent `"true"` or `"false"` :
 
 - `>` strictement supérieur
 - `<` strictement inférieur
-- `>=` supérieur ou égal
-- `<=` inférieur ou égal
+- `>=` supérieur or égal
+- `<=` inférieur or égal
 - `==` égal
-- `!=` différent
+- `!=` different
 
 ## Notes
 
-- L'expression est évaluée avec un parser mathématique côté serveur.
-- Le résultat est toujours retourné sous forme de chaîne de caractères (même pour les nombres).
-- La fonction supporte l'utilisation de variables BDFD comme `$getVar[]` dans l'expression.
-- En cas d'expression invalide, le comportement dépend du parser (généralement une erreur silencieuse ou un résultat vide).
+- L'expression est évaluée with a parser mathématique côté server.
+- The result est toudays retourné sous forme de string de becauseactères (même for numbers).
+- The function supporte l'usage de variables BDFD comme `$getVar[]` in the expression.
+- En cas d'expression invalid, le behavior dépend du parser (generally an error silencieuse or a result vide).

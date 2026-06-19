@@ -5,40 +5,40 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandFolder
 syntax: $commandFolder
-description: Retourne le nom du dossier contenant la commande en cours d'exécution.
+description: Returns the name du folder contenant la command in progress d'execution.
 ---
 
 # $commandFolder
 
-La fonction `$commandFolder` **retourne le nom du dossier** dans lequel la commande en cours est organisée sur la console BDFD.
+The `$commandFolder` function **retourne the name du folder** in thequel la command in progress est organisée on the console BDFD.
 
-## Syntaxe
+## Syntax
 
 ```
 $commandFolder
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- Le nom du dossier (ex: `Modération`, `Fun`, `Admin`, `Utils`).
+- The name du folder (ex: `Modération`, `Fun`, `Admin`, `Utils`).
 
-## Comportement
+## Behavior
 
-- Les dossiers sont définis dans l'organisateur de commandes BDFD.
-- Utile pour organiser les logs, l'aide, ou les permissions.
-- Retourne une chaîne vide si la commande est à la racine.
+- Les folders sont définis in the organisateur de commands BDFD.
+- Utile to organize les logs, l'aide, or les permissions.
+- Returns a string vide if the command est à la racine.
 
-## Exemples
+## Examples
 
 ### Log organisé
 
 ```bdfd
-$log[📂 [$commandFolder] $userName a exécuté $commandName]
+$log[📂 [$commandFolder] $userName a executed $commandName]
 ```
 
 ### Aide contextuelle
@@ -49,41 +49,41 @@ $addField[📂 Catégorie;$commandFolder;yes]
 $addField[⚡ Type;$commandType;yes]
 $addField[🔤 Trigger;$commandTrigger;yes]
 $description[
-Aide complète de la commande...
+Aide complete of the command...
 ]
 $sendMessage[]
 ```
 
-### Permissions par dossier
+### Permissions par folder
 
 ```bdfd
 $if[$commandFolder==Admin]
   $if[$hasRole[$roleID[Admin]]==false]
-    $sendEphemeral[❌ Les commandes du dossier Admin sont réservées.]
+    $sendEphemeral[❌ Les commands du folder Admin sont réservées.]
     $stop
   $endif
 $endif
 
-;; Commande exécutée normalement
-$sendMessage[✅ Commande exécutée.]
+;; Command executede normalement
+$sendMessage[✅ Command executede.]
 ```
 
-### Page d'accueil par dossier
+### Page d'accueil par folder
 
 ```bdfd
 $if[$commandFolder==Modération]
-  $sendMessage[🛡️ **Modération** - Commandes de gestion du serveur.]
+  $sendMessage[🛡️ **Modération** - Commands de gestion of the server.]
 $elseif[$commandFolder==Fun]
-  $sendMessage[🎮 **Fun** - Commandes de divertissement.]
+  $sendMessage[🎮 **Fun** - Commands de divertissement.]
 $elseif[$commandFolder==Utils]
-  $sendMessage[🔧 **Utilitaires** - Commandes pratiques.]
+  $sendMessage[🔧 **Utilitaires** - Commands pratiques.]
 $else
-  $sendMessage[📂 Dossier : $commandFolder]
+  $sendMessage[📂 Folder : $commandFolder]
 $endif
 ```
 
 ## Notes
 
-- Le nom du dossier est celui défini dans la console BDFD.
-- Utile pour la structuration des commandes et les permissions.
-- Chaîne vide si la commande n'est pas dans un dossier.
+- The name du folder est celui set in the console BDFD.
+- Utile for the structuration des commands and les permissions.
+- String vide if the command is not dans un folder.

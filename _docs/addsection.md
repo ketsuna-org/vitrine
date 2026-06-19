@@ -5,32 +5,32 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addSection
 syntax: $addSection[(id)]
-description: Crée une section à l'intérieur d'un conteneur. Les sections permettent d'organiser le contenu (champs, texte, thumbnails) de manière structurée dans un conteneur visuel.
+description: Crée a section inside of a container. The sections permettent d'organize le contenu (champs, text, thumbnails) de manière structurée in a container visuel.
 ---
 
 # $addSection[] — Section dans un Conteneur
 
-`$addSection[]` crée une section à l'intérieur d'un conteneur préalablement initialisé avec `$addContainer[]`. Les sections structurent visuellement le contenu et peuvent contenir des champs, du texte, et des médias.
+`$addSection[]` crée a section inside of a container previously initialisé avec `$addContainer[]`. The sections structurent visually le contenu and can contain of fields, of the text, and médias.
 
-## Syntaxe
+## Syntax
 
 ```
 $addSection[(id)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Description |
+| Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `id` | Non | Identifiant optionnel de la section. |
+| `id` | No | Optional identifier for the section. |
 
-## Valeur de retour
+## Return value
 
-Initialise une section dans le conteneur courant. Les composants suivants sont ajoutés à cette section.
+Initialise a section in the container courant. The components nexts are added à cette section.
 
-## Utilisation
+## Usage
 
-### Conteneur avec une section
+### Conteneur with a section
 
 ```bdfd
 $addContainer[user_info;#E67E22;no]
@@ -40,7 +40,7 @@ $addField[ID;$authorID;no]
 $addField[Date d'inscription;$creationDate;no]
 ```
 
-### Conteneur multi-sections
+### Multi-section container
 
 ```bdfd
 $addContainer[embed;#9B59B6;no]
@@ -54,10 +54,10 @@ $addField[Messages;$var[msg_count];yes]
 $addField[XP;$var[xp];yes]
 
 $addSection[footer]
-$addTextDisplay[📅 Membre depuis $memberJoinDate]
+$addTextDisplay[📅 Member since $memberJoinDate]
 ```
 
-### Sections dans un message complexe
+### Sections in a message complex
 
 ```bdfd
 $addContainer[shop;#3498DB;no]
@@ -73,7 +73,7 @@ $addField[Prix;3500 pièces d'or;yes]
 
 ## Notes
 
-- Doit être utilisé à l'intérieur d'un conteneur (`$addContainer`).
-- Plusieurs sections peuvent coexister dans un même conteneur.
-- Chaque section peut contenir des champs (`$addField`), du texte (`$addTextDisplay`), ou un thumbnail (`$addThumbnail`).
-- L'ordre d'ajout détermine l'ordre d'affichage dans le message.
+- Doit être utilisé inside of a container (`$addContainer`).
+- Multiple sections peuvent coexister dans un même conteneur.
+- Each section can contain of fields (`$addField`), of the text (`$addTextDisplay`), or a thumbnail (`$addThumbnail`).
+- L'ordre d'ajout détermine the order d'affichage in the message.

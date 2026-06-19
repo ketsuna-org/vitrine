@@ -5,27 +5,27 @@ translation_key: docs
 category: "Entity Info"
 function_name: systemChannelID
 syntax: $systemChannelID
-description: Retourne l'identifiant (ID) du salon des messages système configuré sur le serveur Discord (messages de bienvenue et de boost).
+description: Returns the identifier (ID) of the channel des messages système configured on the server Discord (messages de bienvenue and de boost).
 ---
 
-# $systemChannelID[] — Salon des Messages Système
+# $systemChannelID[] — Channel des Messages Système
 
-`$systemChannelID[]` retourne l'ID du salon où Discord envoie les messages système automatiques : annonces de nouveaux membres, messages de boost Nitro, etc.
+`$systemChannelID[]` retourne the ID of the channel où Discord sends thes messages système automatiques : annonces de newx members, messages de boost Nitro, etc.
 
-## Syntaxe
+## Syntax
 
 ```
 $systemChannelID
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- L'ID du salon système, ou une chaîne vide si non configuré.
+- The ID of the channel système, or une string vide si non configured.
 
 ## Utilisation
 
@@ -33,9 +33,9 @@ Aucun paramètre.
 
 ```bdfd
 $if[$systemChannelID!=]
-$sendMessage[📢 Les messages système sont envoyés dans <#$systemChannelID>]
+$sendMessage[📢 Les messages système are sent dans <#$systemChannelID>]
 $else
-$sendMessage[ℹ️ Aucun salon système configuré.]
+$sendMessage[ℹ️ Aucun channel système configured.]
 $endif
 ```
 
@@ -43,9 +43,9 @@ $endif
 
 ```bdfd
 $title[⚙️ Configuration de $serverName]
-$addField[📢 Salon système;$if[$systemChannelID!=]<#$systemChannelID>$elseNon configuré$endif;yes]
-$addField[📋 Salon règles;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNon configuré$endif;yes]
-$addField[💤 Salon AFK;$if[$afkChannelID!=]<#$afkChannelID>$elseNon configuré$endif;yes]
+$addField[📢 Channel système;$if[$systemChannelID!=]<#$systemChannelID>$elseNon configured$endif;yes]
+$addField[📋 Channel règles;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNon configured$endif;yes]
+$addField[💤 Channel AFK;$if[$afkChannelID!=]<#$afkChannelID>$elseNon configured$endif;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
@@ -60,13 +60,13 @@ $log[Configuration $serverName | Système: $systemChannelID | Règles: $rulesCha
 
 ```bdfd
 $if[$systemChannelID==$channelID]
-$sendMessage[ℹ️ Vous êtes dans le salon des messages système. Les nouveaux membres et boosts sont annoncés ici.]
+$sendMessage[ℹ️ Vous êtes in the channel des messages système. The newx members and boosts sont annoncés ici.]
 $endif
 ```
 
 ## Notes
 
-- Le salon système est configuré dans les paramètres du serveur (onglet "Aperçu").
-- Les messages concernant les nouveaux membres et les boosts Nitro sont automatiquement postés dans ce salon.
-- Si le salon n'est pas configuré, les messages système ne sont pas envoyés.
-- Ce salon est distinct du salon des règles (`$rulesChannelID[]`).
+- The channel système est configured in thes parameters of the server (onglet "Aperçu").
+- Les messages concernant les newx members and les boosts Nitro sont automatically postés dans ce channel.
+- Si the channel is not configured, les messages système are not sents.
+- Ce channel est distinct of the channel des règles (`$rulesChannelID[]`).

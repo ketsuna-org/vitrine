@@ -5,39 +5,39 @@ translation_key: docs
 category: "Embed & Message"
 function_name: authorIcon
 syntax: $authorIcon[url;(embedIndex)]
-description: Modifie l'icône (avatar) de l'auteur d'un embed après que celui-ci a été défini avec $author[]. Permet de changer uniquement l'image sans modifier le nom ni l'URL.
+description: Modifies the icon (avatar) de the author of an embed after que this one has been set avec $author[]. Allows changer only the image without modifier the name ni the URL.
 ---
 
 # $authorIcon[]
 
-La fonction `$authorIcon[]` permet de **modifier uniquement l'icône** de l'auteur d'un embed après que celui-ci a été défini avec `$author[]`. Elle évite de répéter le nom et l'URL lorsque seule l'image doit changer.
+The `$authorIcon[]` function **modifier only the icon** de the author of an embed after que this one has been set avec `$author[]`. Elle évite de répéter the name and the URL when seule the image doit changer.
 
-## Syntaxe
+## Syntax
 
 ```
 $authorIcon[url;(embedIndex)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `url` | URL de l'image à utiliser comme icône de l'auteur. |
-| `embedIndex` | Optionnel. Index de l'embed ciblé (0 par défaut). |
+| `url` | URL of the image to use comme icon de the author. |
+| `embedIndex` | Optional. Index of the embed ciblé (0 by default). |
 
-## Valeur de retour
+## Return value
 
-Modifie la réponse en cours de construction. Ne retourne rien.
+Modifies the response in progress de construction. Returns nothing.
 
 ## Quand utiliser $authorIcon[]
 
-- Vous avez déjà défini l'auteur avec `$author[name]` et souhaitez ajouter ou changer l'icône sans modifier le nom.
-- L'icône dépend d'une variable dynamique (avatar, rôle, etc.).
-- Vous voulez un code plus modulaire et lisible.
+- Vous avez déjà set the author avec `$author[name]` and souhaitez ajouter or changer the icon without modifier the name.
+- L'icon dépend of a variable dynamic (avatar, role, etc.).
+- Vous voulez un comoreover modulaire and lisible.
 
-## Exemples
+## Examples
 
-### Ajouter l'avatar de l'utilisateur comme icône
+### Ajouter l'avatar of the user comme icon
 
 ```bdfd
 $author[$username]
@@ -45,13 +45,13 @@ $authorIcon[$authorAvatar]
 $title[Profil de $username]
 $description[
 **ID :** $authorID
-**Compte créé le :** $creationDate[$authorID]
+**Counts created le :** $creationDate[$authorID]
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Icône différente selon le rôle
+### Icon differente selon the role
 
 ```bdfd
 $author[Message de la modération]
@@ -63,14 +63,14 @@ $else
 $authorIcon[$authorAvatar]
 $endif
 $title[Avertissement]
-$description[Veuillez respecter les règles du serveur.]
+$description[Veuillez respecter les règles of the server.]
 $color[#ED4245]
 $sendMessage[]
 ```
 
 ## Notes
 
-- `$authorIcon[]` doit être appelé **après** `$author[]`, sinon l'icône n'a pas d'auteur sur lequel s'appliquer.
-- Si `$authorIcon[]` est appelé avant `$author[]`, l'icône sera ignorée.
-- L'URL doit pointer vers une image accessible publiquement (PNG, JPG, GIF, WebP).
-- Pour changer le nom ou ajouter un lien, utilisez respectivement `$author[]` (qui redéfinit tout) ou `$authorUrl[]`.
+- `$authorIcon[]` must be called **after** `$author[]`, otherwise the icon does not have d'auteur sur lequel s'appliquer.
+- Si `$authorIcon[]` est called before `$author[]`, the icon will be ignorée.
+- The URL must point vers an image accessible publicment (PNG, JPG, GIF, WebP).
+- Pour changer the name or ajouter a link, use respectivement `$author[]` (qui redéfinit tout) or `$authorUrl[]`.

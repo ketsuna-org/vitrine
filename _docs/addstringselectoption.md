@@ -6,43 +6,43 @@ category: "Embed & Message"
 
 # $addStringSelectOption
 
-Ajoute une option à un menu de sélection de type string, créé avec `$addStringSelect`.
+Adds an option à un select menu de type string, created avec `$addStringSelect`.
 
-## Syntaxe
+## Syntax
 
 ```
 $addStringSelectOption[label;value;(description);(emoji);(default);(menuId)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `label` | Texte affiché pour l'option | Oui |
-| `value` | Valeur renvoyée lors de la sélection | Oui |
-| `description` | Description affichée sous le label | Non |
-| `emoji` | Emoji affiché à gauche du label | Non |
-| `default` | `true` pour présélectionner, `false` (défaut) | Non |
-| `menuId` | Identifiant du menu cible (si plusieurs menus) | Non |
+| `label` | Text displayed for the option | Yes |
+| `value` | Value rsente during la selection | Yes |
+| `description` | Description displayede sous le label | No |
+| `emoji` | Emoji displayed to the left du label | No |
+| `default` | `true` pour préselectionner, `false` (default) | No |
+| `menuId` | Identifier of the menu cible (si multiple menus) | No |
 
 ## Description
 
-`$addStringSelectOption` ajoute une option au dernier menu string select créé avec `$addStringSelect`. Si plusieurs menus sont utilisés, précisez le `menuId` pour cibler un menu spécifique.
+`$addStringSelectOption` ajoute une option au last menu string select created avec `$addStringSelect`. Si multiple menus are used, précisez le `menuId` to target a menu spécifique.
 
-## Exemples
+## Examples
 
 ### Options simples
 
 ```
 $addStringSelect[menu_boisson;Choisissez une boisson]
-$addStringSelectOption[Café;coffee;Chaud et corsé;☕]
+$addStringSelectOption[Café;coffee;Chaud and corsé;☕]
 $addStringSelectOption[Thé;tea;Infusion parfumée;🍵]
 $addStringSelectOption[Jus d'orange;oj;Fraîchement pressé;🍊]
-$addStringSelectOption[Eau;water;Plate ou gazeuse;💧]
+$addStringSelectOption[Eau;water;Plate or gazeuse;💧]
 $sendMessage[Que voulez-vous boire ?]
 ```
 
-### Option par défaut
+### Option by default
 
 ```
 $addStringSelect[menu_volume;Volume]
@@ -52,7 +52,7 @@ $addStringSelectOption[Fort;high;;🔊]
 $sendMessage[Réglez le volume]
 ```
 
-### Plusieurs menus avec menuId
+### Multiple menus avec menuId
 
 ```
 $addStringSelect[menu_entree;Entrée]
@@ -70,6 +70,6 @@ $sendMessage[Composez votre menu]
 
 ## Notes
 
-- Si `menuId` n'est pas spécifié, l'option est ajoutée au dernier `$addStringSelect` créé.
+- Si `menuId` is not spécifié, the option is addede au last `$addStringSelect` created.
 - Maximum 25 options par menu.
 - Les `value` sont accessibles via `$message` dans `$onInteraction`.

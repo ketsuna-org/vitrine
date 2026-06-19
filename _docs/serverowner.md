@@ -5,67 +5,67 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverOwner
 syntax: $serverOwner
-description: Retourne l'identifiant (ID) du propriétaire du serveur Discord.
+description: Returns the identifier (ID) du owner of the server Discord.
 ---
 
-# $serverOwner[] — Propriétaire du Serveur
+# $serverOwner[] — Owner of the Server
 
-`$serverOwner[]` retourne l'identifiant Discord du propriétaire du serveur. Cet ID peut être utilisé pour mentionner le propriétaire, vérifier des permissions ou restreindre des commandes.
+`$serverOwner[]` retourne l'identifier Discord du owner of the server. Cet ID can be utilisé pour mentionner le owner, vérifier des permissions or restreindre des commands.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverOwner
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- L'ID (Snowflake) du propriétaire du serveur.
+- The ID (Snowflake) du owner of the server.
 
 ## Utilisation
 
-### Mention du propriétaire
+### Mention du owner
 
 ```bdfd
-$sendMessage[👑 Propriétaire du serveur : <@$serverOwner>]
+$sendMessage[👑 Owner of the server : <@$serverOwner>]
 ```
 
-### Restreindre une commande au propriétaire
+### Restreindre une command au owner
 
 ```bdfd
 $if[$authorID!=$serverOwner]
-$sendMessage[⛔ Seul le propriétaire du serveur peut utiliser cette commande.]
+$sendMessage[⛔ Seul le owner of the server peut utiliser cette command.]
 $stop
 $endif
-$sendMessage[Commande owner exécutée.]
+$sendMessage[Command owner executed.]
 ```
 
 ### Embed informatif
 
 ```bdfd
 $title[Informations sur $serverName]
-$description[Serveur géré par <@$serverOwner>]
-$addField[ID Serveur;$serverID;yes]
-$addField[Propriétaire;$serverOwner;yes]
+$description[Server géré par <@$serverOwner>]
+$addField[ID Server;$serverID;yes]
+$addField[Owner;$serverOwner;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Notification au propriétaire
+### Notification au owner
 
 ```bdfd
-$sendMessage[<@$serverOwner>, un utilisateur demande votre attention.]
+$sendMessage[<@$serverOwner>, un user demande votre attention.]
 ```
 
 ## Notes
 
-- Le propriétaire est l'utilisateur qui a créé le serveur ou à qui la propriété a été transférée.
-- L'ID du propriétaire est invariant tant que la propriété n'est pas transférée.
-- Utilisez `$username[$serverOwner]` pour obtenir le nom du propriétaire sans le mentionner.
-- Pour vérifier si l'utilisateur courant est le propriétaire, vous pouvez aussi utiliser `$isOwner[]`.
+- Le owner est the user qui a created the server or à qui la property was transférée.
+- The ID of the owner est invariant as long as la property is not transférée.
+- Utilisez `$username[$serverOwner]` pour obtenir the name du owner without the mentionner.
+- Pour vérifier si the user courant est le owner, vous pouvez also utiliser `$isOwner[]`.

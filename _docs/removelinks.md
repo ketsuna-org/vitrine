@@ -5,68 +5,69 @@ translation_key: docs
 category: "Text Manipulation"
 function_name: removeLinks
 syntax: $removeLinks
-description: Supprime toutes les URLs (liens HTTP/HTTPS) d'un texte. Utile pour la modération anti-spam.
+description: Removes all URLs (HTTP/HTTPS links) from a text. Useful for anti-spam moderation.
 ---
+
 # $removeLinks
 
-La fonction `$removeLinks` **supprime toutes les URLs** (http://, https://) du message ou du texte courant.
+The `$removeLinks` function **removes all URLs** (http://, https://) from the message or current text.
 
-## Syntaxe
+## Syntax
 
 ```
 $removeLinks
 ```
 
-## Paramètres
+## Parameters
 
-Aucun.
+None.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne
-- Le texte sans aucune URL.
+- **Type**: String
+- The text without any URLs.
 
-## Comportement
+## Behavior
 
-- Détecte les URLs commençant par `http://` ou `https://`.
-- Supprime l'URL entière, pas seulement le protocole.
-- Fonctionne sur le contexte textuel courant (`$message`, `$input`, etc.).
+- Detects URLs starting with `http://` or `https://`.
+- Removes the entire URL, not just the protocol.
+- Works on the current text context (`$message`, `$input`, etc.).
 
-## Exemples
+## Examples
 
-### Nettoyage anti-spam
+### Anti-spam cleanup
 
 ```bdfd
-$sendMessage[Message nettoyé : $removeLinks]
-; "Visitez https://spam.com maintenant" → "Visitez  maintenant"
+$sendMessage[Cleaned message: $removeLinks]
+; "Visit https://spam.com now" → "Visit  now"
 ```
 
-### Commande echo sécurisée
+### Secure echo command
 
 ```bdfd
 $let[safe;$removeLinks]
 $sendMessage[$safe]
 ```
 
-### Comparaison et alerte
+### Comparison and alert
 
 ```bdfd
 $if[$message!=$removeLinks]
-  $sendMessage[⚠️ Votre message contenait des liens qui ont été supprimés.]
+  $sendMessage[⚠️ Your message contained links which have been removed.]
   $sendMessage[$removeLinks]
 $else
   $sendMessage[$message]
 $endif
 ```
 
-### Logs sans liens
+### Logs without links
 
 ```bdfd
-$channelSendMessage[123456789;Message de $username : $removeLinks]
+$channelSendMessage[123456789;Message from $username: $removeLinks]
 ```
 
 ## Notes
 
-- Pour bloquer complètement les liens (pas seulement les supprimer), utilisez `$ignoreLinks`.
-- Pour supprimer d'autres motifs, utilisez `$removeContains[]`.
-- Ne supprime pas les liens Discord (mentions de canaux, etc.).
+- To completeely block links (not just remove them), use `$ignoreLinks`.
+- To remove other patterns, use `$removeContains[]`.
+- Does not remove Discord links (channel mentions, etc.).

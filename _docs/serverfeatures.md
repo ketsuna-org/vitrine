@@ -5,46 +5,46 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverFeatures
 syntax: $serverFeatures
-description: Retourne la liste des fonctionnalités premium activées sur le serveur Discord (features de partenariat, vérification, expérimentations, etc.).
+description: Returns the list des functionnalités premium enabledes on the server Discord (features de partenariat, vérification, expérimentations, etc.).
 ---
 
-# $serverFeatures[] — Fonctionnalités du Serveur
+# $serverFeatures[] — Functionnalités du Server
 
-`$serverFeatures[]` retourne la liste des fonctionnalités spéciales activées sur le serveur Discord. Ces "features" incluent les avantages de partenariat, les fonctionnalités de serveur communauté, et les fonctionnalités expérimentales.
+`$serverFeatures[]` retourne la list des functionnalités speciales enabledes on the server Discord. Ces "features" incluent les beforeages de partenariat, les functionnalités de server communauté, and les functionnalités expérimentales.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverFeatures
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : `string` (liste)
-- Une chaîne contenant les codes des features activées, séparés par des virgules.
+- **Type** : `string` (list)
+- Une string contenant les codes des features enabledes, separateds par des virgules.
 
 ## Features courantes
 
 | Code | Description |
 |------|-------------|
-| `NEWS` | Salon d'annonces activé |
-| `VANITY_URL` | URL d'invitation personnalisée |
-| `ANIMATED_ICON` | Icône animée (boost niveau 1) |
-| `BANNER` | Bannière de serveur (boost niveau 2) |
-| `INVITE_SPLASH` | Image d'invitation personnalisée |
-| `COMMUNITY` | Serveur communauté activé |
-| `DISCOVERABLE` | Serveur listé dans la découverte |
-| `MEMBER_VERIFICATION_GATE_ENABLED` | Écran de règles activé |
-| `WELCOME_SCREEN_ENABLED` | Écran d'accueil activé |
-| `PREVIEW_ENABLED` | Serveur prévisualisable avant de rejoindre |
-| `TICKETED_EVENTS_ENABLED` | Événements payants activés |
-| `MONETIZATION_ENABLED` | Monétisation activée |
-| `PRIVATE_THREADS` | Fils privés activés |
-| `THREADS_ENABLED` | Fils activés |
+| `NEWS` | Channel d'annonces enabled |
+| `VANITY_URL` | URL d'invite custome |
+| `ANIMATED_ICON` | Icon animée (boost level 1) |
+| `BANNER` | Banner de server (boost level 2) |
+| `INVITE_SPLASH` | Image d'invite custome |
+| `COMMUNITY` | Server communauté enabled |
+| `DISCOVERABLE` | Server listé in the découverte |
+| `MEMBER_VERIFICATION_GATE_ENABLED` | Écran de règles enabled |
+| `WELCOME_SCREEN_ENABLED` | Écran d'accueil enabled |
+| `PREVIEW_ENABLED` | Server prévisualisable before de rejoindre |
+| `TICKETED_EVENTS_ENABLED` | Events payants enableds |
+| `MONETIZATION_ENABLED` | Monétisation enablede |
+| `PRIVATE_THREADS` | Fils privates enableds |
+| `THREADS_ENABLED` | Fils enableds |
 
 ## Utilisation
 
@@ -58,9 +58,9 @@ $sendMessage[🛠️ Features actives : $serverFeatures]
 
 ```bdfd
 $if[$serverFeatures$contains[COMMUNITY]]
-$sendMessage[✅ Ce serveur est un serveur communauté.]
+$sendMessage[✅ Ce server est un server communauté.]
 $else
-$sendMessage[ℹ️ Ce serveur n'est pas configuré comme communauté.]
+$sendMessage[ℹ️ Ce server is not configured comme communauté.]
 $endif
 ```
 
@@ -69,8 +69,8 @@ $endif
 ```bdfd
 $title[🔍 Diagnostic — $serverName]
 $addField[Features;$serverFeatures;yes]
-$addField[Boost niveau;$boostLevel;yes]
-$addField[Membres;$membersCount;yes]
+$addField[Boost level;$boostLevel;yes]
+$addField[Members;$membersCount;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
@@ -80,19 +80,19 @@ $sendEmbedMessage
 ```bdfd
 $var[features;$serverFeatures]
 $if[$var[features]$contains[NEWS]]
-$sendMessage[📢 Salons d'annonces activés]
+$sendMessage[📢 Channels d'annonces enableds]
 $endif
 $if[$var[features]$contains[VANITY_URL]]
-$sendMessage[🔗 URL personnalisée : discord.gg/$serverVanityURL]
+$sendMessage[🔗 URL custome : discord.gg/$serverVanityURL]
 $endif
 $if[$var[features]$contains[ANIMATED_ICON]]
-$sendMessage[🎬 Icône animée disponible]
+$sendMessage[🎬 Icon animée available]
 $endif
 ```
 
 ## Notes
 
-- La liste des features est retournée sous forme de chaîne unique, pas de tableau.
+- La list des features est retournée sous forme de string unique, pas de array.
 - Utilisez `$contains[]` pour vérifier la présence d'une feature spécifique.
-- Les features disponibles dépendent du niveau de boost et du statut du serveur (partenaire, vérifié).
-- Certaines features peuvent être activées manuellement dans les paramètres du serveur (ex: COMMUNITY).
+- Les features availables dépendent du level de boost and du status of the server (partenaire, vérifié).
+- Certaines features can be enabledes manually in thes parameters of the server (ex: COMMUNITY).

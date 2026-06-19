@@ -5,50 +5,50 @@ translation_key: docs
 category: "Components"
 function_name: editButton
 syntax: $editButton[idOrUrl;label;(style);(disabled);(emoji)]
-description: Modifie un bouton existant d'un message. Permet de changer le label, le style, l'état désactivé et l'emoji d'un bouton.
+description: Modifies a button existing of a message. Allows changer le label, le style, the state disabled and the emoji of a button.
 ---
 # $editButton
 
-La fonction `$editButton[]` permet de **modifier un bouton** existant sur un message.
+The `$editButton[]` function **modifier a button** existing sur a message.
 
-## Syntaxe
+## Syntax
 
 ```
 $editButton[idOrUrl;label;(style);(disabled);(emoji)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `idOrUrl` | Custom ID du bouton (ou URL pour les Link buttons). |
-| `label` | Nouveau texte affiché sur le bouton. |
-| `style` | *(Optionnel)* Style : `primary`, `secondary`, `success`, `danger`, `link`. |
-| `disabled` | *(Optionnel)* `true` pour griser le bouton, `false` (défaut). |
-| `emoji` | *(Optionnel)* Emoji à afficher à gauche du label. |
+| `idOrUrl` | Custom ID of the bouton (or URL for Link buttons). |
+| `label` | New text displayed on the bouton. |
+| `style` | *(Optional)* Style : `primary`, `secondary`, `success`, `danger`, `link`. |
+| `disabled` | *(Optional)* `true` pour griser le bouton, `false` (default). |
+| `emoji` | *(Optional)* Emoji to display to the left du label. |
 
-## Comportement
+## Behavior
 
-- Le bouton ciblé doit exister dans le message en cours d'édition.
-- La modification est appliquée lors de l'édition du message (via `$editMessage` ou similaire).
-- Tous les paramètres sauf `idOrUrl` et `label` sont optionnels.
+- Le bouton ciblé doit exister in the message in progress d'édition.
+- La modification est appliquée during l'édition of the message (via `$editMessage` or similar).
+- All parameters except `idOrUrl` and `label` are optional.
 
-## Exemples
+## Examples
 
-### Désactiver un bouton après clic
+### Désactiver a button after clic
 
 ```bdfd
 $editButton[accept;✅ Accepté;success;true;✅]
 $editButton[refuse;❌ Refusé;danger;true;❌]
 ```
 
-### Changer le style d'un bouton
+### Changer le style of a button
 
 ```bdfd
-$editButton[action;En cours...;secondary;true;⏳]
+$editButton[action;In progress...;secondary;true;⏳]
 ```
 
-### Réinitialiser un bouton
+### Réinitialiser a button
 
 ```bdfd
 $editButton[reset;🔄 Recommencer;primary;false;🔄]
@@ -56,6 +56,6 @@ $editButton[reset;🔄 Recommencer;primary;false;🔄]
 
 ## Notes
 
-- Fonctionne avec `$onInteraction` pour les mises à jour dynamiques.
-- Pour les Link buttons, utilisez l'URL comme premier paramètre.
-- Utilisez avec `$editMessage` pour appliquer les changements.
+- Works with `$onInteraction` for mises à day dynamics.
+- For Link buttons, use the URL comme first parameter.
+- Use avec `$editMessage` pour appliquer les changements.

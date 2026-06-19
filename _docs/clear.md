@@ -5,58 +5,58 @@ translation_key: docs
 category: "Moderation"
 function_name: clear
 syntax: $clear[amount;(userID);(removePinned)]
-description: Supprime un nombre spécifié de messages dans le salon.
+description: Supprime a namebre spécifié of messages in the channel.
 ---
 
 # $clear
 
-La fonction `$clear` **supprime un nombre spécifié de messages** dans le salon courant. Cette fonction est dédiée à la suppression de messages (modération), à ne pas confondre avec la fonction variable `$clear` du même nom. Le bot doit avoir la permission `ManageMessages`.
+The `$clear` function **supprime a namebre spécifié of messages** in the channel courant. Cette function est dédiée à la suppression of messages (modération), à not confondre with the function variable `$clear` du même nom. The bot must have the permission `ManageMessages`.
 
-## Syntaxe
+## Syntax
 
 ```
 $clear[amount;(userID);(removePinned)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `amount` | Nombre de messages à supprimer (1-100). Obligatoire. |
-| `userID` | Optionnel. Filtre : ne supprime que les messages de cet utilisateur. |
-| `removePinned` | Optionnel. `"yes"` pour inclure les messages épinglés. Défaut `"no"`. |
+| `amount` | Number of messages to delete (1-100). Required. |
+| `userID` | Optional. Filtre : ne supprime que les messages de cet user. |
+| `removePinned` | Optional. `"yes"` pour inclure les messages épinglés. Default `"no"`. |
 
-## Valeur de retour
+## Return value
 
-Aucune. Les messages sont supprimés.
+None. The messages are deleted.
 
-## Exemples
+## Examples
 
 ### Suppression simple
 
 ```bdfd
 $clear[50]
-$sendMessage[🧹 50 messages ont été nettoyés.]
+$sendMessage[🧹 50 messages have been nettoyés.]
 ```
 
-### Suppression ciblée par utilisateur
+### Suppression ciblée par user
 
 ```bdfd
 $clear[100;$mentioned[1]]
-$sendMessage[🧹 Messages de <@$mentioned[1]> supprimés.]
+$sendMessage[🧹 Messages de <@$mentioned[1]> deleteds.]
 ```
 
-### Commande de nettoyage avec vérification
+### Command de nettoyage avec vérification
 
 ```bdfd
 $if[$argsCount<1]
-  $sendMessage[Usage: !clear <nombre>]
+  $sendMessage[Usage: !clear <number>]
   $stop
 $endif
 
 $if[$isAdmin==true]
   $clear[$message[1]]
-  $sendMessage[🧹 $message[1] messages supprimés.]
+  $sendMessage[🧹 $message[1] messages deleteds.]
 $else
   $sendMessage[Permission refusée.]
 $endif
@@ -66,14 +66,14 @@ $endif
 
 ```bdfd
 $clear[10;;yes]
-$sendMessage[10 messages supprimés (épinglés inclus).]
+$sendMessage[10 messages deleteds (épinglés included).]
 ```
 
 ## Notes
 
-- Le bot doit avoir la permission `ManageMessages`.
-- Maximum 100 messages par appel (limitation Discord).
-- Les messages de plus de 14 jours ne peuvent pas être supprimés par l'API Discord.
-- `removePinned` par défaut `"no"` : les messages épinglés sont ignorés.
+- The bot must have the permission `ManageMessages`.
+- Maximum 100 messages par call (limitation Discord).
+- Les messages de more than 14 days cannot être deleteds par the API Discord.
+- `removePinned` by default `"no"` : les messages épinglés are ignored.
 - Si `userID` est omis, laissez le point-virgule vide (ex: `$clear[10;;yes]`).
-- Cette fonction `$clear` est dédiée à la modération. Pour vider une variable, voir `$clear` dans la catégorie Variables.
+- Cette function `$clear` est dédiée à la modération. Pour vider a variable, voir `$clear` in the catégorie Variables.

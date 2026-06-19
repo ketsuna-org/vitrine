@@ -5,57 +5,57 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomMention
 syntax: $randomMention
-description: Retourne la mention (format <@id>) d'un utilisateur aléatoire présent sur le serveur.
+description: Returns the mention (format <@id>) of a random user present on the server.
 ---
 
 # $randomMention[]
 
-La fonction `$randomMention[]` retourne la mention formatée d'un utilisateur aléatoire présent sur le serveur. La mention est au format `<@id>`, ce qui crée un ping pour l'utilisateur ciblé.
+The `$randomMention[]` function returns the formatted mention of a random user present on the server. The mention is in `<@id>` format, which creates a ping for the targeted user.
 
-## Syntaxe
+## Syntax
 
 ```
 $randomMention
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note:** This function takes no parameters.
 
-## Valeur de retour
+## Return Value
 
-La mention formatée (`<@id>`) d'un utilisateur aléatoire du serveur.
+The formatted mention (`<@id>`) of a random user on the server.
 
-## Différence avec les fonctions similaires
+## Difference with similar functions
 
-| Fonction | Retourne |
-|----------|----------|
-| `$randomMention` | `<@id>` — mention cliquable avec ping |
-| `$randomUser` | `id` — ID brut |
-| `$randomUserID` | `id` — ID brut |
+| Function | Returns |
+|----------|---------|
+| `$randomMention` | `<@id>` — clickable mention with ping |
+| `$randomUser` | `id` — raw ID |
+| `$randomUserID` | `id` — raw ID |
 
-## Exemples
+## Examples
 
-### Mention directe
+### Direct mention
 
 ```bdfd
-$randomMention, tu as été choisi aléatoirement !
+$randomMention, you have been chosen randomly!
 ```
 
-### Annonce d'un gagnant
+### Winner announcement
 
 ```bdfd
-$title[🎊 Tirage au sort]
-$description[Félicitations $randomMention ! Tu remportes le giveaway !]
+$title[🎊 Prize draw]
+$description[Congratulations $randomMention! You win the giveaway!]
 $color[#FFD700]
-$footer[Bonne chance à tous pour le prochain tirage]
+$footer[Good luck to everyone for the next draw]
 ```
 
-### Tag aléatoire
+### Random tag
 
 ```bdfd
-Tag, c'est à ton tour $randomMention !
+Tag, it's your turn $randomMention!
 ```
 
 ## Notes
 
-- L'utilisateur reçoit une notification (ping) lorsque mentionné.
-- Utilisez `$randomUserID[]` si vous ne souhaitez pas ping l'utilisateur.
+- The user receives a notification (ping) when mentioned.
+- Use `$randomUserID[]` if you do not want to ping the user.

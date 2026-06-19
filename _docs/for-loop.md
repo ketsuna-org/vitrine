@@ -38,7 +38,7 @@ $endFor
 Values can be:
 - **A literal semicolon-separated list**: `$for[item;one;two;three]`
 - **A variable that resolves to a list**: `$for[player;$getGlobalUserVar[partyMembers]]`
-- The semicolons are the delimiter — avoid using semicolons inside individual values unless you escape them.
+- The semicolons are the delimitr — avoid using semicolons inside individual values unless you escape them.
 
 ## Interaction with $stop and $skipActions
 

@@ -5,32 +5,32 @@ translation_key: docs
 category: "Entity Info"
 function_name: messageURL
 syntax: $messageURL
-description: Retourne l'URL de jump (lien direct) vers le message déclencheur.
+description: Returns the URL de jump (link direct) vers the message déclencheur.
 ---
 
 # $messageURL
 
-La fonction `$messageURL` retourne l'**URL de jump** (lien direct) vers le message qui a déclenché la commande. Ce lien permet d'accéder directement au message dans Discord.
+The function `$messageURL` retourne l'**URL de jump** (link direct) vers the message qui a déclenché the command. Ce link allows to accéder directly au message dans Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $messageURL
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
 | `string` | URL au format `https://discord.com/channels/{guildID}/{channelID}/{messageID}`. |
 
-## Exemples
+## Examples
 
-### Lien direct
+### Link direct
 
 ```bdfd
 $sendMessage[Message original : $messageURL]
@@ -43,13 +43,13 @@ $title[Message signalé]
 $description[
 **Auteur :** $username
 **Contenu :** $message
-**Lien :** [Cliquez ici]($messageURL)
+**Link :** [Cliquez ici]($messageURL)
 ]
 $color[#ED4245]
 $sendMessage[]
 ```
 
-### Log avec lien
+### Log avec link
 
 ```bdfd
 $channelSendMessage[$channelIDFromName[logs];Message de $username : $messageURL]
@@ -58,5 +58,5 @@ $channelSendMessage[$channelIDFromName[logs];Message de $username : $messageURL]
 ## Notes
 
 - Format : `https://discord.com/channels/{guildID}/{channelID}/{messageID}`.
-- En DM, le format utilise l'ID du salon DM.
-- Le lien ne fonctionne que si l'utilisateur a accès au salon.
+- En DM, le format utilise the ID of the channel DM.
+- Le link ne functionne que si the user a accès au channel.

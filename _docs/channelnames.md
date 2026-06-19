@@ -5,61 +5,61 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelNames
 syntax: $channelNames[(separator)]
-description: Retourne la liste de tous les noms de salons du serveur, séparés par un séparateur personnalisable.
+description: Returns the list de all noms de channels of the server, separateds par un separator personnalisable.
 ---
 
 # $channelNames
 
-La fonction `$channelNames` retourne la **liste complète des noms** de tous les salons du serveur, séparés par un délimiteur personnalisable.
+The `$channelNames` function returns the **list complete des noms** de all channels of the server, separateds par un délimitur personnalisable.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelNames[(separator)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `separator` | Optionnel. Le séparateur entre chaque nom de salon. Par défaut : `, ` (virgule + espace). |
+| `separator` | Optional. The separator between each nom de channel. Par default: `, ` (virgule + espace). |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `string` | Tous les noms de salons concaténés avec le séparateur choisi. |
+| `string` | All noms de channels concaténés with the separator choisi. |
 
-## Exemples
+## Examples
 
-### Liste simple
+### List simple
 
 ```bdfd
-$sendMessage[**Salons du serveur :** $channelNames]
+$sendMessage[**Channels of the server :** $channelNames]
 ```
 
-### Liste avec retour à la ligne
+### List avec return à la ligne
 
 ```bdfd
-$sendMessage[**Liste des salons :**
+$sendMessage[**List of channels :**
 $channelNames[
 ]]
 ```
 
-### Liste avec séparateur personnalisé
+### List avec separator custom
 
 ```bdfd
-$sendMessage[Salons : $channelNames[ | ]]
+$sendMessage[Channels : $channelNames[ | ]]
 ```
 
-### Compter les salons par nom
+### Compter les channels by name
 
 ```bdfd
-$sendMessage[Le serveur a $channelCount salons : $channelNames[, ]]
+$sendMessage[The server a $channelCount channels : $channelNames[, ]]
 ```
 
 ## Notes
 
-- Seuls les salons visibles par le bot sont listés.
-- Les catégories sont incluses dans la liste.
-- Pour obtenir les IDs plutôt que les noms, utilisez plutôt une boucle avec `$findChannel`.
+- Seuls les channels visibles par the bot sont listés.
+- Les catégories sont includedes in the list.
+- Pour obtenir les IDs plutôt que les noms, use plutôt une boucle avec `$findChannel`.

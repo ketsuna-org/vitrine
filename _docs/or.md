@@ -17,7 +17,7 @@ description: Logical OR — returns "true" if at least one of the provided condi
 $or[condition1;condition2;...;conditionN]
 ```
 
-`$or` accepts an **unlimited number** of arguments (minimum 2). Each argument is a BDFD expression expected to resolve to either `"true"` or `"false"`.
+`$or` accepts an **unlimitd number** of arguments (minimum 2). Each argument is a BDFD expression expected to resolve to either `"true"` or `"false"`.
 
 ## Evaluation
 

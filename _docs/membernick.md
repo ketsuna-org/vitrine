@@ -5,46 +5,46 @@ translation_key: docs
 category: "Entity Info"
 function_name: memberNick
 syntax: $memberNick
-description: Retourne le pseudo (surnom) du membre sur le serveur. Équivalent à $nickname.
+description: Returns the pseudo (surnom) du member on the server. Équivaslow à $nickname.
 ---
 
 # $memberNick
 
-La variable `$memberNick` retourne le **pseudo (surnom)** du membre sur le serveur actuel. Elle est équivalente à `$nickname`.
+The variable `$memberNick` retourne le **pseudo (surnom)** du member on the server current. Elle est équivaslowe à `$nickname`.
 
-## Syntaxe
+## Syntax
 
 ```
 $memberNick
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne de caractères
-- Le pseudo serveur du membre si défini, sinon une **chaîne vide**
+- **Type** : String de becauseactères
+- Le pseudo server du member if set, otherwise une **string vide**
 
-## Comportement
+## Behavior
 
-- `$memberNick` ne prend **aucun argument**.
-- Fonctionnellement identique à `$nickname`.
-- Retourne uniquement le pseudo **spécifique au serveur**.
+- `$memberNick` ne prend **no argument**.
+- Functionnellement identical à `$nickname`.
+- Returns aiquement le pseudo **spécifique au server**.
 
-## Exemples
+## Examples
 
 ### Message avec pseudo
 
 ```bdfd
 $if[$memberNick!=]
-  $sendMessage[Bonjour $memberNick !]
+  $sendMessage[Bonday $memberNick !]
 $else
-  $sendMessage[Bonjour $userName !]
+  $sendMessage[Bonday $userName !]
 $endif
 ```
 
-### Embed membre
+### Embed member
 
 ```bdfd
-$title[Informations membre]
+$title[Informations member]
 $author[$memberNick;$userAvatar]
 $description[
 **ID :** $memberID
@@ -56,5 +56,5 @@ $sendMessage[]
 
 ## Notes
 
-- `$memberNick` et `$nickname` sont interchangeables.
-- Pour l'affichage général, `$displayName` est recommandé car il ne retourne jamais une chaîne vide.
+- `$memberNick` and `$nickname` sont interchangeables.
+- Pour l'affichage général, `$displayName` est recommended because il ne retourne never une string vide.

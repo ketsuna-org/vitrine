@@ -5,68 +5,68 @@ translation_key: docs
 category: "Entity Info"
 function_name: rolePosition
 syntax: $rolePosition[roleID;(guildID)]
-description: Retourne la position hiérarchique d'un rôle dans la liste des rôles du serveur.
+description: Returns the position hiérarchique of a role in the list des roles of the server.
 ---
 
 # $rolePosition
 
-La fonction `$rolePosition` retourne la **position hiérarchique** d'un rôle Discord. Plus la position est élevée, plus le rôle est haut dans la hiérarchie du serveur.
+The function `$rolePosition` retourne la **position hiérarchique** of a role Discord. Plus the position est élevée, plus the role est haut in the hiérarchie of the server.
 
-## Syntaxe
+## Syntax
 
 ```
 $rolePosition[roleID;(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `roleID` | L'ID du rôle. Obligatoire. |
-| `guildID` | Optionnel. L'ID du serveur cible. |
+| `roleID` | The ID of the role. Required. |
+| `guildID` | Optional. The ID of the server cible. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` | La position du rôle dans la hiérarchie. |
+| `integer` | The position of the role in the hiérarchie. |
 
-## Exemples
+## Examples
 
-### Afficher la position
+### Afficher the position
 
 ```bdfd
-$sendMessage[Position du rôle Admin : $rolePosition[$roleID[Admin]]]
+$sendMessage[Position of the role Admin : $rolePosition[$roleID[Admin]]]
 ```
 
-### Comparer deux rôles
+### Comparer two roles
 
 ```bdfd
 $if[$rolePosition[$roleID[Admin]]>$rolePosition[$roleID[Modo]]]
-  $sendMessage[Le rôle Admin est hiérarchiquement supérieur à Modo.]
+  $sendMessage[The role Admin est hiérarchiquement supérieur à Modo.]
 $else
-  $sendMessage[Modo est supérieur ou égal à Admin.]
+  $sendMessage[Modo est supérieur or égal à Admin.]
 $endif
 ```
 
-### Vérifier si un rôle peut en gérer un autre
+### Vérifier if a role peut en gérer un autre
 
 ```bdfd
 $if[$rolePosition[$getRole[$authorID;1]]>$rolePosition[$roleID[Cible]]]
-  $sendMessage[Votre rôle est supérieur.]
+  $sendMessage[Votre role est supérieur.]
 $else
-  $sendMessage[Vous ne pouvez pas agir car votre rôle est inférieur ou égal.]
+  $sendMessage[Vous ne pouvez pas agir because votre role est inférieur or égal.]
 $endif
 ```
 
-### Obtenir le rôle le plus haut
+### Obtenir the role le plus haut
 
 ```bdfd
-$sendMessage[Rôle le plus haut du serveur : $roleName[$roleID[$roleNames]]]
+$sendMessage[Role le plus haut of the server : $roleName[$roleID[$roleNames]]]
 ```
 
 ## Notes
 
-- `@everyone` a toujours la position `0`.
-- Les positions sont uniques : deux rôles ne peuvent pas avoir la même position.
-- Un bot ne peut pas modifier les rôles supérieurs au sien.
+- `@everyone` a toudays the position `0`.
+- Les positions sont unique : two roles ne peuvent pas avoir la même position.
+- Un bot ne peut pas modifier les roles supérieurs au sien.

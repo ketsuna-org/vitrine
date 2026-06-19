@@ -5,59 +5,59 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyForServers
 syntax: $onlyForServers[guildID1;guildID2;...;(errorMessage)]
-description: Fonction guard qui arrête l'exécution si la commande n'est pas utilisée dans l'un des serveurs spécifiés. Accepte également l'alias $onlyForGuilds.
+description: Guard function that stops execution if the command is not used in one of the specified servers. Also accepts the alias $onlyForGuilds.
 ---
 
 # $onlyForServers
 
-La fonction guard `$onlyForServers` limite l'exécution d'une commande à un ou plusieurs serveurs Discord spécifiques. Si la commande est utilisée sur un autre serveur, elle est interrompue.
+The guard function `$onlyForServers` restricts command execution to one or more specific Discord servers. If the command is used on another server, it is interrupted.
 
-## Syntaxe
+## Syntax
 
 ```
 $onlyForServers[guildID1;guildID2;...;(errorMessage)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description |
+| Parameter | Type | Description |
 |-----------|------|-------------|
-| `guildID1;guildID2;...` | Snowflake[] | IDs des serveurs autorisés. |
-| `errorMessage` | String (optionnel) | Message envoyé si le serveur n'est pas autorisé. |
+| `guildID1;guildID2;...` | Snowflake[] | IDs of the authorized servers. |
+| `errorMessage` | String (optional) | Message sent if the server is not authorized. |
 
-## Comportement
+## Behavior
 
-- Compare l'ID du serveur courant (`$guildID` / `$serverID`) avec la liste.
-- Si le serveur est dans la liste, la commande continue.
-- Si le serveur n'est **pas** dans la liste, la commande est interrompue.
-- Alias : `$onlyForGuilds` (les deux syntaxes sont équivalentes).
+- Compares the current server ID (`$guildID` / `$serverID`) with the list.
+- If the server is in the list, the command continues.
+- If the server is **not** in the list, the command is interrupted.
+- Alias: `$onlyForGuilds` (both syntaxes are equivaslow).
 
-## Exemples
+## Examples
 
-### Serveur unique
+### Single server
 
 ```bdfd
-$onlyForServers[123456789012345678;❌ Cette commande est exclusive à notre serveur principal.]
-$sendMessage[Bienvenue !]
+$onlyForServers[123456789012345678;❌ This command is excludedsive to our main server.]
+$sendMessage[Welcome!]
 ```
 
-### Plusieurs serveurs
+### Multiple servers
 
 ```bdfd
-$onlyForServers[111111111111111111;222222222222222222;❌ Commande non disponible ici.]
+$onlyForServers[111111111111111111;222222222222222222;❌ Command not available here.]
 $restart
 ```
 
-### Sans message d'erreur
+### Without error message
 
 ```bdfd
 $onlyForServers[123456789012345678]
-$sendMessage[Fonctionnalité serveur privé activée.]
+$sendMessage[Private server feature enabled.]
 ```
 
 ## Notes
 
-- `$onlyForServers` et `$onlyForGuilds` sont interchangeables. Utilisez la syntaxe la plus claire pour votre équipe.
-- Très utile pour les bots privés ou les fonctionnalités exclusives à un serveur partenaire.
-- Pour blacklister des serveurs, utilisez `$blacklistServers`.
-- Combinez avec `$onlyForChannels` pour un contrôle fin (serveur + salon).
+- `$onlyForServers` and `$onlyForGuilds` are interchangeable. Use the clearest syntax for your team.
+- Very useful for private bots or features excludedsive to a partner server.
+- To blacklist servers, use `$blacklistServers`.
+- Combine with `$onlyForChannels` for fine-grained control (server + channel).

@@ -5,46 +5,46 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addCheckboxGroupOption
 syntax: $addCheckboxGroupOption[menuId;label;value;(description);(default)]
-description: Ajoute une option individuelle à un groupe de cases à cocher dans un modal. Le menuId peut être omis pour cibler le dernier groupe créé.
+description: Adds an option individuelle à a group de checkboxes in a modal. The menuId can be omis to target le last groupe created.
 ---
 
 # $addCheckboxGroupOption[] — Option de Groupe Checkbox
 
-`$addCheckboxGroupOption[]` ajoute une option à un groupe de cases à cocher créé avec `$addModalCheckboxGroup[]`. Chaque option apparaît comme une case à cocher distincte avec son propre label.
+`$addCheckboxGroupOption[]` ajoute une option à a group de checkboxes created avec `$addModalCheckboxGroup[]`. Each option apparaît comme une checkbox distincte avec its own label.
 
-## Syntaxe
+## Syntax
 
 ```
 $addCheckboxGroupOption[menuId;label;value;(description);(default)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Défaut | Description |
+| Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `menuId` | Non | Dernier groupe | Identifiant du groupe parent. |
-| `label` | Oui | — | Texte affiché pour cette option. |
-| `value` | Oui | — | Valeur retournée quand l'option est cochée. |
-| `description` | Non | — | Texte descriptif optionnel. |
-| `default` | Non | `no` | `yes` si cochée par défaut. |
+| `menuId` | No | Last group | Identifier of the group parent. |
+| `label` | Yes | — | Text displayed for this option. |
+| `value` | Yes | — | Value retournée when the option est cochée. |
+| `description` | No | — | Text descriptif optional. |
+| `default` | No | `no` | `yes` si cochée by default. |
 
-## Valeur de retour
+## Return value
 
-Ajoute l'option au groupe parent. Pas de valeur de retour directe.
+Ajoute the option au groupe parent. Pas de value de return directe.
 
-## Utilisation
+## Usage
 
-### Avec menuId explicite
+### With explicit menuId
 
 ```bdfd
 $newModal[Config;config_modal]
 $addModalCheckboxGroup[notifications;Notifications;no]
-$addCheckboxGroupOption[notifications;Messages privés;dm;Recevoir les notifications de messages privés;yes]
+$addCheckboxGroupOption[notifications;Messages privates;dm;Recevoir les notifications of messages privates;yes]
 $addCheckboxGroupOption[notifications;Mentions;mentions;Notifications de @mention;yes]
-$addCheckboxGroupOption[notifications;Annonces;announce;Annonces du serveur;no]
+$addCheckboxGroupOption[notifications;Annonces;announce;Annonces of the server;no]
 ```
 
-### Sans menuId (dernier groupe)
+### Without menuId (last groupe)
 
 ```bdfd
 $newModal[Préférences;pref_modal]
@@ -54,10 +54,10 @@ $addCheckboxGroupOption[;Coloré;colorful;Design vibrant;yes]
 $addCheckboxGroupOption[;Sombre;dark;Mode sombre;yes]
 ```
 
-### Plusieurs groupes distincts
+### Multiple distinct groups
 
 ```bdfd
-$newModal[Sondage complet;full_survey]
+$newModal[Sondage complete;full_survey]
 $addModalCheckboxGroup[platform;Plateformes;yes]
 $addCheckboxGroupOption[platform;Discord;discord;;yes]
 $addCheckboxGroupOption[platform;Twitter;twitter;;no]
@@ -70,6 +70,6 @@ $addCheckboxGroupOption[content;Podcasts;podcasts]
 
 ## Notes
 
-- Si `menuId` est omis (chaîne vide), l'option est ajoutée au dernier groupe créé.
+- Si `menuId` est omis (string vide), the option is addede au last groupe created.
 - Maximum 25 options par groupe.
-- Les valeurs des options cochées sont récupérées via `$input[menuId]`, séparées par des virgules.
+- Les values of options cochées are retrieved via `$input[menuId]`, separated by commas.

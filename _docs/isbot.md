@@ -5,32 +5,32 @@ translation_key: docs
 category: "Entity Info"
 function_name: isBot
 syntax: $isBot
-description: Retourne "true" si l'utilisateur qui a déclenché la commande est un bot, "false" sinon.
+description: Returns "true" si the user qui a déclenché the command est un bot, "false" otherwise.
 ---
 
 # $isBot
 
-La variable `$isBot` permet de savoir si l'utilisateur qui a déclenché la commande est un **compte bot** ou un compte utilisateur normal.
+The variable `$isBot` allows savoir si the user qui a déclenché the command est un **compte bot** or un compte user normal.
 
-## Syntaxe
+## Syntax
 
 ```
 $isBot
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne `"true"` ou `"false"`
+- **Type** : String `"true"` or `"false"`
 - `"true"` : le compte est un bot
-- `"false"` : le compte est un utilisateur normal
+- `"false"` : le compte est un user normal
 
-## Comportement
+## Behavior
 
-- `$isBot` ne prend **aucun argument**.
-- La détection se base sur la propriété `bot` de l'objet utilisateur Discord.
-- Les webhooks retournent `"true"` dans certains contextes.
+- `$isBot` ne prend **no argument**.
+- La détection se base sur la property `bot` de l'object user Discord.
+- Les webhooks retournent `"true"` dans certains contexts.
 
-## Exemples
+## Examples
 
 ### Détection simple
 
@@ -38,7 +38,7 @@ $isBot
 $if[$isBot==true]
   $sendMessage[🤖 Détection : vous êtes un bot !]
 $else
-  $sendMessage[👤 Vous êtes un utilisateur humain.]
+  $sendMessage[👤 Vous êtes un user humain.]
 $endif
 ```
 
@@ -55,14 +55,14 @@ $sendMessage[Bienvenue $userName !]
 
 ```bdfd
 $if[$isBot==true]
-  $log[Commande exécutée par le bot $userName (ID: $userID)]
+  $log[Command executed par the bot $userName (ID: $userID)]
 $else
-  $log[Commande exécutée par l'utilisateur $userName (ID: $userID)]
+  $log[Command executed par the user $userName (ID: $userID)]
 $endif
 ```
 
 ## Notes
 
-- Très utile pour empêcher les bots d'exécuter certaines commandes (anti-boucle).
+- Très utile pour empêcher les bots d'exécuter certaines commands (anti-boucle).
 - Typiquement utilisé avec `$stop` pour ignorer silencieusement les déclenchements par d'autres bots.
-- `$isBot` est insensible à la casse dans les comparaisons (`==true` / `==True` / `==TRUE`).
+- `$isBot` est insensible à la casse in thes compareasons (`==true` / `==True` / `==TRUE`).

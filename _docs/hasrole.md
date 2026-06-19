@@ -5,89 +5,89 @@ translation_key: docs
 category: "Math & Text"
 function_name: hasRole
 syntax: $hasRole[userID;roleID]
-description: Vérifie si un utilisateur possède un rôle spécifique sur le serveur.
+description: Checks if un user possède un role spécifique on the server.
 ---
 
 # $hasRole
 
-La fonction `$hasRole[userID;roleID]` **vérifie si un utilisateur possède un rôle spécifique** sur le serveur. Elle est couramment utilisée pour les systèmes de permission.
+The function `$hasRole[userID;roleID]` **vérifie if a user possède un role spécifique** on the server. Elle est couramment utilisée for the systèmes de permission.
 
-## Syntaxe
+## Syntax
 
 ```
 $hasRole[userID;roleID]
 ```
 
-Ou avec un seul paramètre (vérifie l'auteur) :
+Ou with a seul parameter (vérifie l'auteur) :
 
 ```
 $hasRole[roleID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | Optionnel - L'ID de l'utilisateur. Défaut : auteur de la commande. |
-| `roleID` | L'ID du rôle à vérifier. Obligatoire. |
+| `userID` | Optional - The ID of the user. Default: auteur of the command. |
+| `roleID` | The ID of the role à vérifier. Required. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Booléen
-- `true` si l'utilisateur possède le rôle.
-- `false` si le rôle n'est pas attribué, n'existe pas, ou si l'utilisateur est introuvable.
+- **Type** : Boolean
+- `true` si the user possède the role.
+- `false` si the role is not attribué, n'existe pas, or si the user est introuvable.
 
-## Comportement
+## Behavior
 
-- Vérifie dans la liste des rôles de l'utilisateur sur le serveur courant.
-- Fonctionne uniquement dans un contexte de serveur.
-- Insensible à la casse du nom de rôle (si `$roleID[Nom]` est utilisé).
+- Checks in the list des roles of the user on the server courant.
+- Functionne only dans un context de server.
+- Insensible à la casse du nom de role (si `$roleID[Nom]` is used).
 
-## Exemples
+## Examples
 
-### Portail administrateur
+### Portail administrator
 
 ```bdfd
 $if[$hasRole[$authorID;$roleID[Admin]]==true]
   $title[🔧 Panneau Admin]
   $description[
-  Commandes disponibles :
-  - `!ban <user>` - Bannir un membre
-  - `!kick <user>` - Expulser un membre
-  - `!warn <user> <raison>` - Avertir
+  Commands availables :
+  - `!ban <user>` - Bannir un member
+  - `!kick <user>` - Expulser un member
+  - `!warn <user> <reason>` - Avertir
   ]
   $sendMessage[]
 $else
-  $sendEphemeral[❌ Accès réservé aux Administrateurs.]
+  $sendEphemeral[❌ Accès réservé aux Administrators.]
 $endif
 ```
 
-### Commande de staff
+### Command de staff
 
 ```bdfd
 $if[$hasRole[$roleID[Staff]]==false]
-  $sendMessage[❌ Permission refusée. Rôle Staff requis.]
+  $sendMessage[❌ Permission refusée. Role Staff required.]
   $stop
 $endif
 
-;; Commande exécutée
+;; Command executed
 $ban[$mentioned[1];Banni par $userName]
-$sendMessage[🔨 <@$mentioned[1]> a été banni.]
+$sendMessage[🔨 <@$mentioned[1]> was banni.]
 ```
 
-### Vérification multi-rôles
+### Vérification multi-roles
 
 ```bdfd
 $if[$hasRole[$mentioned[1];$roleID[Modo]]==true]
   $sendMessage[<@$mentioned[1]> est Modérateur.]
 $elseif[$hasRole[$mentioned[1];$roleID[Admin]]==true]
-  $sendMessage[<@$mentioned[1]> est Administrateur.]
+  $sendMessage[<@$mentioned[1]> est Administrator.]
 $else
-  $sendMessage[<@$mentioned[1]> est un membre standard.]
+  $sendMessage[<@$mentioned[1]> est un member standard.]
 $endif
 ```
 
-### Badge de rôle
+### Badge de role
 
 ```bdfd
 $if[$hasRole[$roleID[VIP]]==true]
@@ -95,7 +95,7 @@ $if[$hasRole[$roleID[VIP]]==true]
 $elseif[$hasRole[$roleID[Booster]]==true]
   $var[badge;🚀 Booster]
 $else
-  $var[badge;👤 Membre]
+  $var[badge;👤 Member]
 $endif
 
 $sendMessage[$var[badge] $userName]
@@ -103,7 +103,7 @@ $sendMessage[$var[badge] $userName]
 
 ## Notes
 
-- `$hasRole[userID;roleID]` requiert que le bot puisse voir les rôles du serveur.
-- Pour attribuer un rôle, utilisez `$giveRole[]` ou `$giveRoles[]`.
-- Pour retirer un rôle, utilisez `$takeRole[]` ou `$takeRoles[]`.
-- `$hasRole` est souvent utilisé comme garde en début de commande avec `$stop`.
+- `$hasRole[userID;roleID]` requiert que the bot thense voir les roles of the server.
+- Pour attribuer un role, utilisez `$giveRole[]` or `$giveRoles[]`.
+- Pour retirer un role, utilisez `$takeRole[]` or `$takeRoles[]`.
+- `$hasRole` est often utilisé comme garde en début de command avec `$stop`.

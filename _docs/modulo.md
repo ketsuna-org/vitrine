@@ -5,33 +5,33 @@ translation_key: docs
 category: "Math & Text"
 function_name: modulo
 syntax: $modulo[a;b]
-description: Calcule le reste de la division euclidienne de a par b (a % b). Si b = 0, retourne 0.
+description: Calculates the reste de la division euclidienne de a par b (a % b). Si b = 0, retourne 0.
 ---
 
 # $modulo[]
 
-La fonction `$modulo[]` retourne le reste de la division euclidienne de `a` par `b` (opération modulo : `a % b`). Comme `$divide[]`, elle est protégée contre la division par zéro.
+The function `$modulo[]` retourne le reste de la division euclidienne de `a` par `b` (opération modulo : `a % b`). Comme `$divide[]`, it is protégée contre la division par zéro.
 
-## Syntaxe
+## Syntax
 
 ```
 $modulo[a;b]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type   | Obligatoire | Description        |
+| Parameter | Type   | Required | Description        |
 |-----------|--------|-------------|--------------------|
-| `a`       | number | Oui         | Le dividende.      |
-| `b`       | number | Oui         | Le diviseur.       |
+| `a`       | number | Yes         | Le dividende.      |
+| `b`       | number | Yes         | Le diviseur.       |
 
-## Comportement
+## Behavior
 
-- Retourne le reste de `a` divisé par `b`.
+- Returns the reste de `a` divisé par `b`.
 - Si `b = 0`, retourne `0` (protection intégrée).
-- Le résultat a toujours le même signe que le dividende `a`.
+- The result a toudays le even ifgne que le dividende `a`.
 
-## Exemples
+## Examples
 
 **Modulo simple :**
 ```
@@ -41,11 +41,11 @@ $modulo[17;5]
 
 **Détection pair/impair :**
 ```
-$modulo[$getVar[nombre];2]
+$modulo[$getVar[number];2]
 → 0 si pair, 1 si impair
 ```
 
-**Avec multiples exacts :**
+**Avec multiple exacts :**
 ```
 $modulo[20;5]
 → 0
@@ -59,11 +59,11 @@ $modulo[42;0]
 
 ## Cas d'usage courants
 
-- Vérifier si un nombre est divisible par un autre.
+- Vérifier if a number est divisible par un autre.
 - Alterner des comportements (pair/impair).
-- Boucler une liste (index % taille).
-- Calculer des cycles (toutes les N itérations).
+- Boucler une list (index % taille).
+- Calculer des cycles (all N itérations).
 
 ## Notes
 
-- Pour les nombres négatifs, le comportement suit la définition mathématique standard : `$modulo[-17;5]` → `-2`.
+- Pour les numbers négatifs, le comportement suit la définition mathématique standard : `$modulo[-17;5]` → `-2`.

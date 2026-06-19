@@ -5,65 +5,65 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildExists
 syntax: $guildExists[guildId]
-description: Vérifie si un serveur (guild) avec l'ID donné existe et si le bot y a accès. Retourne "true" ou "false".
+description: Checks if un server (guild) with the ID donné existe and si the bot y a accès. Returns "true" or "false".
 ---
 
-# $guildExists[] — Vérifier l'Existence d'un Serveur
+# $guildExists[] — Vérifier l'Existence d'un Server
 
-`$guildExists[]` détermine si un serveur Discord identifié par son ID existe et si le bot y est actuellement présent.
+`$guildExists[]` détermine if a server Discord identifié par son ID existe and si the bot y est currentlement présent.
 
-## Syntaxe
+## Syntax
 
 ```
 $guildExists[guildId]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Description |
+| Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `guildId` | Oui | L'ID du serveur à vérifier. |
+| `guildId` | Yes | The ID of the server à vérifier. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- `"true"` si le bot est présent sur le serveur, `"false"` sinon.
+- `"true"` si the bot est présent on the server, `"false"` otherwise.
 
-> **Attention** : La valeur de retour est une **chaîne** (`"true"` / `"false"`), pas un booléen. Pour les conditions, comparez avec `==true` ou `==false`.
+> **Attention** : The value de retour est une **string** (`"true"` / `"false"`), pas un boolean. Pour les conditions, comparez avec `==true` or `==false`.
 
 ## Utilisation
 
 ### Vérification simple
 
 ```bdfd
-$sendMessage[Présence sur le serveur 123456789 : $guildExists[123456789]]
+$sendMessage[Présence on the server 123456789 : $guildExists[123456789]]
 ```
 
-### Condition avant action
+### Condition before action
 
 ```bdfd
 $if[$guildExists[$message[1]]==true]
-$sendMessage[✅ Le bot est bien présent sur ce serveur.]
+$sendMessage[✅ The bot est bien présent sur ce server.]
 $else
-$sendMessage[❌ Le bot n'est pas sur ce serveur, ou l'ID est invalide.]
+$sendMessage[❌ The bot is not sur ce server, or the ID est invalid.]
 $stop
 $endif
 ```
 
-### Vérification multi-serveurs
+### Vérification multi-servers
 
 ```bdfd
 $var[guild1;123456789012345678]
 $var[guild2;987654321098765432]
 $if[$guildExists[$var[guild1]]==true]
-$sendMessage[Serveur 1 : ✅ Présent]
+$sendMessage[Server 1 : ✅ Présent]
 $else
-$sendMessage[Serveur 1 : ❌ Absent]
+$sendMessage[Server 1 : ❌ Absent]
 $endif
 $if[$guildExists[$var[guild2]]==true]
-$sendMessage[Serveur 2 : ✅ Présent]
+$sendMessage[Server 2 : ✅ Présent]
 $else
-$sendMessage[Serveur 2 : ❌ Absent]
+$sendMessage[Server 2 : ❌ Absent]
 $endif
 ```
 
@@ -71,15 +71,15 @@ $endif
 
 ```bdfd
 $if[$guildExists[$var[targetGuild]]==true]
-$log[Action exécutée : serveur $var[targetGuild] trouvé]
+$log[Action executed : server $var[targetGuild] found]
 $else
-$log[Action bloquée : serveur $var[targetGuild] non trouvé]
+$log[Action bloquée : server $var[targetGuild] non found]
 $endif
 ```
 
 ## Notes
 
-- La fonction vérifie uniquement si le bot est présent sur le serveur, pas si le serveur existe sur Discord.
-- Un serveur peut exister sans que le bot y soit — dans ce cas, `$guildExists[]` retourne `"false"`.
-- L'ID doit être une chaîne numérique valide (Snowflake 18-19 chiffres).
-- Pour obtenir l'ID du serveur courant, utilisez `$guildID[]` ou `$serverID[]`.
+- The function vérifie only si the bot est présent on the server, pas si the server existe on Discord.
+- Un server peut exister without que the bot y soit — in this case, `$guildExists[]` retourne `"false"`.
+- The ID must be une string numérique valid (Snowflake 18-19 chiffres).
+- Pour obtenir the ID of the server courant, utilisez `$guildID[]` or `$serverID[]`.

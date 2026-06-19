@@ -5,58 +5,58 @@ translation_key: docs
 category: "Math & Text"
 function_name: isBanned
 syntax: $isBanned[userID]
-description: Vérifie si un utilisateur est banni du serveur courant.
+description: Checks if un user est banni of the server courant.
 ---
 
 # $isBanned
 
-La fonction `$isBanned[userID]` **vérifie si un utilisateur est actuellement banni** du serveur où la commande est exécutée. Le bot doit avoir la permission `BanMembers`.
+The function `$isBanned[userID]` **vérifie if a user est currentlement banni** of the server où the command est executed. The bot doit avoir la permission `BanMembers`.
 
-## Syntaxe
+## Syntax
 
 ```
 $isBanned[userID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur à vérifier. |
+| `userID` | The ID of the user à vérifier. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Booléen
-- `true` si l'utilisateur est banni du serveur.
-- `false` si l'utilisateur n'est pas banni ou n'existe pas.
+- **Type** : Boolean
+- `true` si the user est banni of the server.
+- `false` si the user is not banni or n'existe pas.
 
-## Comportement
+## Behavior
 
-- Le bot a besoin de la permission `BanMembers` pour consulter la liste des bannis.
-- Fonctionne même si l'utilisateur a quitté le serveur.
-- Vérifie uniquement le serveur courant.
+- The bot needs la permission `BanMembers` pour consulter la list des bannis.
+- Functionne even if the user a quitté the server.
+- Checks only the server courant.
 
-## Exemples
+## Examples
 
-### Vérification avant commande
+### Vérification before command
 
 ```bdfd
 $if[$isBanned[$mentioned[1]]==true]
-  $sendMessage[⚠️ <@$mentioned[1]> est déjà banni de ce serveur.]
+  $sendMessage[⚠️ <@$mentioned[1]> est déjà banni de ce server.]
 $else
-  $ban[$mentioned[1];Raison fournie par $userName]
-  $sendMessage[🔨 <@$mentioned[1]> a été banni.]
+  $ban[$mentioned[1];Reason fournie par $userName]
+  $sendMessage[🔨 <@$mentioned[1]> was banni.]
 $endif
 ```
 
-### Débannir un utilisateur
+### Débannir un user
 
 ```bdfd
 $if[$isBanned[$message[1]]==true]
   $unban[$message[1]]
-  $sendMessage[✅ L'utilisateur $message[1] a été débanni.]
+  $sendMessage[✅ The user $message[1] was débanni.]
 $else
-  $sendMessage[❌ Cet ID n'est pas banni.]
+  $sendMessage[❌ Cet ID is not banni.]
 $endif
 ```
 
@@ -65,18 +65,18 @@ $endif
 ```bdfd
 $var[userID;$message[1]]
 $if[$isBanned[$var[userID]]==true]
-  $var[raison;$getBanReason[$var[userID]]]
-  $sendMessage[📋 **Bannissement trouvé :**
+  $var[reason;$getBanReason[$var[userID]]]
+  $sendMessage[📋 **Ban found :**
   > ID : $var[userID]
-  > Raison : $var[raison]]
+  > Reason : $var[reason]]
 $else
-  $sendMessage[✅ Aucun bannissement pour $var[userID].]
+  $sendMessage[✅ Aucun ban pour $var[userID].]
 $endif
 ```
 
 ## Notes
 
-- Le bot doit avoir `BanMembers` pour que cette fonction retourne un résultat fiable.
-- Pour obtenir la raison du bannissement, utilisez `$getBanReason[]`.
+- The bot doit avoir `BanMembers` pour que this function retourne un result fiable.
+- Pour obtenir la ban reason, utilisez `$getBanReason[]`.
 - Pour bannir/débannir, utilisez `$ban[]` / `$unban[]`.
-- Fonctionne uniquement dans un contexte de serveur (pas en DM).
+- Functionne only dans un context de server (pas en DM).

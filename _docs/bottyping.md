@@ -5,41 +5,41 @@ translation_key: docs
 category: "Moderation"
 function_name: botTyping
 syntax: $botTyping
-description: Déclenche l'indicateur de saisie (typing indicator) dans le canal courant. Montre aux utilisateurs que le bot est en train d'écrire.
+description: Déclenche l'indicateur de saisie (typing indicator) in the channel courant. Montre aux users only the bot est en train d'écrire.
 ---
 
 # $botTyping
 
-La fonction `$botTyping[]` permet de **déclencher l'indicateur de saisie** ("Bot is typing...") dans le canal où la commande est exécutée.
+The `$botTyping[]` function **déclencher l'indicateur de saisie** ("Bot is typing...") in the channel where la command est executede.
 
-## Syntaxe
+## Syntax
 
 ```
 $botTyping
 ```
 
-## Paramètres
+## Parameters
 
-Cette fonction ne prend aucun paramètre.
+Cette function ne prend auca parameter.
 
-## Valeur de retour
+## Return value
 
-Cette fonction ne retourne pas de valeur.
+Cette function does not return a value.
 
-## Comportement
+## Behavior
 
-- L'indicateur de saisie dure environ 10 secondes ou jusqu'à l'envoi d'un message.
-- Utile pour simuler un délai de traitement ou donner un feedback visuel.
-- L'indicateur s'arrête automatiquement si un message est envoyé.
+- L'indicateur de saisie dure environ 10 seconds or up to l'envoi of a message.
+- Utile pour simuler a delay de traitement or donner un feedback visuel.
+- L'indicateur s'stops automatically if a message is sent.
 
-## Exemples
+## Examples
 
 ### Traitement avec feedback
 
 ```bdfd
 $botTyping
 $wait[3]
-$sendMessage[Traitement terminé ! Voici les résultats...]
+$sendMessage[Traitement terminé ! Voici the results...]
 ```
 
 ### Simulation de recherche
@@ -47,26 +47,26 @@ $sendMessage[Traitement terminé ! Voici les résultats...]
 ```bdfd
 $botTyping
 $wait[2]
-$sendMessage[🔍 Recherche dans la base de données...]
+$sendMessage[🔍 Recherche in the base de datas...]
 $botTyping
 $wait[2]
-$sendMessage[✅ Résultats trouvés !]
+$sendMessage[✅ Results founds !]
 ```
 
-### Enchaînement avec action longue
+### Enstringment avec action longue
 
 ```bdfd
 $botTyping
 $let[result;$httpGet[https://api.example.com/data]]
 $if[$result!=]
-  $sendMessage[Données récupérées avec succès.]
+  $sendMessage[Datas récupérées avec success.]
 $else
-  $sendMessage[Erreur lors de la récupération.]
+  $sendMessage[Error during la récupération.]
 $endif
 ```
 
 ## Notes
 
-- L'indicateur est purement cosmétique, aucun effet sur le traitement réel.
-- Particulièrement utile pour les commandes avec `$wait[]` ou des appels API.
-- Ne fonctionne que dans les canaux texte.
+- L'indicateur est purement cosmétique, no effet sur the processing réel.
+- Particulièrement utile for commands avec `$wait[]` or calls API.
+- Ne functionne que in thes canaux text.

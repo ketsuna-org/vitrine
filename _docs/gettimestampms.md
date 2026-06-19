@@ -5,44 +5,44 @@ translation_key: docs
 category: "Math & Text"
 function_name: getTimestampMs
 syntax: $getTimestampMs
-description: Retourne le timestamp Unix actuel en millisecondes. Résolu au runtime.
+description: Returns the timestamp Unix current en milliseconds. Resolved au runtime.
 ---
 
 # $getTimestampMs
 
-La fonction `$getTimestampMs` retourne le timestamp Unix actuel en **millisecondes**. Le timestamp Unix représente le nombre de millisecondes écoulées depuis le 1er janvier 1970 à 00:00:00 UTC (epoch).
+The function `$getTimestampMs` retourne le timestamp Unix current en **milliseconds**. The timestamp Unix represents the namebre de milliseconds écoulées dethen le 1er janvier 1970 à 00:00:00 UTC (epoch).
 
-> **Important :** Cette fonction utilise l'identifiant spécial `((getTimestampMs))` qui est résolu au **runtime**.
+> **Important:** This function utilise l'identifier special `((getTimestampMs))` qui est resolved au **runtime**.
 
 ## Différence avec $getTimestamp
 
-| Fonction | Unité | Exemple de valeur |
+| Function | Unité | Exemple de value |
 |----------|-------|-------------------|
-| `$getTimestampMs` | **Millisecondes** (ms) | `1718697600123` |
+| `$getTimestampMs` | **Milliseconds** (ms) | `1718697600123` |
 | `$getTimestamp` | **Secondes** (s) | `1718697600` |
 
-- `$getTimestampMs` = `$getTimestamp` × 1000 + millisecondes supplémentaires.
+- `$getTimestampMs` = `$getTimestamp` × 1000 + milliseconds supplémentaires.
 - Utilisez `$getTimestampMs` pour des mesures de **haute précision** (benchmarks, cooldowns fins, timeouts).
-- Utilisez `$getTimestamp` pour des usages courants où la précision à la seconde suffit (dates, durées longues, stockage).
+- Utilisez `$getTimestamp` pour des usages courants où la précision à la second suffit (dates, durées longues, stockage).
 
-## Syntaxe
+## Syntax
 
 ```
 $getTimestampMs
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note :** This function ne prend no parameter.
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : String (nombre entier)
-- Le timestamp Unix actuel en millisecondes (13 chiffres).
+- **Type** : String (integer)
+- Le timestamp Unix current en milliseconds (13 chiffres).
 
-## Exemples
+## Examples
 
 ### Timestamp simple
 
@@ -57,14 +57,14 @@ $let[start;$getTimestampMs]
 
 $title[🔍 Test de performance]
 $description[
-Calcul en cours...
+Calcul in progress...
 ]
 $sendMessage[]
 
 $let[end;$getTimestampMs]
 $let[duration;$sub[$get[end];$get[start]]]
 
-$title[📊 Résultat]
+$title[📊 Result]
 $description[
 Opération terminée en **$get[duration] ms**.
 ]
@@ -80,9 +80,9 @@ $let[last;$getUserVar[lastCmd]]
 $let[diff;$sub[$get[now];$get[last]]]
 
 $if[$get[diff]<2000]
-  $title[⏳ Trop rapide !]
+  $title[⏳ Trop fast !]
   $description[
-  Attends encore **$math[(2000 - $get[diff]) / 1000]** secondes.
+  Attends encore **$math[(2000 - $get[diff]) / 1000]** seconds.
   ]
   $color[#ED4245]
   $sendMessage[]
@@ -90,21 +90,21 @@ $if[$get[diff]<2000]
 $endif
 
 $setUserVar[lastCmd;$get[now]]
-Ta commande s'est exécutée avec succès !
+Ta command s'est executed avec success !
 ```
 
-### Conversion en secondes
+### Conversion en seconds
 
 ```bdfd
 $let[ms;$getTimestampMs]
 $let[seconds;$math[$get[ms] / 1000]]
 
 Timestamp ms : $get[ms]
-Timestamp secondes : $get[seconds]
+Timestamp seconds : $get[seconds]
 ```
 
 ## Notes
 
-- La précision est à la milliseconde près (1 ms = 0,001 seconde).
-- Pour comparer avec un timestamp en secondes, n'oubliez pas de convertir : multipliez les secondes par 1000 ou divisez les millisecondes par 1000.
-- Les valeurs retournées sont des entiers, mais les calculs avec `$math[]` peuvent produire des nombres décimaux lors de la conversion.
+- La précision est à la millisecond près (1 ms = 0,001 second).
+- Pour comparer with a timestamp en seconds, n'oubliez pas de convertedr : multipliez les seconds par 1000 or divisez les milliseconds par 1000.
+- Les values retournées sont des integers, mais les calculs avec `$math[]` peuvent produire des numbers décimaux during la conversion.

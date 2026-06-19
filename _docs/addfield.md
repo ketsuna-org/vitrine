@@ -5,54 +5,54 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addField
 syntax: $addField[name;value;(inline);(index)]
-description: Ajoute un champ (field) à un embed Discord. Les fields permettent de structurer des informations en paires nom/valeur dans l'embed.
+description: Ajoute a field (field) à an embed Discord. The fields permettent de structurer des informations en paires nom/value in the embed.
 ---
 
 # $addField[]
 
-La fonction `$addField[]` ajoute un **champ** (field) à un embed Discord. Les fields sont affichés sous la description et permettent de présenter des données structurées en paires nom/valeur.
+The `$addField[]` function ajoute un **champ** (field) à an embed Discord. The fields are displayed sous la description and permettent de présenter of data structurées en paires nom/value.
 
-## Syntaxe
+## Syntax
 
 ```
 $addField[name;value;(inline);(index)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Titre du field. Max 256 caractères. |
-| `value` | Contenu du field. Max 1024 caractères. Supporte le markdown. |
-| `inline` | Optionnel. `yes` pour inline (côte à côte), `no` par défaut. |
-| `index` | Optionnel. Position d'insertion (0 = début). Sans index, ajoute à la fin. |
+| `name` | Title of the field. Max 256 becauseactères. |
+| `value` | Content of the field. Max 1024 becauseactères. Supporte le markdown. |
+| `inline` | Optional. `yes` pour inline (côte à côte), `no` by default. |
+| `index` | Optional. Position d'insertion (0 = début). Without index, ajoute to the end. |
 
-## Valeur de retour
+## Return value
 
-Modifie la réponse en cours de construction. Ne retourne rien.
+Modifies the response in progress de construction. Returns nothing.
 
-## Comportement
+## Behavior
 
-- Un embed peut contenir jusqu'à **25 fields**.
-- Les fields **inline** s'affichent côte à côte : jusqu'à **3 par ligne**.
-- Les fields **non-inline** (défaut) occupent toute la largeur.
-- L'index permet d'insérer un field à une position précise (0 = tout début).
+- Un embed can contain up to **25 fields**.
+- Les fields **inline** s'affichent côte à côte : up to **3 par ligne**.
+- Les fields **non-inline** (default) occupent toute la largeur.
+- L'index allows insérer un field à une position précise (0 = very beginning).
 
-## Exemples
+## Examples
 
-### Fields pleine largeur (non-inline)
+### Full-width fields (non-inline)
 
 ```bdfd
-$title[Profil utilisateur]
+$title[Profil user]
 $description[Informations détaillées]
-$addField[Nom d'utilisateur;$username]
+$addField[Nom d'user;$username]
 $addField[ID;$authorID]
 $addField[Date de création;$creationDate[$authorID]]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Fields inline (3 par ligne)
+### Inline fields (3 par ligne)
 
 ```bdfd
 $title[Scores]
@@ -63,21 +63,21 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Mix inline et non-inline
+### Mixed inline and non-inline
 
 ```bdfd
-$title[Fiche serveur]
-$description[Informations sur le serveur]
+$title[Fiche server]
+$description[Informations on the server]
 $addField[Nom;$serverName]
-$addField[Membres;$membersCount;yes]
-$addField[Salons;$channelCount;yes]
-$addField[ID Serveur;$guildID;yes]
-$addField[Description;Un super serveur communautaire !]
+$addField[Members;$membersCount;yes]
+$addField[Channels;$channelCount;yes]
+$addField[ID Server;$guildID;yes]
+$addField[Description;Un super server communautaire !]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Insertion à une position spécifique
+### Inserves at a specific position
 
 ```bdfd
 $addField[Premier;Contenu 1]
@@ -85,14 +85,14 @@ $addField[Troisième;Contenu 3]
 $addField[Deuxième;Contenu 2;no;1]
 
 $title[Ordre des fields]
-$description[Le field 2 a été inséré en position 1.]
+$description[Le field 2 has been inserted en position 1.]
 $color[#5865F2]
 $sendMessage[]
 ```
 
 ## Notes
 
-- Le nom et la valeur supportent le markdown Discord.
-- Combinez inline et non-inline pour des mises en page complexes.
-- L'index 0 correspond au début (avant tous les autres fields).
-- Si l'index dépasse le nombre de fields existants, le field est ajouté à la fin.
+- The name and the value supportent le markdown Discord.
+- Combinez inline and non-inline pour des mises en page complexs.
+- L'index 0 correspond at the beginning (before all other fields).
+- If the index dépasses the namebre de fields existings, le field is added to the end.

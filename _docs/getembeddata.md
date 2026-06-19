@@ -5,42 +5,42 @@ translation_key: docs
 category: "Entity Info"
 function_name: getEmbedData
 syntax: $getEmbedData[messageID;embedIndex;field]
-description: Extrait les données d'un champ spécifique d'un embed dans un message. Permet de lire le titre, la description, les champs, etc. d'un embed existant.
+description: Extracted les datas d'un champ spécifique of an embed in a message. Allows lire le titre, la description, les champs, etc. of an embed existing.
 ---
 
 # $getEmbedData
 
-La fonction `$getEmbedData[]` permet d'**extraire les données d'un embed** présent dans un message Discord. Extrêmement utile pour lire et réutiliser le contenu d'embeds existants.
+The function `$getEmbedData[]` allows to **extraire les datas of an embed** présent in a message Discord. Extrêmement utile pour lire and réutiliser le contenu d'embeds existings.
 
-## Syntaxe
+## Syntax
 
 ```
 $getEmbedData[messageID;embedIndex;field]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `messageID` | L'ID du message contenant l'embed. |
-| `embedIndex` | L'index de l'embed (1 = premier, 2 = deuxième...). |
+| `messageID` | The ID of the message contenant the embed. |
+| `embedIndex` | L'index of the embed (1 = first, 2 = twoième...). |
 | `field` | Le champ à extraire parmi : `title`, `description`, `footer`, `author`, `color`, `field:<nom>`, `image`, `thumbnail`, `url`, `timestamp`. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
-- La valeur du champ extrait de l'embed.
-- Chaîne vide si le champ n'existe pas ou si l'index est invalide.
+- The value of the field extracted of the embed.
+- String vide if the champ n'existe pas or si l'index est invalid.
 
-## Comportement
+## Behavior
 
-- Lit les embeds d'un message existant (y compris ceux envoyés par d'autres bots).
-- Pour les champs nommés (`fields`), utilisez la syntaxe `field:Nom du champ`.
+- Reads thes embeds of a message existing (y compris ceux sents par d'autres bots).
+- Pour les champs nommés (`fields`), utilisez la syntaxe `field:Nom of the field`.
 - L'index d'embed commence à 1.
 
-## Exemples
+## Examples
 
-### Lire le titre et la description
+### Lire le titre and la description
 
 ```bdfd
 $let[title;$getEmbedData[$messageID;1;title]]
@@ -61,7 +61,7 @@ $let[score;$getEmbedData[$messageID;1;field:Score]]
 $if[$score!=]
   Le score est : **$score**
 $else
-  Champ "Score" non trouvé.
+  Champ "Score" non found.
 $endif
 ```
 
@@ -96,6 +96,6 @@ $sendMessage[]
 
 ## Notes
 
-- Fonctionne sur les messages de n'importe quel auteur (utilisateurs, bots, webhooks).
-- Le message doit être dans un canal accessible par le bot.
-- La valeur `color` est retournée au format hexadécimal (#RRGGBB).
+- Functionne sur les messages de n'importe quel auteur (users, bots, webhooks).
+- The message must be dans un canal accessible par the bot.
+- The value `color` est retournée au format hexadecimal (#RRGGBB).

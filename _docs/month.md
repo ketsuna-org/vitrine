@@ -5,28 +5,28 @@ translation_key: docs
 category: "Date & Time"
 function_name: month
 syntax: $month
-description: Retourne le mois actuel sous forme de numéro (1 à 12). Résolu au runtime.
+description: Returns the months current sous forme de numéro (1 à 12). Resolved au runtime.
 ---
 
 # $month[]
 
-La fonction `$month[]` retourne le numéro du mois actuel (de 1 à 12).
+The function `$month[]` retourne le numéro du months current (de 1 à 12).
 
-> **Important :** Cette fonction utilise l'identifiant spécial `((month))` qui est résolu au **runtime**.
+> **Important:** This function utilise l'identifier special `((month))` qui est resolved au **runtime**.
 
-## Syntaxe
+## Syntax
 
 ```
 $month
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note :** This function ne prend no parameter.
 
-## Valeur de retour
+## Return Value
 
-Un nombre entre 1 et 12 représentant le mois actuel :
+A number between 1 and 12 représentant le months current :
 
-| Valeur | Mois |
+| Value | Mois |
 |--------|------|
 | 1 | Janvier |
 | 2 | Février |
@@ -41,12 +41,12 @@ Un nombre entre 1 et 12 représentant le mois actuel :
 | 11 | Novembre |
 | 12 | Décembre |
 
-## Exemples
+## Examples
 
 ### Mois simple
 
 ```bdfd
-Mois actuel : $month
+Mois current : $month
 ```
 
 ### Message saisonnier
@@ -61,4 +61,4 @@ $endif
 
 ## Notes
 
-- La valeur dépend de la date système du serveur exécutant le bot.
+- The value dépend de la date système of the server exécutant the bot.

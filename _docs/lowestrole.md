@@ -5,53 +5,53 @@ translation_key: docs
 category: "Entity Info"
 function_name: lowestRole
 syntax: $lowestRole
-description: Retourne l'ID du rôle le plus bas (hiérarchiquement) de l'utilisateur sur le serveur (hors @everyone).
+description: Returns the ID of the role le plus bas (hiérarchiquement) of the user on the server (hors @everyone).
 ---
 
 # $lowestRole
 
-La variable `$lowestRole` retourne l'**ID du rôle le plus bas** dans la hiérarchie des rôles de l'utilisateur sur le serveur (en excluant généralement `@everyone`).
+The variable `$lowestRole` retourne l'**ID of the role le plus bas** in the hiérarchie des roles of the user on the server (en excludedant generally `@everyone`).
 
-## Syntaxe
+## Syntax
 
 ```
 $lowestRole
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Snowflake (chaîne numérique)
-- L'ID du rôle le plus bas de l'utilisateur (hors `@everyone`)
+- **Type** : Snowflake (string numérique)
+- The ID of the role le plus bas of the user (hors `@everyone`)
 
-## Comportement
+## Behavior
 
-- `$lowestRole` ne prend **aucun argument**.
-- Retourne le rôle non-`@everyone` le plus bas dans la hiérarchie.
-- Si l'utilisateur n'a qu'un seul rôle (ou seulement `@everyone`), le comportement peut varier.
+- `$lowestRole` ne prend **no argument**.
+- Returns the role non-`@everyone` le plus bas in the hiérarchie.
+- Si the user n'a qu'a single role (or only `@everyone`), le comportement peut varier.
 
-## Exemples
+## Examples
 
-### Lister la hiérarchie complète
+### Listr la hiérarchie complete
 
 ```bdfd
-$title[Hiérarchie des rôles]
+$title[Hiérarchie des roles]
 $description[
-**Utilisateur :** $userName
-**Rôle le plus haut :** $roleName[$highestRole]
-**Rôle le plus bas :** $roleName[$lowestRole]
+**User :** $userName
+**Role le plus haut :** $roleName[$highestRole]
+**Role le plus bas :** $roleName[$lowestRole]
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérifier le rôle le plus bas
+### Vérifier the role le plus bas
 
 ```bdfd
-$sendMessage[Votre rôle le plus bas est : $roleName[$lowestRole] (ID: $lowestRole)]
+$sendMessage[Votre role le plus bas est : $roleName[$lowestRole] (ID: $lowestRole)]
 ```
 
 ## Notes
 
-- `$lowestRole` exclut généralement le rôle `@everyone`.
-- La hiérarchie des rôles est définie dans les paramètres du serveur.
-- Pour obtenir un rôle avec des permissions spécifiques, utilisez `$lowestRoleWithPerms[]`.
+- `$lowestRole` kicks generally the role `@everyone`.
+- La hiérarchie des roles est définie in thes parameters of the server.
+- Pour obtenir un role avec des permissions spécifiques, utilisez `$lowestRoleWithPerms[]`.

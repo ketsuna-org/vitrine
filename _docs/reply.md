@@ -6,74 +6,74 @@ category: "Embed & Message"
 
 # $reply
 
-Marque le message comme une réponse (reply) à un message existant. S'utilise avant `$sendMessage`.
+Marks the message as a reply to an existing message. Used before `$sendMessage`.
 
-## Syntaxe
+## Syntax
 
-### Répondre au message de l'utilisateur (0 argument)
+### Reply to the user's message (0 arguments)
 
 ```
 $reply
 ```
 
-### Répondre à un message spécifique
+### Reply to a specific message
 
 ```
 $reply[channelId;messageId]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
-|-----------|-------------|:-----------:|
-| `channelId` | ID du salon contenant le message cible | Non* |
-| `messageId` | ID du message auquel répondre | Non* |
+| Parameter | Description | Required |
+|-----------|-------------|:--------:|
+| `channelId` | ID of the channel containing the target message | No* |
+| `messageId` | ID of the message to reply to | No* |
 
-*\* Obligatoires uniquement pour répondre à un message spécifique dans un salon précis.*
+*\* Required only to reply to a specific message in a specific channel.*
 
 ## Description
 
-`$reply` est un **flag** qui s'utilise avant `$sendMessage`. Il indique que le message doit être envoyé en tant que réponse (replies Discord), ce qui affiche le message original au-dessus de la réponse.
+`$reply` is a **flag** used before `$sendMessage`. It indicates that the message should be sent as a reply (Discord replies), which displays the original message above the reply.
 
-Sans arguments, `$reply` répond au message qui a déclenché la commande ou l'interaction.
+Without arguments, `$reply` replies to the message that triggered the command or interaction.
 
-## Exemples
+## Examples
 
-### Réponse simple
+### Simple reply
 
 ```
 $reply
-$sendMessage[Voici votre réponse !]
+$sendMessage[Here is your reply!]
 ```
 
-### Réponse à un message spécifique
+### Reply to a specific message
 
 ```
 $reply[$channelID;123456789012345678]
-$sendMessage[Réponse à un message précis]
+$sendMessage[Reply to a specific message]
 ```
 
-### Réponse dans $onInteraction
+### Reply in $onInteraction
 
 ```
 $onInteraction
 $if[$customID==btn_help]
   $reply
-  $sendMessage[Voici l'aide demandée]
+  $sendMessage[Here is the requested help]
 $endif
 ```
 
-### Réponse avec embeds
+### Reply with embeds
 
 ```
 $reply
-$newEmbed[title=Réponse;description=Détails de la réponse;color=#3498DB]
+$newEmbed[title=Reply;description=Reply details;color=#3498DB]
 $sendMessage[]
 ```
 
 ## Notes
 
-- Sans argument, `$reply` utilise automatiquement le message déclencheur.
-- `$reply` doit être placé avant `$sendMessage`.
-- La réponse ping l'utilisateur par défaut. Utilisez `$noMention` avant pour désactiver le ping.
-- Fonctionne aussi dans `$onInteraction`.
+- Without arguments, `$reply` automatically uses the triggering message.
+- `$reply` must be placed before `$sendMessage`.
+- The reply pings the user by default. Use `$noMention` before to disable the ping.
+- Also works in `$onInteraction`.

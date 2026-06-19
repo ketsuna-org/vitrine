@@ -5,36 +5,36 @@ translation_key: docs
 category: "Moderation"
 function_name: changeUsername
 syntax: $changeUsername[newName]
-description: Change le nom d'utilisateur du bot.
+description: Change the name d'user of the bot.
 ---
 
 # $changeUsername
 
-La fonction `$changeUsername` **modifie le nom d'utilisateur global** du bot sur Discord. Contrairement à `$setNickname` qui change le pseudo par serveur, `$changeUsername` change le nom du bot partout.
+The `$changeUsername` function **modifie the name d'user global** of the bot on Discord. Contrairement à `$setNickname` qui change le pseudo par server, `$changeUsername` change the name of the bot partout.
 
-## Syntaxe
+## Syntax
 
 ```
 $changeUsername[newName]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `newName` | Le nouveau nom d'utilisateur du bot. Obligatoire. |
+| `newName` | Le new nom d'user of the bot. Required. |
 
-## Valeur de retour
+## Return value
 
-Aucune. Le nom d'utilisateur du bot est modifié globalement.
+None. The name d'user of the bot est modified globalment.
 
-## Exemples
+## Examples
 
 ### Changement simple
 
 ```bdfd
 $changeUsername[Mon Super Bot]
-$sendMessage[✅ Le bot s'appelle maintenant "Mon Super Bot".]
+$sendMessage[✅ The bot s'callle now "Mon Super Bot".]
 ```
 
 ### Changement conditionnel
@@ -42,7 +42,7 @@ $sendMessage[✅ Le bot s'appelle maintenant "Mon Super Bot".]
 ```bdfd
 $if[$isAdmin==true]
   $changeUsername[$message[1]]
-  $sendMessage[Nom du bot mis à jour.]
+  $sendMessage[Nom of the bot mis à day.]
 $else
   $sendMessage[Permission refusée.]
 $endif
@@ -52,13 +52,13 @@ $endif
 
 ```bdfd
 $changeUsername[Bot de $serverName]
-$sendMessage[Nom du bot adapté au serveur.]
+$sendMessage[Nom of the bot adapté au server.]
 ```
 
 ## Notes
 
-- **Rate limit Discord** : 2 changements de nom par heure maximum.
-- Le nom global est visible sur tous les serveurs.
-- Pour changer le pseudo sur un serveur spécifique, utilisez `$setNickname`.
-- Pour changer le nom d'un autre utilisateur, utilisez `$changeUsernameWithID` (nécessite des permissions spéciales).
-- Le bot doit avoir un token avec les permissions nécessaires.
+- **Rate limit Discord** : 2 changements de nom par hour maximum.
+- The name global est visible sur all servers.
+- Pour changer le pseudo sur a server spécifique, use `$setNickname`.
+- Pour changer the name d'un autre user, use `$changeUsernameWithID` (requires of permissions speciales).
+- The bot must have un token with the permissions nécessaires.

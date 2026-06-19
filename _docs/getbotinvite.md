@@ -5,64 +5,64 @@ translation_key: docs
 category: "Moderation"
 function_name: getBotInvite
 syntax: $getBotInvite[(guildID)]
-description: Génère et retourne le lien d'invitation du bot avec les permissions nécessaires. Si un guildID est fourni, le lien est pré-rempli pour ce serveur.
+description: Generates and retourne le link d'invite of the bot with thes permissions nécessaires. Si un guildID est fourni, le link est pré-rempli pour ce server.
 ---
 
 # $getBotInvite
 
-La fonction `$getBotInvite[]` permet de **générer le lien d'invitation du bot** avec les permissions nécessaires à son fonctionnement.
+The function `$getBotInvite[]` allows **générer le link d'invite of the bot** with thes permissions nécessaires à son functionnement.
 
-## Syntaxe
+## Syntax
 
 ```
 $getBotInvite[(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `guildID` | Optionnel - ID du serveur pour pré-sélectionner le serveur dans l'interface d'invitation. |
+| `guildID` | Optional - ID of the server pour pré-sélectionner the server in the interface d'invite. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String (URL)
-- L'URL d'invitation complète du bot.
-- Format : `https://discord.com/oauth2/authorize?client_id=ID&permissions=...&scope=bot`
+- The URL d'invite complete of the bot.
+- Format : `https://discord.com/oauth2/authorize?clinkt_id=ID&permissions=...&scope=bot`
 
-## Comportement
+## Behavior
 
-- Les permissions incluses dans le lien correspondent à celles configurées pour le bot.
-- Si un guildID est fourni, le sélecteur de serveur est pré-rempli.
-- Le lien inclut le scope `bot` et `applications.commands` automatiquement.
+- Les permissions includedes in the link correspondent à celles configuredes for the bot.
+- Si un guildID est fourni, le sélecteur de server est pré-rempli.
+- Le link inclut le scope `bot` and `applications.commands` automatically.
 
-## Exemples
+## Examples
 
-### Commande d'invitation
+### Command d'invite
 
 ```bdfd
-$title[📨 Inviter le bot]
+$title[📨 Inviter the bot]
 $description[
-Cliquez sur le lien ci-dessous pour inviter le bot sur votre serveur :
+Cliquez sur le link ci-dessous pour inviter the bot sur votre server :
 
 [$getBotInvite]
 
-**Permissions requises :**
+**Permissions requiredes :**
 - Gérer les messages
 - Envoyer des messages
-- Intégrer des liens
+- Intégrer des links
 - Lire l'historique
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Lien pour ce serveur
+### Link pour ce server
 
 ```bdfd
-$title[🔗 Lien d'invitation]
+$title[🔗 Link d'invite]
 $description[
-Partagez ce lien pour inviter le bot sur **$serverName** :
+Partagez ce link pour inviter the bot sur **$serverName** :
 
 ```
 $getBotInvite[$guildID]
@@ -71,16 +71,16 @@ $getBotInvite[$guildID]
 $sendMessage[]
 ```
 
-### Commande info + invite
+### Command info + invite
 
 ```bdfd
-$title[🤖 Informations du bot]
+$title[🤖 Informations of the bot]
 $description[
 **Nom :** $botName
-**Serveurs :** $guildCount
-**Utilisateurs :** $membersCount
+**Servers :** $guildCount
+**Users :** $membersCount
 
-[🔗 Inviter le bot]($getBotInvite)
+[🔗 Inviter the bot]($getBotInvite)
 ]
 $thumbnail[$botAvatar]
 $color[#57F287]
@@ -89,6 +89,6 @@ $sendMessage[]
 
 ## Notes
 
-- Les permissions dans le lien sont définies dans la configuration de l'application Discord.
-- Le lien ne fonctionne que si le bot est public ou si l'utilisateur a accès au serveur.
-- Pour une invitation de serveur (pas du bot), utilisez `$getServerInvite[]`.
+- Les permissions in the link sont définies in the configuration de l'application Discord.
+- Le link ne functionne que si the bot est public or si the user a accès au server.
+- Pour une invite de server (pas of the bot), utilisez `$getServerInvite[]`.

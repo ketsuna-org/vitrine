@@ -5,63 +5,63 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomText
 syntax: $randomText[option1;option2;...]
-description: Choisit et retourne aléatoirement une option parmi une liste d'options textuelles fournies.
+description: Randomly chooses and returns an option from a list of provided text options.
 ---
 
 # $randomText[]
 
-La fonction `$randomText[]` choisit aléatoirement une option parmi une liste d'options textuelles fournies et retourne cette option.
+The `$randomText[]` function randomly chooses an option from a list of provided text options and returns that option.
 
-## Syntaxe
+## Syntax
 
 ```
 $randomText[option1;option2;...]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |-----------|-------------|
-| `option1;option2;...` | Liste d'options textuelles séparées par des points-virgules (`;`). |
+| `option1;option2;...` | List of text options separated by semicolons (`;`). |
 
-## Valeur de retour
+## Return Value
 
-Une chaîne de caractères correspondant à l'une des options de la liste, choisie aléatoirement.
+A string corresponding to one of the options in the list, chosen randomly.
 
-## Comportement
+## Behavior
 
-- Chaque option a une probabilité égale d'être sélectionnée.
-- Les options sont séparées par des points-virgules (`;`).
-- Tous les caractères sont autorisés dans les options, mais attention au point-virgule qui sert de séparateur.
+- Each option has an equal probability of being selected.
+- Options are separated by semicolons (`;`).
+- All characters are allowed in options, but be becauseeful with the semicolon which acts as a separator.
 
-## Exemples
+## Examples
 
-### Pile ou Face
+### Heads or Tails
 
 ```bdfd
-🪙 La pièce tombe sur : **$randomText[Pile;Face]** !
+🪙 The coin lands on: **$randomText[Heads;Tails]**!
 ```
 
-### Choix de couleur aléatoire
+### Random color choice
 
 ```bdfd
-$title[Couleur du jour]
-$description[La couleur du jour est : **$randomText[Rouge;Bleu;Vert;Jaune;Violet;Orange;Rose]**]
+$title[Color of the day]
+$description[The color of the day is: **$randomText[Red;Blue;Green;Yellow;Purple;Orange;Pink]**]
 $color[$randomText[#FF0000;#0000FF;#00FF00;#FFFF00;#800080;#FFA500;#FF69B4]]
 ```
 
-### Message d'accueil aléatoire
+### Random welcome message
 
 ```bdfd
 $randomText[
-  Bienvenue $username sur le serveur ! 🎉;
-  Hey $username, ravi de te voir ! 👋;
-  $username vient de nous rejoindre ! 🥳;
-  Un nouvel aventurier, $username, est arrivé ! ⚔️
+  Welcome $username to the server! 🎉;
+  Hey $username, glad to see you! 👋;
+  $username just joined us! 🥳;
+  A new adventurer, $username, has arrived! ⚔️
 ]
 ```
 
 ## Notes
 
-- Pour générer un nombre aléatoire, utilisez `$random[]`.
-- Pour générer une chaîne alphanumérique aléatoire, utilisez `$randomString[]`.
+- To generate a random number, use `$random[]`.
+- To generate a random alphanumeric string, use `$randomString[]`.

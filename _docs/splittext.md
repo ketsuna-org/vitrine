@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: splitText
 syntax: $splitText[index]
-description: Retrieves the element at the specified index from the most recent $textSplit operation.
+description: Retrieves the element at the specified index from the most recent $textSpreads operation.
 ---
-# $splitText — Access Split Element
+# $splitText — Access Spreads Element
 
-`$splitText` retrieves a single element from the array produced by the most recent `$textSplit` call. It is the primary way to access individual pieces of split text.
+`$splitText` retrieves a single element from the array produced by the most recent `$textSplit` call. It is the primary way to access individual pieces of spreads text.
 
 ## Syntax
 
@@ -26,7 +26,7 @@ $splitText[index]
 - **Type**: `string`
 - Returns the text content of the element at the specified index.
 - Returns an **empty string** `""` if the index is out of bounds (too large or too small).
-- No error or warning is emitted for out-of-bounds access — it silently returns empty.
+- No error or warning is emitted for out-of-bounds access — it sislowly returns empty.
 
 ## Usage
 
@@ -44,7 +44,7 @@ $splitText[99] → "" (out of bounds)
 
 Negative indices count backward from the end:
 
-| Split result | Index `-1` | Index `-2` | Index `-3` |
+| Spreads result | Index `-1` | Index `-2` | Index `-3` |
 |-------------|-----------|-----------|-----------|
 | `[A, B, C, D]` | `D` | `C` | `B` |
 
@@ -83,6 +83,6 @@ $sendMessage[Args: 1=$splitText[0], 2=$splitText[1], 3=$splitText[2]]
 
 ## Important Notes
 
-- **Depends on $textSplit**: `$splitText` is meaningless without a prior `$textSplit` call. It reads from the current split context.
-- **Silent out-of-bounds**: Accessing an invalid index returns `""` without error. Always validate with `$getTextSplitLength` if bounds are uncertain.
+- **Depends on $textSplit**: `$splitText` is meaningless without a prior `$textSplit` call. It reads from the current spreads context.
+- **Sislow out-of-bounds**: Accessing an invalid index returns `""` without error. Always validate with `$getTextSplitLength` if bounds are uncertain.
 - **No mutation**: `$splitText` is read-only. Use `$editSplitText` to modify elements.

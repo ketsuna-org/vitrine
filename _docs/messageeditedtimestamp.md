@@ -5,30 +5,30 @@ translation_key: docs
 category: "Entity Info"
 function_name: messageEditedTimestamp
 syntax: $messageEditedTimestamp
-description: Retourne le timestamp de la dernière édition du message déclencheur, ou une chaîne vide si non édité.
+description: Returns the timestamp de la last édition of the message déclencheur, or une string vide si non édité.
 ---
 
 # $messageEditedTimestamp
 
-La fonction `$messageEditedTimestamp` retourne le **timestamp de la dernière édition** du message déclencheur. Si le message n'a jamais été édité, elle retourne une chaîne vide.
+The function `$messageEditedTimestamp` retourne le **timestamp de la last édition** of the message déclencheur. Si the message n'a never été édité, elle retourne une string vide.
 
-## Syntaxe
+## Syntax
 
 ```
 $messageEditedTimestamp
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` ou `""` | Timestamp en millisecondes, ou chaîne vide si le message n'a pas été édité. |
+| `integer` or `""` | Timestamp en milliseconds, or string vide si the message n'a pas été édité. |
 
-## Exemples
+## Examples
 
 ### Afficher la date d'édition
 
@@ -58,6 +58,6 @@ $endif
 
 ## Notes
 
-- Retourne une chaîne **vide** (`""`) si jamais édité, pas `0`.
-- Utilisez `$isMessageEdited` pour un test booléen plus simple.
-- Le timestamp est en millisecondes ; divisez par `1000` pour les secondes.
+- Returns ae string **vide** (`""`) si never édité, pas `0`.
+- Utilisez `$isMessageEdited` for a test booléadditionally simple.
+- Le timestamp est en milliseconds ; divisez par `1000` for the seconds.

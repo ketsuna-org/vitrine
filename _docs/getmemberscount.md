@@ -5,33 +5,33 @@ translation_key: docs
 category: "Server & Channels"
 function_name: getMembersCount
 syntax: $getMembersCount
-description: Retourne le nombre total de membres sur le serveur (incluant les bots). Alias possible de $membersCount.
+description: Returns the number total de members on the server (incluant les bots). Alias possible de $membersCount.
 ---
 # $getMembersCount
 
-La fonction `$getMembersCount` retourne le **nombre total de membres** du serveur Discord.
+The function `$getMembersCount` retourne le **number total de members** of the server Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $getMembersCount
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Nombre (chaîne)
-- Le nombre total de membres (humains + bots).
+- **Type** : Number (string)
+- The namebre total de members (humains + bots).
 
-## Exemples
+## Examples
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[👥 Ce serveur compte $getMembersCount membres !]
+$sendMessage[👥 Ce server compte $getMembersCount members !]
 ```
 
 ### Message de bienvenue
@@ -40,7 +40,7 @@ $sendMessage[👥 Ce serveur compte $getMembersCount membres !]
 $title[👋 Bienvenue $username !]
 $description[
 Bienvenue sur **$serverName** !
-Tu es le membre **#$getMembersCount** !
+Tu es le member **#$getMembersCount** !
 ]
 $thumbnail[$authorAvatar]
 $color[#57F287]
@@ -51,23 +51,23 @@ $sendMessage[]
 
 ```bdfd
 $if[$getMembersCount<100]
-  $sendMessage[Nous sommes encore une petite communauté de $getMembersCount membres 💚]
+  $sendMessage[Nous sommes encore une petite communauté de $getMembersCount members 💚]
 $elseIf[$getMembersCount<1000]
-  $sendMessage[Déjà $getMembersCount membres, merci à tous ! 🎉]
+  $sendMessage[Déjà $getMembersCount members, merci à all ! 🎉]
 $else
-  $sendMessage[Plus de 1000 membres, incroyable ! 🚀]
+  $sendMessage[Plus de 1000 members, incroyable ! 🚀]
 $endif
 ```
 
-### Stats du serveur
+### Stats of the server
 
 ```bdfd
 $title[📊 Statistiques de $serverName]
 $description[
-**Membres** : $getMembersCount
+**Members** : $getMembersCount
 **Bots** : $botCount
-**Salons** : $channelCount
-**Rôles** : $roleCount
+**Channels** : $channelCount
+**Roles** : $roleCount
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -75,6 +75,6 @@ $sendMessage[]
 
 ## Notes
 
-- Inclut les bots dans le compte. Pour les humains uniquement, faites `$c[$getMembersCount-$botCount]`.
-- Équivalent fonctionnel à `$membersCount`.
-- Se met à jour automatiquement quand des membres rejoignent/quittent.
+- Inclut les bots in the compte. Pour les humains only, faites `$c[$getMembersCount-$botCount]`.
+- Équivaslow functionnel à `$membersCount`.
+- Se met à day automatically when des members rejoignent/quittent.

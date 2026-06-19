@@ -5,72 +5,72 @@ translation_key: docs
 category: "Entity Info"
 function_name: usersWithRole
 syntax: $usersWithRole[roleID;(separator);(guildID)]
-description: Retourne la liste des membres ayant un rôle spécifique, séparés par un délimiteur.
+description: Returns the list des members ayant un role spécifique, separateds par un délimitur.
 ---
 
 # $usersWithRole
 
-La fonction `$usersWithRole` retourne la **liste des membres** possédant un rôle spécifique sur le serveur.
+The function `$usersWithRole` retourne la **list des members** possédant un role spécifique on the server.
 
-## Syntaxe
+## Syntax
 
 ```
 $usersWithRole[roleID;(separator);(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `roleID` | L'ID du rôle. Obligatoire. |
-| `separator` | Optionnel. Séparateur entre les membres. Par défaut : `, `. |
-| `guildID` | Optionnel. L'ID du serveur cible. |
+| `roleID` | The ID of the role. Required. |
+| `separator` | Optional. Separator between thes members. Par default: `, `. |
+| `guildID` | Optional. The ID of the server cible. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | Liste des membres ayant le rôle (format dépend de la configuration). |
+| `string` | List des members ayant the role (format dépend de la configuration). |
 
-## Exemples
+## Examples
 
-### Liste des admins
+### List des admins
 
 ```bdfd
-$sendMessage[**Administrateurs :** $usersWithRole[$roleID[Admin]]]
+$sendMessage[**Administrators :** $usersWithRole[$roleID[Admin]]]
 ```
 
-### Liste avec retours à la ligne
+### List avec retours à la ligne
 
 ```bdfd
 $sendMessage[
-**Membres avec le rôle VIP :**
+**Members with the role VIP :**
 $usersWithRole[$roleID[VIP];
 ]]
 ```
 
-### Compter les membres
+### Compter les members
 
 ```bdfd
-$sendMessage[Il y a $length[$usersWithRole[$roleID[Membre];,]] membres avec le rôle Membre.]
+$sendMessage[Il y a $length[$usersWithRole[$roleID[Member];,]] members with the role Member.]
 ```
 
-### Vérifier si un rôle est vide
+### Vérifier if a role est vide
 
 ```bdfd
-$if[$usersWithRole[$roleID[Ancien]]==]
-  $sendMessage[Aucun membre n'a le rôle Ancien.]
+$if[$usersWithRole[$roleID[Old]]==]
+  $sendMessage[Aucun member n'a the role Old.]
 $endif
 ```
 
 ### Notifier les admins
 
 ```bdfd
-$sendMessage[$usersWithRole[$roleID[Admin]] Nouvelle alerte importante !]
+$sendMessage[$usersWithRole[$roleID[Admin]] New alerte importante !]
 ```
 
 ## Notes
 
-- Les membres sont généralement retournés sous forme de mentions.
+- Les members sont generally retournés sous forme de mentions.
 - Le format exact peut varier selon la version de BDFD.
-- Utile pour les annonces ciblées ou la gestion de communauté.
+- Utile for the annonces ciblées or la gestion de communauté.

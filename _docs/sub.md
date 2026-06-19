@@ -5,34 +5,34 @@ translation_key: docs
 category: "Math & Text"
 function_name: sub
 syntax: $sub[a;b]
-description: Soustrait la deuxième valeur de la première (a - b).
+description: Soustrait la twoième value de la first (a - b).
 ---
 
 # $sub[]
 
-La fonction `$sub[]` effectue une soustraction entre deux valeurs : `a - b`.
+The function `$sub[]` effectue une soustraction between two values : `a - b`.
 
-## Syntaxe
+## Syntax
 
 ```
 $sub[a;b]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type   | Obligatoire | Description                        |
+| Parameter | Type   | Required | Description                        |
 |-----------|--------|-------------|------------------------------------|
-| `a`       | number | Oui         | La valeur de départ (minuend).     |
-| `b`       | number | Oui         | La valeur à soustraire (subtrahend). |
+| `a`       | number | Yes         | The value de départ (minuend).     |
+| `b`       | number | Yes         | The value à soustraire (subtrahend). |
 
-## Comportement
+## Behavior
 
-- Retourne `a - b`.
-- Le résultat peut être négatif.
-- Supporte les nombres décimaux.
-- Si les valeurs ne sont pas numériques, le comportement est indéfini.
+- Returns `a - b`.
+- The result can be négatif.
+- Supporte les numbers décimaux.
+- Si les values are not numériques, le comportement est indéfini.
 
-## Exemples
+## Examples
 
 **Soustraction simple :**
 ```
@@ -40,13 +40,13 @@ $sub[10;3]
 → 7
 ```
 
-**Résultat négatif :**
+**Result négatif :**
 ```
 $sub[5;10]
 → -5
 ```
 
-**Avec des décimales :**
+**Avec des decimales :**
 ```
 $sub[10.5;3.2]
 → 7.3
@@ -59,5 +59,5 @@ $sub[$getVar[revenu];$getVar[depense]]
 
 ## Notes
 
-- Seulement deux arguments sont acceptés. Pour soustraire plusieurs valeurs, chaînez les appels : `$sub[$sub[a;b];c]` ou utilisez `$calculate[a - b - c]`.
-- Le séparateur est le point-virgule `;`.
+- Seulement two arguments sont acceptés. Pour soustraire several values, stringz les calls : `$sub[$sub[a;b];c]` or utilisez `$calculate[a - b - c]`.
+- Le separator est le point-virgule `;`.

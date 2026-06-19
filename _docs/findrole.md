@@ -5,48 +5,48 @@ translation_key: docs
 category: "Entity Info"
 function_name: findRole
 syntax: $findRole[query;(guildID)]
-description: Recherche un rôle par nom partiel ou complet et retourne son ID. Insensible à la casse.
+description: Recherche un role par nom partial or complete and retourne son ID. Insensible à la casse.
 ---
 
 # $findRole
 
-La fonction `$findRole` recherche un rôle Discord par **nom partiel ou complet** et retourne son ID. La recherche est insensible à la casse.
+The function `$findRole` recherche un role Discord par **nom partial or complete** and retourne son ID. The recherche est insensible à la casse.
 
-## Syntaxe
+## Syntax
 
 ```
 $findRole[query;(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `query` | Le nom ou partie du nom du rôle à rechercher. |
-| `guildID` | Optionnel. L'ID du serveur cible. |
+| `query` | The name or partie du nom of the role à rechercher. |
+| `guildID` | Optional. The ID of the server cible. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | L'ID du rôle trouvé, ou `""` si aucun. |
+| `snowflake` (string) | The ID of the role found, or `""` si no. |
 
-## Exemples
+## Examples
 
-### Recherche par nom partiel
+### Recherche par nom partial
 
 ```bdfd
-$sendMessage[Rôle correspondant à "mod" : $findRole[mod]]
+$sendMessage[Role correspondant à "mod" : $findRole[mod]]
 ```
 
-### Attribuer un rôle trouvé
+### Attribuer un role found
 
 ```bdfd
 $if[$findRole[VIP]!=]
   $roleGrant[$authorID;$findRole[VIP]]
-  $sendMessage[Rôle VIP attribué !]
+  $sendMessage[Role VIP attribué !]
 $else
-  $sendMessage[Rôle VIP introuvable.]
+  $sendMessage[Role VIP introuvable.]
 $endif
 ```
 
@@ -54,9 +54,9 @@ $endif
 
 ```bdfd
 $if[$findRole[admin]!=]
-  $sendMessage[Rôle trouvé : $roleName[$findRole[admin]]]
+  $sendMessage[Role found : $roleName[$findRole[admin]]]
 $else
-  $sendMessage[Aucun rôle ne correspond à "admin".]
+  $sendMessage[Aucun role ne correspond à "admin".]
 $endif
 ```
 
@@ -72,6 +72,6 @@ $endif
 
 ## Notes
 
-- Si plusieurs rôles correspondent, le **premier** trouvé est retourné.
-- Pour une recherche exacte, préférez `$roleID`.
-- Très pratique quand le nom exact du rôle est incertain.
+- Si several roles correspondent, le **first** found est retourné.
+- Pour une recherche exact, préférez `$roleID`.
+- Très pratique when the name exact of the role est incertain.

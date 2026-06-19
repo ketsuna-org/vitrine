@@ -5,85 +5,85 @@ translation_key: docs
 category: "Embed & Message"
 function_name: removeButtons
 syntax: $removeButtons
-description: Supprime tous les boutons d'un message en une seule opération. Les autres composants (menus, champs texte) sont conservés.
+description: Removes all buttons from a message in a single operation. Other components (menus, text fields) are preserved.
 ---
 
-# $removeButtons[] — Supprimer Tous les Boutons
+# $removeButtons[] — Remove All Buttons
 
-`$removeButtons[]` retire tous les composants de type bouton d'un message. C'est la méthode la plus simple pour désactiver une interface après qu'un utilisateur a interagi avec elle.
+`$removeButtons[]` removes all button-type components from a message. This is the simplest method to disable an interface after a user has interacted with it.
 
-## Syntaxe
+## Syntax
 
 ```
 $removeButtons
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+No parameters.
 
-## Valeur de retour
+## Return Value
 
-Supprime tous les boutons du message. Les autres composants (TextInput, Select Menus) ne sont pas affectés.
+Removes all buttons from the message. Other components (TextInput, Select Menus) are not affected.
 
-## Utilisation
+## Usage
 
-### Désactiver après vote
+### Disable after voting
 
 ```bdfd
 $onInteraction[vote_yes]
 $removeButtons
-$editMessage[✅ Vote enregistré : **Oui**]
+$editMessage[✅ Vote recorded: **Yes**]
 $endInteraction
 ```
 
-### Interface qui se verrouille
+### Self-locking interface
 
 ```bdfd
 $onInteraction[poll_choice]
 $removeButtons
 $var[choice;$input[poll_choice]]
-$editMessage[Merci pour votre vote : **$var[choice]**]
+$editMessage[Thank you for your vote: **$var[choice]**]
 $endInteraction
 ```
 
-### Confirmation avec suppression
+### Confirmation with removal
 
 ```bdfd
-$addButton[confirm;Confirmer;Success;yes;confirm_action]
-$addButton[cancel;Annuler;Danger;yes;cancel_action]
+$addButton[confirm;Confirm;Success;yes;confirm_action]
+$addButton[cancel;Cancel;Danger;yes;cancel_action]
 
 $onInteraction[confirm_action]
 $removeButtons
-$editMessage[✅ Action confirmée et exécutée !]
+$editMessage[✅ Action confirmed and executed!]
 $endInteraction
 
 $onInteraction[cancel_action]
 $removeButtons
-$editMessage[❌ Action annulée]
+$editMessage[❌ Action cancelled]
 $endInteraction
 ```
 
-### Panneau d'administration temporaire
+### Temporary admin panel
 
 ```bdfd
-$title[Panneau Admin]
-$description[Choisissez une action :]
-$addButton[ban;Bannir;Danger;;admin_ban]
-$addButton[kick;Expulser;Secondary;;admin_kick]
+$title[Admin Panel]
+$description[Choose an action:]
+$addButton[ban;Ban;Danger;;admin_ban]
+$addButton[kick;Kick;Secondary;;admin_kick]
 $addButton[mute;Mute;Primary;;admin_mute]
-$footer[Action unique — le panneau se désactive après usage]
+$footer[Single use — the panel disables after use]
 
 $onInteraction[admin_ban]
 $removeButtons
-$editMessage[Utilisateur banni]
+$editMessage[User banned]
 $endInteraction
 ```
 
 ## Notes
 
-- Supprime **tous** les boutons, quel que soit leur customId.
-- Les TextInput, Select Menus, et autres composants non-bouton sont conservés.
-- Pour supprimer un bouton spécifique, utilisez `$removeComponent[customId]`.
-- Pour supprimer absolument tous les composants, utilisez `$removeAllComponents[]`.
-- Utilisé principalement dans les handlers `$onInteraction` après traitement.
+- Removes **all** buttons, regardless of their customId.
+- TextInput, Select Menus, and other non-button components are preserved.
+- To remove a specific button, use `$removeComponent[customId]`.
+- To remove absolutely all components, use `$removeAllComponents[]`.
+- Used primarily in `$onInteraction` handlers after processing.

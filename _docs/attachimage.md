@@ -5,41 +5,41 @@ translation_key: docs
 category: "Canvas"
 function_name: attachImage
 syntax: $attachImage[name;url;(spoiler)]
-description: Attache une image au message de réponse en utilisant un nom et une URL distante.
+description: Attache an image au message de response en utilisant a name and a URL distante.
 ---
 
 # $attachImage
 
-La fonction `$attachImage[name;url;(spoiler)]` **attache une image distante** au prochain message envoyé via `$sendMessage[]`. L'image est téléchargée depuis l'URL fournie et jointe en tant que pièce jointe Discord.
+The `$attachImage[name;url;(spoiler)]` function **attache an image distante** au prochain message sent via `$sendMessage[]`. The image est téléloadede since the URL fournie and jointe as a attachment Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $attachImage[name;url;(spoiler)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Nom du fichier tel qu'il apparaîtra dans Discord (ex: `photo.png`, `avatar.gif`). |
-| `url` | URL de l'image à télécharger. Doit être une URL HTTPS accessible publiquement. |
-| `spoiler` | Optionnel - `true` pour marquer l'image comme spoiler (floutée jusqu'au clic). |
+| `name` | File name tel qu'il apparaîtra dans Discord (ex: `photo.png`, `avatar.gif`). |
+| `url` | URL of the image à télécharger. Doit être a URL HTTPS accessible publicment. |
+| `spoiler` | Optional - `true` pour marquer the image comme spoiler (floutée jusqu'au clic). |
 
-## Valeur de retour
+## Return value
 
-Aucune. L'image est mise en file d'attente pour le prochain `$sendMessage[]`.
+None. The image est mise en file d'attente for the prochain `$sendMessage[]`.
 
-## Comportement
+## Behavior
 
-- L'image est téléchargée par le bot depuis l'URL fournie.
-- Le nom du fichier doit inclure une extension valide (.png, .jpg, .gif, .webp, etc.).
-- Les images en spoiler sont floutées dans Discord jusqu'à ce que l'utilisateur clique dessus.
-- Prend en charge les formats PNG, JPEG, GIF, WebP (limite de taille selon le niveau du bot).
+- L'image est téléloadede par the bot since the URL fournie.
+- Le file name doit inclure une extension valid (.png, .jpg, .gif, .webp, etc.).
+- Les images en spoiler sont floutées dans Discord until the user clicks dessus.
+- Prend en charge les formats PNG, JPEG, GIF, WebP (limit de taille selon le level of the bot).
 
-## Exemples
+## Examples
 
-### Attacher une image simple
+### Attacher an image simple
 
 ```bdfd
 $attachImage[logo.png;https://monsite.com/logo.png]
@@ -53,19 +53,19 @@ $attachImage[spoiler_alerte.png;https://monsite.com/spoiler.png;true]
 $sendMessage[⚠️ Attention spoiler ci-dessous :]
 ```
 
-### Avatar d'un utilisateur
+### Avatar of a user
 
 ```bdfd
 $attachImage[avatar_$username.png;$userAvatar[$mentioned[1]]]
 $sendMessage[Avatar de <@$mentioned[1]> :]
 ```
 
-### Plusieurs images
+### Multiple images
 
 ```bdfd
-$attachImage[avant.png;$attachment[1]]
+$attachImage[before.png;$attachment[1]]
 $attachImage[apres.png;$attachment[2]]
-$sendMessage[Comparaison avant/après :]
+$sendMessage[Compareason before/after :]
 ```
 
 ### Intégration avec Canvas
@@ -75,13 +75,13 @@ $canvasLoad[$attachment]
 $canvasGrayscale
 $attachCanvas[resultat.png]
 $attachImage[original.png;$attachment]
-$sendMessage[🔲 Original vs Niveaux de gris :]
+$sendMessage[🔲 Original vs Levelx de gris :]
 ```
 
 ## Notes
 
-- L'URL doit commencer par `https://` et être accessible sans authentification.
-- La taille maximale dépend du niveau d'abonnement du bot (généralement 8 Mo en gratuit).
-- Pour attacher le canvas courant, utilisez `$attachCanvas[]`.
-- Pour attacher un fichier local (non-image), utilisez `$attachFile[]`.
-- Les pièces jointes sont consommées par le prochain `$sendMessage[]` uniquement.
+- The URL must commencer par `https://` and être accessible without authentification.
+- The size maximale dépend du level d'abonnement of the bot (generally 8 Mo en gratuit).
+- Pour attacher le canvas courant, use `$attachCanvas[]`.
+- Pour attacher a file local (non-image), use `$attachFile[]`.
+- Les attachments sont consommées par le prochain `$sendMessage[]` only.

@@ -6,9 +6,9 @@ category: "Embed & Message"
 
 # $tts
 
-Active la synthèse vocale (Text-To-Speech) pour le message envoyé. Le message sera lu à haute voix aux utilisateurs du salon.
+Active la synthèse vocale (Text-To-Speech) for the message sent. The message sera lu à haute voix aux users of the channel.
 
-## Syntaxe
+## Syntax
 
 ```
 $tts
@@ -16,15 +16,15 @@ $tts
 
 ## Description
 
-`$tts` est un **flag** (sans arguments) qui s'utilise avant `$sendMessage`. Il active la fonction TTS de Discord : le contenu du message sera lu à voix haute pour tous les utilisateurs du salon qui n'ont pas désactivé le TTS.
+`$tts` est un **flag** (without arguments) qui s'utilise before `$sendMessage`. Il active the function TTS de Discord : le contenu of the message sera lu à voix haute pour all users of the channel qui n'ont pas désenabled le TTS.
 
-## Exemples
+## Examples
 
 ### Message TTS simple
 
 ```
 $tts
-$sendMessage[Attention à tous les membres !]
+$sendMessage[Attention à all members !]
 ```
 
 ### Avec embeds
@@ -44,8 +44,8 @@ $sendMessage[🚨 Alerte : la maintenance commence dans 5 minutes]
 
 ## Notes
 
-- Fonctionne uniquement si le bot a la permission `SEND_TTS_MESSAGES`.
-- Les utilisateurs peuvent désactiver le TTS dans leurs paramètres Discord.
-- `$tts` est un flag, utilisez-le avant `$sendMessage`.
-- Le TTS lit le contenu textuel, pas le contenu des embeds.
-- À utiliser avec parcimonie pour ne pas déranger les utilisateurs.
+- Functionne only si the bot a la permission `SEND_TTS_MESSAGES`.
+- Les users peuvent désactiver le TTS in theurs parameters Discord.
+- `$tts` est un flag, utilisez-le before `$sendMessage`.
+- Le TTS reads the text content, pas le contenu embeds.
+- À utiliser avec parcimonie pour ne pas déranger les users.

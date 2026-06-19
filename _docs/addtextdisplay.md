@@ -6,45 +6,45 @@ category: "Embed & Message"
 
 # $addTextDisplay
 
-Ajoute un composant de texte affiché dans une ligne d'action. Permet d'afficher du texte statique parmi les composants interactifs.
+Ajoute a component de text displayed dans an action row. Allows afficher of the text static parmi les components interactifs.
 
-## Syntaxe
+## Syntax
 
 ```
 $addTextDisplay[content]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `content` | Texte à afficher dans le composant | Oui |
+| `content` | Text to display in the composant | Yes |
 
 ## Description
 
-`$addTextDisplay` permet d'insérer du texte non-interactif dans une ligne d'action, aux côtés des boutons et menus. Cela permet de créer des layouts plus riches avec des labels, descriptions, ou indicateurs.
+`$addTextDisplay` allows insérer of the text non-interactif dans an action row, aux côtés of buttons and menus. This allows creating des layouts plus riches with labels, descriptions, or indicateurs.
 
-## Exemples
+## Examples
 
-### Label avant un bouton
+### Label before a button
 
 ```
 $addActionRow
-$addTextDisplay[Statut :]
+$addTextDisplay[Status :]
 $addButtonCV2[btn_status;Activer;success]
-$sendMessage[Contrôles]
+$sendMessage[Controles]
 ```
 
-### Label avant un select
+### Label before un select
 
 ```
 $addActionRow
-$addTextDisplay[Rôle :]
-$addRoleSelect[menu_role;Choisissez un rôle]
+$addTextDisplay[Role :]
+$addRoleSelect[menu_role;Choisissez a role]
 $sendMessage[Configuration]
 ```
 
-### Texte formaté avec plusieurs composants
+### Text formatted avec multiple components
 
 ```
 $addActionRow
@@ -53,22 +53,22 @@ $addSeparator[no;sm]
 $addButtonCV2[vol_down;➖;secondary]
 $addButtonCV2[vol_mute;🔇;secondary]
 $addButtonCV2[vol_up;➕;secondary]
-$sendMessage[Contrôle du volume]
+$sendMessage[Controle du volume]
 ```
 
-### Indicateur d'état
+### Indicateur d'state
 
 ```
 $addActionRow
-$addTextDisplay[🔴 Hors ligne]
+$addTextDisplay[🔴 Offline]
 $addSeparator[no;md]
 $addButtonCV2[btn_refresh;Rafraîchir;primary]
-$sendMessage[État du service]
+$sendMessage[State du service]
 ```
 
 ## Notes
 
-- Le texte est purement décoratif et non interactif.
-- Ne compte pas dans la limite de 5 composants interactifs par ligne (à vérifier selon la version BDFD).
-- Utile pour ajouter des labels ou descriptions à côté des composants.
-- Le contenu peut inclure des emojis pour enrichir l'affichage.
+- Le text est purement décoratif and non interactif.
+- Ne compte pas dans the limit de 5 components interactifs par ligne (à vérifier selon la version BDFD).
+- Utile to add des labels or descriptions next to of components.
+- Le contenu can include of emojis pour enrichir l'affichage.

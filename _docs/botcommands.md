@@ -5,47 +5,47 @@ translation_key: docs
 category: "Entity Info"
 function_name: botCommands
 syntax: $botCommands
-description: Retourne une liste des commandes disponibles sur le bot.
+description: Returns a list des commands availables on the bot.
 ---
 
 # $botCommands
 
-La fonction `$botCommands` **retourne la liste des noms de toutes les commandes** enregistrées sur le bot, séparées par des retours à la ligne.
+The `$botCommands` function **returns the list des noms de all commands** enregistrées on the bot, separatedes par des retours à la ligne.
 
-## Syntaxe
+## Syntax
 
 ```
 $botCommands
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- Liste des commandes, une par ligne (ex: `help`, `ping`, `ban`...).
+- List des commands, une par ligne (ex: `help`, `ping`, `ban`...).
 
-## Comportement
+## Behavior
 
-- Retourne les commandes prefix ET slash.
-- Chaque commande apparaît sur une nouvelle ligne.
-- L'ordre correspond à l'organisation dans la console BDFD.
+- Returns thes commands prefix ET slash.
+- Each command apparaît sur une new row.
+- L'ordre correspond à l'organisation in the console BDFD.
 
-## Exemples
+## Examples
 
-### Commande help basique
+### Command help basique
 
 ```bdfd
-$title[📚 Commandes de $botName]
+$title[📚 Commands de $botName]
 $description[
-Voici toutes mes commandes :
+Voici all mes commands :
 ```
 $botCommands
 ```
 ]
-$footer[Total : $commandsCount commandes]
+$footer[Total : $commandsCount commands]
 $color[#5865F2]
 $sendMessage[]
 ```
@@ -61,15 +61,15 @@ $if[$isInteger[$var[page]]==false]
   $var[page;1]
 $endif
 
-$title[📚 Commandes (page $var[page]/$var[pages])]
+$title[📚 Commands (page $var[page]/$var[pages])]
 $description[
 $arraySlice[$var[lines];$math[($var[page]-1)*10];10]
 ]
-$footer[Total : $commandsCount commandes]
+$footer[Total : $commandsCount commands]
 $sendMessage[]
 ```
 
-### Recherche de commande
+### Recherche de command
 
 ```bdfd
 $var[search;$message[1]]
@@ -80,9 +80,9 @@ $endif
 
 $var[results;$advancedTextSplit[$botCommands;\n;$var[search]]]
 $if[$arrayLength[$var[results]]==0]
-  $sendMessage[❌ Aucune commande trouvée pour "$var[search]".]
+  $sendMessage[❌ Aucune command founde pour "$var[search]".]
 $else
-  $title[🔍 Résultats pour "$var[search]"]
+  $title[🔍 Results pour "$var[search]"]
   $description[$arraySlice[$var[results];0;20]]
   $sendMessage[]
 $endif
@@ -90,7 +90,7 @@ $endif
 
 ## Notes
 
-- Les commandes sont retournées sous forme de texte brut (une par ligne).
-- Pour le nombre total, utilisez `$commandsCount`.
-- Pour le nombre de commandes slash uniquement, utilisez `$slashCommandsCount`.
-- `$botCommands` peut être volumineux sur les bots ayant beaucoup de commandes.
+- Les commands sont retournées sous forme de text brut (une par ligne).
+- For the number total, use `$commandsCount`.
+- For the number de commands slash only, use `$slashCommandsCount`.
+- `$botCommands` can be volumineux sur les bots ayant beaucoup de commands.

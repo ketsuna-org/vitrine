@@ -5,43 +5,43 @@ translation_key: docs
 category: "Moderation"
 function_name: unregisterGuildCommands
 syntax: $unregisterGuildCommands[guildID]
-description: Supprime toutes les commandes slash du bot sur un serveur spécifique. Les commandes globales ne sont pas affectées.
+description: Supprime all commands slash of the bot sur un server spécifique. The commands globals are not affectées.
 ---
 
 # $unregisterGuildCommands
 
-La fonction `$unregisterGuildCommands[]` permet de **supprimer toutes les commandes slash** du bot sur un serveur spécifique.
+The function `$unregisterGuildCommands[]` allows **supprimer all commands slash** of the bot sur un server spécifique.
 
-## Syntaxe
+## Syntax
 
 ```
 $unregisterGuildCommands[guildID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `guildID` | L'ID du serveur duquel supprimer les commandes slash. |
+| `guildID` | The ID of the server duquel supprimer les commands slash. |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur.
+This function ne retourne pas de value.
 
-## Comportement
+## Behavior
 
-- Supprime UNIQUEMENT les commandes de guilde, pas les commandes globales.
-- Les commandes disparaissent immédiatement du menu slash.
-- Le bot doit avoir la permission `applications.commands`.
+- Supprime UNIQUEMENT les commands de guilde, pas les commands globals.
+- Les commands disparaissent immédiatement du menu slash.
+- The bot doit avoir la permission `applications.commands`.
 
-## Exemples
+## Examples
 
 ### Nettoyage manuel
 
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
   $unregisterGuildCommands[$guildID]
-  $sendMessage[✅ Commandes slash supprimées de ce serveur.]
+  $sendMessage[✅ Commands slash deletedes de ce server.]
 $else
   $sendMessage[❌ Permission refusée.]
 $endif
@@ -53,21 +53,21 @@ $endif
 $unregisterGuildCommands[$guildID]
 $wait[2]
 $registerGuildCommands[$guildID]
-$sendMessage[Commandes slash réinitialisées avec succès.]
+$sendMessage[Commands slash réinitialisées avec success.]
 ```
 
-### Nettoyage avant départ
+### Nettoyage before départ
 
 ```bdfd
 $if[$authorID==OWNER_ID]
   $unregisterGuildCommands[$message[1]]
   $botLeave[$message[1]]
-  $sendMessage[Commandes supprimées et bot retiré du serveur $message[1].]
+  $sendMessage[Commands deletedes and bot retiré of the server $message[1].]
 $endif
 ```
 
 ## Notes
 
-- Les commandes globales ne sont PAS affectées par cette fonction.
+- Les commands globals ne sont PAS affectées par this function.
 - Pour ré-enregistrer, utilisez `$registerGuildCommands[]`.
-- Utile avant de quitter un serveur ou pour nettoyer d'anciennes commandes.
+- Utile before de quitter un server or pour nettoyer d'oldnes commands.

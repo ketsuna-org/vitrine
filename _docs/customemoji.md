@@ -5,46 +5,46 @@ translation_key: docs
 category: "Moderation"
 function_name: customEmoji
 syntax: $customEmoji[name;(id)]
-description: Génère le markup d'un emoji personnalisé au format <:nom:ID> pour affichage dans un message. Si l'ID est omis, le bot cherche l'emoji sur le serveur courant.
+description: Generates le markup d'an emoji custom in the format <:nom:ID> pour affichage in a message. If the ID est omis, the bot cherche the emoji on the server courant.
 ---
 
 # $customEmoji
 
-La fonction `$customEmoji[]` permet de **générer le markup d'un emoji personnalisé** utilisable dans un message ou un embed. Elle retourne le format `<:nom:ID>` qui sera rendu comme emoji par Discord.
+The `$customEmoji[]` function **générer le markup d'an emoji custom** utilisable in a message or an embed. Elle returns the format `<:nom:ID>` qui will be rendu comme emoji par Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $customEmoji[name;(id)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Le nom de l'emoji personnalisé. |
-| `id` | Optionnel - L'ID de l'emoji. Si omis, recherché sur le serveur par nom. |
+| `name` | The emoji name custom. |
+| `id` | Optional - The ID de the emoji. If omitted, recherché on the server by name. |
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- Le markup `<:nom:ID>` (ou `<a:nom:ID>` pour les animés) affichable dans Discord.
-- Chaîne vide ou nom texte si l'emoji est introuvable.
+- Le markup `<:nom:ID>` (or `<a:nom:ID>` for animés) affichable dans Discord.
+- String vide or nom text if the emoji est introuvable.
 
-## Comportement
+## Behavior
 
-- Sans ID, la fonction cherche l'emoji par nom sur le serveur courant.
-- Avec ID, elle génère directement le markup.
-- Les emojis animés sont automatiquement détectés et formatés avec `<a:...>`.
+- Without ID, la function cherche the emoji by name on the server courant.
+- Avec ID, elle génère directly le markup.
+- Les emojis animés sont automatically détectés and formatteds avec `<a:...>`.
 
-## Exemples
+## Examples
 
-### Affichage simple
+### Simple display
 
 ```bdfd
 $title[Bienvenue !]
 $description[
-$customEmoji[wave] Bienvenue sur le serveur $customEmoji[party] !
+$customEmoji[wave] Bienvenue on the server $customEmoji[party] !
 ]
 $sendMessage[]
 ```
@@ -79,11 +79,11 @@ $if[$emojiExists[verified]==true]
   $customEmoji[verified]
 $else
   ✅
-$endif Utilisateur vérifié
+$endif User vérifié
 ```
 
 ## Notes
 
-- Si l'emoji n'existe pas sur le serveur et qu'aucun ID n'est fourni, le markup ne s'affichera pas correctement.
-- Pour les emojis d'autres serveurs, l'ID est obligatoire.
-- Le bot doit avoir accès au serveur hébergeant l'emoji pour le résoudre par nom.
+- If the emoji does not exist on the server and qu'aucan ID n'is provided, le markup ne s'affichera pas correctment.
+- For emojis d'autres servers, the ID is required.
+- The bot must have accès au server hébergeant the emoji for the résoudre by name.

@@ -5,54 +5,54 @@ translation_key: docs
 category: "Embeds"
 function_name: embeddedURL
 syntax: $embeddedURL[url;(embedIndex)]
-description: Définit l'URL cliquable du titre d'un embed. Quand l'utilisateur clique sur le titre de l'embed, il est redirigé vers cette URL.
+description: Sets the URL cliquable of the title of an embed. Quand the user clicks on the titre of the embed, it is redirigé vers cette URL.
 ---
 # $embeddedURL
 
-La fonction `$embeddedURL[]` définit l'**URL cliquable du titre** d'un embed. Le titre devient un lien hypertexte.
+The `$embeddedURL[]` function définit l'**URL cliquable of the title** of an embed. The titre devient a link hypertext.
 
-## Syntaxe
+## Syntax
 
 ```
 $embeddedURL[url;(embedIndex)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `url` | L'URL cible (doit commencer par `http://` ou `https://`). |
-| `embedIndex` | *(Optionnel)* Index de l'embed (1, 2, 3...). Défaut : 1. |
+| `url` | The URL cible (doit commencer par `http://` or `https://`). |
+| `embedIndex` | *(Optional)* Index of the embed (1, 2, 3...). Default: 1. |
 
-## Valeur de retour
+## Return value
 
-Aucune.
+None.
 
-## Comportement
+## Behavior
 
-- Le titre de l'embed (`$title[]`) devient cliquable.
-- Fonctionne uniquement si un `$title[]` est défini.
-- L'URL doit être valide et accessible.
+- Le titre of the embed (`$title[]`) devient cliquable.
+- Functionne only if a `$title[]` est défini.
+- The URL must be valid and accessible.
 
-## Exemples
+## Examples
 
 ### Embed avec titre cliquable
 
 ```bdfd
-$title[Rejoignez notre serveur !]
-$embeddedURL[https://discord.gg/exemple]
-$description[Cliquez sur le titre pour nous rejoindre.]
+$title[Rejoignez notre server !]
+$embeddedURL[https://discord.gg/example]
+$description[Cliquez on the titre pour nous rejoindre.]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Embed informatif avec lien
+### Embed informatif avec link
 
 ```bdfd
 $title[Voir la documentation]
-$embeddedURL[https://docs.exemple.com]
+$embeddedURL[https://docs.example.com]
 $description[
-Commande : **!help**
+Command : **!help**
 Catégorie : utilitaires
 ]
 $footer[Documentation officielle]
@@ -60,20 +60,20 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Multi-embeds avec URLs différentes
+### Multi-embeds avec URLs differentes
 
 ```bdfd
 $title[Site Web]
-$embeddedURL[https://exemple.com]
+$embeddedURL[https://example.com]
 $description[Notre site officiel.]
 $addEmbed
 $title[Discord]
-$embeddedURL[https://discord.gg/exemple;2]
-$description[Notre serveur Discord.]
+$embeddedURL[https://discord.gg/example;2]
+$description[Notre server Discord.]
 ```
 
 ## Notes
 
-- Sans `$embeddedURL[]`, le titre de l'embed n'est pas cliquable.
-- À placer après `$title[]` pour que l'URL soit associée.
-- Fonctionne avec tous les styles d'embed.
+- Without `$embeddedURL[]`, le titre of the embed is not cliquable.
+- À placer after `$title[]` pour que the URL soit associée.
+- Works with all styles d'embed.

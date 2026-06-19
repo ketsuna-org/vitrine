@@ -5,45 +5,45 @@ translation_key: docs
 category: "Moderation"
 function_name: threadUserCount
 syntax: $threadUserCount[threadID]
-description: Retourne le nombre de membres dans un fil de discussion (thread). Utile pour suivre la participation aux discussions.
+description: Returns the number de members dans un fil de discussion (thread). Utile pour suivre la participation aux discussions.
 ---
 
 # $threadUserCount
 
-La fonction `$threadUserCount[]` permet de **compter le nombre de membres** présents dans un fil de discussion.
+The function `$threadUserCount[]` allows **compter the namebre de members** présents dans un fil de discussion.
 
-## Syntaxe
+## Syntax
 
 ```
 $threadUserCount[threadID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `threadID` | L'ID du thread à analyser. |
+| `threadID` | The ID of the thread à analyser. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Nombre entier
-- Le nombre de membres dans le thread.
-- `0` si le thread est vide ou inaccessible.
+- **Type** : Integer
+- The namebre de members in the thread.
+- `0` if the thread est vide or inaccessible.
 
-## Comportement
+## Behavior
 
-- Compte tous les utilisateurs ayant rejoint le thread (public) ou y ayant été ajoutés (privé).
-- Inclut le bot lui-même s'il a rejoint le thread.
-- Le bot doit avoir accès au thread.
+- Counts all users ayant rejoint le thread (public) or y ayant été ajoutés (private).
+- Inclut the bot lui-même s'il a rejoint le thread.
+- The bot doit avoir accès au thread.
 
-## Exemples
+## Examples
 
 ### Résumé de thread
 
 ```bdfd
 $title[Activité du thread]
 $description[
-**Membres :** $threadUserCount[$threadID] participants
+**Members :** $threadUserCount[$threadID] participants
 **Messages :** $threadMessageCount[$threadID] messages
 ]
 $color[#57F287]
@@ -70,6 +70,6 @@ $sendMessage[Moyenne de $ratio messages par participant.]
 
 ## Notes
 
-- Dans les threads publics, le compte inclut tous les utilisateurs ayant ouvert le thread.
+- Dans les threads publics, le compte inclut all users ayant ouvert le thread.
 - Utile avec `$threadMessageCount[]` pour évaluer l'engagement.
-- Les membres qui quittent un thread public ne sont plus comptés.
+- Les members qui quittent un thread public ne sont plus comptés.

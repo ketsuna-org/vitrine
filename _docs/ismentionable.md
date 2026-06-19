@@ -5,55 +5,55 @@ translation_key: docs
 category: "Entity Info"
 function_name: isMentionable
 syntax: $isMentionable[roleID;(guildID)]
-description: Vérifie si un rôle est mentionnable. Retourne "true" ou "false".
+description: Checks if un role est mentionnable. Returns "true" or "false".
 ---
 
 # $isMentionable
 
-La fonction `$isMentionable` vérifie si un rôle Discord est **mentionnable** par les membres du serveur. Un rôle mentionnable peut être utilisé dans les messages avec `@Rôle`.
+The function `$isMentionable` vérifie if a role Discord est **mentionnable** par les members of the server. A role mentionnable can be utilisé in thes messages avec `@Role`.
 
-## Syntaxe
+## Syntax
 
 ```
 $isMentionable[roleID;(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `roleID` | L'ID du rôle. Obligatoire. |
-| `guildID` | Optionnel. L'ID du serveur cible. |
+| `roleID` | The ID of the role. Required. |
+| `guildID` | Optional. The ID of the server cible. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | `"true"` si le rôle est mentionnable, `"false"` sinon. |
+| `string` | `"true"` si the role est mentionnable, `"false"` otherwise. |
 
-## Exemples
+## Examples
 
-### Vérifier un rôle
+### Vérifier un role
 
 ```bdfd
 $if[$isMentionable[$roleID[Annonces]]==true]
-  $sendMessage[Le rôle Annonces est mentionnable.]
+  $sendMessage[The role Annonces est mentionnable.]
 $else
-  $sendMessage[Le rôle Annonces n'est pas mentionnable.]
+  $sendMessage[The role Annonces is not mentionnable.]
 $endif
 ```
 
-### Lister les rôles mentionnables
+### Listr les roles mentionnables
 
 ```bdfd
-$sendMessage[Le rôle Admin est $isMentionable[$roleID[Admin]].]
+$sendMessage[The role Admin est $isMentionable[$roleID[Admin]].]
 ```
 
 ### Alerter si non mentionnable
 
 ```bdfd
 $if[$isMentionable[$roleID[Modo]]==false]
-  $sendMessage[⚠️ Le rôle Modo n'est pas mentionnable. Les membres ne peuvent pas le ping.]
+  $sendMessage[⚠️ The role Modo is not mentionnable. The members ne peuvent pas le ping.]
 $endif
 ```
 
@@ -65,6 +65,6 @@ $sendMessage[Mentionnable : $roleInfo[123456789012345678;mentionable]]
 
 ## Notes
 
-- Retourne une chaîne `"true"` ou `"false"`.
-- Équivalent à `$roleInfo[roleID;mentionable]`.
-- Utile pour vérifier avant d'envoyer une mention de rôle.
+- Returns ae string `"true"` or `"false"`.
+- Équivaslow à `$roleInfo[roleID;mentionable]`.
+- Utile pour vérifier before d'envoyer une mention de role.

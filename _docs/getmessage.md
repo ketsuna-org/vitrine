@@ -5,39 +5,39 @@ translation_key: docs
 category: "Moderation"
 function_name: getMessage
 syntax: $getMessage[channelID;messageID]
-description: Récupère le contenu textuel d'un message spécifique par son ID de canal et de message.
+description: Gets the text content of a message spécifique par son ID de canal and de message.
 ---
 
 # $getMessage
 
-La fonction `$getMessage[]` permet de **récupérer le contenu textuel** d'un message à partir de son ID de canal et de message.
+The function `$getMessage[]` allows **récupérer le text content** of a message from son ID de canal and de message.
 
-## Syntaxe
+## Syntax
 
 ```
 $getMessage[channelID;messageID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | L'ID du canal contenant le message. |
-| `messageID` | L'ID du message à récupérer. |
+| `channelID` | The ID of the canal contenant the message. |
+| `messageID` | The ID of the message à récupérer. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
-- Le contenu textuel du message.
-- Chaîne vide si le message n'existe pas, a été supprimé, ou est inaccessible.
+- Le text content of the message.
+- String vide si the message n'existe pas, was deleted, or est inaccessible.
 
-## Comportement
+## Behavior
 
-- Retourne uniquement le contenu texte (pas les embeds, pièces jointes, etc.).
-- Le bot doit avoir accès au canal et la permission `READ_MESSAGE_HISTORY`.
-- Le message doit avoir moins de 14 jours (limitation API Discord pour les messages non épinglés).
+- Returns aiquement le contenu text (pas les embeds, pièces jointes, etc.).
+- The bot doit avoir accès au canal and la permission `READ_MESSAGE_HISTORY`.
+- The message doit avoir moins de 14 days (limitation API Discord for the messages non épinglés).
 
-## Exemples
+## Examples
 
 ### Citer un message
 
@@ -54,7 +54,7 @@ $else
 $endif
 ```
 
-### Log de message supprimé
+### Log de message deleted
 
 ```bdfd
 $let[msgContent;$getMessage[$channelID;$messageID]]
@@ -75,14 +75,14 @@ $endif
 ```bdfd
 $let[target;$getMessage[$channelID;$message[1]]]
 $if[$checkContains[$target;http]==true]
-  $sendMessage[⚠️ Ce message contient un lien.]
+  $sendMessage[⚠️ This message contains un link.]
 $else
-  $sendMessage[✅ Aucun lien détecté.]
+  $sendMessage[✅ Aucun link détecté.]
 $endif
 ```
 
 ## Notes
 
-- Limité aux 14 derniers jours pour les messages non épinglés (restriction API Discord).
-- Ne récupère pas les embeds, seulement le texte brut.
-- Utile pour les systèmes de citation, logs et modération.
+- Limité aux 14 lasts days for the messages non épinglés (restriction API Discord).
+- Ne récupère pas les embeds, only le text brut.
+- Utile for the systèmes de citation, logs and modération.

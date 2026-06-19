@@ -5,46 +5,46 @@ translation_key: docs
 category: "Moderation"
 function_name: editThread
 syntax: $editThread[threadID;name;(archived);(locked);(autoArchiveDuration)]
-description: "Modifie les propriétés d'un fil de discussion existant : nom, statut d'archivage, verrouillage et durée d'archivage automatique."
+description: "Modifies thes propertys d'un fil de discussion existing : nom, status d'archivage, verrouillage and durée d'archivage automatique."
 ---
 
 # $editThread
 
-La fonction `$editThread[]` permet de **modifier les propriétés d'un thread** existant : nom, archivage, verrouillage et durée d'archivage.
+The `$editThread[]` function **modifier les propertys d'un thread** existing : nom, archivage, verrouillage and durée d'archivage.
 
-## Syntaxe
+## Syntax
 
 ```
 $editThread[threadID;name;(archived);(locked);(autoArchiveDuration)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `threadID` | L'ID du thread à modifier. |
-| `name` | Nouveau nom du thread (1 à 100 caractères). |
-| `archived` | Optionnel - `true` pour archiver, `false` pour désarchiver. |
-| `locked` | Optionnel - `true` pour verrouiller, `false` pour déverrouiller. |
-| `autoArchiveDuration` | Optionnel - Nouvelle durée : 60, 1440, 4320 ou 10080 minutes. |
+| `threadID` | The ID of the thread to modify. |
+| `name` | New nom du thread (1 à 100 becauseactères). |
+| `archived` | Optional - `true` pour archiver, `false` pour désarchiver. |
+| `locked` | Optional - `true` pour verrouiller, `false` pour déverrouiller. |
+| `autoArchiveDuration` | Optional - New durée : 60, 1440, 4320 or 10080 minutes. |
 
-## Valeur de retour
+## Return value
 
-Cette fonction ne retourne pas de valeur.
+Cette function does not return a value.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `MANAGE_THREADS`.
-- L'archivage cache le thread de la liste des threads actifs.
-- Le verrouillage empêche les nouveaux messages dans le thread.
+- The bot must have the permission `MANAGE_THREADS`.
+- L'archivage cache le thread de la list des threads actifs.
+- Le verrouillage empêche les newx messages in the thread.
 
-## Exemples
+## Examples
 
 ### Fermer un thread de support
 
 ```bdfd
-$editThread[$threadID;[$résolu] Support;true;true]
-$channelSendMessage[$threadID;Ce thread a été marqué comme résolu et verrouillé.]
+$editThread[$threadID;[$resolved] Support;true;true]
+$channelSendMessage[$threadID;Ce thread has been marqué comme resolved and verrouillé.]
 $sendMessage[Thread fermé.]
 ```
 
@@ -65,6 +65,6 @@ $sendMessage[Thread renommé en : $newName]
 
 ## Notes
 
-- Un thread archivé ne peut pas recevoir de nouveaux messages tant qu'il n'est pas désarchivé.
-- Les threads verrouillés peuvent être déverrouillés avec `locked=false`.
-- La durée d'archivage est ignorée si le thread est déjà archivé manuellement.
+- Un thread archivé cannot recevoir de newx messages tant qu'il is not désarchivé.
+- Les threads verrouillés can be déverrouillés avec `locked=false`.
+- The duration d'archivage is ignorede if the thread est déjà archivé manually.

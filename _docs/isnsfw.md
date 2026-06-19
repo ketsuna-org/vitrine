@@ -5,53 +5,53 @@ translation_key: docs
 category: "Math & Text"
 function_name: isNSFW
 syntax: $isNSFW[channelID]
-description: Vérifie si un canal est marqué comme NSFW.
+description: Checks if un canal est marqué comme NSFW.
 ---
 
 # $isNSFW
 
-La fonction `$isNSFW[channelID]` **vérifie si un canal Discord est marqué comme NSFW** (Not Safe For Work).
+The function `$isNSFW[channelID]` **vérifie if a canal Discord est marqué comme NSFW** (Not Safe For Work).
 
-## Syntaxe
+## Syntax
 
 ```
 $isNSFW[channelID]
 ```
 
-Ou sans paramètre pour le canal courant :
+Ou without parameter for the canal courant :
 
 ```
 $isNSFW
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel - L'ID du canal. Défaut : canal où la commande est exécutée. |
+| `channelID` | Optional - The ID of the canal. Default: canal où the command est executed. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Booléen
-- `true` si le canal est marqué NSFW.
-- `false` si le canal n'est pas NSFW ou est introuvable.
+- **Type** : Boolean
+- `true` if the canal est marqué NSFW.
+- `false` if the canal is not NSFW or est introuvable.
 
-## Comportement
+## Behavior
 
-- Vérifie l'attribut `nsfw` du canal Discord.
-- Les canaux NSFW sont restreints aux utilisateurs de plus de 18 ans.
-- Fonctionne uniquement dans les serveurs (pas en DM).
+- Checks l'attribute `nsfw` du canal Discord.
+- Les canaux NSFW sont restreints aux users moreover de 18 ans.
+- Functionne only in thes servers (pas en DM).
 
-## Exemples
+## Examples
 
-### Commande restreinte
+### Command restreinte
 
 ```bdfd
 $if[$isNSFW==true]
   ;; Afficher le contenu NSFW
   $sendMessage[🔞 Contenu NSFW...]
 $else
-  $sendMessage[❌ Cette commande ne peut être utilisée que dans un canal NSFW.]
+  $sendMessage[❌ Cette command ne can be utilisée que dans un canal NSFW.]
 $endif
 ```
 
@@ -75,12 +75,12 @@ $var[canal;$message[1]]
 $if[$isNSFW[$var[canal]]==true]
   $sendMessage[🔞 Le canal <#$var[canal]> est NSFW.]
 $else
-  $sendMessage[✅ Le canal <#$var[canal]> n'est pas NSFW.]
+  $sendMessage[✅ Le canal <#$var[canal]> is not NSFW.]
 $endif
 ```
 
 ## Notes
 
-- Sans paramètre, vérifie le canal où la commande est exécutée.
-- En DM, la fonction retourne toujours `false`.
-- Pour modifier le statut NSFW d'un canal, utilisez `$modifyChannel[]`.
+- Sans parameter, vérifie le canal où the command est executed.
+- En DM, the function retourne toudays `false`.
+- Pour modifier le status NSFW d'un canal, utilisez `$modifyChannel[]`.

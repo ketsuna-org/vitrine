@@ -5,67 +5,67 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleColor
 syntax: $roleColor[roleID;(guildID)]
-description: Retourne la couleur d'un rôle Discord en hexadécimal.
+description: Returns the couleur of a role Discord en hexadecimal.
 ---
 
 # $roleColor
 
-La fonction `$roleColor` retourne la **couleur** d'un rôle Discord au format hexadécimal. Si le rôle n'a pas de couleur définie, elle retourne une chaîne vide.
+The function `$roleColor` retourne la **couleur** of a role Discord au format hexadecimal. Si the role n'a pas de couleur définie, elle retourne une string vide.
 
-## Syntaxe
+## Syntax
 
 ```
 $roleColor[roleID;(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `roleID` | L'ID du rôle. Obligatoire. |
-| `guildID` | Optionnel. L'ID du serveur cible. |
+| `roleID` | The ID of the role. Required. |
+| `guildID` | Optional. The ID of the server cible. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | La couleur en hexadécimal (ex: `#5865F2`), ou `""` si pas de couleur. |
+| `string` | The color en hexadecimal (ex: `#5865F2`), or `""` si pas de couleur. |
 
-## Exemples
+## Examples
 
-### Afficher la couleur
+### Afficher the color
 
 ```bdfd
-$sendMessage[Couleur du rôle Admin : $roleColor[$roleID[Admin]]]
+$sendMessage[Couleur of the role Admin : $roleColor[$roleID[Admin]]]
 ```
 
-### Embed coloré selon le rôle
+### Embed coloré selon the role
 
 ```bdfd
-$title[Rôle $roleName[$getRole[$authorID;1]]]
-$description[Voici votre rôle principal.]
+$title[Role $roleName[$getRole[$authorID;1]]]
+$description[Voici votre role principal.]
 $color[$roleColor[$getRole[$authorID;1]]]
 $sendMessage[]
 ```
 
-### Vérifier si le rôle a une couleur
+### Vérifier si the role a une couleur
 
 ```bdfd
-$if[$roleColor[$roleID[Membre]]!=]
-  $sendMessage[Couleur : $roleColor[$roleID[Membre]]]
+$if[$roleColor[$roleID[Member]]!=]
+  $sendMessage[Couleur : $roleColor[$roleID[Member]]]
 $else
-  $sendMessage[Ce rôle n'a pas de couleur.]
+  $sendMessage[Ce role n'a pas de couleur.]
 $endif
 ```
 
-### Couleur du rôle d'un utilisateur
+### Couleur of the role of a user
 
 ```bdfd
-$sendMessage[Votre couleur de rôle : $colorRole[$authorID]]
+$sendMessage[Votre couleur de role : $colorRole[$authorID]]
 ```
 
 ## Notes
 
-- La couleur est retournée avec le préfixe `#`.
-- Si le rôle n'a pas de couleur, la valeur est une chaîne vide (`""`).
-- Pour obtenir la couleur du rôle le plus haut d'un utilisateur, utilisez `$colorRole`.
+- The color est retournée with the préfixe `#`.
+- Si the role n'a pas de couleur, the value est une string vide (`""`).
+- Pour obtenir the color of the role le plus haut of a user, utilisez `$colorRole`.

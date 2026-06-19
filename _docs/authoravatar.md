@@ -5,32 +5,32 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorAvatar
 syntax: $authorAvatar
-description: Retourne l'URL de l'avatar global de l'auteur du message qui a déclenché la commande.
+description: Returns the URL of the avatar global de the author of the message qui a déclenché la command.
 ---
 
 # $authorAvatar
 
-La variable `$authorAvatar` retourne l'**URL de l'avatar global** de l'auteur du message qui a déclenché la commande.
+The variable `$authorAvatar` returns the **URL of the avatar global** de the author of the message qui a déclenché la command.
 
-## Syntaxe
+## Syntax
 
 ```
 $authorAvatar
 ```
 
-## Valeur de retour
+## Return value
 
-- **Type** : Chaîne de caractères (URL)
-- URL de l'avatar de l'auteur (CDN Discord)
-- Avatar par défaut si l'auteur n'a pas d'avatar personnalisé
+- **Type** : String de becauseactères (URL)
+- URL of the avatar de the author (CDN Discord)
+- Avatar by default if the auteur does not have d'avatar custom
 
-## Comportement
+## Behavior
 
-- `$authorAvatar` ne prend **aucun argument**.
-- Équivalent à `$userAvatar` pour les commandes textuelles.
-- L'URL pointe vers les CDN Discord.
+- `$authorAvatar` ne prend **no argument**.
+- Équivaslow à `$userAvatar` for commands textuelles.
+- The URL pointe vers les CDN Discord.
 
-## Exemples
+## Examples
 
 ### Avatar en grand
 
@@ -46,12 +46,12 @@ $sendMessage[]
 ```bdfd
 $author[$authorUsername;$authorAvatar]
 $title[Message]
-$description[Contenu du message...]
+$description[Contenu of the message...]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Profil complet
+### Profil complete
 
 ```bdfd
 $author[$authorUsername;$authorAvatar]
@@ -67,6 +67,6 @@ $sendMessage[]
 
 ## Notes
 
-- Pour l'avatar spécifique au serveur, utilisez `$userServerAvatar`.
-- Les paramètres `?size=` peuvent être ajoutés à l'URL pour changer la résolution.
-- L'avatar peut être modifié par l'utilisateur à tout moment.
+- For the avatar spécifique au server, use `$userServerAvatar`.
+- Les parameters `?size=` can be added à the URL pour changer la resolvedtion.
+- L'avatar can be modified par the user à tout moment.

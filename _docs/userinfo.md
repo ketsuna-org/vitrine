@@ -5,34 +5,34 @@ translation_key: docs
 category: "Entity Info"
 function_name: userInfo
 syntax: $userInfo[userID;(property)]
-description: Retourne un objet JSON contenant les informations d'un utilisateur, ou une propriété spécifique si demandée.
+description: Returns a JSON object contenant les informations of a user, or une property spécifique si demandée.
 ---
 
 # $userInfo
 
-La fonction `$userInfo[]` retourne un **objet JSON** contenant les informations détaillées d'un utilisateur Discord, ou une propriété spécifique extraite de cet objet.
+The function `$userInfo[]` retourne un **JSON object** contenant les informations détaillées of a user Discord, or une property spécifique extractede de cet object.
 
-## Syntaxe
+## Syntax
 
 ```
 $userInfo[userID;(property)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | Optionnel. L'ID de l'utilisateur cible. Si omis, utilise l'utilisateur déclencheur. |
-| `property` | Optionnel. Le nom d'une propriété à extraire de l'objet JSON. Si omis, retourne l'objet complet. |
+| `userID` | Optional. The ID of the user cible. Si omis, utilise the user déclencheur. |
+| `property` | Optional. The name d'une property à extraire de l'JSON object. Si omis, retourne l'object complete. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Objet JSON ou chaîne selon la propriété demandée
-- Propriétés disponibles : `id`, `username`, `discriminator`, `avatar`, `bot`, `system`, `banner`, `accent_color`, `global_name`, `display_name`, `public_flags`
+- **Type** : JSON object or string selon la property demandée
+- Propertys availables : `id`, `username`, `discriminator`, `avatar`, `bot`, `system`, `banner`, `accent_color`, `global_name`, `display_name`, `public_flags`
 
-## Exemples
+## Examples
 
-### Obtenir l'objet JSON complet
+### Obtenir l'JSON object complete
 
 ```bdfd
 $sendMessage[```json
@@ -40,10 +40,10 @@ $userInfo
 ```]
 ```
 
-### Extraire le nom global d'un utilisateur
+### Extraire the name global of a user
 
 ```bdfd
-$title[Recherche utilisateur]
+$title[Recherche user]
 $description[
 **ID :** $mentioned
 **Nom global :** $userInfo[$mentioned;global_name]
@@ -63,6 +63,6 @@ $sendMessage[Nom : $name]
 
 ## Notes
 
-- `$userInfo[]` fournit un accès unifié à toutes les propriétés d'un utilisateur.
-- Les propriétés disponibles sont les mêmes que celles de l'API Discord User Object.
-- Utile pour les intégrations avancées nécessitant des données structurées.
+- `$userInfo[]` fournit un accès unifié à all propertys of a user.
+- Les propertys availables sont les mêmes que celles de l'API Discord User Object.
+- Utile for the intégrations avancées nécessitant des datas structurées.

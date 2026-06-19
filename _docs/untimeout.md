@@ -5,30 +5,30 @@ translation_key: docs
 category: "Moderation"
 function_name: unTimeout
 syntax: $unTimeout[userID]
-description: Retire le timeout d'un utilisateur avant son expiration.
+description: Retire le timeout of a user before son expiration.
 ---
 
 # $unTimeout
 
-La fonction `$unTimeout` **retire le timeout** d'un utilisateur avant son expiration, restaurant sa capacité à envoyer des messages et parler en vocal. Le bot doit avoir la permission `ModerateMembers`.
+The function `$unTimeout` **retire le timeout** of a user before son expiration, restaurant sa capacité à envoyer des messages and parler en vocal. The bot doit avoir la permission `ModerateMembers`.
 
-## Syntaxe
+## Syntax
 
 ```
 $unTimeout[userID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur à libérer du timeout. Obligatoire. |
+| `userID` | The ID of the user à libérer du timeout. Required. |
 
-## Valeur de retour
+## Return Value
 
-Aucune. L'utilisateur est libéré du timeout.
+Aucune. The user est libéré du timeout.
 
-## Exemples
+## Examples
 
 ### Retrait simple
 
@@ -44,19 +44,19 @@ $if[$isTimedOut[$mentioned[1]]==true]
   $unTimeout[$mentioned[1]]
   $sendMessage[Timeout retiré.]
 $else
-  $sendMessage[Cet utilisateur n'est pas en timeout.]
+  $sendMessage[Cet user is not en timeout.]
 $endif
 ```
 
-### Commande de pardon
+### Command de pardon
 
 ```bdfd
 $unTimeout[$mentioned[1]]
-$sendMessage[🙏 Pardon accordé. <@$mentioned[1]> peut de nouveau participer.]
+$sendMessage[🙏 Pardon accordé. <@$mentioned[1]> peut de new participer.]
 ```
 
 ## Notes
 
-- Le bot doit avoir la permission `ModerateMembers`.
-- Utilisez `$isTimedOut` pour vérifier si un utilisateur est en timeout avant d'appeler `$unTimeout`.
-- N'a d'effet que si l'utilisateur est actuellement en timeout.
+- The bot doit avoir la permission `ModerateMembers`.
+- Utilisez `$isTimedOut` pour vérifier if a user est en timeout before d'caller `$unTimeout`.
+- N'a d'effet que si the user est currentlement en timeout.

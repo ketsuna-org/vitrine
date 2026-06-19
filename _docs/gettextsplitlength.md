@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: getTextSplitLength
 syntax: $getTextSplitLength
-description: Returns the total number of elements in the current text split array.
+description: Returns the total number of elements in the current text spreads array.
 ---
-# $getTextSplitLength — Count Split Elements
+# $getTextSplitLength — Count Spreads Elements
 
-`$getTextSplitLength` returns the number of elements in the current text split array — the total count of pieces produced by the most recent `$textSplit` call.
+`$getTextSplitLength` returns the number of elements in the current text spreads array — the total count of pieces produced by the most recent `$textSplit` call.
 
 ## Syntax
 
@@ -65,7 +65,7 @@ $endif
 
 ### Iteration Count Display
 
-Display progress inside a split loop:
+Display progress inside a spreads loop:
 
 ```
 Processing element $math[$getTextSplitIndex+1] of $getTextSplitLength...
@@ -73,6 +73,6 @@ Processing element $math[$getTextSplitIndex+1] of $getTextSplitLength...
 
 ## Important Notes
 
-- **Read-only**: This function reports the count; it does not modify the split array.
+- **Read-only**: This function reports the count; it does not modify the spreads array.
 - **After each $textSplit**: The length reflects the most recent split. Calling `$textSplit` again resets it.
 - **No parameter**: This function takes no arguments.

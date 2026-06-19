@@ -5,39 +5,39 @@ translation_key: docs
 category: "Moderation"
 function_name: checkUserPerms
 syntax: $checkUserPerms[userID;permission1;permission2;...]
-description: Vérifie si un utilisateur possède toutes les permissions spécifiées. Alias de $hasPerms. Retourne "true" ou "false".
+description: Checks if a user possède all permissions spécifiées. Alias de $hasPerms. Returns "true" or "false".
 ---
 
 # $checkUserPerms
 
-La fonction `$checkUserPerms` vérifie si un utilisateur possède toutes les permissions Discord spécifiées. C'est un **alias direct** de `$hasPerms` — les deux fonctions sont strictement identiques.
+The `$checkUserPerms` function vérifie if a user possède all permissions Discord spécifiées. This is un **alias direct** de `$hasPerms` — les two functions sont strictement identicals.
 
-## Syntaxe
+## Syntax
 
 ```
 $checkUserPerms[userID;permission1;permission2;...]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description |
+| Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID` | Snowflake | L'ID de l'utilisateur à vérifier. |
-| `permission1;permission2;...` | String[] | Permissions requises (vérification **ET**). |
+| `userID` | Snowflake | The ID of the user à vérifier. |
+| `permission1;permission2;...` | String[] | Permissions requiredes (vérification **ET**). |
 
-## Valeur de retour
+## Return value
 
-- **Type** : Chaîne `"true"` ou `"false"`
-- `"true"` : l'utilisateur possède toutes les permissions
+- **Type** : String `"true"` or `"false"`
+- `"true"` : the user possède all permissions
 - `"false"` : au moins une permission manque
 
-## Comportement
+## Behavior
 
-- Vérification **inline** : n'interrompt pas la commande.
-- Vérification de type **ET** : toutes les permissions listées sont nécessaires.
-- `Administrator` couvre toutes les permissions.
+- Vérification **inline** : n'interrompt not the command.
+- Vérification de type **ET** : all permissions listées sont nécessaires.
+- `Administrator` couvre all permissions.
 
-## Exemples
+## Examples
 
 ### Vérification inline
 
@@ -45,15 +45,15 @@ $checkUserPerms[userID;permission1;permission2;...]
 $if[$checkUserPerms[$authorID;KickMembers]==true]
   $kick[$mentioned[1]]
 $else
-  $sendMessage[❌ Permission KickMembers requise.]
+  $sendMessage[❌ Permission KickMembers requirede.]
 $endif
 ```
 
-### Vérification des permissions d'un autre utilisateur
+### Vérification of permissions d'un autre user
 
 ```bdfd
 $if[$checkUserPerms[$mentioned[1];Administrator]==true]
-  $sendMessage[⚠️ Vous ne pouvez pas agir sur un administrateur.]
+  $sendMessage[⚠️ Vous ne pouvez pas agir sur un administrator.]
   $stop
 $endif
 $ban[$mentioned[1]]
@@ -71,7 +71,7 @@ $endif
 
 ## Notes
 
-- `$checkUserPerms` et `$hasPerms` sont **interchangeables**. Utilisez la syntaxe la plus explicite pour votre contexte.
-- Pour le bot, passez `$botID` comme `userID`.
-- Pour une vérification avec interruption automatique (guard), utilisez `$onlyPerms`.
+- `$checkUserPerms` and `$hasPerms` sont **interchangeables**. Use the syntax la plus explicite pour votre context.
+- For the bot, passez `$botID` comme `userID`.
+- Pour une vérification avec interruption automatique (guard), use `$onlyPerms`.
 - Les permissions sont en **PascalCase** : `BanMembers`, `ManageMessages`, `Administrator`, etc.

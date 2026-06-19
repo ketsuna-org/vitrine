@@ -5,38 +5,38 @@ translation_key: docs
 category: "Entity Info"
 function_name: getStringSelectValue
 syntax: $getStringSelectValue[(index)]
-description: Récupère la valeur de l'option sélectionnée par l'utilisateur dans un menu de sélection de chaînes (string select menu).
+description: Gets the value de l'option selectede par the user dans un menu de sélection de strings (string select menu).
 ---
 
 # $getStringSelectValue
 
-La fonction `$getStringSelectValue[]` permet de **récupérer la valeur** de l'option choisie par l'utilisateur dans un menu de sélection de chaînes (string select menu).
+The function `$getStringSelectValue[]` allows **récupérer the value** de l'option choisie par the user dans un menu de sélection de strings (string select menu).
 
-## Syntaxe
+## Syntax
 
 ```
 $getStringSelectValue[(index)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `index` | Optionnel - L'index de la valeur sélectionnée (1 = premier). Par défaut 1. |
+| `index` | Optional - L'index de the value selectede (1 = first). Par default 1. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
-- La valeur associée à l'option du menu sélectionnée.
-- Chaîne vide si aucune option n'a été choisie.
+- The value associée à l'option du menu selectede.
+- String vide si noe option n'was choisie.
 
-## Comportement
+## Behavior
 
-- Fonctionne avec les menus créés via `$addStringSelectMenu[]`.
-- La valeur retournée correspond au second paramètre de chaque option définie dans le menu : `$addStringSelectMenu[menuID;placeholder;label1:valeur1;label2:valeur2;...]`.
-- Très utile pour déclencher des actions spécifiques selon la valeur choisie.
+- Functionne with thes menus createds via `$addStringSelectMenu[]`.
+- The value retournée correspond au second parameter de each option définie in the menu : `$addStringSelectMenu[menuID;placeholder;label1:value1;label2:value2;...]`.
+- Très utile pour déclencher des actions spécifiques selon the value choisie.
 
-## Exemples
+## Examples
 
 ### Menu de navigation simple
 
@@ -50,7 +50,7 @@ $let[action;$getStringSelectValue]
 
 $if[$action==home]
   $title[🏠 Accueil]
-  $description[Bienvenue sur le serveur !]
+  $description[Bienvenue on the server !]
   $sendMessage[]
 $elseif[$action==profile]
   $title[👤 Profil de $userName]
@@ -58,12 +58,12 @@ $elseif[$action==profile]
   $sendMessage[]
 $elseif[$action==help]
   $title[❓ Aide]
-  $description[Utilisez /help pour voir les commandes.]
+  $description[Utilisez /help pour voir les commands.]
   $sendMessage[]
 $endif
 ```
 
-### Switch basé sur la valeur
+### Switch basé sur the value
 
 ```bdfd
 $onInteraction[menu]
@@ -71,10 +71,10 @@ $let[val;$getStringSelectValue]
 
 $switch[$val]
   $case[option1]
-    Action 1 exécutée.
+    Action 1 executed.
   $break
   $case[option2]
-    Action 2 exécutée.
+    Action 2 executed.
   $break
   $default
     Aucune action correspondante.
@@ -85,5 +85,5 @@ $endSwitch
 ## Notes
 
 - L'index commence à 1.
-- Pour les menus à choix multiples, utiliser `$getStringSelectValues[]`.
-- La valeur peut être n'importe quelle chaîne définie dans le menu.
+- Pour les menus à choix multiple, utiliser `$getStringSelectValues[]`.
+- The value can be n'importe quelle string définie in the menu.

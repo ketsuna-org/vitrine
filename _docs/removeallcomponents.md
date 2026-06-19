@@ -5,96 +5,96 @@ translation_key: docs
 category: "Embed & Message"
 function_name: removeAllComponents
 syntax: $removeAllComponents
-description: Supprime tous les composants interactifs (boutons, menus, champs texte, etc.) d'un message en une seule opération.
+description: Removes all interactive components (buttons, menus, text fields, etc.) from a message in a single operation.
 ---
 
-# $removeAllComponents[] — Supprimer Tous les Composants
+# $removeAllComponents[] — Remove All Components
 
-`$removeAllComponents[]` retire l'intégralité des composants interactifs d'un message. Après cette opération, le message devient purement statique — plus aucun bouton, menu, ou champ de saisie.
+`$removeAllComponents[]` removes all interactive components from a message. After this operation, the message becomes purely static — no more buttons, menus, or input fields.
 
-## Syntaxe
+## Syntax
 
 ```
 $removeAllComponents
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+No parameters.
 
-## Valeur de retour
+## Return Value
 
-Supprime tous les composants du message, le rendant non interactif.
+Removes all components from the message, making it non-interactive.
 
-## Utilisation
+## Usage
 
-### Finalisation de formulaire
+### Form finalization
 
 ```bdfd
 $onInteraction[submit_form]
 $removeAllComponents
 $var[name;$input[name_input]]
 $var[email;$input[email_input]]
-$editMessage[✅ Formulaire soumis !
-**Nom :** $var[name]
-**Email :** $var[email]]
+$editMessage[✅ Form submitted!
+**Name:** $var[name]
+**Email:** $var[email]]
 $endInteraction
 ```
 
-### Verrouillage après expiration
+### Lock after expiration
 
 ```bdfd
 $onInteraction[timeout_event]
 $removeAllComponents
-$editMessage[⏰ Ce panneau a expiré. L'interaction n'est plus possible.]
+$editMessage[⏰ This panel has expired. Interaction is no longer possible.]
 $endInteraction
 ```
 
-### Nettoyage complet
+### Completee cleanup
 
 ```bdfd
-$addTextInput[query;Recherche;short;Rechercher...;;yes;2;100]
-$addButton[search;Rechercher;Primary;;search_btn]
-$addButton[cancel;Annuler;Danger;;cancel_btn]
+$addTextInput[query;Search;short;Search...;;yes;2;100]
+$addButton[search;Search;Primary;;search_btn]
+$addButton[cancel;Cancel;Danger;;cancel_btn]
 
 $onInteraction[search_btn]
 $removeAllComponents
 $var[query;$input[query]]
-$editMessage[Résultats pour **$var[query]** :\nAucun résultat trouvé.]
+$editMessage[Results for **$var[query]**:\nNo results found.]
 $endInteraction
 
 $onInteraction[cancel_btn]
 $removeAllComponents
-$editMessage[Recherche annulée]
+$editMessage[Search cancelled]
 $endInteraction
 ```
 
-### Panneau de configuration
+### Configuration panel
 
 ```bdfd
 $title[Configuration]
-$description[Modifiez vos paramètres]
-$addTextInput[nickname;Pseudo;short;$nickname;;no;2;32]
-$addButton[save;Enregistrer;Success;;save_config]
+$description[Modify your settings]
+$addTextInput[nickname;Nickname;short;$nickname;;no;2;32]
+$addButton[save;Save;Success;;save_config]
 
 $onInteraction[save_config]
 $removeAllComponents
 $var[nick;$input[nickname]]
-$editMessage[✅ Pseudo mis à jour : **$var[nick]**]
+$editMessage[✅ Nickname updated: **$var[nick]**]
 $endInteraction
 ```
 
-## Comparaison des fonctions de suppression
+## Comparison of removal functions
 
-| Fonction | Effet |
-|----------|-------|
-| `$removeComponent[id]` | Supprime un composant spécifique |
-| `$removeButtons` | Supprime tous les boutons uniquement |
-| `$removeAllComponents` | Supprime **tous** les composants |
+| Function | Effect |
+|----------|--------|
+| `$removeComponent[id]` | Removes a specific component |
+| `$removeButtons` | Removes all buttons only |
+| `$removeAllComponents` | Removes **all** components |
 
 ## Notes
 
-- Après `$removeAllComponents[]`, le message ne peut plus recevoir d'interactions utilisateur.
-- Utilisé pour "consommer" une interface après traitement.
-- À utiliser dans les handlers `$onInteraction` avec `$editMessage[]` ou `$sendMessage[]`.
-- Irréversible : une fois supprimés, les composants ne peuvent pas être restaurés sans renvoyer un nouveau message.
+- After `$removeAllComponents[]`, the message can no longer receive user interactions.
+- Used to "consume" an interface after processing.
+- To be used in `$onInteraction` handlers with `$editMessage[]` or `$sendMessage[]`.
+- Irreversible: once removed, components cannot be restored without sending a new message.

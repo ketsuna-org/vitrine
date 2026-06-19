@@ -5,45 +5,45 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomUserID
 syntax: $randomUserID
-description: Retourne l'ID d'un utilisateur aléatoire présent sur le serveur.
+description: Returns the ID of a random user present on the server.
 ---
 
 # $randomUserID[]
 
-La fonction `$randomUserID[]` retourne l'ID Discord (snowflake) d'un utilisateur aléatoire présent sur le serveur.
+The `$randomUserID[]` function returns the Discord ID (snowflake) of a random user present on the server.
 
-## Syntaxe
+## Syntax
 
 ```
 $randomUserID
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note:** This function takes no parameters.
 
-## Valeur de retour
+## Return Value
 
-L'ID Discord (snowflake) d'un utilisateur aléatoire du serveur, sous forme de chaîne de caractères.
+The Discord ID (snowflake) of a random user on the server, as a string.
 
-## Différence avec `$randomUser[]`
+## Difference with `$randomUser[]`
 
-`$randomUser[]` et `$randomUserID[]` retournent la même valeur : l'ID utilisateur. La distinction est purement sémantique. Utilisez `$randomUserID[]` lorsque vous souhaitez explicitement manipuler l'ID.
+`$randomUser[]` and `$randomUserID[]` return the same value: the user ID. The distinction is purely semantic. Use `$randomUserID[]` when you explicitly want to manipulate the ID.
 
-## Exemples
+## Examples
 
-### Obtenir un ID aléatoire
+### Get a random ID
 
 ```bdfd
-ID utilisateur aléatoire : $randomUserID
+Random user ID: $randomUserID
 ```
 
-### Stocker dans une variable
+### Store in a variable
 
 ```bdfd
 $let[winner;$randomUserID]
-Le gagnant est : <@$get[winner]>
+The winner is: <@$get[winner]>
 ```
 
 ## Notes
 
-- L'utilisateur est choisi parmi les membres du serveur.
-- Pour mentionner directement l'utilisateur, utilisez `$randomMention[]`.
+- The user is chosen from the server members.
+- To directly mention the user, use `$randomMention[]`.

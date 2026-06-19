@@ -41,7 +41,7 @@ Most `$awaitFunc` implementations have a timeout (typically 60 seconds). If no m
 ```
 $awaitFunc[button;$authorID]
 $if[$awaitTimedOut==true]
-$sendMessage[⏰ Délai dépassé.]
+$sendMessage[⏰ Delay dépassé.]
 $stop
 $endif
 ```
@@ -58,5 +58,5 @@ $sendMessage[Que voulez-vous faire ?]
 $addButton[yes;✅ Oui]
 $addButton[no;❌ Non]
 $awaitFunc[button;$authorID]
-$sendMessage[Vous avez cliqué sur un bouton !]
+$sendMessage[Vous avez cliqué sur a button !]
 ```

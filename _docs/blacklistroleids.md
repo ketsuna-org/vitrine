@@ -5,42 +5,42 @@ translation_key: docs
 category: "Moderation"
 function_name: blacklistRoleIDs
 syntax: $blacklistRoleIDs[roleID1;roleID2;...;(errorMessage)]
-description: Fonction guard qui blackliste des rôles par ID. Alias de $blacklistRoles.
+description: Function guard qui blacklist of roles by ID. Alias de $blacklistRoles.
 ---
 
 # $blacklistRoleIDs
 
-La fonction guard `$blacklistRoleIDs` bloque l'exécution de la commande si l'utilisateur possède l'un des rôles blacklistés. C'est un alias direct de `$blacklistRoles`.
+The function guard `$blacklistRoleIDs` bloque l'execution of the command if the user possède l'un of roles blacklistés. This is un alias direct de `$blacklistRoles`.
 
-## Syntaxe
+## Syntax
 
 ```
 $blacklistRoleIDs[roleID1;roleID2;...;(errorMessage)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description |
+| Parameter | Type | Description |
 |-----------|------|-------------|
-| `roleID1;roleID2;...` | Snowflake[] | IDs des rôles blacklistés. |
-| `errorMessage` | String (optionnel) | Message si l'utilisateur a un rôle blacklisté. |
+| `roleID1;roleID2;...` | Snowflake[] | IDs of roles blacklistés. |
+| `errorMessage` | String (optional) | Message if the user a a role blacklisté. |
 
-## Comportement
+## Behavior
 
-- Vérifie les rôles de l'utilisateur.
-- Vérification de type **OU** : un seul rôle blacklisté suffit.
+- Checks les roles of the user.
+- Vérification de type **OU** : a singthe role blacklisté suffit.
 - Alias exact de `$blacklistRoles`.
 
-## Exemples
+## Examples
 
-### Rôle Muted
+### Role Muted
 
 ```bdfd
 $blacklistRoleIDs[123456789012345678;❌ Vous êtes mute.]
 $sendMessage[Traitement OK.]
 ```
 
-### Multi-rôles
+### Multi-roles
 
 ```bdfd
 $blacklistRoleIDs[111;222;333;❌ Accès refusé.]
@@ -49,6 +49,6 @@ $sendMessage[OK.]
 
 ## Notes
 
-- `$blacklistRoleIDs` et `$blacklistRoles` sont interchangeables.
-- Pour whitelister des rôles, utilisez `$onlyForRoleIDs`.
-- Pour les gros serveurs, stockez les IDs dans une variable (`$getServerVar`) pour une maintenance facilitée.
+- `$blacklistRoleIDs` and `$blacklistRoles` sont interchangeables.
+- Pour whitelistr of roles, use `$onlyForRoleIDs`.
+- For gros servers, stockez les IDs dans a variable (`$getServerVar`) for ae maintenance facilitée.

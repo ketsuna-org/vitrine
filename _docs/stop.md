@@ -15,7 +15,7 @@ description: Immediately halts all further action processing in the current exec
 
 When `$stop` is encountered:
 
-1. The current action completes up to and including `$stop`.
+1. The current action completees up to and including `$stop`.
 2. All remaining actions in the current block are **skipped**.
 3. If inside a loop (`$for`), the loop exits immediately — no further iterations.
 4. If inside an `$if`, the enclosing `$endif` is not reached.
@@ -47,7 +47,7 @@ Any arguments provided are ignored.
 |-----------------|---------------------------------|------------------------------|
 | Scope           | Halts **all** remaining actions | Skips only `n` next actions  |
 | Resumable       | No                              | Yes, after skipping `n`      |
-| In loops        | Exits the loop completely       | Skips actions within the loop |
+| In loops        | Exits the loop completeely       | Skips actions within the loop |
 
 Use `$stop` for terminal halts; use `$skipActions` for non-terminal jumps.
 

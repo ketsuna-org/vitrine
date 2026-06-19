@@ -5,32 +5,32 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalRadioGroup
 syntax: $addModalRadioGroup[customId;label;(required)]
-description: Crée un groupe de boutons radio dans un modal. L'utilisateur ne peut sélectionner qu'une seule option à la fois. Les options sont ajoutées avec $addRadioGroupOption[].
+description: Crée a group de radio buttons in a modal. The user ne peut selectionner qu'a single option à la fois. The options sont ajoutées avec $addRadioGroupOption[].
 ---
 
-# $addModalRadioGroup[] — Groupe de Boutons Radio
+# $addModalRadioGroup[] — Groupe de Buttons Radio
 
-`$addModalRadioGroup[]` crée un conteneur de boutons radio dans un modal. Contrairement aux cases à cocher, un seul choix peut être sélectionné parmi les options du groupe.
+`$addModalRadioGroup[]` crée a container de radio buttons in a modal. Contrairement aux checkboxes, a single choix can be selectionné parmi les options of the group.
 
-## Syntaxe
+## Syntax
 
 ```
 $addModalRadioGroup[customId;label;(required)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Défaut | Description |
+| Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Oui | — | Identifiant unique du groupe. |
-| `label` | Oui | — | Étiquette au-dessus du groupe. |
-| `required` | Non | `yes` | `yes` si obligatoire. |
+| `customId` | Yes | — | Unique identifier of the group. |
+| `label` | Yes | — | Label above of the group. |
+| `required` | No | `yes` | `yes` si required. |
 
-## Valeur de retour
+## Return value
 
-Initialise un groupe radio. La valeur de l'option sélectionnée est accessible via `$input[customId]`.
+Initialise a group radio. The value of the option selectionnée est accessible via `$input[customId]`.
 
-## Utilisation
+## Usage
 
 ### Groupe radio simple
 
@@ -43,7 +43,7 @@ $addRadioGroupOption[gender;Féminin;female]
 $addRadioGroupOption[gender;Non-binaire;nb]
 ```
 
-### Groupe avec option par défaut
+### Groupe avec option by default
 
 ```bdfd
 $newModal[Préférences;pref_modal]
@@ -53,15 +53,15 @@ $addRadioGroupOption[;English;en]
 $addRadioGroupOption[;Español;es]
 ```
 
-### Récupération de la sélection
+### Récupération de la selection
 
 ```bdfd
 $onInteraction[signup_submit]
 $var[gender;$input[gender]]
 $if[$var[gender]==male]
-  $sendMessage[Bienvenue sur le serveur !]
+  $sendMessage[Bienvenue on the server !]
 $elseif[$var[gender]==female]
-  $sendMessage[Bienvenue sur le serveur !]
+  $sendMessage[Bienvenue on the server !]
 $endif
 $endInteraction
 ```
@@ -70,12 +70,12 @@ $endInteraction
 
 | Radio Group | Checkbox Group |
 |-------------|---------------|
-| Une seule option sélectionnable | Plusieurs options sélectionnables |
-| Retourne une seule valeur | Retourne une liste de valeurs |
-| Idéal pour choix exclusifs | Idéal pour sélections multiples |
+| A single option selectionnable | Multiple options selectionnables |
+| Returns a single value | Returns a list de values |
+| Idéal pour choix excludedsifs | Idéal pour selections multiple |
 
 ## Notes
 
 - Les options sont ajoutées avec `$addRadioGroupOption[]`.
-- Comme pour les checkbox groups, le `menuId` peut être omis dans `$addRadioGroupOption[]` pour cibler le dernier groupe créé.
+- Comme for checkbox groups, le `menuId` can be omis dans `$addRadioGroupOption[]` to target le last groupe created.
 - Maximum 25 options par groupe radio.

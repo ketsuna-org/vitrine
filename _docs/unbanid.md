@@ -5,40 +5,40 @@ translation_key: docs
 category: "Moderation"
 function_name: unBanID
 syntax: $unBanID[userID]
-description: Débannit un utilisateur du serveur en utilisant uniquement son ID. Fonctionne de manière similaire à $unBan mais optimisé pour les IDs bruts.
+description: Débans a user of the server en utilisant only son ID. Functionne de manière similar à $unBan mais optimisé for the IDs bruts.
 ---
 
 # $unBanID
 
-La fonction `$unBanID[]` permet de **débannir un utilisateur par son ID**. Similaire à `$unBan[]`, elle est optimisée pour les cas où seul l'ID brut est disponible.
+The function `$unBanID[]` allows **débannir un user par son ID**. Similar à `$unBan[]`, it is optimisée for the cas où seul the ID brut is available.
 
-## Syntaxe
+## Syntax
 
 ```
 $unBanID[userID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID Discord de l'utilisateur à débannir. |
+| `userID` | The ID Discord of the user à débannir. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : String (vide en cas de succès)
-- Chaîne vide si le débannissement réussit.
-- Message d'erreur si échec (utilisateur non banni, permissions insuffisantes, etc.).
+- **Type** : String (vide en cas de success)
+- String vide if the déban réussit.
+- Error message si échec (user non banni, permissions insuffisantes, etc.).
 
-## Comportement
+## Behavior
 
-- Fonctionne de manière identique à `$unBan[]`.
-- Le bot doit avoir la permission `BAN_MEMBERS`.
-- Accepte uniquement un ID brut (pas de mention).
+- Functionne de manière identical à `$unBan[]`.
+- The bot doit avoir la permission `BAN_MEMBERS`.
+- Accepte only un ID brut (pas de mention).
 
-## Exemples
+## Examples
 
-### Débannissement depuis une liste
+### Déban dethen une list
 
 ```bdfd
 $let[bans;$getBanList[, ]]
@@ -46,21 +46,21 @@ $textSplit[$bans;, ]
   $let[userID;$splitText[$index]]
   $if[$checkCondition[$userID==$mentioned[1]]==true]
     $unBanID[$userID]
-    ✅ **$userName[$userID]** a été débanni.
+    ✅ **$userName[$userID]** was débanni.
     $break
   $endif
 $endTextSplit
 ```
 
-### Débannissement programmé
+### Déban programmé
 
 ```bdfd
 $let[target;$noMentionMessage]
 $if[$isBanned[$target]==true]
   $unBanID[$target]
-  $title[🔓 Débannissement automatique]
+  $title[🔓 Déban automatique]
   $description[
-  L'utilisateur **$target** a été débanni (fin de la durée de bannissement).
+  The user **$target** was débanni (fin de the duration de ban).
   ]
   $color[#57F287]
   $sendMessage[$channelID[mod-logs]]
@@ -69,6 +69,6 @@ $endif
 
 ## Notes
 
-- `$unBanID[]` est interchangeable avec `$unBan[]` pour les IDs bruts.
-- La différence est minime ; préférez `$unBan[]` qui gère aussi les mentions.
-- Utile pour les scripts internes où seul l'ID est connu.
+- `$unBanID[]` est interchangeable avec `$unBan[]` for the IDs bruts.
+- La différence est minime ; préférez `$unBan[]` qui gère also les mentions.
+- Utile for the scripts internals où seul the ID est connu.

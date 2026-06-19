@@ -5,51 +5,51 @@ translation_key: docs
 category: "Entity Info"
 function_name: mentionedChannels
 syntax: $mentionedChannels
-description: Retourne la liste des IDs des salons mentionnés dans le message (via #salon), séparés par des virgules.
+description: Returns the list des IDs des channels mentionnés in the message (via #channel), separateds par des virgules.
 ---
 
 # $mentionedChannels
 
-La variable `$mentionedChannels` retourne la **liste des IDs des salons mentionnés** dans le message, via la syntaxe `#salon`.
+The variable `$mentionedChannels` retourne la **list des IDs des channels mentionnés** in the message, via la syntaxe `#channel`.
 
-## Syntaxe
+## Syntax
 
 ```
 $mentionedChannels
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Liste de snowflakes séparés par des virgules
-- Exemple : `123456789,987654321`
-- Chaîne vide si aucun salon n'est mentionné
+- **Type** : List de snowflakes separateds par des virgules
+- Example: `123456789,987654321`
+- String vide si no channel n'est mentionné
 
-## Comportement
+## Behavior
 
-- `$mentionedChannels` ne prend **aucun argument**.
-- Détecte les mentions de salon au format `#nom-du-salon`.
-- Retourne les IDs des salons mentionnés.
+- `$mentionedChannels` ne prend **no argument**.
+- Détecte les mentions de channel au format `#nom-du-channel`.
+- Returns thes IDs des channels mentionnés.
 
-## Exemples
+## Examples
 
-### Vérifier les salons mentionnés
+### Vérifier les channels mentionnés
 
 ```bdfd
 $if[$mentionedChannels!=]
   $let[channels;$splitText[$mentionedChannels;,]]
   $let[count;$arrayCount[$channels]]
-  $sendMessage[$count salon(s) mentionné(s).]
+  $sendMessage[$count channel(s) mentionné(s).]
 $else
-  $sendMessage[Aucun salon mentionné dans ce message.]
+  $sendMessage[Aucun channel mentionné dans this message.]
 $endif
 ```
 
-### Agir sur le premier salon mentionné
+### Agir sur le first channel mentionné
 
 ```bdfd
 $if[$mentionedChannels!=]
   $let[firstChannel;$splitText[$mentionedChannels;,;1]]
-  $sendMessage[Premier salon mentionné : <#$firstChannel>]
+  $sendMessage[Premier channel mentionné : <#$firstChannel>]
 $endif
 ```
 
@@ -64,6 +64,6 @@ $endif
 
 ## Notes
 
-- Les mentions de salon utilisent le format `#nom-salon` dans Discord.
+- Les mentions de channel utilisent le format `#nom-channel` dans Discord.
 - Les IDs retournés sont des snowflakes numériques.
-- Pour obtenir le nom d'un salon à partir de son ID, utilisez `$channelName[ID]`.
+- Pour obtenir the name of a channel from son ID, utilisez `$channelName[ID]`.

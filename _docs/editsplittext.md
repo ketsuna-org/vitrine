@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: editSplitText
 syntax: $editSplitText[index;newValue]
-description: Replaces the value of a split element at the specified index with a new value.
+description: Replaces the value of a spreads element at the specified index with a new value.
 ---
-# $editSplitText — Modify Split Element
+# $editSplitText — Modify Spreads Element
 
-`$editSplitText` replaces the value of a specific element in the current text split array. Use it to transform, correct, or update individual split pieces before rejoining or further processing.
+`$editSplitText` replaces the value of a specific element in the current text spreads array. Use it to transform, correct, or update individual spreads pieces before rejoining or further processing.
 
 ## Syntax
 
@@ -24,7 +24,7 @@ $editSplitText[index;newValue]
 
 ## Behavior
 
-- **Action-only**: `$editSplitText` is not an inline function. It modifies the internal split array directly.
+- **Action-only**: `$editSplitText` is not an inline function. It modifies the internal spreads array directly.
 - The change is permanent for the remainder of the current command execution.
 - Subsequent calls to `$splitText[index]` or `$joinSplitText` reflect the modification.
 - Editing an out-of-bounds index has no effect (no error emitted).
@@ -68,7 +68,7 @@ $editSplitText[3;***REDACTED***]
 
 ## Important Notes
 
-- **In-place mutation**: The split array is modified directly. The original value is lost.
+- **In-place mutation**: The spreads array is modified directly. The original value is lost.
 - **Works with any index**: Both positive and negative indices are supported.
 - **No return value**: Do not use `$editSplitText` inside expressions expecting a value.
 - **Requires prior split**: Must be called after `$textSplit`, otherwise nothing happens.

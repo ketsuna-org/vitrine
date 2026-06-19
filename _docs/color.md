@@ -5,41 +5,41 @@ translation_key: docs
 category: "Embed & Message"
 function_name: color
 syntax: $color[hexColor;(embedIndex)]
-description: Définit la couleur de la barre latérale gauche d'un embed Discord. La couleur peut être spécifiée en hexadécimal ou en entier décimal.
+description: Sets the couleur de la barre latérale gauche of a Discord embed. The color can be spécifiée en hexadecimal or en integer decimal.
 ---
 
 # $color[]
 
-La fonction `$color[]` définit la **couleur** de la barre latérale gauche d'un embed Discord. Cette barre colorée permet de catégoriser visuellement vos embeds (succès, erreur, info, etc.).
+The `$color[]` function définit la **couleur** de la barre latérale gauche of a Discord embed. Cette barre colorée allows catégoriser visually vos embeds (success, error, info, etc.).
 
-## Syntaxe
+## Syntax
 
 ```
 $color[hexColor;(embedIndex)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `hexColor` | Code couleur au format hexadécimal (`FF0000`, `#5865F2`) ou entier décimal. |
-| `embedIndex` | Optionnel. Index de l'embed à modifier (0 par défaut). |
+| `hexColor` | Code couleur in the format hexadecimal (`FF0000`, `#5865F2`) or integer decimal. |
+| `embedIndex` | Optional. Index of the embed to modify (0 by default). |
 
-## Valeur de retour
+## Return value
 
-Cette fonction ne retourne rien : elle modifie la réponse en cours de construction.
+Cette function returns nothing : elle modifie the response in progress de construction.
 
 ## Formats acceptés
 
-| Format | Exemple | Résultat |
+| Format | Example | Result |
 |---|---|---|
-| Hexadécimal avec # | `#5865F2` | Bleu Discord |
-| Hexadécimal sans # | `5865F2` | Bleu Discord |
-| Entier décimal | `5793266` | Bleu Discord |
+| Hexadecimal avec # | `#5865F2` | Bleu Discord |
+| Hexadecimal without # | `5865F2` | Bleu Discord |
+| Integer decimal | `5793266` | Bleu Discord |
 
 ## Couleurs courantes
 
-| Nom | Code hex | Entier |
+| Nom | Code hex | Integer |
 |---|---|---|
 | Bleu Discord | `#5865F2` | 5793266 |
 | Rouge | `#ED4245` | 15548997 |
@@ -49,37 +49,37 @@ Cette fonction ne retourne rien : elle modifie la réponse en cours de construct
 | Blanc | `#FFFFFF` | 16777215 |
 | Noir | `#000000` | 0 |
 
-## Exemples
+## Examples
 
 ### Embed bleu (information)
 
 ```bdfd
 $title[Information]
-$description[Votre profil a été mis à jour.]
+$description[Votre profil has been mis à day.]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Embed rouge (erreur)
+### Embed rouge (error)
 
 ```bdfd
-$title[Erreur]
-$description[Vous n'avez pas la permission d'utiliser cette commande.]
+$title[Error]
+$description[Vous n'avez pas the permission d'utiliser cette command.]
 $color[#ED4245]
 $sendMessage[]
 ```
 
-### Embed vert (succès)
+### Embed vert (success)
 
 ```bdfd
-$title[Succès]
-$description[L'opération a été effectuée avec succès !]
+$title[Success]
+$description[L'opération has been effectuée avec success !]
 $color[#57F287]
 $sendMessage[]
 ```
 
 ## Notes
 
-- Si `$color[]` n'est pas appelé, l'embed n'aura pas de barre de couleur (barre transparente).
-- Le préfixe `#` est optionnel.
-- Les lettres hexadécimales ne sont pas sensibles à la casse : `#ff0000` équivaut à `#FF0000`.
+- Si `$color[]` is not callé, the embed n'aura no barre de couleur (barre transparente).
+- Le préfixe `#` is optional.
+- Les lettres hexadecimales are not sensibles à la casse : `#ff0000` équivaut à `#FF0000`.

@@ -5,33 +5,33 @@ translation_key: docs
 category: "Math & Text"
 function_name: log
 syntax: $log[value]
-description: Calcule le logarithme naturel (base e) d'un nombre.
+description: Calculates the logarithme naturel (base e) d'un number.
 ---
 
 # $log[]
 
-La fonction `$log[]` calcule le **logarithme naturel** (ou logarithme népérien, noté `ln`), c'est-à-dire le logarithme en base `e` (≈ 2.71828).
+The function `$log[]` calcule le **logarithme naturel** (or logarithme népérien, noté `ln`), it is-à-dire le logarithme en base `e` (≈ 2.71828).
 
-## Syntaxe
+## Syntax
 
 ```
-$log[valeur]
+$log[value]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type   | Obligatoire | Description                                        |
+| Parameter | Type   | Required | Description                                        |
 |-----------|--------|-------------|----------------------------------------------------|
-| `valeur`  | number | Oui         | Le nombre dont on veut le logarithme. Doit être > 0. |
+| `value`  | number | Yes         | The namebre dont on veut le logarithme. Doit être > 0. |
 
-## Comportement
+## Behavior
 
-- Retourne le logarithme naturel de la valeur sous forme de nombre décimal (double précision).
-- `$log[1]` → `0` (car e^0 = 1).
-- `$log[e]` → `1` (car e^1 = e).
-- Pour `0` ou les nombres négatifs, le comportement est indéfini (peut retourner `-Infinity`, `NaN` ou une erreur).
+- Returns the logarithme naturel de the value sous forme de decimal number (double précision).
+- `$log[1]` → `0` (because e^0 = 1).
+- `$log[e]` → `1` (because e^1 = e).
+- Pour `0` or les numbers négatifs, le comportement est indéfini (peut retourner `-Infinity`, `NaN` or une error).
 
-## Exemples
+## Examples
 
 **Logarithme de 1 :**
 ```
@@ -45,7 +45,7 @@ $log[2.718281828]
 → ~1
 ```
 
-**Logarithme d'un grand nombre :**
+**Logarithme d'un grand number :**
 ```
 $log[1000]
 → 6.907755...
@@ -62,5 +62,5 @@ $log[0.5]
 - C'est le logarithme **naturel** (base e), pas le logarithme base 10.
 - Pour le logarithme base 10, utilisez dans `$calculate[]` : `$calculate[log10(value)]`.
 - Pour le logarithme dans une base arbitraire, utilisez la formule : `log_b(a) = ln(a) / ln(b)`, soit `$calculate[log(a) / log(b)]`.
-- La fonction inverse est l'exponentielle : `$calculate[exp(value)]`.
+- The function inverse est l'exponentielle : `$calculate[exp(value)]`.
 - La précision est celle d'un `double` Java (~15 chiffres significatifs).

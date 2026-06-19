@@ -5,45 +5,45 @@ translation_key: docs
 category: "Moderation"
 function_name: addCmdReactions
 syntax: $addCmdReactions[emoji1;emoji2;...]
-description: Ajoute une ou plusieurs réactions au message de commande de l'utilisateur (le message qui a déclenché la commande).
+description: Adds an or multiple réactions au message de command of the user (the message qui a déclenché la command).
 ---
 
 # $addCmdReactions
 
-La fonction `$addCmdReactions[]` permet d'**ajouter des réactions directement au message de l'utilisateur** qui a déclenché la commande.
+The `$addCmdReactions[]` function **ajouter of reactions directly au message of the user** qui a déclenché la command.
 
-## Syntaxe
+## Syntax
 
 ```
 $addCmdReactions[emoji1;emoji2;...]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `emoji1;emoji2;...` | Liste d'émojis séparés par `;`. Supporte les émojis Unicode et personnalisés. |
+| `emoji1;emoji2;...` | List d'emojis separateds par `;`. Supporte les emojis Unicode and customs. |
 
-## Valeur de retour
+## Return value
 
-Cette fonction ne retourne pas de valeur. Les réactions sont ajoutées au message de commande.
+Cette function does not return a value. The réactions sont ajoutées au message de command.
 
-## Comportement
+## Behavior
 
-- Contrairement à `$addReactions[]`, cette fonction cible le message **déclencheur** (message de l'utilisateur).
-- Utile pour donner un feedback visuel rapide sans envoyer de message.
-- Le bot doit avoir la permission `ADD_REACTIONS` dans le canal.
+- Contrairement à `$addReactions[]`, cette function cible the message **déclencheur** (message of the user).
+- Utile pour donner un feedback visuel fast without envoyer de message.
+- The bot must have the permission `ADD_REACTIONS` in the channel.
 
-## Exemples
+## Examples
 
-### Feedback silencieux
+### Sislow feedback
 
 ```bdfd
 $addCmdReactions[✅]
 $suppressErrors[Action effectuée.]
 ```
 
-### Feedback conditionnel
+### Conditional feedback
 
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
@@ -51,11 +51,11 @@ $if[$checkContains[$userPerms;Administrator]==true]
   $ban[$mentioned[1]]
 $else
   $addCmdReactions[❌]
-  $ephemeral[Vous n'avez pas la permission.]
+  $ephemeral[Vous n'avez pas the permission.]
 $endif
 ```
 
-### Indicateur de progression
+### Progress indicator
 
 ```bdfd
 $addCmdReactions[⏳]
@@ -66,6 +66,6 @@ $addCmdReactions[✅]
 
 ## Notes
 
-- `$addCmdReactions[]` ne fonctionne que si le message déclencheur existe encore.
-- Ne nécessite pas d'envoyer un message de réponse.
-- Idéal pour les commandes rapides où un simple émoji suffit comme confirmation.
+- `$addCmdReactions[]` ne functionne que if the message déclencheur existe encore.
+- Ne requires pas d'envoyer a message de response.
+- Idéal for commands fasts où un simple emoji suffit comme confirmation.

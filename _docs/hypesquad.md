@@ -5,40 +5,40 @@ translation_key: docs
 category: "Entity Info"
 function_name: hypeSquad
 syntax: $hypeSquad[(userID)]
-description: Retourne la maison HypeSquad à laquelle appartient l'utilisateur (Bravery, Brilliance, Balance) ou "None" s'il n'en fait pas partie.
+description: Returns the maison HypeSquad à laquelle appartient the user (Bravery, Brilliance, Balance) or "None" s'il n'en fait pas partie.
 ---
 
 # $hypeSquad
 
-La fonction `$hypeSquad[]` permet de **connaître la maison HypeSquad** d'un utilisateur Discord. Retourne `Bravery`, `Brilliance`, `Balance` ou `None`.
+The function `$hypeSquad[]` allows **connaître la maison HypeSquad** of a user Discord. Returns `Bravery`, `Brilliance`, `Balance` or `None`.
 
-## Syntaxe
+## Syntax
 
 ```
 $hypeSquad[(userID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | Optionnel - L'ID de l'utilisateur. Par défaut l'auteur de la commande. |
+| `userID` | Optional - The ID of the user. Par default l'auteur of the command. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
 - `Bravery` - Maison du Courage (violet)
 - `Brilliance` - Maison de la Brillance (orange)
 - `Balance` - Maison de l'Équilibre (vert)
-- `None` - L'utilisateur n'a pas rejoint de maison HypeSquad.
+- `None` - The user n'a pas rejoint de maison HypeSquad.
 
-## Comportement
+## Behavior
 
-- Vérifie le profil Discord de l'utilisateur pour déterminer sa maison HypeSquad.
+- Checks le profil Discord of the user pour déterminer sa maison HypeSquad.
 - La participation à HypeSquad est une option de profil Discord, distincte du programme HypeSquad Events.
-- Retourne `None` si l'utilisateur n'a pas choisi de maison.
+- Returns `None` si the user n'a pas choisi de maison.
 
-## Exemples
+## Examples
 
 ### Affichage simple
 
@@ -48,7 +48,7 @@ $description[Votre maison HypeSquad : **$hypeSquad**]
 $sendMessage[]
 ```
 
-### Emoji personnalisé selon la maison
+### Emoji custom selon la maison
 
 ```bdfd
 $let[house;$hypeSquad[$authorID]]
@@ -64,7 +64,7 @@ $else
 $endif
 ```
 
-### Fiche utilisateur complète
+### Fiche user complete
 
 ```bdfd
 $title[👤 $userName[$mentioned[1]]]
@@ -79,6 +79,6 @@ $sendMessage[]
 
 ## Notes
 
-- Nécessite que l'utilisateur ait configuré sa maison HypeSquad dans ses paramètres Discord.
+- Requires que the user ait configured sa maison HypeSquad dans their parameters Discord.
 - Distinct des badges (le badge HypeSquad est géré par `$hasBadge` / `$userBadges`).
 - Les noms de maisons sont retournés en anglais (Bravery, Brilliance, Balance).

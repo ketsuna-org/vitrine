@@ -5,64 +5,64 @@ translation_key: docs
 category: "Entity Info"
 function_name: byteCount
 syntax: $byteCount[text]
-description: Calcule et retourne le nombre d'octets (bytes) d'une chaîne de texte. Utile pour vérifier la taille d'un message avant envoi.
+description: Calculates and retourne the namebre d'octets (bytes) d'a string de text. Utile pour vérifier the size of a message before envoi.
 ---
 
 # $byteCount
 
-La fonction `$byteCount[]` permet de **calculer le nombre d'octets** (bytes) d'un texte donné. Utile pour vérifier les limites de taille des messages Discord ou évaluer le poids de données.
+The `$byteCount[]` function **calculer the namebre d'octets** (bytes) d'un text donné. Utile pour vérifier les limits de taille of messages Discord or évaluer le poids de datas.
 
-## Syntaxe
+## Syntax
 
 ```
 $byteCount[text]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `text` | Le texte dont on souhaite connaître la taille en octets. |
+| `text` | Le text dont on souhaite connaître the size en octets. |
 
-## Valeur de retour
+## Return value
 
-- **Type** : String (nombre)
-- Le nombre d'octets que représente le texte.
+- **Type** : String (number)
+- The namebre d'octets que represents le text.
 
-## Comportement
+## Behavior
 
-- Compte les octets, pas les caractères (un caractère Unicode peut valoir plusieurs octets).
-- Les caractères ASCII comptent pour 1 octet, les emojis et caractères accentués pour plus.
-- Utile pour la validation de données avant stockage ou envoi.
+- Counts the octets, pas les becauseactères (un becauseactère Unicode peut valoir multiple octets).
+- Les becauseactères ASCII comptent pour 1 octet, les emojis and becauseactères accentués pour plus.
+- Utile for the validation de datas before stockage or envoi.
 
-## Exemples
+## Examples
 
-### Vérification avant envoi
+### Vérification before envoi
 
 ```bdfd
 $let[size;$byteCount[$message]]
 $if[$size>2000]
-  $sendMessage[⚠️ Message trop long ($size octets). Limite Discord : 2000 caractères.]
+  $sendMessage[⚠️ Message trop long ($size octets). Limit Discord : 2000 becauseactères.]
 $else
   $sendMessage[$message]
 $endif
 ```
 
-### Vérification de données stockées
+### Vérification de datas stockées
 
 ```bdfd
 $let[data;$getVar[userData]]
 $let[size;$byteCount[$data]]
 
-$title[📦 Données utilisateur]
+$title[📦 Datas user]
 $description[
 **Taille :** $size octets ($math[$size/1024] Ko)
-**Nombre de caractères :** $length[$data]
+**Number of characters :** $length[$data]
 ]
 $sendMessage[]
 ```
 
-### Comparaison de tailles
+### Compareason de tailles
 
 ```bdfd
 $let[ascii;$byteCount[Hello World]]
@@ -76,6 +76,6 @@ Avec emoji : $emoji octets
 
 ## Notes
 
-- `$byteCount` diffère de `$length` : `$length` compte les caractères, `$byteCount` compte les octets.
-- Avec du texte ASCII pur, les deux valeurs sont identiques.
-- Discord limite les messages à 2000 caractères (pas d'octets), mais cette fonction reste utile pour les calculs de stockage.
+- `$byteCount` diffère de `$length` : `$length` compte les becauseactères, `$byteCount` compte les octets.
+- Avec of the text ASCII pur, les two values sont identicals.
+- Discord limit les messages à 2000 becauseactères (pas d'octets), mais cette function reste utile for calculs de stockage.

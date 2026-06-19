@@ -5,38 +5,38 @@ translation_key: docs
 category: "Context & Commands"
 function_name: url
 syntax: $url
-description: Retourne l'URL de la page web actuellement chargée dans le contexte du bot. Utile dans les interactions web ou les dashboards.
+description: Returns the URL of the page web currentlement loadede in the context of the bot. Utile in thes interactions web or les dashboards.
 ---
 # $url
 
-La fonction `$url` retourne l'**URL du contexte web actuel** dans lequel le bot s'exécute.
+The function `$url` retourne l'**URL of the context web current** in thequel the bot s'exécute.
 
-## Syntaxe
+## Syntax
 
 ```
 $url
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne
-- L'URL du contexte courant (page web, dashboard, etc.).
+- **Type** : String
+- The URL of the context courant (page web, dashboard, etc.).
 
-## Comportement
+## Behavior
 
-- Retourne l'URL de la page si le bot est exécuté dans un contexte web.
-- Peut retourner une chaîne vide hors contexte web.
+- Returns the URL of the page si the bot est executed dans un context web.
+- Peut retourner une string vide hors context web.
 
-## Exemples
+## Examples
 
-### Afficher l'URL courante
+### Afficher the URL courante
 
 ```bdfd
-$sendMessage[URL actuelle : $url]
+$sendMessage[URL currentle : $url]
 ```
 
 ### Vérifier une page spécifique
@@ -51,5 +51,5 @@ $endif
 
 ## Notes
 
-- Contexte-dépendant : ne retourne rien dans les commandes Discord classiques.
-- Utile pour les applications web-based et les dashboards BDFD.
+- Context-déduring : returns nothing in thes commands Discord classiques.
+- Utile for the applications web-based and les dashboards BDFD.

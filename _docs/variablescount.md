@@ -5,7 +5,7 @@ translation_key: docs
 category: "Variables"
 function_name: variablesCount
 syntax: $variablesCount[(Type)]
-description: Counts the number of variables currently active. Optionally filters by variable type.
+description: Counts the number of variables currently active. Optionally filters by variabthe type.
 ---
 
 $variablesCount provides a quick way to check how many variables are active in the current execution context. This is useful for validation, debugging, and conditional logic.

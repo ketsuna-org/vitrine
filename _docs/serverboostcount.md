@@ -5,56 +5,56 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverBoostCount
 syntax: $serverBoostCount
-description: Retourne le nombre de boosts Nitro actifs sur le serveur Discord.
+description: Returns the number de boosts Nitro actifs on the server Discord.
 ---
 
-# $serverBoostCount[] — Nombre de Boosts du Serveur
+# $serverBoostCount[] — Number de Boosts du Server
 
-`$serverBoostCount[]` retourne le nombre total de boosts Nitro appliqués au serveur. Les boosts permettent de débloquer des avantages pour le serveur (plus d'émojis, meilleure qualité audio, bannière, etc.).
+`$serverBoostCount[]` retourne the namebre total de boosts Nitro appliqués au server. The boosts permettent de débloquer des beforeages for the server (plus d'emojis, meilleure qualité audio, banner, etc.).
 
-## Syntaxe
+## Syntax
 
 ```
 $serverBoostCount
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `integer`
-- Le nombre de boosts Nitro actifs sur le serveur.
+- The namebre de boosts Nitro actifs on the server.
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[🚀 **$serverBoostCount** boosts Nitro sur ce serveur !]
+$sendMessage[🚀 **$serverBoostCount** boosts Nitro sur ce server !]
 ```
 
 ### Embed de remerciement
 
 ```bdfd
 $title[🚀 Boosters de $serverName]
-$description[Merci aux $serverBoostCount boosters qui soutiennent le serveur !]
-$addField[Niveau actuel;$boostLevel;yes]
-$addField[Prochain palier;$if[$boostLevel<3]Plus que $sub[$var[boostsNeeded];$serverBoostCount] boosts !$elseNiveau maximum atteint 🎉$endif;yes]
+$description[Merci aux $serverBoostCount boosters qui soutiennent the server !]
+$addField[Level current;$boostLevel;yes]
+$addField[Prochain palier;$if[$boostLevel<3]Plus que $sub[$var[boostsNeeded];$serverBoostCount] boosts !$elseLevel maximum atteint 🎉$endif;yes]
 $color[#F47FFF]
 $sendEmbedMessage
 ```
 
-### Info serveur complète
+### Info server complete
 
 ```bdfd
 $title[📊 Statistiques de $serverName]
-$addField[👥 Membres;$membersCount;yes]
-$addField[🟢 En ligne;$onlineMembers;yes]
+$addField[👥 Members;$membersCount;yes]
+$addField[🟢 Online;$onlineMembers;yes]
 $addField[🤖 Bots;$botCount;yes]
-$addField[🚀 Boosts;$serverBoostCount (Niveau $boostLevel);yes]
-$addField[🎨 Émojis;$emojiCount;yes]
+$addField[🚀 Boosts;$serverBoostCount (Level $boostLevel);yes]
+$addField[🎨 Emojis;$emojiCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
 $sendEmbedMessage
@@ -64,21 +64,21 @@ $sendEmbedMessage
 
 ```bdfd
 $if[$serverBoostCount>=14]
-$sendMessage[🌟 Niveau 3 atteint ! Profitez de tous les avantages.]
+$sendMessage[🌟 Level 3 atteint ! Profitez de all beforeages.]
 $elseIf[$serverBoostCount>=7]
-$sendMessage[🎈 Niveau 2 ! Plus que $sub[14;$serverBoostCount] boosts pour le niveau 3.]
+$sendMessage[🎈 Level 2 ! Plus que $sub[14;$serverBoostCount] boosts for the level 3.]
 $elseIf[$serverBoostCount>=2]
-$sendMessage[🎀 Niveau 1 ! Plus que $sub[7;$serverBoostCount] boosts pour le niveau 2.]
+$sendMessage[🎀 Level 1 ! Plus que $sub[7;$serverBoostCount] boosts for the level 2.]
 $else
-$sendMessage[💪 Aucun niveau de boost. $sub[2;$serverBoostCount] boosts requis pour le niveau 1.]
+$sendMessage[💪 Aucun level de boost. $sub[2;$serverBoostCount] boosts required for the level 1.]
 $endif
 ```
 
 ## Notes
 
 - Chaque boost compte pour 1, peu importe qui l'a appliqué.
-- Le nombre de boosts détermine le niveau de boost du serveur :
-  - Niveau 1 : 2 boosts
-  - Niveau 2 : 7 boosts
-  - Niveau 3 : 14 boosts
-- Utilisez `$boostLevel[]` pour obtenir directement le niveau (0-3) sans calculer les paliers.
+- The namebre de boosts détermine le level de boost of the server :
+  - Level 1 : 2 boosts
+  - Level 2 : 7 boosts
+  - Level 3 : 14 boosts
+- Utilisez `$boostLevel[]` pour obtenir directly le level (0-3) without calculer les paliers.

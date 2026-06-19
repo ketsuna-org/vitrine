@@ -5,52 +5,52 @@ translation_key: docs
 category: "Embed & Message"
 function_name: authorUrl
 syntax: $authorUrl[url;(embedIndex)]
-description: Modifie l'URL de destination de l'auteur d'un embed. Rend le nom de l'auteur cliquable sans avoir à redéfinir le nom et l'icône.
+description: Modifies l'Destination URL de the author of an embed. Rend the name de the author cliquable without avoir à redéfinir the name and the icon.
 ---
 
 # $authorUrl[]
 
-La fonction `$authorUrl[]` permet de **modifier uniquement l'URL** de destination de l'auteur d'un embed. Une fois définie, le nom de l'auteur devient un lien hypertexte cliquable.
+The `$authorUrl[]` function **modifier only the URL** de destination de the author of an embed. A fois définie, the name de the author devient a link hypertext cliquable.
 
-## Syntaxe
+## Syntax
 
 ```
 $authorUrl[url;(embedIndex)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `url` | URL de destination. Le nom de l'auteur pointera vers cette adresse. |
-| `embedIndex` | Optionnel. Index de l'embed ciblé (0 par défaut). |
+| `url` | Destination URL. The author name pointera vers cette adresse. |
+| `embedIndex` | Optional. Index of the embed ciblé (0 by default). |
 
-## Valeur de retour
+## Return value
 
-Modifie la réponse en cours de construction. Ne retourne rien.
+Modifies the response in progress de construction. Returns nothing.
 
 ## Quand utiliser $authorUrl[]
 
-- Vous avez déjà défini l'auteur avec `$author[name]` ou `$author[name;icon]` et souhaitez le rendre cliquable.
-- L'URL est dynamique (dépend d'une variable, d'un ID, etc.).
-- Vous souhaitez séparer la définition du nom/icône de celle du lien pour plus de clarté.
+- Vous avez déjà set the author avec `$author[name]` or `$author[name;icon]` and souhaitez le rendre cliquable.
+- The URL est dynamic (dépend of a variable, d'an ID, etc.).
+- Vous souhaitez séparer la définition of the name/icon de that of the link pour more than clarté.
 
-## Exemples
+## Examples
 
-### Lien vers le profil Discord de l'utilisateur
+### Link vers le profil Discord of the user
 
 ```bdfd
 $author[$username;$authorAvatar]
 $authorUrl[https://discord.com/users/$authorID]
-$title[Profil utilisateur]
+$title[Profil user]
 $description[
-Cliquez sur le nom ci-dessus pour ouvrir le profil Discord.
+Cliquez sur the name ci-dessus pour ouvrir le profil Discord.
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Lien conditionnel
+### Link conditionnel
 
 ```bdfd
 $author[Site web;$serverIcon]
@@ -60,19 +60,19 @@ $else
 $authorUrl[https://monsite.com]
 $endif
 $title[Navigation]
-$description[Sélectionnez une page dans le menu ci-dessous.]
+$description[Selectionnez une page in the menu ci-dessous.]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Auteur avec tous les attributs séparés
+### Auteur avec all attributes separateds
 
 ```bdfd
 $author[Bot Designer for Discord]
 $authorIcon[https://bdfd.com/icon.png]
 $authorUrl[https://bdfd.com]
-$title[Créé avec BDFD]
-$description[Ce bot a été créé avec Bot Designer for Discord.]
+$title[Created avec BDFD]
+$description[Ce bot has been created avec Bot Designer for Discord.]
 $footer[Version 2.0]
 $color[#5865F2]
 $sendMessage[]
@@ -80,6 +80,6 @@ $sendMessage[]
 
 ## Notes
 
-- `$authorUrl[]` doit être appelé **après** `$author[]`, sinon il n'y a pas d'auteur sur lequel appliquer l'URL.
-- Si vous appelez `$authorUrl[]` seul (sans `$author[]` au préalable), l'URL sera ignorée.
-- L'URL doit être absolue (commençant par `http://` ou `https://`).
+- `$authorUrl[]` must be called **after** `$author[]`, otherwise there is no d'auteur sur lequel appliquer the URL.
+- Si vous callez `$authorUrl[]` seul (without `$author[]` au préalable), the URL will be ignorée.
+- The URL must be absolue (commençant par `http://` or `https://`).

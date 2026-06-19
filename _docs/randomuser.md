@@ -5,50 +5,50 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomUser
 syntax: $randomUser
-description: Retourne l'ID ou la mention d'un utilisateur aléatoire présent sur le serveur.
+description: Returns the ID or mention of a random user present on the server.
 ---
 
 # $randomUser[]
 
-La fonction `$randomUser[]` retourne l'ID d'un utilisateur aléatoire présent sur le serveur où la commande est exécutée.
+The `$randomUser[]` function returns the ID of a random user present on the server where the command is executed.
 
-## Syntaxe
+## Syntax
 
 ```
 $randomUser
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note:** This function takes no parameters.
 
-## Valeur de retour
+## Return Value
 
-L'ID Discord (snowflake) d'un utilisateur aléatoire du serveur, sous forme de chaîne de caractères.
+The Discord ID (snowflake) of a random user on the server, as a string.
 
-## Exemples
+## Examples
 
-### Mentionner un utilisateur aléatoire
+### Mention a random user
 
 ```bdfd
-Utilisateur aléatoire : <@$randomUser>
+Random user: <@$randomUser>
 ```
 
-### Annoncer un gagnant
+### Announce a winner
 
 ```bdfd
-$title[🎉 Tirage au sort]
-$description[Félicitations <@$randomUser> ! Tu as gagné !]
+$title[🎉 Prize draw]
+$description[Congratulations <@$randomUser>! You won!]
 $color[#FFD700]
 ```
 
-### Obtenir l'ID uniquement
+### Get the ID only
 
 ```bdfd
-ID aléatoire : $randomUser
+Random ID: $randomUser
 ```
 
 ## Notes
 
-- L'utilisateur sélectionné fait partie des membres du serveur.
-- Le bot doit avoir accès à la liste des membres pour que cette fonction fonctionne correctement.
-- Pour obtenir uniquement l'ID sans formatage, utilisez `$randomUserID[]`.
-- Pour une mention directe (avec le format `<@id>`), utilisez `$randomMention[]`.
+- The selected user is a member of the server.
+- The bot must have access to the member list for this function to work correctly.
+- To get only the ID without formatting, use `$randomUserID[]`.
+- For a direct mention (with the `<@id>` format), use `$randomMention[]`.

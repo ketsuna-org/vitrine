@@ -9,7 +9,7 @@ description: Converts the first letter of each word to uppercase and the rest to
 ---
 # $toTitlecase — Convert to Title Case
 
-`$toTitlecase` capitalizes the first letter of every word and lowercases the rest. Words are delimited by whitespace. This is useful for formatting names, titles, or display text.
+`$toTitlecase` capitalizes the first letter of every word and lowercases the rest. Words are delimitd by whitespace. This is useful for formatting names, titles, or display text.
 
 ## Syntax
 

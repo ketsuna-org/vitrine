@@ -5,45 +5,45 @@ translation_key: docs
 category: "Entity Info"
 function_name: creationDate
 syntax: $creationDate[entityID]
-description: Retourne la date de création d'une entité Discord (utilisateur, serveur, rôle, salon, etc.) à partir de son ID.
+description: Returns the date de création d'une entité Discord (user, server, role, channel, etc.) from its ID.
 ---
 
 # $creationDate
 
-La fonction `$creationDate[]` permet de **récupérer la date de création** d'une entité Discord à partir de son ID (Snowflake). Fonctionne pour les utilisateurs, serveurs, rôles, salons, etc.
+The `$creationDate[]` function **récupérer the date de création** d'une entité Discord from its ID (Snowflake). Functionne for users, servers, roles, channels, etc.
 
-## Syntaxe
+## Syntax
 
 ```
 $creationDate[entityID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `entityID` | L'ID Discord de l'entité (utilisateur, serveur, rôle, salon, message...). |
+| `entityID` | The ID Discord de l'entité (user, server, role, channel, message...). |
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- La date de création au format `JJ/MM/AAAA`.
-- Extraite du timestamp contenu dans le Snowflake ID Discord.
+- La date de création in the format `JJ/MM/AAAA`.
+- Extractede du timestamp contenu in the Snowflake ID Discord.
 
-## Comportement
+## Behavior
 
 - Les IDs Discord (Snowflakes) contiennent un timestamp de création.
-- La fonction extrait ce timestamp et le formate en date lisible.
-- Fonctionne pour tout type d'entité Discord disposant d'un ID.
+- The function extracted ce timestamp and the formate en date lisible.
+- Functionne pour tout type d'entité Discord disposant d'an ID.
 
-## Exemples
+## Examples
 
-### Fiche utilisateur
+### Fiche user
 
 ```bdfd
 $title[👤 $userName[$authorID]]
 $description[
-**Compte créé le :** $creationDate[$authorID]
+**Counts created le :** $creationDate[$authorID]
 **A rejoint le :** $memberJoinDate[$authorID]
 **ID :** $authorID
 ]
@@ -51,28 +51,28 @@ $thumbnail[$userAvatar[$authorID]]
 $sendMessage[]
 ```
 
-### Info serveur
+### Info server
 
 ```bdfd
 $title[📋 $serverName]
 $description[
-**Créé le :** $creationDate[$guildID]
-**Propriétaire :** $userName[$ownerID]
-**Membres :** $membersCount
+**Created le :** $creationDate[$guildID]
+**Owner :** $userName[$ownerID]
+**Members :** $membersCount
 ]
 $thumbnail[$serverIcon]
 $sendMessage[]
 ```
 
-### Comparaison d'ancienneté
+### Compareason d'oldneté
 
 ```bdfd
 $let[creation;$creationDate[$authorID]]
-Votre compte Discord a été créé le **$creation**.
+Votre compte Discord has been created le **$creation**.
 ```
 
 ## Notes
 
-- La précision est à la milliseconde près (le timestamp est inclus dans le Snowflake).
-- Le format peut varier selon les paramètres régionaux du bot.
-- Fonctionne uniquement avec des IDs Discord valides.
+- La précision est à la millisecond près (le timestamp est included in the Snowflake).
+- Le format peut varier selon les parameters régionaux of the bot.
+- Functionne only avec of IDs Discord valids.

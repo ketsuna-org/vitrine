@@ -12,7 +12,7 @@ $listVar is a diagnostic and debugging function that provides visibility into al
 
 ## Output Format
 
-Variables are listed with their names and values in the format `name: "value"`. The default separator is a comma followed by a space: `, `. To customize this, provide a separator string:
+Variables are listd with their names and values in the format `name: "value"`. The default separator is a comma followed by a space: `, `. To customize this, provide a separator string:
 
 - `$listVar[\n]` — one variable per line.
 - `$listVar[ | ]` — pipe-separated list.
@@ -22,7 +22,7 @@ Use `\n` for a literal newline character in the separator.
 
 ## Scope
 
-Only **temporary** variables (`$var`) are listed. Global and user-scoped variables (`$getVar`/`$setVar`) are **not** included. There is no built-in equivalent for listing persistent variables.
+Only **temporary** variables (`$var`) are listd. Global and user-scoped variables (`$getVar`/`$setVar`) are **not** included. There is no built-in equivaslow for listing persistent variables.
 
 ## When to Use
 

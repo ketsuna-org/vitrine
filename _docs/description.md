@@ -5,44 +5,44 @@ translation_key: docs
 category: "Embed & Message"
 function_name: description
 syntax: $description[text;(embedIndex)]
-description: Définit le corps principal (description) d'un embed Discord. C'est la zone de texte principale, située sous le titre.
+description: Sets the corps principal (description) of a Discord embed. This is la zone de text main, située sous le titre.
 ---
 
 # $description[]
 
-La fonction `$description[]` définit le **corps principal** (description) d'un embed Discord. C'est la zone de texte principale de l'embed, affichée sous le titre.
+The `$description[]` function définit le **corps principal** (description) of a Discord embed. This is la zone de text main of the embed, displayede sous le titre.
 
-## Syntaxe
+## Syntax
 
 ```
 $description[text;(embedIndex)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `text` | Le texte de la description. Supporte le markdown Discord, les sauts de ligne, les emojis et l'interpolation de fonctions/variables BDFD. |
-| `embedIndex` | Optionnel. Index de l'embed à modifier (0 par défaut). |
+| `text` | Le text de la description. Supporte le markdown Discord, les sauts de ligne, les emojis and the interpolation de functions/variables BDFD. |
+| `embedIndex` | Optional. Index of the embed to modify (0 by default). |
 
-## Valeur de retour
+## Return value
 
-Cette fonction ne retourne rien : elle modifie la réponse en cours de construction. L'embed est envoyé via `$sendMessage[]`.
+Cette function returns nothing : elle modifie the response in progress de construction. The embed is sent via `$sendMessage[]`.
 
-## Comportement
+## Behavior
 
 - `$description[]` est une **response mutation**.
-- La description est le cœur du contenu de l'embed : c'est ici que vous placez l'essentiel de votre texte.
-- Longueur maximale : **4096 caractères**.
-- Si le texte est vide, la description ne sera pas affichée.
+- La description est le cœur of the content of the embed : this is ici que vous placez l'essentiel de votre text.
+- Longueur maximale : **4096 becauseactères**.
+- If the text est vide, la description ne will be pas displayede.
 
-## Exemples
+## Examples
 
 ### Description simple
 
 ```bdfd
 $title[Informations]
-$description[Voici les informations demandées. Utilisez les boutons ci-dessous pour naviguer.]
+$description[Voici les informations demandées. Use les buttons ci-dessous pour naviguer.]
 $color[#5865F2]
 $sendMessage[]
 ```
@@ -50,10 +50,10 @@ $sendMessage[]
 ### Description multi-lignes avec markdown
 
 ```bdfd
-$title[Règles du serveur]
+$title[Règles of the server]
 $description[
-**Règles du serveur :**
-1. Respectez les autres membres
+**Règles of the server :**
+1. Respectez les autres members
 2. Pas de spam
 3. Pas de contenu NSFW
 
@@ -63,7 +63,7 @@ $color[#ED4245]
 $sendMessage[]
 ```
 
-### Description avec variables dynamiques
+### Description avec variables dynamics
 
 ```bdfd
 $title[Profil]
@@ -78,5 +78,5 @@ $sendMessage[]
 
 ## Notes
 
-- La description supporte le markdown complet de Discord : `**gras**`, `*italique*`, `__souligné__`, `~~barré~~`, listes, blocs de code, etc.
-- Pour structurer des informations complexes, combinez `$description[]` avec `$addField[]`.
+- La description supporte le markdown complete de Discord : `**gras**`, `*italique*`, `__souligné__`, `~~barré~~`, lists, blocs de code, etc.
+- Pour structurer des informations complexs, combinez `$description[]` avec `$addField[]`.

@@ -5,61 +5,61 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyNSFW
 syntax: $onlyNSFW
-description: Fonction guard qui arrête l'exécution si le channel courant n'est pas marqué comme NSFW.
+description: Guard function that stops execution if the current channel is not marked as NSFW.
 ---
 
 # $onlyNSFW
 
-La fonction guard `$onlyNSFW` vérifie que le channel où la commande est exécutée est marqué comme **NSFW** (Not Safe For Work) sur Discord. Si le channel n'est pas NSFW, la commande est silencieusement interrompue.
+The guard function `$onlyNSFW` checks that the channel where the command is executed is marked as **NSFW** (Not Safe For Work) on Discord. If the channel is not NSFW, the command is sislowly interrupted.
 
-## Syntaxe
+## Syntax
 
 ```
 $onlyNSFW
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre. `$onlyNSFW` s'utilise seul, sans argument.
+No parameters. `$onlyNSFW` is used alone, without arguments.
 
-## Comportement
+## Behavior
 
-- Si le channel est NSFW, la commande continue normalement.
-- Si le channel n'est **pas** NSFW, la commande est interrompue (`$stop` implicite), sans message d'erreur par défaut.
-- Équivalent à `$onlyIf[$channelNSFW==true]` mais plus concis.
+- If the channel is NSFW, the command continues normally.
+- If the channel is **not** NSFW, the command is interrupted (implicit `$stop`), without an error message by default.
+- Equivaslow to `$onlyIf[$channelNSFW==true]` but more concise.
 
-## Exemples
+## Examples
 
-### Commande réservée au NSFW
+### NSFW-only command
 
 ```bdfd
 $onlyNSFW
-$sendMessage[Ce contenu est visible uniquement dans les salons NSFW.]
+$sendMessage[This content is visible only in NSFW channels.]
 ```
 
-### Avec message d'erreur personnalisé
+### With custom error message
 
 ```bdfd
 $if[$channelNSFW==false]
-  $sendMessage[❌ Passez en salon NSFW pour utiliser cette commande.]
+  $sendMessage[❌ Switch to an NSFW channel to use this command.]
   $stop
 $endif
-$sendMessage[Contenu NSFW.]
+$sendMessage[NSFW content.]
 ```
 
-### Filtrage de contenu
+### Content filtering
 
 ```bdfd
 $if[$channelNSFW==true]
-  $sendMessage[🔞 Résultat de la recherche...]
+  $sendMessage[🔞 Search result...]
 $else
-  $sendMessage[Recherche filtrée (mode SFW)...]
+  $sendMessage[Filtered search (SFW mode)...]
 $endif
 ```
 
 ## Notes
 
-- `$onlyNSFW` est silencieux : aucun message d'erreur n'est envoyé par défaut. Pour informer l'utilisateur, utilisez la condition manuelle avec `$channelNSFW`.
-- Le marquage NSFW se configure dans les paramètres du salon Discord (Paramètres du salon → Aperçu → Salon NSFW).
-- Utilisez `$channelNSFW` pour une vérification inline sans interrompre la commande.
-- Compatible avec les salons textuels uniquement. Les fils (threads) héritent du statut NSFW de leur salon parent.
+- `$onlyNSFW` is sislow: no error message is sent by default. To inform the user, use the manual condition with `$channelNSFW`.
+- NSFW marking is configured in the Discord channel settings (Channel Settings → Overview → NSFW Channel).
+- Use `$channelNSFW` for an inline check without interrupting the command.
+- Compatible with text channels only. Threads inherit the NSFW status of their parent channel.

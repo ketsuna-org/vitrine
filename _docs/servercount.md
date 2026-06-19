@@ -5,52 +5,52 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverCount
 syntax: $serverCount
-description: Retourne le nombre total de serveurs dans lesquels le bot est présent.
+description: Returns the number total de servers in thesquels the bot est présent.
 ---
 
-# $serverCount[] — Nombre de Serveurs du Bot
+# $serverCount[] — Number de Servers du Bot
 
-`$serverCount[]` retourne le nombre total de serveurs Discord sur lesquels le bot est installé.
+`$serverCount[]` retourne the namebre total de servers Discord sur lesquels the bot est installé.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverCount
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `integer`
-- Le nombre de serveurs auxquels le bot appartient.
+- The namebre de servers auxquels the bot appartient.
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[🤖 Je suis actuellement sur **$serverCount** serveurs !]
+$sendMessage[🤖 Je suis currentlement sur **$serverCount** servers !]
 ```
 
-### Statistiques du bot
+### Statistiques of the bot
 
 ```bdfd
 $title[📊 Statistiques du Bot]
-$addField[🌐 Serveurs;$serverCount;yes]
+$addField[🌐 Servers;$serverCount;yes]
 $addField[🔢 Shard;$shardID;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Message de statut personnalisé
+### Message de status custom
 
 ```bdfd
 $title[🤖 Mon Bot]
 $description[Merci de m'utiliser !]
-$addField[Serveurs;$serverCount;yes]
+$addField[Servers;$serverCount;yes]
 $addField[Latence;$ping ms;yes]
 $footer[Développé avec BDFD]
 $color[#2ECC71]
@@ -61,15 +61,15 @@ $sendEmbedMessage
 
 ```bdfd
 $if[$serverCount>=100]
-$sendMessage[🎉 Merci aux $serverCount serveurs qui me font confiance !]
+$sendMessage[🎉 Merci aux $serverCount servers qui me font confiance !]
 $else
-$sendMessage[Je suis sur $serverCount serveurs. Aidez-moi à grandir !]
+$sendMessage[Je suis sur $serverCount servers. Aidez-moi à grandir !]
 $endif
 ```
 
 ## Notes
 
 - `$serverCount[]` est un alias de `$guildCount[]`.
-- Le compte inclut tous les serveurs où le bot est présent, quel que soit le shard.
-- Le nombre est mis à jour automatiquement lorsque le bot rejoint ou quitte un serveur.
-- Utile pour les commandes de statistiques et les pages "À propos" du bot.
+- Le compte inclut all servers où the bot est présent, regardless of the shard.
+- The namebre est mis à day automatically when the bot rejoint or quitte un server.
+- Utile for the commands de statistiques and les pages "À propos" of the bot.

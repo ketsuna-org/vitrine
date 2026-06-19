@@ -5,41 +5,41 @@ translation_key: docs
 category: "Moderation"
 function_name: modifyChannel
 syntax: $modifyChannel[channelID;name;(topic);(categoryID);(nsfw);(slowmode)]
-description: "Modifie les propriétés d'un canal existant : nom, sujet, catégorie, statut NSFW et slowmode."
+description: "Modifies thes propertys d'un canal existing : nom, sujet, catégorie, status NSFW and slowmode."
 ---
 
 # $modifyChannel
 
-La fonction `$modifyChannel[]` permet de **modifier les propriétés d'un canal** existant.
+The function `$modifyChannel[]` allows **modifier les propertys d'un canal** existing.
 
-## Syntaxe
+## Syntax
 
 ```
 $modifyChannel[channelID;name;(topic);(categoryID);(nsfw);(slowmode)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | ID du canal à modifier. |
-| `name` | Nouveau nom du canal. |
-| `topic` | Optionnel - Nouveau sujet (max 1024 caractères). |
-| `categoryID` | Optionnel - ID de la nouvelle catégorie, `0` pour aucune. |
-| `nsfw` | Optionnel - `true`/`false` pour NSFW. |
-| `slowmode` | Optionnel - Délai en secondes (0-21600). |
+| `channelID` | ID of the canal à modifier. |
+| `name` | New nom du canal. |
+| `topic` | Optional - New sujet (max 1024 becauseactères). |
+| `categoryID` | Optional - ID of the new catégorie, `0` pour noe. |
+| `nsfw` | Optional - `true`/`false` pour NSFW. |
+| `slowmode` | Optional - Delay en seconds (0-21600). |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur.
+This function ne retourne pas de value.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `MANAGE_CHANNELS`.
-- Les paramètres optionnels peuvent être laissés vides pour conserver la valeur actuelle.
-- L'ordre des paramètres est important — utilisez `;` vides pour sauter des paramètres.
+- The bot doit avoir la permission `MANAGE_CHANNELS`.
+- The parameters optionals can be laissés vides pour conserver the value currentle.
+- L'ordre des parameters est important — utilisez `;` vides pour sauter des parameters.
 
-## Exemples
+## Examples
 
 ### Renommer un canal
 
@@ -52,7 +52,7 @@ $sendMessage[Canal renommé.]
 
 ```bdfd
 $modifyChannel[$channelID;$channelName;;;false;5]
-$sendMessage[Slowmode défini à 5 secondes.]
+$sendMessage[Slowmode défini à 5 seconds.]
 ```
 
 ### Déplacer vers une catégorie
@@ -62,15 +62,15 @@ $modifyChannel[$channelID;$channelName;;123456789]
 $sendMessage[Canal déplacé.]
 ```
 
-### Modification complète
+### Modification complete
 
 ```bdfd
-$modifyChannel[$channelID;règlement;Règles du serveur - mis à jour $date;123456789;false;0]
-$sendMessage[Canal mis à jour avec succès.]
+$modifyChannel[$channelID;règlement;Règles of the server - mis à day $date;123456789;false;0]
+$sendMessage[Canal mis à day avec success.]
 ```
 
 ## Notes
 
-- Utilisez des paramètres vides (`;`) pour sauter les options que vous ne voulez pas modifier.
-- Le nom du canal suit les mêmes règles que `$createChannel[]`.
-- Pour modifier les permissions, utilisez `$editChannelPerms[]` ou `$modifyChannelPerms[]`.
+- Utilisez des parameters vides (`;`) pour sauter les options que vous ne voulez pas modifier.
+- The name du canal suit les mêmes règles que `$createChannel[]`.
+- Pour modifier les permissions, utilisez `$editChannelPerms[]` or `$modifyChannelPerms[]`.

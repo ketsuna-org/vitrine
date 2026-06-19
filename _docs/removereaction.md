@@ -5,40 +5,40 @@ translation_key: docs
 category: "Moderation"
 function_name: removeReaction
 syntax: $removeReaction[channelID;messageID;emoji]
-description: Supprime une réaction spécifique (émoji) d'un message donné. Utile pour retirer des réactions de contrôle après action.
+description: Removes a specific reaction (emoji) from a given message. Useful for removing control reactions after an action.
 ---
 
 # $removeReaction
 
-La fonction `$removeReaction[]` permet de **supprimer une réaction spécifique** d'un message.
+The `$removeReaction[]` function allows **removing a specific reaction** from a message.
 
-## Syntaxe
+## Syntax
 
 ```
 $removeReaction[channelID;messageID;emoji]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | L'ID du canal contenant le message. |
-| `messageID` | L'ID du message cible. |
-| `emoji` | L'émoji à retirer (Unicode ou personnalisé `<:nom:ID>`). |
+| `channelID` | The ID of the channel containing the message. |
+| `messageID` | The ID of the target message. |
+| `emoji` | The emoji to remove (Unicode or custom `<:name:ID>`). |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur.
+This function does not return a value.
 
-## Comportement
+## Behavior
 
-- Supprime UNIQUEMENT la réaction du bot.
-- Pour supprimer les réactions d'autres utilisateurs, la permission `MANAGE_MESSAGES` est nécessaire.
-- Si l'émoji n'est pas présent en réaction, rien ne se passe.
+- Removes ONLY the bot's reaction.
+- To remove other users' reactions, the `MANAGE_MESSAGES` permission is required.
+- If the emoji is not present as a reaction, nothing happens.
 
-## Exemples
+## Examples
 
-### Indicateur de progression
+### Progress indicator
 
 ```bdfd
 $addCmdReactions[⏳]
@@ -47,15 +47,15 @@ $removeReaction[$channelID;$messageID;⏳]
 $addCmdReactions[✅]
 ```
 
-### Nettoyage sélectif
+### Selective cleanup
 
 ```bdfd
 $removeReaction[$channelID;$messageID;❌]
 $addMessageReactions[$channelID;$messageID;✅]
-$editMessage[Action confirmée.]
+$editMessage[Action confirmed.]
 ```
 
-### Système de confirmation
+### Confirmation system
 
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
@@ -69,6 +69,6 @@ $endif
 
 ## Notes
 
-- Pour supprimer toutes les réactions d'un coup, utilisez `$clearReactions[]`.
-- L'émoji doit être exactement le même que celui utilisé pour la réaction.
-- Les émojis personnalisés doivent être au format `<:nom:ID>`.
+- To remove all reactions at once, use `$clearReactions[]`.
+- The emoji must be exactly the same as the one used for the reaction.
+- Custom emojis must be in the format `<:name:ID>`.

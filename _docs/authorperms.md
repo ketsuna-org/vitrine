@@ -5,48 +5,48 @@ translation_key: docs
 category: "Moderation"
 function_name: authorPerms
 syntax: $authorPerms
-description: Retourne la liste des permissions de l'auteur de la commande sur le serveur. Utile pour vérifier dynamiquement ce que l'utilisateur peut faire.
+description: Returns the list of permissions de the author of the command on the server. Utile pour vérifier dynamicment ce que the user can faire.
 ---
 
 # $authorPerms
 
-La fonction `$authorPerms` permet de **récupérer la liste des permissions** que possède l'auteur de la commande sur le serveur courant.
+The `$authorPerms` function **récupérer la list of permissions** que possède the author of the command on the server courant.
 
-## Syntaxe
+## Syntax
 
 ```
 $authorPerms
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+No parameters.
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- Liste des permissions de l'auteur, séparées par `, `.
-- Exemple : `SendMessages, ReadMessageHistory, AddReactions, ...`
+- List of permissions de the author, separatedes par `, `.
+- Example : `SendMessages, ReadMessageHistory, AddReactions, ...`
 
-## Comportement
+## Behavior
 
-- Retourne les permissions effectives de l'utilisateur (tenant compte des rôles et des permissions de salon).
-- Équivalent à `$userPerms[$authorID]`.
+- Returns thes permissions effectives of the user (tenant compte of roles and of permissions de channel).
+- Équivaslow à `$userPerms[$authorID]`.
 - Les noms de permissions sont en anglais (format API Discord).
 
-## Exemples
+## Examples
 
 ### Vérification de permission
 
 ```bdfd
 $if[$checkContains[$authorPerms;BanMembers]==true]
-  $sendMessage[✅ Vous avez la permission de bannir.]
+  $sendMessage[✅ Vous avez the permission de bannir.]
 $else
-  $sendMessage[❌ Permission "Bannir des membres" manquante.]
+  $sendMessage[❌ Permission "Bannir des members" missinge.]
 $endif
 ```
 
-### Debug des permissions
+### Debug of permissions
 
 ```bdfd
 $title[🔑 Vos permissions]
@@ -58,11 +58,11 @@ $endTextSplit
 $sendMessage[]
 ```
 
-### Commande admin only
+### Command admin only
 
 ```bdfd
 $if[$checkContains[$authorPerms;Administrator]==true]
-  // Code sensible exécuté
+  // Code sensible executed
   $sendMessage[✅ Action admin effectuée.]
 $elseif[$checkContains[$authorPerms;ManageGuild]==true]
   // Permissions de gestion
@@ -88,6 +88,6 @@ $endif
 
 ## Notes
 
-- Utilisez `$checkContains[$authorPerms;Permission]` pour tester une permission spécifique.
+- Use `$checkContains[$authorPerms;Permission]` to tester une permission spécifique.
 - Les permissions sont retournées en anglais (noms API Discord).
 - `$authorPerms` est un raccourci pour `$userPerms[$authorID]`.

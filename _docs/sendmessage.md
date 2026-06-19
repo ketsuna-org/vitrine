@@ -6,32 +6,32 @@ category: "Embed & Message"
 
 # $sendMessage
 
-Envoie le message construit avec son contenu, ses embeds et ses composants (boutons, selects).
+Sends the message with its content, its embeds and its components (buttons, select menus).
 
-## Syntaxe
+## Syntax
 
 ```
 $sendMessage[content]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `content` | Contenu textuel du message | Oui |
+| `content` | Text content of the message | Yes |
 
 ## Description
 
-`$sendMessage` est la commande principale pour envoyer un message dans le salon où la commande a été exécutée. Si des embeds (via `$newEmbed`, `$addEmbedField`, etc.) ou des composants (via `$addActionRow`, `$addButtonCV2`, etc.) ont été construits avant cet appel, ils sont automatiquement inclus dans le message.
+`$sendMessage` est the command main pour envoyer un message in the channel where the command was executed. If embeds (via `$newEmbed`, `$addEmbedField`, etc.) or des components (via `$addActionRow`, `$addButtonCV2`, etc.) were construits before this call, they are automatically included in the message.
 
-Le contenu textuel peut être vide (`$sendMessage[]`) si seuls des embeds ou composants sont envoyés.
+The text content can be vide (`$sendMessage[]`) if only embeds or components are sent.
 
-## Exemples
+## Examples
 
 ### Message simple
 
 ```
-$sendMessage[Bonjour le monde !]
+$sendMessage[Bonday le monde !]
 ```
 
 ### Avec embeds
@@ -41,7 +41,7 @@ $newEmbed[title=Annonce;description=Ceci est une annonce importante;color=#FF000
 $sendMessage[]
 ```
 
-### Avec boutons
+### Avec buttons
 
 ```
 $addActionRow
@@ -50,17 +50,17 @@ $addButtonCV2[btn_no;Non;danger]
 $sendMessage[Confirmez-vous ?]
 ```
 
-### Message complet
+### Message complete
 
 ```
-$newEmbed[title=Bienvenue;description=Bienvenue sur le serveur !;color=#00FF00]
+$newEmbed[title=Bienvenue;description=Bienvenue on the server !;color=#00FF00]
 $addActionRow
 $addButtonCV2[btn_rules;Règlement;primary]
-$addButtonCV2[btn_roles;Rôles;secondary]
+$addButtonCV2[btn_roles;Roles;secondary]
 $sendMessage[Bienvenue $username !]
 ```
 
-### Réponse dans $onInteraction
+### Response dans $onInteraction
 
 ```
 $onInteraction
@@ -71,7 +71,7 @@ $endif
 
 ## Notes
 
-- `$sendMessage` envoie dans le salon courant. Pour envoyer dans un autre salon, utilisez `$sendMessage[content;channelId]` (selon version) ou `$channelSendMessage`.
-- Le contenu peut être vide si vous envoyez uniquement des embeds/composants.
-- Dans `$onInteraction`, le message est envoyé en réponse à l'interaction.
-- Fonctions de flag applicables avant `$sendMessage` : `$reply`, `$ephemeral`, `$tts`, `$noMention`, `$allowMention`.
+- `$sendMessage` sends in the channel courant. Pour envoyer dans un autre channel, utilisez `$sendMessage[content;channelId]` (selon version) or `$channelSendMessage`.
+- Le contenu can be vide si vous envoyez only embeds/components.
+- Dans `$onInteraction`, the message est sent en response à l'interaction.
+- Functions de flag applicables before `$sendMessage` : `$reply`, `$ephemeral`, `$tts`, `$noMention`, `$allowMention`.

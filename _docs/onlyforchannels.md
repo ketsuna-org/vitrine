@@ -5,50 +5,50 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyForChannels
 syntax: $onlyForChannels[channelID1;channelID2;...;(errorMessage)]
-description: Fonction guard qui arrête l'exécution si la commande n'est pas exécutée dans l'un des channels spécifiés.
+description: Function guard qui stops l'exécution si the command is not executed in the un des channels spécifiés.
 ---
 
 # $onlyForChannels
 
-La fonction guard `$onlyForChannels` limite l'exécution d'une commande à un ou plusieurs channels Discord spécifiques. Si la commande est exécutée ailleurs, elle est interrompue.
+The function guard `$onlyForChannels` limit l'exécution of a command à un or several channels Discord spécifiques. Si the command est executed ailleurs, it is interrompue.
 
-## Syntaxe
+## Syntax
 
 ```
 $onlyForChannels[channelID1;channelID2;...;(errorMessage)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description |
+| Parameter | Type | Description |
 |-----------|------|-------------|
-| `channelID1;channelID2;...` | Snowflake[] | IDs des channels autorisés, séparés par `;`. |
-| `errorMessage` | String (optionnel) | Message envoyé si le channel n'est pas autorisé. |
+| `channelID1;channelID2;...` | Snowflake[] | IDs des channels alloweds, separateds par `;`. |
+| `errorMessage` | String (optional) | Message sent if the channel is not allowed. |
 
-## Comportement
+## Behavior
 
-- Compare l'ID du channel courant avec la liste fournie.
-- Si le channel fait partie de la liste, la commande continue normalement.
-- Si le channel n'est **pas** dans la liste, la commande est interrompue.
-- Pratique pour créer des salons dédiés (ex: salon `#commandes`, `#bots`).
+- Compare the ID of the channel courant with the list fournie.
+- Si le channel fait partie de la list, the command continue normalement.
+- Si le channel n'est **pas** in the list, the command est interrompue.
+- Pratique pour créer des channels dédiés (ex: channel `#commands`, `#bots`).
 
-## Exemples
+## Examples
 
-### Salon de commandes dédié
+### Channel de commands dédié
 
 ```bdfd
-$onlyForChannels[123456789012345678;❌ Utilisez cette commande dans <#123456789012345678>.]
-$sendMessage[Traitement en cours...]
+$onlyForChannels[123456789012345678;❌ Utilisez cette command dans <#123456789012345678>.]
+$sendMessage[Traitement in progress...]
 ```
 
-### Plusieurs salons autorisés
+### Plusieurs channels alloweds
 
 ```bdfd
-$onlyForChannels[111111111111111111;222222222222222222;333333333333333333;❌ Salon non autorisé.]
+$onlyForChannels[111111111111111111;222222222222222222;333333333333333333;❌ Channel non allowed.]
 $clear[50]
 ```
 
-### Sans message d'erreur
+### Sans error message
 
 ```bdfd
 $onlyForChannels[123456789012345678]
@@ -58,6 +58,6 @@ $ban[$mentioned[1]]
 ## Notes
 
 - Utilisez le **Mode Développeur** Discord pour copier facilement les IDs de channels.
-- `$onlyForChannels` fait une **whitelist** (autorise certains salons). Pour une **blacklist** (interdire certains salons), utilisez `$ignoreChannels`.
+- `$onlyForChannels` fait une **whitelist** (autorise certains channels). Pour une **blacklist** (interdire certains channels), utilisez `$ignoreChannels`.
 - Pour restreindre par catégorie entière, utilisez `$onlyForCategories`.
-- Combinez avec `$onlyForServers` pour restreindre à certains serveurs + certains salons.
+- Combinez avec `$onlyForServers` pour restreindre à certains servers + certains channels.

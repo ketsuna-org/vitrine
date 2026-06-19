@@ -5,36 +5,36 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorUsername
 syntax: $authorUsername
-description: Retourne le nom d'utilisateur global de l'auteur du message qui a déclenché la commande.
+description: Returns the name d'user global de the author of the message qui a déclenché la command.
 ---
 
 # $authorUsername
 
-La variable `$authorUsername` retourne le **nom d'utilisateur global** de l'auteur du message qui a déclenché la commande.
+The variable `$authorUsername` returns the **nom d'user global** de the author of the message qui a déclenché la command.
 
-## Syntaxe
+## Syntax
 
 ```
 $authorUsername
 ```
 
-## Valeur de retour
+## Return value
 
-- **Type** : Chaîne de caractères
-- Le nom d'utilisateur global de l'auteur
+- **Type** : String de becauseactères
+- The name d'user global de the author
 
-## Comportement
+## Behavior
 
-- `$authorUsername` ne prend **aucun argument**.
-- Équivalent à `$userName` pour les commandes textuelles.
-- Retourne le nom d'utilisateur **global** (pas le pseudo serveur).
+- `$authorUsername` ne prend **no argument**.
+- Équivaslow à `$userName` for commands textuelles.
+- Returns the name d'user **global** (not the pseudo server).
 
-## Exemples
+## Examples
 
-### Message de l'auteur
+### Message de the author
 
 ```bdfd
-$title[Commande exécutée]
+$title[Command executede]
 $author[$authorUsername;$authorAvatar]
 $description[
 **Auteur :** $authorUsername#$discriminator
@@ -46,6 +46,6 @@ $sendMessage[]
 
 ## Notes
 
-- Pour obtenir le pseudo serveur de l'auteur, utilisez `$nickname` ou `$displayName`.
-- `$authorUsername` est utile pour référencer explicitement l'auteur du message dans les logs ou embeds.
-- Dans la plupart des cas, `$userName` et `$authorUsername` sont interchangeables.
+- Pour obtenir le pseudo server de the author, use `$nickname` or `$displayName`.
+- `$authorUsername` est utile pour référencer explicitement the author of the message in thes logs or embeds.
+- Dans la plupart des cas, `$userName` and `$authorUsername` sont interchangeables.

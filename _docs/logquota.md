@@ -5,34 +5,34 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: logQuota
 syntax: $logQuota
-description: Affiche les informations sur le quota de logs restant pour l'application BDFD. Utile pour surveiller la consommation.
+description: Displays thes informations sur le quota de logs restant for the application BDFD. Utile pour surveiller la consommation.
 ---
 # $logQuota
 
-La fonction `$logQuota` retourne les **informations sur le quota de logs** de votre application BDFD.
+The function `$logQuota` retourne les **informations sur le quota de logs** de votre application BDFD.
 
-## Syntaxe
+## Syntax
 
 ```
 $logQuota
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne / Nombre
-- Le nombre de logs restants ou le pourcentage de quota utilisé.
+- **Type** : String / Number
+- The namebre de logs restants or le pourcentage de quota utilisé.
 
-## Comportement
+## Behavior
 
-- Retourne les statistiques de consommation de logs.
-- Utile pour surveiller si vous approchez de la limite de votre plan.
-- La valeur exacte dépend du plan BDFD (gratuit, premium, etc.).
+- Returns thes statistiques de consommation de logs.
+- Utile pour surveiller si vous approchez de la limit de votre plan.
+- The value exact dépend du plan BDFD (gratuit, premium, etc.).
 
-## Exemples
+## Examples
 
 ### Afficher le quota
 
@@ -44,7 +44,7 @@ $sendMessage[Logs restants : $logQuota]
 
 ```bdfd
 $if[$logQuota<100]
-  $sendMessage[⚠️ Attention : quota de logs bas ($logQuota restants).]
+  $sendMessage[⚠️ Warning: quota de logs bas ($logQuota restants).]
 $else
   $sendMessage[Logs restants : $logQuota]
 $endif
@@ -53,7 +53,7 @@ $endif
 ### Dashboard admin
 
 ```bdfd
-$title[📊 Statut du bot]
+$title[📊 Status of the bot]
 $description[
 **Logs restants** : $logQuota
 **RAM utilisée** : $ram

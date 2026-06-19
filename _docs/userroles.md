@@ -5,64 +5,64 @@ translation_key: docs
 category: "Entity Info"
 function_name: userRoles
 syntax: $userRoles
-description: Retourne la liste des IDs des rôles attribués à l'utilisateur sur le serveur actuel.
+description: Returns the list des IDs des roles attribués à the user on the server current.
 ---
 
 # $userRoles
 
-La variable `$userRoles` retourne la **liste des IDs de rôles** attribués à l'utilisateur sur le serveur où la commande est exécutée.
+The variable `$userRoles` retourne la **list des IDs de roles** attribués à the user on the server où the command est executed.
 
-## Syntaxe
+## Syntax
 
 ```
 $userRoles
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Liste de snowflakes (chaînes numériques), séparés par des virgules
-- Exemple : `123456789,987654321,555555555`
-- Inclut le rôle `@everyone` et tous les rôles attribués
+- **Type** : List de snowflakes (strings numériques), separateds par des virgules
+- Example: `123456789,987654321,555555555`
+- Inclut the role `@everyone` and all roles attribués
 
-## Comportement
+## Behavior
 
-- `$userRoles` ne prend **aucun argument**.
-- Retourne les IDs de **tous** les rôles de l'utilisateur sur le serveur.
+- `$userRoles` ne prend **no argument**.
+- Returns thes IDs de **all** les roles of the user on the server.
 - L'ordre peut correspondre à la hiérarchie (du plus bas au plus haut).
 
-## Exemples
+## Examples
 
-### Afficher les IDs des rôles
+### Afficher les IDs des roles
 
 ```bdfd
-$title[Rôles de $userName]
+$title[Roles de $userName]
 $description[
-L'utilisateur possède les rôles suivants :
+The user possède les roles nexts :
 `$userRoles`
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérifier un rôle spécifique
+### Vérifier un role spécifique
 
 ```bdfd
 $if[$checkContains[$userRoles;123456789012345678]==true]
-  $sendMessage[Vous avez le rôle VIP !]
+  $sendMessage[Vous avez the role VIP !]
 $else
-  $sendMessage[Vous n'avez pas le rôle VIP.]
+  $sendMessage[Vous n'avez pas the role VIP.]
 $endif
 ```
 
-### Compter les rôles
+### Compter les roles
 
 ```bdfd
 $let[count;$arrayCount[$splitText[$userRoles;,]]]
-$sendMessage[Vous avez $count rôles sur ce serveur.]
+$sendMessage[Vous avez $count roles sur ce server.]
 ```
 
 ## Notes
 
-- Les IDs sont des snowflakes numériques, pas des noms de rôles.
-- Utilisez `$roleName[ID]` pour obtenir le nom d'un rôle à partir de son ID.
-- Pour vérifier les permissions, utilisez `$userPerms` qui est plus directement exploitable.
+- Les IDs sont des snowflakes numériques, pas des noms de roles.
+- Utilisez `$roleName[ID]` pour obtenir the name of a role from son ID.
+- Pour vérifier les permissions, utilisez `$userPerms` qui est plus directly exploitable.

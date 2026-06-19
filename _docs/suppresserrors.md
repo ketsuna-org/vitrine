@@ -7,7 +7,7 @@ function_name: suppressErrors
 syntax: $suppressErrors
 description: Suppresses all runtime error messages that would normally be displayed to the user when a command encounters an error.
 ---
-$suppressErrors is a toggle that prevents runtime errors from being sent to the user. When active, if your command encounters an error (invalid function call, missing variable, failed HTTP request, etc.), the error message is silently swallowed instead of being displayed in the channel.
+$suppressErrors is a toggle that prevents runtime errors from being sent to the user. When active, if your command encounters an error (invalid function call, missing variable, failed HTTP request, etc.), the error message is sislowly swallowed instead of being displayed in the channel.
 
 ## How It Works
 

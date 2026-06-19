@@ -6,81 +6,81 @@ category: "Embed & Message"
 
 # $addChannelSelect
 
-Crée un menu de sélection de salons. Permet aux utilisateurs de choisir un ou plusieurs salons du serveur.
+Creates a select menu de channels. Allows users to choisir un or multipthe channels of the server.
 
-## Syntaxe
+## Syntax
 
 ```
 $addChannelSelect[customId;placeholder;(minValues);(maxValues);(disabled);(channelTypes)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customId` | Identifiant personnalisé pour l'interaction | Oui |
-| `placeholder` | Texte affiché quand rien n'est sélectionné | Oui |
-| `minValues` | Nombre minimum de salons à sélectionner (défaut : 1) | Non |
-| `maxValues` | Nombre maximum de salons à sélectionner (défaut : 1) | Non |
-| `disabled` | `true` pour désactiver le menu, `false` (défaut) | Non |
-| `channelTypes` | Types de salons affichés, séparés par des virgules | Non |
+| `customId` | Custom identifier for the interaction | Yes |
+| `placeholder` | Text displayed when rien n'est selectionné | Yes |
+| `minValues` | Minimum number of channels à selectionner (default: 1) | No |
+| `maxValues` | Maximum number of channels à selectionner (default: 1) | No |
+| `disabled` | `true` to disable le menu, `false` (default) | No |
+| `channelTypes` | Types de channels displayeds, separated by commas | No |
 
-## Types de salons (channelTypes)
+## Channel types (channelTypes)
 
 | Type | Description |
 |------|-------------|
-| `text` | Salons textuels |
-| `voice` | Salons vocaux |
+| `text` | Channels textuels |
+| `voice` | Channels vocaux |
 | `category` | Catégories |
-| `news` | Salons d'annonces |
-| `stage` | Salons de scène |
+| `news` | Channels d'annonces |
+| `stage` | Channels de scène |
 | `forum` | Forums |
 | `thread` | Fils de discussion |
 
-Par défaut, tous les types sont affichés.
+Par default, all types are displayed.
 
-## Exemples
+## Examples
 
-### Sélection de salon
-
-```
-$addChannelSelect[menu_channel;Choisissez un salon]
-$sendMessage[Sélectionnez un salon]
-```
-
-### Salon textuel uniquement
+### Selection de channel
 
 ```
-$addChannelSelect[menu_text;Salon textuel;1;1;false;text]
-$sendMessage[Choisissez un salon textuel]
+$addChannelSelect[menu_channel;Choisissez a channel]
+$sendMessage[Selectionnez a channel]
 ```
 
-### Salons vocaux et scènes
+### Channel textuel only
 
 ```
-$addChannelSelect[menu_vocal;Salon vocal;1;3;false;voice,stage]
-$sendMessage[Sélectionnez des salons vocaux]
+$addChannelSelect[menu_text;Channel textuel;1;1;false;text]
+$sendMessage[Choisissez a channel textuel]
 ```
 
-### Menu désactivé
+### Voice and stage channels
 
 ```
-$addChannelSelect[menu_chan_disabled;Indisponible;1;1;true]
-$sendMessage[Ce menu est désactivé]
+$addChannelSelect[menu_vocal;Channel vocal;1;3;false;voice,stage]
+$sendMessage[Selectionnez of channels vocaux]
 ```
 
-## Gestion de l'interaction
+### Disabled menu
+
+```
+$addChannelSelect[menu_chan_disabled;Inavailable;1;1;true]
+$sendMessage[Ce menu is disabled]
+```
+
+## Handling the interaction
 
 ```
 $onInteraction
 $if[$customID==menu_channel]
-  $sendMessage[Salon sélectionné : <#$message>]
+  $sendMessage[Channel selectionné : <#$message>]
 $endif
 ```
 
 ## Notes
 
-- Les valeurs retournées sont des IDs de salons Discord.
-- Utilisez `<#ID>` pour mentionner un salon.
-- Le paramètre `channelTypes` permet de filtrer précisément les salons affichés.
-- Pratique pour les commandes de configuration, logs, ou redirections.
+- Les values retournées sont of IDs de channels Discord.
+- Use `<#ID>` to mention a channel.
+- Le parameter `channelTypes` allows filtering precisely les channels displayeds.
+- Pratique for commands de configuration, logs, or redirections.

@@ -5,46 +5,46 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelType
 syntax: $channelType[(channelID)]
-description: Retourne le type d'un salon Discord (text, voice, category, dm, etc.).
+description: Returns the type of a channel Discord (text, voice, category, dm, etc.).
 ---
 
 # $channelType
 
-La fonction `$channelType` retourne le **type** d'un salon Discord. Les types possibles incluent `text`, `voice`, `category`, `news`, `stage`, `forum` et `dm`.
+The `$channelType` function returns the **type** of a channel Discord. The types possibles incluent `text`, `voice`, `category`, `news`, `stage`, `forum` and `dm`.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelType[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel. L'ID du salon cible. Si omis, le salon courant est utilisé. |
+| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `string` | Le type du salon. Valeurs possibles : `text`, `voice`, `category`, `news`, `stage`, `forum`, `dm`, `group_dm`. |
+| `string` | The type of the channel. Values possibles : `text`, `voice`, `category`, `news`, `stage`, `forum`, `dm`, `group_dm`. |
 
-## Exemples
+## Examples
 
-### Afficher le type du salon
+### Afficher the type of the channel
 
 ```bdfd
-$sendMessage[Ce salon est de type : **$channelType**]
+$sendMessage[Ce channel est de type : **$channelType**]
 ```
 
-### Vérifier si salon vocal
+### Vérifier si channel vocal
 
 ```bdfd
 $if[$channelType==voice]
-  $sendMessage[Vous êtes dans un salon vocal.]
+  $sendMessage[Vous êtes in a channel vocal.]
 $else
-  $sendMessage[Vous n'êtes pas dans un salon vocal.]
+  $sendMessage[Vous n'êtes pas in a channel vocal.]
 $endif
 ```
 
@@ -52,7 +52,7 @@ $endif
 
 ```bdfd
 $if[$channelType==category]
-  $sendMessage[Cette commande ne peut pas être utilisée dans une catégorie.]
+  $sendMessage[Cette command cannot être utilisée dans une catégorie.]
   $stop
 $endif
 ```
@@ -60,5 +60,5 @@ $endif
 ## Notes
 
 - Les types sont retournés en minuscules.
-- Utile pour conditionner le comportement d'une commande selon le type de salon.
-- Les salons de type `dm` n'ont pas de catégorie parente.
+- Utile pour conditionner le behavior of a command selon the type de channel.
+- Les channels de type `dm` do not have de catégorie parente.

@@ -5,46 +5,46 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookUsername
 syntax: $webhookUsername[name]
-description: Définit le nom d'utilisateur affiché pour le prochain message envoyé via $webhookSend.
+description: Sets the nom d'user displayed for the prochain message sent via $webhookSend.
 ---
 
 # $webhookUsername
 
-La fonction `$webhookUsername[]` permet de **définir le nom d'utilisateur** qui sera affiché pour le prochain message envoyé via `$webhookSend[]`.
+The function `$webhookUsername[]` allows **définir the name d'user** qui sera displayed for the prochain message sent via `$webhookSend[]`.
 
-## Syntaxe
+## Syntax
 
 ```
 $webhookUsername[name]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Le nom à afficher. Maximum 80 caractères. Supporte les émojis et variables. |
+| `name` | The name à afficher. Maximum 80 becauseactères. Supporte les emojis and variables. |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur. Elle définit le nom pour le prochain `$webhookSend[]`.
+This function ne retourne pas de value. Elle définit the name for the prochain `$webhookSend[]`.
 
-## Comportement
+## Behavior
 
-- Le nom remplace le nom par défaut du webhook pour cet envoi.
-- Le nom est réinitialisé après chaque `$webhookSend[]`.
-- Si aucun nom n'est défini, le nom original du webhook est utilisé.
+- The name remplace the name default du webhook pour cet envoi.
+- The name est réinitialisé after each `$webhookSend[]`.
+- Si no nom n'est défini, the name original du webhook is used.
 
-## Exemples
+## Examples
 
 ### Nom fixe
 
 ```bdfd
-$webhookUsername[📢 Annonces du serveur]
-$webhookContent[Nouvelle mise à jour disponible !]
+$webhookUsername[📢 Annonces of the server]
+$webhookContent[New mise à day available !]
 $webhookSend[$webhookURL;]
 ```
 
-### Nom dynamique
+### Nom dynamic
 
 ```bdfd
 $webhookUsername[$username (via webhook)]
@@ -64,6 +64,6 @@ $webhookSend[$confessionHook;]
 
 ## Notes
 
-- Le nom ne peut pas dépasser 80 caractères.
-- Les webhooks avec des noms usurpant des rôles officiels (Admin, Modérateur) peuvent être trompeurs — utilisez-les de manière éthique.
-- Combinez avec `$webhookAvatarURL[]` pour une personnalisation complète.
+- The name ne peut pas dépasser 80 becauseactères.
+- Les webhooks avec des noms usurpant des roles officiels (Admin, Modérateur) can be trompeurs — utilisez-les de manière éthique.
+- Combinez avec `$webhookAvatarURL[]` for ae personnalisation complete.

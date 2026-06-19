@@ -5,36 +5,36 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyBotPerms
 syntax: $onlyBotPerms[permission1;permission2;...;(errorMessage)]
-description: Fonction guard qui arrête l'exécution si le bot ne possède pas toutes les permissions spécifiées sur le serveur.
+description: Function guard qui stops l'exécution si the bot ne possède pas all permissions spécifiées on the server.
 ---
 
 # $onlyBotPerms
 
-La fonction guard `$onlyBotPerms` vérifie que le **bot lui-même** possède toutes les permissions Discord spécifiées sur le serveur. Si le bot manque d'une permission, la commande est interrompue.
+The function guard `$onlyBotPerms` vérifie que le **bot lui-même** possède all permissions Discord spécifiées on the server. Si the bot manque d'une permission, the command est interrompue.
 
-## Syntaxe
+## Syntax
 
 ```
 $onlyBotPerms[permission1;permission2;...;(errorMessage)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description |
+| Parameter | Type | Description |
 |-----------|------|-------------|
-| `permission1;permission2;...` | String[] | Liste des permissions Discord séparées par `;`. Le bot doit posséder **toutes** ces permissions. |
-| `errorMessage` | String (optionnel) | Message envoyé si le bot n'a pas les permissions requises. Si omis, silence. |
+| `permission1;permission2;...` | String[] | List des permissions Discord separatedes par `;`. The bot doit posséder **all** ces permissions. |
+| `errorMessage` | String (optional) | Message sent si the bot n'a pas les permissions requiredes. Si omis, silence. |
 
-## Comportement
+## Behavior
 
-- Vérifie les permissions globales du bot sur le serveur (pas seulement dans le channel courant).
-- La permission `Administrator` couvre implicitement toutes les autres.
-- Si le bot n'a pas les permissions, la commande s'arrête immédiatement.
-- Différence avec `$onlyPerms` : `$onlyPerms` vérifie l'**utilisateur**, `$onlyBotPerms` vérifie le **bot**.
+- Checks les permissions globals of the bot on the server (pas only in the channel courant).
+- La permission `Administrator` couvre implicitement all autres.
+- Si the bot n'a pas les permissions, the command s'stops immédiatement.
+- Différence avec `$onlyPerms` : `$onlyPerms` vérifie l'**user**, `$onlyBotPerms` vérifie le **bot**.
 
-## Exemples
+## Examples
 
-### Vérification avant un ban
+### Vérification before un ban
 
 ```bdfd
 $onlyBotPerms[BanMembers;❌ Je n'ai pas la permission **BanMembers**. Contactez un admin.]
@@ -49,17 +49,17 @@ $clear[50]
 $sendMessage[Nettoyage terminé.]
 ```
 
-### Commande de création de rôle
+### Command de création de role
 
 ```bdfd
-$onlyBotPerms[ManageRoles;❌ Je ne peux pas créer de rôles sans la permission **ManageRoles**.]
-$createRole[Nouveau Rôle;#5865F2]
-$sendMessage[Rôle créé avec succès.]
+$onlyBotPerms[ManageRoles;❌ Je ne peux pas créer de roles without the permission **ManageRoles**.]
+$createRole[New Role;#5865F2]
+$sendMessage[Role created successfully.]
 ```
 
 ## Notes
 
-- À utiliser systématiquement avant toute action nécessitant des permissions spécifiques du bot (ban, kick, gestion de rôles, suppression de messages, etc.).
+- À utiliser systématiquement before toute action nécessitant des permissions spécifiques of the bot (ban, kick, gestion de roles, suppression de messages, etc.).
 - Pour les permissions spécifiques au **channel** (ex: `SendMessages`, `ViewChannel`), utilisez `$onlyBotChannelPerms`.
 - Les noms de permissions sont en PascalCase (`ManageMessages`, `BanMembers`, etc.).
-- Équivalent à `$onlyIf[$hasPerms[$botID;Permission]==true]` mais plus concis.
+- Équivaslow à `$onlyIf[$hasPerms[$botID;Permission]==true]` mais plus concis.

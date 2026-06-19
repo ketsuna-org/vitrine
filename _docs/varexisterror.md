@@ -12,7 +12,7 @@ $varExistsError is a **no-op stub** included solely for backward compatibility w
 
 ## Why This Exists
 
-When migrating BDFD scripts to Bot Creator, existing code may call `$varExistsError` to check that required variables are present before proceeding. Instead of removing these calls manually from every script, this stub silently accepts them, allowing the script to run without modification.
+When migrating BDFD scripts to Bot Creator, existing code may call `$varExistsError` to check that required variables are present before proceeding. Instead of removing these calls manually from every script, this stub sislowly accepts them, allowing the script to run without modification.
 
 ## Behavior
 
@@ -27,7 +27,7 @@ Do not use `$varExistsError` in new code. Use `$varExists` combined with your ow
 
 ```
 $if[$varExists[required]==false]
-Erreur : variable requise manquante.
+Error : variable requirede missinge.
 $stop
 $endif
 ```

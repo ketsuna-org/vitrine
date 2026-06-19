@@ -6,36 +6,36 @@ category: "Embed & Message"
 
 # $newSelectMenu
 
-Crée un nouveau menu de sélection (select menu) dans la ligne d'action courante. Un select menu permet à l'utilisateur de choisir parmi une liste d'options prédéfinies.
+Creates a new menu de sélection (select menu) in the ligne d'action courante. A select menu allows à the user de choisir parmi une list d'options prédéfinies.
 
-## Syntaxe
+## Syntax
 
 ```
 $newSelectMenu[customId;placeholder;(minValues);(maxValues)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customId` | Identifiant personnalisé pour l'interaction | Oui |
-| `placeholder` | Texte affiché quand aucune option n'est sélectionnée | Oui |
-| `minValues` | Nombre minimum d'options sélectionnables (défaut : 1) | Non |
-| `maxValues` | Nombre maximum d'options sélectionnables (défaut : 1) | Non |
+| `customId` | Identifier custom for the interaction | Yes |
+| `placeholder` | Text displayed when noe option n'est selectede | Yes |
+| `minValues` | Number minimum d'options sélectionnables (default: 1) | No |
+| `maxValues` | Number maximum d'options sélectionnables (default: 1) | No |
 
 ## Description
 
-`$newSelectMenu` initialise un menu déroulant dans le message. Après l'avoir créé, utilisez `$addSelectMenuOption` pour ajouter des options. Le menu est ensuite envoyé avec `$sendMessage`.
+`$newSelectMenu` initialise un menu déroulant in the message. Après l'avoir created, utilisez `$addSelectMenuOption` pour ajouter des options. The menu est then sent avec `$sendMessage`.
 
-## Exemples
+## Examples
 
 ### Menu simple
 
 ```
 $newSelectMenu[menu_couleur;Choisissez une couleur]
-$addSelectMenuOption[menu_couleur;Rouge;red;La couleur rouge;🔴]
-$addSelectMenuOption[menu_couleur;Bleu;blue;La couleur bleue;🔵]
-$addSelectMenuOption[menu_couleur;Vert;green;La couleur verte;🟢]
+$addSelectMenuOption[menu_couleur;Rouge;red;The color rouge;🔴]
+$addSelectMenuOption[menu_couleur;Bleu;blue;The color bleue;🔵]
+$addSelectMenuOption[menu_couleur;Vert;green;The color verte;🟢]
 $sendMessage[Sélectionnez votre couleur préférée]
 ```
 
@@ -66,5 +66,5 @@ $endif
 
 - Chaque menu doit avoir un `customId` unique pour identifier l'interaction.
 - Un seul select menu par ligne d'action.
-- Jusqu'à 25 options peuvent être ajoutées par menu.
-- Pour les selects de type spécifique (utilisateurs, rôles, salons), utilisez les fonctions dédiées ($addUserSelect, $addRoleSelect, etc.).
+- Jusqu'à 25 options can be ajoutées par menu.
+- Pour les select menus de type spécifique (users, roles, channels), utilisez les functions dédiées ($addUserSelect, $addRoleSelect, etc.).

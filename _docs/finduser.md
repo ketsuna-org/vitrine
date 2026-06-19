@@ -5,46 +5,46 @@ translation_key: docs
 category: "Entity Info"
 function_name: findUser
 syntax: $findUser[name/mention/ID]
-description: Recherche un utilisateur par nom, mention ou ID et retourne son ID Discord. Retourne une chaîne vide si aucun utilisateur n'est trouvé.
+description: Recherche un user par nom, mention or ID and retourne son ID Discord. Returns ae string vide si no user n'est found.
 ---
 
 # $findUser
 
-La fonction `$findUser[]` permet de **rechercher un utilisateur** par son nom, sa mention ou son ID. Elle retourne l'ID Discord de l'utilisateur trouvé.
+The function `$findUser[]` allows **rechercher un user** par son nom, sa mention or son ID. Elle retourne the ID Discord of the user found.
 
-## Syntaxe
+## Syntax
 
 ```
 $findUser[name/mention/ID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `query` | Le terme de recherche : nom d'utilisateur (partiel ou complet), mention brute (`<@ID>`) ou ID numérique. |
+| `query` | Le terme de recherche : nom d'user (partial or complete), mention brute (`<@ID>`) or ID numérique. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Snowflake (chaîne numérique) ou chaîne vide
-- L'ID de l'utilisateur correspondant
-- Chaîne vide si aucun utilisateur n'est trouvé
+- **Type** : Snowflake (string numérique) or string vide
+- The ID of the user correspondant
+- String vide si no user n'est found
 
-## Comportement
+## Behavior
 
 - La recherche par nom est **insensible à la casse**.
-- La recherche par nom peut être **partielle** (ex: `"Jean"` trouve `"JeanDupont"`).
-- La recherche s'effectue parmi les utilisateurs connus du bot (cache des serveurs partagés).
-- Priorité de correspondance : mention exacte > ID exact > nom d'utilisateur > pseudo serveur.
+- La recherche par nom can be **partialle** (ex: `"Jean"` trouve `"JeanDupont"`).
+- La recherche s'effectue parmi les users connus of the bot (cache des servers partagés).
+- Priorité de correspondance : mention exact > ID exact > nom d'user > pseudo server.
 
-## Exemples
+## Examples
 
-### Recherche par argument de commande
+### Recherche par argument de command
 
 ```bdfd
 $let[target;$findUser[$message]]
 $if[$target!=]
-  $title[Utilisateur trouvé]
+  $title[User found]
   $description[
   **ID :** $target
   **Nom :** $userName[$target]
@@ -53,21 +53,21 @@ $if[$target!=]
   $color[#5865F2]
   $sendMessage[]
 $else
-  $sendMessage[Aucun utilisateur trouvé pour "$message".]
+  $sendMessage[Aucun user found pour "$message".]
 $endif
 ```
 
-### Recherche et action
+### Recherche and action
 
 ```bdfd
 $let[target;$findUser[$message[1]]]
 $if[$target!=]
   $if[$checkContains[$userPerms;KickMembers]==true]
     $kick[$target]
-    $sendMessage[$userName[$target] a été expulsé.]
+    $sendMessage[$userName[$target] was expulsé.]
   $endif
 $else
-  $sendMessage[Utilisateur introuvable.]
+  $sendMessage[User introuvable.]
 $endif
 ```
 
@@ -76,16 +76,16 @@ $endif
 ```bdfd
 $let[target;$findUser[$message]]
 $if[$target!=]
-  $sendMessage[Utilisateur : $userName[$target]]
+  $sendMessage[User : $userName[$target]]
 $else
-  $sendMessage[Utilisateur non trouvé. Utilisation de l'auteur par défaut.]
+  $sendMessage[User non found. Utilisation de l'auteur default.]
   $let[target;$authorID]
 $endif
 ```
 
 ## Notes
 
-- `$findUser[]` est plus flexible que `$mentioned` car il accepte les noms partiels.
-- Vérifiez toujours le résultat (non vide) avant d'utiliser l'ID retourné.
-- Utile pour les commandes où l'utilisateur peut fournir un nom, un ID ou une mention.
-- La recherche est limitée aux utilisateurs que le bot "connaît" (présents sur les serveurs communs).
+- `$findUser[]` est plus flexible que `$mentioned` because il accepte les noms partials.
+- Vérifiez toudays the result (non vide) before d'utiliser the ID retourné.
+- Utile for the commands où the user peut fournir un nom, un ID or une mention.
+- La recherche est limitée aux users que the bot "connaît" (présents sur les servers communs).

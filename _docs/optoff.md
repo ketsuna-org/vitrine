@@ -5,35 +5,36 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: optOff
 syntax: $optOff
-description: Désactive l'optimisation du code pour la commande en cours. Tout le code est exécuté linéairement sans optimisation du parseur.
+description: Disables code optimization for the current command. All code is executed linearly without parser optimization.
 ---
+
 # $optOff
 
-La fonction `$optOff` **désactive l'optimisation du code** pour la commande en cours. BDFD exécute alors le code de manière strictement linéaire.
+The `$optOff` function **disables code optimization** for the current command. BDFD then executes the code in a strictly linear manner.
 
-## Syntaxe
+## Syntax
 
 ```
 $optOff
 ```
 
-## Paramètres
+## Parameters
 
-Aucun.
+None.
 
-## Valeur de retour
+## Return Value
 
-Aucune.
+None.
 
-## Comportement
+## Behavior
 
-- Sans `$optOff`, BDFD peut réorganiser le code pour optimiser l'exécution.
-- Avec `$optOff`, l'ordre d'exécution est exactement celui du code source.
-- Utile quand l'optimisation cause des bugs d'ordre d'exécution.
+- Without `$optOff`, BDFD may reorganize the code to optimize execution.
+- With `$optOff`, the execution order is exactly that of the source code.
+- Useful when optimization causes execution order bugs.
 
-## Exemples
+## Examples
 
-### Forcer l'ordre d'exécution
+### Force execution order
 
 ```bdfd
 $optOff
@@ -43,17 +44,17 @@ $var[x;2]
 $sendMessage[x = $var[x]]
 ```
 
-### Éviter les bugs d'optimisation
+### Avoid optimization bugs
 
 ```bdfd
 $optOff
 $let[a;1]
-$onlyIf[$let[a]!=;Valeur manquante]
+$onlyIf[$let[a]!=;Missing value]
 $sendMessage[$let[a]]
 ```
 
 ## Notes
 
-- Impacte les performances : n'utilisez que si nécessaire.
-- Certaines fonctions complexes peuvent nécessiter `$optOff` pour fonctionner correctement.
-- À placer au début de la commande.
+- Impacts performance: only use when necessary.
+- Some complex functions may require `$optOff` to work correctly.
+- Should be placed at the beginning of the command.

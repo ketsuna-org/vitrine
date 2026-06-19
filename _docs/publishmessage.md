@@ -5,73 +5,73 @@ translation_key: docs
 category: "Moderation"
 function_name: publishMessage
 syntax: $publishMessage[messageID]
-description: Publie un message dans les serveurs abonnés (fonctionnalité des canaux d'annonce). Permet de diffuser un message au-delà du serveur d'origine.
+description: Publishes a message to subscribed servers (announcement channel feature). Allows broadcasting a message beyond the original server.
 ---
 
 # $publishMessage
 
-La fonction `$publishMessage[]` permet de **publier un message** d'un canal d'annonce vers tous les serveurs abonnés.
+The `$publishMessage[]` function allows **publishing a message** from an announcement channel to all subscribed servers.
 
-## Syntaxe
+## Syntax
 
 ```
 $publishMessage[messageID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `messageID` | L'ID du message à publier (doit être dans un canal d'annonce). |
+| `messageID` | The ID of the message to publish (must be in an announcement channel). |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur.
+This function does not return a value.
 
-## Comportement
+## Behavior
 
-- Nécessite un canal de type **annonce** (type 5).
-- Le bot doit avoir la permission `MANAGE_MESSAGES` ou `SEND_MESSAGES` dans le canal d'annonce.
-- Le message est diffusé à tous les serveurs qui suivent ce canal d'annonce.
-- La publication peut prendre quelques secondes.
+- Requires a channel of type **announcement** (type 5).
+- The bot must have the `MANAGE_MESSAGES` or `SEND_MESSAGES` permission in the announcement channel.
+- The message is broadcast to all servers that follow this announcement channel.
+- Publishing may take a few seconds.
 
-## Exemples
+## Examples
 
-### Publier une annonce
+### Publish an announcement
 
 ```bdfd
-$title[📢 Mise à jour du bot]
+$title[📢 Bot update]
 $description[
-**Nouvelle version :** 2.0.0
-**Changements :**
-- Nouvelle commande !help
-- Corrections de bugs
-- Performance améliorée
+**New version:** 2.0.0
+**Changes:**
+- New !help command
+- Bug fixes
+- Improved performance
 ]
 $color[#5865F2]
 $channelSendMessage[$announcementChannel;]
 $publishMessage[$messageID]
-$sendMessage[Annonce publiée !]
+$sendMessage[Announcement published!]
 ```
 
-### Publication conditionnelle
+### Conditional publication
 
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
-  $title[Annonce de $username]
+  $title[Announcement from $username]
   $description[$noMentionMessage]
-  $footer[Publié par $username]
+  $footer[Published by $username]
   $channelSendMessage[$announcementChannel;]
   $publishMessage[$messageID]
-  $sendMessage[✅ Annonce publiée avec succès.]
+  $sendMessage[✅ Announcement published successfully.]
 $else
-  $sendMessage[❌ Permission refusée.]
+  $sendMessage[❌ Permission denied.]
 $endif
 ```
 
 ## Notes
 
-- Seuls les messages dans les canaux d'annonce peuvent être publiés.
-- Les serveurs abonnés voient le message dans leur canal d'annonce dédié.
-- La publication est irréversible : le message ne peut pas être "dépublié".
-- Idéal pour les mises à jour de bot, changelogs et annonces communautaires.
+- Only messages in announcement channels can be published.
+- Subscribed servers see the message in their dedicated announcement channel.
+- Publishing is irreversible: the message cannot be "unpublished".
+- Ideal for bot updates, changelogs, and community announcements.

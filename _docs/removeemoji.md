@@ -5,74 +5,74 @@ translation_key: docs
 category: "Moderation"
 function_name: removeEmoji
 syntax: $removeEmoji[name]
-description: Supprime un emoji personnalisé du serveur par son nom. L'emoji ne sera plus utilisable après suppression.
+description: Removes a custom emoji from the server by its name. The emoji will no longer be usable after removal.
 ---
 
 # $removeEmoji
 
-La fonction `$removeEmoji[]` permet de **supprimer un emoji personnalisé** du serveur en utilisant son nom.
+The `$removeEmoji[]` function allows **removing a custom emoji** from the server using its name.
 
-## Syntaxe
+## Syntax
 
 ```
 $removeEmoji[name]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Le nom de l'emoji à supprimer (sans les deux-points `:`). |
+| `name` | The name of the emoji to remove (without the colons `:`). |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : String (vide en cas de succès)
-- Chaîne vide si la suppression réussit.
-- Message d'erreur si l'emoji n'existe pas ou si le bot manque de permissions.
+- **Type**: String (empty on success)
+- Empty string if the removal succeeds.
+- Error message if the emoji doesn't exist or if the bot lacks permissions.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `MANAGE_EMOJIS_AND_STICKERS`.
-- L'emoji est définitivement supprimé du serveur.
-- Tous les messages utilisant cet emoji afficheront le nom texte au lieu de l'image.
+- The bot must have the `MANAGE_EMOJIS_AND_STICKERS` permission.
+- The emoji is permanently removed from the server.
+- All messages using this emoji will display the text name instead of the image.
 
-## Exemples
+## Examples
 
-### Suppression simple
+### Simple removal
 
 ```bdfd
 $if[$checkContains[$userPerms;ManageEmojisAndStickers]==true]
   $if[$emojiExists[$noMentionMessage]==true]
     $removeEmoji[$noMentionMessage]
-    $sendMessage[✅ Emoji **$noMentionMessage** supprimé.]
+    $sendMessage[✅ Emoji **$noMentionMessage** removed.]
   $else
-    $sendMessage[❌ L'emoji **$noMentionMessage** n'existe pas.]
+    $sendMessage[❌ The emoji **$noMentionMessage** does not exist.]
   $endif
 $else
-  $sendMessage[❌ Permission refusée.]
+  $sendMessage[❌ Permission denied.]
 $endif
 ```
 
-### Suppression sécurisée avec confirmation
+### Secure removal with confirmation
 
 ```bdfd
 $let[name;$noMentionMessage]
 $if[$emojiExists[$name]==true]
   $removeEmoji[$name]
-  $title[🗑️ Emoji supprimé]
+  $title[🗑️ Emoji removed]
   $description[
-  **Nom :** $name
-  **Supprimé par :** $userName[$authorID]
+  **Name:** $name
+  **Removed by:** $userName[$authorID]
   ]
   $color[#ED4245]
   $sendMessage[]
 $else
-  $sendMessage[❌ Aucun emoji nommé **$name** trouvé.]
+  $sendMessage[❌ No emoji named **$name** found.]
 $endif
 ```
 
 ## Notes
 
-- Le nom de l'emoji est sensible à la casse.
-- La suppression est irréversible.
-- Vérifiez toujours l'existence de l'emoji avec `$emojiExists[]` avant de supprimer.
+- The emoji name is case-sensitive.
+- Removal is irreversible.
+- Always check the emoji's existence with `$emojiExists[]` before removing.

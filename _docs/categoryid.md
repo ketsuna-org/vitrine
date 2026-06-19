@@ -5,56 +5,56 @@ translation_key: docs
 category: "Entity Info"
 function_name: categoryID
 syntax: $categoryID[(channelID)]
-description: Alias de $channelCategoryID. Retourne l'ID de la catégorie parente d'un salon.
+description: Alias de $channelCategoryID. Returns the ID of the catégorie parente of a channel.
 ---
 
 # $categoryID
 
-La fonction `$categoryID` est un **alias** de `$channelCategoryID`. Elle retourne l'ID de la catégorie à laquelle appartient le salon courant (ou le salon spécifié).
+The `$categoryID` function est un **alias** de `$channelCategoryID`. Elle returns the ID of the catégorie à laquelle appartient the channel courant (or the channel spécifié).
 
-## Syntaxe
+## Syntax
 
 ```
 $categoryID[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel. L'ID du salon cible. Si omis, le salon courant est utilisé. |
+| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | L'ID de la catégorie parente, ou `""` si le salon n'est pas dans une catégorie. |
+| `snowflake` (string) | The ID of the catégorie parente, or `""` if the channel is not dans une catégorie. |
 
-## Exemples
+## Examples
 
-### Obtenir l'ID de la catégorie
+### Obtenir the ID of the catégorie
 
 ```bdfd
 $sendMessage[ID catégorie : $categoryID]
 ```
 
-### Afficher le nom de la catégorie
+### Afficher the name de la catégorie
 
 ```bdfd
 $if[$categoryID!=]
   $sendMessage[Catégorie : $channelName[$categoryID]]
 $else
-  $sendMessage[Ce salon n'est pas dans une catégorie.]
+  $sendMessage[Ce channel is not dans une catégorie.]
 $endif
 ```
 
-### Lister les salons de la même catégorie
+### Listr les channels de la même catégorie
 
 ```bdfd
-$sendMessage[Autres salons dans cette catégorie : $categoryChannels[$categoryID]]
+$sendMessage[Autres channels dans cette catégorie : $categoryChannels[$categoryID]]
 ```
 
 ## Notes
 
-- `$categoryID` et `$parentID` sont des alias de `$channelCategoryID`.
-- Retourne une chaîne vide pour les salons hors catégorie et les DM.
+- `$categoryID` and `$parentID` sont des alias de `$channelCategoryID`.
+- Returns a string vide for channels hors catégorie and les DM.

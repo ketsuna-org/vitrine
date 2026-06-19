@@ -5,37 +5,37 @@ translation_key: docs
 category: "Entity Info"
 function_name: nodeVersion
 syntax: $nodeVersion
-description: Retourne la version du runtime Node.js sur lequel le bot s'exécute.
+description: Returns the version du runtime Node.js sur lequel the bot s'exécute.
 ---
 
 # $nodeVersion
 
-La fonction `$nodeVersion` **retourne la version actuelle du runtime Node.js** sur lequel le bot BDFD est exécuté.
+The function `$nodeVersion` **retourne la version currentle du runtime Node.js** sur lequel the bot BDFD est executed.
 
-## Syntaxe
+## Syntax
 
 ```
 $nodeVersion
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
 - La version de Node.js (ex: `v18.15.0`, `v20.10.0`).
 
-## Comportement
+## Behavior
 
-- Retourne la version complète avec le préfixe `v`.
+- Returns the version complete with the préfixe `v`.
 - La version est déterminée par l'infrastructure BDFD (non modifiable).
-- Utile pour le débogage et la compatibilité des fonctionnalités.
+- Utile for the débogage and la compatibilité des functionnalités.
 
-## Exemples
+## Examples
 
-### Compatibilité de fonctionnalité
+### Compatibilité de functionnalité
 
 ```bdfd
 $var[version;$nodeVersion]
@@ -43,9 +43,9 @@ $var[major;$textSplit[$var[version];v]]
 $var[major;$textSplit[$var[major];.;1]]
 
 $if[$var[major]>=18]
-  $sendMessage[✅ Votre runtime supporte les dernières fonctionnalités.]
+  $sendMessage[✅ Votre runtime supporte les lasts functionnalités.]
 $else
-  $sendMessage[⚠️ Runtime ancien. Certaines fonctions peuvent être limitées.]
+  $sendMessage[⚠️ Runtime old. Certaines functions can be limitées.]
 $endif
 ```
 
@@ -58,7 +58,7 @@ $description[
 **Node :** $botNode
 **Runtime :** $nodeVersion
 **Langage :** $scriptLanguage
-**Commandes :** $commandsCount
+**Commands :** $commandsCount
 ]
 $footer[Infrastructure BDFD]
 $sendMessage[]
@@ -67,12 +67,12 @@ $sendMessage[]
 ### Log de démarrage
 
 ```bdfd
-$log[🚀 $botName démarré | Node: $botNode | Runtime: $nodeVersion | Lang: $scriptLanguage]
+$log[🚀 $botName started | Node: $botNode | Runtime: $nodeVersion | Lang: $scriptLanguage]
 ```
 
 ## Notes
 
 - Version en lecture seule, gérée par BDFD.
-- Mise à jour automatique par l'infrastructure BDFD.
+- Mise à day automatique par l'infrastructure BDFD.
 - Pour des informations sur le nœud, utilisez `$botNode`.
 - Pour le langage de script, utilisez `$scriptLanguage`.

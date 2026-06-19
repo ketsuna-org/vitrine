@@ -28,7 +28,7 @@ When used in hybrid commands (supporting both text and slash invocation), `$args
 2. If no text argument exists, the slash command option named `option` is returned instead.
 3. If neither exists, an empty string is returned.
 
-This allows the same command code to handle both invocation methods seamlessly.
+This allows the same command code to handthe both invocation methods seamlessly.
 
 ## Comparison with Other Functions
 

@@ -5,32 +5,32 @@ translation_key: docs
 category: "Server & Channels"
 function_name: serverChannelExists
 syntax: $serverChannelExists[name;guildID]
-description: Vérifie si un canal portant un nom donné existe sur un serveur (guild). Retourne true/false.
+description: Checks if un canal portant un nom donné existe sur un server (guild). Returns true/false.
 ---
 # $serverChannelExists
 
-La fonction `$serverChannelExists[]` vérifie si un **canal existe sur un serveur** donné (par son nom).
+The function `$serverChannelExists[]` vérifie if a **canal existe sur un server** donné (par son nom).
 
-## Syntaxe
+## Syntax
 
 ```
 $serverChannelExists[name;guildID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Nom du canal à rechercher. Sensible à la casse. Wildcards (*) supportés. |
-| `guildID` | ID du serveur. Si omis, utilise le serveur courant. |
+| `name` | Name of the canal à rechercher. Sensible à la casse. Wildbecauseds (*) supportés. |
+| `guildID` | ID of the server. Si omis, utilise the server courant. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Booléen (chaîne)
-- `"true"` si le canal existe.
-- `"false"` sinon.
+- **Type** : Boolean (string)
+- `"true"` if the canal existe.
+- `"false"` otherwise.
 
-## Exemples
+## Examples
 
 ### Vérification simple
 
@@ -39,30 +39,30 @@ $if[$serverChannelExists[logs]==true]
   $sendMessage[Le canal #logs existe déjà.]
 $else
   $createChannel[logs]
-  $sendMessage[Canal #logs créé.]
+  $sendMessage[Canal #logs created.]
 $endif
 ```
 
-### Vérification avec wildcard
+### Vérification avec wildbecaused
 
 ```bdfd
 $if[$serverChannelExists[ticket-*]==true]
   $sendMessage[Des canaux de ticket existent déjà.]
 $else
-  $sendMessage[Aucun canal de ticket trouvé.]
+  $sendMessage[Aucun canal de ticket found.]
 $endif
 ```
 
-### Vérification sur un autre serveur
+### Vérification sur un autre server
 
 ```bdfd
-$if[$serverChannelExists[bienvenue;$guildID[Serveur Partenaire]]==true]
-  $sendMessage[Le canal bienvenue existe sur le serveur partenaire.]
+$if[$serverChannelExists[bienvenue;$guildID[Server Partenaire]]==true]
+  $sendMessage[Le canal bienvenue existe on the server partenaire.]
 $endif
 ```
 
 ## Notes
 
-- Différent de `$channelExists[]` qui vérifie par ID, pas par nom.
-- Utile pour éviter les doublons avant une création.
-- Le paramètre `guildID` est optionnel (serveur courant par défaut).
+- Different de `$channelExists[]` qui vérifie par ID, pas par nom.
+- Utile pour éviter les doublons before une création.
+- The parameter `guildID` est optional (server courant default).

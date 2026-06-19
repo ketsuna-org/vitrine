@@ -5,60 +5,60 @@ translation_key: docs
 category: "Moderation"
 function_name: blacklistRoles
 syntax: $blacklistRoles[roleID1;roleID2;...;(errorMessage)]
-description: Fonction guard qui blackliste des rôles. Si l'utilisateur possède l'un des rôles, la commande est interrompue.
+description: Function guard qui blacklist of roles. If the user possède l'un of roles, la command est interrompue.
 ---
 
 # $blacklistRoles
 
-La fonction guard `$blacklistRoles` bloque l'exécution de la commande si l'utilisateur possède **au moins un** des rôles blacklistés.
+The function guard `$blacklistRoles` bloque l'execution of the command if the user possède **au moins un** of roles blacklistés.
 
-## Syntaxe
+## Syntax
 
 ```
 $blacklistRoles[roleID1;roleID2;...;(errorMessage)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description |
+| Parameter | Type | Description |
 |-----------|------|-------------|
-| `roleID1;roleID2;...` | Snowflake[] | IDs des rôles à blacklister, séparés par `;`. |
-| `errorMessage` | String (optionnel) | Message envoyé si l'utilisateur a un rôle blacklisté. |
+| `roleID1;roleID2;...` | Snowflake[] | IDs of roles à blacklistr, separateds par `;`. |
+| `errorMessage` | String (optional) | Message sent if the user a a role blacklisté. |
 
-## Comportement
+## Behavior
 
-- Vérifie si l'utilisateur possède un des rôles de la liste.
-- Si **au moins un** rôle correspond, la commande est interrompue.
-- Vérification de type **OU** (un seul rôle blacklisté suffit à bloquer).
-- Si un message d'erreur est fourni, il est envoyé ; sinon, silence.
+- Checks if the user possède un of roles de la list.
+- Si **au moins un** role correspond, la command est interrompue.
+- Vérification de type **OU** (a singthe role blacklisté suffit à bloquer).
+- If a message error is provided, il is sent ; otherwise, silence.
 
-## Exemples
+## Examples
 
-### Bloquer les utilisateurs mutés
+### Bloquer users mutés
 
 ```bdfd
-$blacklistRoles[123456789012345678;❌ Vous êtes actuellement mute. Contactez un modérateur.]
-$sendMessage[Votre message a été traité.]
+$blacklistRoles[123456789012345678;❌ Vous êtes currently mute. Contactez un modérateur.]
+$sendMessage[Votre message has been traité.]
 ```
 
-### Multi-rôles blacklistés
+### Multi-roles blacklistés
 
 ```bdfd
-$blacklistRoles[111111111111111111;222222222222222222;❌ Accès interdit pour votre rôle.]
+$blacklistRoles[111111111111111111;222222222222222222;❌ Accès forbidden pour votre role.]
 $clear[10]
-$sendMessage[10 messages supprimés.]
+$sendMessage[10 messages deleteds.]
 ```
 
 ### Blacklist silencieuse
 
 ```bdfd
 $blacklistRoles[123456789012345678]
-$sendMessage[Commande exécutée.]
+$sendMessage[Command executede.]
 ```
 
 ## Notes
 
-- `$blacklistRoles` et `$blacklistRoleIDs` sont interchangeables.
-- Pour whitelister des rôles, utilisez `$onlyForRoles`.
-- Très utile pour empêcher les utilisateurs mutés ou en restriction d'utiliser des commandes.
-- Combinez avec `$blacklistUsers` pour une protection complète (rôles + utilisateurs spécifiques).
+- `$blacklistRoles` and `$blacklistRoleIDs` sont interchangeables.
+- Pour whitelistr of roles, use `$onlyForRoles`.
+- Très utile pour empêcher users mutés or en restriction d'utiliser des commands.
+- Combinez avec `$blacklistUsers` for ae protection complete (roles + users spécifiques).

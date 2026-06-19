@@ -5,42 +5,42 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomGuildID
 syntax: $randomGuildID
-description: Retourne l'ID d'un serveur aléatoire parmi les serveurs où le bot est présent.
+description: Returns the ID of a random server among the servers where the bot is present.
 ---
 
 # $randomGuildID[]
 
-La fonction `$randomGuildID[]` retourne l'ID Discord d'un serveur aléatoire parmi tous les serveurs où le bot est présent.
+The `$randomGuildID[]` function returns the Discord ID of a random server from all servers where the bot is present.
 
-## Syntaxe
+## Syntax
 
 ```
 $randomGuildID
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note:** This function takes no parameters.
 
-## Valeur de retour
+## Return Value
 
-L'ID Discord (snowflake) d'un serveur aléatoire, sous forme de chaîne de caractères.
+The Discord ID (snowflake) of a random server, as a string.
 
-## Exemples
+## Examples
 
-### Obtenir un ID de serveur aléatoire
+### Get a random server ID
 
 ```bdfd
-ID du serveur aléatoire : $randomGuildID
+Random server ID: $randomGuildID
 ```
 
-### Obtenir des informations sur un serveur aléatoire
+### Get information about a random server
 
 ```bdfd
-$title[Serveur aléatoire]
-$description[Nom : $serverName[$randomGuildID]]
-$addField[Membres :;$membersCount[$randomGuildID]]
+$title[Random server]
+$description[Name: $serverName[$randomGuildID]]
+$addField[Members:;$membersCount[$randomGuildID]]
 ```
 
 ## Notes
 
-- Le serveur est choisi parmi tous les serveurs où le bot est présent.
-- Chaque serveur a une probabilité égale d'être sélectionné.
+- The server is chosen from all servers where the bot is present.
+- Each server has an equal probability of being selected.

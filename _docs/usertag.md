@@ -5,32 +5,32 @@ translation_key: docs
 category: "Entity Info"
 function_name: userTag
 syntax: $userTag
-description: Retourne le tag complet de l'utilisateur sous la forme "nom#discriminator" (format legacy). Depuis la migration vers les noms uniques, retourne le nom d'utilisateur sans discriminateur.
+description: Returns the tag complete of the user sous la forme "nom#discriminator" (format legacy). Dethen la migration vers les noms unique, retourne the name d'user without discriminateur.
 ---
 
 # $userTag
 
-La variable `$userTag` retourne le **tag complet** de l'utilisateur. Historiquement, Discord utilisait le format `nom#discriminator` (ex: "JeanDupont#1234"). Depuis la migration vers les noms d'utilisateur uniques (système "pomme"), le tag est simplement le nom d'utilisateur.
+The variable `$userTag` retourne le **tag complete** of the user. Historiquement, Discord utilisait le format `nom#discriminator` (ex: "JeanDupont#1234"). Dethen la migration vers les noms d'user unique (système "pomme"), le tag est simplement the name d'user.
 
-## Syntaxe
+## Syntax
 
 ```
 $userTag
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne de caractères
-- Ancien format : `nom#discriminator` (ex: `JeanDupont#1234`)
-- Nouveau format (utilisateurs pompom) : simplement le nom d'utilisateur
+- **Type** : String de becauseactères
+- Old format : `nom#discriminator` (ex: `JeanDupont#1234`)
+- New format (users pompom) : simplement the name d'user
 
-## Comportement
+## Behavior
 
-- `$userTag` ne prend **aucun argument**.
-- Pour les comptes créés avant la migration pompom, le tag peut encore inclure le discriminateur à 4 chiffres.
-- Pour les nouveaux comptes, le retour est identique à `$userName`.
+- `$userTag` ne prend **no argument**.
+- Pour les comptes createds before la migration pompom, le tag peut encore inclure le discriminateur à 4 chiffres.
+- Pour les newx comptes, le retour est identical à `$userName`.
 
-## Exemples
+## Examples
 
 ### Afficher le tag
 
@@ -45,7 +45,7 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérifier si l'utilisateur a un discriminateur legacy
+### Vérifier si the user a un discriminateur legacy
 
 ```bdfd
 $if[$discriminator!=0]
@@ -58,5 +58,5 @@ $endif
 ## Notes
 
 - Le format legacy `nom#discriminator` est progressivement abandonné par Discord.
-- Pour les nouveaux utilisateurs, `$userTag` est équivalent à `$userName`.
-- Préférez `$userName` ou `$displayName` pour une compatibilité future.
+- Pour les newx users, `$userTag` est équivaslow à `$userName`.
+- Préférez `$userName` or `$displayName` for ae compatibilité future.

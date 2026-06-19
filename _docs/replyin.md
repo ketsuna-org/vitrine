@@ -5,24 +5,24 @@ translation_key: docs
 category: "Embed & Message"
 function_name: replyIn
 syntax: $replyIn[duration]
-description: Programme une réponse différée à un message. Le bot enverra le contenu défini après $replyIn en tant que réponse au message original après le délai spécifié.
+description: Programme une response différée à un message. The bot enverra le contenu défini after $replyIn as response au message original after le delay spécifié.
 ---
 
-# $replyIn[] — Réponse Différée
+# $replyIn[] — Response Différée
 
-`$replyIn[]` programme l'envoi d'une réponse au message après un délai. Le contenu défini après `$replyIn[]` sera envoyé comme réponse (reply) au message original.
+`$replyIn[]` programme l'envoi d'une response au message after un delay. The contenu défini after `$replyIn[]` sera sent comme response (reply) au message original.
 
-## Syntaxe
+## Syntax
 
 ```
 $replyIn[duration]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Description |
+| Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `duration` | Oui | Délai avant réponse. Format : nombre + unité. |
+| `duration` | Yes | Delay before response. Format : number + unité. |
 
 ## Format de durée
 
@@ -30,27 +30,27 @@ $replyIn[duration]
 |--------|-------|---------|
 | `Xs` | Secondes | `3s`, `10s` |
 | `Xm` | Minutes | `1m`, `5m` |
-| `Xh` | Heures | `1h` |
+| `Xh` | Times | `1h` |
 
-## Valeur de retour
+## Return Value
 
-Programme une réponse différée. Le contenu qui suit est envoyé en tant que reply au message déclencheur.
+Programme une response différée. The contenu qui suit est sent as reply au message déclencheur.
 
 ## Utilisation
 
-### Réponse simple différée
+### Response simple différée
 
 ```bdfd
 $replyIn[3s]
 $sendMessage[Merci de patienter, je traite votre demande...]
 ```
 
-### Information après délai
+### Information after delay
 
 ```bdfd
 $replyIn[5s]
-$title[Informations du serveur]
-$description[**Nom :** $serverName\n**Membres :** $membersCount]
+$title[Informations of the server]
+$description[**Nom :** $serverName\n**Members :** $membersCount]
 $color[#5865F2]
 $footer[Demandé par $username]
 ```
@@ -59,16 +59,16 @@ $footer[Demandé par $username]
 
 ```bdfd
 $replyIn[2s]
-$sendMessage[🔍 Recherche en cours...]
+$sendMessage[🔍 Recherche in progress...]
 $replyIn[5s]
-$sendMessage[✅ Résultat trouvé : $var[result]]
+$sendMessage[✅ Result found : $var[result]]
 ```
 
 ### Notifications planifiées
 
 ```bdfd
 $replyIn[1m]
-$sendMessage[⏰ Rappel : votre réunion commence dans 5 minutes !]
+$sendMessage[⏰ Rcall : votre réunion commence dans 5 minutes !]
 ```
 
 ### Avec embeds
@@ -77,15 +77,15 @@ $sendMessage[⏰ Rappel : votre réunion commence dans 5 minutes !]
 $replyIn[4s]
 $title[Analyse terminée]
 $description[Voici l'analyse demandée par $username]
-$addField[Statut;Complété;yes]
+$addField[Status;Complété;yes]
 $addField[Temps d'exécution;$var[exec_time]ms;yes]
 $color[#27AE60]
 ```
 
 ## Notes
 
-- Le message est envoyé en tant que **réponse** (reply) au message original.
-- La durée maximale recommandée est de 15 minutes.
-- Plusieurs `$replyIn[]` successifs enverront plusieurs réponses différées.
-- Contrairement à `$editIn[]`, un nouveau message est créé, pas une édition.
-- Si le message original est supprimé avant le délai, la réponse peut échouer.
+- The message est sent as **response** (reply) au message original.
+- The duration maximale recommendede est de 15 minutes.
+- Plusieurs `$replyIn[]` successifs enverront several responses différées.
+- Contrairement à `$editIn[]`, un new message est created, pas une édition.
+- Si the message original est deleted before le delay, the response peut échouer.

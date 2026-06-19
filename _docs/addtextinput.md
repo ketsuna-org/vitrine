@@ -5,37 +5,37 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addTextInput
 syntax: $addTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
-description: Ajoute un champ de saisie de texte directement dans un message (composant de message, non modal). Supporte les styles "short" et "paragraph".
+description: Ajoute a field de saisie de text directly in a message (composant de message, non modal). Supporte les styles "short" and "paragraph".
 ---
 
-# $addTextInput[] — Champ Texte dans un Message
+# $addTextInput[] — Champ Text dans un Message
 
-`$addTextInput[]` ajoute un composant de saisie de texte directement dans un message Discord. Contrairement à `$addModalTextInput[]` qui nécessite un modal, cette fonction insère le champ texte comme composant interactif du message.
+`$addTextInput[]` ajoute a component de saisie de text directly in a Discord message. Contrairement à `$addModalTextInput[]` qui requires a modal, cette function insère le champ text comme composant interactif of the message.
 
-## Syntaxe
+## Syntax
 
 ```
 $addTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Défaut | Description |
+| Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Oui | — | Identifiant unique du champ. |
-| `label` | Oui | — | Texte de l'étiquette. |
-| `style` | Non | `short` | `short` ou `paragraph`. |
-| `placeholder` | Non | — | Texte indicatif. |
-| `default` | Non | — | Valeur par défaut. |
-| `required` | Non | `yes` | `yes` ou `no`. |
-| `minLength` | Non | — | Nombre min de caractères. |
-| `maxLength` | Non | — | Nombre max de caractères. |
+| `customId` | Yes | — | Unique identifier of the field. |
+| `label` | Yes | — | Text de l'label. |
+| `style` | No | `short` | `short` or `paragraph`. |
+| `placeholder` | No | — | Text indicatif. |
+| `default` | No | — | Value by default. |
+| `required` | No | `yes` | `yes` or `no`. |
+| `minLength` | No | — | Number min de becauseactères. |
+| `maxLength` | No | — | Number max de becauseactères. |
 
-## Valeur de retour
+## Return value
 
-Ajoute le TextInput au message. La valeur saisie est récupérée via `$input[customId]` dans le handler d'interaction.
+Ajoute le TextInput au message. The value saisie is retrievede via `$input[customId]` in the handler d'interaction.
 
-## Utilisation
+## Usage
 
 ### Champ de recherche
 
@@ -56,12 +56,12 @@ $addTextInput[message;Votre message;paragraph;Écrivez votre feedback...;;yes;10
 $addButton[submit;Envoyer;Success]
 ```
 
-### Traitement de la réponse
+### Traitement de the response
 
 ```bdfd
 $onInteraction[search_action]
 $var[query;$input[query]]
-$sendMessage[Résultats pour : **$var[query]**]
+$sendMessage[Results pour : **$var[query]**]
 $endInteraction
 ```
 
@@ -69,13 +69,13 @@ $endInteraction
 
 | Message TextInput | Modal TextInput |
 |-------------------|-----------------|
-| Directement dans le message | Dans un modal (pop-up) |
-| Souvent accompagné de boutons | Soumis avec le bouton Submit du modal |
-| Pas de limite de 5 composants | Limité à 5 composants par modal |
+| Directly in the message | Dans a modal (pop-up) |
+| Souvent accompagné de buttons | Soumis with the bouton Submit of the modal |
+| Pas de limit de 5 components | Limité à 5 components par modal |
 
 ## Notes
 
-- Le `customId` doit être unique au sein du message.
-- La valeur est récupérée via `$input[customId]` dans un `$onInteraction`.
-- `minLength` et `maxLength` sont validés côté client Discord.
-- Label max 45 caractères, placeholder max 100 caractères.
+- Le `customId` must be unique au sein of the message.
+- La value is retrievede via `$input[customId]` dans un `$onInteraction`.
+- `minLength` and `maxLength` sont validés côté clinkt Discord.
+- Label max 45 becauseactères, placeholder max 100 becauseactères.

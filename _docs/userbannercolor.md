@@ -5,45 +5,45 @@ translation_key: docs
 category: "Entity Info"
 function_name: userBannerColor
 syntax: $userBannerColor
-description: Retourne la couleur d'accent de la bannière de profil de l'utilisateur au format hexadécimal.
+description: Returns the couleur d'accent de la banner de profil of the user au format hexadecimal.
 ---
 
 # $userBannerColor
 
-La variable `$userBannerColor` retourne la **couleur d'accent** associée à la bannière de profil de l'utilisateur. Cette couleur est automatiquement extraite par Discord à partir de la bannière.
+The variable `$userBannerColor` retourne la **couleur d'accent** associée à la banner de profil of the user. Cette couleur est automatically extractede par Discord from la banner.
 
-## Syntaxe
+## Syntax
 
 ```
 $userBannerColor
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne de caractères (hexadécimal)
+- **Type** : String de becauseactères (hexadecimal)
 - Format : `#RRGGBB` (ex: `#5865F2`)
-- Si l'utilisateur n'a pas de bannière, retourne une chaîne vide
+- Si the user n'a pas de banner, retourne une string vide
 
-## Comportement
+## Behavior
 
-- `$userBannerColor` ne prend **aucun argument**.
-- La couleur est déterminée par Discord à partir de la bannière Nitro de l'utilisateur.
-- Utilisable directement dans `$color[]` pour assortir visuellement l'embed au thème du profil.
+- `$userBannerColor` ne prend **no argument**.
+- The color est déterminée par Discord from la banner Nitro of the user.
+- Utilisable directly dans `$color[]` pour assortir visuellement the embed au thème du profil.
 
-## Exemples
+## Examples
 
 ### Embed thématique
 
 ```bdfd
 $if[$userBannerColor!=]
   $title[Profil de $userName]
-  $description[Les couleurs de cet embed correspondent à votre bannière !]
+  $description[Les couleurs de cet embed correspondent à votre banner !]
   $color[$userBannerColor]
   $author[$userName;$userAvatar]
   $sendMessage[]
 $else
   $title[Profil de $userName]
-  $description[Vous n'avez pas de bannière.]
+  $description[Vous n'avez pas de banner.]
   $color[#5865F2]
   $sendMessage[]
 $endif
@@ -51,5 +51,5 @@ $endif
 
 ## Notes
 
-- Couplé avec `$userBanner`, permet de créer des embeds au thème personnalisé pour chaque utilisateur.
-- Si l'utilisateur n'a pas de bannière, prévoyez une couleur de fallback.
+- Couplé avec `$userBanner`, allows créer embeds au thème custom for each user.
+- Si the user n'a pas de banner, prévoyez une couleur de fallback.

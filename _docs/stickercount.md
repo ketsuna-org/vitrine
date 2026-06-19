@@ -5,34 +5,34 @@ translation_key: docs
 category: "Entity Info"
 function_name: stickerCount
 syntax: $stickerCount
-description: Retourne le nombre de stickers personnalisés disponibles sur le serveur Discord.
+description: Returns the number de stickers customs availables on the server Discord.
 ---
 
-# $stickerCount[] — Nombre de Stickers
+# $stickerCount[] — Number de Stickers
 
-`$stickerCount[]` retourne le nombre de stickers personnalisés disponibles sur le serveur Discord.
+`$stickerCount[]` retourne the namebre de stickers customs availables on the server Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $stickerCount
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `integer`
-- Le nombre de stickers personnalisés du serveur.
+- The namebre de stickers customs of the server.
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[🏷️ **$stickerCount** stickers personnalisés sur ce serveur.]
+$sendMessage[🏷️ **$stickerCount** stickers customs sur ce server.]
 ```
 
 ### Embed statistiques
@@ -40,7 +40,7 @@ $sendMessage[🏷️ **$stickerCount** stickers personnalisés sur ce serveur.]
 ```bdfd
 $title[📊 Contenu de $serverName]
 $addField[🏷️ Stickers;$stickerCount;yes]
-$addField[🎨 Émojis;$emojiCount;yes]
+$addField[🎨 Emojis;$emojiCount;yes]
 $addField[🚀 Boosts;$serverBoostCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
@@ -51,17 +51,17 @@ $sendEmbedMessage
 
 ```bdfd
 $if[$stickerCount==0]
-$sendMessage[ℹ️ Ce serveur n'a pas encore de stickers personnalisés.]
+$sendMessage[ℹ️ Ce server n'a pas encore de stickers customs.]
 $else
-$sendMessage[✅ $stickerCount stickers disponibles !]
+$sendMessage[✅ $stickerCount stickers availables !]
 $endif
 ```
 
-### Comparaison émojis/stickers
+### Compareason emojis/stickers
 
 ```bdfd
-$title[Contenu du serveur]
-$addField[🎨 Émojis;$emojiCount;yes]
+$title[Contenu of the server]
+$addField[🎨 Emojis;$emojiCount;yes]
 $addField[🏷️ Stickers;$stickerCount;yes]
 $addField[📦 Total contenu;$sum[$emojiCount;$stickerCount];yes]
 $color[#5865F2]
@@ -70,10 +70,10 @@ $sendEmbedMessage
 
 ## Notes
 
-- Les stickers sont différents des émojis : ce sont des images plus grandes, souvent animées (APNG ou Lottie).
-- La limite de stickers dépend du niveau de boost :
-  - Niveau 0 : 5 stickers (standard), 0 custom
-  - Niveau 1 : 15 slots custom
-  - Niveau 2 : 30 slots custom
-  - Niveau 3 : 60 slots custom
-- Les stickers personnalisés ne peuvent être utilisés que sur le serveur où ils ont été créés (sauf pour les serveurs partenaires/vérifiés).
+- Les stickers sont differents des emojis : these are des images plus grandes, often animées (APNG or Lottie).
+- La limit de stickers dépend du level de boost :
+  - Level 0 : 5 stickers (standard), 0 custom
+  - Level 1 : 15 slots custom
+  - Level 2 : 30 slots custom
+  - Level 3 : 60 slots custom
+- Les stickers customs ne can be utilisés que on the server où ils were createds (except for the servers partenaires/vérifiés).

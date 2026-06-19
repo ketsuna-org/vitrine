@@ -5,38 +5,38 @@ translation_key: docs
 category: "Entity Info"
 function_name: getAttachments
 syntax: $getAttachments[messageID]
-description: Récupère les URLs des pièces jointes d'un message spécifique. Retourne une liste d'URLs séparées par des virgules.
+description: Gets thes URLs des pièces jointes of a message spécifique. Returns ae list d'URLs separatedes par des virgules.
 ---
 
 # $getAttachments
 
-La fonction `$getAttachments[]` permet de **récupérer les URLs des pièces jointes** (images, fichiers, vidéos) d'un message Discord.
+The function `$getAttachments[]` allows **récupérer les URLs des pièces jointes** (images, files, vidéos) of a message Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $getAttachments[messageID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `messageID` | L'ID du message contenant les pièces jointes à récupérer. |
+| `messageID` | The ID of the message contenant les pièces jointes à récupérer. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
-- Les URLs complètes des pièces jointes, séparées par `, `.
-- Chaîne vide si le message ne contient aucune pièce jointe.
+- Les URLs completes des pièces jointes, separatedes par `, `.
+- String vide si the message ne contains noe pièce jointe.
 
-## Comportement
+## Behavior
 
-- Retourne toutes les URLs des fichiers attachés au message.
-- Fonctionne avec tous les types de fichiers supportés par Discord (images, vidéos, documents, etc.).
-- Chaque URL est une URL directe vers le fichier sur les serveurs Discord.
+- Returns all URLs des files attachés au message.
+- Works with all types de files supportés par Discord (images, vidéos, documents, etc.).
+- Chaque URL est une URL directe vers le file sur les servers Discord.
 
-## Exemples
+## Examples
 
 ### Récupération simple
 
@@ -45,7 +45,7 @@ $let[atts;$getAttachments[$messageID]]
 $if[$atts!=]
   Pièces jointes : $atts
 $else
-  Aucune pièce jointe dans ce message.
+  Aucune pièce jointe dans this message.
 $endif
 ```
 
@@ -69,12 +69,12 @@ $if[$url!=]
   $image[$first]
   $sendMessage[Image récupérée :]
 $else
-  $sendMessage[Aucune image trouvée.]
+  $sendMessage[Aucune image founde.]
 $endif
 ```
 
 ## Notes
 
-- Les URLs Discord expirent après un certain temps (quelques heures à quelques jours).
-- Pour un usage permanent, téléchargez et hébergez les fichiers ailleurs.
-- Utilisez `$textSplit[]` pour traiter chaque pièce jointe individuellement.
+- Les URLs Discord expirent after un certain temps (quelques hours à quelques days).
+- Pour un usage permanent, téléchargez and hébergez les files ailleurs.
+- Utilisez `$textSplit[]` pour traiter each pièce jointe individuellement.

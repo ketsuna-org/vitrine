@@ -5,57 +5,57 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalFileUpload
 syntax: $addModalFileUpload[customId;label;(required)]
-description: Ajoute un composant de téléversement de fichier à un modal Discord. Permet à l'utilisateur de joindre un fichier directement depuis le modal.
+description: Ajoute a component de téléversement de file à a modal Discord. Allows the user to joindre a file directly since le modal.
 ---
 
-# $addModalFileUpload[] — Téléversement de Fichier dans un Modal
+# $addModalFileUpload[] — Téléversement de File dans un Modal
 
-`$addModalFileUpload[]` ajoute un composant permettant à l'utilisateur de joindre un fichier directement depuis un modal Discord. Le fichier téléversé est ensuite accessible dans le gestionnaire d'interaction.
+`$addModalFileUpload[]` ajoute a component permettant à the user de joindre a file directly since a modal Discord. The file téléversé est then accessible in the gestionnaire d'interaction.
 
-## Syntaxe
+## Syntax
 
 ```
 $addModalFileUpload[customId;label;(required)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Défaut | Description |
+| Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Oui | — | Identifiant unique du champ fichier. |
-| `label` | Oui | — | Texte affiché au-dessus du champ. |
-| `required` | Non | `yes` | `yes` si obligatoire, `no` sinon. |
+| `customId` | Yes | — | Unique identifier of the field file. |
+| `label` | Yes | — | Text displayed above of the field. |
+| `required` | No | `yes` | `yes` si required, `no` otherwise. |
 
-## Valeur de retour
+## Return value
 
-Ajoute le composant d'upload au modal. L'URL et les métadonnées du fichier sont accessibles via `$input[customId]` après soumission.
+Ajoute le composant d'upload au modal. The URL and les métadatas of the file sont accessibles via `$input[customId]` after soumission.
 
-## Utilisation
+## Usage
 
-### Upload obligatoire
+### Upload required
 
 ```bdfd
 $newModal[Candidature;apply_modal]
-$addModalTextDisplay[Veuillez joindre votre CV au format PDF.]
+$addModalTextDisplay[Veuillez joindre votre CV in the format PDF.]
 $addModalTextInput[motivation;Lettre de motivation;paragraph;;;yes;50;1000]
 $addModalFileUpload[cv;Votre CV (PDF);yes]
 ```
 
-### Upload optionnel avec autres champs
+### Upload optional avec autres champs
 
 ```bdfd
 $newModal[Signalement;report_modal]
-$addModalTextInput[description;Description du problème;paragraph;;;yes;20;1000]
-$addModalFileUpload[screenshot;Capture d'écran (optionnelle);no]
+$addModalTextInput[description;Description of the problème;paragraph;;;yes;20;1000]
+$addModalFileUpload[screenshot;Capture d'écran (optionalle);no]
 ```
 
-### Traitement du fichier
+### Traitement of the file
 
 ```bdfd
 $onInteraction[apply_submit]
 $var[cv_url;$input[cv]]
 $var[motivation;$input[motivation]]
-$sendMessage[Nouvelle candidature reçue !
+$sendMessage[New candidature receivede !
 CV : $var[cv_url]
 Motivation : $var[motivation]]
 $endInteraction
@@ -63,7 +63,7 @@ $endInteraction
 
 ## Notes
 
-- Le fichier est hébergé temporairement par Discord ; l'URL retournée est une URL CDN Discord.
-- Le `customId` doit être unique au sein du modal.
-- La taille maximale du fichier est déterminée par Discord (généralement 25 Mo selon le niveau de boost du serveur).
-- Ce composant n'est disponible que dans les modals (pas dans les messages classiques).
+- Le file est hébergé temporarily par Discord ; the URL retournée est a URL CDN Discord.
+- Le `customId` must be unique au sein of the modal.
+- The size maximale of the file est déterminée par Discord (generally 25 Mo selon le level de boost of the server).
+- Ce composant n'is available que in thes modals (pas in thes messages classiques).

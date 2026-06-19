@@ -5,58 +5,58 @@ translation_key: docs
 category: "Entity Info"
 function_name: membersCount
 syntax: $membersCount
-description: Retourne le nombre total de membres sur le serveur Discord. Identique à $memberCount.
+description: Returns the number total de members on the server Discord. Identical à $memberCount.
 ---
 
-# $membersCount[] — Nombre de Membres
+# $membersCount[] — Number de Members
 
-`$membersCount[]` retourne le nombre total de membres sur le serveur Discord. Cette fonction est strictement identique à `$memberCount[]`.
+`$membersCount[]` retourne the namebre total de members on the server Discord. This function est strictement identical à `$memberCount[]`.
 
-## Syntaxe
+## Syntax
 
 ```
 $membersCount
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `integer`
-- Le nombre total de membres.
+- The namebre total de members.
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[👥 **$membersCount** membres !]
+$sendMessage[👥 **$membersCount** members !]
 ```
 
 ### Embed statistiques
 
 ```bdfd
 $title[📊 $serverName]
-$addField[👥 Membres;$membersCount;yes]
-$addField[🟢 En ligne;$onlineMembers;yes]
+$addField[👥 Members;$membersCount;yes]
+$addField[🟢 Online;$onlineMembers;yes]
 $addField[🤖 Bots;$botCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Comparaison
+### Compareason
 
 ```bdfd
 $if[$membersCount>$var[previousCount]]
-$sendMessage[📈 Le serveur a gagné des membres !]
+$sendMessage[📈 The server a gagné des members !]
 $endif
 ```
 
 ## Notes
 
-- `$membersCount[]` et `$memberCount[]` sont interchangeables.
-- Inclut à la fois les humains et les bots.
+- `$membersCount[]` and `$memberCount[]` sont interchangeables.
+- Inclut à la fois les humains and les bots.
 - Pour le décompte humains seuls, utilisez `$sub[$membersCount;$botCount]`.

@@ -6,53 +6,53 @@ category: "Embed & Message"
 
 # $editMessage
 
-Modifie un message existant envoyé par le bot. Remplace le contenu et/ou les embeds et composants du message cible.
+Modifies a message existing sent par the bot. Remplace le contenu et/or les embeds and components of the message cible.
 
-## Syntaxe
+## Syntax
 
 ```
 $editMessage[messageId;newContent]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `messageId` | ID du message à modifier | Oui |
-| `newContent` | Nouveau contenu textuel du message | Oui |
+| `messageId` | ID of the message to modify | Yes |
+| `newContent` | New text content of the message | Yes |
 
 ## Description
 
-`$editMessage` permet de mettre à jour un message précédemment envoyé par le bot. Tout comme `$sendMessage`, les embeds et composants construits avant l'appel sont inclus dans la modification.
+`$editMessage` allows mettre à day a message previously sent par the bot. Tout comme `$sendMessage`, les embeds and components construits before the call sont included in the modification.
 
-Le `messageId` peut être obtenu via :
-- `$sentMessageId` après un `$sendMessage`
+The `messageId` can be obtenu via :
+- `$sentMessageId` after un `$sendMessage`
 - Une variable stockée
-- L'ID du message déclencheur (`$messageID`)
+- The ID of the message déclencheur (`$messageID`)
 
-## Exemples
+## Examples
 
 ### Édition simple
 
 ```
-$editMessage[123456789012345678;Contenu mis à jour !]
+$editMessage[123456789012345678;Contenu mis à day !]
 ```
 
-### Édition après envoi
+### Édition after envoi
 
 ```
 $sendMessage[Message original]
-$editMessage[$sentMessageId;Message modifié !]
+$editMessage[$sentMessageId;Message modified !]
 ```
 
-### Édition avec nouveaux embeds
+### Édition avec newx embeds
 
 ```
-$newEmbed[title=Mise à jour;description=Les informations ont changé;color=#FFA500]
+$newEmbed[title=Mise à day;description=Les informations ont changé;color=#FFA500]
 $editMessage[$sentMessageId;]
 ```
 
-### Édition avec boutons mis à jour
+### Édition avec buttons mis à day
 
 ```
 $addActionRow
@@ -71,7 +71,7 @@ $endif
 
 ## Notes
 
-- Le bot ne peut modifier que ses propres messages.
-- Si `newContent` est vide et qu'aucun embed/composant n'est fourni, le message peut devenir vide (comportement selon version).
-- Les embeds et composants remplacent complètement ceux du message original.
-- Utilisez `$sentMessageId` juste après `$sendMessage` pour récupérer l'ID du dernier message envoyé.
+- The bot ne peut modifier que their propres messages.
+- Si `newContent` est vide and qu'aucan embed/composant n'is provided, the message peut devenir vide (behavior selon version).
+- Les embeds and components remplacent completeely ceux of the message original.
+- Use `$sentMessageId` juste after `$sendMessage` to retrieve the ID of the last message sent.

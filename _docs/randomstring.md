@@ -5,56 +5,56 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomString
 syntax: $randomString[length]
-description: Génère une chaîne alphanumérique aléatoire de la longueur spécifiée.
+description: Generates a random alphanumeric string of the specified length.
 ---
 
 # $randomString[]
 
-La fonction `$randomString[]` génère une chaîne de caractères alphanumériques aléatoire d'une longueur donnée.
+The `$randomString[]` function generates a random alphanumeric character string of a given length.
 
-## Syntaxe
+## Syntax
 
 ```
 $randomString[length]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |-----------|-------------|
-| `length` | La longueur de la chaîne aléatoire à générer (en nombre de caractères). |
+| `length` | The length of the random string to generate (in number of characters). |
 
-## Valeur de retour
+## Return Value
 
-Une chaîne de caractères alphanumériques aléatoires contenant :
-- Des lettres minuscules (a-z)
-- Des lettres majuscules (A-Z)
-- Des chiffres (0-9)
+A string of random alphanumeric characters containing:
+- Lowercase letters (a-z)
+- Uppercase letters (A-Z)
+- Digits (0-9)
 
-## Exemples
+## Examples
 
-### Générer un identifiant unique
-
-```bdfd
-$title[Votre ID de session]
-$description[ID : `$randomString[8]`]
-$footer[Conservez cet identifiant]
-```
-
-### Code de vérification
+### Generate a unique identifier
 
 ```bdfd
-Votre code de vérification est : **$randomString[6]**
+$title[Your session ID]
+$description[ID: `$randomString[8]`]
+$footer[Keep this identifier]
 ```
 
-### Token d'accès
+### Verification code
+
+```bdfd
+Your verification code is: **$randomString[6]**
+```
+
+### Access token
 
 ```bdfd
 $randomString[32]
 ```
 
-## Cas d'usage
+## Use cases
 
-- Génération d'identifiants uniques pour des tickets, sessions ou clés.
-- Création de codes de vérification ou de mots de passe temporaires.
-- Génération de tokens aléatoires.
+- Generating unique identifiers for tickets, sessions, or keys.
+- Creating verification codes or temporary passwords.
+- Generating random tokens.

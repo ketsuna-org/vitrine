@@ -5,45 +5,45 @@ translation_key: docs
 category: "Canvas"
 function_name: canvasGrayscale
 syntax: $canvasGrayscale
-description: Convertit le canvas courant en niveaux de gris. Pas de paramètres.
+description: Converts the canvas courant en levelx de gris. Pas de parameters.
 ---
 
 # $canvasGrayscale
 
-La fonction `$canvasGrayscale` **convertit le canvas courant en niveaux de gris**, supprimant toutes les informations de couleur (saturation) tout en conservant la luminosité.
+The `$canvasGrayscale` function **converts the canvas courant en levelx de gris**, supprimant all informations de couleur (saturation) tout en conservant la luminosité.
 
-## Syntaxe
+## Syntax
 
 ```
 $canvasGrayscale
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
-Aucune. Le canvas est modifié directement.
+None. The canvas est modified directly.
 
-## Comportement
+## Behavior
 
-- Chaque pixel du canvas est converti en nuance de gris en fonction de sa luminance.
-- La formule utilise généralement une moyenne pondérée des canaux RGB (30% rouge, 59% vert, 11% bleu).
-- L'opération est irréversible (sauf si vous sauvegardez l'état avant).
+- Each pixel du canvas est converted en nuance de gris depending on de sa luminance.
+- La formule utilise generally une moyenne pondérée des canaux RGB (30% rouge, 59% vert, 11% bleu).
+- L'opération est irréversible (unless vous sauvegardez the state before).
 
-## Exemples
+## Examples
 
-### Conversion simple en noir et blanc
+### Conversion simple en noir and blanc
 
 ```bdfd
 $canvasLoad[$attachment]
 $canvasGrayscale
 $attachCanvas[]
-$sendMessage[🎨 Image convertie en niveaux de gris !]
+$sendMessage[🎨 Image convertede en levelx de gris !]
 ```
 
-### Effet photo ancienne
+### Effet photo oldne
 
 ```bdfd
 $canvasLoad[$attachment]
@@ -58,15 +58,15 @@ $sendMessage[🕰️ Effet vintage appliqué !]
 ```bdfd
 $var[original;$attachment]
 $canvasLoad[$var[original]]
-$attachCanvas[avant.png]
+$attachCanvas[before.png]
 
 $canvasGrayscale
 $attachCanvas[apres.png]
-$sendMessage[⚫ Original vs Niveaux de gris :]
+$sendMessage[⚫ Original vs Levelx de gris :]
 ```
 
 ## Notes
 
-- Le canvas doit avoir été créé ou chargé avant d'appeler cette fonction (via `$canvasCreate[]`, `$canvasLoad[]`, etc.).
-- Pour inverser les couleurs, utilisez plutôt `$canvasInvert`.
-- Pour une rotation, utilisez `$canvasRotate[degrés]`.
+- Le canvas must have été created or loaded before d'caller cette function (via `$canvasCreate[]`, `$canvasLoad[]`, etc.).
+- Pour inverser les couleurs, use plutôt `$canvasInvert`.
+- Pour une rotation, use `$canvasRotate[degrés]`.

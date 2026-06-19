@@ -5,51 +5,51 @@ translation_key: docs
 category: "Entity Info"
 function_name: userJoined
 syntax: $userJoined
-description: Retourne la date à laquelle l'utilisateur a rejoint le serveur Discord actuel.
+description: Returns the date à laquelle the user a rejoint the server Discord current.
 ---
 
 # $userJoined
 
-La variable `$userJoined` retourne la **date d'arrivée** de l'utilisateur sur le serveur Discord où la commande est exécutée.
+The variable `$userJoined` retourne la **date d'arrivée** of the user on the server Discord où the command est executed.
 
-## Syntaxe
+## Syntax
 
 ```
 $userJoined
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Date/chaîne de caractères
-- Format : dépend du contexte (date lisible ou timestamp)
+- **Type** : Date/string de becauseactères
+- Format : dépend du context (date lisible or timestamp)
 
-## Comportement
+## Behavior
 
-- `$userJoined` ne prend **aucun argument**.
-- Retourne la date à laquelle l'utilisateur a rejoint le **serveur actuel**.
-- Nécessite que l'utilisateur soit membre du serveur.
+- `$userJoined` ne prend **no argument**.
+- Returns the date à laquelle the user a rejoint le **server current**.
+- Requires que the user soit member of the server.
 
-## Exemples
+## Examples
 
 ### Message de bienvenue
 
 ```bdfd
-$title[Nouveau membre !]
+$title[New member !]
 $author[$userName;$userAvatar]
 $description[
-Bienvenue sur le serveur **$serverName** !
+Bienvenue on the server **$serverName** !
 Tu as rejoint le **$userJoined**.
 ]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Ancienneté du membre
+### Oldneté du member
 
 ```bdfd
-$title[Votre ancienneté]
+$title[Votre oldneté]
 $description[
-Vous êtes membre depuis le **$userJoined**.
+Vous êtes member dethen le **$userJoined**.
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -57,6 +57,6 @@ $sendMessage[]
 
 ## Notes
 
-- `$userJoined` donne la date d'arrivée sur le **serveur**.
+- `$userJoined` donne la date d'arrivée sur le **server**.
 - Pour la date de création du compte Discord, utilisez `$userJoinedDiscord`.
-- Utile pour les commandes d'information sur les membres et les messages de bienvenue.
+- Utile for the commands d'information sur les members and les messages de bienvenue.

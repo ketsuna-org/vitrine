@@ -5,39 +5,39 @@ translation_key: docs
 category: "Variables"
 function_name: getLeaderboardValue
 syntax: $getLeaderboardValue
-description: Retourne la valeur (score, points, etc.) associée à la position courante dans le leaderboard actif.
+description: Returns the value (score, points, etc.) associée à the position courante in the leaderboard actif.
 ---
 
 # $getLeaderboardValue
 
-La fonction `$getLeaderboardValue` retourne la valeur associée à la position courante dans le leaderboard actif. Cela peut être un score, un nombre de pièces, des points d'XP, ou toute autre variable sur laquelle le classement est basé.
+The function `$getLeaderboardValue` retourne the value associée à the position courante in the leaderboard actif. Cela can be un score, un number de pièces, des points d'XP, or toute autre variable sur laquelle le classement est basé.
 
-Cette fonction n'a de sens **que dans le contexte d'itération d'un leaderboard** — c'est-à-dire après avoir appelé `$globalUserLeaderboard`, `$serverLeaderboard` ou `$userLeaderboard` et lors du parcours de ses résultats avec `$textSplit`.
+This function n'a de sens **que in the context d'itération d'un leaderboard** — it is-à-dire after avoir callé `$globalUserLeaderboard`, `$serverLeaderboard` or `$userLeaderboard` and lors du parcours de their results avec `$textSplit`.
 
-## Fonctionnement
+## Functionnement
 
-Lors de l'itération d'un leaderboard, chaque entrée contient un identifiant (utilisateur) et une valeur (le score). `$getLeaderboardValue` expose cette valeur pour l'entrée en cours de traitement.
+During l'itération d'un leaderboard, each entrée contains un identifier (user) and une value (le score). `$getLeaderboardValue` expose cette value for the entrée in progress de traitement.
 
-La valeur retournée correspond à la variable interne `((leaderboard.value))` qui est résolue au runtime par l'action leaderboard dédiée.
+The value retournée correspond à the variable internal `((leaderboard.value))` qui est resolvede au runtime par l'action leaderboard dédiée.
 
 ## Cas d'usage
 
-- Afficher le score de chaque joueur dans un classement
-- Comparer des valeurs entre différentes positions
+- Afficher le score de each joueur dans un classement
+- Comparer des values between differentes positions
 - Déclencher des récompenses basées sur le score atteint
-- Formater des messages de félicitations avec le score
+- Formater des messages de félicitations with the score
 
 ## Important
 
-- `$getLeaderboardValue` **ne retourne rien** en dehors du contexte d'un leaderboard actif.
-- La fonction ne prend **aucun paramètre**.
-- Elle est presque toujours utilisée avec `$getLeaderboardPosition` pour un affichage complet (rang + valeur).
-- La valeur retournée dépend de la variable sur laquelle le leaderboard a été construit (par exemple, si le leaderboard est basé sur `coins`, la valeur sera le nombre de pièces).
+- `$getLeaderboardValue` **returns nothing** outside the context d'un leaderboard actif.
+- The function ne prend **no parameter**.
+- Elle est presque toudays utilisée avec `$getLeaderboardPosition` for a affichage complete (rang + value).
+- The value retournée dépend of the variable sur laquelle le leaderboard was construit (for example, if the leaderboard est basé sur `coins`, the value sera the namebre de pièces).
 
-## Voir aussi
+## Voir also
 
-- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Obtenir le rang dans le classement
-- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Classement global des utilisateurs
-- [`$serverLeaderboard`](/docs/serverleaderboard) — Classement au niveau du serveur
+- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Obtenir le rang in the classement
+- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Classement global des users
+- [`$serverLeaderboard`](/docs/serverleaderboard) — Classement au level of the server
 - [`$userLeaderboard`](/docs/userleaderboard) — Classement personnel
-- [`$textSplit`](/docs/textsplit) — Découper le résultat d'un leaderboard
+- [`$textSplit`](/docs/textsplit) — Découper the result d'un leaderboard

@@ -5,49 +5,49 @@ translation_key: docs
 category: "Entity Info"
 function_name: getMentionableSelectUserID
 syntax: $getMentionableSelectUserID[(index)]
-description: Récupère l'ID de l'entité mentionnable (utilisateur ou rôle) sélectionnée via un menu de sélection mentionnable (mentionable select).
+description: Gets the ID of the entité mentionnable (user or role) selectede via un menu de sélection mentionnable (mentionable select).
 ---
 
 # $getMentionableSelectUserID
 
-La fonction `$getMentionableSelectUserID[]` permet de **récupérer l'ID de l'entité mentionnable** sélectionnée par l'utilisateur via un menu de sélection mentionnable (utilisateurs + rôles).
+The function `$getMentionableSelectUserID[]` allows **récupérer the ID of the entité mentionnable** selectede par the user via un menu de sélection mentionnable (users + roles).
 
-## Syntaxe
+## Syntax
 
 ```
 $getMentionableSelectUserID[(index)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `index` | Optionnel - L'index de l'entité dans la sélection (1 = premier). Par défaut 1. |
+| `index` | Optional - L'index de l'entité in the sélection (1 = first). Par default 1. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String (Snowflake ID)
-- L'ID Discord de l'utilisateur ou du rôle sélectionné.
-- Chaîne vide si aucun mentionnable n'a été sélectionné.
+- The ID Discord of the user or of the role selected.
+- String vide si no mentionnable n'was selected.
 
-## Comportement
+## Behavior
 
-- Utilisé dans les interactions avec un menu de type `mentionable`.
-- Le menu mentionnable accepte à la fois des utilisateurs et des rôles.
-- L'ID retourné peut être un ID utilisateur ou un ID de rôle selon ce que l'utilisateur a choisi.
+- Utilisé in thes interactions with a menu de type `mentionable`.
+- Le menu mentionnable accepte à la fois des users and des roles.
+- The ID retourné can be un ID user or un ID de role selon ce que the user a choisi.
 
-## Exemples
+## Examples
 
 ### Récupération simple
 
 ```bdfd
 $nominalTrigger
-$addMentionableSelectMenu[mention_select;1;Choisissez un utilisateur ou rôle]
+$addMentionableSelectMenu[mention_select;1;Choisissez un user or role]
 $sendMessage[Sélectionnez une entité :]
 
 $onInteraction[mention_select]
 $let[id;$getMentionableSelectUserID]
-$title[Entité sélectionnée]
+$title[Entité selectede]
 $description[ID : $id]
 $sendMessage[]
 ```
@@ -58,14 +58,14 @@ $sendMessage[]
 $onInteraction[mention_select]
 $let[id;$getMentionableSelectUserID]
 $if[$hasRole[$id;$guildID]==true]
-  Il s'agit d'un rôle : @&$id
+  Il s'agit of a role : @&$id
 $else
-  Il s'agit d'un utilisateur : <@$id>
+  Il s'agit of a user : <@$id>
 $endif
 ```
 
 ## Notes
 
 - L'index commence à 1.
-- Pour les sélections multiples, utiliser `$getMentionableSelectUserIDs[]`.
-- L'ID retourné peut correspondre à un utilisateur OU un rôle.
+- Pour les sélections multiple, utiliser `$getMentionableSelectUserIDs[]`.
+- The ID retourné peut correspondre à un user OU un role.

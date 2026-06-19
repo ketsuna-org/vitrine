@@ -5,50 +5,50 @@ translation_key: docs
 category: "Moderation"
 function_name: startThread
 syntax: $startThread[name;(autoArchiveDuration);(messageID)]
-description: Crée un fil de discussion (thread) à partir du message courant ou d'un message spécifié. Les threads permettent des conversations organisées en sous-canaux.
+description: Creates a fil de discussion (thread) à partir of the message courant or of a message spécifié. The threads permettent des conversations organisées en sous-canaux.
 ---
 
 # $startThread
 
-La fonction `$startThread[]` permet de **créer un fil de discussion** (thread) dans un canal. Les threads sont des sous-conversations organisées.
+The function `$startThread[]` allows **créer un fil de discussion** (thread) dans un canal. The threads sont des sous-conversations organisées.
 
-## Syntaxe
+## Syntax
 
 ```
 $startThread[name;(autoArchiveDuration);(messageID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Nom du thread (1 à 100 caractères). |
-| `autoArchiveDuration` | Optionnel - Durée d'inactivité avant archivage : 60, 1440 (24h), 4320 (3j), 10080 (7j). Défaut : 1440. |
-| `messageID` | Optionnel - ID du message source. Par défaut, le message déclencheur. |
+| `name` | Name of the thread (1 à 100 becauseactères). |
+| `autoArchiveDuration` | Optional - Durée d'inactivité before archivage : 60, 1440 (24h), 4320 (3j), 10080 (7j). Default: 1440. |
+| `messageID` | Optional - ID of the message source. Par default, the message déclencheur. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Snowflake (chaîne)
-- L'ID du thread nouvellement créé.
-- Chaîne vide en cas d'échec (permissions insuffisantes ou canal non compatible).
+- **Type** : Snowflake (string)
+- The ID of the thread newment created.
+- String vide en cas d'échec (permissions insuffisantes or canal non compatible).
 
-## Comportement
+## Behavior
 
-- Les threads ne peuvent être créés que dans les canaux texte (pas en vocal ou annonce).
-- Le bot doit avoir la permission `CREATE_PUBLIC_THREADS` ou `CREATE_PRIVATE_THREADS`.
-- Le thread est créé comme thread public par défaut (visible par tous).
+- Les threads ne can be createds que in thes canaux text (pas en vocal or annonce).
+- The bot doit avoir la permission `CREATE_PUBLIC_THREADS` or `CREATE_PRIVATE_THREADS`.
+- Le thread est created comme thread public default (visible par all).
 
-## Exemples
+## Examples
 
 ### Thread de support
 
 ```bdfd
 $let[thread;$startThread[Support - $username;10080]]
 $if[$thread!=]
-  $channelSendMessage[$thread;Bienvenue dans votre fil de support, $username ! Un modérateur vous répondra bientôt.]
-  $sendMessage[Fil de support créé : <#$thread>]
+  $channelSendMessage[$thread;Bienvenue dans votre fil de support, $username ! A modérateur vous répondra bientôt.]
+  $sendMessage[Fil de support created : <#$thread>]
 $else
-  $sendMessage[Impossible de créer le thread. Permissions manquantes.]
+  $sendMessage[Impossible de créer le thread. Permissions missinges.]
 $endif
 ```
 
@@ -60,13 +60,13 @@ $if[$checkContains[$message;!discussion]==true]
   $let[thread;$startThread[$topic;4320]]
   $if[$thread!=]
     $threadAddMember[$thread;$authorID]
-    $sendMessage[Discussion créée : <#$thread>]
+    $sendMessage[Discussion createde : <#$thread>]
   $endif
 $endif
 ```
 
 ## Notes
 
-- Les threads archivés peuvent être dé-archivés avec `$editThread[]`.
-- Les threads privés nécessitent `CREATE_PRIVATE_THREADS`.
-- Le nom du thread peut être modifié ultérieurement avec `$editThread[]`.
+- Les threads archivés can be dé-archivés avec `$editThread[]`.
+- Les threads privates nécessitent `CREATE_PRIVATE_THREADS`.
+- The name du thread can be modified ultérieurement avec `$editThread[]`.

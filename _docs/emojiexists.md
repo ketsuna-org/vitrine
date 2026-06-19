@@ -5,47 +5,47 @@ translation_key: docs
 category: "Moderation"
 function_name: emojiExists
 syntax: $emojiExists[name]
-description: Vérifie si un emoji personnalisé portant un nom donné existe sur le serveur courant. Retourne true ou false.
+description: Checks if a emoji custom portant a name donné existe on the server courant. Returns true or false.
 ---
 
 # $emojiExists
 
-La fonction `$emojiExists[]` permet de **vérifier si un emoji personnalisé existe** sur le serveur courant.
+The `$emojiExists[]` function **vérifier if a emoji custom existe** on the server courant.
 
-## Syntaxe
+## Syntax
 
 ```
 $emojiExists[name]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Le nom de l'emoji à vérifier (sans les deux-points). |
+| `name` | The emoji name à vérifier (without les two-points). |
 
-## Valeur de retour
+## Return value
 
-- **Type** : String (booléen)
-- `true` si un emoji portant ce nom existe sur le serveur.
-- `false` si aucun emoji avec ce nom n'est trouvé.
+- **Type** : String (boolean)
+- `true` if a emoji portant ce nom existe on the server.
+- `false` si aucan emoji avec ce nom n'est found.
 
-## Comportement
+## Behavior
 
 - La recherche est sensible à la casse.
-- Vérifie uniquement les emojis du serveur courant.
-- Utile comme garde avant `$addEmoji[]` ou `$removeEmoji[]`.
+- Checks only les emojis of the server courant.
+- Utile comme garde before `$addEmoji[]` or `$removeEmoji[]`.
 
-## Exemples
+## Examples
 
 ### Avant suppression
 
 ```bdfd
 $if[$emojiExists[$noMentionMessage]==true]
   $removeEmoji[$noMentionMessage]
-  $sendMessage[✅ Emoji **$noMentionMessage** supprimé.]
+  $sendMessage[✅ Emoji **$noMentionMessage** deleted.]
 $else
-  $sendMessage[❌ L'emoji **$noMentionMessage** n'existe pas.]
+  $sendMessage[❌ L'emoji **$noMentionMessage** does not exist.]
 $endif
 ```
 
@@ -59,9 +59,9 @@ $else
   $let[url;$getAttachments[$noMentionMessage]]
   $if[$url!=]
     $addEmoji[$name;$url]
-    $sendMessage[✅ Emoji **$name** créé !]
+    $sendMessage[✅ Emoji **$name** created !]
   $else
-    $sendMessage[❌ Joignez une image.]
+    $sendMessage[❌ Joignez an image.]
   $endif
 $endif
 ```
@@ -70,15 +70,15 @@ $endif
 
 ```bdfd
 $if[$emojiExists[$message]==true]
-  ✅ L'emoji **$message** est disponible.
+  ✅ L'emoji **$message** is available.
   $customEmoji[$message]
 $else
-  ❌ L'emoji **$message** n'existe pas. Importez-le avec `!addemoji $message`.
+  ❌ L'emoji **$message** does not exist. Importez-le avec `!addemoji $message`.
 $endif
 ```
 
 ## Notes
 
-- Le nom est sensible à la casse : `Cool` ≠ `cool`.
-- Ne vérifie que les emojis du serveur courant.
-- Pour les emojis externes, utilisez `$emojiName[]` qui retourne vide si inaccessible.
+- The name est sensible à la casse : `Cool` ≠ `cool`.
+- Ne vérifie que les emojis of the server courant.
+- For emojis externals, use `$emojiName[]` qui retourne vide si inaccessible.

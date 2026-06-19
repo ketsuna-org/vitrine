@@ -5,75 +5,75 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomCategoryID
 syntax: $randomCategoryID
-description: Retourne l'ID d'une catégorie aléatoire parmi toutes les catégories du serveur courant.
+description: Returns the ID of a random category from all categories on the current server.
 ---
 
 # $randomCategoryID
 
-La fonction `$randomCategoryID` retourne l'**identifiant Discord (snowflake)** d'une catégorie sélectionnée aléatoirement parmi toutes les catégories présentes sur le serveur où la commande est exécutée.
+The `$randomCategoryID` function returns the **Discord identifier (snowflake)** of a randomly selected category from all categories present on the server where the command is executed.
 
-## Syntaxe
+## Syntax
 
 ```
 $randomCategoryID
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note:** This function takes no parameters.
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+No parameters.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : String (snowflake Discord)
-- L'ID d'une catégorie aléatoire du serveur courant.
-- Retourne une chaîne vide si le serveur ne possède aucune catégorie.
+- **Type**: String (Discord snowflake)
+- The ID of a random category on the current server.
+- Returns an empty string if the server has no categories.
 
-## Comportement
+## Behavior
 
-- La fonction sélectionne une catégorie **aléatoirement** parmi toutes les catégories existantes sur le serveur.
-- Le résultat change à chaque appel (pas déterministe).
-- Seules les **catégories** (type GUILD_CATEGORY) sont concernées, pas les salons textuels ou vocaux.
-- Si aucun salon de type catégorie n'existe sur le serveur, la fonction peut retourner une valeur vide.
+- The function select menus a category **randomly** from all existing categories on the server.
+- The result changes on each call (non-deterministic).
+- Only **categories** (GUILD_CATEGORY type) are concerned, not text or voice channels.
+- If no category-type channel exists on the server, the function may return an empty value.
 
-## Exemples
+## Examples
 
-### Mention d'une catégorie aléatoire
+### Mention a random category
 
 ```bdfd
-$title[🎲 Catégorie aléatoire]
+$title[🎲 Random category]
 $description[
-Catégorie sélectionnée : <#$randomCategoryID>
-**Nom :** $channelName[$randomCategoryID]
+Selected category: <#$randomCategoryID>
+**Name:** $channelName[$randomCategoryID]
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Attribution aléatoire
+### Random assignment
 
 ```bdfd
-$title[📂 Attribution de catégorie]
+$title[📂 Category assignment]
 $description[
-Tu as été assigné à la catégorie **$channelName[$randomCategoryID]** !
+You have been assigned to the **$channelName[$randomCategoryID]** category!
 ]
-$footer[ID : $randomCategoryID]
+$footer[ID: $randomCategoryID]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Vérification d'existence
+### Existence check
 
 ```bdfd
 $let[cat;$randomCategoryID]
 $if[$get[cat]==]
-  $title[⚠️ Aucune catégorie]
-  $description[Ce serveur ne possède aucune catégorie.]
+  $title[⚠️ No categories]
+  $description[This server has no categories.]
   $color[#ED4245]
 $else
-  $title[✅ Catégorie trouvée]
-  $description[Catégorie : **$channelName[$get[cat]]** (ID: `$get[cat]`)]
+  $title[✅ Category found]
+  $description[Category: **$channelName[$get[cat]]** (ID: `$get[cat]`)]
   $color[#57F287]
 $endif
 $sendMessage[]
@@ -81,7 +81,7 @@ $sendMessage[]
 
 ## Notes
 
-- Utilisez `$randomChannelID` pour obtenir un ID de salon aléatoire (tous types confondus).
-- Pour lister toutes les catégories, utilisez `$categoryChannels[]`.
-- Les IDs retournés sont des **snowflakes Discord** (chaînes numériques de 17-19 chiffres).
-- La fonction est utile pour des jeux, des systèmes de hasard, ou des commandes de type "roulette".
+- Use `$randomChannelID` to get a random channel ID (all types).
+- To list all categories, use `$categoryChannels[]`.
+- Returned IDs are **Discord snowflakes** (17-19 digit numeric strings).
+- The function is useful for games, random systems, or "roulette" type commands.

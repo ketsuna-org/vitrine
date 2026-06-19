@@ -5,33 +5,33 @@ translation_key: docs
 category: "Date & Time"
 function_name: getTimestamp
 syntax: $getTimestamp
-description: Retourne le timestamp Unix actuel en secondes. Résolu au runtime.
+description: Returns the timestamp Unix current en seconds. Resolved au runtime.
 ---
 
 # $getTimestamp[]
 
-La fonction `$getTimestamp[]` retourne le timestamp Unix actuel en secondes. Le timestamp Unix représente le nombre de secondes écoulées depuis le 1er janvier 1970 à 00:00:00 UTC (epoch).
+The function `$getTimestamp[]` retourne le timestamp Unix current en seconds. The timestamp Unix represents the namebre de seconds écoulées dethen le 1er janvier 1970 à 00:00:00 UTC (epoch).
 
-> **Important :** Cette fonction utilise l'identifiant spécial `((getTimestamp))` qui est résolu au **runtime**.
+> **Important:** This function utilise l'identifier special `((getTimestamp))` qui est resolved au **runtime**.
 
-## Syntaxe
+## Syntax
 
 ```
 $getTimestamp
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note :** This function ne prend no parameter.
 
-## Valeur de retour
+## Return Value
 
-Un nombre entier représentant le timestamp Unix actuel en secondes.
+A integer représentant le timestamp Unix current en seconds.
 
-## Exemples
+## Examples
 
 ### Timestamp simple
 
 ```bdfd
-Timestamp actuel : $getTimestamp
+Timestamp current : $getTimestamp
 ```
 
 ### Calcul de durée
@@ -39,10 +39,10 @@ Timestamp actuel : $getTimestamp
 ```bdfd
 $let[now;$getTimestamp]
 $let[event;1718697600]
-Temps restant : $sub[$get[event];$get[now]] secondes
+Temps restant : $sub[$get[event];$get[now]] seconds
 ```
 
-### Stocker un horodatage
+### Stocker un timestamp
 
 ```bdfd
 $setUserVar[lastCommand;$getTimestamp]
@@ -50,5 +50,5 @@ $setUserVar[lastCommand;$getTimestamp]
 
 ## Notes
 
-- Le timestamp est en **secondes** (pas en millisecondes).
-- Utile pour les calculs de durée, les cooldowns, ou le stockage d'horodatages.
+- Le timestamp est en **seconds** (pas en milliseconds).
+- Utile for the calculs de durée, les cooldowns, or le stockage d'timestamps.

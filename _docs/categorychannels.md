@@ -5,65 +5,65 @@ translation_key: docs
 category: "Entity Info"
 function_name: categoryChannels
 syntax: $categoryChannels[categoryID;(separator)]
-description: Retourne la liste des noms des salons appartenant à une catégorie spécifique.
+description: Returns the list des noms of channels appartenant à une catégorie spécifique.
 ---
 
 # $categoryChannels
 
-La fonction `$categoryChannels` retourne la **liste des salons** appartenant à une catégorie spécifique, identifiée par son ID.
+The `$categoryChannels` function returns the **list of channels** appartenant à une catégorie spécifique, identifiée par its ID.
 
-## Syntaxe
+## Syntax
 
 ```
 $categoryChannels[categoryID;(separator)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `categoryID` | L'ID de la catégorie. Obligatoire. |
-| `separator` | Optionnel. Séparateur entre les noms de salons. Par défaut : `, `. |
+| `categoryID` | The ID of the catégorie. Required. |
+| `separator` | Optional. Separator between thes noms de channels. Par default: `, `. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `string` | Les noms des salons de la catégorie, séparés par le délimiteur. |
+| `string` | Les noms of channels de la catégorie, separateds par le délimitur. |
 
-## Exemples
+## Examples
 
-### Salons de la catégorie courante
+### Channels de la catégorie courante
 
 ```bdfd
-$sendMessage[**Salons dans cette catégorie :** $categoryChannels[$categoryID]]
+$sendMessage[**Channels dans cette catégorie :** $categoryChannels[$categoryID]]
 ```
 
-### Liste avec retours à la ligne
+### List avec retours à la ligne
 
 ```bdfd
 $sendMessage[
-**Salons de la catégorie :**
+**Channels de la catégorie :**
 $categoryChannels[$categoryID;
 ]]
 ```
 
-### Salons d'une catégorie spécifique
+### Channels d'une catégorie spécifique
 
 ```bdfd
-$sendMessage[Salons admin : $categoryChannels[123456789012345678]]
+$sendMessage[Channels admin : $categoryChannels[123456789012345678]]
 ```
 
-### Vérifier si une catégorie est vide
+### Vérifier if a catégorie est vide
 
 ```bdfd
 $if[$categoryChannels[$categoryID]==]
-  $sendMessage[Cette catégorie ne contient aucun salon.]
+  $sendMessage[Cette catégorie ne contains auca channel.]
 $endif
 ```
 
 ## Notes
 
-- Ne liste que les salons visibles par le bot.
-- La catégorie elle-même n'est pas incluse dans la liste.
-- Pour lister tous les salons du serveur, utilisez `$channelNames`.
+- Ne list que les channels visibles par the bot.
+- La catégorie elle-même is not includede in the list.
+- Pour listr all channels of the server, use `$channelNames`.

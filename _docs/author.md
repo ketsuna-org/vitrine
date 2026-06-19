@@ -5,52 +5,52 @@ translation_key: docs
 category: "Embed & Message"
 function_name: author
 syntax: $author[name;(iconURL);(url);(embedIndex)]
-description: Définit l'auteur d'un embed Discord. L'auteur apparaît tout en haut de l'embed, au-dessus du titre, avec une icône et un lien optionnels.
+description: Sets the author of a Discord embed. The author apparaît tout at the top of the embed, above of the title, with a icon and a link optionals.
 ---
 
 # $author[]
 
-La fonction `$author[]` définit la ligne **auteur** d'un embed Discord. Cette ligne apparaît tout en haut de l'embed, au-dessus du titre, et peut inclure une petite icône ronde ainsi qu'un lien cliquable.
+The `$author[]` function définit la ligne **auteur** of a Discord embed. Cette ligne apparaît tout at the top of the embed, above of the title, and can include une petite icon ronde as well as a link cliquable.
 
-## Syntaxe
+## Syntax
 
 ```
 $author[name;(iconURL);(url);(embedIndex)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Le nom de l'auteur à afficher. Longueur maximale : 256 caractères. |
-| `iconURL` | Optionnel. URL de l'image d'avatar (icône ronde à gauche du nom). |
-| `url` | Optionnel. URL de destination. Si fournie, le nom devient un lien cliquable. |
-| `embedIndex` | Optionnel. Index de l'embed ciblé (0 par défaut). |
+| `name` | The author name to display. Maximum length: 256 characters. |
+| `iconURL` | Optional. URL of the image d'avatar (icon ronde to the left of the name). |
+| `url` | Optional. Destination URL. If providede, the name devient a link cliquable. |
+| `embedIndex` | Optional. Index of the embed ciblé (0 by default). |
 
-## Valeur de retour
+## Return value
 
-Modifie la réponse en cours de construction. Ne retourne rien.
+Modifies the response in progress de construction. Returns nothing.
 
-## Comportement
+## Behavior
 
-- L'auteur est affiché en haut de l'embed, **au-dessus** du titre.
-- L'icône est une petite image ronde (diamètre ~24px).
-- Si `url` est fourni, le nom de l'auteur devient un lien hypertexte.
-- Pour modifier l'icône ou l'URL après coup, utilisez `$authorIcon[]` et `$authorUrl[]`.
+- The author is displayed at the top of the embed, **above** of the title.
+- L'icon est une petite image ronde (diamètre ~24px).
+- Si `url` is provided, the name de the author devient a link hypertext.
+- To modify the icon or the URL afterwards, use `$authorIcon[]` and `$authorUrl[]`.
 
-## Exemples
+## Examples
 
-### Auteur simple
+### Simple author
 
 ```bdfd
 $author[$username]
 $title[Message de $username]
-$description[Ceci est un message embed.]
+$description[This is a message embed.]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Auteur avec avatar
+### Author with avatar
 
 ```bdfd
 $author[$username;$authorAvatar]
@@ -63,18 +63,18 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Auteur avec lien cliquable
+### Author with clickable link
 
 ```bdfd
 $author[Site officiel;https://example.com/logo.png;https://example.com]
 $title[Bienvenue]
-$description[Cliquez sur le nom ci-dessus pour visiter notre site !]
+$description[Cliquez sur the name ci-dessus pour visiter notre site !]
 $color[#57F287]
 $sendMessage[]
 ```
 
 ## Notes
 
-- L'ordre visuel dans l'embed est : **Auteur** → Titre → Description → Fields → Image → Footer → Timestamp.
-- Si vous souhaitez changer uniquement l'icône après avoir défini l'auteur, utilisez `$authorIcon[]`.
-- Si vous souhaitez changer uniquement l'URL après avoir défini l'auteur, utilisez `$authorUrl[]`.
+- L'ordre visuel in the embed est : **Auteur** → Titre → Description → Fields → Image → Footer → Timestamp.
+- Si vous souhaitez changer only the icon after set the author, use `$authorIcon[]`.
+- Si vous souhaitez changer only the URL after set the author, use `$authorUrl[]`.

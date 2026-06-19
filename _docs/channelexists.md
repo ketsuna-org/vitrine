@@ -5,55 +5,55 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelExists
 syntax: $channelExists[channelID]
-description: Vérifie si un salon Discord existe sur le serveur. Retourne "true" ou "false".
+description: Checks if a channel Discord existe on the server. Returns "true" or "false".
 ---
 
 # $channelExists
 
-La fonction `$channelExists` vérifie si un **salon Discord existe** sur le serveur à partir de son ID. Utile pour s'assurer qu'un salon cible est toujours valide avant d'interagir avec.
+The `$channelExists` function vérifie if a **channel Discord existe** on the server from its ID. Utile pour s'assurer qu'a channel cible est toudays valid before d'interagir avec.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelExists[channelID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | L'ID du salon à vérifier. Obligatoire. |
+| `channelID` | The ID of the channel à vérifier. Required. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `string` | `"true"` si le salon existe sur le serveur, `"false"` sinon. |
+| `string` | `"true"` if the channel existe on the server, `"false"` otherwise. |
 
-## Exemples
+## Examples
 
 ### Vérification simple
 
 ```bdfd
 $if[$channelExists[123456789012345678]==true]
-  $sendMessage[Le salon est valide.]
+  $sendMessage[The channel est valid.]
 $else
-  $sendMessage[Le salon n'existe pas.]
+  $sendMessage[The channel does not exist.]
 $endif
 ```
 
-### Vérifier avant d'envoyer un message
+### Vérifier before d'envoyer a message
 
 ```bdfd
 $if[$channelExists[123456789012345678]==true]
   $channelSendMessage[123456789012345678;Message automatique]
 $else
-  $sendMessage[Le salon de logs n'existe plus !]
+  $sendMessage[The channel de logs n'existe plus !]
 $endif
 ```
 
 ## Notes
 
-- La valeur retournée est une chaîne `"true"` ou `"false"`.
-- Ne vérifie que les salons du serveur courant.
-- Utile dans les systèmes de logs ou de configuration où les IDs sont stockés.
+- La value retournée est a string `"true"` or `"false"`.
+- Ne vérifie que les channels of the server courant.
+- Utile in thes systèmes de logs or de configuration où les IDs sont stockés.

@@ -5,29 +5,29 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverSplash
 syntax: $serverSplash
-description: Retourne l'URL de l'image de fond d'invitation (splash) du serveur Discord. Disponible uniquement pour les serveurs partenaires ou vérifiés avec un niveau de boost suffisant.
+description: Returns the URL of the image de fond d'invite (splash) of the server Discord. Available only for the servers partenaires or vérifiés with a level de boost suffisant.
 ---
 
-# $serverSplash[] — Image d'Invitation du Serveur
+# $serverSplash[] — Image d'Invite du Server
 
-`$serverSplash[]` retourne l'URL de l'image de fond qui s'affiche sur la page d'invitation Discord du serveur (lorsqu'un utilisateur clique sur un lien d'invitation).
+`$serverSplash[]` retourne the URL of the image de fond qui s'displays sur la page d'invite Discord of the server (when a user clique sur un link d'invite).
 
-> **Prérequis** : Cette fonctionnalité est réservée aux serveurs partenaires Discord ou vérifiés, avec un niveau de boost suffisant.
+> **Prérequired** : This functionnalité est réservée aux servers partenaires Discord or vérifiés, with a level de boost suffisant.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverSplash
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- L'URL de l'image splash, ou une chaîne vide si non disponible.
+- The URL of the image splash, or une string vide si non available.
 
 ## Utilisation
 
@@ -35,9 +35,9 @@ Aucun paramètre.
 
 ```bdfd
 $if[$serverSplash!=]
-$sendMessage[Splash d'invitation : $serverSplash]
+$sendMessage[Splash d'invite : $serverSplash]
 $else
-$sendMessage[Ce serveur n'a pas de splash d'invitation.]
+$sendMessage[Ce server n'a pas de splash d'invite.]
 $endif
 ```
 
@@ -52,21 +52,21 @@ $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Page d'invitation personnalisée
+### Page d'invite custome
 
 ```bdfd
-$title[🌟 Invitation — $serverName]
+$title[🌟 Invite — $serverName]
 $description[Vous êtes invité à rejoindre $serverName !]
 $image[$serverSplash]
-$addField[Lien d'invitation;discord.gg/$serverVanityURL;yes]
-$addField[Membres;$membersCount;yes]
+$addField[Link d'invite;discord.gg/$serverVanityURL;yes]
+$addField[Members;$membersCount;yes]
 $color[#9B59B6]
 $sendEmbedMessage
 ```
 
 ## Notes
 
-- L'image splash est distincte de la bannière : elle apparaît spécifiquement sur la page d'invitation.
-- Réservée aux serveurs partenaires ou vérifiés (badge Partenaire ou Vérifié).
-- Si le serveur n'est pas éligible, la fonction retourne une chaîne vide.
-- Dimensions recommandées : 1920x1080px (ratio 16:9).
+- L'image splash est distincte de la banner : elle apparaît specifically sur la page d'invite.
+- Réservée aux servers partenaires or vérifiés (badge Partenaire or Vérifié).
+- Si the server is not éligible, the function retourne une string vide.
+- Dimensions recommendedes : 1920x1080px (ratio 16:9).

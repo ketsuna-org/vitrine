@@ -5,47 +5,47 @@ translation_key: docs
 category: "Moderation"
 function_name: hasPerms
 syntax: $hasPerms[userID;permission1;permission2;...]
-description: Vérifie si un utilisateur possède toutes les permissions spécifiées. Retourne "true" ou "false". Vérification inline, n'interrompt pas la commande.
+description: Checks if un user possède all permissions spécifiées. Returns "true" or "false". Vérification inline, n'interrompt pas the command.
 ---
 
 # $hasPerms
 
-La fonction `$hasPerms` est une **vérification inline** de permissions. Contrairement aux guards (`$onlyPerms`, `$onlyBotPerms`), elle n'interrompt pas la commande mais retourne `"true"` ou `"false"`, permettant une gestion conditionnelle fine.
+The function `$hasPerms` est une **vérification inline** de permissions. Contrairement aux guards (`$onlyPerms`, `$onlyBotPerms`), elle n'interrompt pas the command mais retourne `"true"` or `"false"`, permettant une gestion conditionnelle fine.
 
-## Syntaxe
+## Syntax
 
 ```
 $hasPerms[userID;permission1;permission2;...]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description |
+| Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID` | Snowflake | L'ID de l'utilisateur dont on veut vérifier les permissions. |
-| `permission1;permission2;...` | String[] | Liste des permissions à vérifier. **Toutes** les permissions doivent être présentes. |
+| `userID` | Snowflake | The ID of the user dont on veut vérifier les permissions. |
+| `permission1;permission2;...` | String[] | List des permissions à vérifier. **Toutes** les permissions must be présentes. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne `"true"` ou `"false"`
-- `"true"` : l'utilisateur possède **toutes** les permissions listées
+- **Type** : String `"true"` or `"false"`
+- `"true"` : the user possède **all** les permissions listées
 - `"false"` : il manque au moins une permission
 
-## Comportement
+## Behavior
 
-- Vérifie les permissions globales de l'utilisateur sur le serveur.
-- La vérification est de type **ET** : toutes les permissions listées sont requises.
-- La permission `Administrator` satisfait implicitement toutes les autres.
-- **N'interrompt pas** la commande (contrairement à `$onlyPerms`).
+- Checks les permissions globals of the user on the server.
+- La vérification est de type **ET** : all permissions listées sont requiredes.
+- La permission `Administrator` satisfait implicitement all autres.
+- **N'interrompt pas** the command (contrairement à `$onlyPerms`).
 
-## Exemples
+## Examples
 
 ### Vérification conditionnelle simple
 
 ```bdfd
 $if[$hasPerms[$authorID;BanMembers]==true]
   $ban[$mentioned[1];$noMentionMessage]
-  $sendMessage[Membre banni.]
+  $sendMessage[Member banni.]
 $else
   $sendMessage[❌ Vous n'avez pas la permission de bannir.]
 $endif
@@ -56,13 +56,13 @@ $endif
 ```bdfd
 $if[$hasPerms[$authorID;ManageMessages;ManageChannels]==true]
   $clear[$message[1]]
-  $sendMessage[$message[1] messages supprimés.]
+  $sendMessage[$message[1] messages deleteds.]
 $else
   $sendMessage[❌ Permissions insuffisantes.]
 $endif
 ```
 
-### Vérifier les permissions du bot
+### Vérifier les permissions of the bot
 
 ```bdfd
 $if[$hasPerms[$botID;KickMembers]==false]
@@ -76,14 +76,14 @@ $kick[$mentioned[1]]
 
 ```bdfd
 $if[$hasPerms[$authorID;Administrator]==true]
-  $log[Action admin : $userName a utilisé la commande.]
+  $log[Action admin : $userName a utilisé the command.]
 $endif
 ```
 
 ## Notes
 
-- `$hasPerms` est une fonction **inline** : elle ne bloque pas la commande. Utilisez-la avec `$if` pour créer des comportements conditionnels.
-- Pour le bot, utilisez `$botID` comme `userID`.
+- `$hasPerms` est une function **inline** : elle ne bloque pas the command. Utilisez-la avec `$if` pour créer des comportements conditionnels.
+- Pour the bot, utilisez `$botID` comme `userID`.
 - Les noms de permissions sont en **PascalCase** (`BanMembers`, `KickMembers`, `ManageMessages`, etc.).
-- Pour une vérification avec interruption automatique, utilisez `$onlyPerms` (utilisateur) ou `$onlyBotPerms` (bot).
+- Pour une vérification avec interruption automatique, utilisez `$onlyPerms` (user) or `$onlyBotPerms` (bot).
 - `$checkUserPerms` est un alias de `$hasPerms`.

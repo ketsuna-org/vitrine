@@ -5,46 +5,46 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomChannelID
 syntax: $randomChannelID
-description: Retourne l'ID d'un salon aléatoire présent sur le serveur.
+description: Returns the ID of a random channel present on the server.
 ---
 
 # $randomChannelID[]
 
-La fonction `$randomChannelID[]` retourne l'ID Discord d'un salon aléatoire présent sur le serveur où la commande est exécutée.
+The `$randomChannelID[]` function returns the Discord ID of a random channel present on the server where the command is executed.
 
-## Syntaxe
+## Syntax
 
 ```
 $randomChannelID
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note:** This function takes no parameters.
 
-## Valeur de retour
+## Return Value
 
-L'ID Discord (snowflake) d'un salon aléatoire du serveur, sous forme de chaîne de caractères.
+The Discord ID (snowflake) of a random channel on the server, as a string.
 
-## Exemples
+## Examples
 
-### Obtenir un ID de salon aléatoire
+### Get a random channel ID
 
 ```bdfd
-ID du salon aléatoire : $randomChannelID
+Random channel ID: $randomChannelID
 ```
 
-### Mentionner un salon aléatoire
+### Mention a random channel
 
 ```bdfd
-Salon aléatoire : <#$randomChannelID>
+Random channel: <#$randomChannelID>
 ```
 
-### Utiliser comme salon de destination
+### Use as destination channel
 
 ```bdfd
-$sendMessage[$randomChannelID;Message envoyé dans un salon aléatoire !]
+$sendMessage[$randomChannelID;Message sent to a random channel!]
 ```
 
 ## Notes
 
-- Le salon est choisi parmi tous les salons accessibles au bot sur le serveur.
-- Pour les salons textuels, vous pouvez utiliser l'ID avec les fonctions d'envoi de message.
+- The channel is chosen from all channels accessible to the bot on the server.
+- For text channels, you can use the ID with message sending functions.

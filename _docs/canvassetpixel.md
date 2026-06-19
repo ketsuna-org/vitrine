@@ -5,38 +5,38 @@ translation_key: docs
 category: "Canvas"
 function_name: canvasSetPixel
 syntax: $canvasSetPixel[x;y;color]
-description: Définit la couleur d'un pixel spécifique sur le canvas.
+description: Sets the couleur d'un pixel spécifique on the canvas.
 ---
 
 # $canvasSetPixel
 
-La fonction `$canvasSetPixel[x;y;color]` **définit la couleur d'un pixel unique** sur le canvas aux coordonnées spécifiées.
+The `$canvasSetPixel[x;y;color]` function **définit the color d'un pixel unique** on the canvas aux coordatas spécifiées.
 
-## Syntaxe
+## Syntax
 
 ```
 $canvasSetPixel[x;y;color]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `x` | Coordonnée X du pixel. 0 = le bord gauche du canvas. |
-| `y` | Coordonnée Y du pixel. 0 = le bord supérieur du canvas. |
-| `color` | Couleur à appliquer, au format hexadécimal (`#RRGGBB`) ou nom de couleur (`red`, `blue`, etc.). |
+| `x` | Coordata X du pixel. 0 = le bord gauche du canvas. |
+| `y` | Coordata Y du pixel. 0 = le bord supérieur du canvas. |
+| `color` | Couleur à appliquer, in the format hexadecimal (`#RRGGBB`) or nom de couleur (`red`, `blue`, etc.). |
 
-## Valeur de retour
+## Return value
 
-Aucune. Le pixel est modifié directement sur le canvas.
+None. The pixel est modified directly on the canvas.
 
-## Comportement
+## Behavior
 
-- Les coordonnées hors des limites du canvas sont ignorées (pas d'erreur).
-- Le canal alpha du pixel est conservé tel quel.
-- Fonctionne sur tout canvas préalablement créé ou chargé.
+- Les coordatas hors des limits du canvas sont ignorées (pas error).
+- Le canal alpha du pixel is kept tel quel.
+- Functionne sur tout canvas previously created or loaded.
 
-## Exemples
+## Examples
 
 ### Pixel unique
 
@@ -44,10 +44,10 @@ Aucune. Le pixel est modifié directement sur le canvas.
 $canvasCreate[100;100]
 $canvasSetPixel[50;50;#FF0000]
 $attachCanvas[]
-$sendMessage[🔴 Pixel rouge placé au centre !]
+$sendMessage[🔴 Pixel rouge placé au cbetween !]
 ```
 
-### Dessiner une ligne horizontale
+### Dessiner a row horizontal
 
 ```bdfd
 $canvasCreate[200;100]
@@ -70,7 +70,7 @@ $attachCanvas[]
 $sendMessage[➕ Croix rouge dessinée !]
 ```
 
-### Dessiner où l'utilisateur clique (interaction)
+### Dessiner où the user clicks (interaction)
 
 ```bdfd
 $canvasSetPixel[$mouseX;$mouseY;$message[1]]
@@ -79,7 +79,7 @@ $attachCanvas[]
 
 ## Notes
 
-- Les coordonnées commencent à 0 (pas à 1).
-- Pour remplir une zone entière, utilisez `$canvasFill[]` ou `$canvasDrawRect[]`.
-- Pour lire un pixel, utilisez `$canvasGetPixel[]`.
-- La modification de nombreux pixels un par un peut être lente ; préférez les fonctions de dessin vectoriel.
+- Les coordatas commencent à 0 (pas à 1).
+- Pour remplir une zone entière, use `$canvasFill[]` or `$canvasDrawRect[]`.
+- Pour lire un pixel, use `$canvasGetPixel[]`.
+- La modification de many pixels un par un can be slowe ; préférez les functions de dessin vectoriel.

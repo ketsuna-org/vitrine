@@ -5,33 +5,33 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorID
 syntax: $authorID
-description: Retourne l'ID Discord de l'auteur du message qui a déclenché la commande.
+description: Returns the ID Discord de the author of the message qui a déclenché la command.
 ---
 
 # $authorID
 
-La variable `$authorID` retourne l'**ID Discord** de l'auteur du message qui a déclenché l'exécution de la commande.
+The variable `$authorID` returns the **ID Discord** de the author of the message qui a déclenché l'execution of the command.
 
-## Syntaxe
+## Syntax
 
 ```
 $authorID
 ```
 
-## Valeur de retour
+## Return value
 
-- **Type** : Snowflake (chaîne numérique de 17-19 chiffres)
-- L'ID unique de l'auteur du message
+- **Type** : Snowflake (string numérique de 17-19 chiffres)
+- The ID unique de the author of the message
 
-## Comportement
+## Behavior
 
-- `$authorID` ne prend **aucun argument**.
-- Dans le contexte d'une commande textuelle, `$authorID` est l'ID de la personne qui a envoyé le message.
-- Dans la plupart des cas simples, `$authorID` et `$userID` sont identiques.
+- `$authorID` ne prend **no argument**.
+- Dans le context of a command textuelle, `$authorID` est the ID of the personne qui a sent the message.
+- Dans la plupart des cas simples, `$authorID` and `$userID` sont identicals.
 
-## Exemples
+## Examples
 
-### Profil de l'auteur
+### Profil de the author
 
 ```bdfd
 $title[Profil de $authorUsername]
@@ -44,15 +44,15 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérification du propriétaire
+### Vérification du owner
 
 ```bdfd
 $if[$authorID==123456789012345678]
-  $sendMessage[Bonjour propriétaire !]
+  $sendMessage[Bonday owner !]
 $endif
 ```
 
 ## Notes
 
-- `$authorID` est l'ID de l'**auteur du message**, tandis que `$userID` est l'ID de l'**utilisateur déclencheur**. Dans les commandes textuelles, ils sont identiques.
-- Utilisez `$authorID` pour plus de clarté sémantique dans le code lié aux messages.
+- `$authorID` est the ID of the **auteur of the message**, tandis que `$userID` est the ID of the **user déclencheur**. Dans les commands textuelles, they are identicals.
+- Use `$authorID` to more than clarté sémantique dans the code lié aux messages.

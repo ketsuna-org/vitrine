@@ -5,36 +5,36 @@ translation_key: docs
 category: "Moderation"
 function_name: unmute
 syntax: $unmute[userID]
-description: Retire la sourdine d'un utilisateur.
+description: Retire la sourdine of a user.
 ---
 
 # $unmute
 
-La fonction `$unmute` **retire la sourdine** d'un utilisateur sur le serveur Discord, lui permettant de parler à nouveau dans les salons vocaux. Le bot doit avoir la permission `MuteMembers`.
+The function `$unmute` **retire la sourdine** of a user on the server Discord, lui permettant de parler à new in thes channels vocaux. The bot doit avoir la permission `MuteMembers`.
 
-## Syntaxe
+## Syntax
 
 ```
 $unmute[userID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur à réactiver. Obligatoire. |
+| `userID` | The ID of the user à réactiver. Required. |
 
-## Valeur de retour
+## Return Value
 
-Aucune. L'utilisateur peut de nouveau parler en vocal.
+Aucune. The user peut de new parler en vocal.
 
-## Exemples
+## Examples
 
 ### Réactivation simple
 
 ```bdfd
 $unmute[$mentioned[1]]
-$sendMessage[🔊 <@$mentioned[1]> peut de nouveau parler !]
+$sendMessage[🔊 <@$mentioned[1]> peut de new parler !]
 ```
 
 ### Réactivation conditionnelle
@@ -42,7 +42,7 @@ $sendMessage[🔊 <@$mentioned[1]> peut de nouveau parler !]
 ```bdfd
 $if[$isAdmin==true]
   $unmute[$mentioned[1]]
-  $sendMessage[Membre réactivé en vocal.]
+  $sendMessage[Member réenabled en vocal.]
 $else
   $sendMessage[Permission refusée.]
 $endif
@@ -50,6 +50,6 @@ $endif
 
 ## Notes
 
-- Le bot doit avoir la permission `MuteMembers`.
-- N'a d'effet que si l'utilisateur est actuellement muet.
-- Pour retirer un timeout (silence textuel et vocal temporaire), utilisez `$unTimeout`.
+- The bot doit avoir la permission `MuteMembers`.
+- N'a d'effet que si the user est currentlement muet.
+- Pour retirer un timeout (silence textuel and vocal temporary), utilisez `$unTimeout`.

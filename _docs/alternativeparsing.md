@@ -5,42 +5,42 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: alternativeParsing
 syntax: $alternativeParsing
-description: Active un mode de parsing alternatif pour la commande en cours. Utile pour résoudre certains conflits de syntaxe ou comportements inattendus du parseur BDFD.
+description: Active un mode de parsing alternatif for the command in progress. Utile pour résoudre certains conflits de syntax or comportements inattendus du parseur BDFD.
 ---
 # $alternativeParsing
 
-La fonction `$alternativeParsing` active un **mode de parsing alternatif** pour la commande en cours. Ce mode utilise une logique de traitement différente qui peut résoudre des problèmes de compatibilité.
+The `$alternativeParsing` function active un **mode de parsing alternatif** for the command in progress. Ce mode utilise une logique de traitement differente qui peut résoudre des problèmes de compatibilité.
 
-## Syntaxe
+## Syntax
 
 ```
 $alternativeParsing
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
-Aucune.
+None.
 
-## Comportement
+## Behavior
 
-- Change la façon dont BDFD interprète et exécute le code de la commande.
-- Peut résoudre des bugs liés aux crochets `[]` imbriqués ou aux caractères spéciaux.
-- Effet limité à la commande en cours.
+- Change la façon dont BDFD interprète and exécute the code of the command.
+- Peut résoudre des bugs liés aux crochets `[]` imbriqués or aux becauseactères special.
+- Effet limité à la command in progress.
 
-## Exemples
+## Examples
 
-### Résoudre un conflit de crochets
+### Résoudre un confreads de crochets
 
 ```bdfd
 $alternativeParsing
 $sendMessage[$replaceText[Hello [World];[ ];-]]
 ```
 
-### Commande avec syntaxe complexe
+### Command avec syntax complex
 
 ```bdfd
 $alternativeParsing
@@ -53,7 +53,7 @@ $endif
 
 ## Notes
 
-- À utiliser quand le parsing standard cause des erreurs inexpliquées.
-- Peut légèrement ralentir l'exécution.
-- À placer en début de commande, avant tout autre code.
-- Alternative à `$optOff` pour les problèmes purement syntaxiques.
+- À utiliser when le parsing standard cause of errors inexpliquées.
+- Peut légèrement raslowir l'execution.
+- À placer en début de command, before tout autre code.
+- Alternative à `$optOff` for problèmes purement syntaxiques.

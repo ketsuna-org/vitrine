@@ -5,36 +5,36 @@ translation_key: docs
 category: "Entity Info"
 function_name: slashID
 syntax: $slashID
-description: Retourne l'ID Discord de la commande slash en cours d'exécution.
+description: Returns the ID Discord of the command slash in progress d'exécution.
 ---
 
 # $slashID
 
-La fonction `$slashID` **retourne l'ID Discord (snowflake) de la commande slash** en cours d'exécution. Si la commande n'est pas une commande slash, retourne une chaîne vide.
+The function `$slashID` **retourne the ID Discord (snowflake) of the command slash** in progress d'exécution. Si the command is not une command slash, retourne une string vide.
 
-## Syntaxe
+## Syntax
 
 ```
 $slashID
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
-- L'ID Discord de la commande slash (ex: `1234567890123456789`).
-- Chaîne vide si la commande en cours est une commande prefix.
+- The ID Discord of the command slash (ex: `1234567890123456789`).
+- String vide si the command in progress est une command prefix.
 
-## Comportement
+## Behavior
 
-- L'ID est attribué par Discord lors de l'enregistrement de la commande.
-- Utile pour le logging, le debugging, ou l'identification unique.
-- Retourne vide pour les commandes prefix.
+- The ID est attribué par Discord during l'enregistrement of the command.
+- Utile for the logging, le debugging, or l'identification unique.
+- Returns vide for the commands prefix.
 
-## Exemples
+## Examples
 
 ### Log détaillé
 
@@ -46,14 +46,14 @@ $else
 $endif
 ```
 
-### Debug commande
+### Debug command
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
   $stop
 $endif
 
-$title[🔍 Debug Commande]
+$title[🔍 Debug Command]
 $description[
 **Nom :** $commandName
 **Trigger :** $commandTrigger
@@ -61,14 +61,14 @@ $description[
 **Folder :** $commandFolder
 **Slash ID :** $if[$slashID!=]$slashID$elseN/A (prefix)$endif
 **Auteur :** $userName ($authorID)
-**Serveur :** $serverName ($guildID)
+**Server :** $serverName ($guildID)
 **Canal :** $channelName ($channelID)
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Comportement conditionnel
+### Behavior conditionnel
 
 ```bdfd
 $if[$slashID!=]
@@ -82,7 +82,7 @@ $endif
 $sendMessage[📌 Mode : $var[mode] | Args : $var[args]]
 ```
 
-### Information commande pour support
+### Information command pour support
 
 ```bdfd
 $if[$slashID!=]
@@ -96,7 +96,7 @@ $endif
 
 ## Notes
 
-- Retourne une chaîne vide pour les commandes prefix.
-- L'ID est unique et attribué par Discord.
-- Utile pour le support technique (fournir l'ID en cas de bug).
-- Pour vérifier si une commande est slash, utilisez `$isSlash` ou `$commandType`.
+- Returns ae string vide for the commands prefix.
+- The ID est unique and attribué par Discord.
+- Utile for the support technique (fournir the ID en cas de bug).
+- Pour vérifier if ae command est slash, utilisez `$isSlash` or `$commandType`.

@@ -5,66 +5,66 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalCheckboxGroup
 syntax: $addModalCheckboxGroup[customId;label;(required)]
-description: Crée un groupe de cases à cocher dans un modal. Les options individuelles sont ajoutées avec $addCheckboxGroupOption[].
+description: Crée a group de checkboxes in a modal. The options individuthey are ajoutées avec $addCheckboxGroupOption[].
 ---
 
 # $addModalCheckboxGroup[] — Groupe de Cases à Cocher
 
-`$addModalCheckboxGroup[]` crée un conteneur pour un groupe de cases à cocher dans un modal. Les options sont ensuite ajoutées avec `$addCheckboxGroupOption[]`. L'utilisateur peut cocher plusieurs options simultanément.
+`$addModalCheckboxGroup[]` crée a container pour a group de checkboxes in a modal. The options sont then ajoutées avec `$addCheckboxGroupOption[]`. The user peut cocher multiple options simultaneously.
 
-## Syntaxe
+## Syntax
 
 ```
 $addModalCheckboxGroup[customId;label;(required)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Défaut | Description |
+| Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Oui | — | Identifiant unique du groupe. |
-| `label` | Oui | — | Étiquette descriptive au-dessus du groupe. |
-| `required` | Non | `yes` | `yes` si une sélection est obligatoire. |
+| `customId` | Yes | — | Unique identifier of the group. |
+| `label` | Yes | — | Label descriptive above of the group. |
+| `required` | No | `yes` | `yes` if a selection is required. |
 
-## Valeur de retour
+## Return value
 
-Initialise un groupe de cases à cocher. Les valeurs cochées sont accessibles via `$input[customId]` sous forme de liste séparée par des virgules.
+Initialise a group de checkboxes. The values cochées sont accessibles via `$input[customId]` sous forme de list separatede par des virgules.
 
-## Utilisation
+## Usage
 
-### Groupe de centres d'intérêt
+### Interests group
 
 ```bdfd
 $newModal[Profil;profile_modal]
 $addModalTextInput[username;Pseudo;short;;;yes;3;32]
 $addModalCheckboxGroup[hobbies;Loisirs;no]
-$addCheckboxGroupOption[;Lecture;reading;Livres et romans]
-$addCheckboxGroupOption[;Cinéma;movies;Films et séries]
+$addCheckboxGroupOption[;Lecture;reading;Livres and romans]
+$addCheckboxGroupOption[;Cinéma;movies;Films and séries]
 $addCheckboxGroupOption[;Cuisine;cooking;Art culinaire]
 $addCheckboxGroupOption[;Voyages;travel;Découvrir le monde]
 ```
 
-### Groupe obligatoire
+### Required group
 
 ```bdfd
 $newModal[Sondage;sondage_modal]
-$addModalCheckboxGroup[features;Fonctionnalités souhaitées;yes]
+$addModalCheckboxGroup[features;Functionnalités souhaitées;yes]
 $addCheckboxGroupOption[;Notifications;notif]
 $addCheckboxGroupOption[;Mode sombre;darkmode]
-$addCheckboxGroupOption[;Export données;export]
+$addCheckboxGroupOption[;Export datas;export]
 ```
 
-### Récupération des valeurs
+### Récupération of values
 
 ```bdfd
 $onInteraction[profile_submit]
 $var[hobbies;$input[hobbies]]
-$sendMessage[Loisirs sélectionnés : $var[hobbies]]
+$sendMessage[Loisirs selectionnés : $var[hobbies]]
 $endInteraction
 ```
 
 ## Notes
 
-- Les options sont ajoutées avec `$addCheckboxGroupOption[]` où le `menuId` peut être omis pour cibler le dernier groupe créé.
-- La valeur retournée est une chaîne contenant les `value` des options cochées, séparées par des virgules.
-- Maximum 25 options par groupe (limite Discord).
+- Les options sont ajoutées avec `$addCheckboxGroupOption[]` où le `menuId` can be omis to target le last groupe created.
+- La value retournée est a string contenant les `value` of options cochées, separated by commas.
+- Maximum 25 options par groupe (limit Discord).

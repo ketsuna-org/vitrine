@@ -5,55 +5,55 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelName
 syntax: $channelName[(channelID)]
-description: Retourne le nom du salon Discord courant ou d'un salon spécifique via son ID.
+description: Returns the name of the channel Discord courant or of a channel spécifique via its ID.
 ---
 
 # $channelName
 
-La fonction `$channelName` retourne le **nom** d'un salon Discord. Par défaut, elle retourne le nom du salon où la commande est exécutée, mais elle peut aussi retourner le nom d'un salon spécifique si un ID est fourni.
+The `$channelName` function returns the **nom** of a channel Discord. Par default, elle retourne the name of the channel où la command est executede, mais elle peut also retourner the name of a channel spécifique if a ID is provided.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelName[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel. L'ID du salon cible. Si omis, le salon courant est utilisé. |
+| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `string` | Le nom du salon (ex: `général`, `annonces`). |
+| `string` | The name of the channel (ex: `général`, `annonces`). |
 
-## Exemples
+## Examples
 
-### Nom du salon courant
+### Nom of the channel courant
 
 ```bdfd
 $sendMessage[Bienvenue dans #$channelName !]
 ```
 
-### Nom d'un salon spécifique
+### Nom of a channel spécifique
 
 ```bdfd
-$sendMessage[Le salon est : $channelName[123456789012345678]]
+$sendMessage[The channel est : $channelName[123456789012345678]]
 ```
 
-### Vérifier le nom d'un salon
+### Vérifier the name of a channel
 
 ```bdfd
 $if[$channelName==général]
-  $sendMessage[Vous êtes dans le salon général.]
+  $sendMessage[Vous êtes in the channel général.]
 $endif
 ```
 
 ## Notes
 
-- Pour les salons textuels, le nom est affiché sans le préfixe `#`. Ajoutez-le manuellement si besoin.
-- Le nom des salons vocaux s'affiche de la même manière (ex: `Vocal 1`).
-- Pour lister tous les salons, utilisez `$channelNames`.
+- For channels textuels, the name is displayed without le préfixe `#`. Ajoutez-le manually si besoin.
+- The name of channels vocaux s'displays de la même manière (ex: `Vocal 1`).
+- Pour listr all channels, use `$channelNames`.

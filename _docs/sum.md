@@ -5,33 +5,33 @@ translation_key: docs
 category: "Math & Text"
 function_name: sum
 syntax: $sum[value1;value2;...]
-description: Calcule la somme de toutes les valeurs fournies.
+description: Calculates the somme de all values fournies.
 ---
 
 # $sum[]
 
-La fonction `$sum[]` additionne toutes les valeurs numériques qui lui sont passées. Elle est variadique, ce qui signifie qu'elle accepte un nombre illimité d'arguments.
+The function `$sum[]` additionne all values numériques qui lui sont passées. Elle est variadique, ce qui signifie qu'elle accepte un number illimité d'arguments.
 
-## Syntaxe
+## Syntax
 
 ```
-$sum[valeur1;valeur2;...]
+$sum[value1;value2;...]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type   | Obligatoire | Description                                              |
+| Parameter | Type   | Required | Description                                              |
 |-----------|--------|-------------|----------------------------------------------------------|
-| `valeurs` | number | Oui         | Liste de valeurs numériques séparées par `;`. Variadique. |
+| `values` | number | Yes         | List de values numériques separatedes par `;`. Variadique. |
 
-## Comportement
+## Behavior
 
-- Additionne toutes les valeurs dans l'ordre où elles sont fournies.
-- Si aucune valeur n'est passée, retourne `0`.
-- Les valeurs non numériques sont ignorées ou converties en `0` selon le contexte.
-- Supporte les nombres décimaux.
+- Additionne all values in the ordre où they are fournies.
+- Si noe value is notsée, retourne `0`.
+- Les values non numériques sont ignorées or convertedes en `0` selon le context.
+- Supporte les numbers décimaux.
 
-## Exemples
+## Examples
 
 **Somme simple :**
 ```
@@ -39,7 +39,7 @@ $sum[5;10;15]
 → 30
 ```
 
-**Avec une seule valeur :**
+**Avec a single value :**
 ```
 $sum[42]
 → 42
@@ -51,13 +51,13 @@ $sum[]
 → 0
 ```
 
-**Dans un contexte pratique (total d'un panier) :**
+**Dans un context pratique (total d'un panier) :**
 ```
 $sum[$getVar[item1];$getVar[item2];$getVar[item3]]
 ```
 
 ## Notes
 
-- Le résultat est toujours une chaîne de caractères représentant un nombre.
-- Pour des opérations plus complexes, utilisez `$calculate[]`.
-- Les points-virgules `;` sont obligatoires comme séparateurs.
+- The result est toudays une string de becauseactères représentant un number.
+- Pour des opérations plus complexs, utilisez `$calculate[]`.
+- Les points-virgules `;` sont requireds comme separators.

@@ -5,57 +5,57 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelCount
 syntax: $channelCount[(categoryID)]
-description: Retourne le nombre total de salons sur le serveur, ou le nombre de salons dans une catégorie spécifique.
+description: Returns the namebre total de channels on the server, or the namebre de channels dans une catégorie spécifique.
 ---
 
 # $channelCount
 
-La fonction `$channelCount` retourne le **nombre de salons** sur le serveur Discord. En fournissant un ID de catégorie, elle peut aussi compter les salons d'une catégorie spécifique.
+The `$channelCount` function returns the **number de channels** on the server Discord. En fournissant an ID de catégorie, elle peut also compter les channels d'une catégorie spécifique.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelCount[(categoryID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `categoryID` | Optionnel. L'ID d'une catégorie pour compter uniquement ses salons. Si omis, compte tous les salons du serveur. |
+| `categoryID` | Optional. The ID d'une catégorie pour compter only their channels. If omitted, compte all channels of the server. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `integer` | Le nombre de salons correspondant au filtre. |
+| `integer` | The namebre de channels correspondant au filtre. |
 
-## Exemples
+## Examples
 
-### Nombre total de salons
-
-```bdfd
-$sendMessage[Ce serveur compte $channelCount salons.]
-```
-
-### Salons dans une catégorie
+### Number total de channels
 
 ```bdfd
-$sendMessage[La catégorie contient $channelCount[123456789012345678] salons.]
+$sendMessage[Ce server compte $channelCount channels.]
 ```
 
-### Comparaison
+### Channels dans une catégorie
+
+```bdfd
+$sendMessage[La catégorie contains $channelCount[123456789012345678] channels.]
+```
+
+### Compareason
 
 ```bdfd
 $if[$channelCount>50]
-  $sendMessage[Ce serveur est immense ! ($channelCount salons)]
+  $sendMessage[Ce server est immense ! ($channelCount channels)]
 $else
-  $sendMessage[Ce serveur a $channelCount salons.]
+  $sendMessage[Ce server a $channelCount channels.]
 $endif
 ```
 
 ## Notes
 
-- Compte tous les types de salons (textuels, vocaux, etc.), sauf les catégories elles-mêmes.
-- Pour compter les catégories, utilisez `$categoryCount`.
-- Les salons privés (non visibles par le bot) ne sont pas comptés.
+- Counts all types de channels (textuels, vocaux, etc.), except les catégories elles-mêmes.
+- Pour compter les catégories, use `$categoryCount`.
+- Les channels privates (non visibles par the bot) are not comptés.

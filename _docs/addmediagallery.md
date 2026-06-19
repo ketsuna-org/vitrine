@@ -5,32 +5,32 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addMediaGallery
 syntax: $addMediaGallery[(id)]
-description: Crée une galerie média dans un message. La galerie regroupe plusieurs éléments média (images) qui peuvent être parcourus par l'utilisateur.
+description: Crée a gallery média in a message. The galerie regroupe multiple éléments média (images) qui can be parcourus par the user.
 ---
 
 # $addMediaGallery[] — Galerie Média
 
-`$addMediaGallery[]` crée un conteneur de galerie permettant d'afficher plusieurs images dans un composant interactif. L'utilisateur peut naviguer entre les images de la galerie.
+`$addMediaGallery[]` crée a container de galerie permettant d'afficher multiple images dans a component interactif. The user peut naviguer between thes images de la galerie.
 
-## Syntaxe
+## Syntax
 
 ```
 $addMediaGallery[(id)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Description |
+| Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `id` | Non | Identifiant optionnel de la galerie. |
+| `id` | No | Optional identifier for the galerie. |
 
-## Valeur de retour
+## Return value
 
-Initialise une galerie média. Les éléments sont ajoutés avec `$addMediaGalleryItem[]`. La galerie est affichée comme un composant interactif avec navigation.
+Initialise a gallery média. The éléments are added avec `$addMediaGalleryItem[]`. The galerie is displayede comme a component interactif avec navigation.
 
-## Utilisation
+## Usage
 
-### Galerie simple
+### Simple gallery
 
 ```bdfd
 $addMediaGallery[portfolio]
@@ -39,7 +39,7 @@ $addMediaGalleryItem[https://cdn.example.com/work2.png;Projet 2]
 $addMediaGalleryItem[https://cdn.example.com/work3.png;Projet 3]
 ```
 
-### Galerie dans un conteneur
+### Galerie in a container
 
 ```bdfd
 $addContainer[showcase;#E67E22;no]
@@ -51,19 +51,19 @@ $addMediaGalleryItem[$var[img2];Variante]
 $addMediaGalleryItem[$var[img3];Version finale]
 ```
 
-### Galerie avec spoiler
+### Gallery with spoiler
 
 ```bdfd
 $addMediaGallery[spoiler_gallery]
-$addMediaGalleryItem[https://cdn.example.com/secret.png;Contenu exclusif;yes]
+$addMediaGalleryItem[https://cdn.example.com/secret.png;Contenu excludedsif;yes]
 $addMediaGalleryItem[https://cdn.example.com/bonus.png;Bonus;yes]
 ```
 
-### Dans un embed complet
+### Dans an embed complete
 
 ```bdfd
 $title[Portfolio]
-$description[Découvrez mes dernières créations]
+$description[Découvrez mes lasts créations]
 $color[#5865F2]
 $addMediaGallery[works]
 $addMediaGalleryItem[https://site.com/img1.jpg;Design A]
@@ -74,7 +74,7 @@ $footer[Page 1/1]
 
 ## Notes
 
-- Les éléments de la galerie sont ajoutés avec `$addMediaGalleryItem[]`.
-- La navigation entre images se fait via des flèches dans l'interface Discord.
-- L'ID de galerie dans `$addMediaGalleryItem[]` peut être omis pour cibler la dernière galerie créée.
-- Les URLs doivent pointer vers des images accessibles publiquement.
+- Les éléments de la galerie are added avec `$addMediaGalleryItem[]`.
+- La navigation between images se fait via arrows dans the interface Discord.
+- The ID de galerie dans `$addMediaGalleryItem[]` can be omis to target la last galerie createde.
+- Les URLs doivent pointer vers images accessibles publicment.

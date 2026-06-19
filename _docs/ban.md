@@ -5,52 +5,52 @@ translation_key: docs
 category: "Moderation"
 function_name: ban
 syntax: $ban[userID;(reason);(deleteMessagesDays)]
-description: Bannit un utilisateur du serveur Discord.
+description: Bans a user from the Discord server.
 ---
 
 # $ban
 
-La fonction `$ban` **bannit un utilisateur** du serveur Discord. Le bot doit avoir la permission `BanMembers`.
+The `$ban` function **bans a user** of the Discord server. The bot must have the permission `BanMembers`.
 
-## Syntaxe
+## Syntax
 
 ```
 $ban[userID;(reason);(deleteMessagesDays)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur à bannir. Obligatoire. |
-| `reason` | Optionnel. La raison du bannissement. |
-| `deleteMessagesDays` | Optionnel. Nombre de jours (0-7) de messages à supprimer. Défaut `0`. |
+| `userID` | The ID of the user to ban. Required. |
+| `reason` | Optional. The ban reason. |
+| `deleteMessagesDays` | Optional. Number of days (0-7) of messages to delete. Default `0`. |
 
-## Valeur de retour
+## Return value
 
-Aucune. La fonction bannit l'utilisateur et supprime ses messages si demandé.
+None. The function bans the user and deletes their messages if requested.
 
-## Exemples
+## Examples
 
-### Bannissement simple avec mention
+### Simple ban with mention
 
 ```bdfd
 $ban[$mentioned[1];Spam]
-$sendMessage[<@$mentioned[1]> a été banni pour spam.]
+$sendMessage[<@$mentioned[1]> has been banni pour spam.]
 ```
 
-### Bannissement avec suppression de messages
+### Ban with message deletion
 
 ```bdfd
 $ban[$findUser[JeanDupont];Harcèlement;7]
-$sendMessage[JeanDupont banni — 7 jours de messages supprimés.]
+$sendMessage[JeanDupont banni — 7 days of messages deleteds.]
 ```
 
-### Commande de bannissement avec confirmation
+### Ban command with confirmation
 
 ```bdfd
 $if[$argsCount<1]
-  $sendMessage[Usage: !ban <@mention> <raison>]
+  $sendMessage[Usage: !ban <@mention> <reason>]
   $stop
 $endif
 
@@ -60,7 +60,7 @@ $sendMessage[✅ <@$mentioned[1]> banni.]
 
 ## Notes
 
-- Le bot doit avoir la permission `BanMembers`.
-- `deleteMessagesDays` accepte une valeur entre `0` et `7`.
-- Le bot ne peut pas bannir un utilisateur ayant un rôle supérieur au sien.
-- Pour bannir par ID sans mention, utilisez `$banID`.
+- The bot must have the permission `BanMembers`.
+- `deleteMessagesDays` accepte a value between `0` and `7`.
+- The bot cannot bannir a user ayant a role supérieur its own.
+- To ban by ID without mention, use `$banID`.

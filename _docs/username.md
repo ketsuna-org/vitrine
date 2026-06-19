@@ -5,46 +5,46 @@ translation_key: docs
 category: "Entity Info"
 function_name: userName
 syntax: $userName
-description: Retourne le nom d'utilisateur global Discord de l'utilisateur qui a déclenché la commande.
+description: Returns the nom d'user global Discord of the user qui a déclenché the command.
 ---
 
 # $userName
 
-La variable `$userName` retourne le **nom d'utilisateur global** Discord de l'utilisateur qui a déclenché la commande.
+The variable `$userName` retourne le **nom d'user global** Discord of the user qui a déclenché the command.
 
-## Syntaxe
+## Syntax
 
 ```
 $userName
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne de caractères
-- Le nom d'utilisateur global Discord (ex: "JeanDupont")
+- **Type** : String de becauseactères
+- The name d'user global Discord (ex: "JeanDupont")
 
-## Comportement
+## Behavior
 
-- `$userName` ne prend **aucun argument**.
-- Retourne le nom d'utilisateur **global** (celui visible partout sur Discord, sans le discriminateur).
-- Si l'utilisateur a un pseudo sur le serveur, `$userName` retourne quand même son nom global. Utilisez `$nickname` pour le pseudo serveur, ou `$displayName` pour le nom d'affichage (pseudo si défini, sinon nom global).
+- `$userName` ne prend **no argument**.
+- Returns the nom d'user **global** (celui visible partout on Discord, without the discriminateur).
+- Si the user a un pseudo on the server, `$userName` retourne when même son nom global. Utilisez `$nickname` for the pseudo server, or `$displayName` for the nom d'affichage (pseudo if set, otherwise nom global).
 
-## Exemples
+## Examples
 
 ### Message de bienvenue
 
 ```bdfd
 $title[Bienvenue $userName !]
-$description[Nous sommes ravis de t'accueillir sur le serveur 🎉]
+$description[Nous sommes ravis de t'accueillir on the server 🎉]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Créer un embed personnalisé
+### Créer un embed custom
 
 ```bdfd
 $author[$userName;$userAvatar]
-$title[Profil utilisateur]
+$title[Profil user]
 $description[
 **Nom :** $userName
 **ID :** $userID
@@ -56,7 +56,7 @@ $sendMessage[]
 
 ## Notes
 
-- Le nom d'utilisateur est défini par l'utilisateur et peut être modifié à tout moment.
-- Longueur maximale : 32 caractères.
+- The name d'user est défini par the user and can be modified à tout moment.
+- Longueur maximale : 32 becauseactères.
 - Pour une identification fiable, utilisez `$userID` plutôt que `$userName`.
-- Ne pas confondre avec `$nickname` (pseudo spécifique au serveur) et `$displayName` (le meilleur des deux).
+- Ne pas confondre avec `$nickname` (pseudo spécifique au server) and `$displayName` (le meilleur des two).

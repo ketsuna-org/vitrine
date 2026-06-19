@@ -5,75 +5,75 @@ translation_key: docs
 category: "Entity Info"
 function_name: getRole
 syntax: $getRole[userID;index;(guildID)]
-description: Retourne l'ID d'un rôle d'un utilisateur selon son index (position) dans la liste des rôles du membre.
+description: Returns the ID of a role of a user selon son index (position) in the list des roles du member.
 ---
 
 # $getRole
 
-La fonction `$getRole` retourne l'**ID d'un rôle** d'un utilisateur en fonction de sa **position** dans sa liste de rôles. L'index `1` correspond au rôle le plus élevé hiérarchiquement, `2` au deuxième, et ainsi de suite.
+The function `$getRole` retourne l'**ID of a role** of a user depending on sa **position** dans sa list de roles. The index `1` correspond au role le plus élevé hiérarchiquement, `2` au twoième, and ainsi de suite.
 
-## Syntaxe
+## Syntax
 
 ```
 $getRole[userID;index;(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur. Obligatoire. |
-| `index` | La position du rôle (1 = plus haut, 2 = deuxième...). Obligatoire. |
-| `guildID` | Optionnel. L'ID du serveur cible. |
+| `userID` | The ID of the user. Required. |
+| `index` | The position of the role (1 = plus haut, 2 = twoième...). Required. |
+| `guildID` | Optional. The ID of the server cible. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | L'ID du rôle à la position donnée, ou `""` si l'index est invalide. |
+| `snowflake` (string) | The ID of the role à the position data, or `""` si l'index est invalid. |
 
-## Exemples
+## Examples
 
-### Rôle le plus élevé
+### Role le plus élevé
 
 ```bdfd
-$sendMessage[Votre rôle le plus haut : $roleName[$getRole[$authorID;1]]]
+$sendMessage[Votre role le plus haut : $roleName[$getRole[$authorID;1]]]
 ```
 
 ### Vérifier si admin
 
 ```bdfd
 $if[$getRole[$authorID;1]==$roleID[Admin]]
-  $sendMessage[Vous êtes administrateur !]
+  $sendMessage[Vous êtes administrator !]
 $else
-  $sendMessage[Vous n'êtes pas administrateur.]
+  $sendMessage[Vous n'êtes pas administrator.]
 $endif
 ```
 
-### Rôle secondaire
+### Role secondary
 
 ```bdfd
-$sendMessage[Votre deuxième rôle : $roleName[$getRole[$authorID;2]]]
+$sendMessage[Votre twoième role : $roleName[$getRole[$authorID;2]]]
 ```
 
-### Couleur du rôle principal
+### Couleur of the role principal
 
 ```bdfd
 $title[Profil]
-$description[Couleur de votre rôle principal]
+$description[Couleur de votre role principal]
 $color[$roleColor[$getRole[$authorID;1]]]
 $sendMessage[]
 ```
 
-### Rôle d'un autre utilisateur
+### Role d'un autre user
 
 ```bdfd
-$sendMessage[Rôle principal de <@$mentioned[1]> : $roleName[$getRole[$mentioned[1];1]]]
+$sendMessage[Role principal de <@$mentioned[1]> : $roleName[$getRole[$mentioned[1];1]]]
 ```
 
 ## Notes
 
 - L'index commence à `1` (pas `0`).
-- Si l'utilisateur n'a pas de rôle (seulement @everyone), `$getRole` peut retourner une chaîne vide.
-- Pour obtenir la couleur du rôle le plus haut, utilisez directement `$colorRole[$userID]`.
-- Pour lister tous les rôles d'un utilisateur, itérez avec une boucle.
+- Si the user n'a pas de role (only @everyone), `$getRole` peut retourner une string vide.
+- Pour obtenir the color of the role le plus haut, utilisez directly `$colorRole[$userID]`.
+- Pour listr all roles of a user, itérez with ae boucle.

@@ -5,58 +5,58 @@ translation_key: docs
 category: "Entity Info"
 function_name: mentionedRoles
 syntax: $mentionedRoles
-description: Retourne la liste des IDs des rôles mentionnés dans le message (via @role), séparés par des virgules.
+description: Returns the list des IDs des roles mentionnés in the message (via @role), separateds par des virgules.
 ---
 
 # $mentionedRoles
 
-La variable `$mentionedRoles` retourne la **liste des IDs des rôles mentionnés** dans le message, via la syntaxe `@role`.
+The variable `$mentionedRoles` retourne la **list des IDs des roles mentionnés** in the message, via la syntaxe `@role`.
 
-## Syntaxe
+## Syntax
 
 ```
 $mentionedRoles
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Liste de snowflakes séparés par des virgules
-- Exemple : `123456789,987654321`
-- Chaîne vide si aucun rôle n'est mentionné
+- **Type** : List de snowflakes separateds par des virgules
+- Example: `123456789,987654321`
+- String vide si no role n'est mentionné
 
-## Comportement
+## Behavior
 
-- `$mentionedRoles` ne prend **aucun argument**.
-- Détecte les mentions de rôle au format `@nom-du-rôle`.
-- Seuls les rôles "mentionnables" (paramètre de rôle activé) sont détectés.
+- `$mentionedRoles` ne prend **no argument**.
+- Détecte les mentions de role au format `@nom-du-role`.
+- Seuls les roles "mentionnables" (parameter de role enabled) sont détectés.
 
-## Exemples
+## Examples
 
-### Vérifier les rôles mentionnés
+### Vérifier les roles mentionnés
 
 ```bdfd
 $if[$mentionedRoles!=]
   $let[roles;$splitText[$mentionedRoles;,]]
   $let[count;$arrayCount[$roles]]
-  $sendMessage[$count rôle(s) mentionné(s).]
+  $sendMessage[$count role(s) mentionné(s).]
 $else
-  $sendMessage[Aucun rôle mentionné.]
+  $sendMessage[Aucun role mentionné.]
 $endif
 ```
 
-### Ajouter un rôle mentionné
+### Ajouter un role mentionné
 
 ```bdfd
 $if[$mentionedRoles!=]
   $let[firstRole;$splitText[$mentionedRoles;,;1]]
   $giveRole[$mentioned;$firstRole]
-  $sendMessage[Rôle <@&$firstRole> ajouté à <@$mentioned> !]
+  $sendMessage[Role <@&$firstRole> ajouté à <@$mentioned> !]
 $else
-  $sendMessage[Mentionnez un rôle à attribuer.]
+  $sendMessage[Mentionnez un role à attribuer.]
 $endif
 ```
 
-### Lister les rôles mentionnés
+### Listr les roles mentionnés
 
 ```bdfd
 $if[$mentionedRoles!=]
@@ -70,13 +70,13 @@ $if[$mentionedRoles!=]
 ]
     $let[i;$sum[$i;1]]
   $endwhile
-  $sendMessage[Rôles mentionnés :
+  $sendMessage[Roles mentionnés :
 $output]
 $endif
 ```
 
 ## Notes
 
-- Un rôle doit avoir l'option "Allow anyone to @mention this role" activée pour être détecté.
+- Un role doit avoir l'option "Allow anyone to @mention this role" enablede pour être détecté.
 - Les IDs retournés sont des snowflakes numériques.
-- Pour obtenir le nom d'un rôle à partir de son ID, utilisez `$roleName[ID]`.
+- Pour obtenir the name of a role from son ID, utilisez `$roleName[ID]`.

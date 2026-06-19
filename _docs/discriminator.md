@@ -5,46 +5,46 @@ translation_key: docs
 category: "Entity Info"
 function_name: discriminator
 syntax: $discriminator
-description: Retourne le discriminateur legacy de l'utilisateur (code à 4 chiffres). Retourne "0" pour les comptes pompom (nouveaux utilisateurs sans discriminateur).
+description: Returns the discriminateur legacy of the user (code à 4 chiffres). Returns "0" for comptes pompom (newx users without discriminateur).
 ---
 
 # $discriminator
 
-La variable `$discriminator` retourne le **discriminateur legacy** de l'utilisateur, c'est-à-dire le code à 4 chiffres qui était utilisé pour différencier les utilisateurs ayant le même nom (ex: `JeanDupont#1234`).
+The variable `$discriminator` returns the **discriminateur legacy** of the user, i.e. the code à 4 chiffres qui était utilisé pour différencier users ayant le même nom (ex: `JeanDupont#1234`).
 
-## Syntaxe
+## Syntax
 
 ```
 $discriminator
 ```
 
-## Valeur de retour
+## Return value
 
-- **Type** : Chaîne de caractères
-- Anciens comptes : un nombre à 4 chiffres (ex: `"1234"`, `"0001"`)
-- Nouveaux comptes (pompom) : `"0"`
+- **Type** : String de becauseactères
+- Olds comptes : a namebre à 4 chiffres (ex: `"1234"`, `"0001"`)
+- Newx comptes (pompom) : `"0"`
 
-## Comportement
+## Behavior
 
-- `$discriminator` ne prend **aucun argument**.
-- Depuis la migration de Discord vers les noms d'utilisateur uniques (système pompom), les nouveaux utilisateurs n'ont plus de discriminateur.
-- Les comptes créés avant la migration conservent leur discriminateur.
+- `$discriminator` ne prend **no argument**.
+- Dethen la migration de Discord vers les noms d'user unique (système pompom), les newx users n'ont more than discriminateur.
+- Les comptes createds before la migration conservent leur discriminateur.
 
-## Exemples
+## Examples
 
 ### Détecter un compte legacy
 
 ```bdfd
 $if[$discriminator!=0]
-  $title[Compte legacy]
+  $title[Counts thegacy]
   $description[
-  **Tag complet :** $userTag
+  **Tag complete :** $userTag
   **Discriminator :** $discriminator
   ]
   $color[#5865F2]
   $sendMessage[]
 $else
-  $title[Compte pompom]
+  $title[Counts pompom]
   $description[
   **Nom :** $userName
   (Pas de discriminateur)
@@ -56,6 +56,6 @@ $endif
 
 ## Notes
 
-- Le système de discriminateurs est **obsolète** — Discord ne les attribue plus aux nouveaux comptes.
-- `$discriminator` retourne `"0"` pour les comptes pompom.
-- Pour une identification fiable, utilisez toujours `$userID`.
+- Le système de discriminateurs est **obsolète** — Discord ne les attribue plus aux newx comptes.
+- `$discriminator` retourne `"0"` for comptes pompom.
+- Pour une identification fiable, use toudays `$userID`.

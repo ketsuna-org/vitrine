@@ -5,50 +5,50 @@ translation_key: docs
 category: "Embed & Message"
 function_name: image
 syntax: $image[url;(embedIndex)]
-description: Définit la grande image d'un embed Discord. L'image apparaît en bas de l'embed, sous les fields et la description, en pleine largeur.
+description: Sets the grande image of an embed Discord. The image apparaît en bas of the embed, sous les fields and la description, en pleine largeur.
 ---
 
 # $image[]
 
-La fonction `$image[]` définit la **grande image** d'un embed Discord. L'image est affichée en bas de l'embed, en pleine largeur, après la description et les fields.
+The function `$image[]` définit la **grande image** of an embed Discord. The image est displayede en bas of the embed, en pleine largeur, after la description and les fields.
 
-## Syntaxe
+## Syntax
 
 ```
 $image[url;(embedIndex)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `url` | URL de l'image à afficher. Doit être une URL directe vers un fichier image (PNG, JPG, GIF, WebP). |
-| `embedIndex` | Optionnel. Index de l'embed ciblé (0 par défaut). |
+| `url` | URL of the image à afficher. Doit être une URL directe vers un file image (PNG, JPG, GIF, WebP). |
+| `embedIndex` | Optional. Index of the embed ciblé (0 default). |
 
-## Valeur de retour
+## Return Value
 
-Modifie la réponse en cours de construction. Ne retourne rien.
+Modifies the response in progress de construction. Returns nothing.
 
-## Comportement
+## Behavior
 
-- L'image occupe toute la largeur de l'embed.
-- Si l'URL est invalide ou l'image inaccessible, l'embed s'affichera sans image.
-- Un seul appel à `$image[]` par embed : le dernier appel écrase le précédent.
+- L'image occupe toute la largeur of the embed.
+- Si the URL est invalid or l'image inaccessible, the embed s'affichera without image.
+- Un seul call à `$image[]` par embed : le last call écrase le previous.
 
-## Différence entre $image[] et $thumbnail[]
+## Différence between $image[] and $thumbnail[]
 
-| Fonction | Position | Taille |
+| Function | Position | Taille |
 |---|---|---|
-| `$image[]` | En bas de l'embed | Grande, pleine largeur |
-| `$thumbnail[]` | En haut à droite | Petite (carré) |
+| `$image[]` | En bas of the embed | Grande, pleine largeur |
+| `$thumbnail[]` | En haut à droite | Petite (becauseré) |
 
-## Exemples
+## Examples
 
 ### Image simple
 
 ```bdfd
-$title[Photo du jour]
-$description[Une magnifique photo sélectionnée pour vous.]
+$title[Photo du day]
+$description[Une magnifique photo selectede pour vous.]
 $image[https://picsum.photos/800/400]
 $color[#5865F2]
 $sendMessage[]
@@ -64,10 +64,10 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Embed avec image et thumbnail combinés
+### Embed avec image and thumbnail combinés
 
 ```bdfd
-$title[Nouveau produit]
+$title[New produit]
 $description[
 **Nom :** Casque Gaming Pro
 **Prix :** 79.99€
@@ -81,6 +81,6 @@ $sendMessage[]
 
 ## Notes
 
-- L'URL doit être accessible publiquement (pas de chemins locaux).
-- Les formats supportés incluent PNG, JPEG, GIF (animé ou statique), et WebP.
+- The URL must be accessible publicment (pas de chemins locaux).
+- Les formats supportés incluent PNG, JPEG, GIF (animé or static), and WebP.
 - Pour une petite image en haut à droite, utilisez `$thumbnail[]` plutôt que `$image[]`.

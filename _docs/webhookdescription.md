@@ -5,47 +5,47 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookDescription
 syntax: $webhookDescription[text]
-description: Définit la description (corps) de l'embed pour le prochain message envoyé via $webhookSend.
+description: Sets the description (corps) of the embed for the prochain message sent via $webhookSend.
 ---
 
 # $webhookDescription
 
-La fonction `$webhookDescription[]` permet de **définir la description** (corps principal) de l'embed pour le prochain message webhook.
+The function `$webhookDescription[]` allows **définir la description** (corps principal) of the embed for the prochain message webhook.
 
-## Syntaxe
+## Syntax
 
 ```
 $webhookDescription[text]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `text` | Le contenu de la description de l'embed. Supporte markdown, mentions, émojis. Max 4096 caractères. |
+| `text` | Le contenu de la description of the embed. Supporte markdown, mentions, emojis. Max 4096 becauseactères. |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur. Elle définit la description du prochain embed.
+This function ne retourne pas de value. Elle définit la description du prochain embed.
 
-## Comportement
+## Behavior
 
-- La description apparaît sous le titre de l'embed.
-- Supporte le markdown complet : gras, italique, liens, listes, code, etc.
+- La description apparaît sous le titre of the embed.
+- Supporte le markdown complete : gras, italique, links, lists, code, etc.
 - Les sauts de ligne sont préservés.
-- La description est réinitialisée après chaque `$webhookSend[]`.
+- La description est réinitialisée after each `$webhookSend[]`.
 
-## Exemples
+## Examples
 
 ### Description simple
 
 ```bdfd
-$webhookTitle[Statistiques du serveur]
+$webhookTitle[Statistiques of the server]
 $webhookDescription[
-**Membres :** $membersCount
-**En ligne :** $onlineMembers
+**Members :** $membersCount
+**Online :** $onlineMembers
 **Bots :** $botCount
-**Boost :** Niveau $boostLevel
+**Boost :** Level $boostLevel
 ]
 $webhookColor[#5865F2]
 $webhookSend[$webhookURL;]
@@ -57,9 +57,9 @@ $webhookSend[$webhookURL;]
 $webhookTitle[Rapport de modération]
 $webhookDescription[
 **Modérateur :** $username
-**Action :** Bannissement
-**Utilisateur :** $userName[$mentioned[1]]
-**Raison :** $message[2]
+**Action :** Ban
+**User :** $userName[$mentioned[1]]
+**Reason :** $message[2]
 
 *Action effectuée le $date[$day]/$date[$month]/$date[$year]*
 ]
@@ -71,11 +71,11 @@ $webhookSend[$logHook;]
 
 ```bdfd
 $if[$checkContains[$message;!report]==true]
-  $webhookTitle[Nouveau signalement]
+  $webhookTitle[New signalement]
   $webhookDescription[
   **Signalé par :** $username
-  **Utilisateur signalé :** $userName[$mentioned[1]]
-  **Raison :** $noMentionMessage
+  **User signalé :** $userName[$mentioned[1]]
+  **Reason :** $noMentionMessage
   ]
   $webhookColor[#FEE75C]
   $webhookSend[$reportHook;]
@@ -84,6 +84,6 @@ $endif
 
 ## Notes
 
-- Maximum 4096 caractères pour la description.
-- La description est le corps principal de l'embed.
-- Combinez titre + description + couleur pour un embed visuellement complet.
+- Maximum 4096 becauseactères for the description.
+- La description est le corps principal of the embed.
+- Combinez titre + description + couleur for a embed visuellement complete.

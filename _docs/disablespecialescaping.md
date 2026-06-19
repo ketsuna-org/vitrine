@@ -5,47 +5,47 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: disableSpecialEscaping
 syntax: $disableSpecialEscaping
-description: Désactive l'échappement automatique des caractères spéciaux (crochets, points-virgules, etc.) dans les paramètres. Les caractères sont interprétés littéralement.
+description: Désactive l'échappement automatique des becauseactères special (crochets, points-virgules, etc.) in thes parameters. The becauseactères sont interprétés littéralement.
 ---
 # $disableSpecialEscaping
 
-La fonction `$disableSpecialEscaping` **désactive l'échappement automatique** des caractères spéciaux dans la commande. Cela permet d'utiliser `[`, `]`, `;`, etc. sans qu'ils soient interprétés comme des délimiteurs de syntaxe BDFD.
+The `$disableSpecialEscaping` function **désactive l'échappement automatique** des becauseactères special in the command. This allows using `[`, `]`, `;`, etc. without qu'ils soient interprétés comme des délimiturs de syntax BDFD.
 
-## Syntaxe
+## Syntax
 
 ```
 $disableSpecialEscaping
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
-Aucune.
+None.
 
-## Comportement
+## Behavior
 
-- Sans cette fonction, `[` et `]` déclenchent la syntaxe des fonctions BDFD.
-- Avec, ces caractères sont traités comme du texte brut.
-- **Attention** : les vraies fonctions BDFD ne sont plus interprétées après `$disableSpecialEscaping`.
+- Without cette function, `[` and `]` déclenchent the syntax des functions BDFD.
+- Avec, ces becauseactères sont traités comme of the text brut.
+- **Attention** : les vraies functions BDFD ne sont plus interprétées after `$disableSpecialEscaping`.
 
-## Exemples
+## Examples
 
 ### Afficher des crochets littéraux
 
 ```bdfd
 $disableSpecialEscaping
-$sendMessage[Le format est [optionnel] dans la doc]
-; Affiche : Le format est [optionnel] dans la doc
+$sendMessage[Le format est [optional] in the doc]
+; Displays : Le format est [optional] in the doc
 ```
 
-### Message avec syntaxe de code
+### Message avec syntax de code
 
 ```bdfd
 $disableSpecialEscaping
-$sendMessage[Utilisez $if[condition] pour les conditions.]
+$sendMessage[Use $if[condition] for conditions.]
 ```
 
 ### Combinaison avec d'autres flags
@@ -53,11 +53,11 @@ $sendMessage[Utilisez $if[condition] pour les conditions.]
 ```bdfd
 $disableSpecialEscaping
 $disableInnerSpaceRemoval
-$sendMessage[Format brut : [valeur]; paramètre = true]
+$sendMessage[Format brut : [value]; parameter = true]
 ```
 
 ## Notes
 
-- Irréversible dans la commande : toutes les fonctions après `$disableSpecialEscaping` sont désactivées.
-- Placez cette fonction en **fin de code**, après toutes les fonctions BDFD.
-- Alternative : utilisez `$unEscape[]` pour des portions spécifiques de texte.
+- Irréversible in the command : all functions after `$disableSpecialEscaping` sont désenabledes.
+- Placez cette function en **fin de code**, after all functions BDFD.
+- Alternative : use `$unEscape[]` pour des portions spécifiques de text.

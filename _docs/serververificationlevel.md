@@ -5,42 +5,42 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverVerificationLevel
 syntax: $serverVerificationLevel
-description: Retourne le niveau de vérification du serveur sous forme d'entier (0 à 4).
+description: Returns the level de vérification of the server sous forme d'integer (0 à 4).
 ---
 
-# $serverVerificationLevel[] — Niveau de Vérification
+# $serverVerificationLevel[] — Level de Vérification
 
-`$serverVerificationLevel[]` retourne le niveau de vérification du serveur, qui détermine les critères qu'un membre doit remplir avant de pouvoir envoyer des messages.
+`$serverVerificationLevel[]` retourne le level de vérification of the server, qui détermine les critères qu'un member doit remplir before de pouvoir envoyer des messages.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverVerificationLevel
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `integer`
-- Un entier de 0 à 4 représentant le niveau de vérification :
+- Un integer de 0 à 4 représentant le level de vérification :
 
-| Valeur | Niveau | Description |
+| Value | Level | Description |
 |--------|--------|-------------|
 | 0 | Aucun | Aucune restriction |
-| 1 | Faible | Compte avec email vérifié |
-| 2 | Moyen | Compte enregistré depuis plus de 5 minutes |
-| 3 | Élevé | Membre du serveur depuis plus de 10 minutes |
-| 4 | Très élevé | Compte avec numéro de téléphone vérifié |
+| 1 | Faible | Counts avec email vérifié |
+| 2 | Moyen | Counts enregistré dethadditionally de 5 minutes |
+| 3 | Élevé | Member of the server dethadditionally de 10 minutes |
+| 4 | Très élevé | Counts avec numéro de téléphone vérifié |
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[🔒 Niveau de vérification : $serverVerificationLevel]
+$sendMessage[🔒 Level de vérification : $serverVerificationLevel]
 ```
 
 ### Message interprété
@@ -50,29 +50,29 @@ $var[verifLevel;$serverVerificationLevel]
 $if[$var[verifLevel]==0]
 $var[verifText;Aucune restriction]
 $elseIf[$var[verifLevel]==1]
-$var[verifText;Email vérifié requis]
+$var[verifText;Email vérifié required]
 $elseIf[$var[verifLevel]==2]
-$var[verifText;Compte de plus de 5 minutes]
+$var[verifText;Counts moreover de 5 minutes]
 $elseIf[$var[verifLevel]==3]
-$var[verifText;Membre depuis 10 minutes]
+$var[verifText;Member dethen 10 minutes]
 $else
-$var[verifText;Téléphone vérifié requis]
+$var[verifText;Téléphone vérifié required]
 $endif
-$sendMessage[🔒 Niveau de vérification : **$var[verifText]**]
+$sendMessage[🔒 Level de vérification : **$var[verifText]**]
 ```
 
-### Embed info serveur
+### Embed info server
 
 ```bdfd
 $title[Configuration de $serverName]
-$addField[Niveau de vérification;$serverVerificationLevel;yes]
-$addField[Temps AFK;$afkTimeout secondes;yes]
+$addField[Level de vérification;$serverVerificationLevel;yes]
+$addField[Temps AFK;$afkTimeout seconds;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
 ## Notes
 
-- Un niveau plus élevé offre une meilleure protection contre le spam et les raids.
-- Le niveau 4 (téléphone vérifié) est le plus restrictif et nécessite que Discord ait vérifié le numéro de téléphone du compte.
-- Cette information est utile pour les commandes de modération ou les messages de bienvenue contextuels.
+- Un level plus élevé offre une meilleure protection contre le spam and les raids.
+- Le level 4 (téléphone vérifié) est le plus restrictif and requires que Discord ait vérifié le numéro de téléphone du compte.
+- Cette information est utile for the commands de modération or les messages de bienvenue contextuels.

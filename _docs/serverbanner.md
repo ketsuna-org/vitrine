@@ -5,29 +5,29 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverBanner
 syntax: $serverBanner
-description: Retourne l'URL de la bannière du serveur Discord (disponible uniquement pour les serveurs de niveau boost 2 ou plus).
+description: Returns the URL of the banner of the server Discord (available only for the servers de level boost 2 or plus).
 ---
 
-# $serverBanner[] — Bannière du Serveur
+# $serverBanner[] — Banner du Server
 
-`$serverBanner[]` retourne l'URL de la bannière du serveur Discord. La bannière est une image horizontale affichée en haut de la liste des salons sur les clients de bureau.
+`$serverBanner[]` retourne the URL of the banner of the server Discord. The banner est une image horizontale displayede en haut de la list des channels sur les clinkts de bureau.
 
-> **Prérequis** : Le serveur doit être au niveau de boost 2 ou plus pour pouvoir définir une bannière personnalisée.
+> **Prérequired** : The server must be au level de boost 2 or plus pour pouvoir définir une banner custome.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverBanner
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- L'URL de la bannière du serveur, ou une chaîne vide si le serveur n'en a pas.
+- The URL of the banner of the server, or une string vide si the server n'en a pas.
 
 ## Utilisation
 
@@ -41,13 +41,13 @@ $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Page d'accueil du serveur
+### Page d'accueil of the server
 
 ```bdfd
 $title[🏠 Bienvenue sur $serverName]
 $description[$serverDescription]
 $image[$serverBanner]
-$addField[Membres;$membersCount;yes]
+$addField[Members;$membersCount;yes]
 $addField[Boosts;$serverBoostCount;yes]
 $thumbnail[$serverIcon]
 $color[#2ECC71]
@@ -55,7 +55,7 @@ $footer[$serverName]
 $sendEmbedMessage
 ```
 
-### Vérification et fallback
+### Vérification and fallback
 
 ```bdfd
 $if[$serverBanner==]
@@ -71,6 +71,6 @@ $sendEmbedMessage
 ## Notes
 
 - `$serverBanner[]` est un alias de `$guildBanner[]`.
-- Nécessite un niveau de boost serveur de niveau 2 ou 3.
-- La bannière est différente de l'icône (l'icône est carrée, la bannière est rectangulaire, ratio ~16:9).
-- Si le serveur n'a pas de bannière, prévoyez un fallback (icône du serveur ou image par défaut).
+- Requires a level de boost server de level 2 or 3.
+- La banner est differente de l'icon (l'icon est becauserée, la banner est rectangulaire, ratio ~16:9).
+- Si the server n'a pas de banner, prévoyez un fallback (icon of the server or image default).

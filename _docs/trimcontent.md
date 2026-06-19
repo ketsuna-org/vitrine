@@ -5,69 +5,69 @@ translation_key: docs
 category: "Text Manipulation"
 function_name: trimContent
 syntax: $trimContent[text]
-description: Supprime les espaces en début et fin d'un texte (trim). Ne modifie pas les espaces à l'intérieur du texte.
+description: Supprime les espaces en début and fin d'un text (trim). Ne modifie pas les espaces à l'intérieur du text.
 ---
 # $trimContent
 
-La fonction `$trimContent[]` **supprime les espaces** en début et fin d'une chaîne (trim).
+The function `$trimContent[]` **supprime les espaces** en début and fin d'une string (trim).
 
-## Syntaxe
+## Syntax
 
 ```
 $trimContent[text]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `text` | Le texte à nettoyer (espaces en début/fin supprimés). |
+| `text` | Le text à nettoyer (espaces en début/fin deleteds). |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne
-- Le texte sans espaces au début ni à la fin.
+- **Type** : String
+- Le text without espaces au début ni à la fin.
 
-## Comportement
+## Behavior
 
-- Ne touche PAS aux espaces entre les mots.
-- Supprime espaces, tabulations, et retours à la ligne en début/fin.
-- Très utile après une extraction ou une concaténation.
+- Ne touche PAS aux espaces between thes mots.
+- Supprime espaces, tabulations, and retours à la ligne en début/fin.
+- Très utile after une extraction or une concaténation.
 
-## Exemples
+## Examples
 
 ### Nettoyage simple
 
 ```bdfd
-$sendMessage[Résultat : "$trimContent[   Hello World   ]"]
-; Affiche : Résultat : "Hello World"
+$sendMessage[Result : "$trimContent[   Hello World   ]"]
+; Displays : Result : "Hello World"
 ```
 
-### Nettoyer une entrée utilisateur
+### Nettoyer une entrée user
 
 ```bdfd
 $let[input;$trimContent[$message[2]]]
 $sendMessage[Argument nettoyé : "$input"]
 ```
 
-### Comparaison sans espaces
+### Compareason without espaces
 
 ```bdfd
 $if[$trimContent[$message[1]]==admin]
-  $sendMessage[Mode admin activé.]
+  $sendMessage[Mode admin enabled.]
 $endif
 ```
 
-### Nettoyage après extraction
+### Nettoyage after extraction
 
 ```bdfd
-$let[extrait;$subString[$message;0;10]]
-$let[clean;$trimContent[$extrait]]
+$let[extracted;$subString[$message;0;10]]
+$let[clean;$trimContent[$extracted]]
 $sendMessage[$clean]
 ```
 
 ## Notes
 
-- Plus efficace que `$replaceText[text; ;]` car il ne modifie que les extrémités.
-- Pour supprimer tous les espaces (y compris internes), utilisez `$replaceText[text; ;]`.
+- Plus efficace que `$replaceText[text; ;]` because il ne modifie que les extrémités.
+- Pour supprimer all espaces (y compris internals), utilisez `$replaceText[text; ;]`.
 - Pour conserver TOUS les espaces, utilisez `$disableInnerSpaceRemoval`.

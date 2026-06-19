@@ -5,62 +5,62 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelNSFW
 syntax: $channelNSFW[(channelID)]
-description: Retourne "true" si le salon est marqué NSFW, "false" sinon.
+description: Returns "true" if the channel est marqué NSFW, "false" otherwise.
 ---
 
 # $channelNSFW
 
-La fonction `$channelNSFW` vérifie si un salon Discord est marqué comme **NSFW** (Not Safe For Work). Elle retourne `"true"` ou `"false"` sous forme de chaîne.
+The `$channelNSFW` function vérifie if a channel Discord est marqué comme **NSFW** (Not Safe For Work). Elle retourne `"true"` or `"false"` sous forme de string.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelNSFW[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel. L'ID du salon cible. Si omis, le salon courant est utilisé. |
+| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `string` | `"true"` si le salon est NSFW, `"false"` sinon. |
+| `string` | `"true"` if the channel est NSFW, `"false"` otherwise. |
 
-## Exemples
+## Examples
 
 ### Vérification simple
 
 ```bdfd
 $if[$channelNSFW==true]
-  $sendMessage[⚠️ Ce salon est marqué NSFW. Contenu sensible possible.]
+  $sendMessage[⚠️ Ce channel est marqué NSFW. Contenu sensible possible.]
 $else
-  $sendMessage[Ce salon est tout public.]
+  $sendMessage[Ce channel est tout public.]
 $endif
 ```
 
-### Bloquer une commande en salon NSFW
+### Bloquer une command en channel NSFW
 
 ```bdfd
 $if[$channelNSFW==true]
-  $sendMessage[Cette commande ne peut pas être utilisée en salon NSFW.]
+  $sendMessage[Cette command cannot être utilisée en channel NSFW.]
   $stop
 $endif
 ```
 
-### Vérifier un salon spécifique
+### Vérifier a channel spécifique
 
 ```bdfd
 $if[$channelNSFW[123456789012345678]==true]
-  $sendMessage[Le salon cible est NSFW.]
+  $sendMessage[The channel cible est NSFW.]
 $endif
 ```
 
 ## Notes
 
-- La valeur retournée est une **chaîne** `"true"` ou `"false"`, pas un booléen.
-- Les salons vocaux peuvent également être marqués NSFW.
-- Utile pour restreindre l'accès à certaines commandes selon le type de salon.
+- La value retournée est une **string** `"true"` or `"false"`, pas un boolean.
+- Les channels vocaux peuvent also être marqués NSFW.
+- Utile pour restreindre l'accès à certaines commands selon the type de channel.

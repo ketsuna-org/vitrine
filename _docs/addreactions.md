@@ -5,37 +5,37 @@ translation_key: docs
 category: "Moderation"
 function_name: addReactions
 syntax: $addReactions[emoji1;emoji2;...]
-description: Ajoute une ou plusieurs réactions au message de réponse du bot (le message envoyé par la commande en cours). Les émojis sont ajoutés séquentiellement.
+description: Adds an or multiple réactions au message de response of the bot (the message sent par la command in progress). The emojis are added séquentiellement.
 ---
 
 # $addReactions
 
-La fonction `$addReactions[]` permet d'**ajouter des réactions** au message de réponse envoyé par le bot dans la commande en cours.
+The `$addReactions[]` function **ajouter of reactions** au message de response sent par the bot in the command in progress.
 
-## Syntaxe
+## Syntax
 
 ```
 $addReactions[emoji1;emoji2;...]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `emoji1;emoji2;...` | Liste d'émojis séparés par `;`. Supporte les émojis Unicode et personnalisés. |
+| `emoji1;emoji2;...` | List d'emojis separateds par `;`. Supporte les emojis Unicode and customs. |
 
-## Valeur de retour
+## Return value
 
-Cette fonction ne retourne pas de valeur. Les réactions sont ajoutées au message de réponse du bot.
+Cette function does not return a value. The réactions sont ajoutées au message de response of the bot.
 
-## Comportement
+## Behavior
 
-- Les réactions sont ajoutées dans l'ordre spécifié.
-- Le bot doit avoir la permission `ADD_REACTIONS` dans le canal.
-- Les émojis personnalisés doivent être accessibles au bot (présents sur un serveur commun).
-- Si un émoji est invalide, les réactions suivantes peuvent ne pas être ajoutées.
+- Les réactions sont ajoutées in the order spécifié.
+- The bot must have the permission `ADD_REACTIONS` in the channel.
+- Les emojis customs must be accessibles au bot (présents sur a server commun).
+- If a emoji est invalid, les réactions nextes peuvent not être ajoutées.
 
-## Exemples
+## Examples
 
 ### Réactions à un sondage
 
@@ -68,6 +68,6 @@ $sendMessage[]
 
 ## Notes
 
-- `$addReactions[]` s'applique au message de réponse du bot (celui envoyé par `$sendMessage[]`).
-- Pour ajouter des réactions au message de commande de l'utilisateur, utilisez `$addCmdReactions[]`.
-- Pour des messages spécifiques, utilisez `$addMessageReactions[]`.
+- `$addReactions[]` s'applique au message de response of the bot (celui sent par `$sendMessage[]`).
+- Pour ajouter of reactions au message de command of the user, use `$addCmdReactions[]`.
+- Pour of messages spécifiques, use `$addMessageReactions[]`.

@@ -5,38 +5,38 @@ translation_key: docs
 category: "Variables"
 function_name: getLeaderboardPosition
 syntax: $getLeaderboardPosition
-description: Retourne la position de l'utilisateur dans le classement courant lors de l'itération d'un leaderboard.
+description: Returns the position of the user in the classement courant during l'itération d'un leaderboard.
 ---
 
 # $getLeaderboardPosition
 
-La fonction `$getLeaderboardPosition` permet de récupérer la position (le rang) de l'utilisateur en cours dans le leaderboard actif. Cette fonction n'a de sens **que dans le contexte d'itération d'un leaderboard** — c'est-à-dire après avoir appelé `$globalUserLeaderboard`, `$serverLeaderboard` ou `$userLeaderboard` et lors du parcours de ses résultats.
+The function `$getLeaderboardPosition` allows récupérer the position (le rang) of the user in progress in the leaderboard actif. This function n'a de sens **que in the context d'itération d'un leaderboard** — it is-à-dire after avoir callé `$globalUserLeaderboard`, `$serverLeaderboard` or `$userLeaderboard` and lors du parcours de their results.
 
-## Fonctionnement
+## Functionnement
 
-Lorsque vous utilisez un leaderboard, le système parcourt chaque entrée une par une. Pendant cette itération, `$getLeaderboardPosition` expose le rang actuel (1 pour le premier, 2 pour le deuxième, etc.).
+Lorsque vous utilisez un leaderboard, le système parcourt each entrée une par une. Pendant cette itération, `$getLeaderboardPosition` expose le rang current (1 for the first, 2 for the twoième, etc.).
 
-La valeur retournée correspond à la variable interne `((leaderboard.position))` qui est résolue au runtime par l'action leaderboard dédiée.
+The value retournée correspond à the variable internal `((leaderboard.position))` qui est resolvede au runtime par l'action leaderboard dédiée.
 
 ## Cas d'usage
 
-Typiquement, vous utilisez `$getLeaderboardPosition` avec `$textSplit` pour découper le résultat du leaderboard ligne par ligne, puis afficher les positions :
+Typiquement, vous utilisez `$getLeaderboardPosition` avec `$textSplit` pour découper the result du leaderboard ligne par ligne, then afficher les positions :
 
-- Afficher un classement formaté avec les rangs
-- Comparer la position de l'utilisateur courant avec celle des autres
-- Construire des messages personnalisés selon le rang (podium, top 10, etc.)
+- Afficher un classement formatted with thes rangs
+- Comparer the position of the user courant avec celle des autres
+- Construire des messages customs selon le rang (podium, top 10, etc.)
 
 ## Important
 
-- `$getLeaderboardPosition` **ne retourne rien** en dehors du contexte d'un leaderboard actif.
-- La fonction ne prend **aucun paramètre**.
-- Elle est typiquement couplée avec `$getLeaderboardValue` qui donne la valeur associée à cette position.
-- Le leaderboard lui-même est généré par une action dédiée au moment de l'exécution du code.
+- `$getLeaderboardPosition` **returns nothing** outside the context d'un leaderboard actif.
+- The function ne prend **no parameter**.
+- Elle est typiquement couplée avec `$getLeaderboardValue` qui donne the value associée à cette position.
+- Le leaderboard lui-même est generated par une action dédiée at the time of l'exécution du code.
 
-## Voir aussi
+## Voir also
 
-- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Obtenir la valeur associée à la position courante
-- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Classement global des utilisateurs
-- [`$serverLeaderboard`](/docs/serverleaderboard) — Classement au niveau du serveur
+- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Obtenir the value associée à the position courante
+- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Classement global des users
+- [`$serverLeaderboard`](/docs/serverleaderboard) — Classement au level of the server
 - [`$userLeaderboard`](/docs/userleaderboard) — Classement personnel
-- [`$textSplit`](/docs/textsplit) — Découper le résultat d'un leaderboard
+- [`$textSplit`](/docs/textsplit) — Découper the result d'un leaderboard

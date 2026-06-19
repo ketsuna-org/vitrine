@@ -5,67 +5,67 @@ translation_key: docs
 category: "Moderation"
 function_name: pinMessage
 syntax: $pinMessage[messageID]
-description: Épingle un message dans le canal courant. Le message apparaîtra dans la liste des messages épinglés du canal.
+description: Pins a message in the current channel. The message will appear in the channel's pinned messages list.
 ---
 
 # $pinMessage
 
-La fonction `$pinMessage[]` permet d'**épingler un message** dans son canal. Les messages épinglés apparaissent dans la section dédiée du canal.
+The `$pinMessage[]` function allows **pinning a message** in its channel. Pinned messages appear in the dedicated section of the channel.
 
-## Syntaxe
+## Syntax
 
 ```
 $pinMessage[messageID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `messageID` | L'ID du message à épingler. |
+| `messageID` | The ID of the message to pin. |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur.
+This function does not return a value.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `MANAGE_MESSAGES`.
-- Maximum 50 messages épinglés par canal.
-- L'épinglage fonctionne dans le canal où le message se trouve.
+- The bot must have the `MANAGE_MESSAGES` permission.
+- Maximum 50 pinned messages per channel.
+- Pinning works in the channel where the message is located.
 
-## Exemples
+## Examples
 
-### Épingler une annonce
+### Pin an announcement
 
 ```bdfd
-$title[📢 Annonce importante]
+$title[📢 Important announcement]
 $description[$noMentionMessage]
 $color[#FEE75C]
 $sendMessage[]
 $pinMessage[$messageID]
 ```
 
-### Épingler un message spécifique
+### Pin a specific message
 
 ```bdfd
 $pinMessage[$mentionedMessage]
-$sendMessage[Message épinglé !]
+$sendMessage[Message pinned!]
 ```
 
-### Épinglage conditionnel
+### Conditional pinning
 
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
   $pinMessage[$noMentionMessage]
   $addCmdReactions[📌]
 $else
-  $sendMessage[Seuls les administrateurs peuvent épingler.]
+  $sendMessage[Only administrators can pin.]
 $endif
 ```
 
 ## Notes
 
-- Discord notifie les utilisateurs concernés lorsqu'un message est épinglé.
-- Pour désépingler, utilisez `$unpinMessage[]`.
-- Les messages épinglés restent visibles même après des années.
+- Discord notifies the concerned users when a message is pinned.
+- To unpin, use `$unpinMessage[]`.
+- Pinned messages remain visible even after years.

@@ -5,36 +5,36 @@ translation_key: docs
 category: "Moderation"
 function_name: deleteRole
 syntax: $deleteRole[roleID]
-description: Supprime un rôle du serveur Discord.
+description: Supprime a role of the Discord server.
 ---
 
 # $deleteRole
 
-La fonction `$deleteRole` **supprime définitivement un rôle** du serveur Discord. Cette action est irréversible. Le bot doit avoir la permission `ManageRoles`.
+The `$deleteRole` function **supprime permanently a role** of the Discord server. Cette action est irréversible. The bot must have the permission `ManageRoles`.
 
-## Syntaxe
+## Syntax
 
 ```
 $deleteRole[roleID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `roleID` | L'ID du rôle à supprimer. Obligatoire. |
+| `roleID` | The ID of the role to delete. Required. |
 
-## Valeur de retour
+## Return value
 
-Aucune. Le rôle est supprimé du serveur.
+None. The role is deleted of the server.
 
-## Exemples
+## Examples
 
 ### Suppression simple
 
 ```bdfd
-$deleteRole[$roleID[Ancien Staff]]
-$sendMessage[🗑️ Rôle "Ancien Staff" supprimé.]
+$deleteRole[$roleID[Old Staff]]
+$sendMessage[🗑️ Role "Old Staff" deleted.]
 ```
 
 ### Suppression avec vérification d'existence
@@ -42,31 +42,31 @@ $sendMessage[🗑️ Rôle "Ancien Staff" supprimé.]
 ```bdfd
 $if[$roleExists[$roleID[VIP]]==true]
   $deleteRole[$roleID[VIP]]
-  $sendMessage[Rôle VIP supprimé.]
+  $sendMessage[Role VIP deleted.]
 $else
-  $sendMessage[Le rôle VIP n'existe pas.]
+  $sendMessage[The role VIP does not exist.]
 $endif
 ```
 
-### Commande de suppression sécurisée
+### Command de suppression sécurisée
 
 ```bdfd
 $if[$isAdmin==true]
   $if[$roleExists[$roleID[$message[1]]]==true]
     $deleteRole[$roleID[$message[1]]]
-    $sendMessage[✅ Rôle supprimé avec succès.]
+    $sendMessage[✅ Role deleted avec success.]
   $else
-    $sendMessage[Rôle introuvable.]
+    $sendMessage[Role introuvable.]
   $endif
 $else
-  $sendMessage[Permission refusée. Admin requis.]
+  $sendMessage[Permission refusée. Admin required.]
 $endif
 ```
 
 ## Notes
 
-- Le bot doit avoir la permission `ManageRoles`.
-- **Action irréversible** : le rôle est définitivement supprimé.
-- Le bot ne peut pas supprimer un rôle supérieur au sien.
-- Utilisez `$roleExists` pour vérifier l'existence avant suppression.
-- Pour modifier un rôle sans le supprimer, utilisez `$modifyRole`.
+- The bot must have the permission `ManageRoles`.
+- **Action irréversible** : the role est permanently deleted.
+- The bot cannot supprimer a role supérieur its own.
+- Use `$roleExists` to vérifier l'existence before suppression.
+- To modify a role without le supprimer, use `$modifyRole`.

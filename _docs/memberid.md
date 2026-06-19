@@ -5,38 +5,38 @@ translation_key: docs
 category: "Entity Info"
 function_name: memberID
 syntax: $memberID
-description: Retourne l'ID Discord de l'utilisateur membre. Équivalent à $userID dans la plupart des contextes, mais explicitement orienté "membre du serveur".
+description: Returns the ID Discord of the user member. Équivaslow à $userID in the plupart des contexts, mais explicitement orienté "member of the server".
 ---
 
 # $memberID
 
-La variable `$memberID` retourne l'**ID Discord** du membre qui a déclenché la commande. Elle est fonctionnellement équivalente à `$userID` mais explicitement liée à la notion de "membre du serveur".
+The variable `$memberID` retourne l'**ID Discord** du member qui a déclenché the command. Elle est functionnellement équivaslowe à `$userID` mais explicitement liée à la notion de "member of the server".
 
-## Syntaxe
+## Syntax
 
 ```
 $memberID
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Snowflake (chaîne numérique de 17-19 chiffres)
-- L'ID unique du membre sur Discord
+- **Type** : Snowflake (string numérique de 17-19 chiffres)
+- The ID unique du member on Discord
 
-## Comportement
+## Behavior
 
-- `$memberID` ne prend **aucun argument**.
-- Dans la plupart des cas, `$memberID` et `$userID` retournent la même valeur.
-- La distinction est conceptuelle : `$memberID` fait référence au **membre du serveur**, tandis que `$userID` fait référence à l'**utilisateur Discord**.
+- `$memberID` ne prend **no argument**.
+- Dans la plupart des cas, `$memberID` and `$userID` retournent la même value.
+- La distinction est conceptuelle : `$memberID` fait référence au **member of the server**, tandis que `$userID` fait référence à l'**user Discord**.
 
-## Exemples
+## Examples
 
-### Profil membre
+### Profil member
 
 ```bdfd
-$title[Membre : $memberNick]
+$title[Member : $memberNick]
 $description[
-**ID membre :** $memberID
+**ID member :** $memberID
 **Permissions :** $memberPerms
 ]
 $color[#5865F2]
@@ -45,6 +45,6 @@ $sendMessage[]
 
 ## Notes
 
-- Dans BDFD, `$memberID` et `$userID` sont interchangeables pour l'utilisateur déclencheur.
-- `$memberID` est utile pour la clarté sémantique dans le code (quand on travaille explicitement avec des membres).
-- Pour l'unicité et la permanence, l'ID membre est identique à l'ID utilisateur.
+- Dans BDFD, `$memberID` and `$userID` sont interchangeables for the user déclencheur.
+- `$memberID` est utile for the clarté sémantique in the code (when on travaille explicitement avec des members).
+- Pour l'unicité and la permanence, the ID member est identical à the ID user.

@@ -5,33 +5,33 @@ translation_key: docs
 category: "Math & Text"
 function_name: max
 syntax: $max[value1;value2;...]
-description: Retourne la plus grande valeur parmi les arguments fournis.
+description: Returns the plus grande value parmi les arguments fournis.
 ---
 
 # $max[]
 
-La fonction `$max[]` compare toutes les valeurs fournies et retourne la plus grande d'entre elles. Elle est variadique : elle accepte un nombre illimité d'arguments.
+The function `$max[]` compare all values fournies and retourne la plus grande d'between elles. Elle est variadique : elle accepte un number illimité d'arguments.
 
-## Syntaxe
+## Syntax
 
 ```
-$max[valeur1;valeur2;...]
+$max[value1;value2;...]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type   | Obligatoire | Description                                              |
+| Parameter | Type   | Required | Description                                              |
 |-----------|--------|-------------|----------------------------------------------------------|
-| `valeurs` | number | Oui         | Liste de valeurs numériques séparées par `;`. Variadique. |
+| `values` | number | Yes         | List de values numériques separatedes par `;`. Variadique. |
 
-## Comportement
+## Behavior
 
-- Parcourt toutes les valeurs et retourne la plus grande.
-- Supporte les nombres négatifs et décimaux.
-- Avec un seul argument, retourne cet argument.
-- Avec zéro argument, le comportement est indéfini (retourne vide ou 0).
+- Parcourt all values and retourne la plus grande.
+- Supporte les numbers négatifs and décimaux.
+- Avec a single argument, retourne cet argument.
+- Avec zéro argument, le comportement est indéfini (retourne vide or 0).
 
-## Exemples
+## Examples
 
 **Maximum simple :**
 ```
@@ -39,7 +39,7 @@ $max[10;3]
 → 10
 ```
 
-**Plusieurs valeurs :**
+**Plusieurs values :**
 ```
 $max[5;12;3;8;1]
 → 12
@@ -58,6 +58,6 @@ $max[$getVar[scoreJ1];$getVar[scoreJ2];$getVar[scoreJ3]]
 
 ## Notes
 
-- Pour trouver la plus petite valeur, utilisez `$min[]`.
-- Pour des comparaisons plus complexes, utilisez `$calculate[max(a, b)]`.
-- Le séparateur est le point-virgule `;`.
+- Pour trouver la plus petite value, utilisez `$min[]`.
+- Pour des compareasons plus complexs, utilisez `$calculate[max(a, b)]`.
+- Le separator est le point-virgule `;`.

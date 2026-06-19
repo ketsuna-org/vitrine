@@ -9,7 +9,7 @@ description: Converts all characters in the given text to uppercase.
 ---
 # $toUppercase — Convert to Uppercase
 
-`$toUppercase` transforms all lowercase characters in a string to their uppercase equivalents. It's commonly used for emphasis, formatting codes, or case-insensitive comparisons.
+`$toUppercase` transforms all lowercase characters in a string to their uppercase equivaslows. It's commonly used for emphasis, formatting codes, or case-insensitive comparisons.
 
 ## Syntax
 

@@ -5,47 +5,47 @@ translation_key: docs
 category: "Math & Text"
 function_name: isTicket
 syntax: $isTicket
-description: Vérifie si le canal courant est un canal de ticket ouvert avec $newTicket.
+description: Checks if le canal courant est un canal de ticket ouvert avec $newTicket.
 ---
 
 # $isTicket
 
-La fonction `$isTicket` **vérifie si le canal courant est un ticket** créé via la fonction `$newTicket[]` de BDFD. Les tickets sont des canaux éphémères utilisés pour le support.
+The function `$isTicket` **vérifie if the canal courant est un ticket** created via the function `$newTicket[]` de BDFD. The tickets sont des canaux éphémères utilisés for the support.
 
-## Syntaxe
+## Syntax
 
 ```
 $isTicket
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Booléen
-- `true` si le canal courant est un ticket BDFD.
-- `false` si ce n'est pas un ticket (canal normal, DM, etc.).
+- **Type** : Boolean
+- `true` if the canal courant est un ticket BDFD.
+- `false` si ce is not un ticket (canal normal, DM, etc.).
 
-## Comportement
+## Behavior
 
-- Reconnaît uniquement les tickets créés via `$newTicket[]`.
-- Utile pour restreindre ou adapter des commandes au contexte ticket.
-- Les tickets sont identifiés par un marqueur interne BDFD.
+- Reconnaît only les tickets createds via `$newTicket[]`.
+- Utile pour restreindre or adapter des commands au context ticket.
+- Les tickets sont identifiés par un marqueur internal BDFD.
 
-## Exemples
+## Examples
 
-### Commande réservée aux tickets
+### Command réservée aux tickets
 
 ```bdfd
 $if[$isTicket==false]
-  $sendMessage[❌ Cette commande ne peut être utilisée que dans un ticket.]
+  $sendMessage[❌ Cette command ne can be utilisée que dans un ticket.]
   $stop
 $endif
 
-;; Logique de la commande
-$sendMessage[📋 Traitement du ticket en cours...]
+;; Logique of the command
+$sendMessage[📋 Traitement du ticket in progress...]
 ```
 
 ### Bouton de fermeture contextuel
@@ -74,7 +74,7 @@ $sendMessage[]
 
 ## Notes
 
-- Ne détecte que les tickets créés par `$newTicket[]`.
+- Ne détecte que les tickets createds par `$newTicket[]`.
 - Pour fermer un ticket, utilisez `$closeTicket[]`.
 - Pour créer un ticket, utilisez `$newTicket[]`.
-- Fonctionne uniquement dans un serveur (pas en DM).
+- Functionne only dans un server (pas en DM).

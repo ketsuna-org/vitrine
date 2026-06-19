@@ -5,61 +5,61 @@ translation_key: docs
 category: "Components"
 function_name: editSelectMenuOption
 syntax: $editSelectMenuOption[menuId;label;value;description;default;emoji]
-description: Modifie une option individuelle dans un menu de sélection (select menu) existant.
+description: Modifies ae option individuelle dans un select menu (select menu) existing.
 ---
 # $editSelectMenuOption
 
-La fonction `$editSelectMenuOption[]` permet de **modifier une option existante** dans un menu de sélection.
+The `$editSelectMenuOption[]` function **modifier une option existinge** dans un select menu.
 
-## Syntaxe
+## Syntax
 
 ```
 $editSelectMenuOption[menuId;label;value;description;default;emoji]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `menuId` | Custom ID du select menu parent. |
-| `label` | Nouveau texte affiché pour l'option. |
-| `value` | Valeur interne transmise à `$onInteraction`. |
-| `description` | *(Optionnel)* Texte secondaire sous le label. |
-| `default` | *(Optionnel)* `true` si l'option est présélectionnée. |
-| `emoji` | *(Optionnel)* Emoji décoratif. |
+| `menuId` | Custom ID of the select menu parent. |
+| `label` | New text displayed for the option. |
+| `value` | Value internal transmise à `$onInteraction`. |
+| `description` | *(Optional)* Text secondary sous le label. |
+| `default` | *(Optional)* `true` if the option est préselectionnée. |
+| `emoji` | *(Optional)* Emoji décoratif. |
 
-## Valeur de retour
+## Return value
 
-Aucune. L'option est modifiée.
+None. The option est modifiede.
 
-## Comportement
+## Behavior
 
-- L'option ciblée est identifiée par son `value` (ou son index).
+- L'option ciblée est identifiée par son `value` (or son index).
 - Le select menu parent doit exister.
-- La modification est appliquée lors de l'édition du message.
+- La modification est appliquée during l'édition of the message.
 
-## Exemples
+## Examples
 
-### Marquer une option comme sélectionnée
+### Marquer une option comme selectionnée
 
 ```bdfd
 $editSelectMenuOption[langMenu;Anglais;en;English language;true;🇬🇧]
 ```
 
-### Mettre à jour le label
+### Mettre à day le label
 
 ```bdfd
-$editSelectMenuOption[roleMenu;Modérateur;mod;Rôle de modération;false;🛡️]
+$editSelectMenuOption[roleMenu;Modérateur;mod;Role de modération;false;🛡️]
 ```
 
-### Désactiver visuellement une option
+### Désactiver visually une option
 
 ```bdfd
-$editSelectMenuOption[actionMenu;Indisponible;none;Cette option n'est plus disponible;false;🚫]
+$editSelectMenuOption[actionMenu;Inavailable;none;Cette option is no longer available;false;🚫]
 ```
 
 ## Notes
 
-- Utilisez avec `$editSelectMenu[]` pour une mise à jour complète du menu.
-- Le paramètre `value` sert à identifier l'option cible.
-- Pour ajouter/supprimer des options, utilisez `$addSelectMenuOption[]` ou reconstruisez le menu.
+- Use avec `$editSelectMenu[]` for ae mise à day complete du menu.
+- Le parameter `value` used to identifier the option cible.
+- Pour ajouter/supprimer of options, use `$addSelectMenuOption[]` or reconstruisez le menu.

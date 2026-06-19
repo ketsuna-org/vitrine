@@ -5,62 +5,62 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleNames
 syntax: $roleNames[(separator);(guildID)]
-description: Retourne la liste de tous les noms de rôles du serveur, séparés par un délimiteur personnalisable.
+description: Returns the list de all noms de roles of the server, separateds par un délimitur personnalisable.
 ---
 
 # $roleNames
 
-La fonction `$roleNames` retourne la **liste complète des noms** de tous les rôles du serveur, séparés par un délimiteur personnalisable.
+The function `$roleNames` retourne la **list complete des noms** de all roles of the server, separateds par un délimitur personnalisable.
 
-## Syntaxe
+## Syntax
 
 ```
 $roleNames[(separator);(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `separator` | Optionnel. Le séparateur entre chaque nom de rôle. Par défaut : `, `. |
-| `guildID` | Optionnel. L'ID du serveur cible. Par défaut : serveur courant. |
+| `separator` | Optional. The separator between each nom de role. Par default: `, `. |
+| `guildID` | Optional. The ID of the server cible. Par default: server courant. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | Tous les noms de rôles concaténés avec le séparateur choisi. |
+| `string` | Tous les noms de roles concaténés with the separator choisi. |
 
-## Exemples
+## Examples
 
-### Liste simple
+### List simple
 
 ```bdfd
-$sendMessage[**Rôles du serveur :** $roleNames]
+$sendMessage[**Roles of the server :** $roleNames]
 ```
 
-### Liste avec retours à la ligne
+### List avec retours à la ligne
 
 ```bdfd
-$sendMessage[**Liste des rôles :**
+$sendMessage[**List des roles :**
 $roleNames[
 ]]
 ```
 
-### Avec séparateur personnalisé
+### Avec separator custom
 
 ```bdfd
-$sendMessage[Rôles : $roleNames[ | ]]
+$sendMessage[Roles : $roleNames[ | ]]
 ```
 
-### Compter et lister
+### Compter and listr
 
 ```bdfd
-$sendMessage[Le serveur a $roleCount rôles : $roleNames[, ]]
+$sendMessage[The server a $roleCount roles : $roleNames[, ]]
 ```
 
 ## Notes
 
-- Le rôle `@everyone` est généralement inclus dans la liste.
-- Les rôles sont listés selon leur ordre hiérarchique (du plus haut au plus bas).
+- The role `@everyone` est generally included in the list.
+- Les roles sont listés selon leur ordre hiérarchique (du plus haut au plus bas).
 - Pour les IDs plutôt que les noms, utilisez une autre approche.

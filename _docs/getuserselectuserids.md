@@ -5,38 +5,38 @@ translation_key: docs
 category: "Entity Info"
 function_name: getUserSelectUserIDs
 syntax: $getUserSelectUserIDs[(separator)]
-description: Récupère tous les IDs des utilisateurs sélectionnés via un menu de sélection d'utilisateurs à choix multiples.
+description: Gets all IDs des users selecteds via un menu de sélection d'users à choix multiple.
 ---
 
 # $getUserSelectUserIDs
 
-La fonction `$getUserSelectUserIDs[]` permet de **récupérer l'ensemble des IDs des utilisateurs** sélectionnés dans un menu de sélection d'utilisateurs à choix multiples.
+The function `$getUserSelectUserIDs[]` allows **récupérer l'ensemble des IDs des users** selecteds dans un menu de sélection d'users à choix multiple.
 
-## Syntaxe
+## Syntax
 
 ```
 $getUserSelectUserIDs[(separator)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `separator` | Optionnel - Le séparateur entre chaque ID. Par défaut `, ` (virgule + espace). |
+| `separator` | Optional - Le separator between each ID. Par default `, ` (virgule + espace). |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
-- La liste de tous les IDs des utilisateurs sélectionnés.
-- Chaîne vide si aucun utilisateur n'a été sélectionné.
+- La list de all IDs des users selecteds.
+- String vide si no user n'was selected.
 
-## Comportement
+## Behavior
 
-- Utilisé avec un menu de sélection d'utilisateurs configuré avec `maxValues > 1`.
-- Retourne tous les IDs en une seule chaîne.
-- Idéal pour les actions de masse (DM groupés, attribution de rôles, etc.).
+- Utilisé with a menu de sélection d'users configured avec `maxValues > 1`.
+- Returns all IDs en a single string.
+- Idéal for the actions de masse (DM groupés, attributeion de roles, etc.).
 
-## Exemples
+## Examples
 
 ### DM groupé
 
@@ -48,13 +48,13 @@ $textSplit[$users;,]
   $sendDM[$splitText[$index];📢 Message important de **$serverName** !]
 $endTextSplit
 
-$title[✅ Messages envoyés]
-$description[Tous les utilisateurs sélectionnés ont reçu un DM.]
+$title[✅ Messages sents]
+$description[Tous les users selecteds ont received un DM.]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Attribution de rôle groupée
+### Attributeion de role groupée
 
 ```bdfd
 $onInteraction[user_select]
@@ -65,8 +65,8 @@ $textSplit[$users;,]
   $giveRole[$splitText[$index];$roleID[Member]]
 $endTextSplit
 
-$title[🎭 Rôle attribué]
-$description[Le rôle **Membre** a été donné à **$count** utilisateur(s).]
+$title[🎭 Role attribué]
+$description[The role **Member** was donné à **$count** user(s).]
 $color[#5865F2]
 $sendMessage[]
 ```
@@ -74,5 +74,5 @@ $sendMessage[]
 ## Notes
 
 - Pour une sélection unique, utilisez `$getUserSelectUserID[]`.
-- Compatible avec `$textSplit[]` pour itérer sur chaque utilisateur.
-- Utile pour les commandes de modération ou d'administration en lot.
+- Compatible avec `$textSplit[]` pour itérer sur each user.
+- Utile for the commands de modération or d'administration en lot.

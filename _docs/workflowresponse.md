@@ -5,50 +5,50 @@ translation_key: docs
 category: "Workflows & Automations"
 function_name: workflowResponse
 syntax: $workflowResponse
-description: Retourne la dernière réponse ou valeur produite par un workflow BDFD. Utile pour enchaîner des workflows ou récupérer des résultats.
+description: Returns the last response or value produite par un workflow BDFD. Utile pour enstringr des workflows or récupérer des results.
 ---
 # $workflowResponse
 
-La fonction `$workflowResponse` retourne la **dernière réponse** produite par un workflow BDFD.
+The function `$workflowResponse` retourne la **last response** produite par un workflow BDFD.
 
-## Syntaxe
+## Syntax
 
 ```
 $workflowResponse
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne
-- La valeur retournée par le dernier workflow exécuté.
-- Chaîne vide si aucun workflow n'a encore été appelé.
+- **Type** : String
+- The value retournée par le last workflow executed.
+- String vide si no workflow n'a encore été callé.
 
-## Comportement
+## Behavior
 
-- Stocke la réponse du dernier `$workflow[]` appelé.
-- La valeur persiste jusqu'à la fin de la commande ou jusqu'au prochain workflow.
-- Permet de composer des chaînes de workflows.
+- Stocke the response du last `$workflow[]` callé.
+- The value persiste until la fin of the command or jusqu'au prochain workflow.
+- Allows composer des strings de workflows.
 
-## Exemples
+## Examples
 
-### Appeler et récupérer
+### Caller and récupérer
 
 ```bdfd
 $workflow[calculSalaire;$authorID]
-$sendMessage[Votre salaire calculé : $workflowResponse €]
+$sendMessage[Votre salaire calculated : $workflowResponse €]
 ```
 
-### Chaîne de workflows
+### String de workflows
 
 ```bdfd
 $workflow[verifyUser;$authorID]
 $if[$workflowResponse==ok]
   $workflow[processOrder;$input]
-  $sendMessage[Commande traitée : $workflowResponse]
+  $sendMessage[Command traitée : $workflowResponse]
 $else
   $sendMessage[Vérification échouée.]
 $endif
@@ -67,14 +67,14 @@ $sendMessage[$workflowResponse]
 ```bdfd
 $workflow[checkBan;$mentioned[1]]
 $if[$workflowResponse!="clean"]
-  $sendMessage[Cet utilisateur est banni : $workflowResponse]
+  $sendMessage[Cet user est banni : $workflowResponse]
 $else
-  $sendMessage[Aucun bannissement trouvé.]
+  $sendMessage[Aucun ban found.]
 $endif
 ```
 
 ## Notes
 
-- `$workflowResponse` est écrasé à chaque nouvel appel de `$workflow[]`.
-- Stockez la valeur dans une variable si vous devez la réutiliser : `$let[rep;$workflowResponse]`.
-- La réponse dépend entièrement de ce que le workflow retourne via `$sendMessage` ou `$return`.
+- `$workflowResponse` est écrasé à each nouvel call de `$workflow[]`.
+- Stockez the value dans une variable si vous devez la réutiliser : `$let[rep;$workflowResponse]`.
+- The response dépend entièrement de ce que le workflow retourne via `$sendMessage` or `$return`.

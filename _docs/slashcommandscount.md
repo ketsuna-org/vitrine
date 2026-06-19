@@ -5,57 +5,57 @@ translation_key: docs
 category: "Entity Info"
 function_name: slashCommandsCount
 syntax: $slashCommandsCount
-description: Retourne le nombre de commandes slash enregistrées sur le bot.
+description: Returns the number de commands slash enregistrées on the bot.
 ---
 
 # $slashCommandsCount
 
-La fonction `$slashCommandsCount` **retourne le nombre de commandes slash** enregistrées sur le bot (exclut les commandes prefix).
+The function `$slashCommandsCount` **retourne the namebre de commands slash** enregistrées on the bot (kicks thes commands prefix).
 
-## Syntaxe
+## Syntax
 
 ```
 $slashCommandsCount
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : Integer
-- Le nombre de commandes slash (ex: `25`).
+- The namebre de commands slash (ex: `25`).
 
-## Comportement
+## Behavior
 
-- Compte uniquement les commandes de type slash.
-- Ne compte pas les commandes prefix.
-- Utile pour vérifier les limites Discord (100 commandes slash par application).
+- Counts only les commands de type slash.
+- Ne compte pas les commands prefix.
+- Utile pour vérifier les limits Discord (100 commands slash par application).
 
-## Exemples
+## Examples
 
 ### Dashboard statistique
 
 ```bdfd
-$title[📊 Commandes]
+$title[📊 Commands]
 $addField[🔹 Slash;$slashCommandsCount;yes]
 $addField[🔸 Prefix;$math[$commandsCount-$slashCommandsCount];yes]
 $addField[📦 Total;$commandsCount;yes]
-$footer[Limite Discord : 100 slash commands]
+$footer[Limit Discord : 100 slash commands]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérification de limite Discord
+### Vérification de limit Discord
 
 ```bdfd
 $if[$slashCommandsCount>=100]
-  $sendMessage[⚠️ **Attention :** Vous avez atteint la limite de 100 commandes slash Discord.
-  Les nouvelles commandes slash pourraient ne pas s'enregistrer.]
+  $sendMessage[⚠️ **Warning:** Vous avez atteint la limit de 100 commands slash Discord.
+  Les news commands slash pourraient ne pas s'enregistrer.]
 $else
   $var[restant;$math[100-$slashCommandsCount]]
-  $sendMessage[✅ $slashCommandsCount/100 commandes slash utilisées ($var[restant] restantes).]
+  $sendMessage[✅ $slashCommandsCount/100 commands slash utilisées ($var[restant] restantes).]
 $endif
 ```
 
@@ -64,11 +64,11 @@ $endif
 ```bdfd
 $title[🤖 $botName - Statistiques]
 $description[
-**Total commandes :** $commandsCount
+**Total commands :** $commandsCount
 **Slash :** $slashCommandsCount
 **Prefix :** $math[$commandsCount-$slashCommandsCount]
-**Serveurs :** $guildCount
-**Utilisateurs :** $membersCount
+**Servers :** $guildCount
+**Users :** $membersCount
 ]
 $thumbnail[$botAvatar]
 $color[#57F287]
@@ -77,7 +77,7 @@ $sendMessage[]
 
 ## Notes
 
-- Compte uniquement les commandes slash.
+- Counts only les commands slash.
 - Pour le total (prefix + slash), utilisez `$commandsCount`.
-- Discord limite à 100 commandes slash par application.
-- Pour l'ID d'une commande slash, utilisez `$slashID`.
+- Discord limit à 100 commands slash par application.
+- Pour the ID of a command slash, utilisez `$slashID`.

@@ -5,60 +5,60 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleCount
 syntax: $roleCount[(guildID)]
-description: Retourne le nombre total de rôles sur le serveur Discord.
+description: Returns the number total de roles on the server Discord.
 ---
 
 # $roleCount
 
-La fonction `$roleCount` retourne le **nombre total de rôles** présents sur le serveur Discord, incluant le rôle `@everyone`.
+The function `$roleCount` retourne le **number total de roles** présents on the server Discord, incluant the role `@everyone`.
 
-## Syntaxe
+## Syntax
 
 ```
 $roleCount[(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `guildID` | Optionnel. L'ID du serveur cible. Si omis, le serveur courant. |
+| `guildID` | Optional. The ID of the server cible. Si omis, the server courant. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` | Le nombre de rôles sur le serveur. |
+| `integer` | The namebre de roles on the server. |
 
-## Exemples
+## Examples
 
-### Nombre de rôles
+### Number de roles
 
 ```bdfd
-$sendMessage[Ce serveur a $roleCount rôles.]
+$sendMessage[Ce server a $roleCount roles.]
 ```
 
-### Statistiques du serveur
+### Statistiques of the server
 
 ```bdfd
 $sendMessage[
-**Stats du serveur :**
-Membres : $memberCount
-Rôles : $roleCount
-Salons : $channelCount
+**Stats of the server :**
+Members : $memberCount
+Roles : $roleCount
+Channels : $channelCount
 ]
 ```
 
-### Vérifier la limite de rôles
+### Vérifier la limit de roles
 
 ```bdfd
 $if[$roleCount>=250]
-  $sendMessage[⚠️ Attention : ce serveur approche de la limite de 250 rôles Discord.]
+  $sendMessage[⚠️ Warning: ce server approche de la limit de 250 roles Discord.]
 $endif
 ```
 
 ## Notes
 
-- Inclut le rôle `@everyone` dans le compte.
-- La limite Discord est de 250 rôles par serveur.
-- Utile pour des statistiques ou des vérifications administratives.
+- Inclut the role `@everyone` in the compte.
+- La limit Discord est de 250 roles par server.
+- Utile pour des statistiques or des vérifications administratives.

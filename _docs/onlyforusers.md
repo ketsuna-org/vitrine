@@ -5,50 +5,50 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyForUsers
 syntax: $onlyForUsers[userID1;userID2;...;(errorMessage)]
-description: Fonction guard qui arrête l'exécution si l'utilisateur ne fait pas partie de la liste d'IDs autorisés.
+description: Guard function that stops execution if the user is not part of the list of authorized IDs.
 ---
 
 # $onlyForUsers
 
-La fonction guard `$onlyForUsers` restreint l'exécution d'une commande à une liste spécifique d'utilisateurs, identifiés par leur ID Discord. Si l'utilisateur qui déclenche la commande n'est pas dans la liste, la commande est interrompue.
+The guard function `$onlyForUsers` restricts command execution to a specific list of users, identified by their Discord ID. If the user who triggers the command is not in the list, the command is interrupted.
 
-## Syntaxe
+## Syntax
 
 ```
 $onlyForUsers[userID1;userID2;...;(errorMessage)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description |
+| Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID1;userID2;...` | Snowflake[] | Liste des IDs Discord des utilisateurs autorisés. Séparateur `;`. |
-| `errorMessage` | String (optionnel) | Message envoyé aux utilisateurs non autorisés. |
+| `userID1;userID2;...` | Snowflake[] | List of Discord IDs of authorized users. Separator `;`. |
+| `errorMessage` | String (optional) | Message sent to unauthorized users. |
 
-## Comportement
+## Behavior
 
-- Compare l'ID de l'utilisateur déclencheur avec la liste fournie.
-- Si l'ID correspond à l'un des IDs de la liste, la commande continue.
-- Si l'ID ne correspond à **aucun** ID de la liste, la commande est interrompue.
-- Le message d'erreur, s'il est fourni, est envoyé avant l'interruption.
+- Compares the triggering user's ID with the provided list.
+- If the ID matches one of the IDs in the list, the command continues.
+- If the ID matches **no** ID in the list, the command is interrupted.
+- The error message, if provided, is sent before the interruption.
 
-## Exemples
+## Examples
 
-### Commande owner-only
+### Owner-only command
 
 ```bdfd
-$onlyForUsers[$botOwnerID;❌ Commande réservée au propriétaire du bot.]
+$onlyForUsers[$botOwnerID;❌ Command reserved for the bot owner.]
 $restart
 ```
 
-### Plusieurs utilisateurs de confiance
+### Multiple trusted users
 
 ```bdfd
-$onlyForUsers[111111111111111111;222222222222222222;333333333333333333;❌ Accès refusé.]
-$sendMessage[Bienvenue dans le panneau de contrôle.]
+$onlyForUsers[111111111111111111;222222222222222222;333333333333333333;❌ Access denied.]
+$sendMessage[Welcome to the control panel.]
 ```
 
-### Sans message d'erreur
+### Without error message
 
 ```bdfd
 $onlyForUsers[123456789012345678]
@@ -57,7 +57,7 @@ $eval[$message]
 
 ## Notes
 
-- Les IDs Discord sont des nombres de 17 à 19 chiffres (snowflakes). Activez le **Mode Développeur** dans Discord pour les obtenir (clic droit → Copier l'ID).
-- `$onlyForUsers` vérifie l'ID utilisateur, pas le nom ni le tag. Utilisez `$onlyForRoles` pour une vérification par rôle.
-- `$onlyForIDs` est un alias de `$onlyForUsers` — les deux fonctions sont interchangeables.
-- Pour blacklister des utilisateurs au lieu de les whitelister, utilisez `$blacklistUsers` ou `$blacklistIDs`.
+- Discord IDs are 17 to 19 digit numbers (snowflakes). Enable **Developer Mode** in Discord to obtain them (right-click → Copy ID).
+- `$onlyForUsers` checks the user ID, not the name or tag. Use `$onlyForRoles` for a role-based check.
+- `$onlyForIDs` is an alias of `$onlyForUsers` — the two functions are interchangeable.
+- To blacklist users instead of whitelisting them, use `$blacklistUsers` or `$blacklistIDs`.

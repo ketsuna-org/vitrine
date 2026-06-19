@@ -5,33 +5,33 @@ translation_key: docs
 category: "Math & Text"
 function_name: min
 syntax: $min[value1;value2;...]
-description: Retourne la plus petite valeur parmi les arguments fournis.
+description: Returns the plus petite value parmi les arguments fournis.
 ---
 
 # $min[]
 
-La fonction `$min[]` compare toutes les valeurs fournies et retourne la plus petite d'entre elles. Elle est variadique : elle accepte un nombre illimité d'arguments.
+The function `$min[]` compare all values fournies and retourne la plus petite d'between elles. Elle est variadique : elle accepte un number illimité d'arguments.
 
-## Syntaxe
+## Syntax
 
 ```
-$min[valeur1;valeur2;...]
+$min[value1;value2;...]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type   | Obligatoire | Description                                              |
+| Parameter | Type   | Required | Description                                              |
 |-----------|--------|-------------|----------------------------------------------------------|
-| `valeurs` | number | Oui         | Liste de valeurs numériques séparées par `;`. Variadique. |
+| `values` | number | Yes         | List de values numériques separatedes par `;`. Variadique. |
 
-## Comportement
+## Behavior
 
-- Parcourt toutes les valeurs et retourne la plus petite.
-- Supporte les nombres négatifs et décimaux.
-- Avec un seul argument, retourne cet argument.
-- Avec zéro argument, le comportement est indéfini (retourne vide ou 0).
+- Parcourt all values and retourne la plus petite.
+- Supporte les numbers négatifs and décimaux.
+- Avec a single argument, retourne cet argument.
+- Avec zéro argument, le comportement est indéfini (retourne vide or 0).
 
-## Exemples
+## Examples
 
 **Minimum simple :**
 ```
@@ -39,7 +39,7 @@ $min[10;3]
 → 3
 ```
 
-**Plusieurs valeurs :**
+**Plusieurs values :**
 ```
 $min[5;12;3;8;1]
 → 1
@@ -59,6 +59,6 @@ $min[2.5;1.1;3.9]
 
 ## Notes
 
-- Pour trouver la plus grande valeur, utilisez `$max[]`.
-- Pour des comparaisons plus complexes, utilisez `$calculate[min(a, b)]`.
-- Le séparateur est le point-virgule `;`.
+- Pour trouver la plus grande value, utilisez `$max[]`.
+- Pour des compareasons plus complexs, utilisez `$calculate[min(a, b)]`.
+- Le separator est le point-virgule `;`.

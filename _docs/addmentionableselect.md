@@ -6,76 +6,76 @@ category: "Embed & Message"
 
 # $addMentionableSelect
 
-Crée un menu de sélection d'entités mentionnables. Permet aux utilisateurs de choisir parmi les utilisateurs ET les rôles du serveur.
+Creates a select menu d'entités mentionnables. Allows users to choisir parmi users ET les roles of the server.
 
-## Syntaxe
+## Syntax
 
 ```
 $addMentionableSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customId` | Identifiant personnalisé pour l'interaction | Oui |
-| `placeholder` | Texte affiché quand rien n'est sélectionné | Oui |
-| `minValues` | Nombre minimum d'entités à sélectionner (défaut : 1) | Non |
-| `maxValues` | Nombre maximum d'entités à sélectionner (défaut : 1) | Non |
-| `disabled` | `true` pour désactiver le menu, `false` (défaut) | Non |
+| `customId` | Custom identifier for the interaction | Yes |
+| `placeholder` | Text displayed when rien n'est selectionné | Yes |
+| `minValues` | Minimum number of entities à selectionner (default: 1) | No |
+| `maxValues` | Maximum number of entities à selectionner (default: 1) | No |
+| `disabled` | `true` to disable le menu, `false` (default) | No |
 
 ## Description
 
-Un **mentionable select** combine la sélection d'utilisateurs et de rôles en un seul menu. L'utilisateur peut choisir indifféremment des membres ou des rôles du serveur.
+A **mentionable select** combine la selection d'users and de roles en a single menu. The user peut choisir either des members or of roles of the server.
 
-Les valeurs retournées sont des IDs. Utilisez `$roleExists` pour déterminer si un ID correspond à un rôle ou à un utilisateur.
+The values retournées sont of IDs. Use `$roleExists` to determine if a ID correspond à a role or à a user.
 
-## Exemples
+## Examples
 
-### Sélection simple
-
-```
-$addMentionableSelect[menu_mention;Choisissez un membre ou un rôle]
-$sendMessage[Sélectionnez une cible]
-```
-
-### Sélection multiple
+### Selection simple
 
 ```
-$addMentionableSelect[menu_targets;Cibles multiples;1;10]
-$sendMessage[Sélectionnez jusqu'à 10 cibles]
+$addMentionableSelect[menu_mention;Choisissez un member or a role]
+$sendMessage[Selectionnez une cible]
 ```
 
-### Menu désactivé
+### Selection multiple
 
 ```
-$addMentionableSelect[menu_mention_off;Indisponible;1;1;true]
-$sendMessage[Menu désactivé]
+$addMentionableSelect[menu_targets;Cibles multiple;1;10]
+$sendMessage[Selectionnez up to 10 cibles]
 ```
 
-## Gestion de l'interaction
+### Disabled menu
+
+```
+$addMentionableSelect[menu_mention_off;Inavailable;1;1;true]
+$sendMessage[Menu désenabled]
+```
+
+## Handling the interaction
 
 ```
 $onInteraction
 $if[$customID==menu_mention]
   $if[$roleExists[$message]==true]
-    $sendMessage[Rôle sélectionné : <@&$message>]
+    $sendMessage[Role selectionné : <@&$message>]
   $else
-    $sendMessage[Utilisateur sélectionné : <@$message>]
+    $sendMessage[User selectionné : <@$message>]
   $endif
 $endif
 ```
 
-## Différence avec UserSelect et RoleSelect
+## Difference from UserSelect and RoleSelect
 
-| Fonction | Sélectionne |
+| Function | Selectionne |
 |----------|-------------|
-| `$addUserSelect` | Uniquement des utilisateurs |
-| `$addRoleSelect` | Uniquement des rôles |
-| `$addMentionableSelect` | Utilisateurs ET rôles |
+| `$addUserSelect` | Only of users |
+| `$addRoleSelect` | Only of roles |
+| `$addMentionableSelect` | Users ET roles |
 
 ## Notes
 
-- Pratique pour les commandes de modération, giveaway, ou systèmes de permission.
-- Utilisez `$roleExists` pour distinguer rôles et utilisateurs dans les valeurs retournées.
-- Un seul select menu par ligne d'action.
+- Pratique for commands de modération, giveaway, or systèmes de permission.
+- Use `$roleExists` to distinguish roles and users in thes values retournées.
+- A single select menu par action row.

@@ -5,39 +5,39 @@ translation_key: docs
 category: "Date & Time"
 function_name: second
 syntax: $second
-description: Retourne la seconde actuelle (0 à 59). Résolu au runtime.
+description: Returns the second currentle (0 à 59). Resolved au runtime.
 ---
 
 # $second[]
 
-La fonction `$second[]` retourne la seconde actuelle (de 0 à 59).
+The function `$second[]` retourne la second currentle (de 0 à 59).
 
-> **Important :** Cette fonction utilise l'identifiant spécial `((second))` qui est résolu au **runtime**.
+> **Important:** This function utilise l'identifier special `((second))` qui est resolved au **runtime**.
 
-## Syntaxe
+## Syntax
 
 ```
 $second
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note :** This function ne prend no parameter.
 
-## Valeur de retour
+## Return Value
 
-Un nombre entre 0 et 59 représentant la seconde actuelle.
+A number between 0 and 59 représentant la second currentle.
 
-## Exemples
+## Examples
 
 ### Seconde simple
 
 ```bdfd
-Seconde actuelle : $second
+Seconde currentle : $second
 ```
 
-### Heure complète personnalisée
+### Time complete custome
 
 ```bdfd
-Il est précisément $hour:$minute et $second secondes.
+Il est précisément $hour:$minute and $second seconds.
 ```
 
 ### Horloge dans un embed
@@ -45,9 +45,9 @@ Il est précisément $hour:$minute et $second secondes.
 ```bdfd
 $title[🕐 Horloge]
 $description[$hour:$minute:$second]
-$footer[Mis à jour à chaque exécution]
+$footer[Mis à day à each exécution]
 ```
 
 ## Notes
 
-- Utilisez `$time[]` pour obtenir l'heure formatée `HH:MM:SS` directement.
+- Utilisez `$time[]` pour obtenir l'hour formattede `HH:MM:SS` directly.

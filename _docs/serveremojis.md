@@ -5,62 +5,62 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverEmojis
 syntax: $serverEmojis
-description: Retourne la liste des émojis personnalisés disponibles sur le serveur Discord.
+description: Returns the list des emojis customs availables on the server Discord.
 ---
 
-# $serverEmojis[] — Liste des Émojis du Serveur
+# $serverEmojis[] — List des Emojis du Server
 
-`$serverEmojis[]` retourne la liste complète des émojis personnalisés du serveur, formatés pour être affichés dans Discord.
+`$serverEmojis[]` retourne la list complete des emojis customs of the server, formatteds pour être displayeds dans Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverEmojis
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- Une chaîne contenant tous les émojis personnalisés du serveur, chacun au format `<:nom:id>` (ou `<a:nom:id>` pour les émojis animés).
+- Une string contenant all emojis customs of the server, chacun au format `<:nom:id>` (or `<a:nom:id>` for the emojis animés).
 
 ## Utilisation
 
-### Afficher tous les émojis
+### Afficher all emojis
 
 ```bdfd
-$sendMessage[🎨 Émojis du serveur : $serverEmojis]
+$sendMessage[🎨 Emojis of the server : $serverEmojis]
 ```
 
-### Embed catalogue d'émojis
+### Embed catalogue d'emojis
 
 ```bdfd
-$title[Émojis de $serverName]
+$title[Emojis de $serverName]
 $description[$serverEmojis]
-$footer[Total : $emojiCount émojis]
+$footer[Total : $emojiCount emojis]
 $color[#F1C40F]
 $sendEmbedMessage
 ```
 
-### Condition sur le nombre d'émojis
+### Condition sur the namebre d'emojis
 
 ```bdfd
 $if[$emojiCount>=50]
-$sendMessage[🎉 Ce serveur a une riche collection d'émojis ! ($emojiCount)]
+$sendMessage[🎉 Ce server a une riche collection d'emojis ! ($emojiCount)]
 $else
-$sendMessage[Le serveur a $emojiCount émojis personnalisés.]
+$sendMessage[The server a $emojiCount emojis customs.]
 $endif
 ```
 
-### Info serveur avec émojis
+### Info server avec emojis
 
 ```bdfd
 $title[$serverName]
-$addField[👥 Membres;$membersCount;yes]
-$addField[🎨 Émojis;$emojiCount;yes]
+$addField[👥 Members;$membersCount;yes]
+$addField[🎨 Emojis;$emojiCount;yes]
 $addField[🚀 Boosts;$serverBoostCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
@@ -69,7 +69,7 @@ $sendEmbedMessage
 
 ## Notes
 
-- La liste peut être très longue si le serveur a beaucoup d'émojis — attention à la limite de 2000 caractères des messages Discord.
-- Les émojis animés sont préfixés par `<a:` au lieu de `<:`.
-- Pour obtenir uniquement le nombre d'émojis sans la liste, utilisez `$emojiCount[]`.
-- La limite d'émojis par serveur dépend du niveau de boost (50 par défaut, jusqu'à 250 au niveau 3).
+- La list can be très longue si the server a beaucoup d'emojis — attention à la limit de 2000 becauseactères des messages Discord.
+- Les emojis animés sont préfixés par `<a:` instead of `<:`.
+- Pour obtenir only the namebre d'emojis without the list, utilisez `$emojiCount[]`.
+- La limit d'emojis par server dépend du level de boost (50 default, until 250 au level 3).

@@ -5,31 +5,31 @@ translation_key: docs
 category: "Entity Info"
 function_name: userBadges
 syntax: $userBadges
-description: Retourne la liste des badges (flags publics) de l'utilisateur qui a déclenché la commande.
+description: Returns the list des badges (flags publics) of the user qui a déclenché the command.
 ---
 
 # $userBadges
 
-La variable `$userBadges` retourne la **liste des badges publics** (public flags) de l'utilisateur. Ces badges sont visibles sur le profil Discord et indiquent divers statuts (Nitro, HypeSquad, développeur, etc.).
+The variable `$userBadges` retourne la **list des badges publics** (public flags) of the user. Ces badges sont visibles sur le profil Discord and indiquent divers statuss (Nitro, HypeSquad, développeur, etc.).
 
-## Syntaxe
+## Syntax
 
 ```
 $userBadges
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Liste/tableau de chaînes
+- **Type** : List/array de strings
 - Badges possibles : `Discord Employee`, `Partnered Server Owner`, `HypeSquad Events`, `Bug Hunter Level 1`, `House Bravery`, `House Brilliance`, `House Balance`, `Early Supporter`, `Bug Hunter Level 2`, `Early Verified Bot Developer`, `Active Developer`, `Moderator Programs Alumni`
 
-## Comportement
+## Behavior
 
-- `$userBadges` ne prend **aucun argument**.
-- Retourne uniquement les badges **publics** (affichés sur le profil).
-- Les badges internes ou masqués ne sont pas inclus.
+- `$userBadges` ne prend **no argument**.
+- Returns aiquement les badges **publics** (displayeds sur le profil).
+- Les badges internals or hiddens are not included.
 
-## Exemples
+## Examples
 
 ### Afficher les badges dans un embed
 
@@ -48,12 +48,12 @@ $sendMessage[]
 
 ```bdfd
 $if[$checkContains[$userBadges;Early Supporter]==true]
-  $sendMessage[Merci de soutenir Discord depuis le début ! 💎]
+  $sendMessage[Merci de soutenir Discord dethen le début ! 💎]
 $endif
 ```
 
 ## Notes
 
-- Tous les utilisateurs n'ont pas de badges — la liste peut être vide.
-- Les badges sont attribués par Discord et ne peuvent pas être modifiés.
+- Tous les users n'ont pas de badges — la list can be vide.
+- Les badges sont attribués par Discord and ne peuvent pas être modifieds.
 - Utilisez `$checkContains[]` pour vérifier la présence d'un badge spécifique.

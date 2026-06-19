@@ -5,64 +5,64 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleExists
 syntax: $roleExists[roleID;(guildID)]
-description: Vérifie si un rôle existe sur le serveur. Retourne "true" ou "false".
+description: Checks if un role existe on the server. Returns "true" or "false".
 ---
 
 # $roleExists
 
-La fonction `$roleExists` vérifie si un **rôle Discord existe** sur le serveur à partir de son ID.
+The function `$roleExists` vérifie if a **role Discord existe** on the server from son ID.
 
-## Syntaxe
+## Syntax
 
 ```
 $roleExists[roleID;(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `roleID` | L'ID du rôle à vérifier. Obligatoire. |
-| `guildID` | Optionnel. L'ID du serveur cible. Si omis, le serveur courant. |
+| `roleID` | The ID of the role à vérifier. Required. |
+| `guildID` | Optional. The ID of the server cible. Si omis, the server courant. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | `"true"` si le rôle existe, `"false"` sinon. |
+| `string` | `"true"` si the role existe, `"false"` otherwise. |
 
-## Exemples
+## Examples
 
 ### Vérification simple
 
 ```bdfd
 $if[$roleExists[123456789012345678]==true]
-  $sendMessage[Le rôle $roleName[123456789012345678] existe.]
+  $sendMessage[The role $roleName[123456789012345678] existe.]
 $else
-  $sendMessage[Ce rôle n'existe pas.]
+  $sendMessage[Ce role n'existe pas.]
 $endif
 ```
 
-### Vérifier avant d'attribuer un rôle
+### Vérifier before d'attribuer un role
 
 ```bdfd
-$if[$roleExists[$roleID[Membre]]==true]
-  $roleGrant[$authorID;$roleID[Membre]]
-  $sendMessage[Rôle Membre attribué !]
+$if[$roleExists[$roleID[Member]]==true]
+  $roleGrant[$authorID;$roleID[Member]]
+  $sendMessage[Role Member attribué !]
 $else
-  $sendMessage[Le rôle Membre n'existe pas. Contactez un administrateur.]
+  $sendMessage[The role Member n'existe pas. Contactez un administrator.]
 $endif
 ```
 
-### Dans un autre serveur
+### Dans un autre server
 
 ```bdfd
 $if[$roleExists[123456789012345678;987654321098765432]==true]
-  $sendMessage[Rôle valide.]
+  $sendMessage[Role valid.]
 $endif
 ```
 
 ## Notes
 
-- Retourne une chaîne `"true"` ou `"false"`.
-- Utile avant d'utiliser `$roleGrant` ou d'autres fonctions manipulant les rôles.
+- Returns ae string `"true"` or `"false"`.
+- Utile before d'utiliser `$roleGrant` or d'autres functions manipulant les roles.

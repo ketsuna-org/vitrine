@@ -5,47 +5,47 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorBanner
 syntax: $authorBanner
-description: Retourne l'URL de la bannière de profil de l'auteur du message. Réservé aux abonnés Nitro.
+description: Returns the URL of the banner de profil de the author of the message. Réservé aux abonnés Nitro.
 ---
 
 # $authorBanner
 
-La variable `$authorBanner` retourne l'**URL de la bannière de profil** de l'auteur du message. Les bannières sont réservées aux abonnés Discord Nitro.
+The variable `$authorBanner` returns the **URL of the banner de profil** de the author of the message. The banners sont réservées aux abonnés Discord Nitro.
 
-## Syntaxe
+## Syntax
 
 ```
 $authorBanner
 ```
 
-## Valeur de retour
+## Return value
 
-- **Type** : Chaîne de caractères (URL) ou chaîne vide
-- URL CDN Discord si l'auteur a une bannière Nitro
-- Chaîne vide si l'auteur n'a pas de bannière
+- **Type** : String de becauseactères (URL) or string vide
+- URL CDN Discord if the auteur a une banner Nitro
+- String vide if the auteur does not have de banner
 
-## Comportement
+## Behavior
 
-- `$authorBanner` ne prend **aucun argument**.
-- Équivalent à `$userBanner` pour les commandes textuelles.
-- Seuls les abonnés Nitro peuvent définir une bannière.
+- `$authorBanner` ne prend **no argument**.
+- Équivaslow à `$userBanner` for commands textuelles.
+- Seuls les abonnés Nitro peuvent définir une banner.
 
-## Exemples
+## Examples
 
-### Afficher la bannière
+### Afficher la banner
 
 ```bdfd
 $if[$authorBanner!=]
-  $title[Bannière de $authorUsername]
+  $title[Banner de $authorUsername]
   $image[$authorBanner]
   $color[$userBannerColor]
   $sendMessage[]
 $else
-  $sendMessage[$authorUsername n'a pas de bannière Nitro.]
+  $sendMessage[$authorUsername does not have de banner Nitro.]
 $endif
 ```
 
-### Profil complet
+### Profil complete
 
 ```bdfd
 $author[$authorUsername;$authorAvatar]
@@ -59,5 +59,5 @@ $sendMessage[]
 
 ## Notes
 
-- Vérifiez toujours si `$authorBanner` est non vide avant de l'utiliser comme image d'embed.
-- Pour la couleur d'accent de la bannière, utilisez `$userBannerColor`.
+- Vérifiez toudays si `$authorBanner` est non vide before de l'utiliser comme image d'embed.
+- For the couleur d'accent de la banner, use `$userBannerColor`.

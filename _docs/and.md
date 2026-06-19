@@ -17,7 +17,7 @@ description: Logical AND — returns "true" only if ALL provided conditions eval
 $and[condition1;condition2;...;conditionN]
 ```
 
-`$and` accepts an **unlimited number** of arguments (minimum 2). Each argument is a BDFD expression that is expected to resolve to either `"true"` or `"false"`.
+`$and` accepts an **unlimitd number** of arguments (minimum 2). Each argument is a BDFD expression that is expected to resolve to either `"true"` or `"false"`.
 
 ## Evaluation
 
@@ -52,7 +52,7 @@ $if[$and[cond1;cond2]==true]
 
 ## Use Cases
 
-- **Multi-requirement checks**: Verify that all prerequisites are met before allowing an action.
+- **Multi-requirement checks**: Verify that all prerequiredites are met before allowing an action.
 - **Form validation**: Check that multiple fields are non-empty or valid.
 - **Access control**: Combine role checks with resource availability checks.
 - **State verification**: Confirm that multiple flags or state variables are all set correctly.

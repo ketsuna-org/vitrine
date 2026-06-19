@@ -5,61 +5,61 @@ translation_key: docs
 category: "Moderation"
 function_name: changeUsernameWithID
 syntax: $changeUsernameWithID[userID;newName]
-description: Change le nom d'utilisateur d'un utilisateur spécifique (nécessite des permissions élevées).
+description: Change the name d'user of a user spécifique (requires of permissions élevées).
 ---
 
 # $changeUsernameWithID
 
-La fonction `$changeUsernameWithID` **modifie le nom d'utilisateur global** d'un utilisateur Discord spécifique. Cette fonction nécessite des permissions élevées (généralement réservée aux bots avec un token utilisateur ou des permissions spéciales).
+The `$changeUsernameWithID` function **modifie the name d'user global** of a user Discord spécifique. Cette function requires of permissions élevées (generally réservée aux bots with a token user or of permissions speciales).
 
-## Syntaxe
+## Syntax
 
 ```
 $changeUsernameWithID[userID;newName]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur cible. Obligatoire. |
-| `newName` | Le nouveau nom d'utilisateur. Obligatoire. |
+| `userID` | The ID of the user cible. Required. |
+| `newName` | Le new nom d'user. Required. |
 
-## Valeur de retour
+## Return value
 
-Aucune. Le nom d'utilisateur est modifié globalement.
+None. The name d'user est modified globalment.
 
-## Exemples
+## Examples
 
-### Changement pour un utilisateur mentionné
+### Changement pour a user mentionné
 
 ```bdfd
 $changeUsernameWithID[$mentioned[1];Nom Corrigé]
-$sendMessage[✅ Nom de <@$mentioned[1]> modifié en "Nom Corrigé".]
+$sendMessage[✅ Nom de <@$mentioned[1]> modified en "Nom Corrigé".]
 ```
 
-### Commande administrative
+### Command administrative
 
 ```bdfd
 $if[$isAdmin==true]
   $changeUsernameWithID[$findUser[$message[1]];$message[2]]
-  $sendMessage[Nom d'utilisateur de $message[1] changé.]
+  $sendMessage[Nom d'user de $message[1] changé.]
 $else
   $sendMessage[Permission refusée.]
 $endif
 ```
 
-### Changement pour l'auteur
+### Changement for the auteur
 
 ```bdfd
 $changeUsernameWithID[$authorID;$message[1]]
-$sendMessage[$userName, votre nom a été changé.]
+$sendMessage[$userName, votre nom has been changé.]
 ```
 
 ## Notes
 
-- **Permissions spéciales requises** — cette fonction peut ne pas fonctionner avec un token de bot standard.
-- **Rate limit Discord** : 2 changements de nom par heure par compte.
-- Pour changer le nom du bot lui-même, utilisez `$changeUsername`.
-- Pour changer le pseudo sur le serveur seulement, préférez `$setNickname`.
-- Le changement est global et visible sur tous les serveurs Discord.
+- **Permissions speciales requiredes** — cette function peut not functionner with a token de bot standard.
+- **Rate limit Discord** : 2 changements de nom par hour par compte.
+- Pour changer the name of the bot lui-même, use `$changeUsername`.
+- Pour changer le pseudo on the server only, préférez `$setNickname`.
+- Le changement est global and visible sur all servers Discord.

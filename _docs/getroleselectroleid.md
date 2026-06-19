@@ -5,51 +5,51 @@ translation_key: docs
 category: "Entity Info"
 function_name: getRoleSelectRoleID
 syntax: $getRoleSelectRoleID[(index)]
-description: Récupère l'ID du rôle sélectionné par l'utilisateur via un menu de sélection de rôles (role select).
+description: Gets the ID of the role selected par the user via un menu de sélection de roles (role select).
 ---
 
 # $getRoleSelectRoleID
 
-La fonction `$getRoleSelectRoleID[]` permet de **récupérer l'ID du rôle** choisi par l'utilisateur dans un menu de sélection de rôles.
+The function `$getRoleSelectRoleID[]` allows **récupérer the ID of the role** choisi par the user dans un menu de sélection de roles.
 
-## Syntaxe
+## Syntax
 
 ```
 $getRoleSelectRoleID[(index)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `index` | Optionnel - L'index du rôle sélectionné (1 = premier). Par défaut 1. |
+| `index` | Optional - L'index of the role selected (1 = first). Par default 1. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String (Snowflake ID)
-- L'ID Discord du rôle sélectionné.
-- Chaîne vide si aucun rôle n'a été sélectionné.
+- The ID Discord of the role selected.
+- String vide si no role n'was selected.
 
-## Comportement
+## Behavior
 
-- Utilisé dans les interactions de type `$onInteraction[]` avec un menu de sélection de rôles.
-- Le menu de rôles est créé avec `$addRoleSelectMenu[]`.
-- Fonctionne avec la sélection simple ou multiple (pour multiple, utiliser `$getRoleSelectRoleIDs[]`).
+- Utilisé in thes interactions de type `$onInteraction[]` with a menu de sélection de roles.
+- Le menu de roles est created avec `$addRoleSelectMenu[]`.
+- Functionne with the sélection simple or multiple (pour multiple, utiliser `$getRoleSelectRoleIDs[]`).
 
-## Exemples
+## Examples
 
-### Attribution de rôle via sélection
+### Attributeion de role via sélection
 
 ```bdfd
 $nominalTrigger
-$addRoleSelectMenu[role_select;1;Choisissez votre rôle]
-$sendMessage[Sélectionnez un rôle :]
+$addRoleSelectMenu[role_select;1;Choisissez votre role]
+$sendMessage[Sélectionnez un role :]
 
 $onInteraction[role_select]
 $let[roleID;$getRoleSelectRoleID]
 $giveRole[$authorID;$roleID]
-$title[Rôle attribué]
-$description[Vous avez reçu le rôle **$roleName[$roleID]** !]
+$title[Role attribué]
+$description[Vous avez received the role **$roleName[$roleID]** !]
 $color[#57F287]
 $sendMessage[]
 ```
@@ -60,10 +60,10 @@ $sendMessage[]
 $onInteraction[role_select]
 $let[first;$getRoleSelectRoleID[1]]
 $let[second;$getRoleSelectRoleID[2]]
-$title[Rôles sélectionnés]
+$title[Roles selecteds]
 $description[
-**Rôle 1 :** $roleName[$first]
-**Rôle 2 :** $roleName[$second]
+**Role 1 :** $roleName[$first]
+**Role 2 :** $roleName[$second]
 ]
 $sendMessage[]
 ```
@@ -71,5 +71,5 @@ $sendMessage[]
 ## Notes
 
 - L'index commence à 1.
-- Pour récupérer tous les rôles d'une sélection multiple, utiliser `$getRoleSelectRoleIDs[]`.
-- L'ID retourné est utilisable avec toutes les fonctions manipulant des rôles.
+- Pour récupérer all roles d'une sélection multiple, utiliser `$getRoleSelectRoleIDs[]`.
+- The ID retourné est utilisable avec all functions manipulant des roles.

@@ -5,43 +5,43 @@ translation_key: docs
 category: "Commands"
 function_name: enabled
 syntax: $enabled[yes/no]
-description: Active ou désactive une commande. Quand désactivée (no), la commande n'est plus exécutable par les utilisateurs.
+description: Active or désactive une command. Quand désenablede (no), la command is no longer exécutable par users.
 ---
 # $enabled
 
-La fonction `$enabled[]` permet d'**activer ou désactiver** la commande dans laquelle elle est placée.
+The `$enabled[]` function **activer or désactiver** la command in thequelle elle is placede.
 
-## Syntaxe
+## Syntax
 
 ```
 $enabled[yes/no]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `yes/no` | `yes` pour activer la commande, `no` pour la désactiver. |
+| `yes/no` | `yes` to enable la command, `no` for the désactiver. |
 
-## Valeur de retour
+## Return value
 
-Aucune.
+None.
 
-## Comportement
+## Behavior
 
-- `$enabled[no]` rend la commande invisible et inexécutable.
+- `$enabled[no]` rend la command invisible and inexécutable.
 - `$enabled[yes]` la réactive.
-- Peut être combiné avec des conditions pour une activation contextuelle.
+- Can be combiné with conditions for ae activation contextuelle.
 
-## Exemples
+## Examples
 
-### Désactiver temporairement
+### Désactiver temporarily
 
 ```bdfd
 $enabled[no]
 ```
 
-### Activation conditionnelle par rôle
+### Activation conditionnelle par role
 
 ```bdfd
 $if[$hasRole[$authorID;Admin]==true]
@@ -51,7 +51,7 @@ $else
 $endif
 ```
 
-### Commande de maintenance
+### Command de maintenance
 
 ```bdfd
 $var[maintenance;$getVar[maintenance]]
@@ -68,6 +68,6 @@ $endif
 
 ## Notes
 
-- Une commande désactivée n'apparaît pas dans les suggestions.
-- Contrairement à `$onlyIf[]` qui laisse la commande visible mais bloque l'exécution, `$enabled[no]` la masque totalement.
-- Utile pour les commandes en maintenance ou saisonnières.
+- Une command désenablede n'apparaît pas in thes suggestions.
+- Contrairement à `$onlyIf[]` qui laisse la command visible mais bloque l'execution, `$enabled[no]` la masque totalement.
+- Utile for commands en maintenance or saisonnières.

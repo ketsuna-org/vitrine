@@ -5,41 +5,41 @@ translation_key: docs
 category: "Entity Info"
 function_name: boostLevel
 syntax: $boostLevel
-description: Retourne le niveau de boost Nitro du serveur Discord (0, 1, 2 ou 3).
+description: Returns the level de boost Nitro of the Discord server (0, 1, 2 or 3).
 ---
 
-# $boostLevel[] — Niveau de Boost du Serveur
+# $boostLevel[] — Level de Boost du Server
 
-`$boostLevel[]` retourne le niveau de boost Nitro actuel du serveur, une valeur entre 0 et 3.
+`$boostLevel[]` returns the level de boost Nitro current of the server, a value between 0 and 3.
 
-## Syntaxe
+## Syntax
 
 ```
 $boostLevel
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+No parameters.
 
-## Valeur de retour
+## Return value
 
 - **Type** : `integer`
-- Un entier de 0 à 3 :
+- Un integer de 0 à 3 :
 
-| Niveau | Boosts requis | Avantages principaux |
+| Level | Boosts required | Avantages principaux |
 |--------|---------------|---------------------|
-| 0 | 0 | Aucun avantage |
-| 1 | 2 | +50 emplacements d'émojis, icône animée, audio 128 kbps |
-| 2 | 7 | Bannière de serveur, audio 256 kbps, +100 emoji |
-| 3 | 14 | URL personnalisée, audio 384 kbps, +150 emoji |
+| 0 | 0 | Aucun beforeage |
+| 1 | 2 | +50 placeholders d'emojis, icon animée, audio 128 kbps |
+| 2 | 7 | Banner de server, audio 256 kbps, +100 emoji |
+| 3 | 14 | URL custome, audio 384 kbps, +150 emoji |
 
-## Utilisation
+## Usage
 
-### Affichage simple
+### Simple display
 
 ```bdfd
-$sendMessage[🚀 Niveau de boost : **$boostLevel** ($serverBoostCount boosts)]
+$sendMessage[🚀 Level de boost : **$boostLevel** ($serverBoostCount boosts)]
 ```
 
 ### Embed de progression
@@ -61,35 +61,35 @@ $var[nextLevel;MAX]
 $endif
 
 $title[🚀 Boost — $serverName]
-$addField[Niveau actuel;$boostLevel;yes]
+$addField[Level current;$boostLevel;yes]
 $addField[Boosts;$serverBoostCount;yes]
 $if[$boostLevel<3]
-$addField[Prochain niveau;$var[boostsNeeded] boosts restants pour le niveau $var[nextLevel];yes]
+$addField[Prochain level;$var[boostsNeeded] boosts restants for the level $var[nextLevel];yes]
 $endif
 $color[#F47FFF]
 $sendEmbedMessage
 ```
 
-### Vérification des avantages
+### Vérification des beforeages
 
 ```bdfd
 $if[$boostLevel>=1]
-$sendMessage[✅ Icône animée disponible]
+$sendMessage[✅ Icon animée available]
 $endif
 $if[$boostLevel>=2]
-$sendMessage[✅ Bannière de serveur disponible]
+$sendMessage[✅ Banner de server available]
 $endif
 $if[$boostLevel>=3]
-$sendMessage[✅ URL personnalisée disponible]
+$sendMessage[✅ URL custome available]
 $endif
 ```
 
-### Info serveur avec boost
+### Info server avec boost
 
 ```bdfd
 $title[$serverName]
-$addField[🚀 Niveau de boost;$boostLevel ($serverBoostCount boosts);yes]
-$addField[🎨 Émojis;$emojiCount;yes]
+$addField[🚀 Level de boost;$boostLevel ($serverBoostCount boosts);yes]
+$addField[🎨 Emojis;$emojiCount;yes]
 $addField[🔊 Qualité audio;$if[$boostLevel>=3]384 kbps$elseIf[$boostLevel>=2]256 kbps$elseIf[$boostLevel>=1]128 kbps$elseStandard$endif;yes]
 $thumbnail[$serverIcon]
 $color[#F47FFF]
@@ -98,7 +98,7 @@ $sendEmbedMessage
 
 ## Notes
 
-- Le niveau de boost est calculé automatiquement en fonction du nombre de boosts Nitro.
-- Chaque palier débloque des avantages cumulatifs (le niveau 3 inclut les avantages des niveaux 1 et 2).
-- Les boosts expirés sont automatiquement retirés.
-- Pour obtenir le nombre exact de boosts, utilisez `$serverBoostCount[]`.
+- Le level de boost is calculated automatically depending on of the namebre de boosts Nitro.
+- Each palier débloque des beforeages cumulatifs (le level 3 inclut les beforeages des levelx 1 and 2).
+- Les boosts expirés sont automatically retirés.
+- Pour obtenir the namebre exact de boosts, use `$serverBoostCount[]`.

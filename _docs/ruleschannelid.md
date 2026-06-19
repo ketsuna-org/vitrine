@@ -5,29 +5,29 @@ translation_key: docs
 category: "Entity Info"
 function_name: rulesChannelID
 syntax: $rulesChannelID
-description: Retourne l'identifiant (ID) du salon des règles configuré sur le serveur Discord (serveur Communauté).
+description: Returns the identifier (ID) of the channel des règles configured on the server Discord (server Communauté).
 ---
 
-# $rulesChannelID[] — Salon des Règles
+# $rulesChannelID[] — Channel des Règles
 
-`$rulesChannelID[]` retourne l'ID du salon des règles configuré sur un serveur Communauté Discord. Ce salon est présenté aux nouveaux membres lorsqu'ils rejoignent le serveur.
+`$rulesChannelID[]` retourne the ID of the channel des règles configured sur un server Communauté Discord. Ce channel est présenté aux newx members lorsqu'ils rejoignent the server.
 
-> **Prérequis** : Le serveur doit avoir activé l'option "Communauté" dans ses paramètres.
+> **Prérequired** : The server doit avoir enabled l'option "Communauté" dans their parameters.
 
-## Syntaxe
+## Syntax
 
 ```
 $rulesChannelID
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- L'ID du salon des règles, ou une chaîne vide si non configuré.
+- The ID of the channel des règles, or une string vide si non configured.
 
 ## Utilisation
 
@@ -35,26 +35,26 @@ Aucun paramètre.
 
 ```bdfd
 $if[$rulesChannelID!=]
-$sendMessage[📋 Règlement du serveur : <#$rulesChannelID>]
+$sendMessage[📋 Règlement of the server : <#$rulesChannelID>]
 $else
-$sendMessage[ℹ️ Ce serveur n'a pas de salon des règles dédié.]
+$sendMessage[ℹ️ Ce server n'a pas de channel des règles dédié.]
 $endif
 ```
 
-### Message de bienvenue avec lien règles
+### Message de bienvenue avec link règles
 
 ```bdfd
 $sendMessage[Bienvenue $username ! 
 Merci de lire le règlement ici : <#$rulesChannelID> 📋]
 ```
 
-### Embed configuration serveur
+### Embed configuration server
 
 ```bdfd
 $title[⚙️ Configuration — $serverName]
-$addField[📋 Règles;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNon configuré$endif;yes]
-$addField[📢 Système;$if[$systemChannelID!=]<#$systemChannelID>$elseNon configuré$endif;yes]
-$addField[💤 AFK;$if[$afkChannelID!=]<#$afkChannelID>$elseNon configuré$endif;yes]
+$addField[📋 Règles;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNon configured$endif;yes]
+$addField[📢 Système;$if[$systemChannelID!=]<#$systemChannelID>$elseNon configured$endif;yes]
+$addField[💤 AFK;$if[$afkChannelID!=]<#$afkChannelID>$elseNon configured$endif;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
@@ -63,13 +63,13 @@ $sendEmbedMessage
 
 ```bdfd
 $if[$rulesChannelID!=$channelID]
-$sendMessage[⚠️ Merci d'utiliser les commandes dans un salon approprié. Le règlement est disponible ici : <#$rulesChannelID>]
+$sendMessage[⚠️ Merci d'utiliser les commands dans un channel approprié. The règlement is available ici : <#$rulesChannelID>]
 $endif
 ```
 
 ## Notes
 
-- Le salon des règles est configuré dans les paramètres de serveur Communauté.
-- Si le serveur n'est pas un serveur Communauté, cette fonction retourne une chaîne vide.
-- Utilisez `$serverFeatures[]` pour vérifier si le serveur a activé la fonctionnalité `COMMUNITY`.
-- Le salon est généralement en lecture seule pour les membres standards.
+- The channel des règles est configured in thes parameters de server Communauté.
+- Si the server is not un server Communauté, this function retourne une string vide.
+- Utilisez `$serverFeatures[]` pour vérifier si the server a enabled the functionnalité `COMMUNITY`.
+- The channel est generally en lecture seule for the members standards.

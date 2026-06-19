@@ -5,59 +5,59 @@ translation_key: docs
 category: "Entity Info"
 function_name: colorRole
 syntax: $colorRole[userID;(guildID)]
-description: Retourne la couleur du rôle le plus élevé d'un utilisateur, en hexadécimal.
+description: Returns the couleur of the role the most élevé of a user, en hexadecimal.
 ---
 
 # $colorRole
 
-La fonction `$colorRole` retourne la **couleur hexadécimale** du rôle le plus élevé d'un utilisateur qui possède une couleur. Très utile pour personnaliser des embeds selon le rôle de l'utilisateur.
+The `$colorRole` function returns the **couleur hexadecimale** of the role the most élevé of a user qui possède une couleur. Très utile pour personnaliser embeds selon the role of the user.
 
-## Syntaxe
+## Syntax
 
 ```
 $colorRole[userID;(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur. Obligatoire. |
-| `guildID` | Optionnel. L'ID du serveur cible. |
+| `userID` | The ID of the user. Required. |
+| `guildID` | Optional. The ID of the server cible. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `string` | Couleur hexadécimale (ex: `#5865F2`), ou `""` si aucun rôle coloré. |
+| `string` | Hex coloradecimale (ex: `#5865F2`), or `""` si auca role coloré. |
 
-## Exemples
+## Examples
 
-### Afficher la couleur
+### Afficher the color
 
 ```bdfd
-$sendMessage[Votre couleur de rôle : $colorRole[$authorID]]
+$sendMessage[Votre couleur de role : $colorRole[$authorID]]
 ```
 
-### Embed personnalisé
+### Embed custom
 
 ```bdfd
 $title[Profil de $username]
 $description[
-**Rôle :** $roleName[$getRole[$authorID;1]]
+**Role :** $roleName[$getRole[$authorID;1]]
 **Couleur :** $colorRole[$authorID]
 ]
 $color[$colorRole[$authorID]]
 $sendMessage[]
 ```
 
-### Couleur d'un autre utilisateur
+### Couleur d'un autre user
 
 ```bdfd
 $sendMessage[Couleur de <@$mentioned[1]> : $colorRole[$mentioned[1]]]
 ```
 
-### Fallback si pas de couleur
+### Fallback si no couleur
 
 ```bdfd
 $if[$colorRole[$authorID]!=]
@@ -66,13 +66,13 @@ $else
   $color[#5865F2]
 $endif
 $title[Profil]
-$description[Informations utilisateur]
+$description[Informations user]
 $sendMessage[]
 ```
 
 ## Notes
 
-- Retourne une chaîne vide si l'utilisateur n'a pas de rôle avec une couleur.
-- La couleur est au format hexadécimal avec `#`.
-- Parfait pour `$color[]` dans les embeds.
-- À la différence de `$roleColor`, `$colorRole` cible un **utilisateur**, pas un rôle.
+- Returns a string vide if the user does not have de role with a couleur.
+- The color est in the format hexadecimal avec `#`.
+- Parfait pour `$color[]` in thes embeds.
+- À la différence de `$roleColor`, `$colorRole` cible un **user**, pas a role.

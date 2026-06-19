@@ -5,40 +5,40 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomRoleID
 syntax: $randomRoleID
-description: Retourne l'ID d'un rôle aléatoire présent sur le serveur.
+description: Returns the ID of a random role present on the server.
 ---
 
 # $randomRoleID[]
 
-La fonction `$randomRoleID[]` retourne l'ID Discord d'un rôle aléatoire présent sur le serveur.
+The `$randomRoleID[]` function returns the Discord ID of a random role present on the server.
 
-## Syntaxe
+## Syntax
 
 ```
 $randomRoleID
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note:** This function takes no parameters.
 
-## Valeur de retour
+## Return Value
 
-L'ID Discord (snowflake) d'un rôle aléatoire du serveur, sous forme de chaîne de caractères.
+The Discord ID (snowflake) of a random role on the server, as a string.
 
-## Exemples
+## Examples
 
-### Obtenir un ID de rôle aléatoire
-
-```bdfd
-ID du rôle aléatoire : $randomRoleID
-```
-
-### Mentionner un rôle aléatoire
+### Get a random role ID
 
 ```bdfd
-Rôle aléatoire : <@&$randomRoleID>
+Random role ID: $randomRoleID
 ```
 
-### Attribuer un rôle aléatoire
+### Mention a random role
+
+```bdfd
+Random role: <@&$randomRoleID>
+```
+
+### Assign a random role
 
 ```bdfd
 $giveRole[$authorID;$randomRoleID]
@@ -46,5 +46,5 @@ $giveRole[$authorID;$randomRoleID]
 
 ## Notes
 
-- Le rôle est choisi parmi tous les rôles du serveur, y compris le rôle `@everyone`.
-- Le bot doit avoir la permission de gérer les rôles pour utiliser `$giveRole[]`.
+- The role is chosen from all roles on the server, including the `@everyone` role.
+- The bot must have the manage roles permission to use `$giveRole[]`.

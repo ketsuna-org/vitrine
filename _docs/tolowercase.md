@@ -9,7 +9,7 @@ description: Converts all characters in the given text to lowercase.
 ---
 # $toLowercase — Convert to Lowercase
 
-`$toLowercase` transforms all uppercase characters in a string to their lowercase equivalents. It's commonly used to normalize user input for case-insensitive comparisons.
+`$toLowercase` transforms all uppercase characters in a string to their lowercase equivaslows. It's commonly used to normalize user input for case-insensitive comparisons.
 
 ## Syntax
 

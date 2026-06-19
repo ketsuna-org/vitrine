@@ -5,67 +5,67 @@ translation_key: docs
 category: "Moderation"
 function_name: registerGuildCommands
 syntax: $registerGuildCommands[guildID]
-description: Enregistre les commandes slash du bot sur un serveur spécifique. Les commandes slash sont immédiatement disponibles après l'enregistrement.
+description: Registers the bot's slash commands on a specific server. Slash commands are immediately available after registration.
 ---
 
 # $registerGuildCommands
 
-La fonction `$registerGuildCommands[]` permet d'**enregistrer les commandes slash** du bot sur un serveur spécifique.
+The `$registerGuildCommands[]` function allows **registering the bot's slash commands** on a specific server.
 
-## Syntaxe
+## Syntax
 
 ```
 $registerGuildCommands[guildID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `guildID` | L'ID du serveur où enregistrer les commandes slash. |
+| `guildID` | The ID of the server where to register the slash commands. |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur.
+This function does not return a value.
 
-## Comportement
+## Behavior
 
-- Les commandes slash définies dans le bot sont enregistrées sur le serveur cible.
-- Les commandes de guilde sont disponibles immédiatement (contrairement aux commandes globales qui peuvent prendre jusqu'à 1h).
-- Le bot doit avoir la permission `applications.commands` sur le serveur.
+- The slash commands defined in the bot are registered on the target server.
+- Guild commands are available immediately (unlike global commands which can take up to 1 hour).
+- The bot must have the `applications.commands` permission on the server.
 
-## Exemples
+## Examples
 
-### Enregistrement manuel
+### Manual registration
 
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
   $registerGuildCommands[$guildID]
-  $sendMessage[✅ Commandes slash enregistrées sur ce serveur !]
+  $sendMessage[✅ Slash commands registered on this server!]
 $else
-  $sendMessage[❌ Permission refusée.]
+  $sendMessage[❌ Permission denied.]
 $endif
 ```
 
-### Enregistrement automatique
+### Automatic registration
 
 ```bdfd
 $registerGuildCommands[$guildID]
-$sendMessage[Commandes slash synchronisées.]
+$sendMessage[Slash commands synced.]
 ```
 
-### Enregistrement multi-serveur (owner)
+### Multi-server registration (owner)
 
 ```bdfd
 $if[$authorID==OWNER_ID]
   $registerGuildCommands[$message[1]]
-  $sendMessage[Commandes enregistrées sur le serveur $message[1].]
+  $sendMessage[Commands registered on server $message[1].]
 $endif
 ```
 
 ## Notes
 
-- Les commandes de guilde sont plus rapides à mettre à jour que les commandes globales.
-- Utile pour tester de nouvelles commandes avant déploiement global.
-- Pour supprimer les commandes, utilisez `$unregisterGuildCommands[]`.
-- Maximum 100 commandes slash par serveur.
+- Guild commands are faster to update than global commands.
+- Useful for testing new commands before global deployment.
+- To remove commands, use `$unregisterGuildCommands[]`.
+- Maximum 100 slash commands per server.

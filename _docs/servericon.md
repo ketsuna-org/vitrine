@@ -5,66 +5,66 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverIcon
 syntax: $serverIcon
-description: Retourne l'URL de l'icône du serveur Discord.
+description: Returns the URL of the icon of the server Discord.
 ---
 
-# $serverIcon[] — Icône du Serveur
+# $serverIcon[] — Icon du Server
 
-`$serverIcon[]` retourne l'URL de l'icône du serveur Discord. Si le serveur n'a pas d'icône personnalisée, la fonction retourne une chaîne vide.
+`$serverIcon[]` retourne the URL of the icon of the server Discord. Si the server n'a pas d'icon custome, the function retourne une string vide.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverIcon
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- L'URL directe de l'icône du serveur (format PNG ou WEBP), ou une chaîne vide si aucune icône n'est définie.
+- The URL directe de l'icon of the server (format PNG or WEBP), or une string vide si noe icon n'est définie.
 
 ## Utilisation
 
-### Icône dans un embed
+### Icon dans un embed
 
 ```bdfd
 $title[$serverName]
-$description[Voici l'icône de notre serveur]
+$description[Voici l'icon de notre server]
 $image[$serverIcon]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Thumbnail dans un message de bienvenue
+### Thumbnail in a message de bienvenue
 
 ```bdfd
 $title[Bienvenue !]
 $thumbnail[$serverIcon]
 $description[Bienvenue sur $serverName, $username !]
-$addField[Membres;$membersCount;yes]
+$addField[Members;$membersCount;yes]
 $color[#2ECC71]
 $sendEmbedMessage
 ```
 
-### Vérifier si le serveur a une icône
+### Vérifier si the server a une icon
 
 ```bdfd
 $if[$serverIcon==]
-$sendMessage[Ce serveur n'a pas d'icône personnalisée.]
+$sendMessage[Ce server n'a pas d'icon custome.]
 $else
-$sendMessage[Icône du serveur : $serverIcon]
+$sendMessage[Icon of the server : $serverIcon]
 $endif
 ```
 
-### Footer avec icône
+### Footer avec icon
 
 ```bdfd
 $footer[$serverName;$serverIcon]
-$description[Message officiel du serveur]
+$description[Message officiel of the server]
 $color[#F1C40F]
 $sendEmbedMessage
 ```
@@ -72,6 +72,6 @@ $sendEmbedMessage
 ## Notes
 
 - `$serverIcon[]` est un alias de `$guildIcon[]`.
-- L'URL retournée est une URL Discord CDN directe, accessible publiquement.
-- Si le serveur n'a pas d'icône, la fonction retourne une chaîne vide (``).
-- L'URL peut être utilisée dans `$image[]`, `$thumbnail[]`, `$footer[]` ou `$author[text;;$serverIcon]`.
+- The URL retournée est une URL Discord CDN directe, accessible publicment.
+- Si the server n'a pas d'icon, the function retourne une string vide (``).
+- The URL can be utilisée dans `$image[]`, `$thumbnail[]`, `$footer[]` or `$author[text;;$serverIcon]`.

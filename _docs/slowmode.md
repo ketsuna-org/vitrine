@@ -5,50 +5,50 @@ translation_key: docs
 category: "Entity Info"
 function_name: slowmode
 syntax: $slowmode[(channelID)]
-description: Retourne le délai de slowmode (mode lent) actuel d'un salon Discord, en secondes. Fonction en lecture seule (getter).
+description: Returns the delay de slowmode (mode slow) current of a channel Discord, en seconds. Function en lecture seule (getter).
 ---
 
 # $slowmode
 
-La fonction `$slowmode` retourne le **délai de slowmode** (mode lent) actuel d'un salon Discord, exprimé en secondes. C'est une fonction en **lecture seule** (getter).
+The function `$slowmode` retourne le **delay de slowmode** (mode slow) current of a channel Discord, exprimé en seconds. C'est une function en **lecture seule** (getter).
 
-## Syntaxe
+## Syntax
 
 ```
 $slowmode[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel. L'ID du salon cible. Si omis, le salon courant est utilisé. |
+| `channelID` | Optional. The ID of the channel cible. Si omis, the channel courant is used. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` | Le délai en secondes. `0` signifie pas de slowmode. |
+| `integer` | Le delay en seconds. `0` signifie pas de slowmode. |
 
-## Valeurs possibles
+## Values possibles
 
-Discord autorise les slowmodes suivants (en secondes) : `0`, `5`, `10`, `15`, `30`, `60`, `120`, `300`, `600`, `900`, `1800`, `3600`, `7200`, `21600`.
+Discord autorise les slowmodes nexts (en seconds) : `0`, `5`, `10`, `15`, `30`, `60`, `120`, `300`, `600`, `900`, `1800`, `3600`, `7200`, `21600`.
 
-## Exemples
+## Examples
 
 ### Afficher le slowmode
 
 ```bdfd
-$sendMessage[Mode lent actuel : $slowmode seconde(s)]
+$sendMessage[Mode slow current : $slowmode second(s)]
 ```
 
-### Vérifier si le slowmode est actif
+### Vérifier if the slowmode est actif
 
 ```bdfd
 $if[$slowmode>0]
-  $sendMessage[⏳ Ce salon a un mode lent de $slowmode seconde(s).]
+  $sendMessage[⏳ Ce channel a un mode slow de $slowmode second(s).]
 $else
-  $sendMessage[Pas de mode lent dans ce salon.]
+  $sendMessage[Pas de mode slow dans ce channel.]
 $endif
 ```
 
@@ -56,12 +56,12 @@ $endif
 
 ```bdfd
 $if[$slowmode>=300]
-  $sendMessage[⚠️ Attention, ce salon a un slowmode très élevé ($slowmode secondes).]
+  $sendMessage[⚠️ Attention, ce channel a un slowmode très élevé ($slowmode seconds).]
 $endif
 ```
 
 ## Notes
 
 - `$slowmode` est un **getter** : il ne modifie pas le slowmode.
-- Retourne `0` si le salon n'a pas de slowmode.
-- Ne fonctionne que sur les salons textuels.
+- Returns `0` si the channel n'a pas de slowmode.
+- Ne functionne que sur les channels textuels.

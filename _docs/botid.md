@@ -5,35 +5,35 @@ translation_key: docs
 category: "Entity Info"
 function_name: botID
 syntax: $botID
-description: Retourne l'ID utilisateur du bot.
+description: Returns the ID user of the bot.
 ---
 
 # $botID
 
-La fonction `$botID` **retourne l'ID Discord (snowflake) du bot**. Cet identifiant est unique et permanent.
+The `$botID` function **returns the ID Discord (snowflake) of the bot**. Cet identifier est unique and permanent.
 
-## Syntaxe
+## Syntax
 
 ```
 $botID
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- L'ID Discord du bot (17-20 chiffres). Ex: `1234567890123456789`.
+- The ID Discord of the bot (17-20 chiffres). Ex: `1234567890123456789`.
 
-## Comportement
+## Behavior
 
-- L'ID est attribué par Discord à la création de l'application.
-- Il ne change jamais, même si le bot est renommé.
-- Utilisable pour les mentions (`<@ID>`), les invitations, les API.
+- The ID est attribué par Discord à la création de l'application.
+- Il ne change never, même if the bot est renommé.
+- Utilisable for mentions (`<@ID>`), les invites, les API.
 
-## Exemples
+## Examples
 
 ### Debug / Information
 
@@ -49,11 +49,11 @@ $footer[Bot ID: $botID]
 $sendMessage[]
 ```
 
-### Lien d'invitation personnalisé
+### Link d'invite custom
 
 ```bdfd
 $sendMessage[🔗 **Invitez-moi :**
-https://discord.com/oauth2/authorize?client_id=$botID&permissions=8&scope=bot%20applications.commands]
+https://discord.com/oauth2/authorize?clinkt_id=$botID&permissions=8&scope=bot%20applications.commands]
 ```
 
 ### Vérification d'identité
@@ -64,18 +64,18 @@ $if[$authorID==$botID]
   $stop
 $endif
 
-$sendMessage[Message reçu, $userName !]
+$sendMessage[Message received, $userName !]
 ```
 
-### Emoji personnalisé avec ID
+### Emoji custom avec ID
 
 ```bdfd
-$sendMessage[🤖 <@$botID> est en ligne !]
+$sendMessage[🤖 <@$botID> est online !]
 ```
 
 ## Notes
 
-- `$botID` est constant et ne change jamais.
-- Pour obtenir l'ID du propriétaire, utilisez `$botOwnerID`.
-- Pour le nom, utilisez `$botName`.
-- Mention du bot : `<@$botID>`.
+- `$botID` est constant and ne change never.
+- Pour obtenir the ID of the owner, use `$botOwnerID`.
+- For the nom, use `$botName`.
+- Mention of the bot : `<@$botID>`.

@@ -5,67 +5,67 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelIDFromName
 syntax: $channelIDFromName[name]
-description: Retourne l'ID d'un salon Discord à partir de son nom.
+description: Returns the ID of a channel Discord from its name.
 ---
 
 # $channelIDFromName
 
-La fonction `$channelIDFromName` retourne l'**ID** d'un salon Discord à partir de son **nom**. La recherche est insensible à la casse.
+The `$channelIDFromName` function returns the **ID** of a channel Discord from son **nom**. The recherche est insensible à la casse.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelIDFromName[name]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Le nom du salon à rechercher. Insensible à la casse (`général` = `Général`). |
+| `name` | The name of the channel à rechercher. Insensible à la casse (`général` = `Général`). |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | L'ID du salon trouvé, ou `""` si aucun salon ne correspond. |
+| `snowflake` (string) | The ID of the channel found, or `""` si auca channel ne correspond. |
 
-## Exemples
+## Examples
 
-### Obtenir l'ID
+### Obtenir the ID
 
 ```bdfd
 $sendMessage[ID de #général : $channelIDFromName[général]]
 ```
 
-### Envoyer dans un salon par nom
+### Envoyer in a channel by name
 
 ```bdfd
-$channelSendMessage[$channelIDFromName[annonces];Nouvelle mise à jour disponible !]
+$channelSendMessage[$channelIDFromName[annonces];New mise à day available !]
 ```
 
 ### Vérifier existence
 
 ```bdfd
 $if[$channelIDFromName[logs]!=]
-  $sendMessage[Salon #logs trouvé ! ID : $channelIDFromName[logs]]
+  $sendMessage[Channel #logs found ! ID : $channelIDFromName[logs]]
 $else
-  $sendMessage[Pas de salon #logs.]
+  $sendMessage[Pas de channel #logs.]
 $endif
 ```
 
-### Dépannage de noms similaires
+### Dépannage de noms similars
 
 ```bdfd
 $if[$channelIDFromName[général]!=]
-  $sendMessage[Salon général trouvé.]
+  $sendMessage[Channel général found.]
 $else
-  $sendMessage[Erreur : salon introuvable. Essayez un autre nom.]
+  $sendMessage[Error : channel introuvable. Essayez un autre nom.]
 $endif
 ```
 
 ## Notes
 
-- Si plusieurs salons portent le même nom, seul le premier trouvé est retourné.
-- Utilisez `$findChannel` pour une recherche plus avancée avec requête partielle.
-- Le nom ne doit pas inclure le préfixe `#`.
+- Si multipthe channels portent le même nom, seul le first found is returned.
+- Use `$findChannel` to une recherche plus avancée avec requête partialle.
+- The name ne doit pas inclure le préfixe `#`.

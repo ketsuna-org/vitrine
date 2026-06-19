@@ -5,34 +5,34 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalCheckbox
 syntax: $addModalCheckbox[customId;label;(default)]
-description: Ajoute une case à cocher individuelle à un modal Discord.
+description: Adds an checkbox individuelle à a modal Discord.
 ---
 
 # $addModalCheckbox[] — Case à Cocher dans un Modal
 
-`$addModalCheckbox[]` ajoute une case à cocher unique à un modal. Contrairement à `$addModalCheckboxGroup[]` qui crée un groupe, cette fonction crée une seule checkbox isolée.
+`$addModalCheckbox[]` ajoute une checkbox unique à a modal. Contrairement à `$addModalCheckboxGroup[]` qui crée a group, cette function crée a single checkbox isolée.
 
-## Syntaxe
+## Syntax
 
 ```
 $addModalCheckbox[customId;label;(default)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Obligatoire | Défaut | Description |
+| Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Oui | — | Identifiant unique pour récupérer l'état. |
-| `label` | Oui | — | Texte affiché à côté de la case. |
-| `default` | Non | `no` | `yes` si cochée par défaut, `no` sinon. |
+| `customId` | Yes | — | Unique identifier to retrieve the state. |
+| `label` | Yes | — | Text displayed next to de la case. |
+| `default` | No | `no` | `yes` si cochée by default, `no` otherwise. |
 
-## Valeur de retour
+## Return value
 
-Ajoute une checkbox au modal. La valeur soumise est `yes` ou `no`, accessible via `$input[customId]`.
+Adds ae checkbox au modal. The value soumise est `yes` or `no`, accessible via `$input[customId]`.
 
-## Utilisation
+## Usage
 
-### Case à cocher simple
+### Checkbox simple
 
 ```bdfd
 $newModal[Inscription;register_modal]
@@ -41,7 +41,7 @@ $addModalCheckbox[newsletter;Recevoir la newsletter;yes]
 $addModalCheckbox[tos;Accepter les conditions;no]
 ```
 
-### Vérification de l'état
+### Vérification of the state
 
 ```bdfd
 $onInteraction[modal_register]
@@ -55,6 +55,6 @@ $endInteraction
 
 ## Notes
 
-- Pour des groupes de cases à cocher avec plusieurs options, utilisez `$addModalCheckboxGroup[]` et `$addCheckboxGroupOption[]`.
-- L'état retourné est une chaîne : `yes` ou `no`.
-- La case à cocher individuelle compte comme un composant dans la limite de 5 composants par modal.
+- For groups de checkboxes avec multiple options, use `$addModalCheckboxGroup[]` and `$addCheckboxGroupOption[]`.
+- L'state retourné est a string : `yes` or `no`.
+- La checkbox individuelle compte comme a component dans the limit de 5 components par modal.

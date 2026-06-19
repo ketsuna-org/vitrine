@@ -5,38 +5,38 @@ translation_key: docs
 category: "Moderation"
 function_name: voiceUserLimit
 syntax: $voiceUserLimit[(channelID)]
-description: Récupère la limite d'utilisateurs d'un salon vocal. Retourne le nombre maximum d'utilisateurs pouvant se connecter simultanément.
+description: Gets the limit d'users of a channel vocal. Returns the number maximum d'users pouvant se connecter simultanément.
 ---
 
 # $voiceUserLimit
 
-La fonction `$voiceUserLimit[]` permet de **récupérer la limite d'utilisateurs** configurée sur un salon vocal Discord.
+The function `$voiceUserLimit[]` allows **récupérer la limit d'users** configurede sur un channel vocal Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $voiceUserLimit[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel - L'ID du salon vocal. Par défaut, le salon où se trouve l'auteur. |
+| `channelID` | Optional - The ID of the channel vocal. Par default, the channel où se trouve l'auteur. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : String (nombre)
-- Le nombre maximum d'utilisateurs autorisés dans le salon.
-- `0` signifie illimité (pas de limite).
+- **Type** : String (number)
+- The namebre maximum d'users alloweds in the channel.
+- `0` signifie illimité (pas de limit).
 
-## Comportement
+## Behavior
 
-- Si aucun channelID n'est fourni et que l'auteur n'est pas dans un salon vocal, retourne `0` ou une erreur.
-- La limite est définie lors de la création/modification du salon.
-- Utile pour vérifier la capacité avant de rejoindre ou d'inviter.
+- Si no channelID n'est fourni and que l'auteur is not dans un channel vocal, retourne `0` or une error.
+- La limit est définie during la création/modification of the channel.
+- Utile pour vérifier la capacité before de rejoindre or d'inviter.
 
-## Exemples
+## Examples
 
 ### Vérification de capacité
 
@@ -45,34 +45,34 @@ $let[limit;$voiceUserLimit]
 $let[users;$voiceMembersCount]
 
 $if[$limit==0]
-  Salon illimité — **$users** utilisateur(s) connecté(s).
+  Channel illimité — **$users** user(s) connected(s).
 $else
-  Salon : **$users / $limit** utilisateurs.
+  Channel : **$users / $limit** users.
   $if[$users>=$limit]
-    ⚠️ Salon plein !
+    ⚠️ Channel plein !
   $else
-    ✅ $math[$limit-$users] place(s) disponible(s).
+    ✅ $math[$limit-$users] place(s) available(s).
   $endif
 $endif
 ```
 
-### Information salon vocal
+### Information channel vocal
 
 ```bdfd
 $title[🔊 $channelName[$voiceChannelID]]
 $description[
-**Connectés :** $voiceMembersCount
-**Limite :** $if[$voiceUserLimit==0]Illimité$else$voiceUserLimit$endif
+**Connecteds :** $voiceMembersCount
+**Limit :** $if[$voiceUserLimit==0]Illimité$else$voiceUserLimit$endif
 **Bitrate :** $voiceBitrate kbps
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérification pour un salon spécifique
+### Vérification for a channel spécifique
 
 ```bdfd
-$let[target;$channelID[Salon Gaming]]
+$let[target;$channelID[Channel Gaming]]
 $let[limit;$voiceUserLimit[$target]]
 $let[users;$voiceMembersCount[$target]]
 
@@ -85,6 +85,6 @@ $endif
 
 ## Notes
 
-- `0` = pas de limite (illimité), ce qui est la valeur par défaut des salons vocaux.
-- La limite maximale est de 99 utilisateurs.
-- Fonctionne uniquement avec les salons de type vocal (`$channelType` = 2).
+- `0` = pas de limit (illimité), ce qui est the value default des channels vocaux.
+- La limit maximale est de 99 users.
+- Functionne only with thes channels de type vocal (`$channelType` = 2).

@@ -5,37 +5,37 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverName
 syntax: $serverName
-description: Retourne le nom du serveur (guild) dans lequel la commande est exécutée.
+description: Returns the nom of the server (guild) in thequel the command est executed.
 ---
 
-# $serverName[] — Nom du Serveur
+# $serverName[] — Name of the Server
 
-`$serverName[]` retourne le nom du serveur Discord dans lequel la commande est exécutée.
+`$serverName[]` retourne the name of the server Discord in thequel the command est executed.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverName
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- Le nom actuel du serveur.
+- The name current of the server.
 
 ## Utilisation
 
 ### Message de bienvenue
 
 ```bdfd
-$sendMessage[Bienvenue sur **$serverName** ! Nous sommes heureux de vous compter parmi nous.]
+$sendMessage[Bienvenue sur **$serverName** ! Nous sommes hourux de vous compter parmi nous.]
 ```
 
-### Embed avec le nom du serveur
+### Embed with the nom of the server
 
 ```bdfd
 $title[$serverName — Règlement]
@@ -47,14 +47,14 @@ $sendEmbedMessage
 ### Logs
 
 ```bdfd
-$log[La commande a été exécutée sur le serveur : $serverName]
+$log[The command was executed on the server : $serverName]
 ```
 
-### Condition sur le nom
+### Condition sur the name
 
 ```bdfd
-$if[$serverName==Mon Serveur]
-$sendMessage[Bienvenue sur le serveur principal !]
+$if[$serverName==Mon Server]
+$sendMessage[Bienvenue on the server principal !]
 $else
 $sendMessage[Bienvenue sur $serverName !]
 $endif
@@ -63,5 +63,5 @@ $endif
 ## Notes
 
 - `$serverName[]` est un alias de `$guildName[]`.
-- La valeur retournée est dynamique : elle reflète le nom actuel du serveur, même s'il a été changé récemment.
-- Utile pour personnaliser les messages en fonction du serveur.
+- The value retournée est dynamic : elle reflète the name current of the server, même s'il was changé récemment.
+- Utile pour personnaliser les messages en function of the server.

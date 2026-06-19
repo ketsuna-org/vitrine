@@ -5,56 +5,56 @@ translation_key: docs
 category: "Entity Info"
 function_name: parentID
 syntax: $parentID[(channelID)]
-description: Alias de $channelCategoryID. Retourne l'ID de la catégorie parente d'un salon.
+description: Alias of $channelCategoryID. Returns the ID of a channel's parent category.
 ---
 
 # $parentID
 
-La fonction `$parentID` est un **alias** de `$channelCategoryID`. Elle retourne l'ID de la catégorie parente d'un salon Discord.
+The `$parentID` function is an **alias** of `$channelCategoryID`. It returns the ID of a Discord channel's parent category.
 
-## Syntaxe
+## Syntax
 
 ```
 $parentID[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel. L'ID du salon cible. Si omis, le salon courant est utilisé. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | L'ID de la catégorie parente, ou `""` si aucune. |
+| `snowflake` (string) | The parent category ID, or `""` if none. |
 
-## Exemples
+## Examples
 
-### ID de la catégorie
-
-```bdfd
-$sendMessage[ID catégorie : $parentID]
-```
-
-### Nom de la catégorie parente
+### Category ID
 
 ```bdfd
-$sendMessage[Catégorie parente : $channelName[$parentID]]
+$sendMessage[Category ID: $parentID]
 ```
 
-### Vérifier si dans une catégorie
+### Parent category name
+
+```bdfd
+$sendMessage[Parent category: $channelName[$parentID]]
+```
+
+### Check if in a category
 
 ```bdfd
 $if[$parentID!=]
-  $sendMessage[Ce salon est dans la catégorie $channelName[$parentID]]
+  $sendMessage[This channel is in the $channelName[$parentID] category]
 $else
-  $sendMessage[Ce salon n'est pas dans une catégorie.]
+  $sendMessage[This channel is not in a category.]
 $endif
 ```
 
 ## Notes
 
-- `$parentID` et `$categoryID` sont tous deux des alias de `$channelCategoryID`.
-- Fonctionnement identique à `$channelCategoryID`.
+- `$parentID` and `$categoryID` are both aliases of `$channelCategoryID`.
+- Functioning identical to `$channelCategoryID`.

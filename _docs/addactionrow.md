@@ -6,46 +6,46 @@ category: "Embed & Message"
 
 # $addActionRow
 
-Démarre une nouvelle ligne d'action (action row) pour contenir des boutons ou des menus de sélection.
+Starts a new action row to contain of buttons or select menus.
 
-## Syntaxe
+## Syntax
 
 ```
 $addActionRow[(id)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description | Obligatoire |
+| Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `id` | Identifiant personnalisé pour la ligne d'action | Non |
+| `id` | Custom identifier for the action row | No |
 
 ## Description
 
-Une **action row** est un conteneur qui regroupe des composants interactifs (boutons, menus de sélection) sur une même ligne horizontale dans un message Discord. Chaque message peut contenir jusqu'à 5 action rows, et chaque action row peut contenir jusqu'à 5 boutons ou 1 menu de sélection.
+A **action row** est a container qui regroupe of components interactifs (buttons, select menus) sur the same row horizontal in a Discord message. Each message can contain up to 5 action rows, and each action row can contain up to 5 buttons or 1 select menu.
 
-`$addActionRow` doit être appelée avant d'ajouter des composants (boutons, selects) pour les organiser sur des lignes distinctes.
+`$addActionRow` must be called before adding of components (buttons, select menus) for organize sur of rows distinctes.
 
-## Exemples
+## Examples
 
-### Ligne simple
+### Simple row
 
 ```
 $addActionRow
 $addButtonCV2[btn_1;Cliquez-moi;primary]
-$sendMessage[Voici un bouton !]
+$sendMessage[Voici a button !]
 ```
 
-### Avec ID personnalisé
+### With custom ID
 
 ```
-$addActionRow[row_boutons]
+$addActionRow[row_buttons]
 $addButtonCV2[btn_ok;OK;success]
 $addButtonCV2[btn_cancel;Annuler;danger]
 $sendMessage[Confirmez votre choix]
 ```
 
-### Plusieurs lignes
+### Multiple rows
 
 ```
 $addActionRow
@@ -54,12 +54,12 @@ $addButtonCV2[btn_2;Bouton 2;primary]
 
 $addActionRow
 $addButtonCV2[btn_3;Bouton 3;secondary]
-$sendMessage[Deux rangées de boutons]
+$sendMessage[Deux rangées de buttons]
 ```
 
 ## Notes
 
-- Chaque `$addActionRow` crée une nouvelle ligne. Les composants ajoutés après seront placés sur cette ligne.
-- Sans `$addActionRow`, les composants sont placés sur une ligne par défaut.
-- Une action row ne peut contenir que des boutons OU un seul menu de sélection, pas les deux.
+- Each `$addActionRow` crée une new row. The components added afterward will be placés on that row.
+- Without `$addActionRow`, les components are placed sur a row by default.
+- Une action row ne can contain que of buttons OU a single select menu, not both.
 - Maximum 5 action rows par message.

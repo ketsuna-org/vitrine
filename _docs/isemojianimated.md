@@ -5,38 +5,38 @@ translation_key: docs
 category: "Math & Text"
 function_name: isEmojiAnimated
 syntax: $isEmojiAnimated[emoji]
-description: Vérifie si un emoji personnalisé est animé.
+description: Checks if un emoji custom est animé.
 ---
 
 # $isEmojiAnimated
 
-La fonction `$isEmojiAnimated[emoji]` **vérifie si un emoji personnalisé est animé**. Les emojis animés Discord commencent par `<a:` au lieu de `<:`.
+The function `$isEmojiAnimated[emoji]` **vérifie if a emoji custom est animé**. The emojis animés Discord commencent par `<a:` instead of `<:`.
 
-## Syntaxe
+## Syntax
 
 ```
 $isEmojiAnimated[emoji]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `emoji` | L'emoji à tester, sous sa forme Discord (`<:nom:id>` ou `<a:nom:id>`). |
+| `emoji` | L'emoji à tester, sous sa forme Discord (`<:nom:id>` or `<a:nom:id>`). |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Booléen
+- **Type** : Boolean
 - `true` si l'emoji est animé.
-- `false` si l'emoji est statique, standard (Unicode), ou invalide.
+- `false` si l'emoji est static, standard (Unicode), or invalid.
 
-## Comportement
+## Behavior
 
-- Fonctionne uniquement avec les emojis personnalisés Discord.
+- Functionne only with thes emojis customs Discord.
 - Les emojis Unicode standards (😀, 🎉) retournent `false`.
-- Le format attendu est la mention d'emoji complète.
+- Le format attendu est la mention d'emoji complete.
 
-## Exemples
+## Examples
 
 ### Vérification d'un emoji
 
@@ -45,7 +45,7 @@ $var[emoji;$message[1]]
 $if[$isEmojiAnimated[$var[emoji]]==true]
   $sendMessage[🎞️ $var[emoji] est un emoji animé !]
 $else
-  $sendMessage[🖼️ $var[emoji] est un emoji statique ou standard.]
+  $sendMessage[🖼️ $var[emoji] est un emoji static or standard.]
 $endif
 ```
 
@@ -70,14 +70,14 @@ $if[$isEmojiAnimated[$var[emoji]]==true]
   $sendMessage[✅ Emoji animé détecté !]
   $sendMessage[$var[emoji]]
 $else
-  $sendMessage[❌ Seuls les emojis animés sont autorisés dans cette commande.]
+  $sendMessage[❌ Seuls les emojis animés sont alloweds dans cette command.]
 $endif
 ```
 
 ## Notes
 
 - Format animé : `<a:nom:id>` → `true`.
-- Format statique : `<:nom:id>` → `false`.
+- Format static : `<:nom:id>` → `false`.
 - Emoji Unicode : `😀` → `false`.
-- Pour obtenir le nom d'un emoji, utilisez `$emojiName[]`.
-- Pour obtenir l'ID d'un emoji, utilisez `$emojiID[]`.
+- Pour obtenir the name d'un emoji, utilisez `$emojiName[]`.
+- Pour obtenir the ID d'un emoji, utilisez `$emojiID[]`.

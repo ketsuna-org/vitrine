@@ -5,54 +5,54 @@ translation_key: docs
 category: "Moderation"
 function_name: addEmoji
 syntax: $addEmoji[name;url;(roleID)]
-description: Ajoute un nouvel emoji personnalisé au serveur à partir d'une URL. Possibilité de restreindre l'emoji à un rôle spécifique.
+description: Adds a new emoji custom au server à partir of a URL. Possibilité de restreindre the emoji à a role spécifique.
 ---
 
 # $addEmoji
 
-La fonction `$addEmoji[]` permet d'**ajouter un nouvel emoji personnalisé** au serveur à partir d'une URL d'image. L'emoji peut être public ou restreint à un rôle spécifique.
+The `$addEmoji[]` function **ajouter un new emoji custom** au server à partir of a URL d'image. The emoji can be public or restreint à a role spécifique.
 
-## Syntaxe
+## Syntax
 
 ```
 $addEmoji[name;url;(roleID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `name` | Le nom de l'emoji (2 à 32 caractères, alphanumérique + underscores). |
-| `url` | L'URL de l'image (PNG, JPEG, GIF). L'image doit être accessible publiquement. |
-| `roleID` | Optionnel - ID du rôle autorisé à utiliser l'emoji. Si omis, emoji public. |
+| `name` | The emoji name (2 à 32 becauseactères, alphanumérique + underscores). |
+| `url` | The URL of the image (PNG, JPEG, GIF). The image must be accessible publicment. |
+| `roleID` | Optional - ID of the role allowed to use the emoji. If omitted, emoji public. |
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- Le markup de l'emoji créé au format `<:nom:ID>` en cas de succès.
-- Message d'erreur si l'URL est invalide, le nom déjà pris ou les permissions insuffisantes.
+- Le markup de the emoji created in the format `<:nom:ID>` on success.
+- Message error if the URL est invalid, the name déjà pris or les permissions insuffisantes.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `MANAGE_EMOJIS_AND_STICKERS`.
-- Le nom doit être unique parmi les emojis du serveur.
-- Limite de 50 emojis standard (plus pour les serveurs boostés).
-- Les GIFs animés sont acceptés et créent un emoji animé.
+- The bot must have the permission `MANAGE_EMOJIS_AND_STICKERS`.
+- The name must be unique parmi les emojis of the server.
+- Limit de 50 emojis standard (plus for servers boostés).
+- Les GIFs animés sont acceptés and créent an emoji animé.
 
-## Exemples
+## Examples
 
-### Ajout simple
+### Simple addition
 
 ```bdfd
 $if[$checkContains[$userPerms;ManageEmojisAndStickers]==true]
   $let[emoji;$addEmoji[cool;https://example.com/cool.png]]
-  $sendMessage[✅ Emoji ajouté : $emoji]
+  $sendMessage[✅ Emoji added : $emoji]
 $else
   $sendMessage[❌ Permission refusée.]
 $endif
 ```
 
-### Emoji avec pièce jointe
+### Emoji avec attachment
 
 ```bdfd
 $let[url;$getAttachments[$noMentionMessage]]
@@ -60,43 +60,43 @@ $if[$url!=]
   $let[firstUrl;$splitText[$url;, ;1]]
   $let[emojiName;$noMentionMessage]
   $let[emoji;$addEmoji[$emojiName;$firstUrl]]
-  $sendMessage[✅ Emoji créé : $emoji]
+  $sendMessage[✅ Emoji created : $emoji]
 $else
-  $sendMessage[❌ Aucune image trouvée. Joignez une image à votre message.]
+  $sendMessage[❌ Aucan image founde. Joignez an image à votre message.]
 $endif
 ```
 
-### Emoji restreint au staff
+### Staff-restricted emoji
 
 ```bdfd
 $let[staffRole;$roleID[Staff]]
 $let[emoji;$addEmoji[confidential;https://example.com/lock.png;$staffRole]]
 $if[$emoji!=]
-  $sendMessage[✅ Emoji **$emoji** créé et réservé au rôle <@&$staffRole>.]
+  $sendMessage[✅ Emoji **$emoji** created and réservé au role <@&$staffRole>.]
 $else
-  $sendMessage[❌ Erreur lors de la création de l'emoji.]
+  $sendMessage[❌ Error during la création de the emoji.]
 $endif
 ```
 
-### Validation du nom
+### Validation of the name
 
 ```bdfd
 $let[name;$message]
 $if[$length[$name]<2]
-  $sendMessage[❌ Le nom doit faire au moins 2 caractères.]
+  $sendMessage[❌ The name must be au moins 2 becauseactères.]
 $elseif[$length[$name]>32]
-  $sendMessage[❌ Le nom ne doit pas dépasser 32 caractères.]
+  $sendMessage[❌ The name must not exceed 32 becauseactères.]
 $elseif[$emojiExists[$name]==true]
   $sendMessage[❌ Un emoji nommé **$name** existe déjà.]
 $else
   $let[emoji;$addEmoji[$name;$getAttachments[$noMentionMessage]]]
-  $sendMessage[✅ Emoji **$emoji** créé !]
+  $sendMessage[✅ Emoji **$emoji** created !]
 $endif
 ```
 
 ## Notes
 
-- L'URL doit pointer directement vers une image (extension .png, .jpg, .gif).
-- Le serveur a une limite d'emojis selon son niveau de boost.
-- Les emojis animés comptent dans une limite séparée.
-- Le nom ne doit contenir que des lettres, chiffres et underscores.
+- The URL must point directly vers an image (extension .png, .jpg, .gif).
+- The server a une limit d'emojis selon son level de boost.
+- Les emojis animés comptent dans une limit separatede.
+- The name ne must contain only lettres, chiffres and underscores.

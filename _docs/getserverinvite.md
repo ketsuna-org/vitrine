@@ -5,45 +5,45 @@ translation_key: docs
 category: "Moderation"
 function_name: getServerInvite
 syntax: $getServerInvite[(guildID)]
-description: Génère ou retourne une invitation permanente pour le serveur. Si aucun ID n'est fourni, crée une invitation pour le serveur courant.
+description: Generates or retourne une invite permanent for the server. Si no ID n'est fourni, crée une invite for the server courant.
 ---
 
 # $getServerInvite
 
-La fonction `$getServerInvite[]` permet de **générer ou récupérer une invitation** pour un serveur Discord.
+The function `$getServerInvite[]` allows **générer or récupérer une invite** for a server Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $getServerInvite[(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `guildID` | Optionnel - ID du serveur. Défaut : serveur où la commande est exécutée. |
+| `guildID` | Optional - ID of the server. Default: server où the command est executed. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String (URL)
-- L'URL d'invitation du serveur (format `https://discord.gg/CODE`).
-- Chaîne vide si le bot n'a pas la permission `CREATE_INSTANT_INVITE`.
+- The URL d'invite of the server (format `https://discord.gg/CODE`).
+- String vide si the bot n'a pas la permission `CREATE_INSTANT_INVITE`.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `CREATE_INSTANT_INVITE` sur le serveur cible.
-- L'invitation créée est généralement permanente (sans expiration).
-- Si une invitation existe déjà, elle peut être réutilisée.
+- The bot doit avoir la permission `CREATE_INSTANT_INVITE` on the server cible.
+- L'invite createde est generally permanent (without expiration).
+- Si une invite existe déjà, elle can be réutilisée.
 
-## Exemples
+## Examples
 
-### Lien d'invitation serveur
+### Link d'invite server
 
 ```bdfd
-$title[🌐 Invitation serveur]
+$title[🌐 Invite server]
 $description[
-Voici le lien d'invitation pour **$serverName** :
+Voici le link d'invite pour **$serverName** :
 
 ```
 $getServerInvite
@@ -56,7 +56,7 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Afficher dans un message de bienvenue
+### Afficher in a message de bienvenue
 
 ```bdfd
 $title[👋 Bienvenue sur $serverName !]
@@ -64,21 +64,21 @@ $description[
 **Invite tes amis :**
 $getServerInvite
 
-Nous sommes maintenant **$membersCount** membres !
+Nous sommes now **$membersCount** members !
 ]
 $color[#57F287]
 $sendMessage[]
 ```
 
-### Information serveur complète
+### Information server complete
 
 ```bdfd
-$title[📊 Informations du serveur]
+$title[📊 Informations of the server]
 $description[
 **Nom :** $serverName
-**Membres :** $membersCount
-**Boost :** Niveau $boostLevel
-**Invitation :** $getServerInvite
+**Members :** $membersCount
+**Boost :** Level $boostLevel
+**Invite :** $getServerInvite
 ]
 $thumbnail[$serverIcon]
 $color[#5865F2]
@@ -87,6 +87,6 @@ $sendMessage[]
 
 ## Notes
 
-- L'invitation créée utilise le canal où la commande est exécutée (ou le canal système).
-- Pour inviter le bot lui-même, utilisez `$getBotInvite[]`.
-- Pour obtenir des informations sur une invitation, utilisez `$getInviteInfo[]`.
+- L'invite createde utilise le canal où the command est executed (or le canal système).
+- Pour inviter the bot lui-même, utilisez `$getBotInvite[]`.
+- Pour obtenir des informations sur une invite, utilisez `$getInviteInfo[]`.

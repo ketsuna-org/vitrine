@@ -5,47 +5,47 @@ translation_key: docs
 category: "Math & Text"
 function_name: isInteger
 syntax: $isInteger[value]
-description: Vérifie si une valeur est un nombre entier (positif, négatif ou zéro).
+description: Checks if une value est un integer (positif, négatif or zéro).
 ---
 
 # $isInteger
 
-La fonction `$isInteger[value]` **vérifie si une valeur est un nombre entier** (sans décimale). Elle accepte les entiers positifs, négatifs et zéro.
+The function `$isInteger[value]` **vérifie if ae value est un integer** (without decimale). Elle accepte les integers positifs, négatifs and zéro.
 
-## Syntaxe
+## Syntax
 
 ```
 $isInteger[value]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `value` | La valeur à tester. |
+| `value` | The value à tester. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Booléen
-- `true` si `value` est un entier (ex: `42`, `-7`, `0`)
-- `false` si `value` est un décimal, du texte, ou vide.
+- **Type** : Boolean
+- `true` si `value` est un integer (ex: `42`, `-7`, `0`)
+- `false` si `value` est un decimal, du text, or vide.
 
-## Comportement
+## Behavior
 
-- Les nombres à virgule (`3.14`, `2.0`) retournent `false`.
-- Les entiers en notation scientifique ne sont pas reconnus.
-- `0` est un entier valide.
-- Les espaces autour du nombre peuvent invalider le test.
+- Les numbers à virgule (`3.14`, `2.0`) retournent `false`.
+- Les integers en notation scientifique are not reconnus.
+- `0` est un integer valid.
+- Les espaces autour du number peuvent invalidr le test.
 
-## Exemples
+## Examples
 
-### Validation d'un paramètre
+### Validation d'un parameter
 
 ```bdfd
 $if[$isInteger[$message[1]]==true]
-  $sendMessage[✅ $message[1] est un entier valide.]
+  $sendMessage[✅ $message[1] est un integer valid.]
 $else
-  $sendMessage[❌ Veuillez fournir un nombre entier.]
+  $sendMessage[❌ Veuillez fournir un integer.]
 $endif
 ```
 
@@ -57,23 +57,23 @@ $if[$isInteger[$var[page]]==true]
   $if[$var[page]>=1]
     $sendMessage[📄 Affichage de la page $var[page]...]
   $else
-    $sendMessage[❌ La page doit être >= 1.]
+    $sendMessage[❌ La page must be >= 1.]
   $endif
 $else
-  $sendMessage[❌ Paramètre invalide. Usage: !page <nombre>]
+  $sendMessage[❌ Parameter invalid. Usage: !page <number>]
 $endif
 ```
 
-### Compteur personnalisé
+### Compteur custom
 
 ```bdfd
-$var[nombre;$message[1]]
-$if[$isInteger[$var[nombre]]==true]
-  $for[i;1;$var[nombre];1]
+$var[number;$message[1]]
+$if[$isInteger[$var[number]]==true]
+  $for[i;1;$var[number];1]
     Compteur : $for[i]
   $endfor
 $else
-  $sendMessage[Veuillez entrer un entier.]
+  $sendMessage[Veuillez entrer un integer.]
 $endif
 ```
 
@@ -83,4 +83,4 @@ $endif
 - `$isInteger[-10]` retourne `true`.
 - `$isInteger[3.14]` retourne `false`.
 - `$isInteger[abc]` retourne `false`.
-- Pour accepter aussi les décimaux, utilisez `$isNumber[]`.
+- Pour accepter also les décimaux, utilisez `$isNumber[]`.

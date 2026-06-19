@@ -5,41 +5,41 @@ translation_key: docs
 category: "Entity Info"
 function_name: isTimedOut
 syntax: $isTimedOut
-description: Retourne "true" si l'utilisateur est actuellement en timeout (silencé temporairement) sur le serveur, "false" sinon.
+description: Returns "true" si the user est currentlement en timeout (silencé temporaryment) on the server, "false" otherwise.
 ---
 
 # $isTimedOut
 
-La variable `$isTimedOut` retourne `"true"` si l'utilisateur est actuellement en **timeout** (silence temporaire) sur le serveur.
+The variable `$isTimedOut` retourne `"true"` si the user est currentlement en **timeout** (silence temporary) on the server.
 
-## Syntaxe
+## Syntax
 
 ```
 $isTimedOut
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne `"true"` ou `"false"`
-- `"true"` : l'utilisateur est en timeout
-- `"false"` : l'utilisateur n'est pas en timeout
+- **Type** : String `"true"` or `"false"`
+- `"true"` : the user est en timeout
+- `"false"` : the user is not en timeout
 
-## Comportement
+## Behavior
 
-- `$isTimedOut` ne prend **aucun argument**.
-- Le timeout est une fonctionnalité Discord qui empêche temporairement un membre de parler/envoyer des messages.
-- La durée du timeout est définie par les modérateurs (jusqu'à 28 jours).
+- `$isTimedOut` ne prend **no argument**.
+- Le timeout est une functionnalité Discord qui empêche temporaryment un member de parler/envoyer des messages.
+- The duration du timeout est définie par les modérateurs (until 28 days).
 
-## Exemples
+## Examples
 
-### Bloquer les commandes pour utilisateurs en timeout
+### Bloquer les commands pour users en timeout
 
 ```bdfd
 $if[$isTimedOut==true]
-  $sendMessage[⏳ Vous êtes actuellement en timeout. Veuillez patienter.]
+  $sendMessage[⏳ Vous êtes currentlement en timeout. Veuillez patienter.]
   $stop
 $endif
-$sendMessage[Commande exécutée avec succès !]
+$sendMessage[Command executed avec success !]
 ```
 
 ### Vérification de modération
@@ -47,7 +47,7 @@ $sendMessage[Commande exécutée avec succès !]
 ```bdfd
 $title[Vérification timeout]
 $description[
-**Utilisateur :** $userName
+**User :** $userName
 **En timeout :** $isTimedOut
 ]
 $color[#ED4245]
@@ -56,6 +56,6 @@ $sendMessage[]
 
 ## Notes
 
-- Le timeout est une sanction **temporaire** (maximum 28 jours).
-- Un utilisateur en timeout ne peut pas envoyer de messages, rejoindre de salons vocaux, ni réagir.
-- Utile pour empêcher les utilisateurs sanctionnés d'utiliser les commandes du bot.
+- Le timeout est une sanction **temporary** (maximum 28 days).
+- Un user en timeout ne peut pas envoyer de messages, rejoindre de channels vocaux, ni réagir.
+- Utile pour empêcher les users sanctionnés d'utiliser les commands of the bot.

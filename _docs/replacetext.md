@@ -21,7 +21,7 @@ $replaceText[input;search;replacement]
 
 - **input** *(string, required)* — The text to operate on. Can be a literal string, a variable, or any expression resolving to text.
 - **search** *(string, required)* — The exact substring to find. Case-sensitive. Matches are literal, not regex.
-- **replacement** *(string, required)* — The string to insert in place of each match. Pass an empty value to remove occurrences.
+- **replacement** *(string, required)* — The string to inserves in place of each match. Pass an empty value to remove occurrences.
 
 ## Return Value
 
@@ -89,4 +89,4 @@ $var[clean;$replaceText[$getUserVar[rawText];\n;, ]]
 - **Case-sensitive**: `$replaceText[Hello;h;H]` will NOT replace — `h` ≠ `H`.
 - **Global replacement**: All occurrences are replaced, not just the first.
 - **Literal only**: No regex support. The search string is matched exactly.
-- **Order matters in chaining**: Nest `$replaceText` calls carefully when doing multiple replacements, as earlier replacements may affect later ones.
+- **Order matters in chaining**: Nest `$replaceText` calls becauseefully when doing multiple replacements, as earlier replacements may affect later ones.

@@ -5,54 +5,54 @@ translation_key: docs
 category: "Moderation"
 function_name: getBanReason
 syntax: $getBanReason[userID]
-description: Récupère la raison de bannissement d'un utilisateur banni sur le serveur. Retourne la raison stockée dans la liste des bannissements du serveur.
+description: Gets the reason de ban of a user banni on the server. Returns the reason stockée in the list des bans of the server.
 ---
 
 # $getBanReason
 
-La fonction `$getBanReason[]` permet de **récupérer la raison de bannissement** d'un utilisateur banni sur le serveur courant.
+The function `$getBanReason[]` allows **récupérer la reason de ban** of a user banni on the server courant.
 
-## Syntaxe
+## Syntax
 
 ```
 $getBanReason[userID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur banni. |
+| `userID` | The ID of the user banni. |
 
-## Valeur de retour
+## Return Value
 
 - **Type** : String
-- La raison du bannissement telle qu'enregistrée par Discord.
-- Chaîne vide si l'utilisateur n'est pas banni ou si aucune raison n'a été spécifiée.
+- La ban reason telle qu'enregistrée par Discord.
+- String vide si the user is not banni or si noe reason n'was spécifiée.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `BAN_MEMBERS` pour voir les raisons de bannissement.
-- La raison retournée est celle fournie lors du bannissement (via `$ban[userID;raison]`).
-- Si l'utilisateur n'est pas banni, retourne une chaîne vide.
+- The bot doit avoir la permission `BAN_MEMBERS` pour voir les reasons de ban.
+- La reason retournée est celle fournie lors du ban (via `$ban[userID;reason]`).
+- Si the user is not banni, retourne une string vide.
 
-## Exemples
+## Examples
 
 ### Vérification de ban
 
 ```bdfd
 $let[reason;$getBanReason[$mentioned[1]]]
 $if[$reason!=]
-  $title[🔨 Utilisateur banni]
+  $title[🔨 User banni]
   $description[
-  **Utilisateur :** $userName[$mentioned[1]]
+  **User :** $userName[$mentioned[1]]
   **ID :** $mentioned[1]
-  **Raison :** $reason
+  **Reason :** $reason
   ]
   $color[#ED4245]
   $sendMessage[]
 $else
-  $sendMessage[Cet utilisateur n'est pas banni.]
+  $sendMessage[Cet user is not banni.]
 $endif
 ```
 
@@ -60,17 +60,17 @@ $endif
 
 ```bdfd
 $let[reason;$getBanReason[$userID]]
-$title[📋 Détails du bannissement]
+$title[📋 Détails du ban]
 $description[
-**Utilisateur :** $userName[$userID] ($userID)
-**Raison du ban :** $reason
+**User :** $userName[$userID] ($userID)
+**Reason du ban :** $reason
 **Vérifié le :** $date[$day]/$date[$month]/$date[$year]
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Commande de vérification
+### Command de vérification
 
 ```bdfd
 $if[$checkContains[$userPerms;BanMembers]==true]
@@ -78,12 +78,12 @@ $if[$checkContains[$userPerms;BanMembers]==true]
   $if[$target!=]
     $let[reason;$getBanReason[$target]]
     $if[$reason!=]
-      $sendMessage[**$userName[$target]** est banni. Raison : $reason]
+      $sendMessage[**$userName[$target]** est banni. Reason : $reason]
     $else
-      $sendMessage[**$userName[$target]** n'est pas banni.]
+      $sendMessage[**$userName[$target]** is not banni.]
     $endif
   $else
-    $sendMessage[Utilisateur introuvable.]
+    $sendMessage[User introuvable.]
   $endif
 $else
   $sendMessage[Permission refusée.]
@@ -92,7 +92,7 @@ $endif
 
 ## Notes
 
-- La raison est stockée par Discord et persistante.
-- Utile pour les logs de modération et la transparence.
-- Seuls les utilisateurs avec `BAN_MEMBERS` peuvent voir les raisons.
-- Fonctionne uniquement sur le serveur courant.
+- La reason est stockée par Discord and persistante.
+- Utile for the logs de modération and la transparence.
+- Seuls les users avec `BAN_MEMBERS` peuvent voir les reasons.
+- Functionne only on the server courant.

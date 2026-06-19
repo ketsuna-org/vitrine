@@ -5,37 +5,37 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandType
 syntax: $commandType
-description: Retourne le type de la commande en cours (prefix ou slash).
+description: Returns the type of the command in progress (prefix or slash).
 ---
 
 # $commandType
 
-La fonction `$commandType` **retourne le type de la commande en cours** : `prefix` pour les commandes textuelles classiques, `slash` pour les commandes slash Discord.
+The `$commandType` function **returns the type of the command in progress** : `prefix` for commands textuelles classiques, `slash` for commands slash Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $commandType
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- `prefix` : commande déclenchée par un préfixe texte (`!`, `?`, etc.).
-- `slash` : commande déclenchée via l'interface slash Discord (`/`).
+- `prefix` : command déclenchée par un préfixe text (`!`, `?`, etc.).
+- `slash` : command déclenchée via the interface slash Discord (`/`).
 
-## Comportement
+## Behavior
 
-- Permet d'adapter le comportement selon le type d'invocation.
-- Équivalent fonctionnel à `$if[$isSlash==true]slash$elseprefix$endif`.
+- Allows adapter le behavior selon the type d'invocation.
+- Équivaslow functionnel à `$if[$isSlash==true]slash$elseprefix$endif`.
 
-## Exemples
+## Examples
 
-### Réponse adaptative
+### Response adaptative
 
 ```bdfd
 $if[$commandType==slash]
@@ -58,33 +58,33 @@ $endif
 ### Aide contextuelle
 
 ```bdfd
-$title[⚙️ Détails de la commande]
+$title[⚙️ Détails of the command]
 $addField[Nom;$commandName;yes]
 $addField[Trigger;$commandTrigger;yes]
 $addField[Type;$if[$commandType==slash]🔹 Slash$else🔸 Prefix$endif;yes]
-$addField[Dossier;$commandFolder;yes]
+$addField[Folder;$commandFolder;yes]
 $footer[Langage : $scriptLanguage]
 $sendMessage[]
 ```
 
-### Commande hybride avec arguments
+### Command hybride avec arguments
 
 ```bdfd
-;; Récupération des arguments selon le type
+;; Récupération des arguments selon the type
 $if[$commandType==slash]
   $var[arg1;$slashOption[cible]]
-  $var[arg2;$slashOption[raison]]
+  $var[arg2;$slashOption[reason]]
 $else
   $var[arg1;$message[1]]
   $var[arg2;$message[2]]
 $endif
 
-$sendMessage[🎯 Cible : $var[arg1] | Raison : $var[arg2]]
+$sendMessage[🎯 Cible : $var[arg1] | Reason : $var[arg2]]
 ```
 
 ## Notes
 
-- Valeurs possibles : `prefix` ou `slash`.
-- Pour un test booléen simple, utilisez `$isSlash`.
-- Les réponses éphémères (`$sendEphemeral[]`) ne fonctionnent qu'en type `slash`.
-- Le type est défini dans la console BDFD lors de la création de la commande.
+- Values possibles : `prefix` or `slash`.
+- Pour un test boolean simple, use `$isSlash`.
+- Les responses éphémères (`$sendEphemeral[]`) ne functionnent qu'en type `slash`.
+- The type est set in the console BDFD during la création of the command.

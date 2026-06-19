@@ -5,58 +5,58 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelPosition
 syntax: $channelPosition[(channelID)]
-description: Retourne la position d'un salon dans la liste des salons Discord.
+description: Returns the position of a channel in the list of channels Discord.
 ---
 
 # $channelPosition
 
-La fonction `$channelPosition` retourne la **position** d'un salon dans la liste des salons du serveur. La position `0` correspond au salon le plus haut, et les nombres augmentent en descendant.
+The `$channelPosition` function returns the **position** of a channel in the list of channels of the server. The position `0` correspond au channel the most haut, and les numbers augmentent en descendant.
 
-## Syntaxe
+## Syntax
 
 ```
 $channelPosition[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel. L'ID du salon cible. Si omis, le salon courant est utilisé. |
+| `channelID` | Optional. The ID of the channel cible. If omitted, the channel courant is used. |
 
-## Valeur de retour
+## Return value
 
 | Type | Description |
 |---|---|
-| `integer` | La position du salon dans la liste (0 = tout en haut). |
+| `integer` | The position of the channel in the list (0 = tout at the top). |
 
-## Exemples
+## Examples
 
-### Afficher la position
+### Afficher the position
 
 ```bdfd
-$sendMessage[Ce salon est en position $channelPosition]
+$sendMessage[Ce channel est en position $channelPosition]
 ```
 
 ### Comparer les positions
 
 ```bdfd
 $if[$channelPosition==0]
-  $sendMessage[Ce salon est tout en haut du serveur !]
+  $sendMessage[Ce channel est tout at the top of the server !]
 $else
-  $sendMessage[Ce salon est en position #$channelPosition]
+  $sendMessage[Ce channel est en position #$channelPosition]
 $endif
 ```
 
-### Salon le plus haut d'une catégorie
+### Channel the most haut d'une catégorie
 
 ```bdfd
-$sendMessage[Position dans la catégorie : $channelPosition]
+$sendMessage[Position in the catégorie : $channelPosition]
 ```
 
 ## Notes
 
-- La position est relative à l'ordre d'affichage dans Discord.
+- The position est relative à the order d'affichage dans Discord.
 - Les catégories ont leur propre système de positionnement.
-- La position peut changer si un administrateur réorganise les salons.
-- Les salons sont triés par position au sein de leur catégorie parente.
+- The position peut changer if a administrator réorganise les channels.
+- Les channels sont sorteds par position within leur catégorie parente.

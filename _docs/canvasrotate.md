@@ -10,32 +10,32 @@ description: Fait pivoter le canvas d'un angle donné en degrés.
 
 # $canvasRotate
 
-La fonction `$canvasRotate[degrees]` **fait pivoter le canvas courant** d'un angle spécifié en degrés. Le canvas est automatiquement redimensionné pour contenir l'image entière après rotation.
+The `$canvasRotate[degrees]` function **fait pivoter le canvas courant** d'un angle spécifié en degrés. The canvas est automatically redimensionné to contain the image entière after rotation.
 
-## Syntaxe
+## Syntax
 
 ```
 $canvasRotate[degrees]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `degrees` | Angle de rotation en degrés. Valeurs positives = sens horaire. Valeurs négatives = sens antihoraire. |
+| `degrees` | Angle de rotation en degrés. Values positives = sens horaire. Values négatives = sens antihoraire. |
 
-## Valeur de retour
+## Return value
 
-Aucune. Le canvas est pivoté et redimensionné si nécessaire.
+None. The canvas est pivoté and redimensionné if necessary.
 
-## Comportement
+## Behavior
 
-- La rotation se fait autour du centre du canvas.
-- Le canvas est automatiquement élargi pour éviter de couper l'image.
-- Les pixels en dehors de l'image originale deviennent transparents.
-- Les valeurs d'angle sont normalisées modulo 360.
+- La rotation se fait autour du cbetween du canvas.
+- Le canvas est automatically élargi pour éviter de couper the image.
+- Les pixels en dehors of the image originale deviennent transparents.
+- Les values d'angle sont normalisées modulo 360.
 
-## Exemples
+## Examples
 
 ### Rotation simple à 90°
 
@@ -46,7 +46,7 @@ $attachCanvas[]
 $sendMessage[↪️ Image pivotée de 90° !]
 ```
 
-### Retournement complet (180°)
+### Returnsment complete (180°)
 
 ```bdfd
 $canvasLoad[$attachment]
@@ -64,17 +64,17 @@ $attachCanvas[]
 $sendMessage[↩️ Rotation antihoraire de 45° !]
 ```
 
-### Rotation contrôlée par l'utilisateur
+### Rotation contrôlée par the user
 
 ```bdfd
 $canvasLoad[$attachment]
 $canvasRotate[$message[1]]
 $attachCanvas[]
-$sendMessage[L'image a été pivotée de $message[1]° !]
+$sendMessage[L'image has been pivotée de $message[1]° !]
 ```
 
 ## Notes
 
-- Le canvas doit avoir été créé ou chargé avant rotation.
-- La rotation à 90°, 180° ou 270° est optimisée et ne dégrade pas la qualité.
+- Le canvas must have été created or loaded before rotation.
+- La rotation à 90°, 180° or 270° est optimisée and ne dégrade not the qualité.
 - Les rotations non-orthogonales (ex: 45°) nécessitent un rééchantillonnage.

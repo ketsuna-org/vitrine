@@ -5,40 +5,40 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: debug
 syntax: $debug
-description: Active le mode debug pour la commande en cours. Affiche des informations de diagnostic dans la console ou les logs BDFD.
+description: Enables the mode debug for the command in progress. Displays des informations de diagnostic in the console or les logs BDFD.
 ---
 # $debug
 
-La fonction `$debug` **active le mode debug** pour l'exécution de la commande en cours.
+The `$debug` function **enables the mode debug** for the execution of the command in progress.
 
-## Syntaxe
+## Syntax
 
 ```
 $debug
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
-Aucune.
+None.
 
-## Comportement
+## Behavior
 
-- Une fois activé, BDFD affiche des informations de diagnostic supplémentaires.
-- Aide à tracer les erreurs, les valeurs de variables, et le flux d'exécution.
-- Le mode debug est désactivé automatiquement à la fin de la commande.
+- Une fois enabled, BDFD displays des informations de diagnostic supplémentaires.
+- Aide à tracer the errors, les values de variables, and the flux d'execution.
+- Le mode debug is disabled automatically to the end of the command.
 
-## Exemples
+## Examples
 
 ### Debug simple
 
 ```bdfd
 $debug
 $let[result;$calculate[2+2]]
-$sendMessage[Résultat : $result]
+$sendMessage[Result : $result]
 ```
 
 ### Debug conditionnel
@@ -47,10 +47,10 @@ $sendMessage[Résultat : $result]
 $if[$message[1]==--debug]
   $debug
 $endif
-$sendMessage[Debug activé pour cette exécution.]
+$sendMessage[Debug enabled pour cette execution.]
 ```
 
-### Debug dans une commande complexe
+### Debug dans une command complex
 
 ```bdfd
 $debug
@@ -61,5 +61,5 @@ $sendMessage[XP : $userData]
 ## Notes
 
 - Le debug consomme des ressources de log ; ne l'activez pas en production.
-- Combinez avec `$log[]` pour des logs personnalisés.
+- Combinez avec `$log[]` pour des logs customs.
 - Utile pour résoudre les comportements inattendus.

@@ -5,38 +5,38 @@ translation_key: docs
 category: "Moderation"
 function_name: unpinMessage
 syntax: $unpinMessage[messageID]
-description: Retire un message épinglé de la liste des messages épinglés du canal.
+description: Retire un message épinglé de la list des messages épinglés du canal.
 ---
 
 # $unpinMessage
 
-La fonction `$unpinMessage[]` permet de **retirer un message de la liste des messages épinglés** d'un canal.
+The function `$unpinMessage[]` allows **retirer un message de la list des messages épinglés** d'un canal.
 
-## Syntaxe
+## Syntax
 
 ```
 $unpinMessage[messageID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `messageID` | L'ID du message à désépingler. |
+| `messageID` | The ID of the message à désépingler. |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur.
+This function ne retourne pas de value.
 
-## Comportement
+## Behavior
 
-- Le bot doit avoir la permission `MANAGE_MESSAGES`.
-- Le message n'est pas supprimé, seulement retiré des épingles.
-- Si le message n'est pas épinglé, rien ne se passe.
+- The bot doit avoir la permission `MANAGE_MESSAGES`.
+- The message is not deleted, only retiré des épingles.
+- Si the message is not épinglé, rien ne se passe.
 
-## Exemples
+## Examples
 
-### Désépingler après action
+### Désépingler after action
 
 ```bdfd
 $unpinMessage[$noMentionMessage]
@@ -47,14 +47,14 @@ $sendMessage[Message désépinglé.]
 
 ```bdfd
 $unpinMessage[$messageID]
-$editMessage[Ce message n'est plus d'actualité.]
+$editMessage[This message n'est plus d'actualité.]
 ```
 
 ### Rotation d'annonces
 
 ```bdfd
 $unpinMessage[$oldAnnouncementID]
-$title[Nouvelle annonce]
+$title[New annonce]
 $description[$noMentionMessage]
 $sendMessage[]
 $pinMessage[$messageID]
@@ -62,6 +62,6 @@ $pinMessage[$messageID]
 
 ## Notes
 
-- Les utilisateurs ne sont pas notifiés lorsqu'un message est désépinglé.
-- Un message peut être ré-épinglé après avoir été désépinglé.
+- Les users are not notifiés when a message est désépinglé.
+- Un message can be ré-épinglé after avoir été désépinglé.
 - Combinez avec `$pinMessage[]` pour gérer les annonces tournantes.

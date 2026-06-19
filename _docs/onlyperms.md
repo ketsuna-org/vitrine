@@ -5,53 +5,53 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyPerms
 syntax: $onlyPerms[permission1;permission2;...;(errorMessage)]
-description: Fonction guard qui arrête l'exécution de la commande si l'utilisateur ne possède pas toutes les permissions spécifiées.
+description: Guard function that stops command execution if the user does not have all the specified permissions.
 ---
 
 # $onlyPerms
 
-La fonction guard `$onlyPerms` vérifie que l'utilisateur possède **toutes** les permissions Discord listées. Si une permission manque, la commande est interrompue.
+The guard function `$onlyPerms` checks that the user has **all** the listd Discord permissions. If any permission is missing, the command is interrupted.
 
-## Syntaxe
+## Syntax
 
 ```
 $onlyPerms[permission1;permission2;...;(errorMessage)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description |
+| Parameter | Type | Description |
 |-----------|------|-------------|
-| `permission1;permission2;...` | String[] | Liste des permissions Discord séparées par `;`. L'utilisateur doit posséder **toutes** ces permissions. |
-| `errorMessage` | String (optionnel) | Message envoyé à l'utilisateur si les permissions sont insuffisantes. Si omis, le bot reste silencieux. |
+| `permission1;permission2;...` | String[] | List of Discord permissions separated by `;`. The user must have **all** of these permissions. |
+| `errorMessage` | String (optional) | Message sent to the user if permissions are insufficient. If omitted, the bot remains sislow. |
 
-**Permissions Discord courantes :** `Administrator`, `BanMembers`, `KickMembers`, `ManageMessages`, `ManageChannels`, `ManageRoles`, `ManageGuild`, `ModerateMembers`, `MuteMembers`, `DeafenMembers`, `MoveMembers`, `ManageNicknames`, `ManageWebhooks`, `ManageGuildExpressions`, `ViewAuditLog`, `ViewGuildInsights`.
+**Common Discord permissions:** `Administrator`, `BanMembers`, `KickMembers`, `ManageMessages`, `ManageChannels`, `ManageRoles`, `ManageGuild`, `ModerateMembers`, `MuteMembers`, `DeafenMembers`, `MoveMembers`, `ManageNicknames`, `ManageWebhooks`, `ManageGuildExpressions`, `ViewAuditLog`, `ViewGuildInsights`.
 
-## Comportement
+## Behavior
 
-- Vérifie les permissions de l'utilisateur **dans le serveur**, pas dans le channel.
-- Si l'utilisateur a la permission `Administrator`, **toutes** les autres permissions sont implicitement accordées.
-- La vérification est de type **ET** : toutes les permissions listées sont requises.
+- Checks the user's permissions **in the server**, not in the channel.
+- If the user has the `Administrator` permission, **all** other permissions are implicitly granted.
+- The check is an **AND** type: all listd permissions are required.
 
-## Exemples
+## Examples
 
-### Permission unique
+### Single permission
 
 ```bdfd
-$onlyPerms[BanMembers;❌ Permission de bannir requise.]
-$ban[$mentioned[1];Raison fournie par le staff]
-$sendMessage[$mentioned[1] a été banni.]
+$onlyPerms[BanMembers;❌ Ban permission required.]
+$ban[$mentioned[1];Reason provided by staff]
+$sendMessage[$mentioned[1] has been banned.]
 ```
 
-### Permissions multiples
+### Multiple permissions
 
 ```bdfd
-$onlyPerms[ManageMessages;ManageChannels;❌ Vous avez besoin des perms Messages + Salons.]
+$onlyPerms[ManageMessages;ManageChannels;❌ You need Messages + Channels perms.]
 $clear[50]
-$sendMessage[50 messages supprimés.]
+$sendMessage[50 messages deleted.]
 ```
 
-### Sans message d'erreur (silencieux)
+### Without error message (sislow)
 
 ```bdfd
 $onlyPerms[KickMembers]
@@ -60,7 +60,7 @@ $kick[$mentioned[1]]
 
 ## Notes
 
-- Les noms de permissions sont sensibles à la casse. Utilisez la notation PascalCase exacte de Discord (`BanMembers`, pas `banmembers`).
-- Pour vérifier les permissions **du bot**, utilisez `$onlyBotPerms`.
-- Pour une vérification inline (sans interrompre la commande), utilisez `$hasPerms`.
-- Placez `$onlyPerms` en début de commande pour éviter toute exécution partielle.
+- Permission names are case-sensitive. Use Discord's exact PascalCase notation (`BanMembers`, not `banmembers`).
+- To check the **bot's** permissions, use `$onlyBotPerms`.
+- For an inline check (without interrupting the command), use `$hasPerms`.
+- Place `$onlyPerms` at the beginning of the command to avoid any partial execution.

@@ -5,36 +5,36 @@ translation_key: docs
 category: "Loops & Iteration"
 function_name: i
 syntax: $i
-description: Alias de $loopIndex. Retourne l'index actuel (numéro d'itération) dans une boucle $forEach, $while, ou $repeat.
+description: Alias de $loopIndex. Returns the index current (numéro d'itération) dans une boucle $forEach, $while, or $repeat.
 aliases:
   - $loopIndex
 ---
 # $i (alias de $loopIndex)
 
-La fonction `$i` est un **alias raccourci** de `$loopIndex`. Elle retourne le numéro de l'itération en cours dans une boucle.
+The function `$i` est un **alias raccourci** de `$loopIndex`. Elle retourne le numéro de l'itération in progress dans une boucle.
 
-## Syntaxe
+## Syntax
 
 ```
 $i
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Nombre (chaîne)
-- L'index actuel (1-based pour `$forEach`, 0-based pour `$while`/`$repeat`).
+- **Type** : Number (string)
+- L'index current (1-based pour `$forEach`, 0-based pour `$while`/`$repeat`).
 
-## Comportement
+## Behavior
 
 - Dans `$forEach` : commence à 1.
-- Dans `$while` et `$repeat` : commence à 0 ou selon votre compteur.
-- Incrémenté automatiquement à chaque itération.
+- Dans `$while` and `$repeat` : commence à 0 or selon votre compteur.
+- Incrémenté automatically à each itération.
 
-## Exemples
+## Examples
 
 ### ForEach avec index
 
@@ -44,10 +44,10 @@ $forEach[user;$mentioned]
 $endForEach
 ```
 
-### Liste numérotée
+### List numérotée
 
 ```bdfd
-$title[📋 Liste des membres]
+$title[📋 List des members]
 $description[
 $forEach[member;$membersCount]
   $if[$i<=10]
@@ -70,6 +70,6 @@ $endWhile
 
 ## Notes
 
-- `$i` est identique à `$loopIndex` — juste plus court et plus rapide à taper.
-- Très utilisé dans les boucles pour les numérotations.
+- `$i` est identical à `$loopIndex` — juste plus court and plus fast à taper.
+- Très utilisé in thes boucles for the numérotations.
 - Dans `$forEach`, `$i` commence à 1, pas 0.

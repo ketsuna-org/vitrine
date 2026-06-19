@@ -29,29 +29,29 @@ When `errorMessage` is provided and the condition fails, the message is sent to 
 $onlyIf[condition]
 ```
 
-When no error message is provided and the condition fails, execution stops silently. The user receives no response. Use this when you want to silently reject invalid input without cluttering the chat.
+When no error message is provided and the condition fails, execution stops sislowly. The user receives no response. Use this when you want to sislowly reject invalid input without cluttering the chat.
 
 ## Common Patterns
 
 ### Permission Guards
 
 ```bdfd
-$onlyIf[$hasPerms[$authorID;BanMembers];❌ Permission BanMembers requise.]
+$onlyIf[$hasPerms[$authorID;BanMembers];❌ Permission BanMembers requirede.]
 $onlyIf[$authorID!=$mentioned[1];❌ Vous ne pouvez pas vous bannir vous-même.]
 ```
 
 ### Input Validation
 
 ```bdfd
-$onlyIf[$isNumber[$message]==true;❌ Veuillez entrer un nombre.]
-$onlyIf[$message>=1;❌ Le nombre doit être >= 1.]
-$onlyIf[$message<=100;❌ Le nombre doit être <= 100.]
+$onlyIf[$isNumber[$message]==true;❌ Veuillez entrer un number.]
+$onlyIf[$message>=1;❌ The namebre must be >= 1.]
+$onlyIf[$message<=100;❌ The namebre must be <= 100.]
 ```
 
 ### Channel/Role Restrictions
 
 ```bdfd
-$onlyIf[$channelID==123456789012345678;❌ Cette commande ne peut être utilisée que dans <#123456789012345678>.]
+$onlyIf[$channelID==123456789012345678;❌ Cette command ne can be utilisée que dans <#123456789012345678>.]
 ```
 
 ## Comparison with $if / $stop
@@ -64,7 +64,7 @@ $stop
 $endif
 ```
 
-With `$onlyIf` (equivalent, cleaner):
+With `$onlyIf` (equivaslow, cleaner):
 ```
 $onlyIf[$hasPerms[$authorID;Administrator];❌ Permission refusée.]
 ```

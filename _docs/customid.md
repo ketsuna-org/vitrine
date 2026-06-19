@@ -5,33 +5,33 @@ translation_key: docs
 category: "Components"
 function_name: customID
 syntax: $customID
-description: Retourne l'ID personnalisé (customId) du composant d'interaction qui a déclenché le callback (bouton, select menu, modal). S'utilise dans $onInteraction.
+description: Returns the ID custom (customId) du composant d'interaction qui a déclenché le callback (bouton, select menu, modal). S'utilise dans $onInteraction.
 ---
 # $customID
 
-La fonction `$customID` retourne le **customId** du composant (bouton, select menu, modal) qui a déclenché une interaction.
+The `$customID` function returns the **customId** du composant (bouton, select menu, modal) qui a déclenché une interaction.
 
-## Syntaxe
+## Syntax
 
 ```
 $customID
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
-- **Type** : Chaîne
-- Le customId défini lors de la création du composant.
+- **Type** : String
+- Le customId set during la création du composant.
 
-## Comportement
+## Behavior
 
 - Doit être utilisé dans un callback `$onInteraction`.
-- Permet de différencier quel bouton/menu a été utilisé.
+- Allows différencier quel bouton/menu has been utilisé.
 
-## Exemples
+## Examples
 
 ### Gestionnaire d'interaction
 
@@ -42,7 +42,7 @@ $if[$customID==accept]
 $elseIf[$customID==refuse]
   $sendMessage[Demande refusée.]
 $elseIf[$customID==info]
-  $sendMessage[Plus d'informations bientôt.]
+  $sendMessage[More information bientôt.]
 $endif
 ```
 
@@ -50,10 +50,10 @@ $endif
 
 ```bdfd
 $onInteraction
-$log[Interaction reçue — customID: $customID — par $username]
+$log[Interaction receivede — customID: $customID — par $username]
 ```
 
-### Switch dynamique
+### Switch dynamic
 
 ```bdfd
 $onInteraction
@@ -66,6 +66,6 @@ $switch[$customID;
 
 ## Notes
 
-- Équivalent fonctionnel à `$interactionData[customId]`.
-- Essentiel pour les systèmes de boutons et menus interactifs.
-- Le customId est défini par le développeur dans `$addButton[]`, `$addSelectMenu[]`, etc.
+- Équivaslow functionnel à `$interactionData[customId]`.
+- Essentiel for systèmes de buttons and menus interactifs.
+- Le customId est set par le développeur dans `$addButton[]`, `$addSelectMenu[]`, etc.

@@ -5,44 +5,44 @@ translation_key: docs
 category: "Date & Time"
 function_name: time
 syntax: $time
-description: Retourne l'heure actuelle au format HH:MM:SS. Résolu au runtime.
+description: Returns the hour currentle au format HH:MM:SS. Resolved au runtime.
 ---
 
 # $time[]
 
-La fonction `$time[]` retourne l'heure actuelle au format `HH:MM:SS` (heures:minutes:secondes).
+The function `$time[]` retourne l'hour currentle au format `HH:MM:SS` (hours:minutes:seconds).
 
-> **Important :** Cette fonction utilise l'identifiant spécial `((time))` qui est résolu au **runtime**, c'est-à-dire à chaque exécution de la commande.
+> **Important:** This function utilise l'identifier special `((time))` qui est resolved au **runtime**, it is-à-dire à each exécution of the command.
 
-## Syntaxe
+## Syntax
 
 ```
 $time
 ```
 
-> **Note :** Cette fonction ne prend aucun paramètre.
+> **Note :** This function ne prend no parameter.
 
-## Valeur de retour
+## Return Value
 
-Une chaîne de caractères au format `HH:MM:SS` (ex: `14:30:05`).
+A string de becauseactères au format `HH:MM:SS` (ex: `14:30:05`).
 
-## Exemples
+## Examples
 
-### Heure simple
+### Time simple
 
 ```bdfd
 Il est $time.
 ```
 
-### Embed avec l'heure
+### Embed with the hour
 
 ```bdfd
-$title[🕐 Horloge du serveur]
-$description[Heure actuelle : **$time**]
+$title[🕐 Horloge of the server]
+$description[Time currentle : **$time**]
 $footer[Format 24h]
 ```
 
-### Horodatage complet
+### Timestamp complete
 
 ```bdfd
 📅 $date à $time
@@ -50,6 +50,6 @@ $footer[Format 24h]
 
 ## Notes
 
-- `$time[]` est l'équivalent de `$hour:$minute:$second` en une seule fonction.
-- L'heure est basée sur le fuseau horaire du serveur exécutant le bot.
+- `$time[]` est l'équivaslow de `$hour:$minute:$second` en a single function.
+- L'hour est basée sur le fuseau horaire of the server exécutant the bot.
 - Pour un timestamp Unix, utilisez `$getTimestamp[]`.

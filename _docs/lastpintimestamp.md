@@ -5,40 +5,40 @@ translation_key: docs
 category: "Entity Info"
 function_name: lastPinTimestamp
 syntax: $lastPinTimestamp[(channelID)]
-description: Retourne le timestamp du dernier message épinglé dans le salon courant ou spécifié.
+description: Returns the timestamp du last message épinglé in the channel courant or spécifié.
 ---
 
 # $lastPinTimestamp
 
-La fonction `$lastPinTimestamp` retourne le **timestamp du dernier message épinglé** dans un salon Discord. Si aucun message n'est épinglé, elle retourne une chaîne vide.
+The function `$lastPinTimestamp` retourne le **timestamp du last message épinglé** dans un channel Discord. Si no message n'est épinglé, elle retourne une string vide.
 
-## Syntaxe
+## Syntax
 
 ```
 $lastPinTimestamp[(channelID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | Optionnel. L'ID du salon cible. Si omis, le salon courant est utilisé. |
+| `channelID` | Optional. The ID of the channel cible. Si omis, the channel courant is used. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` ou `""` | Timestamp en millisecondes du dernier pin, ou chaîne vide si aucun. |
+| `integer` or `""` | Timestamp en milliseconds du last pin, or string vide si no. |
 
-## Exemples
+## Examples
 
-### Afficher la date du dernier pin
+### Afficher la date du last pin
 
 ```bdfd
 $if[$lastPinTimestamp!=]
   $sendMessage[Dernier message épinglé le $formatDate[$lastPinTimestamp;DD/MM/YYYY à HH:mm]]
 $else
-  $sendMessage[Aucun message épinglé dans ce salon.]
+  $sendMessage[Aucun message épinglé dans ce channel.]
 $endif
 ```
 
@@ -50,16 +50,16 @@ $if[$lastPinTimestamp!=]
 $endif
 ```
 
-### Vérifier un autre salon
+### Vérifier un autre channel
 
 ```bdfd
 $if[$lastPinTimestamp[123456789012345678]!=]
-  $sendMessage[Le salon a des messages épinglés.]
+  $sendMessage[The channel a des messages épinglés.]
 $endif
 ```
 
 ## Notes
 
-- Le timestamp est en **millisecondes** (divisez par 1000 pour les secondes).
-- Retourne une chaîne vide (`""`) si aucun message n'est épinglé.
-- Utile pour vérifier l'activité d'épinglage dans un salon.
+- Le timestamp est en **milliseconds** (divisez par 1000 for the seconds).
+- Returns ae string vide (`""`) si no message n'est épinglé.
+- Utile pour vérifier l'activité d'épinglage dans un channel.

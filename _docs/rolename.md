@@ -5,62 +5,62 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleName
 syntax: $roleName[roleID;(guildID)]
-description: Retourne le nom d'un rôle Discord à partir de son ID.
+description: Returns the nom of a role Discord from son ID.
 ---
 
 # $roleName
 
-La fonction `$roleName` retourne le **nom** d'un rôle Discord à partir de son **ID**.
+The function `$roleName` retourne le **nom** of a role Discord from son **ID**.
 
-## Syntaxe
+## Syntax
 
 ```
 $roleName[roleID;(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `roleID` | L'ID du rôle. Obligatoire. |
-| `guildID` | Optionnel. L'ID du serveur cible. Si omis, le serveur courant. |
+| `roleID` | The ID of the role. Required. |
+| `guildID` | Optional. The ID of the server cible. Si omis, the server courant. |
 
-## Valeur de retour
+## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | Le nom du rôle (ex: `Admin`, `Modérateur`). |
+| `string` | The name of the role (ex: `Admin`, `Modérateur`). |
 
-## Exemples
+## Examples
 
-### Obtenir le nom d'un rôle
-
-```bdfd
-$sendMessage[Le rôle ID 123456789012345678 est : $roleName[123456789012345678]]
-```
-
-### Afficher le nom du premier rôle d'un utilisateur
+### Obtenir the name of a role
 
 ```bdfd
-$sendMessage[Votre premier rôle : $roleName[$getRole[$authorID;1]]]
+$sendMessage[The role ID 123456789012345678 est : $roleName[123456789012345678]]
 ```
 
-### Vérifier un nom de rôle
+### Afficher the name du first role of a user
+
+```bdfd
+$sendMessage[Votre first role : $roleName[$getRole[$authorID;1]]]
+```
+
+### Vérifier un nom de role
 
 ```bdfd
 $if[$roleName[123456789012345678]==Admin]
-  $sendMessage[Ceci est bien le rôle Admin.]
+  $sendMessage[Ceci est bien the role Admin.]
 $endif
 ```
 
-### Dans un autre serveur
+### Dans un autre server
 
 ```bdfd
-$sendMessage[Rôle : $roleName[123456789012345678;987654321098765432]]
+$sendMessage[Role : $roleName[123456789012345678;987654321098765432]]
 ```
 
 ## Notes
 
-- L'ID du rôle doit être valide sur le serveur.
-- Pour obtenir l'ID à partir d'un nom, utilisez `$roleID`.
-- Pour lister tous les rôles, utilisez `$roleNames`.
+- The ID of the role must be valid on the server.
+- Pour obtenir the ID à partir d'un nom, utilisez `$roleID`.
+- Pour listr all roles, utilisez `$roleNames`.

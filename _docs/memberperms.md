@@ -5,57 +5,57 @@ translation_key: docs
 category: "Entity Info"
 function_name: memberPerms
 syntax: $memberPerms
-description: Retourne la liste des permissions effectives du membre sur le serveur. Équivalent à $userPerms.
+description: Returns the list des permissions effectives du member on the server. Équivaslow à $userPerms.
 ---
 
 # $memberPerms
 
-La variable `$memberPerms` retourne la **liste des permissions effectives** du membre sur le serveur actuel. Elle est équivalente à `$userPerms`.
+The variable `$memberPerms` retourne la **list des permissions effectives** du member on the server current. Elle est équivaslowe à `$userPerms`.
 
-## Syntaxe
+## Syntax
 
 ```
 $memberPerms
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Liste de noms de permissions (en anglais), séparés par des virgules
-- Exemple : `SendMessages, ReadMessageHistory, AddReactions, ManageMessages`
+- **Type** : List de noms de permissions (en anglais), separateds par des virgules
+- Example: `SendMessages, ReadMessageHistory, AddReactions, ManageMessages`
 
-## Comportement
+## Behavior
 
-- `$memberPerms` ne prend **aucun argument**.
-- Retourne les permissions combinées de tous les rôles du membre et des overwrites de salon.
-- Fonctionnellement identique à `$userPerms` pour l'utilisateur déclencheur.
+- `$memberPerms` ne prend **no argument**.
+- Returns thes permissions combinées de all roles du member and des overwrites de channel.
+- Functionnellement identical à `$userPerms` for the user déclencheur.
 
-## Exemples
+## Examples
 
 ### Afficher les permissions
 
 ```bdfd
 $title[Permissions de $memberNick]
 $description[
-**Permissions du membre :**
+**Permissions du member :**
 $memberPerms
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Commande de modération
+### Command de modération
 
 ```bdfd
 $if[$checkContains[$memberPerms;KickMembers]==true]
   $kick[$mentioned]
-  $sendMessage[<@$mentioned> a été expulsé.]
+  $sendMessage[<@$mentioned> was expulsé.]
 $else
-  $sendMessage[Permission KickMembers requise.]
+  $sendMessage[Permission KickMembers requirede.]
 $endif
 ```
 
 ## Notes
 
-- `$memberPerms` et `$userPerms` sont interchangeables.
+- `$memberPerms` and `$userPerms` sont interchangeables.
 - Les noms de permissions sont en **anglais** (nomenclature API Discord).
 - Pour une simple vérification d'administration, utilisez `$isAdmin`.

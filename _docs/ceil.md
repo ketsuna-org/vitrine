@@ -5,34 +5,34 @@ translation_key: docs
 category: "Math & Text"
 function_name: ceil
 syntax: $ceil[value]
-description: Arrondit un nombre à l'entier supérieur (troncature vers le haut).
+description: Arrondit a namebre à l'integer supérieur (troncature vers le haut).
 ---
 
 # $ceil[]
 
-La fonction `$ceil[]` retourne le plus petit entier supérieur ou égal à la valeur donnée. Elle « monte » toujours vers l'entier supérieur.
+The `$ceil[]` function retourne the most petit integer supérieur or égal à the value data. Elle « monte » toudays vers l'integer supérieur.
 
-## Syntaxe
+## Syntax
 
 ```
-$ceil[valeur]
+$ceil[value]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type   | Obligatoire | Description                            |
+| Parameter | Type   | Required | Description                            |
 |-----------|--------|-------------|----------------------------------------|
-| `valeur`  | number | Oui         | Le nombre à arrondir vers le haut.     |
+| `value`  | number | Yes         | The namebre à arrondir vers le haut.     |
 
-## Comportement
+## Behavior
 
-- Pour un nombre positif : monte à l'entier supérieur dès qu'il y a une partie décimale. `$ceil[3.1]` → `4`.
-- Pour un nombre négatif : monte vers l'entier supérieur (moins négatif). `$ceil[-3.9]` → `-3`.
-- Pour un entier : retourne l'entier lui-même.
+- Pour a namebre positif : monte à l'integer supérieur dès qu'there are une partie decimale. `$ceil[3.1]` → `4`.
+- Pour a namebre négatif : monte vers l'integer supérieur (moins négatif). `$ceil[-3.9]` → `-3`.
+- Pour an integer : returns the integer lui-même.
 
-## Exemples
+## Examples
 
-**Nombre positif :**
+**Number positif :**
 ```
 $ceil[3.1]
 → 4
@@ -41,7 +41,7 @@ $ceil[3.9]
 → 4
 ```
 
-**Nombre négatif :**
+**Number négatif :**
 ```
 $ceil[-3.9]
 → -3
@@ -50,15 +50,15 @@ $ceil[-3.1]
 → -3
 ```
 
-**Entier :**
+**Integer :**
 ```
 $ceil[5]
 → 5
 ```
 
-## Comparaison floor / ceil / round
+## Compareason floor / ceil / round
 
-| Valeur | $floor[] | $ceil[] | $round[] |
+| Value | $floor[] | $ceil[] | $round[] |
 |--------|----------|---------|----------|
 | `3.2`  | `3`      | `4`     | `3`      |
 | `3.5`  | `3`      | `4`     | `4`      |
@@ -66,9 +66,9 @@ $ceil[5]
 | `-3.2` | `-4`     | `-3`    | `-3`     |
 | `-3.5` | `-4`     | `-3`    | `-3`*    |
 
-*Le comportement exact de `$round[]` pour les valeurs à `.5` peut dépendre de l'implémentation.
+*Le behavior exact de `$round[]` for values à `.5` peut dépendre de l'implémentation.
 
 ## Notes
 
-- Le résultat est toujours un entier (sous forme de chaîne).
-- Utile quand vous avez besoin de « l'entier d'après », par exemple pour calculer un nombre de pages nécessaires.
+- The result est toudays an integer (sous forme de string).
+- Utile when vous avez besoin de « l'integer d'after », par example to calculate a namebre de pages nécessaires.

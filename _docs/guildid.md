@@ -5,60 +5,60 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildID
 syntax: $guildID
-description: Alias de $serverID. Retourne l'identifiant unique (Snowflake) du serveur Discord.
+description: Alias de $serverID. Returns the identifier unique (Snowflake) of the server Discord.
 ---
 
-# $guildID[] — Identifiant du Serveur (Alias)
+# $guildID[] — Identifier of the Server (Alias)
 
-`$guildID[]` est un alias de `$serverID[]`. Il retourne l'identifiant unique (Snowflake) du serveur Discord courant.
+`$guildID[]` est un alias de `$serverID[]`. Il retourne l'identifier unique (Snowflake) of the server Discord courant.
 
-## Syntaxe
+## Syntax
 
 ```
 $guildID
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- L'ID du serveur sous forme de chaîne numérique.
+- The ID of the server sous forme de string numérique.
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[ID de la guilde : $guildID]
+$sendMessage[ID of the guilde : $guildID]
 ```
 
-### Restriction de commande par serveur
+### Restriction de command par server
 
 ```bdfd
 $if[$guildID!=123456789012345678]
-$sendMessage[⛔ Cette commande est réservée au serveur principal.]
+$sendMessage[⛔ Cette command est réservée au server principal.]
 $stop
 $endif
-$sendMessage[✅ Commande exécutée.]
+$sendMessage[✅ Command executed.]
 ```
 
 ### Logs
 
 ```bdfd
-$log[Action sur le serveur $guildID ($guildName)]
+$log[Action on the server $guildID ($guildName)]
 ```
 
 ### Construction d'URL
 
 ```bdfd
-$sendMessage[Lien du serveur : https://discord.com/channels/$guildID]
+$sendMessage[Link of the server : https://discord.com/channels/$guildID]
 ```
 
 ## Notes
 
-- `$guildID[]` est strictement identique à `$serverID[]`. Utilisez celui qui vous paraît le plus naturel.
-- Le terme "guild" est le nom technique utilisé par l'API Discord pour désigner un serveur.
-- L'ID est permanent et ne change jamais, contrairement au nom.
+- `$guildID[]` est strictement identical à `$serverID[]`. Utilisez celui qui vous paraît le plus naturel.
+- Le terme "guild" est the name technique utilisé par l'API Discord pour désigner un server.
+- The ID est permanent and ne change never, contrairement au nom.

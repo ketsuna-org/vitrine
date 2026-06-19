@@ -5,78 +5,78 @@ translation_key: docs
 category: "Entity Info"
 function_name: repliedMessageID
 syntax: $repliedMessageID
-description: Retourne l'ID du message auquel l'utilisateur a répondu. Permet de référencer le message source dans une commande déclenchée par une réponse.
+description: Returns the ID of the message the user replied to. Allows referencing the sourthis message in a command triggered by a reply.
 ---
 
 # $repliedMessageID
 
-La fonction `$repliedMessageID` permet de **récupérer l'ID du message source** lorsqu'un utilisateur répond à un message avec une commande.
+The `$repliedMessageID` function allows **retrieving the sourthis message ID** when a user replies to a message with a command.
 
-## Syntaxe
+## Syntax
 
 ```
 $repliedMessageID
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+No parameters.
 
-## Valeur de retour
+## Return Value
 
-- **Type** : String (Snowflake ID)
-- L'ID du message auquel l'utilisateur a répondu.
-- Chaîne vide si la commande n'a pas été déclenchée via une réponse.
+- **Type**: String (Snowflake ID)
+- The ID of the message the user replied to.
+- Empty string if the command was not triggered via a reply.
 
-## Comportement
+## Behavior
 
-- Fonctionne lorsque l'utilisateur fait un clic droit → "Répondre" sur un message et tape la commande.
-- Retourne l'ID du message original, pas du message de commande.
-- Utile pour les commandes de modération contextuelles.
+- Works when the user right-clicks → "Reply" on a message and types the command.
+- Returns the ID of the original message, not the command message.
+- Useful for contextual moderation commands.
 
-## Exemples
+## Examples
 
-### Citer le message répondu
+### Quote the replied message
 
 ```bdfd
 $if[$repliedMessageID!=]
   $let[msg;$getMessage[$channelID;$repliedMessageID]]
-  $title[📝 Réponse à un message]
+  $title[📝 Reply to a message]
   $description[
-  **Auteur original :** $userName[$messageAuthorID[$channelID;$repliedMessageID]]
-  **Message :** $msg
+  **Original author:** $userName[$messageAuthorID[$channelID;$repliedMessageID]]
+  **Message:** $msg
   ]
   $sendMessage[]
 $else
-  $sendMessage[Veuillez répondre à un message pour utiliser cette commande.]
+  $sendMessage[Please reply to a message to use this command.]
 $endif
 ```
 
-### Modération par réponse
+### Moderation by reply
 
 ```bdfd
 $if[$repliedMessageID!=]
   $let[author;$messageAuthorID[$channelID;$repliedMessageID]]
-  $title[⚠️ Signalement]
+  $title[⚠️ Report]
   $description[
-  **Message signalé :** ||$getMessage[$channelID;$repliedMessageID]||
-  **Auteur :** $userName[$author]
-  **Signalé par :** $userName[$authorID]
+  **Reported message:** ||$getMessage[$channelID;$repliedMessageID]||
+  **Author:** $userName[$author]
+  **Reported by:** $userName[$authorID]
   ]
   $color[#ED4245]
   $sendMessage[$channelID[mod-logs]]
 $else
-  $sendMessage[Répondez à un message pour le signaler.]
+  $sendMessage[Reply to a message to report it.]
 $endif
 ```
 
-### Citer et supprimer
+### Quote and delete
 
 ```bdfd
 $if[$repliedMessageID!=]
   $let[msg;$getMessage[$channelID;$repliedMessageID]]
-  $title[🗑️ Message supprimé]
-  $description[Message de **$userName[$messageAuthorID[$channelID;$repliedMessageID]]** supprimé.\nContenu : ||$msg||]
+  $title[🗑️ Message deleted]
+  $description[Message from **$userName[$messageAuthorID[$channelID;$repliedMessageID]]** deleted.\nContent: ||$msg||]
   $deleteMessage[$channelID;$repliedMessageID]
   $sendMessage[]
 $endif
@@ -84,6 +84,6 @@ $endif
 
 ## Notes
 
-- Ne fonctionne que si la commande est déclenchée via une réponse Discord.
-- Retourne une chaîne vide dans les autres cas (message normal, slash command, etc.).
-- Pratique pour des commandes contextuelles sans avoir à fournir d'ID manuellement.
+- Only works if the command is triggered via a Discord reply.
+- Returns an empty string in other cases (normal message, slash command, etc.).
+- Convenient for contextual commands without having to manually provide an ID.

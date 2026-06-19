@@ -5,32 +5,32 @@ translation_key: docs
 category: "Entity Info"
 function_name: displayName
 syntax: $displayName
-description: Retourne le nom d'affichage de l'utilisateur — le pseudo du serveur s'il existe, sinon le nom d'utilisateur global.
+description: Returns the name d'affichage of the user — le pseudo of the server s'il existe, otherwise the name d'user global.
 ---
 
 # $displayName
 
-La variable `$displayName` retourne le **nom d'affichage** de l'utilisateur sur le serveur. C'est le nom le plus pertinent dans le contexte du serveur : le pseudo (nickname) s'il est défini, sinon le nom d'utilisateur global.
+The variable `$displayName` returns the **nom d'affichage** of the user on the server. This is the name the most pertinent in the context of the server : le pseudo (nickname) s'it is défini, otherwise the name d'user global.
 
-## Syntaxe
+## Syntax
 
 ```
 $displayName
 ```
 
-## Valeur de retour
+## Return value
 
-- **Type** : Chaîne de caractères
-- Priorité : pseudo serveur (`$nickname`) > nom d'utilisateur global (`$userName`)
+- **Type** : String de becauseactères
+- Priorité : pseudo server (`$nickname`) > nom d'user global (`$userName`)
 
-## Comportement
+## Behavior
 
-- `$displayName` ne prend **aucun argument**.
-- Si l'utilisateur a un **pseudo** (surnom) sur le serveur, `$displayName` le retourne.
-- Sinon, retourne le **nom d'utilisateur global**.
-- C'est le nom que les autres membres voient sur le serveur.
+- `$displayName` ne prend **no argument**.
+- If the user a un **pseudo** (surnom) on the server, `$displayName` le retourne.
+- Sinon, returns the **nom d'user global**.
+- This is the name que les autres members voient on the server.
 
-## Exemples
+## Examples
 
 ### Message de bienvenue
 
@@ -44,15 +44,15 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Profil utilisateur
+### Profil user
 
 ```bdfd
 $author[$displayName;$userAvatar]
-$title[Profil utilisateur]
+$title[Profil user]
 $description[
 **Nom d'affichage :** $displayName
 **Nom global :** $userName
-**Pseudo serveur :** $nickname
+**Pseudo server :** $nickname
 **ID :** $userID
 ]
 $color[#5865F2]
@@ -61,6 +61,6 @@ $sendMessage[]
 
 ## Notes
 
-- `$displayName` est le choix recommandé pour afficher le nom d'un utilisateur dans les messages du bot.
-- Il reflète ce que les membres voient réellement sur le serveur.
-- Différences : `$userName` (nom global uniquement), `$nickname` (pseudo serveur uniquement, peut être vide), `$displayName` (le meilleur des deux).
+- `$displayName` est le choix recommended to display the name of a user in thes messages of the bot.
+- Il reflète ce que les members voient réellement on the server.
+- Différences : `$userName` (nom global only), `$nickname` (pseudo server only, can be vide), `$displayName` (le meilleur des two).

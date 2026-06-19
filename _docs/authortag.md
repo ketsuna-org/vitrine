@@ -5,34 +5,34 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorTag
 syntax: $authorTag
-description: Retourne le tag complet de l'auteur du message (format "nom#discriminator" ou nom simple pour les comptes pompom).
+description: Returns the tag complete de the author of the message (format "nom#discriminator" or nom simple for comptes pompom).
 ---
 
 # $authorTag
 
-La variable `$authorTag` retourne le **tag complet** de l'auteur du message. C'est l'équivalent de `$userTag` mais explicitement lié à l'auteur du message.
+The variable `$authorTag` returns the **tag complete** de the author of the message. This is l'équivaslow de `$userTag` mais explicitement lié à the author of the message.
 
-## Syntaxe
+## Syntax
 
 ```
 $authorTag
 ```
 
-## Valeur de retour
+## Return value
 
-- **Type** : Chaîne de caractères
-- Ancien format : `nom#discriminator` pour les comptes legacy
-- Nouveau format : simplement le nom d'utilisateur pour les comptes pompom
+- **Type** : String de becauseactères
+- Old format : `nom#discriminator` for comptes legacy
+- Nouvein the format : simply the name d'user for comptes pompom
 
-## Comportement
+## Behavior
 
-- `$authorTag` ne prend **aucun argument**.
-- Équivalent à `$userTag` dans le contexte d'une commande textuelle.
-- Pour les nouveaux comptes (pompom), le tag est identique au nom d'utilisateur.
+- `$authorTag` ne prend **no argument**.
+- Équivaslow à `$userTag` in the context of a command textuelle.
+- For newx comptes (pompom), le tag est identical au nom d'user.
 
-## Exemples
+## Examples
 
-### Profil de l'auteur
+### Profil de the author
 
 ```bdfd
 $title[Profil de $authorTag]
@@ -48,6 +48,6 @@ $sendMessage[]
 
 ## Notes
 
-- Le format `nom#discriminator` est obsolète pour les nouveaux comptes Discord.
-- Pour une identification fiable, utilisez `$authorID`.
-- `$authorTag` et `$userTag` sont généralement identiques dans les commandes textuelles.
+- Le format `nom#discriminator` est obsolète for newx comptes Discord.
+- Pour une identification fiable, use `$authorID`.
+- `$authorTag` and `$userTag` sont generally identicals in thes commands textuelles.

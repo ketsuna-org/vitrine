@@ -5,27 +5,27 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildName
 syntax: $guildName
-description: Alias de $serverName. Retourne le nom du serveur Discord.
+description: Alias de $serverName. Returns the nom of the server Discord.
 ---
 
-# $guildName[] — Nom du Serveur (Alias)
+# $guildName[] — Name of the Server (Alias)
 
-`$guildName[]` est un alias de `$serverName[]`. Il retourne le nom du serveur Discord dans lequel la commande est exécutée.
+`$guildName[]` est un alias de `$serverName[]`. Il retourne the name of the server Discord in thequel the command est executed.
 
-## Syntaxe
+## Syntax
 
 ```
 $guildName
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- Le nom actuel du serveur.
+- The name current of the server.
 
 ## Utilisation
 
@@ -35,13 +35,13 @@ Aucun paramètre.
 $sendMessage[Bienvenue sur **$guildName**, $username ! 🎉]
 ```
 
-### Embed personnalisé
+### Embed custom
 
 ```bdfd
 $title[$guildName — Informations]
 $description[Tout ce que vous devez savoir sur $guildName]
 $addField[ID;$guildID;yes]
-$addField[Membres;$membersCount;yes]
+$addField[Members;$membersCount;yes]
 $thumbnail[$guildIcon]
 $color[#5865F2]
 $sendEmbedMessage
@@ -50,19 +50,19 @@ $sendEmbedMessage
 ### Logs
 
 ```bdfd
-$log[Nouvelle commande exécutée sur $guildName ($guildID)]
+$log[New command executed sur $guildName ($guildID)]
 ```
 
 ### Condition
 
 ```bdfd
-$if[$guildName==Mon Serveur]
-$sendMessage[Vous êtes sur le serveur principal !]
+$if[$guildName==Mon Server]
+$sendMessage[Vous êtes on the server principal !]
 $endif
 ```
 
 ## Notes
 
-- `$guildName[]` et `$serverName[]` sont interchangeables.
+- `$guildName[]` and `$serverName[]` sont interchangeables.
 - Le terme "guild" provient de l'API Discord (Discord API Guilds).
-- Le nom retourné est toujours le nom actuel, reflétant tout changement récent.
+- The name retourné est toudays the name current, reflétant tout changement récent.

@@ -5,60 +5,60 @@ translation_key: docs
 category: "Entity Info"
 function_name: userID
 syntax: $userID
-description: Retourne l'ID Discord de l'utilisateur qui a déclenché la commande ou l'interaction.
+description: Returns the ID Discord of the user qui a déclenché the command or l'interaction.
 ---
 
 # $userID
 
-La variable `$userID` retourne l'**ID Discord** (snowflake) de l'utilisateur qui a déclenché l'exécution de la commande ou de l'interaction.
+The variable `$userID` retourne l'**ID Discord** (snowflake) of the user qui a déclenché l'exécution of the command or de l'interaction.
 
-## Syntaxe
+## Syntax
 
 ```
 $userID
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Snowflake (chaîne numérique de 17-19 chiffres)
-- Retourne l'ID unique de l'utilisateur sur Discord
+- **Type** : Snowflake (string numérique de 17-19 chiffres)
+- Returns the ID unique of the user on Discord
 
-## Comportement
+## Behavior
 
-- `$userID` ne prend **aucun argument**.
-- Retourne toujours l'ID de l'utilisateur qui a **interagi** avec le bot (commande, bouton, menu, modal, etc.).
-- L'ID est une chaîne numérique permanente — il ne change jamais, contrairement au nom d'utilisateur.
+- `$userID` ne prend **no argument**.
+- Returns toudays the ID of the user qui a **interagi** with the bot (command, bouton, menu, modal, etc.).
+- The ID est une string numérique permanent — il ne change never, contrairement au nom d'user.
 
-## Exemples
+## Examples
 
-### Afficher l'ID utilisateur
+### Afficher the ID user
 
 ```bdfd
-$title[Votre ID utilisateur]
+$title[Votre ID user]
 $description[**ID :** `$userID`]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Utiliser l'ID dans une condition
+### Utiliser the ID dans une condition
 
 ```bdfd
 $if[$userID==123456789012345678]
-  $sendMessage[Bonjour administrateur !]
+  $sendMessage[Bonday administrator !]
 $else
-  $sendMessage[Bonjour utilisateur !]
+  $sendMessage[Bonday user !]
 $endif
 ```
 
 ## Différence avec $authorID
 
-- `$userID` : l'utilisateur qui a déclenché l'interaction
-- `$authorID` : l'auteur du message (dans le cas d'un message command)
+- `$userID` : the user qui a déclenché l'interaction
+- `$authorID` : l'auteur of the message (in the cas of a message command)
 
-Dans la plupart des cas simples, les deux sont identiques. Dans des contextes avancés (workflows, interactions), `$userID` est recommandé.
+Dans la plupart des cas simples, les two sont identicals. Dans des contexts avancés (workflows, interactions), `$userID` est recommended.
 
 ## Notes
 
-- L'ID Discord est un **snowflake** permanent et unique.
-- Il n'est pas possible de modifier ou supprimer un ID Discord.
-- Utilisez `$userID` en comparaison avec `$if[]` pour créer des commandes réservées à certains utilisateurs.
+- The ID Discord est un **snowflake** permanent and unique.
+- Il is not possible de modifier or supprimer un ID Discord.
+- Utilisez `$userID` en compareason avec `$if[]` pour créer des commands réservées à certains users.

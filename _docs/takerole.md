@@ -5,31 +5,31 @@ translation_key: docs
 category: "Moderation"
 function_name: takeRole
 syntax: $takeRole[userID;roleID]
-description: Retire un rôle à un utilisateur sur le serveur.
+description: Retire un role à un user on the server.
 ---
 
 # $takeRole
 
-La fonction `$takeRole` **retire un rôle** à un utilisateur sur le serveur Discord. Le bot doit avoir la permission `ManageRoles`.
+The function `$takeRole` **retire un role** à un user on the server Discord. The bot doit avoir la permission `ManageRoles`.
 
-## Syntaxe
+## Syntax
 
 ```
 $takeRole[userID;roleID]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `userID` | L'ID de l'utilisateur cible. Obligatoire. |
-| `roleID` | L'ID du rôle à retirer. Obligatoire. |
+| `userID` | The ID of the user cible. Required. |
+| `roleID` | The ID of the role à retirer. Required. |
 
-## Valeur de retour
+## Return Value
 
-Aucune. Le rôle est retiré.
+Aucune. The role est retiré.
 
-## Exemples
+## Examples
 
 ### Retrait simple
 
@@ -38,28 +38,28 @@ $takeRole[$mentioned[1];$roleID[Muet]]
 $sendMessage[🔊 <@$mentioned[1]> n'est plus muet !]
 ```
 
-### Retrait après vérification
+### Retrait after vérification
 
 ```bdfd
 $if[$checkContains[$userRoles[$mentioned[1]];$roleID[Muet]]==true]
   $takeRole[$mentioned[1];$roleID[Muet]]
-  $sendMessage[Rôle Muet retiré.]
+  $sendMessage[Role Muet retiré.]
 $else
-  $sendMessage[Cet utilisateur n'a pas le rôle Muet.]
+  $sendMessage[Cet user n'a pas the role Muet.]
 $endif
 ```
 
-### Commande de retrait avec confirmation
+### Command de retrait avec confirmation
 
 ```bdfd
 $takeRole[$mentioned[1];$roleID[$message[2]]]
-$sendMessage[✅ Rôle retiré de <@$mentioned[1]>.]
+$sendMessage[✅ Role retiré de <@$mentioned[1]>.]
 ```
 
 ## Notes
 
-- Le bot doit avoir la permission `ManageRoles`.
-- Le bot ne peut pas retirer un rôle supérieur à son propre rôle le plus haut.
-- Si l'utilisateur ne possède pas le rôle, rien ne se passe.
-- Pour retirer plusieurs rôles, utilisez `$takeRoles`.
-- Équivalent fonctionnel à `$roleRemove`.
+- The bot doit avoir la permission `ManageRoles`.
+- The bot ne peut pas retirer un role supérieur à son propre role le plus haut.
+- Si the user ne possède pas the role, rien ne se passe.
+- Pour retirer several roles, utilisez `$takeRoles`.
+- Équivaslow functionnel à `$roleRemove`.

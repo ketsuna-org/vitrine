@@ -5,39 +5,39 @@ translation_key: docs
 category: "Entity Info"
 function_name: userServerAvatar
 syntax: $userServerAvatar
-description: Retourne l'URL de l'avatar spécifique au serveur de l'utilisateur (avatar par serveur pour les abonnés Nitro).
+description: Returns the URL of the avatar spécifique au server of the user (avatar par server for the abonnés Nitro).
 ---
 
 # $userServerAvatar
 
-La variable `$userServerAvatar` retourne l'**URL de l'avatar spécifique au serveur** de l'utilisateur. Les abonnés Discord Nitro peuvent définir un avatar différent pour chaque serveur.
+The variable `$userServerAvatar` retourne l'**URL of the avatar spécifique au server** of the user. The abonnés Discord Nitro peuvent définir un avatar different for each server.
 
-## Syntaxe
+## Syntax
 
 ```
 $userServerAvatar
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne de caractères (URL)
-- L'URL de l'avatar spécifique au serveur, ou l'avatar global si l'utilisateur n'a pas défini d'avatar par serveur
+- **Type** : String de becauseactères (URL)
+- The URL of the avatar spécifique au server, or l'avatar global si the user n'a pas défini d'avatar par server
 
-## Comportement
+## Behavior
 
-- `$userServerAvatar` ne prend **aucun argument**.
-- Si l'utilisateur a défini un avatar spécifique pour ce serveur (fonctionnalité Nitro), cette URL est retournée.
-- Sinon, retourne l'avatar global (identique à `$userAvatar`).
+- `$userServerAvatar` ne prend **no argument**.
+- Si the user a défini un avatar spécifique pour ce server (functionnalité Nitro), cette URL est retournée.
+- Sinon, retourne l'avatar global (identical à `$userAvatar`).
 
-## Exemples
+## Examples
 
-### Comparer avatar global et serveur
+### Comparer avatar global and server
 
 ```bdfd
 $title[Avatars de $userName]
 $description[
 **Avatar global :**
-**Avatar serveur :**
+**Avatar server :**
 ]
 $thumbnail[$userAvatar]
 $image[$userServerAvatar]
@@ -45,11 +45,11 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Détecter un avatar serveur personnalisé
+### Détecter un avatar server custom
 
 ```bdfd
 $if[$userServerAvatar!=$userAvatar]
-  $sendMessage[Vous avez un avatar personnalisé pour ce serveur !]
+  $sendMessage[Vous avez un avatar custom pour ce server !]
 $else
   $sendMessage[Vous utilisez votre avatar global.]
 $endif
@@ -57,6 +57,6 @@ $endif
 
 ## Notes
 
-- La personnalisation d'avatar par serveur est une fonctionnalité **Discord Nitro**.
-- Si l'utilisateur n'a pas Nitro ou n'a pas défini d'avatar serveur, `$userServerAvatar` est identique à `$userAvatar`.
-- Utile pour les logs et les commandes de modération où l'apparence par serveur est pertinente.
+- La personnalisation d'avatar par server est une functionnalité **Discord Nitro**.
+- Si the user n'a pas Nitro or n'a pas défini d'avatar server, `$userServerAvatar` est identical à `$userAvatar`.
+- Utile for the logs and les commands de modération où l'apparence par server est pertinente.

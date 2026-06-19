@@ -5,61 +5,61 @@ translation_key: docs
 category: "Moderation"
 function_name: botLeave
 syntax: $botLeave[(guildID)]
-description: Fait quitter le bot d'un serveur. Si aucun ID n'est fourni, le bot quitte le serveur où la commande est exécutée.
+description: Fait quitter the bot of a server. If no ID n'is provided, the bot quitte the server où la command est executede.
 ---
 
 # $botLeave
 
-La fonction `$botLeave[]` permet de **faire quitter le bot d'un serveur**. Action irréversible qui supprime le bot du serveur cible.
+The `$botLeave[]` function **faire quitter the bot of a server**. Action irréversible qui deletes the bot of the server cible.
 
-## Syntaxe
+## Syntax
 
 ```
 $botLeave[(guildID)]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `guildID` | Optionnel - L'ID du serveur à quitter. Par défaut, le serveur courant. |
+| `guildID` | Optional - The ID of the server à quitter. Par default, the server courant. |
 
-## Valeur de retour
+## Return value
 
-Cette fonction ne retourne pas de valeur.
+Cette function does not return a value.
 
-## Comportement
+## Behavior
 
-- Le bot quitte immédiatement le serveur spécifié.
-- **Action irréversible** : toutes les données du bot sur ce serveur sont perdues.
-- Si exécuté sans guildID, le bot quitte le serveur où la commande est lancée.
+- The bot quitte immediately the server spécifié.
+- **Action irréversible** : all the data of the bot sur ce server sont perdues.
+- Si executed without guildID, the bot quitte the server où la command est lancée.
 
-## Exemples
+## Examples
 
-### Quitter le serveur courant
+### Quitter the server courant
 
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
-  $sendMessage[Au revoir ! Le bot quitte ce serveur.]
+  $sendMessage[Au revoir ! The bot quitte ce server.]
   $botLeave
 $else
-  $sendMessage[Seuls les administrateurs peuvent utiliser cette commande.]
+  $sendMessage[Seuls les administrators peuvent utiliser cette command.]
 $endif
 ```
 
-### Quitter un serveur spécifique (owner only)
+### Quitter a server spécifique (owner only)
 
 ```bdfd
 $if[$authorID==OWNER_ID]
   $let[targetGuild;$message[1]]
   $if[$targetGuild!=]
     $botLeave[$targetGuild]
-    $sendMessage[Bot retiré du serveur $targetGuild.]
+    $sendMessage[Bot retiré of the server $targetGuild.]
   $else
     $sendMessage[Usage : !leave <guildID>]
   $endif
 $else
-  $sendMessage[Réservé au propriétaire du bot.]
+  $sendMessage[Réservé au owner of the bot.]
 $endif
 ```
 
@@ -67,14 +67,14 @@ $endif
 
 ```bdfd
 $if[$membersCount<5]
-  $channelSendMessage[$channelID;Ce serveur a moins de 5 membres. Le bot va quitter.]
+  $channelSendMessage[$channelID;Ce server a less than 5 members. The bot va quitter.]
   $botLeave
 $endif
 ```
 
 ## Notes
 
-- **Action irréversible** : utilisez avec une extrême prudence.
-- Protégez cette commande par des vérifications de permissions strictes.
-- Toutes les données utilisateur liées à ce serveur deviennent inaccessibles.
-- Le bot ne peut pas rejoindre un serveur via commande (nécessite un lien d'invitation).
+- **Action irréversible** : use with a extrême prudence.
+- Protégez cette command par des vérifications de permissions strictes.
+- Toutes the data user liées à ce server deviennent inaccessibles.
+- The bot cannot rejoindre a server via command (requires a link d'invite).

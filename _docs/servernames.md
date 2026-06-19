@@ -5,62 +5,62 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverNames
 syntax: $serverNames
-description: Retourne la liste des noms de tous les serveurs dans lesquels le bot est présent, séparés par des virgules.
+description: Returns the list des noms de all servers in thesquels the bot est présent, separateds par des virgules.
 ---
 
-# $serverNames[] — Noms de Tous les Serveurs
+# $serverNames[] — Noms de Tous les Servers
 
-`$serverNames[]` retourne la liste complète des noms de tous les serveurs Discord sur lesquels le bot est installé.
+`$serverNames[]` retourne la list complete des noms de all servers Discord sur lesquels the bot est installé.
 
-## Syntaxe
+## Syntax
 
 ```
 $serverNames
 ```
 
-## Paramètres
+## Parameters
 
-Aucun paramètre.
+Aucun parameter.
 
-## Valeur de retour
+## Return Value
 
 - **Type** : `string`
-- Une chaîne contenant tous les noms de serveurs, séparés par des virgules (ex: `"Serveur A, Serveur B, Serveur C"`).
+- Une string contenant all noms de servers, separateds par des virgules (ex: `"Server A, Server B, Server C"`).
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[🌐 Mes serveurs : $serverNames]
+$sendMessage[🌐 Mes servers : $serverNames]
 ```
 
-### Embed liste des serveurs
+### Embed list des servers
 
 ```bdfd
-$title[🌐 Serveurs du Bot]
+$title[🌐 Servers du Bot]
 $description[$serverNames]
-$footer[Total : $serverCount serveurs]
+$footer[Total : $serverCount servers]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Vérifier la présence sur un serveur
+### Vérifier la présence sur un server
 
 ```bdfd
 $if[$serverNames$contains[Communauté Gaming]]
-$sendMessage[✅ Le bot est bien sur la Communauté Gaming !]
+$sendMessage[✅ The bot est bien sur la Communauté Gaming !]
 $else
-$sendMessage[❌ Le bot n'est pas sur la Communauté Gaming.]
+$sendMessage[❌ The bot is not sur la Communauté Gaming.]
 $endif
 ```
 
-### Statistiques avec liste
+### Statistiques avec list
 
 ```bdfd
 $title[📊 Bot Statistics]
-$addField[🌐 Total serveurs;$serverCount;yes]
-$addField[📋 Liste;$serverNames;no]
+$addField[🌐 Total servers;$serverCount;yes]
+$addField[📋 List;$serverNames;no]
 $addField[🔢 Shard;$shardID;yes]
 $color[#2ECC71]
 $sendEmbedMessage
@@ -68,8 +68,8 @@ $sendEmbedMessage
 
 ## Notes
 
-- La liste peut être très longue si le bot est sur de nombreux serveurs — attention à la limite de 2000 caractères par message Discord.
-- Les noms sont séparés par `", "` (virgule + espace).
-- Pour le nombre total sans la liste, utilisez `$serverCount[]`.
-- Utilisez `$contains[]` pour vérifier la présence d'un nom spécifique, mais attention aux noms partiels.
-- Les noms peuvent contenir des caractères spéciaux et des emojis.
+- La list can be très longue si the bot est sur de many servers — attention à la limit de 2000 becauseactères par message Discord.
+- Les noms sont separateds par `", "` (virgule + espace).
+- Pour the namebre total without the list, utilisez `$serverCount[]`.
+- Utilisez `$contains[]` pour vérifier la présence d'un nom spécifique, mais attention aux noms partials.
+- Les noms peuvent contenir des becauseactères special and des emojis.

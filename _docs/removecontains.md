@@ -5,53 +5,54 @@ translation_key: docs
 category: "Text Manipulation"
 function_name: removeContains
 syntax: $removeContains[text]
-description: Supprime toutes les occurrences d'une chaîne de caractères dans un texte donné. Recherche et remplace par une chaîne vide.
+description: Removes all occurrences of a string in a given text. Searches and replaces with an empty string.
 ---
+
 # $removeContains
 
-La fonction `$removeContains[]` **supprime toutes les occurrences** d'une chaîne dans le texte. Elle opère sur le texte du message ($message) ou le contexte textuel courant.
+The `$removeContains[]` function **removes all occurrences** of a string in the text. It operates on the message text ($message) or the current text context.
 
-## Syntaxe
+## Syntax
 
 ```
 $removeContains[text]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `text` | La chaîne à supprimer. |
+| `text` | The string to remove. |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne
-- Le texte sans les occurrences de la chaîne cible.
+- **Type**: String
+- The text without the occurrences of the target string.
 
-## Comportement
+## Behavior
 
-- Sensible à la casse.
-- Supprime toutes les occurrences, pas seulement la première.
-- Fonctionne sur le message utilisateur ou la valeur textuelle en contexte.
+- Case-sensitive.
+- Removes all occurrences, not just the first one.
+- Works on the user message or the text value in context.
 
-## Exemples
+## Examples
 
-### Nettoyer un message
-
-```bdfd
-$sendMessage[Message nettoyé : $removeContains[spam]]
-; Pour un message "ceci est du spam marketing"
-; Résultat : "ceci est du  marketing"
-```
-
-### Supprimer des gros mots
+### Clean a message
 
 ```bdfd
-$let[filtered;$removeContains[insulte]]
-$sendMessage[Message filtré : $filtered]
+$sendMessage[Cleaned message: $removeContains[spam]]
+; For a message "this is spam marketing"
+; Result: "this is  marketing"
 ```
 
-### Nettoyage multiple
+### Remove bad words
+
+```bdfd
+$let[filtered;$removeContains[insult]]
+$sendMessage[Filtered message: $filtered]
+```
+
+### Multiple cleanup
 
 ```bdfd
 $sendMessage[$removeContains[badword1]]
@@ -60,6 +61,6 @@ $sendMessage[$removeContains[badword2]]
 
 ## Notes
 
-- Pour un remplacement (pas une suppression), utilisez `$replaceText[]`.
-- Pour supprimer uniquement les liens, utilisez `$removeLinks`.
-- Pour supprimer les espaces autour, utilisez `$trimContent[]`.
+- For a replacement (not removal), use `$replaceText[]`.
+- To remove only links, use `$removeLinks`.
+- To remove surrounding spaces, use `$trimContent[]`.

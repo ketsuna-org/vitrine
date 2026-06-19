@@ -5,48 +5,48 @@ translation_key: docs
 category: "Moderation"
 function_name: modifyChannelPerms
 syntax: $modifyChannelPerms[channelID;roleOrUserID;permissions]
-description: Modifie les permissions d'un rôle ou utilisateur sur un canal en utilisant des noms de permissions lisibles (sendmessages, viewchannel, etc.).
+description: Modifies thes permissions of a role or user sur un canal en utilisant des noms de permissions lisibles (sendmessages, viewchannel, etc.).
 ---
 
 # $modifyChannelPerms
 
-La fonction `$modifyChannelPerms[]` permet de **modifier les permissions** d'un rôle ou utilisateur sur un canal avec une syntaxe lisible.
+The function `$modifyChannelPerms[]` allows **modifier les permissions** of a role or user sur un canal with ae syntaxe lisible.
 
-## Syntaxe
+## Syntax
 
 ```
 $modifyChannelPerms[channelID;roleOrUserID;permissions]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | L'ID du canal cible. |
-| `roleOrUserID` | L'ID du rôle ou de l'utilisateur. |
-| `permissions` | Permissions avec `+` (autoriser) ou `-` (refuser). Ex : `+sendmessages -attachfiles`. |
+| `channelID` | The ID of the canal cible. |
+| `roleOrUserID` | The ID of the role or of the user. |
+| `permissions` | Permissions avec `+` (autoriser) or `-` (refuser). Ex : `+sendmessages -attachfiles`. |
 
-## Valeur de retour
+## Return Value
 
-Cette fonction ne retourne pas de valeur.
+This function ne retourne pas de value.
 
-## Comportement
+## Behavior
 
-- Plus lisible que `$editChannelPerms[]` grâce aux noms de permissions.
-- Permissions disponibles : `viewchannel`, `sendmessages`, `managemessages`, `embedlinks`, `attachfiles`, `readmessagehistory`, `mentioneveryone`, `useexternalemojis`, `connect`, `speak`, `mute`, `deafen`, `move`, `usevad`, `priorityspeaker`, `stream`, etc.
-- Le bot doit avoir `MANAGE_CHANNELS` ou `MANAGE_ROLES`.
+- Plus lisible que `$editChannelPerms[]` thanks to thex noms de permissions.
+- Permissions availables : `viewchannel`, `sendmessages`, `managemessages`, `embedlinks`, `attachfiles`, `readmessagehistory`, `mentioneveryone`, `useexternalemojis`, `connect`, `speak`, `mute`, `deafen`, `move`, `usevad`, `priorityspeaker`, `stream`, etc.
+- The bot doit avoir `MANAGE_CHANNELS` or `MANAGE_ROLES`.
 
-## Exemples
+## Examples
 
-### Salon privé
+### Channel private
 
 ```bdfd
 $modifyChannelPerms[$channelID;$guildID;-viewchannel]
 $modifyChannelPerms[$channelID;$vipRoleID;+viewchannel +sendmessages]
-$sendMessage[Salon VIP configuré.]
+$sendMessage[Channel VIP configured.]
 ```
 
-### Verrouillage rapide
+### Verrouillage fast
 
 ```bdfd
 $modifyChannelPerms[$channelID;$guildID;-sendmessages]
@@ -64,11 +64,11 @@ $sendMessage[🔓 Canal déverrouillé.]
 
 ```bdfd
 $modifyChannelPerms[$channelID;$mutedRoleID;-sendmessages -speak -connect]
-$sendMessage[Permissions du rôle muet appliquées.]
+$sendMessage[Permissions of the role muet appliquées.]
 ```
 
 ## Notes
 
-- `$modifyChannelPerms[]` est recommandé car plus lisible que `$editChannelPerms[]`.
-- `$guildID` représente @everyone.
+- `$modifyChannelPerms[]` est recommended because plus lisible que `$editChannelPerms[]`.
+- `$guildID` represents @everyone.
 - Les permissions non mentionnées restent inchangées.

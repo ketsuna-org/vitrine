@@ -5,41 +5,41 @@ translation_key: docs
 category: "Entity Info"
 function_name: isAdmin
 syntax: $isAdmin
-description: Retourne "true" si l'utilisateur possède la permission Administrateur sur le serveur, "false" sinon.
+description: Returns "true" si the user possède la permission Administrator on the server, "false" otherwise.
 ---
 
 # $isAdmin
 
-La variable `$isAdmin` retourne `"true"` si l'utilisateur possède la permission **Administrateur** sur le serveur Discord.
+The variable `$isAdmin` retourne `"true"` si the user possède la permission **Administrator** on the server Discord.
 
-## Syntaxe
+## Syntax
 
 ```
 $isAdmin
 ```
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Chaîne `"true"` ou `"false"`
-- `"true"` : l'utilisateur a la permission `Administrator`
-- `"false"` : l'utilisateur n'a pas cette permission
+- **Type** : String `"true"` or `"false"`
+- `"true"` : the user a la permission `Administrator`
+- `"false"` : the user n'a pas cette permission
 
-## Comportement
+## Behavior
 
-- `$isAdmin` ne prend **aucun argument**.
-- La permission `Administrator` donne **toutes** les permissions sur le serveur.
-- Un propriétaire de serveur est implicitement administrateur (retourne `"true"`).
+- `$isAdmin` ne prend **no argument**.
+- La permission `Administrator` donne **all** les permissions on the server.
+- Un owner de server est implicitement administrator (retourne `"true"`).
 
-## Exemples
+## Examples
 
-### Restreindre une commande
+### Restreindre une command
 
 ```bdfd
 $if[$isAdmin==true]
   $ban[$mentioned]
-  $sendMessage[<@$mentioned> a été banni.]
+  $sendMessage[<@$mentioned> was banni.]
 $else
-  $sendMessage[Seuls les administrateurs peuvent utiliser cette commande.]
+  $sendMessage[Seuls les administrators peuvent utiliser cette command.]
 $endif
 ```
 
@@ -49,7 +49,7 @@ $endif
 $if[$isAdmin==true]
   $title[Panneau d'administration]
   $description[
-  **Commandes disponibles :**
+  **Commands availables :**
   `/ban`, `/kick`, `/mute`, `/config`
   ]
   $color[#ED4245]
@@ -67,6 +67,6 @@ $endif
 
 ## Notes
 
-- `$isAdmin` vérifie uniquement la permission `Administrator`, pas les autres permissions individuelles.
+- `$isAdmin` vérifie only la permission `Administrator`, pas les autres permissions individuelles.
 - Pour vérifier une permission spécifique (ex: `BanMembers`, `ManageMessages`), utilisez `$checkContains[$userPerms;PermissionName]`.
-- Équivalent à `$checkContains[$userPerms;Administrator]==true`.
+- Équivaslow à `$checkContains[$userPerms;Administrator]==true`.

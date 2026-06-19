@@ -5,42 +5,42 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandTrigger
 syntax: $commandTrigger
-description: Retourne le déclencheur (trigger) de la commande en cours d'exécution.
+description: Returns the déclencheur (trigger) of the command in progress d'execution.
 ---
 
 # $commandTrigger
 
-La fonction `$commandTrigger` **retourne le déclencheur complet** de la commande en cours, incluant le préfixe ou le slash. Par exemple, si la commande `help` est déclenchée par `!help`, le trigger retourné est `!help`.
+The `$commandTrigger` function **returns the déclencheur complete** of the command in progress, incluant le préfixe or the slash. Par example, if the command `help` est déclenchée par `!help`, le trigger retourné est `!help`.
 
-## Syntaxe
+## Syntax
 
 ```
 $commandTrigger
 ```
 
-## Paramètres
+## Parameters
 
 Aucun.
 
-## Valeur de retour
+## Return value
 
 - **Type** : String
-- Le trigger complet de la commande (préfixe + nom, ou `/nom` pour les slash).
+- Le trigger complete of the command (préfixe + nom, or `/nom` for slash).
 
-## Comportement
+## Behavior
 
-- Pour les commandes prefix : retourne le préfixe + nom (ex: `!help`, `?ban`).
-- Pour les commandes slash : retourne `/nom` (ex: `/help`).
-- Le préfixe dépend de la configuration du bot.
+- For commands prefix : returns the préfixe + nom (ex: `!help`, `?ban`).
+- For commands slash : retourne `/nom` (ex: `/help`).
+- Le préfixe dépend de la configuration of the bot.
 
-## Exemples
+## Examples
 
-### Message d'erreur avec usage
+### Message error avec usage
 
 ```bdfd
 $if[$message[1]==]
-  $sendMessage[❌ **Usage :** $commandTrigger <utilisateur> <raison>
-  Exemple : $commandTrigger @user Spam]
+  $sendMessage[❌ **Usage :** $commandTrigger <user> <reason>
+  Example : $commandTrigger @user Spam]
   $stop
 $endif
 ```
@@ -50,15 +50,15 @@ $endif
 ```bdfd
 $title[📖 Aide : $commandName]
 $description[
-**Commande :** $commandTrigger
+**Command :** $commandTrigger
 **Type :** $commandType
-**Dossier :** $commandFolder
+**Folder :** $commandFolder
 
-**Utilisation :**
+**Usage :**
 `$commandTrigger <param1> [param2]`
 
-**Exemple :**
-`$commandTrigger valeur1 optionnel`
+**Example :**
+`$commandTrigger value1 optional`
 ]
 $sendMessage[]
 ```
@@ -69,22 +69,22 @@ $sendMessage[]
 $log[📌 CMD | User: $userName | Trigger: $commandTrigger | Name: $commandName | Type: $commandType | Server: $serverName]
 ```
 
-### Information dans l'embed
+### Information in the embed
 
 ```bdfd
-$title[⚡ Exécution]
-$addField[Commande;$commandName;yes]
+$title[⚡ Execution]
+$addField[Command;$commandName;yes]
 $addField[Trigger;$commandTrigger;yes]
 $addField[Type;$commandType;yes]
 $addField[Auteur;$userName;yes]
-$addField[Dossier;$commandFolder;yes]
-$footer[Exécuté le $formatDate[$dateStamp]]
+$addField[Folder;$commandFolder;yes]
+$footer[Executed le $formatDate[$dateStamp]]
 $sendMessage[]
 ```
 
 ## Notes
 
 - `$commandTrigger` inclut le préfixe (ex: `!help`), contrairement à `$commandName` (qui retourne `help`).
-- Pour le nom sans préfixe, utilisez `$commandName`.
-- Pour savoir si c'est une commande slash, utilisez `$isSlash` ou `$commandType`.
-- Le préfixe peut être extrait avec `$charAt[$commandTrigger;1]`.
+- For the nom without préfixe, use `$commandName`.
+- Pour savoir si this is une command slash, use `$isSlash` or `$commandType`.
+- Le préfixe can be extracted avec `$charAt[$commandTrigger;1]`.

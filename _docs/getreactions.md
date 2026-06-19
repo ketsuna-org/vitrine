@@ -5,48 +5,48 @@ translation_key: docs
 category: "Moderation"
 function_name: getReactions
 syntax: $getReactions[channelID;messageID;emoji]
-description: Retourne le nombre de réactions pour un émoji spécifique sur un message donné. Permet de compter les votes ou interactions.
+description: Returns the number de réactions for a emoji spécifique sur un message donné. Allows compter les votes or interactions.
 ---
 
 # $getReactions
 
-La fonction `$getReactions[]` permet de **compter le nombre de réactions** pour un émoji spécifique sur un message donné.
+The function `$getReactions[]` allows **compter the namebre de réactions** for a emoji spécifique sur un message donné.
 
-## Syntaxe
+## Syntax
 
 ```
 $getReactions[channelID;messageID;emoji]
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Description |
+| Parameter | Description |
 |---|---|
-| `channelID` | L'ID du canal contenant le message. |
-| `messageID` | L'ID du message cible. |
-| `emoji` | L'émoji à compter. Unicode (`👍`) ou personnalisé (`<:nom:ID>`). |
+| `channelID` | The ID of the canal contenant the message. |
+| `messageID` | The ID of the message cible. |
+| `emoji` | L'emoji à compter. Unicode (`👍`) or custom (`<:nom:ID>`). |
 
-## Valeur de retour
+## Return Value
 
-- **Type** : Nombre entier
-- Le nombre de fois que l'émoji a été utilisé en réaction sur ce message.
-- Retourne `0` si l'émoji n'est pas présent.
+- **Type** : Integer
+- The namebre de fois que l'emoji was utilisé en réaction sur this message.
+- Returns `0` si l'emoji is not présent.
 
-## Comportement
+## Behavior
 
-- Compte UNIQUEMENT le nombre de réactions, pas les utilisateurs spécifiques.
-- Une même personne peut compter pour 1 même si elle a réagi plusieurs fois (une seule réaction par émoji par utilisateur).
-- Le bot doit avoir accès au canal pour lire les réactions.
+- Counts UNIQUEMENT the namebre de réactions, pas les users spécifiques.
+- Une même personne peut compter pour 1 even if elle a réagi several fois (a single réaction par emoji par user).
+- The bot doit avoir accès au canal pour lire les réactions.
 
-## Exemples
+## Examples
 
-### Résultat de sondage
+### Result de sondage
 
 ```bdfd
 $let[yes;$getReactions[$channelID;$messageID;👍]]
 $let[no;$getReactions[$channelID;$messageID;👎]]
 
-$title[Résultats du sondage]
+$title[Results du sondage]
 $description[
 **Pour :** $yes vote(s)
 **Contre :** $no vote(s)
@@ -61,7 +61,7 @@ $sendMessage[]
 ```bdfd
 $let[votes;$getReactions[$channelID;$messageID;✅]]
 $if[$votes>=5]
-  $sendMessage[Seuil de 5 votes atteint ! Action exécutée.]
+  $sendMessage[Seuil de 5 votes atteint ! Action executed.]
 $else
   $sendMessage[Encore $sub[5;$votes] vote(s) nécessaire(s).]
 $endif
@@ -74,12 +74,12 @@ $let[participants;$getReactions[$channelID;$giveawayMsg;🎉]]
 $if[$participants>0]
   $sendMessage[**$participants** participant(s) au giveaway !]
 $else
-  $sendMessage[Aucun participant pour le moment.]
+  $sendMessage[Aucun participant for the moment.]
 $endif
 ```
 
 ## Notes
 
-- Le compte exclut le bot lui-même si celui-ci a réagi.
-- Utile pour les systèmes de vote, sondages et giveaways.
-- Pour obtenir la liste des utilisateurs ayant réagi, des méthodes alternatives sont nécessaires.
+- Le compte kicks the bot lui-even if celui-ci a réagi.
+- Utile for the systèmes de vote, sondages and giveaways.
+- Pour obtenir la list des users ayant réagi, des méthodes alternatives sont nécessaires.
