@@ -5,12 +5,12 @@ translation_key: docs
 category: "Canvas"
 function_name: canvasGrayscale
 syntax: $canvasGrayscale
-description: Converts the canvas courant en levelx de gris. Pas de parameters.
+description: Converts the canvas courant en levelx of gris. Pas of parameters.
 ---
 
 # $canvasGrayscale
 
-The `$canvasGrayscale` function **converts the canvas courant en levelx de gris**, supprimant all informations de couleur (saturation) tout en conservant la luminosité.
+The `$canvasGrayscale` function **converts the canvas courant en levelx of gris**, supprimant all information of couleur (saturation) tout en conservant la luminosité.
 
 ## Syntax
 
@@ -28,8 +28,8 @@ None. The canvas est modified directly.
 
 ## Behavior
 
-- Each pixel du canvas est converted en nuance de gris depending on de sa luminance.
-- La formule utilise generally une moyenne pondérée des canaux RGB (30% rouge, 59% vert, 11% bleu).
+- Each pixel of the canvas est converted en nuance of gris depending on of sa luminance.
+- La formule utilise generally une moyenne pondérée canaux RGB (30% rouge, 59% vert, 11% bleu).
 - L'opération est irréversible (unless vous sauvegardez the state before).
 
 ## Examples
@@ -40,7 +40,7 @@ None. The canvas est modified directly.
 $canvasLoad[$attachment]
 $canvasGrayscale
 $attachCanvas[]
-$sendMessage[🎨 Image convertede en levelx de gris !]
+$sendMessage[🎨 Image convertede en levelx of gris !]
 ```
 
 ### Effet photo oldne
@@ -62,11 +62,11 @@ $attachCanvas[before.png]
 
 $canvasGrayscale
 $attachCanvas[apres.png]
-$sendMessage[⚫ Original vs Levelx de gris :]
+$sendMessage[⚫ Original vs Levelx of gris :]
 ```
 
 ## Notes
 
-- Le canvas must have été created or loaded before d'caller cette function (via `$canvasCreate[]`, `$canvasLoad[]`, etc.).
-- Pour inverser les couleurs, use plutôt `$canvasInvert`.
+- Le canvas must have été created or loaded before of caller cette function (via `$canvasCreate[]`, `$canvasLoad[]`, etc.).
+- Pour reverse thes couleurs, use plutôt `$canvasInvert`.
 - Pour une rotation, use `$canvasRotate[degrés]`.

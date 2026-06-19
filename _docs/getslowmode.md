@@ -5,11 +5,11 @@ translation_key: docs
 category: "Server & Channels"
 function_name: getSlowmode
 syntax: $getSlowmode[(channelID)]
-description: Gets the value du mode slow (slowmode) d'un canal, en seconds. Returns the delay minimum between two messages.
+description: Gets the value of the mode slow (slowmode) of un canal, en seconds. Returns the delay minimum between two messages.
 ---
 # $getSlowmode
 
-The function `$getSlowmode[]` retourne la **value du mode slow** (slowmode) d'un canal, en seconds.
+The function `$getSlowmode[]` retourne la **value of the mode slow** (slowmode) of un canal, en seconds.
 
 ## Syntax
 
@@ -40,16 +40,16 @@ $sendMessage[Slowmode current : $getSlowmode seconds]
 
 ```bdfd
 $if[$getSlowmode==0]
-  $sendMessage[Ce canal n'a pas de slowmode.]
+  $sendMessage[Ce canal n'a pas of slowmode.]
 $else
-  $sendMessage[Ce canal a un slowmode de $getSlowmode seconds.]
+  $sendMessage[Ce canal a un slowmode of $getSlowmode seconds.]
 $endif
 ```
 
 ### Vérifier un autre canal
 
 ```bdfd
-$sendMessage[Slowmode du canal de logs : $getSlowmode[123456789]s]
+$sendMessage[Slowmode of the canal of logs : $getSlowmode[123456789]s]
 ```
 
 ### Alerte si slowmode actif
@@ -57,7 +57,7 @@ $sendMessage[Slowmode du canal de logs : $getSlowmode[123456789]s]
 ```bdfd
 $if[$getSlowmode>0]
   $title[⏱️ Canal en slowmode]
-  $description[Le canal <#$channelID> a un slowmode de **$getSlowmode seconds**.]
+  $description[Le canal <#$channelID> a un slowmode of **$getSlowmode seconds**.]
   $color[#FEE75C]
   $sendMessage[]
 $endif

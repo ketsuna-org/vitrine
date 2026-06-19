@@ -10,7 +10,7 @@ description: Checks if a emoji custom portant a name donné existe on the server
 
 # $emojiExists
 
-The `$emojiExists[]` function **vérifier if a emoji custom existe** on the server courant.
+The `$emojiExists[]` function **check if a emoji custom existe** on the server courant.
 
 ## Syntax
 
@@ -22,19 +22,19 @@ $emojiExists[name]
 
 | Parameter | Description |
 |---|---|
-| `name` | The emoji name à vérifier (without les two-points). |
+| `name` | The emoji name to check (without les two-points). |
 
 ## Return value
 
 - **Type** : String (boolean)
 - `true` if a emoji portant ce nom existe on the server.
-- `false` si aucan emoji avec ce nom n'est found.
+- `false` si aucan emoji with ce nom n'est found.
 
 ## Behavior
 
-- La recherche est sensible à la casse.
+- La recherche est sensible to la casse.
 - Checks only les emojis of the server courant.
-- Utile comme garde before `$addEmoji[]` or `$removeEmoji[]`.
+- Utile like garde before `$addEmoji[]` or `$removeEmoji[]`.
 
 ## Examples
 
@@ -66,19 +66,19 @@ $else
 $endif
 ```
 
-### Vérification dans un formulaire
+### Vérification in a formulaire
 
 ```bdfd
 $if[$emojiExists[$message]==true]
   ✅ L'emoji **$message** is available.
   $customEmoji[$message]
 $else
-  ❌ L'emoji **$message** does not exist. Importez-le avec `!addemoji $message`.
+  ❌ L'emoji **$message** does not exist. Importez-le with `!addemoji $message`.
 $endif
 ```
 
 ## Notes
 
-- The name est sensible à la casse : `Cool` ≠ `cool`.
+- The name est sensible to la casse : `Cool` ≠ `cool`.
 - Ne vérifie que les emojis of the server courant.
 - For emojis externals, use `$emojiName[]` qui retourne vide si inaccessible.

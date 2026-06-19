@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookColor
 syntax: $webhookColor[hexColor]
-description: Sets the couleur de la barre latérale of the embed for the prochain message sent via $webhookSend.
+description: Sets the couleur of la barre latérale of the embed for the prochain message sent via $webhookSend.
 ---
 
 # $webhookColor
 
-The function `$webhookColor[]` allows **définir the color of the embed** (barre latérale gauche) for the prochain message webhook.
+The function `$webhookColor[]` allows **define the color of the embed** (barre latérale gauche) for the prochain message webhook.
 
 ## Syntax
 
@@ -22,25 +22,25 @@ $webhookColor[hexColor]
 
 | Parameter | Description |
 |---|---|
-| `hexColor` | Code couleur hexadecimal, avec or without the préfixe `#`. Examples: `#FF0000`, `5865F2`, `00FF00`. |
+| `hexColor` | Code couleur hexadecimal, with or without the préfixe `#`. Examples: `#FF0000`, `5865F2`, `00FF00`. |
 
 ## Return Value
 
-This function ne retourne pas de value. Elle définit the color du prochain embed.
+This function ne retourne pas of value. Elle définit the color of the prochain embed.
 
 ## Behavior
 
-- The color s'applique à la barre latérale gauche of the embed.
-- Si no embed n'est défini (pas de `$webhookTitle` or `$webhookDescription`), the color est ignorée.
+- The color s'applique to la barre latérale gauche of the embed.
+- Si no embed n'est défini (pas of `$webhookTitle` or `$webhookDescription`), the color est ignorée.
 - The color est réinitialisée after each `$webhookSend[]`.
 
 ## Examples
 
-### Embed coloré
+### Embed colored
 
 ```bdfd
 $webhookTitle[Success]
-$webhookDescription[L'opération was effectuée avec success.]
+$webhookDescription[L'opération was effectuée with success.]
 $webhookColor[#57F287]
 $webhookFooter[✅ Opération réussie]
 $webhookSend[$webhookURL;]
@@ -62,6 +62,6 @@ $webhookSend[$logHook;]
 
 ## Notes
 
-- Utilisez des couleurs cohérentes for the lisibilité : rouge pour errors, vert pour success, bleu pour info.
-- The color default de Discord est `#000000` (pas de barre colorée).
+- Utilisez couleurs cohérentes for the lisibilité : rouge pour errors, vert pour success, bleu pour info.
+- The color default of Discord est `#000000` (pas of barre colored).
 - Les couleurs trop claires can be peu visibles en thème clair.

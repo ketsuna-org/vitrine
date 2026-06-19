@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: memberPerms
 syntax: $memberPerms
-description: Returns the list des permissions effectives du member on the server. Équivaslow à $userPerms.
+description: Returns the list permissions effectives of the member on the server. Équivaslow to $userPerms.
 ---
 
 # $memberPerms
 
-The variable `$memberPerms` retourne la **list des permissions effectives** du member on the server current. Elle est équivaslowe à `$userPerms`.
+The variable `$memberPerms` retourne la **list permissions effectives** of the member on the server current. Elle est équivaslowe to `$userPerms`.
 
 ## Syntax
 
@@ -20,30 +20,30 @@ $memberPerms
 
 ## Return Value
 
-- **Type** : List de noms de permissions (en anglais), separateds par des virgules
+- **Type** : List of noms of permissions (en anglais), separateds par virgules
 - Example: `SendMessages, ReadMessageHistory, AddReactions, ManageMessages`
 
 ## Behavior
 
 - `$memberPerms` ne prend **no argument**.
-- Returns thes permissions combinées de all roles du member and des overwrites de channel.
-- Functionnellement identical à `$userPerms` for the user déclencheur.
+- Returns thes permissions combinées of all roles of the member and overwrites of channel.
+- Functionnellement identical to `$userPerms` for the user déclencheur.
 
 ## Examples
 
-### Afficher les permissions
+### Display les permissions
 
 ```bdfd
-$title[Permissions de $memberNick]
+$title[Permissions of $memberNick]
 $description[
-**Permissions du member :**
+**Permissions of the member :**
 $memberPerms
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Command de modération
+### Command of modération
 
 ```bdfd
 $if[$checkContains[$memberPerms;KickMembers]==true]
@@ -57,5 +57,5 @@ $endif
 ## Notes
 
 - `$memberPerms` and `$userPerms` sont interchangeables.
-- Les noms de permissions sont en **anglais** (nomenclature API Discord).
-- Pour une simple vérification d'administration, utilisez `$isAdmin`.
+- Les noms of permissions sont en **anglais** (nomenclature API Discord).
+- Pour une simple vérification of administration, utilisez `$isAdmin`.

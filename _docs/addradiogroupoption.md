@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addRadioGroupOption
 syntax: $addRadioGroupOption[menuId;label;value;(description);(default)]
-description: Adds an option individuelle à a group de radio buttons in a modal. The menuId can be omis to target le last groupe created.
+description: Adds an individual option to a group of radio buttons in a modal. The menuId can be omitted to target the last group created.
 ---
 
-# $addRadioGroupOption[] — Option de Groupe Radio
+# $addRadioGroupOption[] — Option of Group Radio
 
-`$addRadioGroupOption[]` ajoute une option à a group de radio buttons created avec `$addModalRadioGroup[]`. A single option of the group can be selectionnée à la fois.
+`$addRadioGroupOption[]` ajoute une option to a group of radio buttons created with `$addModalRadioGroup[]`. A single option of the group can be selectionnée to la fois.
 
 ## Syntax
 
@@ -30,18 +30,18 @@ $addRadioGroupOption[menuId;label;value;(description);(default)]
 
 ## Return value
 
-Ajoute the option au groupe parent. The value selectionnée est accessible via `$input[menuId]`.
+Ajoute the option to the group parent. The value selectionnée est accessible via `$input[menuId]`.
 
 ## Usage
 
-### Groupe avec options détaillées
+### Group with options détaillées
 
 ```bdfd
 $newModal[Abonnement;sub_modal]
-$addModalRadioGroup[tier;Level d'abonnement;yes]
-$addRadioGroupOption[tier;Gratuit;free;Functionnalités de base;yes]
+$addModalRadioGroup[tier;Level of abonnement;yes]
+$addRadioGroupOption[tier;Gratuit;free;Functionnalités of base;yes]
 $addRadioGroupOption[tier;Pro;pro;Tout illimité, support prioritaire;no]
-$addRadioGroupOption[tier;Enterprise;ent;Solution sur mesure, SLA garanti;no]
+$addRadioGroupOption[tier;Enterprise;ent;Solution on mesure, SLA garanti;no]
 ```
 
 ### Without menuId explicite
@@ -67,7 +67,7 @@ $addRadioGroupOption[;English;en;;no]
 
 ## Notes
 
-- A single option peut avoir `default` à `yes` dans un même groupe radio.
-- Si `menuId` est vide, the option cible le last groupe created.
+- A single option peut avoir `default` to `yes` in a même group radio.
+- Si `menuId` est vide, the option target the last group created.
 - La value retournée est le `value` of the option selectionnée (not the `label`).
-- Maximum 25 options par groupe radio.
+- Maximum 25 options par group radio.

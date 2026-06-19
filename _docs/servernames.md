@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverNames
 syntax: $serverNames
-description: Returns the list des noms de all servers in thesquels the bot est présent, separateds par des virgules.
+description: Returns the list noms of all servers in thesquels the bot est présent, separateds par virgules.
 ---
 
-# $serverNames[] — Noms de Tous les Servers
+# $serverNames[] — Noms of Tous les Servers
 
-`$serverNames[]` retourne la list complete des noms de all servers Discord sur lesquels the bot est installé.
+`$serverNames[]` retourne la list complete noms of all servers Discord on lesquels the bot est installé.
 
 ## Syntax
 
@@ -25,7 +25,7 @@ Aucun parameter.
 ## Return Value
 
 - **Type** : `string`
-- Une string contenant all noms de servers, separateds par des virgules (ex: `"Server A, Server B, Server C"`).
+- Une string contenant all noms of servers, separateds par virgules (ex: `"Server A, Server B, Server C"`).
 
 ## Utilisation
 
@@ -35,27 +35,27 @@ Aucun parameter.
 $sendMessage[🌐 Mes servers : $serverNames]
 ```
 
-### Embed list des servers
+### Embed list servers
 
 ```bdfd
-$title[🌐 Servers du Bot]
+$title[🌐 Servers of the Bot]
 $description[$serverNames]
 $footer[Total : $serverCount servers]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Vérifier la présence sur un server
+### Vérifier la présence on a server
 
 ```bdfd
 $if[$serverNames$contains[Communauté Gaming]]
-$sendMessage[✅ The bot est bien sur la Communauté Gaming !]
+$sendMessage[✅ The bot est bien on the Communauté Gaming !]
 $else
-$sendMessage[❌ The bot is not sur la Communauté Gaming.]
+$sendMessage[❌ The bot is not on the Communauté Gaming.]
 $endif
 ```
 
-### Statistiques avec list
+### Statistiques with list
 
 ```bdfd
 $title[📊 Bot Statistics]
@@ -68,8 +68,8 @@ $sendEmbedMessage
 
 ## Notes
 
-- La list can be très longue si the bot est sur de many servers — attention à la limit de 2000 becauseactères par message Discord.
+- La list can be très longue si the bot est on of many servers — attention to la limit of 2000 becauseactères par message Discord.
 - Les noms sont separateds par `", "` (virgule + espace).
 - Pour the namebre total without the list, utilisez `$serverCount[]`.
-- Utilisez `$contains[]` pour vérifier la présence d'un nom spécifique, mais attention aux noms partials.
-- Les noms peuvent contenir des becauseactères special and des emojis.
+- Utilisez `$contains[]` pour check the présence of un nom specific, mais attention to the noms partials.
+- Les noms can contain becauseactères special and emojis.

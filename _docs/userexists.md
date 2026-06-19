@@ -10,7 +10,7 @@ description: Checks if the user spécifié (par ID or mention) existe on Discord
 
 # $userExists
 
-The function `$userExists[]` vérifie if a user Discord existe, à partir d'un **ID** or d'une **mention**.
+The function `$userExists[]` vérifie if a user Discord existe, from un **ID** or of une **mention**.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $userExists[userID/mention]
 
 | Parameter | Description |
 |---|---|
-| `userID/mention` | The ID numérique (snowflake) or la mention (`<@ID>`) of the user à vérifier. |
+| `userID/mention` | The ID numérique (snowflake) or la mention (`<@ID>`) of the user to vérifier. |
 
 ## Return Value
 
@@ -32,8 +32,8 @@ $userExists[userID/mention]
 
 ## Behavior
 
-- La vérification se base sur les users accessibles au bot (cache des servers partagés).
-- Un user peut exister on Discord without être on the server of the bot — in this case, the result dépend du context.
+- La vérification se base on the users accessibles to the bot (cache servers partagés).
+- Un user peut exister on Discord without être on the server of the bot — in this case, the result dépend of the context.
 
 ## Examples
 
@@ -41,7 +41,7 @@ $userExists[userID/mention]
 
 ```bdfd
 $if[$userExists[$mentioned]==true]
-  $title[Informations sur <@$mentioned>]
+  $title[Informations on <@$mentioned>]
   $description[
   **ID :** $mentioned
   **Nom :** $userName[$mentioned]
@@ -63,6 +63,6 @@ $endif
 
 ## Notes
 
-- Utilisez `$userExists[]` pour validr les entrées user before d'exécuter des actions qui pourraient échouer.
+- Utilisez `$userExists[]` pour validr les entrées user before of exécuter actions qui pourraient échouer.
 - `$userExists[]` ne vérifie pas si the user est **member of the server**, only s'il existe on Discord and est connu of the bot.
-- Function utile pour éviter les errors in thes commands utilisant des IDs fournis par the user.
+- Function utile pour éviter les errors in thes commands utilisant IDs fournis par the user.

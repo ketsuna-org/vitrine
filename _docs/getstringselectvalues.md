@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getStringSelectValues
 syntax: $getStringSelectValues[(separator)]
-description: Gets all values des options selectedes dans un menu de sélection de strings à choix multiple.
+description: Gets all values options selectedes in a menu of sélection of strings to choix multiple.
 ---
 
 # $getStringSelectValues
 
-The function `$getStringSelectValues[]` allows **récupérer all values** des options choisies par the user dans un menu de sélection de strings à choix multiple.
+The function `$getStringSelectValues[]` allows **récupérer all values** options choisies par the user in a menu of sélection of strings to choix multiple.
 
 ## Syntax
 
@@ -27,18 +27,18 @@ $getStringSelectValues[(separator)]
 ## Return Value
 
 - **Type** : String
-- La list de all values selectedes, separatedes par le délimitur.
+- La list of all values selectedes, separatedes par le délimitur.
 - String vide si noe option n'was selectede.
 
 ## Behavior
 
-- Utilisé with a menu de strings configured avec `maxValues > 1`.
-- Returns thes values (pas les labels) des options choisies.
+- Utilisé with a menu of strings configured with `maxValues > 1`.
+- Returns thes values (pas les labels) options choisies.
 - Allows traiter several choix en a single interaction.
 
 ## Examples
 
-### Traitement de several choix
+### Traitement of several choix
 
 ```bdfd
 $onInteraction[menu]
@@ -71,4 +71,4 @@ $endTextSplit
 
 - Pour une sélection unique, utilisez `$getStringSelectValue[]`.
 - Le separator can be custom pour faciliter le parsing.
-- Les values sont définies dans `$addStringSelectMenu[]`.
+- Les values sont définies in `$addStringSelectMenu[]`.

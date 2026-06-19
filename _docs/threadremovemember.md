@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: threadRemoveMember
 syntax: $threadRemoveMember[threadID;userID]
-description: Retire un member d'un fil de discussion (thread). The user ne pourra plus voir ni participer au thread private.
+description: Retire un member of un fil of discussion (thread). The user ne pourra plus voir ni participer to the thread private.
 ---
 
 # $threadRemoveMember
 
-The function `$threadRemoveMember[]` allows **retirer un user d'un thread**. The user ne pourra plus accéder au thread private.
+The function `$threadRemoveMember[]` allows **retirer un user of un thread**. The user ne pourra plus accéder to the thread private.
 
 ## Syntax
 
@@ -23,17 +23,17 @@ $threadRemoveMember[threadID;userID]
 | Parameter | Description |
 |---|---|
 | `threadID` | The ID of the thread cible. |
-| `userID` | The ID of the user à retirer. |
+| `userID` | The ID of the user to retirer. |
 
 ## Return Value
 
-This function ne retourne pas de value.
+This function ne retourne pas of value.
 
 ## Behavior
 
 - Functionne mainment for the threads privates.
-- Dans un thread public, les users ne peuvent pas être retirés (ils peuvent toudays le voir).
-- The bot doit avoir `MANAGE_THREADS` or être le créateur du thread private.
+- Dans un thread public, les users ne can pas être retirés (ils can toudays le voir).
+- The bot doit avoir `MANAGE_THREADS` or être le créateur of the thread private.
 
 ## Examples
 
@@ -49,11 +49,11 @@ $sendMessage[Ticket fermé and user retiré.]
 
 ```bdfd
 $threadRemoveMember[$threadID;$mentioned[1]]
-$channelSendMessage[$threadID;<$mentioned[1]> was retiré du thread.]
+$channelSendMessage[$threadID;<$mentioned[1]> was retiré of the thread.]
 ```
 
 ## Notes
 
-- Dans les threads publics, `$threadRemoveMember[]` peut ne pas avoir d'effet visible.
-- The user retiré ne receives pas de notification.
+- Dans les threads publics, `$threadRemoveMember[]` peut ne pas avoir of effet visible.
+- The user retiré ne receives pas of notification.
 - Pour les threads privates, it is la méthode appropriée pour gérer l'accès.

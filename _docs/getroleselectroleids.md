@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getRoleSelectRoleIDs
 syntax: $getRoleSelectRoleIDs[(separator)]
-description: Gets all IDs des roles selecteds par the user via un menu de sélection de roles à choix multiple.
+description: Gets all IDs roles selecteds par the user via un menu of sélection of roles to choix multiple.
 ---
 
 # $getRoleSelectRoleIDs
 
-The function `$getRoleSelectRoleIDs[]` allows **récupérer l'ensemble des IDs des roles** selecteds par the user dans un menu de sélection de roles à choix multiple.
+The function `$getRoleSelectRoleIDs[]` allows **récupérer l'ensemble IDs roles** selecteds par the user in a menu of sélection of roles to choix multiple.
 
 ## Syntax
 
@@ -27,18 +27,18 @@ $getRoleSelectRoleIDs[(separator)]
 ## Return Value
 
 - **Type** : String
-- La list de all IDs des roles selecteds.
+- La list of all IDs roles selecteds.
 - String vide si no role n'was selected.
 
 ## Behavior
 
-- Utilisé with a menu de sélection de roles configured avec `maxValues > 1`.
+- Utilisé with a menu of sélection of roles configured with `maxValues > 1`.
 - Returns all IDs en a single string with the separator spécifié.
-- Compatible avec `$textSplit[]` pour itérer sur each role.
+- Compatible with `$textSplit[]` pour itérer on each role.
 
 ## Examples
 
-### Attributeion de several roles
+### Attributeion of several roles
 
 ```bdfd
 $onInteraction[role_select]
@@ -52,7 +52,7 @@ $endTextSplit
 $sendMessage[✅ Tous les roles were attribués !]
 ```
 
-### Affichage des roles selecteds
+### Affichage roles selecteds
 
 ```bdfd
 $onInteraction[role_select]
@@ -72,5 +72,5 @@ $sendMessage[]
 ## Notes
 
 - Pour une sélection unique, utilisez `$getRoleSelectRoleID[]`.
-- Le separator can be n'importe quelle string de becauseactères.
-- Utile for the systèmes d'auto-roles avec sélection multiple.
+- Le separator can be n'importe quelle string of becauseactères.
+- Utile for the systèmes of auto-roles with sélection multiple.

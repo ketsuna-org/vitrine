@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverInfo
 syntax: $serverInfo[property]
-description: Returns ae property spécifique de l'object server (or l'object complete without argument). Allows to accéder dynamicment aux informations of the server.
+description: Returns ae property specific of l'object server (or l'object complete without argument). Allows to accéder dynamicment to the information of the server.
 ---
 
-# $serverInfo[] — Informations du Server
+# $serverInfo[] — Informations of the Server
 
-`$serverInfo[]` est une function polyvaslowe qui allows to accéder aux informations of the server. Sans argument, elle retourne l'object complete ; with a nom de property, elle retourne the value spécifique.
+`$serverInfo[]` est une function polyvaslowe qui allows to accéder to the information of the server. Sans argument, elle retourne l'object complete ; with a nom of property, elle retourne the value specific.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $serverInfo[property]
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `property` | No | — | Name of the property à récupérer. |
+| `property` | No | — | Name of the property to récupérer. |
 
 ## Propertys availables
 
@@ -35,11 +35,11 @@ $serverInfo[property]
 | `ownerID` | ID of the owner | `$serverOwner` |
 | `description` | Description of the server | `$serverDescription` |
 | `region` | Région of the server | `$serverRegion` |
-| `verificationLevel` | Level de vérification | `$serverVerificationLevel` |
-| `memberCount` | Number de members | `$membersCount` |
-| `boostCount` | Number de boosts | `$serverBoostCount` |
-| `boostLevel` | Level de boost | `$boostLevel` |
-| `emojiCount` | Number d'emojis | `$emojiCount` |
+| `verificationLevel` | Level of vérification | `$serverVerificationLevel` |
+| `memberCount` | Number of members | `$membersCount` |
+| `boostCount` | Number of boosts | `$serverBoostCount` |
+| `boostLevel` | Level of boost | `$boostLevel` |
+| `emojiCount` | Number of emojis | `$emojiCount` |
 | `banner` | URL of the banner | `$serverBanner` |
 | `vanityURL` | Code URL custome | `$serverVanityURL` |
 
@@ -52,7 +52,7 @@ $sendMessage[Nom of the server : **$serverInfo[name]**]
 $sendMessage[Owner : <@$serverInfo[ownerID]>]
 ```
 
-### Récupérer all informations
+### Récupérer all information
 
 ```bdfd
 $title[Informations completes of the server]
@@ -93,6 +93,6 @@ $sendEmbedMessage
 ## Notes
 
 - `$serverInfo[]` without argument retourne un JSON object brut — utile for the débogage or le logging.
-- Les noms de propertys sont sensibles à la casse (camelCase).
-- Préférez les functions dédiées (`$serverName`, `$serverID`, etc.) for a usage simple — `$serverInfo[]` est utile pour des accès dynamics.
+- Les noms of propertys sont sensibles to la casse (camelCase).
+- Préférez les functions dédiées (`$serverName`, `$serverID`, etc.) for a usage simple — `$serverInfo[]` est utile pour accès dynamics.
 - Toutes les propertys are not toudays availables (ex: `banner` si level boost insuffisant).

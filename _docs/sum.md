@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: sum
 syntax: $sum[value1;value2;...]
-description: Calculates the somme de all values fournies.
+description: Calculates the somme of all values fournies.
 ---
 
 # $sum[]
 
-The function `$sum[]` additionne all values numériques qui lui sont passées. Elle est variadique, ce qui signifie qu'elle accepte un number illimité d'arguments.
+The function `$sum[]` additionne all values numériques qui lui sont passées. Elle est variadique, ce qui signifie qu'elle accepte un number illimité of arguments.
 
 ## Syntax
 
@@ -22,14 +22,14 @@ $sum[value1;value2;...]
 
 | Parameter | Type   | Required | Description                                              |
 |-----------|--------|-------------|----------------------------------------------------------|
-| `values` | number | Yes         | List de values numériques separatedes par `;`. Variadique. |
+| `values` | number | Yes         | List of values numériques separatedes par `;`. Variadique. |
 
 ## Behavior
 
 - Additionne all values in the ordre où they are fournies.
 - Si noe value is notsée, retourne `0`.
-- Les values non numériques sont ignorées or convertedes en `0` selon le context.
-- Supporte les numbers décimaux.
+- Les values non numériques sont ignorées or convertedes en `0` according to the context.
+- Supports thes numbers décimaux.
 
 ## Examples
 
@@ -51,13 +51,13 @@ $sum[]
 → 0
 ```
 
-**Dans un context pratique (total d'un panier) :**
+**Dans un context pratique (total of un panier) :**
 ```
 $sum[$getVar[item1];$getVar[item2];$getVar[item3]]
 ```
 
 ## Notes
 
-- The result est toudays une string de becauseactères représentant un number.
-- Pour des opérations plus complexs, utilisez `$calculate[]`.
-- Les points-virgules `;` sont requireds comme separators.
+- The result est toudays une string of becauseactères représentant un number.
+- Pour opérations plus complexs, utilisez `$calculate[]`.
+- Les points-virgules `;` sont requireds like separators.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: byteCount
 syntax: $byteCount[text]
-description: Calculates and retourne the namebre d'octets (bytes) d'a string de text. Utile pour vérifier the size of a message before envoi.
+description: Calculates and retourne the namebre of octets (bytes) of a string of text. Utile pour check the size of a message before envoi.
 ---
 
 # $byteCount
 
-The `$byteCount[]` function **calculer the namebre d'octets** (bytes) d'un text donné. Utile pour vérifier les limits de taille of messages Discord or évaluer le poids de datas.
+The `$byteCount[]` function **calculer the namebre of octets** (bytes) of un text donné. Utile pour check thes limits of taille of messages Discord or évaluer le poids of datas.
 
 ## Syntax
 
@@ -27,13 +27,13 @@ $byteCount[text]
 ## Return value
 
 - **Type** : String (number)
-- The namebre d'octets que represents le text.
+- The namebre of octets que represents le text.
 
 ## Behavior
 
 - Counts the octets, pas les becauseactères (un becauseactère Unicode peut valoir multiple octets).
 - Les becauseactères ASCII comptent pour 1 octet, les emojis and becauseactères accentués pour plus.
-- Utile for the validation de datas before stockage or envoi.
+- Utile for the validation of datas before stockage or envoi.
 
 ## Examples
 
@@ -48,7 +48,7 @@ $else
 $endif
 ```
 
-### Vérification de datas stockées
+### Vérification of datas stockées
 
 ```bdfd
 $let[data;$getVar[userData]]
@@ -62,7 +62,7 @@ $description[
 $sendMessage[]
 ```
 
-### Compareason de tailles
+### Compareason of tailles
 
 ```bdfd
 $let[ascii;$byteCount[Hello World]]
@@ -76,6 +76,6 @@ Avec emoji : $emoji octets
 
 ## Notes
 
-- `$byteCount` diffère de `$length` : `$length` compte les becauseactères, `$byteCount` compte les octets.
+- `$byteCount` diffère of `$length` : `$length` compte les becauseactères, `$byteCount` compte les octets.
 - Avec of the text ASCII pur, les two values sont identicals.
-- Discord limit les messages à 2000 becauseactères (pas d'octets), mais cette function reste utile for calculs de stockage.
+- Discord limit les messages to 2000 becauseactères (pas of octets), mais cette function reste utile for calculs of stockage.

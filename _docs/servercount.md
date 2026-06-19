@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverCount
 syntax: $serverCount
-description: Returns the number total de servers in thesquels the bot est présent.
+description: Returns the number total of servers in thesquels the bot est présent.
 ---
 
-# $serverCount[] — Number de Servers du Bot
+# $serverCount[] — Number of Servers of the Bot
 
-`$serverCount[]` retourne the namebre total de servers Discord sur lesquels the bot est installé.
+`$serverCount[]` retourne the namebre total of servers Discord on lesquels the bot est installé.
 
 ## Syntax
 
@@ -25,51 +25,51 @@ Aucun parameter.
 ## Return Value
 
 - **Type** : `integer`
-- The namebre de servers auxquels the bot appartient.
+- The namebre of servers auxquels the bot appartient.
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[🤖 Je suis currentlement sur **$serverCount** servers !]
+$sendMessage[🤖 Je suis currentlement on **$serverCount** servers !]
 ```
 
 ### Statistiques of the bot
 
 ```bdfd
-$title[📊 Statistiques du Bot]
+$title[📊 Statistiques of the Bot]
 $addField[🌐 Servers;$serverCount;yes]
 $addField[🔢 Shard;$shardID;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Message de status custom
+### Message of status custom
 
 ```bdfd
 $title[🤖 Mon Bot]
-$description[Merci de m'utiliser !]
+$description[Merci of m'use !]
 $addField[Servers;$serverCount;yes]
 $addField[Latence;$ping ms;yes]
-$footer[Développé avec BDFD]
+$footer[Développé with BDFD]
 $color[#2ECC71]
 $sendEmbedMessage
 ```
 
-### Condition sur la popularité
+### Condition on the popularité
 
 ```bdfd
 $if[$serverCount>=100]
-$sendMessage[🎉 Merci aux $serverCount servers qui me font confiance !]
+$sendMessage[🎉 Merci to the $serverCount servers qui me font confiance !]
 $else
-$sendMessage[Je suis sur $serverCount servers. Aidez-moi à grandir !]
+$sendMessage[Je suis on $serverCount servers. Aidez-moi to grandir !]
 $endif
 ```
 
 ## Notes
 
-- `$serverCount[]` est un alias de `$guildCount[]`.
+- `$serverCount[]` est un alias of `$guildCount[]`.
 - Le compte inclut all servers où the bot est présent, regardless of the shard.
-- The namebre est mis à day automatically when the bot rejoint or quitte un server.
-- Utile for the commands de statistiques and les pages "À propos" of the bot.
+- The namebre est mis to day automatically when the bot rejoint or quitte un server.
+- Utile for the commands of statistiques and les pages "À propos" of the bot.

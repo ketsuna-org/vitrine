@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: color
 syntax: $color[hexColor;(embedIndex)]
-description: Sets the couleur de la barre latérale gauche of a Discord embed. The color can be spécifiée en hexadecimal or en integer decimal.
+description: Sets the couleur of la barre latérale gauche of a Discord embed. The color can be spécifiée en hexadecimal or en integer decimal.
 ---
 
 # $color[]
 
-The `$color[]` function définit la **couleur** de la barre latérale gauche of a Discord embed. Cette barre colorée allows catégoriser visually vos embeds (success, error, info, etc.).
+The `$color[]` function définit la **couleur** of la barre latérale gauche of a Discord embed. Cette barre colored allows catégoriser visually vos embeds (success, error, info, etc.).
 
 ## Syntax
 
@@ -27,13 +27,13 @@ $color[hexColor;(embedIndex)]
 
 ## Return value
 
-Cette function returns nothing : elle modifie the response in progress de construction.
+Cette function returns nothing : elle modifie the response in progress of construction.
 
 ## Formats acceptés
 
 | Format | Example | Result |
 |---|---|---|
-| Hexadecimal avec # | `#5865F2` | Bleu Discord |
+| Hexadecimal with # | `#5865F2` | Bleu Discord |
 | Hexadecimal without # | `5865F2` | Bleu Discord |
 | Integer decimal | `5793266` | Bleu Discord |
 
@@ -55,7 +55,7 @@ Cette function returns nothing : elle modifie the response in progress de constr
 
 ```bdfd
 $title[Information]
-$description[Votre profil has been mis à day.]
+$description[Votre profil has been mis to day.]
 $color[#5865F2]
 $sendMessage[]
 ```
@@ -64,7 +64,7 @@ $sendMessage[]
 
 ```bdfd
 $title[Error]
-$description[Vous n'avez pas the permission d'utiliser cette command.]
+$description[Vous n'avez pas the permission of use cette command.]
 $color[#ED4245]
 $sendMessage[]
 ```
@@ -73,13 +73,13 @@ $sendMessage[]
 
 ```bdfd
 $title[Success]
-$description[L'opération has been effectuée avec success !]
+$description[L'opération has been effectuée with success !]
 $color[#57F287]
 $sendMessage[]
 ```
 
 ## Notes
 
-- Si `$color[]` is not callé, the embed n'aura no barre de couleur (barre transparente).
+- Si `$color[]` is not callé, the embed n'aura no barre of couleur (barre transparente).
 - Le préfixe `#` is optional.
-- Les lettres hexadecimales are not sensibles à la casse : `#ff0000` équivaut à `#FF0000`.
+- Les lettres hexadecimales are not sensibles to la casse : `#ff0000` équivaut to `#FF0000`.

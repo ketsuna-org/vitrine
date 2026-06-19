@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: getBanReason
 syntax: $getBanReason[userID]
-description: Gets the reason de ban of a user banni on the server. Returns the reason stockée in the list des bans of the server.
+description: Gets the reason of ban of a user banni on the server. Returns the reason stockée in the list bans of the server.
 ---
 
 # $getBanReason
 
-The function `$getBanReason[]` allows **récupérer la reason de ban** of a user banni on the server courant.
+The function `$getBanReason[]` allows **récupérer la reason of ban** of a user banni on the server courant.
 
 ## Syntax
 
@@ -32,13 +32,13 @@ $getBanReason[userID]
 
 ## Behavior
 
-- The bot doit avoir la permission `BAN_MEMBERS` pour voir les reasons de ban.
-- La reason retournée est celle fournie lors du ban (via `$ban[userID;reason]`).
+- The bot doit avoir la permission `BAN_MEMBERS` pour voir les reasons of ban.
+- La reason retournée est celle fournie lors of the ban (via `$ban[userID;reason]`).
 - Si the user is not banni, retourne une string vide.
 
 ## Examples
 
-### Vérification de ban
+### Vérification of ban
 
 ```bdfd
 $let[reason;$getBanReason[$mentioned[1]]]
@@ -56,21 +56,21 @@ $else
 $endif
 ```
 
-### Log de ban
+### Log of ban
 
 ```bdfd
 $let[reason;$getBanReason[$userID]]
-$title[📋 Détails du ban]
+$title[📋 Détails of the ban]
 $description[
 **User :** $userName[$userID] ($userID)
-**Reason du ban :** $reason
+**Reason of the ban :** $reason
 **Vérifié le :** $date[$day]/$date[$month]/$date[$year]
 ]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Command de vérification
+### Command of vérification
 
 ```bdfd
 $if[$checkContains[$userPerms;BanMembers]==true]
@@ -93,6 +93,6 @@ $endif
 ## Notes
 
 - La reason est stockée par Discord and persistante.
-- Utile for the logs de modération and la transparence.
-- Seuls les users avec `BAN_MEMBERS` peuvent voir les reasons.
+- Utile for the logs of modération and la transparence.
+- Seuls les users with `BAN_MEMBERS` can voir les reasons.
 - Functionne only on the server courant.

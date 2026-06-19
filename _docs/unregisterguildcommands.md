@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: unregisterGuildCommands
 syntax: $unregisterGuildCommands[guildID]
-description: Supprime all commands slash of the bot sur un server spécifique. The commands globals are not affectées.
+description: Supprime all commands slash of the bot on a server specific. The commands globals are not affectées.
 ---
 
 # $unregisterGuildCommands
 
-The function `$unregisterGuildCommands[]` allows **supprimer all commands slash** of the bot sur un server spécifique.
+The function `$unregisterGuildCommands[]` allows **supprimer all commands slash** of the bot on a server specific.
 
 ## Syntax
 
@@ -26,12 +26,12 @@ $unregisterGuildCommands[guildID]
 
 ## Return Value
 
-This function ne retourne pas de value.
+This function ne retourne pas of value.
 
 ## Behavior
 
-- Supprime UNIQUEMENT les commands de guilde, pas les commands globals.
-- Les commands disparaissent immédiatement du menu slash.
+- Supprime UNIQUEMENT les commands of guilde, pas les commands globals.
+- Les commands disparaissent immédiatement of the menu slash.
 - The bot doit avoir la permission `applications.commands`.
 
 ## Examples
@@ -41,7 +41,7 @@ This function ne retourne pas de value.
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
   $unregisterGuildCommands[$guildID]
-  $sendMessage[✅ Commands slash deletedes de ce server.]
+  $sendMessage[✅ Commands slash deletedes of ce server.]
 $else
   $sendMessage[❌ Permission refusée.]
 $endif
@@ -53,7 +53,7 @@ $endif
 $unregisterGuildCommands[$guildID]
 $wait[2]
 $registerGuildCommands[$guildID]
-$sendMessage[Commands slash réinitialisées avec success.]
+$sendMessage[Commands slash réinitialisées with success.]
 ```
 
 ### Nettoyage before départ
@@ -70,4 +70,4 @@ $endif
 
 - Les commands globals ne sont PAS affectées par this function.
 - Pour ré-enregistrer, utilisez `$registerGuildCommands[]`.
-- Utile before de quitter un server or pour nettoyer d'oldnes commands.
+- Utile before of quitter un server or pour nettoyer of oldnes commands.

@@ -22,8 +22,8 @@ $roleExists[roleID;(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role à vérifier. Required. |
-| `guildID` | Optional. The ID of the server cible. Si omis, the server courant. |
+| `roleID` | The ID of the role to vérifier. Required. |
+| `guildID` | Optional. The ID of the server cible. Si omitted, the server courant. |
 
 ## Return Value
 
@@ -43,7 +43,7 @@ $else
 $endif
 ```
 
-### Vérifier before d'attribuer un role
+### Vérifier before of attribuer un role
 
 ```bdfd
 $if[$roleExists[$roleID[Member]]==true]
@@ -65,4 +65,4 @@ $endif
 ## Notes
 
 - Returns ae string `"true"` or `"false"`.
-- Utile before d'utiliser `$roleGrant` or d'autres functions manipulant les roles.
+- Utile before of use `$roleGrant` or of autres functions manipulant les roles.

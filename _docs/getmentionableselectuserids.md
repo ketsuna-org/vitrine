@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getMentionableSelectUserIDs
 syntax: $getMentionableSelectUserIDs[(separator)]
-description: Gets all IDs des entités mentionnables (users and roles) selectedes via un menu mentionnable à choix multiple.
+description: Gets all IDs entités mentionnables (users and roles) selectedes via un menu mentionnable to choix multiple.
 ---
 
 # $getMentionableSelectUserIDs
 
-The function `$getMentionableSelectUserIDs[]` allows **récupérer all IDs des entités mentionnables** selectedes par the user dans un menu de sélection mentionnable à choix multiple.
+The function `$getMentionableSelectUserIDs[]` allows **récupérer all IDs entités mentionnables** selectedes par the user in a menu of sélection mentionnable to choix multiple.
 
 ## Syntax
 
@@ -27,18 +27,18 @@ $getMentionableSelectUserIDs[(separator)]
 ## Return Value
 
 - **Type** : String
-- La list complete des IDs selecteds.
+- La list complete IDs selecteds.
 - String vide si noe entité n'was selectede.
 
 ## Behavior
 
-- Returns à la fois les IDs d'users ET de roles.
-- Compatible avec `$textSplit[]` pour traitement individuel.
+- Returns to la fois les IDs of users ET of roles.
+- Compatible with `$textSplit[]` pour traitement individual.
 - Le menu doit permettre les choix multiple (`maxValues > 1`).
 
 ## Examples
 
-### List des entités choisies
+### List entités choisies
 
 ```bdfd
 $onInteraction[mention_select]
@@ -48,7 +48,7 @@ $description[$list]
 $sendMessage[]
 ```
 
-### Boucle de traitement
+### Boucle of traitement
 
 ```bdfd
 $onInteraction[mention_select]

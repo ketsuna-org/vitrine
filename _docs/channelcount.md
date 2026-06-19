@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelCount
 syntax: $channelCount[(categoryID)]
-description: Returns the namebre total de channels on the server, or the namebre de channels dans une catégorie spécifique.
+description: Returns the namebre total of channels on the server, or the namebre of channels in a catégorie specific.
 ---
 
 # $channelCount
 
-The `$channelCount` function returns the **number de channels** on the server Discord. En fournissant an ID de catégorie, elle peut also compter les channels d'une catégorie spécifique.
+The `$channelCount` function returns the **number of channels** on the server Discord. En fournissant an ID of catégorie, elle peut also count thes channels of une catégorie specific.
 
 ## Syntax
 
@@ -22,23 +22,23 @@ $channelCount[(categoryID)]
 
 | Parameter | Description |
 |---|---|
-| `categoryID` | Optional. The ID d'une catégorie pour compter only their channels. If omitted, compte all channels of the server. |
+| `categoryID` | Optional. The ID of une catégorie pour count only their channels. If omitted, compte all channels of the server. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `integer` | The namebre de channels correspondant au filtre. |
+| `integer` | The namebre of channels correspondant to the filtre. |
 
 ## Examples
 
-### Number total de channels
+### Number total of channels
 
 ```bdfd
 $sendMessage[Ce server compte $channelCount channels.]
 ```
 
-### Channels dans une catégorie
+### Channels in a catégorie
 
 ```bdfd
 $sendMessage[La catégorie contains $channelCount[123456789012345678] channels.]
@@ -56,6 +56,6 @@ $endif
 
 ## Notes
 
-- Counts all types de channels (textuels, vocaux, etc.), except les catégories elles-mêmes.
-- Pour compter les catégories, use `$categoryCount`.
+- Counts all types of channels (textuels, vocaux, etc.), except les catégories elles-mêmes.
+- Pour count thes catégories, use `$categoryCount`.
 - Les channels privates (non visibles par the bot) are not comptés.

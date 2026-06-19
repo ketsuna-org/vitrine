@@ -10,7 +10,7 @@ description: Returns "true" if the channel est marqué NSFW, "false" otherwise.
 
 # $channelNSFW
 
-The `$channelNSFW` function vérifie if a channel Discord est marqué comme **NSFW** (Not Safe For Work). Elle retourne `"true"` or `"false"` sous forme de string.
+The `$channelNSFW` function vérifie if a channel Discord est marqué like **NSFW** (Not Safe For Work). Elle retourne `"true"` or `"false"` sous forme of string.
 
 ## Syntax
 
@@ -51,16 +51,16 @@ $if[$channelNSFW==true]
 $endif
 ```
 
-### Vérifier a channel spécifique
+### Vérifier a channel specific
 
 ```bdfd
 $if[$channelNSFW[123456789012345678]==true]
-  $sendMessage[The channel cible est NSFW.]
+  $sendMessage[The channel target est NSFW.]
 $endif
 ```
 
 ## Notes
 
 - La value retournée est une **string** `"true"` or `"false"`, pas un boolean.
-- Les channels vocaux peuvent also être marqués NSFW.
-- Utile pour restreindre l'accès à certaines commands selon the type de channel.
+- Les channels vocaux can also être marqués NSFW.
+- Utile pour restrict the accès to certaines commands according to the type of channel.

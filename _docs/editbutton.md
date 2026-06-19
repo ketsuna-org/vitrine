@@ -9,7 +9,7 @@ description: Modifies a button existing of a message. Allows changer le label, l
 ---
 # $editButton
 
-The `$editButton[]` function **modifier a button** existing sur a message.
+The `$editButton[]` function **modifier a button** existing on a message.
 
 ## Syntax
 
@@ -25,17 +25,17 @@ $editButton[idOrUrl;label;(style);(disabled);(emoji)]
 | `label` | New text displayed on the bouton. |
 | `style` | *(Optional)* Style : `primary`, `secondary`, `success`, `danger`, `link`. |
 | `disabled` | *(Optional)* `true` pour griser le bouton, `false` (default). |
-| `emoji` | *(Optional)* Emoji to display to the left du label. |
+| `emoji` | *(Optional)* Emoji to display to the left of the label. |
 
 ## Behavior
 
-- Le bouton ciblé doit exister in the message in progress d'édition.
+- Le bouton ciblé doit exister in the message in progress of édition.
 - La modification est appliquée during l'édition of the message (via `$editMessage` or similar).
 - All parameters except `idOrUrl` and `label` are optional.
 
 ## Examples
 
-### Désactiver a button after clic
+### Désenable a button after clic
 
 ```bdfd
 $editButton[accept;✅ Accepté;success;true;✅]
@@ -56,6 +56,6 @@ $editButton[reset;🔄 Recommencer;primary;false;🔄]
 
 ## Notes
 
-- Works with `$onInteraction` for mises à day dynamics.
-- For Link buttons, use the URL comme first parameter.
-- Use avec `$editMessage` pour appliquer les changements.
+- Works with `$onInteraction` for mises to day dynamics.
+- For Link buttons, use the URL like first parameter.
+- Use with `$editMessage` pour appliquer les changements.

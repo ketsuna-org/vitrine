@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: categoryChannels
 syntax: $categoryChannels[categoryID;(separator)]
-description: Returns the list des noms of channels appartenant à une catégorie spécifique.
+description: Returns the list noms of channels appartenant to une catégorie specific.
 ---
 
 # $categoryChannels
 
-The `$categoryChannels` function returns the **list of channels** appartenant à une catégorie spécifique, identifiée par its ID.
+The `$categoryChannels` function returns the **list of channels** appartenant to une catégorie specific, identifiée par its ID.
 
 ## Syntax
 
@@ -23,32 +23,32 @@ $categoryChannels[categoryID;(separator)]
 | Parameter | Description |
 |---|---|
 | `categoryID` | The ID of the catégorie. Required. |
-| `separator` | Optional. Separator between thes noms de channels. Par default: `, `. |
+| `separator` | Optional. Separator between thes noms of channels. Par default: `, `. |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `string` | Les noms of channels de la catégorie, separateds par le délimitur. |
+| `string` | Les noms of channels of la catégorie, separateds par le délimitur. |
 
 ## Examples
 
-### Channels de la catégorie courante
+### Channels of la catégorie courante
 
 ```bdfd
-$sendMessage[**Channels dans cette catégorie :** $categoryChannels[$categoryID]]
+$sendMessage[**Channels in cette catégorie :** $categoryChannels[$categoryID]]
 ```
 
-### List avec retours à la ligne
+### List with retours to la ligne
 
 ```bdfd
 $sendMessage[
-**Channels de la catégorie :**
+**Channels of la catégorie :**
 $categoryChannels[$categoryID;
 ]]
 ```
 
-### Channels d'une catégorie spécifique
+### Channels of une catégorie specific
 
 ```bdfd
 $sendMessage[Channels admin : $categoryChannels[123456789012345678]]

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: deleteCommand
 syntax: $deleteCommand
-description: Deletes the message de command of the user (the message qui a déclenché le trigger). Utile pour garder les canaux propres.
+description: Deletes the user's command message (the message that triggered le trigger). Utile pour garder les canaux propres.
 ---
 
 # $deleteCommand
 
-The `$deleteCommand[]` function **supprimer the message de command** of the user qui a déclenché le trigger.
+The `$deleteCommand[]` function **supprimer the command message** of the user qui triggered le trigger.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ Cette function does not return a value.
 
 ## Behavior
 
-- Supprime immediately the message of the user ayant déclenché la command.
+- Supprime immediately the user's message ayant triggered la command.
 - The bot must have the permission `MANAGE_MESSAGES` in the channel.
 - If the message a déjà été deleted, rien ne se passe.
 
@@ -38,7 +38,7 @@ Cette function does not return a value.
 
 ```bdfd
 $deleteCommand
-$sendMessage[Result de votre command...]
+$sendMessage[Result of votre command...]
 ```
 
 ### Sislow feedback
@@ -46,7 +46,7 @@ $sendMessage[Result de votre command...]
 ```bdfd
 $deleteCommand
 $addReactions[✅]
-$ephemeral[Command executede avec success.]
+$ephemeral[Command executede with success.]
 ```
 
 ### Protection anti-spam
@@ -54,7 +54,7 @@ $ephemeral[Command executede avec success.]
 ```bdfd
 $deleteCommand
 $if[$checkContains[$userPerms;Administrator]==false]
-  $sendMessage[Cette command est réservée aux administrators.]
+  $sendMessage[Cette command est réservée to the administrators.]
   $suppressErrors[]
 $else
   $sendMessage[Command admin executede.]
@@ -67,12 +67,12 @@ $endif
 $deleteCommand
 $channelSendMessage[$modChannel;Message anonyme :
 >>> $noMentionMessage]
-$ephemeral[Votre message has been sent à l'équipe de modération.]
+$ephemeral[Votre message has been sent to l'équipe of modération.]
 ```
 
 ## Notes
 
 - Functionne only if the bot a `MANAGE_MESSAGES`.
-- Idéal for commands de modération, les systèmes de confession or les modmails.
+- Idéal for commands of modération, les systèmes of confession or les modmails.
 - The message is deleted before only the bot n'sends sa response.
-- Si combiné avec `$addCmdReactions[]`, placez `$deleteCommand` after or before selon le behavior souhaité.
+- Si combiné with `$addCmdReactions[]`, placez `$deleteCommand` after or before according to the behavior souhaité.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: onlineMembers
 syntax: $onlineMembers
-description: Returns the number de members currentlement online on the server Discord (status "online", "inactif" or "ne pas déranger").
+description: Returns the number of members currentlement online on the server Discord (status "online", "inactif" or "ne pas déranger").
 ---
 
 # $onlineMembers[] — Members en Ligne
 
-`$onlineMembers[]` retourne the namebre de members currentlement online on the server. Sont considérés comme "online" les members with thes statuss Online, Inactif (idle) and Ne pas déranger (dnd).
+`$onlineMembers[]` retourne the namebre of members currentlement online on the server. Sont considérés like "online" les members with thes statuss Online, Inactif (idle) and Ne pas déranger (dnd).
 
 ## Syntax
 
@@ -25,20 +25,20 @@ Aucun parameter.
 ## Return Value
 
 - **Type** : `integer`
-- The namebre de members online.
+- The namebre of members online.
 
 ## Utilisation
 
 ### Affichage simple
 
 ```bdfd
-$sendMessage[🟢 **$onlineMembers** members online sur $onlineMembers/$membersCount]
+$sendMessage[🟢 **$onlineMembers** members online on $onlineMembers/$membersCount]
 ```
 
 ### Embed statistiques
 
 ```bdfd
-$title[📊 Activité sur $serverName]
+$title[📊 Activité on $serverName]
 $addField[🟢 Online;$onlineMembers;yes]
 $addField[👥 Total;$membersCount;yes]
 $addField[📊 Ratio;$round[$multi[$divide[$onlineMembers;$membersCount];100]]%;yes]
@@ -47,14 +47,14 @@ $color[#2ECC71]
 $sendEmbedMessage
 ```
 
-### Calcul du taux d'activité
+### Calcul of the taux of activité
 
 ```bdfd
 $var[activityRate;$round[$multi[$divide[$onlineMembers;$membersCount];100]]]
 $if[$var[activityRate]>=50]
-$sendMessage[🔥 $var[activityRate]% des members sont online !]
+$sendMessage[🔥 $var[activityRate]% members sont online !]
 $else
-$sendMessage[💤 Seulement $var[activityRate]% des members sont online.]
+$sendMessage[💤 Seulement $var[activityRate]% members sont online.]
 $endif
 ```
 

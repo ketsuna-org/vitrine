@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: scriptLanguage
 syntax: $scriptLanguage
-description: Returns the langage de script utilisé par the bot (BDScript or BDJS).
+description: Returns the langage of script utilisé par the bot (BDScript or BDJS).
 ---
 
 # $scriptLanguage
 
-The function `$scriptLanguage` **retourne le langage de script** configured for the bot sur la plateforme BDFD. The values possibles sont `bdscript` (langage natif BDFD) or `bdjs` (JavaScript-like).
+The function `$scriptLanguage` **retourne le langage of script** configured for the bot on the plateforme BDFD. The values possibles sont `bdscript` (langage natif BDFD) or `bdjs` (JavaScript-like).
 
 ## Syntax
 
@@ -30,22 +30,22 @@ Aucun.
 
 ## Behavior
 
-- Le langage est défini in thes parameters of the bot sur la console BDFD.
-- BDJS allows to utiliser des structures JavaScript (variables, functions, etc.).
-- BDScript est le langage traditionnel basé sur les functions `$`.
+- Le langage est défini in thes parameters of the bot on the console BDFD.
+- BDJS allows to use structures JavaScript (variables, functions, etc.).
+- BDScript est le langage traditionnel basé on the functions `$`.
 
 ## Examples
 
-### Vérification du mode
+### Vérification of the mode
 
 ```bdfd
 $if[$scriptLanguage==bdjs]
   $sendMessage[📝 Ce bot utilise **BDJS** (JavaScript).
 
-  Vous pouvez utiliser la syntaxe JavaScript :
+  Vous pouvez use the syntaxe JavaScript :
   ```js
   var x = 5;
-  if (x > 3) { ... }
+  if (x > 3) {.. }
   ```]
 $else
   $sendMessage[📝 Ce bot utilise **BDScript**.
@@ -54,7 +54,7 @@ $else
   ```bdfd
   $var[x;5]
   $if[$var[x]>3]
-    ...
+   ...
   $endif
   ```]
 $endif
@@ -76,12 +76,12 @@ $sendMessage[]
 ### Aide contextuelle
 
 ```bdfd
-;; Exemple de function qui s'adapte au langage
+;; Exemple of function qui s'adapte to the langage
 $if[$scriptLanguage==bdjs]
-  $sendMessage[💡 En BDJS, utilisez `var` pour déclarer des variables.
+  $sendMessage[💡 En BDJS, utilisez `var` pour déclarer variables.
   Example: `var x = 10;`]
 $else
-  $sendMessage[💡 En BDScript, utilisez `$var[]` pour déclarer des variables.
+  $sendMessage[💡 En BDScript, utilisez `$var[]` pour déclarer variables.
   Example: `$var[x;10]`]
 $endif
 ```
@@ -89,6 +89,6 @@ $endif
 ## Notes
 
 - Values possibles : `bdscript` or `bdjs`.
-- Le choix du langage est fait à la création of the bot and can be modified in thes parameters.
-- BDJS allows to utiliser des `if/else`, `for`, `while` JavaScript additionally des functions `$`.
+- Le choix of the langage est fait to la création of the bot and can be modified in thes parameters.
+- BDJS allows to use `if/else`, `for`, `while` JavaScript additionally functions `$`.
 - BDScript est recommended for the débutants.

@@ -10,7 +10,7 @@ description: Checks if une string est un code couleur hexadecimal valid.
 
 # $isValidHex
 
-The function `$isValidHex[value]` **vérifie if ae string est un code couleur hexadecimal valid** au format `#RRGGBB` (or `RRGGBB` without the dièse).
+The function `$isValidHex[value]` **vérifie if ae string est un code couleur hexadecimal valid** to the format `#RRGGBB` (or `RRGGBB` without the dièse).
 
 ## Syntax
 
@@ -22,20 +22,20 @@ $isValidHex[value]
 
 | Parameter | Description |
 |---|---|
-| `value` | La string à tester, avec or without the préfixe `#`. |
+| `value` | La string to tester, with or without the préfixe `#`. |
 
 ## Return Value
 
 - **Type** : Boolean
 - `true` if the string est un hexadecimal 6-becauseactères valid (0-9, A-F).
-- `false` if the string contains des becauseactères invalids, est trop courte/longue, or vide.
+- `false` if the string contains becauseactères invalids, est trop courte/longue, or vide.
 
 ## Behavior
 
 - Accepte `#RRGGBB` and `RRGGBB` (6 becauseactères hexadécimaux).
-- Les lettres sont insensibles à la casse (A-F or a-f).
+- Les lettres sont insensibles to la casse (A-F or a-f).
 - Ne valid pas les formats courts (`#FFF`).
-- Ne valid pas les formats avec alpha (`#RRGGBBAA`).
+- Ne valid pas les formats with alpha (`#RRGGBBAA`).
 
 ## Examples
 
@@ -52,7 +52,7 @@ $else
 $endif
 ```
 
-### Command de role coloré
+### Command of role colored
 
 ```bdfd
 $var[couleur;$message[1]]

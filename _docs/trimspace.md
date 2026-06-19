@@ -61,7 +61,7 @@ Prevents storing `"  John  "` when the user types extra spaces.
 ```
 $var[input;$trimSpace[$toLowercase[$message]]]
 $if[$var[input]==!help]
-  ...show help...
+ ...show help...
 $endif
 ```
 

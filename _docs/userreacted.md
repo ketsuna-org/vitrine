@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userReacted
 syntax: $userReacted[messageID;userID;emoji]
-description: Checks if un user spécifique a réagi with a emoji donné sur un message. Returns true or false.
+description: Checks if un user specific a réagi with a emoji donné on a message. Returns true or false.
 ---
 
 # $userReacted
 
-The function `$userReacted[]` allows **vérifier if a user a réagi** with a emoji spécifique sur un message donné.
+The function `$userReacted[]` allows **check if a user a réagi** with a emoji specific on a message donné.
 
 ## Syntax
 
@@ -22,9 +22,9 @@ $userReacted[messageID;userID;emoji]
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message sur lequel vérifier la réaction. |
-| `userID` | The ID of the user à vérifier. |
-| `emoji` | L'emoji à vérifier (unicode or `nom:ID` for the emojis customs). |
+| `messageID` | The ID of the message on lequel check the réaction. |
+| `userID` | The ID of the user to vérifier. |
+| `emoji` | L'emoji to check (unicode or `nom:ID` for the emojis customs). |
 
 ## Return Value
 
@@ -34,14 +34,14 @@ $userReacted[messageID;userID;emoji]
 
 ## Behavior
 
-- Checks la list des réactions of the message for the emoji donné.
+- Checks la list réactions of the message for the emoji donné.
 - Functionne with thes emojis unicode standards (✅, ❌, 👍, etc.).
 - Functionne with thes emojis customs of the server.
 - The message must be accessible par the bot.
 
 ## Examples
 
-### Système de vérification par réaction
+### Système of vérification par réaction
 
 ```bdfd
 $nominalTrigger
@@ -73,14 +73,14 @@ $endif
 
 ```bdfd
 $if[$userReacted[$giveawayMsg;$authorID;🎉]==true]
-  $sendMessage[✅ Vous participez au giveaway !]
+  $sendMessage[✅ Vous participez to the giveaway !]
 $else
-  $sendMessage[❌ Vous devez réagir avec 🎉 pour participer.]
+  $sendMessage[❌ Vous devez réagir with 🎉 pour participer.]
 $endif
 ```
 
 ## Notes
 
 - Pour les emojis customs, utilisez le format `nom:ID`.
-- The function est sensible à la casse for the noms d'emojis customs.
-- The bot doit avoir accès au message (même channel) pour vérifier les réactions.
+- The function est sensible to la casse for the noms of emojis customs.
+- The bot doit avoir accès to the message (même channel) pour check thes réactions.

@@ -8,9 +8,9 @@ syntax: $serverIcon
 description: Returns the URL of the icon of the server Discord.
 ---
 
-# $serverIcon[] — Icon du Server
+# $serverIcon[] — Icon of the Server
 
-`$serverIcon[]` retourne the URL of the icon of the server Discord. Si the server n'a pas d'icon custome, the function retourne une string vide.
+`$serverIcon[]` retourne the URL of the icon of the server Discord. Si the server n'a pas of icon custome, the function retourne une string vide.
 
 ## Syntax
 
@@ -25,26 +25,26 @@ Aucun parameter.
 ## Return Value
 
 - **Type** : `string`
-- The URL directe de l'icon of the server (format PNG or WEBP), or une string vide si noe icon n'est définie.
+- The URL directe of l'icon of the server (format PNG or WEBP), or une string vide si noe icon n'est définie.
 
 ## Utilisation
 
-### Icon dans un embed
+### Icon in a embed
 
 ```bdfd
 $title[$serverName]
-$description[Voici l'icon de notre server]
+$description[Voici l'icon of notre server]
 $image[$serverIcon]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Thumbnail in a message de bienvenue
+### Thumbnail in a message of bienvenue
 
 ```bdfd
 $title[Bienvenue !]
 $thumbnail[$serverIcon]
-$description[Bienvenue sur $serverName, $username !]
+$description[Bienvenue on $serverName, $username !]
 $addField[Members;$membersCount;yes]
 $color[#2ECC71]
 $sendEmbedMessage
@@ -54,13 +54,13 @@ $sendEmbedMessage
 
 ```bdfd
 $if[$serverIcon==]
-$sendMessage[Ce server n'a pas d'icon custome.]
+$sendMessage[Ce server n'a pas of icon custome.]
 $else
 $sendMessage[Icon of the server : $serverIcon]
 $endif
 ```
 
-### Footer avec icon
+### Footer with icon
 
 ```bdfd
 $footer[$serverName;$serverIcon]
@@ -71,7 +71,7 @@ $sendEmbedMessage
 
 ## Notes
 
-- `$serverIcon[]` est un alias de `$guildIcon[]`.
+- `$serverIcon[]` est un alias of `$guildIcon[]`.
 - The URL retournée est une URL Discord CDN directe, accessible publicment.
-- Si the server n'a pas d'icon, the function retourne une string vide (``).
-- The URL can be utilisée dans `$image[]`, `$thumbnail[]`, `$footer[]` or `$author[text;;$serverIcon]`.
+- Si the server n'a pas of icon, the function retourne une string vide (``).
+- The URL can be utilisée in `$image[]`, `$thumbnail[]`, `$footer[]` or `$author[text;;$serverIcon]`.

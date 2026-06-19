@@ -5,7 +5,7 @@ translation_key: docs
 category: "Entity Info"
 function_name: rolePosition
 syntax: $rolePosition[roleID;(guildID)]
-description: Returns the position hiérarchique of a role in the list des roles of the server.
+description: Returns the position hiérarchique of a role in the list roles of the server.
 ---
 
 # $rolePosition
@@ -33,7 +33,7 @@ $rolePosition[roleID;(guildID)]
 
 ## Examples
 
-### Afficher the position
+### Display the position
 
 ```bdfd
 $sendMessage[Position of the role Admin : $rolePosition[$roleID[Admin]]]
@@ -43,9 +43,9 @@ $sendMessage[Position of the role Admin : $rolePosition[$roleID[Admin]]]
 
 ```bdfd
 $if[$rolePosition[$roleID[Admin]]>$rolePosition[$roleID[Modo]]]
-  $sendMessage[The role Admin est hiérarchiquement supérieur à Modo.]
+  $sendMessage[The role Admin est hiérarchiquement supérieur to Modo.]
 $else
-  $sendMessage[Modo est supérieur or égal à Admin.]
+  $sendMessage[Modo est supérieur or égal to Admin.]
 $endif
 ```
 
@@ -68,5 +68,5 @@ $sendMessage[Role le plus haut of the server : $roleName[$roleID[$roleNames]]]
 ## Notes
 
 - `@everyone` a toudays the position `0`.
-- Les positions sont unique : two roles ne peuvent pas avoir la même position.
-- Un bot ne peut pas modifier les roles supérieurs au sien.
+- Les positions sont unique : two roles ne can pas avoir la même position.
+- Un bot ne peut pas modifier les roles supérieurs to the sien.

@@ -37,7 +37,7 @@ $deleteRole[$roleID[Old Staff]]
 $sendMessage[🗑️ Role "Old Staff" deleted.]
 ```
 
-### Suppression avec vérification d'existence
+### Suppression with vérification of existence
 
 ```bdfd
 $if[$roleExists[$roleID[VIP]]==true]
@@ -48,13 +48,13 @@ $else
 $endif
 ```
 
-### Command de suppression sécurisée
+### Command of suppression sécurisée
 
 ```bdfd
 $if[$isAdmin==true]
   $if[$roleExists[$roleID[$message[1]]]==true]
     $deleteRole[$roleID[$message[1]]]
-    $sendMessage[✅ Role deleted avec success.]
+    $sendMessage[✅ Role deleted with success.]
   $else
     $sendMessage[Role introuvable.]
   $endif
@@ -68,5 +68,5 @@ $endif
 - The bot must have the permission `ManageRoles`.
 - **Action irréversible** : the role est permanently deleted.
 - The bot cannot supprimer a role supérieur its own.
-- Use `$roleExists` to vérifier l'existence before suppression.
+- Use `$roleExists` to check the existence before suppression.
 - To modify a role without le supprimer, use `$modifyRole`.

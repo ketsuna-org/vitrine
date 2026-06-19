@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalCheckboxGroup
 syntax: $addModalCheckboxGroup[customId;label;(required)]
-description: Crée a group de checkboxes in a modal. The options individuthey are ajoutées avec $addCheckboxGroupOption[].
+description: Crée a checkbox group in a modal. The options individuthey are ajoutées with $addCheckboxGroupOption[].
 ---
 
-# $addModalCheckboxGroup[] — Groupe de Cases à Cocher
+# $addModalCheckboxGroup[] — Group of Cases to Cocher
 
-`$addModalCheckboxGroup[]` crée a container pour a group de checkboxes in a modal. The options sont then ajoutées avec `$addCheckboxGroupOption[]`. The user peut cocher multiple options simultaneously.
+`$addModalCheckboxGroup[]` crée a container pour a checkbox group in a modal. The options sont then ajoutées with `$addCheckboxGroupOption[]`. The user peut cocher multiple options simultaneously.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ $addModalCheckboxGroup[customId;label;(required)]
 
 ## Return value
 
-Initialise a group de checkboxes. The values cochées sont accessibles via `$input[customId]` sous forme de list separatede par des virgules.
+Initialise a checkbox group. The values cochées sont accessibles via `$input[customId]` sous forme of list separatede par virgules.
 
 ## Usage
 
@@ -65,6 +65,6 @@ $endInteraction
 
 ## Notes
 
-- Les options sont ajoutées avec `$addCheckboxGroupOption[]` où le `menuId` can be omis to target le last groupe created.
+- Les options sont ajoutées with `$addCheckboxGroupOption[]` où le `menuId` can be omitted to target the last group created.
 - La value retournée est a string contenant les `value` of options cochées, separated by commas.
-- Maximum 25 options par groupe (limit Discord).
+- Maximum 25 options par group (limit Discord).

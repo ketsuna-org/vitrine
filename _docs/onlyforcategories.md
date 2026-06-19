@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyForCategories
 syntax: $onlyForCategories[categoryID1;categoryID2;...;(errorMessage)]
-description: Function guard qui stops l'exécution if the channel courant n'appartient pas à l'une des catégories spécifiées.
+description: Function guard qui stops l'exécution if the channel courant n'appartient pas to l'une catégories spécifiées.
 ---
 
 # $onlyForCategories
 
-The function guard `$onlyForCategories` vérifie que le channel où the command est executed appartient à l'une des catégories Discord spécifiées. Si le channel ne fait pas partie des catégories allowedes, the command est interrompue.
+The function guard `$onlyForCategories` vérifie que le channel où the command est executed appartient to l'une catégories Discord spécifiées. Si le channel ne fait pas partie catégories allowedes, the command est interrompue.
 
 ## Syntax
 
@@ -22,22 +22,22 @@ $onlyForCategories[categoryID1;categoryID2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `categoryID1;categoryID2;...` | Snowflake[] | IDs des catégories allowedes. |
-| `errorMessage` | String (optional) | Message if the channel n'appartient pas aux catégories allowedes. |
+| `categoryID1;categoryID2;...` | Snowflake[] | IDs catégories allowedes. |
+| `errorMessage` | String (optional) | Message if the channel n'appartient pas to the catégories allowedes. |
 
 ## Behavior
 
-- Gets the ID of the catégorie parente du channel courant via `$channelCategoryID`.
+- Gets the ID of the catégorie parente of the channel courant via `$channelCategoryID`.
 - Compare cette catégorie with the list fournie.
 - Si la catégorie correspond, the command continue ; otherwise, it is interrompue.
-- Si le channel n'a pas de catégorie parente, the command est toudays interrompue.
+- Si le channel n'a pas of catégorie parente, the command est toudays interrompue.
 
 ## Examples
 
 ### Catégorie Tickets
 
 ```bdfd
-$onlyForCategories[123456789012345678;❌ Uniquement available in thes channels de tickets.]
+$onlyForCategories[123456789012345678;❌ Uniquement available in thes channels of tickets.]
 $closeTicket
 ```
 
@@ -52,12 +52,12 @@ $clear[50]
 
 ```bdfd
 $onlyForCategories[123456789012345678]
-$sendMessage[Function allowede dans cette catégorie.]
+$sendMessage[Function allowede in cette catégorie.]
 ```
 
 ## Notes
 
-- Une catégorie Discord est un conteneur de channels. Utilisez le Mode Développeur pour copier son ID.
-- `$onlyForCategories` est plus large que `$onlyForChannels` : il autorise all channels d'une catégorie entière.
+- Une catégorie Discord est un container of channels. Utilisez le Mode Développeur pour copier son ID.
+- `$onlyForCategories` est plus large que `$onlyForChannels` : il autorise all channels of une catégorie entière.
 - Pour les channels without catégorie, the command sera toudays bloquée.
-- Combinez avec `$onlyForChannels` pour des règles plus granulaires (catégorie + channels spécifiques).
+- Combinez with `$onlyForChannels` pour règles plus granulaires (catégorie + channels specifics).

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: blacklistUsers
 syntax: $blacklistUsers[userID1;userID2;...;(errorMessage)]
-description: Function guard qui blacklist of users by ID. Alias de $blacklistIDs. The command est interrompue if the user est in the list.
+description: Function guard qui blacklist of users by ID. Alias of $blacklistIDs. The command est interrompue if the user est in the list.
 ---
 
 # $blacklistUsers
 
-The function guard `$blacklistUsers` bloque l'execution of the command for users listés. This is un alias direct de `$blacklistIDs`.
+The function guard `$blacklistUsers` bloque l'execution of the command for users listés. This is un alias direct of `$blacklistIDs`.
 
 ## Syntax
 
@@ -22,18 +22,18 @@ $blacklistUsers[userID1;userID2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID1;userID2;...` | Snowflake[] | IDs of users à blacklistr. |
-| `errorMessage` | String (optional) | Message sent à the user blacklisté. |
+| `userID1;userID2;...` | Snowflake[] | IDs of users to blacklistr. |
+| `errorMessage` | String (optional) | Message sent to the user blacklisté. |
 
 ## Behavior
 
 - If the user est in the list, la command est interrompue.
 - If a message error is provided, il is sent before l'interruption.
-- Alias exact de `$blacklistIDs`.
+- Alias exact of `$blacklistIDs`.
 
 ## Examples
 
-### Blacklist avec message
+### Blacklist with message
 
 ```bdfd
 $blacklistUsers[111111111111111111;222222222222222222;❌ Vous êtes blacklisté.]

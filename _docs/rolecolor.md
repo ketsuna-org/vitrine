@@ -10,7 +10,7 @@ description: Returns the couleur of a role Discord en hexadecimal.
 
 # $roleColor
 
-The function `$roleColor` retourne la **couleur** of a role Discord au format hexadecimal. Si the role n'a pas de couleur définie, elle retourne une string vide.
+The function `$roleColor` retourne la **couleur** of a role Discord to the format hexadecimal. Si the role n'a pas of couleur définie, elle retourne une string vide.
 
 ## Syntax
 
@@ -29,17 +29,17 @@ $roleColor[roleID;(guildID)]
 
 | Type | Description |
 |---|---|
-| `string` | The color en hexadecimal (ex: `#5865F2`), or `""` si pas de couleur. |
+| `string` | The color en hexadecimal (ex: `#5865F2`), or `""` si pas of couleur. |
 
 ## Examples
 
-### Afficher the color
+### Display the color
 
 ```bdfd
 $sendMessage[Couleur of the role Admin : $roleColor[$roleID[Admin]]]
 ```
 
-### Embed coloré selon the role
+### Embed colored according to the role
 
 ```bdfd
 $title[Role $roleName[$getRole[$authorID;1]]]
@@ -54,18 +54,18 @@ $sendMessage[]
 $if[$roleColor[$roleID[Member]]!=]
   $sendMessage[Couleur : $roleColor[$roleID[Member]]]
 $else
-  $sendMessage[Ce role n'a pas de couleur.]
+  $sendMessage[Ce role n'a pas of couleur.]
 $endif
 ```
 
 ### Couleur of the role of a user
 
 ```bdfd
-$sendMessage[Votre couleur de role : $colorRole[$authorID]]
+$sendMessage[Votre couleur of role : $colorRole[$authorID]]
 ```
 
 ## Notes
 
 - The color est retournée with the préfixe `#`.
-- Si the role n'a pas de couleur, the value est une string vide (`""`).
+- Si the role n'a pas of couleur, the value est une string vide (`""`).
 - Pour obtenir the color of the role le plus haut of a user, utilisez `$colorRole`.

@@ -8,7 +8,7 @@ syntax: $deleteIn[duration]
 description: Programme la suppression automatique of a message after a delay spécifié. The message is deleted par the bot once le delay écoulé.
 ---
 
-# $deleteIn[] — Suppression Différée de Message
+# $deleteIn[] — Suppression Différée of Message
 
 `$deleteIn[]` programme la suppression automatique of the message after a delay donné. Idéal for notifications temporarys, messages éphémères, or nettoyage automatique.
 
@@ -24,7 +24,7 @@ $deleteIn[duration]
 |-----------|-------------|-------------|
 | `duration` | Yes | Delay before suppression. Format : number + unité. |
 
-## Format de durée
+## Format of durée
 
 | Format | Unité | Example |
 |--------|-------|---------|
@@ -34,14 +34,14 @@ $deleteIn[duration]
 
 ## Return value
 
-Programme la suppression différée of the message. The message is deleted automatically à l'échéance.
+Programme la suppression différée of the message. The message is deleted automatically to l'échéance.
 
 ## Usage
 
 ### Notification temporary
 
 ```bdfd
-$sendMessage[✅ Command executede avec success]
+$sendMessage[✅ Command executede with success]
 $deleteIn[5s]
 ```
 
@@ -55,7 +55,7 @@ $deleteIn[10s]
 ### Alerte qui s'efface
 
 ```bdfd
-$sendMessage[🔔 New mise à day available !]
+$sendMessage[🔔 New mise to day available !]
 $deleteIn[30s]
 ```
 
@@ -63,7 +63,7 @@ $deleteIn[30s]
 
 ```bdfd
 $title[Message temporary]
-$description[Ce contenu disparaîtra dans 10 seconds]
+$description[Ce contenu disparaîtra in 10 seconds]
 $color[#E74C3C]
 $footer[Auto-suppression...]
 $deleteIn[10s]
@@ -72,14 +72,14 @@ $deleteIn[10s]
 ### Bienvenue éphémère
 
 ```bdfd
-$sendMessage[Bienvenue $username ! Pensez à lire le règlement.]
+$sendMessage[Bienvenue $username ! Pensez to lire le règlement.]
 $deleteIn[1m]
 ```
 
 ## Notes
 
-- `$deleteIn[]` deletes the message **courant** (celui qui vient d'être sent).
-- The duration maximale est generally de 15 minutes.
+- `$deleteIn[]` deletes the message **courant** (celui qui vient of être sent).
+- The duration maximale est generally of 15 minutes.
 - Une fois programmée, la suppression cannot être annulée.
 - La suppression échoue silencieusement if the bot does not have the permission `MANAGE_MESSAGES`.
-- Combinez avec `$sendMessage` for messages auto-destructeurs.
+- Combinez with `$sendMessage` for messages auto-destructeurs.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: checkUserPerms
 syntax: $checkUserPerms[userID;permission1;permission2;...]
-description: Checks if a user possède all permissions spécifiées. Alias de $hasPerms. Returns "true" or "false".
+description: Checks if a user possède all permissions spécifiées. Alias of $hasPerms. Returns "true" or "false".
 ---
 
 # $checkUserPerms
 
-The `$checkUserPerms` function vérifie if a user possède all permissions Discord spécifiées. This is un **alias direct** de `$hasPerms` — les two functions sont strictement identicals.
+The `$checkUserPerms` function vérifie if a user possède all permissions Discord spécifiées. This is un **alias direct** of `$hasPerms` — les two functions sont strictement identicals.
 
 ## Syntax
 
@@ -22,19 +22,19 @@ $checkUserPerms[userID;permission1;permission2;...]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID` | Snowflake | The ID of the user à vérifier. |
+| `userID` | Snowflake | The ID of the user to vérifier. |
 | `permission1;permission2;...` | String[] | Permissions requiredes (vérification **ET**). |
 
 ## Return value
 
 - **Type** : String `"true"` or `"false"`
 - `"true"` : the user possède all permissions
-- `"false"` : au moins une permission manque
+- `"false"` : to the moins une permission manque
 
 ## Behavior
 
 - Vérification **inline** : n'interrompt not the command.
-- Vérification de type **ET** : all permissions listées sont nécessaires.
+- Vérification of type **ET** : all permissions listées sont nécessaires.
 - `Administrator` couvre all permissions.
 
 ## Examples
@@ -49,11 +49,11 @@ $else
 $endif
 ```
 
-### Vérification of permissions d'un autre user
+### Vérification of permissions of un autre user
 
 ```bdfd
 $if[$checkUserPerms[$mentioned[1];Administrator]==true]
-  $sendMessage[⚠️ Vous ne pouvez pas agir sur un administrator.]
+  $sendMessage[⚠️ Vous ne pouvez pas agir on a administrator.]
   $stop
 $endif
 $ban[$mentioned[1]]
@@ -72,6 +72,6 @@ $endif
 ## Notes
 
 - `$checkUserPerms` and `$hasPerms` sont **interchangeables**. Use the syntax la plus explicite pour votre context.
-- For the bot, passez `$botID` comme `userID`.
-- Pour une vérification avec interruption automatique (guard), use `$onlyPerms`.
+- For the bot, passez `$botID` like `userID`.
+- Pour une vérification with interruption automatique (guard), use `$onlyPerms`.
 - Les permissions sont en **PascalCase** : `BanMembers`, `ManageMessages`, `Administrator`, etc.

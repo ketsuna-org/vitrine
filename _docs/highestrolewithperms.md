@@ -10,7 +10,7 @@ description: Returns the ID of the role le plus haut of the user qui possède le
 
 # $highestRoleWithPerms
 
-The function `$highestRoleWithPerms[]` retourne l'**ID of the role le plus élevé** of the user qui possède une or several permissions spécifiques.
+The function `$highestRoleWithPerms[]` retourne l'**ID of the role le plus élevé** of the user qui possède une or several permissions specifics.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $highestRoleWithPerms[permission1;permission2;...]
 
 | Parameter | Description |
 |---|---|
-| `permissions` | Une or several permissions Discord, separatedes par des points-virgules. Toutes les permissions listées must be présentes sur the role. |
+| `permissions` | Une or several permissions Discord, separatedes par points-virgules. Toutes les permissions listées must be présentes on the role. |
 
 ## Return Value
 
@@ -32,9 +32,9 @@ $highestRoleWithPerms[permission1;permission2;...]
 
 ## Behavior
 
-- Parcourt les roles of the user du plus haut au plus bas.
+- Parcourt les roles of the user of the plus haut to the plus bas.
 - Returns the **first** role (le plus haut) qui possède **all** les permissions spécifiées.
-- Les noms de permissions sont en anglais (nomenclature API Discord).
+- Les noms of permissions sont en anglais (nomenclature API Discord).
 
 ## Examples
 
@@ -43,9 +43,9 @@ $highestRoleWithPerms[permission1;permission2;...]
 ```bdfd
 $let[modRole;$highestRoleWithPerms[ManageMessages]]
 $if[$modRole!=]
-  $sendMessage[Votre role de modération : $roleName[$modRole]]
+  $sendMessage[Votre role of modération : $roleName[$modRole]]
 $else
-  $sendMessage[Vous n'avez pas de role de modération.]
+  $sendMessage[Vous n'avez pas of role of modération.]
 $endif
 ```
 
@@ -57,12 +57,12 @@ $if[$highestRoleWithPerms[Administrator]!=]
 $endif
 ```
 
-### Role avec permissions de ban
+### Role with permissions of ban
 
 ```bdfd
 $let[banRole;$highestRoleWithPerms[BanMembers]]
 $if[$banRole!=]
-  $title[Role de ban]
+  $title[Role of ban]
   $description[
   **Role :** $roleName[$banRole]
   **ID :** $banRole
@@ -76,4 +76,4 @@ $endif
 
 - Les permissions sont cumulatives : the role doit avoir **all** les permissions listées.
 - Si vous voulez un role ayant **l'une or l'autre** permission, faites two calls separateds.
-- Pour the role le plus bas avec ces permissions, utilisez `$lowestRoleWithPerms[]`.
+- Pour the role le plus bas with ces permissions, utilisez `$lowestRoleWithPerms[]`.

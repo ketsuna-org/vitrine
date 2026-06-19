@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: footerIcon
 syntax: $footerIcon[url;(embedIndex)]
-description: Modifies l'icon du footer of an embed after que celui-ci was défini avec $footer[]. Allows changer only l'image without modifier le text.
+description: Modifies l'icon of the footer of an embed after que celui-ci was défini with $footer[]. Allows changer only l'image without modifier le text.
 ---
 
 # $footerIcon[]
 
-The function `$footerIcon[]` allows **modifier only l'icon** d'un footer déjà défini avec `$footer[]`. Elle est utile when vous souhaitez définir une icon dynamic without répéter le text du footer.
+The function `$footerIcon[]` allows **modifier only l'icon** of un footer déjà défini with `$footer[]`. Elle est utile when vous souhaitez define ae icon dynamic without répéter le text of the footer.
 
 ## Syntax
 
@@ -22,22 +22,22 @@ $footerIcon[url;(embedIndex)]
 
 | Parameter | Description |
 |---|---|
-| `url` | URL of the image à utiliser comme icon du footer. |
+| `url` | URL of the image to use like icon of the footer. |
 | `embedIndex` | Optional. Index of the embed ciblé (0 default). |
 
 ## Return Value
 
-Modifies the response in progress de construction. Returns nothing.
+Modifies the response in progress of construction. Returns nothing.
 
-## Quand utiliser $footerIcon[]
+## Quand use $footerIcon[]
 
-- Vous avez déjà défini le footer avec `$footer[text]` and souhaitez ajouter or changer l'icon.
+- Vous avez déjà défini le footer with `$footer[text]` and souhaitez ajouter or changer l'icon.
 - L'icon dépend of a variable dynamic (avatar, status, etc.).
-- Vous voulez séparer la logique du text and de l'icon for a comoreover lisible.
+- Vous voulez separate the logique of the text and of l'icon for a comoreover lisible.
 
 ## Examples
 
-### Icon dynamic basée sur the user
+### Icon dynamic basée on the user
 
 ```bdfd
 $title[Profil]
@@ -56,7 +56,7 @@ $sendMessage[]
 ```bdfd
 $title[Status of the server]
 $description[The server est opérationnel.]
-$footer[Dernière vérification : $time]
+$footer[Last vérification : $time]
 $if[$var[status]==online]
 $footerIcon[https://cdn.example.com/green.png]
 $else
@@ -68,6 +68,6 @@ $sendMessage[]
 
 ## Notes
 
-- `$footerIcon[]` must be callé **after** `$footer[]`, otherwise there is no de footer sur lequel appliquer l'icon.
+- `$footerIcon[]` must be callé **after** `$footer[]`, otherwise there is no of footer on lequel appliquer l'icon.
 - Si `$footerIcon[]` est callé before `$footer[]`, l'icon sera ignorée.
 - The URL doit pointer vers une image accessible publicment.

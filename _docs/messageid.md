@@ -10,7 +10,7 @@ description: Returns the ID (snowflake) of the message déclencheur of the comma
 
 # $messageID
 
-The function `$messageID` retourne l'**identifier unique** (snowflake) of the message qui a déclenché l'exécution of the command.
+The function `$messageID` retourne l'**identifier unique** (snowflake) of the message that triggered l'exécution of the command.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ Aucun parameter.
 
 ## Examples
 
-### Afficher the ID of the message
+### Display the ID of the message
 
 ```bdfd
 $sendMessage[ID of the message : $messageID]
@@ -42,7 +42,7 @@ $sendMessage[ID of the message : $messageID]
 $sendMessage[Link of the message : https://discord.com/channels/$guildID/$channelID/$messageID]
 ```
 
-### Log de the ID
+### Log of the ID
 
 ```bdfd
 $channelSendMessage[$channelIDFromName[logs];Message $messageID traité par $username.]
@@ -58,5 +58,5 @@ $sendMessage[Message traité and deleted.]
 ## Notes
 
 - The ID est unique and allows to identifier précisément un message.
-- Utilisable avec `$deleteMessage`, `$editMessage` or `$messageURL`.
-- Dans les interactions (buttons), `$messageID` retourne the ID of the message d'origine.
+- Utilisable with `$deleteMessage`, `$editMessage` or `$messageURL`.
+- Dans les interactions (buttons), `$messageID` retourne the ID of the message of origine.

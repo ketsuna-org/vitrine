@@ -4,7 +4,7 @@ title: $if / $elseIf / $else / $endif
 translation_key: docs
 category: "Control Flow"
 function_name: if
-syntax: $if[condition] ... $elseIf[condition] ... $else ... $endif
+syntax: $if[condition].. $elseIf[condition].. $else.. $endif
 description: Conditional branching — executes blocks of code based on runtime condition evaluation.
 ---
 # $if / $elseIf / $else / $endif — Conditional Branching

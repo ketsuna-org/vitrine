@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: getInviteInfo
 syntax: $getInviteInfo[code]
-description: Gets des informations sur une invite Discord from son code. Returns des détails comme the name of the server, the namebre de members, etc.
+description: Gets information on a invite Discord from son code. Returns détails like the name of the server, the namebre of members, etc.
 ---
 
 # $getInviteInfo
 
-The function `$getInviteInfo[]` allows **récupérer des informations** sur une invite Discord from son code.
+The function `$getInviteInfo[]` allows **récupérer information** on a invite Discord from son code.
 
 ## Syntax
 
@@ -22,19 +22,19 @@ $getInviteInfo[code]
 
 | Parameter | Description |
 |---|---|
-| `code` | Le code d'invite (ex: `abc123` pour `discord.gg/abc123`). |
+| `code` | Le code of invite (ex: `abc123` pour `discord.gg/abc123`). |
 
 ## Return Value
 
 - **Type** : String
-- Informations sur l'invite : nom of the server, description, number de members, etc.
+- Informations on the invite : nom of the server, description, number of members, etc.
 - String vide si l'invite est invalid or expirée.
 
 ## Behavior
 
-- Works with n'importe quel code d'invite Discord valid.
+- Works with n'importe quel code of invite Discord valid.
 - Ne requires pas que the bot soit on the server cible.
-- Returns des informations publics only.
+- Returns information publics only.
 
 ## Examples
 
@@ -43,14 +43,14 @@ $getInviteInfo[code]
 ```bdfd
 $let[info;$getInviteInfo[$message[1]]]
 $if[$info!=]
-  $sendMessage[Informations sur l'invite :
+  $sendMessage[Informations on the invite :
 >>> $info]
 $else
   $sendMessage[❌ Invite invalid or expirée.]
 $endif
 ```
 
-### Détection de spam d'invite
+### Détection of spam of invite
 
 ```bdfd
 $if[$checkContains[$message;discord.gg]==true]
@@ -69,5 +69,5 @@ $endif
 ## Notes
 
 - L'invite must be valid and non expirée.
-- Utile for the modération anti-spam d'invites.
-- Les informations retournées dépendent de ce que the server rend public.
+- Utile for the modération anti-spam of invites.
+- Les information retournées dépendent of ce que the server rend public.

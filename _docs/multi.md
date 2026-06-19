@@ -30,8 +30,8 @@ $multi[a;b]
 ## Behavior
 
 - Returns the produit `a * b`.
-- Supporte les numbers décimaux.
-- Si l'un des arguments est `0`, the result est `0`.
+- Supports thes numbers décimaux.
+- Si l'un arguments est `0`, the result est `0`.
 
 ## Examples
 
@@ -41,13 +41,13 @@ $multi[6;7]
 → 42
 ```
 
-**Avec des decimales :**
+**Avec decimales :**
 ```
 $multi[2.5;4]
 → 10
 ```
 
-**Calcul de prix total :**
+**Calcul of prix total :**
 ```
 $multi[$getVar[prixUnitaire];$getVar[quantite]]
 ```
@@ -60,5 +60,5 @@ $multi[100;0]
 
 ## Notes
 
-- Seulement two arguments. Pour multiplier plus de values, stringz : `$multi[$multi[a;b];c]` or utilisez `$calculate[a * b * c]`.
+- Seulement two arguments. Pour multiplier plus of values, stringz : `$multi[$multi[a;b];c]` or utilisez `$calculate[a * b * c]`.
 - Le separator est le point-virgule `;`.

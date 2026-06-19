@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: minute
 syntax: $minute
-description: Returns the minute currentle (0 à 59). Resolved au runtime.
+description: Returns the minute currentle (0 to 59). Resolved to the runtime.
 ---
 
 # $minute[]
 
-The function `$minute[]` retourne la minute currentle (de 0 à 59).
+The function `$minute[]` retourne la minute currentle (de 0 to 59).
 
-> **Important:** This function utilise l'identifier special `((minute))` qui est resolved au **runtime**.
+> **Important:** This function utilise l'identifier special `((minute))` qui est resolved to the **runtime**.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ Minute currentle : $minute
 Il est $hour h $minute
 ```
 
-### Format avec zéro devant
+### Format with zéro devant
 
 ```bdfd
 $if[$minute<10]
@@ -52,5 +52,5 @@ $endif
 
 ## Notes
 
-- Utilisez `$time[]` pour obtenir l'hour complete au format `HH:MM:SS`.
-- Combinée avec `$hour[]` and `$second[]`, this function allows créer des horloges customes.
+- Utilisez `$time[]` pour obtenir l'hour complete to the format `HH:MM:SS`.
+- Combinée with `$hour[]` and `$second[]`, this function allows create horloges customes.

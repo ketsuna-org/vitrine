@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandTrigger
 syntax: $commandTrigger
-description: Returns the déclencheur (trigger) of the command in progress d'execution.
+description: Returns the déclencheur (trigger) of the command in progress of execution.
 ---
 
 # $commandTrigger
 
-The `$commandTrigger` function **returns the déclencheur complete** of the command in progress, incluant le préfixe or the slash. Par example, if the command `help` est déclenchée par `!help`, le trigger retourné est `!help`.
+The `$commandTrigger` function **returns the déclencheur complete** of the command in progress, incluant le préfixe or the slash. Par example, if the command `help` est triggerede par `!help`, le trigger retourné est `!help`.
 
 ## Syntax
 
@@ -31,11 +31,11 @@ Aucun.
 
 - For commands prefix : returns the préfixe + nom (ex: `!help`, `?ban`).
 - For commands slash : retourne `/nom` (ex: `/help`).
-- Le préfixe dépend de la configuration of the bot.
+- Le préfixe dépend of la configuration of the bot.
 
 ## Examples
 
-### Message error avec usage
+### Message error with usage
 
 ```bdfd
 $if[$message[1]==]
@@ -84,7 +84,7 @@ $sendMessage[]
 
 ## Notes
 
-- `$commandTrigger` inclut le préfixe (ex: `!help`), contrairement à `$commandName` (qui retourne `help`).
+- `$commandTrigger` inclut le préfixe (ex: `!help`), contrairement to `$commandName` (qui retourne `help`).
 - For the nom without préfixe, use `$commandName`.
 - Pour savoir si this is une command slash, use `$isSlash` or `$commandType`.
-- Le préfixe can be extracted avec `$charAt[$commandTrigger;1]`.
+- Le préfixe can be extracted with `$charAt[$commandTrigger;1]`.

@@ -27,8 +27,8 @@ $isTimedOut
 ## Behavior
 
 - `$isTimedOut` ne prend **no argument**.
-- Le timeout est une functionnalité Discord qui empêche temporaryment un member de parler/envoyer des messages.
-- The duration du timeout est définie par les modérateurs (until 28 days).
+- Le timeout est une functionnalité Discord qui empêche temporaryment un member of parler/envoyer messages.
+- The duration of the timeout est définie par les modérateurs (until 28 days).
 
 ## Examples
 
@@ -39,10 +39,10 @@ $if[$isTimedOut==true]
   $sendMessage[⏳ Vous êtes currentlement en timeout. Veuillez patienter.]
   $stop
 $endif
-$sendMessage[Command executed avec success !]
+$sendMessage[Command executed with success !]
 ```
 
-### Vérification de modération
+### Vérification of modération
 
 ```bdfd
 $title[Vérification timeout]
@@ -57,5 +57,5 @@ $sendMessage[]
 ## Notes
 
 - Le timeout est une sanction **temporary** (maximum 28 days).
-- Un user en timeout ne peut pas envoyer de messages, rejoindre de channels vocaux, ni réagir.
-- Utile pour empêcher les users sanctionnés d'utiliser les commands of the bot.
+- Un user en timeout ne peut pas envoyer of messages, rejoindre of channels vocaux, ni réagir.
+- Utile pour empêcher les users sanctionnés of use thes commands of the bot.

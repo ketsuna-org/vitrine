@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: findChannel
 syntax: $findChannel[query]
-description: Recherche un channel par nom partial or complete and retourne son ID. Insensible à la casse.
+description: Recherche un channel par nom partial or complete and retourne son ID. Insensible to la casse.
 ---
 
 # $findChannel
 
-The function `$findChannel` recherche un channel Discord par **nom partial or complete** and retourne son ID. The recherche est insensible à la casse.
+The function `$findChannel` recherche un channel Discord par **nom partial or complete** and retourne son ID. The recherche est insensible to la casse.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $findChannel[query]
 
 | Parameter | Description |
 |---|---|
-| `query` | The name or une partie du nom of the channel à rechercher. |
+| `query` | The name or une partie of the nom of the channel to rechercher. |
 
 ## Return Value
 
@@ -35,10 +35,10 @@ $findChannel[query]
 ### Recherche par nom partial
 
 ```bdfd
-$sendMessage[Channel correspondant à "gén" : $findChannel[gén]]
+$sendMessage[Channel correspondant to "gén" : $findChannel[gén]]
 ```
 
-### Envoyer un message dans un channel found
+### Envoyer un message in a channel found
 
 ```bdfd
 $channelSendMessage[$findChannel[logs];Nouvel event enregistré.]
@@ -50,11 +50,11 @@ $channelSendMessage[$findChannel[logs];Nouvel event enregistré.]
 $if[$findChannel[annonces]!=]
   $sendMessage[Channel annonces found : <#$findChannel[annonces]>]
 $else
-  $sendMessage[Aucun channel ne correspond à "annonces".]
+  $sendMessage[Aucun channel ne correspond to "annonces".]
 $endif
 ```
 
-### Utilisation comme fallback
+### Utilisation like fallback
 
 ```bdfd
 $if[$channelIDFromName[général]!=]

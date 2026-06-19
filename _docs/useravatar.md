@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userAvatar
 syntax: $userAvatar
-description: Returns the URL of the avatar global of the user qui a déclenché the command.
+description: Returns the URL of the avatar global of the user qui triggered the command.
 ---
 
 # $userAvatar
 
-The variable `$userAvatar` retourne l'**URL of the avatar global** of the user qui a déclenché the command.
+The variable `$userAvatar` retourne l'**URL of the avatar global** of the user qui triggered the command.
 
 ## Syntax
 
@@ -20,28 +20,28 @@ $userAvatar
 
 ## Return Value
 
-- **Type** : String de becauseactères (URL)
-- URL of the image d'avatar Discord au format PNG or WebP
-- Si the user n'a pas d'avatar custom, retourne l'avatar default Discord (couleur basée sur le discriminateur/ID)
+- **Type** : String of becauseactères (URL)
+- URL of the image of avatar Discord to the format PNG or WebP
+- Si the user n'a pas of avatar custom, retourne l'avatar default Discord (couleur basée on the discriminateur/ID)
 
 ## Behavior
 
 - `$userAvatar` ne prend **no argument**.
 - The URL retournée pointe vers les CDN Discord (`cdn.discordapp.com`).
-- L'avatar est l'image **global** of the user, pas celle spécifique au server (voir `$userServerAvatar`).
+- L'avatar est l'image **global** of the user, pas celle specific to the server (voir `$userServerAvatar`).
 
 ## Examples
 
-### Afficher l'avatar en grand
+### Display l'avatar en grand
 
 ```bdfd
-$title[Avatar de $userName]
+$title[Avatar of $userName]
 $image[$userAvatar]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Afficher l'avatar en miniature dans un profil
+### Display l'avatar en miniature in a profil
 
 ```bdfd
 $author[$userName;$userAvatar]
@@ -57,6 +57,6 @@ $sendMessage[]
 
 ## Notes
 
-- Les URLs d'avatar Discord can be modifiedes en ajoutant `?size=256` or `?size=1024` pour changer la resolvedtion.
-- Pour l'avatar spécifique au server (if set), utilisez `$userServerAvatar`.
-- The user peut changer son avatar à tout moment.
+- Les URLs of avatar Discord can be modifiedes en ajoutant `?size=256` or `?size=1024` pour changer la resolvedtion.
+- Pour l'avatar specific to the server (if set), utilisez `$userServerAvatar`.
+- The user peut changer son avatar to tout moment.

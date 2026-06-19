@@ -5,11 +5,11 @@ translation_key: docs
 category: "Messages & DM"
 function_name: dm
 syntax: $dm[userID;content]
-description: Sends a message private (DM) à a user. The bot must pouvoir DM the user cible.
+description: Sends a message private (DM) to a user. The bot must pouvoir DM the user cible.
 ---
 # $dm
 
-The `$dm[]` function **envoyer a message private** à a user Discord.
+The `$dm[]` function **envoyer a message private** to a user Discord.
 
 ## Syntax
 
@@ -32,19 +32,19 @@ $dm[userID;content]
 
 ## Behavior
 
-- The bot must pouvoir envoyer des DMs à the user (pas bloqué, DMs ouverts).
+- The bot must pouvoir envoyer DMs to the user (pas bloqué, DMs ouverts).
 - Les embeds définis before `$dm[]` sont included.
 - If the user a fermé their DMs, la function échoue silencieusement.
 
 ## Examples
 
-### DM simple à the author
+### DM simple to the author
 
 ```bdfd
-$dm[$authorID;Merci d'avoir utilisé la command !]
+$dm[$authorID;Merci of avoir utilisé la command !]
 ```
 
-### DM avec embed
+### DM with embed
 
 ```bdfd
 $title[📬 Notification]
@@ -54,12 +54,12 @@ $footer[Équipe $serverName]
 $dm[$authorID;]
 ```
 
-### DM à a user mentionné
+### DM to a user mentionné
 
 ```bdfd
 $if[$mentioned[1]!=]
   $dm[$mentioned[1];$username vous a sent this message : $noMentionMessage]
-  $sendMessage[DM sent avec success !]
+  $sendMessage[DM sent with success !]
 $else
   $sendMessage[Mentionnez a user.]
 $endif
@@ -67,6 +67,6 @@ $endif
 
 ## Notes
 
-- Contrairement à `$sendMessage`, le DM n'apparaît pas in the channel courant.
-- Limit de 2000 becauseactères par message.
-- For DM de bienvenue, check that the user accepte les DMs.
+- Contrairement to `$sendMessage`, le DM n'apparaît pas in the channel courant.
+- Limit of 2000 becauseactères par message.
+- For DM of bienvenue, check that the user accepte les DMs.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botOwnerID
 syntax: $botOwnerID
-description: Returns the ID Discord du owner of the bot.
+description: Returns the ID Discord of the owner of the bot.
 ---
 
 # $botOwnerID
 
-The `$botOwnerID` function **returns the ID Discord du owner of the bot**, such as set in the console BDFD.
+The `$botOwnerID` function **returns the ID Discord of the owner of the bot**, such as set in the console BDFD.
 
 ## Syntax
 
@@ -25,13 +25,13 @@ Aucun.
 ## Return value
 
 - **Type** : String
-- The ID Discord du owner of the bot.
+- The ID Discord of the owner of the bot.
 
 ## Behavior
 
-- Returns the ID of the compte qui a enregistré the bot sur BDFD.
+- Returns the ID of the compte qui a enregistré the bot on BDFD.
 - ID fixe, ne change que if the bot est transféré.
-- Utilisable pour des privilèges special or notifications.
+- Utilisable pour privilèges special or notifications.
 
 ## Examples
 
@@ -44,22 +44,22 @@ $if[$var[motif]==]
   $stop
 $endif
 
-$sendDM[$botOwnerID;📬 **Contact de $userName** ($authorID)
+$sendDM[$botOwnerID;📬 **Contact of $userName** ($authorID)
 Server : $serverName ($guildID)
 Message : $var[motif]]
 
-$sendMessage[✅ Votre message has been transmis au owner of the bot.]
+$sendMessage[✅ Votre message has been transmis to the owner of the bot.]
 ```
 
 ### Accès owner only
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Cette command est réservée au owner of the bot.]
+  $sendEphemeral[❌ Cette command est réservée to the owner of the bot.]
   $stop
 $endif
 
-;; Code réservé au owner
+;; Code réservé to the owner
 $sendMessage[✅ Command owner executede.]
 ```
 
@@ -78,7 +78,7 @@ $sendMessage[]
 
 ## Notes
 
-- ID fixe, ne change pas without transfert de property.
-- Mention du owner : `<@$botOwnerID>`.
-- For the nom du owner, use `$userName[$botOwnerID]` (requires a server commun).
-- Pour envoyer a message au owner, use `$sendDM[$botOwnerID;message]`.
+- ID fixe, ne change pas without transfert of property.
+- Mention of the owner : `<@$botOwnerID>`.
+- For the nom of the owner, use `$userName[$botOwnerID]` (requires a server commun).
+- Pour envoyer a message to the owner, use `$sendDM[$botOwnerID;message]`.

@@ -141,7 +141,7 @@ path to extract nested values:
 ## Template functions
 
 Template functions transform values inline. They use the syntax
-`functionName(arg1, arg2, ...)`.
+`functionName(arg1, arg2,...)`.
 
 ### Text functions
 
@@ -210,7 +210,7 @@ Item placeholders within the template:
 | Function | Description | Example |
 |----------|-------------|---------|
 | `coin()` | Random true/false — returns `"true"` or `""` | `((coin()))` |
-| `randomchoice(a, b, ...)` | Picks one argument at random | `((randomchoice("Yes", "No", "Maybe")))` |
+| `randomchoice(a, b,...)` | Picks one argument at random | `((randomchoice("Yes", "No", "Maybe")))` |
 | `randomint(min, max)` | Random integer in `[min, max]` | `((randomint(1, 100)))` |
 
 **Notes:**

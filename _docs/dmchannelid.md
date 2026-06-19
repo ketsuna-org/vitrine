@@ -32,7 +32,7 @@ $dmChannelID[userID]
 ## Behavior
 
 - Crée le canal DM if the conversation does not exist encore.
-- Utile pour combiner avec `$useChannel[]` or `$channelSendMessage[]`.
+- Utile pour combiner with `$useChannel[]` or `$channelSendMessage[]`.
 - N'échoue pas if the user a fermé their DMs (le canal is created, mais l'envoi peut échouer).
 
 ## Examples
@@ -51,14 +51,14 @@ $useChannel[$dmChannelID[$authorID]]
 $sendMessage[This message is sent en private.]
 ```
 
-### Logging de canal DM
+### Logging of canal DM
 
 ```bdfd
-$log[DM ouvert avec <@$authorID> - Canal : $dmChannelID[$authorID]]
+$log[DM ouvert with <@$authorID> - Canal : $dmChannelID[$authorID]]
 ```
 
 ## Notes
 
 - Le canal DM est persistant once created par Discord.
 - Pour envoyer a message private, `$dm[]` est plus simple.
-- Use `$dmChannelID[]` when vous avez besoin de the ID pour d'autres opérations.
+- Use `$dmChannelID[]` when vous avez besoin of the ID pour of autres opérations.

@@ -5,13 +5,13 @@ translation_key: docs
 category: "Math & Calculations"
 function_name: c
 syntax: $c[expression]
-description: Alias de $calculate. Effectue un calcul mathématique and returns the result. Supporte les opérations de base, les functions mathématiques and les variables.
+description: Alias of $calculate. Effectue un calcul mathématique and returns the result. Supports thes opérations of base, les functions mathématiques and les variables.
 aliases:
   - $calculate
 ---
-# $c (alias de $calculate)
+# $c (alias of $calculate)
 
-The `$c[]` function est un **alias raccourci** de `$calculate[]`. Elle effectue des calculs mathématiques and returns the result.
+The `$c[]` function est un **alias raccourci** of `$calculate[]`. Elle effectue calculs mathématiques and returns the result.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $c[expression]
 
 | Parameter | Description |
 |---|---|
-| `expression` | Expression mathématique à évaluer. |
+| `expression` | Expression mathématique to évaluer. |
 
 ## Opérateurs supportés
 
@@ -38,7 +38,7 @@ $c[expression]
 
 ## Examples
 
-### Calculs de base
+### Calculs of base
 
 ```bdfd
 $sendMessage[5 + 3 = $c[5+3]]
@@ -46,14 +46,14 @@ $sendMessage[100 / 4 = $c[100/4]]
 $sendMessage[2^8 = $c[2^8]]
 ```
 
-### Calcul avec decimales
+### Calcul with decimales
 
 ```bdfd
 $enableDecimals
 $sendMessage[22/7 = $c[22/7]]
 ```
 
-### Système de levelx
+### Système of levelx
 
 ```bdfd
 $let[xp;$getVar[xp]]
@@ -61,7 +61,7 @@ $let[level;$c[$var[xp]/100]]
 $sendMessage[Level : $round[$var[level];0]]
 ```
 
-### Calcul avec variables
+### Calcul with variables
 
 ```bdfd
 $var[price;49]
@@ -72,6 +72,6 @@ $sendMessage[Total : $var[total]€]
 
 ## Notes
 
-- `$c[]` est strictement identical à `$calculate[]` — juste plus court.
+- `$c[]` est strictement identical to `$calculate[]` — juste plus court.
 - Without `$enableDecimals`, the results sont arrondis.
-- Supporte les parenthèses for priorités : `$c[(2+3)*4]` → `20`.
+- Supports thes parenthèses for priorités : `$c[(2+3)*4]` → `20`.

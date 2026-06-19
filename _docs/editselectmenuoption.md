@@ -5,11 +5,11 @@ translation_key: docs
 category: "Components"
 function_name: editSelectMenuOption
 syntax: $editSelectMenuOption[menuId;label;value;description;default;emoji]
-description: Modifies ae option individuelle dans un select menu (select menu) existing.
+description: Modifies ae individual option in a select menu (select menu) existing.
 ---
 # $editSelectMenuOption
 
-The `$editSelectMenuOption[]` function **modifier une option existinge** dans un select menu.
+The `$editSelectMenuOption[]` function **modifier une option existinge** in a select menu.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $editSelectMenuOption[menuId;label;value;description;default;emoji]
 |---|---|
 | `menuId` | Custom ID of the select menu parent. |
 | `label` | New text displayed for the option. |
-| `value` | Value internal transmise à `$onInteraction`. |
+| `value` | Value internal transmise to `$onInteraction`. |
 | `description` | *(Optional)* Text secondary sous le label. |
 | `default` | *(Optional)* `true` if the option est préselectionnée. |
 | `emoji` | *(Optional)* Emoji décoratif. |
@@ -40,19 +40,19 @@ None. The option est modifiede.
 
 ## Examples
 
-### Marquer une option comme selectionnée
+### Marquer une option like selectionnée
 
 ```bdfd
 $editSelectMenuOption[langMenu;Anglais;en;English language;true;🇬🇧]
 ```
 
-### Mettre à day le label
+### Mettre to day le label
 
 ```bdfd
-$editSelectMenuOption[roleMenu;Modérateur;mod;Role de modération;false;🛡️]
+$editSelectMenuOption[roleMenu;Modérateur;mod;Role of modération;false;🛡️]
 ```
 
-### Désactiver visually une option
+### Désenable visually une option
 
 ```bdfd
 $editSelectMenuOption[actionMenu;Inavailable;none;Cette option is no longer available;false;🚫]
@@ -60,6 +60,6 @@ $editSelectMenuOption[actionMenu;Inavailable;none;Cette option is no longer avai
 
 ## Notes
 
-- Use avec `$editSelectMenu[]` for ae mise à day complete du menu.
+- Use with `$editSelectMenu[]` for ae mise to day complete of the menu.
 - Le parameter `value` used to identifier the option cible.
 - Pour ajouter/supprimer of options, use `$addSelectMenuOption[]` or reconstruisez le menu.

@@ -10,7 +10,7 @@ description: Returns the ID of the catégorie parente of a channel Discord.
 
 # $channelCategoryID
 
-The `$channelCategoryID` function returns the **ID of the catégorie parente** of a channel Discord. If the channel n'appartient à noe catégorie, la function retourne a string vide.
+The `$channelCategoryID` function returns the **ID of the catégorie parente** of a channel Discord. If the channel n'appartient to noe catégorie, la function retourne a string vide.
 
 ## Syntax
 
@@ -44,13 +44,13 @@ $sendMessage[ID of the catégorie : $channelCategoryID]
 $sendMessage[Catégorie : $channelName[$channelCategoryID]]
 ```
 
-### Vérifier l'appartenance à une catégorie
+### Vérifier l'appartenance to une catégorie
 
 ```bdfd
 $if[$channelCategoryID==123456789012345678]
   $sendMessage[Ce channel est in the catégorie Administration.]
 $else
-  $sendMessage[Ce channel est dans une autre catégorie.]
+  $sendMessage[Ce channel est in a autre catégorie.]
 $endif
 ```
 
@@ -58,12 +58,12 @@ $endif
 
 ```bdfd
 $if[$channelCategoryID==]
-  $sendMessage[Ce channel n'appartient à noe catégorie.]
+  $sendMessage[Ce channel n'appartient to noe catégorie.]
 $endif
 ```
 
 ## Notes
 
-- `$parentID` and `$categoryID` sont des alias de `$channelCategoryID`.
-- Les channels DM do not have de catégorie parente.
-- Les catégories elles-mêmes do not have de catégorie parente.
+- `$parentID` and `$categoryID` sont alias of `$channelCategoryID`.
+- Les channels DM do not have of catégorie parente.
+- Les catégories elles-mêmes do not have of catégorie parente.

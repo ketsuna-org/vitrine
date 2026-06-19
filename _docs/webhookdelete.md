@@ -10,7 +10,7 @@ description: Deletes a webhook Discord existing en utilisant son ID and son toke
 
 # $webhookDelete
 
-The function `$webhookDelete[]` allows **supprimer un webhook Discord** existing à l'aide de son ID and de son token.
+The function `$webhookDelete[]` allows **supprimer un webhook Discord** existing to l'aide of son ID and of son token.
 
 ## Syntax
 
@@ -22,22 +22,22 @@ $webhookDelete[webhookID;webhookToken]
 
 | Parameter | Description |
 |---|---|
-| `webhookID` | The ID of the webhook (first partie de the URL after `/webhooks/`). |
-| `webhookToken` | Le token du webhook (second partie after the ID). |
+| `webhookID` | The ID of the webhook (first partie of the URL after `/webhooks/`). |
+| `webhookToken` | Le token of the webhook (second partie after the ID). |
 
 ## Return Value
 
-This function ne retourne pas de value. The suppression est effectuée silencieusement.
+This function ne retourne pas of value. The suppression est effectuée silencieusement.
 
 ## Behavior
 
-- The bot doit avoir la permission `MANAGE_WEBHOOKS` or être le owner du webhook.
+- The bot doit avoir la permission `MANAGE_WEBHOOKS` or être le owner of the webhook.
 - Une fois deleted, le webhook ne peut plus être utilisé.
 - Les URLs restantes pointant vers ce webhook deviendront invalids.
 
 ## Examples
 
-### Suppression d'un webhook
+### Suppression of un webhook
 
 ```bdfd
 $let[hookID;123456789]

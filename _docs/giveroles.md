@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: giveRoles
 syntax: $giveRoles[userID;role1;role2;...]
-description: Donne several roles à un user en a single opération.
+description: Donne several roles to un user en a single opération.
 ---
 
 # $giveRoles
 
-The function `$giveRoles` **attribue several roles en une fois** à un user. C'est la version multi-roles de `$giveRole`. The bot doit avoir la permission `ManageRoles`.
+The function `$giveRoles` **attribue several roles en une fois** to un user. C'est la version multi-roles of `$giveRole`. The bot doit avoir la permission `ManageRoles`.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $giveRoles[userID;role1;role2;...]
 | Parameter | Description |
 |---|---|
 | `userID` | The ID of the user cible. Required. |
-| `role1;role2;...` | Les IDs des roles à attribuer, separateds par des `;`. Required. |
+| `role1;role2;...` | Les IDs roles to attribuer, separateds par `;`. Required. |
 
 ## Return Value
 
@@ -38,18 +38,18 @@ $giveRoles[$mentioned[1];$roleID[Member];$roleID[Notifications]]
 $sendMessage[<@$mentioned[1]> a received les roles Member and Notifications.]
 ```
 
-### Attributeion groupée avec condition
+### Attributeion groupée with condition
 
 ```bdfd
 $if[$isAdmin==true]
   $giveRoles[$mentioned[1];$roleID[Modo];$roleID[Staff];$roleID[VIP]]
-  $sendMessage[Tous les roles de staff attribués à <@$mentioned[1]>.]
+  $sendMessage[Tous les roles of staff attribués to <@$mentioned[1]>.]
 $else
   $sendMessage[Permission refusée.]
 $endif
 ```
 
-### Command de bienvenue
+### Command of bienvenue
 
 ```bdfd
 $giveRoles[$authorID;$roleID[Member];$roleID[New];$roleID[Auto]]

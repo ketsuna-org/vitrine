@@ -10,7 +10,7 @@ description: Function guard qui blacklist of users by ID. If the user déclenche
 
 # $blacklistIDs
 
-The function guard `$blacklistIDs` bloque l'execution of the command for users dont the ID figure in the list. Contrairement à `$onlyForIDs` qui whitelist, `$blacklistIDs` fait une **blacklist**.
+The function guard `$blacklistIDs` bloque l'execution of the command for users dont the ID figure in the list. Contrairement to `$onlyForIDs` qui whitelist, `$blacklistIDs` fait une **blacklist**.
 
 ## Syntax
 
@@ -22,8 +22,8 @@ $blacklistIDs[userID1;userID2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID1;userID2;...` | Snowflake[] | IDs of users à blacklistr, separateds par `;`. |
-| `errorMessage` | String (optional) | Message sent à the user blacklisté. If omitted, silence. |
+| `userID1;userID2;...` | Snowflake[] | IDs of users to blacklistr, separateds par `;`. |
+| `errorMessage` | String (optional) | Message sent to the user blacklisté. If omitted, silence. |
 
 ## Behavior
 
@@ -37,11 +37,11 @@ $blacklistIDs[userID1;userID2;...;(errorMessage)]
 ### Blacklist simple
 
 ```bdfd
-$blacklistIDs[123456789012345678;❌ Vous avez été blacklisté de cette command.]
+$blacklistIDs[123456789012345678;❌ Vous avez été blacklisté of cette command.]
 $sendMessage[Traitement effectué.]
 ```
 
-### Blacklist multiple avec list external
+### Blacklist multiple with list external
 
 ```bdfd
 $blacklistIDs[$getGlobalUserVar[blacklist];❌ Accès révoqué.]
@@ -58,6 +58,6 @@ $sendMessage[OK.]
 ## Notes
 
 - `$blacklistIDs` and `$blacklistUsers` sont interchangeables.
-- Pour une blacklist persistante, combinez avec `$getGlobalUserVar` or `$getServerUserVar`.
+- Pour une blacklist persistante, combinez with `$getGlobalUserVar` or `$getServerUserVar`.
 - Pour blacklistr a role integer, use `$blacklistRoles` or `$blacklistRoleIDs`.
-- L'inverse de cette function est `$onlyForIDs` (whitelist).
+- L'inverse of cette function est `$onlyForIDs` (whitelist).

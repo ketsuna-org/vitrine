@@ -10,7 +10,7 @@ description: Retire la sourdine of a user.
 
 # $unmute
 
-The function `$unmute` **retire la sourdine** of a user on the server Discord, lui permettant de parler à new in thes channels vocaux. The bot doit avoir la permission `MuteMembers`.
+The function `$unmute` **retire la sourdine** of a user on the server Discord, lui permettant of parler to new in thes channels vocaux. The bot doit avoir la permission `MuteMembers`.
 
 ## Syntax
 
@@ -22,11 +22,11 @@ $unmute[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user à réactiver. Required. |
+| `userID` | The ID of the user to réactiver. Required. |
 
 ## Return Value
 
-Aucune. The user peut de new parler en vocal.
+Aucune. The user peut of new parler en vocal.
 
 ## Examples
 
@@ -34,7 +34,7 @@ Aucune. The user peut de new parler en vocal.
 
 ```bdfd
 $unmute[$mentioned[1]]
-$sendMessage[🔊 <@$mentioned[1]> peut de new parler !]
+$sendMessage[🔊 <@$mentioned[1]> peut of new parler !]
 ```
 
 ### Réactivation conditionnelle
@@ -51,5 +51,5 @@ $endif
 ## Notes
 
 - The bot doit avoir la permission `MuteMembers`.
-- N'a d'effet que si the user est currentlement muet.
+- N'a of effet que si the user est currentlement muet.
 - Pour retirer un timeout (silence textuel and vocal temporary), utilisez `$unTimeout`.

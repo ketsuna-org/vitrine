@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: roleID
 syntax: $roleID[name;(guildID)]
-description: Returns the ID of a role Discord from son nom or d'une mention. Insensible à la casse.
+description: Returns the ID of a role Discord from son nom or of une mention. Insensible to la casse.
 ---
 
 # $roleID
 
-The function `$roleID` retourne l'**ID** of a role Discord from son **nom** or d'une **mention**. The recherche est insensible à la casse.
+The function `$roleID` retourne l'**ID** of a role Discord from son **nom** or of une **mention**. The recherche est insensible to la casse.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $roleID[name;(guildID)]
 | Parameter | Description |
 |---|---|
 | `name` | The name of the role or une mention brute (`<@&id>`). |
-| `guildID` | Optional. The ID of the server cible. Si omis, the server courant. |
+| `guildID` | Optional. The ID of the server cible. Si omitted, the server courant. |
 
 ## Return Value
 
@@ -49,20 +49,20 @@ $else
 $endif
 ```
 
-### À partir d'une mention
+### À partir of une mention
 
 ```bdfd
-$sendMessage[ID extracted de la mention : $roleID[<@&123456789012345678>]]
+$sendMessage[ID extracted of la mention : $roleID[<@&123456789012345678>]]
 ```
 
 ### Dans un autre server
 
 ```bdfd
-$sendMessage[ID role sur autre server : $roleID[Modo;987654321098765432]]
+$sendMessage[ID role on autre server : $roleID[Modo;987654321098765432]]
 ```
 
 ## Notes
 
 - Si several roles portent le même nom, seul le first found est retourné.
-- La mention brute (`<@&id>`) est acceptée comme parameter.
+- La mention brute (`<@&id>`) est acceptée like parameter.
 - Utilisez `$findRole` for ae recherche par nom partial.

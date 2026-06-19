@@ -28,24 +28,24 @@ Aucun.
 
 ## Behavior
 
-- Returns the URL of the page si the bot est executed dans un context web.
+- Returns the URL of the page si the bot est executed in a context web.
 - Peut retourner une string vide hors context web.
 
 ## Examples
 
-### Afficher the URL courante
+### Display the URL courante
 
 ```bdfd
 $sendMessage[URL currentle : $url]
 ```
 
-### Vérifier une page spécifique
+### Vérifier une page specific
 
 ```bdfd
 $if[$checkContains[$url;/dashboard]==true]
-  $sendMessage[Vous êtes sur le dashboard.]
+  $sendMessage[Vous êtes on the dashboard.]
 $else
-  $sendMessage[Vous êtes sur : $url]
+  $sendMessage[Vous êtes on : $url]
 $endif
 ```
 

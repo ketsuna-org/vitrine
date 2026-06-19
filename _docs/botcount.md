@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botCount
 syntax: $botCount
-description: Returns the namebre de bots présents on the server Discord.
+description: Returns the namebre of bots présents on the server Discord.
 ---
 
-# $botCount[] — Number de Bots
+# $botCount[] — Number of Bots
 
-`$botCount[]` retourne the namebre de comptes bots présents on the server Discord.
+`$botCount[]` retourne the namebre of comptes bots présents on the server Discord.
 
 ## Syntax
 
@@ -25,21 +25,21 @@ No parameters.
 ## Return value
 
 - **Type** : `integer`
-- The namebre de bots on the server.
+- The namebre of bots on the server.
 
 ## Usage
 
 ### Simple display
 
 ```bdfd
-$sendMessage[🤖 **$botCount** bots sur ce server.]
+$sendMessage[🤖 **$botCount** bots on ce server.]
 ```
 
 ### Ratio humains/bots
 
 ```bdfd
 $var[humans;$sub[$membersCount;$botCount]]
-$title[📊 Composition de $serverName]
+$title[📊 Composition of $serverName]
 $addField[👤 Humains;$var[humans];yes]
 $addField[🤖 Bots;$botCount;yes]
 $addField[👥 Total;$membersCount;yes]
@@ -47,18 +47,18 @@ $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Alerte si trop de bots
+### Alerte si trop of bots
 
 ```bdfd
 $if[$botCount>$var[humans]]
-$sendMessage[⚠️ Il y a more than bots ($botCount) que d'humains ($var[humans]) !]
+$sendMessage[⚠️ Il y a more than bots ($botCount) que of humains ($var[humans]) !]
 $endif
 ```
 
 ### Embed statistiques complete
 
 ```bdfd
-$title[📊 Statistiques de $serverName]
+$title[📊 Statistiques of $serverName]
 $addField[👥 Total;$membersCount;yes]
 $addField[👤 Humains;$sub[$membersCount;$botCount];yes]
 $addField[🤖 Bots;$botCount;yes]
@@ -71,5 +71,5 @@ $sendEmbedMessage
 ## Notes
 
 - Un "bot" est déterminé par le flag `bot` set on the compte user Discord.
-- Pour obtenir the namebre d'humains, soustrayez `$botCount` du total : `$sub[$membersCount;$botCount]`.
-- The bot comptant lui-même est included dans ce total.
+- Pour obtenir the namebre of humains, soustrayez `$botCount` of the total : `$sub[$membersCount;$botCount]`.
+- The bot comptant lui-même est included in ce total.

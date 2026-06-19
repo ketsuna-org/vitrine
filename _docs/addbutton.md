@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addButton
 
-Ajoute a button interactif au message (legacy style). Allows controler le placement via le parameter `newRow`.
+Ajoute a button interactif to the message (legacy style). Allows controler le placement via le parameter `newRow`.
 
 ## Syntax
 
@@ -18,13 +18,13 @@ $addButton[newRow;customIdOrURL;label;(style);(disabled);(emoji);(messageId)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `newRow` | `"yes"` crée une new row before le bouton, `"no"` ajoute à la ligne courante | Yes |
+| `newRow` | `"yes"` crée une new row before le bouton, `"no"` ajoute to la ligne courante | Yes |
 | `customIdOrURL` | ID custom to manage le clic, or URL pour a button link | Yes |
 | `label` | Text displayed on the button | Yes |
-| `style` | Style du bouton : `primary` (default), `secondary`, `success`, `danger`, `link` | No |
+| `style` | Style of the bouton : `primary` (default), `secondary`, `success`, `danger`, `link` | No |
 | `disabled` | `true` to disable le bouton, `false` (default) | No |
 | `emoji` | Emoji to display before le label | No |
-| `messageId` | ID of the message cible (for the édition) | No |
+| `messageId` | ID of the message target (for the édition) | No |
 
 ## Available styles
 
@@ -45,7 +45,7 @@ $addButton[no;mon_bouton;Cliquez ici;primary;false;😊]
 $sendMessage[Appuyez on the bouton]
 ```
 
-### New ligne avec two buttons
+### New ligne with two buttons
 
 ```
 $addButton[no;btn_ok;✅ Validr;success]
@@ -53,7 +53,7 @@ $addButton[no;btn_no;❌ Refuser;danger]
 $sendMessage[Choisissez une option]
 ```
 
-### Bouton disabled avec emoji
+### Bouton disabled with emoji
 
 ```
 $addButton[no;btn_lock;🔒 Verrouillé;secondary;true]

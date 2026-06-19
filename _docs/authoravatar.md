@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorAvatar
 syntax: $authorAvatar
-description: Returns the URL of the avatar global de the author of the message qui a déclenché la command.
+description: Returns the URL of the avatar global of the author of the message that triggered the command.
 ---
 
 # $authorAvatar
 
-The variable `$authorAvatar` returns the **URL of the avatar global** de the author of the message qui a déclenché la command.
+The variable `$authorAvatar` returns the **URL of the avatar global** of the author of the message that triggered the command.
 
 ## Syntax
 
@@ -20,14 +20,14 @@ $authorAvatar
 
 ## Return value
 
-- **Type** : String de becauseactères (URL)
-- URL of the avatar de the author (CDN Discord)
-- Avatar by default if the auteur does not have d'avatar custom
+- **Type** : String of becauseactères (URL)
+- URL of the avatar of the author (CDN Discord)
+- Avatar by default if the auteur does not have of avatar custom
 
 ## Behavior
 
 - `$authorAvatar` ne prend **no argument**.
-- Équivaslow à `$userAvatar` for commands textuelles.
+- Équivaslow to `$userAvatar` for commands textuelles.
 - The URL pointe vers les CDN Discord.
 
 ## Examples
@@ -35,13 +35,13 @@ $authorAvatar
 ### Avatar en grand
 
 ```bdfd
-$title[Avatar de $authorUsername]
+$title[Avatar of $authorUsername]
 $image[$authorAvatar]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Auteur d'embed avec avatar
+### Auteur of embed with avatar
 
 ```bdfd
 $author[$authorUsername;$authorAvatar]
@@ -55,7 +55,7 @@ $sendMessage[]
 
 ```bdfd
 $author[$authorUsername;$authorAvatar]
-$title[Profil de $authorUsername]
+$title[Profil of $authorUsername]
 $thumbnail[$authorAvatar]
 $description[
 **Nom :** $authorUsername
@@ -67,6 +67,6 @@ $sendMessage[]
 
 ## Notes
 
-- For the avatar spécifique au server, use `$userServerAvatar`.
-- Les parameters `?size=` can be added à the URL pour changer la resolvedtion.
-- L'avatar can be modified par the user à tout moment.
+- For the avatar specific to the server, use `$userServerAvatar`.
+- Les parameters `?size=` can be added to the URL pour changer la resolvedtion.
+- L'avatar can be modified par the user to tout moment.

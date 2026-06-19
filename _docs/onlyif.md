@@ -51,7 +51,7 @@ $onlyIf[$message<=100;❌ The namebre must be <= 100.]
 ### Channel/Role Restrictions
 
 ```bdfd
-$onlyIf[$channelID==123456789012345678;❌ Cette command ne can be utilisée que dans <#123456789012345678>.]
+$onlyIf[$channelID==123456789012345678;❌ Cette command ne can be utilisée que in <#123456789012345678>.]
 ```
 
 ## Comparison with $if / $stop

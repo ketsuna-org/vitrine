@@ -10,7 +10,7 @@ description: Function guard qui stops l'exécution of the command si the user is
 
 # $onlyAdmin
 
-The function guard `$onlyAdmin` stops immédiatement l'exécution of the command si the user qui l'a déclenchée ne possède pas la permission **Administrator** on the server.
+The function guard `$onlyAdmin` stops immédiatement l'exécution of the command si the user qui l'triggerede ne possède pas la permission **Administrator** on the server.
 
 ## Syntax
 
@@ -27,11 +27,11 @@ Aucun parameter. `$onlyAdmin` s'utilise seul, without argument.
 - Si the user est administrator, the command continue normalement.
 - Si the user n'est **pas** administrator, the command est immédiatement interrompue (`$stop` implicite).
 - Aucun error message n'est sent default — the bot reste silencieux.
-- Équivaslow functionnel à `$onlyPerms[Administrator]` mais plus lisible and concis.
+- Équivaslow functionnel to `$onlyPerms[Administrator]` mais plus lisible and concis.
 
 ## Examples
 
-### Réserver une command aux admins
+### Réserver une command to the admins
 
 ```bdfd
 $onlyAdmin
@@ -39,7 +39,7 @@ $ban[$mentioned[1]]
 $sendMessage[<@$mentioned[1]> was banni.]
 ```
 
-### Panneau d'administration
+### Panneau of administration
 
 ```bdfd
 $onlyAdmin
@@ -58,12 +58,12 @@ $sendMessage[]
 $if[$isAdmin==false]
   $onlyForRoles[123456789012345678]
 $endif
-$sendMessage[Action de modération allowede.]
+$sendMessage[Action of modération allowede.]
 ```
 
 ## Notes
 
-- `$onlyAdmin` vérifie only la permission `Administrator`. Pour vérifier d'autres permissions, utilisez `$onlyPerms`.
+- `$onlyAdmin` vérifie only la permission `Administrator`. Pour check of autres permissions, utilisez `$onlyPerms`.
 - Le owner of the server est implicitement administrator and passes ce guard.
 - Pour ajouter un error message custom, préférez `$onlyPerms[Administrator;Error message]`.
 - À placer **en haut** of the command, before toute autre logique.

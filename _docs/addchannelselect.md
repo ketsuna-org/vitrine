@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addChannelSelect
 
-Creates a select menu de channels. Allows users to choisir un or multipthe channels of the server.
+Creates a select menu of channels. Allows users to choisir un or multipthe channels of the server.
 
 ## Syntax
 
@@ -20,10 +20,10 @@ $addChannelSelect[customId;placeholder;(minValues);(maxValues);(disabled);(chann
 |-----------|-------------|:-----------:|
 | `customId` | Custom identifier for the interaction | Yes |
 | `placeholder` | Text displayed when rien n'est selectionné | Yes |
-| `minValues` | Minimum number of channels à selectionner (default: 1) | No |
-| `maxValues` | Maximum number of channels à selectionner (default: 1) | No |
+| `minValues` | Minimum number of channels to selectionner (default: 1) | No |
+| `maxValues` | Maximum number of channels to selectionner (default: 1) | No |
 | `disabled` | `true` to disable le menu, `false` (default) | No |
-| `channelTypes` | Types de channels displayeds, separated by commas | No |
+| `channelTypes` | Types of channels displayeds, separated by commas | No |
 
 ## Channel types (channelTypes)
 
@@ -32,16 +32,16 @@ $addChannelSelect[customId;placeholder;(minValues);(maxValues);(disabled);(chann
 | `text` | Channels textuels |
 | `voice` | Channels vocaux |
 | `category` | Catégories |
-| `news` | Channels d'annonces |
-| `stage` | Channels de scène |
+| `news` | Channels of annonces |
+| `stage` | Channels of scène |
 | `forum` | Forums |
-| `thread` | Fils de discussion |
+| `thread` | Fils of discussion |
 
 Par default, all types are displayed.
 
 ## Examples
 
-### Selection de channel
+### Selection of channel
 
 ```
 $addChannelSelect[menu_channel;Choisissez a channel]
@@ -80,7 +80,7 @@ $endif
 
 ## Notes
 
-- Les values retournées sont of IDs de channels Discord.
+- Les values retournées sont of IDs of channels Discord.
 - Use `<#ID>` to mention a channel.
 - Le parameter `channelTypes` allows filtering precisely les channels displayeds.
-- Pratique for commands de configuration, logs, or redirections.
+- Pratique for commands of configuration, logs, or redirections.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookCreate
 syntax: $webhookCreate[channelID;name;(avatarURL)]
-description: Creates a new webhook dans un canal spécifié and retourne son URL. The webhook created peut then être utilisé avec $webhookSend pour envoyer des messages.
+description: Creates a new webhook in a canal spécifié and retourne son URL. The webhook created peut then être utilisé with $webhookSend pour envoyer messages.
 ---
 
 # $webhookCreate
 
-The function `$webhookCreate[]` allows **créer un new webhook** dans un canal Discord and retourne son URL complete.
+The function `$webhookCreate[]` allows **create a new webhook** in a canal Discord and retourne son URL complete.
 
 ## Syntax
 
@@ -22,14 +22,14 @@ $webhookCreate[channelID;name;(avatarURL)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the canal où créer le webhook. |
-| `name` | The name du webhook (2 à 80 becauseactères). |
-| `avatarURL` | Optional - URL of the image d'avatar du webhook. |
+| `channelID` | The ID of the canal où create the webhook. |
+| `name` | The name of the webhook (2 to 80 becauseactères). |
+| `avatarURL` | Optional - URL of the image of avatar of the webhook. |
 
 ## Return Value
 
 - **Type** : String (URL)
-- The URL complete du webhook au format `https://discord.com/api/webhooks/ID/TOKEN`
+- The URL complete of the webhook to the format `https://discord.com/api/webhooks/ID/TOKEN`
 - String vide or error si the bot n'a pas la permission `MANAGE_WEBHOOKS`.
 
 ## Behavior
@@ -46,22 +46,22 @@ $webhookCreate[channelID;name;(avatarURL)]
 ```bdfd
 $let[hook;$webhookCreate[$channelID;Logger of the server]]
 $if[$hook!=]
-  $webhookSend[$hook;Webhook de logs created successfully !]
+  $webhookSend[$hook;Webhook of logs created successfully !]
 $else
   $sendMessage[Échec : permission MANAGE_WEBHOOKS requirede.]
 $endif
 ```
 
-### Création avec stockage
+### Création with stockage
 
 ```bdfd
 $let[logHook;$webhookCreate[$channelID;Logs;$serverIcon]]
 $setUserVar[logWebhook;$logHook]
-$sendMessage[Webhook de logs configured !]
+$sendMessage[Webhook of logs configured !]
 ```
 
 ## Notes
 
-- Les webhooks createds par the bot sont liés au bot.
-- Un webhook ne peut pas être transféré à un autre canal after création.
-- Supprimez les webhooks inutilisés avec `$webhookDelete[]`.
+- Les webhooks createds par the bot sont liés to the bot.
+- Un webhook ne peut pas être transféré to un autre canal after création.
+- Supprimez les webhooks inutilisés with `$webhookDelete[]`.

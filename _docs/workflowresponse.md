@@ -5,7 +5,7 @@ translation_key: docs
 category: "Workflows & Automations"
 function_name: workflowResponse
 syntax: $workflowResponse
-description: Returns the last response or value produite par un workflow BDFD. Utile pour enstringr des workflows or récupérer des results.
+description: Returns the last response or value produite par un workflow BDFD. Utile pour enstringr workflows or récupérer results.
 ---
 # $workflowResponse
 
@@ -29,9 +29,9 @@ Aucun.
 
 ## Behavior
 
-- Stocke the response du last `$workflow[]` callé.
+- Stocke the response of the last `$workflow[]` callé.
 - The value persiste until la fin of the command or jusqu'au prochain workflow.
-- Allows composer des strings de workflows.
+- Allows composer strings of workflows.
 
 ## Examples
 
@@ -42,7 +42,7 @@ $workflow[calculSalaire;$authorID]
 $sendMessage[Votre salaire calculated : $workflowResponse €]
 ```
 
-### String de workflows
+### String of workflows
 
 ```bdfd
 $workflow[verifyUser;$authorID]
@@ -54,7 +54,7 @@ $else
 $endif
 ```
 
-### Log de workflow
+### Log of workflow
 
 ```bdfd
 $workflow[dailyReward;$authorID]
@@ -75,6 +75,6 @@ $endif
 
 ## Notes
 
-- `$workflowResponse` est écrasé à each nouvel call de `$workflow[]`.
-- Stockez the value dans une variable si vous devez la réutiliser : `$let[rep;$workflowResponse]`.
-- The response dépend entièrement de ce que le workflow retourne via `$sendMessage` or `$return`.
+- `$workflowResponse` est écrasé to each nouvel call of `$workflow[]`.
+- Stockez the value in a variable si vous devez la réuse : `$let[rep;$workflowResponse]`.
+- The response dépend entièrement of ce que le workflow retourne via `$sendMessage` or `$return`.

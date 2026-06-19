@@ -4,7 +4,7 @@ title: $try / $catch / $endTry + $error
 translation_key: docs
 category: "Control Flow"
 function_name: try
-syntax: $try ... $catch ... $endTry
+syntax: $try.. $catch.. $endTry
 description: Error handling block — catches runtime errors in the try body and allows graceful recovery or logging.
 ---
 # $try / $catch / $endTry — Error Handling
@@ -15,9 +15,9 @@ The `$try` family of tokens provides structured error handling in BDFD scripts. 
 
 ```
 $try
-  ... risky commands ...
+ .. risky commands...
 $catch
-  ... recovery commands ...
+ .. recovery commands...
 $endTry
 ```
 

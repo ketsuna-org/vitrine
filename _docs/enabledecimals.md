@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: enableDecimals
 syntax: $enableDecimals
-description: Active l'affichage des decimales dans the results de calculs. Par default, BDFD arrondit the results numériques.
+description: Active l'affichage decimales in the results of calculs. Par default, BDFD arrondit the results numériques.
 ---
 # $enableDecimals
 
-The `$enableDecimals` function **active l'affichage des decimales** in thes calculs for the command in progress.
+The `$enableDecimals` function **active l'affichage decimales** in thes calculs for the command in progress.
 
 ## Syntax
 
@@ -27,13 +27,13 @@ None.
 
 ## Behavior
 
-- Without `$enableDecimals`, BDFD arrondit the results de `$calculate[]`.
+- Without `$enableDecimals`, BDFD arrondit the results of `$calculate[]`.
 - Avec `$enableDecimals`, the results incluent les decimales.
-- L'effet is limitd à la command in progress.
+- L'effet is limitd to la command in progress.
 
 ## Examples
 
-### Calcul avec decimales
+### Calcul with decimales
 
 ```bdfd
 $enableDecimals
@@ -60,5 +60,5 @@ $sendMessage[Without : $without | Avec : $avec]
 ## Notes
 
 - À placer before les calculs concernés.
-- Pour arrondir à N decimales, use `$round[$calculate[...];N]`.
+- Pour round to N decimales, use `$round[$calculate[...];N]`.
 - Impacte also les divisions in thes conditions `$if[]`.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: memberNick
 syntax: $memberNick
-description: Returns the pseudo (surnom) du member on the server. Équivaslow à $nickname.
+description: Returns the pseudo (surnom) of the member on the server. Équivaslow to $nickname.
 ---
 
 # $memberNick
 
-The variable `$memberNick` retourne le **pseudo (surnom)** du member on the server current. Elle est équivaslowe à `$nickname`.
+The variable `$memberNick` retourne le **pseudo (surnom)** of the member on the server current. Elle est équivaslowe to `$nickname`.
 
 ## Syntax
 
@@ -20,18 +20,18 @@ $memberNick
 
 ## Return Value
 
-- **Type** : String de becauseactères
-- Le pseudo server du member if set, otherwise une **string vide**
+- **Type** : String of becauseactères
+- Le pseudo server of the member if set, otherwise une **string vide**
 
 ## Behavior
 
 - `$memberNick` ne prend **no argument**.
-- Functionnellement identical à `$nickname`.
-- Returns aiquement le pseudo **spécifique au server**.
+- Functionnellement identical to `$nickname`.
+- Returns aiquement le pseudo **specific to the server**.
 
 ## Examples
 
-### Message avec pseudo
+### Message with pseudo
 
 ```bdfd
 $if[$memberNick!=]

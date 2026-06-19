@@ -5,11 +5,11 @@ translation_key: docs
 category: "Text Manipulation"
 function_name: trimContent
 syntax: $trimContent[text]
-description: Supprime les espaces en début and fin d'un text (trim). Ne modifie pas les espaces à l'intérieur du text.
+description: Supprime les espaces en début and fin of un text (trim). Ne modifie pas les espaces to l'intérieur of the text.
 ---
 # $trimContent
 
-The function `$trimContent[]` **supprime les espaces** en début and fin d'une string (trim).
+The function `$trimContent[]` **supprime les espaces** en début and fin of une string (trim).
 
 ## Syntax
 
@@ -21,17 +21,17 @@ $trimContent[text]
 
 | Parameter | Description |
 |---|---|
-| `text` | Le text à nettoyer (espaces en début/fin deleteds). |
+| `text` | Le text to nettoyer (espaces en début/fin deleteds). |
 
 ## Return Value
 
 - **Type** : String
-- Le text without espaces au début ni à la fin.
+- Le text without espaces to the début ni to la fin.
 
 ## Behavior
 
-- Ne touche PAS aux espaces between thes mots.
-- Supprime espaces, tabulations, and retours à la ligne en début/fin.
+- Ne touche PAS to the espaces between thes mots.
+- Supprime espaces, tabulations, and retours to la ligne en début/fin.
 - Très utile after une extraction or une concaténation.
 
 ## Examples

@@ -5,7 +5,7 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: debug
 syntax: $debug
-description: Enables the mode debug for the command in progress. Displays des informations de diagnostic in the console or les logs BDFD.
+description: Enables the mode debug for the command in progress. Displays information of diagnostic in the console or les logs BDFD.
 ---
 # $debug
 
@@ -27,8 +27,8 @@ None.
 
 ## Behavior
 
-- Une fois enabled, BDFD displays des informations de diagnostic supplémentaires.
-- Aide à tracer the errors, les values de variables, and the flux d'execution.
+- Une fois enabled, BDFD displays information of diagnostic supplémentaires.
+- Aide to tracer the errors, les values of variables, and the flux of execution.
 - Le mode debug is disabled automatically to the end of the command.
 
 ## Examples
@@ -50,7 +50,7 @@ $endif
 $sendMessage[Debug enabled pour cette execution.]
 ```
 
-### Debug dans une command complex
+### Debug in a command complex
 
 ```bdfd
 $debug
@@ -60,6 +60,6 @@ $sendMessage[XP : $userData]
 
 ## Notes
 
-- Le debug consomme des ressources de log ; ne l'activez pas en production.
-- Combinez avec `$log[]` pour des logs customs.
+- Le debug consomme ressources of log ; ne l'activez pas en production.
+- Combinez with `$log[]` pour logs customs.
 - Utile pour résoudre les comportements inattendus.

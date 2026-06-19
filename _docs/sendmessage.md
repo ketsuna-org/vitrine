@@ -22,7 +22,7 @@ $sendMessage[content]
 
 ## Description
 
-`$sendMessage` est the command main pour envoyer un message in the channel where the command was executed. If embeds (via `$newEmbed`, `$addEmbedField`, etc.) or des components (via `$addActionRow`, `$addButtonCV2`, etc.) were construits before this call, they are automatically included in the message.
+`$sendMessage` est the command main pour envoyer un message in the channel where the command was executed. If embeds (via `$newEmbed`, `$addEmbedField`, etc.) or components (via `$addActionRow`, `$addButtonCV2`, etc.) were construits before this call, they are automatically included in the message.
 
 The text content can be vide (`$sendMessage[]`) if only embeds or components are sent.
 
@@ -60,7 +60,7 @@ $addButtonCV2[btn_roles;Roles;secondary]
 $sendMessage[Bienvenue $username !]
 ```
 
-### Response dans $onInteraction
+### Response in $onInteraction
 
 ```
 $onInteraction
@@ -71,7 +71,7 @@ $endif
 
 ## Notes
 
-- `$sendMessage` sends in the channel courant. Pour envoyer dans un autre channel, utilisez `$sendMessage[content;channelId]` (selon version) or `$channelSendMessage`.
+- `$sendMessage` sends in the channel courant. Pour envoyer in a autre channel, utilisez `$sendMessage[content;channelId]` (selon version) or `$channelSendMessage`.
 - Le contenu can be vide si vous envoyez only embeds/components.
-- Dans `$onInteraction`, the message est sent en response à l'interaction.
-- Functions de flag applicables before `$sendMessage` : `$reply`, `$ephemeral`, `$tts`, `$noMention`, `$allowMention`.
+- Dans `$onInteraction`, the message est sent en response to l'interaction.
+- Functions of flag applicables before `$sendMessage` : `$reply`, `$ephemeral`, `$tts`, `$noMention`, `$allowMention`.

@@ -8,9 +8,9 @@ syntax: $newModal[title;customId]
 description: Creates a new modal (fenêtre pop-up interactive) with a titre and un identifier custom pour gérer les soumissions.
 ---
 
-# $newModal[] — Créer un Modal
+# $newModal[] — Create a Modal
 
-The function `$newModal[]` initialise un new modal Discord. A modal est une fenêtre pop-up interactive qui se superpose à l'interface user. Il must be le first call before d'ajouter des components tels que des champs text, des sélecteurs or des cases à cocher.
+The function `$newModal[]` initialise un new modal Discord. A modal est une fenêtre pop-up interactive qui se superpose to l'interface user. Il must be le first call before of ajouter components tels que champs text, sélecteurs or cases to cocher.
 
 ## Syntax
 
@@ -22,29 +22,29 @@ $newModal[title;customId]
 
 | Parameter | Description |
 |-----------|-------------|
-| `title` | Le titre displayed en haut du modal. Required. |
+| `title` | Le titre displayed en haut of the modal. Required. |
 | `customId` | Identifier unique custom for the modal. Utilisé in thes interactions pour identifier quel modal was soumis. Required. |
 
 ## Return Value
 
-This function ne retourne pas de value directly. Elle initialise un context internal in thequel les functions d'ajout de components (`$addModalTextInput`, `$addModalSelect`, etc.) opèrent.
+This function ne retourne pas of value directly. Elle initialise un context internal in thequel les functions of ajout of components (`$addModalTextInput`, `$addModalSelect`, etc.) opèrent.
 
 ## Utilisation
 
-### Modal de base
+### Modal of base
 
 ```bdfd
 $newModal[Inscription;signup_modal]
-$addModalTextInput[username;Nom d'user;short;Entrez votre pseudo...;;yes;3;32]
+$addModalTextInput[username;Nom of user;short;Entrez votre pseudo...;;yes;3;32]
 $addModalTextInput[email;Email;short;exemple@email.com;;yes;5;100]
 ```
 
-### Modal avec affichage text
+### Modal with affichage text
 
 ```bdfd
 $newModal[Confirmation;confirm_modal]
-$addModalTextDisplay[Veuillez vérifier les informations before de confirmer.]
-$addModalTextInput[code;Code de vérification;short;XXXX;;yes;4;4]
+$addModalTextDisplay[Veuillez check thes information before of confirmer.]
+$addModalTextInput[code;Code of vérification;short;XXXX;;yes;4;4]
 ```
 
 ### Modal sent via une command slash or un bouton
@@ -57,7 +57,7 @@ $addModalTextInput[review;Votre avis;paragraph;Partagez votre expérience...;;ye
 
 ## Notes importantes
 
-- `$newModal[]` must be la **first** function callée in the construction d'un modal.
-- Tous les components ajoutés after `$newModal[]` appartiennent à ce modal until ce qu'un new `$newModal[]` soit callé.
-- Le `customId` est essentiel pour traiter les datas soumises dans un gestionnaire d'interaction.
-- Les modals sont generally déclenchés via des interactions (buttons, commands slash, menus).
+- `$newModal[]` must be la **first** function callée in the construction of un modal.
+- Tous les components ajoutés after `$newModal[]` appartiennent to ce modal until ce qu'un new `$newModal[]` soit callé.
+- Le `customId` est essentiel pour traiter les datas soumises in a gestionnaire of interaction.
+- Les modals sont generally triggereds via interactions (buttons, commands slash, menus).

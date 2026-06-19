@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalTextDisplay
 syntax: $addModalTextDisplay[content]
-description: Displays a text informatif static in a modal. Ce composant is not interactif — il serves only à présenter des instructions, descriptions or informations à the user.
+description: Displays a text informatif static in a modal. Ce composant is not interactif — il serves only to présenter instructions, descriptions or information to the user.
 ---
 
-# $addModalTextDisplay[] — Text d'Affichage dans un Modal
+# $addModalTextDisplay[] — Text of Affichage in a Modal
 
-`$addModalTextDisplay[]` insère un bloc de text non interactif in a modal. This is l'équivaslow d'un paragraphe informatif — utile pour donner des instructions, séparer des sections, or afficher des informations contextuelles.
+`$addModalTextDisplay[]` insère un bloc of text non interactif in a modal. This is l'équivaslow of un paragraphe informatif — utile pour donner instructions, separate sections, or display information contextuelles.
 
 ## Syntax
 
@@ -22,11 +22,11 @@ $addModalTextDisplay[content]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `content` | Yes | Le text to display. Supporte le markdown simple. |
+| `content` | Yes | Le text to display. Supports the markdown simple. |
 
 ## Return value
 
-Ajoute a component d'affichage text au modal. Auca value interactive n'is returnede — ce composant ne produit no datas de formulaire.
+Ajoute a component of affichage text to the modal. Auca value interactive n'is returnede — ce composant ne produit no datas of formulaire.
 
 ## Usage
 
@@ -38,7 +38,7 @@ $addModalTextDisplay[**Bienvenue !** Remplissez ce formulaire pour continuer.]
 $addModalTextInput[name;Nom complete;short;;;yes;2;50]
 ```
 
-### Sections avec separators
+### Sections with separators
 
 ```bdfd
 $newModal[Inscription complete;full_register]
@@ -65,12 +65,12 @@ $addModalTextInput[confirm;Tapez CONFIRMER pour continuer;short;;;yes;8;8]
 ```bdfd
 $newModal[Confirmation;confirm_modal]
 $addModalTextDisplay[Vous allez acheter **$var[product_name]** pour **$var[price]€**.]
-$addModalTextDisplay[Date de livreason estimée : $var[delivery_date]]
+$addModalTextDisplay[Date of livreason estimée : $var[delivery_date]]
 ```
 
 ## Notes
 
 - Le text supporte le formatage Discord : `**gras**`, `*italique*`, `__souligné__`, `~~barré~~`.
 - Les emojis are supported.
-- Ce composant ne produit no value dans `$input[]`.
-- Ne compte pas dans the limit des 5 components interactifs (TextInput, Select) mais occupe un placeholder in the rangée de components of the modal.
+- Ce composant ne produit no value in `$input[]`.
+- Ne compte pas in the limit 5 components interactifs (TextInput, Select) mais occupe un placeholder in the rangée of components of the modal.

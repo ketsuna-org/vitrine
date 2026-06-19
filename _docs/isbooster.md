@@ -27,7 +27,7 @@ $isBooster
 ## Behavior
 
 - `$isBooster` ne prend **no argument**.
-- La détection se base sur les roles de booster or le status de boost du member.
+- La détection se base on the roles of booster or le status of boost of the member.
 - Un user peut booster several servers simultanément (selon son abonnement Nitro).
 
 ## Examples
@@ -38,8 +38,8 @@ $isBooster
 $if[$isBooster==true]
   $title[Merci for the boost ! 🚀]
   $description[
-  Grâce à vous, the server bénéficie de :
-  - Plus d'emojis
+  Grâce to vous, the server bénéficie of :
+  - Plus of emojis
   - Meilleure qualité audio
   - Banner server
   - Et plus encore !
@@ -55,13 +55,13 @@ $endif
 $if[$isBooster==true]
   $sendMessage[Bienvenue in the channel excludedsif boosters !]
 $else
-  $sendMessage[Ce channel est réservé aux boosters of the server.]
+  $sendMessage[Ce channel est réservé to the boosters of the server.]
   $stop
 $endif
 ```
 
 ## Notes
 
-- The color classique du boost Nitro est `#F47FFF` (rose/magenta).
-- Les boosters ont often un badge special (visible avec `$userBadges`).
-- Utile pour créer des beforeages excludedsifs aux boosters (channels, roles, commands).
+- The color classique of the boost Nitro est `#F47FFF` (rose/magenta).
+- Les boosters ont often un badge special (visible with `$userBadges`).
+- Utile pour create beforeages excludedsifs to the boosters (channels, roles, commands).

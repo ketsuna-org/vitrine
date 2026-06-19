@@ -21,7 +21,7 @@ $embeddedURL[url;(embedIndex)]
 
 | Parameter | Description |
 |---|---|
-| `url` | The URL cible (doit commencer par `http://` or `https://`). |
+| `url` | The URL target (doit commencer par `http://` or `https://`). |
 | `embedIndex` | *(Optional)* Index of the embed (1, 2, 3...). Default: 1. |
 
 ## Return value
@@ -36,7 +36,7 @@ None.
 
 ## Examples
 
-### Embed avec titre cliquable
+### Embed with titre cliquable
 
 ```bdfd
 $title[Rejoignez notre server !]
@@ -46,7 +46,7 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Embed informatif avec link
+### Embed informatif with link
 
 ```bdfd
 $title[Voir la documentation]
@@ -60,7 +60,7 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Multi-embeds avec URLs differentes
+### Multi-embeds with URLs differentes
 
 ```bdfd
 $title[Site Web]
@@ -76,4 +76,4 @@ $description[Notre server Discord.]
 
 - Without `$embeddedURL[]`, le titre of the embed is not cliquable.
 - À placer after `$title[]` pour que the URL soit associée.
-- Works with all styles d'embed.
+- Works with all styles of embed.

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Text Manipulation"
 function_name: unEscape
 syntax: $unEscape[text]
-description: Converts thes séquences d'échappement d'une string en leurs becauseactères réels. Par exemple, \n devient un vrai saut de ligne.
+description: Converts thes séquences of échappement of une string en leurs becauseactères réels. Par exemple, \n devient un vrai saut of ligne.
 ---
 # $unEscape
 
-The function `$unEscape[]` **convertedt les séquences d'échappement** (`\n`, `\t`, `\\`, etc.) en leurs becauseactères réels.
+The function `$unEscape[]` **convertedt les séquences of échappement** (`\n`, `\t`, `\\`, etc.) en leurs becauseactères réels.
 
 ## Syntax
 
@@ -21,18 +21,18 @@ $unEscape[text]
 
 | Parameter | Description |
 |---|---|
-| `text` | String contenant des séquences d'échappement à résoudre. |
+| `text` | String contenant séquences of échappement to résoudre. |
 
 ## Return Value
 
 - **Type** : String
-- Le text avec séquences d'échappement resolvedes.
+- Le text with séquences of échappement resolvedes.
 
 ## Séquences supportées
 
 | Séquence | Result |
 |---|---|
-| `\n` | Saut de ligne |
+| `\n` | Saut of ligne |
 | `\t` | Tabulation |
 | `\\` | Backslash |
 | `\"` | Guillemet double |
@@ -53,13 +53,13 @@ $let[data;Nom: John\nÂge: 25\nVille: Paris]
 $sendMessage[$unEscape[$var[data]]]
 ```
 
-### Code avec guillemets
+### Code with guillemets
 
 ```bdfd
 $sendMessage[$unEscape[Il a dit : \"Bonday !\"]]
 ```
 
-### Embed avec description formattede
+### Embed with description formattede
 
 ```bdfd
 $title[Informations]
@@ -69,6 +69,6 @@ $sendMessage[]
 
 ## Notes
 
-- Ne pas confondre avec `$disableSpecialEscaping` qui désactive l'interprstateion BDFD.
-- Utile pour formater du text stocké dans des variables or bases de datas.
-- Pour encoder du text pour URL, utilisez `$urlEncode[]`.
+- Ne pas confondre with `$disableSpecialEscaping` qui désactive l'interprstateion BDFD.
+- Utile pour formater of the text stocké in variables or bases of datas.
+- Pour encoder of the text pour URL, utilisez `$urlEncode[]`.

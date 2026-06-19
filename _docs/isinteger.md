@@ -22,30 +22,30 @@ $isInteger[value]
 
 | Parameter | Description |
 |---|---|
-| `value` | The value à tester. |
+| `value` | The value to tester. |
 
 ## Return Value
 
 - **Type** : Boolean
 - `true` si `value` est un integer (ex: `42`, `-7`, `0`)
-- `false` si `value` est un decimal, du text, or vide.
+- `false` si `value` est un decimal, of the text, or vide.
 
 ## Behavior
 
-- Les numbers à virgule (`3.14`, `2.0`) retournent `false`.
+- Les numbers to virgule (`3.14`, `2.0`) retournent `false`.
 - Les integers en notation scientifique are not reconnus.
 - `0` est un integer valid.
-- Les espaces autour du number peuvent invalidr le test.
+- Les espaces autour of the number can invalidr le test.
 
 ## Examples
 
-### Validation d'un parameter
+### Validation of un parameter
 
 ```bdfd
 $if[$isInteger[$message[1]]==true]
   $sendMessage[✅ $message[1] est un integer valid.]
 $else
-  $sendMessage[❌ Veuillez fournir un integer.]
+  $sendMessage[❌ Veuillez provide a integer.]
 $endif
 ```
 
@@ -55,7 +55,7 @@ $endif
 $var[page;$message[1]]
 $if[$isInteger[$var[page]]==true]
   $if[$var[page]>=1]
-    $sendMessage[📄 Affichage de la page $var[page]...]
+    $sendMessage[📄 Affichage of la page $var[page]...]
   $else
     $sendMessage[❌ La page must be >= 1.]
   $endif

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: thumbnail
 syntax: $thumbnail[url;(embedIndex)]
-description: Sets the miniature (thumbnail) of an embed Discord. The miniature est une petite image becauserée displayede en haut à droite of the embed.
+description: Sets the miniature (thumbnail) of a Discord embed. The miniature est une petite image becauserée displayede en haut to droite of the embed.
 ---
 
 # $thumbnail[]
 
-The function `$thumbnail[]` définit la **miniature** (thumbnail) of an embed Discord. The miniature est une petite image becauserée qui s'displays in the coin supérieur droit of the embed.
+The function `$thumbnail[]` définit la **miniature** (thumbnail) of a Discord embed. The miniature est une petite image becauserée qui s'displays in the coin supérieur droit of the embed.
 
 ## Syntax
 
@@ -22,16 +22,16 @@ $thumbnail[url;(embedIndex)]
 
 | Parameter | Description |
 |---|---|
-| `url` | URL of the image à utiliser comme miniature. Doit être une URL directe vers un file image. |
+| `url` | URL of the image to use like miniature. Doit être une URL directe vers un file image. |
 | `embedIndex` | Optional. Index of the embed ciblé (0 default). |
 
 ## Return Value
 
-Modifies the response in progress de construction. Returns nothing.
+Modifies the response in progress of construction. Returns nothing.
 
 ## Behavior
 
-- Le thumbnail apparaît en haut à droite of the embed.
+- Le thumbnail apparaît en haut to droite of the embed.
 - L'image est automatically redimensionnée en un petit becauseré.
 - Un seul thumbnail par embed : le last call écrase le previous.
 
@@ -39,15 +39,15 @@ Modifies the response in progress de construction. Returns nothing.
 
 | Function | Position | Taille |
 |---|---|---|
-| `$thumbnail[]` | En haut à droite | Petite (becauseré, ~80x80px) |
+| `$thumbnail[]` | En haut to droite | Petite (becauseré, ~80x80px) |
 | `$image[]` | En bas of the embed | Grande, pleine largeur |
 
 ## Examples
 
-### Thumbnail avec avatar user
+### Thumbnail with avatar user
 
 ```bdfd
-$title[Profil de $username]
+$title[Profil of $username]
 $description[
 **Nom :** $username
 **ID :** $authorID
@@ -58,10 +58,10 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Thumbnail avec icon of the server
+### Thumbnail with icon of the server
 
 ```bdfd
-$title[Bienvenue sur $serverName]
+$title[Bienvenue on $serverName]
 $description[
 Bienvenue on the server **$serverName** !
 Nous sommes now **$membersCount** members !
@@ -74,11 +74,11 @@ $sendMessage[]
 ### Thumbnail and image combinés
 
 ```bdfd
-$title[New mise à day]
+$title[New mise to day]
 $description[
 **Version 2.0** est now available !
 
-- Corrections de bugs
+- Corrections of bugs
 - News functionnalités
 - Performances améliorées
 ]
@@ -93,5 +93,5 @@ $sendMessage[]
 
 - The URL must be accessible publicment.
 - Formats supportés : PNG, JPEG, GIF, WebP.
-- Le thumbnait is idéal pour afficher un avatar, un logo or une icon représentative.
+- Le thumbnait is idéal pour display a avatar, un logo or une icon représentative.
 - Pour une grande image en pleine largeur, utilisez `$image[]`.

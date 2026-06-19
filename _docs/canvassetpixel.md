@@ -5,12 +5,12 @@ translation_key: docs
 category: "Canvas"
 function_name: canvasSetPixel
 syntax: $canvasSetPixel[x;y;color]
-description: Sets the couleur d'un pixel spécifique on the canvas.
+description: Sets the couleur of un pixel specific on the canvas.
 ---
 
 # $canvasSetPixel
 
-The `$canvasSetPixel[x;y;color]` function **définit the color d'un pixel unique** on the canvas aux coordatas spécifiées.
+The `$canvasSetPixel[x;y;color]` function **définit the color of un pixel unique** on the canvas to the coordatas spécifiées.
 
 ## Syntax
 
@@ -22,9 +22,9 @@ $canvasSetPixel[x;y;color]
 
 | Parameter | Description |
 |---|---|
-| `x` | Coordata X du pixel. 0 = le bord gauche du canvas. |
-| `y` | Coordata Y du pixel. 0 = le bord supérieur du canvas. |
-| `color` | Couleur à appliquer, in the format hexadecimal (`#RRGGBB`) or nom de couleur (`red`, `blue`, etc.). |
+| `x` | Coordata X of the pixel. 0 = le bord gauche of the canvas. |
+| `y` | Coordata Y of the pixel. 0 = le bord supérieur of the canvas. |
+| `color` | Couleur to appliquer, in the format hexadecimal (`#RRGGBB`) or nom of couleur (`red`, `blue`, etc.). |
 
 ## Return value
 
@@ -32,9 +32,9 @@ None. The pixel est modified directly on the canvas.
 
 ## Behavior
 
-- Les coordatas hors des limits du canvas sont ignorées (pas error).
-- Le canal alpha du pixel is kept tel quel.
-- Functionne sur tout canvas previously created or loaded.
+- Les coordatas hors limits of the canvas sont ignorées (pas error).
+- Le canal alpha of the pixel is kept tel quel.
+- Functionne on tout canvas previously created or loaded.
 
 ## Examples
 
@@ -44,7 +44,7 @@ None. The pixel est modified directly on the canvas.
 $canvasCreate[100;100]
 $canvasSetPixel[50;50;#FF0000]
 $attachCanvas[]
-$sendMessage[🔴 Pixel rouge placé au cbetween !]
+$sendMessage[🔴 Pixel rouge placé to the cbetween !]
 ```
 
 ### Dessiner a row horizontal
@@ -58,7 +58,7 @@ $attachCanvas[]
 $sendMessage[📏 Ligne bleue dessinée !]
 ```
 
-### Croix au centre
+### Croix to the centre
 
 ```bdfd
 $canvasCreate[100;100]
@@ -79,7 +79,7 @@ $attachCanvas[]
 
 ## Notes
 
-- Les coordatas commencent à 0 (pas à 1).
+- Les coordatas commencent to 0 (pas to 1).
 - Pour remplir une zone entière, use `$canvasFill[]` or `$canvasDrawRect[]`.
 - Pour lire un pixel, use `$canvasGetPixel[]`.
-- La modification de many pixels un par un can be slowe ; préférez les functions de dessin vectoriel.
+- La modification of many pixels un par un can be slowe ; préférez les functions of dessin vectoriel.

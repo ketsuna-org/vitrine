@@ -10,7 +10,7 @@ description: Returns the pseudo (surnom) of the user on the server current. Retu
 
 # $nickname
 
-The variable `$nickname` retourne le **pseudo (surnom)** of the user on the server current. Contrairement à `$displayName`, elle retourne une string vide si the user n'a pas de pseudo custom.
+The variable `$nickname` retourne le **pseudo (surnom)** of the user on the server current. Contrairement to `$displayName`, elle retourne une string vide si the user n'a pas of pseudo custom.
 
 ## Syntax
 
@@ -20,19 +20,19 @@ $nickname
 
 ## Return Value
 
-- **Type** : String de becauseactères
+- **Type** : String of becauseactères
 - Le pseudo server if set, otherwise une **string vide**
 
 ## Behavior
 
 - `$nickname` ne prend **no argument**.
-- Returns aiquement le pseudo **spécifique au server**.
-- Si the user utilise son nom global (pas de pseudo), retourne `""` (string vide).
-- La longueur maximale d'un pseudo est de 32 becauseactères.
+- Returns aiquement le pseudo **specific to the server**.
+- Si the user utilise son nom global (pas of pseudo), retourne `""` (string vide).
+- La longueur maximale of un pseudo est of 32 becauseactères.
 
 ## Examples
 
-### Détecter la présence d'un pseudo
+### Détecter la présence of un pseudo
 
 ```bdfd
 $if[$nickname!=]
@@ -42,14 +42,14 @@ $else
 $endif
 ```
 
-### Afficher les informations de nom
+### Display les information of nom
 
 ```bdfd
-$title[Noms de $userName]
+$title[Noms of $userName]
 $description[
 **Nom global :** $userName
 **Pseudo server :** $nickname
-**Nom d'affichage :** $displayName
+**Nom of affichage :** $displayName
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -57,6 +57,6 @@ $sendMessage[]
 
 ## Notes
 
-- Ne pas confondre `$nickname` (pseudo server only) avec `$displayName` (pseudo or nom global).
+- Ne pas confondre `$nickname` (pseudo server only) with `$displayName` (pseudo or nom global).
 - Pour l'affichage in thes messages, `$displayName` est generally préférable because il ne sera never vide.
 - Utile for the commands où vous voulez explicitement savoir si the user a un pseudo or non.

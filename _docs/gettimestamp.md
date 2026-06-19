@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: getTimestamp
 syntax: $getTimestamp
-description: Returns the timestamp Unix current en seconds. Resolved au runtime.
+description: Returns the timestamp Unix current en seconds. Resolved to the runtime.
 ---
 
 # $getTimestamp[]
 
-The function `$getTimestamp[]` retourne le timestamp Unix current en seconds. The timestamp Unix represents the namebre de seconds écoulées dethen le 1er janvier 1970 à 00:00:00 UTC (epoch).
+The function `$getTimestamp[]` retourne le timestamp Unix current en seconds. The timestamp Unix represents the namebre of seconds écoulées dethen le 1er janvier 1970 to 00:00:00 UTC (epoch).
 
-> **Important:** This function utilise l'identifier special `((getTimestamp))` qui est resolved au **runtime**.
+> **Important:** This function utilise l'identifier special `((getTimestamp))` qui est resolved to the **runtime**.
 
 ## Syntax
 
@@ -34,7 +34,7 @@ A integer représentant le timestamp Unix current en seconds.
 Timestamp current : $getTimestamp
 ```
 
-### Calcul de durée
+### Calcul of durée
 
 ```bdfd
 $let[now;$getTimestamp]
@@ -51,4 +51,4 @@ $setUserVar[lastCommand;$getTimestamp]
 ## Notes
 
 - Le timestamp est en **seconds** (pas en milliseconds).
-- Utile for the calculs de durée, les cooldowns, or le stockage d'timestamps.
+- Utile for the calculs of durée, les cooldowns, or le stockage of timestamps.

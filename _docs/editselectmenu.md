@@ -5,7 +5,7 @@ translation_key: docs
 category: "Components"
 function_name: editSelectMenu
 syntax: $editSelectMenu[customId;placeholder;minValues;maxValues]
-description: "Modifies thes propertys d'un select menu (select menu) existing : text indicatif, minimum number and maximum de values selectionnables."
+description: "Modifies thes propertys of un select menu (select menu) existing : text indicatif, minimum number and maximum of values selectionnables."
 ---
 # $editSelectMenu
 
@@ -21,10 +21,10 @@ $editSelectMenu[customId;placeholder;minValues;maxValues]
 
 | Parameter | Description |
 |---|---|
-| `customId` | The ID custom du select menu to modify. |
+| `customId` | The ID custom of the select menu to modify. |
 | `placeholder` | Text indicatif displayed before selection. |
-| `minValues` | Minimum number de selections requiredes. |
-| `maxValues` | Maximum number de selections allowedes. |
+| `minValues` | Minimum number of selections requiredes. |
+| `maxValues` | Maximum number of selections allowedes. |
 
 ## Return value
 
@@ -38,7 +38,7 @@ None. The select menu est modified.
 
 ## Examples
 
-### Mise à day after selection
+### Mise to day after selection
 
 ```bdfd
 $editSelectMenu[langMenu;Langue choisie !;0;1]
@@ -58,6 +58,6 @@ $editSelectMenu[categoryMenu;Selectionnez une catégorie;1;3]
 
 ## Notes
 
-- Use avec `$editMessage` pour appliquer les modifications.
-- To modify les options du menu, use `$editSelectMenuOption[]`.
-- `maxValues=1` crée a menu à choix unique, `>1` a menu à choix multiple.
+- Use with `$editMessage` pour appliquer les modifications.
+- To modify les options of the menu, use `$editSelectMenuOption[]`.
+- `maxValues=1` crée a menu to choix unique, `>1` a menu to choix multiple.

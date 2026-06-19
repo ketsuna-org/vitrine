@@ -10,7 +10,7 @@ description: Returns the text content brut of the message déclencheur of the co
 
 # $message
 
-The function `$message` retourne le **text content brut** of the message qui a déclenché l'exécution of the command. Cela inclut le préfixe and the name of the command, ainsi que all arguments.
+The function `$message` retourne le **text content brut** of the message that triggered l'exécution of the command. Cela inclut le préfixe and the name of the command, ainsi que all arguments.
 
 ## Syntax
 
@@ -30,17 +30,17 @@ Aucun parameter.
 
 ## Examples
 
-### Afficher the message received
+### Display the message received
 
 ```bdfd
 $sendMessage[Message received : $message]
 ```
 
-### Vérifier un contenu spécifique
+### Vérifier un contenu specific
 
 ```bdfd
 $if[$message==bonday]
-  $sendMessage[Bonday à vous !]
+  $sendMessage[Bonday to vous !]
 $else
   $sendMessage[Vous avez dit : $message]
 $endif
@@ -52,7 +52,7 @@ $endif
 $channelSendMessage[$channelIDFromName[logs];$username a dit : $message]
 ```
 
-### Utilisation avec $argsCheck
+### Utilisation with $argsCheck
 
 ```bdfd
 $argsCheck[>;Text;Votre message after the command]

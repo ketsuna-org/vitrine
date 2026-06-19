@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getRole
 syntax: $getRole[userID;index;(guildID)]
-description: Returns the ID of a role of a user selon son index (position) in the list des roles du member.
+description: Returns the ID of a role of a user according to son index (position) in the list roles of the member.
 ---
 
 # $getRole
 
-The function `$getRole` retourne l'**ID of a role** of a user depending on sa **position** dans sa list de roles. The index `1` correspond au role le plus élevé hiérarchiquement, `2` au twoième, and ainsi de suite.
+The function `$getRole` retourne l'**ID of a role** of a user depending on sa **position** in sa list of roles. The index `1` correspond to the role le plus élevé hiérarchiquement, `2` to the twoième, and ainsi of suite.
 
 ## Syntax
 
@@ -30,7 +30,7 @@ $getRole[userID;index;(guildID)]
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the role à the position data, or `""` si l'index est invalid. |
+| `snowflake` (string) | The ID of the role to the position data, or `""` si l'index est invalid. |
 
 ## Examples
 
@@ -60,20 +60,20 @@ $sendMessage[Votre twoième role : $roleName[$getRole[$authorID;2]]]
 
 ```bdfd
 $title[Profil]
-$description[Couleur de votre role principal]
+$description[Couleur of votre role principal]
 $color[$roleColor[$getRole[$authorID;1]]]
 $sendMessage[]
 ```
 
-### Role d'un autre user
+### Role of un autre user
 
 ```bdfd
-$sendMessage[Role principal de <@$mentioned[1]> : $roleName[$getRole[$mentioned[1];1]]]
+$sendMessage[Role principal of <@$mentioned[1]> : $roleName[$getRole[$mentioned[1];1]]]
 ```
 
 ## Notes
 
-- L'index commence à `1` (pas `0`).
-- Si the user n'a pas de role (only @everyone), `$getRole` peut retourner une string vide.
+- L'index commence to `1` (pas `0`).
+- Si the user n'a pas of role (only @everyone), `$getRole` peut retourner une string vide.
 - Pour obtenir the color of the role le plus haut, utilisez directly `$colorRole[$userID]`.
 - Pour listr all roles of a user, itérez with ae boucle.

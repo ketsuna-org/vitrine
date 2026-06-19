@@ -22,7 +22,7 @@ $modifyRole[roleID;name;(color);(hoist);(mentionable)]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role à modifier. Required. |
+| `roleID` | The ID of the role to modifier. Required. |
 | `name` | Le new nom of the role. Required. |
 | `color` | Optional. New couleur hexadecimale. |
 | `hoist` | Optional. `"yes"` or `"no"` for the affichage separated. |
@@ -30,7 +30,7 @@ $modifyRole[roleID;name;(color);(hoist);(mentionable)]
 
 ## Return Value
 
-Aucune. The propertys of the role sont mises à day.
+Aucune. The propertys of the role sont mises to day.
 
 ## Examples
 
@@ -52,10 +52,10 @@ $sendMessage[✅ Couleur of the role Staff changée en or.]
 
 ```bdfd
 $modifyRole[$roleID[Modérateur];Modérateur;#E74C3C;yes;yes]
-$sendMessage[✅ Role Modérateur entièrement mis à day.]
+$sendMessage[✅ Role Modérateur entièrement mis to day.]
 ```
 
-### Command de modification
+### Command of modification
 
 ```bdfd
 $if[$isAdmin==true]
@@ -71,5 +71,5 @@ $endif
 - The bot doit avoir la permission `ManageRoles`.
 - The parameter `name` est required even if vous ne changez pas the name.
 - Pour modifier only les permissions, utilisez `$modifyRolePerms`.
-- Pour créer un new role, utilisez `$createRole`.
+- Pour create a new role, utilisez `$createRole`.
 - Pour supprimer un role, utilisez `$deleteRole`.

@@ -5,7 +5,7 @@ translation_key: docs
 category: "Context & Commands"
 function_name: noMentionMessage
 syntax: $noMentionMessage
-description: Gets the contenu of the message without thes mentions. Remplace les mentions d'users, roles and canaux par leurs noms textuels.
+description: Gets the contenu of the message without thes mentions. Remplace les mentions of users, roles and canaux par leurs noms textuels.
 ---
 # $noMentionMessage
 
@@ -56,7 +56,7 @@ $sendMessage[$noMentionMessage]
 ### Relayer un message
 
 ```bdfd
-$title[Message relayé de $username]
+$title[Message relayé of $username]
 $description[$noMentionMessage]
 $footer[Dethen <#$channelID>]
 $channelSendMessage[123456789;]
@@ -64,6 +64,6 @@ $channelSendMessage[123456789;]
 
 ## Notes
 
-- `$noMentionMessage` évite que the bot ne pingue accidentellement des users.
-- Contrairement à `$message`, les mentions sont resolvedes en noms.
-- Pour désactiver completement les mentions, combinez avec `$suppressMentions`.
+- `$noMentionMessage` évite que the bot ne pingue accidentellement users.
+- Contrairement to `$message`, les mentions sont resolvedes en noms.
+- Pour désenable completement les mentions, combinez with `$suppressMentions`.

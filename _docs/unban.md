@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: unBan
 syntax: $unBan[userID]
-description: Débans a user of the server en utilisant son ID. The user pourra rejoindre the server à new with ae new invite.
+description: Débans a user of the server en utilisant son ID. The user pourra rejoindre the server to new with ae new invite.
 ---
 
 # $unBan
@@ -22,20 +22,20 @@ $unBan[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID Discord of the user à débannir. |
+| `userID` | The ID Discord of the user to débannir. |
 
 ## Return Value
 
-- **Type** : String (vide en cas de success)
+- **Type** : String (vide en cas of success)
 - String vide if the déban réussit.
-- Error message si the user is not banni or si the bot manque de permissions.
+- Error message si the user is not banni or si the bot manque of permissions.
 
 ## Behavior
 
 - The bot doit avoir la permission `BAN_MEMBERS`.
-- The user must be in the list des bans of the server.
+- The user must be in the list bans of the server.
 - The ID can be récupéré via `$mentioned[]`, `$findUser[]` or tout autre moyen.
-- The user ne receives pas de notification de déban.
+- The user ne receives pas of notification of déban.
 
 ## Examples
 
@@ -50,7 +50,7 @@ $else
 $endif
 ```
 
-### Déban avec confirmation
+### Déban with confirmation
 
 ```bdfd
 $let[target;$mentioned[1]]
@@ -70,7 +70,7 @@ $else
 $endif
 ```
 
-### Command avec ID manuel
+### Command with ID manuel
 
 ```bdfd
 $if[$message!=]
@@ -85,12 +85,12 @@ $if[$message!=]
     $sendMessage[❌ ID invalid or user non banni.]
   $endif
 $else
-  $sendMessage[Veuillez fournir un ID user.]
+  $sendMessage[Veuillez provide a ID user.]
 $endif
 ```
 
 ## Notes
 
-- The user débanni ne rejoint pas automatically the server ; il doit utiliser une invite.
-- Ne functionne que si the user est in the list des bans.
+- The user débanni ne rejoint pas automatically the server ; il doit use ae invite.
+- Ne functionne que si the user est in the list bans.
 - The ID est le seul moyen fiable, because un user banni is not on the server.

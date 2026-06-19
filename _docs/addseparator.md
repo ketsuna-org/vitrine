@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addSeparator
 
-Adds a separator visuel in the action row courante. Utile pour espacer or regrouper visually of components.
+Adds a separator visual in the action row courante. Utile pour espacer or group visually of components.
 
 ## Syntax
 
@@ -18,14 +18,14 @@ $addSeparator[(divider);(spacing)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `divider` | `"yes"` to display a row de séparation, `"no"` (default) | No |
-| `spacing` | Taille de l'espacement en pixels (values : `sm`, `md`, `lg`) | No |
+| `divider` | `"yes"` to display a row of séparation, `"no"` (default) | No |
+| `spacing` | Taille of l'espacement en pixels (values : `sm`, `md`, `lg`) | No |
 
 ## Description
 
-`$addSeparator` insère un espace or a row de séparation between thes components d'une même action row. Il ne crée no new row — pour cela, use `$addActionRow`.
+`$addSeparator` insère un espace or a row of séparation between thes components of une même action row. Il ne crée no new row — pour cela, use `$addActionRow`.
 
-## Options de spacing
+## Options of spacing
 
 | Value | Taille approximative |
 |--------|---------------------|
@@ -45,7 +45,7 @@ $addButtonCV2[btn_right;Droite;secondary]
 $sendMessage[Buttons espacés]
 ```
 
-### Avec ligne de séparation
+### Avec ligne of séparation
 
 ```
 $addActionRow
@@ -61,13 +61,13 @@ $sendMessage[Options separatedes par a row]
 $addActionRow
 $addTextDisplay[Text to the left]
 $addSeparator[no;lg]
-$addTextDisplay[Text à droite]
+$addTextDisplay[Text to droite]
 $sendMessage[Text bien espacé]
 ```
 
 ## Notes
 
 - Le separator s'insère in the action row courante.
-- Ne compte pas dans the limit de 5 components par ligne.
-- La ligne de séparation (`divider: yes`) est une fine ligne horizontal.
-- Compatible avec all components : buttons, select menus, text displays.
+- Ne compte pas in the limit of 5 components par ligne.
+- La ligne of séparation (`divider: yes`) est une fine ligne horizontal.
+- Compatible with all components : buttons, select menus, text displays.

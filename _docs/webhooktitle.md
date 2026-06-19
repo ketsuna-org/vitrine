@@ -10,7 +10,7 @@ description: Sets the titre of the embed for the prochain message sent via $webh
 
 # $webhookTitle
 
-The function `$webhookTitle[]` allows **définir le titre** of the embed for the prochain message webhook.
+The function `$webhookTitle[]` allows **define the titre** of the embed for the prochain message webhook.
 
 ## Syntax
 
@@ -22,11 +22,11 @@ $webhookTitle[text]
 
 | Parameter | Description |
 |---|---|
-| `text` | Le titre of the embed. Maximum 256 becauseactères. Supporte les emojis and les variables. |
+| `text` | Le titre of the embed. Maximum 256 becauseactères. Supports thes emojis and les variables. |
 
 ## Return Value
 
-This function ne retourne pas de value. Elle définit le titre du prochain embed.
+This function ne retourne pas of value. Elle définit le titre of the prochain embed.
 
 ## Behavior
 
@@ -39,7 +39,7 @@ This function ne retourne pas de value. Elle définit le titre du prochain embed
 ### Titre dynamic
 
 ```bdfd
-$webhookTitle[🔨 Action de modération]
+$webhookTitle[🔨 Action of modération]
 $webhookDescription[
 **Action :** $message[1]
 **User :** $userName[$mentioned[1]]
@@ -50,11 +50,11 @@ $webhookFooter[Modération • $username]
 $webhookSend[$modHook;]
 ```
 
-### Titre avec emoji
+### Titre with emoji
 
 ```bdfd
 $webhookTitle[✅ Tâche terminée]
-$webhookDescription[La sauvegarde automatique des datas was effectuée avec success.]
+$webhookDescription[La sauvegarde automatique datas was effectuée with success.]
 $webhookColor[#57F287]
 $webhookSend[$webhookURL;]
 ```

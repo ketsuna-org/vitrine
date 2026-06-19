@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildID
 syntax: $guildID
-description: Alias de $serverID. Returns the identifier unique (Snowflake) of the server Discord.
+description: Alias of $serverID. Returns the identifier unique (Snowflake) of the server Discord.
 ---
 
 # $guildID[] — Identifier of the Server (Alias)
 
-`$guildID[]` est un alias de `$serverID[]`. Il retourne l'identifier unique (Snowflake) of the server Discord courant.
+`$guildID[]` est un alias of `$serverID[]`. Il retourne l'identifier unique (Snowflake) of the server Discord courant.
 
 ## Syntax
 
@@ -25,7 +25,7 @@ Aucun parameter.
 ## Return Value
 
 - **Type** : `string`
-- The ID of the server sous forme de string numérique.
+- The ID of the server sous forme of string numérique.
 
 ## Utilisation
 
@@ -35,11 +35,11 @@ Aucun parameter.
 $sendMessage[ID of the guilde : $guildID]
 ```
 
-### Restriction de command par server
+### Restriction of command par server
 
 ```bdfd
 $if[$guildID!=123456789012345678]
-$sendMessage[⛔ Cette command est réservée au server principal.]
+$sendMessage[⛔ Cette command est réservée to the server principal.]
 $stop
 $endif
 $sendMessage[✅ Command executed.]
@@ -51,7 +51,7 @@ $sendMessage[✅ Command executed.]
 $log[Action on the server $guildID ($guildName)]
 ```
 
-### Construction d'URL
+### Construction of URL
 
 ```bdfd
 $sendMessage[Link of the server : https://discord.com/channels/$guildID]
@@ -59,6 +59,6 @@ $sendMessage[Link of the server : https://discord.com/channels/$guildID]
 
 ## Notes
 
-- `$guildID[]` est strictement identical à `$serverID[]`. Utilisez celui qui vous paraît le plus naturel.
+- `$guildID[]` est strictement identical to `$serverID[]`. Utilisez celui qui vous paraît le plus naturel.
 - Le terme "guild" est the name technique utilisé par l'API Discord pour désigner un server.
-- The ID est permanent and ne change never, contrairement au nom.
+- The ID est permanent and ne change never, contrairement to the nom.

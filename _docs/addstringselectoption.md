@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addStringSelectOption
 
-Adds an option à un select menu de type string, created avec `$addStringSelect`.
+Adds an option to un select menu of type string, created with `$addStringSelect`.
 
 ## Syntax
 
@@ -21,13 +21,13 @@ $addStringSelectOption[label;value;(description);(emoji);(default);(menuId)]
 | `label` | Text displayed for the option | Yes |
 | `value` | Value rsente during la selection | Yes |
 | `description` | Description displayede sous le label | No |
-| `emoji` | Emoji displayed to the left du label | No |
+| `emoji` | Emoji displayed to the left of the label | No |
 | `default` | `true` pour préselectionner, `false` (default) | No |
-| `menuId` | Identifier of the menu cible (si multiple menus) | No |
+| `menuId` | Identifier of the menu target (si multiple menus) | No |
 
 ## Description
 
-`$addStringSelectOption` ajoute une option au last menu string select created avec `$addStringSelect`. Si multiple menus are used, précisez le `menuId` to target a menu spécifique.
+`$addStringSelectOption` ajoute une option to the last menu string select created with `$addStringSelect`. Si multiple menus are used, précisez le `menuId` to target a menu specific.
 
 ## Examples
 
@@ -37,7 +37,7 @@ $addStringSelectOption[label;value;(description);(emoji);(default);(menuId)]
 $addStringSelect[menu_boisson;Choisissez une boisson]
 $addStringSelectOption[Café;coffee;Chaud and corsé;☕]
 $addStringSelectOption[Thé;tea;Infusion parfumée;🍵]
-$addStringSelectOption[Jus d'orange;oj;Fraîchement pressé;🍊]
+$addStringSelectOption[Jus of orange;oj;Fraîchement pressé;🍊]
 $addStringSelectOption[Eau;water;Plate or gazeuse;💧]
 $sendMessage[Que voulez-vous boire ?]
 ```
@@ -52,7 +52,7 @@ $addStringSelectOption[Fort;high;;🔊]
 $sendMessage[Réglez le volume]
 ```
 
-### Multiple menus avec menuId
+### Multiple menus with menuId
 
 ```
 $addStringSelect[menu_entree;Entrée]
@@ -70,6 +70,6 @@ $sendMessage[Composez votre menu]
 
 ## Notes
 
-- Si `menuId` is not spécifié, the option is addede au last `$addStringSelect` created.
+- Si `menuId` is not spécifié, the option is addede to the last `$addStringSelect` created.
 - Maximum 25 options par menu.
-- Les `value` sont accessibles via `$message` dans `$onInteraction`.
+- Les `value` sont accessibles via `$message` in `$onInteraction`.

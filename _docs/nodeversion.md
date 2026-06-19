@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: nodeVersion
 syntax: $nodeVersion
-description: Returns the version du runtime Node.js sur lequel the bot s'exécute.
+description: Returns the version of the runtime Node.js on lequel the bot s'exécute.
 ---
 
 # $nodeVersion
 
-The function `$nodeVersion` **retourne la version currentle du runtime Node.js** sur lequel the bot BDFD est executed.
+The function `$nodeVersion` **retourne la version currentle of the runtime Node.js** on lequel the bot BDFD est executed.
 
 ## Syntax
 
@@ -25,17 +25,17 @@ Aucun.
 ## Return Value
 
 - **Type** : String
-- La version de Node.js (ex: `v18.15.0`, `v20.10.0`).
+- La version of Node.js (ex: `v18.15.0`, `v20.10.0`).
 
 ## Behavior
 
 - Returns the version complete with the préfixe `v`.
 - La version est déterminée par l'infrastructure BDFD (non modifiable).
-- Utile for the débogage and la compatibilité des functionnalités.
+- Utile for the débogage and la compatibilité functionnalités.
 
 ## Examples
 
-### Compatibilité de functionnalité
+### Compatibilité of functionnalité
 
 ```bdfd
 $var[version;$nodeVersion]
@@ -64,7 +64,7 @@ $footer[Infrastructure BDFD]
 $sendMessage[]
 ```
 
-### Log de démarrage
+### Log of démarrage
 
 ```bdfd
 $log[🚀 $botName started | Node: $botNode | Runtime: $nodeVersion | Lang: $scriptLanguage]
@@ -73,6 +73,6 @@ $log[🚀 $botName started | Node: $botNode | Runtime: $nodeVersion | Lang: $scr
 ## Notes
 
 - Version en lecture seule, gérée par BDFD.
-- Mise à day automatique par l'infrastructure BDFD.
-- Pour des informations sur le nœud, utilisez `$botNode`.
-- Pour le langage de script, utilisez `$scriptLanguage`.
+- Mise to day automatique par l'infrastructure BDFD.
+- Pour information on the nœud, utilisez `$botNode`.
+- Pour le langage of script, utilisez `$scriptLanguage`.

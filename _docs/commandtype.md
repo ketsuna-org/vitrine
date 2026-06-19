@@ -25,13 +25,13 @@ Aucun.
 ## Return value
 
 - **Type** : String
-- `prefix` : command déclenchée par un préfixe text (`!`, `?`, etc.).
-- `slash` : command déclenchée via the interface slash Discord (`/`).
+- `prefix` : command triggerede par un préfixe text (`!`, `?`, etc.).
+- `slash` : command triggerede via the interface slash Discord (`/`).
 
 ## Behavior
 
-- Allows adapter le behavior selon the type d'invocation.
-- Équivaslow functionnel à `$if[$isSlash==true]slash$elseprefix$endif`.
+- Allows adapter le behavior according to the type of invocation.
+- Équivaslow functionnel to `$if[$isSlash==true]slash$elseprefix$endif`.
 
 ## Examples
 
@@ -67,10 +67,10 @@ $footer[Langage : $scriptLanguage]
 $sendMessage[]
 ```
 
-### Command hybride avec arguments
+### Command hybride with arguments
 
 ```bdfd
-;; Récupération des arguments selon the type
+;; Récupération arguments according to the type
 $if[$commandType==slash]
   $var[arg1;$slashOption[cible]]
   $var[arg2;$slashOption[reason]]

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getCustomStatus
 syntax: $getCustomStatus[(userID)]
-description: Gets the status custom (text and emoji) of a user Discord. Returns the text du status custom.
+description: Gets the status custom (text and emoji) of a user Discord. Returns the text of the status custom.
 ---
 
 # $getCustomStatus
 
-The function `$getCustomStatus[]` allows **récupérer le status custom** of a user Discord. The status custom est un text libre (et optionally un emoji) que the user définit dans son profil.
+The function `$getCustomStatus[]` allows **récupérer le status custom** of a user Discord. The status custom est un text libre (et optionally un emoji) que the user définit in son profil.
 
 ## Syntax
 
@@ -27,14 +27,14 @@ $getCustomStatus[(userID)]
 ## Return Value
 
 - **Type** : String
-- Le text du status custom of the user.
-- String vide si the user n'a pas défini de status custom.
+- Le text of the status custom of the user.
+- String vide si the user n'a pas défini of status custom.
 
 ## Behavior
 
 - Reads the status custom dethen la présence Discord of the user.
 - Ne retourne que le text, pas l'emoji optionally associé.
-- The user must be visible par the bot (partage de server, présence accessible).
+- The user must be visible par the bot (partage of server, présence accessible).
 
 ## Examples
 
@@ -46,12 +46,12 @@ $let[status;$getCustomStatus[$authorID]]
 $if[$status!=]
   Votre status custom : **$status**
 $else
-  Vous n'avez pas défini de status custom.
+  Vous n'avez pas défini of status custom.
 $endif
 $sendMessage[]
 ```
 
-### Carte de profil enrichie
+### Carte of profil enrichie
 
 ```bdfd
 $title[👤 $userName[$mentioned[1]]]
@@ -65,7 +65,7 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Log de changement de status
+### Log of changement of status
 
 ```bdfd
 $let[newStatus;$getCustomStatus[$authorID]]
@@ -76,6 +76,6 @@ $endif
 
 ## Notes
 
-- Le status custom est distinct du status de présence (online, occupé, etc.) qui est récupéré via `$userStatus[]`.
-- Si the user a défini un emoji dans son status, seul le text est retourné.
-- Le status custom peut contenir until 128 becauseactères.
+- Le status custom est distinct of the status of présence (online, occupé, etc.) qui est récupéré via `$userStatus[]`.
+- Si the user a défini un emoji in son status, seul le text est retourné.
+- Le status custom peut contain atil 128 becauseactères.

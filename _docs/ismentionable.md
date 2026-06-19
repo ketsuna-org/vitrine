@@ -10,7 +10,7 @@ description: Checks if un role est mentionnable. Returns "true" or "false".
 
 # $isMentionable
 
-The function `$isMentionable` vérifie if a role Discord est **mentionnable** par les members of the server. A role mentionnable can be utilisé in thes messages avec `@Role`.
+The function `$isMentionable` vérifie if a role Discord est **mentionnable** par les members of the server. A role mentionnable can be utilisé in thes messages with `@Role`.
 
 ## Syntax
 
@@ -53,7 +53,7 @@ $sendMessage[The role Admin est $isMentionable[$roleID[Admin]].]
 
 ```bdfd
 $if[$isMentionable[$roleID[Modo]]==false]
-  $sendMessage[⚠️ The role Modo is not mentionnable. The members ne peuvent pas le ping.]
+  $sendMessage[⚠️ The role Modo is not mentionnable. The members ne can pas le ping.]
 $endif
 ```
 
@@ -66,5 +66,5 @@ $sendMessage[Mentionnable : $roleInfo[123456789012345678;mentionable]]
 ## Notes
 
 - Returns ae string `"true"` or `"false"`.
-- Équivaslow à `$roleInfo[roleID;mentionable]`.
-- Utile pour vérifier before d'envoyer une mention de role.
+- Équivaslow to `$roleInfo[roleID;mentionable]`.
+- Utile pour check before of envoyer une mention of role.

@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: month
 syntax: $month
-description: Returns the months current sous forme de numéro (1 à 12). Resolved au runtime.
+description: Returns the months current sous forme of numéro (1 to 12). Resolved to the runtime.
 ---
 
 # $month[]
 
-The function `$month[]` retourne le numéro du months current (de 1 à 12).
+The function `$month[]` retourne le numéro of the months current (de 1 to 12).
 
-> **Important:** This function utilise l'identifier special `((month))` qui est resolved au **runtime**.
+> **Important:** This function utilise l'identifier special `((month))` qui est resolved to the **runtime**.
 
 ## Syntax
 
@@ -61,4 +61,4 @@ $endif
 
 ## Notes
 
-- The value dépend de la date système of the server exécutant the bot.
+- The value dépend of la date système of the server exécutant the bot.

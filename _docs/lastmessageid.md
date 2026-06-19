@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: lastMessageID
 syntax: $lastMessageID[(channelID)]
-description: Returns the ID of the last message sent in the channel courant or dans un channel spécifié.
+description: Returns the ID of the last message sent in the channel courant or in a channel spécifié.
 ---
 
 # $lastMessageID
 
-The function `$lastMessageID` retourne l'**ID of the last message** sent dans un channel Discord. Par default, elle cible the channel courant.
+The function `$lastMessageID` retourne l'**ID of the last message** sent in a channel Discord. Par default, elle target the channel courant.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $lastMessageID[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the channel cible. Si omis, the channel courant is used. |
+| `channelID` | Optional. The ID of the channel cible. Si omitted, the channel courant is used. |
 
 ## Return Value
 
@@ -32,16 +32,16 @@ $lastMessageID[(channelID)]
 
 ## Examples
 
-### Dernier message of the channel courant
+### Last message of the channel courant
 
 ```bdfd
-$sendMessage[Dernier message dans ce channel : $lastMessageID]
+$sendMessage[Last message in ce channel : $lastMessageID]
 ```
 
-### Dernier message of a channel spécifique
+### Last message of a channel specific
 
 ```bdfd
-$sendMessage[Activité dans #annonces : last message $lastMessageID[123456789012345678]]
+$sendMessage[Activité in #annonces : last message $lastMessageID[123456789012345678]]
 ```
 
 ### Vérifier l'activité récente
@@ -52,14 +52,14 @@ $if[$lastMessageID==$messageID]
 $endif
 ```
 
-### Link du last message
+### Link of the last message
 
 ```bdfd
-$sendMessage[Dernier message : https://discord.com/channels/$guildID/$channelID/$lastMessageID]
+$sendMessage[Last message : https://discord.com/channels/$guildID/$channelID/$lastMessageID]
 ```
 
 ## Notes
 
 - Si the channel est vide (no message), le comportement peut varier.
 - Utile pour surveiller l'activité or lier le last message.
-- The bot doit avoir accès au channel pour obtenir cette information.
+- The bot doit avoir accès to the channel pour obtenir cette information.

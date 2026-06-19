@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: messageEditedTimestamp
 syntax: $messageEditedTimestamp
-description: Returns the timestamp de la last édition of the message déclencheur, or une string vide si non édité.
+description: Returns the timestamp of la last édition of the message déclencheur, or une string vide si non édité.
 ---
 
 # $messageEditedTimestamp
 
-The function `$messageEditedTimestamp` retourne le **timestamp de la last édition** of the message déclencheur. Si the message n'a never été édité, elle retourne une string vide.
+The function `$messageEditedTimestamp` retourne le **timestamp of la last édition** of the message déclencheur. Si the message n'a never été édité, elle retourne une string vide.
 
 ## Syntax
 
@@ -30,17 +30,17 @@ Aucun parameter.
 
 ## Examples
 
-### Afficher la date d'édition
+### Display la date of édition
 
 ```bdfd
 $if[$messageEditedTimestamp!=]
-  $sendMessage[Message édité le $formatDate[$messageEditedTimestamp;DD/MM/YYYY à HH:mm]]
+  $sendMessage[Message édité le $formatDate[$messageEditedTimestamp;DD/MM/YYYY to HH:mm]]
 $else
   $sendMessage[Message original (non édité).]
 $endif
 ```
 
-### Afficher en format relatif
+### Display en format relatif
 
 ```bdfd
 $if[$messageEditedTimestamp!=]
@@ -48,7 +48,7 @@ $if[$messageEditedTimestamp!=]
 $endif
 ```
 
-### Log des éditions
+### Log éditions
 
 ```bdfd
 $if[$messageEditedTimestamp!=]

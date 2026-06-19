@@ -27,7 +27,7 @@ $getServerInvite[(guildID)]
 ## Return Value
 
 - **Type** : String (URL)
-- The URL d'invite of the server (format `https://discord.gg/CODE`).
+- The URL of invite of the server (format `https://discord.gg/CODE`).
 - String vide si the bot n'a pas la permission `CREATE_INSTANT_INVITE`.
 
 ## Behavior
@@ -38,28 +38,28 @@ $getServerInvite[(guildID)]
 
 ## Examples
 
-### Link d'invite server
+### Link of invite server
 
 ```bdfd
 $title[🌐 Invite server]
 $description[
-Voici le link d'invite pour **$serverName** :
+Voici le link of invite pour **$serverName** :
 
 ```
 $getServerInvite
 ```
 
-Partagez-le avec vos amis !
+Partagez-le with vos amis !
 ]
 $thumbnail[$serverIcon]
 $color[#5865F2]
 $sendMessage[]
 ```
 
-### Afficher in a message de bienvenue
+### Display in a message of bienvenue
 
 ```bdfd
-$title[👋 Bienvenue sur $serverName !]
+$title[👋 Bienvenue on $serverName !]
 $description[
 **Invite tes amis :**
 $getServerInvite
@@ -89,4 +89,4 @@ $sendMessage[]
 
 - L'invite createde utilise le canal où the command est executed (or le canal système).
 - Pour inviter the bot lui-même, utilisez `$getBotInvite[]`.
-- Pour obtenir des informations sur une invite, utilisez `$getInviteInfo[]`.
+- Pour obtenir information on a invite, utilisez `$getInviteInfo[]`.

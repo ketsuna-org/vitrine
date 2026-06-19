@@ -22,7 +22,7 @@ $botLeave[(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `guildID` | Optional - The ID of the server à quitter. Par default, the server courant. |
+| `guildID` | Optional - The ID of the server to quitter. Par default, the server courant. |
 
 ## Return value
 
@@ -31,7 +31,7 @@ Cette function does not return a value.
 ## Behavior
 
 - The bot quitte immediately the server spécifié.
-- **Action irréversible** : all the data of the bot sur ce server sont perdues.
+- **Action irréversible** : all the data of the bot on ce server sont perdues.
 - Si executed without guildID, the bot quitte the server où la command est lancée.
 
 ## Examples
@@ -43,11 +43,11 @@ $if[$checkContains[$userPerms;Administrator]==true]
   $sendMessage[Au revoir ! The bot quitte ce server.]
   $botLeave
 $else
-  $sendMessage[Seuls les administrators peuvent utiliser cette command.]
+  $sendMessage[Seuls les administrators can use cette command.]
 $endif
 ```
 
-### Quitter a server spécifique (owner only)
+### Quitter a server specific (owner only)
 
 ```bdfd
 $if[$authorID==OWNER_ID]
@@ -59,7 +59,7 @@ $if[$authorID==OWNER_ID]
     $sendMessage[Usage : !leave <guildID>]
   $endif
 $else
-  $sendMessage[Réservé au owner of the bot.]
+  $sendMessage[Réservé to the owner of the bot.]
 $endif
 ```
 
@@ -75,6 +75,6 @@ $endif
 ## Notes
 
 - **Action irréversible** : use with a extrême prudence.
-- Protégez cette command par des vérifications de permissions strictes.
-- Toutes the data user liées à ce server deviennent inaccessibles.
-- The bot cannot rejoindre a server via command (requires a link d'invite).
+- Protégez cette command par vérifications of permissions strictes.
+- Toutes the data user liées to ce server deviennent inaccessibles.
+- The bot cannot rejoindre a server via command (requires a link of invite).

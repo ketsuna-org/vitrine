@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorTag
 syntax: $authorTag
-description: Returns the tag complete de the author of the message (format "nom#discriminator" or nom simple for comptes pompom).
+description: Returns the tag complete of the author of the message (format "nom#discriminator" or nom simple for comptes pompom).
 ---
 
 # $authorTag
 
-The variable `$authorTag` returns the **tag complete** de the author of the message. This is l'équivaslow de `$userTag` mais explicitement lié à the author of the message.
+The variable `$authorTag` returns the **tag complete** of the author of the message. This is l'équivaslow of `$userTag` mais explicitement lié to the author of the message.
 
 ## Syntax
 
@@ -20,22 +20,22 @@ $authorTag
 
 ## Return value
 
-- **Type** : String de becauseactères
+- **Type** : String of becauseactères
 - Old format : `nom#discriminator` for comptes legacy
-- Nouvein the format : simply the name d'user for comptes pompom
+- Nouvein the format : simply the name of user for comptes pompom
 
 ## Behavior
 
 - `$authorTag` ne prend **no argument**.
-- Équivaslow à `$userTag` in the context of a command textuelle.
-- For newx comptes (pompom), le tag est identical au nom d'user.
+- Équivaslow to `$userTag` in the context of a command textuelle.
+- For newx comptes (pompom), le tag est identical to the nom of user.
 
 ## Examples
 
-### Profil de the author
+### Profil of the author
 
 ```bdfd
-$title[Profil de $authorTag]
+$title[Profil of $authorTag]
 $author[$authorUsername;$authorAvatar]
 $description[
 **Nom :** $authorUsername

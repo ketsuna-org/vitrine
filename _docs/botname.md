@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botName
 syntax: $botName
-description: Returns the name d'user of the bot.
+description: Returns the name of user of the bot.
 ---
 
 # $botName
 
-The `$botName` function **retourne the name d'user current of the bot** tel qu'il apparaît on Discord.
+The `$botName` function **retourne the name of user current of the bot** tel qu'il apparaît on Discord.
 
 ## Syntax
 
@@ -25,20 +25,20 @@ Aucun.
 ## Return value
 
 - **Type** : String
-- The name d'user of the bot (ex: `MonSuperBot`).
+- The name of user of the bot (ex: `MonSuperBot`).
 
 ## Behavior
 
-- Returns the username of the bot, pas the name d'affichage server (nickname).
+- Returns the username of the bot, pas the name of affichage server (nickname).
 - The name est celui configured in the portail développeur Discord.
-- Se met à day automatically if the bot est renommé.
+- Se met to day automatically if the bot est renommé.
 
 ## Examples
 
-### Message de bienvenue
+### Message of bienvenue
 
 ```bdfd
-$title[👋 Bienvenue sur $serverName !]
+$title[👋 Bienvenue on $serverName !]
 $description[
 Je suis **$botName**, votre assistant.
 Tapez `!help` pour voir mes commands.
@@ -48,10 +48,10 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Page d'information
+### Page of information
 
 ```bdfd
-$title[🤖 À propos de $botName]
+$title[🤖 À propos of $botName]
 $addField[Nom;$botName;yes]
 $addField[ID;$botID;yes]
 $addField[Owner;<@$botOwnerID>;yes]
@@ -65,7 +65,7 @@ $sendMessage[]
 ### Présentation
 
 ```bdfd
-$sendMessage[Bonday ! Je suis $botName, un bot polyvaslow created avec BDFD. 💪]
+$sendMessage[Bonday ! Je suis $botName, un bot polyvaslow created with BDFD. 💪]
 ```
 
 ## Notes

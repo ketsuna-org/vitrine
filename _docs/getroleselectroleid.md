@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getRoleSelectRoleID
 syntax: $getRoleSelectRoleID[(index)]
-description: Gets the ID of the role selected par the user via un menu de sélection de roles (role select).
+description: Gets the ID of the role selected par the user via un menu of sélection of roles (role select).
 ---
 
 # $getRoleSelectRoleID
 
-The function `$getRoleSelectRoleID[]` allows **récupérer the ID of the role** choisi par the user dans un menu de sélection de roles.
+The function `$getRoleSelectRoleID[]` allows **récupérer the ID of the role** choisi par the user in a menu of sélection of roles.
 
 ## Syntax
 
@@ -32,13 +32,13 @@ $getRoleSelectRoleID[(index)]
 
 ## Behavior
 
-- Utilisé in thes interactions de type `$onInteraction[]` with a menu de sélection de roles.
-- Le menu de roles est created avec `$addRoleSelectMenu[]`.
-- Functionne with the sélection simple or multiple (pour multiple, utiliser `$getRoleSelectRoleIDs[]`).
+- Utilisé in thes interactions of type `$onInteraction[]` with a menu of sélection of roles.
+- Le menu of roles est created with `$addRoleSelectMenu[]`.
+- Functionne with the sélection simple or multiple (pour multiple, use `$getRoleSelectRoleIDs[]`).
 
 ## Examples
 
-### Attributeion de role via sélection
+### Attributeion of role via sélection
 
 ```bdfd
 $nominalTrigger
@@ -54,7 +54,7 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Récupération avec index
+### Récupération with index
 
 ```bdfd
 $onInteraction[role_select]
@@ -70,6 +70,6 @@ $sendMessage[]
 
 ## Notes
 
-- L'index commence à 1.
-- Pour récupérer all roles d'une sélection multiple, utiliser `$getRoleSelectRoleIDs[]`.
-- The ID retourné est utilisable avec all functions manipulant des roles.
+- L'index commence to 1.
+- Pour récupérer all roles of une sélection multiple, use `$getRoleSelectRoleIDs[]`.
+- The ID retourné est utilisable with all functions manipulant roles.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botNode
 syntax: $botNode
-description: Returns the identifier du nœud (runner) sur lequel the bot est executed.
+description: Returns the identifier of the nœud (runner) on lequel the bot est executed.
 ---
 
 # $botNode
 
-The `$botNode` function **returns the identifier du nœud (runner)** sur lequel the bot BDFD est currently executed. Each bot est assigné à un runner spécifique de l'infrastructure BDFD.
+The `$botNode` function **returns the identifier of the nœud (runner)** on lequel the bot BDFD est currently executed. Each bot est assigné to un runner specific of l'infrastructure BDFD.
 
 ## Syntax
 
@@ -25,17 +25,17 @@ Aucun.
 ## Return value
 
 - **Type** : String
-- L'identifier du nœud (ex: `node-14`, `us-east-3`).
+- L'identifier of the nœud (ex: `node-14`, `us-east-3`).
 
 ## Behavior
 
 - Le nœud est attribué automatically par BDFD.
-- Peut changer lors d'une migration or maintenance.
+- Peut changer lors of une migration or maintenance.
 - Utile for the diagnostic and the support technique.
 
 ## Examples
 
-### Page d'information technique
+### Page of information technique
 
 ```bdfd
 $title[🔧 Informations techniques]
@@ -53,7 +53,7 @@ $sendMessage[]
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Réservé au owner.]
+  $sendEphemeral[❌ Réservé to the owner.]
   $stop
 $endif
 
@@ -71,7 +71,7 @@ $description[
 $sendMessage[]
 ```
 
-### Signature de message
+### Signature of message
 
 ```bdfd
 $sendMessage[Message traité par $botName]
@@ -81,6 +81,6 @@ $footer[Node: $botNode | $nodeVersion]
 ## Notes
 
 - Le nœud est géré automatically par BDFD.
-- En cas de problème of performance, indiquez votre `$botNode` au support BDFD.
-- For the version du runtime, use `$nodeVersion`.
-- For the langage de script, use `$scriptLanguage`.
+- En cas of problème of performance, indiquez votre `$botNode` to the support BDFD.
+- For the version of the runtime, use `$nodeVersion`.
+- For the langage of script, use `$scriptLanguage`.

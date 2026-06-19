@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: shardID
 syntax: $shardID
-description: Returns the identifier du shard current sur lequel the command est executed. The shards are used pour répartir la charge des bots sur de many servers.
+description: Returns the identifier of the shard current on lequel the command est executed. The shards are used pour répartir la charge bots on of many servers.
 ---
 
 # $shardID[] — Identifier of the Shard
 
-`$shardID[]` retourne l'identifier du shard Discord sur lequel the bot exécute the command. The sharding est une technique utilisée par Discord pour répartir la charge des bots populaires sur several processus.
+`$shardID[]` retourne l'identifier of the shard Discord on lequel the bot exécute the command. The sharding est une technique utilisée par Discord pour répartir la charge bots populaires on several processus.
 
 ## Syntax
 
@@ -25,7 +25,7 @@ Aucun parameter.
 ## Return Value
 
 - **Type** : `integer`
-- The ID of the shard courant, commençant à 0.
+- The ID of the shard courant, commençant to 0.
 
 ## Utilisation
 
@@ -38,7 +38,7 @@ $sendMessage[🔢 Shard : **$shardID**]
 ### Statistiques of the bot
 
 ```bdfd
-$title[📊 Statistiques du Bot]
+$title[📊 Statistiques of the Bot]
 $addField[🔢 Shard;$shardID;yes]
 $addField[🌐 Servers (ce shard);$serverCount;yes]
 $addField[📶 Ping;$ping ms;yes]
@@ -46,10 +46,10 @@ $color[#2ECC71]
 $sendEmbedMessage
 ```
 
-### Log avec shard
+### Log with shard
 
 ```bdfd
-$log[Shard $shardID — Command executed sur $serverName]
+$log[Shard $shardID — Command executed on $serverName]
 ```
 
 ### Debug
@@ -66,8 +66,8 @@ $sendEmbedMessage
 
 ## Notes
 
-- Si votre bot is not shardé (moins de ~2500 servers), `$shardID[]` retournera probably `0`.
-- Le sharding devient nécessaire when the bot atteint un grand number de servers (plus de 2500).
-- Chaque shard gère un sous-ensemble des servers of the bot.
-- The ID de shard est utile for the débogage and l'identification de problèmes sur des shards spécifiques.
-- Les commands sont toudays executeds in the context d'a single shard.
+- Si votre bot is not shardé (moins of ~2500 servers), `$shardID[]` retournera probably `0`.
+- Le sharding devient nécessaire when the bot atteint un grand number of servers (plus of 2500).
+- Chaque shard gère un sous-ensemble servers of the bot.
+- The ID of shard est utile for the débogage and l'identification of problèmes on shards specifics.
+- Les commands sont toudays executeds in the context of a single shard.

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Messages & DM"
 function_name: authorOfMessage
 syntax: $authorOfMessage[messageID]
-description: Returns the ID de the author of a message spécifique, identifié par its ID.
+description: Returns the ID of the author of a message specific, identifié par its ID.
 ---
 # $authorOfMessage
 
-The `$authorOfMessage[]` function returns the **ID de the author** of a message donné.
+The `$authorOfMessage[]` function returns the **ID of the author** of a message donné.
 
 ## Syntax
 
@@ -48,7 +48,7 @@ $else
 $endif
 ```
 
-### Log de suppression
+### Log of suppression
 
 ```bdfd
 $let[msgID;$message[1]]
@@ -72,6 +72,6 @@ $sendMessage[]
 
 ## Notes
 
-- The bot must have accès au canal contenant the message.
+- The bot must have accès to the canal contenant the message.
 - Les messages en DM can be consultés if the bot y a accès.
 - For the message courant, `$authorID` est plus direct.

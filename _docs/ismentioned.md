@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: isMentioned
 syntax: $isMentioned
-description: Returns "true" si the user qui a déclenché the command was mentionné in the message, "false" otherwise.
+description: Returns "true" si the user qui triggered the command was mentionné in the message, "false" otherwise.
 ---
 
 # $isMentioned
 
-The variable `$isMentioned` retourne `"true"` si the user qui a déclenché the command was **mentionné** in the message (via `@mention`).
+The variable `$isMentioned` retourne `"true"` si the user qui triggered the command was **mentionné** in the message (via `@mention`).
 
 ## Syntax
 
@@ -27,12 +27,12 @@ $isMentioned
 ## Behavior
 
 - `$isMentioned` ne prend **no argument**.
-- Checks if l'**user déclencheur** fait partie des mentions of the message.
+- Checks if l'**user déclencheur** fait partie mentions of the message.
 - Détecte les mentions directes (`@user`), pas les `@everyone`/`@here`.
 
 ## Examples
 
-### Réagir à une mention
+### Réagir to une mention
 
 ```bdfd
 $if[$isMentioned==true]
@@ -40,7 +40,7 @@ $if[$isMentioned==true]
 $endif
 ```
 
-### Command avec mention required
+### Command with mention required
 
 ```bdfd
 $if[$isMentioned==true]

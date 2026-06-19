@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botListDescription
 syntax: $botListDescription[text]
-description: Sets or returns the description of the bot displayede in the list des bots BDFD.
+description: Sets or returns the description of the bot displayede in the list bots BDFD.
 ---
 
 # $botListDescription
 
-The `$botListDescription[text]` function **définit or returns the description of the bot** telle qu'elle apparaît on the list public des bots BDFD (bot list).
+The `$botListDescription[text]` function **définit or returns the description of the bot** telle qu'elle apparaît on the list public bots BDFD (bot list).
 
 ## Syntax
 
@@ -34,13 +34,13 @@ $botListDescription
 
 - **Type** : String
 - Si called without parameter : la description currentle.
-- Si called avec parameter : rien (la description est mise à day).
+- Si called with parameter : rien (la description est mise to day).
 
 ## Behavior
 
-- La description est visible sur the page public of the bot in the BDFD Bot List.
-- Limit de becauseactères : generally 200-300 becauseactères.
-- Le markdown basique can be supporté selon la list.
+- La description est visible on the page public of the bot in the BDFD Bot List.
+- Limit of becauseactères : generally 200-300 becauseactères.
+- Le markdown basique can be supporté according to the list.
 
 ## Examples
 
@@ -54,10 +54,10 @@ $if[$var[desc]==]
 $endif
 
 $botListDescription[$var[desc]]
-$sendMessage[✅ Description of the bot mise à day !]
+$sendMessage[✅ Description of the bot mise to day !]
 ```
 
-### Afficher la description currentle
+### Display la description currentle
 
 ```bdfd
 $title[📋 Description of the bot]
@@ -72,14 +72,14 @@ $sendMessage[]
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Réservé au owner.]
+  $sendEphemeral[❌ Réservé to the owner.]
   $stop
 $endif
 
 $var[action;$message[1]]
 $if[$var[action]==set]
   $botListDescription[$message[2]]
-  $sendMessage[✅ Description mise à day.]
+  $sendMessage[✅ Description mise to day.]
 $elseif[$var[action]==show]
   $sendMessage[📋 **Description currentle :**
   $botListDescription]
@@ -92,5 +92,5 @@ $endif
 
 - Without parameter, la function returns the description currentle.
 - Avec parameter, elle écrase la description previouse.
-- Pour masquer the bot de la list, use `$botListHide`.
-- La mise à day peut prendre quelques minutes before d'être visible.
+- Pour hide the bot of la list, use `$botListHide`.
+- La mise to day peut prendre quelques minutes before of être visible.

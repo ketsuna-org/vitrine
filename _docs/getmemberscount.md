@@ -5,11 +5,11 @@ translation_key: docs
 category: "Server & Channels"
 function_name: getMembersCount
 syntax: $getMembersCount
-description: Returns the number total de members on the server (incluant les bots). Alias possible de $membersCount.
+description: Returns the number total of members on the server (incluant les bots). Alias possible of $membersCount.
 ---
 # $getMembersCount
 
-The function `$getMembersCount` retourne le **number total de members** of the server Discord.
+The function `$getMembersCount` retourne le **number total of members** of the server Discord.
 
 ## Syntax
 
@@ -24,7 +24,7 @@ Aucun.
 ## Return Value
 
 - **Type** : Number (string)
-- The namebre total de members (humains + bots).
+- The namebre total of members (humains + bots).
 
 ## Examples
 
@@ -34,12 +34,12 @@ Aucun.
 $sendMessage[👥 Ce server compte $getMembersCount members !]
 ```
 
-### Message de bienvenue
+### Message of bienvenue
 
 ```bdfd
 $title[👋 Bienvenue $username !]
 $description[
-Bienvenue sur **$serverName** !
+Bienvenue on **$serverName** !
 Tu es le member **#$getMembersCount** !
 ]
 $thumbnail[$authorAvatar]
@@ -47,22 +47,22 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Condition de taille
+### Condition of taille
 
 ```bdfd
 $if[$getMembersCount<100]
-  $sendMessage[Nous sommes encore une petite communauté de $getMembersCount members 💚]
+  $sendMessage[Nous sommes encore une petite communauté of $getMembersCount members 💚]
 $elseIf[$getMembersCount<1000]
-  $sendMessage[Déjà $getMembersCount members, merci à all ! 🎉]
+  $sendMessage[Déjà $getMembersCount members, merci to all ! 🎉]
 $else
-  $sendMessage[Plus de 1000 members, incroyable ! 🚀]
+  $sendMessage[Plus of 1000 members, incroyable ! 🚀]
 $endif
 ```
 
 ### Stats of the server
 
 ```bdfd
-$title[📊 Statistiques de $serverName]
+$title[📊 Statistiques of $serverName]
 $description[
 **Members** : $getMembersCount
 **Bots** : $botCount
@@ -76,5 +76,5 @@ $sendMessage[]
 ## Notes
 
 - Inclut les bots in the compte. Pour les humains only, faites `$c[$getMembersCount-$botCount]`.
-- Équivaslow functionnel à `$membersCount`.
-- Se met à day automatically when des members rejoignent/quittent.
+- Équivaslow functionnel to `$membersCount`.
+- Se met to day automatically when members rejoignent/quittent.

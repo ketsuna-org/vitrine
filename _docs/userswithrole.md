@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: usersWithRole
 syntax: $usersWithRole[roleID;(separator);(guildID)]
-description: Returns the list des members ayant un role spécifique, separateds par un délimitur.
+description: Returns the list members ayant un role specific, separateds par un délimitur.
 ---
 
 # $usersWithRole
 
-The function `$usersWithRole` retourne la **list des members** possédant un role spécifique on the server.
+The function `$usersWithRole` retourne la **list members** possédant un role specific on the server.
 
 ## Syntax
 
@@ -30,17 +30,17 @@ $usersWithRole[roleID;(separator);(guildID)]
 
 | Type | Description |
 |---|---|
-| `string` | List des members ayant the role (format dépend de la configuration). |
+| `string` | List members ayant the role (format dépend of la configuration). |
 
 ## Examples
 
-### List des admins
+### List admins
 
 ```bdfd
 $sendMessage[**Administrators :** $usersWithRole[$roleID[Admin]]]
 ```
 
-### List avec retours à la ligne
+### List with retours to la ligne
 
 ```bdfd
 $sendMessage[
@@ -71,6 +71,6 @@ $sendMessage[$usersWithRole[$roleID[Admin]] New alerte importante !]
 
 ## Notes
 
-- Les members sont generally retournés sous forme de mentions.
-- Le format exact peut varier selon la version de BDFD.
-- Utile for the annonces ciblées or la gestion de communauté.
+- Les members sont generally retournés sous forme of mentions.
+- Le format exact peut varier according to the version of BDFD.
+- Utile for the annonces ciblées or la gestion of communauté.

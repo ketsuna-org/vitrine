@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandsCount
 syntax: $commandsCount
-description: Returns the namebre total de commands (prefix + slash) of the bot.
+description: Returns the namebre total of commands (prefix + slash) of the bot.
 ---
 
 # $commandsCount
 
-The `$commandsCount` function **retourne the namebre total de commands** enregistrées on the bot, incluant les commands prefix and slash.
+The `$commandsCount` function **retourne the namebre total of commands** enregistrées on the bot, incluant les commands prefix and slash.
 
 ## Syntax
 
@@ -25,17 +25,17 @@ Aucun.
 ## Return value
 
 - **Type** : Integer
-- The namebre total de commands (ex: `42`).
+- The namebre total of commands (ex: `42`).
 
 ## Behavior
 
 - Counts all commands, qu'elles soient prefix or slash.
-- Se met à day automatically when des commands sont ajoutées/deletedes.
-- Inclut les commands dans all folders.
+- Se met to day automatically when commands sont ajoutées/deletedes.
+- Inclut les commands in all folders.
 
 ## Examples
 
-### Page d'information of the bot
+### Page of information of the bot
 
 ```bdfd
 $title[🤖 $botName]
@@ -62,21 +62,21 @@ $description[
 $sendMessage[]
 ```
 
-### Annonce de mise à day
+### Annonce of mise to day
 
 ```bdfd
-$sendMessage[🎉 **Mise à day !**
-The bot dispose now de **$commandsCount commands** !
+$sendMessage[🎉 **Mise to day !**
+The bot dispose now of **$commandsCount commands** !
 
 Tapez `/help` for découvrir.]
 ```
 
-### Limit de commands (premium)
+### Limit of commands (premium)
 
 ```bdfd
 $if[$premiumExpireTime==]
   $if[$commandsCount>=50]
-    $sendMessage[⚠️ Limit de 50 commands atteinte (version gratuite).
+    $sendMessage[⚠️ Limit of 50 commands atteinte (version gratuite).
     Passez premium pour débloquer more than commands.]
   $else
     $sendMessage[📊 $commandsCount/50 commands utilisées.]
@@ -90,5 +90,5 @@ $endif
 
 - Inclut all commands (prefix ET slash).
 - For commands slash only, use `$slashCommandsCount`.
-- For the list des noms, use `$botCommands`.
-- La limit varie selon l'abonnement (gratuit/premium).
+- For the list noms, use `$botCommands`.
+- La limit varie according to l'abonnement (gratuit/premium).

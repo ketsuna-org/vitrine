@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: voiceUserLimit
 syntax: $voiceUserLimit[(channelID)]
-description: Gets the limit d'users of a channel vocal. Returns the number maximum d'users pouvant se connecter simultanément.
+description: Gets the limit of users of a channel vocal. Returns the number maximum of users pouvant se connecter simultanément.
 ---
 
 # $voiceUserLimit
 
-The function `$voiceUserLimit[]` allows **récupérer la limit d'users** configurede sur un channel vocal Discord.
+The function `$voiceUserLimit[]` allows **récupérer la limit of users** configurede on a channel vocal Discord.
 
 ## Syntax
 
@@ -27,18 +27,18 @@ $voiceUserLimit[(channelID)]
 ## Return Value
 
 - **Type** : String (number)
-- The namebre maximum d'users alloweds in the channel.
-- `0` signifie illimité (pas de limit).
+- The namebre maximum of users alloweds in the channel.
+- `0` signifie illimité (pas of limit).
 
 ## Behavior
 
-- Si no channelID n'est fourni and que l'auteur is not dans un channel vocal, retourne `0` or une error.
+- Si no channelID n'est fourni and que l'auteur is not in a channel vocal, retourne `0` or une error.
 - La limit est définie during la création/modification of the channel.
-- Utile pour vérifier la capacité before de rejoindre or d'inviter.
+- Utile pour check the capacité before of rejoindre or of inviter.
 
 ## Examples
 
-### Vérification de capacité
+### Vérification of capacité
 
 ```bdfd
 $let[limit;$voiceUserLimit]
@@ -69,7 +69,7 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérification for a channel spécifique
+### Vérification for a channel specific
 
 ```bdfd
 $let[target;$channelID[Channel Gaming]]
@@ -85,6 +85,6 @@ $endif
 
 ## Notes
 
-- `0` = pas de limit (illimité), ce qui est the value default des channels vocaux.
-- La limit maximale est de 99 users.
-- Functionne only with thes channels de type vocal (`$channelType` = 2).
+- `0` = pas of limit (illimité), ce qui est the value default channels vocaux.
+- La limit maximale est of 99 users.
+- Functionne only with thes channels of type vocal (`$channelType` = 2).

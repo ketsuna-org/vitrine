@@ -10,7 +10,7 @@ description: Returns the ID of the role le plus bas (hiérarchiquement) of the u
 
 # $lowestRole
 
-The variable `$lowestRole` retourne l'**ID of the role le plus bas** in the hiérarchie des roles of the user on the server (en excludedant generally `@everyone`).
+The variable `$lowestRole` retourne l'**ID of the role le plus bas** in the hiérarchie roles of the user on the server (en excludedant generally `@everyone`).
 
 ## Syntax
 
@@ -34,7 +34,7 @@ $lowestRole
 ### Listr la hiérarchie complete
 
 ```bdfd
-$title[Hiérarchie des roles]
+$title[Hiérarchie roles]
 $description[
 **User :** $userName
 **Role le plus haut :** $roleName[$highestRole]
@@ -53,5 +53,5 @@ $sendMessage[Votre role le plus bas est : $roleName[$lowestRole] (ID: $lowestRol
 ## Notes
 
 - `$lowestRole` kicks generally the role `@everyone`.
-- La hiérarchie des roles est définie in thes parameters of the server.
-- Pour obtenir un role avec des permissions spécifiques, utilisez `$lowestRoleWithPerms[]`.
+- La hiérarchie roles est définie in thes parameters of the server.
+- Pour obtenir un role with permissions specifics, utilisez `$lowestRoleWithPerms[]`.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addContainer
 syntax: $addContainer[(id);(accentColor);(spoiler)]
-description: Crée a container visuel in a Discord message. The conteneurs peuvent regrouper des sections and afficher a border colorée. Supporte le mode spoiler.
+description: Creates a visual container in a Discord message. The containers can group sections and display a colored border. Supports spoiler mode.
 ---
 
-# $addContainer[] — Conteneur Visuel
+# $addContainer[] — Conteneur Visual
 
-`$addContainer[]` crée a container in a Discord message. The conteneurs offrent une structuration visuelle with a bordure colorée optionalle and the possibilité d'être hiddens derrière un spoiler.
+`$addContainer[]` crée a container in a Discord message. The containers offrent une structuration visualle with a colored border optionalle and the ability of être hiddens derrière un spoiler.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ $addContainer[(id);(accentColor);(spoiler)]
 
 ## Return value
 
-Initialise a container. The components added afterward (sections, thumbnails, galeries) s'insèrent dans ce conteneur.
+Initialise a container. The components added afterward (sections, thumbnails, galeries) s'insèrent in ce container.
 
 ## Usage
 
@@ -68,12 +68,12 @@ $addField[Titre;Bienvenue on the server;no]
 
 $addContainer[body;#3498DB;no]
 $addSection
-$addField[Description;Nous sommes ravis de vous accueillir !;no]
+$addField[Description;Nous sommes ravis of vous accueillir !;no]
 ```
 
 ## Notes
 
-- Les conteneurs sont a functionnalité visuelle propre à BDFD ; ils ne font pas partie of the API Discord native.
-- Un conteneur can contain multiple sections ($addSection).
-- The color `accentColor` must be in the format hexadecimal avec `#`.
-- Le mode spoiler masque tout le content of the conteneur until the user clicks dessus.
+- Les containers sont a functionnalité visualle propre to BDFD ; ils ne font pas partie of the API Discord native.
+- Un container can contain multiple sections ($addSection).
+- The color `accentColor` must be in the format hexadecimal with `#`.
+- Le spoiler mode masque tout le content of the container until the user clicks dessus.

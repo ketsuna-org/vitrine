@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: botTyping
 syntax: $botTyping
-description: Déclenche l'indicateur de saisie (typing indicator) in the channel courant. Montre aux users only the bot est en train d'écrire.
+description: Déclenche l'indicateur of saisie (typing indicator) in the channel courant. Montre to the users only the bot est en train of écrire.
 ---
 
 # $botTyping
 
-The `$botTyping[]` function **déclencher l'indicateur de saisie** ("Bot is typing...") in the channel where la command est executede.
+The `$botTyping[]` function **trigger l'indicateur of saisie** ("Bot is typing...") in the channel where la command est executede.
 
 ## Syntax
 
@@ -28,13 +28,13 @@ Cette function does not return a value.
 
 ## Behavior
 
-- L'indicateur de saisie dure environ 10 seconds or up to l'envoi of a message.
-- Utile pour simuler a delay de traitement or donner un feedback visuel.
+- L'indicateur of saisie dure environ 10 seconds or up to l'envoi of a message.
+- Utile pour simuler a delay of traitement or donner un feedback visual.
 - L'indicateur s'stops automatically if a message is sent.
 
 ## Examples
 
-### Traitement avec feedback
+### Traitement with feedback
 
 ```bdfd
 $botTyping
@@ -42,24 +42,24 @@ $wait[3]
 $sendMessage[Traitement terminé ! Voici the results...]
 ```
 
-### Simulation de recherche
+### Simulation of recherche
 
 ```bdfd
 $botTyping
 $wait[2]
-$sendMessage[🔍 Recherche in the base de datas...]
+$sendMessage[🔍 Recherche in the base of datas...]
 $botTyping
 $wait[2]
 $sendMessage[✅ Results founds !]
 ```
 
-### Enstringment avec action longue
+### Enstringment with action longue
 
 ```bdfd
 $botTyping
 $let[result;$httpGet[https://api.example.com/data]]
 $if[$result!=]
-  $sendMessage[Datas récupérées avec success.]
+  $sendMessage[Datas récupérées with success.]
 $else
   $sendMessage[Error during la récupération.]
 $endif
@@ -67,6 +67,6 @@ $endif
 
 ## Notes
 
-- L'indicateur est purement cosmétique, no effet sur the processing réel.
-- Particulièrement utile for commands avec `$wait[]` or calls API.
+- L'indicateur est purement cosmétique, no effet on the processing réel.
+- Particulièrement utile for commands with `$wait[]` or calls API.
 - Ne functionne que in thes canaux text.

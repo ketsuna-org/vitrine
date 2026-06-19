@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: takeRole
 syntax: $takeRole[userID;roleID]
-description: Retire un role à un user on the server.
+description: Retire un role to un user on the server.
 ---
 
 # $takeRole
 
-The function `$takeRole` **retire un role** à un user on the server Discord. The bot doit avoir la permission `ManageRoles`.
+The function `$takeRole` **retire un role** to un user on the server Discord. The bot doit avoir la permission `ManageRoles`.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $takeRole[userID;roleID]
 | Parameter | Description |
 |---|---|
 | `userID` | The ID of the user cible. Required. |
-| `roleID` | The ID of the role à retirer. Required. |
+| `roleID` | The ID of the role to retirer. Required. |
 
 ## Return Value
 
@@ -49,17 +49,17 @@ $else
 $endif
 ```
 
-### Command de retrait avec confirmation
+### Command of retrait with confirmation
 
 ```bdfd
 $takeRole[$mentioned[1];$roleID[$message[2]]]
-$sendMessage[✅ Role retiré de <@$mentioned[1]>.]
+$sendMessage[✅ Role retiré of <@$mentioned[1]>.]
 ```
 
 ## Notes
 
 - The bot doit avoir la permission `ManageRoles`.
-- The bot ne peut pas retirer un role supérieur à son propre role le plus haut.
+- The bot ne peut pas retirer un role supérieur to son propre role le plus haut.
 - Si the user ne possède pas the role, rien ne se passe.
 - Pour retirer several roles, utilisez `$takeRoles`.
-- Équivaslow functionnel à `$roleRemove`.
+- Équivaslow functionnel to `$roleRemove`.

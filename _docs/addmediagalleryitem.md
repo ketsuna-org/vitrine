@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addMediaGalleryItem
 syntax: $addMediaGalleryItem[url;(description);(spoiler);(galleryId)]
-description: Adds a élément (image) à a gallery média. Si galleryId est omis, l'élément is added à la last galerie createde.
+description: Adds a élément (image) to a gallery média. Si galleryId est omitted, l'élément is added to la last galerie createde.
 ---
 
-# $addMediaGalleryItem[] — Élément de Galerie
+# $addMediaGalleryItem[] — Élément of Galerie
 
-`$addMediaGalleryItem[]` ajoute an image à a gallery média createde avec `$addMediaGallery[]`. Each élément devient une "page" navigable in the gallery.
+`$addMediaGalleryItem[]` ajoute an image to a gallery média createde with `$addMediaGallery[]`. Each élément devient une "page" navigable in the gallery.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ $addMediaGalleryItem[url;(description);(spoiler);(galleryId)]
 
 ## Return value
 
-Ajoute the image à la galerie. Pas de value de return directe.
+Ajoute the image to la galerie. Pas of value of return directe.
 
 ## Usage
 
@@ -72,7 +72,7 @@ $addMediaGalleryItem[$var[excludedsive02];Contenu excludedsif 2;yes;nsfw_content
 
 ## Notes
 
-- `galleryId` can be omis ; l'élément cible alors la galerie la plus recently createde.
+- `galleryId` can be omitted ; l'élément target alors la galerie la plus recently createde.
 - If no galerie n'has been createde, le behavior est indéfini.
 - Le `spoiler` masque the image until the user clicks dessus (pratique pour contenu sensible).
 - Les URLs must be accessibles publicment.

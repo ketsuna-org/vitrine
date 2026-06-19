@@ -10,7 +10,7 @@ description: Function guard qui stops silencieusement l'exécution si the messag
 
 # $ignoreLinks
 
-The function guard `$ignoreLinks` détecte la présence de **links HTTP/HTTPS** in the message déclencheur. Si un link est found, the command est interrompue silencieusement.
+The function guard `$ignoreLinks` détecte la présence of **links HTTP/HTTPS** in the message déclencheur. Si un link est found, the command est interrompue silencieusement.
 
 ## Syntax
 
@@ -24,7 +24,7 @@ Aucun parameter. `$ignoreLinks` s'utilise seul.
 
 ## Behavior
 
-- Analyse le contenu of the message à la recherche de `http://` or `https://`.
+- Analyse le contenu of the message to la recherche of `http://` or `https://`.
 - Si un link est found, the command est immédiatement interrompue **without message**.
 - Si no link n'est found, the command continue normalement.
 - Détecte all links standards (HTTP and HTTPS), mais pas les links `discord.gg`, `ftp://`, etc.
@@ -42,13 +42,13 @@ $sendMessage[Votre message was traité (no link détecté).]
 
 ```bdfd
 $if[$messageContains[https://;$messageContains[http://]]==true
-  $sendMessage[❌ Les links sont forbiddens dans cette command.]
+  $sendMessage[❌ Les links sont forbiddens in cette command.]
   $stop
 $endif
 $sendMessage[Traitement OK.]
 ```
 
-### Log des tentatives avec links
+### Log tentatives with links
 
 ```bdfd
 $if[$messageContains[https://;$messageContains[http://]]==true
@@ -60,7 +60,7 @@ $sendMessage[Message traité.]
 
 ## Notes
 
-- `$ignoreLinks` est **silencieux** : the user ne receives noe notification. Pour informer the user, utilisez la vérification manuelle avec `$messageContains`.
+- `$ignoreLinks` est **silencieux** : the user ne receives noe notification. Pour informer the user, utilisez la vérification manuelle with `$messageContains`.
 - Ne détecte pas les links sous forme `discord.gg/invite` or les links Markdown hiddens `[text](https://...)`. Pour couvrir ces cas, utilisez `$messageContains`.
 - `$ignoreLinks` vérifie only the message déclencheur, pas les embeds ni les pièces jointes.
 - Idéal for the channels où les links sont forbiddens (prévention spam/phishing).

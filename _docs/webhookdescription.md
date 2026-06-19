@@ -10,7 +10,7 @@ description: Sets the description (corps) of the embed for the prochain message 
 
 # $webhookDescription
 
-The function `$webhookDescription[]` allows **définir la description** (corps principal) of the embed for the prochain message webhook.
+The function `$webhookDescription[]` allows **define the description** (corps principal) of the embed for the prochain message webhook.
 
 ## Syntax
 
@@ -22,17 +22,17 @@ $webhookDescription[text]
 
 | Parameter | Description |
 |---|---|
-| `text` | Le contenu de la description of the embed. Supporte markdown, mentions, emojis. Max 4096 becauseactères. |
+| `text` | Le contenu of la description of the embed. Supports markdown, mentions, emojis. Max 4096 becauseactères. |
 
 ## Return Value
 
-This function ne retourne pas de value. Elle définit la description du prochain embed.
+This function ne retourne pas of value. Elle définit la description of the prochain embed.
 
 ## Behavior
 
 - La description apparaît sous le titre of the embed.
-- Supporte le markdown complete : gras, italique, links, lists, code, etc.
-- Les sauts de ligne sont préservés.
+- Supports the markdown complete : gras, italique, links, lists, code, etc.
+- Les sauts of ligne sont préservés.
 - La description est réinitialisée after each `$webhookSend[]`.
 
 ## Examples
@@ -51,10 +51,10 @@ $webhookColor[#5865F2]
 $webhookSend[$webhookURL;]
 ```
 
-### Description avec formatage
+### Description with formatage
 
 ```bdfd
-$webhookTitle[Rapport de modération]
+$webhookTitle[Rapport of modération]
 $webhookDescription[
 **Modérateur :** $username
 **Action :** Ban
@@ -86,4 +86,4 @@ $endif
 
 - Maximum 4096 becauseactères for the description.
 - La description est le corps principal of the embed.
-- Combinez titre + description + couleur for a embed visuellement complete.
+- Combinez titre + description + couleur for a embed visuallement complete.

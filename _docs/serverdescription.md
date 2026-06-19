@@ -29,7 +29,7 @@ Aucun parameter.
 
 ## Utilisation
 
-### Afficher la description
+### Display la description
 
 ```bdfd
 $sendMessage[📝 Description : $serverDescription]
@@ -51,17 +51,17 @@ $sendEmbedMessage
 
 ```bdfd
 $if[$serverDescription==]
-$sendMessage[Ce server n'a pas de description.]
+$sendMessage[Ce server n'a pas of description.]
 $else
 $sendMessage[**$serverName** : $serverDescription]
 $endif
 ```
 
-### Restreindre par mot-key in the description
+### Restrict par mot-key in the description
 
 ```bdfd
 $if[$toLowercase[$serverDescription]$contains[gaming]]
-$sendMessage[Ce server est dédié au gaming !]
+$sendMessage[Ce server est dédié to the gaming !]
 $else
 $sendMessage[Ce server is not catégorisé gaming.]
 $endif
@@ -70,6 +70,6 @@ $endif
 ## Notes
 
 - La description est optionalle : all servers n'en ont pas.
-- La longueur maximale d'une description de server est de 1000 becauseactères.
-- Utile pour afficher des informations contextuelles on the server dans embeds or des commands d'aide.
-- Can be combinée avec `$serverInfo[]` pour obtenir des informations plus completes.
+- La longueur maximale of une description of server est of 1000 becauseactères.
+- Utile pour display information contextuelles on the server in embeds or commands of aide.
+- Can be combinée with `$serverInfo[]` pour obtenir information plus completes.

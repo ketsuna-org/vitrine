@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: addEmoji
 syntax: $addEmoji[name;url;(roleID)]
-description: Adds a new emoji custom au server à partir of a URL. Possibilité de restreindre the emoji à a role spécifique.
+description: Adds a new custom emoji to the server from a URL. Optionally restrict the emoji to a specific role.
 ---
 
 # $addEmoji
 
-The `$addEmoji[]` function **ajouter un new emoji custom** au server à partir of a URL d'image. The emoji can be public or restreint à a role spécifique.
+The `$addEmoji[]` function **ajouter un new custom emoji** to the server from a URL of image. The emoji can be public or restreint to a specific role.
 
 ## Syntax
 
@@ -22,21 +22,21 @@ $addEmoji[name;url;(roleID)]
 
 | Parameter | Description |
 |---|---|
-| `name` | The emoji name (2 à 32 becauseactères, alphanumérique + underscores). |
+| `name` | The emoji name (2 to 32 becauseactères, alphanumérique + underscores). |
 | `url` | The URL of the image (PNG, JPEG, GIF). The image must be accessible publicment. |
 | `roleID` | Optional - ID of the role allowed to use the emoji. If omitted, emoji public. |
 
 ## Return value
 
 - **Type** : String
-- Le markup de the emoji created in the format `<:nom:ID>` on success.
+- Le markup of the emoji created in the format `<:nom:ID>` on success.
 - Message error if the URL est invalid, the name déjà pris or les permissions insuffisantes.
 
 ## Behavior
 
 - The bot must have the permission `MANAGE_EMOJIS_AND_STICKERS`.
 - The name must be unique parmi les emojis of the server.
-- Limit de 50 emojis standard (plus for servers boostés).
+- Limit of 50 emojis standard (plus for servers boostés).
 - Les GIFs animés sont acceptés and créent an emoji animé.
 
 ## Examples
@@ -52,7 +52,7 @@ $else
 $endif
 ```
 
-### Emoji avec attachment
+### Emoji with attachment
 
 ```bdfd
 $let[url;$getAttachments[$noMentionMessage]]
@@ -62,7 +62,7 @@ $if[$url!=]
   $let[emoji;$addEmoji[$emojiName;$firstUrl]]
   $sendMessage[✅ Emoji created : $emoji]
 $else
-  $sendMessage[❌ Aucan image founde. Joignez an image à votre message.]
+  $sendMessage[❌ Aucan image founde. Joignez an image to votre message.]
 $endif
 ```
 
@@ -72,9 +72,9 @@ $endif
 $let[staffRole;$roleID[Staff]]
 $let[emoji;$addEmoji[confidential;https://example.com/lock.png;$staffRole]]
 $if[$emoji!=]
-  $sendMessage[✅ Emoji **$emoji** created and réservé au role <@&$staffRole>.]
+  $sendMessage[✅ Emoji **$emoji** created and réservé to the role <@&$staffRole>.]
 $else
-  $sendMessage[❌ Error during la création de the emoji.]
+  $sendMessage[❌ Error during la création of the emoji.]
 $endif
 ```
 
@@ -83,7 +83,7 @@ $endif
 ```bdfd
 $let[name;$message]
 $if[$length[$name]<2]
-  $sendMessage[❌ The name must be au moins 2 becauseactères.]
+  $sendMessage[❌ The name must be to the moins 2 becauseactères.]
 $elseif[$length[$name]>32]
   $sendMessage[❌ The name must not exceed 32 becauseactères.]
 $elseif[$emojiExists[$name]==true]
@@ -96,7 +96,7 @@ $endif
 
 ## Notes
 
-- The URL must point directly vers an image (extension .png, .jpg, .gif).
-- The server a une limit d'emojis selon son level de boost.
-- Les emojis animés comptent dans une limit separatede.
+- The URL must point directly vers an image (extension.png,.jpg,.gif).
+- The server a une limit of emojis according to son level of boost.
+- Les emojis animés comptent in a limit separatede.
 - The name ne must contain only lettres, chiffres and underscores.

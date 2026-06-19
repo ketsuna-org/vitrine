@@ -10,7 +10,7 @@ description: Expulse un user of the server Discord.
 
 # $kick
 
-The function `$kick` **expulse (kick) un user** of the server Discord. Contrairement au ban, the user peut revenir with ae new invite. The bot doit avoir la permission `KickMembers`.
+The function `$kick` **expulse (kick) un user** of the server Discord. Contrairement to the ban, the user peut revenir with ae new invite. The bot doit avoir la permission `KickMembers`.
 
 ## Syntax
 
@@ -22,8 +22,8 @@ $kick[userID;(reason)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user à expulser. Required. |
-| `reason` | Optional. The reason de l'expulsion. |
+| `userID` | The ID of the user to expulser. Required. |
+| `reason` | Optional. The reason of l'expulsion. |
 
 ## Return Value
 
@@ -34,11 +34,11 @@ Aucune. The user est expulsé of the server.
 ### Expulsion simple
 
 ```bdfd
-$kick[$mentioned[1];Non-respect des règles]
+$kick[$mentioned[1];Non-respect règles]
 $sendMessage[<@$mentioned[1]> was expulsé.]
 ```
 
-### Command d'expulsion avec confirmation
+### Command of expulsion with confirmation
 
 ```bdfd
 $if[$argsCount<1]
@@ -66,4 +66,4 @@ $endif
 - The bot doit avoir la permission `KickMembers`.
 - The user expulsé can be réinvité.
 - Utilisez `$ban` for ae kick permanent.
-- Pour expulser the user mentionné without spécifier the ID, utilisez `$kickMention`.
+- Pour expulser the user mentionné without specify the ID, utilisez `$kickMention`.

@@ -32,7 +32,7 @@ $channelTopic[(channelID)]
 
 ## Examples
 
-### Afficher le sujet
+### Display le sujet
 
 ```bdfd
 $sendMessage[**Sujet of the channel :** $channelTopic]
@@ -44,7 +44,7 @@ $sendMessage[**Sujet of the channel :** $channelTopic]
 $if[$channelTopic!=]
   $sendMessage[Sujet : $channelTopic]
 $else
-  $sendMessage[Ce channel does not have de sujet.]
+  $sendMessage[Ce channel does not have of sujet.]
 $endif
 ```
 
@@ -59,6 +59,6 @@ $sendMessage[]
 
 ## Notes
 
-- Ne functionne que for channels de type `text` and `news`.
+- Ne functionne que for channels of type `text` and `news`.
 - For channels vocaux, les catégories, etc., la function retourne a string vide.
-- Longueur maximale d'un sujet : 1024 becauseactères.
+- Longueur maximale of un sujet : 1024 becauseactères.

@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: second
 syntax: $second
-description: Returns the second currentle (0 à 59). Resolved au runtime.
+description: Returns the second currentle (0 to 59). Resolved to the runtime.
 ---
 
 # $second[]
 
-The function `$second[]` retourne la second currentle (de 0 à 59).
+The function `$second[]` retourne la second currentle (de 0 to 59).
 
-> **Important:** This function utilise l'identifier special `((second))` qui est resolved au **runtime**.
+> **Important:** This function utilise l'identifier special `((second))` qui est resolved to the **runtime**.
 
 ## Syntax
 
@@ -40,12 +40,12 @@ Seconde currentle : $second
 Il est précisément $hour:$minute and $second seconds.
 ```
 
-### Horloge dans un embed
+### Horloge in a embed
 
 ```bdfd
 $title[🕐 Horloge]
 $description[$hour:$minute:$second]
-$footer[Mis à day à each exécution]
+$footer[Mis to day to each exécution]
 ```
 
 ## Notes

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: unpinMessage
 syntax: $unpinMessage[messageID]
-description: Retire un message épinglé de la list des messages épinglés du canal.
+description: Retire un message épinglé of la list messages épinglés of the canal.
 ---
 
 # $unpinMessage
 
-The function `$unpinMessage[]` allows **retirer un message de la list des messages épinglés** d'un canal.
+The function `$unpinMessage[]` allows **retirer un message of la list messages épinglés** of un canal.
 
 ## Syntax
 
@@ -22,16 +22,16 @@ $unpinMessage[messageID]
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message à désépingler. |
+| `messageID` | The ID of the message to désépingler. |
 
 ## Return Value
 
-This function ne retourne pas de value.
+This function ne retourne pas of value.
 
 ## Behavior
 
 - The bot doit avoir la permission `MANAGE_MESSAGES`.
-- The message is not deleted, only retiré des épingles.
+- The message is not deleted, only retiré épingles.
 - Si the message is not épinglé, rien ne se passe.
 
 ## Examples
@@ -47,10 +47,10 @@ $sendMessage[Message désépinglé.]
 
 ```bdfd
 $unpinMessage[$messageID]
-$editMessage[This message n'est plus d'actualité.]
+$editMessage[This message n'est plus of actualité.]
 ```
 
-### Rotation d'annonces
+### Rotation of annonces
 
 ```bdfd
 $unpinMessage[$oldAnnouncementID]
@@ -64,4 +64,4 @@ $pinMessage[$messageID]
 
 - Les users are not notifiés when a message est désépinglé.
 - Un message can be ré-épinglé after avoir été désépinglé.
-- Combinez avec `$pinMessage[]` pour gérer les annonces tournantes.
+- Combinez with `$pinMessage[]` pour gérer les annonces tournantes.

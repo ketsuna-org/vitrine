@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: slashCommandsCount
 syntax: $slashCommandsCount
-description: Returns the number de commands slash enregistrées on the bot.
+description: Returns the number of commands slash enregistrées on the bot.
 ---
 
 # $slashCommandsCount
 
-The function `$slashCommandsCount` **retourne the namebre de commands slash** enregistrées on the bot (kicks thes commands prefix).
+The function `$slashCommandsCount` **retourne the namebre of commands slash** enregistrées on the bot (kicks thes commands prefix).
 
 ## Syntax
 
@@ -25,13 +25,13 @@ Aucun.
 ## Return Value
 
 - **Type** : Integer
-- The namebre de commands slash (ex: `25`).
+- The namebre of commands slash (ex: `25`).
 
 ## Behavior
 
-- Counts only les commands de type slash.
+- Counts only les commands of type slash.
 - Ne compte pas les commands prefix.
-- Utile pour vérifier les limits Discord (100 commands slash par application).
+- Utile pour check thes limits Discord (100 commands slash par application).
 
 ## Examples
 
@@ -47,11 +47,11 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérification de limit Discord
+### Vérification of limit Discord
 
 ```bdfd
 $if[$slashCommandsCount>=100]
-  $sendMessage[⚠️ **Warning:** Vous avez atteint la limit de 100 commands slash Discord.
+  $sendMessage[⚠️ **Warning:** Vous avez atteint la limit of 100 commands slash Discord.
   Les news commands slash pourraient ne pas s'enregistrer.]
 $else
   $var[restant;$math[100-$slashCommandsCount]]
@@ -79,5 +79,5 @@ $sendMessage[]
 
 - Counts only les commands slash.
 - Pour le total (prefix + slash), utilisez `$commandsCount`.
-- Discord limit à 100 commands slash par application.
+- Discord limit to 100 commands slash par application.
 - Pour the ID of a command slash, utilisez `$slashID`.

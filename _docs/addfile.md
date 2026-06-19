@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addFile
 syntax: $addFile[url;(spoiler)]
-description: Attache a file (image, document, etc.) à a message Discord as a composant visuel. The file is displayed directly in the message.
+description: Attache a file (image, document, etc.) to a message Discord as a composant visual. The file is displayed directly in the message.
 ---
 
 # $addFile[] — Pièce Jointe File
 
-`$addFile[]` attache a file (image, PDF, document, etc.) à a message. The file est téléloaded since the URL fournie and displayed comme attachment in the message Discord.
+`$addFile[]` attache a file (image, PDF, document, etc.) to a message. The file est téléloaded since the URL fournie and displayed like attachment in the message Discord.
 
 ## Syntax
 
@@ -27,7 +27,7 @@ $addFile[url;(spoiler)]
 
 ## Return value
 
-Ajoute le file comme attachment au message. Discord displays the file selon its type (aperçu for images, icon + nom for documents).
+Ajoute le file like attachment to the message. Discord displays the file according to its type (aperçu for images, icon + nom for documents).
 
 ## Usage
 
@@ -49,7 +49,7 @@ $sendMessage[Rapport annuel ci-joint]
 
 ```bdfd
 $addFile[https://cdn.example.com/spoiler_endgame.png;yes]
-$sendMessage[Warning: spoiler de fin !]
+$sendMessage[Warning: spoiler of fin !]
 ```
 
 ### Multiple files
@@ -57,14 +57,14 @@ $sendMessage[Warning: spoiler de fin !]
 ```bdfd
 $addFile[https://files.example.com/logs.txt]
 $addFile[https://files.example.com/config.json]
-$sendMessage[Files de configuration]
+$sendMessage[Files of configuration]
 ```
 
 ### With embed and file
 
 ```bdfd
 $title[Rapport mensuel]
-$description[Voici le rapport détaillé du months]
+$description[Voici le rapport détaillé of the months]
 $color[#5865F2]
 $addFile[https://reports.example.com/monthly.pdf]
 ```
@@ -74,11 +74,11 @@ $addFile[https://reports.example.com/monthly.pdf]
 - Images : PNG, JPEG, GIF, WebP
 - Documents : PDF, TXT, CSV, JSON, XML
 - Archives : ZIP (limité)
-- Taille max : ~25 Mo (selon le level de boost of the server)
+- Taille max : ~25 Mo (selon le level of boost of the server)
 
 ## Notes
 
 - The URL must be accessible publicment.
-- Multiple `$addFile[]` can be utilisés dans un même message.
-- À not confondre avec `$addModalFileUpload[]` qui est for modals interactifs.
+- Multiple `$addFile[]` can be utilisés in a même message.
+- À not confondre with `$addModalFileUpload[]` qui est for modals interactifs.
 - Le spoiler masque le file until the user clicks for the révéler.

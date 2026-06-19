@@ -10,7 +10,7 @@ description: Retire le timeout of a user before son expiration.
 
 # $unTimeout
 
-The function `$unTimeout` **retire le timeout** of a user before son expiration, restaurant sa capacité à envoyer des messages and parler en vocal. The bot doit avoir la permission `ModerateMembers`.
+The function `$unTimeout` **retire le timeout** of a user before son expiration, restaurant sa capacité to envoyer messages and parler en vocal. The bot doit avoir la permission `ModerateMembers`.
 
 ## Syntax
 
@@ -22,11 +22,11 @@ $unTimeout[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user à libérer du timeout. Required. |
+| `userID` | The ID of the user to libérer of the timeout. Required. |
 
 ## Return Value
 
-Aucune. The user est libéré du timeout.
+Aucune. The user est libéré of the timeout.
 
 ## Examples
 
@@ -48,15 +48,15 @@ $else
 $endif
 ```
 
-### Command de pardon
+### Command of pardon
 
 ```bdfd
 $unTimeout[$mentioned[1]]
-$sendMessage[🙏 Pardon accordé. <@$mentioned[1]> peut de new participer.]
+$sendMessage[🙏 Pardon accordé. <@$mentioned[1]> peut of new participer.]
 ```
 
 ## Notes
 
 - The bot doit avoir la permission `ModerateMembers`.
-- Utilisez `$isTimedOut` pour vérifier if a user est en timeout before d'caller `$unTimeout`.
-- N'a d'effet que si the user est currentlement en timeout.
+- Utilisez `$isTimedOut` pour check if a user est en timeout before of caller `$unTimeout`.
+- N'a of effet que si the user est currentlement en timeout.

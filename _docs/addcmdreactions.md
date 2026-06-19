@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: addCmdReactions
 syntax: $addCmdReactions[emoji1;emoji2;...]
-description: Adds an or multiple réactions au message de command of the user (the message qui a déclenché la command).
+description: Adds one or more reactions to the user's command message (the message that triggered the command).
 ---
 
 # $addCmdReactions
 
-The `$addCmdReactions[]` function **ajouter of reactions directly au message of the user** qui a déclenché la command.
+The `$addCmdReactions[]` function **ajouter of reactions directly to the user's message** qui triggered the command.
 
 ## Syntax
 
@@ -22,16 +22,16 @@ $addCmdReactions[emoji1;emoji2;...]
 
 | Parameter | Description |
 |---|---|
-| `emoji1;emoji2;...` | List d'emojis separateds par `;`. Supporte les emojis Unicode and customs. |
+| `emoji1;emoji2;...` | List of emojis separateds par `;`. Supports thes emojis Unicode and customs. |
 
 ## Return value
 
-Cette function does not return a value. The réactions sont ajoutées au message de command.
+Cette function does not return a value. The réactions sont ajoutées to the command message.
 
 ## Behavior
 
-- Contrairement à `$addReactions[]`, cette function cible the message **déclencheur** (message of the user).
-- Utile pour donner un feedback visuel fast without envoyer de message.
+- Contrairement to `$addReactions[]`, cette function target the message **déclencheur** (user's message).
+- Utile pour donner un feedback visual fast without envoyer of message.
 - The bot must have the permission `ADD_REACTIONS` in the channel.
 
 ## Examples
@@ -67,5 +67,5 @@ $addCmdReactions[✅]
 ## Notes
 
 - `$addCmdReactions[]` ne functionne que if the message déclencheur existe encore.
-- Ne requires pas d'envoyer a message de response.
-- Idéal for commands fasts où un simple emoji suffit comme confirmation.
+- Ne requires pas of envoyer a message of response.
+- Idéal for commands fasts où un simple emoji suffit like confirmation.

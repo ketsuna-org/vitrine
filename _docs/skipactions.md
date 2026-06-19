@@ -57,5 +57,5 @@ If `count` resolves to a non-numeric value or an integer less than 0, behavior i
 ## Common Pitfalls
 
 - **Skipping past block terminators**: If you `$skipActions` past an `$endif` or `$endFor`, you may get a parse or runtime error. Always ensure your skip count is within the current block's boundaries.
-- **Over-skipping**: Skipping more actions than remain in the block causes execution to move to the next sibling block — behavior that may be unexpected.
+- **Over-skipping**: Skipping more actions than remain the block causes execution to move to the next sibling block — behavior that may be unexpected.
 - **Readability**: Heavy use of `$skipActions` can make action sequences hard to follow. Prefer `$if` blocks for conditional execution when possible.

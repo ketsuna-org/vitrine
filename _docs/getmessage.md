@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: getMessage
 syntax: $getMessage[channelID;messageID]
-description: Gets the text content of a message spécifique par son ID de canal and de message.
+description: Gets the text content of a message specific par son ID of canal and of message.
 ---
 
 # $getMessage
 
-The function `$getMessage[]` allows **récupérer le text content** of a message from son ID de canal and de message.
+The function `$getMessage[]` allows **récupérer le text content** of a message from son ID of canal and of message.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $getMessage[channelID;messageID]
 | Parameter | Description |
 |---|---|
 | `channelID` | The ID of the canal contenant the message. |
-| `messageID` | The ID of the message à récupérer. |
+| `messageID` | The ID of the message to récupérer. |
 
 ## Return Value
 
@@ -34,8 +34,8 @@ $getMessage[channelID;messageID]
 ## Behavior
 
 - Returns aiquement le contenu text (pas les embeds, pièces jointes, etc.).
-- The bot doit avoir accès au canal and la permission `READ_MESSAGE_HISTORY`.
-- The message doit avoir moins de 14 days (limitation API Discord for the messages non épinglés).
+- The bot doit avoir accès to the canal and la permission `READ_MESSAGE_HISTORY`.
+- The message doit avoir moins of 14 days (limitation API Discord for the messages non épinglés).
 
 ## Examples
 
@@ -54,7 +54,7 @@ $else
 $endif
 ```
 
-### Log de message deleted
+### Log of message deleted
 
 ```bdfd
 $let[msgContent;$getMessage[$channelID;$messageID]]
@@ -70,7 +70,7 @@ $if[$msgContent!=]
 $endif
 ```
 
-### Vérification de contenu
+### Vérification of contenu
 
 ```bdfd
 $let[target;$getMessage[$channelID;$message[1]]]
@@ -83,6 +83,6 @@ $endif
 
 ## Notes
 
-- Limité aux 14 lasts days for the messages non épinglés (restriction API Discord).
+- Limité to the 14 lasts days for the messages non épinglés (restriction API Discord).
 - Ne récupère pas les embeds, only le text brut.
-- Utile for the systèmes de citation, logs and modération.
+- Utile for the systèmes of citation, logs and modération.

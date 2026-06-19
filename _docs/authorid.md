@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorID
 syntax: $authorID
-description: Returns the ID Discord de the author of the message qui a déclenché la command.
+description: Returns the ID Discord of the author of the message that triggered the command.
 ---
 
 # $authorID
 
-The variable `$authorID` returns the **ID Discord** de the author of the message qui a déclenché l'execution of the command.
+The variable `$authorID` returns the **ID Discord** of the author of the message that triggered l'execution of the command.
 
 ## Syntax
 
@@ -20,21 +20,21 @@ $authorID
 
 ## Return value
 
-- **Type** : Snowflake (string numérique de 17-19 chiffres)
-- The ID unique de the author of the message
+- **Type** : Snowflake (string numérique of 17-19 chiffres)
+- The ID unique of the author of the message
 
 ## Behavior
 
 - `$authorID` ne prend **no argument**.
 - Dans le context of a command textuelle, `$authorID` est the ID of the personne qui a sent the message.
-- Dans la plupart des cas simples, `$authorID` and `$userID` sont identicals.
+- Dans la plupart cas simples, `$authorID` and `$userID` sont identicals.
 
 ## Examples
 
-### Profil de the author
+### Profil of the author
 
 ```bdfd
-$title[Profil de $authorUsername]
+$title[Profil of $authorUsername]
 $author[$authorUsername;$authorAvatar]
 $description[
 **ID :** $authorID
@@ -44,7 +44,7 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Vérification du owner
+### Vérification of the owner
 
 ```bdfd
 $if[$authorID==123456789012345678]
@@ -55,4 +55,4 @@ $endif
 ## Notes
 
 - `$authorID` est the ID of the **auteur of the message**, tandis que `$userID` est the ID of the **user déclencheur**. Dans les commands textuelles, they are identicals.
-- Use `$authorID` to more than clarté sémantique dans the code lié aux messages.
+- Use `$authorID` to more than clarté sémantique in the code lié to the messages.

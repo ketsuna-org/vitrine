@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isSlash
 syntax: $isSlash
-description: Checks if the command was déclenchée par une command slash.
+description: Checks if the command was triggerede par une command slash.
 ---
 
 # $isSlash
 
-The function `$isSlash` **vérifie si the command in progress was déclenchée via une command slash** (application command) plutôt qu'une command prefix classique.
+The function `$isSlash` **vérifie si the command in progress was triggerede via une command slash** (application command) plutôt qu'une command prefix classique.
 
 ## Syntax
 
@@ -30,8 +30,8 @@ Aucun.
 
 ## Behavior
 
-- Allows to adapter le comportement selon le mode d'invocation.
-- Utile pour envoyer des responses éphémères en slash (`$sendEphemeral[]`).
+- Allows to adapter le comportement according to the mode of invocation.
+- Utile pour envoyer responses éphémères en slash (`$sendEphemeral[]`).
 - Sans parameter : context of the command in progress only.
 
 ## Examples
@@ -40,13 +40,13 @@ Aucun.
 
 ```bdfd
 $if[$isSlash==true]
-  $sendEphemeral[✅ Action effectuée avec success !]
+  $sendEphemeral[✅ Action effectuée with success !]
 $else
-  $sendMessage[✅ Action effectuée avec success !]
+  $sendMessage[✅ Action effectuée with success !]
 $endif
 ```
 
-### Log de diagnostic
+### Log of diagnostic
 
 ```bdfd
 $if[$isSlash==true]
@@ -56,7 +56,7 @@ $else
 $endif
 ```
 
-### Message d'information
+### Message of information
 
 ```bdfd
 $var[type;$if[$isSlash==true]Slash$elsePrefix$endif]
@@ -86,7 +86,7 @@ $sendMessage[Vous avez fourni : $var[args]]
 
 ## Notes
 
-- `$isSlash` ne prend pas de parameters.
+- `$isSlash` ne prend pas of parameters.
 - Pour obtenir the type précis of the command, utilisez `$commandType`.
 - Les responses éphémères (`$sendEphemeral[]`) ne functionnent qu'en slash.
-- `$isSlash` est évalué in the context of the command in progress d'exécution.
+- `$isSlash` est évalué in the context of the command in progress of exécution.

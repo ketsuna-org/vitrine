@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addMentionableSelect
 
-Creates a select menu d'entités mentionnables. Allows users to choisir parmi users ET les roles of the server.
+Creates a select menu of entités mentionnables. Allows users to choisir parmi users ET les roles of the server.
 
 ## Syntax
 
@@ -20,15 +20,15 @@ $addMentionableSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 |-----------|-------------|:-----------:|
 | `customId` | Custom identifier for the interaction | Yes |
 | `placeholder` | Text displayed when rien n'est selectionné | Yes |
-| `minValues` | Minimum number of entities à selectionner (default: 1) | No |
-| `maxValues` | Maximum number of entities à selectionner (default: 1) | No |
+| `minValues` | Minimum number of entities to selectionner (default: 1) | No |
+| `maxValues` | Maximum number of entities to selectionner (default: 1) | No |
 | `disabled` | `true` to disable le menu, `false` (default) | No |
 
 ## Description
 
-A **mentionable select** combine la selection d'users and de roles en a single menu. The user peut choisir either des members or of roles of the server.
+A **mentionable select** combine la selection of users and of roles en a single menu. The user peut choisir either members or of roles of the server.
 
-The values retournées sont of IDs. Use `$roleExists` to determine if a ID correspond à a role or à a user.
+The values retournées sont of IDs. Use `$roleExists` to determine if a ID correspond to a role or to a user.
 
 ## Examples
 
@@ -76,6 +76,6 @@ $endif
 
 ## Notes
 
-- Pratique for commands de modération, giveaway, or systèmes de permission.
+- Pratique for commands of modération, giveaway, or systèmes of permission.
 - Use `$roleExists` to distinguish roles and users in thes values retournées.
 - A single select menu par action row.

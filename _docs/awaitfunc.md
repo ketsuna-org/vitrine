@@ -19,7 +19,7 @@ $awaitFunc is a powerful mechanism for creating interactive, multi-step commands
 
 ## Awaited Events
 
-| functionName | Waits for... |
+| functionName | Waits for.. |
 |--------------|--------------|
 | `"button"` | A button interaction (created with `$addButton`) |
 | `"reaction"` | A reaction added to the bot's message |
@@ -58,5 +58,5 @@ $sendMessage[Que voulez-vous faire ?]
 $addButton[yes;✅ Oui]
 $addButton[no;❌ Non]
 $awaitFunc[button;$authorID]
-$sendMessage[Vous avez cliqué sur a button !]
+$sendMessage[Vous avez cliqué on a button !]
 ```

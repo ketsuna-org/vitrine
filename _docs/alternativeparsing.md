@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: alternativeParsing
 syntax: $alternativeParsing
-description: Active un mode de parsing alternatif for the command in progress. Utile pour résoudre certains conflits de syntax or comportements inattendus du parseur BDFD.
+description: Active un mode of parsing alternatif for the command in progress. Utile pour résoudre certains conflits of syntax or comportements inattendus of the parseur BDFD.
 ---
 # $alternativeParsing
 
-The `$alternativeParsing` function active un **mode de parsing alternatif** for the command in progress. Ce mode utilise une logique de traitement differente qui peut résoudre des problèmes de compatibilité.
+The `$alternativeParsing` function active un **mode of parsing alternatif** for the command in progress. Ce mode utilise une logique of traitement differente qui peut résoudre problèmes of compatibilité.
 
 ## Syntax
 
@@ -28,19 +28,19 @@ None.
 ## Behavior
 
 - Change la façon dont BDFD interprète and exécute the code of the command.
-- Peut résoudre des bugs liés aux crochets `[]` imbriqués or aux becauseactères special.
-- Effet limité à la command in progress.
+- Peut résoudre bugs liés to the crochets `[]` imbriqués or to the becauseactères special.
+- Effet limité to la command in progress.
 
 ## Examples
 
-### Résoudre un confreads de crochets
+### Résoudre un confreads of crochets
 
 ```bdfd
 $alternativeParsing
 $sendMessage[$replaceText[Hello [World];[ ];-]]
 ```
 
-### Command avec syntax complex
+### Command with syntax complex
 
 ```bdfd
 $alternativeParsing
@@ -53,7 +53,7 @@ $endif
 
 ## Notes
 
-- À utiliser when le parsing standard cause of errors inexpliquées.
+- À use when le parsing standard cause of errors inexpliquées.
 - Peut légèrement raslowir l'execution.
-- À placer en début de command, before tout autre code.
-- Alternative à `$optOff` for problèmes purement syntaxiques.
+- À placer en début of command, before tout autre code.
+- Alternative to `$optOff` for problèmes purement syntaxiques.

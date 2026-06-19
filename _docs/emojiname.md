@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: emojiName
 syntax: $emojiName[emojiID]
-description: Gets the name d'an emoji custom from its ID. Returns the name text de the emoji.
+description: Gets the name of a custom emoji from its ID. Returns the name text of the emoji.
 ---
 
 # $emojiName
 
-The `$emojiName[]` function **récupérer the name d'an emoji custom** from its ID Discord.
+The `$emojiName[]` function **récupérer the name of a custom emoji** from its ID Discord.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $emojiName[emojiID]
 
 | Parameter | Description |
 |---|---|
-| `emojiID` | The ID Discord de the emoji (les chiffres dans `<:nom:ID>`). |
+| `emojiID` | The ID Discord of the emoji (les chiffres in `<:nom:ID>`). |
 
 ## Return value
 
@@ -32,13 +32,13 @@ $emojiName[emojiID]
 
 ## Behavior
 
-- Extracted the name since the ID de the emoji.
-- Functionne for emojis de any server accessible par the bot.
+- Extracted the name since the ID of the emoji.
+- Functionne for emojis of any server accessible par the bot.
 - The ID can be extracted of a message contenant the emoji.
 
 ## Examples
 
-### Identification d'emoji
+### Identification of emoji
 
 ```bdfd
 $let[emojiID;$message[1]]
@@ -55,11 +55,11 @@ $endif
 ```bdfd
 $let[id;$message[1]]
 $if[$id!=]
-  $sendMessage[$channelID[logs];📊 Emoji **$emojiName[$id]** utilisé par $userName dans $channelName.]
+  $sendMessage[$channelID[logs];📊 Emoji **$emojiName[$id]** utilisé par $userName in $channelName.]
 $endif
 ```
 
-### List d'emojis
+### List of emojis
 
 ```bdfd
 $title[📋 Emojis of the server]
@@ -74,5 +74,5 @@ $sendMessage[]
 ## Notes
 
 - Ne functionne qu'with the emojis customs, pas les emojis Unicode.
-- L'emoji must be sur a server auquel the bot a accès.
-- Pratique for logs and les statistiques d'usage d'emojis.
+- L'emoji must be on a server auquel the bot a accès.
+- Pratique for logs and les statistiques of usage of emojis.

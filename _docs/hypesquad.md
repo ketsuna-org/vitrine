@@ -5,7 +5,7 @@ translation_key: docs
 category: "Entity Info"
 function_name: hypeSquad
 syntax: $hypeSquad[(userID)]
-description: Returns the maison HypeSquad à laquelle appartient the user (Bravery, Brilliance, Balance) or "None" s'il n'en fait pas partie.
+description: Returns the maison HypeSquad to laquelle appartient the user (Bravery, Brilliance, Balance) or "None" s'il n'en fait pas partie.
 ---
 
 # $hypeSquad
@@ -27,16 +27,16 @@ $hypeSquad[(userID)]
 ## Return Value
 
 - **Type** : String
-- `Bravery` - Maison du Courage (violet)
-- `Brilliance` - Maison de la Brillance (orange)
-- `Balance` - Maison de l'Équilibre (vert)
-- `None` - The user n'a pas rejoint de maison HypeSquad.
+- `Bravery` - Maison of the Courage (violet)
+- `Brilliance` - Maison of la Brillance (orange)
+- `Balance` - Maison of l'Équilibre (vert)
+- `None` - The user n'a pas rejoint of maison HypeSquad.
 
 ## Behavior
 
 - Checks le profil Discord of the user pour déterminer sa maison HypeSquad.
-- La participation à HypeSquad est une option de profil Discord, distincte du programme HypeSquad Events.
-- Returns `None` si the user n'a pas choisi de maison.
+- La participation to HypeSquad est une option of profil Discord, distincte of the programme HypeSquad Events.
+- Returns `None` si the user n'a pas choisi of maison.
 
 ## Examples
 
@@ -48,17 +48,17 @@ $description[Votre maison HypeSquad : **$hypeSquad**]
 $sendMessage[]
 ```
 
-### Emoji custom selon la maison
+### Emoji custom according to the maison
 
 ```bdfd
 $let[house;$hypeSquad[$authorID]]
 
 $if[$house==Bravery]
-  🟣 Maison du Courage
+  🟣 Maison of the Courage
 $elseif[$house==Brilliance]
-  🟠 Maison de la Brillance
+  🟠 Maison of la Brillance
 $elseif[$house==Balance]
-  🟢 Maison de l'Équilibre
+  🟢 Maison of l'Équilibre
 $else
   ⚪ Aucune maison HypeSquad
 $endif
@@ -79,6 +79,6 @@ $sendMessage[]
 
 ## Notes
 
-- Requires que the user ait configured sa maison HypeSquad dans their parameters Discord.
-- Distinct des badges (le badge HypeSquad est géré par `$hasBadge` / `$userBadges`).
-- Les noms de maisons sont retournés en anglais (Bravery, Brilliance, Balance).
+- Requires que the user ait configured sa maison HypeSquad in their parameters Discord.
+- Distinct badges (le badge HypeSquad est géré par `$hasBadge` / `$userBadges`).
+- Les noms of maisons sont retournés en anglais (Bravery, Brilliance, Balance).

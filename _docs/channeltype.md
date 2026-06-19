@@ -32,10 +32,10 @@ $channelType[(channelID)]
 
 ## Examples
 
-### Afficher the type of the channel
+### Display the type of the channel
 
 ```bdfd
-$sendMessage[Ce channel est de type : **$channelType**]
+$sendMessage[Ce channel est of type : **$channelType**]
 ```
 
 ### Vérifier si channel vocal
@@ -52,7 +52,7 @@ $endif
 
 ```bdfd
 $if[$channelType==category]
-  $sendMessage[Cette command cannot être utilisée dans une catégorie.]
+  $sendMessage[Cette command cannot être utilisée in a catégorie.]
   $stop
 $endif
 ```
@@ -60,5 +60,5 @@ $endif
 ## Notes
 
 - Les types sont retournés en minuscules.
-- Utile pour conditionner le behavior of a command selon the type de channel.
-- Les channels de type `dm` do not have de catégorie parente.
+- Utile pour conditionner le behavior of a command according to the type of channel.
+- Les channels of type `dm` do not have of catégorie parente.

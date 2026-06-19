@@ -8,9 +8,9 @@ syntax: $editIn[duration;(messageId)]
 description: Programme l'édition of a message after a delay spécifié. The message current will be replaced par le new contenu set after le delay.
 ---
 
-# $editIn[] — Édition Différée de Message
+# $editIn[] — Édition Différée of Message
 
-`$editIn[]` programme l'édition automatique of a message after a delay donné. This is utile to create of messages qui se mettent à day, des compteurs, or transitions d'state.
+`$editIn[]` programme l'édition automatique of a message after a delay donné. This is utile to create of messages qui se mettent to day, compteurs, or transitions of state.
 
 ## Syntax
 
@@ -25,7 +25,7 @@ $editIn[duration;(messageId)]
 | `duration` | Yes | Delay before édition. Format : number + unité (`s`, `m`, `h`). |
 | `messageId` | No | ID of the message cible. If omitted, the message courant. |
 
-## Format de durée
+## Format of durée
 
 | Format | Unité | Example |
 |--------|-------|---------|
@@ -35,11 +35,11 @@ $editIn[duration;(messageId)]
 
 ## Return value
 
-Programme l'édition différée. The new contenu est set after the call à `$editIn[]`.
+Programme l'édition différée. The new contenu est set after the call to `$editIn[]`.
 
 ## Usage
 
-### Indicateur de chargement
+### Indicateur of chargement
 
 ```bdfd
 $sendMessage[⏳ Traitement in progress...]
@@ -47,33 +47,33 @@ $editIn[3s]
 $sendMessage[✅ Traitement terminé !]
 ```
 
-### Counts à rebours
+### Counts to rebours
 
 ```bdfd
-$sendMessage[Début dans 5 seconds...]
+$sendMessage[Début in 5 seconds...]
 $editIn[1s]
-$sendMessage[Début dans 4 seconds...]
+$sendMessage[Début in 4 seconds...]
 $editIn[2s]
-$sendMessage[Début dans 3 seconds...]
+$sendMessage[Début in 3 seconds...]
 $editIn[3s]
-$sendMessage[Début dans 2 seconds...]
+$sendMessage[Début in 2 seconds...]
 $editIn[4s]
-$sendMessage[Début dans 1 second...]
+$sendMessage[Début in 1 second...]
 $editIn[5s]
 $sendMessage[🚀 This is parti !]
 ```
 
-### Mise à day after action
+### Mise to day after action
 
 ```bdfd
-$sendMessage[Recherche in progress... 🔍]
+$sendMessage[Recherche in progress.. 🔍]
 $editIn[2s]
-$title[Results de recherche]
+$title[Results of recherche]
 $description[3 results founds pour "$var[query]"]
 $color[#5865F2]
 ```
 
-### Avec messageId spécifique
+### Avec messageId specific
 
 ```bdfd
 $var[msgId;$sendMessage[Status : En attente...;yes]]
@@ -83,7 +83,7 @@ $sendMessage[Status : Complété ✅]
 
 ## Notes
 
-- The duration maximale est generally de 15 minutes (limitation BDFD/Discord).
+- The duration maximale est generally of 15 minutes (limitation BDFD/Discord).
 - Le contenu after `$editIn[]` remplace entièrement le contenu of the message cible.
-- Si `messageId` est omis, the message in progress d'envoi est ciblé.
-- Pour éditer only the embed without toucher au text, use `$editEmbedIn[]`.
+- Si `messageId` est omitted, the message in progress of envoi est ciblé.
+- Pour éditer only the embed without toucher to the text, use `$editEmbedIn[]`.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: mentions
 syntax: $mentions
-description: Returns the list de all IDs des users mentionnés in the message, separateds par des virgules.
+description: Returns the list of all IDs users mentionnés in the message, separateds par virgules.
 ---
 
 # $mentions
 
-The variable `$mentions` retourne la **list de all IDs des users mentionnés** in the message de command.
+The variable `$mentions` retourne la **list of all IDs users mentionnés** in the command message.
 
 ## Syntax
 
@@ -20,7 +20,7 @@ $mentions
 
 ## Return Value
 
-- **Type** : List de snowflakes separateds par des virgules
+- **Type** : List of snowflakes separateds par virgules
 - Example: `123456789,987654321,555555555`
 - String vide si noe mention user
 
@@ -43,7 +43,7 @@ $else
 $endif
 ```
 
-### Boucle sur les mentions
+### Boucle on the mentions
 
 ```bdfd
 $let[mentionsList;$splitText[$mentions;,]]
@@ -70,12 +70,12 @@ $if[$mentions!=]
   $endwhile
   $sendMessage[$total user(s) expulsé(s).]
 $else
-  $sendMessage[Mentionnez au moins un user.]
+  $sendMessage[Mentionnez to the moins un user.]
 $endif
 ```
 
 ## Notes
 
-- `$mentions` retourne all IDs d'un coup, separateds par des virgules.
+- `$mentions` retourne all IDs of un coup, separateds par virgules.
 - Pour itérer, utilisez `$splitText[$mentions;,]` pour obtenir un array.
 - Ne détecte pas les mentions `@everyone` or `@here`.

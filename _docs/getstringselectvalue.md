@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getStringSelectValue
 syntax: $getStringSelectValue[(index)]
-description: Gets the value de l'option selectede par the user dans un menu de sélection de strings (string select menu).
+description: Gets the value of l'option selectede par the user in a menu of sélection of strings (string select menu).
 ---
 
 # $getStringSelectValue
 
-The function `$getStringSelectValue[]` allows **récupérer the value** de l'option choisie par the user dans un menu de sélection de strings (string select menu).
+The function `$getStringSelectValue[]` allows **récupérer the value** of l'option choisie par the user in a menu of sélection of strings (string select menu).
 
 ## Syntax
 
@@ -22,23 +22,23 @@ $getStringSelectValue[(index)]
 
 | Parameter | Description |
 |---|---|
-| `index` | Optional - L'index de the value selectede (1 = first). Par default 1. |
+| `index` | Optional - L'index of the value selectede (1 = first). Par default 1. |
 
 ## Return Value
 
 - **Type** : String
-- The value associée à l'option du menu selectede.
+- The value associée to l'option of the menu selectede.
 - String vide si noe option n'was choisie.
 
 ## Behavior
 
 - Functionne with thes menus createds via `$addStringSelectMenu[]`.
-- The value retournée correspond au second parameter de each option définie in the menu : `$addStringSelectMenu[menuID;placeholder;label1:value1;label2:value2;...]`.
-- Très utile pour déclencher des actions spécifiques selon the value choisie.
+- The value retournée correspond to the second parameter of each option définie in the menu : `$addStringSelectMenu[menuID;placeholder;label1:value1;label2:value2;...]`.
+- Très utile pour trigger actions specifics according to the value choisie.
 
 ## Examples
 
-### Menu de navigation simple
+### Menu of navigation simple
 
 ```bdfd
 $nominalTrigger
@@ -53,7 +53,7 @@ $if[$action==home]
   $description[Bienvenue on the server !]
   $sendMessage[]
 $elseif[$action==profile]
-  $title[👤 Profil de $userName]
+  $title[👤 Profil of $userName]
   $description[Rejoins le $creationDate[$authorID]...]
   $sendMessage[]
 $elseif[$action==help]
@@ -63,7 +63,7 @@ $elseif[$action==help]
 $endif
 ```
 
-### Switch basé sur the value
+### Switch basé on the value
 
 ```bdfd
 $onInteraction[menu]
@@ -84,6 +84,6 @@ $endSwitch
 
 ## Notes
 
-- L'index commence à 1.
-- Pour les menus à choix multiple, utiliser `$getStringSelectValues[]`.
+- L'index commence to 1.
+- Pour les menus to choix multiple, use `$getStringSelectValues[]`.
 - The value can be n'importe quelle string définie in the menu.

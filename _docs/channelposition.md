@@ -10,7 +10,7 @@ description: Returns the position of a channel in the list of channels Discord.
 
 # $channelPosition
 
-The `$channelPosition` function returns the **position** of a channel in the list of channels of the server. The position `0` correspond au channel the most haut, and les numbers augmentent en descendant.
+The `$channelPosition` function returns the **position** of a channel in the list of channels of the server. The position `0` correspond to the channel the most haut, and les numbers augmentent en descendant.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ $channelPosition[(channelID)]
 
 ## Examples
 
-### Afficher the position
+### Display the position
 
 ```bdfd
 $sendMessage[Ce channel est en position $channelPosition]
@@ -48,7 +48,7 @@ $else
 $endif
 ```
 
-### Channel the most haut d'une catégorie
+### Channel the most haut of une catégorie
 
 ```bdfd
 $sendMessage[Position in the catégorie : $channelPosition]
@@ -56,7 +56,7 @@ $sendMessage[Position in the catégorie : $channelPosition]
 
 ## Notes
 
-- The position est relative à the order d'affichage dans Discord.
-- Les catégories ont leur propre système de positionnement.
+- The position est relative to the order of affichage in Discord.
+- Les catégories ont leur propre système of positionnement.
 - The position peut changer if a administrator réorganise les channels.
 - Les channels sont sorteds par position within leur catégorie parente.

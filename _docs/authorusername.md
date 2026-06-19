@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorUsername
 syntax: $authorUsername
-description: Returns the name d'user global de the author of the message qui a déclenché la command.
+description: Returns the name of user global of the author of the message that triggered the command.
 ---
 
 # $authorUsername
 
-The variable `$authorUsername` returns the **nom d'user global** de the author of the message qui a déclenché la command.
+The variable `$authorUsername` returns the **nom of user global** of the author of the message that triggered the command.
 
 ## Syntax
 
@@ -20,18 +20,18 @@ $authorUsername
 
 ## Return value
 
-- **Type** : String de becauseactères
-- The name d'user global de the author
+- **Type** : String of becauseactères
+- The name of user global of the author
 
 ## Behavior
 
 - `$authorUsername` ne prend **no argument**.
-- Équivaslow à `$userName` for commands textuelles.
-- Returns the name d'user **global** (not the pseudo server).
+- Équivaslow to `$userName` for commands textuelles.
+- Returns the name of user **global** (not the pseudo server).
 
 ## Examples
 
-### Message de the author
+### Message of the author
 
 ```bdfd
 $title[Command executede]
@@ -46,6 +46,6 @@ $sendMessage[]
 
 ## Notes
 
-- Pour obtenir le pseudo server de the author, use `$nickname` or `$displayName`.
+- Pour obtenir le pseudo server of the author, use `$nickname` or `$displayName`.
 - `$authorUsername` est utile pour référencer explicitement the author of the message in thes logs or embeds.
-- Dans la plupart des cas, `$userName` and `$authorUsername` sont interchangeables.
+- Dans la plupart cas, `$userName` and `$authorUsername` sont interchangeables.

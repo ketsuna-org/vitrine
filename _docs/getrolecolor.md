@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: getRoleColor
 syntax: $getRoleColor[roleID]
-description: Gets the couleur hexadecimale of a role Discord. Returns the couleur au format #RRGGBB.
+description: Gets the couleur hexadecimale of a role Discord. Returns the couleur to the format #RRGGBB.
 ---
 
 # $getRoleColor
@@ -27,14 +27,14 @@ $getRoleColor[roleID]
 ## Return Value
 
 - **Type** : String
-- The color au format hexadecimal `#RRGGBB`.
-- `#000000` (noir) si the role n'a pas de couleur définie (couleur default).
+- The color to the format hexadecimal `#RRGGBB`.
+- `#000000` (noir) si the role n'a pas of couleur définie (couleur default).
 
 ## Behavior
 
 - Extracted the color configurede for the role.
 - Returns `#000000` for the roles without couleur (transparent default).
-- The color est utilisable directly dans `$color[]` or tout autre context nécessitant une couleur.
+- The color est utilisable directly in `$color[]` or tout autre context nécessitant une couleur.
 
 ## Examples
 
@@ -45,11 +45,11 @@ $let[roleID;$roleID[Admin]]
 Couleur of the role **$roleName[$roleID]** : $getRoleColor[$roleID]
 ```
 
-### Embed coloré selon the role
+### Embed colored according to the role
 
 ```bdfd
 $let[roleID;$highestRole[$authorID]]
-$title[👤 Profil de $userName]
+$title[👤 Profil of $userName]
 $description[
 **Role principal :** $roleName[$roleID]
 **Couleur :** $getRoleColor[$roleID]
@@ -59,10 +59,10 @@ $thumbnail[$userAvatar[$authorID]]
 $sendMessage[]
 ```
 
-### Palette de roles
+### Palette of roles
 
 ```bdfd
-$title[🎨 Couleurs des roles]
+$title[🎨 Couleurs roles]
 $description[
 $textSplit[$serverRoles[,];, ]
   $index. $roleName[$splitText[$index]] — $getRoleColor[$splitText[$index]]
@@ -88,6 +88,6 @@ $sendMessage[]
 
 ## Notes
 
-- Si the role a une couleur default (pas de couleur), `$getRoleColor` retourne `#000000`.
+- Si the role a une couleur default (pas of couleur), `$getRoleColor` retourne `#000000`.
 - Bonus : utilisez `$if[$getRoleColor[$roleID]==#000000]` pour détecter les roles without couleur.
 - The color est compatible with the function `$color[]` embeds.

@@ -10,7 +10,7 @@ description: Ferme and deletes the ticket (canal) courant. If the canal is not u
 
 # $closeTicket
 
-The `$closeTicket[]` function **fermer and supprimer un ticket** (le canal courant). Équivaslow à `$deleteChannels[$channelID]` avec vérification.
+The `$closeTicket[]` function **fermer and supprimer un ticket** (le canal courant). Équivaslow to `$deleteChannels[$channelID]` with vérification.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $closeTicket[(errorMessage)]
 
 | Parameter | Description |
 |---|---|
-| `errorMessage` | Optional - Message if the command is not dans un ticket. Default: "Ce canal is not un ticket." |
+| `errorMessage` | Optional - Message if the command is not in a ticket. Default: "Ce canal is not un ticket." |
 
 ## Return value
 
@@ -31,7 +31,7 @@ Cette function does not return a value.
 ## Behavior
 
 - Deletes the canal in thequel la command est executede.
-- Conçu pour être utilisé dans des canaux createds par `$newTicket[]`.
+- Conçu pour être utilisé in canaux createds par `$newTicket[]`.
 - If the canal is not un ticket reconnu, displays the message error.
 - The bot must have `MANAGE_CHANNELS`.
 
@@ -43,15 +43,15 @@ Cette function does not return a value.
 $closeTicket
 ```
 
-### Fermeture avec confirmation
+### Fermeture with confirmation
 
 ```bdfd
-$sendMessage[Fermeture du ticket dans 5 seconds...]
+$sendMessage[Fermeture of the ticket in 5 seconds...]
 $wait[5]
 $closeTicket
 ```
 
-### Fermeture avec log
+### Fermeture with log
 
 ```bdfd
 $let[logChannel;123456789]
@@ -65,11 +65,11 @@ $closeTicket
 $if[$checkContains[$userPerms;Administrator]==true]
   $closeTicket
 $else
-  $closeTicket[Seuls les administrators and modérateurs peuvent fermer ce ticket.]
+  $closeTicket[Seuls les administrators and modérateurs can fermer ce ticket.]
 $endif
 ```
 
-### Fermeture avec sauvegarde
+### Fermeture with sauvegarde
 
 ```bdfd
 $let[transcript;$getChannelMessages[$channelID;100]]
@@ -81,6 +81,6 @@ $closeTicket
 ## Notes
 
 - `$closeTicket[]` deletes the canal — action irréversible.
-- Sauvegardez les informations importantes before fermeture (transcript, logs).
+- Sauvegardez les information importantes before fermeture (transcript, logs).
 - The message error custom allows éviter les fermetures accidentelles.
-- Pour une fermeture without suppression, archivez plutôt le canal avec `$modifyChannel[]`.
+- Pour une fermeture without suppression, archivez plutôt le canal with `$modifyChannel[]`.

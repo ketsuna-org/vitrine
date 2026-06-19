@@ -5,7 +5,7 @@ translation_key: docs
 category: "Math & Text"
 function_name: sub
 syntax: $sub[a;b]
-description: Soustrait la twoième value de la first (a - b).
+description: Soustrait la twoième value of la first (a - b).
 ---
 
 # $sub[]
@@ -22,14 +22,14 @@ $sub[a;b]
 
 | Parameter | Type   | Required | Description                        |
 |-----------|--------|-------------|------------------------------------|
-| `a`       | number | Yes         | The value de départ (minuend).     |
-| `b`       | number | Yes         | The value à soustraire (subtrahend). |
+| `a`       | number | Yes         | The value of départ (minuend).     |
+| `b`       | number | Yes         | The value to soustraire (subtrahend). |
 
 ## Behavior
 
 - Returns `a - b`.
 - The result can be négatif.
-- Supporte les numbers décimaux.
+- Supports thes numbers décimaux.
 - Si les values are not numériques, le comportement est indéfini.
 
 ## Examples
@@ -46,13 +46,13 @@ $sub[5;10]
 → -5
 ```
 
-**Avec des decimales :**
+**Avec decimales :**
 ```
 $sub[10.5;3.2]
 → 7.3
 ```
 
-**Calcul de bénéfice :**
+**Calcul of bénéfice :**
 ```
 $sub[$getVar[revenu];$getVar[depense]]
 ```

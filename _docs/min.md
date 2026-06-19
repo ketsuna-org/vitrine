@@ -10,7 +10,7 @@ description: Returns the plus petite value parmi les arguments fournis.
 
 # $min[]
 
-The function `$min[]` compare all values fournies and retourne la plus petite d'between elles. Elle est variadique : elle accepte un number illimité d'arguments.
+The function `$min[]` compare all values fournies and retourne la plus petite of between elles. Elle est variadique : elle accepte un number illimité of arguments.
 
 ## Syntax
 
@@ -22,12 +22,12 @@ $min[value1;value2;...]
 
 | Parameter | Type   | Required | Description                                              |
 |-----------|--------|-------------|----------------------------------------------------------|
-| `values` | number | Yes         | List de values numériques separatedes par `;`. Variadique. |
+| `values` | number | Yes         | List of values numériques separatedes par `;`. Variadique. |
 
 ## Behavior
 
 - Parcourt all values and retourne la plus petite.
-- Supporte les numbers négatifs and décimaux.
+- Supports thes numbers négatifs and décimaux.
 - Avec a single argument, retourne cet argument.
 - Avec zéro argument, le comportement est indéfini (retourne vide or 0).
 
@@ -45,13 +45,13 @@ $min[5;12;3;8;1]
 → 1
 ```
 
-**Avec des négatifs :**
+**Avec négatifs :**
 ```
 $min[-5;10;-2;0]
 → -5
 ```
 
-**Avec des décimaux :**
+**Avec décimaux :**
 ```
 $min[2.5;1.1;3.9]
 → 1.1
@@ -60,5 +60,5 @@ $min[2.5;1.1;3.9]
 ## Notes
 
 - Pour trouver la plus grande value, utilisez `$max[]`.
-- Pour des compareasons plus complexs, utilisez `$calculate[min(a, b)]`.
+- Pour compareasons plus complexs, utilisez `$calculate[min(a, b)]`.
 - Le separator est le point-virgule `;`.

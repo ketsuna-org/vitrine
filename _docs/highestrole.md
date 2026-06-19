@@ -10,7 +10,7 @@ description: Returns the ID of the role le plus haut (hiérarchiquement) of the 
 
 # $highestRole
 
-The variable `$highestRole` retourne l'**ID of the role le plus élevé** in the hiérarchie des roles of the user on the server.
+The variable `$highestRole` retourne l'**ID of the role le plus élevé** in the hiérarchie roles of the user on the server.
 
 ## Syntax
 
@@ -27,15 +27,15 @@ $highestRole
 ## Behavior
 
 - `$highestRole` ne prend **no argument**.
-- La hiérarchie est déterminée par the position des roles in thes parameters of the server Discord.
+- La hiérarchie est déterminée par the position roles in thes parameters of the server Discord.
 - Si the user a several roles, retourne celui qui est le plus haut in the list.
 
 ## Examples
 
-### Afficher the role principal
+### Display the role principal
 
 ```bdfd
-$title[Profil de $userName]
+$title[Profil of $userName]
 $author[$userName;$userAvatar]
 $description[
 **Role le plus haut :** <@&$highestRole>
@@ -49,24 +49,24 @@ $sendMessage[]
 
 ```bdfd
 $if[$highestRole==123456789012345678]
-  $sendMessage[Vous êtes member du staff !]
+  $sendMessage[Vous êtes member of the staff !]
 $else
   $sendMessage[Role principal : $roleName[$highestRole]]
 $endif
 ```
 
-### Compareason de roles
+### Compareason of roles
 
 ```bdfd
 $let[modRole;123456789012345678]
 $if[$rolePosition[$highestRole]>=$rolePosition[$modRole]]
-  $sendMessage[Vous avez un role supérieur or égal à Modérateur.]
+  $sendMessage[Vous avez un role supérieur or égal to Modérateur.]
 $endif
 ```
 
 ## Notes
 
-- L'ordre des roles est défini in thes parameters of the server (Drag & Drop in the interface Discord).
-- The role `@everyone` est toudays le plus bas, unless des roles sont placés en dessous (réorganisation manuelle).
+- L'ordre roles est défini in thes parameters of the server (Drag & Drop in the interface Discord).
+- The role `@everyone` est toudays le plus bas, unless roles sont placés en dessous (réorganisation manuelle).
 - Pour the role le plus bas, utilisez `$lowestRole`.
 - Utilisez `$roleName[$highestRole]` pour obtenir the name of the role.

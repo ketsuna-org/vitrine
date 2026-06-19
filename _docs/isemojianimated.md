@@ -22,7 +22,7 @@ $isEmojiAnimated[emoji]
 
 | Parameter | Description |
 |---|---|
-| `emoji` | L'emoji à tester, sous sa forme Discord (`<:nom:id>` or `<a:nom:id>`). |
+| `emoji` | L'emoji to tester, sous sa forme Discord (`<:nom:id>` or `<a:nom:id>`). |
 
 ## Return Value
 
@@ -34,11 +34,11 @@ $isEmojiAnimated[emoji]
 
 - Functionne only with thes emojis customs Discord.
 - Les emojis Unicode standards (😀, 🎉) retournent `false`.
-- Le format attendu est la mention d'emoji complete.
+- Le format attendu est la mention of emoji complete.
 
 ## Examples
 
-### Vérification d'un emoji
+### Vérification of un emoji
 
 ```bdfd
 $var[emoji;$message[1]]
@@ -49,7 +49,7 @@ $else
 $endif
 ```
 
-### Statistiques d'emoji
+### Statistiques of emoji
 
 ```bdfd
 $title[📊 Info Emoji]
@@ -70,7 +70,7 @@ $if[$isEmojiAnimated[$var[emoji]]==true]
   $sendMessage[✅ Emoji animé détecté !]
   $sendMessage[$var[emoji]]
 $else
-  $sendMessage[❌ Seuls les emojis animés sont alloweds dans cette command.]
+  $sendMessage[❌ Seuls les emojis animés sont alloweds in cette command.]
 $endif
 ```
 
@@ -79,5 +79,5 @@ $endif
 - Format animé : `<a:nom:id>` → `true`.
 - Format static : `<:nom:id>` → `false`.
 - Emoji Unicode : `😀` → `false`.
-- Pour obtenir the name d'un emoji, utilisez `$emojiName[]`.
-- Pour obtenir the ID d'un emoji, utilisez `$emojiID[]`.
+- Pour obtenir the name of un emoji, utilisez `$emojiName[]`.
+- Pour obtenir the ID of un emoji, utilisez `$emojiID[]`.

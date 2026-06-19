@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $allowMention
 
-Enables les mentions in the response. Lors d'a response (reply), the user will be pingé/mentionné explicitement.
+Enables les mentions in the response. Lors of a response (reply), the user will be pingé/mentionné explicitement.
 
 ## Syntax
 
@@ -16,13 +16,13 @@ $allowMention
 
 ## Description
 
-`$allowMention` est un **flag** (without arguments) qui s'utilise before `$sendMessage`, generally en combinaison avec `$reply`. Il active explicitement la mention/ping of the user dans a response.
+`$allowMention` est un **flag** (without arguments) qui s'utilise before `$sendMessage`, generally en combinaison with `$reply`. Il active explicitement la mention/ping of the user in a response.
 
-Bien only the behavior by default de `$reply` inclut déjà un ping, `$allowMention` allows rendre l'intention explicite and de surcharger d'éventuelles configurations by default.
+Bien only the behavior by default of `$reply` inclut déjà un ping, `$allowMention` allows rendre l'intention explicite and of surcharger of éventuelles configurations by default.
 
 ## Examples
 
-### Response avec ping explicite
+### Response with ping explicite
 
 ```
 $reply
@@ -41,7 +41,7 @@ $if[$customID==btn_alert]
 $endif
 ```
 
-### Response avec embeds and mention
+### Response with embeds and mention
 
 ```
 $reply
@@ -60,7 +60,7 @@ $sendMessage[]
 
 ## Notes
 
-- `$allowMention` enables the ping user dans a response.
-- Utile pour rendre l'intention explicite dans the code.
-- Flag à placer before `$sendMessage`.
-- S'utilise en complément de `$reply`.
+- `$allowMention` enables the ping user in a response.
+- Utile pour rendre l'intention explicite in the code.
+- Flag to placer before `$sendMessage`.
+- S'utilise en complément of `$reply`.

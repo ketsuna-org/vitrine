@@ -26,7 +26,7 @@ No parameters.
 
 - **Type**: String (Snowflake ID)
 - The ID of the message the user replied to.
-- Empty string if the command was not triggered via a reply.
+- Empty string if the command was not triggered via reply.
 
 ## Behavior
 
@@ -84,6 +84,6 @@ $endif
 
 ## Notes
 
-- Only works if the command is triggered via a Discord reply.
+- Only works if the command is triggered via Discord reply.
 - Returns an empty string in other cases (normal message, slash command, etc.).
 - Convenient for contextual commands without having to manually provide an ID.

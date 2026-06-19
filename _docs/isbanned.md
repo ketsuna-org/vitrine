@@ -22,7 +22,7 @@ $isBanned[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user à vérifier. |
+| `userID` | The ID of the user to vérifier. |
 
 ## Return Value
 
@@ -32,7 +32,7 @@ $isBanned[userID]
 
 ## Behavior
 
-- The bot needs la permission `BanMembers` pour consulter la list des bannis.
+- The bot needs la permission `BanMembers` pour consulter la list bannis.
 - Functionne even if the user a quitté the server.
 - Checks only the server courant.
 
@@ -42,7 +42,7 @@ $isBanned[userID]
 
 ```bdfd
 $if[$isBanned[$mentioned[1]]==true]
-  $sendMessage[⚠️ <@$mentioned[1]> est déjà banni de ce server.]
+  $sendMessage[⚠️ <@$mentioned[1]> est déjà banni of ce server.]
 $else
   $ban[$mentioned[1];Reason fournie par $userName]
   $sendMessage[🔨 <@$mentioned[1]> was banni.]
@@ -60,7 +60,7 @@ $else
 $endif
 ```
 
-### Log de vérification
+### Log of vérification
 
 ```bdfd
 $var[userID;$message[1]]
@@ -79,4 +79,4 @@ $endif
 - The bot doit avoir `BanMembers` pour que this function retourne un result fiable.
 - Pour obtenir la ban reason, utilisez `$getBanReason[]`.
 - Pour bannir/débannir, utilisez `$ban[]` / `$unban[]`.
-- Functionne only dans un context de server (pas en DM).
+- Functionne only in a context of server (pas en DM).

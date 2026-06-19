@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $noMention
 
-Désactive les mentions in the response. Lors d'une response (reply), the user ne sera pas pingé/mentionné.
+Désactive les mentions in the response. Lors of une response (reply), the user ne sera pas pingé/mentionné.
 
 ## Syntax
 
@@ -16,7 +16,7 @@ $noMention
 
 ## Description
 
-`$noMention` est un **flag** (without arguments) qui s'utilise before `$sendMessage`, generally en combinaison avec `$reply`. Il empêche la mention/ping of the user dans une response, ce qui est utile pour des responses silencieuses.
+`$noMention` est un **flag** (without arguments) qui s'utilise before `$sendMessage`, generally en combinaison with `$reply`. Il empêche la mention/ping of the user in a response, ce qui est utile pour responses silencieuses.
 
 Par default, `$reply` ping l'auteur of the message cible. `$noMention` supprime ce comportement.
 
@@ -30,7 +30,7 @@ $noMention
 $sendMessage[Voici votre response, without notification]
 ```
 
-### Response discrète avec embeds
+### Response discrète with embeds
 
 ```
 $reply
@@ -60,6 +60,6 @@ $endif
 
 ## Notes
 
-- `$noMention` désactive le ping user, pas les autres types de mentions (@everyone, @role).
-- Particulièrement utile avec `$reply` pour des responses non intrusives.
-- Flag à placer before `$sendMessage`.
+- `$noMention` désactive le ping user, pas les autres types of mentions (@everyone, @role).
+- Particulièrement utile with `$reply` pour responses non intrusives.
+- Flag to placer before `$sendMessage`.

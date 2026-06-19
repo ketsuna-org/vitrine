@@ -10,7 +10,7 @@ description: Checks if a channel Discord existe on the server. Returns "true" or
 
 # $channelExists
 
-The `$channelExists` function vérifie if a **channel Discord existe** on the server from its ID. Utile pour s'assurer qu'a channel cible est toudays valid before d'interagir avec.
+The `$channelExists` function vérifie if a **channel Discord existe** on the server from its ID. Utile pour s'assurer qu'a channel target est toudays valid before of interagir avec.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $channelExists[channelID]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the channel à vérifier. Required. |
+| `channelID` | The ID of the channel to vérifier. Required. |
 
 ## Return value
 
@@ -42,13 +42,13 @@ $else
 $endif
 ```
 
-### Vérifier before d'envoyer a message
+### Vérifier before of envoyer a message
 
 ```bdfd
 $if[$channelExists[123456789012345678]==true]
   $channelSendMessage[123456789012345678;Message automatique]
 $else
-  $sendMessage[The channel de logs n'existe plus !]
+  $sendMessage[The channel of logs n'existe plus !]
 $endif
 ```
 
@@ -56,4 +56,4 @@ $endif
 
 - La value retournée est a string `"true"` or `"false"`.
 - Ne vérifie que les channels of the server courant.
-- Utile in thes systèmes de logs or de configuration où les IDs sont stockés.
+- Utile in thes systèmes of logs or of configuration où les IDs sont stockés.

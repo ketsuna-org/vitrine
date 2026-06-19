@@ -40,7 +40,7 @@ $else
 $endif
 ```
 
-### Log d'édition
+### Log of édition
 
 ```bdfd
 $if[$isMessageEdited==true]
@@ -61,5 +61,5 @@ $endif
 ## Notes
 
 - Returns ae string `"true"` or `"false"`, pas un boolean.
-- Pour obtenir la date d'édition, utilisez `$messageEditedTimestamp`.
+- Pour obtenir la date of édition, utilisez `$messageEditedTimestamp`.
 - Utile pour détecter if ae command was modifiede after envoi.

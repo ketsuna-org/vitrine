@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandName
 syntax: $commandName
-description: Returns the name of the command in progress d'execution.
+description: Returns the name of the command in progress of execution.
 ---
 
 # $commandName
 
-The `$commandName` function **retourne the name of the command in progress d'execution**, such as set in the éditeur BDFD.
+The `$commandName` function **retourne the name of the command in progress of execution**, such as set in the éditeur BDFD.
 
 ## Syntax
 
@@ -35,10 +35,10 @@ Aucun.
 
 ## Examples
 
-### Log d'execution
+### Log of execution
 
 ```bdfd
-$log[📌 $userName ($authorID) a executed /$commandName dans #$channelName sur $serverName]
+$log[📌 $userName ($authorID) a executed /$commandName in #$channelName on $serverName]
 ```
 
 ### Aide contextuelle
@@ -65,7 +65,7 @@ $if[$message[1]==]
 $endif
 ```
 
-### Statistique d'usage (via stockage)
+### Statistique of usage (via stockage)
 
 ```bdfd
 $var[count;$getVar[usage_$commandName]]
@@ -74,11 +74,11 @@ $setVar[usage_$commandName;$var[count]]
 $log[📊 $commandName utilisée $var[count] fois]
 ```
 
-### Détection pour behavior spécifique
+### Détection pour behavior specific
 
 ```bdfd
 $if[$commandName==help]
-  $sendMessage[📚 Voici la list des commands...]
+  $sendMessage[📚 Voici la list commands...]
 $elseif[$commandName==ping]
   $sendMessage[🏓 Pong ! Latency : $ping ms]
 $else
@@ -89,6 +89,6 @@ $endif
 ## Notes
 
 - `$commandName` retourne the name internal, not the trigger (préfixe).
-- En slash, the name correspond à celui de l'application command.
+- En slash, the name correspond to celui of l'application command.
 - For the type (prefix/slash), use `$commandType`.
 - For the folder, use `$commandFolder`.

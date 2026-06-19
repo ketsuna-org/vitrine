@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addModalRadioGroup
 syntax: $addModalRadioGroup[customId;label;(required)]
-description: Crée a group de radio buttons in a modal. The user ne peut selectionner qu'a single option à la fois. The options sont ajoutées avec $addRadioGroupOption[].
+description: Crée a group of radio buttons in a modal. The user ne peut selectionner qu'a single option to la fois. The options sont ajoutées with $addRadioGroupOption[].
 ---
 
-# $addModalRadioGroup[] — Groupe de Buttons Radio
+# $addModalRadioGroup[] — Group of Buttons Radio
 
-`$addModalRadioGroup[]` crée a container de radio buttons in a modal. Contrairement aux checkboxes, a single choix can be selectionné parmi les options of the group.
+`$addModalRadioGroup[]` crée a container of radio buttons in a modal. Contrairement to the checkboxes, a single choix can be selectionné parmi les options of the group.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Initialise a group radio. The value of the option selectionnée est accessible v
 
 ## Usage
 
-### Groupe radio simple
+### Group radio simple
 
 ```bdfd
 $newModal[Inscription;signup_modal]
@@ -43,7 +43,7 @@ $addRadioGroupOption[gender;Féminin;female]
 $addRadioGroupOption[gender;Non-binaire;nb]
 ```
 
-### Groupe avec option by default
+### Group with option by default
 
 ```bdfd
 $newModal[Préférences;pref_modal]
@@ -53,7 +53,7 @@ $addRadioGroupOption[;English;en]
 $addRadioGroupOption[;Español;es]
 ```
 
-### Récupération de la selection
+### Récupération of la selection
 
 ```bdfd
 $onInteraction[signup_submit]
@@ -71,11 +71,11 @@ $endInteraction
 | Radio Group | Checkbox Group |
 |-------------|---------------|
 | A single option selectionnable | Multiple options selectionnables |
-| Returns a single value | Returns a list de values |
+| Returns a single value | Returns a list of values |
 | Idéal pour choix excludedsifs | Idéal pour selections multiple |
 
 ## Notes
 
-- Les options sont ajoutées avec `$addRadioGroupOption[]`.
-- Comme for checkbox groups, le `menuId` can be omis dans `$addRadioGroupOption[]` to target le last groupe created.
-- Maximum 25 options par groupe radio.
+- Les options sont ajoutées with `$addRadioGroupOption[]`.
+- Comme for checkbox groups, le `menuId` can be omitted in `$addRadioGroupOption[]` to target the last group created.
+- Maximum 25 options par group radio.

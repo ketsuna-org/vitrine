@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addButtonCV2
 
-Ajoute a button interactif au message en utilisant le style Component V2. Ce bouton est toudays added à la action row courante.
+Ajoute a button interactif to the message en utilisant le style Component V2. Ce bouton est toudays added to la action row courante.
 
 ## Syntax
 
@@ -26,7 +26,7 @@ $addButtonCV2[customIdOrURL;label;(style);(disabled);(emoji)]
 
 ## Difference from $addButton
 
-Contrairement à `$addButton` (legacy), `$addButtonCV2` ne possède no parameter `newRow`. Pour organize les buttons sur multiple lignes, use `$addActionRow` before each groupe.
+Contrairement to `$addButton` (legacy), `$addButtonCV2` ne possède no parameter `newRow`. Pour organize les buttons on multiple lignes, use `$addActionRow` before each group.
 
 ## Examples
 
@@ -37,7 +37,7 @@ $addButtonCV2[mon_bouton;Cliquez ici;primary]
 $sendMessage[Appuyez on the bouton]
 ```
 
-### Multiple buttons sur of rows distinctes
+### Multiple buttons on of rows distinctes
 
 ```
 $addActionRow
@@ -60,12 +60,12 @@ $sendMessage[Visitez le site]
 
 ```
 $addButtonCV2[btn_disabled;Inavailable;primary;true;🚫]
-$sendMessage[Functionnalité à venir]
+$sendMessage[Functionnalité to venir]
 ```
 
 ## Handling interactions
 
-The clics sur les buttons sont gérés via l'event `$onInteraction` :
+The clics on the buttons sont gérés via l'event `$onInteraction` :
 
 ```
 $onInteraction
@@ -76,6 +76,6 @@ $endif
 
 ## Notes
 
-- Pas de parameter `newRow` : use `$addActionRow` for the placement.
+- Pas of parameter `newRow` : use `$addActionRow` for the placement.
 - Max 5 buttons par action row.
 - API recommendede for newx développements.

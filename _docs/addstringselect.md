@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addStringSelect
 
-Creates a select menu de type "string" — a menu déroulant avec of options textuelles prédéfinies.
+Creates a select menu of type "string" — a menu déroulant with of options textuelles prédéfinies.
 
 ## Syntax
 
@@ -20,15 +20,15 @@ $addStringSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 |-----------|-------------|:-----------:|
 | `customId` | Custom identifier for the interaction | Yes |
 | `placeholder` | Text displayed when rien n'est selectionné | Yes |
-| `minValues` | Minimum number d'options à selectionner (default: 1) | No |
-| `maxValues` | Maximum number d'options à selectionner (default: 1) | No |
+| `minValues` | Minimum number of options to selectionner (default: 1) | No |
+| `maxValues` | Maximum number of options to selectionner (default: 1) | No |
 | `disabled` | `true` to disable le menu, `false` (default) | No |
 
 ## Description
 
-A **string select** est un select menu où les options sont des strings de becauseactères définies par le développeur. Après avoir created le menu avec `$addStringSelect`, ajoutez les options avec `$addStringSelectOption`.
+A **string select** est un select menu où les options sont strings of becauseactères définies par le développeur. Après avoir created le menu with `$addStringSelect`, ajoutez les options with `$addStringSelectOption`.
 
-Contrairement à `$newSelectMenu` + `$addSelectMenuOption`, `$addStringSelect` and `$addStringSelectOption` utilisent une API simplifiée où le `menuId` is optional dans `$addStringSelectOption`.
+Contrairement to `$newSelectMenu` + `$addSelectMenuOption`, `$addStringSelect` and `$addStringSelectOption` utilisent une API simplifiée où le `menuId` is optional in `$addStringSelectOption`.
 
 ## Examples
 
@@ -43,7 +43,7 @@ $addStringSelectOption[Canada;ca]
 $sendMessage[Selectionnez votre pays]
 ```
 
-### Menu à selection multiple
+### Menu to selection multiple
 
 ```
 $addStringSelect[menu_hobbies;Vos loisirs;1;5]
@@ -74,6 +74,6 @@ $endif
 
 ## Notes
 
-- Les options sont ajoutées avec `$addStringSelectOption`.
+- Les options sont ajoutées with `$addStringSelectOption`.
 - Maximum 25 options par menu.
-- Use `$addActionRow` to placer le menu sur a row spécifique.
+- Use `$addActionRow` to placer le menu on a row specific.

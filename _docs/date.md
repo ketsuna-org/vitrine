@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: date
 syntax: $date
-description: Returns the date currentle. Cette function est resolvede au runtime.
+description: Returns the date currentle. Cette function est resolvede to the runtime.
 ---
 
 # $date[]
 
 The `$date[]` function retourne the date currentle.
 
-> **Important:** Cette function utilise l'identifier special `((date))` qui est resolved au **runtime**, i.e. à each execution of the command. The value peut varier d'une execution à l'autre.
+> **Important:** Cette function utilise l'identifier special `((date))` qui est resolved to the **runtime**, i.e. to each execution of the command. The value peut varier of une execution to l'autre.
 
 ## Syntax
 
@@ -24,15 +24,15 @@ $date
 
 ## Return value
 
-The date currentle, resolvede à each execution.
+The date currentle, resolvede to each execution.
 
-## Difference from les functions spécifiques
+## Difference from les functions specifics
 
-`$date[]` retourne the date complete. Pour obtenir of components spécifiques de the date, use :
+`$date[]` retourne the date complete. Pour obtenir of components specifics of the date, use :
 
 | Function | Returns |
 |----------|----------|
-| `$day` | Le day du months (1-31) |
+| `$day` | Le day of the months (1-31) |
 | `$month` | Le months (1-12) |
 | `$year` | L'year (ex: 2026) |
 

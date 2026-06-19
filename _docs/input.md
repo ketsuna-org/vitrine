@@ -5,7 +5,7 @@ translation_key: docs
 category: "Context & Commands"
 function_name: input
 syntax: $input
-description: Gets the text intégral of the command saisie par the user, after le préfixe and the name of the command. Équivaslow à $message without the nom de command.
+description: Gets the text intégral of the command saisie par the user, after le préfixe and the name of the command. Équivaslow to $message without the nom of command.
 ---
 # $input
 
@@ -27,9 +27,9 @@ Aucun.
 - Le text intégral entré after the name of the command.
 - String vide si no argument n'was fourni.
 
-## Différence avec $message
+## Différence with $message
 
-| Function | Exemple avec `!say coucou` |
+| Function | Exemple with `!say coucou` |
 |---|---|
 | `$message` | `!say coucou` (command complete) |
 | `$input` | `coucou` (arguments only) |
@@ -42,11 +42,11 @@ Aucun.
 $sendMessage[$input]
 ```
 
-### Command say avec embed
+### Command say with embed
 
 ```bdfd
 $if[$input!=]
-  $title[Message de $username]
+  $title[Message of $username]
   $description[$input]
   $color[#5865F2]
   $sendMessage[]
@@ -55,7 +55,7 @@ $else
 $endif
 ```
 
-### Extraction du first mot
+### Extraction of the first mot
 
 ```bdfd
 $let[firstWord;$splitText[1; ;$input]]
@@ -64,6 +64,6 @@ $sendMessage[Premier mot : $firstWord]
 
 ## Notes
 
-- `$input` est sensible à `$noMentionMessage` (les mentions sont convertedes).
-- Pour éviter la conversion des mentions, utilisez `$messageSlice[>1]`.
+- `$input` est sensible to `$noMentionMessage` (les mentions sont convertedes).
+- Pour éviter la conversion mentions, utilisez `$messageSlice[>1]`.
 - `$input` ne contains pas le préfixe ni the name of the command.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addField
 syntax: $addField[name;value;(inline);(index)]
-description: Ajoute a field (field) à an embed Discord. The fields permettent de structurer des informations en paires nom/value in the embed.
+description: Adds a field to a Discord embed. The fields help structure information as name/value pairs in the embed.
 ---
 
 # $addField[]
 
-The `$addField[]` function ajoute un **champ** (field) à an embed Discord. The fields are displayed sous la description and permettent de présenter of data structurées en paires nom/value.
+The `$addField[]` function ajoute un **champ** (field) to a Discord embed. The fields are displayed sous la description and allow présenter of data structurées as name/value pairs.
 
 ## Syntax
 
@@ -23,20 +23,20 @@ $addField[name;value;(inline);(index)]
 | Parameter | Description |
 |---|---|
 | `name` | Title of the field. Max 256 becauseactères. |
-| `value` | Content of the field. Max 1024 becauseactères. Supporte le markdown. |
-| `inline` | Optional. `yes` pour inline (côte à côte), `no` by default. |
-| `index` | Optional. Position d'insertion (0 = début). Without index, ajoute to the end. |
+| `value` | Content of the field. Max 1024 becauseactères. Supports the markdown. |
+| `inline` | Optional. `yes` pour inline (côte to côte), `no` by default. |
+| `index` | Optional. Position of insertion (0 = début). Without index, ajoute to the end. |
 
 ## Return value
 
-Modifies the response in progress de construction. Returns nothing.
+Modifies the response in progress of construction. Returns nothing.
 
 ## Behavior
 
 - Un embed can contain up to **25 fields**.
-- Les fields **inline** s'affichent côte à côte : up to **3 par ligne**.
+- Les fields **inline** s'affichent côte to côte : up to **3 par ligne**.
 - Les fields **non-inline** (default) occupent toute la largeur.
-- L'index allows insérer un field à une position précise (0 = very beginning).
+- L'index allows insérer un field to une position précise (0 = very beginning).
 
 ## Examples
 
@@ -45,9 +45,9 @@ Modifies the response in progress de construction. Returns nothing.
 ```bdfd
 $title[Profil user]
 $description[Informations détaillées]
-$addField[Nom d'user;$username]
+$addField[Nom of user;$username]
 $addField[ID;$authorID]
-$addField[Date de création;$creationDate[$authorID]]
+$addField[Date of création;$creationDate[$authorID]]
 $color[#5865F2]
 $sendMessage[]
 ```
@@ -84,7 +84,7 @@ $addField[Premier;Contenu 1]
 $addField[Troisième;Contenu 3]
 $addField[Deuxième;Contenu 2;no;1]
 
-$title[Ordre des fields]
+$title[Ordre fields]
 $description[Le field 2 has been inserted en position 1.]
 $color[#5865F2]
 $sendMessage[]
@@ -92,7 +92,7 @@ $sendMessage[]
 
 ## Notes
 
-- The name and the value supportent le markdown Discord.
-- Combinez inline and non-inline pour des mises en page complexs.
+- The name and the value supports the markdown Discord.
+- Combinez inline and non-inline pour mises en page complexs.
 - L'index 0 correspond at the beginning (before all other fields).
-- If the index dépasses the namebre de fields existings, le field is added to the end.
+- If the index dépasses the namebre of fields existings, le field is added to the end.

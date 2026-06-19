@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: slashID
 syntax: $slashID
-description: Returns the ID Discord of the command slash in progress d'exécution.
+description: Returns the ID Discord of the command slash in progress of exécution.
 ---
 
 # $slashID
 
-The function `$slashID` **retourne the ID Discord (snowflake) of the command slash** in progress d'exécution. Si the command is not une command slash, retourne une string vide.
+The function `$slashID` **retourne the ID Discord (snowflake) of the command slash** in progress of exécution. Si the command is not une command slash, retourne une string vide.
 
 ## Syntax
 
@@ -98,5 +98,5 @@ $endif
 
 - Returns ae string vide for the commands prefix.
 - The ID est unique and attribué par Discord.
-- Utile for the support technique (fournir the ID en cas de bug).
-- Pour vérifier if ae command est slash, utilisez `$isSlash` or `$commandType`.
+- Utile for the support technique (provide the ID en cas of bug).
+- Pour check if ae command est slash, utilisez `$isSlash` or `$commandType`.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: mentionedRoles
 syntax: $mentionedRoles
-description: Returns the list des IDs des roles mentionnés in the message (via @role), separateds par des virgules.
+description: Returns the list IDs roles mentionnés in the message (via @role), separateds par virgules.
 ---
 
 # $mentionedRoles
 
-The variable `$mentionedRoles` retourne la **list des IDs des roles mentionnés** in the message, via la syntaxe `@role`.
+The variable `$mentionedRoles` retourne la **list IDs roles mentionnés** in the message, via la syntaxe `@role`.
 
 ## Syntax
 
@@ -20,15 +20,15 @@ $mentionedRoles
 
 ## Return Value
 
-- **Type** : List de snowflakes separateds par des virgules
+- **Type** : List of snowflakes separateds par virgules
 - Example: `123456789,987654321`
 - String vide si no role n'est mentionné
 
 ## Behavior
 
 - `$mentionedRoles` ne prend **no argument**.
-- Détecte les mentions de role au format `@nom-du-role`.
-- Seuls les roles "mentionnables" (parameter de role enabled) sont détectés.
+- Détecte les mentions of role to the format `@nom-du-role`.
+- Seuls les roles "mentionnables" (parameter of role enabled) sont détectés.
 
 ## Examples
 
@@ -50,9 +50,9 @@ $endif
 $if[$mentionedRoles!=]
   $let[firstRole;$splitText[$mentionedRoles;,;1]]
   $giveRole[$mentioned;$firstRole]
-  $sendMessage[Role <@&$firstRole> ajouté à <@$mentioned> !]
+  $sendMessage[Role <@&$firstRole> ajouté to <@$mentioned> !]
 $else
-  $sendMessage[Mentionnez un role à attribuer.]
+  $sendMessage[Mentionnez un role to attribuer.]
 $endif
 ```
 
@@ -78,5 +78,5 @@ $endif
 ## Notes
 
 - Un role doit avoir l'option "Allow anyone to @mention this role" enablede pour être détecté.
-- Les IDs retournés sont des snowflakes numériques.
+- Les IDs retournés sont snowflakes numériques.
 - Pour obtenir the name of a role from son ID, utilisez `$roleName[ID]`.

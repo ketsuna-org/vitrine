@@ -23,7 +23,7 @@ $editMessage[messageId;newContent]
 
 ## Description
 
-`$editMessage` allows mettre à day a message previously sent par the bot. Tout comme `$sendMessage`, les embeds and components construits before the call sont included in the modification.
+`$editMessage` allows mettre to day a message previously sent par the bot. Tout like `$sendMessage`, les embeds and components construits before the call sont included in the modification.
 
 The `messageId` can be obtenu via :
 - `$sentMessageId` after un `$sendMessage`
@@ -35,7 +35,7 @@ The `messageId` can be obtenu via :
 ### Édition simple
 
 ```
-$editMessage[123456789012345678;Contenu mis à day !]
+$editMessage[123456789012345678;Contenu mis to day !]
 ```
 
 ### Édition after envoi
@@ -45,14 +45,14 @@ $sendMessage[Message original]
 $editMessage[$sentMessageId;Message modified !]
 ```
 
-### Édition avec newx embeds
+### Édition with newx embeds
 
 ```
-$newEmbed[title=Mise à day;description=Les informations ont changé;color=#FFA500]
+$newEmbed[title=Mise to day;description=Les information ont changé;color=#FFA500]
 $editMessage[$sentMessageId;]
 ```
 
-### Édition avec buttons mis à day
+### Édition with buttons mis to day
 
 ```
 $addActionRow
@@ -72,6 +72,6 @@ $endif
 ## Notes
 
 - The bot ne peut modifier que their propres messages.
-- Si `newContent` est vide and qu'aucan embed/composant n'is provided, the message peut devenir vide (behavior selon version).
+- Si `newContent` est vide and qu'aucan embed/composant n'is provided, the message peut devenir vide (behavior according to version).
 - Les embeds and components remplacent completeely ceux of the message original.
 - Use `$sentMessageId` juste after `$sendMessage` to retrieve the ID of the last message sent.

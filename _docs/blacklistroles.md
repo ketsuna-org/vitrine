@@ -22,14 +22,14 @@ $blacklistRoles[roleID1;roleID2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `roleID1;roleID2;...` | Snowflake[] | IDs of roles à blacklistr, separateds par `;`. |
-| `errorMessage` | String (optional) | Message sent if the user a a role blacklisté. |
+| `roleID1;roleID2;...` | Snowflake[] | IDs of roles to blacklistr, separateds par `;`. |
+| `errorMessage` | String (optional) | Message sent if the user a role blacklisté. |
 
 ## Behavior
 
-- Checks if the user possède un of roles de la list.
+- Checks if the user possède un of roles of la list.
 - Si **au moins un** role correspond, la command est interrompue.
-- Vérification de type **OU** (a singthe role blacklisté suffit à bloquer).
+- Vérification of type **OU** (a singthe role blacklisté suffit to bloquer).
 - If a message error is provided, il is sent ; otherwise, silence.
 
 ## Examples
@@ -60,5 +60,5 @@ $sendMessage[Command executede.]
 
 - `$blacklistRoles` and `$blacklistRoleIDs` sont interchangeables.
 - Pour whitelistr of roles, use `$onlyForRoles`.
-- Très utile pour empêcher users mutés or en restriction d'utiliser des commands.
-- Combinez avec `$blacklistUsers` for ae protection complete (roles + users spécifiques).
+- Très utile pour empêcher users mutés or en restriction of use commands.
+- Combinez with `$blacklistUsers` for ae protection complete (roles + users specifics).

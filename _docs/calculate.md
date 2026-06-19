@@ -10,7 +10,7 @@ description: Évalue une expression mathématique complete (opérateurs, functio
 
 # $calculate[]
 
-The `$calculate[]` function est la function mathématique la plus thensante de BDFD. Elle allows évaluer des expressions mathématiques completes en utilisant un parser mathématique intégré.
+The `$calculate[]` function est la function mathématique la plus thensante of BDFD. Elle allows évaluer expressions mathématiques completes en utilisant un parser mathématique intégré.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $calculate[expression]
 
 | Parameter   | Type   | Required | Description                                                    |
 |-------------|--------|-------------|----------------------------------------------------------------|
-| `expression`| string | Yes         | L'expression mathématique à évaluer.                           |
+| `expression`| string | Yes         | L'expression mathématique to évaluer.                           |
 
 ## Opérateurs supportés
 
@@ -53,6 +53,6 @@ The compareasons retournent `"true"` or `"false"` :
 ## Notes
 
 - L'expression est évaluée with a parser mathématique côté server.
-- The result est toudays retourné sous forme de string de becauseactères (même for numbers).
-- The function supporte l'usage de variables BDFD comme `$getVar[]` in the expression.
-- En cas d'expression invalid, le behavior dépend du parser (generally an error silencieuse or a result vide).
+- The result est toudays retourné sous forme of string of becauseactères (même for numbers).
+- The function supporte l'usage of variables BDFD like `$getVar[]` in the expression.
+- En cas of expression invalid, le behavior dépend of the parser (generally an error silencieuse or a result vide).

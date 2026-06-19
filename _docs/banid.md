@@ -50,4 +50,4 @@ $sendMessage[User $message[1] banni préventivement.]
 - Allows bannir a user qui is no longer on the server.
 - Utile for bans préventifs.
 - The bot must have the permission `BanMembers`.
-- Contrairement à `$ban`, ne allows no supprimer les messages.
+- Contrairement to `$ban`, ne allows no supprimer les messages.

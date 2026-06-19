@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: rolePerms
 syntax: $rolePerms[roleID;(guildID)]
-description: Returns thes permissions of a role Discord sous forme de list textuelle or de value brute.
+description: Returns thes permissions of a role Discord sous forme of list textuelle or of value brute.
 ---
 
 # $rolePerms
 
-The function `$rolePerms` retourne les **permissions** of a role Discord, soit sous forme de list textuelle, soit sous forme de value entière brute.
+The function `$rolePerms` retourne les **permissions** of a role Discord, soit sous forme of list textuelle, soit sous forme of value entière brute.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ $rolePerms[roleID;(guildID)]
 
 | Type | Description |
 |---|---|
-| `string` | La list des permissions of the role. |
+| `string` | La list permissions of the role. |
 
 ## Permissions courantes
 
@@ -39,17 +39,17 @@ $rolePerms[roleID;(guildID)]
 | `ManageGuild` | Gérer the server |
 | `ManageRoles` | Gérer les roles |
 | `ManageChannels` | Gérer les channels |
-| `KickMembers` | Expulser des members |
-| `BanMembers` | Bannir des members |
+| `KickMembers` | Expulser members |
+| `BanMembers` | Bannir members |
 | `ManageMessages` | Gérer les messages |
 | `MentionEveryone` | Mentionner @everyone |
-| `SendMessages` | Envoyer des messages |
+| `SendMessages` | Envoyer messages |
 | `ReadMessages` | Voir les channels |
 | `Connect` | Se connecter en vocal |
 
 ## Examples
 
-### Afficher les permissions
+### Display les permissions
 
 ```bdfd
 $sendMessage[Permissions of the role Admin : $rolePerms[$roleID[Admin]]]
@@ -69,19 +69,19 @@ $endif
 
 ```bdfd
 $if[$checkContains[$rolePerms[$roleID[Modo]];ManageMessages]]
-  $sendMessage[Les modérateurs peuvent gérer les messages.]
+  $sendMessage[Les modérateurs can gérer les messages.]
 $endif
 ```
 
 ### List formattede
 
 ```bdfd
-$sendMessage[**Permissions de $roleName[$roleID[Admin]] :**
+$sendMessage[**Permissions of $roleName[$roleID[Admin]] :**
 $rolePerms[$roleID[Admin]]]
 ```
 
 ## Notes
 
-- Le format exact peut varier selon la version de BDFD.
+- Le format exact peut varier according to the version of BDFD.
 - Pour obtenir the value entière brute, utilisez `$roleInfo[ID;permissions]`.
-- À utiliser avec `$checkContains` pour tester des permissions spécifiques.
+- À use with `$checkContains` pour tester permissions specifics.

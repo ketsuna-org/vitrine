@@ -5,14 +5,14 @@ translation_key: docs
 category: "Date & Time"
 function_name: hour
 syntax: $hour
-description: Returns the hour currentle (0 à 23). Resolved au runtime.
+description: Returns the hour currentle (0 to 23). Resolved to the runtime.
 ---
 
 # $hour[]
 
-The function `$hour[]` retourne l'hour currentle au format 24 hours (de 0 à 23).
+The function `$hour[]` retourne l'hour currentle to the format 24 hours (de 0 to 23).
 
-> **Important:** This function utilise l'identifier special `((hour))` qui est resolved au **runtime**.
+> **Important:** This function utilise l'identifier special `((hour))` qui est resolved to the **runtime**.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ A number between 0 and 23 représentant l'hour currentle.
 Il est $hour hours.
 ```
 
-### Message selon le moment de la daynée
+### Message according to the moment of la daynée
 
 ```bdfd
 $if[$hour>=6&&$hour<12]
@@ -57,4 +57,4 @@ $endif
 ## Notes
 
 - Format 24 hours : `0` = minuit, `12` = midi, `23` = 23h.
-- L'hour dépend du fuseau horaire of the server exécutant the bot.
+- L'hour dépend of the fuseau horaire of the server exécutant the bot.

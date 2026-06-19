@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userTag
 syntax: $userTag
-description: Returns the tag complete of the user sous la forme "nom#discriminator" (format legacy). Dethen la migration vers les noms unique, retourne the name d'user without discriminateur.
+description: Returns the tag complete of the user sous la forme "nom#discriminator" (format legacy). Dethen la migration vers les noms unique, retourne the name of user without discriminateur.
 ---
 
 # $userTag
 
-The variable `$userTag` retourne le **tag complete** of the user. Historiquement, Discord utilisait le format `nom#discriminator` (ex: "JeanDupont#1234"). Dethen la migration vers les noms d'user unique (système "pomme"), le tag est simplement the name d'user.
+The variable `$userTag` retourne le **tag complete** of the user. Historiquement, Discord utilisait le format `nom#discriminator` (ex: "JeanDupont#1234"). Dethen la migration vers les noms of user unique (système "pomme"), le tag est simplement the name of user.
 
 ## Syntax
 
@@ -20,22 +20,22 @@ $userTag
 
 ## Return Value
 
-- **Type** : String de becauseactères
+- **Type** : String of becauseactères
 - Old format : `nom#discriminator` (ex: `JeanDupont#1234`)
-- New format (users pompom) : simplement the name d'user
+- New format (users pompom) : simplement the name of user
 
 ## Behavior
 
 - `$userTag` ne prend **no argument**.
-- Pour les comptes createds before la migration pompom, le tag peut encore inclure le discriminateur à 4 chiffres.
-- Pour les newx comptes, le retour est identical à `$userName`.
+- Pour les comptes createds before la migration pompom, le tag peut encore inclure le discriminateur to 4 chiffres.
+- Pour les newx comptes, le retour est identical to `$userName`.
 
 ## Examples
 
-### Afficher le tag
+### Display le tag
 
 ```bdfd
-$title[Profil de $userTag]
+$title[Profil of $userTag]
 $description[
 **Nom :** $userName
 **Tag :** $userTag
@@ -58,5 +58,5 @@ $endif
 ## Notes
 
 - Le format legacy `nom#discriminator` est progressivement abandonné par Discord.
-- Pour les newx users, `$userTag` est équivaslow à `$userName`.
+- Pour les newx users, `$userTag` est équivaslow to `$userName`.
 - Préférez `$userName` or `$displayName` for ae compatibilité future.

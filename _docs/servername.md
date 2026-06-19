@@ -29,17 +29,17 @@ Aucun parameter.
 
 ## Utilisation
 
-### Message de bienvenue
+### Message of bienvenue
 
 ```bdfd
-$sendMessage[Bienvenue sur **$serverName** ! Nous sommes hourux de vous compter parmi nous.]
+$sendMessage[Bienvenue on **$serverName** ! Nous sommes hourux of vous count parmi nous.]
 ```
 
 ### Embed with the nom of the server
 
 ```bdfd
 $title[$serverName — Règlement]
-$description[Merci de lire attentivement le règlement de $serverName.]
+$description[Merci of lire attentivement le règlement of $serverName.]
 $color[#E74C3C]
 $sendEmbedMessage
 ```
@@ -50,18 +50,18 @@ $sendEmbedMessage
 $log[The command was executed on the server : $serverName]
 ```
 
-### Condition sur the name
+### Condition on the name
 
 ```bdfd
 $if[$serverName==Mon Server]
 $sendMessage[Bienvenue on the server principal !]
 $else
-$sendMessage[Bienvenue sur $serverName !]
+$sendMessage[Bienvenue on $serverName !]
 $endif
 ```
 
 ## Notes
 
-- `$serverName[]` est un alias de `$guildName[]`.
+- `$serverName[]` est un alias of `$guildName[]`.
 - The value retournée est dynamic : elle reflète the name current of the server, même s'il was changé récemment.
 - Utile pour personnaliser les messages en function of the server.

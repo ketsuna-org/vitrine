@@ -35,23 +35,23 @@ No parameters.
 $if[$afkChannelID!=]
 $sendMessage[💤 Channel AFK : <#$afkChannelID> (delay : $afkTimeout seconds)]
 $else
-$sendMessage[ℹ️ Auca channel AFK n'est configured sur ce server.]
+$sendMessage[ℹ️ Auca channel AFK n'est configured on ce server.]
 $endif
 ```
 
 ### Embed configuration server
 
 ```bdfd
-$title[⚙️ Configuration de $serverName]
+$title[⚙️ Configuration of $serverName]
 $addField[💤 Channel AFK;$if[$afkChannelID!=]<#$afkChannelID>$elseNon configured$endif;yes]
 $addField[⏱️ Delay AFK;$afkTimeout seconds;yes]
-$addField[📋 Channel des règles;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNon configured$endif;yes]
+$addField[📋 Channel règles;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNon configured$endif;yes]
 $addField[📢 Channel système;$if[$systemChannelID!=]<#$systemChannelID>$elseNon configured$endif;yes]
 $color[#5865F2]
 $sendEmbedMessage
 ```
 
-### Log de configuration
+### Log of configuration
 
 ```bdfd
 $log[Configuration server $serverName | AFK: $afkChannelID | Timeout: $afkTimeout | Règles: $rulesChannelID | Système: $systemChannelID]

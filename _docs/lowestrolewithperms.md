@@ -10,7 +10,7 @@ description: Returns the ID of the role le plus bas of the user qui possède les
 
 # $lowestRoleWithPerms
 
-The function `$lowestRoleWithPerms[]` retourne l'**ID of the role le plus bas** of the user qui possède une or several permissions spécifiques.
+The function `$lowestRoleWithPerms[]` retourne l'**ID of the role le plus bas** of the user qui possède une or several permissions specifics.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $lowestRoleWithPerms[permission1;permission2;...]
 
 | Parameter | Description |
 |---|---|
-| `permissions` | Une or several permissions Discord, separatedes par des points-virgules. Toutes les permissions listées must be présentes sur the role. |
+| `permissions` | Une or several permissions Discord, separatedes par points-virgules. Toutes les permissions listées must be présentes on the role. |
 
 ## Return Value
 
@@ -32,13 +32,13 @@ $lowestRoleWithPerms[permission1;permission2;...]
 
 ## Behavior
 
-- Parcourt les roles of the user du plus bas au plus haut.
+- Parcourt les roles of the user of the plus bas to the plus haut.
 - Returns the **first** role (le plus bas) qui possède **all** les permissions spécifiées.
-- Les noms de permissions sont en anglais (nomenclature API Discord).
+- Les noms of permissions sont en anglais (nomenclature API Discord).
 
 ## Examples
 
-### Trouver the role avec accès vocal le plus bas
+### Trouver the role with accès vocal le plus bas
 
 ```bdfd
 $let[voiceRole;$lowestRoleWithPerms[Connect;Speak]]
@@ -47,12 +47,12 @@ $if[$voiceRole!=]
 $endif
 ```
 
-### Vérifier les permissions de base
+### Vérifier les permissions of base
 
 ```bdfd
 $let[basicRole;$lowestRoleWithPerms[SendMessages;ReadMessageHistory]]
 $if[$basicRole!=]
-  $sendMessage[The role $roleName[$basicRole] vous donne accès aux messages.]
+  $sendMessage[The role $roleName[$basicRole] vous donne accès to the messages.]
 $endif
 ```
 
@@ -61,7 +61,7 @@ $endif
 ```bdfd
 $let[highest;$highestRoleWithPerms[ManageMessages]]
 $let[lowest;$lowestRoleWithPerms[ManageMessages]]
-$title[Permissions de modération]
+$title[Permissions of modération]
 $description[
 **Role le plus haut :** $roleName[$highest]
 **Role le plus bas :** $roleName[$lowest]
@@ -74,4 +74,4 @@ $sendMessage[]
 
 - Utile pour déterminer le level minimum auquel une permission est accordée.
 - Si `$highestRoleWithPerms[]` and `$lowestRoleWithPerms[]` retournent le même ID, a single role possède ces permissions.
-- Idéal for the systèmes de hiérarchie and de vérification de permissions granulaires.
+- Idéal for the systèmes of hiérarchie and of vérification of permissions granulaires.

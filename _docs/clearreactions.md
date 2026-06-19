@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: clearReactions
 syntax: $clearReactions[messageID]
-description: Supprime all réactions of a message spécifique. Ne can be utilisé que to delete les réactions ajoutées par the bot lui-même in the plupart des cas.
+description: Supprime all réactions of a message specific. Ne can be utilisé que to delete les réactions ajoutées par the bot lui-même in the plupart cas.
 ---
 
 # $clearReactions
@@ -30,9 +30,9 @@ Cette function does not return a value.
 
 ## Behavior
 
-- Supprime TOUTES les réactions of the message, y compris celles d'autres users if the bot a the permission `MANAGE_MESSAGES`.
+- Supprime TOUTES les réactions of the message, y compris celles of autres users if the bot a the permission `MANAGE_MESSAGES`.
 - If the bot does not have `MANAGE_MESSAGES`, seules les réactions of the bot can be deletedes.
-- Utile pour réinitialiser un système de réaction (sondage, giveaway, etc.).
+- Utile pour réinitialiser un système of réaction (sondage, giveaway, etc.).
 
 ## Examples
 
@@ -62,5 +62,5 @@ $sendMessage[Ce sondage est now fermé.]
 ## Notes
 
 - `$clearReactions[]` supprime all réactions, pas only celles of the bot.
-- Requires the permission `MANAGE_MESSAGES` to delete les réactions d'autres users.
-- Pour supprimer une réaction spécifique, use `$removeReaction[]`.
+- Requires the permission `MANAGE_MESSAGES` to delete les réactions of autres users.
+- Pour supprimer une réaction specific, use `$removeReaction[]`.

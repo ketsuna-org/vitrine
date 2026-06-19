@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getUserSelectUserID
 syntax: $getUserSelectUserID[(index)]
-description: Gets the ID of the user selected via un menu de sélection d'users (user select).
+description: Gets the ID of the user selected via un menu of sélection of users (user select).
 ---
 
 # $getUserSelectUserID
 
-The function `$getUserSelectUserID[]` allows **récupérer the ID of the user** choisi via un menu de sélection d'users (user select menu).
+The function `$getUserSelectUserID[]` allows **récupérer the ID of the user** choisi via un menu of sélection of users (user select menu).
 
 ## Syntax
 
@@ -32,18 +32,18 @@ $getUserSelectUserID[(index)]
 
 ## Behavior
 
-- Utilisé in thes interactions with a menu de type `user` created via `$addUserSelectMenu[]`.
+- Utilisé in thes interactions with a menu of type `user` created via `$addUserSelectMenu[]`.
 - The user selected can be n'importe quel member of the server.
-- Pour les sélections multiple, utiliser `$getUserSelectUserIDs[]`.
+- Pour les sélections multiple, use `$getUserSelectUserIDs[]`.
 
 ## Examples
 
-### Vérification d'user
+### Vérification of user
 
 ```bdfd
 $nominalTrigger
 $addUserSelectMenu[user_select;1;Sélectionnez un user]
-$sendMessage[Choisissez un user à vérifier :]
+$sendMessage[Choisissez un user to check :]
 
 $onInteraction[user_select]
 $let[userID;$getUserSelectUserID]
@@ -64,14 +64,14 @@ $sendMessage[]
 ```bdfd
 $onInteraction[user_select]
 $let[target;$getUserSelectUserID]
-$sendDM[$target;⚠️ Vous avez received un avertissement sur **$serverName**.]
+$sendDM[$target;⚠️ Vous avez received un avertissement on **$serverName**.]
 $title[✅ Avertissement sent]
-$description[Un DM was sent à **$userName[$target]**.]
+$description[Un DM was sent to **$userName[$target]**.]
 $sendMessage[]
 ```
 
 ## Notes
 
-- L'index commence à 1.
-- Pour récupérer all users d'une sélection multiple, utiliser `$getUserSelectUserIDs[]`.
+- L'index commence to 1.
+- Pour récupérer all users of une sélection multiple, use `$getUserSelectUserIDs[]`.
 - The user must be member of the server pour être sélectionnable.

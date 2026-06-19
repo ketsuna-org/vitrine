@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: afkTimeout
 syntax: $afkTimeout
-description: Returns the delay d'inactivité (en seconds) before qu'un member soit déplacé vers the channel AFK.
+description: Returns the delay of inactivité (en seconds) before qu'un member soit déplacé vers the channel AFK.
 ---
 
 # $afkTimeout[] — Delay AFK
 
-`$afkTimeout[]` returns the delay d'inactivité configured on the server, after lequel un member inactif in a channel vocal est automatically déplacé vers the channel AFK.
+`$afkTimeout[]` returns the delay of inactivité configured on the server, after lequel un member inactif in a channel vocal est automatically déplacé vers the channel AFK.
 
 ## Syntax
 
@@ -54,7 +54,7 @@ $sendMessage[💤 Delay AFK : **$var[timeoutText]**]
 ### Configuration of the server
 
 ```bdfd
-$title[⚙️ Parameters de $serverName]
+$title[⚙️ Parameters of $serverName]
 $addField[💤 Channel AFK;$if[$afkChannelID!=]<#$afkChannelID>$elseAucun$endif;yes]
 $addField[⏱️ Delay AFK;$round[$divide[$afkTimeout;60]] minutes;yes]
 $color[#5865F2]
@@ -72,6 +72,6 @@ $endif
 ## Notes
 
 - The channel AFK est configured separatedment ; use `$afkChannelID[]` for the récupérer.
-- If no channel AFK n'est configured, le timeout does not have d'effet.
-- Discord limit les values possibles à la list ci-dessus (no value custome).
+- If no channel AFK n'est configured, le timeout does not have of effet.
+- Discord limit les values possibles to la list ci-dessus (no value custome).
 - Les members in the channel AFK sont mis en sourdine automatically.

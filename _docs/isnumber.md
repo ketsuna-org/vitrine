@@ -22,24 +22,24 @@ $isNumber[value]
 
 | Parameter | Description |
 |---|---|
-| `value` | The value à tester. |
+| `value` | The value to tester. |
 
 ## Return Value
 
 - **Type** : Boolean
 - `true` si `value` est un number (ex: `42`, `-7`, `3.14`, `0.001`)
-- `false` si `value` est du text, un boolean, or vide.
+- `false` si `value` est of the text, un boolean, or vide.
 
 ## Behavior
 
 - Accepte les integers and les décimaux.
 - Accepte les numbers négatifs.
 - N'accepte pas la notation scientifique (`1e5`).
-- N'accepte pas les separators de milliers (`1,000`).
+- N'accepte pas les separators of milliers (`1,000`).
 
 ## Examples
 
-### Validation d'un prix
+### Validation of un prix
 
 ```bdfd
 $var[prix;$message[1]]
@@ -68,7 +68,7 @@ $else
 $endif
 ```
 
-### Détection de type complete
+### Détection of type complete
 
 ```bdfd
 $var[val;$message[1]]

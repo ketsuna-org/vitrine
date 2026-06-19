@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: executionTime
 syntax: $executionTime
-description: Returns the time d'execution of the current command in milliseconds. Allows mesurer les performance of the BDFD code.
+description: Returns the time of execution of the current command in milliseconds. Allows mesurer les performance of the BDFD code.
 ---
 
 # $executionTime
 
-The `$executionTime` function **mesurer the time d'execution** total of the command in progress, in milliseconds.
+The `$executionTime` function **mesurer the time of execution** total of the command in progress, in milliseconds.
 
 ## Syntax
 
@@ -25,12 +25,12 @@ No parameters.
 ## Return value
 
 - **Type** : String (number)
-- Le temps d'execution in milliseconds (ms).
-- Inclut the time de traitement de the whole of the command (parsing + execution).
+- Le temps of execution in milliseconds (ms).
+- Inclut the time of traitement of the whole of the command (parsing + execution).
 
 ## Behavior
 
-- Mesure the time écoulé since the beginning of the processing of the command up to the call de la function.
+- Mesure the time écoulé since the beginning of the processing of the command up to the call of la function.
 - Utile for the debugging and the optimization of performance.
 - La value est an integer representing les milliseconds.
 
@@ -41,7 +41,7 @@ No parameters.
 ```bdfd
 $title[⚡ Performance]
 $description[
-**Temps d'execution :** $executionTime ms
+**Temps of execution :** $executionTime ms
 **Ping API :** $botPing ms
 ]
 $color[#5865F2]
@@ -52,7 +52,7 @@ $sendMessage[]
 
 ```bdfd
 $title[📊 Statistiques]
-$description[Command complex avec beaucoup de datas...]
+$description[Command complex with beaucoup of datas...]
 $footer[⏱️ Executed en $executionTime ms]
 $color[#57F287]
 $sendMessage[]
@@ -70,6 +70,6 @@ $endif
 
 ## Notes
 
-- Le temps measured dépend de la complexité of the command and de la latency network.
+- Le temps measured dépend of la complexité of the command and of la latency network.
 - `$executionTime` mesure the time côté bot, not the latency user.
 - For the latency WebSocket/API, use `$botPing` or `$ping`.

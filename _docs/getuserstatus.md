@@ -10,7 +10,7 @@ description: Returns the status online (online, idle, dnd, offline) of the user 
 
 # $getUserStatus
 
-The function `$getUserStatus[]` retourne le **status de présence** of a user on Discord.
+The function `$getUserStatus[]` retourne le **status of présence** of a user on Discord.
 
 ## Syntax
 
@@ -26,23 +26,23 @@ $getUserStatus[userID]
 
 ## Return Value
 
-- **Type** : String de becauseactères
+- **Type** : String of becauseactères
 - Values possibles :
   - `online` — Online (🟢)
   - `idle` — Inactif/Absent (🟡)
   - `dnd` — Ne pas déranger (🔴)
   - `offline` — Offline (⚫)
-  - `invisible` — Invisible (apparaît comme offline)
+  - `invisible` — Invisible (apparaît like offline)
 
 ## Behavior
 
 - Requires the **ID user** en parameter.
 - Le status reflète la présence en temps réel on Discord.
-- Le status `invisible` est rapporté comme `offline` for the autres users.
+- Le status `invisible` est rapporté like `offline` for the autres users.
 
 ## Examples
 
-### Afficher le status avec emoji
+### Display le status with emoji
 
 ```bdfd
 $let[status;$getUserStatus[$userID]]
@@ -56,7 +56,7 @@ $else
   $let[emoji;⚫]
 $endif
 
-$title[Status de $userName]
+$title[Status of $userName]
 $description[**Status :** $emoji $status]
 $color[#5865F2]
 $sendMessage[]
@@ -84,5 +84,5 @@ $endif
 ## Notes
 
 - Le status `offline` peut signifier que the user est réellement déconnected or en mode invisible.
-- Les users peuvent masquer leur status selon leurs parameters de confidentialité.
-- Utile for the commands qui nécessitent de savoir if a user is available (ex: envoi de messages privates conditionnels).
+- Les users can hide theur status according to leurs parameters of confidentialité.
+- Utile for the commands qui nécessitent of savoir if a user is available (ex: envoi of messages privates conditionnels).

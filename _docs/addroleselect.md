@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $addRoleSelect
 
-Creates a select menu de roles. Allows users to choisir un or multipthe roles of the server since a list déroulante.
+Creates a select menu of roles. Allows users to choisir un or multipthe roles of the server since a list déroulante.
 
 ## Syntax
 
@@ -20,19 +20,19 @@ $addRoleSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 |-----------|-------------|:-----------:|
 | `customId` | Custom identifier for the interaction | Yes |
 | `placeholder` | Text displayed when rien n'est selectionné | Yes |
-| `minValues` | Minimum number of roles à selectionner (default: 1) | No |
-| `maxValues` | Maximum number of roles à selectionner (default: 1) | No |
+| `minValues` | Minimum number of roles to selectionner (default: 1) | No |
+| `maxValues` | Maximum number of roles to selectionner (default: 1) | No |
 | `disabled` | `true` to disable le menu, `false` (default) | No |
 
 ## Description
 
-A **role select** displays la list of roles of the server. The user peut en selectionner un or several. The IDs of roles selectionnés sont retournés dans `$onInteraction`.
+A **role select** displays la list of roles of the server. The user peut en selectionner un or several. The IDs of roles selectionnés sont retournés in `$onInteraction`.
 
-Idéal for systèmes de self-roles, la selection de départements, or les menus de notification.
+Idéal for systèmes of self-roles, la selection of départements, or les menus of notification.
 
 ## Examples
 
-### Attributeion de role
+### Attributeion of role
 
 ```
 $addRoleSelect[menu_role;Choisissez votre role]
@@ -43,7 +43,7 @@ $sendMessage[Selectionnez votre role principal]
 
 ```
 $addRoleSelect[menu_notifs;Notifications;1;3]
-$sendMessage[Choisissez les notifications à recevoir]
+$sendMessage[Choisissez les notifications to recevoir]
 ```
 
 ### Disabled menu
@@ -65,7 +65,7 @@ $endif
 
 ## Notes
 
-- Les values retournées sont of IDs de roles Discord.
+- Les values retournées sont of IDs of roles Discord.
 - Use `<@&ID>` to mention a role.
 - Seuls les roles only the bot peut gérer apparaîtront (hiérarchie of roles).
-- Parfait for systèmes de self-roles and menus d'inscription.
+- Parfait for systèmes of self-roles and menus of inscription.

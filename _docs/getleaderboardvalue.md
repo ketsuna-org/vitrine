@@ -5,39 +5,39 @@ translation_key: docs
 category: "Variables"
 function_name: getLeaderboardValue
 syntax: $getLeaderboardValue
-description: Returns the value (score, points, etc.) associée à the position courante in the leaderboard actif.
+description: Returns the value (score, points, etc.) associée to the position courante in the leaderboard actif.
 ---
 
 # $getLeaderboardValue
 
-The function `$getLeaderboardValue` retourne the value associée à the position courante in the leaderboard actif. Cela can be un score, un number de pièces, des points d'XP, or toute autre variable sur laquelle le classement est basé.
+The function `$getLeaderboardValue` retourne the value associée to the position courante in the leaderboard actif. Cela can be un score, un number of pièces, points of XP, or toute autre variable on laquelle le classement est basé.
 
-This function n'a de sens **que in the context d'itération d'un leaderboard** — it is-à-dire after avoir callé `$globalUserLeaderboard`, `$serverLeaderboard` or `$userLeaderboard` and lors du parcours de their results avec `$textSplit`.
+This function n'a of sens **que in the context of itération of un leaderboard** — it is-à-dire after avoir callé `$globalUserLeaderboard`, `$serverLeaderboard` or `$userLeaderboard` and lors of the parcours of their results with `$textSplit`.
 
 ## Functionnement
 
-During l'itération d'un leaderboard, each entrée contains un identifier (user) and une value (le score). `$getLeaderboardValue` expose cette value for the entrée in progress de traitement.
+During l'itération of un leaderboard, each entrée contains un identifier (user) and une value (le score). `$getLeaderboardValue` expose cette value for the entrée in progress of traitement.
 
-The value retournée correspond à the variable internal `((leaderboard.value))` qui est resolvede au runtime par l'action leaderboard dédiée.
+The value retournée correspond to the variable internal `((leaderboard.value))` qui est resolvede to the runtime par l'action leaderboard dédiée.
 
-## Cas d'usage
+## Cas of usage
 
-- Afficher le score de each joueur dans un classement
-- Comparer des values between differentes positions
-- Déclencher des récompenses basées sur le score atteint
-- Formater des messages de félicitations with the score
+- Display le score of each joueur in a classement
+- Comparer values between differentes positions
+- Déclencher récompenses basées on the score atteint
+- Formater messages of félicitations with the score
 
 ## Important
 
-- `$getLeaderboardValue` **returns nothing** outside the context d'un leaderboard actif.
+- `$getLeaderboardValue` **returns nothing** outside the context of un leaderboard actif.
 - The function ne prend **no parameter**.
-- Elle est presque toudays utilisée avec `$getLeaderboardPosition` for a affichage complete (rang + value).
-- The value retournée dépend of the variable sur laquelle le leaderboard was construit (for example, if the leaderboard est basé sur `coins`, the value sera the namebre de pièces).
+- Elle est presque toudays utilisée with `$getLeaderboardPosition` for a affichage complete (rang + value).
+- The value retournée dépend of the variable on laquelle le leaderboard was construit (for example, if the leaderboard est basé on `coins`, the value sera the namebre of pièces).
 
 ## Voir also
 
 - [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Obtenir le rang in the classement
-- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Classement global des users
-- [`$serverLeaderboard`](/docs/serverleaderboard) — Classement au level of the server
+- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Classement global users
+- [`$serverLeaderboard`](/docs/serverleaderboard) — Classement to the level of the server
 - [`$userLeaderboard`](/docs/userleaderboard) — Classement personnel
-- [`$textSplit`](/docs/textsplit) — Découper the result d'un leaderboard
+- [`$textSplit`](/docs/textsplit) — Découper the result of un leaderboard

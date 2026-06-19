@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $ephemeral
 
-Rend the response éphémère (visible only par the user qui a déclenché the interaction). S'utilise comme flag before `$sendMessage`.
+Rend the response éphémère (visible only par the user qui triggered the interaction). S'utilise like flag before `$sendMessage`.
 
 ## Syntax
 
@@ -19,10 +19,10 @@ $ephemeral
 `$ephemeral` est un **flag** (without arguments) qui, placé before `$sendMessage`, rend the message visible only par the user cible. The message apparaît with the mention "Only you can see this" and disparaît after un certain temps or when the user ferme Discord.
 
 Cette function est particularly utile pour :
-- Les messages de confirmation discrets
+- Les messages of confirmation discrets
 - Les errors or avertissements
-- Les responses à des interactions sur buttons/select menus
-- Les informations sensibles
+- Les responses to interactions on buttons/select menus
+- Les information sensibles
 
 ## Examples
 
@@ -56,14 +56,14 @@ $endif
 ```
 $if[$argsCount==0]
   $ephemeral
-  $sendMessage[❌ Vous devez fournir un argument !]
+  $sendMessage[❌ Vous devez provide a argument !]
   $stop
 $endif
 ```
 
 ## Notes
 
-- Functionne only in the context d'interactions (slash commands, buttons, select menus).
-- Ne functionne PAS for commands à préfixe classiques (message commands).
+- Functionne only in the context of interactions (slash commands, buttons, select menus).
+- Ne functionne PAS for commands to préfixe classiques (message commands).
 - Le flag must be placé before `$sendMessage`.
 - Pratique pour garder les channels propres of messages système.

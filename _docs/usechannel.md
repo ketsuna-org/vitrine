@@ -5,11 +5,11 @@ translation_key: docs
 category: "Context & Commands"
 function_name: useChannel
 syntax: $useChannel[channelID]
-description: Change le context de canal for the command in progress. The functions nextes (comme $sendMessage) s'exécuteront dans ce canal.
+description: Change le context of canal for the command in progress. The functions nextes (comme $sendMessage) s'exécuteront in ce canal.
 ---
 # $useChannel
 
-The function `$useChannel[]` **change le context du canal** for the reste de l'exécution of the command. Toutes les functions qui interagissent avec "le canal courant" (comme `$sendMessage`) utiliseront alors le canal spécifié.
+The function `$useChannel[]` **change le context of the canal** for the reste of l'exécution of the command. Toutes les functions qui interagissent with "le canal courant" (comme `$sendMessage`) utiliseront alors le canal spécifié.
 
 ## Syntax
 
@@ -40,7 +40,7 @@ Aucune. The context est modified.
 ```bdfd
 $let[logChannel;123456789012345678]
 $useChannel[$logChannel]
-$title[📋 Log de command]
+$title[📋 Log of command]
 $description[
 **User :** $username
 **Command :** $message
@@ -58,7 +58,7 @@ $useChannel[$dmChannelID[$authorID]]
 $sendMessage[Votre ticket was created ! A staff vous contactera bientôt.]
 ```
 
-### Response dans un canal d'annonce
+### Response in a canal of annonce
 
 ```bdfd
 $if[$hasPerms[$authorID;Administrator]==true]
@@ -71,6 +71,6 @@ $endif
 
 ## Notes
 
-- `$channelSendMessage[]` est oftadditionally sûr pour des envois ponctuels without changer tout le context.
+- `$channelSendMessage[]` est oftadditionally sûr pour envois ponctuels without changer tout le context.
 - Utilisez `$useChannel[]` when several functions doivent s'exécuter in the même canal cible.
 - Le canal original est "oublié" for the reste of the command.

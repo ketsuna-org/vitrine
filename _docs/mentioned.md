@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: mentioned
 syntax: $mentioned
-description: Returns the ID of the first user mentionné in the message. Équivaslow au first élément de $mentions.
+description: Returns the ID of the first user mentionné in the message. Équivaslow to the first élément of $mentions.
 ---
 
 # $mentioned
 
-The variable `$mentioned` retourne l'**ID of the first user mentionné** in the message de command.
+The variable `$mentioned` retourne l'**ID of the first user mentionné** in the command message.
 
 ## Syntax
 
@@ -32,11 +32,11 @@ $mentioned
 
 ## Examples
 
-### Agir sur the user mentionné
+### Agir on the user mentionné
 
 ```bdfd
 $if[$mentioned!=]
-  $title[Informations sur <@$mentioned>]
+  $title[Informations on <@$mentioned>]
   $description[
   **ID :** $mentioned
   **Nom :** $username[$mentioned]
@@ -49,7 +49,7 @@ $else
 $endif
 ```
 
-### Kick du first mentionné
+### Kick of the first mentionné
 
 ```bdfd
 $if[$mentioned!=]
@@ -60,7 +60,7 @@ $if[$mentioned!=]
     $sendMessage[Permission refusée.]
   $endif
 $else
-  $sendMessage[Mentionnez the user à expulser.]
+  $sendMessage[Mentionnez the user to expulser.]
 $endif
 ```
 

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: hasRole
 syntax: $hasRole[userID;roleID]
-description: Checks if un user possède un role spécifique on the server.
+description: Checks if un user possède un role specific on the server.
 ---
 
 # $hasRole
 
-The function `$hasRole[userID;roleID]` **vérifie if a user possède un role spécifique** on the server. Elle est couramment utilisée for the systèmes de permission.
+The function `$hasRole[userID;roleID]` **vérifie if a user possède un role specific** on the server. Elle est couramment utilisée for the systèmes of permission.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ $hasRole[roleID]
 | Parameter | Description |
 |---|---|
 | `userID` | Optional - The ID of the user. Default: auteur of the command. |
-| `roleID` | The ID of the role à vérifier. Required. |
+| `roleID` | The ID of the role to vérifier. Required. |
 
 ## Return Value
 
@@ -39,9 +39,9 @@ $hasRole[roleID]
 
 ## Behavior
 
-- Checks in the list des roles of the user on the server courant.
-- Functionne only dans un context de server.
-- Insensible à la casse du nom de role (si `$roleID[Nom]` is used).
+- Checks in the list roles of the user on the server courant.
+- Functionne only in a context of server.
+- Insensible to la casse of the nom of role (si `$roleID[Nom]` is used).
 
 ## Examples
 
@@ -58,11 +58,11 @@ $if[$hasRole[$authorID;$roleID[Admin]]==true]
   ]
   $sendMessage[]
 $else
-  $sendEphemeral[❌ Accès réservé aux Administrators.]
+  $sendEphemeral[❌ Accès réservé to the Administrators.]
 $endif
 ```
 
-### Command de staff
+### Command of staff
 
 ```bdfd
 $if[$hasRole[$roleID[Staff]]==false]
@@ -87,7 +87,7 @@ $else
 $endif
 ```
 
-### Badge de role
+### Badge of role
 
 ```bdfd
 $if[$hasRole[$roleID[VIP]]==true]
@@ -106,4 +106,4 @@ $sendMessage[$var[badge] $userName]
 - `$hasRole[userID;roleID]` requiert que the bot thense voir les roles of the server.
 - Pour attribuer un role, utilisez `$giveRole[]` or `$giveRoles[]`.
 - Pour retirer un role, utilisez `$takeRole[]` or `$takeRoles[]`.
-- `$hasRole` est often utilisé comme garde en début de command avec `$stop`.
+- `$hasRole` est often utilisé like garde en début of command with `$stop`.

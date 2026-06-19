@@ -8,7 +8,7 @@ syntax: $guildExists[guildId]
 description: Checks if un server (guild) with the ID donné existe and si the bot y a accès. Returns "true" or "false".
 ---
 
-# $guildExists[] — Vérifier l'Existence d'un Server
+# $guildExists[] — Vérifier l'Existence of un Server
 
 `$guildExists[]` détermine if a server Discord identifié par son ID existe and si the bot y est currentlement présent.
 
@@ -22,14 +22,14 @@ $guildExists[guildId]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `guildId` | Yes | The ID of the server à vérifier. |
+| `guildId` | Yes | The ID of the server to vérifier. |
 
 ## Return Value
 
 - **Type** : `string`
 - `"true"` si the bot est présent on the server, `"false"` otherwise.
 
-> **Attention** : The value de retour est une **string** (`"true"` / `"false"`), pas un boolean. Pour les conditions, comparez avec `==true` or `==false`.
+> **Attention** : The value of retour est une **string** (`"true"` / `"false"`), pas un boolean. Pour les conditions, comparez with `==true` or `==false`.
 
 ## Utilisation
 
@@ -43,9 +43,9 @@ $sendMessage[Présence on the server 123456789 : $guildExists[123456789]]
 
 ```bdfd
 $if[$guildExists[$message[1]]==true]
-$sendMessage[✅ The bot est bien présent sur ce server.]
+$sendMessage[✅ The bot est bien présent on ce server.]
 $else
-$sendMessage[❌ The bot is not sur ce server, or the ID est invalid.]
+$sendMessage[❌ The bot is not on ce server, or the ID est invalid.]
 $stop
 $endif
 ```
@@ -67,7 +67,7 @@ $sendMessage[Server 2 : ❌ Absent]
 $endif
 ```
 
-### Log de disponibilité
+### Log of disponibilité
 
 ```bdfd
 $if[$guildExists[$var[targetGuild]]==true]

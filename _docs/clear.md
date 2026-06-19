@@ -10,7 +10,7 @@ description: Supprime a namebre spécifié of messages in the channel.
 
 # $clear
 
-The `$clear` function **supprime a namebre spécifié of messages** in the channel courant. Cette function est dédiée à la suppression of messages (modération), à not confondre with the function variable `$clear` du même nom. The bot must have the permission `ManageMessages`.
+The `$clear` function **supprime a namebre spécifié of messages** in the channel courant. Cette function est dédiée to la suppression of messages (modération), to not confondre with the function variable `$clear` of the même nom. The bot must have the permission `ManageMessages`.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $clear[amount;(userID);(removePinned)]
 | Parameter | Description |
 |---|---|
 | `amount` | Number of messages to delete (1-100). Required. |
-| `userID` | Optional. Filtre : ne supprime que les messages de cet user. |
+| `userID` | Optional. Filtre : ne supprime que les messages of cet user. |
 | `removePinned` | Optional. `"yes"` pour inclure les messages épinglés. Default `"no"`. |
 
 ## Return value
@@ -43,10 +43,10 @@ $sendMessage[🧹 50 messages have been nettoyés.]
 
 ```bdfd
 $clear[100;$mentioned[1]]
-$sendMessage[🧹 Messages de <@$mentioned[1]> deleteds.]
+$sendMessage[🧹 Messages of <@$mentioned[1]> deleteds.]
 ```
 
-### Command de nettoyage avec vérification
+### Command of nettoyage with vérification
 
 ```bdfd
 $if[$argsCount<1]
@@ -73,7 +73,7 @@ $sendMessage[10 messages deleteds (épinglés included).]
 
 - The bot must have the permission `ManageMessages`.
 - Maximum 100 messages par call (limitation Discord).
-- Les messages de more than 14 days cannot être deleteds par the API Discord.
+- Les messages of more than 14 days cannot être deleteds par the API Discord.
 - `removePinned` by default `"no"` : les messages épinglés are ignored.
-- Si `userID` est omis, laissez le point-virgule vide (ex: `$clear[10;;yes]`).
-- Cette function `$clear` est dédiée à la modération. Pour vider a variable, voir `$clear` in the catégorie Variables.
+- Si `userID` est omitted, laissez le point-virgule vide (ex: `$clear[10;;yes]`).
+- Cette function `$clear` est dédiée to la modération. Pour vider a variable, voir `$clear` in the catégorie Variables.

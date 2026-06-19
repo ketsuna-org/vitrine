@@ -29,7 +29,7 @@ Aucun.
 
 ## Behavior
 
-- The ID est attribué par Discord à la création de l'application.
+- The ID est attribué par Discord to la création of l'application.
 - Il ne change never, même if the bot est renommé.
 - Utilisable for mentions (`<@ID>`), les invites, les API.
 
@@ -49,25 +49,25 @@ $footer[Bot ID: $botID]
 $sendMessage[]
 ```
 
-### Link d'invite custom
+### Link of invite custom
 
 ```bdfd
 $sendMessage[🔗 **Invitez-moi :**
 https://discord.com/oauth2/authorize?clinkt_id=$botID&permissions=8&scope=bot%20applications.commands]
 ```
 
-### Vérification d'identité
+### Vérification of identité
 
 ```bdfd
 $if[$authorID==$botID]
-  $sendMessage[Je ne réponds pas à mes propres messages !]
+  $sendMessage[Je ne réponds pas to mes propres messages !]
   $stop
 $endif
 
 $sendMessage[Message received, $userName !]
 ```
 
-### Emoji custom avec ID
+### Emoji custom with ID
 
 ```bdfd
 $sendMessage[🤖 <@$botID> est online !]

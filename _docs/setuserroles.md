@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: setUserRoles
 syntax: $setUserRoles[userID;role1;role2;...]
-description: Sets the list exact des roles of a user, remplaçant all their roles currents.
+description: Sets the list exact roles of a user, remplaçant all their roles currents.
 ---
 
 # $setUserRoles
 
-The function `$setUserRoles` **remplace all roles of a user** par une new list. Contrairement à `$giveRoles` qui ajoute des roles, `$setUserRoles` retire first all roles existings before d'attribuer ceux spécifiés. The bot doit avoir la permission `ManageRoles`.
+The function `$setUserRoles` **remplace all roles of a user** par une new list. Contrairement to `$giveRoles` qui ajoute roles, `$setUserRoles` retire first all roles existings before of attribuer ceux spécifiés. The bot doit avoir la permission `ManageRoles`.
 
 ## Syntax
 
@@ -23,7 +23,7 @@ $setUserRoles[userID;role1;role2;...]
 | Parameter | Description |
 |---|---|
 | `userID` | The ID of the user cible. Required. |
-| `role1;role2;...` | List des IDs de roles à définir, separateds par `;`. |
+| `role1;role2;...` | List IDs of roles to définir, separateds par `;`. |
 
 ## Return Value
 
@@ -31,21 +31,21 @@ Aucune. The roles of the user sont replaceds.
 
 ## Examples
 
-### Réinitialisation des roles
+### Réinitialisation roles
 
 ```bdfd
 $setUserRoles[$mentioned[1];$roleID[Member]]
 $sendMessage[<@$mentioned[1]> n'a plus que the role Member.]
 ```
 
-### Définition d'un set de roles
+### Définition of un set of roles
 
 ```bdfd
 $setUserRoles[$mentioned[1];$roleID[Member];$roleID[VIP];$roleID[Actif]]
-$sendMessage[Roles de <@$mentioned[1]> mis à day.]
+$sendMessage[Roles of <@$mentioned[1]> mis to day.]
 ```
 
-### Promotion d'un member
+### Promotion of un member
 
 ```bdfd
 $if[$isAdmin==true]
@@ -60,14 +60,14 @@ $endif
 
 ```bdfd
 $setUserRoles[$mentioned[1]]
-$sendMessage[Tous les roles de <@$mentioned[1]> were retirés.]
+$sendMessage[Tous les roles of <@$mentioned[1]> were retirés.]
 ```
 
 ## Notes
 
 - The bot doit avoir la permission `ManageRoles`.
-- **Tous les roles existings sont retirés** before d'appliquer les newx.
-- Pour simplement ajouter des roles, préférez `$giveRoles`.
-- Pour retirer des roles spécifiques, préférez `$takeRoles`.
-- Laisser la list de roles vide retire all roles (except the role @everyone).
+- **Tous les roles existings sont retirés** before of appliquer les newx.
+- Pour simplement ajouter roles, préférez `$giveRoles`.
+- Pour retirer roles specifics, préférez `$takeRoles`.
+- Laisser la list of roles vide retire all roles (except the role @everyone).
 - The role @everyone ne peut pas être retiré.

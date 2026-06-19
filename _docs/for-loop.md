@@ -4,7 +4,7 @@ title: $for / $endFor + $loopIndex / $loopCount / $loopIteration
 translation_key: docs
 category: "Control Flow"
 function_name: for
-syntax: $for[iteratorName;values] ... $endFor
+syntax: $for[iteratorName;values].. $endFor
 description: Iterates over a list of values, executing the block once per item with loop metadata variables.
 ---
 # $for / $endFor — For Loop
@@ -17,8 +17,8 @@ Inside a `$for...$endFor` block, three special variables provide information abo
 
 | Variable         | Value                              | Description                          |
 |------------------|------------------------------------|--------------------------------------|
-| `$loopIndex`     | 0, 1, 2, 3, ...                   | Zero-based index of the current item |
-| `$loopCount`     | 1, 2, 3, 4, ...                   | One-based count of the current item  |
+| `$loopIndex`     | 0, 1, 2, 3,..                   | Zero-based index of the current item |
+| `$loopCount`     | 1, 2, 3, 4,..                   | One-based count of the current item  |
 | `$loopIteration` | same as `$loopIndex` (`0, 1, 2`)   | Alias for the zero-based index       |
 
 These variables are only valid inside the `$for...$endFor` block. Using them outside a loop produces an empty string or may cause an error.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: findRole
 syntax: $findRole[query;(guildID)]
-description: Recherche un role par nom partial or complete and retourne son ID. Insensible à la casse.
+description: Recherche un role par nom partial or complete and retourne son ID. Insensible to la casse.
 ---
 
 # $findRole
 
-The function `$findRole` recherche un role Discord par **nom partial or complete** and retourne son ID. The recherche est insensible à la casse.
+The function `$findRole` recherche un role Discord par **nom partial or complete** and retourne son ID. The recherche est insensible to la casse.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $findRole[query;(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `query` | The name or partie du nom of the role à rechercher. |
+| `query` | The name or partie of the nom of the role to rechercher. |
 | `guildID` | Optional. The ID of the server cible. |
 
 ## Return Value
@@ -36,7 +36,7 @@ $findRole[query;(guildID)]
 ### Recherche par nom partial
 
 ```bdfd
-$sendMessage[Role correspondant à "mod" : $findRole[mod]]
+$sendMessage[Role correspondant to "mod" : $findRole[mod]]
 ```
 
 ### Attribuer un role found
@@ -56,11 +56,11 @@ $endif
 $if[$findRole[admin]!=]
   $sendMessage[Role found : $roleName[$findRole[admin]]]
 $else
-  $sendMessage[Aucun role ne correspond à "admin".]
+  $sendMessage[Aucun role ne correspond to "admin".]
 $endif
 ```
 
-### Fallback avec $roleID
+### Fallback with $roleID
 
 ```bdfd
 $if[$roleID[Modérateur]!=]

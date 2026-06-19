@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: channelSendMessage
 syntax: $channelSendMessage[channelID;content]
-description: Sends a message in a channel spécifique. Contrairement à $sendMessage qui répond in the channel courant, cette function cible any canal.
+description: Sends a message in a channel specific. Contrairement to $sendMessage qui répond in the channel courant, cette function target any canal.
 ---
 
 # $channelSendMessage
 
-The `$channelSendMessage[]` function **envoyer a message in a channel spécifique**, different du canal où la command has been executede.
+The `$channelSendMessage[]` function **envoyer a message in a channel specific**, different of the canal où la command has been executede.
 
 ## Syntax
 
@@ -33,17 +33,17 @@ $channelSendMessage[channelID;content]
 
 ## Behavior
 
-- The bot must have accès au canal cible and the permission `SEND_MESSAGES`.
-- The message is sent comme a message normal of the bot.
-- Les functions d'embed (`$title`, `$description`, etc.) placées before `$channelSendMessage[]` sont appliquées.
+- The bot must have accès to the canal target and the permission `SEND_MESSAGES`.
+- The message is sent like a message normal of the bot.
+- Les functions of embed (`$title`, `$description`, etc.) placées before `$channelSendMessage[]` sont appliquées.
 
 ## Examples
 
-### Logs de modération
+### Logs of modération
 
 ```bdfd
 $let[logChannel;123456789012345678]
-$title[⚠️ Action de modération]
+$title[⚠️ Action of modération]
 $description[
 **Modérateur :** $username
 **Action :** Ban
@@ -55,12 +55,12 @@ $channelSendMessage[$logChannel;]
 $sendMessage[User banni.]
 ```
 
-### Notification de bienvenue
+### Notification of bienvenue
 
 ```bdfd
 $let[welcomeChannel;123456789]
 $title[👋 Bienvenue !]
-$description[Bienvenue sur **$serverName**, $username ! Tu es le member #$membersCount !]
+$description[Bienvenue on **$serverName**, $username ! Tu es le member #$membersCount !]
 $thumbnail[$authorAvatar]
 $color[#57F287]
 $channelSendMessage[$welcomeChannel;]
@@ -72,7 +72,7 @@ $channelSendMessage[$welcomeChannel;]
 $if[$mentionedChannels[1]!=]
   $channelSendMessage[$mentionedChannels[1];Message transféré par $username :
 >>> $noMentionMessage]
-  $sendMessage[Message sent dans <#$mentionedChannels[1]>]
+  $sendMessage[Message sent in <#$mentionedChannels[1]>]
 $else
   $sendMessage[Aucun canal mentionné.]
 $endif
@@ -80,6 +80,6 @@ $endif
 
 ## Notes
 
-- `$channelSendMessage[]` ne répond pas à the user — combinez avec `$sendMessage[]` for a feedback.
+- `$channelSendMessage[]` ne répond pas to the user — combinez with `$sendMessage[]` for a feedback.
 - Maximum 2000 becauseactères par message.
 - Pour récupérer a message, use `$getMessage[]`.

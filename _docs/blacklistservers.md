@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: blacklistServers
 syntax: $blacklistServers[guildID1;guildID2;...;(errorMessage)]
-description: Function guard qui blacklist des servers. If the command est executede in a server blacklisté, it is interrompue.
+description: Function guard qui blacklist servers. If the command est executede in a server blacklisté, it is interrompue.
 ---
 
 # $blacklistServers
@@ -22,7 +22,7 @@ $blacklistServers[guildID1;guildID2;...;(errorMessage)]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `guildID1;guildID2;...` | Snowflake[] | IDs des servers à blacklistr. |
+| `guildID1;guildID2;...` | Snowflake[] | IDs servers to blacklistr. |
 | `errorMessage` | String (optional) | Message if the server est blacklisté. |
 
 ## Behavior
@@ -36,7 +36,7 @@ $blacklistServers[guildID1;guildID2;...;(errorMessage)]
 ### Bloquer a server
 
 ```bdfd
-$blacklistServers[123456789012345678;❌ Command désenablede sur ce server.]
+$blacklistServers[123456789012345678;❌ Command désenablede on ce server.]
 $sendMessage[Command executede.]
 ```
 
@@ -56,6 +56,6 @@ $sendMessage[Bienvenue.]
 
 ## Notes
 
-- Pour whitelistr des servers (autoriser only certains servers), use `$onlyForServers`.
-- La blacklist de server est utile for bots publics in order to désactiver des commands sur des servers problématiques.
-- Combinez avec of variables globals to manage la blacklist dynamicment without modifier the code.
+- Pour whitelistr servers (autoriser only certains servers), use `$onlyForServers`.
+- La blacklist of server est utile for bots publics in order to désenable commands on servers problématiques.
+- Combinez with of variables globals to manage la blacklist dynamicment without modifier the code.

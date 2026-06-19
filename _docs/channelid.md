@@ -26,14 +26,14 @@ No parameters.
 
 | Type | Description |
 |---|---|
-| `snowflake` | The ID of the channel courant, sous forme de string de chiffres (ex: `123456789012345678`). |
+| `snowflake` | The ID of the channel courant, sous forme of string of chiffres (ex: `123456789012345678`). |
 
 ## Examples
 
-### Afficher the ID of the channel
+### Display the ID of the channel
 
 ```bdfd
-$sendMessage[ID de ce channel : $channelID]
+$sendMessage[ID of ce channel : $channelID]
 ```
 
 ### Link direct vers the channel
@@ -42,7 +42,7 @@ $sendMessage[ID de ce channel : $channelID]
 $sendMessage[Link of the channel : https://discord.com/channels/$guildID/$channelID]
 ```
 
-### Compareason with a channel spécifique
+### Compareason with a channel specific
 
 ```bdfd
 $if[$channelID==123456789012345678]
@@ -54,6 +54,6 @@ $endif
 
 ## Notes
 
-- The ID retourné est celui of the channel où la command has been **déclenchée**, même if the bot interagit then avec d'autres channels.
+- The ID retourné est celui of the channel où la command has been **triggerede**, même if the bot interagit then with of autres channels.
 - En messages privates (DM), `$channelID` returns the ID of the canal DM.
-- Utile à combiner avec `$findChannel` or `$channelSendMessage` pour des opérations multi-channels.
+- Utile to combiner with `$findChannel` or `$channelSendMessage` pour opérations multi-channels.

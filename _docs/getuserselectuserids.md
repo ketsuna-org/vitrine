@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getUserSelectUserIDs
 syntax: $getUserSelectUserIDs[(separator)]
-description: Gets all IDs des users selecteds via un menu de sélection d'users à choix multiple.
+description: Gets all IDs users selecteds via un menu of sélection of users to choix multiple.
 ---
 
 # $getUserSelectUserIDs
 
-The function `$getUserSelectUserIDs[]` allows **récupérer l'ensemble des IDs des users** selecteds dans un menu de sélection d'users à choix multiple.
+The function `$getUserSelectUserIDs[]` allows **récupérer l'ensemble IDs users** selecteds in a menu of sélection of users to choix multiple.
 
 ## Syntax
 
@@ -27,14 +27,14 @@ $getUserSelectUserIDs[(separator)]
 ## Return Value
 
 - **Type** : String
-- La list de all IDs des users selecteds.
+- La list of all IDs users selecteds.
 - String vide si no user n'was selected.
 
 ## Behavior
 
-- Utilisé with a menu de sélection d'users configured avec `maxValues > 1`.
+- Utilisé with a menu of sélection of users configured with `maxValues > 1`.
 - Returns all IDs en a single string.
-- Idéal for the actions de masse (DM groupés, attributeion de roles, etc.).
+- Idéal for the actions of masse (DM groupés, attributeion of roles, etc.).
 
 ## Examples
 
@@ -45,7 +45,7 @@ $onInteraction[user_select]
 $let[users;$getUserSelectUserIDs[,]]
 
 $textSplit[$users;,]
-  $sendDM[$splitText[$index];📢 Message important de **$serverName** !]
+  $sendDM[$splitText[$index];📢 Message important of **$serverName** !]
 $endTextSplit
 
 $title[✅ Messages sents]
@@ -54,7 +54,7 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Attributeion de role groupée
+### Attributeion of role groupée
 
 ```bdfd
 $onInteraction[user_select]
@@ -66,7 +66,7 @@ $textSplit[$users;,]
 $endTextSplit
 
 $title[🎭 Role attribué]
-$description[The role **Member** was donné à **$count** user(s).]
+$description[The role **Member** was donné to **$count** user(s).]
 $color[#5865F2]
 $sendMessage[]
 ```
@@ -74,5 +74,5 @@ $sendMessage[]
 ## Notes
 
 - Pour une sélection unique, utilisez `$getUserSelectUserID[]`.
-- Compatible avec `$textSplit[]` pour itérer sur each user.
-- Utile for the commands de modération or d'administration en lot.
+- Compatible with `$textSplit[]` pour itérer on each user.
+- Utile for the commands of modération or of administration en lot.

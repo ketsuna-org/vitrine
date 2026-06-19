@@ -5,25 +5,25 @@ translation_key: docs
 category: "Math & Text"
 function_name: getTimestampMs
 syntax: $getTimestampMs
-description: Returns the timestamp Unix current en milliseconds. Resolved au runtime.
+description: Returns the timestamp Unix current en milliseconds. Resolved to the runtime.
 ---
 
 # $getTimestampMs
 
-The function `$getTimestampMs` retourne le timestamp Unix current en **milliseconds**. The timestamp Unix represents the namebre de milliseconds écoulées dethen le 1er janvier 1970 à 00:00:00 UTC (epoch).
+The function `$getTimestampMs` retourne le timestamp Unix current en **milliseconds**. The timestamp Unix represents the namebre of milliseconds écoulées dethen le 1er janvier 1970 to 00:00:00 UTC (epoch).
 
-> **Important:** This function utilise l'identifier special `((getTimestampMs))` qui est resolved au **runtime**.
+> **Important:** This function utilise l'identifier special `((getTimestampMs))` qui est resolved to the **runtime**.
 
-## Différence avec $getTimestamp
+## Différence with $getTimestamp
 
-| Function | Unité | Exemple de value |
+| Function | Unité | Exemple of value |
 |----------|-------|-------------------|
 | `$getTimestampMs` | **Milliseconds** (ms) | `1718697600123` |
 | `$getTimestamp` | **Secondes** (s) | `1718697600` |
 
 - `$getTimestampMs` = `$getTimestamp` × 1000 + milliseconds supplémentaires.
-- Utilisez `$getTimestampMs` pour des mesures de **haute précision** (benchmarks, cooldowns fins, timeouts).
-- Utilisez `$getTimestamp` pour des usages courants où la précision à la second suffit (dates, durées longues, stockage).
+- Utilisez `$getTimestampMs` pour mesures of **haute précision** (benchmarks, cooldowns fins, timeouts).
+- Utilisez `$getTimestamp` pour usages courants où la précision to la second suffit (dates, durées longues, stockage).
 
 ## Syntax
 
@@ -50,12 +50,12 @@ Aucun parameter.
 Timestamp ms : $getTimestampMs
 ```
 
-### Mesure de performance
+### Mesure of performance
 
 ```bdfd
 $let[start;$getTimestampMs]
 
-$title[🔍 Test de performance]
+$title[🔍 Test of performance]
 $description[
 Calcul in progress...
 ]
@@ -90,7 +90,7 @@ $if[$get[diff]<2000]
 $endif
 
 $setUserVar[lastCmd;$get[now]]
-Ta command s'est executed avec success !
+Ta command s'est executed with success !
 ```
 
 ### Conversion en seconds
@@ -105,6 +105,6 @@ Timestamp seconds : $get[seconds]
 
 ## Notes
 
-- La précision est à la millisecond près (1 ms = 0,001 second).
-- Pour comparer with a timestamp en seconds, n'oubliez pas de convertedr : multipliez les seconds par 1000 or divisez les milliseconds par 1000.
-- Les values retournées sont des integers, mais les calculs avec `$math[]` peuvent produire des numbers décimaux during la conversion.
+- La précision est to la millisecond près (1 ms = 0,001 second).
+- Pour compare with a timestamp en seconds, n'oubliez pas of convertedr : multipliez les seconds par 1000 or divisez les milliseconds par 1000.
+- Les values retournées sont integers, mais les calculs with `$math[]` can produire numbers décimaux during la conversion.

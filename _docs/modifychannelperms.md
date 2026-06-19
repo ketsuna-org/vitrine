@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: modifyChannelPerms
 syntax: $modifyChannelPerms[channelID;roleOrUserID;permissions]
-description: Modifies thes permissions of a role or user sur un canal en utilisant des noms de permissions lisibles (sendmessages, viewchannel, etc.).
+description: Modifies thes permissions of a role or user on a canal en utilisant noms of permissions lisibles (sendmessages, viewchannel, etc.).
 ---
 
 # $modifyChannelPerms
 
-The function `$modifyChannelPerms[]` allows **modifier les permissions** of a role or user sur un canal with ae syntaxe lisible.
+The function `$modifyChannelPerms[]` allows **modifier les permissions** of a role or user on a canal with ae syntaxe lisible.
 
 ## Syntax
 
@@ -24,15 +24,15 @@ $modifyChannelPerms[channelID;roleOrUserID;permissions]
 |---|---|
 | `channelID` | The ID of the canal cible. |
 | `roleOrUserID` | The ID of the role or of the user. |
-| `permissions` | Permissions avec `+` (autoriser) or `-` (refuser). Ex : `+sendmessages -attachfiles`. |
+| `permissions` | Permissions with `+` (autoriser) or `-` (refuser). Ex : `+sendmessages -attachfiles`. |
 
 ## Return Value
 
-This function ne retourne pas de value.
+This function ne retourne pas of value.
 
 ## Behavior
 
-- Plus lisible que `$editChannelPerms[]` thanks to thex noms de permissions.
+- Plus lisible que `$editChannelPerms[]` thanks to thex noms of permissions.
 - Permissions availables : `viewchannel`, `sendmessages`, `managemessages`, `embedlinks`, `attachfiles`, `readmessagehistory`, `mentioneveryone`, `useexternalemojis`, `connect`, `speak`, `mute`, `deafen`, `move`, `usevad`, `priorityspeaker`, `stream`, etc.
 - The bot doit avoir `MANAGE_CHANNELS` or `MANAGE_ROLES`.
 

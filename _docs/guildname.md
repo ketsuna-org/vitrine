@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: guildName
 syntax: $guildName
-description: Alias de $serverName. Returns the nom of the server Discord.
+description: Alias of $serverName. Returns the nom of the server Discord.
 ---
 
 # $guildName[] — Name of the Server (Alias)
 
-`$guildName[]` est un alias de `$serverName[]`. Il retourne the name of the server Discord in thequel the command est executed.
+`$guildName[]` est un alias of `$serverName[]`. Il retourne the name of the server Discord in thequel the command est executed.
 
 ## Syntax
 
@@ -29,17 +29,17 @@ Aucun parameter.
 
 ## Utilisation
 
-### Message de bienvenue
+### Message of bienvenue
 
 ```bdfd
-$sendMessage[Bienvenue sur **$guildName**, $username ! 🎉]
+$sendMessage[Bienvenue on **$guildName**, $username ! 🎉]
 ```
 
 ### Embed custom
 
 ```bdfd
 $title[$guildName — Informations]
-$description[Tout ce que vous devez savoir sur $guildName]
+$description[Tout ce que vous devez savoir on $guildName]
 $addField[ID;$guildID;yes]
 $addField[Members;$membersCount;yes]
 $thumbnail[$guildIcon]
@@ -50,7 +50,7 @@ $sendEmbedMessage
 ### Logs
 
 ```bdfd
-$log[New command executed sur $guildName ($guildID)]
+$log[New command executed on $guildName ($guildID)]
 ```
 
 ### Condition
@@ -64,5 +64,5 @@ $endif
 ## Notes
 
 - `$guildName[]` and `$serverName[]` sont interchangeables.
-- Le terme "guild" provient de l'API Discord (Discord API Guilds).
+- Le terme "guild" provient of l'API Discord (Discord API Guilds).
 - The name retourné est toudays the name current, reflétant tout changement récent.

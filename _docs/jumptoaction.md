@@ -54,7 +54,7 @@ $jumpToAction[processing]
 $stop
 
 [processing]
-Traitement de : $message
+Traitement of : $message
 ```
 
 ## Important Notes

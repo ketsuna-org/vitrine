@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botCommands
 syntax: $botCommands
-description: Returns a list des commands availables on the bot.
+description: Returns a list commands availables on the bot.
 ---
 
 # $botCommands
 
-The `$botCommands` function **returns the list des noms de all commands** enregistrées on the bot, separatedes par des retours à la ligne.
+The `$botCommands` function **returns the list noms of all commands** enregistrées on the bot, separatedes par retours to la ligne.
 
 ## Syntax
 
@@ -25,20 +25,20 @@ Aucun.
 ## Return value
 
 - **Type** : String
-- List des commands, une par ligne (ex: `help`, `ping`, `ban`...).
+- List commands, une par ligne (ex: `help`, `ping`, `ban`...).
 
 ## Behavior
 
 - Returns thes commands prefix ET slash.
-- Each command apparaît sur une new row.
-- L'ordre correspond à l'organisation in the console BDFD.
+- Each command apparaît on a new row.
+- L'ordre correspond to l'organisation in the console BDFD.
 
 ## Examples
 
 ### Command help basique
 
 ```bdfd
-$title[📚 Commands de $botName]
+$title[📚 Commands of $botName]
 $description[
 Voici all mes commands :
 ```
@@ -69,7 +69,7 @@ $footer[Total : $commandsCount commands]
 $sendMessage[]
 ```
 
-### Recherche de command
+### Recherche of command
 
 ```bdfd
 $var[search;$message[1]]
@@ -90,7 +90,7 @@ $endif
 
 ## Notes
 
-- Les commands sont retournées sous forme de text brut (une par ligne).
+- Les commands sont retournées sous forme of text brut (une par ligne).
 - For the number total, use `$commandsCount`.
-- For the number de commands slash only, use `$slashCommandsCount`.
-- `$botCommands` can be volumineux sur les bots ayant beaucoup de commands.
+- For the number of commands slash only, use `$slashCommandsCount`.
+- `$botCommands` can be volumineux on the bots ayant beaucoup of commands.

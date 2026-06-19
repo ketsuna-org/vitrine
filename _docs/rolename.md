@@ -23,7 +23,7 @@ $roleName[roleID;(guildID)]
 | Parameter | Description |
 |---|---|
 | `roleID` | The ID of the role. Required. |
-| `guildID` | Optional. The ID of the server cible. Si omis, the server courant. |
+| `guildID` | Optional. The ID of the server cible. Si omitted, the server courant. |
 
 ## Return Value
 
@@ -39,13 +39,13 @@ $roleName[roleID;(guildID)]
 $sendMessage[The role ID 123456789012345678 est : $roleName[123456789012345678]]
 ```
 
-### Afficher the name du first role of a user
+### Display the name of the first role of a user
 
 ```bdfd
 $sendMessage[Votre first role : $roleName[$getRole[$authorID;1]]]
 ```
 
-### Vérifier un nom de role
+### Vérifier un nom of role
 
 ```bdfd
 $if[$roleName[123456789012345678]==Admin]
@@ -62,5 +62,5 @@ $sendMessage[Role : $roleName[123456789012345678;987654321098765432]]
 ## Notes
 
 - The ID of the role must be valid on the server.
-- Pour obtenir the ID à partir d'un nom, utilisez `$roleID`.
+- Pour obtenir the ID from un nom, utilisez `$roleID`.
 - Pour listr all roles, utilisez `$roleNames`.

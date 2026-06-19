@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: allMembersCount
 syntax: $allMembersCount
-description: Returns the namebre total de members on the server (incluant les bots). Contrairement à $membersCount, cette function compte also les bots.
+description: Returns the namebre total of members on the server (incluant les bots). Contrairement to $membersCount, cette function compte also les bots.
 ---
 
 # $allMembersCount
 
-The `$allMembersCount` function **récupérer the namebre total de members** on the server, en incluant les bots.
+The `$allMembersCount` function **récupérer the namebre total of members** on the server, en incluant les bots.
 
 ## Syntax
 
@@ -25,13 +25,13 @@ No parameters.
 ## Return value
 
 - **Type** : String (number)
-- The namebre total de members (users + bots) présents on the server.
+- The namebre total of members (users + bots) présents on the server.
 
 ## Behavior
 
 - Counts all members of the server, y compris les bots.
-- Diffère de `$membersCount` qui ne compte que users humains.
-- La value est mise à day en temps réel.
+- Diffère of `$membersCount` qui ne compte que users humains.
+- La value est mise to day en temps réel.
 
 ## Examples
 
@@ -65,10 +65,10 @@ $color[#57F287]
 $sendMessage[]
 ```
 
-### Compteur de bienvenue
+### Compteur of bienvenue
 
 ```bdfd
-$title[🎉 Bienvenue sur $serverName !]
+$title[🎉 Bienvenue on $serverName !]
 $description[
 Tu es le **$allMembersCountᵉ** member of the server !
 ]

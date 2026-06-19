@@ -10,7 +10,7 @@ description: Returns the ID of a channel Discord from its name.
 
 # $channelIDFromName
 
-The `$channelIDFromName` function returns the **ID** of a channel Discord from son **nom**. The recherche est insensible à la casse.
+The `$channelIDFromName` function returns the **ID** of a channel Discord from son **nom**. The recherche est insensible to la casse.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $channelIDFromName[name]
 
 | Parameter | Description |
 |---|---|
-| `name` | The name of the channel à rechercher. Insensible à la casse (`général` = `Général`). |
+| `name` | The name of the channel to rechercher. Insensible to la casse (`général` = `Général`). |
 
 ## Return value
 
@@ -35,13 +35,13 @@ $channelIDFromName[name]
 ### Obtenir the ID
 
 ```bdfd
-$sendMessage[ID de #général : $channelIDFromName[général]]
+$sendMessage[ID of #général : $channelIDFromName[général]]
 ```
 
 ### Envoyer in a channel by name
 
 ```bdfd
-$channelSendMessage[$channelIDFromName[annonces];New mise à day available !]
+$channelSendMessage[$channelIDFromName[annonces];New mise to day available !]
 ```
 
 ### Vérifier existence
@@ -50,11 +50,11 @@ $channelSendMessage[$channelIDFromName[annonces];New mise à day available !]
 $if[$channelIDFromName[logs]!=]
   $sendMessage[Channel #logs found ! ID : $channelIDFromName[logs]]
 $else
-  $sendMessage[Pas de channel #logs.]
+  $sendMessage[Pas of channel #logs.]
 $endif
 ```
 
-### Dépannage de noms similars
+### Dépannage of noms similars
 
 ```bdfd
 $if[$channelIDFromName[général]!=]
@@ -67,5 +67,5 @@ $endif
 ## Notes
 
 - Si multipthe channels portent le même nom, seul le first found is returned.
-- Use `$findChannel` to une recherche plus avancée avec requête partialle.
+- Use `$findChannel` to une recherche plus avancée with requête partialle.
 - The name ne doit pas inclure le préfixe `#`.

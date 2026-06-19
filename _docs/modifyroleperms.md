@@ -22,42 +22,42 @@ $modifyRolePerms[roleID;permissions]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role à modifier. Required. |
-| `permissions` | List des permissions au format `permission=value`, separatedes par `;`. Required. |
+| `roleID` | The ID of the role to modifier. Required. |
+| `permissions` | List permissions to the format `permission=value`, separatedes par `;`. Required. |
 
 ## Return Value
 
-Aucune. The permissions of the role sont mises à day.
+Aucune. The permissions of the role sont mises to day.
 
 ## Examples
 
-### Désactiver l'envoi de messages
+### Désenable the envoi of messages
 
 ```bdfd
 $modifyRolePerms[$roleID[Muet];sendmessages=no;sendmessagesinthreads=no]
-$sendMessage[✅ The role Muet ne peut plus envoyer de messages.]
+$sendMessage[✅ The role Muet ne peut plus envoyer of messages.]
 ```
 
-### Activer des permissions de modération
+### Activer permissions of modération
 
 ```bdfd
 $modifyRolePerms[$roleID[Modo];banmembers=yes;kickmembers=yes;managemessages=yes]
-$sendMessage[✅ Permissions de modération enabledes for the role Modo.]
+$sendMessage[✅ Permissions of modération enabledes for the role Modo.]
 ```
 
-### Restreindre un role
+### Restrict un role
 
 ```bdfd
 $modifyRolePerms[$roleID[Restreint];sendmessages=no;connect=no;speak=no]
 $sendMessage[✅ Role Restreint configured.]
 ```
 
-### Command de gestion des permissions
+### Command of gestion permissions
 
 ```bdfd
 $if[$isAdmin==true]
   $modifyRolePerms[$roleID[$message[1]];$message[2]]
-  $sendMessage[Permissions mises à day.]
+  $sendMessage[Permissions mises to day.]
 $else
   $sendMessage[Permission refusée.]
 $endif
@@ -66,8 +66,8 @@ $endif
 ## Notes
 
 - The bot doit avoir la permission `ManageRoles`.
-- Format des permissions : `permission=yes` or `permission=no`.
-- Les permissions sont separatedes par des `;`.
+- Format permissions : `permission=yes` or `permission=no`.
+- Les permissions sont separatedes par `;`.
 - Pour modifier les propertys of the role (nom, couleur), utilisez `$modifyRole`.
 - Pour voir les permissions currentles of a role, utilisez `$rolePerms`.
 - Les permissions non spécifiées restent inchangées.

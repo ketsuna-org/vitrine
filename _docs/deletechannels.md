@@ -22,7 +22,7 @@ $deleteChannels[channelID1;channelID2;...]
 
 | Parameter | Description |
 |---|---|
-| `channelID1;channelID2;...` | IDs des canaux to delete, separateds par `;`. |
+| `channelID1;channelID2;...` | IDs canaux to delete, separateds par `;`. |
 
 ## Return value
 
@@ -43,7 +43,7 @@ $deleteChannels[$channelID]
 $sendMessage[Canal deleted.]
 ```
 
-### Nettoyage de tickets
+### Nettoyage of tickets
 
 ```bdfd
 $deleteChannels[$ticketID]
@@ -65,12 +65,12 @@ $endif
 
 ```bdfd
 $deleteChannelsByName[ticket-*]
-$sendMessage[All canaux de ticket deleteds.]
+$sendMessage[All canaux of ticket deleteds.]
 ```
 
 ## Notes
 
-- **Action irréversible** : use avec précaution.
-- Les canaux deleteds ne peuvent PAS être restaurés via the API.
+- **Action irréversible** : use with précaution.
+- Les canaux deleteds ne can PAS être restaurés via the API.
 - For catégories, la suppression supprime also all canaux enfants.
-- L'alias `$deleteChannelsByName[]` accepte des wildbecauseds (`*`).
+- L'alias `$deleteChannelsByName[]` accepte wildbecauseds (`*`).

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: emojiCount
 syntax: $emojiCount
-description: Returns the namebre d'emojis customs availables on the server Discord.
+description: Returns the namebre of emojis customs availables on the server Discord.
 ---
 
-# $emojiCount[] — Number d'Emojis
+# $emojiCount[] — Number of Emojis
 
-`$emojiCount[]` retourne the namebre total d'emojis customs availables on the server, incluant les emojis statics and animés.
+`$emojiCount[]` retourne the namebre total of emojis customs availables on the server, incluant les emojis statics and animés.
 
 ## Syntax
 
@@ -25,14 +25,14 @@ No parameters.
 ## Return value
 
 - **Type** : `integer`
-- The namebre total d'emojis customs.
+- The namebre total of emojis customs.
 
 ## Usage
 
 ### Simple display
 
 ```bdfd
-$sendMessage[🎨 **$emojiCount** emojis customs sur ce server !]
+$sendMessage[🎨 **$emojiCount** emojis customs on ce server !]
 ```
 
 ### Placeholders availables
@@ -66,17 +66,17 @@ $sendEmbedMessage
 
 ```bdfd
 $if[$emojiCount>=$var[maxEmojiSlots]]
-$sendMessage[⚠️ All placeholders d'emojis are used !]
+$sendMessage[⚠️ All placeholders of emojis are used !]
 $elseIf[$emojiCount>=$sub[$var[maxEmojiSlots];10]]
-$sendMessage[⚠️ Plus que $sub[$var[maxEmojiSlots];$emojiCount] placeholders d'emojis availables.]
+$sendMessage[⚠️ Plus que $sub[$var[maxEmojiSlots];$emojiCount] placeholders of emojis availables.]
 $endif
 ```
 
 ## Notes
 
-- La limit d'emojis by default est de 50 (statics) + 50 (animés).
-- Le level de boost augmente ces limits :
+- La limit of emojis by default est of 50 (statics) + 50 (animés).
+- Le level of boost augmente ces limits :
   - Level 1 : 100 statics + 100 animés
   - Level 2 : 150 statics + 150 animés
   - Level 3 : 250 statics + 250 animés
-- Pour obtenir la list complete des emojis (pas only le compte), use `$serverEmojis[]`.
+- Pour obtenir la list complete emojis (pas only le compte), use `$serverEmojis[]`.

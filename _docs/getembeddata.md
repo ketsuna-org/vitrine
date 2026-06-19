@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getEmbedData
 syntax: $getEmbedData[messageID;embedIndex;field]
-description: Extracted les datas d'un champ spécifique of an embed in a message. Allows lire le titre, la description, les champs, etc. of an embed existing.
+description: Extracted les datas of un champ specific of an embed in a message. Allows lire le titre, la description, les champs, etc. of an embed existing.
 ---
 
 # $getEmbedData
 
-The function `$getEmbedData[]` allows to **extraire les datas of an embed** présent in a message Discord. Extrêmement utile pour lire and réutiliser le contenu d'embeds existings.
+The function `$getEmbedData[]` allows to **extraire les datas of an embed** présent in a message Discord. Extrêmement utile pour lire and réuse the contenu of embeds existings.
 
 ## Syntax
 
@@ -24,7 +24,7 @@ $getEmbedData[messageID;embedIndex;field]
 |---|---|
 | `messageID` | The ID of the message contenant the embed. |
 | `embedIndex` | L'index of the embed (1 = first, 2 = twoième...). |
-| `field` | Le champ à extraire parmi : `title`, `description`, `footer`, `author`, `color`, `field:<nom>`, `image`, `thumbnail`, `url`, `timestamp`. |
+| `field` | Le champ to extraire parmi : `title`, `description`, `footer`, `author`, `color`, `field:<nom>`, `image`, `thumbnail`, `url`, `timestamp`. |
 
 ## Return Value
 
@@ -34,9 +34,9 @@ $getEmbedData[messageID;embedIndex;field]
 
 ## Behavior
 
-- Reads thes embeds of a message existing (y compris ceux sents par d'autres bots).
+- Reads thes embeds of a message existing (y compris ceux sents par of autres bots).
 - Pour les champs nommés (`fields`), utilisez la syntaxe `field:Nom of the field`.
-- L'index d'embed commence à 1.
+- L'index of embed commence to 1.
 
 ## Examples
 
@@ -79,7 +79,7 @@ $if[$thumb!=]
 $endif
 ```
 
-### Re-créer un embed
+### Re-create a embed
 
 ```bdfd
 $let[title;$getEmbedData[$messageID;1;title]]
@@ -96,6 +96,6 @@ $sendMessage[]
 
 ## Notes
 
-- Functionne sur les messages de n'importe quel auteur (users, bots, webhooks).
-- The message must be dans un canal accessible par the bot.
-- The value `color` est retournée au format hexadecimal (#RRGGBB).
+- Functionne on the messages of n'importe quel auteur (users, bots, webhooks).
+- The message must be in a canal accessible par the bot.
+- The value `color` est retournée to the format hexadecimal (#RRGGBB).

@@ -22,13 +22,13 @@ $uptime
 
 ## Return Value
 
-A string de becauseactères formattede indiquant the duration de functionnement, for example :
+A string of becauseactères formattede indiquant the duration of functionnement, for example :
 
 - `2 hours, 15 minutes, 30 seconds`
 - `3 days, 5 hours, 42 minutes`
 - `45 seconds`
 
-The format exact peut varier selon the duration.
+The format exact peut varier according to the duration.
 
 ## Examples
 
@@ -38,10 +38,10 @@ The format exact peut varier selon the duration.
 The bot est online dethen $uptime.
 ```
 
-### Embed de status
+### Embed of status
 
 ```bdfd
-$title[📊 Status du Bot]
+$title[📊 Status of the Bot]
 $addField[⏱️ Uptime;$uptime]
 $addField[🏓 Ping;$ping ms]
 $color[#5865F2]
@@ -61,6 +61,6 @@ $description[
 
 ## Notes
 
-- L'uptime est réinitialisé à each redémarrage of the bot.
-- Le format de sortie est automatically adapté à the duration (seconds, minutes, hours, days).
+- L'uptime est réinitialisé to each redémarrage of the bot.
+- Le format of sortie est automatically adapté to the duration (seconds, minutes, hours, days).
 - Pour la latence of the bot, utilisez `$ping[]`.

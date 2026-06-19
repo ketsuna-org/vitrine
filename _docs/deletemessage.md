@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $deleteMessage
 
-Deletes a message spécifique. The bot must have the permission de gérer les messages in the channel.
+Deletes a message specific. The bot must have the permission of gérer les messages in the channel.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $deleteMessage[messageId]
 
 ## Description
 
-`$deleteMessage` supprime permanently a message Discord. The bot must disposer de the permission `MANAGE_MESSAGES` to delete les messages d'autres users. Il peut toudays supprimer their propres messages.
+`$deleteMessage` supprime permanently a message Discord. The bot must disposer of the permission `MANAGE_MESSAGES` to delete les messages of autres users. Il peut toudays supprimer their propres messages.
 
 ## Examples
 
@@ -42,7 +42,7 @@ $deleteMessage[$sentMessageId]
 $sendMessage[Traitement terminé !]
 ```
 
-### Suppression dans une interaction
+### Suppression in a interaction
 
 ```
 $onInteraction
@@ -52,7 +52,7 @@ $if[$customID==btn_delete]
 $endif
 ```
 
-### Suppression of a message spécifique
+### Suppression of a message specific
 
 ```
 $deleteMessage[123456789012345678]
@@ -61,7 +61,7 @@ $deleteMessage[123456789012345678]
 ## Notes
 
 - Le parameter `messageId` is required.
-- The bot must have `MANAGE_MESSAGES` to delete les messages des autres.
+- The bot must have `MANAGE_MESSAGES` to delete les messages autres.
 - Les messages deleteds cannot être récupérés.
-- Pour supprimer the message of the user qui a executed la command, use `$messageID`.
-- Après suppression, it is courant d'envoyer a confirmation éphémère.
+- Pour supprimer the user's message qui a executed la command, use `$messageID`.
+- Après suppression, it is courant of envoyer a confirmation éphémère.

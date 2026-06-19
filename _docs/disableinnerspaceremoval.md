@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: disableInnerSpaceRemoval
 syntax: $disableInnerSpaceRemoval
-description: Désactive la suppression automatique des espaces internals in thes parameters des functions BDFD. Par default, BDFD nettoie les espaces superflus.
+description: Désactive la suppression automatique espaces internals in thes parameters functions BDFD. Par default, BDFD nettoie les espaces superflus.
 ---
 # $disableInnerSpaceRemoval
 
-The `$disableInnerSpaceRemoval` function **désactive la suppression automatique des espaces** in thes parameters. Par default, BDFD nettoie les espaces en début/fin de parameters.
+The `$disableInnerSpaceRemoval` function **désactive la suppression automatique espaces** in thes parameters. Par default, BDFD nettoie les espaces en début/fin of parameters.
 
 ## Syntax
 
@@ -29,7 +29,7 @@ None.
 
 - Without cette function : `$sendMessage[  Hello  ]` devient `Hello`
 - Avec cette function : les espaces internals and périphériques sont conservés.
-- Utile for the mise en forme de text (art ASCII, indentation, etc.).
+- Utile for the mise en forme of text (art ASCII, indentation, etc.).
 
 ## Examples
 
@@ -44,7 +44,7 @@ $sendMessage[
 ]
 ```
 
-### Préserver les espaces dans un text
+### Préserver les espaces in a text
 
 ```bdfd
 $disableInnerSpaceRemoval
@@ -68,6 +68,6 @@ $sendMessage[  Hello  World  ]
 
 ## Notes
 
-- Effet limité à la command in progress.
-- À placer at the beginning si toute la command requires the préservation d'espaces.
-- Ne désactive pas the processing des becauseactères special (voir `$disableSpecialEscaping`).
+- Effet limité to la command in progress.
+- À placer at the beginning si toute la command requires the préservation of espaces.
+- Ne désactive pas the processing becauseactères special (voir `$disableSpecialEscaping`).

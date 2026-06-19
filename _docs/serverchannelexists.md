@@ -5,11 +5,11 @@ translation_key: docs
 category: "Server & Channels"
 function_name: serverChannelExists
 syntax: $serverChannelExists[name;guildID]
-description: Checks if un canal portant un nom donné existe sur un server (guild). Returns true/false.
+description: Checks if un canal portant un nom donné existe on a server (guild). Returns true/false.
 ---
 # $serverChannelExists
 
-The function `$serverChannelExists[]` vérifie if a **canal existe sur un server** donné (par son nom).
+The function `$serverChannelExists[]` vérifie if a **canal existe on a server** donné (par son nom).
 
 ## Syntax
 
@@ -21,8 +21,8 @@ $serverChannelExists[name;guildID]
 
 | Parameter | Description |
 |---|---|
-| `name` | Name of the canal à rechercher. Sensible à la casse. Wildbecauseds (*) supportés. |
-| `guildID` | ID of the server. Si omis, utilise the server courant. |
+| `name` | Name of the canal to rechercher. Sensible to la casse. Wildbecauseds (*) supportés. |
+| `guildID` | ID of the server. Si omitted, utilise the server courant. |
 
 ## Return Value
 
@@ -43,17 +43,17 @@ $else
 $endif
 ```
 
-### Vérification avec wildbecaused
+### Vérification with wildbecaused
 
 ```bdfd
 $if[$serverChannelExists[ticket-*]==true]
-  $sendMessage[Des canaux de ticket existent déjà.]
+  $sendMessage[Des canaux of ticket existent déjà.]
 $else
-  $sendMessage[Aucun canal de ticket found.]
+  $sendMessage[Aucun canal of ticket found.]
 $endif
 ```
 
-### Vérification sur un autre server
+### Vérification on a autre server
 
 ```bdfd
 $if[$serverChannelExists[bienvenue;$guildID[Server Partenaire]]==true]
@@ -63,6 +63,6 @@ $endif
 
 ## Notes
 
-- Different de `$channelExists[]` qui vérifie par ID, pas par nom.
+- Different of `$channelExists[]` qui vérifie par ID, pas par nom.
 - Utile pour éviter les doublons before une création.
 - The parameter `guildID` est optional (server courant default).

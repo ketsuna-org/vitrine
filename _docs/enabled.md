@@ -9,7 +9,7 @@ description: Active or désactive une command. Quand désenablede (no), la comma
 ---
 # $enabled
 
-The `$enabled[]` function **activer or désactiver** la command in thequelle elle is placede.
+The `$enabled[]` function **enable or désactiver** la command in thequelle elle is placede.
 
 ## Syntax
 
@@ -35,7 +35,7 @@ None.
 
 ## Examples
 
-### Désactiver temporarily
+### Désenable temporarily
 
 ```bdfd
 $enabled[no]
@@ -51,7 +51,7 @@ $else
 $endif
 ```
 
-### Command de maintenance
+### Command of maintenance
 
 ```bdfd
 $var[maintenance;$getVar[maintenance]]
@@ -69,5 +69,5 @@ $endif
 ## Notes
 
 - Une command désenablede n'apparaît pas in thes suggestions.
-- Contrairement à `$onlyIf[]` qui laisse la command visible mais bloque l'execution, `$enabled[no]` la masque totalement.
+- Contrairement to `$onlyIf[]` qui laisse la command visible mais bloque l'execution, `$enabled[no]` la masque totalement.
 - Utile for commands en maintenance or saisonnières.
