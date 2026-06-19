@@ -6,29 +6,6 @@ category: "Moderation"
 function_name: checkUserPerms
 syntax: $checkUserPerms[userID;permission1;permission2;...]
 description: Vérifie si un utilisateur possède toutes les permissions spécifiées. Alias de $hasPerms. Retourne "true" ou "false".
-parameters:
-  - name: userID
-    description: L'ID Discord de l'utilisateur à vérifier.
-  - name: permission1, permission2, ...
-    description: Liste des permissions à vérifier.
-returns:
-  - type: boolean (string)
-    description: '"true" si l''utilisateur possède toutes les permissions, "false" sinon.'
-related:
-  - $hasPerms
-  - $onlyPerms
-  - $userPerms
-  - $checkContains
-examples:
-  - description: Vérifier les permissions d'un utilisateur
-    code: $checkUserPerms[$authorID;BanMembers]
-  - description: Condition sur les permissions
-    code: |
-      $if[$checkUserPerms[$authorID;ManageMessages]==true]
-        $clear[10]
-      $else
-        $sendMessage[❌ Accès refusé.]
-      $endif
 ---
 
 # $checkUserPerms

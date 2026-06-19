@@ -6,27 +6,6 @@ category: "Moderation"
 function_name: editChannelPerms
 syntax: $editChannelPerms[channelID;roleOrUserID;allow;deny]
 description: Modifie les permissions d'un rôle ou d'un utilisateur sur un canal spécifique en utilisant des valeurs numériques de permissions.
-parameters:
-  - name: channelID
-    description: L'ID du canal cible.
-  - name: roleOrUserID
-    description: L'ID du rôle ou de l'utilisateur dont on veut modifier les permissions.
-  - name: allow
-    description: Bitfield des permissions à autoriser (somme des valeurs de permission).
-  - name: deny
-    description: Bitfield des permissions à refuser (somme des valeurs de permission).
-returns:
-  - type: aucun
-    description: Ne retourne rien. Les permissions sont modifiées.
-related:
-  - $modifyChannelPerms
-  - $modifyChannel
-  - $createChannel
-examples:
-  - description: Bloquer l'envoi de messages
-    code: $editChannelPerms[$channelID;$roleID;0;2048]
-  - description: Autoriser la lecture
-    code: $editChannelPerms[$channelID;$roleID;1024;0]
 ---
 
 # $editChannelPerms

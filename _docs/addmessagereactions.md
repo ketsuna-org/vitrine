@@ -6,26 +6,6 @@ category: "Moderation"
 function_name: addMessageReactions
 syntax: $addMessageReactions[channelID;messageID;emoji1;...]
 description: Ajoute une ou plusieurs réactions à un message spécifique identifié par son ID de canal et de message.
-parameters:
-  - name: channelID
-    description: L'ID du canal où se trouve le message.
-  - name: messageID
-    description: L'ID du message auquel ajouter les réactions.
-  - name: emoji1;emoji2;...
-    description: Liste des émojis à ajouter, séparés par des points-virgules.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Les réactions sont ajoutées au message ciblé.
-related:
-  - $addReactions
-  - $addCmdReactions
-  - $clearReactions
-  - $removeReaction
-examples:
-  - description: Ajouter à un message spécifique
-    code: $addMessageReactions[$channelID;123456789;👍]
-  - description: Ajouter à un message stocké
-    code: $addMessageReactions[$channelID;$messageID;✅;🔥]
 ---
 
 # $addMessageReactions

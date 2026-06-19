@@ -6,35 +6,6 @@ category: "Math & Text"
 function_name: joinSplitText
 syntax: $joinSplitText[separator]
 description: Joins all elements from the current text split back into a single string, separated by the given delimiter.
-parameters:
-  - name: separator
-    type: string
-    required: true
-    description: The delimiter to insert between each element in the resulting string. Can be empty to concatenate without any separator.
-returns:
-  type: string
-  description: A single string containing all split elements joined by the specified separator. Returns an empty string if no split has been performed.
-related:
-  - textSplit
-  - splitText
-  - editSplitText
-  - removeSplitTextElement
-examples:
-  - title: Join with spaces
-    code: |
-      $textSplit[hello;world;foo;bar;]
-      $sendMessage[$joinSplitText[ ]]
-      Result: "hello world foo bar"
-  - title: Join with commas
-    code: |
-      $textSplit[apple;banana;orange;]
-      $sendMessage[$joinSplitText[, ]]
-      Result: "apple, banana, orange"
-  - title: Concatenate without separator
-    code: |
-      $textSplit[a;b;c;d;]
-      $sendMessage[$joinSplitText[]]
-      Result: "abcd"
 ---
 # $joinSplitText — Join Split Elements
 

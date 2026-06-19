@@ -6,16 +6,6 @@ category: "Moderation"
 function_name: botTyping
 syntax: $botTyping
 description: Déclenche l'indicateur de saisie (typing indicator) dans le canal courant. Montre aux utilisateurs que le bot est en train d'écrire.
-parameters: []
-returns:
-  - type: aucun
-    description: Ne retourne rien. L'indicateur de saisie est affiché pendant ~10 secondes ou jusqu'à l'envoi d'un message.
-related:
-  - $sendMessage
-  - $wait
-examples:
-  - description: Déclencher le typing
-    code: $botTyping
 ---
 
 # $botTyping

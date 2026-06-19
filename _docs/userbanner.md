@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: userBanner
 syntax: $userBanner
 description: Retourne l'URL de la bannière de profil de l'utilisateur qui a déclenché la commande.
-parameters: []
-returns:
-  - type: string (URL)
-    description: L'URL de la bannière de profil, ou une chaîne vide si aucune bannière n'est définie.
-related:
-  - $userBannerColor
-  - $userAvatar
-  - $authorBanner
-examples:
-  - description: Obtenir l'URL de la bannière
-    code: $userBanner
-  - description: Afficher la bannière dans un embed
-    code: |
-      $title[Bannière de $userName]
-      $image[$userBanner]
-      $color[$userBannerColor]
-      $sendMessage[]
 ---
 
 # $userBanner

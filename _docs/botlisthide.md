@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: botListHide
 syntax: $botListHide
 description: Masque le bot de la liste publique des bots BDFD (bot list).
-parameters: []
-returns:
-  - type: void
-    description: Le bot est retiré de la liste publique. Aucune valeur de retour.
-related:
-  - $botListDescription
-  - $botName
-  - $botID
-examples:
-  - description: Masquer le bot
-    code: |
-      $botListHide
-      $sendMessage[Bot retiré de la liste publique.]
-  - description: Commande owner pour masquer
-    code: |
-      $if[$authorID==$botOwnerID]
-        $botListHide
-        $sendMessage[✅ Bot masqué.]
-      $endif
 ---
 
 # $botListHide

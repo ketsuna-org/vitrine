@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: botOwnerID
 syntax: $botOwnerID
 description: Retourne l'ID Discord du propriétaire du bot.
-parameters: []
-returns:
-  - type: string
-    description: L'ID du propriétaire du bot.
-related:
-  - $botName
-  - $botID
-  - $botAvatar
-  - $userName
-examples:
-  - description: Afficher le propriétaire
-    code: |
-      $sendMessage[Mon propriétaire est <@$botOwnerID> !]
-  - description: Contacter le propriétaire
-    code: |
-      $sendDM[$botOwnerID;Nouveau bug signalé par $userName]
-      $sendMessage[✅ Message envoyé au propriétaire.]
 ---
 
 # $botOwnerID

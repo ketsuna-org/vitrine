@@ -6,21 +6,8 @@ category: "Math & Calculations"
 function_name: c
 syntax: $c[expression]
 description: Alias de $calculate. Effectue un calcul mathématique et retourne le résultat. Supporte les opérations de base, les fonctions mathématiques et les variables.
-parameters:
-  - name: expression
-    description: L'expression mathématique à évaluer (+, -, *, /, %, ^, sqrt, abs, etc.).
-returns:
-  - type: number (string)
-    description: Le résultat du calcul.
 aliases:
   - $calculate
-related:
-  - $calculate
-  - $round
-  - $enableDecimals
-examples:
-  - description: Calcul simple
-    code: $sendMessage[2 + 2 = $c[2+2]]
 ---
 # $c (alias de $calculate)
 

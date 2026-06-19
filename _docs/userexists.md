@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: userExists
 syntax: $userExists[userID/mention]
 description: Vérifie si l'utilisateur spécifié (par ID ou mention) existe sur Discord et retourne "true" ou "false".
-parameters:
-  - name: userID/mention
-    description: L'ID ou la mention de l'utilisateur à vérifier.
-returns:
-  - type: boolean (string)
-    description: '"true" si l''utilisateur existe, "false" sinon.'
-related:
-  - $userID
-  - $findUser
-  - $isBot
-examples:
-  - description: Vérifier si un ID utilisateur existe
-    code: $userExists[123456789012345678]
-  - description: Condition basée sur l'existence
-    code: |
-      $if[$userExists[$mentioned]==true]
-        $sendMessage[L'utilisateur mentionné existe !]
-      $else
-        $sendMessage[Utilisateur introuvable.]
-      $endif
 ---
 
 # $userExists

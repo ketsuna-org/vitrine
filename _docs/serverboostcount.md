@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: serverBoostCount
 syntax: $serverBoostCount
 description: Retourne le nombre de boosts Nitro actifs sur le serveur Discord.
-parameters: []
-returns:
-  type: integer
-  description: Le nombre de boosts serveur (Nitro Boosts).
-related:
-  - $boostLevel
-  - $serverInfo
-  - $membersCount
-examples:
-  - description: Afficher le nombre de boosts
-    code: |
-      $sendMessage[🚀 Ce serveur a $serverBoostCount boosts !]
-  - description: Embed info serveur
-    code: |
-      $title[$serverName]
-      $addField[Boosts;$serverBoostCount;yes]
-      $addField[Niveau de boost;$boostLevel;yes]
-      $color[#F47FFF]
-      $sendEmbedMessage
 ---
 
 # $serverBoostCount[] — Nombre de Boosts du Serveur

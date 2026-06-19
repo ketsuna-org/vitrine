@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: rolePerms
 syntax: $rolePerms[roleID;(guildID)]
 description: Retourne les permissions d'un rôle Discord sous forme de liste textuelle ou de valeur brute.
-parameters:
-  - name: roleID
-    description: L'ID du rôle cible.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: string / integer
-    description: La liste des permissions ou leur valeur brute.
-related:
-  - $roleInfo
-  - $roleName
-  - $rolePosition
-examples:
-  - description: Permissions d'un rôle
-    code: "$sendMessage[Perms Admin : $rolePerms[$roleID[Admin]]]"
-  - description: Vérifier une permission spécifique
-    code: |
-      $if[$checkContains[$rolePerms[$roleID[Membre]];Administrator]]
-        $sendMessage[Ce rôle a la permission Administrateur !]
-      $endif
 ---
 
 # $rolePerms

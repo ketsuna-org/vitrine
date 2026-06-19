@@ -6,29 +6,6 @@ category: "Entity Info"
 function_name: findChannel
 syntax: $findChannel[query]
 description: Recherche un salon par nom partiel ou complet et retourne son ID. Insensible à la casse.
-parameters:
-  - name: query
-    description: Le nom (ou partie du nom) du salon à rechercher.
-returns:
-  - type: snowflake (string)
-    description: L'ID du premier salon correspondant, ou une chaîne vide si aucun.
-related:
-  - $channelIDFromName
-  - $channelExists
-  - $channelName
-  - $findRole
-examples:
-  - description: Trouver un salon par nom partiel
-    code: "$sendMessage[Salon trouvé : $findChannel[gén]]"
-  - description: Envoyer dans un salon trouvé
-    code: $channelSendMessage[$findChannel[logs];Message automatique]
-  - description: Vérifier si trouvé
-    code: |
-      $if[$findChannel[annonce]!=]
-        $sendMessage[Salon trouvé !]
-      $else
-        $sendMessage[Salon introuvable.]
-      $endif
 ---
 
 # $findChannel

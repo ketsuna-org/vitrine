@@ -6,28 +6,6 @@ category: "Canvas"
 function_name: canvasSetPixel
 syntax: $canvasSetPixel[x;y;color]
 description: Définit la couleur d'un pixel spécifique sur le canvas.
-parameters:
-  - name: x
-    description: Coordonnée X du pixel (0 = bord gauche).
-  - name: y
-    description: Coordonnée Y du pixel (0 = bord haut).
-  - name: color
-    description: Couleur en hexadécimal (#RRGGBB) ou nom de couleur.
-returns:
-  - type: void
-    description: Modifie le pixel cible du canvas.
-related:
-  - $canvasGrayscale
-  - $canvasInvert
-  - $canvasRotate
-examples:
-  - description: Définir un pixel en rouge
-    code: |
-      $canvasSetPixel[50;50;#FF0000]
-      $attachCanvas[]
-  - description: Tracer un pixel à la position de la souris
-    code: |
-      $canvasSetPixel[$mouseX;$mouseY;#00FF00]
 ---
 
 # $canvasSetPixel

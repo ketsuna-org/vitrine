@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: roleExists
 syntax: $roleExists[roleID;(guildID)]
 description: Vérifie si un rôle existe sur le serveur. Retourne "true" ou "false".
-parameters:
-  - name: roleID
-    description: L'ID du rôle à vérifier.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: string
-    description: '"true" si le rôle existe, "false" sinon.'
-related:
-  - $roleID
-  - $findRole
-  - $channelExists
-examples:
-  - description: Vérifier existence
-    code: |
-      $if[$roleExists[123456789012345678]==true]
-        $sendMessage[Le rôle existe !]
-      $else
-        $sendMessage[Rôle introuvable.]
-      $endif
 ---
 
 # $roleExists

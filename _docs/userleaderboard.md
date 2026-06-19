@@ -6,56 +6,6 @@ category: "Variables"
 function_name: userLeaderboard
 syntax: $userLeaderboard[variable] ou $userLeaderboard[variable;sort]
 description: Affiche la position de l'utilisateur courant dans un classement basé sur une variable, avec les utilisateurs proches.
-parameters:
-  - name: variable
-    type: string
-    required: true
-    description: "Nom de la variable sur laquelle baser le classement (ex: score, level, balance)."
-  - name: sort
-    type: string
-    required: false
-    description: Direction du tri. "desc" pour décroissant (défaut) ou "asc" pour croissant.
-returns:
-  type: text
-  description: Un placeholder ((userLeaderboard[$variable;$sort])) résolu au runtime montrant la position de l'utilisateur et ses voisins dans le classement.
-related:
-  - getLeaderboardPosition
-  - getLeaderboardValue
-  - globalUserLeaderboard
-  - serverLeaderboard
-  - textSplit
-  - setUserVar
-  - getUserVar
-examples:
-  - title: Voir son classement personnel
-    code: |
-      $textSplit[$userLeaderboard[score;desc];\n]
-      $var[i;0]
-      $description[📊 **Votre classement**]
-      $repeat[$splitLength;
-        $var[i;$sum[$var[i];1]]
-        $description[$getLeaderboardPosition. $splitText[$var[i]] — $getLeaderboardValue pts]
-      ]
-  - title: Message personnalisé selon le rang
-    code: |
-      $textSplit[$userLeaderboard[level;desc];\n]
-      $if[$getLeaderboardPosition==1;
-        $description[👑 Vous êtes **1er** du classement niveau ! Félicitations !]
-      ;
-      $if[$getLeaderboardPosition<=3;
-        $description[🥇 Vous êtes sur le podium, rang **#$getLeaderboardPosition** !]
-      ;
-      $if[$getLeaderboardPosition<=10;
-        $description[📈 Vous êtes dans le top 10, rang **#$getLeaderboardPosition** !]
-      ;
-        $description[📊 Vous êtes classé **#$getLeaderboardPosition** avec $getLeaderboardValue niveaux.]
-      ]]]
-  - title: Comparaison avec les voisins directs
-    code: |
-      $textSplit[$userLeaderboard[balance;desc];\n]
-      $description[💰 Votre solde : $getUserVar[balance;$authorID] pièces]
-      $description[🏦 Classement : #$getLeaderboardPosition]
-      $description[📊 Le joueur devant vous a $getLeaderboardValue pièces.]
 ---
 
 # $userLeaderboard

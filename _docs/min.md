@@ -6,30 +6,6 @@ category: "Math & Text"
 function_name: min
 syntax: $min[value1;value2;...]
 description: Retourne la plus petite valeur parmi les arguments fournis.
-parameters:
-  - name: values
-    type: number
-    required: true
-    description: Liste de valeurs numériques séparées par des points-virgules. Variadique.
-returns:
-  type: string (number)
-  description: La plus petite valeur de la liste.
-related:
-  - max
-  - calculate
-examples:
-  - title: Minimum de deux nombres
-    code: |
-      $min[10;3]
-  - title: Minimum de plusieurs nombres
-    code: |
-      $min[5;12;3;8;1]
-  - title: Avec des variables
-    code: |
-      $min[$getVar[a];$getVar[b];$getVar[c]]
-  - title: Avec des décimaux
-    code: |
-      $min[2.5;1.1;3.9]
 ---
 
 # $min[]

@@ -6,28 +6,6 @@ category: "Moderation"
 function_name: onlyPerms
 syntax: $onlyPerms[permission1;permission2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution de la commande si l'utilisateur ne possède pas toutes les permissions spécifiées.
-parameters:
-  - name: permission1, permission2, ...
-    description: "Liste des permissions Discord requises (ex: \"BanMembers\", \"KickMembers\")."
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur à envoyer si l'utilisateur n'a pas les permissions.
-    optional: true
-returns: []
-related:
-  - $onlyAdmin
-  - $onlyBotPerms
-  - $hasPerms
-  - $checkUserPerms
-  - $userPerms
-examples:
-  - description: Exiger la permission de bannir
-    code: |
-      $onlyPerms[BanMembers;❌ Vous n'avez pas la permission de bannir.]
-      $ban[$mentioned[1]]
-  - description: Exiger plusieurs permissions
-    code: |
-      $onlyPerms[ManageMessages;ManageChannels]
-      $sendMessage[Permissions OK.]
 ---
 
 # $onlyPerms

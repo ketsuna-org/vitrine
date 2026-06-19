@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: getRoleSelectRoleIDs
 syntax: $getRoleSelectRoleIDs[(separator)]
 description: Récupère tous les IDs des rôles sélectionnés par l'utilisateur via un menu de sélection de rôles à choix multiples.
-parameters:
-  - name: separator
-    description: (Optionnel) Le séparateur entre les IDs. Par défaut ", ".
-returns:
-  - type: string
-    description: La liste des IDs de rôles sélectionnés, séparés par le délimiteur.
-related:
-  - $getRoleSelectRoleID
-  - $getUserSelectUserIDs
-  - $getChannelSelectChannelIDs
-examples:
-  - description: Tous les rôles (séparateur virgule)
-    code: $getRoleSelectRoleIDs[, ]
-  - description: Avec séparateur personnalisé
-    code: $getRoleSelectRoleIDs[ - ]
 ---
 
 # $getRoleSelectRoleIDs

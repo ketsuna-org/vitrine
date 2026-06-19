@@ -6,54 +6,6 @@ category: "Variables"
 function_name: serverLeaderboard
 syntax: $serverLeaderboard[variable] ou $serverLeaderboard[variable;sort]
 description: Génère un classement des utilisateurs du serveur courant basé sur une variable, trié par ordre décroissant par défaut.
-parameters:
-  - name: variable
-    type: string
-    required: true
-    description: "Nom de la variable (user-scoped ou guild-scoped) sur laquelle baser le classement (ex: xp, messages, warns)."
-  - name: sort
-    type: string
-    required: false
-    description: Direction du tri. "desc" pour décroissant (défaut) ou "asc" pour croissant.
-returns:
-  type: text
-  description: Un placeholder ((serverLeaderboard[$variable;$sort])) résolu au runtime en tableau de classement limité au serveur courant.
-related:
-  - getLeaderboardPosition
-  - getLeaderboardValue
-  - globalUserLeaderboard
-  - userLeaderboard
-  - textSplit
-  - setUserVar
-  - setServerVar
-examples:
-  - title: Top 10 XP du serveur
-    code: |
-      $textSplit[$serverLeaderboard[xp;desc];\n]
-      $var[i;0]
-      $description[🏆 **Top 10 XP — $serverName**]
-      $repeat[10;
-        $var[i;$sum[$var[i];1]]
-        $description[$getLeaderboardPosition. $splitText[$var[i]] — $getLeaderboardValue XP]
-      ]
-  - title: Classement des messages envoyés ce mois-ci
-    code: |
-      $textSplit[$serverLeaderboard[monthlyMessages;desc];\n]
-      $var[i;0]
-      $description[📨 **Messages du mois sur $serverName**]
-      $repeat[5;
-        $var[i;$sum[$var[i];1]]
-        $description[$getLeaderboardPosition. $splitText[$var[i]] : $getLeaderboardValue messages]
-      ]
-  - title: Classement croissant (moins de warns = meilleur)
-    code: |
-      $textSplit[$serverLeaderboard[warns;asc];\n]
-      $var[i;0]
-      $description[🛡️ **Utilisateurs les plus sages**]
-      $repeat[5;
-        $var[i;$sum[$var[i];1]]
-        $description[$getLeaderboardPosition. $splitText[$var[i]] — $getLeaderboardValue warns]
-      ]
 ---
 
 # $serverLeaderboard

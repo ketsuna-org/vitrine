@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: unmute
 syntax: $unmute[userID]
 description: Retire la sourdine d'un utilisateur.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à réactiver en vocal. Obligatoire.
-returns:
-  - type: void
-    description: Réactive le micro de l'utilisateur. Ne retourne rien.
-related:
-  - $mute
-  - $timeout
-  - $unTimeout
-examples:
-  - description: Réactiver le micro
-    code: |
-      $unmute[$mentioned[1]]
-      $sendMessage[<@$mentioned[1]> peut de nouveau parler.]
 ---
 
 # $unmute

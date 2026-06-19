@@ -6,19 +6,6 @@ category: "Moderation"
 function_name: threadMessageCount
 syntax: $threadMessageCount[threadID]
 description: Retourne le nombre total de messages dans un fil de discussion (thread). Inclut les messages du thread uniquement, pas ceux du canal parent.
-parameters:
-  - name: threadID
-    description: L'ID du thread dont on souhaite connaître le nombre de messages.
-returns:
-  - type: integer
-    description: Le nombre de messages dans le thread. Retourne 0 si le thread est vide ou inaccessible.
-related:
-  - $threadUserCount
-  - $startThread
-  - $editThread
-examples:
-  - description: Compter les messages d'un thread
-    code: $threadMessageCount[$threadID]
 ---
 
 # $threadMessageCount

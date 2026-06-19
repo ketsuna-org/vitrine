@@ -6,18 +6,6 @@ category: "Math & Text"
 function_name: randomUserID
 syntax: $randomUserID
 description: Retourne l'ID d'un utilisateur aléatoire présent sur le serveur.
-parameters: []
-returns:
-  - type: string
-    description: L'ID Discord d'un utilisateur aléatoire du serveur.
-related:
-  - $randomUser[]
-  - $randomMention[]
-examples:
-  - description: Obtenir un ID utilisateur aléatoire
-    code: $randomUserID
-  - description: Stocker un ID aléatoire dans une variable
-    code: $let[winner;$randomUserID]
 ---
 
 # $randomUserID[]

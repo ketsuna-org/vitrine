@@ -6,19 +6,6 @@ category: "Flags & Debug"
 function_name: enableDecimals
 syntax: $enableDecimals
 description: Active l'affichage des décimales dans les résultats de calculs. Par défaut, BDFD arrondit les résultats numériques.
-parameters: []
-returns:
-  - type: void
-    description: Active les décimales. Ne retourne rien.
-related:
-  - $calculate
-  - $round
-  - $optOff
-examples:
-  - description: Afficher un résultat avec décimales
-    code: |
-      $enableDecimals
-      $sendMessage[10/3 = $calculate[10/3]]
 ---
 # $enableDecimals
 

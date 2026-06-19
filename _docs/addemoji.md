@@ -6,27 +6,6 @@ category: "Moderation"
 function_name: addEmoji
 syntax: $addEmoji[name;url;(roleID)]
 description: Ajoute un nouvel emoji personnalisé au serveur à partir d'une URL. Possibilité de restreindre l'emoji à un rôle spécifique.
-parameters:
-  - name: name
-    description: Le nom de l'emoji (2 à 32 caractères, alphanumérique + underscores).
-  - name: url
-    description: L'URL de l'image à utiliser comme emoji (PNG, JPEG, GIF).
-  - name: roleID
-    description: (Optionnel) L'ID du rôle autorisé à utiliser cet emoji. Si omis, tout le monde peut l'utiliser.
-returns:
-  - type: string
-    description: Le markup de l'emoji créé (<:nom:ID>) en cas de succès, ou un message d'erreur.
-related:
-  - $removeEmoji
-  - $emojiName
-  - $emojiExists
-  - $customEmoji
-  - $emojiCount
-examples:
-  - description: Ajouter un emoji public
-    code: $addEmoji[mon_emoji;https://example.com/image.png]
-  - description: Ajouter un emoji restreint à un rôle
-    code: $addEmoji[staff_emoji;https://example.com/staff.png;$roleID[Staff]]
 ---
 
 # $addEmoji

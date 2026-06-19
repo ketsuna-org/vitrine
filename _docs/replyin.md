@@ -6,30 +6,6 @@ category: "Embed & Message"
 function_name: replyIn
 syntax: $replyIn[duration]
 description: Programme une réponse différée à un message. Le bot enverra le contenu défini après $replyIn en tant que réponse au message original après le délai spécifié.
-parameters:
-  - name: duration
-    type: string
-    required: true
-    description: "Délai avant la réponse. Format : \"5s\", \"1m\", \"2h\"."
-returns:
-  type: void
-  description: Programme l'envoi différé d'une réponse au message.
-related:
-  - editIn
-  - deleteIn
-  - editEmbedIn
-  - $reply
-examples:
-  - description: Répondre après 5 secondes
-    code: |
-      $replyIn[5s]
-      $sendMessage[Voici les informations demandées]
-  - description: Réponse différée avec embed
-    code: |
-      $replyIn[10s]
-      $title[Résultat]
-      $description[Analyse terminée]
-      $color[#5865F2]
 ---
 
 # $replyIn[] — Réponse Différée

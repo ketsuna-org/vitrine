@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: onlyForCategories
 syntax: $onlyForCategories[categoryID1;categoryID2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution si le channel courant n'appartient pas à l'une des catégories spécifiées.
-parameters:
-  - name: categoryID1, categoryID2, ...
-    description: Liste des IDs de catégories autorisées.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur.
-    optional: true
-returns: []
-related:
-  - $onlyForChannels
-  - $onlyForServers
-  - $channelCategoryID
-  - $ignoreChannels
-examples:
-  - description: Limiter aux salons de la catégorie Modération
-    code: |
-      $onlyForCategories[123456789012345678;❌ Uniquement dans la catégorie Modération.]
-      $ban[$mentioned[1]]
 ---
 
 # $onlyForCategories

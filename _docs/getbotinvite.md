@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: getBotInvite
 syntax: $getBotInvite[(guildID)]
 description: Génère et retourne le lien d'invitation du bot avec les permissions nécessaires. Si un guildID est fourni, le lien est pré-rempli pour ce serveur.
-parameters:
-  - name: guildID
-    description: (Optionnel) L'ID du serveur pour lequel générer l'invite. Si omis, lien générique.
-returns:
-  - type: string
-    description: L'URL d'invitation du bot avec les permissions configurées.
-related:
-  - $getServerInvite
-  - $getInviteInfo
-  - $botLeave
-examples:
-  - description: Lien d'invitation générique
-    code: $getBotInvite
-  - description: Lien pour un serveur spécifique
-    code: $getBotInvite[$guildID]
 ---
 
 # $getBotInvite

@@ -6,22 +6,6 @@ category: "Date & Time"
 function_name: date
 syntax: $date
 description: Retourne la date actuelle. Cette fonction est résolue au runtime.
-parameters: []
-returns:
-  - type: string
-    description: La date actuelle (résolue à chaque exécution).
-related:
-  - $day[]
-  - $month[]
-  - $year[]
-  - $time[]
-examples:
-  - description: Afficher la date actuelle
-    code: $date
-  - description: Intégrer la date dans un embed
-    code: |
-      $title[Date du jour]
-      $description[Nous sommes le $date]
 ---
 
 # $date[]

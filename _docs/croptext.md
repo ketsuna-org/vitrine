@@ -6,44 +6,6 @@ category: "Math & Text"
 function_name: cropText
 syntax: $cropText[text;maxLength;(suffix)]
 description: "Truncates text to a maximum length and optionally appends a suffix (default: \"...\") when truncation occurs."
-parameters:
-  - name: text
-    type: string
-    required: true
-    description: The text to potentially truncate.
-  - name: maxLength
-    type: integer
-    required: true
-    description: The maximum number of characters allowed. Text longer than this will be truncated.
-  - name: suffix
-    type: string
-    required: false
-    description: The string to append when truncation occurs. Defaults to "..." if omitted. The suffix is NOT counted toward maxLength — it's added after truncation.
-returns:
-  type: string
-  description: The original text if it fits within maxLength, otherwise the first (maxLength) characters followed by the suffix.
-related:
-  - charCount
-  - linesCount
-  - replaceText
-  - trimSpace
-examples:
-  - title: Truncate long text
-    code: |
-      $cropText[This is a very long message that needs to be shortened;20]
-      Result: "This is a very long..."
-  - title: Custom suffix
-    code: |
-      $cropText[Lorem ipsum dolor sit amet;15;>]
-      Result: "Lorem ipsum dol>"
-  - title: Text within limit
-    code: |
-      $cropText[Short text;20]
-      Result: "Short text" (unchanged, no suffix)
-  - title: Empty suffix
-    code: |
-      $cropText[Some long text here;5;]
-      Result: "Some " (hard cut at 5 chars)
 ---
 # $cropText — Truncate Text
 

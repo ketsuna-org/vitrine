@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: getInviteInfo
 syntax: $getInviteInfo[code]
 description: Récupère des informations sur une invitation Discord à partir de son code. Retourne des détails comme le nom du serveur, le nombre de membres, etc.
-parameters:
-  - name: code
-    description: "Le code d'invitation Discord (la partie après discord.gg/). Exemple : \"abc123\"."
-returns:
-  - type: string
-    description: Informations formatées sur l'invitation (serveur, membres, etc.) ou chaîne vide si l'invitation est invalide.
-related:
-  - $getServerInvite
-  - $getBotInvite
-  - $serverNames
-examples:
-  - description: Infos sur une invitation
-    code: $getInviteInfo[abc123]
-  - description: Infos sur une URL complète
-    code: $getInviteInfo[$message]
 ---
 
 # $getInviteInfo

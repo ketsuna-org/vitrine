@@ -6,36 +6,6 @@ category: "Math & Text"
 function_name: splitText
 syntax: $splitText[index]
 description: Retrieves the element at the specified index from the most recent $textSplit operation.
-parameters:
-  - name: index
-    type: integer
-    required: true
-    description: The zero-based index of the split element to retrieve. Negative indices count from the end (-1 = last element).
-returns:
-  type: string
-  description: The text content of the split element at the given index. Returns an empty string if the index is out of bounds.
-related:
-  - textSplit
-  - joinSplitText
-  - getTextSplitIndex
-  - getTextSplitLength
-  - editSplitText
-examples:
-  - title: Get first element
-    code: |
-      $textSplit[one;two;three;four;five;]
-      $sendMessage[First: $splitText[0]]
-      Result: "First: one"
-  - title: Get last element with negative index
-    code: |
-      $textSplit[alpha;beta;gamma;delta;]
-      $sendMessage[Last: $splitText[-1]]
-      Result: "Last: delta"
-  - title: Iterate and display all elements
-    code: |
-      $textSplit[red;green;blue;]
-      $sendMessage[$splitText[0] | $splitText[1] | $splitText[2]]
-      Result: "red | green | blue"
 ---
 # $splitText — Access Split Element
 

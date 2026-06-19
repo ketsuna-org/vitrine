@@ -6,17 +6,6 @@ category: "Flags & Debug"
 function_name: logQuota
 syntax: $logQuota
 description: Affiche les informations sur le quota de logs restant pour l'application BDFD. Utile pour surveiller la consommation.
-parameters: []
-returns:
-  - type: string
-    description: Informations sur le quota de logs (nombre restant, total, etc.).
-related:
-  - $log
-  - $debug
-  - $optOff
-examples:
-  - description: Vérifier le quota de logs
-    code: "$sendMessage[Quota logs : $logQuota]"
 ---
 # $logQuota
 

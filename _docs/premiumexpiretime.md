@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: premiumExpireTime
 syntax: $premiumExpireTime
 description: Retourne la date d'expiration de l'abonnement premium BDFD du bot.
-parameters: []
-returns:
-  - type: string
-    description: Date d'expiration du premium (format timestamp) ou chaîne vide si non premium.
-related:
-  - $hostingExpireTime
-  - $nodeVersion
-  - $botNode
-examples:
-  - description: Vérifier le premium
-    code: |
-      $if[$premiumExpireTime==]
-        $sendMessage[Pas de premium.]
-      $else
-        $sendMessage[Premium expire le $premiumExpireTime]
-      $endif
-  - description: Alerte expiration premium
-    code: |
-      $if[$dateDiff[$premiumExpireTime]<=7]
-        $sendMessage[⚠️ Premium expire bientôt !]
-      $endif
 ---
 
 # $premiumExpireTime

@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: scriptLanguage
 syntax: $scriptLanguage
 description: Retourne le langage de script utilisé par le bot (BDScript ou BDJS).
-parameters: []
-returns:
-  - type: string
-    description: "bdscript" ou "bdjs".
-related:
-  - $nodeVersion
-  - $botNode
-  - $hostingExpireTime
-examples:
-  - description: Vérifier le langage
-    code: |
-      $sendMessage[Langage : $scriptLanguage]
-  - description: Afficher BDJS ou BDScript
-    code: |
-      $if[$scriptLanguage==bdjs]
-        $sendMessage[Bot programmé en BDJS (JavaScript)]
-      $else
-        $sendMessage[Bot programmé en BDScript]
-      $endif
 ---
 
 # $scriptLanguage

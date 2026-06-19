@@ -6,37 +6,6 @@ category: "Control Flow"
 function_name: onlyIf
 syntax: $onlyIf[condition] or $onlyIf[condition;errorMessage]
 description: Condition guard that stops command execution if the condition evaluates to false. Optionally sends an error message before stopping.
-parameters:
-  - name: condition
-    type: string
-    required: true
-    description: A boolean expression to evaluate. If the condition is true, execution continues. If false, execution stops.
-  - name: errorMessage
-    type: string
-    required: false
-    description: Optional message to send to the user before stopping execution. If omitted, execution stops silently.
-returns:
-  type: void
-  description: Returns nothing. Execution either continues (condition true) or stops immediately (condition false).
-related:
-  - onlyIfMessageContains
-  - argsCheck
-  - stop
-  - suppressErrors
-examples:
-  - title: Stop si l'utilisateur n'est pas admin
-    code: |
-      $onlyIf[$hasPerms[$authorID;Administrator];❌ Vous n'avez pas la permission d'utiliser cette commande.]
-      Commande exécutée avec succès.
-  - title: Stop silencieux (sans message)
-    code: |
-      $onlyIf[$isNumber[$message]==true]
-      Traitement du nombre...
-  - title: Blocage avec plusieurs conditions
-    code: |
-      $onlyIf[$isNumber[$message]==true;❌ Veuillez entrer un nombre valide.]
-      $onlyIf[$message>0;❌ Le nombre doit être positif.]
-      Le nombre $message est valide.
 ---
 $onlyIf is the fundamental guard function in BDFD. It acts as a gatekeeper: if the condition passes, the command continues; if it fails, the command stops dead. This is the building block for permissions checks, input validation, and any scenario where you need to abort early.
 

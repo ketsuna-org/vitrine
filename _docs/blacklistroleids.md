@@ -6,22 +6,6 @@ category: "Moderation"
 function_name: blacklistRoleIDs
 syntax: $blacklistRoleIDs[roleID1;roleID2;...;(errorMessage)]
 description: Fonction guard qui blackliste des rôles par ID. Alias de $blacklistRoles.
-parameters:
-  - name: roleID1, roleID2, ...
-    description: Liste des IDs de rôles à blacklister.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur.
-    optional: true
-returns: []
-related:
-  - $blacklistRoles
-  - $blacklistUsers
-  - $onlyForRoleIDs
-examples:
-  - description: Blacklister un rôle
-    code: |
-      $blacklistRoleIDs[123456789012345678;❌ Votre rôle n'a pas accès à cette commande.]
-      $sendMessage[OK.]
 ---
 
 # $blacklistRoleIDs

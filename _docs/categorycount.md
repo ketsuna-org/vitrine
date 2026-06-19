@@ -6,18 +6,6 @@ category: "Entity Info"
 function_name: categoryCount
 syntax: $categoryCount
 description: Retourne le nombre de catégories sur le serveur Discord.
-returns:
-  - type: integer
-    description: Le nombre total de catégories.
-related:
-  - $channelCount
-  - $categoryChannels
-  - $channelCategoryID
-examples:
-  - description: Nombre de catégories
-    code: "$sendMessage[Catégories : $categoryCount]"
-  - description: Comparaison salons vs catégories
-    code: $sendMessage[$categoryCount catégories pour $channelCount salons.]
 ---
 
 # $categoryCount

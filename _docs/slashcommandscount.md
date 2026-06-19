@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: slashCommandsCount
 syntax: $slashCommandsCount
 description: Retourne le nombre de commandes slash enregistrées sur le bot.
-parameters: []
-returns:
-  - type: integer
-    description: Nombre de commandes slash.
-related:
-  - $commandsCount
-  - $botCommands
-  - $slashID
-examples:
-  - description: Afficher le nombre
-    code: |
-      $sendMessage[Commandes slash : $slashCommandsCount]
-  - description: Comparaison prefix/slash
-    code: |
-      $sendMessage[Slash: "$slashCommandsCount | Prefix: $math[$commandsCount-$slashCommandsCount]]"
 ---
 
 # $slashCommandsCount

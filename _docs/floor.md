@@ -6,28 +6,6 @@ category: "Math & Text"
 function_name: floor
 syntax: $floor[value]
 description: Arrondit un nombre à l'entier inférieur (troncature vers le bas).
-parameters:
-  - name: value
-    type: number
-    required: true
-    description: Le nombre à arrondir (peut être décimal).
-returns:
-  type: string (number)
-  description: Le plus grand entier inférieur ou égal à la valeur.
-related:
-  - ceil
-  - round
-  - calculate
-examples:
-  - title: Arrondi inférieur simple
-    code: |
-      $floor[3.9]
-  - title: Avec un entier
-    code: |
-      $floor[5]
-  - title: Nombre négatif
-    code: |
-      $floor[-3.1]
 ---
 
 # $floor[]

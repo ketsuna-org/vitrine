@@ -6,25 +6,6 @@ category: "Moderation"
 function_name: onlyNSFW
 syntax: $onlyNSFW
 description: Fonction guard qui arrête l'exécution si le channel courant n'est pas marqué comme NSFW.
-parameters: []
-returns: []
-related:
-  - $onlyForChannels
-  - $onlyForCategories
-  - $channelNSFW
-  - $isNSFW
-examples:
-  - description: Réserver une commande aux salons NSFW
-    code: |
-      $onlyNSFW
-      $sendMessage[Contenu NSFW autorisé ici.]
-  - description: Combiner avec un message d'erreur manuel
-    code: |
-      $if[$channelNSFW==false]
-        $sendMessage[❌ Cette commande est réservée aux salons NSFW.]
-        $stop
-      $endif
-      $sendMessage[OK]
 ---
 
 # $onlyNSFW

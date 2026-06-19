@@ -6,32 +6,6 @@ category: "Moderation"
 function_name: createRole
 syntax: $createRole[name;(color);(hoist);(mentionable)]
 description: Crée un nouveau rôle sur le serveur Discord.
-parameters:
-  - name: name
-    description: Le nom du nouveau rôle. Obligatoire.
-  - name: color
-    description: Optionnel. La couleur en hexadécimal (ex. "#FF0000").
-  - name: hoist
-    description: Optionnel. "yes" pour afficher le rôle séparément dans la liste des membres. Défaut "no".
-  - name: mentionable
-    description: Optionnel. "yes" pour que le rôle soit mentionnable. Défaut "no".
-returns:
-  - type: roleID
-    description: Retourne l'ID du rôle créé.
-related:
-  - $deleteRole
-  - $modifyRole
-  - $giveRole
-  - $roleExists
-examples:
-  - description: Créer un rôle simple
-    code: |
-      $createRole[VIP]
-      $sendMessage[Rôle VIP créé !]
-  - description: Créer un rôle avec couleur
-    code: |
-      $var[newRole;$createRole[Modérateur;#FFA500;yes;no]]
-      $giveRole[$authorID;$var[newRole]]
 ---
 
 # $createRole

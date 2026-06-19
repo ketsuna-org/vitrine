@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: getChannelSelectChannelID
 syntax: $getChannelSelectChannelID[(index)]
 description: Récupère l'ID du canal sélectionné par l'utilisateur via un menu de sélection de canaux (channel select). Permet d'obtenir le résultat d'une interaction.
-parameters:
-  - name: index
-    description: (Optionnel) L'index du canal sélectionné si plusieurs sont disponibles. Par défaut 1 (premier canal).
-returns:
-  - type: string
-    description: L'ID du canal sélectionné, ou une chaîne vide si aucun canal n'a été sélectionné.
-related:
-  - $getChannelSelectChannelIDs
-  - $getUserSelectUserID
-  - $getRoleSelectRoleID
-  - $getMentionableSelectUserID
-examples:
-  - description: Récupérer le premier canal sélectionné
-    code: $getChannelSelectChannelID
-  - description: Récupérer le 2ème canal
-    code: $getChannelSelectChannelID[2]
 ---
 
 # $getChannelSelectChannelID

@@ -6,22 +6,6 @@ category: "Webhooks & Integrations"
 function_name: webhookFooter
 syntax: $webhookFooter[text]
 description: Définit le texte du pied de page (footer) de l'embed pour le prochain message envoyé via $webhookSend.
-parameters:
-  - name: text
-    description: Le texte du footer de l'embed. Maximum 2048 caractères. Supporte les variables.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Définit le footer du prochain embed webhook.
-related:
-  - $webhookTitle
-  - $webhookDescription
-  - $webhookColor
-  - $webhookSend
-examples:
-  - description: Footer simple
-    code: $webhookFooter[Propulsé par MonBot]
-  - description: Footer avec date
-    code: $webhookFooter[Envoyé le $date]
 ---
 
 # $webhookFooter

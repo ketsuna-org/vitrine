@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: addCmdReactions
 syntax: $addCmdReactions[emoji1;emoji2;...]
 description: Ajoute une ou plusieurs réactions au message de commande de l'utilisateur (le message qui a déclenché la commande).
-parameters:
-  - name: emoji1;emoji2;...
-    description: Liste des émojis à ajouter, séparés par des points-virgules.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Les réactions sont ajoutées au message déclencheur.
-related:
-  - $addReactions
-  - $addMessageReactions
-  - $clearReactions
-examples:
-  - description: Réagir à une commande
-    code: $addCmdReactions[✅]
-  - description: Réagir avec plusieurs émojis
-    code: $addCmdReactions[👍;❤️]
 ---
 
 # $addCmdReactions

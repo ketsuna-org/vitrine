@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: channelID
 syntax: $channelID
 description: Retourne l'ID du salon Discord dans lequel la commande est exécutée.
-returns:
-  - type: snowflake
-    description: L'ID du salon courant sous forme de chaîne.
-related:
-  - $channelName
-  - $channelType
-  - $channelCategoryID
-  - $findChannel
-examples:
-  - description: Obtenir l'ID du salon courant
-    code: |
-      $sendMessage[Vous êtes dans le salon : $channelID]
-  - description: Utiliser l'ID dans un lien de salon
-    code: |
-      $sendMessage[Salon : https://discord.com/channels/$guildID/$channelID]
 ---
 
 # $channelID

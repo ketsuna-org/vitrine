@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: creationDate
 syntax: $creationDate[entityID]
 description: Retourne la date de création d'une entité Discord (utilisateur, serveur, rôle, salon, etc.) à partir de son ID.
-parameters:
-  - name: entityID
-    description: L'ID Discord de l'entité dont on souhaite connaître la date de création (utilisateur, serveur, rôle, salon...).
-returns:
-  - type: string
-    description: La date de création au format JJ/MM/AAAA.
-related:
-  - $memberJoinDate
-  - $userExists
-  - $serverExists
-examples:
-  - description: Date de création du compte utilisateur
-    code: $creationDate[$authorID]
-  - description: Date de création du serveur
-    code: $creationDate[$guildID]
 ---
 
 # $creationDate

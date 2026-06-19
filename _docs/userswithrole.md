@@ -6,28 +6,6 @@ category: "Entity Info"
 function_name: usersWithRole
 syntax: $usersWithRole[roleID;(separator);(guildID)]
 description: Retourne la liste des membres ayant un rôle spécifique, séparés par un délimiteur.
-parameters:
-  - name: roleID
-    description: L'ID du rôle cible.
-  - name: separator
-    description: "Optionnel. Séparateur entre les membres (défaut : , )."
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: string
-    description: La liste des membres (mentions ou IDs) ayant le rôle.
-related:
-  - $roleGrant
-  - $getRole
-  - $roleCount
-  - $roleName
-examples:
-  - description: Membres avec le rôle Admin
-    code: "$sendMessage[Admins : $usersWithRole[$roleID[Admin]]]"
-  - description: Compter les membres d'un rôle
-    code: "$sendMessage[Nombre d'admins : $length[$usersWithRole[$roleID[Admin];,]]]"
-  - description: Liste avec retours à la ligne
-    code: $sendMessage[Admins :\n$usersWithRole[$roleID[Admin];\n]]
 ---
 
 # $usersWithRole

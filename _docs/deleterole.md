@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: deleteRole
 syntax: $deleteRole[roleID]
 description: Supprime un rôle du serveur Discord.
-parameters:
-  - name: roleID
-    description: L'ID du rôle à supprimer. Obligatoire.
-returns:
-  - type: void
-    description: Supprime le rôle. Ne retourne rien.
-related:
-  - $createRole
-  - $modifyRole
-  - $roleExists
-examples:
-  - description: Supprimer un rôle
-    code: |
-      $deleteRole[$roleID[Ancien Rôle]]
-      $sendMessage[Rôle supprimé !]
 ---
 
 # $deleteRole

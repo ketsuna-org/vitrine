@@ -6,19 +6,6 @@ category: "Date & Time"
 function_name: year
 syntax: $year
 description: "Retourne l'année actuelle (ex: 2026). Résolu au runtime."
-parameters: []
-returns:
-  - type: number (string)
-    description: L'année actuelle, par exemple 2026.
-related:
-  - $date[]
-  - $day[]
-  - $month[]
-examples:
-  - description: Afficher l'année actuelle
-    code: $year
-  - description: Calculer l'âge à partir d'une année de naissance
-    code: $sub[$year;1990]
 ---
 
 # $year[]

@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: takeRoles
 syntax: $takeRoles[userID;role1;role2;...]
 description: Retire plusieurs rôles à un utilisateur en une seule opération.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur cible. Obligatoire.
-  - name: role1;role2;...
-    description: Liste des IDs de rôles à retirer, séparés par des point-virgules. Obligatoire.
-returns:
-  - type: void
-    description: Retire tous les rôles spécifiés. Ne retourne rien.
-related:
-  - $takeRole
-  - $giveRoles
-  - $setUserRoles
-examples:
-  - description: Retirer plusieurs rôles
-    code: |
-      $takeRoles[$mentioned[1];$roleID[Muet];$roleID[Averti]]
-      $sendMessage[Rôles retirés !]
 ---
 
 # $takeRoles

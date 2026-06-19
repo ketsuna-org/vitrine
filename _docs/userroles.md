@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: userRoles
 syntax: $userRoles
 description: Retourne la liste des IDs des rôles attribués à l'utilisateur sur le serveur actuel.
-parameters: []
-returns:
-  - type: list/array
-    description: Liste des IDs de rôles (snowflakes), séparés par des virgules.
-related:
-  - $userPerms
-  - $highestRole
-  - $lowestRole
-  - $memberPerms
-examples:
-  - description: Obtenir les rôles
-    code: $userRoles
-  - description: Afficher les rôles dans un profil
-    code: |
-      $title[Rôles de $userName]
-      $description[IDs des rôles : $userRoles]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $userRoles

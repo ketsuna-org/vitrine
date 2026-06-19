@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: messageType
 syntax: $messageType
 description: Retourne le type du message déclencheur sous forme d'entier (0 = message normal, 1 = ajout membre, etc.).
-returns:
-  - type: integer
-    description: Le type du message.
-related:
-  - $message
-  - $messageID
-  - $isMessageEdited
-examples:
-  - description: Type du message
-    code: "$sendMessage[Type : $messageType]"
-  - description: Vérifier si message système
-    code: |
-      $if[$messageType!=0]
-        $sendMessage[Ceci est un message système (type $messageType).]
-      $endif
 ---
 
 # $messageType

@@ -6,22 +6,6 @@ category: "Math & Text"
 function_name: randomText
 syntax: $randomText[option1;option2;...]
 description: Choisit et retourne aléatoirement une option parmi une liste d'options textuelles fournies.
-parameters:
-  - name: option1;option2;...
-    description: Liste d'options textuelles séparées par des points-virgules. Au moins deux options sont nécessaires.
-returns:
-  - type: string
-    description: Une des options de la liste, choisie aléatoirement.
-related:
-  - $random[]
-  - $randomString[]
-examples:
-  - description: Choisir entre Pile et Face
-    code: $randomText[Pile;Face]
-  - description: Choisir une couleur aléatoire
-    code: $randomText[Rouge;Bleu;Vert;Jaune;Violet]
-  - description: Sélectionner un message de bienvenue aléatoire
-    code: $randomText[Bienvenue sur le serveur !;Heureux de te voir !;Ravi de t'accueillir !]
 ---
 
 # $randomText[]

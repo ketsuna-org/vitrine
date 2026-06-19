@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: membersCount
 syntax: $membersCount
 description: Retourne le nombre total de membres sur le serveur Discord. Identique à $memberCount.
-parameters: []
-returns:
-  type: integer
-  description: Le nombre total de membres (utilisateurs + bots).
-related:
-  - $memberCount
-  - $onlineMembers
-  - $botCount
-examples:
-  - description: Afficher le nombre de membres
-    code: |
-      $sendMessage[$membersCount membres sur ce serveur !]
-  - description: Embed statistiques
-    code: |
-      $title[$serverName]
-      $addField[Membres;$membersCount;yes]
-      $color[#5865F2]
-      $sendEmbedMessage
 ---
 
 # $membersCount[] — Nombre de Membres

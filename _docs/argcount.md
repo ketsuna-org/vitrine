@@ -6,32 +6,6 @@ category: "Variables"
 function_name: argCount
 syntax: $argCount
 description: Returns the number of arguments passed to the current command.
-parameters: []
-returns:
-  type: string
-  description: The number of arguments as a string (e.g., "0", "3", "10"). If no arguments were provided, returns "0".
-related:
-  - args
-  - argsCheck
-  - var
-  - variablesCount
-examples:
-  - title: Vérifier le nombre d'arguments
-    code: |
-      Commande: !ban @user Spam 7d
-      Nombre d'arguments : $argCount
-      Résultat: "Nombre d'arguments : 3"
-  - title: Condition simple sur le nombre d'arguments
-    code: |
-      $if[$argCount==0]
-      Usage: !commande <argument>
-      $stop
-      $endif
-  - title: Zéro argument
-    code: |
-      Commande: !ping
-      $argCount
-      Résultat: 0
 ---
 
 $argCount tells you exactly how many arguments were supplied by the user. It is a simple but essential function for input validation — almost every command that accepts arguments should check `$argCount` before proceeding.

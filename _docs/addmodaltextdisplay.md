@@ -6,27 +6,6 @@ category: "Embed & Message"
 function_name: addModalTextDisplay
 syntax: $addModalTextDisplay[content]
 description: Affiche un texte informatif statique dans un modal. Ce composant n'est pas interactif — il sert uniquement à présenter des instructions, descriptions ou informations à l'utilisateur.
-parameters:
-  - name: content
-    type: string
-    required: true
-    description: Le texte à afficher. Supporte le formatage Discord (markdown) basique.
-returns:
-  type: void
-  description: Ajoute un bloc de texte statique au modal en cours.
-related:
-  - newModal
-  - addModalTextInput
-examples:
-  - description: Instructions dans un modal
-    code: |
-      $addModalTextDisplay[Veuillez remplir tous les champs ci-dessous. Les champs marqués d'un * sont obligatoires.]
-  - description: Plusieurs blocs de texte
-    code: |
-      $addModalTextDisplay[**Étape 1 :** Informations personnelles]
-      $addModalTextInput[name;Nom;short;;;;yes]
-      $addModalTextDisplay[**Étape 2 :** Préférences]
-      $addModalTextInput[color;Couleur préférée;short]
 ---
 
 # $addModalTextDisplay[] — Texte d'Affichage dans un Modal

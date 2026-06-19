@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: channelIDFromName
 syntax: $channelIDFromName[name]
 description: Retourne l'ID d'un salon Discord à partir de son nom.
-parameters:
-  - name: name
-    description: Le nom du salon recherché (insensible à la casse).
-returns:
-  - type: snowflake (string)
-    description: L'ID du premier salon trouvé correspondant au nom, ou une chaîne vide si aucun.
-related:
-  - $findChannel
-  - $channelName
-  - $channelExists
-examples:
-  - description: Obtenir l'ID d'un salon par nom
-    code: "$sendMessage[ID de général : $channelIDFromName[général]]"
-  - description: Envoyer un message dans un salon par nom
-    code: |
-      $channelSendMessage[$channelIDFromName[annonces];Nouvelle annonce !]
-  - description: Vérifier si le salon existe
-    code: |
-      $if[$channelIDFromName[logs]!=]
-        $sendMessage[Salon logs trouvé.]
-      $endif
 ---
 
 # $channelIDFromName

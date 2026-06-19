@@ -6,19 +6,6 @@ category: "Moderation"
 function_name: kickMention
 syntax: $kickMention
 description: Expulse l'utilisateur mentionné dans le message.
-parameters: []
-returns:
-  - type: void
-    description: Expulse le membre mentionné. Ne retourne rien.
-related:
-  - $kick
-  - $ban
-  - $mute
-examples:
-  - description: Expulser la mention
-    code: |
-      $kickMention
-      $sendMessage[Utilisateur expulsé.]
 ---
 
 # $kickMention

@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: getRoleSelectRoleID
 syntax: $getRoleSelectRoleID[(index)]
 description: Récupère l'ID du rôle sélectionné par l'utilisateur via un menu de sélection de rôles (role select).
-parameters:
-  - name: index
-    description: (Optionnel) L'index du rôle sélectionné. Par défaut 1 (premier rôle).
-returns:
-  - type: string
-    description: L'ID du rôle sélectionné, ou une chaîne vide si aucun rôle n'a été choisi.
-related:
-  - $getRoleSelectRoleIDs
-  - $getUserSelectUserID
-  - $getChannelSelectChannelID
-examples:
-  - description: Premier rôle sélectionné
-    code: $getRoleSelectRoleID
-  - description: Deuxième rôle
-    code: $getRoleSelectRoleID[2]
 ---
 
 # $getRoleSelectRoleID

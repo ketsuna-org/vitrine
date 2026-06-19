@@ -6,31 +6,6 @@ category: "Math & Text"
 function_name: toTitlecase
 syntax: $toTitlecase[text]
 description: Converts the first letter of each word to uppercase and the rest to lowercase.
-parameters:
-  - name: text
-    type: string
-    required: true
-    description: The text to convert to title case.
-returns:
-  type: string
-  description: The input text with the first character of each word capitalized and the remaining characters lowercased.
-related:
-  - toLowercase
-  - toUppercase
-  - replaceText
-examples:
-  - title: Basic title case
-    code: |
-      $toTitlecase[hello world]
-      Result: "Hello World"
-  - title: Full sentence
-    code: |
-      $toTitlecase[the quick brown fox]
-      Result: "The Quick Brown Fox"
-  - title: Already capitalized
-    code: |
-      $toTitlecase[HELLO WORLD]
-      Result: "Hello World"
 ---
 # $toTitlecase — Convert to Title Case
 

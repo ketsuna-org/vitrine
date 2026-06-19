@@ -6,29 +6,6 @@ category: "Entity Info"
 function_name: roleInfo
 syntax: $roleInfo[roleID;property;(guildID)]
 description: Retourne une propriété spécifique d'un rôle Discord sous forme d'objet JSON ou de valeur.
-parameters:
-  - name: roleID
-    description: L'ID du rôle cible.
-  - name: property
-    description: "La propriété à récupérer : name, color, position, permissions, mentionable, hoist, managed, etc."
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: string / integer / boolean
-    description: La valeur de la propriété demandée.
-related:
-  - $roleName
-  - $roleColor
-  - $rolePosition
-  - $rolePerms
-  - $isMentionable
-examples:
-  - description: Nom du rôle
-    code: "$sendMessage[Nom : $roleInfo[123456789012345678;name]]"
-  - description: Couleur du rôle
-    code: "$sendMessage[Couleur : $roleInfo[123456789012345678;color]]"
-  - description: Rôle mentionnable ?
-    code: "$sendMessage[Mentionnable : $roleInfo[123456789012345678;mentionable]]"
 ---
 
 # $roleInfo

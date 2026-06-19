@@ -6,53 +6,6 @@ category: "Variables"
 function_name: globalUserLeaderboard
 syntax: $globalUserLeaderboard[variable] ou $globalUserLeaderboard[variable;sort]
 description: Génère un classement global de tous les utilisateurs basé sur une variable, trié par ordre décroissant par défaut.
-parameters:
-  - name: variable
-    type: string
-    required: true
-    description: "Nom de la variable globale utilisateur sur laquelle baser le classement (ex: score, coins, xp)."
-  - name: sort
-    type: string
-    required: false
-    description: Direction du tri. "desc" pour décroissant (défaut) ou "asc" pour croissant.
-returns:
-  type: text
-  description: Un placeholder ((globalUserLeaderboard[$variable;$sort])) résolu au runtime en tableau de classement, généralement parsé avec $textSplit.
-related:
-  - getLeaderboardPosition
-  - getLeaderboardValue
-  - serverLeaderboard
-  - userLeaderboard
-  - textSplit
-  - setUserVar
-  - getUserVar
-examples:
-  - title: Afficher le top 5 des scores globaux
-    code: |
-      $textSplit[$globalUserLeaderboard[score;desc];\n]
-      $var[i;0]
-      $description[🏆 **Top 5 Global**]
-      $repeat[5;
-        $var[i;$sum[$var[i];1]]
-        $description[$getLeaderboardPosition. $splitText[$var[i]] — $getLeaderboardValue pts]
-      ]
-  - title: Classement des pièces par ordre croissant
-    code: |
-      $textSplit[$globalUserLeaderboard[coins;asc];\n]
-      $var[i;0]
-      $description[📊 **Classement Pièces (croissant)**]
-      $repeat[10;
-        $var[i;$sum[$var[i];1]]
-        $description[$getLeaderboardPosition. $splitText[$var[i]] : $getLeaderboardValue 🪙]
-      ]
-  - title: Trouver le rang de l'utilisateur courant
-    code: |
-      $textSplit[$globalUserLeaderboard[level;desc];\n]
-      $if[$splitText[1]==$username;
-        $description[Vous êtes classé 1er ! 🎉]
-      ;
-        $description[Vous n'êtes pas en tête du classement.]
-      ]
 ---
 
 # $globalUserLeaderboard

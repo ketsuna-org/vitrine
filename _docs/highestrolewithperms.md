@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: highestRoleWithPerms
 syntax: $highestRoleWithPerms[permission1;permission2;...]
 description: Retourne l'ID du rôle le plus haut de l'utilisateur qui possède les permissions spécifiées.
-parameters:
-  - name: permissions
-    description: "Liste des permissions requises, séparées par des points-virgules (ex: \"Administrator\", \"ManageMessages\")."
-returns:
-  - type: snowflake (string)
-    description: L'ID du rôle le plus haut possédant les permissions spécifiées, ou chaîne vide si aucun rôle ne correspond.
-related:
-  - $highestRole
-  - $lowestRoleWithPerms
-  - $userPerms
-  - $memberPerms
-examples:
-  - description: Rôle le plus haut avec permission Admin
-    code: $highestRoleWithPerms[Administrator]
-  - description: Rôle avec plusieurs permissions
-    code: $highestRoleWithPerms[BanMembers;KickMembers]
-  - description: Vérifier si un rôle avec permission existe
-    code: |
-      $if[$highestRoleWithPerms[ManageMessages]!=]
-        $sendMessage[Rôle modérateur trouvé : $roleName[$highestRoleWithPerms[ManageMessages]]]
-      $endif
 ---
 
 # $highestRoleWithPerms

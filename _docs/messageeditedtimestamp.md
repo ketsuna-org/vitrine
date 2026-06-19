@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: messageEditedTimestamp
 syntax: $messageEditedTimestamp
 description: Retourne le timestamp de la dernière édition du message déclencheur, ou une chaîne vide si non édité.
-returns:
-  - type: timestamp (integer) ou string vide
-    description: Le timestamp Unix de l'édition en millisecondes, ou "" si le message n'a jamais été édité.
-related:
-  - $messageTimestamp
-  - $isMessageEdited
-  - $messageID
-  - $message
-examples:
-  - description: Timestamp d'édition
-    code: "$sendMessage[Édité le : $messageEditedTimestamp]"
-  - description: Vérifier si édité
-    code: |
-      $if[$messageEditedTimestamp!=]
-        $sendMessage[Message édité le $formatDate[$messageEditedTimestamp;DD/MM/YYYY à HH:mm]]
-      $else
-        $sendMessage[Message non édité.]
-      $endif
 ---
 
 # $messageEditedTimestamp

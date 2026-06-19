@@ -6,44 +6,6 @@ category: "Math & Text"
 function_name: textSplit
 syntax: $textSplit[text;separator]
 description: Splits a text string into an array using the specified separator and stores it for later access with $splitText[].
-parameters:
-  - name: text
-    type: string
-    required: true
-    description: The full text to split.
-  - name: separator
-    type: string
-    required: true
-    description: The delimiter used to split the text. Can be a single character or a multi-character string.
-returns:
-  type: none (action only)
-  description: This function is an action — it does not return a value inline. The split result is stored internally and accessed via $splitText[], $joinSplitText[], etc.
-related:
-  - splitText
-  - joinSplitText
-  - getTextSplitIndex
-  - getTextSplitLength
-  - editSplitText
-  - removeSplitTextElement
-examples:
-  - title: Basic text splitting
-    code: |
-      $textSplit[hello world foo bar; ]
-      $sendMessage[Word 1: "$splitText[0], Word 2: $splitText[1]]"
-      Result: "Word 1: hello, Word 2: world"
-  - title: Split by newline
-    code: |
-      $textSplit[line1
-      line2
-      line3;
-      ]
-      $sendMessage[Total lines: $getTextSplitLength]
-      Result: "Total lines: 3"
-  - title: Split comma-separated values
-    code: |
-      $textSplit[apple,banana,orange,grape;,]
-      $sendMessage[Second fruit: $splitText[1]]
-      Result: "Second fruit: banana"
 ---
 # $textSplit — Split Text into Array
 

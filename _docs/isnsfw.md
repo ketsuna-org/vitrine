@@ -6,27 +6,6 @@ category: "Math & Text"
 function_name: isNSFW
 syntax: $isNSFW[channelID]
 description: Vérifie si un canal est marqué comme NSFW.
-parameters:
-  - name: channelID
-    description: L'ID du canal à vérifier. Si omis, canal courant.
-returns:
-  - type: boolean
-    description: true si le canal est NSFW, false sinon.
-related:
-  - $isTicket
-  - $isSlash
-  - $channelName
-examples:
-  - description: Vérifier le canal courant
-    code: |
-      $if[$isNSFW==true]
-        $sendMessage[Ce canal est NSFW.]
-      $endif
-  - description: Vérifier un canal spécifique
-    code: |
-      $if[$isNSFW[123456789]==true]
-        $sendMessage[Canal NSFW.]
-      $endif
 ---
 
 # $isNSFW

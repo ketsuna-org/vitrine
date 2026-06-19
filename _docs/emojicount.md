@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: emojiCount
 syntax: $emojiCount
 description: Retourne le nombre d'émojis personnalisés disponibles sur le serveur Discord.
-parameters: []
-returns:
-  type: integer
-  description: Le nombre total d'émojis personnalisés (statiques + animés).
-related:
-  - $serverEmojis
-  - $stickerCount
-  - $serverInfo
-  - $boostLevel
-examples:
-  - description: Afficher le nombre d'émojis
-    code: |
-      $sendMessage[🎨 $emojiCount émojis personnalisés]
-  - description: Vérifier les emplacements restants
-    code: |
-      $sendMessage[$emojiCount émojis utilisés sur $var[maxSlots] disponibles]
 ---
 
 # $emojiCount[] — Nombre d'Émojis

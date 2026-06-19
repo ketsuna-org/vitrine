@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: publishMessage
 syntax: $publishMessage[messageID]
 description: Publie un message dans les serveurs abonnés (fonctionnalité des canaux d'annonce). Permet de diffuser un message au-delà du serveur d'origine.
-parameters:
-  - name: messageID
-    description: L'ID du message à publier (doit être dans un canal d'annonce).
-returns:
-  - type: aucun
-    description: Ne retourne rien. Le message est publié aux serveurs abonnés.
-related:
-  - $pinMessage
-  - $channelSendMessage
-  - $getMessage
-examples:
-  - description: Publier une annonce
-    code: $publishMessage[$messageID]
-  - description: Publier un message spécifique
-    code: $publishMessage[123456789]
 ---
 
 # $publishMessage

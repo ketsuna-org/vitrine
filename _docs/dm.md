@@ -6,26 +6,6 @@ category: "Messages & DM"
 function_name: dm
 syntax: $dm[userID;content]
 description: Envoie un message privé (DM) à un utilisateur. Le bot doit pouvoir DM l'utilisateur cible.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur destinataire du message privé.
-  - name: content
-    description: Le contenu du DM. Supporte le markdown, les mentions et les emojis.
-returns:
-  - type: snowflake (string)
-    description: L'ID du message envoyé, ou chaîne vide si le DM est impossible.
-related:
-  - $dmChannelID
-  - $channelSendMessage
-  - $sendMessage
-examples:
-  - description: Envoyer un DM à l'auteur
-    code: $dm[$authorID;Bonjour ! Voici votre récapitulatif.]
-  - description: DM avec embed
-    code: |
-      $title[Notification]
-      $description[Votre ticket a été traité.]
-      $dm[$authorID;]
 ---
 # $dm
 

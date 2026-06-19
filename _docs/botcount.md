@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: botCount
 syntax: $botCount
 description: Retourne le nombre de bots présents sur le serveur Discord.
-parameters: []
-returns:
-  type: integer
-  description: Le nombre de bots sur le serveur.
-related:
-  - $memberCount
-  - $membersCount
-  - $onlineMembers
-examples:
-  - description: Afficher le nombre de bots
-    code: |
-      $sendMessage[🤖 $botCount bots sur ce serveur]
-  - description: Calculer le nombre d'humains
-    code: |
-      $sendMessage[👤 $sub[$membersCount;$botCount] humains et 🤖 $botCount bots]
 ---
 
 # $botCount[] — Nombre de Bots

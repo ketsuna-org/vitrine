@@ -6,24 +6,6 @@ category: "Date & Time"
 function_name: day
 syntax: $day
 description: Retourne le jour actuel du mois (1 à 31). Résolu au runtime.
-parameters: []
-returns:
-  - type: number (string)
-    description: Le numéro du jour actuel dans le mois, entre 1 et 31.
-related:
-  - $date[]
-  - $month[]
-  - $year[]
-examples:
-  - description: Afficher le jour actuel
-    code: $day
-  - description: Message conditionnel selon le jour
-    code: |
-      $if[$day==1]
-      C'est le premier du mois !
-      $else
-      Nous sommes le $day du mois.
-      $endif
 ---
 
 # $day[]

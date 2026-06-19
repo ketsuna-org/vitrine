@@ -6,18 +6,6 @@ category: "Entity Info"
 function_name: repliedMessageID
 syntax: $repliedMessageID
 description: Retourne l'ID du message auquel l'utilisateur a répondu. Permet de référencer le message source dans une commande déclenchée par une réponse.
-parameters: []
-returns:
-  - type: string
-    description: L'ID du message auquel la commande répond, ou une chaîne vide si ce n'est pas une réponse.
-related:
-  - $messageID
-  - $channelID
-  - $getMessage
-  - $message
-examples:
-  - description: Récupérer l'ID du message répondu
-    code: $repliedMessageID
 ---
 
 # $repliedMessageID

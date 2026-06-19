@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: userPerms
 syntax: $userPerms
 description: Retourne la liste des permissions effectives de l'utilisateur sur le serveur actuel.
-parameters: []
-returns:
-  - type: list/array
-    description: "Liste des noms de permissions (ex: \"Administrator\", \"ManageMessages\", \"KickMembers\")."
-related:
-  - $memberPerms
-  - $userRoles
-  - $isAdmin
-  - $highestRoleWithPerms
-examples:
-  - description: Obtenir les permissions
-    code: $userPerms
-  - description: Vérifier une permission
-    code: |
-      $if[$checkContains[$userPerms;Administrator]==true]
-        $sendMessage[Vous êtes administrateur !]
-      $else
-        $sendMessage[Permissions limitées.]
-      $endif
 ---
 
 # $userPerms

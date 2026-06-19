@@ -6,20 +6,6 @@ category: "Moderation"
 function_name: emojiCount
 syntax: $emojiCount / $emoteCount
 description: Retourne le nombre total d'emojis personnalisés sur le serveur courant. $emoteCount est un alias de $emojiCount.
-parameters: []
-returns:
-  - type: string (number)
-    description: Le nombre d'emojis personnalisés sur le serveur.
-related:
-  - $addEmoji
-  - $removeEmoji
-  - $emojiExists
-  - $serverEmojis
-examples:
-  - description: Nombre d'emojis du serveur
-    code: $emojiCount
-  - description: Utilisation de l'alias
-    code: $emoteCount
 ---
 
 # $emojiCount / $emoteCount

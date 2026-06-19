@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: getStringSelectValue
 syntax: $getStringSelectValue[(index)]
 description: Récupère la valeur de l'option sélectionnée par l'utilisateur dans un menu de sélection de chaînes (string select menu).
-parameters:
-  - name: index
-    description: (Optionnel) L'index de l'option sélectionnée. Par défaut 1 (première valeur).
-returns:
-  - type: string
-    description: La valeur de l'option choisie, ou une chaîne vide si aucune sélection.
-related:
-  - $getStringSelectValues
-  - $addStringSelectMenu
-  - $onInteraction
-examples:
-  - description: Récupérer la valeur sélectionnée
-    code: $getStringSelectValue
-  - description: Récupérer la 2ème valeur
-    code: $getStringSelectValue[2]
 ---
 
 # $getStringSelectValue

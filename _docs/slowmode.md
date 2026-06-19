@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: slowmode
 syntax: $slowmode[(channelID)]
 description: Retourne le délai de slowmode (mode lent) actuel d'un salon Discord, en secondes. Fonction en lecture seule (getter).
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
-returns:
-  - type: integer
-    description: Le délai de slowmode en secondes (0, 5, 10, 15, 30, 60, 120, 300, 600, 900, 1800, 3600, 7200, 21600).
-related:
-  - $channelID
-  - $channelTopic
-examples:
-  - description: Slowmode du salon courant
-    code: "$sendMessage[Slowmode : $slowmode secondes]"
-  - description: Vérifier si slowmode actif
-    code: |
-      $if[$slowmode>0]
-        $sendMessage[Mode lent : $slowmode secondes entre chaque message.]
-      $else
-        $sendMessage[Pas de mode lent dans ce salon.]
-      $endif
 ---
 
 # $slowmode

@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: authorAvatar
 syntax: $authorAvatar
 description: Retourne l'URL de l'avatar global de l'auteur du message qui a déclenché la commande.
-parameters: []
-returns:
-  - type: string (URL)
-    description: L'URL de l'avatar de l'auteur du message.
-related:
-  - $authorBanner
-  - $userAvatar
-  - $authorUsername
-  - $authorID
-examples:
-  - description: Obtenir l'avatar de l'auteur
-    code: $authorAvatar
-  - description: Afficher l'avatar de l'auteur
-    code: |
-      $title[Avatar de $authorUsername]
-      $image[$authorAvatar]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $authorAvatar

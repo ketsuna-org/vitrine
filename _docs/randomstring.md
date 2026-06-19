@@ -6,22 +6,6 @@ category: "Math & Text"
 function_name: randomString
 syntax: $randomString[length]
 description: Génère une chaîne alphanumérique aléatoire de la longueur spécifiée.
-parameters:
-  - name: length
-    description: La longueur souhaitée de la chaîne alphanumérique aléatoire.
-returns:
-  - type: string
-    description: Une chaîne alphanumérique aléatoire composée de lettres (a-z, A-Z) et de chiffres (0-9).
-related:
-  - $random[]
-  - $randomText[]
-examples:
-  - description: Générer un identifiant aléatoire de 8 caractères
-    code: $randomString[8]
-  - description: Créer un code de vérification de 6 caractères
-    code: $randomString[6]
-  - description: Générer un token aléatoire de 32 caractères
-    code: $randomString[32]
 ---
 
 # $randomString[]

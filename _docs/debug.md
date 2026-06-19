@@ -6,19 +6,6 @@ category: "Flags & Debug"
 function_name: debug
 syntax: $debug
 description: Active le mode debug pour la commande en cours. Affiche des informations de diagnostic dans la console ou les logs BDFD.
-parameters: []
-returns:
-  - type: void
-    description: Active le mode debug. Ne retourne rien.
-related:
-  - $optOff
-  - $log
-  - $logQuota
-examples:
-  - description: Activer le debug dans une commande
-    code: |
-      $debug
-      $sendMessage[Debug actif, consultez la console.]
 ---
 # $debug
 

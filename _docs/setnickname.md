@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: setNickname
 syntax: $setNickname[nickname;(userID)]
 description: Modifie le pseudo (nickname) d'un utilisateur sur le serveur.
-parameters:
-  - name: nickname
-    description: Le nouveau pseudo à appliquer. Obligatoire.
-  - name: userID
-    description: Optionnel. L'ID de l'utilisateur cible. Si omis, l'utilisateur mentionné.
-returns:
-  - type: void
-    description: Modifie le pseudo. Ne retourne rien.
-related:
-  - $nickname
-  - $changeUsername
-  - $username
-examples:
-  - description: Changer le pseudo d'un membre
-    code: |
-      $setNickname[Nouveau Pseudo;$mentioned[1]]
-      $sendMessage[Pseudo modifié !]
 ---
 
 # $setNickname

@@ -6,23 +6,8 @@ category: "Loops & Iteration"
 function_name: i
 syntax: $i
 description: Alias de $loopIndex. Retourne l'index actuel (numéro d'itération) dans une boucle $forEach, $while, ou $repeat.
-parameters: []
-returns:
-  - type: number (string)
-    description: L'index actuel de la boucle (commence à 1 ou 0 selon le type de boucle).
 aliases:
   - $loopIndex
-related:
-  - $forEach
-  - $while
-  - $repeat
-  - $loopLength
-examples:
-  - description: Afficher l'index dans une boucle
-    code: |
-      $forEach[user;$mentioned]
-      $sendMessage[#$i - <@$loopValue>]
-      $endForEach
 ---
 # $i (alias de $loopIndex)
 

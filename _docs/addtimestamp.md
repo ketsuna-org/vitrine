@@ -6,36 +6,6 @@ category: "Embed & Message"
 function_name: addTimestamp
 syntax: $addTimestamp[(timestamp);(embedIndex)]
 description: Ajoute un horodatage (timestamp) en bas d'un embed Discord. Par défaut, affiche la date et l'heure actuelles.
-parameters:
-  - name: timestamp
-    description: "Optionnel. 'now' (défaut) pour la date actuelle, ou un timestamp Unix (en secondes) pour une date spécifique."
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
-returns:
-  - type: void
-    description: Modifie la réponse en cours de construction.
-related:
-  - $footer[]
-  - $time[]
-  - $date[]
-  - $getTimestamp[]
-  - $sendMessage[]
-examples:
-  - description: Timestamp avec la date actuelle
-    code: |
-      $title[Annonce]
-      $description[Ceci est une annonce importante.]
-      $addTimestamp
-      $color[#5865F2]
-  - description: Timestamp avec une date spécifique (Unix)
-    code: $addTimestamp[1700000000]
-  - description: Embed complet avec footer et timestamp
-    code: |
-      $title[Message]
-      $description[Voici le contenu du message.]
-      $footer[Envoyé par $username;$authorAvatar]
-      $addTimestamp
-      $color[#5865F2]
 ---
 
 # $addTimestamp[]

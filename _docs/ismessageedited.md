@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: isMessageEdited
 syntax: $isMessageEdited
 description: Vérifie si le message déclencheur a été édité. Retourne "true" ou "false".
-returns:
-  - type: string
-    description: '"true" si le message a été édité, "false" sinon.'
-related:
-  - $messageEditedTimestamp
-  - $messageTimestamp
-  - $message
-  - $editMessage
-examples:
-  - description: Vérifier si édité
-    code: |
-      $if[$isMessageEdited==true]
-        $sendMessage[Message édité !]
-      $else
-        $sendMessage[Message original.]
-      $endif
 ---
 
 # $isMessageEdited

@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: authorID
 syntax: $authorID
 description: Retourne l'ID Discord de l'auteur du message qui a déclenché la commande.
-parameters: []
-returns:
-  - type: snowflake (string)
-    description: L'ID Discord de l'auteur du message.
-related:
-  - $userID
-  - $authorUsername
-  - $authorTag
-  - $authorAvatar
-examples:
-  - description: Obtenir l'ID de l'auteur
-    code: $authorID
-  - description: Afficher l'ID dans un embed
-    code: |
-      $title[Auteur du message]
-      $description[**ID :** $authorID]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $authorID

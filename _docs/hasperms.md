@@ -6,30 +6,6 @@ category: "Moderation"
 function_name: hasPerms
 syntax: $hasPerms[userID;permission1;permission2;...]
 description: Vérifie si un utilisateur possède toutes les permissions spécifiées. Retourne "true" ou "false". Vérification inline, n'interrompt pas la commande.
-parameters:
-  - name: userID
-    description: L'ID Discord de l'utilisateur à vérifier.
-  - name: permission1, permission2, ...
-    description: Liste des permissions à vérifier. L'utilisateur doit posséder TOUTES les permissions listées.
-returns:
-  - type: boolean (string)
-    description: '"true" si l''utilisateur possède toutes les permissions, "false" sinon.'
-related:
-  - $checkUserPerms
-  - $onlyPerms
-  - $onlyBotPerms
-  - $userPerms
-  - $hasRole
-examples:
-  - description: Vérifier si l'utilisateur peut bannir
-    code: $hasPerms[$authorID;BanMembers]
-  - description: Conditionner une action aux permissions
-    code: |
-      $if[$hasPerms[$authorID;BanMembers]==true]
-        $ban[$mentioned[1]]
-      $else
-        $sendMessage[❌ Permission manquante.]
-      $endif
 ---
 
 # $hasPerms

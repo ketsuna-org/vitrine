@@ -6,18 +6,6 @@ category: "Moderation"
 function_name: authorPerms
 syntax: $authorPerms
 description: Retourne la liste des permissions de l'auteur de la commande sur le serveur. Utile pour vérifier dynamiquement ce que l'utilisateur peut faire.
-parameters: []
-returns:
-  - type: string
-    description: La liste des permissions de l'auteur, séparées par des virgules.
-related:
-  - $userPerms
-  - $hasPerms
-  - $checkUserPerms
-  - $checkContains
-examples:
-  - description: Récupérer ses propres permissions
-    code: $authorPerms
 ---
 
 # $authorPerms

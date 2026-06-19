@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: pinMessage
 syntax: $pinMessage[messageID]
 description: Épingle un message dans le canal courant. Le message apparaîtra dans la liste des messages épinglés du canal.
-parameters:
-  - name: messageID
-    description: L'ID du message à épingler.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Le message est épinglé.
-related:
-  - $unpinMessage
-  - $channelSendMessage
-  - $getMessage
-examples:
-  - description: Épingler le message courant
-    code: $pinMessage[$messageID]
-  - description: Épingler un message spécifique
-    code: $pinMessage[123456789]
 ---
 
 # $pinMessage

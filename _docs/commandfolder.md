@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: commandFolder
 syntax: $commandFolder
 description: Retourne le nom du dossier contenant la commande en cours d'exécution.
-parameters: []
-returns:
-  - type: string
-    description: "Le nom du dossier de la commande (ex: Modération, Fun, Admin)."
-related:
-  - $commandName
-  - $commandTrigger
-  - $commandType
-examples:
-  - description: Afficher le dossier
-    code: |
-      $sendMessage[Dossier : $commandFolder]
-  - description: Catégorie dans l'aide
-    code: |
-      $sendMessage[Catégorie: "$commandFolder | Commande : $commandName]"
 ---
 
 # $commandFolder

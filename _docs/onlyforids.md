@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: onlyForIDs
 syntax: $onlyForIDs[userID1;userID2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution si l'ID de l'utilisateur ne figure pas dans la liste des IDs autorisés. Alias de $onlyForUsers.
-parameters:
-  - name: userID1, userID2, ...
-    description: Liste des IDs utilisateurs autorisés.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur.
-    optional: true
-returns: []
-related:
-  - $onlyForUsers
-  - $onlyForRoles
-  - $blacklistIDs
-  - $authorID
-examples:
-  - description: Réserver aux développeurs du bot
-    code: |
-      $onlyForIDs[111111111111111111;222222222222222222;❌ Accès développeurs uniquement.]
-      $sendMessage[Mode debug activé.]
 ---
 
 # $onlyForIDs

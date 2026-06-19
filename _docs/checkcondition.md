@@ -6,46 +6,6 @@ category: "Control Flow"
 function_name: checkCondition
 syntax: $checkCondition[operator;value1;value2]
 description: Evaluates a comparison between two values and returns "true" or "false".
-parameters:
-  - name: operator
-    type: string
-    required: true
-    description: "The comparison operator. Supported values: ==, !=, >, <, >=, <=."
-  - name: value1
-    type: string | number
-    required: true
-    description: The left-hand operand of the comparison.
-  - name: value2
-    type: string | number
-    required: true
-    description: The right-hand operand of the comparison.
-returns:
-  type: string
-  description: Returns the literal string "true" if the condition holds, otherwise "false".
-related:
-  - checkContains
-  - if
-  - and
-  - or
-examples:
-  - title: Compare two numbers
-    code: |
-      $checkCondition[>;$getUserVar[score];50]
-      Result: "true" if score is greater than 50, "false" otherwise
-  - title: Check string equality
-    code: |
-      $checkCondition[==;$getUserVar[role];admin]
-      Result: "true" if role equals "admin", "false" otherwise
-  - title: Use inside an $if
-    code: |
-      $if[$checkCondition[>=;$getUserVar[hp];25]==true]
-        $sendMessage[HP is healthy.]
-      $endif
-      Result: sends message only when hp is 25 or above
-  - title: Use with $and for complex logic
-    code: |
-      $and[$checkCondition[>=;$getUserVar[age];18];$checkCondition[==;$getUserVar[verified];true]]
-      Result: "true" only when both age >= 18 AND verified is "true"
 ---
 # $checkCondition — Inline Condition Evaluation
 

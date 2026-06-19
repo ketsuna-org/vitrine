@@ -6,28 +6,6 @@ category: "Moderation"
 function_name: clear
 syntax: $clear[amount;(userID);(removePinned)]
 description: Supprime un nombre spécifié de messages dans le salon.
-parameters:
-  - name: amount
-    description: Nombre de messages à supprimer (1-100). Obligatoire.
-  - name: userID
-    description: Optionnel. Ne supprimer que les messages de cet utilisateur.
-  - name: removePinned
-    description: Optionnel. "yes" pour supprimer les messages épinglés inclus. Défaut "no".
-returns:
-  - type: void
-    description: Supprime les messages. Ne retourne rien.
-related:
-  - $clearChannel
-  - $deleteMessage
-  - $sendMessage
-examples:
-  - description: Supprimer 10 messages
-    code: |
-      $clear[10]
-      $sendMessage[10 messages supprimés.]
-  - description: Supprimer les messages d'un utilisateur
-    code: |
-      $clear[20;$mentioned[1]]
 ---
 
 # $clear

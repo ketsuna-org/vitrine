@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: memberNick
 syntax: $memberNick
 description: Retourne le pseudo (surnom) du membre sur le serveur. Équivalent à $nickname.
-parameters: []
-returns:
-  - type: string
-    description: Le pseudo serveur du membre, ou chaîne vide si aucun pseudo.
-related:
-  - $nickname
-  - $displayName
-  - $memberID
-  - $memberPerms
-examples:
-  - description: Obtenir le pseudo du membre
-    code: $memberNick
-  - description: Afficher le pseudo dans un embed
-    code: |
-      $title[Profil de $memberNick]
-      $description[ID : $memberID]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $memberNick

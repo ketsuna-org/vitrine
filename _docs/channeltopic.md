@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: channelTopic
 syntax: $channelTopic[(channelID)]
 description: Retourne le sujet (topic) d'un salon textuel Discord.
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
-returns:
-  - type: string
-    description: Le sujet du salon, ou une chaîne vide si aucun sujet n'est défini.
-related:
-  - $channelName
-  - $channelID
-  - $channelType
-examples:
-  - description: Sujet du salon courant
-    code: "$sendMessage[Sujet : $channelTopic]"
-  - description: Sujet d'un salon spécifique
-    code: "$sendMessage[Sujet : $channelTopic[123456789012345678]]"
 ---
 
 # $channelTopic

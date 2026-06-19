@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: nodeVersion
 syntax: $nodeVersion
 description: Retourne la version du runtime Node.js sur lequel le bot s'exécute.
-parameters: []
-returns:
-  - type: string
-    description: "La version de Node.js (ex: v18.15.0)."
-related:
-  - $botNode
-  - $scriptLanguage
-  - $hostingExpireTime
-examples:
-  - description: Afficher la version
-    code: |
-      $sendMessage[Node.js : $nodeVersion]
-  - description: Debug info
-    code: |
-      $sendMessage[Runtime: "$nodeVersion | Node: $botNode | Lang: $scriptLanguage]"
 ---
 
 # $nodeVersion

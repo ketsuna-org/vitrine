@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: userServerAvatar
 syntax: $userServerAvatar
 description: Retourne l'URL de l'avatar spécifique au serveur de l'utilisateur (avatar par serveur pour les abonnés Nitro).
-parameters: []
-returns:
-  - type: string (URL)
-    description: L'URL de l'avatar serveur, ou l'avatar global si aucun avatar serveur n'est défini.
-related:
-  - $userAvatar
-  - $userBanner
-  - $nickname
-examples:
-  - description: Obtenir l'avatar serveur
-    code: $userServerAvatar
-  - description: Afficher l'avatar serveur
-    code: |
-      $title[Avatar serveur de $userName]
-      $image[$userServerAvatar]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $userServerAvatar

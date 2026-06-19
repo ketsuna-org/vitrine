@@ -6,30 +6,6 @@ category: "Math & Text"
 function_name: isBanned
 syntax: $isBanned[userID]
 description: Vérifie si un utilisateur est banni du serveur courant.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à vérifier.
-returns:
-  - type: boolean
-    description: true si l'utilisateur est banni, false sinon.
-related:
-  - $ban
-  - $unban
-  - $getBanReason
-  - $isUserDmEnabled
-examples:
-  - description: Vérifier un bannissement
-    code: |
-      $if[$isBanned[$mentioned[1]]==true]
-        $sendMessage[Cet utilisateur est banni.]
-      $endif
-  - description: Vérifier avant de bannir
-    code: |
-      $if[$isBanned[$mentioned[1]]==false]
-        $ban[$mentioned[1]]
-      $else
-        $sendMessage[Déjà banni.]
-      $endif
 ---
 
 # $isBanned

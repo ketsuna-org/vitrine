@@ -6,28 +6,6 @@ category: "Math & Text"
 function_name: sqrt
 syntax: $sqrt[value]
 description: Calcule la racine carrée d'un nombre.
-parameters:
-  - name: value
-    type: number
-    required: true
-    description: Le nombre dont on veut la racine carrée. Doit être positif ou nul.
-returns:
-  type: string (number)
-  description: La racine carrée de la valeur, sous forme de nombre décimal (double).
-related:
-  - log
-  - calculate
-  - pow
-examples:
-  - title: Racine carrée simple
-    code: |
-      $sqrt[16]
-  - title: Racine carrée non entière
-    code: |
-      $sqrt[2]
-  - title: Racine carrée de zéro
-    code: |
-      $sqrt[0]
 ---
 
 # $sqrt[]

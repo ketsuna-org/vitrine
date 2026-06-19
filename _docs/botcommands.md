@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: botCommands
 syntax: $botCommands
 description: Retourne une liste des commandes disponibles sur le bot.
-parameters: []
-returns:
-  - type: string
-    description: Liste textuelle des commandes du bot, une par ligne.
-related:
-  - $commandsCount
-  - $slashCommandsCount
-  - $commandName
-examples:
-  - description: Lister les commandes
-    code: |
-      $sendMessage[Commandes disponibles : 
-      $botCommands]
-  - description: Compter les commandes
-    code: |
-      $sendMessage[Le bot a $commandsCount commandes !]
 ---
 
 # $botCommands

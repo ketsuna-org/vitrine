@@ -6,48 +6,6 @@ category: "Variables"
 function_name: argsCheck
 syntax: $argsCheck[operator;count;errorMessage]
 description: Validates the number of arguments passed to the command and stops execution with an error message if the condition is not met. Acts as a guard that blocks the rest of the command from running on invalid input.
-parameters:
-  - name: operator
-    type: string
-    required: true
-    description: "The comparison operator. Must be one of: >, >=, <, <=. Determines how the argument count is compared to the expected count."
-  - name: count
-    type: number
-    required: true
-    description: The expected number of arguments to compare against.
-  - name: errorMessage
-    type: string
-    required: true
-    description: The error message to display if the condition fails and execution is blocked.
-returns:
-  type: void
-  description: Returns nothing. If the condition is met, execution continues normally. If the condition fails, execution stops and the error message is sent.
-related:
-  - args
-  - argCount
-  - var
-  - stop
-examples:
-  - title: Exiger au moins 2 arguments
-    code: |
-      $argsCheck[>=;2;Vous devez fournir au moins 2 arguments.]
-      Traitement des arguments...
-      Résultat: (si < 2 arguments) Vous devez fournir au moins 2 arguments.
-  - title: Exiger exactement 1 argument
-    code: |
-      $argsCheck[>=;1;Usage: !commande <cible>]
-      $argsCheck[<=;1;Trop d'arguments. Un seul attendu.]
-      Cible: $args[0]
-  - title: Maximum d'arguments
-    code: |
-      $argsCheck[<=;5;Vous ne pouvez pas fournir plus de 5 arguments.]
-      Suite du traitement...
-  - title: Condition satisfaite (exécution continue)
-    code: |
-      Commande: !greet Alice
-      $argsCheck[>=;1;Usage: !greet <nom>]
-      Bonjour $args[0] !
-      Résultat: Bonjour Alice !
 ---
 
 $argsCheck is a guard function that enforces argument count constraints at the beginning of a command. It is the recommended way to validate user input before processing — cleaner and more concise than manual `$if`/`$stop` combinations.

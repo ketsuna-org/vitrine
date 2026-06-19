@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: getCustomStatus
 syntax: $getCustomStatus[(userID)]
 description: Récupère le statut personnalisé (texte et emoji) d'un utilisateur Discord. Retourne le texte du statut personnalisé.
-parameters:
-  - name: userID
-    description: (Optionnel) L'ID de l'utilisateur. Par défaut, l'auteur de la commande.
-returns:
-  - type: string
-    description: Le texte du statut personnalisé, ou une chaîne vide si aucun statut personnalisé n'est défini.
-related:
-  - $userStatus
-  - $hypeSquad
-  - $userInfo
-examples:
-  - description: Son propre statut personnalisé
-    code: $getCustomStatus
-  - description: Statut d'un autre utilisateur
-    code: $getCustomStatus[$mentioned[1]]
 ---
 
 # $getCustomStatus

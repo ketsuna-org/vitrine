@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: threadAddMember
 syntax: $threadAddMember[threadID;userID]
 description: Ajoute un membre à un fil de discussion (thread). Utile pour les threads privés où les membres doivent être ajoutés manuellement.
-parameters:
-  - name: threadID
-    description: L'ID du thread auquel ajouter le membre.
-  - name: userID
-    description: L'ID de l'utilisateur à ajouter au thread.
-returns:
-  - type: aucun
-    description: Ne retourne rien. L'utilisateur est ajouté au thread.
-related:
-  - $threadRemoveMember
-  - $startThread
-  - $threadUserCount
-examples:
-  - description: Ajouter un membre
-    code: $threadAddMember[$threadID;$authorID]
-  - description: Ajouter un utilisateur mentionné
-    code: $threadAddMember[$threadID;$mentioned[1]]
 ---
 
 # $threadAddMember

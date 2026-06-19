@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: serverID
 syntax: $serverID
 description: Retourne l'identifiant unique (Snowflake) du serveur Discord dans lequel la commande est exécutée.
-parameters: []
-returns:
-  type: string
-  description: L'ID du serveur (nombre entier sur 18-19 chiffres).
-related:
-  - $guildID
-  - $serverName
-  - $guildName
-  - $channelID
-examples:
-  - description: Afficher l'ID du serveur
-    code: |
-      $sendMessage[L'ID de ce serveur est : $serverID]
-  - description: Utiliser dans une condition
-    code: |
-      $if[$serverID==123456789012345678]
-      $sendMessage[Ceci est le serveur principal]
-      $endif
 ---
 
 # $serverID[] — Identifiant du Serveur

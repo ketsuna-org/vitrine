@@ -6,27 +6,6 @@ category: "Components"
 function_name: editButton
 syntax: $editButton[idOrUrl;label;(style);(disabled);(emoji)]
 description: Modifie un bouton existant d'un message. Permet de changer le label, le style, l'état désactivé et l'emoji d'un bouton.
-parameters:
-  - name: idOrUrl
-    description: L'ID personnalisé (customId) du bouton à modifier, ou son URL pour les Link buttons.
-  - name: label
-    description: Le nouveau texte du bouton.
-  - name: style
-    description: "(Optionnel) Le style : primary, secondary, success, danger, link. Défaut : primary."
-  - name: disabled
-    description: "(Optionnel) true/false. Défaut : false."
-  - name: emoji
-    description: "(Optionnel) L'emoji à afficher sur le bouton."
-returns:
-  - type: void
-    description: Modifie le bouton. Ne retourne rien.
-related:
-  - $addButton
-  - $editSelectMenu
-  - $editSelectMenuOption
-examples:
-  - description: Désactiver un bouton
-    code: $editButton[confirm;✅ Confirmé;success;true;✅]
 ---
 # $editButton
 

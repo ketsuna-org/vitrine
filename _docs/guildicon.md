@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: guildIcon
 syntax: $guildIcon
 description: Alias de $serverIcon. Retourne l'URL de l'icône du serveur Discord.
-parameters: []
-returns:
-  type: string
-  description: L'URL de l'icône du serveur, ou une chaîne vide si aucune icône n'est définie.
-related:
-  - $serverIcon
-  - $guildBanner
-  - $serverBanner
-  - $guildName
-examples:
-  - description: Icône dans un embed
-    code: |
-      $title[$guildName]
-      $thumbnail[$guildIcon]
-      $description[Icône du serveur]
-      $color[#5865F2]
-      $sendEmbedMessage
-  - description: Afficher l'URL
-    code: |
-      $sendMessage[Icône : $guildIcon]
 ---
 
 # $guildIcon[] — Icône du Serveur (Alias)

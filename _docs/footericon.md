@@ -6,35 +6,6 @@ category: "Embed & Message"
 function_name: footerIcon
 syntax: $footerIcon[url;(embedIndex)]
 description: Modifie l'icône du footer d'un embed après que celui-ci a été défini avec $footer[]. Permet de changer uniquement l'image sans modifier le texte.
-parameters:
-  - name: url
-    description: URL de la nouvelle icône pour le footer. Doit être une URL valide pointant vers une image.
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
-returns:
-  - type: void
-    description: Modifie l'icône du footer dans la réponse en cours de construction.
-related:
-  - $footer[]
-  - $authorIcon[]
-  - $sendMessage[]
-examples:
-  - description: Changer l'icône du footer après coup
-    code: |
-      $title[Profil]
-      $description[Informations utilisateur.]
-      $footer[Demandé par $username]
-      $footerIcon[$authorAvatar]
-      $color[#5865F2]
-  - description: Icône conditionnelle selon le statut
-    code: |
-      $title[Statut]
-      $footer[Dernière mise à jour]
-      $if[$var[status]==online]
-      $footerIcon[https://example.com/online.png]
-      $else
-      $footerIcon[https://example.com/offline.png]
-      $endif
 ---
 
 # $footerIcon[]

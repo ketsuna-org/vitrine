@@ -6,28 +6,6 @@ category: "Math & Text"
 function_name: round
 syntax: $round[value]
 description: Arrondit un nombre à l'entier le plus proche. Les valeurs à .5 sont arrondies vers le haut ou selon l'arrondi bancaire selon l'implémentation.
-parameters:
-  - name: value
-    type: number
-    required: true
-    description: Le nombre à arrondir (peut être décimal).
-returns:
-  type: string (number)
-  description: L'entier le plus proche de la valeur.
-related:
-  - floor
-  - ceil
-  - calculate
-examples:
-  - title: Arrondi vers le haut
-    code: |
-      $round[3.5]
-  - title: Arrondi vers le bas
-    code: |
-      $round[3.4]
-  - title: Avec un entier
-    code: |
-      $round[7]
 ---
 
 # $round[]

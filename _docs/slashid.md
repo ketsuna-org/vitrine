@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: slashID
 syntax: $slashID
 description: Retourne l'ID Discord de la commande slash en cours d'exécution.
-parameters: []
-returns:
-  - type: string
-    description: L'ID de la commande slash (snowflake) ou chaîne vide si commande prefix.
-related:
-  - $slashCommandsCount
-  - $commandName
-  - $isSlash
-  - $commandType
-examples:
-  - description: Afficher le slash ID
-    code: |
-      $sendMessage[Slash ID : $slashID]
-  - description: Vérifier si slash actif
-    code: |
-      $if[$slashID!=]
-        $sendMessage[Commande slash ID: $slashID]
-      $endif
-  - description: Log avec ID
-    code: |
-      $log[Slash $commandName (ID: $slashID) par $userName]
 ---
 
 # $slashID

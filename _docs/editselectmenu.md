@@ -6,25 +6,6 @@ category: "Components"
 function_name: editSelectMenu
 syntax: $editSelectMenu[customId;placeholder;minValues;maxValues]
 description: "Modifie les propriétés d'un menu de sélection (select menu) existant : texte indicatif, nombre minimum et maximum de valeurs sélectionnables."
-parameters:
-  - name: customId
-    description: L'ID personnalisé du select menu à modifier.
-  - name: placeholder
-    description: Le nouveau texte indicatif (placeholder) affiché quand rien n'est sélectionné.
-  - name: minValues
-    description: Nombre minimum de valeurs que l'utilisateur doit sélectionner.
-  - name: maxValues
-    description: Nombre maximum de valeurs que l'utilisateur peut sélectionner.
-returns:
-  - type: void
-    description: Modifie le select menu. Ne retourne rien.
-related:
-  - $addSelectMenu
-  - $editSelectMenuOption
-  - $editButton
-examples:
-  - description: Modifier le placeholder
-    code: $editSelectMenu[roleMenu;Choisissez votre rôle...;1;1]
 ---
 # $editSelectMenu
 

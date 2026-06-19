@@ -6,28 +6,6 @@ category: "Math & Text"
 function_name: isValidHex
 syntax: $isValidHex[value]
 description: Vérifie si une chaîne est un code couleur hexadécimal valide.
-parameters:
-  - name: value
-    description: La chaîne à tester (avec ou sans #).
-returns:
-  - type: boolean
-    description: true si le format hex est valide (#RRGGBB ou RRGGBB), false sinon.
-related:
-  - $isBoolean
-  - $isInteger
-  - $isNumber
-  - $color
-examples:
-  - description: Tester un hex valide
-    code: |
-      $if[$isValidHex[#FF5733]==true]
-        $sendMessage[Couleur valide !]
-      $endif
-  - description: Tester un hex invalide
-    code: |
-      $if[$isValidHex[#XYZ123]==false]
-        $sendMessage[Couleur invalide.]
-      $endif
 ---
 
 # $isValidHex

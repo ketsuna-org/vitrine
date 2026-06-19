@@ -6,32 +6,6 @@ category: "Embed & Message"
 function_name: authorUrl
 syntax: $authorUrl[url;(embedIndex)]
 description: Modifie l'URL de destination de l'auteur d'un embed. Rend le nom de l'auteur cliquable sans avoir à redéfinir le nom et l'icône.
-parameters:
-  - name: url
-    description: URL de destination. Le nom de l'auteur devient un lien cliquable pointant vers cette URL.
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
-returns:
-  - type: void
-    description: Modifie l'URL de l'auteur dans la réponse en cours de construction.
-related:
-  - $author[]
-  - $authorIcon[]
-  - $sendMessage[]
-examples:
-  - description: Ajouter un lien cliquable après avoir défini l'auteur
-    code: |
-      $author[$username;$authorAvatar]
-      $authorUrl[https://discord.com/users/$authorID]
-      $title[Profil]
-      $description[Cliquez sur le nom ci-dessus pour voir le profil Discord.]
-      $color[#5865F2]
-  - description: Lien conditionnel selon le contexte
-    code: |
-      $author[Documentation]
-      $if[$var[page]!=]
-      $authorUrl[https://docs.example.com/$var[page]]
-      $endif
 ---
 
 # $authorUrl[]

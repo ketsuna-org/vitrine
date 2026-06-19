@@ -6,24 +6,6 @@ category: "Embeds"
 function_name: embeddedURL
 syntax: $embeddedURL[url;(embedIndex)]
 description: Définit l'URL cliquable du titre d'un embed. Quand l'utilisateur clique sur le titre de l'embed, il est redirigé vers cette URL.
-parameters:
-  - name: url
-    description: L'URL à associer au titre de l'embed. Doit commencer par http:// ou https://.
-  - name: embedIndex
-    description: "(Optionnel) Index de l'embed cible (défaut : 1, premier embed)."
-returns:
-  - type: void
-    description: Définit l'URL. Ne retourne rien.
-related:
-  - $title
-  - $description
-  - $url
-examples:
-  - description: Lier le titre d'un embed
-    code: |
-      $title[Documentation]
-      $embeddedURL[https://docs.botdesignerdiscord.com]
-      $description[Cliquez sur le titre pour accéder à la documentation.]
 ---
 # $embeddedURL
 

@@ -6,30 +6,6 @@ category: "Webhooks & Integrations"
 function_name: webhookSend
 syntax: $webhookSend[webhookURL;content]
 description: Envoie un message via un webhook Discord. Permet d'envoyer du contenu formaté, des embeds et des fichiers vers un canal externe ou interne via une URL de webhook.
-parameters:
-  - name: webhookURL
-    description: L'URL complète du webhook Discord (format https://discord.com/api/webhooks/ID/TOKEN).
-  - name: content
-    description: Le contenu du message à envoyer. Supporte le texte, les mentions et les variables BDFD.
-returns:
-  - type: aucun
-    description: Cette fonction ne retourne pas de valeur. Le message est envoyé directement via l'API Discord.
-related:
-  - $webhookCreate
-  - $webhookAvatarURL
-  - $webhookUsername
-  - $webhookContent
-examples:
-  - description: Envoyer un message simple
-    code: $webhookSend[https://discord.com/api/webhooks/123/abc;Hello World !]
-  - description: Envoyer un message avec variables
-    code: "$webhookSend[$webhookURL;$username a envoyé : $message]"
-  - description: Envoyer avec des sauts de ligne
-    code: |
-      $webhookSend[https://discord.com/api/webhooks/123/abc;
-      **Annonce**
-      Contenu de l'annonce ici.
-      ]
 ---
 
 # $webhookSend

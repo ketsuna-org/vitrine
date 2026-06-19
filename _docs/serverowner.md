@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: serverOwner
 syntax: $serverOwner
 description: Retourne l'identifiant (ID) du propriétaire du serveur Discord.
-parameters: []
-returns:
-  type: string
-  description: L'ID du propriétaire du serveur.
-related:
-  - $serverName
-  - $serverID
-  - $serverInfo
-  - $isOwner
-examples:
-  - description: Mentionner le propriétaire
-    code: |
-      $sendMessage[Le propriétaire de ce serveur est <@$serverOwner>]
-  - description: Vérifier si l'auteur est propriétaire
-    code: |
-      $if[$authorID==$serverOwner]
-      $sendMessage[Vous êtes le propriétaire !]
-      $endif
 ---
 
 # $serverOwner[] — Propriétaire du Serveur

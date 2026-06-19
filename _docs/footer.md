@@ -6,32 +6,6 @@ category: "Embed & Message"
 function_name: footer
 syntax: $footer[text;(iconURL);(embedIndex)]
 description: Définit le pied de page (footer) d'un embed Discord, avec optionnellement une icône. Le footer apparaît en bas de l'embed.
-parameters:
-  - name: text
-    description: Texte du footer. Généralement utilisé pour des informations secondaires comme un timestamp ou une signature.
-  - name: iconURL
-    description: "Optionnel. URL de l'icône à afficher à gauche du texte du footer. L'URL doit être valide et accessible."
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
-returns:
-  - type: void
-    description: Modifie la réponse en cours de construction.
-related:
-  - $footerIcon[]
-  - $addTimestamp[]
-  - $author[]
-  - $sendMessage[]
-examples:
-  - description: Footer simple avec texte
-    code: |
-      $title[Profil]
-      $description[Informations sur l'utilisateur.]
-      $footer[Demandé par $username]
-      $color[#5865F2]
-  - description: Footer avec texte et icône
-    code: $footer[Bot créé avec BDFD;https://example.com/icon.png]
-  - description: Footer avec avatar de l'utilisateur comme icône
-    code: $footer[Demandé par $username;$authorAvatar]
 ---
 
 # $footer[]

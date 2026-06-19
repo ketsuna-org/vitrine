@@ -6,27 +6,6 @@ category: "Webhooks & Integrations"
 function_name: webhookDescription
 syntax: $webhookDescription[text]
 description: Définit la description (corps) de l'embed pour le prochain message envoyé via $webhookSend.
-parameters:
-  - name: text
-    description: Le texte de description de l'embed. Supporte le markdown et les sauts de ligne. Maximum 4096 caractères.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Définit la description du prochain embed webhook.
-related:
-  - $webhookTitle
-  - $webhookFooter
-  - $webhookColor
-  - $webhookSend
-examples:
-  - description: Description simple
-    code: $webhookDescription[Ceci est la description de l'embed.]
-  - description: Description multiligne
-    code: |
-      $webhookDescription[
-      Ligne 1
-      Ligne 2
-      Ligne 3
-      ]
 ---
 
 # $webhookDescription

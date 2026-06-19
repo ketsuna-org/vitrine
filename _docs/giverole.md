@@ -6,28 +6,6 @@ category: "Moderation"
 function_name: giveRole
 syntax: $giveRole[userID;roleID]
 description: Donne un rôle à un utilisateur sur le serveur.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur cible, ou omis pour viser l'utilisateur mentionné.
-  - name: roleID
-    description: L'ID du rôle à donner. Obligatoire.
-returns:
-  - type: void
-    description: Attribue le rôle. Ne retourne rien.
-related:
-  - $giveRoles
-  - $takeRole
-  - $roleGrant
-  - $setUserRoles
-examples:
-  - description: Donner un rôle
-    code: |
-      $giveRole[$mentioned[1];$roleID[Membre]]
-      $sendMessage[Rôle attribué !]
-  - description: Donner un rôle à l'auteur
-    code: |
-      $giveRole[$roleID[VIP]]
-      $sendMessage[Vous avez reçu le rôle VIP !]
 ---
 
 # $giveRole

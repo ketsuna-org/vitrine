@@ -6,19 +6,6 @@ category: "Flags & Debug"
 function_name: disableInnerSpaceRemoval
 syntax: $disableInnerSpaceRemoval
 description: Désactive la suppression automatique des espaces internes dans les paramètres des fonctions BDFD. Par défaut, BDFD nettoie les espaces superflus.
-parameters: []
-returns:
-  - type: void
-    description: Désactive la suppression d'espaces. Ne retourne rien.
-related:
-  - $alternativeParsing
-  - $disableSpecialEscaping
-  - $noMentionMessage
-examples:
-  - description: Conserver les espaces internes
-    code: |
-      $disableInnerSpaceRemoval
-      $sendMessage[   Texte avec espaces conservés   ]
 ---
 # $disableInnerSpaceRemoval
 

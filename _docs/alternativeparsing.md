@@ -6,19 +6,6 @@ category: "Flags & Debug"
 function_name: alternativeParsing
 syntax: $alternativeParsing
 description: Active un mode de parsing alternatif pour la commande en cours. Utile pour résoudre certains conflits de syntaxe ou comportements inattendus du parseur BDFD.
-parameters: []
-returns:
-  - type: void
-    description: Active le parsing alternatif. Ne retourne rien.
-related:
-  - $optOff
-  - $disableSpecialEscaping
-  - $disableInnerSpaceRemoval
-examples:
-  - description: Activer le parsing alternatif
-    code: |
-      $alternativeParsing
-      $sendMessage[Parsing alternatif activé.]
 ---
 # $alternativeParsing
 

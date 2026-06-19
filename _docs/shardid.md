@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: shardID
 syntax: $shardID
 description: Retourne l'identifiant du shard actuel sur lequel la commande est exécutée. Les shards sont utilisés pour répartir la charge des bots sur de nombreux serveurs.
-parameters: []
-returns:
-  type: integer
-  description: L'ID du shard courant (commence à 0).
-related:
-  - $serverCount
-  - $guildCount
-  - $serverNames
-  - $ping
-examples:
-  - description: Afficher l'ID du shard
-    code: |
-      $sendMessage[Shard actuel : $shardID]
-  - description: Statistiques du shard
-    code: |
-      $title[Shard Info]
-      $addField[Shard ID;$shardID;yes]
-      $addField[Serveurs;$serverCount;yes]
-      $color[#5865F2]
-      $sendEmbedMessage
 ---
 
 # $shardID[] — Identifiant du Shard

@@ -6,27 +6,6 @@ category: "Math & Text"
 function_name: isTicket
 syntax: $isTicket
 description: Vérifie si le canal courant est un canal de ticket ouvert avec $newTicket.
-parameters: []
-returns:
-  - type: boolean
-    description: true si le canal est un ticket BDFD, false sinon.
-related:
-  - $newTicket
-  - $closeTicket
-  - $isNSFW
-  - $isSlash
-examples:
-  - description: Vérifier si on est dans un ticket
-    code: |
-      $if[$isTicket==true]
-        $sendMessage[Ce canal est un ticket.]
-      $endif
-  - description: Restreindre une commande aux tickets
-    code: |
-      $if[$isTicket==false]
-        $sendMessage[Cette commande est réservée aux tickets.]
-        $stop
-      $endif
 ---
 
 # $isTicket

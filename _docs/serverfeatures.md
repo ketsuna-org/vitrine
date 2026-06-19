@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: serverFeatures
 syntax: $serverFeatures
 description: Retourne la liste des fonctionnalités premium activées sur le serveur Discord (features de partenariat, vérification, expérimentations, etc.).
-parameters: []
-returns:
-  type: string (liste)
-  description: "Une liste des features activées, séparées par des virgules (ex: \"NEWS, VANITY_URL, ANIMATED_ICON\")."
-related:
-  - $serverInfo
-  - $serverVerificationLevel
-  - $vanityURL
-examples:
-  - description: Afficher les features
-    code: |
-      $sendMessage[Features du serveur : $serverFeatures]
-  - description: Vérifier une feature spécifique
-    code: |
-      $if[$serverFeatures$contains[VANITY_URL]]
-      $sendMessage[Ce serveur a une URL personnalisée !]
-      $endif
 ---
 
 # $serverFeatures[] — Fonctionnalités du Serveur

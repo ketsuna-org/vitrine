@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: roleNames
 syntax: $roleNames[(separator);(guildID)]
 description: Retourne la liste de tous les noms de rôles du serveur, séparés par un délimiteur personnalisable.
-parameters:
-  - name: separator
-    description: "Optionnel. Séparateur entre chaque nom de rôle (défaut : , )."
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: string
-    description: La liste des noms de rôles séparés.
-related:
-  - $roleName
-  - $roleCount
-  - $channelNames
-examples:
-  - description: Liste des rôles
-    code: "$sendMessage[Rôles : $roleNames]"
-  - description: Liste avec retour à la ligne
-    code: $sendMessage[Rôles :\n$roleNames[\n]]
 ---
 
 # $roleNames

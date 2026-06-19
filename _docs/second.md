@@ -6,19 +6,6 @@ category: "Date & Time"
 function_name: second
 syntax: $second
 description: Retourne la seconde actuelle (0 à 59). Résolu au runtime.
-parameters: []
-returns:
-  - type: number (string)
-    description: La seconde actuelle, entre 0 et 59.
-related:
-  - $hour[]
-  - $minute[]
-  - $time[]
-examples:
-  - description: Afficher les secondes actuelles
-    code: $second
-  - description: Afficher l'heure complète
-    code: Il est $hour:$minute:$second
 ---
 
 # $second[]

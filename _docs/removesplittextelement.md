@@ -6,38 +6,6 @@ category: "Math & Text"
 function_name: removeSplitTextElement
 syntax: $removeSplitTextElement[index]
 description: Removes the element at the specified index from the current text split array.
-parameters:
-  - name: index
-    type: integer
-    required: true
-    description: The zero-based index of the element to remove. Negative indices count from the end (-1 = last element).
-returns:
-  type: none (action only)
-  description: This function is an action — it modifies the split array in place and does not return a value inline.
-related:
-  - textSplit
-  - splitText
-  - editSplitText
-  - joinSplitText
-examples:
-  - title: Remove first element
-    code: |
-      $textSplit[apple;banana;orange;grape;]
-      $removeSplitTextElement[0]
-      $sendMessage[$joinSplitText[, ]]
-      Result: "banana, orange, grape"
-  - title: Remove last element
-    code: |
-      $textSplit[1;2;3;4;5;]
-      $removeSplitTextElement[-1]
-      $sendMessage[$joinSplitText[ ]]
-      Result: "1 2 3 4"
-  - title: Remove specific element and re-access
-    code: |
-      $textSplit[red;green;blue;yellow;]
-      $removeSplitTextElement[1]
-      $sendMessage[$splitText[0] $splitText[1] $splitText[2]]
-      Result: "red blue yellow"
 ---
 # $removeSplitTextElement — Remove Split Element
 

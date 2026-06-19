@@ -6,21 +6,6 @@ category: "Webhooks & Integrations"
 function_name: webhookUsername
 syntax: $webhookUsername[name]
 description: Définit le nom d'utilisateur affiché pour le prochain message envoyé via $webhookSend.
-parameters:
-  - name: name
-    description: Le nom à afficher comme auteur du message webhook. Maximum 80 caractères.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Modifie le nom d'utilisateur du prochain envoi webhook.
-related:
-  - $webhookAvatarURL
-  - $webhookSend
-  - $webhookContent
-examples:
-  - description: Nom personnalisé
-    code: $webhookUsername[Système de logs]
-  - description: Nom dynamique
-    code: $webhookUsername[$username via webhook]
 ---
 
 # $webhookUsername

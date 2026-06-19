@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: isHoisted
 syntax: $isHoisted
 description: Retourne "true" si le rôle le plus haut de l'utilisateur est affiché séparément dans la liste des membres, "false" sinon.
-parameters: []
-returns:
-  - type: boolean (string)
-    description: '"true" si le rôle est hoisted (affiché séparément), "false" sinon.'
-related:
-  - $userRoles
-  - $highestRole
-  - $isAdmin
-examples:
-  - description: Vérifier si rôle hoisted
-    code: $isHoisted
-  - description: Message personnalisé pour rôles hoisted
-    code: |
-      $if[$isHoisted==true]
-        $sendMessage[Votre rôle est affiché séparément.]
-      $endif
 ---
 
 # $isHoisted

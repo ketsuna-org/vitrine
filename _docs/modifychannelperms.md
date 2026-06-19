@@ -6,25 +6,6 @@ category: "Moderation"
 function_name: modifyChannelPerms
 syntax: $modifyChannelPerms[channelID;roleOrUserID;permissions]
 description: Modifie les permissions d'un rôle ou utilisateur sur un canal en utilisant des noms de permissions lisibles (sendmessages, viewchannel, etc.).
-parameters:
-  - name: channelID
-    description: L'ID du canal cible.
-  - name: roleOrUserID
-    description: L'ID du rôle ou de l'utilisateur.
-  - name: permissions
-    description: "Liste de permissions avec + (autoriser) ou - (refuser), séparées par des espaces. Exemple : +sendmessages -viewchannel."
-returns:
-  - type: aucun
-    description: Ne retourne rien. Les permissions sont modifiées.
-related:
-  - $editChannelPerms
-  - $modifyChannel
-  - $createChannel
-examples:
-  - description: Autoriser l'envoi de messages
-    code: $modifyChannelPerms[$channelID;$roleID;+sendmessages]
-  - description: Bloquer la vue du canal
-    code: $modifyChannelPerms[$channelID;$roleID;-viewchannel]
 ---
 
 # $modifyChannelPerms

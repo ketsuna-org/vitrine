@@ -6,19 +6,6 @@ category: "Moderation"
 function_name: threadUserCount
 syntax: $threadUserCount[threadID]
 description: Retourne le nombre de membres dans un fil de discussion (thread). Utile pour suivre la participation aux discussions.
-parameters:
-  - name: threadID
-    description: L'ID du thread dont on souhaite connaître le nombre de membres.
-returns:
-  - type: integer
-    description: Le nombre de membres dans le thread. Retourne 0 si le thread est vide ou inaccessible.
-related:
-  - $threadMessageCount
-  - $threadAddMember
-  - $threadRemoveMember
-examples:
-  - description: Compter les membres d'un thread
-    code: $threadUserCount[$threadID]
 ---
 
 # $threadUserCount

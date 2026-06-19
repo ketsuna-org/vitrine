@@ -6,51 +6,6 @@ category: "Control Flow"
 function_name: skipActions
 syntax: $skipActions[count]
 description: Skips a specified number of subsequent actions in the current execution block.
-parameters:
-  - name: count
-    type: string (resolved to integer)
-    required: true
-    description: The number of actions to skip. Resolved at runtime from a literal number, variable, or expression. Must evaluate to a non-negative integer.
-returns:
-  type: void
-  description: This function does not return a value — it modifies the execution pointer, causing the next N actions to be bypassed.
-related:
-  - stop
-  - if
-  - for
-examples:
-  - title: Skip next 2 actions
-    code: |
-      $sendMessage[Line 1]
-      $skipActions[2]
-      $sendMessage[Line 2 — SKIPPED]
-      $sendMessage[Line 3 — SKIPPED]
-      $sendMessage[Line 4]
-      Result: only "Line 1" and "Line 4" are sent
-  - title: Dynamic skip based on variable
-    code: |
-      $skipActions[$getUserVar[skipCount]]
-      $sendMessage[This may or may not be skipped]
-      Result: skip count determined by the skipCount variable
-  - title: Conditional skip
-    code: |
-      $if[$getUserVar[admin]==false]
-        $skipActions[3]
-      $endif
-      $sendMessage[Admin action 1]
-      $sendMessage[Admin action 2]
-      $sendMessage[Admin action 3]
-      $sendMessage[Public action]
-      Result: non-admin users skip the 3 admin actions and see only "Public action"
-  - title: Skip inside a loop
-    code: |
-      $for[item;A;B;C;D]
-        $if[$loopCount==2]
-          $skipActions[1]
-        $endif
-        $sendMessage[$item]
-      $endFor
-      Result: "A", "C", "D" are sent — "B" is skipped
 ---
 # $skipActions — Skip N Actions
 

@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: isBooster
 syntax: $isBooster
 description: Retourne "true" si l'utilisateur est un booster du serveur (Nitro Boost), "false" sinon.
-parameters: []
-returns:
-  - type: boolean (string)
-    description: '"true" si l''utilisateur est un booster, "false" sinon.'
-related:
-  - $isAdmin
-  - $userRoles
-  - $userBadges
-examples:
-  - description: Vérifier si booster
-    code: $isBooster
-  - description: Remercier les boosters
-    code: |
-      $if[$isBooster==true]
-        $sendMessage[Merci de booster le serveur ! 🚀]
-      $else
-        $sendMessage[Boostez le serveur pour des avantages exclusifs !]
-      $endif
 ---
 
 # $isBooster

@@ -6,16 +6,6 @@ category: "Moderation"
 function_name: deleteCommand
 syntax: $deleteCommand
 description: Supprime le message de commande de l'utilisateur (le message qui a déclenché le trigger). Utile pour garder les canaux propres.
-parameters: []
-returns:
-  - type: aucun
-    description: Ne retourne rien. Le message déclencheur est supprimé.
-related:
-  - $sendMessage
-  - $addCmdReactions
-examples:
-  - description: Supprimer la commande
-    code: $deleteCommand
 ---
 
 # $deleteCommand

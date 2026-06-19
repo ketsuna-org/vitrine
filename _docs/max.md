@@ -6,30 +6,6 @@ category: "Math & Text"
 function_name: max
 syntax: $max[value1;value2;...]
 description: Retourne la plus grande valeur parmi les arguments fournis.
-parameters:
-  - name: values
-    type: number
-    required: true
-    description: Liste de valeurs numériques séparées par des points-virgules. Variadique.
-returns:
-  type: string (number)
-  description: La plus grande valeur de la liste.
-related:
-  - min
-  - calculate
-examples:
-  - title: Maximum de deux nombres
-    code: |
-      $max[10;3]
-  - title: Maximum de plusieurs nombres
-    code: |
-      $max[5;12;3;8;1]
-  - title: Avec des variables
-    code: |
-      $max[$getVar[a];$getVar[b];$getVar[c]]
-  - title: Avec des décimaux
-    code: |
-      $max[2.5;1.1;3.9]
 ---
 
 # $max[]

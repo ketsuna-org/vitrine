@@ -6,19 +6,6 @@ category: "Math & Text"
 function_name: randomRoleID
 syntax: $randomRoleID
 description: Retourne l'ID d'un rôle aléatoire présent sur le serveur.
-parameters: []
-returns:
-  - type: string
-    description: L'ID Discord d'un rôle aléatoire du serveur.
-related:
-  - $randomUserID[]
-  - $randomChannelID[]
-  - $randomGuildID[]
-examples:
-  - description: Obtenir un ID de rôle aléatoire
-    code: $randomRoleID
-  - description: Mentionner un rôle aléatoire
-    code: <@&$randomRoleID>
 ---
 
 # $randomRoleID[]

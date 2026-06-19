@@ -6,25 +6,6 @@ category: "Embed & Message"
 function_name: removeAllComponents
 syntax: $removeAllComponents
 description: Supprime tous les composants interactifs (boutons, menus, champs texte, etc.) d'un message en une seule opération.
-parameters: []
-returns:
-  type: void
-  description: Supprime tous les composants du message, le rendant entièrement statique.
-related:
-  - removeComponent
-  - removeButtons
-  - $editMessage
-examples:
-  - description: Nettoyer complètement un message après interaction
-    code: |
-      $onInteraction[final_submit]
-      $removeAllComponents
-      $editMessage[Formulaire soumis avec succès ✅]
-      $endInteraction
-  - description: Verrouiller un panneau après usage
-    code: |
-      $removeAllComponents
-      $editMessage[Ce panneau n'est plus disponible]
 ---
 
 # $removeAllComponents[] — Supprimer Tous les Composants

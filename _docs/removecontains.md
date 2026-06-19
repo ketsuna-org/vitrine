@@ -6,19 +6,6 @@ category: "Text Manipulation"
 function_name: removeContains
 syntax: $removeContains[text]
 description: Supprime toutes les occurrences d'une chaîne de caractères dans un texte donné. Recherche et remplace par une chaîne vide.
-parameters:
-  - name: text
-    description: La chaîne de caractères à supprimer du texte courant.
-returns:
-  - type: string
-    description: Le texte sans les occurrences de la chaîne cible.
-related:
-  - $replaceText
-  - $removeLinks
-  - $trimContent
-examples:
-  - description: Supprimer un mot
-    code: $sendMessage[$removeContains[spam]]
 ---
 # $removeContains
 

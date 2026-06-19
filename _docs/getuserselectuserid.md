@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: getUserSelectUserID
 syntax: $getUserSelectUserID[(index)]
 description: Récupère l'ID de l'utilisateur sélectionné via un menu de sélection d'utilisateurs (user select).
-parameters:
-  - name: index
-    description: (Optionnel) L'index de l'utilisateur sélectionné. Par défaut 1 (premier utilisateur).
-returns:
-  - type: string
-    description: L'ID de l'utilisateur sélectionné, ou une chaîne vide si aucun utilisateur n'a été choisi.
-related:
-  - $getUserSelectUserIDs
-  - $getRoleSelectRoleID
-  - $getChannelSelectChannelID
-  - $getMentionableSelectUserID
-examples:
-  - description: Récupérer le premier utilisateur
-    code: $getUserSelectUserID
-  - description: Récupérer le 3ème utilisateur
-    code: $getUserSelectUserID[3]
 ---
 
 # $getUserSelectUserID

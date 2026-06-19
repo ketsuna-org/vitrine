@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: commandName
 syntax: $commandName
 description: Retourne le nom de la commande en cours d'exécution.
-parameters: []
-returns:
-  - type: string
-    description: Le nom de la commande actuelle.
-related:
-  - $commandTrigger
-  - $commandType
-  - $commandFolder
-  - $isSlash
-examples:
-  - description: Afficher le nom
-    code: |
-      $sendMessage[Commande en cours : $commandName]
-  - description: Log de commande
-    code: |
-      $log[$userName a exécuté $commandName]
-  - description: Aide contextuelle
-    code: |
-      $sendMessage[Aide pour $commandName : ...]
 ---
 
 # $commandName

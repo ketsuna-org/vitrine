@@ -6,41 +6,6 @@ category: "Embed & Message"
 function_name: addModalCheckboxGroup
 syntax: $addModalCheckboxGroup[customId;label;(required)]
 description: Crée un groupe de cases à cocher dans un modal. Les options individuelles sont ajoutées avec $addCheckboxGroupOption[].
-parameters:
-  - name: customId
-    type: string
-    required: true
-    description: Identifiant unique du groupe de cases à cocher.
-  - name: label
-    type: string
-    required: true
-    description: Étiquette affichée au-dessus du groupe.
-  - name: required
-    type: string
-    required: false
-    default: "yes"
-    description: "yes" si au moins une case doit être cochée, "no" sinon.
-returns:
-  type: void
-  description: Initialise un groupe de cases à cocher dans le modal en cours.
-related:
-  - newModal
-  - addCheckboxGroupOption
-  - addModalCheckbox
-  - addModalRadioGroup
-examples:
-  - description: Groupe de cases à cocher pour centres d'intérêt
-    code: |
-      $addModalCheckboxGroup[interests;Centres d'intérêt;no]
-      $addCheckboxGroupOption[interests;Jeux vidéo;games]
-      $addCheckboxGroupOption[interests;Musique;music]
-      $addCheckboxGroupOption[interests;Sport;sport]
-  - description: Groupe sans menuId (dernier groupe créé)
-    code: |
-      $addModalCheckboxGroup[days;Jours disponibles;yes]
-      $addCheckboxGroupOption[;Lundi;mon]
-      $addCheckboxGroupOption[;Mardi;tue]
-      $addCheckboxGroupOption[;Mercredi;wed]
 ---
 
 # $addModalCheckboxGroup[] — Groupe de Cases à Cocher

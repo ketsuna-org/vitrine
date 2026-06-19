@@ -6,37 +6,6 @@ category: "Embed & Message"
 function_name: description
 syntax: $description[text;(embedIndex)]
 description: Définit le corps principal (description) d'un embed Discord. C'est la zone de texte principale, située sous le titre.
-parameters:
-  - name: text
-    description: Texte de la description. Supporte le markdown Discord, les sauts de ligne, et l'interpolation de variables.
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0). Permet de construire jusqu'à 10 embeds."
-returns:
-  - type: void
-    description: Modifie la réponse en cours de construction. Ne retourne rien directement.
-related:
-  - $title[]
-  - $color[]
-  - $addField[]
-  - $sendMessage[]
-examples:
-  - description: Description simple
-    code: |
-      $title[Informations]
-      $description[Voici les informations demandées. Utilisez les boutons ci-dessous pour naviguer.]
-      $color[#5865F2]
-  - description: Description multi-lignes avec markdown
-    code: |
-      $description[
-      **Règles du serveur :**
-      1. Respectez les autres membres
-      2. Pas de spam
-      3. Pas de contenu NSFW
-      
-      *Merci de votre compréhension !*
-      ]
-  - description: Description avec variables dynamiques
-    code: $description[Bonjour $username ! Votre ID est $authorID.]
 ---
 
 # $description[]

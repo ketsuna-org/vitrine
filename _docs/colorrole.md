@@ -6,28 +6,6 @@ category: "Entity Info"
 function_name: colorRole
 syntax: $colorRole[userID;(guildID)]
 description: Retourne la couleur du rôle le plus élevé d'un utilisateur, en hexadécimal.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur cible.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: string
-    description: La couleur hexadécimale du rôle le plus haut de l'utilisateur, ou "" si aucun rôle coloré.
-related:
-  - $roleColor
-  - $getRole
-  - $roleName
-  - $color
-examples:
-  - description: Couleur du rôle de l'auteur
-    code: "$sendMessage[Votre couleur : $colorRole[$authorID]]"
-  - description: Embed avec la couleur du rôle
-    code: |
-      $title[Profil]
-      $description[Votre plus haut rôle coloré]
-      $color[$colorRole[$authorID]]
-      $sendMessage[]
 ---
 
 # $colorRole

@@ -6,19 +6,6 @@ category: "Text Manipulation"
 function_name: trimContent
 syntax: $trimContent[text]
 description: Supprime les espaces en début et fin d'un texte (trim). Ne modifie pas les espaces à l'intérieur du texte.
-parameters:
-  - name: text
-    description: Le texte à nettoyer des espaces périphériques.
-returns:
-  - type: string
-    description: Le texte sans espaces en début ni fin.
-related:
-  - $removeContains
-  - $removeLinks
-  - $disableInnerSpaceRemoval
-examples:
-  - description: Nettoyer un texte
-    code: $sendMessage[$trimContent[   Hello World   ]]
 ---
 # $trimContent
 

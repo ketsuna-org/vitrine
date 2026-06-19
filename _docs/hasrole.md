@@ -6,30 +6,6 @@ category: "Math & Text"
 function_name: hasRole
 syntax: $hasRole[userID;roleID]
 description: Vérifie si un utilisateur possède un rôle spécifique sur le serveur.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur. Si omis, l'auteur de la commande.
-  - name: roleID
-    description: L'ID du rôle à vérifier.
-returns:
-  - type: boolean
-    description: true si l'utilisateur a le rôle, false sinon.
-related:
-  - $giveRole
-  - $takeRole
-  - $roleExists
-  - $getRole
-examples:
-  - description: Vérifier un rôle
-    code: |
-      $if[$hasRole[$authorID;$roleID[Admin]]==true]
-        $sendMessage[Vous êtes Admin !]
-      $endif
-  - description: Vérifier avec un seul paramètre
-    code: |
-      $if[$hasRole[$roleID[Staff]]==true]
-        $sendMessage[Staff détecté.]
-      $endif
 ---
 
 # $hasRole

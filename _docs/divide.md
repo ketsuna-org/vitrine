@@ -6,35 +6,6 @@ category: "Math & Text"
 function_name: divide
 syntax: $divide[a;b]
 description: Divise la première valeur par la seconde (a / b). Si le diviseur est 0, retourne 0 au lieu de produire une erreur.
-parameters:
-  - name: a
-    type: number
-    required: true
-    description: Le dividende (numérateur).
-  - name: b
-    type: number
-    required: true
-    description: Le diviseur (dénominateur).
-returns:
-  type: string (number)
-  description: Le quotient a / b. Peut être un nombre décimal. Retourne "0" si b = 0.
-related:
-  - calculate
-  - multi
-  - modulo
-examples:
-  - title: Division simple
-    code: |
-      $divide[10;2]
-  - title: Résultat décimal
-    code: |
-      $divide[10;3]
-  - title: Division par zéro (protégée)
-    code: |
-      $divide[10;0]
-  - title: Calcul de moyenne
-    code: |
-      $divide[$sum[$getVar[note1];$getVar[note2]];2]
 ---
 
 # $divide[]

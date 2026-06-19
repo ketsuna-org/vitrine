@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: onlyForServers
 syntax: $onlyForServers[guildID1;guildID2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution si la commande n'est pas utilisée dans l'un des serveurs spécifiés. Accepte également l'alias $onlyForGuilds.
-parameters:
-  - name: guildID1, guildID2, ...
-    description: Liste des IDs de serveurs autorisés.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur.
-    optional: true
-returns: []
-related:
-  - $onlyForChannels
-  - $onlyForCategories
-  - $serverID
-  - $blacklistServers
-examples:
-  - description: Restreindre une commande à un serveur spécifique
-    code: |
-      $onlyForServers[123456789012345678;❌ Cette commande n'est pas disponible sur ce serveur.]
-      $sendMessage[Commande exécutée.]
 ---
 
 # $onlyForServers

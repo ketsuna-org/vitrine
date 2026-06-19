@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: authorTag
 syntax: $authorTag
 description: Retourne le tag complet de l'auteur du message (format "nom#discriminator" ou nom simple pour les comptes pompom).
-parameters: []
-returns:
-  - type: string
-    description: Le tag de l'auteur du message.
-related:
-  - $authorUsername
-  - $authorID
-  - $userTag
-  - $discriminator
-examples:
-  - description: Obtenir le tag de l'auteur
-    code: $authorTag
-  - description: Embed avec le tag de l'auteur
-    code: |
-      $title[Profil de $authorTag]
-      $description[ID : $authorID]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $authorTag

@@ -6,18 +6,6 @@ category: "Moderation"
 function_name: unregisterGuildCommands
 syntax: $unregisterGuildCommands[guildID]
 description: Supprime toutes les commandes slash du bot sur un serveur spécifique. Les commandes globales ne sont pas affectées.
-parameters:
-  - name: guildID
-    description: L'ID du serveur duquel supprimer les commandes slash.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Les commandes sont supprimées du serveur.
-related:
-  - $registerGuildCommands
-  - $deleteCommand
-examples:
-  - description: Supprimer les commandes slash
-    code: $unregisterGuildCommands[$guildID]
 ---
 
 # $unregisterGuildCommands

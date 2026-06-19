@@ -6,19 +6,6 @@ category: "Flags & Debug"
 function_name: optOff
 syntax: $optOff
 description: Désactive l'optimisation du code pour la commande en cours. Tout le code est exécuté linéairement sans optimisation du parseur.
-parameters: []
-returns:
-  - type: void
-    description: Désactive l'optimisation. Ne retourne rien.
-related:
-  - $debug
-  - $enableDecimals
-  - $alternativeParsing
-examples:
-  - description: Désactiver l'optimisation
-    code: |
-      $optOff
-      $sendMessage[Optimisation désactivée.]
 ---
 # $optOff
 

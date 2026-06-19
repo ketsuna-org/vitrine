@@ -6,34 +6,6 @@ category: "Embed & Message"
 function_name: addModalCheckbox
 syntax: $addModalCheckbox[customId;label;(default)]
 description: Ajoute une case à cocher individuelle à un modal Discord.
-parameters:
-  - name: customId
-    type: string
-    required: true
-    description: Identifiant unique de la case à cocher.
-  - name: label
-    type: string
-    required: true
-    description: Texte affiché à côté de la case à cocher.
-  - name: default
-    type: string
-    required: false
-    default: "no"
-    description: État par défaut. "yes" pour cochée, "no" pour décochée.
-returns:
-  type: void
-  description: Ajoute une case à cocher simple au modal en cours.
-related:
-  - newModal
-  - addModalCheckboxGroup
-  - addCheckboxGroupOption
-examples:
-  - description: Case à cocher simple
-    code: |
-      $addModalCheckbox[newsletter;S'abonner à la newsletter;yes]
-  - description: Case décochée par défaut
-    code: |
-      $addModalCheckbox[tos;J'accepte les conditions d'utilisation;no]
 ---
 
 # $addModalCheckbox[] — Case à Cocher dans un Modal

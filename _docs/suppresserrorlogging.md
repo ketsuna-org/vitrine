@@ -6,25 +6,6 @@ category: "Control Flow"
 function_name: suppressErrorLogging
 syntax: $suppressErrorLogging
 description: Disables internal error logging for the current command execution. Runtime errors will not be recorded in the bot's error logs.
-returns:
-  type: void
-  description: Disables error logging for the current command. Returns nothing.
-related:
-  - suppressErrors
-  - embedSuppressErrors
-  - onlyIf
-examples:
-  - title: Désactiver le logging pour une commande sensible
-    code: |
-      $suppressErrorLogging
-      $suppressErrors
-      $httpGet[https://api.private.example.com/data]
-      Traitement silencieux...
-  - title: Éviter de polluer les logs
-    code: |
-      $suppressErrorLogging
-      Tentative de connexion...
-      $httpGet[https://api.unstable.example.com/health]
 ---
 $suppressErrorLogging disables the internal logging of runtime errors for the current command. Unlike `$suppressErrors` (which controls what the user sees) or `$embedSuppressErrors` (which controls embed-specific errors), this function acts on the **server-side** — it prevents errors from being recorded in the bot's internal log system.
 

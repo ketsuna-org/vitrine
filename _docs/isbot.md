@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: isBot
 syntax: $isBot
 description: Retourne "true" si l'utilisateur qui a déclenché la commande est un bot, "false" sinon.
-parameters: []
-returns:
-  - type: boolean (string)
-    description: '"true" si l''utilisateur est un bot, "false" sinon.'
-related:
-  - $userID
-  - $isAdmin
-  - $isBooster
-  - $userInfo
-examples:
-  - description: Vérifier si l'utilisateur est un bot
-    code: $isBot
-  - description: Condition bot ou humain
-    code: |
-      $if[$isBot==true]
-        $sendMessage[Tu es un bot ! 🤖]
-      $else
-        $sendMessage[Tu es un humain ! 👤]
-      $endif
 ---
 
 # $isBot

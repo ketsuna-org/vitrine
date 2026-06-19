@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: getBanReason
 syntax: $getBanReason[userID]
 description: Récupère la raison de bannissement d'un utilisateur banni sur le serveur. Retourne la raison stockée dans la liste des bannissements du serveur.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur banni dont on souhaite connaître la raison.
-returns:
-  - type: string
-    description: La raison du bannissement, ou chaîne vide si l'utilisateur n'est pas banni ou si aucune raison n'a été fournie.
-related:
-  - $ban
-  - $unban
-  - $isBanned
-examples:
-  - description: Vérifier la raison d'un ban
-    code: $getBanReason[$mentioned[1]]
-  - description: Vérifier par ID
-    code: $getBanReason[123456789]
 ---
 
 # $getBanReason

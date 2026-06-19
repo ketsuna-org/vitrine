@@ -6,34 +6,6 @@ category: "Embed & Message"
 function_name: editIn
 syntax: $editIn[duration;(messageId)]
 description: Programme l'édition d'un message après un délai spécifié. Le message actuel sera remplacé par le nouveau contenu défini après le délai.
-parameters:
-  - name: duration
-    type: string
-    required: true
-    description: "Durée avant édition. Format : \"5s\" (secondes), \"1m\" (minutes), \"2h\" (heures)."
-  - name: messageId
-    type: string
-    required: false
-    description: Identifiant du message à éditer. Si omis, édite le message en cours d'envoi.
-returns:
-  type: void
-  description: Programme l'édition différée du message.
-related:
-  - deleteIn
-  - editEmbedIn
-  - replyIn
-  - $editMessage
-examples:
-  - description: Éditer après 5 secondes
-    code: |
-      $sendMessage[Chargement...]
-      $editIn[5s]
-      $sendMessage[Terminé !]
-  - description: Éditer après 1 minute
-    code: |
-      $sendMessage[Patientez...]
-      $editIn[1m]
-      $sendMessage[Mise à jour effectuée]
 ---
 
 # $editIn[] — Édition Différée de Message

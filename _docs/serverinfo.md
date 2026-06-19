@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: serverInfo
 syntax: $serverInfo[property]
 description: Retourne une propriété spécifique de l'objet serveur (ou l'objet complet sans argument). Permet d'accéder dynamiquement aux informations du serveur.
-parameters:
-  - name: property
-    type: string
-    required: false
-    description: "La propriété à récupérer (ex: \"name\", \"id\", \"icon\", \"ownerID\", etc.). Si omise, retourne un objet JSON contenant toutes les informations."
-returns:
-  type: string/object
-  description: La valeur de la propriété demandée, ou l'objet serveur complet si aucun argument.
-related:
-  - $serverName
-  - $serverID
-  - $serverOwner
-  - $serverIcon
-  - $guildID
-examples:
-  - description: Récupérer une propriété
-    code: |
-      $sendMessage[Nom : $serverInfo[name]]
-  - description: Récupérer toutes les infos
-    code: |
-      $sendMessage[$serverInfo]
 ---
 
 # $serverInfo[] — Informations du Serveur

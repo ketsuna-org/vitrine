@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: nickname
 syntax: $nickname
 description: Retourne le pseudo (surnom) de l'utilisateur sur le serveur actuel. Retourne une chaîne vide si aucun pseudo n'est défini.
-parameters: []
-returns:
-  - type: string
-    description: Le pseudo serveur de l'utilisateur, ou chaîne vide.
-related:
-  - $displayName
-  - $userName
-  - $memberNick
-examples:
-  - description: Obtenir le pseudo
-    code: $nickname
-  - description: Vérifier si un pseudo est défini
-    code: |
-      $if[$nickname!=]
-        $sendMessage[Votre pseudo : $nickname]
-      $else
-        $sendMessage[Vous n'avez pas de pseudo.]
-      $endif
 ---
 
 # $nickname

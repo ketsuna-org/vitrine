@@ -6,28 +6,6 @@ category: "Math & Text"
 function_name: ceil
 syntax: $ceil[value]
 description: Arrondit un nombre à l'entier supérieur (troncature vers le haut).
-parameters:
-  - name: value
-    type: number
-    required: true
-    description: Le nombre à arrondir (peut être décimal).
-returns:
-  type: string (number)
-  description: Le plus petit entier supérieur ou égal à la valeur.
-related:
-  - floor
-  - round
-  - calculate
-examples:
-  - title: Arrondi supérieur simple
-    code: |
-      $ceil[3.1]
-  - title: Avec un entier
-    code: |
-      $ceil[5]
-  - title: Nombre négatif
-    code: |
-      $ceil[-3.1]
 ---
 
 # $ceil[]

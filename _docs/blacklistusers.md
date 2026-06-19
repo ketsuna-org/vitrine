@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: blacklistUsers
 syntax: $blacklistUsers[userID1;userID2;...;(errorMessage)]
 description: Fonction guard qui blackliste des utilisateurs par ID. Alias de $blacklistIDs. La commande est interrompue si l'utilisateur est dans la liste.
-parameters:
-  - name: userID1, userID2, ...
-    description: Liste des IDs utilisateurs à blacklister.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur.
-    optional: true
-returns: []
-related:
-  - $blacklistIDs
-  - $blacklistRoles
-  - $blacklistServers
-  - $onlyForUsers
-examples:
-  - description: Blacklist simple
-    code: |
-      $blacklistUsers[123456789012345678;❌ Vous êtes blacklisté.]
-      $sendMessage[OK.]
 ---
 
 # $blacklistUsers

@@ -6,31 +6,6 @@ category: "Math & Text"
 function_name: toLowercase
 syntax: $toLowercase[text]
 description: Converts all characters in the given text to lowercase.
-parameters:
-  - name: text
-    type: string
-    required: true
-    description: The text to convert. Can be a literal string or an expression containing placeholders.
-returns:
-  type: string
-  description: The input text with all alphabetic characters converted to lowercase. Non-alphabetic characters are unchanged.
-related:
-  - toUppercase
-  - toTitlecase
-  - replaceText
-examples:
-  - title: Basic lowercasing
-    code: |
-      $toLowercase[HELLO WORLD]
-      Result: "hello world"
-  - title: Normalize user input
-    code: |
-      $toLowercase[$message]
-      Result: the message in lowercase (useful for case-insensitive comparisons)
-  - title: Mixed content
-    code: |
-      $toLowercase[ABC 123 !@#]
-      Result: "abc 123 !@#"
 ---
 # $toLowercase — Convert to Lowercase
 

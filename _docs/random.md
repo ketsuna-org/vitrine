@@ -6,27 +6,6 @@ category: "Math & Text"
 function_name: random
 syntax: $random[min;max]
 description: Génère un nombre entier aléatoire entre min et max (inclus). La valeur est évaluée au compile-time uniquement.
-parameters:
-  - name: min
-    description: Valeur minimale (incluse) de la plage de nombres aléatoires.
-  - name: max
-    description: Valeur maximale (incluse) de la plage de nombres aléatoires.
-returns:
-  - type: number (string)
-    description: Un entier aléatoire compris entre min et max.
-related:
-  - $randomString[]
-  - $randomText[]
-examples:
-  - description: Générer un nombre aléatoire entre 1 et 100
-    code: $random[1;100]
-  - description: Utiliser dans un message de bienvenue avec un nombre aléatoire
-    code: |
-      $title[Bienvenue !]
-      $description[Numéro du jour : $random[1;365]]
-      $color[#5865F2]
-  - description: Simuler un lancer de dé (1 à 6)
-    code: $random[1;6]
 ---
 
 # $random[]

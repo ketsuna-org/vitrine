@@ -6,33 +6,6 @@ category: "Moderation"
 function_name: createChannel
 syntax: $createChannel[name;(type);(categoryID);(topic);(nsfw);(slowmode)]
 description: Crée un nouveau canal sur le serveur. Supporte les canaux texte, vocaux, de catégorie, d'annonce et de scène.
-parameters:
-  - name: name
-    description: Le nom du canal à créer (1 à 100 caractères).
-  - name: type
-    description: "(Optionnel) Type de canal. 0=texte, 2=vocal, 4=catégorie, 5=annonce, 13=scène. Défaut : 0."
-  - name: categoryID
-    description: (Optionnel) ID de la catégorie parente. 0 ou vide pour aucune catégorie.
-  - name: topic
-    description: (Optionnel) Sujet/description du canal (max 1024 caractères).
-  - name: nsfw
-    description: "(Optionnel) true/false pour marquer le canal comme NSFW. Défaut : false."
-  - name: slowmode
-    description: "(Optionnel) Délai de slowmode en secondes (0 à 21600). Défaut : 0."
-returns:
-  - type: snowflake (string)
-    description: L'ID du canal créé, ou chaîne vide en cas d'échec.
-related:
-  - $deleteChannels
-  - $modifyChannel
-  - $channelSendMessage
-examples:
-  - description: Canal texte simple
-    code: $createChannel[general]
-  - description: Canal vocal dans une catégorie
-    code: $createChannel[Vocal 1;2;123456789]
-  - description: Canal avec slowmode
-    code: $createChannel[spam;0;0;;false;5]
 ---
 
 # $createChannel

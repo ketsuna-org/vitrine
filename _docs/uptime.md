@@ -6,24 +6,6 @@ category: "Misc"
 function_name: uptime
 syntax: $uptime
 description: Retourne la durée écoulée depuis le démarrage du bot.
-parameters: []
-returns:
-  - type: string
-    description: La durée de fonctionnement du bot depuis son dernier démarrage, formatée lisiblement.
-related:
-  - $ping[]
-examples:
-  - description: Afficher l'uptime du bot
-    code: $uptime
-  - description: Embed affichant l'uptime
-    code: |
-      $title[⏱️ Uptime]
-      $description[Le bot fonctionne depuis **$uptime**]
-  - description: Afficher ping et uptime ensemble
-    code: |
-      $title[📊 Statut du bot]
-      $description[**Ping :** $ping ms
-      **Uptime :** $uptime]
 ---
 
 # $uptime[]

@@ -6,32 +6,6 @@ category: "Moderation"
 function_name: roleGrant
 syntax: $roleGrant[userID;roleID;(guildID)]
 description: Attribue un rôle à un membre du serveur.
-parameters:
-  - name: userID
-    description: L'ID du membre auquel attribuer le rôle.
-  - name: roleID
-    description: L'ID du rôle à attribuer.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: void
-    description: Attribue le rôle. Ne retourne rien.
-related:
-  - $roleRemove
-  - $roleExists
-  - $getRole
-  - $usersWithRole
-examples:
-  - description: Donner le rôle Membre
-    code: |
-      $roleGrant[$authorID;$roleID[Membre]]
-      $sendMessage[Rôle Membre attribué !]
-  - description: Vérifier avant d'attribuer
-    code: |
-      $if[$roleExists[$roleID[VIP]]==true]
-        $roleGrant[$authorID;$roleID[VIP]]
-        $sendMessage[Rôle VIP attribué !]
-      $endif
 ---
 
 # $roleGrant

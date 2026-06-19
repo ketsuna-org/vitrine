@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: guildName
 syntax: $guildName
 description: Alias de $serverName. Retourne le nom du serveur Discord.
-parameters: []
-returns:
-  type: string
-  description: Le nom du serveur (guild).
-related:
-  - $serverName
-  - $guildID
-  - $serverID
-  - $guildExists
-examples:
-  - description: Afficher le nom du serveur
-    code: |
-      $sendMessage[Bienvenue sur **$guildName** !]
-  - description: Embed avec le nom
-    code: |
-      $title[$guildName]
-      $description[Serveur Discord officiel]
-      $color[#5865F2]
-      $sendEmbedMessage
 ---
 
 # $guildName[] — Nom du Serveur (Alias)

@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: channelCount
 syntax: $channelCount[(categoryID)]
 description: Retourne le nombre total de salons sur le serveur, ou le nombre de salons dans une catégorie spécifique.
-parameters:
-  - name: categoryID
-    description: "Optionnel. L'ID d'une catégorie pour compter uniquement ses salons. Si omis, compte tous les salons du serveur."
-returns:
-  - type: integer
-    description: Le nombre de salons.
-related:
-  - $categoryCount
-  - $channelNames
-  - $categoryChannels
-examples:
-  - description: Nombre total de salons
-    code: "$sendMessage[Total salons : $channelCount]"
-  - description: Salons dans une catégorie
-    code: "$sendMessage[Salons dans la catégorie : $channelCount[123456789012345678]]"
 ---
 
 # $channelCount

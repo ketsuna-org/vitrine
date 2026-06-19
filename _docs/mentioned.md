@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: mentioned
 syntax: $mentioned
 description: Retourne l'ID du premier utilisateur mentionné dans le message. Équivalent au premier élément de $mentions.
-parameters: []
-returns:
-  - type: snowflake (string)
-    description: L'ID du premier utilisateur mentionné, ou chaîne vide si aucune mention.
-related:
-  - $mentions
-  - $isMentioned
-  - $mentionedRoles
-  - $mentionedChannels
-examples:
-  - description: Obtenir la première mention
-    code: $mentioned
-  - description: Agir sur la première mention
-    code: |
-      $if[$mentioned!=]
-        $sendMessage[Première mention : <@$mentioned>]
-      $else
-        $sendMessage[Aucune mention trouvée.]
-      $endif
 ---
 
 # $mentioned

@@ -6,44 +6,6 @@ category: "Embed & Message"
 function_name: addField
 syntax: $addField[name;value;(inline);(index)]
 description: Ajoute un champ (field) à un embed Discord. Les fields permettent de structurer des informations en paires nom/valeur dans l'embed.
-parameters:
-  - name: name
-    description: "Titre/nom du field. Longueur maximale : 256 caractères."
-  - name: value
-    description: "Valeur/contenu du field. Longueur maximale : 1024 caractères. Supporte le markdown."
-  - name: inline
-    description: "Optionnel. 'yes' pour afficher le field en ligne (côte à côte, max 3 par ligne), 'no' (défaut) pour un field pleine largeur."
-  - name: index
-    description: "Optionnel. Position d'insertion du field (0 = début). Sans index, le field est ajouté à la fin."
-returns:
-  - type: void
-    description: Modifie la réponse en cours de construction.
-related:
-  - $title[]
-  - $description[]
-  - $footer[]
-  - $sendMessage[]
-examples:
-  - description: Fields simples non-inline
-    code: |
-      $title[Statistiques]
-      $description[Voici vos statistiques.]
-      $addField[Parties jouées;42]
-      $addField[Victoires;28]
-      $addField[Défaites;14]
-      $color[#5865F2]
-  - description: Fields inline (côte à côte, 3 par ligne)
-    code: |
-      $title[Classement]
-      $addField[🥇 1er;Alice;yes]
-      $addField[🥈 2ème;Bob;yes]
-      $addField[🥉 3ème;Charlie;yes]
-      $color[#FEE75C]
-  - description: Insertion à une position spécifique
-    code: |
-      $addField[Field 1;Premier field]
-      $addField[Field 3;Troisième field]
-      $addField[Field 2;Deuxième field;no;1]
 ---
 
 # $addField[]

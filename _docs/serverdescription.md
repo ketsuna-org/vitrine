@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: serverDescription
 syntax: $serverDescription
 description: Retourne la description du serveur Discord (configurée dans les paramètres du serveur).
-parameters: []
-returns:
-  type: string
-  description: La description du serveur. Retourne une chaîne vide si aucune description n'est définie.
-related:
-  - $serverName
-  - $serverInfo
-  - $serverFeatures
-examples:
-  - description: Afficher la description du serveur
-    code: |
-      $sendMessage[Description du serveur : $serverDescription]
-  - description: Embed avec description
-    code: |
-      $title[À propos de $serverName]
-      $description[$serverDescription]
-      $color[#5865F2]
-      $sendEmbedMessage
 ---
 
 # $serverDescription[] — Description du Serveur

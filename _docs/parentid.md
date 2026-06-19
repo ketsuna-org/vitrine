@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: parentID
 syntax: $parentID[(channelID)]
 description: Alias de $channelCategoryID. Retourne l'ID de la catégorie parente d'un salon.
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
-returns:
-  - type: snowflake (string)
-    description: L'ID de la catégorie parente, ou une chaîne vide si aucune.
-related:
-  - $channelCategoryID
-  - $categoryID
-  - $categoryChannels
-examples:
-  - description: Catégorie parente du salon courant
-    code: "$sendMessage[Catégorie ID : $parentID]"
-  - description: Nom de la catégorie parente
-    code: "$sendMessage[Catégorie : $channelName[$parentID]]"
 ---
 
 # $parentID

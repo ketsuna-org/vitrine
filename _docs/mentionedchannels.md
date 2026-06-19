@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: mentionedChannels
 syntax: $mentionedChannels
 description: Retourne la liste des IDs des salons mentionnés dans le message (via #salon), séparés par des virgules.
-parameters: []
-returns:
-  - type: list (string)
-    description: Liste des IDs des salons mentionnés, séparés par des virgules.
-related:
-  - $mentionedRoles
-  - $mentions
-  - $mentioned
-  - $channelID
-examples:
-  - description: Obtenir les salons mentionnés
-    code: $mentionedChannels
-  - description: Afficher les salons mentionnés
-    code: |
-      $if[$mentionedChannels!=]
-        $sendMessage[Salons mentionnés : $mentionedChannels]
-      $else
-        $sendMessage[Aucun salon mentionné.]
-      $endif
 ---
 
 # $mentionedChannels

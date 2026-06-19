@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: serverVerificationLevel
 syntax: $serverVerificationLevel
 description: Retourne le niveau de vérification du serveur sous forme d'entier (0 à 4).
-parameters: []
-returns:
-  type: integer
-  description: Le niveau de vérification du serveur (0=None, 1=Low, 2=Medium, 3=High, 4=Highest).
-related:
-  - $serverRegion
-  - $serverInfo
-examples:
-  - description: Afficher le niveau de vérification
-    code: |
-      $sendMessage[Niveau de vérification : $serverVerificationLevel]
-  - description: Adapter le message selon le niveau
-    code: |
-      $if[$serverVerificationLevel>=3]
-      $sendMessage[Ce serveur a une vérification stricte.]
-      $endif
 ---
 
 # $serverVerificationLevel[] — Niveau de Vérification

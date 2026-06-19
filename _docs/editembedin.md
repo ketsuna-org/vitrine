@@ -6,35 +6,6 @@ category: "Embed & Message"
 function_name: editEmbedIn
 syntax: $editEmbedIn[duration]
 description: Programme l'édition de l'embed d'un message après un délai spécifié. Contrairement à $editIn[], seul l'embed est modifié — le contenu texte du message reste inchangé.
-parameters:
-  - name: duration
-    type: string
-    required: true
-    description: "Délai avant édition de l'embed. Format : \"5s\", \"1m\", \"2h\"."
-returns:
-  type: void
-  description: Programme l'édition différée de l'embed du message courant.
-related:
-  - editIn
-  - deleteIn
-  - $editMessage
-  - sendEmbedMessage
-examples:
-  - description: Mise à jour d'embed après 5 secondes
-    code: |
-      $title[Chargement...]
-      $description[Patientez...]
-      $editEmbedIn[5s]
-      $title[Terminé]
-      $description[Les données ont été chargées]
-      $color[#2ECC71]
-  - description: Transition de statut
-    code: |
-      $title[Statut : En cours]
-      $color[#F1C40F]
-      $editEmbedIn[3s]
-      $title[Statut : Complété]
-      $color[#2ECC71]
 ---
 
 # $editEmbedIn[] — Édition Différée d'Embed

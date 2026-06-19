@@ -6,25 +6,6 @@ category: "Moderation"
 function_name: getReactions
 syntax: $getReactions[channelID;messageID;emoji]
 description: Retourne le nombre de réactions pour un émoji spécifique sur un message donné. Permet de compter les votes ou interactions.
-parameters:
-  - name: channelID
-    description: L'ID du canal contenant le message.
-  - name: messageID
-    description: L'ID du message cible.
-  - name: emoji
-    description: L'émoji dont on souhaite compter les réactions (Unicode ou personnalisé).
-returns:
-  - type: integer
-    description: Le nombre de réactions pour l'émoji spécifié, ou 0 si aucune.
-related:
-  - $addReactions
-  - $addMessageReactions
-  - $clearReactions
-examples:
-  - description: Compter les 👍
-    code: $getReactions[$channelID;$messageID;👍]
-  - description: Compter un émoji personnalisé
-    code: $getReactions[$channelID;$messageID;<:upvote:123456789>]
 ---
 
 # $getReactions

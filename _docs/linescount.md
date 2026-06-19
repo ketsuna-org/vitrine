@@ -6,38 +6,6 @@ category: "Math & Text"
 function_name: linesCount
 syntax: $linesCount[text]
 description: Counts the number of lines in the given text. Lines are separated by newline characters.
-parameters:
-  - name: text
-    type: string
-    required: true
-    description: The text whose lines are to be counted.
-returns:
-  type: string (number)
-  description: The number of lines in the text. An empty string returns "0".
-related:
-  - charCount
-  - textSplit
-  - cropText
-examples:
-  - title: Count lines
-    code: |
-      $linesCount[line1
-      line2
-      line3]
-      Result: "3"
-  - title: Single line
-    code: |
-      $linesCount[Hello World]
-      Result: "1"
-  - title: Empty text
-    code: |
-      $linesCount[]
-      Result: "0"
-  - title: Validate multi-line input
-    code: |
-      $if[$linesCount[$message]>5]
-        $sendMessage[Please limit your message to 5 lines.]
-      $endif
 ---
 # $linesCount — Count Lines
 

@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: isMentionable
 syntax: $isMentionable[roleID;(guildID)]
 description: Vérifie si un rôle est mentionnable. Retourne "true" ou "false".
-parameters:
-  - name: roleID
-    description: L'ID du rôle à vérifier.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: string
-    description: '"true" si le rôle est mentionnable, "false" sinon.'
-related:
-  - $roleInfo
-  - $roleName
-  - $roleExists
-  - $allowRoleMentions
-examples:
-  - description: Vérifier si mentionnable
-    code: |
-      $if[$isMentionable[$roleID[Admin]]==true]
-        $sendMessage[Le rôle Admin est mentionnable.]
-      $else
-        $sendMessage[Le rôle Admin n'est pas mentionnable.]
-      $endif
 ---
 
 # $isMentionable

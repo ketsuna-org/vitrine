@@ -6,29 +6,6 @@ category: "Components"
 function_name: editSelectMenuOption
 syntax: $editSelectMenuOption[menuId;label;value;description;default;emoji]
 description: Modifie une option individuelle dans un menu de sélection (select menu) existant.
-parameters:
-  - name: menuId
-    description: L'ID personnalisé (customId) du select menu contenant l'option.
-  - name: label
-    description: Le nouveau libellé de l'option.
-  - name: value
-    description: La valeur interne transmise lors de la sélection.
-  - name: description
-    description: "(Optionnel) Description affichée sous le label."
-  - name: default
-    description: "(Optionnel) true/false — option présélectionnée par défaut."
-  - name: emoji
-    description: "(Optionnel) Emoji à afficher à côté du label."
-returns:
-  - type: void
-    description: Modifie l'option. Ne retourne rien.
-related:
-  - $addSelectMenuOption
-  - $editSelectMenu
-  - $editButton
-examples:
-  - description: Modifier une option
-    code: $editSelectMenuOption[langMenu;Français;fr;Langue française;false;🇫🇷]
 ---
 # $editSelectMenuOption
 

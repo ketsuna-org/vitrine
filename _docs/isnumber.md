@@ -6,27 +6,6 @@ category: "Math & Text"
 function_name: isNumber
 syntax: $isNumber[value]
 description: Vérifie si une valeur est un nombre (entier ou décimal, positif ou négatif).
-parameters:
-  - name: value
-    description: La valeur à tester.
-returns:
-  - type: boolean
-    description: true si la valeur est un nombre, false sinon.
-related:
-  - $isBoolean
-  - $isInteger
-  - $isValidHex
-examples:
-  - description: Tester un décimal
-    code: |
-      $if[$isNumber[3.14]==true]
-        $sendMessage[C'est un nombre !]
-      $endif
-  - description: Tester du texte
-    code: |
-      $if[$isNumber[hello]==false]
-        $sendMessage[Ce n'est pas un nombre.]
-      $endif
 ---
 
 # $isNumber

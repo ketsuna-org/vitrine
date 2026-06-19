@@ -6,40 +6,6 @@ category: "Embed & Message"
 function_name: sendEmbedMessage
 syntax: $sendEmbedMessage[(channelId);(messageId)]
 description: Envoie un embed construit (via $title, $description, $addField, etc.) dans un canal spécifique. Optionnellement, peut éditer un message existant si un messageId est fourni.
-parameters:
-  - name: channelId
-    type: string
-    required: false
-    description: Identifiant du canal de destination. Si omis, utilise le canal courant.
-  - name: messageId
-    type: string
-    required: false
-    description: Identifiant d'un message existant à éditer avec l'embed. Si omis, un nouveau message est créé.
-returns:
-  type: string
-  description: Retourne l'identifiant du message envoyé ou édité.
-related:
-  - $sendMessage
-  - editEmbedIn
-  - editIn
-  - $channelID
-examples:
-  - description: Envoyer un embed dans le canal courant
-    code: |
-      $title[Annonce]
-      $description[Ceci est une annonce importante]
-      $color[#E74C3C]
-      $sendEmbedMessage
-  - description: Envoyer dans un canal spécifique
-    code: |
-      $title[Bienvenue]
-      $description[Bienvenue sur le serveur !]
-      $sendEmbedMessage[$channelID[général]]
-  - description: Éditer un embed existant
-    code: |
-      $title[Mise à jour]
-      $description[Contenu mis à jour]
-      $sendEmbedMessage[$channelID;123456789]
 ---
 
 # $sendEmbedMessage[] — Envoyer un Embed

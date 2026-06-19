@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: isTimedOut
 syntax: $isTimedOut
 description: Retourne "true" si l'utilisateur est actuellement en timeout (silencé temporairement) sur le serveur, "false" sinon.
-parameters: []
-returns:
-  - type: boolean (string)
-    description: '"true" si l''utilisateur est en timeout, "false" sinon.'
-related:
-  - $isAdmin
-  - $memberPerms
-  - $userPerms
-examples:
-  - description: Vérifier le timeout
-    code: $isTimedOut
-  - description: Refuser l'accès aux membres en timeout
-    code: |
-      $if[$isTimedOut==true]
-        $sendMessage[Vous êtes en timeout et ne pouvez pas utiliser cette commande.]
-        $stop
-      $endif
 ---
 
 # $isTimedOut

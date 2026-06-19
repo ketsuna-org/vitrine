@@ -6,31 +6,6 @@ category: "Math & Text"
 function_name: getTextSplitLength
 syntax: $getTextSplitLength
 description: Returns the total number of elements in the current text split array.
-parameters: []
-returns:
-  type: string (number)
-  description: The total count of elements produced by the most recent $textSplit call. Returns "0" if no split has been performed.
-related:
-  - textSplit
-  - splitText
-  - getTextSplitIndex
-examples:
-  - title: Check split count
-    code: |
-      $textSplit[one;two;three;four;five;]
-      $sendMessage[Elements: $getTextSplitLength]
-      Result: "Elements: 5"
-  - title: Validate before access
-    code: |
-      $textSplit[$message; ]
-      $if[$getTextSplitLength>=3]
-        $sendMessage[Third word: $splitText[2]]
-      $endif
-  - title: Empty split
-    code: |
-      $textSplit[;]
-      $sendMessage[Elements: $getTextSplitLength]
-      Result: "\"Elements: 0\" (or \"Elements: 1\" depending on implementation)"
 ---
 # $getTextSplitLength — Count Split Elements
 

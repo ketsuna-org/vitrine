@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: getChannelSelectChannelIDs
 syntax: $getChannelSelectChannelIDs[(separator)]
 description: Récupère tous les IDs des canaux sélectionnés par l'utilisateur via un menu de sélection de canaux. Retourne une liste séparée par le délimiteur spécifié.
-parameters:
-  - name: separator
-    description: (Optionnel) Le séparateur entre les IDs. Par défaut ", " (virgule + espace).
-returns:
-  - type: string
-    description: La liste des IDs des canaux sélectionnés, séparés par le délimiteur choisi.
-related:
-  - $getChannelSelectChannelID
-  - $getUserSelectUserIDs
-  - $getRoleSelectRoleIDs
-  - $getMentionableSelectUserIDs
-examples:
-  - description: Récupérer tous les canaux (séparateur virgule)
-    code: $getChannelSelectChannelIDs[, ]
-  - description: Récupérer avec séparateur pipe
-    code: $getChannelSelectChannelIDs[ | ]
 ---
 
 # $getChannelSelectChannelIDs

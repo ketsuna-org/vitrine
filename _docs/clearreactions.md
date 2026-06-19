@@ -6,19 +6,6 @@ category: "Moderation"
 function_name: clearReactions
 syntax: $clearReactions[messageID]
 description: Supprime toutes les réactions d'un message spécifique. Ne peut être utilisé que pour supprimer les réactions ajoutées par le bot lui-même dans la plupart des cas.
-parameters:
-  - name: messageID
-    description: L'ID du message dont toutes les réactions doivent être supprimées.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Toutes les réactions du message sont supprimées.
-related:
-  - $removeReaction
-  - $addReactions
-  - $getReactions
-examples:
-  - description: Nettoyer les réactions
-    code: $clearReactions[$messageID]
 ---
 
 # $clearReactions

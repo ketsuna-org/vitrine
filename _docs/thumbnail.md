@@ -6,36 +6,6 @@ category: "Embed & Message"
 function_name: thumbnail
 syntax: $thumbnail[url;(embedIndex)]
 description: Définit la miniature (thumbnail) d'un embed Discord. La miniature est une petite image carrée affichée en haut à droite de l'embed.
-parameters:
-  - name: url
-    description: "URL de l'image miniature. Formats supportés : PNG, JPG, GIF, WebP. L'image sera redimensionnée en petit carré."
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
-returns:
-  - type: void
-    description: Modifie la réponse en cours de construction.
-related:
-  - $image[]
-  - $author[]
-  - $authorIcon[]
-  - $sendMessage[]
-examples:
-  - description: Embed avec thumbnail (avatar utilisateur)
-    code: |
-      $title[Profil de $username]
-      $description[**ID :** $authorID]
-      $thumbnail[$authorAvatar]
-      $color[#5865F2]
-  - description: Thumbnail avec icône de serveur
-    code: $thumbnail[$serverIcon]
-  - description: Embed complet avec thumbnail et image
-    code: |
-      $title[Article du jour]
-      $description[Cliquez sur le titre pour lire l'article complet.]
-      $thumbnail[https://example.com/article-icon.png]
-      $image[https://example.com/article-header.jpg]
-      $footer[Publié le $time]
-      $color[#5865F2]
 ---
 
 # $thumbnail[]

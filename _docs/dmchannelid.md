@@ -6,21 +6,6 @@ category: "Messages & DM"
 function_name: dmChannelID
 syntax: $dmChannelID[userID]
 description: Récupère l'ID du canal DM (conversation privée) entre le bot et un utilisateur. Crée le canal DM automatiquement s'il n'existe pas encore.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur cible.
-returns:
-  - type: snowflake (string)
-    description: L'ID du canal DM entre le bot et l'utilisateur.
-related:
-  - $dm
-  - $channelID
-  - $useChannel
-examples:
-  - description: Récupérer l'ID DM et l'utiliser
-    code: |
-      $let[dmID;$dmChannelID[$authorID]]
-      $sendMessage[Votre canal DM : $dmID]
 ---
 # $dmChannelID
 

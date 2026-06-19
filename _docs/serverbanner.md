@@ -6,29 +6,6 @@ category: "Entity Info"
 function_name: serverBanner
 syntax: $serverBanner
 description: Retourne l'URL de la bannière du serveur Discord (disponible uniquement pour les serveurs de niveau boost 2 ou plus).
-parameters: []
-returns:
-  type: string
-  description: L'URL de la bannière du serveur. Retourne une chaîne vide si le serveur n'a pas de bannière ou n'atteint pas le niveau de boost requis.
-related:
-  - $guildBanner
-  - $serverIcon
-  - $serverSplash
-  - $boostLevel
-examples:
-  - description: Afficher la bannière dans un embed
-    code: |
-      $title[$serverName]
-      $image[$serverBanner]
-      $color[#5865F2]
-      $sendEmbedMessage
-  - description: Vérifier si une bannière existe
-    code: |
-      $if[$serverBanner==]
-      $sendMessage[Ce serveur n'a pas de bannière.]
-      $else
-      $sendMessage[Bannière : $serverBanner]
-      $endif
 ---
 
 # $serverBanner[] — Bannière du Serveur

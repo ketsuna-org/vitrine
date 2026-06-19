@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: roleName
 syntax: $roleName[roleID;(guildID)]
 description: Retourne le nom d'un rôle Discord à partir de son ID.
-parameters:
-  - name: roleID
-    description: L'ID du rôle cible.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: string
-    description: Le nom du rôle.
-related:
-  - $roleID
-  - $roleNames
-  - $roleColor
-  - $findRole
-examples:
-  - description: Nom d'un rôle
-    code: "$sendMessage[Rôle : $roleName[123456789012345678]]"
-  - description: Nom du rôle à partir de $getRole
-    code: "$sendMessage[Votre rôle : $roleName[$getRole[$authorID;1]]]"
 ---
 
 # $roleName

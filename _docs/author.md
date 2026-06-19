@@ -6,42 +6,6 @@ category: "Embed & Message"
 function_name: author
 syntax: $author[name;(iconURL);(url);(embedIndex)]
 description: Définit l'auteur d'un embed Discord. L'auteur apparaît tout en haut de l'embed, au-dessus du titre, avec une icône et un lien optionnels.
-parameters:
-  - name: name
-    description: Nom de l'auteur affiché dans l'embed.
-  - name: iconURL
-    description: "Optionnel. URL de l'avatar/icône de l'auteur. Petite image ronde affichée à gauche du nom."
-  - name: url
-    description: "Optionnel. URL de destination : rend le nom de l'auteur cliquable."
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
-returns:
-  - type: void
-    description: Modifie la réponse en cours de construction.
-related:
-  - $authorIcon[]
-  - $authorUrl[]
-  - $footer[]
-  - $title[]
-  - $sendMessage[]
-examples:
-  - description: Auteur simple avec nom
-    code: |
-      $author[$username]
-      $title[Profil]
-      $description[Informations du profil.]
-      $color[#5865F2]
-  - description: Auteur avec nom et icône
-    code: $author[$username;$authorAvatar]
-  - description: Auteur avec nom, icône et lien cliquable
-    code: $author[Cliquez ici;https://example.com/icon.png;https://example.com]
-  - description: Auteur complet dans un embed
-    code: |
-      $author[$username;$authorAvatar]
-      $title[Profil utilisateur]
-      $description[**ID :** $authorID]
-      $footer[Demandé par $username;$authorAvatar]
-      $color[#5865F2]
 ---
 
 # $author[]

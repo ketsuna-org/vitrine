@@ -6,39 +6,6 @@ category: "Control Flow"
 function_name: getCooldown
 syntax: $getCooldown or $getCooldown[type]
 description: Returns the remaining cooldown time in seconds for the current command. Can optionally specify the cooldown scope to query.
-parameters:
-  - name: type
-    type: string
-    required: false
-    description: "Optional cooldown scope to query. Valid values: \"user\", \"global\", \"server\". If omitted, returns the remaining time of the most recently triggered cooldown."
-returns:
-  type: string
-  description: The remaining cooldown time in seconds as a string (e.g., "45", "2.5"). Returns "0" if no cooldown is active.
-related:
-  - cooldown
-  - serverCooldown
-  - globalCooldown
-  - changeCooldownTime
-examples:
-  - title: Afficher le temps restant
-    code: |
-      $cooldown[30s;⏳ Cooldown actif.]
-      Temps restant : $getCooldown secondes.
-  - title: Cooldown restant dans un message d'erreur
-    code: |
-      $cooldown[2m;⏳ Veuillez patienter $getCooldown secondes avant de réutiliser cette commande.]
-  - title: Vérifier un type de cooldown spécifique
-    code: |
-      Le cooldown utilisateur restant est de $getCooldown[user] secondes.
-      Le cooldown serveur restant est de $getCooldown[server] secondes.
-  - title: Condition basée sur le cooldown
-    code: |
-      $cooldown[60s]
-      $if[$getCooldown>30]
-      Plus de 30 secondes restantes.
-      $else
-      Moins de 30 secondes restantes.
-      $endif
 ---
 $getCooldown retrieves the remaining cooldown time so you can display it to users or use it in conditional logic. The return value is always in **seconds** (as a decimal string), regardless of the original duration format.
 

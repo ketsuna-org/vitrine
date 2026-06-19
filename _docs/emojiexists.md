@@ -6,20 +6,6 @@ category: "Moderation"
 function_name: emojiExists
 syntax: $emojiExists[name]
 description: Vérifie si un emoji personnalisé portant un nom donné existe sur le serveur courant. Retourne true ou false.
-parameters:
-  - name: name
-    description: Le nom de l'emoji à vérifier (sans les deux-points).
-returns:
-  - type: string (bool)
-    description: "true" si l'emoji existe, "false" sinon.
-related:
-  - $addEmoji
-  - $removeEmoji
-  - $emojiName
-  - $emojiCount
-examples:
-  - description: Vérifier l'existence d'un emoji
-    code: $emojiExists[mon_emoji]
 ---
 
 # $emojiExists

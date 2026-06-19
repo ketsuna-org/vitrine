@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: lowestRoleWithPerms
 syntax: $lowestRoleWithPerms[permission1;permission2;...]
 description: Retourne l'ID du rôle le plus bas de l'utilisateur qui possède les permissions spécifiées.
-parameters:
-  - name: permissions
-    description: Liste des permissions requises, séparées par des points-virgules.
-returns:
-  - type: snowflake (string)
-    description: L'ID du rôle le plus bas possédant les permissions spécifiées, ou chaîne vide si aucun rôle ne correspond.
-related:
-  - $highestRoleWithPerms
-  - $lowestRole
-  - $userPerms
-  - $memberPerms
-examples:
-  - description: Rôle le plus bas avec permission ManageMessages
-    code: $lowestRoleWithPerms[ManageMessages]
-  - description: Rôle avec permissions vocales
-    code: $lowestRoleWithPerms[Connect;Speak]
-  - description: Vérifier un rôle avec permissions
-    code: |
-      $if[$lowestRoleWithPerms[BanMembers]!=]
-        $sendMessage[Tous vos rôles de modération peuvent bannir.]
-      $endif
 ---
 
 # $lowestRoleWithPerms

@@ -6,25 +6,6 @@ category: "Embed & Message"
 function_name: allowUserMentions
 syntax: $allowUserMentions
 description: Autorise les mentions d'utilisateurs dans le message en cours. Sans cet appel, les mentions d'utilisateurs dans le contenu du message ne notifieront pas les personnes concernées.
-parameters: []
-returns:
-  type: void
-  description: Active l'autorisation de mention d'utilisateurs pour le message en cours de construction.
-related:
-  - allowRoleMentions
-  - $allowMentions
-  - $noMentions
-  - $sendMessage
-examples:
-  - description: Message avec mention utilisateur
-    code: |
-      $allowUserMentions
-      $sendMessage[<@$authorID> Votre demande a été traitée !]
-  - description: Annonce avec pings
-    code: |
-      $allowUserMentions
-      $allowRoleMentions
-      $sendMessage[<@123456789> et <@&$roleID[Staff]> : réunion dans 5 minutes]
 ---
 
 # $allowUserMentions[] — Autoriser les Mentions d'Utilisateurs

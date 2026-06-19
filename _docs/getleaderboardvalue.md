@@ -6,37 +6,6 @@ category: "Variables"
 function_name: getLeaderboardValue
 syntax: $getLeaderboardValue
 description: Retourne la valeur (score, points, etc.) associée à la position courante dans le leaderboard actif.
-parameters: []
-returns:
-  type: string
-  description: La valeur correspondant à la position actuelle dans le leaderboard en cours d'itération.
-related:
-  - getLeaderboardPosition
-  - globalUserLeaderboard
-  - serverLeaderboard
-  - userLeaderboard
-  - textSplit
-examples:
-  - title: Lire la valeur d'une entrée de classement
-    code: |
-      $textSplit[$globalUserLeaderboard[coins;desc];\n]
-      $description[Position #$getLeaderboardPosition : $getLeaderboardValue pièces]
-  - title: Mettre en évidence le top 3 avec leurs scores
-    code: |
-      $textSplit[$serverLeaderboard[kills;desc];\n]
-      $var[i;0]
-      $description[🥇 **Top 3 Killers**]
-      $repeat[3;
-        $var[i;$sum[$var[i];1]]
-        $if[$getLeaderboardPosition==1;
-          $description[🥇 1er : $splitText[$var[i]] avec $getLeaderboardValue kills]
-        ;
-        $if[$getLeaderboardPosition==2;
-          $description[🥈 2ème : $splitText[$var[i]] avec $getLeaderboardValue kills]
-        ;
-          $description[🥉 3ème : $splitText[$var[i]] avec $getLeaderboardValue kills]
-        ]]
-      ]
 ---
 
 # $getLeaderboardValue

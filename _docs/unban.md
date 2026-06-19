@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: unBan
 syntax: $unBan[userID]
 description: Débannit un utilisateur du serveur en utilisant son ID. L'utilisateur pourra rejoindre le serveur à nouveau avec une nouvelle invitation.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à débannir.
-returns:
-  - type: string
-    description: Chaîne vide en cas de succès, ou message d'erreur en cas d'échec.
-related:
-  - $ban
-  - $softBan
-  - $unBanID
-  - $isBanned
-  - $getBanReason
-examples:
-  - description: Débannir un utilisateur par mention
-    code: $unBan[$mentioned[1]]
-  - description: Débannir par ID
-    code: $unBan[123456789012345678]
 ---
 
 # $unBan

@@ -6,27 +6,6 @@ category: "Moderation"
 function_name: onlyBotPerms
 syntax: $onlyBotPerms[permission1;permission2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution si le bot ne possède pas toutes les permissions spécifiées sur le serveur.
-parameters:
-  - name: permission1, permission2, ...
-    description: Liste des permissions Discord que le bot doit posséder.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur envoyé si le bot manque de permissions.
-    optional: true
-returns: []
-related:
-  - $onlyPerms
-  - $onlyBotChannelPerms
-  - $hasPerms
-  - $checkUserPerms
-examples:
-  - description: Vérifier que le bot peut bannir
-    code: |
-      $onlyBotPerms[BanMembers;❌ Je n'ai pas la permission de bannir.]
-      $ban[$mentioned[1]]
-  - description: Vérifier plusieurs permissions du bot
-    code: |
-      $onlyBotPerms[ManageMessages;ManageChannels;❌ Permissions insuffisantes.]
-      $clear[100]
 ---
 
 # $onlyBotPerms

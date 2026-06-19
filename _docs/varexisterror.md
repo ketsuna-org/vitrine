@@ -6,28 +6,6 @@ category: "Variables"
 function_name: varExistsError
 syntax: $varExistsError[name]
 description: A compatibility stub that always returns an empty string. Provided so that BDFD scripts using the original bot's $varExistsError function continue to work without modification.
-parameters:
-  - name: name
-    type: string
-    required: true
-    description: The name of the variable to check. The parameter is accepted and silently ignored.
-returns:
-  type: string
-  description: Always returns an empty string. No error is ever raised.
-related:
-  - varExists
-  - var
-  - listVar
-examples:
-  - title: Appel basique (aucun effet)
-    code: |
-      $varExistsError[maVariable]
-      Résultat: (aucune sortie — chaîne vide)
-  - title: Dans un script hérité BDFD
-    code: |
-      $varExistsError[variable]
-      Suite du script...
-      Résultat: Suite du script... (le stub ne bloque rien)
 ---
 
 $varExistsError is a **no-op stub** included solely for backward compatibility with scripts originally written for the classic BDFD (Bot Designer For Discord) application. In the original BDFD, this function would halt execution with an error if the variable did not exist. In this implementation, it does nothing — it always returns an empty string and never interrupts execution.

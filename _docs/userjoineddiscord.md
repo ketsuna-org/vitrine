@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: userJoinedDiscord
 syntax: $userJoinedDiscord
 description: Retourne la date de création du compte Discord de l'utilisateur (date d'inscription sur la plateforme).
-parameters: []
-returns:
-  - type: date/string
-    description: La date de création du compte Discord.
-related:
-  - $userJoined
-  - $userID
-  - $userInfo
-examples:
-  - description: Obtenir la date de création du compte
-    code: $userJoinedDiscord
-  - description: Afficher l'âge du compte
-    code: |
-      $title[Âge du compte]
-      $description[Votre compte Discord a été créé le **$userJoinedDiscord**]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $userJoinedDiscord

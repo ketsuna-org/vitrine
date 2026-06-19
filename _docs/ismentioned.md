@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: isMentioned
 syntax: $isMentioned
 description: Retourne "true" si l'utilisateur qui a déclenché la commande a été mentionné dans le message, "false" sinon.
-parameters: []
-returns:
-  - type: boolean (string)
-    description: '"true" si l''utilisateur a été mentionné, "false" sinon.'
-related:
-  - $mentioned
-  - $mentions
-  - $mentionedRoles
-  - $mentionedChannels
-examples:
-  - description: Vérifier si mentionné
-    code: $isMentioned
-  - description: Répondre uniquement si mentionné
-    code: |
-      $if[$isMentioned==true]
-        $sendMessage[Vous avez été mentionné !]
-      $endif
 ---
 
 # $isMentioned

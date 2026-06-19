@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: hostingExpireTime
 syntax: $hostingExpireTime
 description: Retourne la date d'expiration de l'hébergement du bot.
-parameters: []
-returns:
-  - type: string
-    description: Date d'expiration de l'hébergement (format timestamp).
-related:
-  - $premiumExpireTime
-  - $nodeVersion
-  - $botNode
-examples:
-  - description: Afficher l'expiration
-    code: |
-      $sendMessage[Hébergement expire le : $hostingExpireTime]
-  - description: Alerte avant expiration
-    code: |
-      $if[$dateDiff[$hostingExpireTime]<=7]
-        $sendMessage[⚠️ Hébergement expire bientôt !]
-      $endif
 ---
 
 # $hostingExpireTime

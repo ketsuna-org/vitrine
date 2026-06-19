@@ -6,30 +6,6 @@ category: "Entity Info"
 function_name: guildExists
 syntax: $guildExists[guildId]
 description: Vérifie si un serveur (guild) avec l'ID donné existe et si le bot y a accès. Retourne "true" ou "false".
-parameters:
-  - name: guildId
-    type: string
-    required: true
-    description: L'identifiant (ID) du serveur à vérifier.
-returns:
-  type: string
-  description: "true" si le serveur existe et que le bot y est présent, "false" sinon.
-related:
-  - $guildID
-  - $serverID
-  - $guildCount
-  - $serverCount
-examples:
-  - description: Vérifier l'existence d'un serveur
-    code: |
-      $sendMessage[Le serveur 123456789 existe : $guildExists[123456789]]
-  - description: Condition
-    code: |
-      $if[$guildExists[$message[1]]==true]
-      $sendMessage[✅ Le bot est sur ce serveur.]
-      $else
-      $sendMessage[❌ Serveur introuvable.]
-      $endif
 ---
 
 # $guildExists[] — Vérifier l'Existence d'un Serveur

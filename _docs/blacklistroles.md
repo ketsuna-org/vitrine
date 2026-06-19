@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: blacklistRoles
 syntax: $blacklistRoles[roleID1;roleID2;...;(errorMessage)]
 description: Fonction guard qui blackliste des rôles. Si l'utilisateur possède l'un des rôles, la commande est interrompue.
-parameters:
-  - name: roleID1, roleID2, ...
-    description: Liste des IDs de rôles à blacklister.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur.
-    optional: true
-returns: []
-related:
-  - $blacklistRoleIDs
-  - $blacklistUsers
-  - $onlyForRoles
-  - $hasRole
-examples:
-  - description: Blacklister le rôle Muted
-    code: |
-      $blacklistRoles[123456789012345678;❌ Vous êtes mute. Vous ne pouvez pas utiliser cette commande.]
-      $sendMessage[OK.]
 ---
 
 # $blacklistRoles

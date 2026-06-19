@@ -6,26 +6,6 @@ category: "Embed & Message"
 function_name: allowRoleMentions
 syntax: $allowRoleMentions
 description: Autorise les mentions de rôles dans le message en cours. Sans cet appel, les mentions de rôles dans le contenu du message ne notifieront pas les membres.
-parameters: []
-returns:
-  type: void
-  description: Active l'autorisation de mention de rôles pour le message en cours de construction.
-related:
-  - allowUserMentions
-  - $allowMentions
-  - $noMentions
-  - $sendMessage
-examples:
-  - description: Message avec mention de rôle
-    code: |
-      $allowRoleMentions
-      $sendMessage[<@&$roleID[Admin]> Nouvelle mise à jour disponible !]
-  - description: Annonce avec ping rôle
-    code: |
-      $allowRoleMentions
-      $title[Annonce Importante]
-      $description[<@&$roleID[Members]> Réunion ce soir à 20h]
-      $color[#E74C3C]
 ---
 
 # $allowRoleMentions[] — Autoriser les Mentions de Rôles

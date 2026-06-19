@@ -6,21 +6,6 @@ category: "Commands"
 function_name: enabled
 syntax: $enabled[yes/no]
 description: Active ou désactive une commande. Quand désactivée (no), la commande n'est plus exécutable par les utilisateurs.
-parameters:
-  - name: yes/no
-    description: '"yes" pour activer, "no" pour désactiver la commande.'
-returns:
-  - type: void
-    description: Change l'état. Ne retourne rien.
-related:
-  - $deleteCommand
-  - $onlyIf
-  - $disableInnerSpaceRemoval
-examples:
-  - description: Désactiver une commande
-    code: $enabled[no]
-  - description: Réactiver une commande
-    code: $enabled[yes]
 ---
 # $enabled
 

@@ -6,28 +6,6 @@ category: "Math & Text"
 function_name: log
 syntax: $log[value]
 description: Calcule le logarithme naturel (base e) d'un nombre.
-parameters:
-  - name: value
-    type: number
-    required: true
-    description: Le nombre dont on veut le logarithme naturel. Doit être strictement positif.
-returns:
-  type: string (number)
-  description: Le logarithme naturel (ln) de la valeur, sous forme de nombre décimal (double).
-related:
-  - sqrt
-  - calculate
-  - exp
-examples:
-  - title: Logarithme naturel simple
-    code: |
-      $log[1]
-  - title: Logarithme de e
-    code: |
-      $log[2.718281828]
-  - title: Logarithme d'un grand nombre
-    code: |
-      $log[1000]
 ---
 
 # $log[]

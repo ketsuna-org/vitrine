@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: getMessage
 syntax: $getMessage[channelID;messageID]
 description: Récupère le contenu textuel d'un message spécifique par son ID de canal et de message.
-parameters:
-  - name: channelID
-    description: L'ID du canal contenant le message.
-  - name: messageID
-    description: L'ID du message à récupérer.
-returns:
-  - type: string
-    description: Le contenu textuel du message, ou chaîne vide si le message est introuvable ou inaccessible.
-related:
-  - $channelSendMessage
-  - $pinMessage
-  - $messageID
-examples:
-  - description: Récupérer un message
-    code: $getMessage[$channelID;123456789]
-  - description: Récupérer le message d'un canal spécifique
-    code: $getMessage[987654321;$noMentionMessage]
 ---
 
 # $getMessage

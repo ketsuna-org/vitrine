@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: lowestRole
 syntax: $lowestRole
 description: Retourne l'ID du rôle le plus bas (hiérarchiquement) de l'utilisateur sur le serveur (hors @everyone).
-parameters: []
-returns:
-  - type: snowflake (string)
-    description: L'ID du rôle le plus bas de l'utilisateur.
-related:
-  - $highestRole
-  - $lowestRoleWithPerms
-  - $userRoles
-examples:
-  - description: Obtenir le rôle le plus bas
-    code: $lowestRole
-  - description: Afficher le rôle le plus bas
-    code: |
-      $title[Rôles de $userName]
-      $description[
-      **Rôle le plus bas :** $roleName[$lowestRole]
-      ]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $lowestRole

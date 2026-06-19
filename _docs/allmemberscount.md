@@ -6,18 +6,6 @@ category: "Entity Info"
 function_name: allMembersCount
 syntax: $allMembersCount
 description: Retourne le nombre total de membres sur le serveur (incluant les bots). Contrairement à $membersCount, cette fonction compte également les bots.
-parameters: []
-returns:
-  - type: string (number)
-    description: Le nombre total de membres (humains + bots) sur le serveur.
-related:
-  - $membersCount
-  - $botCount
-  - $guildID
-  - $serverName
-examples:
-  - description: Nombre total de membres
-    code: $allMembersCount
 ---
 
 # $allMembersCount

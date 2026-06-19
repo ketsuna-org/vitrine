@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: blacklistServers
 syntax: $blacklistServers[guildID1;guildID2;...;(errorMessage)]
 description: Fonction guard qui blackliste des serveurs. Si la commande est exécutée dans un serveur blacklisté, elle est interrompue.
-parameters:
-  - name: guildID1, guildID2, ...
-    description: Liste des IDs de serveurs à blacklister.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur.
-    optional: true
-returns: []
-related:
-  - $blacklistUsers
-  - $onlyForServers
-  - $serverID
-  - $guildID
-examples:
-  - description: Bloquer un serveur spécifique
-    code: |
-      $blacklistServers[123456789012345678;❌ Ce serveur n'est pas autorisé à utiliser cette commande.]
-      $sendMessage[OK.]
 ---
 
 # $blacklistServers

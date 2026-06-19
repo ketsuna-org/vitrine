@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: serverName
 syntax: $serverName
 description: Retourne le nom du serveur (guild) dans lequel la commande est exécutée.
-parameters: []
-returns:
-  type: string
-  description: Le nom du serveur Discord.
-related:
-  - $guildName
-  - $serverID
-  - $guildID
-  - $serverInfo
-examples:
-  - description: Afficher le nom du serveur
-    code: |
-      $sendMessage[Nous sommes sur le serveur **$serverName** !]
-  - description: Utiliser dans un embed
-    code: |
-      $title[$serverName]
-      $description[Bienvenue sur le serveur !]
-      $color[#5865F2]
-      $sendEmbedMessage
 ---
 
 # $serverName[] — Nom du Serveur

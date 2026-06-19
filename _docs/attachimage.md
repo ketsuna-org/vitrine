@@ -6,29 +6,6 @@ category: "Canvas"
 function_name: attachImage
 syntax: $attachImage[name;url;(spoiler)]
 description: Attache une image au message de réponse en utilisant un nom et une URL distante.
-parameters:
-  - name: name
-    description: "Nom du fichier attaché (ex: image.png)."
-  - name: url
-    description: URL de l'image à attacher. Doit être accessible publiquement.
-  - name: spoiler
-    description: Optionnel - Si "true", l'image sera marquée comme spoiler.
-returns:
-  - type: void
-    description: L'image est jointe au message envoyé par $sendMessage[].
-related:
-  - $attachCanvas
-  - $attachFile
-  - $sendMessage
-examples:
-  - description: Attacher une image simple
-    code: |
-      $attachImage[monimage.png;https://example.com/image.png]
-      $sendMessage[Voici l'image !]
-  - description: Image en spoiler
-    code: |
-      $attachImage[secret.png;https://example.com/spoiler.png;true]
-      $sendMessage[Image spoiler :]
 ---
 
 # $attachImage

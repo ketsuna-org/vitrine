@@ -6,17 +6,6 @@ category: "Context & Commands"
 function_name: input
 syntax: $input
 description: Récupère le texte intégral de la commande saisie par l'utilisateur, après le préfixe et le nom de la commande. Équivalent à $message sans le nom de commande.
-parameters: []
-returns:
-  - type: string
-    description: Le texte saisi après le nom de la commande.
-related:
-  - $message
-  - $messageSlice
-  - $argsCheck
-examples:
-  - description: Récupérer l'input complet
-    code: "$sendMessage[Vous avez tapé : $input]"
 ---
 # $input
 

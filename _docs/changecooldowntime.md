@@ -6,37 +6,6 @@ category: "Control Flow"
 function_name: changeCooldownTime
 syntax: $changeCooldownTime[duration]
 description: Modifies the remaining duration of the currently active cooldown. Can be used to extend or reduce an existing cooldown.
-parameters:
-  - name: duration
-    type: string
-    required: true
-    description: "The new remaining cooldown duration. Format: \"10s\", \"5m\", \"1h\", \"2d\", \"500ms\". This replaces the current remaining time."
-returns:
-  type: void
-  description: Updates the active cooldown's remaining time. Returns nothing directly.
-related:
-  - cooldown
-  - getCooldown
-  - serverCooldown
-  - globalCooldown
-examples:
-  - title: Réduire le cooldown restant
-    code: |
-      $cooldown[60s;⏳ Cooldown actif.]
-      Raccourcissement du cooldown...
-      $changeCooldownTime[10s]
-      Le cooldown restant est maintenant de $getCooldown secondes.
-  - title: Augmenter le cooldown comme pénalité
-    code: |
-      $cooldown[30s]
-      $if[$message==spam]
-      $changeCooldownTime[5m]
-      $sendMessage[⚠️ Spam détecté. Cooldown augmenté à 5 minutes.]
-      $endif
-  - title: Réinitialiser un cooldown immédiatement
-    code: |
-      $changeCooldownTime[1s]
-      Cooldown presque terminé...
 ---
 $changeCooldownTime lets you dynamically modify the remaining time of an active cooldown. This is useful for penalty systems, admin overrides, or adaptive rate limiting where the cooldown duration depends on user behavior.
 

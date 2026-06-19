@@ -6,38 +6,6 @@ category: "Embed & Message"
 function_name: addMediaGalleryItem
 syntax: $addMediaGalleryItem[url;(description);(spoiler);(galleryId)]
 description: Ajoute un élément (image) à une galerie média. Si galleryId est omis, l'élément est ajouté à la dernière galerie créée.
-parameters:
-  - name: url
-    type: string
-    required: true
-    description: URL de l'image à ajouter à la galerie.
-  - name: description
-    type: string
-    required: false
-    description: Texte alternatif / description de l'image.
-  - name: spoiler
-    type: string
-    required: false
-    default: "no"
-    description: "yes" pour masquer l'image (spoiler), "no" sinon.
-  - name: galleryId
-    type: string
-    required: false
-    description: Identifiant de la galerie cible. Si omis, utilise la dernière galerie créée.
-returns:
-  type: void
-  description: Ajoute l'image à la galerie spécifiée.
-related:
-  - addMediaGallery
-  - addThumbnail
-  - addFile
-examples:
-  - description: Élément simple
-    code: $addMediaGalleryItem[https://example.com/photo.jpg;Photo de vacances]
-  - description: Élément avec galleryId explicite
-    code: $addMediaGalleryItem[https://cdn.example.com/img.png;Image;no;gallery1]
-  - description: Élément en spoiler
-    code: $addMediaGalleryItem[$var[secret];Image secrète;yes]
 ---
 
 # $addMediaGalleryItem[] — Élément de Galerie

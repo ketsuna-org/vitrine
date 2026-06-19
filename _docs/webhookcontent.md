@@ -6,21 +6,6 @@ category: "Webhooks & Integrations"
 function_name: webhookContent
 syntax: $webhookContent[text]
 description: Définit le contenu textuel du prochain message envoyé via $webhookSend. Alternative au second paramètre de $webhookSend.
-parameters:
-  - name: text
-    description: Le contenu textuel du message webhook. Supporte le markdown, les mentions et les émojis.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Définit le contenu du prochain message webhook.
-related:
-  - $webhookSend
-  - $webhookTitle
-  - $webhookDescription
-examples:
-  - description: Définir le contenu
-    code: $webhookContent[Ceci est le contenu du message]
-  - description: Contenu avec markdown
-    code: $webhookContent[**Gras** et *italique* et __souligné__]
 ---
 
 # $webhookContent

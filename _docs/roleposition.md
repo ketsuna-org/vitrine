@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: rolePosition
 syntax: $rolePosition[roleID;(guildID)]
 description: Retourne la position hiérarchique d'un rôle dans la liste des rôles du serveur.
-parameters:
-  - name: roleID
-    description: L'ID du rôle cible.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: integer
-    description: La position du rôle (entier, plus élevé = plus haut dans la hiérarchie).
-related:
-  - $roleInfo
-  - $roleName
-  - $roleColor
-  - $channelPosition
-examples:
-  - description: Position d'un rôle
-    code: "$sendMessage[Position Admin : $rolePosition[$roleID[Admin]]]"
-  - description: Comparer deux rôles
-    code: |
-      $if[$rolePosition[$roleID[Admin]]>$rolePosition[$roleID[Modo]]]
-        $sendMessage[Admin est supérieur à Modo.]
-      $endif
 ---
 
 # $rolePosition

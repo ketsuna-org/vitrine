@@ -6,27 +6,6 @@ category: "Moderation"
 function_name: onlyForRoles
 syntax: $onlyForRoles[roleID1;roleID2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution si l'utilisateur ne possède aucun des rôles spécifiés.
-parameters:
-  - name: roleID1, roleID2, ...
-    description: Liste des IDs de rôles autorisés.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur.
-    optional: true
-returns: []
-related:
-  - $onlyForRoleIDs
-  - $onlyForUsers
-  - $hasRole
-  - $onlyForIDs
-examples:
-  - description: Réserver une commande au rôle Modérateur
-    code: |
-      $onlyForRoles[123456789012345678;❌ Réservé aux modérateurs.]
-      $kick[$mentioned[1]]
-  - description: Permettre à plusieurs rôles
-    code: |
-      $onlyForRoles[111;222;333;❌ Accès refusé.]
-      $sendMessage[Panneau de modération.]
 ---
 
 # $onlyForRoles

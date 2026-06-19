@@ -6,25 +6,6 @@ category: "Webhooks & Integrations"
 function_name: webhookCreate
 syntax: $webhookCreate[channelID;name;(avatarURL)]
 description: Crée un nouveau webhook dans un canal spécifié et retourne son URL. Le webhook créé peut ensuite être utilisé avec $webhookSend pour envoyer des messages.
-parameters:
-  - name: channelID
-    description: L'ID du canal Discord où le webhook doit être créé.
-  - name: name
-    description: Le nom affiché du webhook.
-  - name: avatarURL
-    description: (Optionnel) L'URL de l'avatar du webhook. Laissez vide pour utiliser l'avatar par défaut.
-returns:
-  - type: string
-    description: L'URL complète du webhook créé, ou une URL invalide en cas d'échec.
-related:
-  - $webhookDelete
-  - $webhookSend
-  - $webhookAvatarURL
-examples:
-  - description: Créer un webhook simple
-    code: $webhookCreate[$channelID;Mon Webhook]
-  - description: Créer un webhook avec avatar
-    code: $webhookCreate[$channelID;Logger;https://example.com/avatar.png]
 ---
 
 # $webhookCreate

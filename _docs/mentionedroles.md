@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: mentionedRoles
 syntax: $mentionedRoles
 description: Retourne la liste des IDs des rôles mentionnés dans le message (via @role), séparés par des virgules.
-parameters: []
-returns:
-  - type: list (string)
-    description: Liste des IDs des rôles mentionnés, séparés par des virgules.
-related:
-  - $mentionedChannels
-  - $mentions
-  - $mentioned
-  - $userRoles
-examples:
-  - description: Obtenir les rôles mentionnés
-    code: $mentionedRoles
-  - description: Afficher les rôles mentionnés
-    code: |
-      $if[$mentionedRoles!=]
-        $sendMessage[Rôles mentionnés : $mentionedRoles]
-      $else
-        $sendMessage[Aucun rôle mentionné.]
-      $endif
 ---
 
 # $mentionedRoles

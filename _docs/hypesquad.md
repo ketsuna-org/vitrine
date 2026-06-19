@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: hypeSquad
 syntax: $hypeSquad[(userID)]
 description: Retourne la maison HypeSquad à laquelle appartient l'utilisateur (Bravery, Brilliance, Balance) ou "None" s'il n'en fait pas partie.
-parameters:
-  - name: userID
-    description: (Optionnel) L'ID de l'utilisateur à vérifier. Par défaut, l'auteur de la commande.
-returns:
-  - type: string
-    description: Le nom de la maison HypeSquad (Bravery, Brilliance, Balance) ou "None".
-related:
-  - $userInfo
-  - $hasBadge
-  - $customStatus
-examples:
-  - description: Vérifier sa propre maison
-    code: $hypeSquad
-  - description: Vérifier pour un autre utilisateur
-    code: $hypeSquad[$mentioned[1]]
 ---
 
 # $hypeSquad

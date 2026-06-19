@@ -6,22 +6,6 @@ category: "Moderation"
 function_name: onlyBotChannelPerms
 syntax: $onlyBotChannelPerms[permission1;permission2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution si le bot ne possède pas les permissions spécifiées dans le channel courant.
-parameters:
-  - name: permission1, permission2, ...
-    description: Liste des permissions de channel que le bot doit posséder.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur personnalisé.
-    optional: true
-returns: []
-related:
-  - $onlyBotPerms
-  - $onlyPerms
-  - $hasPerms
-examples:
-  - description: Vérifier les permissions de channel du bot
-    code: |
-      $onlyBotChannelPerms[SendMessages;EmbedLinks;❌ Je ne peux pas envoyer de messages ici.]
-      $sendMessage[Hello !]
 ---
 
 # $onlyBotChannelPerms

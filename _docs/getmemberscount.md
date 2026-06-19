@@ -6,17 +6,6 @@ category: "Server & Channels"
 function_name: getMembersCount
 syntax: $getMembersCount
 description: Retourne le nombre total de membres sur le serveur (incluant les bots). Alias possible de $membersCount.
-parameters: []
-returns:
-  - type: number (string)
-    description: Le nombre total de membres sur le serveur.
-related:
-  - $membersCount
-  - $botCount
-  - $serverName
-examples:
-  - description: Afficher le nombre de membres
-    code: $sendMessage[Le serveur compte $getMembersCount membres.]
 ---
 # $getMembersCount
 

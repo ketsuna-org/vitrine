@@ -6,54 +6,6 @@ category: "Control Flow"
 function_name: if
 syntax: $if[condition] ... $elseIf[condition] ... $else ... $endif
 description: Conditional branching — executes blocks of code based on runtime condition evaluation.
-parameters:
-  - name: condition
-    type: expression
-    required: true
-    description: A BDFD expression that evaluates to a boolean result. Supports comparison operators (==, !=, >, <, >=, <=) and logical operators ($and, $or).
-returns:
-  type: void
-  description: These are structural tokens processed at parser level; they control execution flow rather than producing a return value.
-related:
-  - checkCondition
-  - checkContains
-  - and
-  - or
-examples:
-  - title: Simple if-else branching
-    code: |
-      $if[$getUserVar[score]>=100]
-        $sendMessage[You are a top scorer!]
-      $else
-        $sendMessage[Keep trying!]
-      $endif
-      Result: sends the appropriate message based on score
-  - title: if-elseIf-else chain
-    code: |
-      $if[$getUserVar[level]==1]
-        $sendMessage[Beginner zone unlocked.]
-      $elseIf[$getUserVar[level]==2]
-        $sendMessage[Intermediate zone unlocked.]
-      $elseIf[$getUserVar[level]>=3]
-        $sendMessage[Expert zone unlocked.]
-      $else
-        $sendMessage[Level not recognized.]
-      $endif
-      Result: routes to the first matching branch
-  - title: Combining $and / $or in conditions
-    code: |
-      $if[$and[$getUserVar[coins]>=50;$getUserVar[level]>=5]==true]
-        $sendMessage[You can enter the VIP shop!]
-      $else
-        $sendMessage[Requirements not met.]
-      $endif
-      Result: checks two conditions simultaneously
-  - title: Using $checkContains in conditions
-    code: |
-      $if[$checkContains[$message;hello]==true]
-        $sendMessage[Hi there!]
-      $endif
-      Result: greets user when message contains "hello"
 ---
 # $if / $elseIf / $else / $endif — Conditional Branching
 

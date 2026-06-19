@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: userName
 syntax: $userName
 description: Retourne le nom d'utilisateur global Discord de l'utilisateur qui a déclenché la commande.
-parameters: []
-returns:
-  - type: string
-    description: Le nom d'utilisateur global de l'utilisateur.
-related:
-  - $userID
-  - $userTag
-  - $displayName
-  - $nickname
-examples:
-  - description: Obtenir le nom d'utilisateur
-    code: $userName
-  - description: Message de bienvenue personnalisé
-    code: |
-      $title[Bienvenue $userName !]
-      $description[Heureux de te voir sur le serveur !]
-      $color[#57F287]
-      $sendMessage[]
 ---
 
 # $userName

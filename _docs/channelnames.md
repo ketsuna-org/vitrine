@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: channelNames
 syntax: $channelNames[(separator)]
 description: Retourne la liste de tous les noms de salons du serveur, séparés par un séparateur personnalisable.
-parameters:
-  - name: separator
-    description: "Optionnel. Caractère ou chaîne de séparation (défaut : , )."
-returns:
-  - type: string
-    description: La liste des noms de salons séparés.
-related:
-  - $channelName
-  - $channelCount
-  - $roleNames
-examples:
-  - description: Liste des salons (séparateur virgule)
-    code: "$sendMessage[Salons : $channelNames]"
-  - description: Liste avec retour à la ligne
-    code: $sendMessage[Salons :\n$channelNames[\n]]
 ---
 
 # $channelNames

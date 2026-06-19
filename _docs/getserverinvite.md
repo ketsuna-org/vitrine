@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: getServerInvite
 syntax: $getServerInvite[(guildID)]
 description: Génère ou retourne une invitation permanente pour le serveur. Si aucun ID n'est fourni, crée une invitation pour le serveur courant.
-parameters:
-  - name: guildID
-    description: "(Optionnel) L'ID du serveur pour lequel créer l'invitation. Défaut : serveur courant."
-returns:
-  - type: string
-    description: "L'URL d'invitation du serveur. Format : https://discord.gg/CODE ou chaîne vide si échec."
-related:
-  - $getBotInvite
-  - $getInviteInfo
-  - $serverNames
-examples:
-  - description: Invitation du serveur courant
-    code: $getServerInvite
-  - description: Invitation d'un serveur spécifique
-    code: $getServerInvite[123456789]
 ---
 
 # $getServerInvite

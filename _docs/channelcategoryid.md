@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: channelCategoryID
 syntax: $channelCategoryID[(channelID)]
 description: Retourne l'ID de la catégorie parente d'un salon Discord.
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
-returns:
-  - type: snowflake (string)
-    description: L'ID de la catégorie parente, ou une chaîne vide si le salon n'est pas dans une catégorie.
-related:
-  - $categoryID
-  - $parentID
-  - $categoryChannels
-  - $channelID
-examples:
-  - description: Catégorie du salon courant
-    code: "$sendMessage[Catégorie ID : $channelCategoryID]"
-  - description: Vérifier si dans une catégorie
-    code: |
-      $if[$channelCategoryID!=]
-        $sendMessage[Catégorie : $channelCategoryID]
-      $else
-        $sendMessage[Ce salon n'est pas dans une catégorie.]
-      $endif
 ---
 
 # $channelCategoryID

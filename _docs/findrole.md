@@ -6,31 +6,6 @@ category: "Entity Info"
 function_name: findRole
 syntax: $findRole[query;(guildID)]
 description: Recherche un rôle par nom partiel ou complet et retourne son ID. Insensible à la casse.
-parameters:
-  - name: query
-    description: Le nom (ou partie du nom) du rôle à rechercher.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: snowflake (string)
-    description: L'ID du premier rôle correspondant, ou une chaîne vide si aucun.
-related:
-  - $roleID
-  - $roleExists
-  - $roleName
-  - $findChannel
-examples:
-  - description: Trouver un rôle par nom partiel
-    code: "$sendMessage[Rôle trouvé : $findRole[mod]]"
-  - description: Attribuer un rôle trouvé
-    code: |
-      $roleGrant[$authorID;$findRole[VIP]]
-      $sendMessage[Rôle attribué !]
-  - description: Vérifier si trouvé
-    code: |
-      $if[$findRole[admin]!=]
-        $sendMessage[Rôle admin trouvé.]
-      $endif
 ---
 
 # $findRole

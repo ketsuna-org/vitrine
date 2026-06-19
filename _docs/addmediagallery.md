@@ -6,28 +6,6 @@ category: "Embed & Message"
 function_name: addMediaGallery
 syntax: $addMediaGallery[(id)]
 description: Crée une galerie média dans un message. La galerie regroupe plusieurs éléments média (images) qui peuvent être parcourus par l'utilisateur.
-parameters:
-  - name: id
-    type: string
-    required: false
-    description: Identifiant optionnel de la galerie pour référence.
-returns:
-  type: void
-  description: Initialise une galerie média. Les éléments sont ajoutés avec $addMediaGalleryItem[].
-related:
-  - addMediaGalleryItem
-  - addContainer
-  - addThumbnail
-examples:
-  - description: Galerie simple
-    code: |
-      $addMediaGallery[gallery1]
-      $addMediaGalleryItem[https://example.com/img1.png;Image 1]
-      $addMediaGalleryItem[https://example.com/img2.png;Image 2]
-  - description: Galerie sans ID
-    code: |
-      $addMediaGallery
-      $addMediaGalleryItem[https://cdn.example.com/photo.jpg;Photo]
 ---
 
 # $addMediaGallery[] — Galerie Média

@@ -6,53 +6,6 @@ category: "Control Flow"
 function_name: jumpToAction
 syntax: $jumpToAction[targetKey]
 description: Redirects execution flow to another action within the current workflow, identified by its target key. Allows non-linear command flow.
-parameters:
-  - name: targetKey
-    type: string
-    required: true
-    description: The identifier/key of the target action to jump to. This must match the key of an action defined elsewhere in the same workflow.
-returns:
-  type: void
-  description: Transfers execution to the specified action via BotCreatorActionType.jumpToAction. The current action completes and the target action begins.
-related:
-  - callWorkflow
-  - awaitFunc
-  - wait
-  - eval
-examples:
-  - title: Saut simple vers une autre action
-    code: |
-      $if[$message==skip]
-      $jumpToAction[actionFastTrack]
-      $endif
-      Traitement normal...
-      $stop
-
-      [actionFastTrack]
-      $sendMessage[Traitement accéléré !]
-  - title: Redirection conditionnelle
-    code: |
-      $if[$hasPerms[$authorID;Administrator]==true]
-      $jumpToAction[adminFlow]
-      $endif
-      $jumpToAction[userFlow]
-
-      [adminFlow]
-      $sendMessage[🔧 Mode administrateur activé.]
-      $stop
-
-      [userFlow]
-      $sendMessage[👤 Traitement utilisateur standard...]
-  - title: Boucle avec jump
-    code: |
-      $varSet[count;0]
-      [loopStart]
-      $varSet[count;$math[$var[count]+1]]
-      Itération : $var[count]
-      $if[$var[count]<5]
-      $jumpToAction[loopStart]
-      $endif
-      $sendMessage[Boucle terminée.]
 ---
 $jumpToAction enables non-linear execution flow within a workflow. Instead of executing actions sequentially from top to bottom, you can jump to any action identified by a target key, creating loops, branches, and reusable action blocks.
 

@@ -6,33 +6,6 @@ category: "Embed & Message"
 function_name: addFile
 syntax: $addFile[url;(spoiler)]
 description: Attache un fichier (image, document, etc.) à un message Discord en tant que composant visuel. Le fichier est affiché directement dans le message.
-parameters:
-  - name: url
-    type: string
-    required: true
-    description: URL du fichier à joindre au message.
-  - name: spoiler
-    type: string
-    required: false
-    default: "no"
-    description: "yes" pour marquer le fichier comme spoiler, "no" sinon.
-returns:
-  type: void
-  description: Ajoute une pièce jointe fichier au message en cours de construction.
-related:
-  - addModalFileUpload
-  - addMediaGallery
-  - addThumbnail
-  - $attachment
-examples:
-  - description: Joindre une image
-    code: $addFile[https://example.com/document.pdf]
-  - description: Fichier en spoiler
-    code: $addFile[https://cdn.example.com/secret.png;yes]
-  - description: Plusieurs fichiers
-    code: |
-      $addFile[https://example.com/report.pdf]
-      $addFile[https://example.com/data.csv]
 ---
 
 # $addFile[] — Pièce Jointe Fichier

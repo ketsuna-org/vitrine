@@ -6,46 +6,6 @@ category: "Control Flow"
 function_name: or
 syntax: $or[condition1;condition2;...]
 description: Logical OR — returns "true" if at least one of the provided conditions evaluates to true.
-parameters:
-  - name: condition1, condition2, ...
-    type: expression (variadic)
-    required: true
-    description: Two or more conditions to evaluate. Each condition is a BDFD expression expected to resolve to "true" or "false". Minimum of 2; no practical upper limit.
-returns:
-  type: string
-  description: Returns "true" if any condition resolves to "true", otherwise "false" (only when all conditions are false). Short-circuit evaluation is not guaranteed.
-related:
-  - and
-  - checkCondition
-  - checkContains
-  - if
-examples:
-  - title: Check if any keyword matches
-    code: |
-      $or[$checkContains[$message;hello];$checkContains[$message;hi];$checkContains[$message;hey]]
-      Result: "true" if message contains "hello", "hi", or "hey"
-  - title: Use inside an $if for multi-trigger
-    code: |
-      $if[$or[$checkContains[$message;ping];$checkContains[$message;pong]]==true]
-        $sendMessage[Ping-pong detected!]
-      $endif
-      Result: replies when message contains either "ping" or "pong"
-  - title: Role-based access
-    code: |
-      $or[$checkCondition[==;$getUserVar[role];admin];$checkCondition[==;$getUserVar[role];moderator];$checkCondition[==;$getUserVar[role];owner]]
-      Result: "true" if user has any of the three privileged roles
-  - title: Combine with $and for complex logic
-    code: |
-      $and[$checkCondition[>=;$getUserVar[level];10];$or[$checkCondition[==;$getUserVar[class];warrior];$checkCondition[==;$getUserVar[class];paladin]]]
-      Result: "true" when level >= 10 AND class is either "warrior" or "paladin"
-  - title: Fallback value pattern
-    code: |
-      $if[$or[$getUserVar[customMessage]==;$getUserVar[customMessage]==none]==true]
-        $sendMessage[Default greeting!]
-      $else
-        $sendMessage[$getUserVar[customMessage]]
-      $endif
-      Result: sends the custom message if set, otherwise sends a default
 ---
 # $or — Logical OR
 

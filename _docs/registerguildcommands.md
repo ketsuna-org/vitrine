@@ -6,19 +6,6 @@ category: "Moderation"
 function_name: registerGuildCommands
 syntax: $registerGuildCommands[guildID]
 description: Enregistre les commandes slash du bot sur un serveur spécifique. Les commandes slash sont immédiatement disponibles après l'enregistrement.
-parameters:
-  - name: guildID
-    description: L'ID du serveur sur lequel enregistrer les commandes slash.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Les commandes sont enregistrées auprès de l'API Discord.
-related:
-  - $unregisterGuildCommands
-  - $deleteCommand
-  - $botTyping
-examples:
-  - description: Enregistrer les commandes slash
-    code: $registerGuildCommands[$guildID]
 ---
 
 # $registerGuildCommands

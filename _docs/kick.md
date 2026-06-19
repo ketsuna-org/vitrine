@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: kick
 syntax: $kick[userID;(reason)]
 description: Expulse un utilisateur du serveur Discord.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à expulser. Obligatoire.
-  - name: reason
-    description: Optionnel. La raison de l'expulsion.
-returns:
-  - type: void
-    description: Expulse l'utilisateur. Ne retourne rien.
-related:
-  - $ban
-  - $kickMention
-  - $mute
-examples:
-  - description: Expulser par mention
-    code: |
-      $kick[$mentioned[1];Comportement inapproprié]
-      $sendMessage[<@$mentioned[1]> a été expulsé.]
 ---
 
 # $kick

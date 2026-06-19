@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: commandsCount
 syntax: $commandsCount
 description: Retourne le nombre total de commandes (prefix + slash) du bot.
-parameters: []
-returns:
-  - type: integer
-    description: Nombre total de commandes enregistrées.
-related:
-  - $slashCommandsCount
-  - $botCommands
-  - $commandName
-examples:
-  - description: Afficher le nombre
-    code: |
-      $sendMessage[Commandes totales : $commandsCount]
-  - description: Dans un embed info
-    code: |
-      $title[$botName]
-      $description[Commandes : $commandsCount]
-      $sendMessage[]
 ---
 
 # $commandsCount

@@ -6,24 +6,6 @@ category: "Moderation"
 function_name: ignoreLinks
 syntax: $ignoreLinks
 description: Fonction guard qui arrête silencieusement l'exécution si le message déclencheur contient un lien HTTP/HTTPS.
-parameters: []
-returns: []
-related:
-  - $ignoreChannels
-  - $onlyPerms
-  - $message
-  - $messageContains
-examples:
-  - description: Bloquer les messages avec liens
-    code: |
-      $ignoreLinks
-      $sendMessage[Message accepté : aucun lien détecté.]
-  - description: Combiner ignoreLinks et message d'erreur manuel
-    code: |
-      $if[$messageContains[https://;$messageContains[http://]]==true
-        $sendMessage[❌ Les liens ne sont pas autorisés.]
-        $stop
-      $endif
 ---
 
 # $ignoreLinks

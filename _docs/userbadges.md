@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: userBadges
 syntax: $userBadges
 description: Retourne la liste des badges (flags publics) de l'utilisateur qui a déclenché la commande.
-parameters: []
-returns:
-  - type: list/array
-    description: Liste des badges publics de l'utilisateur.
-related:
-  - $userInfo
-  - $isBot
-  - $isAdmin
-examples:
-  - description: Obtenir les badges
-    code: $userBadges
-  - description: Afficher les badges dans un profil
-    code: |
-      $title[Profil de $userName]
-      $description[
-      **Badges :** $userBadges
-      ]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $userBadges

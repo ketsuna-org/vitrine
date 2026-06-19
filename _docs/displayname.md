@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: displayName
 syntax: $displayName
 description: Retourne le nom d'affichage de l'utilisateur — le pseudo du serveur s'il existe, sinon le nom d'utilisateur global.
-parameters: []
-returns:
-  - type: string
-    description: Le nom d'affichage de l'utilisateur.
-related:
-  - $userName
-  - $nickname
-  - $userTag
-examples:
-  - description: Obtenir le nom d'affichage
-    code: $displayName
-  - description: Message de bienvenue avec nom d'affichage
-    code: |
-      $title[Bienvenue $displayName !]
-      $description[Heureux de t'accueillir !]
-      $color[#57F287]
-      $sendMessage[]
 ---
 
 # $displayName

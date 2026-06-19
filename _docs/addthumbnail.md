@@ -6,35 +6,6 @@ category: "Embed & Message"
 function_name: addThumbnail
 syntax: $addThumbnail[url;(description);(spoiler)]
 description: Ajoute une image miniature (thumbnail) à l'intérieur d'une section de conteneur. Ce n'est pas le thumbnail d'un embed classique mais un composant visuel autonome.
-parameters:
-  - name: url
-    type: string
-    required: true
-    description: URL de l'image à afficher en miniature.
-  - name: description
-    type: string
-    required: false
-    description: Texte alternatif décrivant l'image (accessibilité).
-  - name: spoiler
-    type: string
-    required: false
-    default: "no"
-    description: "yes" pour masquer l'image derrière un spoiler, "no" sinon.
-returns:
-  type: void
-  description: Ajoute une miniature à la section en cours.
-related:
-  - addContainer
-  - addSection
-  - addMediaGallery
-  - $image
-examples:
-  - description: Thumbnail simple
-    code: $addThumbnail[$authorAvatar]
-  - description: Thumbnail avec description
-    code: $addThumbnail[https://example.com/icon.png;Icône de l'application]
-  - description: Thumbnail en spoiler
-    code: $addThumbnail[$var[spoiler_image];;yes]
 ---
 
 # $addThumbnail[] — Miniature Visuelle

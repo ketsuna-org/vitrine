@@ -6,24 +6,6 @@ category: "Moderation"
 function_name: modifyRolePerms
 syntax: $modifyRolePerms[roleID;permissions]
 description: Modifie les permissions d'un rôle existant.
-parameters:
-  - name: roleID
-    description: L'ID du rôle à modifier. Obligatoire.
-  - name: permissions
-    description: La nouvelle liste de permissions (format Discord). Obligatoire.
-returns:
-  - type: void
-    description: Met à jour les permissions du rôle. Ne retourne rien.
-related:
-  - $modifyRole
-  - $createRole
-  - $rolePerms
-  - $userPerms
-examples:
-  - description: Modifier les permissions
-    code: |
-      $modifyRolePerms[$roleID[Muet];sendmessages=no;sendmessagesinthreads=no]
-      $sendMessage[Permissions du rôle Muet mises à jour.]
 ---
 
 # $modifyRolePerms

@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: userID
 syntax: $userID
 description: Retourne l'ID Discord de l'utilisateur qui a déclenché la commande ou l'interaction.
-parameters: []
-returns:
-  - type: snowflake (string)
-    description: L'ID Discord de l'utilisateur déclencheur.
-related:
-  - $authorID
-  - $username
-  - $isBot
-examples:
-  - description: Obtenir l'ID de l'utilisateur
-    code: $userID
-  - description: Afficher l'ID dans un message
-    code: |
-      $title[Votre ID]
-      $description[Votre ID Discord est : **$userID**]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $userID

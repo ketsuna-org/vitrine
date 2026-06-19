@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: changeUsername
 syntax: $changeUsername[newName]
 description: Change le nom d'utilisateur du bot.
-parameters:
-  - name: newName
-    description: Le nouveau nom d'utilisateur pour le bot. Obligatoire.
-returns:
-  - type: void
-    description: Modifie le nom d'utilisateur du bot. Ne retourne rien.
-related:
-  - $changeUsernameWithID
-  - $setNickname
-  - $username
-examples:
-  - description: Changer le nom du bot
-    code: |
-      $changeUsername[Nouveau Bot]
-      $sendMessage[Nom du bot changé !]
 ---
 
 # $changeUsername

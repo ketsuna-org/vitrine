@@ -6,22 +6,6 @@ category: "Math & Text"
 function_name: randomUser
 syntax: $randomUser
 description: Retourne l'ID ou la mention d'un utilisateur aléatoire présent sur le serveur.
-parameters: []
-returns:
-  - type: string
-    description: L'ID d'un utilisateur aléatoire du serveur.
-related:
-  - $randomUserID[]
-  - $randomMention[]
-examples:
-  - description: Mentionner un utilisateur aléatoire
-    code: <@$randomUser>
-  - description: Obtenir l'ID d'un utilisateur aléatoire
-    code: $randomUser
-  - description: Utiliser dans un giveaway
-    code: |
-      $title[🎉 Giveaway !]
-      $description[Le gagnant est : <@$randomUser> !]
 ---
 
 # $randomUser[]

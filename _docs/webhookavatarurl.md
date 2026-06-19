@@ -6,22 +6,6 @@ category: "Webhooks & Integrations"
 function_name: webhookAvatarURL
 syntax: $webhookAvatarURL[url]
 description: Définit l'URL de l'avatar pour le prochain message envoyé via $webhookSend. Doit être placé avant l'appel à $webhookSend.
-parameters:
-  - name: url
-    description: L'URL de l'image à utiliser comme avatar du webhook. Doit être une URL valide vers PNG, JPG, GIF ou WEBP.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Modifie l'avatar du prochain envoi webhook uniquement.
-related:
-  - $webhookUsername
-  - $webhookSend
-  - $webhookColor
-  - $webhookTitle
-examples:
-  - description: Définir un avatar personnalisé
-    code: $webhookAvatarURL[https://example.com/bot-avatar.png]
-  - description: Utiliser l'avatar de l'auteur
-    code: $webhookAvatarURL[$authorAvatar]
 ---
 
 # $webhookAvatarURL

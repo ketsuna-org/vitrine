@@ -6,40 +6,6 @@ category: "Control Flow"
 function_name: stop
 syntax: $stop
 description: Immediately halts all further action processing in the current execution context.
-parameters: []
-returns:
-  type: void
-  description: This function does not return — execution stops entirely at the point of invocation.
-related:
-  - skipActions
-  - if
-  - for
-examples:
-  - title: Stop execution on forbidden word
-    code: |
-      $if[$checkContains[$message;banned]==true]
-        $sendMessage[That word is not allowed.]
-        $stop
-      $endif
-      $sendMessage[Message processed.]
-      Result: sends the warning and stops — "Message processed." is never sent
-  - title: Early exit from a loop
-    code: |
-      $for[item;one;two;three;four;five]
-        $if[$loopCount>3]
-          $stop
-        $endif
-        $sendMessage[$item]
-      $endFor
-      Result: only "one", "two", "three" are sent; then execution halts
-  - title: Guard clause pattern
-    code: |
-      $if[$getUserVar[coins]<0]
-        $sendMessage[Error: negative coins. Stopping.]
-        $stop
-      $endif
-      ... rest of the action ...
-      Result: prevents further processing when a critical condition fails
 ---
 # $stop — Hard Stop Execution
 

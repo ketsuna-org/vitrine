@@ -6,27 +6,6 @@ category: "Entity Info"
 function_name: guildBanner
 syntax: $guildBanner
 description: Alias de $serverBanner. Retourne l'URL de la bannière du serveur Discord (nécessite le niveau de boost 2+).
-parameters: []
-returns:
-  type: string
-  description: L'URL de la bannière du serveur, ou une chaîne vide si non disponible.
-related:
-  - $serverBanner
-  - $guildIcon
-  - $serverIcon
-  - $boostLevel
-examples:
-  - description: Bannière dans un embed
-    code: |
-      $title[$guildName]
-      $image[$guildBanner]
-      $color[#5865F2]
-      $sendEmbedMessage
-  - description: Vérifier si une bannière existe
-    code: |
-      $if[$guildBanner==]
-      $sendMessage[Pas de bannière.]
-      $endif
 ---
 
 # $guildBanner[] — Bannière du Serveur (Alias)

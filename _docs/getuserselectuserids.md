@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: getUserSelectUserIDs
 syntax: $getUserSelectUserIDs[(separator)]
 description: Récupère tous les IDs des utilisateurs sélectionnés via un menu de sélection d'utilisateurs à choix multiples.
-parameters:
-  - name: separator
-    description: (Optionnel) Le séparateur entre les IDs. Par défaut ", ".
-returns:
-  - type: string
-    description: La liste des IDs des utilisateurs sélectionnés, séparés par le délimiteur.
-related:
-  - $getUserSelectUserID
-  - $getRoleSelectRoleIDs
-  - $getChannelSelectChannelIDs
-examples:
-  - description: Tous les utilisateurs (virgule)
-    code: $getUserSelectUserIDs[, ]
-  - description: Avec séparateur personnalisé
-    code: $getUserSelectUserIDs[ | ]
 ---
 
 # $getUserSelectUserIDs

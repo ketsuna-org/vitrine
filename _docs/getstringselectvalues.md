@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: getStringSelectValues
 syntax: $getStringSelectValues[(separator)]
 description: Récupère toutes les valeurs des options sélectionnées dans un menu de sélection de chaînes à choix multiples.
-parameters:
-  - name: separator
-    description: (Optionnel) Le séparateur entre les valeurs. Par défaut ", ".
-returns:
-  - type: string
-    description: La liste des valeurs sélectionnées, séparées par le délimiteur.
-related:
-  - $getStringSelectValue
-  - $addStringSelectMenu
-  - $onInteraction
-examples:
-  - description: Toutes les valeurs (virgule)
-    code: $getStringSelectValues[, ]
-  - description: Avec séparateur point-virgule
-    code: $getStringSelectValues[;]
 ---
 
 # $getStringSelectValues

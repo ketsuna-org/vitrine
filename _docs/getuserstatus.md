@@ -6,30 +6,6 @@ category: "Entity Info"
 function_name: getUserStatus
 syntax: $getUserStatus[userID]
 description: Retourne le statut en ligne (online, idle, dnd, offline) de l'utilisateur spécifié.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur dont on souhaite connaître le statut.
-returns:
-  - type: string
-    description: "'Le statut de l''utilisateur : \"online\", \"idle\", \"dnd\", \"offline\" ou \"invisible\".'"
-related:
-  - $userID
-  - $findUser
-  - $isTimedOut
-examples:
-  - description: Obtenir le statut
-    code: $getUserStatus[$userID]
-  - description: Afficher le statut dans un embed
-    code: |
-      $title[Statut de $userName]
-      $description[**Statut :** $getUserStatus[$userID]]
-      $color[#5865F2]
-      $sendMessage[]
-  - description: Vérifier si en ligne
-    code: |
-      $if[$getUserStatus[$mentioned]==online]
-        $sendMessage[L'utilisateur est en ligne ! 🟢]
-      $endif
 ---
 
 # $getUserStatus

@@ -6,33 +6,6 @@ category: "Math & Text"
 function_name: trimSpace
 syntax: $trimSpace[text]
 description: Removes leading and trailing whitespace (spaces, tabs, newlines) from the given text.
-parameters:
-  - name: text
-    type: string
-    required: true
-    description: The text to trim.
-returns:
-  type: string
-  description: The input text with all leading and trailing whitespace removed. Internal whitespace is preserved.
-related:
-  - replaceText
-  - cropText
-  - charCount
-examples:
-  - title: Trim surrounding spaces
-    code: |
-      $trimSpace[  hello world  ]
-      Result: "hello world"
-  - title: Clean user input
-    code: |
-      $trimSpace[$message]
-      Result: message without accidental leading/trailing spaces
-  - title: Trim newlines
-    code: |
-      $trimSpace[
-      some text
-      ]
-      Result: "some text" (leading/trailing newlines removed)
 ---
 # $trimSpace — Trim Whitespace
 

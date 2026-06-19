@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: message
 syntax: $message
 description: Retourne le contenu textuel brut du message déclencheur de la commande.
-returns:
-  - type: string
-    description: Le contenu du message, incluant tout le texte après le préfixe de commande.
-related:
-  - $messageID
-  - $messageTimestamp
-  - $noMention
-  - $argsCheck
-examples:
-  - description: Afficher le contenu du message
-    code: "$sendMessage[Vous avez dit : $message]"
-  - description: Vérifier un mot dans le message
-    code: |
-      $if[$message==bonjour]
-        $sendMessage[Bonjour à vous !]
-      $endif
 ---
 
 # $message

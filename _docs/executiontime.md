@@ -6,17 +6,6 @@ category: "Entity Info"
 function_name: executionTime
 syntax: $executionTime
 description: Retourne le temps d'exécution de la commande actuelle en millisecondes. Permet de mesurer les performances du code BDFD.
-parameters: []
-returns:
-  - type: string
-    description: Le temps d'exécution en millisecondes (format nombre entier).
-related:
-  - $ping
-  - $botPing
-  - $byteCount
-examples:
-  - description: Afficher le temps d'exécution
-    code: $executionTime
 ---
 
 # $executionTime

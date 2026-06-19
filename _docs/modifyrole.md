@@ -6,30 +6,6 @@ category: "Moderation"
 function_name: modifyRole
 syntax: $modifyRole[roleID;name;(color);(hoist);(mentionable)]
 description: Modifie les propriétés d'un rôle existant.
-parameters:
-  - name: roleID
-    description: L'ID du rôle à modifier. Obligatoire.
-  - name: name
-    description: Le nouveau nom du rôle. Obligatoire.
-  - name: color
-    description: Optionnel. Nouvelle couleur hexadécimale (ex. "#FF0000").
-  - name: hoist
-    description: Optionnel. "yes"/"no" pour l'affichage séparé.
-  - name: mentionable
-    description: Optionnel. "yes"/"no" pour la mentionnabilité.
-returns:
-  - type: void
-    description: Modifie le rôle. Ne retourne rien.
-related:
-  - $createRole
-  - $deleteRole
-  - $modifyRolePerms
-  - $roleInfo
-examples:
-  - description: Renommer un rôle
-    code: |
-      $modifyRole[$roleID[VIP];Super VIP]
-      $sendMessage[Rôle renommé !]
 ---
 
 # $modifyRole

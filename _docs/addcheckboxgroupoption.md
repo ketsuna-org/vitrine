@@ -6,45 +6,6 @@ category: "Embed & Message"
 function_name: addCheckboxGroupOption
 syntax: $addCheckboxGroupOption[menuId;label;value;(description);(default)]
 description: Ajoute une option individuelle à un groupe de cases à cocher dans un modal. Le menuId peut être omis pour cibler le dernier groupe créé.
-parameters:
-  - name: menuId
-    type: string
-    required: false
-    description: Identifiant du groupe parent. Peut être omis pour utiliser le dernier groupe créé.
-  - name: label
-    type: string
-    required: true
-    description: Texte affiché à côté de la case à cocher.
-  - name: value
-    type: string
-    required: true
-    description: Valeur retournée si la case est cochée.
-  - name: description
-    type: string
-    required: false
-    description: Description optionnelle affichée sous le label.
-  - name: default
-    type: string
-    required: false
-    default: "no"
-    description: "yes" si cochée par défaut, "no" sinon.
-returns:
-  type: void
-  description: Ajoute une option au groupe de cases à cocher spécifié.
-related:
-  - addModalCheckboxGroup
-  - addModalRadioGroup
-  - addRadioGroupOption
-examples:
-  - description: Option avec menuId explicite
-    code: |
-      $addCheckboxGroupOption[interests;Jeux vidéo;games;Gaming sur PC et console;yes]
-  - description: Option sans menuId (dernier groupe créé)
-    code: |
-      $addCheckboxGroupOption[;Musique;music;Tous les genres;no]
-  - description: Option simple sans description
-    code: |
-      $addCheckboxGroupOption[;Sport;sport]
 ---
 
 # $addCheckboxGroupOption[] — Option de Groupe Checkbox

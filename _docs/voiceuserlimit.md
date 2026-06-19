@@ -6,22 +6,6 @@ category: "Moderation"
 function_name: voiceUserLimit
 syntax: $voiceUserLimit[(channelID)]
 description: Récupère la limite d'utilisateurs d'un salon vocal. Retourne le nombre maximum d'utilisateurs pouvant se connecter simultanément.
-parameters:
-  - name: channelID
-    description: (Optionnel) L'ID du salon vocal. Par défaut, le salon vocal de l'auteur de la commande.
-returns:
-  - type: string (number)
-    description: La limite d'utilisateurs du salon vocal (0 = illimité).
-related:
-  - $voiceChannelID
-  - $voiceMembersCount
-  - $channelType
-  - $modifyChannel
-examples:
-  - description: Limite du salon vocal actuel
-    code: $voiceUserLimit
-  - description: Limite d'un salon spécifique
-    code: $voiceUserLimit[123456789]
 ---
 
 # $voiceUserLimit

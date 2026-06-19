@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: afkTimeout
 syntax: $afkTimeout
 description: Retourne le délai d'inactivité (en secondes) avant qu'un membre soit déplacé vers le salon AFK.
-parameters: []
-returns:
-  type: integer
-  description: Le délai AFK en secondes (60, 300, 900, 1800 ou 3600).
-related:
-  - $afkChannelID
-  - $systemChannelID
-  - $rulesChannelID
-examples:
-  - description: Afficher le délai AFK
-    code: |
-      $sendMessage[Délai AFK : $afkTimeout secondes]
-  - description: Formater en minutes
-    code: |
-      $sendMessage[Délai AFK : $round[$divide[$afkTimeout;60]] minutes]
 ---
 
 # $afkTimeout[] — Délai AFK

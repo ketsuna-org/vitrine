@@ -6,32 +6,6 @@ category: "Math & Text"
 function_name: sum
 syntax: $sum[value1;value2;...]
 description: Calcule la somme de toutes les valeurs fournies.
-parameters:
-  - name: values
-    type: string (number)
-    required: true
-    description: Liste de valeurs numériques séparées par des points-virgules. Accepte un nombre variable d'arguments.
-returns:
-  type: string (number)
-  description: La somme de toutes les valeurs. Retourne "0" si aucun argument n'est fourni.
-related:
-  - calculate
-  - sub
-  - multi
-  - divide
-examples:
-  - title: Somme de deux nombres
-    code: |
-      $sum[5;3]
-  - title: Somme de plusieurs nombres
-    code: |
-      $sum[10;20;30;40]
-  - title: Avec des variables
-    code: |
-      $sum[$getVar[a];$getVar[b];$getVar[c]]
-  - title: Avec des décimales
-    code: |
-      $sum[1.5;2.3;3.7]
 ---
 
 # $sum[]

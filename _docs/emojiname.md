@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: emojiName
 syntax: $emojiName[emojiID]
 description: Récupère le nom d'un emoji personnalisé à partir de son ID. Retourne le nom texte de l'emoji.
-parameters:
-  - name: emojiID
-    description: L'ID Discord de l'emoji personnalisé.
-returns:
-  - type: string
-    description: Le nom de l'emoji, ou chaîne vide si l'emoji n'est pas trouvé.
-related:
-  - $addEmoji
-  - $removeEmoji
-  - $emojiExists
-  - $customEmoji
-  - $emojiCount
-examples:
-  - description: Récupérer le nom d'un emoji
-    code: $emojiName[123456789]
-  - description: Récupérer depuis un message
-    code: $emojiName[$message[1]]
 ---
 
 # $emojiName

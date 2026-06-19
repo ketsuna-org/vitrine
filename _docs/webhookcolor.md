@@ -6,22 +6,6 @@ category: "Webhooks & Integrations"
 function_name: webhookColor
 syntax: $webhookColor[hexColor]
 description: Définit la couleur de la barre latérale de l'embed pour le prochain message envoyé via $webhookSend.
-parameters:
-  - name: hexColor
-    description: "La couleur en format hexadécimal (avec ou sans #). Exemple : #FF0000 ou FF0000."
-returns:
-  - type: aucun
-    description: Ne retourne rien. Modifie la couleur du prochain embed webhook.
-related:
-  - $webhookTitle
-  - $webhookDescription
-  - $webhookFooter
-  - $webhookSend
-examples:
-  - description: Couleur rouge
-    code: $webhookColor[#FF0000]
-  - description: Couleur sans #
-    code: $webhookColor[5865F2]
 ---
 
 # $webhookColor

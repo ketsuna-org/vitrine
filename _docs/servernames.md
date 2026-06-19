@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: serverNames
 syntax: $serverNames
 description: Retourne la liste des noms de tous les serveurs dans lesquels le bot est présent, séparés par des virgules.
-parameters: []
-returns:
-  type: string (liste)
-  description: Une chaîne contenant les noms de tous les serveurs du bot, séparés par des virgules.
-related:
-  - $serverCount
-  - $guildCount
-  - $serverName
-  - $guildName
-examples:
-  - description: Afficher tous les noms de serveurs
-    code: |
-      $sendMessage[Serveurs : $serverNames]
-  - description: Vérifier si le bot est sur un serveur spécifique
-    code: |
-      $if[$serverNames$contains[Mon Serveur]]
-      $sendMessage[Le bot est sur Mon Serveur !]
-      $endif
 ---
 
 # $serverNames[] — Noms de Tous les Serveurs

@@ -6,20 +6,6 @@ category: "Moderation"
 function_name: unpinMessage
 syntax: $unpinMessage[messageID]
 description: Retire un message épinglé de la liste des messages épinglés du canal.
-parameters:
-  - name: messageID
-    description: L'ID du message à désépingler.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Le message est désépinglé.
-related:
-  - $pinMessage
-  - $channelSendMessage
-examples:
-  - description: Désépingler un message
-    code: $unpinMessage[123456789]
-  - description: Désépingler le message courant
-    code: $unpinMessage[$messageID]
 ---
 
 # $unpinMessage

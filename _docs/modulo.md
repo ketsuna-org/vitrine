@@ -6,31 +6,6 @@ category: "Math & Text"
 function_name: modulo
 syntax: $modulo[a;b]
 description: Calcule le reste de la division euclidienne de a par b (a % b). Si b = 0, retourne 0.
-parameters:
-  - name: a
-    type: number
-    required: true
-    description: Le dividende.
-  - name: b
-    type: number
-    required: true
-    description: Le diviseur.
-returns:
-  type: string (number)
-  description: Le reste de la division a / b. Retourne "0" si b = 0.
-related:
-  - calculate
-  - divide
-examples:
-  - title: Modulo simple
-    code: |
-      $modulo[17;5]
-  - title: Nombre pair ou impair
-    code: |
-      $modulo[$getVar[nombre];2]
-  - title: Modulo par zéro (protégé)
-    code: |
-      $modulo[10;0]
 ---
 
 # $modulo[]

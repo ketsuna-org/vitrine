@@ -6,21 +6,6 @@ category: "Context & Commands"
 function_name: useChannel
 syntax: $useChannel[channelID]
 description: Change le contexte de canal pour la commande en cours. Les fonctions suivantes (comme $sendMessage) s'exécuteront dans ce canal.
-parameters:
-  - name: channelID
-    description: L'ID du canal vers lequel rediriger le contexte.
-returns:
-  - type: void
-    description: Change le contexte. Ne retourne rien.
-related:
-  - $channelSendMessage
-  - $channelID
-  - $dmChannelID
-examples:
-  - description: Rediriger vers un canal de logs
-    code: |
-      $useChannel[123456789]
-      $sendMessage[Log enregistré.]
 ---
 # $useChannel
 

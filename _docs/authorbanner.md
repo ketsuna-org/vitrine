@@ -6,28 +6,6 @@ category: "Entity Info"
 function_name: authorBanner
 syntax: $authorBanner
 description: Retourne l'URL de la bannière de profil de l'auteur du message. Réservé aux abonnés Nitro.
-parameters: []
-returns:
-  - type: string (URL)
-    description: L'URL de la bannière de l'auteur, ou chaîne vide si pas de bannière.
-related:
-  - $authorAvatar
-  - $userBanner
-  - $userBannerColor
-  - $authorID
-examples:
-  - description: Obtenir la bannière de l'auteur
-    code: $authorBanner
-  - description: Afficher la bannière si présente
-    code: |
-      $if[$authorBanner!=]
-        $title[Bannière de $authorUsername]
-        $image[$authorBanner]
-        $color[$userBannerColor]
-        $sendMessage[]
-      $else
-        $sendMessage[Pas de bannière.]
-      $endif
 ---
 
 # $authorBanner

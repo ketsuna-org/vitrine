@@ -6,19 +6,6 @@ category: "Entity Info"
 function_name: messageTimestamp
 syntax: $messageTimestamp
 description: Retourne le timestamp (horodatage) de création du message déclencheur.
-returns:
-  - type: timestamp (integer)
-    description: Le timestamp Unix du message en millisecondes.
-related:
-  - $messageEditedTimestamp
-  - $messageID
-  - $message
-  - $lastPinTimestamp
-examples:
-  - description: Timestamp du message
-    code: "$sendMessage[Timestamp : $messageTimestamp]"
-  - description: Date formatée
-    code: "$sendMessage[Envoyé le : $formatDate[$messageTimestamp;DD/MM/YYYY à HH:mm]]"
 ---
 
 # $messageTimestamp

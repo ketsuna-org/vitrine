@@ -6,58 +6,6 @@ category: "Embed & Message"
 function_name: addModalTextInput
 syntax: $addModalTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
 description: Ajoute un champ de saisie de texte à un modal Discord. Supporte les styles "short" (une ligne) et "paragraph" (multi-lignes).
-parameters:
-  - name: customId
-    type: string
-    required: true
-    description: Identifiant unique du champ, utilisé pour récupérer la valeur soumise.
-  - name: label
-    type: string
-    required: true
-    description: Étiquette affichée au-dessus du champ de saisie.
-  - name: style
-    type: string
-    required: false
-    default: "short"
-    description: Style du champ. "short" pour une ligne, "paragraph" pour texte multi-lignes.
-  - name: placeholder
-    type: string
-    required: false
-    description: Texte indicatif affiché dans le champ vide.
-  - name: default
-    type: string
-    required: false
-    description: Valeur par défaut pré-remplie dans le champ.
-  - name: required
-    type: string
-    required: false
-    default: "yes"
-    description: "yes" si le champ est obligatoire, "no" sinon.
-  - name: minLength
-    type: integer
-    required: false
-    description: Longueur minimale du texte saisi.
-  - name: maxLength
-    type: integer
-    required: false
-    description: Longueur maximale du texte saisi.
-returns:
-  type: void
-  description: Ajoute un TextInput au modal en cours de construction.
-related:
-  - newModal
-  - addModalSelect
-  - addTextInput
-examples:
-  - description: Champ court obligatoire
-    code: |
-      $addModalTextInput[name;Votre nom;short;Entrez votre nom...;;yes;2;50]
-  - description: Champ paragraphe optionnel
-    code: |
-      $addModalTextInput[bio;Biographie;paragraph;Parlez-nous de vous...;;no;0;500]
-  - description: Champ avec valeur par défaut
-    code: |
-      $addModalTextInput[email;Email;short;exemple@mail.com;user@domain.com;yes;5;100]
 ---
 
 # $addModalTextInput[] — Champ Texte dans un Modal

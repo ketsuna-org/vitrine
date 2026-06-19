@@ -6,39 +6,6 @@ category: "Math & Text"
 function_name: sort
 syntax: $sort[separator;(direction)]
 description: Sorts elements (separated by the given delimiter) and returns them as a single string.
-parameters:
-  - name: separator
-    type: string
-    required: true
-    description: The delimiter used in both the input and output. Elements must be joined by this separator (e.g., "," or " ").
-  - name: direction
-    type: string
-    required: false
-    description: Sort order. "asc" or "ascending" for ascending, "desc" or "descending" for descending. Default is descending (numerical).
-returns:
-  type: string
-  description: The sorted elements joined by the same separator.
-related:
-  - textSplit
-  - joinSplitText
-  - numberSeparator
-examples:
-  - title: Sort numbers descending (default)
-    code: |
-      $sort[5,2,8,1,3;,]
-      Result: "8,5,3,2,1"
-  - title: Sort numbers ascending
-    code: |
-      $sort[5,2,8,1,3;,;asc]
-      Result: "1,2,3,5,8"
-  - title: Sort space-separated values
-    code: |
-      $sort[10 50 20 30 40; ;asc]
-      Result: "10 20 30 40 50"
-  - title: Sort with explicit descending
-    code: |
-      $sort[100,200,50,150;,;desc]
-      Result: "200,150,100,50"
 ---
 # $sort — Sort Elements
 

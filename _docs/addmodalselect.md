@@ -6,39 +6,6 @@ category: "Embed & Message"
 function_name: addModalSelect
 syntax: $addModalSelect[customId;label;(placeholder);(required)]
 description: Ajoute un menu déroulant (select/dropdown) à un modal Discord. Les options sont ajoutées avec $addSelectMenuOption[].
-parameters:
-  - name: customId
-    type: string
-    required: true
-    description: Identifiant unique du menu, utilisé pour récupérer la valeur sélectionnée.
-  - name: label
-    type: string
-    required: true
-    description: Étiquette affichée au-dessus du menu déroulant.
-  - name: placeholder
-    type: string
-    required: false
-    description: Texte indicatif affiché quand aucune option n'est sélectionnée.
-  - name: required
-    type: string
-    required: false
-    default: "yes"
-    description: "yes" si une sélection est obligatoire, "no" sinon.
-returns:
-  type: void
-  description: Ajoute un menu Select au modal en cours de construction.
-related:
-  - newModal
-  - addModalTextInput
-  - addModalCheckbox
-  - addModalRadioGroup
-examples:
-  - description: Menu déroulant simple
-    code: |
-      $addModalSelect[country;Pays;Choisissez votre pays...;yes]
-  - description: Menu optionnel
-    code: |
-      $addModalSelect[color;Couleur préférée;Sélectionnez une couleur;no]
 ---
 
 # $addModalSelect[] — Menu Déroulant dans un Modal

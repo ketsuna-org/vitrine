@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: roleID
 syntax: $roleID[name;(guildID)]
 description: Retourne l'ID d'un rôle Discord à partir de son nom ou d'une mention. Insensible à la casse.
-parameters:
-  - name: name
-    description: Le nom du rôle (ou mention) à rechercher.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: snowflake (string)
-    description: L'ID du rôle trouvé, ou une chaîne vide si aucun.
-related:
-  - $roleName
-  - $roleExists
-  - $findRole
-  - $getRole
-examples:
-  - description: ID d'un rôle par nom
-    code: "$sendMessage[ID Admin : $roleID[Admin]]"
-  - description: ID d'un rôle par mention
-    code: "$sendMessage[ID rôle : $roleID[<@&123456789012345678>]]"
-  - description: ID dans un autre serveur
-    code: "$sendMessage[ID rôle : $roleID[Admin;123456789012345678]]"
 ---
 
 # $roleID

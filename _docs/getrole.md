@@ -6,32 +6,6 @@ category: "Entity Info"
 function_name: getRole
 syntax: $getRole[userID;index;(guildID)]
 description: Retourne l'ID d'un rôle d'un utilisateur selon son index (position) dans la liste des rôles du membre.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur cible.
-  - name: index
-    description: "L'index du rôle (1 = rôle le plus haut, 2 = deuxième, etc.)."
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: snowflake (string)
-    description: L'ID du rôle à l'index spécifié, ou chaîne vide si l'index dépasse le nombre de rôles.
-related:
-  - $roleID
-  - $roleName
-  - $roleColor
-  - $colorRole
-  - $usersWithRole
-examples:
-  - description: Premier rôle de l'auteur
-    code: "$sendMessage[Votre plus haut rôle : $roleName[$getRole[$authorID;1]]]"
-  - description: Vérifier si un utilisateur a un rôle
-    code: |
-      $if[$getRole[$authorID;1]==$roleID[Admin]]
-        $sendMessage[Vous êtes administrateur.]
-      $endif
-  - description: Lister tous les rôles d'un utilisateur
-    code: "$sendMessage[Tous vos rôles : ...]"
 ---
 
 # $getRole

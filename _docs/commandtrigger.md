@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: commandTrigger
 syntax: $commandTrigger
 description: Retourne le déclencheur (trigger) de la commande en cours d'exécution.
-parameters: []
-returns:
-  - type: string
-    description: "Le trigger de la commande (ex: !help, /ban, ?ping)."
-related:
-  - $commandName
-  - $commandType
-  - $commandFolder
-  - $isSlash
-examples:
-  - description: Afficher le trigger
-    code: |
-      $sendMessage[Trigger : $commandTrigger]
-  - description: Usage dans un message
-    code: |
-      $sendMessage[Utilisez $commandTrigger pour exécuter cette commande.]
-  - description: Détection du préfixe
-    code: |
-      $sendMessage[Préfixe détecté dans le trigger : $charAt[$commandTrigger;1]]
 ---
 
 # $commandTrigger

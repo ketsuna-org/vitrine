@@ -6,19 +6,6 @@ category: "Text Manipulation"
 function_name: unEscape
 syntax: $unEscape[text]
 description: Convertit les séquences d'échappement d'une chaîne en leurs caractères réels. Par exemple, \n devient un vrai saut de ligne.
-parameters:
-  - name: text
-    description: Le texte contenant des séquences d'échappement à convertir.
-returns:
-  - type: string
-    description: Le texte avec les séquences d'échappement résolues.
-related:
-  - $replaceText
-  - $urlEncode
-  - $urlDecode
-examples:
-  - description: Convertir \n en saut de ligne
-    code: $sendMessage[$unEscape[Ligne1\nLigne2\nLigne3]]
 ---
 # $unEscape
 

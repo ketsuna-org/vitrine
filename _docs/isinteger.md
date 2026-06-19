@@ -6,27 +6,6 @@ category: "Math & Text"
 function_name: isInteger
 syntax: $isInteger[value]
 description: Vérifie si une valeur est un nombre entier (positif, négatif ou zéro).
-parameters:
-  - name: value
-    description: La valeur à tester.
-returns:
-  - type: boolean
-    description: true si la valeur est un entier, false sinon.
-related:
-  - $isBoolean
-  - $isNumber
-  - $isValidHex
-examples:
-  - description: Tester un entier
-    code: |
-      $if[$isInteger[42]==true]
-        $sendMessage[C'est un entier !]
-      $endif
-  - description: Tester un décimal
-    code: |
-      $if[$isInteger[3.14]==false]
-        $sendMessage[Ce n'est pas un entier.]
-      $endif
 ---
 
 # $isInteger

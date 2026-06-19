@@ -6,27 +6,6 @@ category: "Control Flow"
 function_name: embedSuppressErrors
 syntax: $embedSuppressErrors
 description: Suppresses error messages specifically related to embed rendering, preventing malformed embed errors from being displayed to the user.
-returns:
-  type: void
-  description: Enables embed error suppression for the current command execution. Returns nothing.
-related:
-  - suppressErrors
-  - suppressErrorLogging
-  - embed
-examples:
-  - title: Embed dynamique sans erreurs visibles
-    code: |
-      $embedSuppressErrors
-      $title[Titre]
-      $description[Description dynamique : $var[contenu]]
-      $color[#5865F2]
-  - title: Commande avec embeds optionnels
-    code: |
-      $embedSuppressErrors
-      $if[$varExists[embedData]==true]
-      $title[$var[titre]]
-      $description[$var[description]]
-      $endif
 ---
 $embedSuppressErrors is a focused suppression toggle that only affects errors related to embed construction and rendering. It prevents malformed or invalid embed configuration from producing visible error messages, while still allowing other types of errors to surface normally.
 

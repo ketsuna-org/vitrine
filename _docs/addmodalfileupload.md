@@ -6,34 +6,6 @@ category: "Embed & Message"
 function_name: addModalFileUpload
 syntax: $addModalFileUpload[customId;label;(required)]
 description: Ajoute un composant de téléversement de fichier à un modal Discord. Permet à l'utilisateur de joindre un fichier directement depuis le modal.
-parameters:
-  - name: customId
-    type: string
-    required: true
-    description: Identifiant unique pour récupérer le fichier après soumission.
-  - name: label
-    type: string
-    required: true
-    description: Étiquette affichée au-dessus du champ de téléversement.
-  - name: required
-    type: string
-    required: false
-    default: "yes"
-    description: "yes" si le fichier est obligatoire, "no" sinon.
-returns:
-  type: void
-  description: Ajoute un composant de téléversement de fichier au modal.
-related:
-  - newModal
-  - addFile
-  - addModalTextInput
-examples:
-  - description: Upload de fichier obligatoire
-    code: |
-      $addModalFileUpload[document;Joindre un document;yes]
-  - description: Upload optionnel
-    code: |
-      $addModalFileUpload[avatar;Photo de profil;no]
 ---
 
 # $addModalFileUpload[] — Téléversement de Fichier dans un Modal

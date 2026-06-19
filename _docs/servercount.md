@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: serverCount
 syntax: $serverCount
 description: Retourne le nombre total de serveurs dans lesquels le bot est présent.
-parameters: []
-returns:
-  type: integer
-  description: Le nombre de serveurs (guilds) auxquels le bot appartient.
-related:
-  - $guildCount
-  - $serverNames
-  - $membersCount
-examples:
-  - description: Afficher le nombre de serveurs
-    code: |
-      $sendMessage[Je suis présent sur $serverCount serveurs !]
-  - description: Statistiques du bot
-    code: |
-      $title[Statistiques du Bot]
-      $addField[Serveurs;$serverCount;yes]
-      $addField[Shard;$shardID;yes]
-      $color[#5865F2]
-      $sendEmbedMessage
 ---
 
 # $serverCount[] — Nombre de Serveurs du Bot

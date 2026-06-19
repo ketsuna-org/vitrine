@@ -6,22 +6,6 @@ category: "Math & Text"
 function_name: randomCategoryID
 syntax: $randomCategoryID
 description: Retourne l'ID d'une catégorie aléatoire parmi toutes les catégories du serveur courant.
-parameters: []
-returns:
-  - type: string (snowflake)
-    description: L'ID Discord d'une catégorie choisie aléatoirement sur le serveur.
-related:
-  - $randomChannelID
-  - $randomUserID
-  - $categoryChannels[]
-  - $channelID[]
-examples:
-  - description: Obtenir un ID de catégorie aléatoire
-    code: $randomCategoryID
-  - description: Mentionner une catégorie aléatoire
-    code: "<#$randomCategoryID>"
-  - description: Afficher le nom d'une catégorie aléatoire
-    code: "$channelName[$randomCategoryID]"
 ---
 
 # $randomCategoryID

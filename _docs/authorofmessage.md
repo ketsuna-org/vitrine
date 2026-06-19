@@ -6,19 +6,6 @@ category: "Messages & DM"
 function_name: authorOfMessage
 syntax: $authorOfMessage[messageID]
 description: Retourne l'ID de l'auteur d'un message spécifique, identifié par son ID.
-parameters:
-  - name: messageID
-    description: L'ID du message dont on veut connaître l'auteur.
-returns:
-  - type: snowflake (string)
-    description: L'ID de l'utilisateur qui a envoyé le message.
-related:
-  - $getMessage
-  - $authorID
-  - $messageID
-examples:
-  - description: Trouver l'auteur d'un message
-    code: $sendMessage[L'auteur du message est <@$authorOfMessage[123456789]>]
 ---
 # $authorOfMessage
 

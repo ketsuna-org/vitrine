@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: serverSplash
 syntax: $serverSplash
 description: Retourne l'URL de l'image de fond d'invitation (splash) du serveur Discord. Disponible uniquement pour les serveurs partenaires ou vérifiés avec un niveau de boost suffisant.
-parameters: []
-returns:
-  type: string
-  description: L'URL de l'image splash d'invitation. Retourne une chaîne vide si le serveur n'en a pas.
-related:
-  - $serverBanner
-  - $serverIcon
-  - $serverVanityURL
-  - $boostLevel
-examples:
-  - description: Afficher le splash
-    code: |
-      $sendMessage[Splash du serveur : $serverSplash]
-  - description: Embed avec splash
-    code: |
-      $title[$serverName]
-      $image[$serverSplash]
-      $color[#5865F2]
-      $sendEmbedMessage
 ---
 
 # $serverSplash[] — Image d'Invitation du Serveur

@@ -6,24 +6,6 @@ category: "Moderation"
 function_name: changeUsernameWithID
 syntax: $changeUsernameWithID[userID;newName]
 description: Change le nom d'utilisateur d'un utilisateur spécifique (nécessite des permissions élevées).
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur cible. Obligatoire.
-  - name: newName
-    description: Le nouveau nom d'utilisateur. Obligatoire.
-returns:
-  - type: void
-    description: Modifie le nom d'utilisateur de l'utilisateur cible. Ne retourne rien.
-related:
-  - $changeUsername
-  - $setNickname
-  - $username
-  - $userID
-examples:
-  - description: Changer le nom d'un utilisateur
-    code: |
-      $changeUsernameWithID[$mentioned[1];NouveauNom]
-      $sendMessage[Nom d'utilisateur modifié.]
 ---
 
 # $changeUsernameWithID

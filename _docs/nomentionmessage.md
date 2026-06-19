@@ -6,17 +6,6 @@ category: "Context & Commands"
 function_name: noMentionMessage
 syntax: $noMentionMessage
 description: Récupère le contenu du message sans les mentions. Remplace les mentions d'utilisateurs, rôles et canaux par leurs noms textuels.
-parameters: []
-returns:
-  - type: string
-    description: Le message avec les mentions converties en texte.
-related:
-  - $message
-  - $input
-  - $disableInnerSpaceRemoval
-examples:
-  - description: Obtenir le message sans mentions
-    code: "$sendMessage[Message sans mentions : $noMentionMessage]"
 ---
 # $noMentionMessage
 

@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: getAttachments
 syntax: $getAttachments[messageID]
 description: Récupère les URLs des pièces jointes d'un message spécifique. Retourne une liste d'URLs séparées par des virgules.
-parameters:
-  - name: messageID
-    description: L'ID du message dont on souhaite récupérer les pièces jointes.
-returns:
-  - type: string
-    description: Les URLs des pièces jointes, séparées par ", ". Chaîne vide si aucune pièce jointe.
-related:
-  - $message
-  - $getMessage
-  - $attachment
-examples:
-  - description: Récupérer les pièces jointes du message courant
-    code: $getAttachments[$messageID]
-  - description: Récupérer depuis un message spécifique
-    code: $getAttachments[123456789]
 ---
 
 # $getAttachments

@@ -6,32 +6,6 @@ category: "Entity Info"
 function_name: findUser
 syntax: $findUser[name/mention/ID]
 description: Recherche un utilisateur par nom, mention ou ID et retourne son ID Discord. Retourne une chaîne vide si aucun utilisateur n'est trouvé.
-parameters:
-  - name: query
-    description: Le nom d'utilisateur (partiel ou complet), la mention (<@ID>) ou l'ID de l'utilisateur à rechercher.
-returns:
-  - type: snowflake (string)
-    description: L'ID de l'utilisateur trouvé, ou chaîne vide si aucun résultat.
-related:
-  - $userExists
-  - $userInfo
-  - $mentioned
-  - $userID
-examples:
-  - description: Rechercher par nom
-    code: $findUser[Jean]
-  - description: Rechercher par mention
-    code: $findUser[<@123456789012345678>]
-  - description: Rechercher par ID
-    code: $findUser[123456789012345678]
-  - description: Utiliser le résultat
-    code: |
-      $let[target;$findUser[$message]]
-      $if[$target!=]
-        $sendMessage[Utilisateur trouvé : <@$target>]
-      $else
-        $sendMessage[Aucun utilisateur trouvé.]
-      $endif
 ---
 
 # $findUser

@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: getEmbedData
 syntax: $getEmbedData[messageID;embedIndex;field]
 description: Extrait les données d'un champ spécifique d'un embed dans un message. Permet de lire le titre, la description, les champs, etc. d'un embed existant.
-parameters:
-  - name: messageID
-    description: L'ID du message contenant l'embed.
-  - name: embedIndex
-    description: L'index de l'embed dans le message (1 = premier embed).
-  - name: field
-    description: Le champ à extraire (title, description, footer, author, color, field:<nom>, image, thumbnail, url, timestamp).
-returns:
-  - type: string
-    description: La valeur du champ demandé, ou chaîne vide si le champ n'existe pas.
-related:
-  - $getMessage
-  - $message
-  - $embedSuppress
-examples:
-  - description: Lire le titre du premier embed
-    code: $getEmbedData[$messageID;1;title]
-  - description: Lire un champ spécifique
-    code: $getEmbedData[$messageID;1;field:Score]
 ---
 
 # $getEmbedData

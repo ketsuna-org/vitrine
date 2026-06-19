@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: onlyForChannels
 syntax: $onlyForChannels[channelID1;channelID2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution si la commande n'est pas exécutée dans l'un des channels spécifiés.
-parameters:
-  - name: channelID1, channelID2, ...
-    description: Liste des IDs de channels où la commande est autorisée.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur si la commande est utilisée hors des channels autorisés.
-    optional: true
-returns: []
-related:
-  - $onlyForServers
-  - $onlyForCategories
-  - $ignoreChannels
-  - $channelID
-examples:
-  - description: Limiter une commande à un channel spécifique
-    code: |
-      $onlyForChannels[123456789012345678;❌ Cette commande ne peut être utilisée que dans <#123456789012345678>.]
-      $sendMessage[Commande autorisée.]
 ---
 
 # $onlyForChannels

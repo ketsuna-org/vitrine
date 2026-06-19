@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: giveRoles
 syntax: $giveRoles[userID;role1;role2;...]
 description: Donne plusieurs rôles à un utilisateur en une seule opération.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur cible. Obligatoire.
-  - name: role1;role2;...
-    description: Liste des IDs de rôles à attribuer, séparés par des point-virgules. Obligatoire.
-returns:
-  - type: void
-    description: Attribue tous les rôles spécifiés. Ne retourne rien.
-related:
-  - $giveRole
-  - $takeRoles
-  - $setUserRoles
-examples:
-  - description: Donner plusieurs rôles
-    code: |
-      $giveRoles[$mentioned[1];$roleID[Membre];$roleID[Actif]]
-      $sendMessage[Rôles attribués !]
 ---
 
 # $giveRoles

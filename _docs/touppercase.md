@@ -6,31 +6,6 @@ category: "Math & Text"
 function_name: toUppercase
 syntax: $toUppercase[text]
 description: Converts all characters in the given text to uppercase.
-parameters:
-  - name: text
-    type: string
-    required: true
-    description: The text to convert. Can be a literal string or an expression containing placeholders.
-returns:
-  type: string
-  description: The input text with all alphabetic characters converted to uppercase. Non-alphabetic characters are unchanged.
-related:
-  - toLowercase
-  - toTitlecase
-  - replaceText
-examples:
-  - title: Basic uppercasing
-    code: |
-      $toUppercase[hello world]
-      Result: "HELLO WORLD"
-  - title: Shouting command
-    code: |
-      $sendMessage[$toUppercase[$message]]
-      Result: the message in all caps
-  - title: Mixed content
-    code: |
-      $toUppercase[abc 123 !@#]
-      Result: "ABC 123 !@#"
 ---
 # $toUppercase — Convert to Uppercase
 

@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: memberPerms
 syntax: $memberPerms
 description: Retourne la liste des permissions effectives du membre sur le serveur. Équivalent à $userPerms.
-parameters: []
-returns:
-  - type: list/array
-    description: Liste des noms de permissions du membre sur le serveur.
-related:
-  - $userPerms
-  - $memberID
-  - $memberNick
-  - $isAdmin
-examples:
-  - description: Obtenir les permissions du membre
-    code: $memberPerms
-  - description: Vérifier une permission spécifique
-    code: |
-      $if[$checkContains[$memberPerms;BanMembers]==true]
-        $sendMessage[Vous pouvez bannir des membres.]
-      $endif
 ---
 
 # $memberPerms

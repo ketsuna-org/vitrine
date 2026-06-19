@@ -6,54 +6,6 @@ category: "Embed & Message"
 function_name: addTextInput
 syntax: $addTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
 description: Ajoute un champ de saisie de texte directement dans un message (composant de message, non modal). Supporte les styles "short" et "paragraph".
-parameters:
-  - name: customId
-    type: string
-    required: true
-    description: Identifiant unique du champ pour récupérer la valeur.
-  - name: label
-    type: string
-    required: true
-    description: Étiquette affichée au-dessus du champ.
-  - name: style
-    type: string
-    required: false
-    default: "short"
-    description: "short" pour une ligne, "paragraph" pour multi-lignes.
-  - name: placeholder
-    type: string
-    required: false
-    description: Texte indicatif dans le champ vide.
-  - name: default
-    type: string
-    required: false
-    description: Valeur pré-remplie.
-  - name: required
-    type: string
-    required: false
-    default: "yes"
-    description: "yes" si obligatoire, "no" sinon.
-  - name: minLength
-    type: integer
-    required: false
-    description: Longueur minimale.
-  - name: maxLength
-    type: integer
-    required: false
-    description: Longueur maximale.
-returns:
-  type: void
-  description: Ajoute un TextInput au message. La valeur est accessible via $input[] dans le handler d'interaction.
-related:
-  - addModalTextInput
-  - $onInteraction
-examples:
-  - description: Champ texte court dans un message
-    code: |
-      $addTextInput[search;Rechercher;short;Tapez votre recherche...]
-  - description: Champ paragraphe
-    code: |
-      $addTextInput[feedback;Votre avis;paragraph;Écrivez ici...;;yes;10;500]
 ---
 
 # $addTextInput[] — Champ Texte dans un Message

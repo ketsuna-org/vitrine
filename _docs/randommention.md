@@ -6,20 +6,6 @@ category: "Math & Text"
 function_name: randomMention
 syntax: $randomMention
 description: Retourne la mention (format <@id>) d'un utilisateur aléatoire présent sur le serveur.
-parameters: []
-returns:
-  - type: string
-    description: La mention formatée (<@id>) d'un utilisateur aléatoire du serveur.
-related:
-  - $randomUser[]
-  - $randomUserID[]
-examples:
-  - description: Mentionner un utilisateur aléatoire
-    code: $randomMention
-  - description: Utiliser dans un message de giveaway
-    code: |
-      $title[🎉 Résultat]
-      $description[$randomMention a gagné !]
 ---
 
 # $randomMention[]

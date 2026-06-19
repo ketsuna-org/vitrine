@@ -6,25 +6,6 @@ category: "Moderation"
 function_name: customEmoji
 syntax: $customEmoji[name;(id)]
 description: Génère le markup d'un emoji personnalisé au format <:nom:ID> pour affichage dans un message. Si l'ID est omis, le bot cherche l'emoji sur le serveur courant.
-parameters:
-  - name: name
-    description: Le nom de l'emoji personnalisé.
-  - name: id
-    description: (Optionnel) L'ID de l'emoji. Si omis, le bot cherche l'emoji par son nom sur le serveur.
-returns:
-  - type: string
-    description: Le markup de l'emoji au format <:nom:ID> ou <a:nom:ID> pour les emojis animés.
-related:
-  - $addEmoji
-  - $removeEmoji
-  - $emojiName
-  - $emojiExists
-  - $emojiCount
-examples:
-  - description: Afficher un emoji du serveur
-    code: $customEmoji[cool]
-  - description: Afficher un emoji par ID
-    code: $customEmoji[cool;123456789]
 ---
 
 # $customEmoji

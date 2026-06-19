@@ -6,21 +6,6 @@ category: "Server & Channels"
 function_name: serverChannelExists
 syntax: $serverChannelExists[name;guildID]
 description: Vérifie si un canal portant un nom donné existe sur un serveur (guild). Retourne true/false.
-parameters:
-  - name: name
-    description: Le nom du canal à rechercher. Supporte les wildcards (*).
-  - name: guildID
-    description: L'ID du serveur où chercher. Omettre pour le serveur courant.
-returns:
-  - type: boolean (string)
-    description: "true" si le canal existe, "false" sinon.
-related:
-  - $channelExists
-  - $serverExists
-  - $createChannel
-examples:
-  - description: Vérifier un canal sur le serveur courant
-    code: $serverChannelExists[général]
 ---
 # $serverChannelExists
 

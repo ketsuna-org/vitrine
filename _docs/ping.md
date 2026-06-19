@@ -6,29 +6,6 @@ category: "Misc"
 function_name: ping
 syntax: $ping
 description: Retourne la latence WebSocket du bot en millisecondes.
-parameters: []
-returns:
-  - type: number (string)
-    description: La latence WebSocket du bot en millisecondes (ms).
-related:
-  - $uptime[]
-examples:
-  - description: Afficher le ping du bot
-    code: $ping
-  - description: Embed affichant la latence
-    code: |
-      $title[🏓 Pong !]
-      $description[Latence : **$ping ms**]
-      $color[#00FF00]
-  - description: Message conditionnel selon la latence
-    code: |
-      $if[$ping<100]
-      🟢 Excellente connexion ($ping ms)
-      $elseif[$ping<200]
-      🟡 Connexion correcte ($ping ms)
-      $else
-      🔴 Latence élevée ($ping ms)
-      $endif
 ---
 
 # $ping[]

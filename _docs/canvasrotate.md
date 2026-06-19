@@ -6,25 +6,6 @@ category: "Canvas"
 function_name: canvasRotate
 syntax: $canvasRotate[degrees]
 description: Fait pivoter le canvas d'un angle donné en degrés.
-parameters:
-  - name: degrees
-    description: Angle de rotation en degrés. Positif = sens horaire, négatif = sens antihoraire.
-returns:
-  - type: void
-    description: Le canvas est pivoté et redimensionné pour contenir l'image entière.
-related:
-  - $canvasGrayscale
-  - $canvasInvert
-  - $canvasSetPixel
-examples:
-  - description: Rotation de 90 degrés
-    code: |
-      $canvasRotate[90]
-      $attachCanvas[]
-  - description: Rotation de 45 degrés
-    code: |
-      $canvasRotate[45]
-      $attachCanvas[]
 ---
 
 # $canvasRotate

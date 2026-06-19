@@ -6,28 +6,6 @@ category: "Entity Info"
 function_name: roleColor
 syntax: $roleColor[roleID;(guildID)]
 description: Retourne la couleur d'un rôle Discord en hexadécimal.
-parameters:
-  - name: roleID
-    description: L'ID du rôle cible.
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: string
-    description: "La couleur hexadécimale du rôle (ex: #5865F2), ou chaîne vide si pas de couleur."
-related:
-  - $roleInfo
-  - $roleName
-  - $colorRole
-  - $color
-examples:
-  - description: Couleur d'un rôle
-    code: "$sendMessage[Couleur Admin : $roleColor[$roleID[Admin]]]"
-  - description: Embed avec couleur du rôle
-    code: |
-      $title[Info rôle]
-      $description[Couleur : $roleColor[123456789012345678]]
-      $color[$roleColor[123456789012345678]]
-      $sendMessage[]
 ---
 
 # $roleColor

@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: roleCount
 syntax: $roleCount[(guildID)]
 description: Retourne le nombre total de rôles sur le serveur Discord.
-parameters:
-  - name: guildID
-    description: "Optionnel. L'ID du serveur cible. Si omis, utilise le serveur courant."
-returns:
-  - type: integer
-    description: Le nombre de rôles.
-related:
-  - $roleNames
-  - $roleExists
-  - $channelCount
-  - $categoryCount
-examples:
-  - description: Nombre de rôles
-    code: "$sendMessage[Total rôles : $roleCount]"
-  - description: Comparaison
-    code: $sendMessage[$roleCount rôles pour $memberCount membres.]
 ---
 
 # $roleCount

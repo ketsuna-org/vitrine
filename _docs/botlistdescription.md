@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: botListDescription
 syntax: $botListDescription[text]
 description: Définit ou retourne la description du bot affichée dans la liste des bots BDFD.
-parameters:
-  - name: text
-    description: La description à définir. Si omis, retourne la description actuelle.
-returns:
-  - type: string
-    description: La description actuelle si aucun paramètre, ou rien si définition.
-related:
-  - $botListHide
-  - $botName
-  - $botID
-examples:
-  - description: Définir la description
-    code: |
-      $botListDescription[Bot multifonction avec modération, musique et fun !]
-      $sendMessage[Description mise à jour.]
-  - description: Afficher la description
-    code: |
-      $sendMessage[Description : $botListDescription]
 ---
 
 # $botListDescription

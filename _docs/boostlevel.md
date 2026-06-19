@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: boostLevel
 syntax: $boostLevel
 description: Retourne le niveau de boost Nitro du serveur Discord (0, 1, 2 ou 3).
-parameters: []
-returns:
-  type: integer
-  description: Le niveau de boost (0=Aucun, 1=Niveau 1, 2=Niveau 2, 3=Niveau 3).
-related:
-  - $serverBoostCount
-  - $serverBanner
-  - $serverVanityURL
-  - $serverSplash
-examples:
-  - description: Afficher le niveau de boost
-    code: |
-      $sendMessage[Niveau de boost : $boostLevel]
-  - description: Vérifier les avantages
-    code: |
-      $if[$boostLevel>=2]
-      $sendMessage[Bannière disponible !]
-      $endif
 ---
 
 # $boostLevel[] — Niveau de Boost du Serveur

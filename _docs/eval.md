@@ -6,48 +6,6 @@ category: "Control Flow"
 function_name: eval
 syntax: $eval[bdfdCode]
 description: Dynamically parses and executes a string of BDFD code at runtime. The code is treated as a sub-script and executed inline.
-parameters:
-  - name: bdfdCode
-    type: string
-    required: true
-    description: A string containing valid BDFD code to be parsed and executed dynamically. Can include any BDFD functions, variables, and control structures.
-returns:
-  type: string
-  description: Returns the output produced by the executed BDFD code. If the code does not produce output, returns an empty string.
-related:
-  - callWorkflow
-  - jumpToAction
-  - var
-  - args
-examples:
-  - title: Exécution dynamique simple
-    code: |
-      $eval[$sendMessage[Bonjour depuis eval !]]
-      Résultat: Bonjour depuis eval !
-  - title: Code dynamique construit à partir de variables
-    code: |
-      $varSet[cmd;$sendMessage[Hello $username!]]
-      $eval[$var[cmd]]
-      Résultat: Hello @User!
-  - title: Évaluation conditionnelle
-    code: |
-      $varSet[code;$if[$hasPerms[$authorID;Administrator]==true
-      $sendMessage[Admin detecté.]
-      $endif]
-      $eval[$var[code]]
-  - title: Génération dynamique de code
-    code: |
-      $varSet[user;$username]
-      $varSet[greeting;Bonjour $var[user] ! Bienvenue sur le serveur.]
-      $eval[$sendMessage[$var[greeting]]]
-      Résultat: Bonjour @User ! Bienvenue sur le serveur.
-  - title: Exécution d'un template BDFD
-    code: |
-      $varSet[template;$title[Notification]
-      $description[Vous avez reçu une notification.]
-      $color[#5865F2]
-      $footer[Envoyé par $username]]
-      $eval[$var[template]]
 ---
 $eval is a metaprogramming function that enables **dynamic code execution** in BDFD. It takes a string of BDFD code and runs it as if it were written directly in the command. This opens up powerful patterns like template rendering, code generation, and late-binding of function calls.
 

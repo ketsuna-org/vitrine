@@ -6,19 +6,6 @@ category: "Components"
 function_name: customID
 syntax: $customID
 description: Retourne l'ID personnalisé (customId) du composant d'interaction qui a déclenché le callback (bouton, select menu, modal). S'utilise dans $onInteraction.
-parameters: []
-returns:
-  - type: string
-    description: Le customId du composant d'interaction.
-related:
-  - $onInteraction
-  - $interactionData
-  - $authorID
-examples:
-  - description: Récupérer le customID d'un bouton
-    code: |
-      $onInteraction
-      $sendMessage[Bouton cliqué : $customID]
 ---
 # $customID
 

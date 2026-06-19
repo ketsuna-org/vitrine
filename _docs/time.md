@@ -6,22 +6,6 @@ category: "Date & Time"
 function_name: time
 syntax: $time
 description: Retourne l'heure actuelle au format HH:MM:SS. Résolu au runtime.
-parameters: []
-returns:
-  - type: string
-    description: L'heure actuelle formatée en HH:MM:SS.
-related:
-  - $hour[]
-  - $minute[]
-  - $second[]
-  - $date[]
-examples:
-  - description: Afficher l'heure formatée
-    code: $time
-  - description: Intégrer dans un message
-    code: |
-      $title[🕐 Heure actuelle]
-      $description[Il est **$time**]
 ---
 
 # $time[]

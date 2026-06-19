@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: userTag
 syntax: $userTag
 description: Retourne le tag complet de l'utilisateur sous la forme "nom#discriminator" (format legacy). Depuis la migration vers les noms uniques, retourne le nom d'utilisateur sans discriminateur.
-parameters: []
-returns:
-  - type: string
-    description: Le tag de l'utilisateur au format "nom#0000" ou simplement le nom d'utilisateur.
-related:
-  - $userName
-  - $discriminator
-  - $displayName
-examples:
-  - description: Obtenir le tag utilisateur
-    code: $userTag
-  - description: Afficher le tag dans un embed
-    code: |
-      $title[Profil]
-      $description[Tag : **$userTag**]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $userTag

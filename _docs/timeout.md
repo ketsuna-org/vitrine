@@ -6,25 +6,6 @@ category: "Moderation"
 function_name: timeout
 syntax: $timeout[userID;duration;(reason)]
 description: Met un utilisateur en timeout (silence temporaire).
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à mettre en timeout. Obligatoire.
-  - name: duration
-    description: La durée du timeout. Exemples "60s", "5m", "1h", "7d". Obligatoire.
-  - name: reason
-    description: Optionnel. La raison du timeout.
-returns:
-  - type: void
-    description: Met l'utilisateur en timeout. Ne retourne rien.
-related:
-  - $unTimeout
-  - $mute
-  - $kick
-examples:
-  - description: Timeout de 5 minutes
-    code: |
-      $timeout[$mentioned[1];5m;Spam]
-      $sendMessage[<@$mentioned[1]> en timeout pour 5 minutes.]
 ---
 
 # $timeout

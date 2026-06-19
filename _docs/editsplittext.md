@@ -6,42 +6,6 @@ category: "Math & Text"
 function_name: editSplitText
 syntax: $editSplitText[index;newValue]
 description: Replaces the value of a split element at the specified index with a new value.
-parameters:
-  - name: index
-    type: integer
-    required: true
-    description: The zero-based index of the element to modify. Negative indices are supported.
-  - name: newValue
-    type: string
-    required: true
-    description: The new text value to set at the specified index.
-returns:
-  type: none (action only)
-  description: This function is an action — it modifies the split array in place and does not return a value inline.
-related:
-  - textSplit
-  - splitText
-  - removeSplitTextElement
-  - joinSplitText
-examples:
-  - title: Replace a specific element
-    code: |
-      $textSplit[apple;banana;orange;grape;]
-      $editSplitText[1;kiwi]
-      $sendMessage[$splitText[1]]
-      Result: "kiwi"
-  - title: Transform and rejoin
-    code: |
-      $textSplit[hello;world;foo;]
-      $editSplitText[2;bar]
-      $sendMessage[$joinSplitText[ ]]
-      Result: "hello world bar"
-  - title: Replace last element
-    code: |
-      $textSplit[1;2;3;4;]
-      $editSplitText[-1;five]
-      $sendMessage[$splitText[-1]]
-      Result: "five"
 ---
 # $editSplitText — Modify Split Element
 

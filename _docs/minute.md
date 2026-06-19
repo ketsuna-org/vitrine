@@ -6,19 +6,6 @@ category: "Date & Time"
 function_name: minute
 syntax: $minute
 description: Retourne la minute actuelle (0 à 59). Résolu au runtime.
-parameters: []
-returns:
-  - type: number (string)
-    description: La minute actuelle, entre 0 et 59.
-related:
-  - $hour[]
-  - $second[]
-  - $time[]
-examples:
-  - description: Afficher les minutes actuelles
-    code: $minute
-  - description: Afficher l'heure avec les minutes
-    code: Il est $hour:$minute
 ---
 
 # $minute[]

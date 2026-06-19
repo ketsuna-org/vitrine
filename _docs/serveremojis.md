@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: serverEmojis
 syntax: $serverEmojis
 description: Retourne la liste des émojis personnalisés disponibles sur le serveur Discord.
-parameters: []
-returns:
-  type: string (liste)
-  description: "Une chaîne contenant tous les émojis personnalisés du serveur, formatés pour Discord (ex: \"<:nom:id>\")."
-related:
-  - $emojiCount
-  - $serverInfo
-  - $emojiID
-examples:
-  - description: Afficher tous les émojis
-    code: |
-      $sendMessage[$serverEmojis]
-  - description: Compter et afficher les émojis
-    code: |
-      $sendMessage[Nombre d'émojis: "$emojiCount. Liste : $serverEmojis]"
 ---
 
 # $serverEmojis[] — Liste des Émojis du Serveur

@@ -6,39 +6,6 @@ category: "Math & Text"
 function_name: numberSeparator
 syntax: $numberSeparator[number]
 description: Formats a number by adding thousands separators (commas) for readability.
-parameters:
-  - name: number
-    type: number (or numeric string)
-    required: true
-    description: The number to format. Can be an integer or a numeric string. Decimal values are supported.
-returns:
-  type: string
-  description: The formatted number with comma separators every three digits. Returns the input unchanged if it cannot be parsed as a number.
-related:
-  - sort
-  - charCount
-  - math functions
-examples:
-  - title: Format thousands
-    code: |
-      $numberSeparator[1000]
-      Result: "1,000"
-  - title: Format millions
-    code: |
-      $numberSeparator[1000000]
-      Result: "1,000,000"
-  - title: Small number
-    code: |
-      $numberSeparator[42]
-      Result: "42" (no change)
-  - title: Decimal number
-    code: |
-      $numberSeparator[1234567.89]
-      Result: "1,234,567.89"
-  - title: From variable
-    code: |
-      $numberSeparator[$getUserVar[balance]]
-      Result: e.g., "50,000"
 ---
 # $numberSeparator — Format Number with Commas
 

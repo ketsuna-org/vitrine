@@ -6,27 +6,6 @@ category: "Math & Text"
 function_name: isEmojiAnimated
 syntax: $isEmojiAnimated[emoji]
 description: Vérifie si un emoji personnalisé est animé.
-parameters:
-  - name: emoji
-    description: L'emoji à vérifier (format <:nom:id> ou <a:nom:id>).
-returns:
-  - type: boolean
-    description: true si l'emoji est animé, false s'il est statique ou standard.
-related:
-  - $isBoolean
-  - $isValidHex
-  - $emojiName
-examples:
-  - description: Vérifier un emoji animé
-    code: |
-      $if[$isEmojiAnimated[$message[1]]==true]
-        $sendMessage[Cet emoji est animé !]
-      $endif
-  - description: Vérifier un emoji statique
-    code: |
-      $if[$isEmojiAnimated[<:bdfd:123456789>]==false]
-        $sendMessage[Emoji statique.]
-      $endif
 ---
 
 # $isEmojiAnimated

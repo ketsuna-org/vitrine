@@ -6,38 +6,6 @@ category: "Control Flow"
 function_name: and
 syntax: $and[condition1;condition2;...]
 description: Logical AND — returns "true" only if ALL provided conditions evaluate to true.
-parameters:
-  - name: condition1, condition2, ...
-    type: expression (variadic)
-    required: true
-    description: Two or more conditions to evaluate. Each condition is a BDFD expression expected to resolve to "true" or "false". Minimum of 2; no practical upper limit.
-returns:
-  type: string
-  description: Returns "true" if every condition resolves to "true", otherwise "false". Short-circuit evaluation is not guaranteed.
-related:
-  - or
-  - checkCondition
-  - checkContains
-  - if
-examples:
-  - title: Check two conditions
-    code: |
-      $and[$checkCondition[>=;$getUserVar[age];18];$checkCondition[==;$getUserVar[verified];true]]
-      Result: "true" only if age >= 18 AND verified is "true"
-  - title: Use inside an $if
-    code: |
-      $if[$and[$checkContains[$message;buy];$checkCondition[>=;$getUserVar[coins];100]]==true]
-        $sendMessage[Purchase confirmed!]
-      $endif
-      Result: confirms purchase only when message mentions "buy" AND user has >= 100 coins
-  - title: Combine with $or
-    code: |
-      $and[$checkCondition[>=;$getUserVar[level];5];$or[$checkCondition[==;$getUserVar[role];admin];$checkCondition[==;$getUserVar[role];moderator]]]
-      Result: "true" when level >= 5 AND role is either "admin" or "moderator"
-  - title: Three or more conditions
-    code: |
-      $and[$checkCondition[>=;$getUserVar[strength];10];$checkCondition[>=;$getUserVar[agility];10];$checkCondition[>=;$getUserVar[intelligence];10]]
-      Result: "true" only when all three stats are at least 10
 ---
 # $and — Logical AND
 

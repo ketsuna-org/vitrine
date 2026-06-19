@@ -6,26 +6,6 @@ category: "Embed & Message"
 function_name: removeComponent
 syntax: $removeComponent[customId]
 description: Supprime un composant spécifique (bouton, menu, champ texte, etc.) d'un message en utilisant son identifiant personnalisé (customId).
-parameters:
-  - name: customId
-    type: string
-    required: true
-    description: Identifiant personnalisé du composant à supprimer.
-returns:
-  type: void
-  description: Supprime le composant correspondant au customId du message.
-related:
-  - removeButtons
-  - removeAllComponents
-  - $addButton
-  - $editMessage
-examples:
-  - description: Supprimer un bouton spécifique
-    code: $removeComponent[cancel_btn]
-  - description: Supprimer un champ texte
-    code: $removeComponent[search_input]
-  - description: Supprimer un menu select
-    code: $removeComponent[language_menu]
 ---
 
 # $removeComponent[] — Supprimer un Composant

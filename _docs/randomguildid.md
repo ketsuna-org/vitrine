@@ -6,19 +6,6 @@ category: "Math & Text"
 function_name: randomGuildID
 syntax: $randomGuildID
 description: Retourne l'ID d'un serveur aléatoire parmi les serveurs où le bot est présent.
-parameters: []
-returns:
-  - type: string
-    description: L'ID Discord d'un serveur aléatoire où le bot est présent.
-related:
-  - $randomUserID[]
-  - $randomChannelID[]
-  - $randomRoleID[]
-examples:
-  - description: Obtenir un ID de serveur aléatoire
-    code: $randomGuildID
-  - description: Afficher le nombre de membres d'un serveur aléatoire
-    code: $membersCount[$randomGuildID]
 ---
 
 # $randomGuildID[]

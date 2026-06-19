@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: channelType
 syntax: $channelType[(channelID)]
 description: Retourne le type d'un salon Discord (text, voice, category, dm, etc.).
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
-returns:
-  - type: string
-    description: "Le type du salon (ex: text, voice, category, news, stage, forum, dm)."
-related:
-  - $channelName
-  - $channelID
-  - $channelCategoryID
-  - $findChannel
-examples:
-  - description: Type du salon courant
-    code: "$sendMessage[Type : $channelType]"
-  - description: Vérifier si salon textuel
-    code: |
-      $if[$channelType==text]
-        $sendMessage[Ce salon est textuel !]
-      $endif
 ---
 
 # $channelType

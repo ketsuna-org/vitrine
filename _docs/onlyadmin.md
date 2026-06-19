@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: onlyAdmin
 syntax: $onlyAdmin
 description: Fonction guard qui arrête l'exécution de la commande si l'utilisateur n'est pas administrateur du serveur.
-parameters: []
-returns: []
-related:
-  - $onlyPerms
-  - $isAdmin
-  - $onlyForRoles
-  - $onlyForUsers
-examples:
-  - description: Réserver une commande aux administrateurs
-    code: |
-      $onlyAdmin
-      $sendMessage[Bienvenue dans le panneau admin.]
-  - description: Combiner avec un message d'erreur personnalisé via $onlyPerms
-    code: |
-      $onlyPerms[Administrator;❌ Cette commande est réservée aux administrateurs.]
 ---
 
 # $onlyAdmin

@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: lastMessageID
 syntax: $lastMessageID[(channelID)]
 description: Retourne l'ID du dernier message envoyé dans le salon courant ou dans un salon spécifié.
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
-returns:
-  - type: snowflake (string)
-    description: L'ID du dernier message du salon.
-related:
-  - $messageID
-  - $message
-  - $channelID
-  - $lastPinTimestamp
-examples:
-  - description: Dernier message du salon
-    code: "$sendMessage[Dernier message ID : $lastMessageID]"
-  - description: Dernier message d'un autre salon
-    code: "$sendMessage[Dernier message : $lastMessageID[123456789012345678]]"
 ---
 
 # $lastMessageID

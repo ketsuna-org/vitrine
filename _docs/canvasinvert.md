@@ -6,23 +6,6 @@ category: "Canvas"
 function_name: canvasInvert
 syntax: $canvasInvert
 description: Inverse les couleurs du canvas courant (négatif). Pas de paramètres.
-parameters: []
-returns:
-  - type: void
-    description: Chaque canal RGB de chaque pixel est inversé (255 - valeur).
-related:
-  - $canvasGrayscale
-  - $canvasRotate
-  - $canvasSetPixel
-examples:
-  - description: Inverser le canvas
-    code: |
-      $canvasInvert
-      $attachCanvas[]
-  - description: Effet négatif puis retour
-    code: |
-      $canvasInvert
-      $canvasInvert  ;; Retour à l'original
 ---
 
 # $canvasInvert

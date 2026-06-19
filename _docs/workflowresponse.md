@@ -6,19 +6,6 @@ category: "Workflows & Automations"
 function_name: workflowResponse
 syntax: $workflowResponse
 description: Retourne la dernière réponse ou valeur produite par un workflow BDFD. Utile pour enchaîner des workflows ou récupérer des résultats.
-parameters: []
-returns:
-  - type: string
-    description: La réponse du dernier workflow exécuté.
-related:
-  - $workflow
-  - $input
-  - $customID
-examples:
-  - description: Récupérer la réponse d'un workflow
-    code: |
-      $workflow[monWorkflow;param1;param2]
-      $sendMessage[Réponse du workflow : $workflowResponse]
 ---
 # $workflowResponse
 

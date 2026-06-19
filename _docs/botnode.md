@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: botNode
 syntax: $botNode
 description: Retourne l'identifiant du nœud (runner) sur lequel le bot est exécuté.
-parameters: []
-returns:
-  - type: string
-    description: Le nom ou l'ID du nœud d'exécution du bot.
-related:
-  - $nodeVersion
-  - $scriptLanguage
-  - $hostingExpireTime
-examples:
-  - description: Afficher le nœud
-    code: |
-      $sendMessage[Bot sur le nœud : $botNode]
-  - description: Information debug
-    code: |
-      $sendMessage[Node: "$botNode | Runtime: $nodeVersion | Lang: $scriptLanguage]"
 ---
 
 # $botNode

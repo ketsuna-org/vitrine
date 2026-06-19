@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: getMentionableSelectUserIDs
 syntax: $getMentionableSelectUserIDs[(separator)]
 description: Récupère tous les IDs des entités mentionnables (utilisateurs et rôles) sélectionnées via un menu mentionnable à choix multiples.
-parameters:
-  - name: separator
-    description: (Optionnel) Le séparateur entre les IDs. Par défaut ", ".
-returns:
-  - type: string
-    description: La liste des IDs sélectionnés, séparés par le délimiteur choisi.
-related:
-  - $getMentionableSelectUserID
-  - $getUserSelectUserIDs
-  - $getRoleSelectRoleIDs
-examples:
-  - description: Tous les mentionnables (virgule)
-    code: $getMentionableSelectUserIDs[, ]
-  - description: Avec séparateur point-virgule
-    code: $getMentionableSelectUserIDs[;]
 ---
 
 # $getMentionableSelectUserIDs

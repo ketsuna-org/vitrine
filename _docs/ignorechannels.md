@@ -6,24 +6,6 @@ category: "Moderation"
 function_name: ignoreChannels
 syntax: $ignoreChannels[channelID1;channelID2;...]
 description: Fonction guard qui ignore silencieusement l'exécution de la commande si elle est déclenchée dans l'un des channels listés.
-parameters:
-  - name: channelID1, channelID2, ...
-    description: Liste des IDs de channels à ignorer (blacklist).
-returns: []
-related:
-  - $onlyForChannels
-  - $onlyForCategories
-  - $ignoreLinks
-  - $channelID
-examples:
-  - description: Ignorer la commande dans un salon spécifique
-    code: |
-      $ignoreChannels[123456789012345678]
-      $sendMessage[Commande exécutable partout sauf salon interdit.]
-  - description: Ignorer plusieurs salons
-    code: |
-      $ignoreChannels[111;222;333]
-      $sendMessage[OK.]
 ---
 
 # $ignoreChannels

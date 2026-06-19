@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: getMentionableSelectUserID
 syntax: $getMentionableSelectUserID[(index)]
 description: Récupère l'ID de l'entité mentionnable (utilisateur ou rôle) sélectionnée via un menu de sélection mentionnable (mentionable select).
-parameters:
-  - name: index
-    description: (Optionnel) L'index de l'entité sélectionnée. Par défaut 1 (première entité).
-returns:
-  - type: string
-    description: L'ID de l'utilisateur ou du rôle sélectionné, ou une chaîne vide si aucune sélection.
-related:
-  - $getMentionableSelectUserIDs
-  - $getUserSelectUserID
-  - $getRoleSelectRoleID
-  - $getChannelSelectChannelID
-examples:
-  - description: Récupérer le premier mentionnable
-    code: $getMentionableSelectUserID
-  - description: Récupérer le 3ème
-    code: $getMentionableSelectUserID[3]
 ---
 
 # $getMentionableSelectUserID

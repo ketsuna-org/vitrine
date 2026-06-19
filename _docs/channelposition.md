@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: channelPosition
 syntax: $channelPosition[(channelID)]
 description: Retourne la position d'un salon dans la liste des salons Discord.
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
-returns:
-  - type: integer
-    description: La position du salon (entier, 0 étant le plus haut).
-related:
-  - $channelID
-  - $channelName
-  - $channelCount
-examples:
-  - description: Position du salon courant
-    code: "$sendMessage[Position : $channelPosition]"
-  - description: Position d'un salon spécifique
-    code: "$sendMessage[Position : $channelPosition[123456789012345678]]"
 ---
 
 # $channelPosition

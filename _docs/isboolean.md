@@ -6,27 +6,6 @@ category: "Math & Text"
 function_name: isBoolean
 syntax: $isBoolean[value]
 description: Vérifie si une valeur est strictement un booléen (true ou false).
-parameters:
-  - name: value
-    description: La valeur à tester.
-returns:
-  - type: boolean
-    description: true si la valeur est true ou false (booléen BDFD), false sinon.
-related:
-  - $isInteger
-  - $isNumber
-  - $isValidHex
-examples:
-  - description: Tester un booléen
-    code: |
-      $if[$isBoolean[true]==true]
-        $sendMessage[C'est un booléen !]
-      $endif
-  - description: Tester une chaîne
-    code: |
-      $if[$isBoolean[hello]==false]
-        $sendMessage[Ce n'est pas un booléen.]
-      $endif
 ---
 
 # $isBoolean

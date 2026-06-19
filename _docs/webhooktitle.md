@@ -6,22 +6,6 @@ category: "Webhooks & Integrations"
 function_name: webhookTitle
 syntax: $webhookTitle[text]
 description: Définit le titre de l'embed pour le prochain message envoyé via $webhookSend.
-parameters:
-  - name: text
-    description: Le texte du titre de l'embed. Maximum 256 caractères. Supporte les variables BDFD.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Définit le titre du prochain embed webhook.
-related:
-  - $webhookDescription
-  - $webhookFooter
-  - $webhookColor
-  - $webhookSend
-examples:
-  - description: Titre simple
-    code: $webhookTitle[Annonce importante]
-  - description: Titre avec variables
-    code: $webhookTitle[Bienvenue sur $serverName !]
 ---
 
 # $webhookTitle

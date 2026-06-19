@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: botName
 syntax: $botName
 description: Retourne le nom d'utilisateur du bot.
-parameters: []
-returns:
-  - type: string
-    description: Le nom d'utilisateur du bot.
-related:
-  - $botID
-  - $botOwnerID
-  - $botAvatar
-examples:
-  - description: Afficher le nom du bot
-    code: |
-      $sendMessage[Je suis $botName !]
-  - description: Dans un embed
-    code: |
-      $title[$botName - Informations]
-      $description[Bot officiel du serveur]
-      $sendMessage[]
 ---
 
 # $botName

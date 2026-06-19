@@ -6,17 +6,6 @@ category: "Text Manipulation"
 function_name: removeLinks
 syntax: $removeLinks
 description: Supprime toutes les URLs (liens HTTP/HTTPS) d'un texte. Utile pour la modération anti-spam.
-parameters: []
-returns:
-  - type: string
-    description: Le texte sans les liens.
-related:
-  - $removeContains
-  - $replaceText
-  - $ignoreLinks
-examples:
-  - description: Supprimer les liens d'un message
-    code: "$sendMessage[Message sans liens : $removeLinks]"
 ---
 # $removeLinks
 

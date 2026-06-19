@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: onlyForRoleIDs
 syntax: $onlyForRoleIDs[roleID1;roleID2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution si l'utilisateur ne possède aucun des rôles spécifiés par ID. Alias de $onlyForRoles.
-parameters:
-  - name: roleID1, roleID2, ...
-    description: Liste des IDs de rôles autorisés.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur.
-    optional: true
-returns: []
-related:
-  - $onlyForRoles
-  - $blacklistRoleIDs
-  - $roleID
-  - $hasRole
-examples:
-  - description: Restreindre au rôle Staff
-    code: |
-      $onlyForRoleIDs[123456789012345678;❌ Réservé au staff.]
-      $sendMessage[Panneau staff.]
 ---
 
 # $onlyForRoleIDs

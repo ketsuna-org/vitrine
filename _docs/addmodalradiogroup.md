@@ -6,40 +6,6 @@ category: "Embed & Message"
 function_name: addModalRadioGroup
 syntax: $addModalRadioGroup[customId;label;(required)]
 description: Crée un groupe de boutons radio dans un modal. L'utilisateur ne peut sélectionner qu'une seule option à la fois. Les options sont ajoutées avec $addRadioGroupOption[].
-parameters:
-  - name: customId
-    type: string
-    required: true
-    description: Identifiant unique du groupe radio.
-  - name: label
-    type: string
-    required: true
-    description: Étiquette affichée au-dessus du groupe.
-  - name: required
-    type: string
-    required: false
-    default: "yes"
-    description: "yes" si une sélection est obligatoire, "no" sinon.
-returns:
-  type: void
-  description: Initialise un groupe de boutons radio dans le modal en cours.
-related:
-  - newModal
-  - addRadioGroupOption
-  - addModalCheckboxGroup
-  - addCheckboxGroupOption
-examples:
-  - description: Groupe radio obligatoire
-    code: |
-      $addModalRadioGroup[gender;Genre;yes]
-      $addRadioGroupOption[gender;Homme;male]
-      $addRadioGroupOption[gender;Femme;female]
-      $addRadioGroupOption[gender;Autre;other]
-  - description: Groupe radio optionnel
-    code: |
-      $addModalRadioGroup[plan;Abonnement;no]
-      $addRadioGroupOption[;Gratuit;free;Accès limité;yes]
-      $addRadioGroupOption[;Premium;premium;Accès complet;no]
 ---
 
 # $addModalRadioGroup[] — Groupe de Boutons Radio

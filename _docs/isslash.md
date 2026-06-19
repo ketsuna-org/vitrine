@@ -6,29 +6,6 @@ category: "Math & Text"
 function_name: isSlash
 syntax: $isSlash
 description: Vérifie si la commande a été déclenchée par une commande slash.
-parameters: []
-returns:
-  - type: boolean
-    description: true si déclenchée par slash command, false si commande prefix.
-related:
-  - $commandType
-  - $commandName
-  - $isTicket
-examples:
-  - description: Vérifier le type de déclenchement
-    code: |
-      $if[$isSlash==true]
-        $sendMessage[Commande slash détectée.]
-      $else
-        $sendMessage[Commande prefix détectée.]
-      $endif
-  - description: Réponse différenciée
-    code: |
-      $if[$isSlash==true]
-        $sendEphemeral[Réponse privée en slash.]
-      $else
-        $sendMessage[Réponse publique en prefix.]
-      $endif
 ---
 
 # $isSlash

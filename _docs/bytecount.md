@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: byteCount
 syntax: $byteCount[text]
 description: Calcule et retourne le nombre d'octets (bytes) d'une chaîne de texte. Utile pour vérifier la taille d'un message avant envoi.
-parameters:
-  - name: text
-    description: Le texte dont on veut calculer la taille en octets.
-returns:
-  - type: string (number)
-    description: Le nombre d'octets du texte fourni.
-related:
-  - $length
-  - $charCount
-  - $messageLength
-examples:
-  - description: Calculer la taille d'un message
-    code: $byteCount[$message]
-  - description: Calculer la taille d'une variable
-    code: $byteCount[$getVar[data]]
 ---
 
 # $byteCount

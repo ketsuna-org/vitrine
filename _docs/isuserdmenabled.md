@@ -6,29 +6,6 @@ category: "Math & Text"
 function_name: isUserDmEnabled
 syntax: $isUserDmEnabled[userID]
 description: Vérifie si les messages privés (DM) d'un utilisateur sont ouverts.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à vérifier.
-returns:
-  - type: boolean
-    description: true si les DMs sont ouverts, false sinon.
-related:
-  - $isBanned
-  - $sendDM
-  - $dmChannelID
-examples:
-  - description: Vérifier les DMs
-    code: |
-      $if[$isUserDmEnabled[$mentioned[1]]==true]
-        $sendMessage[DMs ouverts !]
-      $endif
-  - description: Envoyer un DM si possible
-    code: |
-      $if[$isUserDmEnabled[$authorID]==true]
-        $sendDM[$authorID;Message privé]
-      $else
-        $sendMessage[Vos DMs sont fermés.]
-      $endif
 ---
 
 # $isUserDmEnabled

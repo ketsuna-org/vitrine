@@ -6,33 +6,6 @@ category: "Math & Text"
 function_name: sub
 syntax: $sub[a;b]
 description: Soustrait la deuxième valeur de la première (a - b).
-parameters:
-  - name: a
-    type: number
-    required: true
-    description: La valeur de départ (minuend).
-  - name: b
-    type: number
-    required: true
-    description: La valeur à soustraire (subtrahend).
-returns:
-  type: string (number)
-  description: Le résultat de la soustraction a - b.
-related:
-  - calculate
-  - sum
-  - multi
-  - divide
-examples:
-  - title: Soustraction simple
-    code: |
-      $sub[10;3]
-  - title: Résultat négatif
-    code: |
-      $sub[5;10]
-  - title: Avec des variables
-    code: |
-      $sub[$getVar[revenu];$getVar[depense]]
 ---
 
 # $sub[]

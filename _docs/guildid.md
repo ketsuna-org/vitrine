@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: guildID
 syntax: $guildID
 description: Alias de $serverID. Retourne l'identifiant unique (Snowflake) du serveur Discord.
-parameters: []
-returns:
-  type: string
-  description: L'ID du serveur (guild).
-related:
-  - $serverID
-  - $guildName
-  - $serverName
-  - $guildExists
-examples:
-  - description: Afficher l'ID du serveur
-    code: |
-      $sendMessage[Guild ID : $guildID]
-  - description: Restreindre une commande
-    code: |
-      $if[$guildID!=123456789012345678]
-      $sendMessage[Non autorisé sur ce serveur.]
-      $stop
-      $endif
 ---
 
 # $guildID[] — Identifiant du Serveur (Alias)

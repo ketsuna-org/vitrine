@@ -6,24 +6,6 @@ category: "Date & Time"
 function_name: month
 syntax: $month
 description: Retourne le mois actuel sous forme de numéro (1 à 12). Résolu au runtime.
-parameters: []
-returns:
-  - type: number (string)
-    description: Le numéro du mois actuel, entre 1 (janvier) et 12 (décembre).
-related:
-  - $date[]
-  - $day[]
-  - $year[]
-examples:
-  - description: Afficher le mois actuel
-    code: $month
-  - description: Message conditionnel selon le mois
-    code: |
-      $if[$month==12]
-      🎄 C'est Noël ce mois-ci !
-      $elseif[$month==1]
-      🎆 Bonne année !
-      $endif
 ---
 
 # $month[]

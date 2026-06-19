@@ -6,26 +6,6 @@ category: "Control Flow"
 function_name: suppressErrors
 syntax: $suppressErrors
 description: Suppresses all runtime error messages that would normally be displayed to the user when a command encounters an error.
-returns:
-  type: void
-  description: Enables error suppression for the current command execution. Returns nothing.
-related:
-  - embedSuppressErrors
-  - suppressErrorLogging
-  - onlyIf
-  - defer
-examples:
-  - title: Supprimer les erreurs d'une commande risquée
-    code: |
-      $suppressErrors
-      $httpGet[https://api.unstable.example.com/data]
-      $sendMessage[Données : $httpResult]
-      Résultat: (si l'API échoue) → aucun message d'erreur affiché
-  - title: Commande silencieuse sans erreurs
-    code: |
-      $suppressErrors
-      $var[resultat]
-      $sendMessage[Résultat : $resultat]
 ---
 $suppressErrors is a toggle that prevents runtime errors from being sent to the user. When active, if your command encounters an error (invalid function call, missing variable, failed HTTP request, etc.), the error message is silently swallowed instead of being displayed in the channel.
 

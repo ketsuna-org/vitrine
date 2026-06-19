@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: userInfo
 syntax: $userInfo[userID;(property)]
 description: Retourne un objet JSON contenant les informations d'un utilisateur, ou une propriété spécifique si demandée.
-parameters:
-  - name: userID
-    description: "L'ID de l'utilisateur cible (optionnel, défaut : utilisateur déclencheur)."
-  - name: property
-    description: "Optionnel. Nom de la propriété à extraire (ex: \"username\", \"id\", \"bot\", \"avatar\"). Si omis, retourne l'objet JSON complet."
-returns:
-  - type: object/string
-    description: Objet JSON des informations utilisateur, ou la valeur de la propriété demandée.
-related:
-  - $userID
-  - $userName
-  - $isBot
-examples:
-  - description: Obtenir toutes les infos utilisateur en JSON
-    code: $userInfo
-  - description: Obtenir le nom d'un utilisateur par ID
-    code: $userInfo[123456789012345678;username]
-  - description: Vérifier si un utilisateur est un bot
-    code: $userInfo[$mentioned;bot]
 ---
 
 # $userInfo

@@ -6,18 +6,6 @@ category: "Date & Time"
 function_name: getTimestamp
 syntax: $getTimestamp
 description: Retourne le timestamp Unix actuel en secondes. Résolu au runtime.
-parameters: []
-returns:
-  - type: number (string)
-    description: Le timestamp Unix actuel en secondes depuis l'epoch (1er janvier 1970).
-related:
-  - $time[]
-  - $date[]
-examples:
-  - description: Obtenir le timestamp actuel
-    code: $getTimestamp
-  - description: Calculer la différence entre deux timestamps
-    code: $sub[$getTimestamp;1718697600]
 ---
 
 # $getTimestamp[]

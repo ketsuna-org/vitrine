@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: rulesChannelID
 syntax: $rulesChannelID
 description: Retourne l'identifiant (ID) du salon des règles configuré sur le serveur Discord (serveur Communauté).
-parameters: []
-returns:
-  type: string
-  description: L'ID du salon des règles, ou une chaîne vide si non configuré (serveur non-communauté).
-related:
-  - $systemChannelID
-  - $afkChannelID
-  - $serverFeatures
-  - $channelID
-examples:
-  - description: Afficher le salon des règles
-    code: |
-      $sendMessage[Salon des règles : <#$rulesChannelID>]
-  - description: Vérifier si configuré
-    code: |
-      $if[$rulesChannelID==]
-      $sendMessage[Pas de salon des règles.]
-      $endif
 ---
 
 # $rulesChannelID[] — Salon des Règles

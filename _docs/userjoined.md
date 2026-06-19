@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: userJoined
 syntax: $userJoined
 description: Retourne la date à laquelle l'utilisateur a rejoint le serveur Discord actuel.
-parameters: []
-returns:
-  - type: date/string
-    description: La date d'arrivée de l'utilisateur sur le serveur.
-related:
-  - $userJoinedDiscord
-  - $memberID
-  - $nickname
-examples:
-  - description: Obtenir la date de join
-    code: $userJoined
-  - description: Afficher la date dans un embed
-    code: |
-      $title[Bienvenue !]
-      $description[Vous avez rejoint le serveur le **$userJoined**]
-      $color[#57F287]
-      $sendMessage[]
 ---
 
 # $userJoined

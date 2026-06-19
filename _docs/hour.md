@@ -6,26 +6,6 @@ category: "Date & Time"
 function_name: hour
 syntax: $hour
 description: Retourne l'heure actuelle (0 à 23). Résolu au runtime.
-parameters: []
-returns:
-  - type: number (string)
-    description: L'heure actuelle, entre 0 (minuit) et 23 (23h).
-related:
-  - $minute[]
-  - $second[]
-  - $time[]
-examples:
-  - description: Afficher l'heure actuelle
-    code: $hour
-  - description: Message conditionnel selon l'heure
-    code: |
-      $if[$hour<12]
-      ☀️ Bonjour !
-      $elseif[$hour<18]
-      🌤️ Bon après-midi !
-      $else
-      🌙 Bonne soirée !
-      $endif
 ---
 
 # $hour[]

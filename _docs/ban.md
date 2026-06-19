@@ -6,34 +6,6 @@ category: "Moderation"
 function_name: ban
 syntax: $ban[userID;(reason);(deleteMessagesDays)]
 description: Bannit un utilisateur du serveur Discord.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à bannir. Obligatoire.
-  - name: reason
-    description: Optionnel. La raison du bannissement.
-  - name: deleteMessagesDays
-    description: Optionnel. Nombre de jours de messages à supprimer (0-7). Défaut 0.
-returns:
-  - type: void
-    description: Bannit l'utilisateur. Ne retourne rien.
-related:
-  - $banID
-  - $kick
-  - $unban
-  - $softban
-examples:
-  - description: Bannir un utilisateur par mention
-    code: |
-      $ban[$mentioned[1];Comportement inapproprié;7]
-      $sendMessage[<@$mentioned[1]> a été banni.]
-  - description: Bannir avec vérification admin
-    code: |
-      $if[$isAdmin==true]
-        $ban[$mentioned[1];Non-respect des règles;0]
-        $sendMessage[Utilisateur banni.]
-      $else
-        $sendMessage[Permission refusée.]
-      $endif
 ---
 
 # $ban

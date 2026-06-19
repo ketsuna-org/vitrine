@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: discriminator
 syntax: $discriminator
 description: Retourne le discriminateur legacy de l'utilisateur (code à 4 chiffres). Retourne "0" pour les comptes pompom (nouveaux utilisateurs sans discriminateur).
-parameters: []
-returns:
-  - type: string
-    description: "Le discriminateur à 4 chiffres (ex: \"1234\") ou \"0\" pour les comptes pompom."
-related:
-  - $userTag
-  - $userName
-  - $userInfo
-examples:
-  - description: Obtenir le discriminateur
-    code: $discriminator
-  - description: Vérifier si l'utilisateur est legacy
-    code: |
-      $if[$discriminator!=0]
-        $sendMessage[Compte legacy : $userTag]
-      $else
-        $sendMessage[Compte pompom : $userName]
-      $endif
 ---
 
 # $discriminator

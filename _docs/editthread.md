@@ -6,31 +6,6 @@ category: "Moderation"
 function_name: editThread
 syntax: $editThread[threadID;name;(archived);(locked);(autoArchiveDuration)]
 description: "Modifie les propriétés d'un fil de discussion existant : nom, statut d'archivage, verrouillage et durée d'archivage automatique."
-parameters:
-  - name: threadID
-    description: L'ID du thread à modifier.
-  - name: name
-    description: Le nouveau nom du thread.
-  - name: archived
-    description: (Optionnel) true/false pour archiver ou désarchiver le thread.
-  - name: locked
-    description: (Optionnel) true/false pour verrouiller ou déverrouiller le thread.
-  - name: autoArchiveDuration
-    description: (Optionnel) Nouvelle durée d'archivage automatique (60, 1440, 4320, 10080).
-returns:
-  - type: aucun
-    description: Ne retourne rien. Le thread est modifié silencieusement.
-related:
-  - $startThread
-  - $threadAddMember
-  - $threadMessageCount
-examples:
-  - description: Renommer un thread
-    code: $editThread[$threadID;Nouveau nom]
-  - description: Archiver un thread
-    code: $editThread[$threadID;Discussion;true]
-  - description: Déverrouiller un thread
-    code: $editThread[$threadID;Support;false;false]
 ---
 
 # $editThread

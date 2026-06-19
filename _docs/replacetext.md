@@ -6,44 +6,6 @@ category: "Math & Text"
 function_name: replaceText
 syntax: $replaceText[input;search;replacement]
 description: Replaces all occurrences of a search string with a replacement string in the given input text.
-parameters:
-  - name: input
-    type: string
-    required: true
-    description: The source text in which to perform replacements.
-  - name: search
-    type: string
-    required: true
-    description: The substring to find and replace. Case-sensitive. All occurrences are replaced.
-  - name: replacement
-    type: string
-    required: true
-    description: The text to substitute in place of each matching occurrence. Can be empty to remove matches.
-returns:
-  type: string
-  description: The input text with all occurrences of 'search' replaced by 'replacement'.
-related:
-  - toLowercase
-  - toUppercase
-  - trimSpace
-  - cropText
-examples:
-  - title: Simple word replacement
-    code: |
-      $replaceText[Hello World;World;Universe]
-      Result: "Hello Universe"
-  - title: Remove all spaces
-    code: |
-      $replaceText[h e l l o; ;]
-      Result: "hello"
-  - title: Format user input
-    code: |
-      $replaceText[$message;badword;****]
-      Result: censored message
-  - title: Multiple replacements (nested)
-    code: |
-      $replaceText[$replaceText[$message;old;new];foo;bar]
-      Result: All "old" → "new" and all "foo" → "bar"
 ---
 # $replaceText — Replace Text
 

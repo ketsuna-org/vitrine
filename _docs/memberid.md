@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: memberID
 syntax: $memberID
 description: Retourne l'ID Discord de l'utilisateur membre. Équivalent à $userID dans la plupart des contextes, mais explicitement orienté "membre du serveur".
-parameters: []
-returns:
-  - type: snowflake (string)
-    description: L'ID Discord du membre.
-related:
-  - $userID
-  - $authorID
-  - $memberNick
-  - $memberPerms
-examples:
-  - description: Obtenir l'ID du membre
-    code: $memberID
-  - description: Afficher l'ID dans un embed
-    code: |
-      $title[Informations membre]
-      $description[**ID membre :** $memberID]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $memberID

@@ -6,19 +6,6 @@ category: "Flags & Debug"
 function_name: disableSpecialEscaping
 syntax: $disableSpecialEscaping
 description: Désactive l'échappement automatique des caractères spéciaux (crochets, points-virgules, etc.) dans les paramètres. Les caractères sont interprétés littéralement.
-parameters: []
-returns:
-  - type: void
-    description: Désactive l'échappement spécial. Ne retourne rien.
-related:
-  - $alternativeParsing
-  - $disableInnerSpaceRemoval
-  - $unEscape
-examples:
-  - description: Désactiver l'échappement
-    code: |
-      $disableSpecialEscaping
-      $sendMessage[Utilisez [crochets] et des points-virgules;librement]
 ---
 # $disableSpecialEscaping
 

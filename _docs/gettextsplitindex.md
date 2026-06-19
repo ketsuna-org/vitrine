@@ -6,26 +6,6 @@ category: "Math & Text"
 function_name: getTextSplitIndex
 syntax: $getTextSplitIndex
 description: Returns the current index during text-split iteration within loops. Useful for tracking position inside a split loop.
-parameters: []
-returns:
-  type: string (number)
-  description: The current zero-based index of the iteration within the most recent text-split loop. Returns "0" if not inside a split loop.
-related:
-  - textSplit
-  - splitText
-  - getTextSplitLength
-examples:
-  - title: Show index during loop
-    code: |
-      $textSplit[apple;banana;orange;grape;]
-      Loop: #$getTextSplitIndex - $splitText
-      Result: "0 - apple", "1 - banana", "2 - orange", "3 - grape"
-  - title: Index-based conditional
-    code: |
-      $textSplit[a;b;c;d;e;f;]
-      $if[$getTextSplitIndex<3]
-        $sendMessage[First three: $splitText]
-      $endif
 ---
 # $getTextSplitIndex — Current Split Iteration Index
 

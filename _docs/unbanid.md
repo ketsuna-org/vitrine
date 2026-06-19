@@ -6,19 +6,6 @@ category: "Moderation"
 function_name: unBanID
 syntax: $unBanID[userID]
 description: Débannit un utilisateur du serveur en utilisant uniquement son ID. Fonctionne de manière similaire à $unBan mais optimisé pour les IDs bruts.
-parameters:
-  - name: userID
-    description: L'ID Discord de l'utilisateur à débannir.
-returns:
-  - type: string
-    description: Chaîne vide en cas de succès, ou message d'erreur en cas d'échec.
-related:
-  - $unBan
-  - $ban
-  - $isBanned
-examples:
-  - description: Débannir un utilisateur par ID
-    code: $unBanID[123456789012345678]
 ---
 
 # $unBanID

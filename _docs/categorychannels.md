@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: categoryChannels
 syntax: $categoryChannels[categoryID;(separator)]
 description: Retourne la liste des noms des salons appartenant à une catégorie spécifique.
-parameters:
-  - name: categoryID
-    description: L'ID de la catégorie à lister.
-  - name: separator
-    description: "Optionnel. Séparateur entre les noms (défaut : , )."
-returns:
-  - type: string
-    description: Liste des noms de salons dans la catégorie.
-related:
-  - $channelCategoryID
-  - $categoryID
-  - $categoryCount
-  - $channelNames
-examples:
-  - description: Salons de la catégorie courante
-    code: "$sendMessage[Salons : $categoryChannels[$categoryID]]"
-  - description: Avec séparateur retour à la ligne
-    code: $sendMessage[Salons :\n$categoryChannels[$categoryID;\n]]
 ---
 
 # $categoryChannels

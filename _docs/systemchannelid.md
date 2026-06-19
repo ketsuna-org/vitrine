@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: systemChannelID
 syntax: $systemChannelID
 description: Retourne l'identifiant (ID) du salon des messages système configuré sur le serveur Discord (messages de bienvenue et de boost).
-parameters: []
-returns:
-  type: string
-  description: L'ID du salon système, ou une chaîne vide si non configuré.
-related:
-  - $rulesChannelID
-  - $afkChannelID
-  - $channelID
-  - $serverInfo
-examples:
-  - description: Afficher le salon système
-    code: |
-      $sendMessage[Salon système : <#$systemChannelID>]
-  - description: Vérifier si configuré
-    code: |
-      $if[$systemChannelID==]
-      $sendMessage[Pas de salon système.]
-      $endif
 ---
 
 # $systemChannelID[] — Salon des Messages Système

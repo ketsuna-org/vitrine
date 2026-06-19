@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: threadRemoveMember
 syntax: $threadRemoveMember[threadID;userID]
 description: Retire un membre d'un fil de discussion (thread). L'utilisateur ne pourra plus voir ni participer au thread privé.
-parameters:
-  - name: threadID
-    description: L'ID du thread duquel retirer le membre.
-  - name: userID
-    description: L'ID de l'utilisateur à retirer du thread.
-returns:
-  - type: aucun
-    description: Ne retourne rien. L'utilisateur est retiré du thread.
-related:
-  - $threadAddMember
-  - $startThread
-  - $threadUserCount
-examples:
-  - description: Retirer un membre
-    code: $threadRemoveMember[$threadID;$authorID]
-  - description: Retirer un utilisateur mentionné
-    code: $threadRemoveMember[$threadID;$mentioned[1]]
 ---
 
 # $threadRemoveMember

@@ -6,44 +6,6 @@ category: "Control Flow"
 function_name: cooldown
 syntax: $cooldown[duration;(errorMessage)]
 description: "Enforces a cooldown on command execution. Available in three scopes: per-user ($cooldown), per-guild ($serverCooldown), and global ($globalCooldown)."
-parameters:
-  - name: duration
-    type: string
-    required: true
-    description: "Cooldown duration. Format examples: \"10s\" (seconds), \"5m\" (minutes), \"1h\" (hours), \"2d\" (days). Can also accept raw milliseconds like \"300000ms\"."
-  - name: errorMessage
-    type: string
-    required: false
-    description: Optional message sent to the user when the cooldown is active. If omitted, execution stops silently with no message.
-returns:
-  type: void
-  description: If the cooldown is not active, execution continues. If active, the optional error message is sent and execution stops via BotCreatorActionType.cooldown.
-related:
-  - changeCooldownTime
-  - getCooldown
-  - onlyIf
-  - wait
-examples:
-  - title: Cooldown utilisateur de 10 secondes
-    code: |
-      $cooldown[10s;⏳ Veuillez patienter 10 secondes entre chaque utilisation.]
-      Commande exécutée !
-  - title: Cooldown serveur de 5 minutes
-    code: |
-      $serverCooldown[5m;⏳ Cette commande a un cooldown de 5 minutes pour tout le serveur.]
-      Action serveur effectuée.
-  - title: Cooldown global de 1 heure
-    code: |
-      $globalCooldown[1h;⏳ Cette commande est en cooldown global. Réessayez plus tard.]
-      Commande globale exécutée.
-  - title: Cooldown silencieux (sans message)
-    code: |
-      $cooldown[30s]
-      Commande silencieuse exécutée.
-  - title: Cooldown avec durée personnalisée
-    code: |
-      $cooldown[2m30s;⏳ Patience ! Cooldown de 2 minutes 30 secondes.]
-      Traitement...
 ---
 The cooldown family prevents command spam by enforcing a waiting period between successive uses. BDFD provides three variants, each targeting a different scope of enforcement.
 

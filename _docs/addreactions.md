@@ -6,24 +6,6 @@ category: "Moderation"
 function_name: addReactions
 syntax: $addReactions[emoji1;emoji2;...]
 description: Ajoute une ou plusieurs réactions au message de réponse du bot (le message envoyé par la commande en cours). Les émojis sont ajoutés séquentiellement.
-parameters:
-  - name: emoji1;emoji2;...
-    description: Liste des émojis à ajouter, séparés par des points-virgules. Peut être des émojis Unicode standards ou des émojis personnalisés.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Les réactions sont ajoutées au message de réponse.
-related:
-  - $addCmdReactions
-  - $addMessageReactions
-  - $clearReactions
-  - $removeReaction
-examples:
-  - description: Ajouter une réaction simple
-    code: $addReactions[👍]
-  - description: Ajouter plusieurs réactions
-    code: $addReactions[👍;❤️;🔥]
-  - description: Ajouter un émoji personnalisé
-    code: $addReactions[<:monEmoji:123456789>]
 ---
 
 # $addReactions

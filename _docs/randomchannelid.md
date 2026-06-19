@@ -6,19 +6,6 @@ category: "Math & Text"
 function_name: randomChannelID
 syntax: $randomChannelID
 description: Retourne l'ID d'un salon aléatoire présent sur le serveur.
-parameters: []
-returns:
-  - type: string
-    description: L'ID Discord d'un salon aléatoire du serveur.
-related:
-  - $randomUserID[]
-  - $randomRoleID[]
-  - $randomGuildID[]
-examples:
-  - description: Obtenir un ID de salon aléatoire
-    code: $randomChannelID
-  - description: Mentionner un salon aléatoire
-    code: <#$randomChannelID>
 ---
 
 # $randomChannelID[]

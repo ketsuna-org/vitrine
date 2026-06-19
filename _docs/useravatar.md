@@ -6,30 +6,6 @@ category: "Entity Info"
 function_name: userAvatar
 syntax: $userAvatar
 description: Retourne l'URL de l'avatar global de l'utilisateur qui a déclenché la commande.
-parameters: []
-returns:
-  - type: string (URL)
-    description: L'URL de l'avatar global de l'utilisateur, ou l'avatar par défaut Discord.
-related:
-  - $userServerAvatar
-  - $userBanner
-  - $authorAvatar
-examples:
-  - description: Obtenir l'URL de l'avatar
-    code: $userAvatar
-  - description: Afficher l'avatar dans un embed
-    code: |
-      $title[Avatar de $userName]
-      $image[$userAvatar]
-      $color[#5865F2]
-      $sendMessage[]
-  - description: Utiliser l'avatar comme miniature
-    code: |
-      $title[Profil]
-      $thumbnail[$userAvatar]
-      $description[Profil de $userName]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $userAvatar

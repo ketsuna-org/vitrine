@@ -6,32 +6,6 @@ category: "Embed & Message"
 function_name: addSection
 syntax: $addSection[(id)]
 description: Crée une section à l'intérieur d'un conteneur. Les sections permettent d'organiser le contenu (champs, texte, thumbnails) de manière structurée dans un conteneur visuel.
-parameters:
-  - name: id
-    type: string
-    required: false
-    description: Identifiant optionnel de la section pour référence.
-returns:
-  type: void
-  description: Initialise une nouvelle section dans le conteneur parent.
-related:
-  - addContainer
-  - addThumbnail
-  - addField
-  - addTextDisplay
-examples:
-  - description: Section simple dans un conteneur
-    code: |
-      $addContainer[main;#5865F2;no]
-      $addSection
-      $addField[Titre;Contenu;no]
-  - description: Plusieurs sections dans un conteneur
-    code: |
-      $addContainer[info;#2ECC71;no]
-      $addSection[header]
-      $addField[Nom;$username;yes]
-      $addSection[details]
-      $addField[Rôle;Admin;yes]
 ---
 
 # $addSection[] — Section dans un Conteneur

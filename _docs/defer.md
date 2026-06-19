@@ -6,30 +6,6 @@ category: "Control Flow"
 function_name: defer
 syntax: $defer
 description: Defers the interaction response, giving the bot extra time to process a command before Discord's 3-second timeout. Must be called at the very beginning of a command.
-returns:
-  type: void
-  description: Sends a deferred response to Discord. Returns nothing to the script.
-related:
-  - wait
-  - awaitFunc
-  - suppressErrors
-examples:
-  - title: Commande longue avec defer
-    code: |
-      $defer
-      $wait[5s]
-      $sendMessage[Traitement terminé après 5 secondes !]
-  - title: Appel API différé
-    code: |
-      $defer
-      $httpGet[https://api.example.com/slow-endpoint]
-      $sendMessage[Résultat : $httpResult]
-  - title: Traitement lourd avec defer
-    code: |
-      $defer
-      Traitement des données en cours...
-      $wait[3s]
-      $sendMessage[✅ Données traitées avec succès.]
 ---
 $defer is essential for any command that may take longer than 3 seconds to execute. Discord enforces a strict 3-second timeout on interaction responses: if your bot doesn't respond within that window, the interaction fails with "This interaction failed." `$defer` tells Discord "I got your command, I'm working on it" — resetting the timeout and giving you up to 15 minutes to complete processing.
 

@@ -6,35 +6,6 @@ category: "Embed & Message"
 function_name: image
 syntax: $image[url;(embedIndex)]
 description: Définit la grande image d'un embed Discord. L'image apparaît en bas de l'embed, sous les fields et la description, en pleine largeur.
-parameters:
-  - name: url
-    description: "URL de l'image à afficher. Formats supportés : PNG, JPG, GIF, WebP."
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
-returns:
-  - type: void
-    description: Modifie la réponse en cours de construction.
-related:
-  - $thumbnail[]
-  - $title[]
-  - $description[]
-  - $sendMessage[]
-examples:
-  - description: Embed avec une image
-    code: |
-      $title[Belle photo du jour]
-      $description[Voici la photo du jour !]
-      $image[https://example.com/photo.jpg]
-      $color[#5865F2]
-  - description: Image avec variable dynamique
-    code: $image[$authorAvatar]
-  - description: Embed complet avec image et thumbnail
-    code: |
-      $title[Produit en vedette]
-      $description[**Prix :** 19.99€]
-      $thumbnail[https://example.com/icon.png]
-      $image[https://example.com/product-banner.png]
-      $color[#FEE75C]
 ---
 
 # $image[]

@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: banID
 syntax: $banID[userID;(reason)]
 description: Bannit un utilisateur par son ID utilisateur.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à bannir. Obligatoire.
-  - name: reason
-    description: Optionnel. La raison du bannissement.
-returns:
-  - type: void
-    description: Bannit l'utilisateur. Ne retourne rien.
-related:
-  - $ban
-  - $kick
-  - $unban
-examples:
-  - description: Bannir par ID
-    code: |
-      $banID[123456789012345678;Comportement toxique]
-      $sendMessage[Utilisateur banni.]
 ---
 
 # $banID

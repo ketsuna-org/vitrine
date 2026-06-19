@@ -6,42 +6,6 @@ category: "Control Flow"
 function_name: wait
 syntax: $wait[duration]
 description: Pauses command execution for a specified duration. Uses BotCreatorActionType.wait to suspend processing.
-parameters:
-  - name: duration
-    type: string
-    required: true
-    description: "The pause duration. Format: \"1s\" (seconds), \"500ms\" (milliseconds), \"2m\" (minutes). Default unit is seconds if no suffix is provided."
-returns:
-  type: void
-  description: Suspends execution for the specified duration. Returns nothing directly.
-related:
-  - defer
-  - awaitFunc
-  - cooldown
-  - jumpToAction
-examples:
-  - title: Pause simple d'une seconde
-    code: |
-      $sendMessage[Début du traitement...]
-      $wait[1s]
-      $sendMessage[✅ Traitement terminé.]
-  - title: Pause en millisecondes
-    code: |
-      $sendMessage[Patientez...]
-      $wait[500ms]
-      $sendMessage[Voici le résultat !]
-  - title: Animation simple avec plusieurs pauses
-    code: |
-      $sendMessage[⚪ Chargement...]
-      $wait[1s]
-      $sendMessage[🟡 Presque prêt...]
-      $wait[1s]
-      $sendMessage[🟢 Terminé !]
-  - title: Pause avant une action risquée
-    code: |
-      $sendMessage[⚠️ Action destructive dans 5 secondes...]
-      $wait[5s]
-      Action exécutée.
 ---
 $wait is a simple but essential function for introducing timed delays in command execution. It suspends the command for the exact duration specified, then resumes on the next line.
 

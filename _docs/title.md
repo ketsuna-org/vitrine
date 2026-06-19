@@ -6,28 +6,6 @@ category: "Embed & Message"
 function_name: title
 syntax: $title[text;(embedIndex)]
 description: Définit le titre d'un embed Discord. Le titre apparaît en haut de l'embed, en gras et avec une taille de police plus grande que la description.
-parameters:
-  - name: text
-    description: Texte du titre de l'embed. Supporte le markdown (gras, italique, etc.).
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0, soit le premier embed). Permet de construire jusqu'à 10 embeds dans un même message."
-returns:
-  - type: void
-    description: Modifie la réponse en cours de construction. Ne retourne rien directement.
-related:
-  - $description[]
-  - $color[]
-  - $sendMessage[]
-examples:
-  - description: Définir le titre d'un embed simple
-    code: |
-      $title[Bienvenue sur le serveur !]
-      $description[Merci de nous avoir rejoints 🎉]
-      $color[#5865F2]
-  - description: Titre avec markdown et emoji
-    code: $title[**Annonce importante** 📢]
-  - description: Titre sur un embed spécifique (index 1)
-    code: $title[Deuxième embed;1]
 ---
 
 # $title[]

@@ -6,18 +6,6 @@ category: "Entity Info"
 function_name: boostCount
 syntax: $boostCount
 description: Retourne le nombre de boosts (améliorations de serveur) actifs sur le serveur courant.
-parameters: []
-returns:
-  - type: string (number)
-    description: Le nombre de boosts Nitro actifs sur le serveur.
-related:
-  - $boostTier
-  - $serverName
-  - $guildID
-  - $allMembersCount
-examples:
-  - description: Nombre de boosts du serveur
-    code: $boostCount
 ---
 
 # $boostCount

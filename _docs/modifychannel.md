@@ -6,31 +6,6 @@ category: "Moderation"
 function_name: modifyChannel
 syntax: $modifyChannel[channelID;name;(topic);(categoryID);(nsfw);(slowmode)]
 description: "Modifie les propriétés d'un canal existant : nom, sujet, catégorie, statut NSFW et slowmode."
-parameters:
-  - name: channelID
-    description: L'ID du canal à modifier.
-  - name: name
-    description: Le nouveau nom du canal.
-  - name: topic
-    description: (Optionnel) Nouveau sujet/description du canal.
-  - name: categoryID
-    description: (Optionnel) Nouvelle catégorie parente (ID), 0 pour retirer.
-  - name: nsfw
-    description: (Optionnel) true/false pour le marquage NSFW.
-  - name: slowmode
-    description: (Optionnel) Nouveau slowmode en secondes (0-21600).
-returns:
-  - type: aucun
-    description: Ne retourne rien. Le canal est modifié silencieusement.
-related:
-  - $createChannel
-  - $deleteChannels
-  - $editChannelPerms
-examples:
-  - description: Renommer un canal
-    code: $modifyChannel[$channelID;nouveau-nom]
-  - description: Modifier le slowmode
-    code: $modifyChannel[$channelID;$channelName;;;0;false;10]
 ---
 
 # $modifyChannel

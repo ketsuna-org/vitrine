@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: lastPinTimestamp
 syntax: $lastPinTimestamp[(channelID)]
 description: Retourne le timestamp du dernier message épinglé dans le salon courant ou spécifié.
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
-returns:
-  - type: timestamp (integer) ou string vide
-    description: Le timestamp Unix en millisecondes du dernier pin, ou "" si aucun message n'est épinglé.
-related:
-  - $lastMessageID
-  - $messageTimestamp
-  - $messageEditedTimestamp
-examples:
-  - description: Dernier pin du salon
-    code: "$sendMessage[Dernier pin : $lastPinTimestamp]"
-  - description: Vérifier si des messages épinglés
-    code: |
-      $if[$lastPinTimestamp!=]
-        $sendMessage[Dernier pin le $formatDate[$lastPinTimestamp;DD/MM/YYYY à HH:mm]]
-      $else
-        $sendMessage[Aucun message épinglé.]
-      $endif
 ---
 
 # $lastPinTimestamp

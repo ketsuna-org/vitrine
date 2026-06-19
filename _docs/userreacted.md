@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: userReacted
 syntax: $userReacted[messageID;userID;emoji]
 description: Vérifie si un utilisateur spécifique a réagi avec un emoji donné sur un message. Retourne true ou false.
-parameters:
-  - name: messageID
-    description: L'ID du message à vérifier.
-  - name: userID
-    description: L'ID de l'utilisateur dont on veut vérifier la réaction.
-  - name: emoji
-    description: L'emoji à vérifier (unicode ou format nom:ID pour les emojis personnalisés).
-returns:
-  - type: string (bool)
-    description: "true" si l'utilisateur a réagi avec cet emoji, "false" sinon.
-related:
-  - $reactionCount
-  - $getReactions
-  - $addCmdReactions
-  - $clearReactions
-examples:
-  - description: Vérifier si l'auteur a réagi avec ✅
-    code: $userReacted[$messageID;$authorID;✅]
-  - description: Vérifier un emoji personnalisé
-    code: $userReacted[$messageID;$mentioned[1];custom_emoji:123456789]
 ---
 
 # $userReacted

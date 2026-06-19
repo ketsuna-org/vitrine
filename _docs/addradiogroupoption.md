@@ -6,44 +6,6 @@ category: "Embed & Message"
 function_name: addRadioGroupOption
 syntax: $addRadioGroupOption[menuId;label;value;(description);(default)]
 description: Ajoute une option individuelle à un groupe de boutons radio dans un modal. Le menuId peut être omis pour cibler le dernier groupe créé.
-parameters:
-  - name: menuId
-    type: string
-    required: false
-    description: Identifiant du groupe radio parent. Omettre pour le dernier groupe créé.
-  - name: label
-    type: string
-    required: true
-    description: Texte affiché pour cette option radio.
-  - name: value
-    type: string
-    required: true
-    description: Valeur retournée si cette option est sélectionnée.
-  - name: description
-    type: string
-    required: false
-    description: Texte descriptif optionnel sous le label.
-  - name: default
-    type: string
-    required: false
-    default: "no"
-    description: "yes" si cette option est sélectionnée par défaut.
-returns:
-  type: void
-  description: Ajoute une option au groupe radio spécifié.
-related:
-  - addModalRadioGroup
-  - addCheckboxGroupOption
-examples:
-  - description: Option avec description
-    code: |
-      $addRadioGroupOption[plan;Premium;premium;Accès illimité à toutes les fonctionnalités;no]
-  - description: Option par défaut sans menuId
-    code: |
-      $addRadioGroupOption[;Standard;standard;Accès de base;yes]
-  - description: Option simple
-    code: |
-      $addRadioGroupOption[;Oui;yes]
 ---
 
 # $addRadioGroupOption[] — Option de Groupe Radio

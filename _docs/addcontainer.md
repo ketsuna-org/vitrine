@@ -6,34 +6,6 @@ category: "Embed & Message"
 function_name: addContainer
 syntax: $addContainer[(id);(accentColor);(spoiler)]
 description: Crée un conteneur visuel dans un message Discord. Les conteneurs peuvent regrouper des sections et afficher une bordure colorée. Supporte le mode spoiler.
-parameters:
-  - name: id
-    type: string
-    required: false
-    description: Identifiant optionnel du conteneur pour référence ultérieure.
-  - name: accentColor
-    type: string
-    required: false
-    description: "Couleur d'accentuation en hexadécimal (ex: \"#5865F2\"). Applique une bordure colorée au conteneur."
-  - name: spoiler
-    type: string
-    required: false
-    default: "no"
-    description: "yes" pour masquer le contenu du conteneur derrière un spoiler, "no" sinon.
-returns:
-  type: void
-  description: Initialise un conteneur. Les sections ($addSection) suivantes sont placées dans ce conteneur.
-related:
-  - addSection
-  - addThumbnail
-  - addMediaGallery
-examples:
-  - description: Conteneur simple
-    code: $addContainer
-  - description: Conteneur avec couleur
-    code: $addContainer[main;#5865F2;no]
-  - description: Conteneur en spoiler
-    code: $addContainer[spoiler_content;;yes]
 ---
 
 # $addContainer[] — Conteneur Visuel

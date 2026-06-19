@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: mentions
 syntax: $mentions
 description: Retourne la liste de tous les IDs des utilisateurs mentionnés dans le message, séparés par des virgules.
-parameters: []
-returns:
-  - type: list (string)
-    description: Liste des IDs des utilisateurs mentionnés, séparés par des virgules.
-related:
-  - $mentioned
-  - $isMentioned
-  - $mentionedRoles
-  - $mentionedChannels
-examples:
-  - description: Obtenir toutes les mentions
-    code: $mentions
-  - description: Lister les utilisateurs mentionnés
-    code: |
-      $if[$mentions!=]
-        $sendMessage[Utilisateurs mentionnés : $mentions]
-      $else
-        $sendMessage[Aucune mention.]
-      $endif
 ---
 
 # $mentions

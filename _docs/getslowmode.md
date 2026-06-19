@@ -6,19 +6,6 @@ category: "Server & Channels"
 function_name: getSlowmode
 syntax: $getSlowmode[(channelID)]
 description: Récupère la valeur du mode lent (slowmode) d'un canal, en secondes. Retourne le délai minimum entre deux messages.
-parameters:
-  - name: channelID
-    description: "(Optionnel) L'ID du canal. Si omis, utilise le canal courant."
-returns:
-  - type: number (string)
-    description: La durée du slowmode en secondes (0 si désactivé).
-related:
-  - $modifyChannel
-  - $serverChannelExists
-  - $channelID
-examples:
-  - description: Vérifier le slowmode
-    code: "$sendMessage[Slowmode : $getSlowmode secondes]"
 ---
 # $getSlowmode
 

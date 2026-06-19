@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: afkChannelID
 syntax: $afkChannelID
 description: Retourne l'identifiant (ID) du salon AFK configuré sur le serveur Discord.
-parameters: []
-returns:
-  type: string
-  description: L'ID du salon AFK, ou une chaîne vide si aucun salon AFK n'est configuré.
-related:
-  - $afkTimeout
-  - $systemChannelID
-  - $rulesChannelID
-  - $channelID
-examples:
-  - description: Afficher le salon AFK
-    code: |
-      $sendMessage[Salon AFK : <#$afkChannelID>]
-  - description: Vérifier si un salon AFK existe
-    code: |
-      $if[$afkChannelID==]
-      $sendMessage[Aucun salon AFK configuré.]
-      $endif
 ---
 
 # $afkChannelID[] — Salon AFK

@@ -6,42 +6,6 @@ category: "Control Flow"
 function_name: checkContains
 syntax: $checkContains[text;search]
 description: Checks whether a string contains a substring and returns "true" or "false".
-parameters:
-  - name: text
-    type: string
-    required: true
-    description: The string to search within (the haystack).
-  - name: search
-    type: string
-    required: true
-    description: The substring to look for (the needle).
-returns:
-  type: string
-  description: Returns "true" if text contains the search substring (case-sensitive), otherwise "false".
-related:
-  - checkCondition
-  - if
-  - and
-  - or
-examples:
-  - title: Check if message contains a keyword
-    code: |
-      $checkContains[$message;admin]
-      Result: "true" if the user's message includes "admin", "false" otherwise
-  - title: Use inside an $if for command routing
-    code: |
-      $if[$checkContains[$message;ping]==true]
-        $sendMessage[Pong!]
-      $endif
-      Result: replies "Pong!" when the message contains "ping"
-  - title: Combined with $or for multiple keywords
-    code: |
-      $or[$checkContains[$message;hello];$checkContains[$message;hi];$checkContains[$message;hey]]
-      Result: "true" if message contains any of "hello", "hi", or "hey"
-  - title: Check if a list contains a value
-    code: |
-      $checkContains[$getUserVar[inventory];Sword]
-      Result: "true" if "Sword" appears anywhere in the inventory string
 ---
 # $checkContains — Inline Substring Check
 

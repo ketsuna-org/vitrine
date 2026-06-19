@@ -6,49 +6,6 @@ category: "Control Flow"
 function_name: callWorkflow
 syntax: $callWorkflow[name;arg1;arg2;...]
 description: Calls another workflow by name, optionally passing arguments. The called workflow executes and can return a value. Execution resumes in the caller after the called workflow completes.
-parameters:
-  - name: name
-    type: string
-    required: true
-    description: The name of the workflow to call. The workflow must exist in the same bot. Case-sensitive.
-  - name: argN
-    type: string
-    required: false
-    description: Optional arguments passed to the called workflow. The called workflow can access these via its own argument functions (e.g., $args[0], $args[1], etc.).
-returns:
-  type: string
-  description: Returns the value produced by the called workflow (via $return). If the workflow does not use $return, returns an empty string.
-related:
-  - jumpToAction
-  - awaitFunc
-  - eval
-  - args
-examples:
-  - title: Appel simple sans arguments
-    code: |
-      $callWorkflow[calculateScore]
-      Score calculé : $result
-  - title: Appel avec arguments
-    code: |
-      $callWorkflow[formatName;John;Doe]
-      Nom formaté : $result
-  - title: Workflow appelé (formatName)
-    code: |
-      $args[0] $args[1]!
-      Résultat : John Doe!
-  - title: Appel conditionnel d'un workflow
-    code: |
-      $if[$hasPerms[$authorID;Administrator]==true]
-      $callWorkflow[adminDashboard]
-      $else
-      $callWorkflow[userDashboard]
-      $endif
-  - title: Chaînage de workflows
-    code: |
-      $callWorkflow[validateInput;$message]
-      $if[$result==valid]
-      $callWorkflow[processData;$message]
-      $endif
 ---
 $callWorkflow enables modular command design by allowing one workflow to invoke another as a subroutine. This promotes code reuse, separation of concerns, and cleaner organization of complex bot logic.
 

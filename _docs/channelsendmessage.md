@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: channelSendMessage
 syntax: $channelSendMessage[channelID;content]
 description: Envoie un message dans un canal spécifique. Contrairement à $sendMessage qui répond dans le canal courant, cette fonction cible n'importe quel canal.
-parameters:
-  - name: channelID
-    description: L'ID du canal où envoyer le message.
-  - name: content
-    description: Le contenu du message à envoyer. Supporte le markdown, les mentions et les émojis.
-returns:
-  - type: snowflake (string)
-    description: L'ID du message envoyé, ou chaîne vide en cas d'échec.
-related:
-  - $sendMessage
-  - $createChannel
-  - $getMessage
-examples:
-  - description: Envoyer dans un canal de logs
-    code: $channelSendMessage[123456789;Action effectuée par $username]
-  - description: Envoyer dans un canal mentionné
-    code: $channelSendMessage[$mentionedChannels[1];$message]
 ---
 
 # $channelSendMessage

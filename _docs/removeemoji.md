@@ -6,20 +6,6 @@ category: "Moderation"
 function_name: removeEmoji
 syntax: $removeEmoji[name]
 description: Supprime un emoji personnalisé du serveur par son nom. L'emoji ne sera plus utilisable après suppression.
-parameters:
-  - name: name
-    description: Le nom de l'emoji à supprimer (sans les deux-points).
-returns:
-  - type: string
-    description: Chaîne vide en cas de succès, ou message d'erreur si l'emoji n'existe pas ou permissions insuffisantes.
-related:
-  - $addEmoji
-  - $emojiName
-  - $emojiExists
-  - $emojiCount
-examples:
-  - description: Supprimer un emoji
-    code: $removeEmoji[mon_emoji]
 ---
 
 # $removeEmoji

@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: serverVanityURL
 syntax: $serverVanityURL
 description: Retourne le code de l'URL personnalisée (vanity URL) du serveur Discord. Disponible uniquement pour les serveurs de niveau boost 3 ou les serveurs partenaires/vérifiés.
-parameters: []
-returns:
-  type: string
-  description: "Le code de l'URL personnalisée (ex: \"mon-serveur\" pour discord.gg/mon-serveur). Retourne une chaîne vide si le serveur n'en a pas."
-related:
-  - $serverSplash
-  - $serverBanner
-  - $boostLevel
-examples:
-  - description: Afficher l'URL personnalisée
-    code: |
-      $sendMessage[Rejoignez-nous : discord.gg/$serverVanityURL]
-  - description: Embed d'invitation
-    code: |
-      $title[$serverName]
-      $description[discord.gg/$serverVanityURL]
-      $image[$serverSplash]
-      $color[#5865F2]
-      $sendEmbedMessage
 ---
 
 # $serverVanityURL[] — URL Personnalisée du Serveur

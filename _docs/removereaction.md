@@ -6,25 +6,6 @@ category: "Moderation"
 function_name: removeReaction
 syntax: $removeReaction[channelID;messageID;emoji]
 description: Supprime une réaction spécifique (émoji) d'un message donné. Utile pour retirer des réactions de contrôle après action.
-parameters:
-  - name: channelID
-    description: L'ID du canal contenant le message.
-  - name: messageID
-    description: L'ID du message dont on souhaite retirer la réaction.
-  - name: emoji
-    description: L'émoji spécifique à supprimer (Unicode ou personnalisé).
-returns:
-  - type: aucun
-    description: Ne retourne rien. La réaction spécifiée est supprimée.
-related:
-  - $clearReactions
-  - $addReactions
-  - $getReactions
-examples:
-  - description: Supprimer une réaction
-    code: $removeReaction[$channelID;$messageID;👍]
-  - description: Supprimer un émoji personnalisé
-    code: $removeReaction[$channelID;$messageID;<:check:123456789>]
 ---
 
 # $removeReaction

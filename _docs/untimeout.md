@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: unTimeout
 syntax: $unTimeout[userID]
 description: Retire le timeout d'un utilisateur avant son expiration.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à libérer du timeout. Obligatoire.
-returns:
-  - type: void
-    description: Retire le timeout. Ne retourne rien.
-related:
-  - $timeout
-  - $unmute
-  - $isTimedOut
-examples:
-  - description: Retirer un timeout
-    code: |
-      $unTimeout[$mentioned[1]]
-      $sendMessage[Timeout de <@$mentioned[1]> retiré.]
 ---
 
 # $unTimeout

@@ -6,35 +6,6 @@ category: "Embed & Message"
 function_name: authorIcon
 syntax: $authorIcon[url;(embedIndex)]
 description: Modifie l'icône (avatar) de l'auteur d'un embed après que celui-ci a été défini avec $author[]. Permet de changer uniquement l'image sans modifier le nom ni l'URL.
-parameters:
-  - name: url
-    description: URL de la nouvelle icône pour l'auteur. Doit être une URL valide pointant vers une image.
-  - name: embedIndex
-    description: "Optionnel. Index de l'embed ciblé (défaut : 0)."
-returns:
-  - type: void
-    description: Modifie l'icône de l'auteur dans la réponse en cours de construction.
-related:
-  - $author[]
-  - $authorUrl[]
-  - $footerIcon[]
-  - $sendMessage[]
-examples:
-  - description: Changer l'icône de l'auteur après coup
-    code: |
-      $author[$username]
-      $authorIcon[$authorAvatar]
-      $title[Profil]
-      $description[Informations utilisateur.]
-      $color[#5865F2]
-  - description: Icône conditionnelle selon le rôle
-    code: |
-      $author[Annonce]
-      $if[$hasRole[$authorID;admin]]
-      $authorIcon[https://example.com/admin.png]
-      $else
-      $authorIcon[https://example.com/member.png]
-      $endif
 ---
 
 # $authorIcon[]

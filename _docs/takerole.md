@@ -6,24 +6,6 @@ category: "Moderation"
 function_name: takeRole
 syntax: $takeRole[userID;roleID]
 description: Retire un rôle à un utilisateur sur le serveur.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur cible. Obligatoire.
-  - name: roleID
-    description: L'ID du rôle à retirer. Obligatoire.
-returns:
-  - type: void
-    description: Retire le rôle. Ne retourne rien.
-related:
-  - $takeRoles
-  - $giveRole
-  - $roleRemove
-  - $setUserRoles
-examples:
-  - description: Retirer un rôle
-    code: |
-      $takeRole[$mentioned[1];$roleID[Muet]]
-      $sendMessage[Rôle Muet retiré !]
 ---
 
 # $takeRole

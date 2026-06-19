@@ -6,21 +6,6 @@ category: "Entity Info"
 function_name: botID
 syntax: $botID
 description: Retourne l'ID utilisateur du bot.
-parameters: []
-returns:
-  - type: string
-    description: L'ID Discord du bot (snowflake).
-related:
-  - $botName
-  - $botOwnerID
-  - $botAvatar
-examples:
-  - description: Afficher l'ID du bot
-    code: |
-      $sendMessage[Mon ID est $botID.]
-  - description: Lien d'invitation dynamique
-    code: |
-      $sendMessage[https://discord.com/oauth2/authorize?client_id=$botID&permissions=8&scope=bot]
 ---
 
 # $botID

@@ -6,35 +6,6 @@ category: "Math & Text"
 function_name: repeatMessage
 syntax: $repeatMessage[count;message]
 description: Sends a message multiple times. The message is repeated 'count' times in the channel.
-parameters:
-  - name: count
-    type: integer
-    required: true
-    description: The number of times to send the message. Must be a positive integer. Large values may hit rate limits.
-  - name: message
-    type: string
-    required: true
-    description: The message content to repeat. Can contain placeholders, embeds, and other BDFD functions.
-returns:
-  type: none (action only)
-  description: This function is an action — it sends messages and does not return a value inline.
-related:
-  - sendMessage
-  - textSplit
-  - sort
-examples:
-  - title: Send a message 3 times
-    code: |
-      $repeatMessage[3;Hello!]
-      Result: Sends "Hello!" three times in the channel
-  - title: Repeat with variable
-    code: |
-      $repeatMessage[$getUserVar[count];Spam detected!]
-      Result: Sends the warning multiple times
-  - title: Countdown
-    code: |
-      $repeatMessage[5;Processing...]
-      Result: Sends "Processing..." five times (be careful with rate limits!)
 ---
 # $repeatMessage — Repeat a Message
 

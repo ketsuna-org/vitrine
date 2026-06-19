@@ -6,21 +6,6 @@ category: "Moderation"
 function_name: botLeave
 syntax: $botLeave[(guildID)]
 description: Fait quitter le bot d'un serveur. Si aucun ID n'est fourni, le bot quitte le serveur où la commande est exécutée.
-parameters:
-  - name: guildID
-    description: (Optionnel) L'ID du serveur à quitter. Si omis, quitte le serveur courant.
-returns:
-  - type: aucun
-    description: Ne retourne rien. Le bot quitte le serveur.
-related:
-  - $botTyping
-  - $serverNames
-  - $guildCount
-examples:
-  - description: Quitter le serveur courant
-    code: $botLeave
-  - description: Quitter un serveur spécifique
-    code: $botLeave[123456789]
 ---
 
 # $botLeave

@@ -6,24 +6,6 @@ category: "Canvas"
 function_name: canvasGrayscale
 syntax: $canvasGrayscale
 description: Convertit le canvas courant en niveaux de gris. Pas de paramètres.
-parameters: []
-returns:
-  - type: void
-    description: Modifie le canvas en place, chaque pixel perd sa saturation.
-related:
-  - $canvasInvert
-  - $canvasRotate
-  - $canvasSetPixel
-examples:
-  - description: Passer le canvas en noir et blanc
-    code: |
-      $canvasGrayscale
-      $sendMessage[Canvas converti en niveaux de gris.]
-  - description: Charger une image puis la désaturer
-    code: |
-      $canvasLoad[$attachment]
-      $canvasGrayscale
-      $attachCanvas[]
 ---
 
 # $canvasGrayscale

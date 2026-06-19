@@ -6,44 +6,6 @@ category: "Control Flow"
 function_name: try
 syntax: $try ... $catch ... $endTry
 description: Error handling block — catches runtime errors in the try body and allows graceful recovery or logging.
-parameters:
-  - name: (none)
-    type: structural
-    required: true
-    description: $try, $catch, and $endTry are structural tokens with no direct parameters. $error[type] accepts an optional type specifier.
-returns:
-  type: void
-  description: Structural tokens controlled at parser level. Use $error inside the $catch block to retrieve error metadata.
-related:
-  - eprint
-  - stop
-examples:
-  - title: Basic try-catch with error message
-    code: |
-      $try
-        $setUserVar[result;$divide[$getUserVar[a];0]]
-      $catch
-        $sendMessage[Error occurred: $error]
-      $endTry
-      Result: catches the division-by-zero and sends the error message
-  - title: Inspecting specific error metadata
-    code: |
-      $try
-        $httpGet[https://api.example.com/broken-endpoint]
-      $catch
-        $sendMessage[Error type: $error]
-        $sendMessage[Command: $error[command]]
-        $sendMessage[Source: $error[source]]
-      $endTry
-      Result: sends detailed error information back to the user
-  - title: Silent catch with fallback
-    code: |
-      $try
-        $setUserVar[cachedData;$httpGet[https://api.example.com/data]]
-      $catch
-        $setUserVar[cachedData;No data available — API unreachable]
-      $endTry
-      Result: assigns a fallback value silently on failure
 ---
 # $try / $catch / $endTry — Error Handling
 

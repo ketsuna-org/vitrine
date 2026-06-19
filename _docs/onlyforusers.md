@@ -6,27 +6,6 @@ category: "Moderation"
 function_name: onlyForUsers
 syntax: $onlyForUsers[userID1;userID2;...;(errorMessage)]
 description: Fonction guard qui arrête l'exécution si l'utilisateur ne fait pas partie de la liste d'IDs autorisés.
-parameters:
-  - name: userID1, userID2, ...
-    description: Liste des IDs Discord des utilisateurs autorisés à exécuter la commande.
-  - name: errorMessage
-    description: (Optionnel) Message d'erreur envoyé aux utilisateurs non autorisés.
-    optional: true
-returns: []
-related:
-  - $onlyForIDs
-  - $onlyForRoles
-  - $onlyForChannels
-  - $onlyAdmin
-examples:
-  - description: Réserver une commande à deux utilisateurs spécifiques
-    code: |
-      $onlyForUsers[123456789012345678;987654321098765432;❌ Commande réservée.]
-      $sendMessage[Accès autorisé.]
-  - description: Commande owner-only
-    code: |
-      $onlyForUsers[$botOwnerID;❌ Seul le propriétaire du bot peut utiliser cette commande.]
-      $eval[$message]
 ---
 
 # $onlyForUsers

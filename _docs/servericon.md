@@ -6,30 +6,6 @@ category: "Entity Info"
 function_name: serverIcon
 syntax: $serverIcon
 description: Retourne l'URL de l'icône du serveur Discord.
-parameters: []
-returns:
-  type: string
-  description: L'URL de l'icône du serveur. Retourne une chaîne vide si le serveur n'a pas d'icône personnalisée.
-related:
-  - $guildIcon
-  - $serverBanner
-  - $serverSplash
-  - $authorAvatar
-examples:
-  - description: Afficher l'icône du serveur dans un embed
-    code: |
-      $title[$serverName]
-      $description[Icône du serveur]
-      $image[$serverIcon]
-      $color[#5865F2]
-      $sendEmbedMessage
-  - description: Utiliser comme thumbnail
-    code: |
-      $title[Bienvenue sur $serverName]
-      $thumbnail[$serverIcon]
-      $description[Voici notre serveur !]
-      $color[#2ECC71]
-      $sendEmbedMessage
 ---
 
 # $serverIcon[] — Icône du Serveur

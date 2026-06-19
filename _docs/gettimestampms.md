@@ -6,26 +6,6 @@ category: "Math & Text"
 function_name: getTimestampMs
 syntax: $getTimestampMs
 description: Retourne le timestamp Unix actuel en millisecondes. Résolu au runtime.
-parameters: []
-returns:
-  - type: string (number)
-    description: Le timestamp Unix actuel en millisecondes depuis l'epoch (1er janvier 1970).
-related:
-  - $getTimestamp
-  - $time[]
-  - $date[]
-  - $addTimestamp[]
-examples:
-  - description: Obtenir le timestamp actuel en millisecondes
-    code: $getTimestampMs
-  - description: Conversion millisecondes vers secondes
-    code: "$math[$getTimestampMs / 1000]"
-  - description: Mesure de durée précise
-    code: |
-      $let[start;$getTimestampMs]
-      ... (vos instructions) ...
-      $let[elapsed;$sub[$getTimestampMs;$get[start]]]
-      Durée : $get[elapsed] ms
 ---
 
 # $getTimestampMs

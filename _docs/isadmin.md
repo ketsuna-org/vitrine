@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: isAdmin
 syntax: $isAdmin
 description: Retourne "true" si l'utilisateur possède la permission Administrateur sur le serveur, "false" sinon.
-parameters: []
-returns:
-  - type: boolean (string)
-    description: '"true" si l''utilisateur est administrateur, "false" sinon.'
-related:
-  - $userPerms
-  - $memberPerms
-  - $isBot
-  - $isBooster
-examples:
-  - description: Vérifier le statut admin
-    code: $isAdmin
-  - description: Commande réservée aux admins
-    code: |
-      $if[$isAdmin==true]
-        $sendMessage[Commandes administrateur disponibles.]
-      $else
-        $sendMessage[Accès refusé. Réservé aux administrateurs.]
-      $endif
 ---
 
 # $isAdmin

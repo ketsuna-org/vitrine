@@ -6,23 +6,6 @@ category: "Entity Info"
 function_name: userBannerColor
 syntax: $userBannerColor
 description: Retourne la couleur d'accent de la bannière de profil de l'utilisateur au format hexadécimal.
-parameters: []
-returns:
-  - type: string
-    description: "Couleur hexadécimale (ex: \"#5865F2\"), ou chaîne vide si pas de bannière."
-related:
-  - $userBanner
-  - $userAvatar
-  - $color
-examples:
-  - description: Obtenir la couleur d'accent
-    code: $userBannerColor
-  - description: Utiliser la couleur dans un embed
-    code: |
-      $title[Profil de $userName]
-      $description[Thème personnalisé !]
-      $color[$userBannerColor]
-      $sendMessage[]
 ---
 
 # $userBannerColor

@@ -6,43 +6,6 @@ category: "Control Flow"
 function_name: for
 syntax: $for[iteratorName;values] ... $endFor
 description: Iterates over a list of values, executing the block once per item with loop metadata variables.
-parameters:
-  - name: iteratorName
-    type: string
-    required: true
-    description: A user-defined variable name that receives the current value on each iteration.
-  - name: values
-    type: string (semicolon-separated list or array reference)
-    required: true
-    description: The list of values to iterate over, separated by semicolons, or a reference to an array variable.
-returns:
-  type: void
-  description: Structural tokens handled at parser level. Loop metadata is provided by $loopIndex, $loopCount, and $loopIteration variables.
-related:
-  - stop
-  - skipActions
-examples:
-  - title: Iterate over a hardcoded list
-    code: |
-      $for[item;apple;banana;cherry]
-        $sendMessage[Item $loopCount: $item]
-      $endFor
-      Result: "sends \"Item 1: apple\", \"Item 2: banana\", \"Item 3: cherry\""
-  - title: Iterate using loop index
-    code: |
-      $for[name;Alice;Bob;Charlie]
-        $sendMessage[$loopIndex: $name]
-      $endFor
-      Result: "sends \"0: Alice\", \"1: Bob\", \"2: Charlie\""
-  - title: Break loop early with $stop
-    code: |
-      $for[entry;red;green;blue;yellow]
-        $if[$loopCount==3]
-          $stop
-        $endif
-        $sendMessage[$entry]
-      $endFor
-      Result: only "red" and "green" are sent
 ---
 # $for / $endFor — For Loop
 

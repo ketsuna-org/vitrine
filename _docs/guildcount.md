@@ -6,25 +6,6 @@ category: "Entity Info"
 function_name: guildCount
 syntax: $guildCount
 description: Alias de $serverCount. Retourne le nombre total de serveurs dans lesquels le bot est présent.
-parameters: []
-returns:
-  type: integer
-  description: Le nombre de serveurs (guilds) auxquels le bot appartient.
-related:
-  - $serverCount
-  - $serverNames
-  - $guildExists
-  - $shardID
-examples:
-  - description: Afficher le nombre de serveurs
-    code: |
-      $sendMessage[Je suis sur $guildCount serveurs !]
-  - description: Statistiques
-    code: |
-      $title[Statistiques]
-      $addField[Guildes;$guildCount;yes]
-      $color[#5865F2]
-      $sendEmbedMessage
 ---
 
 # $guildCount[] — Nombre de Serveurs (Alias)

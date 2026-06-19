@@ -6,23 +6,6 @@ category: "Moderation"
 function_name: mute
 syntax: $mute[userID;(reason)]
 description: Rend muet un utilisateur sur le serveur.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur à rendre muet. Obligatoire.
-  - name: reason
-    description: Optionnel. La raison de la sourdine.
-returns:
-  - type: void
-    description: Rend l'utilisateur muet. Ne retourne rien.
-related:
-  - $unmute
-  - $timeout
-  - $kick
-examples:
-  - description: Rendre muet
-    code: |
-      $mute[$mentioned[1];Spam en vocal]
-      $sendMessage[<@$mentioned[1]> a été rendu muet.]
 ---
 
 # $mute

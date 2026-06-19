@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: onlineMembers
 syntax: $onlineMembers
 description: Retourne le nombre de membres actuellement en ligne sur le serveur Discord (statut "en ligne", "inactif" ou "ne pas déranger").
-parameters: []
-returns:
-  type: integer
-  description: Le nombre de membres en ligne.
-related:
-  - $memberCount
-  - $membersCount
-  - $botCount
-examples:
-  - description: Afficher le nombre de membres en ligne
-    code: |
-      $sendMessage[🟢 $onlineMembers membres en ligne]
-  - description: Embed avec ratio en ligne
-    code: |
-      $title[$serverName]
-      $addField[En ligne;$onlineMembers/$membersCount;yes]
-      $color[#2ECC71]
-      $sendEmbedMessage
 ---
 
 # $onlineMembers[] — Membres en Ligne

@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: channelNSFW
 syntax: $channelNSFW[(channelID)]
 description: Retourne "true" si le salon est marqué NSFW, "false" sinon.
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon cible. Si omis, utilise le salon courant."
-returns:
-  - type: string
-    description: '"true" si le salon est NSFW, "false" sinon.'
-related:
-  - $channelID
-  - $channelName
-  - $channelType
-examples:
-  - description: Vérifier si le salon est NSFW
-    code: |
-      $if[$channelNSFW==true]
-        $sendMessage[Ce salon est NSFW.]
-      $else
-        $sendMessage[Ce salon est tout public.]
-      $endif
 ---
 
 # $channelNSFW

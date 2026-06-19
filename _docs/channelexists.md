@@ -6,24 +6,6 @@ category: "Entity Info"
 function_name: channelExists
 syntax: $channelExists[channelID]
 description: Vérifie si un salon Discord existe sur le serveur. Retourne "true" ou "false".
-parameters:
-  - name: channelID
-    description: L'ID du salon à vérifier.
-returns:
-  - type: string
-    description: '"true" si le salon existe, "false" sinon.'
-related:
-  - $channelID
-  - $findChannel
-  - $channelIDFromName
-examples:
-  - description: Vérifier l'existence d'un salon
-    code: |
-      $if[$channelExists[123456789012345678]==true]
-        $sendMessage[Le salon existe !]
-      $else
-        $sendMessage[Salon introuvable.]
-      $endif
 ---
 
 # $channelExists

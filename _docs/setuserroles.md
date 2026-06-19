@@ -6,24 +6,6 @@ category: "Moderation"
 function_name: setUserRoles
 syntax: $setUserRoles[userID;role1;role2;...]
 description: Définit la liste exacte des rôles d'un utilisateur, remplaçant tous ses rôles actuels.
-parameters:
-  - name: userID
-    description: L'ID de l'utilisateur cible. Obligatoire.
-  - name: role1;role2;...
-    description: Liste des IDs de rôles à attribuer. Remplace tous les rôles existants.
-returns:
-  - type: void
-    description: Remplace tous les rôles de l'utilisateur. Ne retourne rien.
-related:
-  - $giveRoles
-  - $takeRoles
-  - $giveRole
-  - $takeRole
-examples:
-  - description: Définir les rôles exacts
-    code: |
-      $setUserRoles[$mentioned[1];$roleID[Membre]]
-      $sendMessage[Rôles réinitialisés au rôle Membre.]
 ---
 
 # $setUserRoles

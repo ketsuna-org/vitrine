@@ -6,22 +6,6 @@ category: "Moderation"
 function_name: getRoleColor
 syntax: $getRoleColor[roleID]
 description: Récupère la couleur hexadécimale d'un rôle Discord. Retourne la couleur au format #RRGGBB.
-parameters:
-  - name: roleID
-    description: L'ID du rôle dont on souhaite connaître la couleur.
-returns:
-  - type: string
-    description: La couleur au format hexadécimal (#RRGGBB), ou "#000000" si le rôle n'a pas de couleur définie.
-related:
-  - $roleName
-  - $roleExists
-  - $roleCount
-  - $color
-examples:
-  - description: Couleur d'un rôle
-    code: $getRoleColor[$roleID[Admin]]
-  - description: Couleur du rôle mentionné
-    code: $getRoleColor[$mentionedRoles[1]]
 ---
 
 # $getRoleColor

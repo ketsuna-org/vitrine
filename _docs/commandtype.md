@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: commandType
 syntax: $commandType
 description: Retourne le type de la commande en cours (prefix ou slash).
-parameters: []
-returns:
-  - type: string
-    description: "prefix" si commande prefix, "slash" si commande slash.
-related:
-  - $commandName
-  - $commandTrigger
-  - $commandFolder
-  - $isSlash
-examples:
-  - description: Afficher le type
-    code: |
-      $sendMessage[Type de commande : $commandType]
-  - description: Condition selon le type
-    code: |
-      $if[$commandType==slash]
-        $sendEphemeral[Réponse éphémère]
-      $else
-        $sendMessage[Réponse publique]
-      $endif
 ---
 
 # $commandType

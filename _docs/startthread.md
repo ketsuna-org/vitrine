@@ -6,28 +6,6 @@ category: "Moderation"
 function_name: startThread
 syntax: $startThread[name;(autoArchiveDuration);(messageID)]
 description: Crée un fil de discussion (thread) à partir du message courant ou d'un message spécifié. Les threads permettent des conversations organisées en sous-canaux.
-parameters:
-  - name: name
-    description: Le nom du thread à créer (1 à 100 caractères).
-  - name: autoArchiveDuration
-    description: "(Optionnel) Durée en minutes avant archivage automatique. Valeurs acceptées : 60, 1440, 4320, 10080. Défaut : 1440 (24h)."
-  - name: messageID
-    description: (Optionnel) L'ID du message à partir duquel créer le thread. Si omis, utilise le message de la commande.
-returns:
-  - type: snowflake (string)
-    description: L'ID du thread créé, ou chaîne vide en cas d'échec.
-related:
-  - $editThread
-  - $threadAddMember
-  - $threadRemoveMember
-  - $threadMessageCount
-examples:
-  - description: Créer un thread simple
-    code: $startThread[Discussion]
-  - description: Thread avec durée personnalisée
-    code: $startThread[Support technique;4320]
-  - description: Thread sur un message spécifique
-    code: $startThread[Discussion;1440;123456789]
 ---
 
 # $startThread

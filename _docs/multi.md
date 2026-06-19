@@ -6,33 +6,6 @@ category: "Math & Text"
 function_name: multi
 syntax: $multi[a;b]
 description: Multiplie deux valeurs (a * b).
-parameters:
-  - name: a
-    type: number
-    required: true
-    description: Le premier facteur.
-  - name: b
-    type: number
-    required: true
-    description: Le second facteur.
-returns:
-  type: string (number)
-  description: Le produit a * b.
-related:
-  - calculate
-  - sum
-  - sub
-  - divide
-examples:
-  - title: Multiplication simple
-    code: |
-      $multi[6;7]
-  - title: Avec des décimales
-    code: |
-      $multi[2.5;4]
-  - title: Avec des variables
-    code: |
-      $multi[$getVar[prix];$getVar[quantite]]
 ---
 
 # $multi[]

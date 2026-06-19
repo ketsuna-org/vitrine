@@ -6,32 +6,6 @@ category: "Embed & Message"
 function_name: deleteIn
 syntax: $deleteIn[duration]
 description: Programme la suppression automatique d'un message après un délai spécifié. Le message est supprimé par le bot une fois le délai écoulé.
-parameters:
-  - name: duration
-    type: string
-    required: true
-    description: "Délai avant suppression. Format : \"5s\" (secondes), \"1m\" (minutes), \"2h\" (heures)."
-returns:
-  type: void
-  description: Programme la suppression différée du message courant.
-related:
-  - editIn
-  - editEmbedIn
-  - replyIn
-  - $deleteMessage
-examples:
-  - description: Supprimer après 10 secondes
-    code: |
-      $sendMessage[Ce message s'autodétruira dans 10 secondes]
-      $deleteIn[10s]
-  - description: Message éphémère
-    code: |
-      $sendMessage[Message temporaire...]
-      $deleteIn[5s]
-  - description: Notification qui disparaît
-    code: |
-      $sendMessage[⚠️ Alerte temporaire]
-      $deleteIn[30s]
 ---
 
 # $deleteIn[] — Suppression Différée de Message

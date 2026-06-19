@@ -6,26 +6,6 @@ category: "Embed & Message"
 function_name: removeButtons
 syntax: $removeButtons
 description: Supprime tous les boutons d'un message en une seule opération. Les autres composants (menus, champs texte) sont conservés.
-parameters: []
-returns:
-  type: void
-  description: Supprime tous les composants de type bouton du message.
-related:
-  - removeComponent
-  - removeAllComponents
-  - $addButton
-  - $editMessage
-examples:
-  - description: Supprimer tous les boutons après une interaction
-    code: |
-      $onInteraction[any_button]
-      $removeButtons
-      $editMessage[Interaction traitée !]
-      $endInteraction
-  - description: Désactiver l'interface après utilisation
-    code: |
-      $removeButtons
-      $editMessage[✅ Merci d'avoir voté !]
 ---
 
 # $removeButtons[] — Supprimer Tous les Boutons

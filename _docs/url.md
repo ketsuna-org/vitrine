@@ -6,17 +6,6 @@ category: "Context & Commands"
 function_name: url
 syntax: $url
 description: Retourne l'URL de la page web actuellement chargée dans le contexte du bot. Utile dans les interactions web ou les dashboards.
-parameters: []
-returns:
-  - type: string
-    description: L'URL courante du contexte web.
-related:
-  - $customID
-  - $input
-  - $serverURL
-examples:
-  - description: Afficher l'URL courante
-    code: "$sendMessage[URL actuelle : $url]"
 ---
 # $url
 

@@ -6,36 +6,6 @@ category: "Math & Text"
 function_name: charCount
 syntax: $charCount[text]
 description: Counts the number of characters in the given text.
-parameters:
-  - name: text
-    type: string
-    required: true
-    description: The text whose characters are to be counted.
-returns:
-  type: string (number)
-  description: The total number of characters in the text, returned as a numeric string. Includes spaces, punctuation, and newlines.
-related:
-  - linesCount
-  - cropText
-  - textSplit
-examples:
-  - title: Basic count
-    code: |
-      $charCount[Hello]
-      Result: "5"
-  - title: Count with spaces
-    code: |
-      $charCount[Hello World]
-      Result: "11"
-  - title: Validate message length
-    code: |
-      $if[$charCount[$message]>100]
-        $sendMessage[Your message is too long ($charCount chars). Max is 100.]
-      $endif
-  - title: Empty string
-    code: |
-      $charCount[]
-      Result: "0"
 ---
 # $charCount — Count Characters
 

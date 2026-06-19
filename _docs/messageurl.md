@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: messageURL
 syntax: $messageURL
 description: Retourne l'URL de jump (lien direct) vers le message déclencheur.
-returns:
-  - type: string (URL)
-    description: L'URL directe vers le message (format https://discord.com/channels/...).
-related:
-  - $messageID
-  - $message
-  - $channelID
-  - $guildID
-examples:
-  - description: Lien du message
-    code: "$sendMessage[Lien : $messageURL]"
-  - description: Lien cliquable en embed
-    code: |
-      $title[Message]
-      $description[Lien : $messageURL]
-      $sendMessage[]
 ---
 
 # $messageURL

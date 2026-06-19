@@ -6,42 +6,6 @@ category: "Embed & Message"
 function_name: newModal
 syntax: $newModal[title;customId]
 description: Crée un nouveau modal (fenêtre pop-up interactive) avec un titre et un identifiant personnalisé pour gérer les soumissions.
-parameters:
-  - name: title
-    type: string
-    required: true
-    description: Le titre affiché en haut du modal.
-  - name: customId
-    type: string
-    required: true
-    description: Identifiant unique utilisé pour identifier les interactions avec ce modal.
-returns:
-  type: void
-  description: Initialise un nouveau contexte de modal. Les composants suivants ($addModalTextInput, $addModalSelect, etc.) sont ajoutés à ce modal.
-related:
-  - addModalTextInput
-  - addModalSelect
-  - addModalCheckbox
-  - addModalCheckboxGroup
-  - addModalRadioGroup
-  - addModalTextDisplay
-  - addModalFileUpload
-examples:
-  - description: Créer un modal simple avec un champ texte
-    code: |
-      $newModal[Formulaire d'inscription;register_form]
-      $addModalTextInput[name;Votre nom;short;Entrez votre nom...;;yes;2;50]
-  - description: Modal avec titre et composants multiples
-    code: |
-      $newModal[Sondage;poll_modal]
-      $addModalTextDisplay[Répondez aux questions suivantes :]
-      $addModalTextInput[answer;Votre réponse;paragraph;Écrivez ici...]
-  - description: Modal complet avec validation
-    code: |
-      $newModal[Feedback;feedback_modal]
-      $addModalTextDisplay[Merci de nous donner votre avis !]
-      $addModalTextInput[subject;Sujet;short;;;yes;3;100]
-      $addModalTextInput[message;Message;paragraph;;;yes;10;1000]
 ---
 
 # $newModal[] — Créer un Modal

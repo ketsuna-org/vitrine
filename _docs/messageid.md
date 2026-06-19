@@ -6,19 +6,6 @@ category: "Entity Info"
 function_name: messageID
 syntax: $messageID
 description: Retourne l'ID (snowflake) du message déclencheur de la commande.
-returns:
-  - type: snowflake (string)
-    description: L'ID du message.
-related:
-  - $message
-  - $messageURL
-  - $messageTimestamp
-  - $lastMessageID
-examples:
-  - description: ID du message
-    code: "$sendMessage[Message ID : $messageID]"
-  - description: Lien direct vers le message
-    code: "$sendMessage[Lien : $messageURL]"
 ---
 
 # $messageID

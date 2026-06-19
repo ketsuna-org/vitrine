@@ -6,27 +6,6 @@ category: "Moderation"
 function_name: newTicket
 syntax: $newTicket[categoryID;(name);(message)]
 description: Crée un ticket sous forme d'un nouveau canal texte dans une catégorie. Le créateur du ticket reçoit automatiquement les permissions d'accès.
-parameters:
-  - name: categoryID
-    description: L'ID de la catégorie où le canal de ticket sera créé.
-  - name: name
-    description: "(Optionnel) Le nom du canal de ticket. Par défaut : \"ticket-{username}\"."
-  - name: message
-    description: (Optionnel) Message de bienvenue envoyé dans le ticket à sa création.
-returns:
-  - type: snowflake (string)
-    description: L'ID du canal de ticket créé, ou chaîne vide en cas d'échec.
-related:
-  - $closeTicket
-  - $createChannel
-  - $channelSendMessage
-examples:
-  - description: Créer un ticket simple
-    code: $newTicket[123456789]
-  - description: Ticket avec nom personnalisé
-    code: $newTicket[123456789;support-$username]
-  - description: Ticket avec message de bienvenue
-    code: $newTicket[123456789;ticket-$username;Bienvenue ! Décrivez votre problème.]
 ---
 
 # $newTicket

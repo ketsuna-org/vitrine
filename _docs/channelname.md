@@ -6,22 +6,6 @@ category: "Entity Info"
 function_name: channelName
 syntax: $channelName[(channelID)]
 description: Retourne le nom du salon Discord courant ou d'un salon spécifique via son ID.
-parameters:
-  - name: channelID
-    description: "Optionnel. L'ID du salon dont on veut obtenir le nom. Si omis, utilise le salon courant."
-returns:
-  - type: string
-    description: Le nom du salon.
-related:
-  - $channelID
-  - $channelType
-  - $channelNames
-  - $findChannel
-examples:
-  - description: Nom du salon courant
-    code: "$sendMessage[Salon : #$channelName]"
-  - description: Nom d'un salon spécifique par ID
-    code: "$sendMessage[Le salon est : $channelName[123456789012345678]]"
 ---
 
 # $channelName

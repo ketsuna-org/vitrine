@@ -6,26 +6,6 @@ category: "Entity Info"
 function_name: highestRole
 syntax: $highestRole
 description: Retourne l'ID du rôle le plus haut (hiérarchiquement) de l'utilisateur sur le serveur.
-parameters: []
-returns:
-  - type: snowflake (string)
-    description: L'ID du rôle le plus élevé de l'utilisateur.
-related:
-  - $lowestRole
-  - $highestRoleWithPerms
-  - $userRoles
-  - $isHoisted
-examples:
-  - description: Obtenir le rôle le plus haut
-    code: $highestRole
-  - description: Afficher le rôle principal
-    code: |
-      $title[Profil de $userName]
-      $description[
-      **Rôle principal :** <@&$highestRole>
-      ]
-      $color[#5865F2]
-      $sendMessage[]
 ---
 
 # $highestRole

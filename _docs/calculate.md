@@ -6,42 +6,6 @@ category: "Math & Text"
 function_name: calculate
 syntax: $calculate[expression]
 description: Évalue une expression mathématique complète (opérateurs, fonctions, comparaisons).
-parameters:
-  - name: expression
-    type: string
-    required: true
-    description: L'expression mathématique à évaluer. Supporte +, -, *, /, %, ^, (), les comparaisons (>, <, >=, <=, ==, !=) et des fonctions comme sin, cos, tan, abs, sqrt, log, floor, ceil, round, etc.
-returns:
-  type: string (number)
-  description: Le résultat de l'évaluation sous forme de chaîne numérique. "true"/"false" pour les comparaisons.
-related:
-  - sum
-  - sub
-  - multi
-  - divide
-  - modulo
-  - sqrt
-  - log
-  - floor
-  - ceil
-  - round
-  - abs
-examples:
-  - title: Addition simple
-    code: |
-      $calculate[5 + 3 * 2]
-  - title: Avec parenthèses et fonctions
-    code: |
-      $calculate[sqrt(16) + sin(0)]
-  - title: Comparaison
-    code: |
-      $calculate[10 > 5]
-  - title: Utilisation de modulo
-    code: |
-      $calculate[17 % 5]
-  - title: Expression avec variables BDFD
-    code: |
-      $calculate[$getVar[prix] * 1.2]
 ---
 
 # $calculate[]

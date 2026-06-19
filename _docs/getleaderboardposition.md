@@ -6,32 +6,6 @@ category: "Variables"
 function_name: getLeaderboardPosition
 syntax: $getLeaderboardPosition
 description: Retourne la position de l'utilisateur dans le classement courant lors de l'itération d'un leaderboard.
-parameters: []
-returns:
-  type: string
-  description: La position actuelle (rang) dans le leaderboard en cours d'itération.
-related:
-  - getLeaderboardValue
-  - globalUserLeaderboard
-  - serverLeaderboard
-  - userLeaderboard
-  - textSplit
-examples:
-  - title: Obtenir le rang dans un classement global
-    code: |
-      $textSplit[$globalUserLeaderboard[score;desc];\n]
-      $var[rank;$getLeaderboardPosition]
-      $description[Vous êtes classé #$var[rank] avec $getLeaderboardValue points.]
-  - title: Afficher un top 10 avec positions
-    code: |
-      $textSplit[$serverLeaderboard[xp;desc];\n]
-      $var[i;0]
-      $description[🏆 **Top 10 XP du serveur**]
-      $repeat[10;
-        $var[i;$sum[$var[i];1]]
-        $var[pos;$getLeaderboardPosition]
-        $description[$var[pos]. $splitText[$var[i]]]
-      ]
 ---
 
 # $getLeaderboardPosition
