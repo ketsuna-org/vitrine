@@ -17,32 +17,40 @@ async function resizeImages() {
     const inputPath = path.join(screenshotsDir, filename);
     const ext = path.extname(filename);
     const baseName = path.basename(filename, ext);
-    const outputPath = path.join(screenshotsDir, `${baseName}_small${ext}`);
     
     if (!fs.existsSync(inputPath)) {
       console.warn(`File not found: ${inputPath}`);
       continue;
     }
     
-    try {
-      await sharp(inputPath)
-        .resize({ width: 660 })
-        .toFile(outputPath);
+    const sizes = [
+      { suffix: 'small', width: 480 },
+      { suffix: 'medium', width: 800 }
+    ];
+    
+    for (const size of sizes) {
+      const outputPath = path.join(screenshotsDir, `${baseName}_${size.suffix}${ext}`);
       
-      const inputStats = fs.statSync(inputPath);
-      const outputStats = fs.statSync(outputPath);
-      
-      const inputSizeKb = (inputStats.size / 1024).toFixed(1);
-      const outputSizeKb = (outputStats.size / 1024).toFixed(1);
-      const savingsKb = (inputStats.size - outputStats.size) / 1024;
-      const savingsPct = (((inputStats.size - outputStats.size) / inputStats.size) * 100).toFixed(0);
-      
-      console.log(`Resized ${filename} to ${baseName}_small.webp`);
-      console.log(`  Original: ${inputSizeKb} KB`);
-      console.log(`  New:      ${outputSizeKb} KB`);
-      console.log(`  Saved:    ${savingsKb.toFixed(1)} KB (${savingsPct}%)`);
-    } catch (error) {
-      console.error(`Error resizing ${filename}:`, error);
+      try {
+        await sharp(inputPath)
+          .resize({ width: size.width })
+          .toFile(outputPath);
+        
+        const inputStats = fs.statSync(inputPath);
+        const outputStats = fs.statSync(outputPath);
+        
+        const inputSizeKb = (inputStats.size / 1024).toFixed(1);
+        const outputSizeKb = (outputStats.size / 1024).toFixed(1);
+        const savingsKb = (inputStats.size - outputStats.size) / 1024;
+        const savingsPct = (((inputStats.size - outputStats.size) / inputStats.size) * 100).toFixed(0);
+        
+        console.log(`Resized ${filename} to ${baseName}_${size.suffix}.webp (${size.width}px)`);
+        console.log(`  Original: ${inputSizeKb} KB`);
+        console.log(`  New:      ${outputSizeKb} KB`);
+        console.log(`  Saved:    ${savingsKb.toFixed(1)} KB (${savingsPct}%)`);
+      } catch (error) {
+        console.error(`Error resizing ${filename} to ${size.width}:`, error);
+      }
     }
   }
   
