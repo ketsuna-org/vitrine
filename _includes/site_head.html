@@ -6,12 +6,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0d1117">
+  <!-- Preconnect to critical origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://fundingchoicesmessages.google.com">
+
+  <!-- Google Fonts with display=swap to prevent FOIT -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <link href="{{ '/favicon.ico' | relative_url }}" rel="icon" type="image/x-icon">
-  <link href="{{ '/css/main.css' | relative_url }}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+
+  <!-- Non-render-blocking main stylesheet: loads async, applies when ready -->
+  <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}"></noscript>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/webp" sizes="192x192" href="{{ '/assets/favicon-192x192.webp' | relative_url }}">
+  <link rel="shortcut icon" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
+
+  <!-- Preload critical hero image for LCP improvement -->
+  <link rel="preload" as="image" href="{{ '/assets/images/screenshots/hero.webp' | relative_url }}" fetchpriority="high">
+
   {% if include.markdown %}
   <link href="{{ '/css/highlight.css' | relative_url }}" rel="stylesheet">
   <link href="{{ '/css/markdown.css' | relative_url }}" rel="stylesheet">

@@ -5,7 +5,7 @@ description: Create a Discord bot token, secure it correctly, and add it to Bot
 category: "Getting Started"
 date: 2025-05-18T18:09:00.000Z
 
-thumbnail: assets/icon.png
+thumbnail: assets/icon.webp
 author: Garder500
 translation_key: guide-create-bot-token
 locale: en
