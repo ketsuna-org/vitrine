@@ -244,26 +244,48 @@ window.initCanvasFallback = function(canvas) {
 // General client-side interaction scripts wrapped in safe state checker
 const initSite = () => {
   // Make all markdown tables responsive by wrapping them in a gorgeous styled overflow wrapper
-  document.querySelectorAll("article table, .prose table").forEach((table) => {
-    if (table.parentElement.classList.contains("table-responsive-wrapper")) return;
-    const wrapper = document.createElement("div");
-    wrapper.className = "table-responsive-wrapper";
-    wrapper.setAttribute("role", "region");
-    wrapper.setAttribute("tabindex", "0");
-    table.parentNode.insertBefore(wrapper, table);
-    wrapper.appendChild(table);
+  const tables = document.querySelectorAll("article table, .prose table");
+  if (tables.length > 0) {
+    const wrappers = [];
+    tables.forEach((table) => {
+      if (table.parentElement.classList.contains("table-responsive-wrapper")) return;
+      const wrapper = document.createElement("div");
+      wrapper.className = "table-responsive-wrapper";
+      wrapper.setAttribute("role", "region");
+      wrapper.setAttribute("tabindex", "0");
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+      wrappers.push(wrapper);
+    });
 
-    const checkScroll = () => {
+    const updateWrapperScrollState = (wrapper) => {
       const isScrollable = wrapper.scrollWidth > wrapper.clientWidth;
       wrapper.classList.toggle("is-scrollable", isScrollable);
       wrapper.classList.toggle("scrolled-end",
         isScrollable && wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 2);
     };
 
-    wrapper.addEventListener("scroll", checkScroll, { passive: true });
-    checkScroll();
-    window.addEventListener("resize", checkScroll);
-  });
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver((entries) => {
+        entries.forEach((entry) => {
+          updateWrapperScrollState(entry.target);
+        });
+      });
+      wrappers.forEach((wrapper) => {
+        ro.observe(wrapper);
+        wrapper.addEventListener("scroll", () => updateWrapperScrollState(wrapper), { passive: true });
+      });
+    } else {
+      window.requestAnimationFrame(() => {
+        wrappers.forEach((wrapper) => {
+          const checkScroll = () => updateWrapperScrollState(wrapper);
+          wrapper.addEventListener("scroll", checkScroll, { passive: true });
+          checkScroll();
+          window.addEventListener("resize", checkScroll);
+        });
+      });
+    }
+  }
 
   // Parse GitHub-flavored markdown alerts (e.g. > [!NOTE], > [!TIP])
   document.querySelectorAll("blockquote").forEach((bq) => {

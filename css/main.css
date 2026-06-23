@@ -10,7 +10,7 @@
     --background:              #0d1117;
     --on-background:           #c9d1d9;
     --primary:                 #7c8aff;
-    --on-primary:              #ffffff;
+    --on-primary:              #0a0e17;
     --surface:                 #0d1117;
     --on-surface:              #c9d1d9;
     --surface-container:       #1c2128;
@@ -413,4 +413,26 @@
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 12px rgba(124, 138, 255, 0.25));
 }
+}
+
+/* =========================================================================
+   Cloudflare Zaraz Consent Modal Custom Theme Override for Contrast/Accessibility
+   ========================================================================= */
+dialog.cf_modal, .cf_modal {
+  background-color: var(--surface-container-high) !important;
+  color: var(--on-surface) !important;
+  border: 1px solid var(--outline-variant) !important;
+}
+
+dialog.cf_modal *, .cf_modal * {
+  color: var(--on-surface) !important;
+}
+
+dialog.cf_modal button, .cf_modal button {
+  background-color: var(--primary) !important;
+  color: var(--on-primary) !important;
+}
+
+dialog.cf_modal button:hover, .cf_modal button:hover {
+  filter: brightness(1.1);
 }

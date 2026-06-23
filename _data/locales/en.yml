@@ -56,7 +56,7 @@ common:
 home:
   hero:
     eyebrow: "Local-first Discord builder"
-    title: "Build your own <span class='text-primary-container drop-shadow-[0_0_10px_rgba(183,109,255,0.4)]'>Discord bots easily</span>"
+    title: "Build your own <span class='text-primary drop-shadow-[0_0_10px_rgba(183,109,255,0.4)]'>Discord bots easily</span>"
     body: "Design slash commands visually, switch to BDScript when you want precision, and keep logs, sync, and runtime control in the same product."
     secondary_cta: "Read the guides"
     stats: "Joined by +1,000 creators"

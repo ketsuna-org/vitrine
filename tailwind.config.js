@@ -17,7 +17,7 @@ module.exports = {
       colors: {
         // Linear.app / MongoDB-inspired corporate dark palette
         "primary":                   "#7c8aff",
-        "on-primary":                "#ffffff",
+        "on-primary":                "#0a0e17",
         "primary-container":         "#2e3192",
         "on-primary-container":      "#c0c1ff",
         "primary-fixed":             "#e1e0ff",

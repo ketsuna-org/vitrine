@@ -12,9 +12,12 @@
   <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
   <link rel="dns-prefetch" href="https://fundingchoicesmessages.google.com">
 
-  <!-- Google Fonts with display=swap to prevent FOIT -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <!-- Google Fonts loaded asynchronously to prevent render blocking -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,arrow_forward,bolt,calendar_today,category,check_circle,chevron_right,close,code,construction,content_copy,dashboard,delete,deployed_code,description,diamond,download,expand_more,folder_open,gavel,help,history,info,language,laptop,library_books,lightbulb,menu,menu_book,menu_open,open_in_new,payments,phone_android,phone_iphone,priority_high,public,report,rocket_launch,search,search_off,security,settings,share,smartphone,sports_esports,sync_alt,terminal,warning&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,arrow_forward,bolt,calendar_today,category,check_circle,chevron_right,close,code,construction,content_copy,dashboard,delete,deployed_code,description,diamond,download,expand_more,folder_open,gavel,help,history,info,language,laptop,library_books,lightbulb,menu,menu_book,menu_open,open_in_new,payments,phone_android,phone_iphone,priority_high,public,report,rocket_launch,search,search_off,security,settings,share,smartphone,sports_esports,sync_alt,terminal,warning&display=swap" rel="stylesheet"></noscript>
 
   <!-- Non-render-blocking main stylesheet: loads async, applies when ready -->
   <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}" media="print" onload="this.media='all'">
