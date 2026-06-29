@@ -41,19 +41,21 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestGet() {
-  // Per spec: GET on a Streamable HTTP endpoint MAY open an SSE stream for
-  // server-initiated messages. We are stateless and have nothing to push,
-  // so respond 405 Method Not Allowed with the required Accept header hint.
+  // Clients probe the endpoint with GET before POSTing JSON-RPC. Instead of
+  // returning 405 (which some clients treat as fatal), return 200 with
+  // server metadata so the endpoint is discovered as alive and well.
   return json(
     {
       jsonrpc: "2.0",
-      error: {
-        code: -32601,
-        message:
-          "Method not allowed. This MCP server is stateless; POST JSON-RPC requests to this endpoint.",
+      id: "probe",
+      result: {
+        protocolVersion: PROTOCOL_VERSION,
+        capabilities: CAPABILITIES,
+        serverInfo: SERVER_INFO,
+        message: "Use POST for JSON-RPC requests.",
       },
     },
-    405,
+    200,
     { Allow: "POST", ...CORS }
   );
 }
