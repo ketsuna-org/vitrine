@@ -123,32 +123,106 @@
 {%- comment %} Self-contained JS — no dependency on site.js initSite {% endcomment %}
 <script>
 (function () {
+  // Universal clipboard helper: tries async Clipboard API, falls back to
+  // textarea + execCommand which works even after async fetch operations
+  // (where some browsers revoke the "user gesture" context).
+  function copyText(text) {
+    return new Promise(function (resolve, reject) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(resolve, function () {
+          fallbackCopy(text) ? resolve() : reject(new Error("clipboard failed"));
+        });
+      } else {
+        fallbackCopy(text) ? resolve() : reject(new Error("clipboard unavailable"));
+      }
+    });
+  }
+
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.cssText = "position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      var ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // Pre-fetch and cache the page markdown so copy is instant (preserves
+  // user-gesture context for the Clipboard API).
+  var pageMarkdownCache = null;
+  var pageMarkdownUrl = null;
+  var pageMarkdownFetching = false;
+
+  function getPageMarkdown() {
+    if (pageMarkdownCache !== null) return Promise.resolve(pageMarkdownCache);
+    if (pageMarkdownFetching) return new Promise(function (resolve) {
+      var check = setInterval(function () {
+        if (pageMarkdownCache !== null) { clearInterval(check); resolve(pageMarkdownCache); }
+      }, 50);
+    });
+    if (!pageMarkdownUrl) return Promise.reject(new Error("no url"));
+    pageMarkdownFetching = true;
+    return fetch(pageMarkdownUrl).then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.text();
+    }).then(function (text) {
+      pageMarkdownCache = text;
+      pageMarkdownFetching = false;
+      return text;
+    }).catch(function (err) {
+      pageMarkdownFetching = false;
+      throw err;
+    });
+  }
+
+  function flashCopyFeedback(btn, opts) {
+    opts = opts || {};
+    var label = btn.querySelector("[data-copy-label]");
+    var icon = btn.querySelector("[data-copy-icon]");
+    var check = btn.querySelector("[data-check]");
+    var successLabel = opts.successLabel || "Copied!";
+    var defaultLabel = opts.defaultLabel || "Copy";
+    if (label) label.textContent = successLabel;
+    if (icon) { icon.textContent = "check"; icon.style.color = "#7c8aff"; }
+    if (check) check.style.opacity = "1";
+    setTimeout(function () {
+      if (label) label.textContent = defaultLabel;
+      if (icon) { icon.textContent = "content_copy"; icon.style.color = ""; }
+      if (check) check.style.opacity = "0";
+    }, 1800);
+  }
+
   function initAiTools() {
+    // Collect the page markdown URL from any copy-page element on the page.
+    var firstCopyBtn = document.querySelector("[data-copy-page-standalone], [data-action='copy-page']");
+    if (firstCopyBtn) {
+      pageMarkdownUrl = firstCopyBtn.getAttribute("data-url");
+      // Kick off the pre-fetch immediately (fire and forget).
+      getPageMarkdown().catch(function () {});
+    }
+
     // --- Standalone copy button ---
     document.querySelectorAll("[data-copy-page-standalone]").forEach(function (btn) {
       if (btn.dataset.aiBound) return;
       btn.dataset.aiBound = "1";
-      btn.addEventListener("click", async function () {
-        var icon = btn.querySelector("[data-copy-icon]");
-        var label = btn.querySelector("[data-copy-label]");
-        var url = btn.getAttribute("data-url");
-        if (!url) return;
-        try {
-          var res = await fetch(url);
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          var text = await res.text();
-          await navigator.clipboard.writeText(text);
-          if (label) label.textContent = "Copied!";
-          if (icon) { icon.textContent = "check"; icon.style.color = "var(--color-primary, #7c8aff)"; }
-          setTimeout(function () {
-            if (label) label.textContent = "Copy";
-            if (icon) { icon.textContent = "content_copy"; icon.style.color = ""; }
-          }, 1800);
-        } catch (err) {
+      btn.addEventListener("click", function () {
+        getPageMarkdown().then(function (text) {
+          return copyText(text);
+        }).then(function () {
+          flashCopyFeedback(btn);
+        }).catch(function (err) {
           console.error("Copy page failed:", err);
+          var label = btn.querySelector("[data-copy-label]");
           if (label) label.textContent = "Failed";
           setTimeout(function () { if (label) label.textContent = "Copy"; }, 1800);
-        }
+        });
       });
     });
 
@@ -186,35 +260,29 @@
         if (e.key === "Escape" && isOpen) { toggle(false); trigger.focus(); }
       });
 
-      function showCheck(button) {
-        var check = button.querySelector("[data-check]");
-        if (!check) return;
-        check.style.opacity = "1";
-        setTimeout(function () { check.style.opacity = "0"; }, 1800);
-      }
-
+      // Copy page as Markdown (uses cached content from pre-fetch)
       container.querySelectorAll("[data-action='copy-page']").forEach(function (btn) {
-        btn.addEventListener("click", async function () {
-          var url = btn.getAttribute("data-url");
-          if (!url) return;
-          try {
-            var res = await fetch(url);
-            if (!res.ok) throw new Error("HTTP " + res.status);
-            var text = await res.text();
-            await navigator.clipboard.writeText(text);
-            showCheck(btn);
-          } catch (err) { console.error("Copy page failed:", err); }
+        btn.addEventListener("click", function () {
+          getPageMarkdown().then(function (text) {
+            return copyText(text);
+          }).then(function () {
+            var check = btn.querySelector("[data-check]");
+            if (check) check.style.opacity = "1";
+            setTimeout(function () { if (check) check.style.opacity = "0"; }, 1800);
+          }).catch(function (err) { console.error("Copy page failed:", err); });
         });
       });
 
+      // Copy MCP install command
       container.querySelectorAll("[data-action='copy-mcp']").forEach(function (btn) {
-        btn.addEventListener("click", async function () {
+        btn.addEventListener("click", function () {
           var text = btn.getAttribute("data-command");
           if (!text) return;
-          try {
-            await navigator.clipboard.writeText(text);
-            showCheck(btn);
-          } catch (err) { console.error("Copy MCP failed:", err); }
+          copyText(text).then(function () {
+            var check = btn.querySelector("[data-check]");
+            if (check) check.style.opacity = "1";
+            setTimeout(function () { if (check) check.style.opacity = "0"; }, 1800);
+          }).catch(function (err) { console.error("Copy MCP failed:", err); });
         });
       });
 
