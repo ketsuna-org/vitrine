@@ -46,6 +46,8 @@ module Vitrine
       def generate(site)
         add_static_file(site, "api", "docs-index.json", docs_index(site).to_json)
         add_static_file(site, "api", "posts-index.json", posts_index(site).to_json)
+        add_static_file(site, ".", "llms.txt", llms_summary(site))
+        add_static_file(site, ".", "llms-full.txt", llms_full(site))
       end
 
       private
@@ -88,6 +90,65 @@ module Vitrine
       def function_name_from_slug(slug)
         camel = slug.split("_").map(&:capitalize).join
         "$#{camel}"
+      end
+
+      # llms.txt — small summary file with links, per https://llmstxt.org
+      def llms_summary(site)
+        docs = site.collections.fetch("docs", nil)&.docs || []
+        groups = docs.group_by { |d| d.data["category"] || "Uncategorized" }.sort
+
+        body = []
+        body << "# Bot Creator"
+        body << ""
+        body << "> Bot Creator helps you build, run, and monitor Discord bots without code from mobile, desktop, or the Docker runner."
+        body << ""
+        body << "## Documentation"
+        body << ""
+        body << "- [All docs](https://bot-creator.fr/docs/): Browse the full function reference"
+        body << "- [llms-full.txt](https://bot-creator.fr/llms-full.txt): Complete documentation as a single Markdown file"
+        body << "- [MCP server](https://bot-creator.fr/docs/mcp/): Connect via Model Context Protocol"
+        body << ""
+        body << "## Function reference by category"
+        body << ""
+        groups.each do |category, cat_docs|
+          body << "### #{category}"
+          body << ""
+          cat_docs.sort_by { |d| d.basename_without_ext }.each do |doc|
+            slug = doc.basename_without_ext
+            name = doc.data["title"] || function_name_from_slug(slug)
+            body << "- [#{name}](https://bot-creator.fr/docs/#{slug}/)"
+          end
+          body << ""
+        end
+        body.join("\n")
+      end
+
+      # llms-full.txt — all docs concatenated as one Markdown blob
+      def llms_full(site)
+        docs = site.collections.fetch("docs", nil)&.docs || []
+        groups = docs.group_by { |d| d.data["category"] || "Uncategorized" }.sort
+
+        parts = []
+        parts << "# Bot Creator — Full Documentation"
+        parts << ""
+        parts << "> Complete function reference for Bot Creator (BDFD). Generated from the docs collection."
+        parts << ""
+        parts << "---"
+        parts << ""
+
+        groups.each do |category, cat_docs|
+          parts << "## #{category}"
+          parts << ""
+          cat_docs.sort_by { |d| d.basename_without_ext }.each do |doc|
+            parts << "### #{doc.data['title'] || function_name_from_slug(doc.basename_without_ext)}"
+            parts << ""
+            parts << doc.content
+            parts << ""
+            parts << "---"
+            parts << ""
+          end
+        end
+        parts.join("\n")
       end
     end
   end

@@ -452,6 +452,88 @@ const initSite = () => {
     window.addEventListener("resize", updateProgress);
   }
 
+  // AI Tools dropdown (doc pages)
+  document.querySelectorAll("[data-ai-tools]").forEach((container) => {
+    const trigger = container.querySelector("[data-ai-tools-trigger]");
+    const menu = container.querySelector("[data-ai-tools-menu]");
+    const caret = container.querySelector("[data-ai-tools-caret]");
+    let isOpen = false;
+
+    if (!trigger || !menu) return;
+
+    const toggle = (open) => {
+      isOpen = typeof open === "boolean" ? open : !isOpen;
+      trigger.setAttribute("aria-expanded", String(isOpen));
+      menu.classList.toggle("opacity-0", !isOpen);
+      menu.classList.toggle("invisible", !isOpen);
+      menu.classList.toggle("translate-y-1", !isOpen);
+      menu.classList.toggle("pointer-events-none", !isOpen);
+      if (caret) caret.classList.toggle("rotate-180", isOpen);
+    };
+
+    trigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggle();
+    });
+
+    document.addEventListener("click", (e) => {
+      if (isOpen && !container.contains(e.target)) toggle(false);
+    });
+
+    container.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen) {
+        toggle(false);
+        trigger.focus();
+      }
+    });
+
+    // Generic "show check" feedback for copy actions
+    const showCheck = (button) => {
+      const check = button.querySelector("[data-check]");
+      if (!check) return;
+      check.classList.remove("opacity-0");
+      window.setTimeout(() => check.classList.add("opacity-0"), 1800);
+    };
+
+    // Copy page as Markdown (fetch raw from GitHub)
+    const copyPageBtn = container.querySelector("[data-action='copy-page']");
+    if (copyPageBtn) {
+      copyPageBtn.addEventListener("click", async () => {
+        const url = copyPageBtn.getAttribute("data-url");
+        if (!url) return;
+        try {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const text = await res.text();
+          await navigator.clipboard.writeText(text);
+          showCheck(copyPageBtn);
+        } catch (err) {
+          console.error("Copy page failed:", err);
+        }
+      });
+    }
+
+    // Copy MCP install command
+    const copyMcpBtn = container.querySelector("[data-action='copy-mcp']");
+    if (copyMcpBtn) {
+      copyMcpBtn.addEventListener("click", async () => {
+        const text = copyMcpBtn.getAttribute("data-command");
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          showCheck(copyMcpBtn);
+        } catch (err) {
+          console.error("Copy MCP command failed:", err);
+        }
+      });
+    }
+
+    // Close menu after clicking any link inside
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => toggle(false));
+    });
+  });
+
   // Trigger drawing on all visible canvas covers on page mount
   const drawAllCovers = () => {
     document.querySelectorAll("canvas.js-blog-cover").forEach((canvas) => {
