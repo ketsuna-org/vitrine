@@ -1,0 +1,28 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "_note": "Informal MCP server discovery manifest. The Server Card WG (https://modelcontextprotocol.io/community/working-groups/server-card.md) has not yet ratified a standard shape for this file. Fields below are self-describing; consumers should treat unknown fields as informational.",
+  "mcp_version": "2025-11-25",
+  "server": {
+    "name": "bot-creator",
+    "description": "Read-only access to Bot Creator documentation, blog posts, and site content.",
+    "version": "1.0.0",
+    "vendor": {
+      "name": "Bot Creator",
+      "url": "https://bot-creator.fr"
+    }
+  },
+  "transports": {
+    "streamable_http": {
+      "url": "https://bot-creator.fr/api/mcp",
+      "mode": "stateless",
+      "auth": "none"
+    }
+  },
+  "tools": [
+    { "name": "search_docs", "description": "Search Bot Creator function documentation by name, slug, or category." },
+    { "name": "get_doc", "description": "Fetch raw markdown of a Bot Creator function doc by slug." },
+    { "name": "list_posts", "description": "List Bot Creator blog posts, optionally filtered by locale (en/fr)." },
+    { "name": "search_posts", "description": "Search Bot Creator blog posts by title or description." },
+    { "name": "get_post", "description": "Fetch raw markdown of a Bot Creator blog post by slug." }
+  ]
+}
