@@ -1,106 +1,233 @@
 {% comment %}
-  AI Tools dropdown for doc pages.
-  Renders a button that opens a click-toggle popup with LLM/MCP actions.
-  Requires the JS handler in assets/js/site.js (data-ai-tools).
+  AI Tools dropdown + Copy button for doc pages.
+  Renders a compact "Copy" icon button and an "AI" button that opens a
+  click-toggle popup with LLM/MCP actions.
+  JS is self-contained (no dependency on site.js initSite).
 {% endcomment %}
 
-<div class="relative ml-auto" data-ai-tools>
+<div class="flex items-center gap-2 ml-auto">
+  {%- comment %} Standalone Copy page button {% endcomment %}
   <button type="button"
-          data-ai-tools-trigger
-          aria-haspopup="true"
-          aria-expanded="false"
-          aria-label="AI tools"
+          data-copy-page-standalone
+          data-url="https://raw.githubusercontent.com/ketsuna-org/vitrine/master{{ page.relative_path }}"
+          aria-label="Copy page as Markdown"
+          title="Copy page as Markdown"
           class="flex items-center gap-1.5 rounded-lg border border-outline-variant bg-surface-container px-3 py-1.5 text-xs font-bold text-on-surface-variant hover:text-primary hover:border-primary/30 transition-all">
-    <span class="material-symbols-outlined text-base">smart_toy</span>
-    <span>AI</span>
-    <span class="material-symbols-outlined text-sm transition-transform duration-200" data-ai-tools-caret>expand_more</span>
+    <span class="material-symbols-outlined text-base" data-copy-icon>content_copy</span>
+    <span data-copy-label>Copy</span>
   </button>
 
-  <div data-ai-tools-menu
-       class="absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl bg-surface-container-lowest border border-outline-variant shadow-neon-strong p-1.5 z-50 opacity-0 invisible translate-y-1 pointer-events-none transition-all duration-200">
-
-    {% comment %} Copy page as Markdown {% endcomment %}
+  {%- comment %} AI Tools dropdown {% endcomment %}
+  <div class="relative" data-ai-tools>
     <button type="button"
-            data-action="copy-page"
-            data-url="https://raw.githubusercontent.com/ketsuna-org/vitrine/master{{ page.relative_path }}"
-            class="group relative flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors cursor-pointer">
-      <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-primary">
-        <span class="material-symbols-outlined text-base">content_copy</span>
-      </span>
-      <span class="flex flex-col flex-1 min-w-0">
-        <span class="text-sm font-semibold text-on-surface">Copy page</span>
-        <span class="text-xs text-on-surface-variant">Copy page as Markdown for LLMs</span>
-      </span>
-      <span class="material-symbols-outlined text-base text-primary opacity-0 transition-opacity" data-check>check</span>
+            data-ai-tools-trigger
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label="AI tools"
+            class="flex items-center gap-1.5 rounded-lg border border-outline-variant bg-surface-container px-3 py-1.5 text-xs font-bold text-on-surface-variant hover:text-primary hover:border-primary/30 transition-all">
+      <span class="material-symbols-outlined text-base">smart_toy</span>
+      <span>AI</span>
+      <span class="material-symbols-outlined text-sm transition-transform duration-200" data-ai-tools-caret>expand_more</span>
     </button>
 
-    {%- comment %} llms-full.txt link {% endcomment %}
-    <a href="{{ '/llms-full.txt' | relative_url }}"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="group flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors">
-      <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-primary">
-        <span class="material-symbols-outlined text-base">description</span>
-      </span>
-      <span class="flex flex-col flex-1 min-w-0">
-        <span class="text-sm font-semibold text-on-surface flex items-center gap-1">
-          llms-full.txt
-          <span class="material-symbols-outlined text-xs text-on-surface-variant">open_in_new</span>
+    <div data-ai-tools-menu
+         class="absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl bg-surface-container-lowest border border-outline-variant shadow-neon-strong p-1.5 z-[60] opacity-0 invisible translate-y-1 pointer-events-none transition-all duration-200">
+
+      {% comment %} Copy page as Markdown {% endcomment %}
+      <button type="button"
+              data-action="copy-page"
+              data-url="https://raw.githubusercontent.com/ketsuna-org/vitrine/master{{ page.relative_path }}"
+              class="group relative flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors cursor-pointer">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-primary">
+          <span class="material-symbols-outlined text-base">content_copy</span>
         </span>
-        <span class="text-xs text-on-surface-variant">View all docs as Markdown for LLMs</span>
-      </span>
-    </a>
-
-    {%- comment %} Copy MCP install command {% endcomment %}
-    <button type="button"
-            data-action="copy-mcp"
-            data-command="npx mcp-remote https://bot-creator.fr/api/mcp"
-            class="group relative flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors cursor-pointer">
-      <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-primary">
-        <span class="material-symbols-outlined text-base">terminal</span>
-      </span>
-      <span class="flex flex-col flex-1 min-w-0">
-        <span class="text-sm font-semibold text-on-surface">Copy MCP command</span>
-        <span class="text-xs text-on-surface-variant font-mono truncate">npx mcp-remote ...</span>
-      </span>
-      <span class="material-symbols-outlined text-base text-primary opacity-0 transition-opacity" data-check>check</span>
-    </button>
-
-    {%- comment %} Separator {% endcomment %}
-    <div class="my-1 mx-2 border-t border-outline-variant"></div>
-
-    {%- comment %} Connect to Cursor {% endcomment %}
-    <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=bot-creator&url=https%3A%2F%2Fbot-creator.fr%2Fapi%2Fmcp"
-       class="group flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors">
-      <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-on-surface-variant group-hover:text-primary transition-colors">
-        <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <path d="M14.4734 3.9527L8.31773 0.398522C8.22052 0.342485 8.11029 0.312988 7.99809 0.312988C7.88589 0.312988 7.77566 0.342485 7.67846 0.398522L1.52355 3.9527C1.44182 3.99989 1.37394 4.06773 1.32671 4.14942C1.27948 4.23112 1.25457 4.32379 1.25446 4.41816V11.584C1.25457 11.6783 1.27948 11.771 1.32671 11.8527C1.37394 11.9344 1.44182 12.0022 1.52355 12.0494L7.67918 15.6036C7.77636 15.6597 7.8866 15.6893 7.99882 15.6893C8.11103 15.6893 8.22127 15.6597 8.31846 15.6036L14.4741 12.0502C14.5558 12.003 14.6237 11.9351 14.6709 11.8534C14.7182 11.7717 14.7431 11.6791 14.7432 11.5847V4.41743C14.7431 4.32307 14.7182 4.23039 14.6709 4.14869C14.6237 4.067 14.5558 3.99916 14.4741 3.95198L14.4734 3.9527ZM14.0872 4.70543L8.14464 14.9978C8.10464 15.0669 7.99846 15.0385 7.99846 14.9578V8.21889C7.99841 8.15254 7.98092 8.08738 7.94773 8.02993C7.91454 7.97249 7.86682 7.92478 7.80936 7.89161L1.97373 4.52361C1.90391 4.48289 1.93227 4.3767 2.013 4.3767H13.8966C14.0661 4.3767 14.1715 4.55925 14.0872 4.70543Z"/>
-        </svg>
-      </span>
-      <span class="flex flex-col flex-1 min-w-0">
-        <span class="text-sm font-semibold text-on-surface flex items-center gap-1">
-          Connect to Cursor
-          <span class="material-symbols-outlined text-xs text-on-surface-variant">open_in_new</span>
+        <span class="flex flex-col flex-1 min-w-0">
+          <span class="text-sm font-semibold text-on-surface">Copy page</span>
+          <span class="text-xs text-on-surface-variant">Copy page as Markdown for LLMs</span>
         </span>
-        <span class="text-xs text-on-surface-variant">Install MCP Server on Cursor</span>
-      </span>
-    </a>
+        <span class="material-symbols-outlined text-base text-primary opacity-0 transition-opacity" data-check>check</span>
+      </button>
 
-    {%- comment %} Connect to VS Code {% endcomment %}
-    <a href="vscode://mcp/install?name=bot-creator&url=https%3A%2F%2Fbot-creator.fr%2Fapi%2Fmcp"
-       class="group flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors">
-      <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-on-surface-variant group-hover:text-primary transition-colors">
-        <svg class="h-4 w-4" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M70.9119 99.3171C72.4869 99.9307 74.2828 99.8914 75.8725 99.1264L96.4608 89.2197C98.6242 88.1787 100 85.9892 100 83.5872V16.4133C100 14.0113 98.6243 11.8218 96.4609 10.7808L75.8725 0.873756C73.7862 -0.130129 71.3446 0.11576 69.5135 1.44695C69.252 1.63711 69.0028 1.84943 68.769 2.08341L29.3551 38.0415L12.1872 25.0096C10.589 23.7965 8.35363 23.8959 6.86933 25.2461L1.36303 30.2549C-0.452552 31.9064 -0.454633 34.7627 1.35853 36.417L16.2471 50.0001L1.35853 63.5832C-0.454633 65.2374 -0.452552 68.0938 1.36303 69.7453L6.86933 74.7541C8.35363 76.1043 10.589 76.2037 12.1872 74.9905L29.3551 61.9587L68.769 97.9167C69.3925 98.5406 70.1246 99.0104 70.9119 99.3171ZM75.0152 27.2989L45.1091 50.0001L75.0152 72.7012V27.2989Z"/>
-        </svg>
-      </span>
-      <span class="flex flex-col flex-1 min-w-0">
-        <span class="text-sm font-semibold text-on-surface flex items-center gap-1">
-          Connect to VS Code
-          <span class="material-symbols-outlined text-xs text-on-surface-variant">open_in_new</span>
+      {%- comment %} llms-full.txt link {% endcomment %}
+      <a href="{{ '/llms-full.txt' | relative_url }}"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="group flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-primary">
+          <span class="material-symbols-outlined text-base">description</span>
         </span>
-        <span class="text-xs text-on-surface-variant">Install MCP Server on VS Code</span>
-      </span>
-    </a>
+        <span class="flex flex-col flex-1 min-w-0">
+          <span class="text-sm font-semibold text-on-surface flex items-center gap-1">
+            llms-full.txt
+            <span class="material-symbols-outlined text-xs text-on-surface-variant">open_in_new</span>
+          </span>
+          <span class="text-xs text-on-surface-variant">View all docs as Markdown for LLMs</span>
+        </span>
+      </a>
+
+      {%- comment %} Copy MCP install command {% endcomment %}
+      <button type="button"
+              data-action="copy-mcp"
+              data-command="npx mcp-remote https://bot-creator.fr/api/mcp"
+              class="group relative flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors cursor-pointer">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-primary">
+          <span class="material-symbols-outlined text-base">terminal</span>
+        </span>
+        <span class="flex flex-col flex-1 min-w-0">
+          <span class="text-sm font-semibold text-on-surface">Copy MCP command</span>
+          <span class="text-xs text-on-surface-variant font-mono truncate">npx mcp-remote ...</span>
+        </span>
+        <span class="material-symbols-outlined text-base text-primary opacity-0 transition-opacity" data-check>check</span>
+      </button>
+
+      {%- comment %} Separator {% endcomment %}
+      <div class="my-1 mx-2 border-t border-outline-variant"></div>
+
+      {%- comment %} Connect to Cursor {% endcomment %}
+      <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=bot-creator&url=https%3A%2F%2Fbot-creator.fr%2Fapi%2Fmcp"
+         class="group flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-on-surface-variant group-hover:text-primary transition-colors">
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M14.4734 3.9527L8.31773 0.398522C8.22052 0.342485 8.11029 0.312988 7.99809 0.312988C7.88589 0.312988 7.77566 0.342485 7.67846 0.398522L1.52355 3.9527C1.44182 3.99989 1.37394 4.06773 1.32671 4.14942C1.27948 4.23112 1.25457 4.32379 1.25446 4.41816V11.584C1.25457 11.6783 1.27948 11.771 1.32671 11.8527C1.37394 11.9344 1.44182 12.0022 1.52355 12.0494L7.67918 15.6036C7.77636 15.6597 7.8866 15.6893 7.99882 15.6893C8.11103 15.6893 8.22127 15.6597 8.31846 15.6036L14.4741 12.0502C14.5558 12.003 14.6237 11.9351 14.6709 11.8534C14.7182 11.7717 14.7431 11.6791 14.7432 11.5847V4.41743C14.7431 4.32307 14.7182 4.23039 14.6709 4.14869C14.6237 4.067 14.5558 3.99916 14.4741 3.95198L14.4734 3.9527ZM14.0872 4.70543L8.14464 14.9978C8.10464 15.0669 7.99846 15.0385 7.99846 14.9578V8.21889C7.99841 8.15254 7.98092 8.08738 7.94773 8.02993C7.91454 7.97249 7.86682 7.92478 7.80936 7.89161L1.97373 4.52361C1.90391 4.48289 1.93227 4.3767 2.013 4.3767H13.8966C14.0661 4.3767 14.1715 4.55925 14.0872 4.70543Z"/>
+          </svg>
+        </span>
+        <span class="flex flex-col flex-1 min-w-0">
+          <span class="text-sm font-semibold text-on-surface flex items-center gap-1">
+            Connect to Cursor
+            <span class="material-symbols-outlined text-xs text-on-surface-variant">open_in_new</span>
+          </span>
+          <span class="text-xs text-on-surface-variant">Install MCP Server on Cursor</span>
+        </span>
+      </a>
+
+      {%- comment %} Connect to VS Code {% endcomment %}
+      <a href="vscode://mcp/install?name=bot-creator&url=https%3A%2F%2Fbot-creator.fr%2Fapi%2Fmcp"
+         class="group flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors">
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-on-surface-variant group-hover:text-primary transition-colors">
+          <svg class="h-4 w-4" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M70.9119 99.3171C72.4869 99.9307 74.2828 99.8914 75.8725 99.1264L96.4608 89.2197C98.6242 88.1787 100 85.9892 100 83.5872V16.4133C100 14.0113 98.6243 11.8218 96.4609 10.7808L75.8725 0.873756C73.7862 -0.130129 71.3446 0.11576 69.5135 1.44695C69.252 1.63711 69.0028 1.84943 68.769 2.08341L29.3551 38.0415L12.1872 25.0096C10.589 23.7965 8.35363 23.8959 6.86933 25.2461L1.36303 30.2549C-0.452552 31.9064 -0.454633 34.7627 1.35853 36.417L16.2471 50.0001L1.35853 63.5832C-0.454633 65.2374 -0.452552 68.0938 1.36303 69.7453L6.86933 74.7541C8.35363 76.1043 10.589 76.2037 12.1872 74.9905L29.3551 61.9587L68.769 97.9167C69.3925 98.5406 70.1246 99.0104 70.9119 99.3171ZM75.0152 27.2989L45.1091 50.0001L75.0152 72.7012V27.2989Z"/>
+          </svg>
+        </span>
+        <span class="flex flex-col flex-1 min-w-0">
+          <span class="text-sm font-semibold text-on-surface flex items-center gap-1">
+            Connect to VS Code
+            <span class="material-symbols-outlined text-xs text-on-surface-variant">open_in_new</span>
+          </span>
+          <span class="text-xs text-on-surface-variant">Install MCP Server on VS Code</span>
+        </span>
+      </a>
+    </div>
   </div>
 </div>
+
+{%- comment %} Self-contained JS — no dependency on site.js initSite {% endcomment %}
+<script>
+(function () {
+  function initAiTools() {
+    // --- Standalone copy button ---
+    document.querySelectorAll("[data-copy-page-standalone]").forEach(function (btn) {
+      if (btn.dataset.aiBound) return;
+      btn.dataset.aiBound = "1";
+      btn.addEventListener("click", async function () {
+        var icon = btn.querySelector("[data-copy-icon]");
+        var label = btn.querySelector("[data-copy-label]");
+        var url = btn.getAttribute("data-url");
+        if (!url) return;
+        try {
+          var res = await fetch(url);
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          var text = await res.text();
+          await navigator.clipboard.writeText(text);
+          if (label) label.textContent = "Copied!";
+          if (icon) { icon.textContent = "check"; icon.style.color = "var(--color-primary, #7c8aff)"; }
+          setTimeout(function () {
+            if (label) label.textContent = "Copy";
+            if (icon) { icon.textContent = "content_copy"; icon.style.color = ""; }
+          }, 1800);
+        } catch (err) {
+          console.error("Copy page failed:", err);
+          if (label) label.textContent = "Failed";
+          setTimeout(function () { if (label) label.textContent = "Copy"; }, 1800);
+        }
+      });
+    });
+
+    // --- AI Tools dropdown ---
+    document.querySelectorAll("[data-ai-tools]").forEach(function (container) {
+      if (container.dataset.aiBound) return;
+      container.dataset.aiBound = "1";
+
+      var trigger = container.querySelector("[data-ai-tools-trigger]");
+      var menu = container.querySelector("[data-ai-tools-menu]");
+      var caret = container.querySelector("[data-ai-tools-caret]");
+      var isOpen = false;
+      if (!trigger || !menu) return;
+
+      function toggle(open) {
+        isOpen = typeof open === "boolean" ? open : !isOpen;
+        trigger.setAttribute("aria-expanded", String(isOpen));
+        menu.style.opacity = isOpen ? "1" : "0";
+        menu.style.visibility = isOpen ? "visible" : "hidden";
+        menu.style.pointerEvents = isOpen ? "auto" : "none";
+        menu.style.transform = isOpen ? "translateY(0)" : "translateY(4px)";
+        if (caret) caret.style.transform = isOpen ? "rotate(180deg)" : "";
+      }
+
+      trigger.addEventListener("click", function (e) {
+        e.stopPropagation();
+        toggle();
+      });
+
+      document.addEventListener("click", function (e) {
+        if (isOpen && !container.contains(e.target)) toggle(false);
+      });
+
+      container.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && isOpen) { toggle(false); trigger.focus(); }
+      });
+
+      function showCheck(button) {
+        var check = button.querySelector("[data-check]");
+        if (!check) return;
+        check.style.opacity = "1";
+        setTimeout(function () { check.style.opacity = "0"; }, 1800);
+      }
+
+      container.querySelectorAll("[data-action='copy-page']").forEach(function (btn) {
+        btn.addEventListener("click", async function () {
+          var url = btn.getAttribute("data-url");
+          if (!url) return;
+          try {
+            var res = await fetch(url);
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            var text = await res.text();
+            await navigator.clipboard.writeText(text);
+            showCheck(btn);
+          } catch (err) { console.error("Copy page failed:", err); }
+        });
+      });
+
+      container.querySelectorAll("[data-action='copy-mcp']").forEach(function (btn) {
+        btn.addEventListener("click", async function () {
+          var text = btn.getAttribute("data-command");
+          if (!text) return;
+          try {
+            await navigator.clipboard.writeText(text);
+            showCheck(btn);
+          } catch (err) { console.error("Copy MCP failed:", err); }
+        });
+      });
+
+      menu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () { toggle(false); });
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAiTools);
+  } else {
+    initAiTools();
+  }
+})();
+</script>
