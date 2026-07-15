@@ -1,0 +1,45 @@
+screens:
+  - id: create-host
+    file: screen-1-create-host
+    headline: "Create & Host Discord Bots"
+    link: /blog/#getting-started
+    icon: rocket_launch
+  - id: build-without-code
+    file: screen-2-build-without-code
+    headline: "Build Without Code"
+    link: /docs/
+    icon: dashboard
+  - id: full-scripting
+    file: screen-3-full-scripting
+    headline: "Full Scripting Power"
+    link: /docs/javascript/
+    icon: terminal
+  - id: analytics
+    file: screen-4-analytics
+    headline: "Real-Time Analytics"
+    link: /blog/#reference-deployment
+    icon: monitoring
+  - id: deploy-scale
+    file: screen-5-deploy-scale
+    headline: "Deploy & Scale Up"
+    link: /download/
+    icon: cloud_upload
+
+devices:
+  iphone: iPhone_14_Plus_(6.5)
+  android: Google_Pixel_8
+  ipad: iPad_Pro_12.9_(Legacy)
+  tablet: Galaxy_Tab_S9
+
+source_roots:
+  iphone: "iOS/English (en-US)/iPhone_14_Plus_(6.5)"
+  android: "Android/English (en-US)/Google_Pixel_8"
+  ipad: "iOS/English (en-US)/iPad_Pro_12.9_(Legacy)"
+  tablet: "Android/English (en-US)/Galaxy_Tab_S9"
+
+screen_numbers:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5

@@ -2,7 +2,7 @@
 layout: doc
 title: $getStringSelectValue
 translation_key: docs
-category: "Entity Info"
+category: "Components & Interactions"
 function_name: getStringSelectValue
 syntax: $getStringSelectValue[(index)]
 description: Gets the value of the option selected by the user in a string select menu.

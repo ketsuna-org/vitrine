@@ -82,6 +82,10 @@ $endif
 $sendMessage[🎯 Target: $var[arg1] | Reason: $var[arg2]]
 ```
 
+## Related functions
+
+- [$slashOption](/docs/slashoption/) — read slash command option values by name or index
+
 ## Notes
 
 - Possible values: `prefix` or `slash`.

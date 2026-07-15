@@ -12,3 +12,5 @@ $getUserVar reads a scoped variable stored persistently in the BDFD database. Th
 If a second argument (User ID) is provided, the variable is read for that specific user. When a third argument (Guild ID) is also provided, the scope shifts to `guildMember`, using the composite key `guildId:userId` for the context. This is useful when the same user may have different variable values across different servers.
 
 Variables are defined and configured in the Bot Creator Variables UI, where you can set default values. If a variable has not been set via $setUserVar but a default value exists in the definitions, $getUserVar returns that default. If neither a stored value nor a default exists, an empty string is returned.
+
+> **JavaScript (BDJS) equivalent:** `await db.user.get('name')` — see [db.user](/docs/javascript/db-user/).

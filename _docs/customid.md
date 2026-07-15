@@ -2,7 +2,7 @@
 layout: doc
 title: $customID
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: customID
 syntax: $customID
 description: Returns the custom ID (customId) of the interaction component that triggered the callback (button, select menu, modal). Used in $onInteraction.

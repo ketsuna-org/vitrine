@@ -13,15 +13,15 @@ public_folder: assets
 
 collections:
   - name: tutorials_en
-    label: Tutorials EN
-    label_singular: English tutorial
+    label: Tutorials
+    label_singular: Tutorial
     folder: _posts
     create: true
     filter:
       field: locale
       value: en
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    summary: "EN | {{title}}"
+    summary: "{{title}}"
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: string }
@@ -29,8 +29,8 @@ collections:
           label: Primary Category,
           name: category,
           widget: select,
-          options: ["Setup", "Runner", "Introduction", "Components", "Embeds", "User", "Moderation", "Channels", "Roles", "Bot", "Server", "Blacklists", "Arguments & Conditions", "Text"],
-          default: "Setup",
+          options: ["Getting Started", "Building Commands", "Advanced Topics", "Reference & Deployment"],
+          default: "Getting Started",
           required: true
         }
       - { label: Function Syntax, name: function_syntax, widget: string, required: false, hint: "For BDFD functions, e.g., $ping or $customEmbed[title;text]" }
@@ -48,54 +48,10 @@ collections:
           label: Translation Key,
           name: translation_key,
           widget: string,
-          hint: Use the same key for the EN and FR versions of the same article,
+          hint: Unique key for related content (optional),
         }
       - { label: Locale, name: locale, widget: hidden, default: en }
       - { label: Content Language, name: content_language, widget: hidden, default: en }
       - { label: Layout, name: layout, widget: hidden, default: post }
       - { label: Generate TOC, name: toc, widget: boolean, default: true }
       - { label: Body, name: body, widget: markdown }
-
-  - name: tutorials_fr
-    label: Tutoriels FR
-    label_singular: Tutoriel francais
-    folder: _posts
-    create: true
-    filter:
-      field: locale
-      value: fr
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    summary: "FR | {{title}}"
-    fields:
-      - { label: Titre, name: title, widget: string }
-      - { label: Description, name: description, widget: string }
-      - {
-          label: Categorie Principale,
-          name: category,
-          widget: select,
-          options: ["Setup", "Runner", "Introduction", "Components", "Embeds", "User", "Moderation", "Channels", "Roles", "Bot", "Server", "Blacklists", "Arguments & Conditions", "Text"],
-          default: "Setup",
-          required: true
-        }
-      - { label: Syntaxe de la Fonction, name: function_syntax, widget: string, required: false, hint: "Pour les fonctions BDFD, e.g., $ping ou $customEmbed[title;text]" }
-      - { label: Date, name: date, widget: datetime, required: false }
-      - {
-          label: Categories,
-          name: categories,
-          widget: list,
-          required: false,
-          allow_add: true,
-        }
-      - { label: Image de couverture, name: thumbnail, widget: image, required: false }
-      - { label: Auteur, name: author, widget: string, default: Garder500 }
-      - {
-          label: Cle de traduction,
-          name: translation_key,
-          widget: string,
-          hint: Utilisez la meme cle pour les versions EN et FR d'un meme article,
-        }
-      - { label: Locale, name: locale, widget: hidden, default: fr }
-      - { label: Langue du contenu, name: content_language, widget: hidden, default: fr }
-      - { label: Layout, name: layout, widget: hidden, default: post }
-      - { label: Generer le sommaire, name: toc, widget: boolean, default: true }
-      - { label: Contenu, name: body, widget: markdown }

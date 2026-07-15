@@ -2,7 +2,7 @@
 layout: doc
 title: $getUserSelectUserID
 translation_key: docs
-category: "Entity Info"
+category: "Components & Interactions"
 function_name: getUserSelectUserID
 syntax: $getUserSelectUserID[(index)]
 description: Gets the ID of the user selected via a user select menu.

@@ -31,6 +31,22 @@ permalink: /download/
       </p>
     </header>
 
+    <!-- App preview -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24" data-reveal>
+      <div class="rounded-xl bg-surface-container-low border border-outline-variant p-6 flex flex-col gap-4">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest">Mobile & desktop app</p>
+        <h2 class="font-display text-2xl font-bold text-on-surface">Create and host from one workspace</h2>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Design commands, manage variables, and monitor bots from the app — the recommended starting point for most teams.</p>
+        {% include responsive_screenshot.html screen_id="screen-1-create-host" alt="Bot Creator create and host screen" class="w-full max-w-[280px] mx-auto drop-shadow-xl" %}
+      </div>
+      <div class="rounded-xl bg-surface-container-low border border-outline-variant p-6 flex flex-col gap-4">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest">Deploy & scale</p>
+        <h2 class="font-display text-2xl font-bold text-on-surface">Grow from app hosting to self-hosted runners</h2>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Start with managed app hosting, then move to the Docker runner when you need server-side uptime.</p>
+        {% include responsive_screenshot.html screen_id="screen-5-deploy-scale" alt="Bot Creator deploy and scale screen" class="w-full max-w-[280px] mx-auto drop-shadow-xl" %}
+      </div>
+    </section>
+
     <!-- Download Grid -->
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mb-24">
       <!-- Mobile -->

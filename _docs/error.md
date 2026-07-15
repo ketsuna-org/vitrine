@@ -1,4 +1,5 @@
 ---
+description: Throws a custom error and stops command execution.
 layout: doc
 translation_key: docs
 category: "Misc"

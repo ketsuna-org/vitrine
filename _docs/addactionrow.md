@@ -1,7 +1,8 @@
 ---
 layout: doc
 translation_key: docs
-category: "Embed & Message"
+description: Starts a new action row for buttons or select menus.
+category: "Components & Interactions"
 ---
 
 # $addActionRow

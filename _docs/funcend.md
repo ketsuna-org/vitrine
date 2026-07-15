@@ -1,4 +1,5 @@
 ---
+description: Ends a function block started with $func.
 layout: doc
 translation_key: docs
 category: "Misc"

@@ -1,15 +1,14 @@
 {% assign t = include.t %}
-{% assign downloads = site.data.downloads %}
 
 <footer class="bg-surface-container-low w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center gap-md border-t border-outline-variant">
   <div>
     <div class="font-bold text-on-surface text-lg">{{ t.meta.site_title }}</div>
-    <div class="text-on-surface-variant text-sm">© 2024 {{ t.meta.site_title }}. Built with passion by Aetheric Tech.</div>
+    <div class="text-on-surface-variant text-sm">© 2026 {{ t.meta.site_title }}. Built with passion by Aetheric Tech.</div>
   </div>
   <nav class="flex flex-wrap gap-md">
-    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="{{ t.paths.terms | relative_url }}">Conditions d'utilisation</a>
+    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="{{ t.paths.terms | relative_url }}">{{ t.shell.footer_terms }}</a>
     <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="{{ t.paths.privacy | relative_url }}">{{ t.nav.privacy }}</a>
+    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="{{ t.paths.docs | relative_url }}">{{ t.nav.docs }}</a>
     <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="mailto:contact@bot-creator.fr">Contact</a>
-    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="#">Presse</a>
   </nav>
 </footer>

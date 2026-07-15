@@ -2,7 +2,7 @@
 layout: doc
 title: $addSection[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: addSection
 syntax: $addSection[(id)]
 description: Creates a section inside a container. Sections allow organizing content (fields, text, thumbnails) in a structured way within a visual container.

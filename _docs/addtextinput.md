@@ -2,7 +2,7 @@
 layout: doc
 title: $addTextInput[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: addTextInput
 syntax: $addTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
 description: Adds a text input field directly in a message (message component, non-modal). Supports the "short" and "paragraph" styles.

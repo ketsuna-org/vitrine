@@ -1,7 +1,8 @@
 ---
 layout: doc
 translation_key: docs
-category: "Embed & Message"
+description: Adds an interactive button using the modern component layout.
+category: "Components & Interactions"
 ---
 
 # $addButtonCV2

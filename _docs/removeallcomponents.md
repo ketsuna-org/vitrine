@@ -2,7 +2,7 @@
 layout: doc
 title: $removeAllComponents[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: removeAllComponents
 syntax: $removeAllComponents
 description: Removes all interactive components (buttons, menus, text fields, etc.) from a message in a single operation.

@@ -312,16 +312,6 @@ const initSite = () => {
       else if (type === "WARNING") { icon = "warning"; titleText = "Warning"; }
       else if (type === "CAUTION") { icon = "report"; titleText = "Caution"; }
 
-      // Retrieve document language for localization
-      const lang = document.documentElement.lang || "en";
-      if (lang.startsWith("fr")) {
-        if (type === "NOTE") titleText = "Note";
-        else if (type === "TIP") titleText = "Conseil";
-        else if (type === "IMPORTANT") titleText = "Important";
-        else if (type === "WARNING") titleText = "Avertissement";
-        else if (type === "CAUTION") titleText = "Attention";
-      }
-
       // Prepend the icon header structure
       const header = document.createElement("div");
       header.className = "gfm-alert-header";

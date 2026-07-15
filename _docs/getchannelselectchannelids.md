@@ -2,7 +2,7 @@
 layout: doc
 title: $getChannelSelectChannelIDs
 translation_key: docs
-category: "Entity Info"
+category: "Components & Interactions"
 function_name: getChannelSelectChannelIDs
 syntax: $getChannelSelectChannelIDs[(separator)]
 description: Gets all channel IDs selected by the user via a channel select menu. Returns a list separated by the specified delimiter.

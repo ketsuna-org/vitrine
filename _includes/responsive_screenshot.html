@@ -1,0 +1,23 @@
+{% comment %}
+  Renders responsive app screenshot.
+  Params: screen_id (e.g. screen-1-create-host), alt, class, loading, eager
+{% endcomment %}
+{% assign screen_id = include.screen_id %}
+{% assign alt_text = include.alt | default: "Bot Creator app screenshot" %}
+{% assign img_class = include.class | default: "w-full h-auto object-contain" %}
+{% assign loading_attr = include.loading | default: "lazy" %}
+
+<picture>
+  <source media="(min-width: 1024px)" srcset="{{ '/assets/images/screenshots/tablet/' | append: screen_id | append: '_small.webp' | relative_url }} 480w, {{ '/assets/images/screenshots/tablet/' | append: screen_id | append: '_medium.webp' | relative_url }} 800w, {{ '/assets/images/screenshots/tablet/' | append: screen_id | append: '.webp' | relative_url }} 1320w" sizes="(min-width: 1024px) 33vw, 100vw">
+  <source media="(min-width: 768px)" srcset="{{ '/assets/images/screenshots/ipad/' | append: screen_id | append: '_small.webp' | relative_url }} 480w, {{ '/assets/images/screenshots/ipad/' | append: screen_id | append: '_medium.webp' | relative_url }} 800w, {{ '/assets/images/screenshots/ipad/' | append: screen_id | append: '.webp' | relative_url }} 1320w" sizes="(min-width: 768px) 50vw, 100vw">
+  <img
+    src="{{ '/assets/images/screenshots/iphone/' | append: screen_id | append: '.webp' | relative_url }}"
+    srcset="{{ '/assets/images/screenshots/iphone/' | append: screen_id | append: '_small.webp' | relative_url }} 480w, {{ '/assets/images/screenshots/iphone/' | append: screen_id | append: '_medium.webp' | relative_url }} 800w, {{ '/assets/images/screenshots/iphone/' | append: screen_id | append: '.webp' | relative_url }} 1320w"
+    sizes="(max-width: 767px) 100vw, 50vw"
+    alt="{{ alt_text }}"
+    class="{{ img_class }}"
+    loading="{{ loading_attr }}"
+    decoding="async"
+    width="1320"
+    height="2868">
+</picture>

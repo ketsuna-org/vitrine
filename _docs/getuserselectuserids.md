@@ -2,7 +2,7 @@
 layout: doc
 title: $getUserSelectUserIDs
 translation_key: docs
-category: "Entity Info"
+category: "Components & Interactions"
 function_name: getUserSelectUserIDs
 syntax: $getUserSelectUserIDs[(separator)]
 description: Gets all user IDs selected via a multi-select user select menu.

@@ -5,7 +5,7 @@ category: "Advanced Topics"
 function_syntax: $canvasCreate[name;width;height;color]
 date: 2026-06-11T12:00:00.000+02:00
 author: Garder500
-translation_key: EN
+translation_key: canvas-functions-guide
 locale: en
 content_language: en
 layout: post

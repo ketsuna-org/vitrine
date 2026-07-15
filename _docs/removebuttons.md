@@ -2,7 +2,7 @@
 layout: doc
 title: $removeButtons[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: removeButtons
 syntax: $removeButtons
 description: Removes all buttons from a message in a single operation. Other components (menus, text fields) are preserved.

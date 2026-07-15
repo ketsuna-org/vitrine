@@ -2,7 +2,7 @@
 layout: doc
 title: $editSelectMenu
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: editSelectMenu
 syntax: $editSelectMenu[customId;placeholder;minValues;maxValues]
 description: "Modifies the properties of an existing select menu: placeholder text, minimum and maximum number of selectable values."

@@ -2,7 +2,7 @@
 layout: doc
 title: $getChannelSelectChannelID
 translation_key: docs
-category: "Entity Info"
+category: "Components & Interactions"
 function_name: getChannelSelectChannelID
 syntax: $getChannelSelectChannelID[(index)]
 description: Gets the ID of the channel selected by the user via a channel select menu. Allows getting the result of an interaction.

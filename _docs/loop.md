@@ -1,4 +1,5 @@
 ---
+description: Repeats a block of actions a fixed number of times.
 layout: doc
 translation_key: docs
 category: "Misc"

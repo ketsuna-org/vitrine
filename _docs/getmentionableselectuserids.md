@@ -2,7 +2,7 @@
 layout: doc
 title: $getMentionableSelectUserIDs
 translation_key: docs
-category: "Entity Info"
+category: "Components & Interactions"
 function_name: getMentionableSelectUserIDs
 syntax: $getMentionableSelectUserIDs[(separator)]
 description: Gets all mentionable entity IDs (users and roles) selected via a multi-select mentionable menu.

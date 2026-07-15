@@ -2,7 +2,7 @@
 layout: doc
 title: $removeComponent[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: removeComponent
 syntax: $removeComponent[customId]
 description: Removes a specific component (button, menu, text field, etc.) from a message using its custom identifier (customId).

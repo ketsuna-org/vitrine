@@ -2,7 +2,7 @@
 layout: doc
 title: $editButton
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: editButton
 syntax: $editButton[idOrUrl;label;(style);(disabled);(emoji)]
 description: Modifies an existing button on a message. Allows changing the label, style, disabled state, and emoji of a button.
