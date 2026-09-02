@@ -61,6 +61,7 @@ permalink: /docs/
         {% elsif cat_lower contains "flag" or cat_lower contains "debug" %}bug_report
         {% elsif cat_lower contains "entity" or cat_lower contains "user" or cat_lower contains "server" or cat_lower contains "channel" %}person
         {% elsif cat_lower contains "misc" %}widgets
+        {% elsif cat_lower contains "javascript" %}javascript
         {% else %}function{% endif %}
       </span>
       <h2 class="font-display text-3xl font-bold text-on-surface">{{ cat }}</h2>

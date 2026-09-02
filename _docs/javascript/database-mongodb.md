@@ -2,7 +2,7 @@
 layout: doc
 title: MongoDB (mongo)
 translation_key: docs
-category: "Database"
+category: "JavaScript"
 function_name: mongo
 syntax: mongo.collection(name) | mongo.db(name?)
 description: Store and query documents in an external MongoDB database using the mongo keyword in JavaScript scripts.

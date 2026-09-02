@@ -2,7 +2,7 @@
 layout: doc
 title: MySQL (sql)
 translation_key: docs
-category: "Database"
+category: "JavaScript"
 function_name: sql
 syntax: await sql.query(query, [values])
 description: Query and interact with an external MySQL or MariaDB database using the sql keyword in JavaScript scripts.
