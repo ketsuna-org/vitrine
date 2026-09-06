@@ -2,7 +2,7 @@
 layout: doc
 title: External Database Integration
 translation_key: docs
-category: "Database"
+category: "JavaScript"
 function_name: external-database
 syntax: pgsql | sql | mongo
 description: Connect your pure JavaScript Discord bot to an external PostgreSQL, MySQL, or MongoDB database.
@@ -49,7 +49,7 @@ const result = await pgsql.query(
   [message.author.id]
 );
 ```
-See the full [PostgreSQL Documentation](/docs/database-postgres) for details.
+See the full [PostgreSQL Documentation](/docs/javascript/database-postgres) for details.
 
 ### 2. MySQL (`sql`)
 ```js
@@ -59,7 +59,7 @@ const [rows] = await sql.query(
   [interaction.user.id]
 );
 ```
-See the full [MySQL Documentation](/docs/database-mysql) for details.
+See the full [MySQL Documentation](/docs/javascript/database-mysql) for details.
 
 ### 3. MongoDB (`mongo`)
 ```js
@@ -67,7 +67,7 @@ See the full [MySQL Documentation](/docs/database-mysql) for details.
 const users = mongo.collection('users');
 const profile = await users.findOne({ userId: message.author.id });
 ```
-See the full [MongoDB Documentation](/docs/database-mongodb) for details.
+See the full [MongoDB Documentation](/docs/javascript/database-mongodb) for details.
 
 ---
 

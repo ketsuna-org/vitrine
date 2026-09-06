@@ -61,7 +61,7 @@ $sendMessage[Your second role: $roleName[$getRole[$authorID;2]]]
 ```bdfd
 $title[Profile]
 $description[Color of your main role]
-$color[$roleColor[$getRole[$authorID;1]]]
+$color[$getRoleColor[$getRole[$authorID;1]]]
 $sendMessage[]
 ```
 

@@ -2,7 +2,7 @@
 layout: doc
 title: PostgreSQL (pgsql)
 translation_key: docs
-category: "Database"
+category: "JavaScript"
 function_name: pgsql
 syntax: await pgsql.query(sql, [params])
 description: Query and interact with an external PostgreSQL database using the pgsql keyword in JavaScript scripts.
