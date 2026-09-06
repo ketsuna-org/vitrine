@@ -41,7 +41,7 @@ $description[
 **Highest Role:** <@&$highestRole>
 **Role Name:** $roleName[$highestRole]
 ]
-$color[$roleColor[$highestRole]]
+$color[$getRoleColor[$highestRole]]
 $sendMessage[]
 ```
 

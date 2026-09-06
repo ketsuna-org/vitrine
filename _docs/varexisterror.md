@@ -1,18 +1,18 @@
 ---
 layout: doc
-title: $varExistsError[]
+title: $varExistError[]
 translation_key: docs
 category: "Variables"
-function_name: varExistsError
-syntax: $varExistsError[name]
-description: A compatibility stub that always returns an empty string. Provided so that BDFD scripts using the original bot's $varExistsError function continue to work without modification.
+function_name: varExistError
+syntax: $varExistError[name]
+description: A compatibility stub that always returns an empty string. Provided so that BDFD scripts using the original bot's $varExistError function continue to work without modification.
 ---
 
-$varExistsError is a **no-op stub** included solely for backward compatibility with scripts originally written for the classic BDFD (Bot Designer For Discord) application. In the original BDFD, this function would halt execution with an error if the variable did not exist. In this implementation, it does nothing — it always returns an empty string and never interrupts execution.
+$varExistError is a **no-op stub** included solely for backward compatibility with scripts originally written for the classic BDFD (Bot Designer For Discord) application. In the original BDFD, this function would halt execution with an error if the variable did not exist. In this implementation, it does nothing — it always returns an empty string and never interrupts execution.
 
 ## Why This Exists
 
-When migrating BDFD scripts to Bot Creator, existing code may call `$varExistsError` to check that required variables are present before proceeding. Instead of removing these calls manually from every script, this stub silently accepts them, allowing the script to run without modification.
+When migrating BDFD scripts to Bot Creator, existing code may call `$varExistError` to check that required variables are present before proceeding. Instead of removing these calls manually from every script, this stub silently accepts them, allowing the script to run without modification.
 
 ## Behavior
 

@@ -75,4 +75,4 @@ $sendMessage[]
 - Returns an empty string if the user does not have a role with a color.
 - The color is in the format hexadecimal with `#`.
 - Perfect for use with `$color[]` in embeds.
-- Unlike `$roleColor`, `$colorRole` targets a **user**, not a role.
+- Unlike `$getRoleColor`, `$colorRole` targets a **user**, not a role.
