@@ -94,6 +94,10 @@ $else
 $endif
 ```
 
+## Related functions
+
+- [$slashOption](/docs/slashoption/) — read slash command option values
+
 ## Notes
 
 - Returns an empty string for prefix commands.

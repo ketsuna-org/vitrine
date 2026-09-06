@@ -12,3 +12,5 @@ $setUserVar stores a value persistently in the BDFD database under a user-scoped
 The scope is `user`, meaning the context ID is `((author.id))` by default. This function does not return any output — it performs a silent write operation. Use $getUserVar to read the value back.
 
 Variables must first be defined in the Bot Creator Variables UI. The value stored can be any string, including numbers, booleans, JSON, or the output of other BDFD functions. To reset a variable to its default value, use $resetUserVar.
+
+> **JavaScript (BDJS) equivalent:** `await db.user.set('name', value)` — see [db.user](/docs/javascript/db-user/).

@@ -1,0 +1,17 @@
+popular_functions:
+  - sendmessage
+  - setuservar
+  - getuservar
+  - if
+  - addfield
+  - canvas-create
+  - httpget
+  - cooldown
+  - addbutton
+  - scriptlanguage
+
+popular_guides:
+  - "how-to-create-a-bot-token-bot-creator"
+  - "how-to-create-a-command-in-bot-creator-step-by-step"
+  - "handling-rich-interactions-in-bot-creator-buttons-select-menus-modals"
+  - "mastering-persistent-database-variables-in-bdfd"

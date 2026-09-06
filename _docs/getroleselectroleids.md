@@ -2,7 +2,7 @@
 layout: doc
 title: $getRoleSelectRoleIDs
 translation_key: docs
-category: "Entity Info"
+category: "Components & Interactions"
 function_name: getRoleSelectRoleIDs
 syntax: $getRoleSelectRoleIDs[(separator)]
 description: Gets all role IDs selected by the user via a multi-select role menu.

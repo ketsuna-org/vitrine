@@ -2,7 +2,7 @@
 layout: doc
 title: $addMediaGallery[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: addMediaGallery
 syntax: $addMediaGallery[(id)]
 description: Creates a media gallery in a message. The gallery groups multiple media elements (images) that can be browsed by the user.

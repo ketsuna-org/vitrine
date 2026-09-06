@@ -1,0 +1,48 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const activeItem = document.querySelector('#docs-sidebar .bg-primary\\/10');
+  if (activeItem) {
+    setTimeout(() => activeItem.scrollIntoView({ block: 'nearest' }), 100);
+  }
+
+  document.querySelectorAll("[data-toggle-target]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-toggle-target");
+      const targetList = document.getElementById(targetId);
+      const arrow = document.getElementById(targetId + "-arrow");
+      if (!targetList) return;
+      const isHidden = targetList.classList.contains("hidden");
+      targetList.classList.toggle("hidden", !isHidden);
+      if (arrow) arrow.classList.toggle("rotate-180", isHidden);
+    });
+  });
+
+  const searchInput = document.getElementById("sidebar-search-input");
+  if (!searchInput) return;
+
+  searchInput.addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    const items = document.querySelectorAll(".sidebar-item");
+    const groups = document.querySelectorAll(".sidebar-cat-group");
+
+    if (!query) {
+      items.forEach(item => { item.closest("li").style.display = ""; });
+      return;
+    }
+
+    items.forEach(item => {
+      const term = item.getAttribute("data-search-term") || "";
+      item.closest("li").style.display = term.includes(query) ? "" : "none";
+    });
+
+    groups.forEach(group => {
+      const list = group.querySelector("ul");
+      if (!list) return;
+      const visible = Array.from(list.querySelectorAll("li")).some(li => li.style.display !== "none");
+      list.classList.toggle("hidden", !visible);
+      const arrow = document.getElementById(list.id + "-arrow");
+      if (arrow) arrow.classList.toggle("rotate-180", visible);
+    });
+  });
+});
+</script>

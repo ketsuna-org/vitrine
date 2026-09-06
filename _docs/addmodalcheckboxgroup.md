@@ -2,7 +2,7 @@
 layout: doc
 title: $addModalCheckboxGroup[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: addModalCheckboxGroup
 syntax: $addModalCheckboxGroup[customId;label;(required)]
 description: Creates a checkbox group in a modal. The individual options are added using $addCheckboxGroupOption[].

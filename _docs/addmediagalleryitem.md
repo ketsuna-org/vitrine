@@ -2,7 +2,7 @@
 layout: doc
 title: $addMediaGalleryItem[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: addMediaGalleryItem
 syntax: $addMediaGalleryItem[url;(description);(spoiler);(galleryId)]
 description: Adds an element (image) to a media gallery. If galleryId is omitted, the element is added to the last gallery created.

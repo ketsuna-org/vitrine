@@ -1,4 +1,5 @@
 ---
+description: Defines a reusable function block in BDScript.
 layout: doc
 translation_key: docs
 category: "Misc"

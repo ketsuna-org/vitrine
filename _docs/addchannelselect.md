@@ -1,7 +1,7 @@
 ---
 layout: doc
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 ---
 
 # $addChannelSelect

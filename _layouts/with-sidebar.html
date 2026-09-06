@@ -1,33 +1,16 @@
 {% assign locale = page.locale | default: site.lang | default: 'en' %}
 {% assign t = site.data.locales[locale] %}
-{% assign alternate_locale = 'fr' %}
-{% if locale == 'fr' %}
-  {% assign alternate_locale = 'en' %}
-{% endif %}
-{% assign alternate_t = site.data.locales[alternate_locale] %}
-{% assign alternate_url = alternate_t.paths.home | relative_url %}
-{% if page.translation_key %}
-  {% assign translated_page = site.pages | where: "translation_key", page.translation_key | where: "locale", alternate_locale | first %}
-  {% if translated_page %}
-    {% assign alternate_url = translated_page.url | relative_url %}
-  {% else %}
-    {% assign translated_post = site.posts | where: "translation_key", page.translation_key | where: "locale", alternate_locale | first %}
-    {% if translated_post %}
-      {% assign alternate_url = translated_post.url | relative_url %}
-    {% endif %}
-  {% endif %}
-{% endif %}
-{% include site_head.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url markdown=true %}
+{% include site_head.html locale=locale markdown=true %}
 
 <body class="bg-background text-on-surface font-sans antialiased">
-  {% include site_header.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url t=t %}
+  {% include site_header.html locale=locale t=t %}
 
   <main id="main-content" class="min-h-screen py-8 lg:py-16" tabindex="-1">
     <div class="max-w-full mx-auto px-6 lg:px-12">
       <!-- Mobile Sidebar Toggle -->
       <div class="lg:hidden mb-6">
         <button id="sidebar-toggle-btn"
-          class="flex h-11 items-center gap-2.5 bg-surface-container-low border border-outline-variant rounded-xl px-5 py-2.5 text-sm font-bold text-on-surface hover:bg-surface-container hover:border-primary/50 active:scale-95 transition-all shadow-sm">
+          class="flex h-11 min-h-[44px] items-center gap-2.5 bg-surface-container-low border border-outline-variant rounded-xl px-5 py-2.5 text-sm font-bold text-on-surface hover:bg-surface-container hover:border-primary/50 active:scale-95 transition-all shadow-sm">
           <span class="material-symbols-outlined text-primary text-base">menu_open</span>
           <span>{{ page.sidebar_toggle_label | default: "Browse sections" }}</span>
         </button>
@@ -35,21 +18,23 @@
 
       <!-- Two-column layout: Sidebar + Content -->
       <div class="flex gap-8 lg:gap-12 items-start relative w-full">
-        <!-- LEFT SIDEBAR (MongoDB-style) -->
+        <!-- LEFT SIDEBAR -->
         <aside id="docs-sidebar" class="docs-sidebar">
           <div class="docs-sidebar-inner">
-            <!-- Sidebar header -->
             <div class="flex items-center justify-between mb-4 lg:hidden border-b border-outline-variant pb-4">
               <h3 class="font-display text-base font-bold text-on-surface">{{ page.sidebar_title | default: "Navigation" }}</h3>
               <button id="sidebar-close-btn"
-                class="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-container border border-outline-variant text-on-surface active:scale-90 transition-all">
+                class="flex h-10 w-10 min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-surface-container border border-outline-variant text-on-surface active:scale-90 transition-all">
                 <span class="material-symbols-outlined">close</span>
               </button>
             </div>
 
-            <!-- Sidebar content injected by the page -->
             {% if page.sidebar %}
               {{ page.sidebar }}
+            {% elsif page.layout == 'post' or page.sidebar_context == 'guides' %}
+              {% include guides_sidebar.html %}
+            {% elsif page.api_type == 'javascript' or page.sidebar_context == 'javascript' %}
+              {% include js_api_sidebar.html %}
             {% else %}
               {% include docs_sidebar.html %}
             {% endif %}
@@ -67,7 +52,6 @@
   {% include site_footer.html t=t %}
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
 
-  <!-- Mobile sidebar toggle/drawer JS -->
   <script>
     (function() {
       const sidebar = document.getElementById('docs-sidebar');
@@ -92,21 +76,18 @@
         closeBtn.addEventListener('click', closeSidebar);
       }
 
-      // Close on overlay click
       sidebar.addEventListener('click', function(e) {
         if (e.target === sidebar && sidebar.classList.contains('is-active')) {
           closeSidebar();
         }
       });
 
-      // Close on Escape
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && sidebar.classList.contains('is-active')) {
           closeSidebar();
         }
       });
 
-      // Close on window resize to desktop
       window.addEventListener('resize', function() {
         if (window.innerWidth >= 1024 && sidebar.classList.contains('is-active')) {
           closeSidebar();

@@ -2,7 +2,7 @@
 layout: doc
 title: $addContainer[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: addContainer
 syntax: $addContainer[(id);(accentColor);(spoiler)]
 description: Creates a visual container in a Discord message. The containers can group sections and display a colored border. Supports spoiler mode.

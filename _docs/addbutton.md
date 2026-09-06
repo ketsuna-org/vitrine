@@ -1,7 +1,8 @@
 ---
 layout: doc
 translation_key: docs
-category: "Embed & Message"
+description: Adds an interactive button to a message (legacy style).
+category: "Components & Interactions"
 ---
 
 # $addButton

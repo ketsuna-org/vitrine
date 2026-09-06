@@ -49,6 +49,9 @@ $endif
 ```
 
 > [!TIP]
+> See [$sendResponse](/docs/sendresponse/) for the recommended way to reply to component interactions, including ephemeral confirmations.
+
+> [!TIP]
 > Always verify that `((interaction.kind))` equals `button` if you have overlapping custom IDs between buttons and dropdowns to prevent execution leakage.
 
 ---

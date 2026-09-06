@@ -92,3 +92,4 @@ $endif
 - The choice of language is made when creating the bot and can be modified in the settings.
 - BDJS allows the use of JavaScript `if/else`, `for`, and `while` in addition to `$` functions.
 - BDScript is recommended for beginners.
+- Full JavaScript API reference: [JavaScript API](/docs/javascript/).

@@ -1,4 +1,5 @@
 ---
+description: Sets a per-server cooldown for a command.
 layout: doc
 translation_key: docs
 category: "Cooldown"

@@ -2,7 +2,7 @@
 layout: doc
 title: $getStringSelectValues
 translation_key: docs
-category: "Entity Info"
+category: "Components & Interactions"
 function_name: getStringSelectValues
 syntax: $getStringSelectValues[(separator)]
 description: Gets all option values selected in a multi-select string select menu.

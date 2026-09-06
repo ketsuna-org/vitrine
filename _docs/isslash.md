@@ -84,6 +84,11 @@ $endif
 $sendMessage[You provided: $var[args]]
 ```
 
+## Related functions
+
+- [$slashOption](/docs/slashoption/) — read slash command option values
+- [$sendResponse](/docs/sendresponse/) — direct interaction replies (including `// ephemeral`)
+
 ## Notes
 
 - `$isSlash` takes no parameters.

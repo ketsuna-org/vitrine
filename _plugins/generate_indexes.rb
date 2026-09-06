@@ -65,6 +65,7 @@ module Vitrine
             "slug"     => slug,
             "name"     => doc.data["title"] || function_name_from_slug(slug),
             "category" => doc.data["category"],
+            "api_type" => doc.data["api_type"] || "bdfd",
             "url"      => "#{SITE_URL}#{doc.url}",
           }
         end.sort_by { |d| d.fetch("slug") }
@@ -106,6 +107,8 @@ module Vitrine
         body << ""
         body << "- [All docs](https://bot-creator.fr/docs/): Browse the full function reference"
         body << "- [llms-full.txt](https://bot-creator.fr/llms-full.txt): Complete documentation as a single Markdown file"
+        body << "- [Getting started](https://bot-creator.fr/docs/getting-started/): Documentation quick start"
+        body << "- [JavaScript API](https://bot-creator.fr/docs/javascript/): BDJS script globals (db.*, interaction, message)"
         body << "- [MCP server](https://bot-creator.fr/docs/mcp/): Connect via Model Context Protocol"
         body << ""
         body << "## Function reference by category"

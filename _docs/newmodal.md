@@ -2,7 +2,7 @@
 layout: doc
 title: $newModal[]
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: newModal
 syntax: $newModal[title;customId]
 description: Creates a new modal (interactive pop-up window) with a title and a custom identifier to handle submissions.

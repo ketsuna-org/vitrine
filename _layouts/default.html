@@ -1,26 +1,9 @@
 {% assign locale = page.locale | default: site.lang | default: 'en' %}
 {% assign t = site.data.locales[locale] %}
-{% assign alternate_locale = 'fr' %}
-{% if locale == 'fr' %}
-  {% assign alternate_locale = 'en' %}
-{% endif %}
-{% assign alternate_t = site.data.locales[alternate_locale] %}
-{% assign alternate_url = alternate_t.paths.home | relative_url %}
-{% if page.translation_key %}
-  {% assign translated_page = site.pages | where: "translation_key", page.translation_key | where: "locale", alternate_locale | first %}
-  {% if translated_page %}
-    {% assign alternate_url = translated_page.url | relative_url %}
-  {% else %}
-    {% assign translated_post = site.posts | where: "translation_key", page.translation_key | where: "locale", alternate_locale | first %}
-    {% if translated_post %}
-      {% assign alternate_url = translated_post.url | relative_url %}
-    {% endif %}
-  {% endif %}
-{% endif %}
-{% include site_head.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url %}
+{% include site_head.html locale=locale %}
 <body class="bg-background text-on-surface font-sans antialiased">
   <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-surface-container-lowest focus:text-primary focus:rounded-lg focus:shadow-neon-strong" href="#main-content">{{ t.common.skip_to_content }}</a>
-  {% include site_header.html locale=locale alternate_locale=alternate_locale alternate_url=alternate_url t=t %}
+  {% include site_header.html locale=locale t=t %}
   <main id="main-content" tabindex="-1">
     {{ content }}
   </main>

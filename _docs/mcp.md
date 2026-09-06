@@ -1,4 +1,5 @@
 ---
+description: Model Context Protocol server for AI-assisted documentation lookup.
 layout: doc
 translation_key: docs
 category: "Meta"

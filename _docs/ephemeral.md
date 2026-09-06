@@ -1,7 +1,8 @@
 ---
 layout: doc
 translation_key: docs
-category: "Embed & Message"
+description: Makes the response visible only to the user who triggered the interaction.
+category: "Components & Interactions"
 ---
 
 # $ephemeral

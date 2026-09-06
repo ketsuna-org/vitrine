@@ -5,7 +5,7 @@ category: "Building Commands"
 function_syntax: $for[iterations]
 date: 2026-05-23T02:30:00.000+02:00
 author: Garder500
-translation_key: EN
+translation_key: for-loop-guide
 locale: en
 content_language: en
 layout: post

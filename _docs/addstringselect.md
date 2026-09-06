@@ -1,7 +1,8 @@
 ---
 layout: doc
 translation_key: docs
-category: "Embed & Message"
+description: Adds a string select dropdown menu to a message.
+category: "Components & Interactions"
 ---
 
 # $addStringSelect

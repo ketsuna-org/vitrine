@@ -2,7 +2,7 @@
 layout: doc
 title: $editSelectMenuOption
 translation_key: docs
-category: "Embed & Message"
+category: "Components & Interactions"
 function_name: editSelectMenuOption
 syntax: $editSelectMenuOption[menuId;label;value;description;default;emoji]
 description: Modifies an individual option in an existing select menu.

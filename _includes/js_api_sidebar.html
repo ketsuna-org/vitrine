@@ -1,0 +1,36 @@
+{% assign nav = site.data.docs_nav.javascript_api %}
+
+<div class="flex flex-col gap-6">
+  <div class="relative flex items-center bg-surface-container border border-outline-variant rounded-lg p-1.5 focus-within:border-primary transition-all">
+    <span class="material-symbols-outlined text-on-surface-variant/50 ml-2 mr-1.5 text-lg">search</span>
+    <input type="text" id="sidebar-search-input" placeholder="Search JavaScript API..."
+      class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-on-surface-variant/40 pr-2 text-sm py-1">
+  </div>
+
+  <div class="sidebar-group">
+    <div class="text-xs font-bold text-on-surface-variant/50 uppercase tracking-widest mb-2 px-2 py-1 flex items-center gap-2">
+      <span class="material-symbols-outlined text-base">terminal</span>
+      JavaScript API
+    </div>
+    <ul class="flex flex-col gap-1">
+      {% for item in nav %}
+        <li>
+          <a href="{{ item.path | relative_url }}"
+             class="sidebar-item block px-3 py-1.5 rounded-lg text-sm transition-all {% if page.url == item.path %}bg-primary/10 text-primary font-bold border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
+             data-search-term="{{ item.title | downcase }}">
+            {{ item.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="border-t border-outline-variant pt-4">
+    <a href="{{ '/docs/' | relative_url }}" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+      <span class="material-symbols-outlined text-base">code</span>
+      BDFD Function Reference
+    </a>
+  </div>
+</div>
+
+{% include sidebar_scripts.html %}
