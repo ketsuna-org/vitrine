@@ -44,8 +44,8 @@ content_language: en
 
       <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
         <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Diagnostics, analytics & crash reporting</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Diagnostic and usage data is collected via Firebase.</h2>
-        <p class="text-on-surface-variant leading-relaxed">Bot Creator uses <strong>Google Analytics for Firebase</strong> and <strong>Firebase Crashlytics</strong> to understand how the app is used and to fix bugs. These services collect device type, operating system version, IP address (anonymized), Firebase Installation ID, in-app actions, and crash stack traces. This data is sent to Google servers.</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Diagnostic and usage data is collected via Firebase & performance monitoring.</h2>
+        <p class="text-on-surface-variant leading-relaxed">Bot Creator uses <strong>Google Analytics for Firebase</strong>, <strong>Firebase Crashlytics</strong>, and <strong>Firebase Performance Monitoring</strong> (as well as PostHog on desktop) to understand app usage, monitor responsiveness, and diagnose crashes. These services collect device type, operating system version, IP address (anonymized), Firebase Installation ID, performance traces, in-app actions, and crash stack traces. When signed in, your Discord account ID is published to diagnostic SDKs to investigate reported issues and assist customer support.</p>
       </article>
 
       <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
@@ -67,9 +67,9 @@ content_language: en
       </article>
 
       <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
-        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Authentication (coming soon)</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Discord sign-in will be available in a future update.</h2>
-        <p class="text-on-surface-variant leading-relaxed">A future version of Bot Creator will offer authentication via <strong>Discord OAuth2</strong>. When enabled, the app will collect your Discord user ID, username, email address, and avatar for authentication and cloud backup of your configurations. This data will be stored on <strong>Firebase Authentication</strong> and <strong>Firestore</strong>. This section will be updated before the feature launches.</p>
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Authentication</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Discord sign-in connects your account securely.</h2>
+        <p class="text-on-surface-variant leading-relaxed">Bot Creator offers authentication via <strong>Discord OAuth2</strong>. When connected, the app collects your Discord user ID, username, email address, and avatar to authenticate your session, associate diagnostics and telemetry with your account for bug resolution, and manage cloud services.</p>
       </article>
 
       <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30 hover:neon-glow" data-reveal id="data-deletion">
@@ -102,7 +102,7 @@ content_language: en
         <ul class="space-y-3 mb-6">
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
             <span class="material-symbols-outlined text-primary text-lg">info</span>
-            <span><strong>Aggregated analytics data</strong> (Google Analytics for Firebase) — anonymized usage statistics that cannot identify you are retained indefinitely for product improvement.</span>
+            <span><strong>Analytics & diagnostics data</strong> (Google Analytics for Firebase, Firebase Crashlytics, PostHog) — usage events, performance metrics, and error reports (which may be associated with your Discord user ID to diagnose account-specific issues) are retained for product improvement and debugging.</span>
           </li>
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
             <span class="material-symbols-outlined text-primary text-lg">info</span>
