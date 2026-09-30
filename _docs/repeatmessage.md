@@ -68,3 +68,14 @@ $repeatMessage[10;Test message $getTextSplitIndex]
 - **Best for small counts**: Stick to small `count` values (1–5). For larger counts, consider sending a single message with repeated content using `$joinSplitText` or a loop.
 - **Discord ToS**: Excessive message spamming may violate Discord's Terms of Service. Use responsibly.
 - **Channel context**: Messages are sent to the channel where the command was triggered.
+
+## Examples
+
+### Repeating Text Patterns
+
+```bdfd
+$title[Repeating Announcement]
+$description[$repeatMessage[Echo! ;3]]
+$color[#5865F2]
+$sendMessage[]
+```

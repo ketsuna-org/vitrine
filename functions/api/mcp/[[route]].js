@@ -25,6 +25,7 @@ const SERVER_INFO = {
 const CAPABILITIES = {
   tools: { listChanged: false },
   resources: { list: true, listChanged: false },
+  prompts: { listChanged: false },
 };
 
 const CORS = {
@@ -111,7 +112,7 @@ async function handleSingle(req) {
             protocolVersion: PROTOCOL_VERSION,
             capabilities: CAPABILITIES,
             serverInfo: SERVER_INFO,
-            instructions: "Read execution-model before generating commands. Search the requested api_type (blocks, bdfd or javascript), then read the matching docs. BDFD uses $var for temporary variables and supports implicit slash responses. Respect compatibility status: ticket helpers are incomplete. Do not invent functions or infer Blocks payloads from BDFD signatures.",
+            instructions: "Read execution-model before generating commands. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) PRODUCTION TICKET SYSTEMS: $newTicket and $closeTicket are INCOMPLETE legacy helpers that lack private permissions. Always implement tickets using explicit createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button ($addButton[no;close_ticket;Close Ticket;danger]), and an interaction handler that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
           },
         };
 
@@ -126,6 +127,12 @@ async function handleSingle(req) {
 
       case "tools/call":
         return await handleToolCall(req);
+
+      case "prompts/list":
+        return { jsonrpc: "2.0", id: req.id, result: { prompts: PROMPTS_META } };
+
+      case "prompts/get":
+        return await handlePromptGet(req);
 
       case "resources/list":
         return { jsonrpc: "2.0", id: req.id, result: { resources: [] } };
@@ -210,6 +217,84 @@ const TOOLS_META = [
     },
   },
 ];
+
+// --- Prompt metadata -----------------------------------------------------
+
+const PROMPTS_META = [
+  {
+    name: "command_authoring_rules",
+    description: "Interaction lifecycle rules, variable scope separation ($var vs $setVar), few-shot examples, and LLM gotchas for Bot Creator.",
+    arguments: [
+      { name: "mode", description: "Authoring mode: 'bdfd' or 'blocks'", required: false },
+    ],
+  },
+  {
+    name: "production_ticket_workflow",
+    description: "Production-ready Discord ticket system template using private channel creation, permission overwrites, and interactive close button.",
+    arguments: [],
+  },
+];
+
+async function handlePromptGet(req) {
+  const name = req?.params?.name;
+  if (!name || !PROMPTS_META.some((p) => p.name === name)) {
+    return jsonrpcError(req.id, -32602, `Unknown prompt: ${name}`);
+  }
+
+  if (name === "command_authoring_rules") {
+    return {
+      jsonrpc: "2.0",
+      id: req.id,
+      result: {
+        description: "Interaction lifecycle, variable rules, and few-shot examples for Bot Creator.",
+        messages: [
+          {
+            role: "user",
+            content: {
+              type: "text",
+              text: "How should I structure a slash command in Bot Creator without creating broken replies or hallucinating syntax?",
+            },
+          },
+          {
+            role: "assistant",
+            content: {
+              type: "text",
+              text: "### Golden Rules for Bot Creator LLM Generation:\n1. NO $let: Use $var[name;val] for temporary command variables. Use $setVar[key;val] for persistent global DB storage, $setUserVar for user-scoped DB variables, $setServerVar for guild-scoped DB variables.\n2. NO $sendMessage IN SLASH COMMANDS: Discord interactions acknowledge automatically. Plain text and embeds outside functions constitute the native slash reply (respondWithMessage). Add $ephemeral for private replies. Use $channelSendMessage[channelID;content] ONLY when deliberately posting into another channel.\n3. NO FAKE FUNCTIONS: $slashOption, $respondWithMessage, $sendResponse do not exist in BDScript. Access slash options via ((opts.name)) or ((opts.name.id)).\n4. BLOCKS CONTRACT: Blocks actions map strictly to BotCreatorActionType (e.g. sendMessage, respondWithMessage, createChannel, editChannelPermissions, ifBlock, forLoop).\n\n### Minimal Few-Shot (BDFD Slash Command):\n```bdfd\n$title[Server Info]\n$description[Welcome to **$serverName**! We have $membersCount members.]\n$color[#5865F2]\n$ephemeral\n```\n\n### Minimal Few-Shot (Blocks Mode JSON):\n```json\n[\n  {\n    \"type\": \"respondWithMessage\",\n    \"payload\": {\n      \"content\": \"Hello ((user.username))!\",\n      \"ephemeral\": true\n    }\n  }\n]\n```",
+            },
+          },
+        ],
+      },
+    };
+  }
+
+  if (name === "production_ticket_workflow") {
+    return {
+      jsonrpc: "2.0",
+      id: req.id,
+      result: {
+        description: "Production-ready ticket system with private channel creation, explicit permissions, and close button handler.",
+        messages: [
+          {
+            role: "user",
+            content: {
+              type: "text",
+              text: "Provide a working Discord ticket system in Bot Creator.",
+            },
+          },
+          {
+            role: "assistant",
+            content: {
+              type: "text",
+              text: "### Production Ticket Workflow:\n\nStep 1: Slash command /ticket\n```bdfd\n$var[ticketChan;$createChannel[ticket-$username;text;123456789012345678]]\n$editChannelPerms[$var[ticketChan];$authorID;+viewchannel;+sendmessages;+readmessagehistory]\n$useChannel[$var[ticketChan]]\n$title[Support & Help]\n$description[Hello <@$authorID>! Please describe your issue below.\\nTo close this ticket, click the red button.]\n$color[#5865F2]\n$addButton[no;close_ticket;Close Ticket;danger]\n$useChannel[]\n$ephemeral\n✅ Your support ticket has been created: <#$var[ticketChan]>\n```\n\nStep 2: Button Click interactionCreate (customId: close_ticket)\n```bdfd\n🔒 Close requested by $username. Deleting this channel in 3 seconds...\n$wait[3s]\n$deleteChannels[$channelID]\n```",
+            },
+          },
+        ],
+      },
+    };
+  }
+
+  return jsonrpcError(req.id, -32601, `Prompt not found: ${name}`);
+}
 
 // --- Tool dispatch -------------------------------------------------------
 

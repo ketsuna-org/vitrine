@@ -90,3 +90,14 @@ $var[clean;$replaceText[$getUserVar[rawText];\n;, ]]
 - **Global replacement**: All occurrences are replaced, not just the first.
 - **Literal only**: No regex support. The search string is matched exactly.
 - **Order matters in chaining**: Nest `$replaceText` calls carefully when doing multiple replacements, as earlier replacements may affect later ones.
+
+## Examples
+
+### Word Replacement and Sanitization
+
+```bdfd
+$title[Text Filter]
+$description[Censored text: **$replaceText[$message;badword;****]**]
+$color[#5865F2]
+$sendMessage[]
+```

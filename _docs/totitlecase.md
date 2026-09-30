@@ -62,3 +62,14 @@ Transforms `"new york"` → `"New York"`, `"LOS ANGELES"` → `"Los Angeles"`.
 - **Word boundaries**: Words are separated by whitespace. Punctuation attached to words may affect capitalization.
 - **All subsequent letters are lowered**: `"mCDONALD"` → `"Mcdonald"`. For proper name casing, additional logic may be needed.
 - **ASCII only**: Non-ASCII character behavior depends on the BDFD runtime.
+
+## Examples
+
+### Formatting Text to Title Case
+
+```bdfd
+$title[Title Case Formatter]
+$description[Formatted title: **$toTitleCase[$message]**]
+$color[#5865F2]
+$sendMessage[]
+```

@@ -27,7 +27,7 @@ None.
 - **Type**: `string`
 - A string containing all server names, separated by commas (e.g., `"Server A, Server B, Server C"`).
 
-## Usage
+## Examples
 
 ### Simple display
 

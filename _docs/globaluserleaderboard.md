@@ -79,3 +79,17 @@ $setUserVar[score;$sum[$getUserVar[score];10];$authorID]
 - [`$userLeaderboard`](/docs/userleaderboard) — Current user's position
 - [`$textSplit`](/docs/textsplit) — Parse the result
 - [`$setUserVar`](/docs/setuservar) — Set a user variable
+
+## Examples
+
+### Global Economy Ranking
+
+```bdfd
+$title[🌍 Global Economy Leaderboard]
+$description[Top users across all servers:
+
+$globalUserLeaderboard[coins;desc]]
+$color[#FEE75C]
+$footer[Updated every 5 minutes]
+$sendMessage[]
+```

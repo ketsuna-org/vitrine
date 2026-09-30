@@ -11,7 +11,7 @@ Starts a new action row to contain buttons or select menus.
 
 ## Syntax
 
-```
+```bdfd
 $addActionRow[(id)]
 ```
 
@@ -31,7 +31,7 @@ An **action row** is a container that groups interactive components (buttons, se
 
 ### Simple row
 
-```
+```bdfd
 $addActionRow
 $addButtonCV2[btn_1;Click me;primary]
 $sendMessage[Here is a button!]
@@ -39,7 +39,7 @@ $sendMessage[Here is a button!]
 
 ### With custom ID
 
-```
+```bdfd
 $addActionRow[row_buttons]
 $addButtonCV2[btn_ok;OK;success]
 $addButtonCV2[btn_cancel;Cancel;danger]
@@ -48,7 +48,7 @@ $sendMessage[Confirm your choice]
 
 ### Multiple rows
 
-```
+```bdfd
 $addActionRow
 $addButtonCV2[btn_1;Button 1;primary]
 $addButtonCV2[btn_2;Button 2;primary]

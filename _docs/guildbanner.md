@@ -29,7 +29,7 @@ No parameters.
 - **Type** : `string`
 - The URL of the banner, or an empty string if not available.
 
-## Usage
+## Examples
 
 ### Embed with banner
 

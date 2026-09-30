@@ -30,7 +30,7 @@ $addContainer[(id);(accentColor);(spoiler)]
 
 Initializes a container. Components added afterward (sections, thumbnails, galleries) insert into this container.
 
-## Usage
+## Examples
 
 ### Basic container
 

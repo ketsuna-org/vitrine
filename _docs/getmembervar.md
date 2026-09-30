@@ -14,3 +14,14 @@ When called with only a `name`, it reads the variable of the current command aut
 Variables are defined and configured in the Bot Creator Variables UI, where you can set default values. If a variable has not been set via $setMemberVar but a default exists in the definitions, $getMemberVar returns that default. If neither exists, an empty string is returned.
 
 > **JavaScript (BDJS) equivalent:** `await db.guildMember.get('name')` — see [db.guildMember](/docs/javascript/db-guild-member/).
+
+## Examples
+
+### User Experience Points
+
+```bdfd
+$title[User Profile]
+$description[Experience: **$getMemberVar[xp;$authorID]** XP]
+$color[#5865F2]
+$sendMessage[]
+```

@@ -73,3 +73,17 @@ $sendMessage[$joinSplitText[ ]]
 - **Current split only**: `$joinSplitText` operates on the most recent `$textSplit` result.
 - **Respects modifications**: If elements were changed via `$editSplitText` or removed via `$removeSplitTextElement`, the joined result reflects those changes.
 - **Empty separator**: `$joinSplitText[]` with no argument produces a concatenated string with nothing between elements.
+
+## Examples
+
+### Joining Split Elements with Formatted Separator
+
+```bdfd
+$textSplit[Ruby,Python,JavaScript,Rust;,]
+$title[Joined Language List]
+$description[Languages formatted:
+• $joinSplitText[
+• ]]
+$color[#5865F2]
+$sendMessage[]
+```

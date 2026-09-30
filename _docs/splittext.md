@@ -86,3 +86,18 @@ $sendMessage[Args: 1=$splitText[0], 2=$splitText[1], 3=$splitText[2]]
 - **Depends on $textSplit**: `$splitText` is meaningless without a prior `$textSplit` call. It reads from the current spreads context.
 - **Silent out-of-bounds**: Accessing an invalid index returns `""` without error. Always validate with `$getTextSplitLength` if bounds are uncertain.
 - **No mutation**: `$splitText` is read-only. Use `$editSplitText` to modify elements.
+
+## Examples
+
+### Extracting Words from a Message
+
+```bdfd
+$textSplit[$message; ]
+$title[Text Analysis]
+$description[Original sentence: *$message*]
+$addField[First Word;$splitText[0];yes]
+$addField[Second Word;$splitText[1];yes]
+$addField[Last Word;$splitText[-1];yes]
+$color[#5865F2]
+$sendMessage[]
+```

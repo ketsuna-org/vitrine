@@ -34,14 +34,14 @@ When called, `$defer` sends a deferred response via `BotCreatorActionType.respon
 ## Example: Without vs With $defer
 
 Without `$defer` (will fail):
-```
+```bdfd
 $wait[5s]
 $sendMessage[Done!]
 ```
 → Discord shows "This interaction failed" because no response was sent within 3 seconds.
 
 With `$defer` (works):
-```
+```bdfd
 $defer
 $wait[5s]
 $sendMessage[Done!]

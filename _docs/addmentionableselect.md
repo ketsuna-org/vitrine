@@ -10,7 +10,7 @@ Creates a select menu of mentionable entities. Allows users to choose between us
 
 ## Syntax
 
-```
+```bdfd
 $addMentionableSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 ```
 
@@ -34,28 +34,28 @@ The returned values are IDs. Use `$roleExists` to determine if an ID corresponds
 
 ### Simple selection
 
-```
+```bdfd
 $addMentionableSelect[menu_mention;Choose a member or a role]
 $sendMessage[Select a target]
 ```
 
 ### Multiple selection
 
-```
+```bdfd
 $addMentionableSelect[menu_targets;Multiple targets;1;10]
 $sendMessage[Select up to 10 targets]
 ```
 
 ### Disabled menu
 
-```
+```bdfd
 $addMentionableSelect[menu_mention_off;Unavailable;1;1;true]
 $sendMessage[Menu disabled]
 ```
 
 ## Handling the interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==menu_mention]
   $if[$roleExists[$message]==true]

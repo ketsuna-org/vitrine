@@ -27,7 +27,7 @@ No parameters.
 - **Type**: `string`
 - The ID of the server in the form of a numeric string.
 
-## Usage
+## Examples
 
 ### Display the ID
 

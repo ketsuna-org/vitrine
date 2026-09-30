@@ -11,7 +11,7 @@ Enforces a per-server (guild) cooldown on command execution. When triggered, all
 
 ## Syntax
 
-```
+```bdfd
 $serverCooldown[duration;(errorMessage)]
 ```
 
@@ -57,35 +57,35 @@ Always place `$serverCooldown` at the **top** of your command, before any side e
 
 ### Basic Server Cooldown
 
-```
+```bdfd
 $serverCooldown[10s]
 $sendMessage[Command executed!]
 ```
 
 ### With Custom Error Message
 
-```
+```bdfd
 $serverCooldown[5m;⏳ This command is on cooldown for this server. Please wait!]
 $sendMessage[Processing...]
 ```
 
 ### Displaying Remaining Time
 
-```
+```bdfd
 $serverCooldown[1m;⏳ Server cooldown! Try again in $getCooldown[server] seconds.]
 $sendMessage[Done!]
 ```
 
 ### Server-Wide Daily Command
 
-```
+```bdfd
 $serverCooldown[24h;⏳ This command can only be used once per day in this server!]
 $sendMessage[Daily reward claimed for this server!]
 ```
 
 ### Combined with User Cooldown
 
-```
+```bdfd
 $cooldown[30s;⏳ You must wait before using this command again.]
 $serverCooldown[10s;⏳ This command is on server cooldown.]
 $sendMessage[Action complete!]

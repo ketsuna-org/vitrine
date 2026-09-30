@@ -27,7 +27,7 @@ No parameters.
 - **Type**: `integer`
 - The number of servers the bot belongs to.
 
-## Usage
+## Examples
 
 ### Simple display
 

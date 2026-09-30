@@ -27,7 +27,7 @@ None.
 - **Type**: `integer`
 - The number of custom stickers on the server.
 
-## Usage
+## Examples
 
 ### Simple display
 

@@ -10,7 +10,7 @@ Enables mentions in the response. When replying, the user will be explicitly pin
 
 ## Syntax
 
-```
+```bdfd
 $allowMention
 ```
 
@@ -24,7 +24,7 @@ Although the default behavior of `$reply` already includes a ping, `$allowMentio
 
 ### Response with explicit ping
 
-```
+```bdfd
 $reply
 $allowMention
 $sendMessage[Hey $username, look at this!]
@@ -32,7 +32,7 @@ $sendMessage[Hey $username, look at this!]
 
 ### In an interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==btn_alert]
   $reply
@@ -43,7 +43,7 @@ $endif
 
 ### Response with embeds and mention
 
-```
+```bdfd
 $reply
 $allowMention
 $newEmbed[title=Attention;description=This requires your attention;color=#E74C3C]

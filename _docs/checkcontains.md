@@ -59,3 +59,17 @@ $checkContains[$toLowercase[$message];$toLowercase[Admin]]
 - **Partial matches**: `$checkContains[sword;word]` returns `"true"`. Use exact equality checks or delimiters if you need whole-word matching.
 - **Empty search string**: An empty needle always returns `"true"`. Guard against empty user input if it matters.
 - **Type coercion**: Both arguments are treated as strings. If you pass a number, it is converted to its string representation first.
+
+## Examples
+
+### Moderation Link Filter
+
+```bdfd
+$if[$checkContains[$message;discord.gg;https://]==true]
+  $deleteMessage[$messageID]
+  $title[Automod Warning]
+  $description[<@$authorID>, links and invites are not allowed in this channel!]
+  $color[#ED4245]
+  $sendMessage[]
+$endif
+```

@@ -29,7 +29,7 @@ $addFile[url;(spoiler)]
 
 Adds the file as an attachment to the message. Discord displays the file according to its type (preview for images, icon + name for documents).
 
-## Usage
+## Examples
 
 ### Attaching an image
 

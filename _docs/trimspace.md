@@ -70,3 +70,14 @@ $endif
 - **Preserves internal spaces**: Only leading and trailing whitespace is removed. `"hello   world"` stays `"hello   world"`.
 - **Empty result**: If the text is all whitespace, returns an empty string.
 - **Often combined**: Use `$trimSpace` with `$toLowercase` for robust input normalization.
+
+## Examples
+
+### Trimming Surrounding Whitespace
+
+```bdfd
+$title[Trimmed String]
+$description[Cleaned input: `**$trimSpace[$message]**`]
+$color[#5865F2]
+$sendMessage[]
+```

@@ -33,29 +33,16 @@ $sum[value1;value2;...]
 
 ## Examples
 
-**Simple sum:**
-```
-$sum[5;10;15]
-→ 30
-```
+### Sum of Numbers
 
-**With a single value:**
+```bdfd
+$title[Math: Sum Calculation]
+$description[Sum of `5 + 10 + 15`: **$sum[5;10;15]**]
+$addField[Single Value;$sum[42];yes]
+$addField[Empty Sum;$sum[];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-$sum[42]
-→ 42
-```
-
-**Without arguments:**
-```
-$sum[]
-→ 0
-```
-
-**In a practical context (cart total):**
-```
-$sum[$getVar[item1];$getVar[item2];$getVar[item3]]
-```
-
 ## Notes
 
 - The result is always a string of characters representing a number.

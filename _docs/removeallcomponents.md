@@ -26,7 +26,7 @@ No parameters.
 
 Removes all components from the message, making it non-interactive.
 
-## Usage
+## Examples
 
 ### Form finalization
 

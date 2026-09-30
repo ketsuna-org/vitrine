@@ -12,3 +12,15 @@ $setGuildVar stores a value persistently in the BDFD database under a guild-scop
 When called with two arguments (`name` and `value`), it sets the variable for the current guild (`((guild.id))`). When a Guild ID is provided, the variable is set for the specified server.
 
 The scope is `guild`, meaning the value is shared server-wide. This is ideal for server settings such as prefixes, welcome channels, auto-roles, logging channels, and similar configuration values. This function does not return any output — use $getGuildVar to read the value. To reset, use $resetGuildVar.
+
+## Examples
+
+### Set Moderation Log Channel
+
+```bdfd
+$setGuildVar[modLogChan;123456789012345678;$guildID]
+$title[Audit Logs Configured]
+$description[Moderation logs will be posted to <#123456789012345678>.]
+$color[#57F287]
+$sendMessage[]
+```

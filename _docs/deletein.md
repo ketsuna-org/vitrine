@@ -36,7 +36,7 @@ $deleteIn[duration]
 
 Schedules the delayed deletion of the message. The message is automatically deleted at expiry.
 
-## Usage
+## Examples
 
 ### Temporary notification
 

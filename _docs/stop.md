@@ -60,3 +60,17 @@ If `$stop` is called inside a `$try` block, the `$catch` block is **not** execut
 - Placing important cleanup or logging code after `$stop` — it will never execute.
 - Using `$stop` inside a `$try` and expecting the `$catch` to still run.
 - Confusing `$stop` with `$skipActions[1]` — `$stop` kills the entire action sequence, not just the next command.
+
+## Examples
+
+### Halting Execution for Bots
+
+```bdfd
+$if[$isBot[$authorID]==true]
+  $stop
+$endif
+$title[User Verified]
+$description[Hello <@$authorID>, your command has been processed.]
+$color[#5865F2]
+$sendMessage[]
+```

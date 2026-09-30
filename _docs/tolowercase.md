@@ -72,3 +72,15 @@ $endif
 - **Locale-independent**: Basic ASCII lowercasing is applied. Behavior with non-ASCII characters (accented letters, etc.) may vary.
 - **Only letters**: Digits, punctuation, and whitespace pass through unchanged.
 - **Combine with $replaceText**: Use `$toLowercase` before `$replaceText` for consistent matching.
+
+## Examples
+
+### Normalizing Text to Lowercase
+
+```bdfd
+$title[Lowercase Conversion]
+$description[Original: `$message`
+Lowercase: **$toLowerCase[$message]**]
+$color[#5865F2]
+$sendMessage[]
+```

@@ -26,7 +26,7 @@ No parameters.
 
 Removes all buttons from the message. Other components (TextInput, Select Menus) are not affected.
 
-## Usage
+## Examples
 
 ### Disable after voting
 

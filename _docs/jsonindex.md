@@ -8,3 +8,15 @@ syntax: $jsonIndex[]
 description: Returns the current iteration index during a $jsonForEach loop. Zero-based — starts at 0 for the first element. Must be called inside a $jsonForEach block.
 ---
 $jsonIndex returns the current iteration index (0-based) when used inside a $jsonForEach block. This is useful for numbered lists, conditional logic based on position (e.g., treating the first or last element differently), or limiting output to the first N items. Outside of $jsonForEach, it returns 0.
+
+## Examples
+
+### Lookup Value by Index
+
+```bdfd
+$jsonParse[{"servers":["Alpha","Beta","Gamma"]}]
+$title[Server Lookup]
+$description[Selected: **$jsonIndex[servers;1]**]
+$color[#5865F2]
+$sendMessage[]
+```

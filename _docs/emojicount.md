@@ -27,7 +27,7 @@ No parameters.
 - **Type**: `integer`
 - The total number of custom emojis.
 
-## Usage
+## Examples
 
 ### Simple display
 

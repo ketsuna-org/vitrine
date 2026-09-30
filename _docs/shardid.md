@@ -27,7 +27,7 @@ None.
 - **Type**: `integer`
 - The ID of the current shard, starting at 0.
 
-## Usage
+## Examples
 
 ### Simple display
 

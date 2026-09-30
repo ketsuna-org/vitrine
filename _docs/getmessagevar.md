@@ -14,3 +14,14 @@ This is particularly useful for message-tracking features, reaction roles, polls
 Variables are defined and configured in the Bot Creator Variables UI, where you can set default values. If a variable has not been set via $setMessageVar but a default exists in the definitions, $getMessageVar returns that default. If neither exists, an empty string is returned.
 
 > **JavaScript (BDJS) equivalent:** `await db.message.get('name')` — see [db.message](/docs/javascript/db-message/).
+
+## Examples
+
+### Message Reaction Counter
+
+```bdfd
+$title[Reaction Count]
+$description[Upvotes on message: **$getMessageVar[upvotes;$messageID]** 👍]
+$color[#5865F2]
+$sendMessage[]
+```

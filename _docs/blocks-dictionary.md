@@ -3,7 +3,7 @@ layout: doc
 title: Blocks Dictionary — Complete Catalog
 category: "Blocks"
 api_type: blocks
-description: Exhaustive catalog of all 112 visual Blocks in the Bot Creator mobile application, organized into 12 categories with payload parameters, types, and defaults.
+description: Exhaustive catalog of all 112 visual Blocks in the Bot Creator mobile application, organized into 12 categories with payload parameters, types, defaults, outputs, and script equivalents.
 permalink: /docs/blocks-dictionary/
 ---
 
@@ -13,311 +13,445 @@ This dictionary documents every Block available in the Bot Creator mobile and de
 
 ---
 
-## Sommaire des Catégories
+## Category Overview
 
 1. [Messages](#1-messages)
 2. [Reactions](#2-reactions)
-3. [Channels & Salons](#3-channels--salons)
-4. [Moderation & Membres](#4-moderation--membres)
+3. [Channels](#3-channels)
+4. [Moderation & Members](#4-moderation--members)
 5. [Components & Interactions](#5-components--interactions)
 6. [Webhooks](#6-webhooks)
 7. [Guild & Members](#7-guild--members)
 8. [HTTP & Variables](#8-http--variables)
-9. [Logic & Flow (Logique & Flux)](#9-logic--flow)
+9. [Logic & Flow](#9-logic--flow)
 10. [Workflows & Scripts](#10-workflows--scripts)
 11. [Music (Lavalink)](#11-music)
-12. [Déclencheurs & Entry Points](#12-d%C3%A9clencheurs--entry-points)
+12. [Triggers & Entry Points](#12-triggers--entry-points)
 
 ---
 
 ## 1. Messages
 
-Actions dédiées à l'envoi, l'édition et la suppression de messages dans les salons textuels.
+Actions dedicated to sending, editing, and deleting messages in text channels. (Color: `#2E7D32` — Forest Green)
 
 ### `sendMessage`
-Envoie un message simple, un embed ou un message à composants dans un salon ou en message privé (DM).
-- **Paramètres :**
-  - `channelId` *(string)* : Identifiant du salon cible (ou contexte actuel si omis).
-  - `content` *(string)* : Texte brut du message (supporte les `((...))` placeholders).
-  - `targetType` *(select: `channel` \| `user`)* : Cible de l'envoi (`user` pour un DM direct).
-  - `userId` *(string)* : Requis si `targetType == "user"`.
-  - `embeds` *(list<object>)* : Liste d'objets embeds (titre, description, couleur, champs).
-  - `components` *(object)* : Structure de boutons ou menus déroulants.
-  - `messageMode` *(select: `normal` \| `componentv2`)* : Mode d'affichage classique ou modern rich layout.
+Sends a simple message, embed, or component message to a channel or direct message (DM).
+- **App Icon:** `send`
+- **Parameters:**
+  - `channelId` *(string, optional)*: Snowflake ID of the target channel. If omitted, targets the current channel.
+  - `content` *(string, optional)*: Raw message text (supports template placeholders `((...))`).
+  - `targetType` *(select: `channel` \| `user`, default: `channel`)*: Target type. Set to `user` for direct messages.
+  - `userId` *(string, optional)*: User Snowflake ID if `targetType == "user"`.
+  - `embeds` *(list&lt;object&gt;, optional)*: List of embed objects (title, description, color, fields).
+  - `components` *(object, optional)*: Button or select menu component tree.
+  - `messageMode` *(select: `normal` \| `componentv2`, default: `normal`)*: Classic display mode or modern rich component layout.
+- **Output:** `((action.<key>))` contains the sent message ID.
+- **Script Equivalent:** `$sendMessage[content]` or `$channelSendMessage[channelID;content]`.
 
 ### `editMessage`
-Modifie le contenu ou les embeds d'un message existant envoyé par le bot.
-- **Paramètres :**
-  - `channelId` *(string)* : Salon où se trouve le message.
-  - `messageId` *(string)* : Identifiant du message à éditer.
-  - `content` *(string)* : Nouveau texte du message.
-  - `embeds` *(list<object>)* : Nouveaux embeds.
+Edits the content or embeds of an existing message sent by the bot.
+- **App Icon:** `edit_note`
+- **Parameters:**
+  - `channelId` *(string, required)*: Channel containing the message.
+  - `messageId` *(string, required)*: ID of the message to edit.
+  - `content` *(string, optional)*: New message text.
+  - `embeds` *(list&lt;object&gt;, optional)*: Replacement embed objects.
+- **Script Equivalent:** `$editMessage[channelID;messageID;new_content]`.
 
 ### `deleteMessages`
-Supprime un message spécifique ou purge en masse des messages récents.
-- **Paramètres :**
-  - `channelId` *(string)* : Salon cible.
-  - `messageId` *(string)* : ID du message unique à supprimer.
-  - `messageCount` *(number)* : Nombre de messages à purger (1 à 100).
-  - `onlyUserId` *(string)* : Filtrer la suppression par utilisateur.
-  - `filterBots` *(boolean)* : Supprimer uniquement les bots.
-  - `delay` *(string)* : Délai d'attente avant suppression (ex: `5s`).
+Deletes a specific message or bulk deletes recent messages in a channel.
+- **App Icon:** `delete_sweep`
+- **Parameters:**
+  - `channelId` *(string, required)*: Target channel.
+  - `messageId` *(string, optional)*: ID of a single message to delete.
+  - `messageCount` *(integer, optional)*: Number of messages to bulk purge (1 to 100).
+  - `onlyUserId` *(string, optional)*: Filter deletion by author ID.
+  - `filterBots` *(boolean, optional)*: Only delete messages sent by bots.
+  - `delay` *(string, optional)*: Delay before deletion (e.g. `5s`).
+- **Script Equivalent:** `$deleteMessage[channelID;messageID]` or `$clear[count]`.
 
 ### `pinMessage` / `unpinMessage`
-Épingle ou désépingle un message dans un salon.
-- **Paramètres :** `channelId`, `messageId`.
+Pins or unpins a specific message in a text channel.
+- **App Icon:** `push_pin` / `push_pin_outlined`
+- **Parameters:** `channelId` *(string)*, `messageId` *(string)*.
+- **Script Equivalent:** `$pinMessage[channelID;messageID]` / `$unpinMessage[channelID;messageID]`.
 
 ### `getMessage`
-Récupère les données d'un message existant (auteur, contenu, date) et les stocke dans `((action.<key>))`.
-- **Paramètres :** `channelId`, `messageId`.
+Retrieves metadata for an existing message (author, content, timestamp) into the execution context.
+- **App Icon:** `message`
+- **Parameters:** `channelId` *(string)*, `messageId` *(string)*.
+- **Output:** `((action.<key>.content))`, `((action.<key>.authorId))`.
+- **Script Equivalent:** `$getMessage[channelID;messageID]`.
 
 ### `createPoll` / `endPoll`
-Crée un sondage natif Discord avec choix multiples ou met fin à un sondage actif.
-- **Paramètres :** `channelId`, `question`, `answers` (liste), `durationHours`, `allowMultiselect`.
+Creates a native Discord poll with multiple choices or immediately terminates an active poll.
+- **App Icon:** `poll` / `stop_circle`
+- **Parameters:** `channelId`, `question`, `answers` *(list)*, `durationHours` *(1 to 168)*, `allowMultiselect` *(boolean)*.
+
+### `deleteTrigger`
+Deletes the message that triggered the command (useful for silent prefix commands).
+- **App Icon:** `delete_outline`
+- **Script Equivalent:** `$deletecommand`.
+
+### `attachImage`
+Attaches a dynamically generated image (via Canvas) to the outgoing message.
+- **App Icon:** `image`
+- **Parameters:** `canvasName`, `fileName`.
 
 ---
 
 ## 2. Reactions
 
+Actions dedicated to managing emoji reactions on Discord messages. (Color: `#FFA726` — Orange)
+
 ### `addReaction`
-Ajoute une réaction émoji à un message.
-- **Paramètres :**
-  - `channelId` *(string)* : Salon du message.
-  - `messageId` *(string)* : Message à réagir.
-  - `emoji` *(string)* : Émoji Unicode (`👍`) ou format custom (`nom:id`).
+Adds an emoji reaction to a specified message.
+- **App Icon:** `emoji_emotions`
+- **Parameters:**
+  - `channelId` *(string, required)*: Channel containing the message.
+  - `messageId` *(string, required)*: Target message.
+  - `emoji` *(string, required)*: Unicode emoji (`👍`) or custom Discord format (`name:id`).
+- **Script Equivalent:** `$addReactions[emoji]`.
 
 ### `removeReaction`
-Retire une réaction spécifique (de l'utilisateur ou du bot).
-- **Paramètres :** `channelId`, `messageId`, `emoji`, `userId`.
+Removes a specific reaction added by a user or the bot.
+- **App Icon:** `emoji_emotions_outlined`
+- **Parameters:** `channelId`, `messageId`, `emoji`, `userId` *(optional)*.
 
 ### `clearAllReactions`
-Supprime toutes les réactions d'un message donné.
-- **Paramètres :** `channelId`, `messageId`.
+Removes all reactions from a given message.
+- **App Icon:** `clear_all`
+- **Parameters:** `channelId`, `messageId`.
 
 ---
 
-## 3. Channels & Salons
+## 3. Channels
+
+Actions for creating, updating, managing permissions, and organizing Discord channels and threads. (Color: `#1976D2` — Info Blue)
 
 ### `createChannel`
-Crée un nouveau salon sur le serveur Discord.
-- **Paramètres :**
-  - `name` *(string, requis)* : Nom du salon (ex: `ticket-((user.id))`).
-  - `type` *(select)* : `text`, `voice`, `announcement`, `stage`, `forum`, `category`.
-  - `categoryId` *(string)* : ID de la catégorie parent.
-  - `topic` *(string)* : Sujet ou description du salon.
-  - `nsfw` *(boolean)* : Marquer comme salon réservé aux adultes.
-  - `slowmode` *(string)* : Durée du ralenti (ex: `5s`, `1m`).
-- **Résultat :** Retourne l'identifiant du salon créé accessible via `((action.<key>))`.
-
-### `editChannelPermissions`
-Configure les permissions d'un rôle ou d'un membre sur un salon (Permission Overwrite).
-- **Paramètres :**
-  - `channelId` *(string)* : Identifiant du salon.
-  - `targetType` *(select)* : `member`, `role`, ou `everyone`.
-  - `targetId` *(string)* : ID du membre ou du rôle.
-  - `allow` *(string)* : Masque binaire des permissions accordées (ex: `68608`).
-  - `deny` *(string)* : Masque binaire des permissions refusées.
-  - `permissions` *(map)* : Format visuel moderne associant chaque permission à `allow`, `deny` ou `unset`.
-
-### `removeChannel`
-Supprime définitivement un salon textuel ou vocal.
-- **Paramètres :**
-  - `channelId` *(string)* : Identifiant du salon à supprimer.
+Creates a new channel (text, voice, category, announcement, stage) on the server.
+- **App Icon:** `add_box`
+- **Parameters:**
+  - `name` *(string, required)*: Channel name (e.g. `support-1234`).
+  - `type` *(select: `text` \| `voice` \| `category` \| `announcement` \| `stage`, default: `text`)*.
+  - `categoryId` *(string, optional)*: Parent category Snowflake ID.
+  - `topic` *(string, optional)*: Channel topic or description.
+- **Output:** `((action.<key>))` returns the Snowflake ID of the created channel.
+- **Script Equivalent:** `$createChannel[name;type;parentCategoryId]`.
 
 ### `updateChannel`
-Met à jour le nom, le sujet ou l'archivage d'un salon ou d'un fil.
-- **Paramètres :** `channelId`, `name`, `topic`, `archived`, `locked`, `slowmode`.
+Modifies properties of an existing channel (name, topic, parent category, archive/locked status).
+- **App Icon:** `edit`
+- **Parameters:** `channelId`, `name`, `topic`, `position`, `nsfw`, `archived`, `locked`.
+- **Script Equivalent:** `$modifyChannel[channelID;name;topic;position]`.
+
+### `removeChannel`
+Permanently deletes a text channel, voice channel, or category.
+- **App Icon:** `remove_circle`
+- **Parameters:** `channelId` *(string, required)*.
+- **Script Equivalent:** `$deleteChannels[channelID]`.
+
+### `editChannelPermissions`
+Configures permissions for a role or member on a specific channel.
+- **App Icon:** `lock_open`
+- **Parameters:**
+  - `channelId` *(string, required)*: Channel to configure.
+  - `targetType` *(select: `role` \| `member`)*: Target type.
+  - `targetId` *(string, required)*: Role or member Snowflake ID.
+  - `allow` *(string / int)*: Bitmask or permission flags allowed (e.g. `68608` for View + Send + History).
+  - `deny` *(string / int)*: Bitmask of denied permissions.
+- **Script Equivalent:** `$editChannelPerms[channelID;userOrRoleID;+perm1;+perm2]`.
+
+### `deleteChannelPermission`
+Deletes a specific permission overwrite on a channel.
+- **App Icon:** `lock_reset`
+- **Parameters:** `channelId`, `targetId`.
+
+### `createInvite` / `deleteInvite` / `getInvite`
+Generates a Discord invite link for a channel, deletes it, or inspects its usage stats.
+- **App Icon:** `link` / `link_off` / `manage_search`
+- **Parameters:** `channelId`, `maxAge`, `maxUses`, `temporary`, `unique`.
+- **Output `createInvite`:** `((action.<key>.url))`, `((action.<key>.code))`.
 
 ### `createThread` / `addThreadMember` / `removeThreadMember`
-Gère les fils de discussion Discord (publics ou privés).
-- **Paramètres :** `channelId`, `name`, `type` (`publicThread` ou `privateThread`), `userId`.
+Manages threads (public and private).
+- **App Icon:** `forum` / `person_add` / `person_remove`
+- **Parameters:** `channelId`, `name`, `type` (`publicThread` or `privateThread`), `autoArchiveDuration`.
 
 ---
 
-## 4. Moderation & Membres
+## 4. Moderation & Members
+
+Administrative and disciplinary actions applied to server members. (Color: `#FF4D4D` — Danger Red)
 
 ### `banUser` / `unbanUser`
-Bannit ou débannit un utilisateur du serveur.
-- **Paramètres :**
-  - `userId` *(string)* : ID de l'utilisateur.
-  - `reason` *(string)* : Motif inscrit dans les logs d'audit.
-  - `deleteMessageDays` *(number)* : Purger les messages des X derniers jours (0 à 7).
+Permanently bans a user from the server or revokes an existing ban.
+- **App Icon:** `block` / `person_add`
+- **Parameters:** `userId`, `reason`, `deleteMessageDays` *(0 to 7)*.
+- **Script Equivalent:** `$ban[userID;reason]` / `$unban[userID]`.
 
 ### `kickUser`
-Expulse un membre du serveur.
-- **Paramètres :** `userId`, `reason`.
+Kicks a member from the server.
+- **App Icon:** `exit_to_app`
+- **Parameters:** `userId`, `reason`.
+- **Script Equivalent:** `$kick[userID;reason]`.
 
 ### `muteUser` / `unmuteUser`
-Place un membre en exclusion temporaire (Timeout Discord native).
-- **Paramètres :**
-  - `userId` *(string)* : ID du membre.
-  - `duration` *(string)* : Durée (ex: `10m`, `1h`, `1d`).
-  - `reason` *(string)* : Motif.
+Applies a native Discord Timeout (temporary mute) or revokes it immediately.
+- **App Icon:** `volume_off` / `volume_up`
+- **Parameters:** `userId`, `duration` *(e.g. `10m`, `1h`, `1d`)*, `reason`.
+- **Script Equivalent:** `$timeout[userID;duration;reason]` / `$untimeout[userID]`.
 
 ### `addRole` / `removeRole`
-Attribue ou retire un rôle à un membre.
-- **Paramètres :** `userId`, `roleId`, `reason`.
+Assigns or removes a Discord role for a member.
+- **App Icon:** `person_add_alt_1` / `person_remove_alt_1`
+- **Parameters:** `userId`, `roleId`.
+- **Script Equivalent:** `$giveRole[userID;roleID]` / `$takeRole[userID;roleID]`.
 
 ### `setNickname`
-Modifie le pseudonyme d'un membre sur le serveur.
-- **Paramètres :** `userId`, `nickname`.
+Updates a member's server nickname.
+- **App Icon:** `badge`
+- **Parameters:** `userId`, `nickname`.
+- **Script Equivalent:** `$setNickname[userID;newNickname]`.
 
 ### `slowmode`
-Applique un ralenti sur le salon actuel.
-- **Paramètres :** `channelId`, `seconds` (ou durée formatée `10s`).
+Sets the slowmode cooldown on a text channel.
+- **App Icon:** `timer`
+- **Parameters:** `channelId`, `seconds` *(0 to disable)*.
+- **Script Equivalent:** `$slowmode[seconds;channelID]`.
+
+### `moveToVoiceChannel` / `disconnectFromVoice`
+Moves a voice-connected member to another voice channel or disconnects them.
+- **App Icon:** `headset` / `headset_off`
+- **Parameters:** `userId`, `channelId`.
+
+### `serverMuteMember` / `serverDeafenMember`
+Mutes or deafens a member across server voice channels.
+- **App Icon:** `mic_off` / `hearing_disabled`
+
+### `createAutoModRule` / `deleteAutoModRule` / `listAutoModRules`
+Manages native Discord AutoMod rules (blocked words, mention spam, spam content).
+- **App Icon:** `security`
 
 ---
 
 ## 5. Components & Interactions
 
-> [!IMPORTANT]
-> Les blocs d'interaction répondent aux Slash Commands, boutons, menus déroulants et modales.
+Acknowledgment and lifecycle management for Discord interactions (Slash Commands, Buttons, Menus, Modals). (Color: `#38BDF8` — Sky Blue)
 
-### `respondWithMessage` *(Terminal)*
-Répond à l'interaction en cours (Slash Command, Clic de bouton, Menu de sélection).
-- **Paramètres :**
-  - `content` *(string)* : Texte de réponse.
-  - `ephemeral` *(boolean)* : Si `true`, la réponse n'est visible que par l'utilisateur déclencheur.
-  - `embeds` *(list<object>)* : Liste d'embeds accompagnant la réponse.
-  - `components` *(object)* : Lignes de boutons ou menus attachés.
-  - `channelId` *(string)* : Salon de secours si invoqué hors interaction.
-
-### `respondWithComponentV2`
-Répond en utilisant la mise en page riche moderne Component V2 (Sections, Conteneurs, Séparateurs).
-- **Paramètres :** `componentV2`, `ephemeral`, `content`.
-
-### `respondWithModal`
-Ouvre un formulaire contextuel (popup modale) sur l'écran de l'utilisateur.
-- **Paramètres :**
-  - `customId` *(string)* : Identifiant du formulaire.
-  - `title` *(string)* : Titre de la fenêtre modale.
-  - `components` *(list)* : Champs de texte (`textInput`), cases à cocher, etc.
-  - `onSubmitWorkflow` *(string)* : Workflow déclenché à la validation.
+### `respondWithMessage` (Terminal)
+Directly replies to the Discord interaction that triggered the command.
+- **App Icon:** `chat`
+- **Parameters:**
+  - `content` *(string)*: Text content of the reply.
+  - `ephemeral` *(boolean, default: false)*: If `true`, the message is visible only to the interaction author.
+  - `embeds` *(list&lt;object&gt;)*: Embeds attached to the reply.
+  - `components` *(object)*: Interactive buttons or select menus.
+- **Golden Rule:** In a slash command, always use `respondWithMessage` (or raw text in BDFD). Never double up with `sendMessage`.
 
 ### `deferInteraction`
-Diffère l'interaction ("Le bot réfléchit...") pour éviter le timeout de 3 secondes de Discord lors des opérations longues.
-- **Paramètres :** `ephemeral` *(boolean)*.
+Acknowledges the interaction with Discord without sending a visible message ("The bot is thinking...").
+- **App Icon:** `hourglass_top`
+- **Parameters:** `ephemeral` *(boolean)*.
+- **Script Equivalent:** `$defer`.
+
+### `respondWithComponentV2`
+Replies to the interaction using the modern Component V2 rendering engine (sections, containers, media galleries).
+- **App Icon:** `dashboard_customize`
+
+### `respondWithModal`
+Displays an interactive pop-up form (Modal) on the user's screen with text input fields.
+- **App Icon:** `input`
+- **Parameters:** `customId`, `title`, `components` *(text input fields)*.
 
 ### `editInteractionMessage`
-Met à jour le message d'origine sur lequel se trouvait le bouton cliqué.
-- **Paramètres :** `content`, `embeds`, `components`.
+Edits the initial reply previously sent to the interaction.
+- **App Icon:** `edit_notifications`
+
+### `respondWithAutocomplete`
+Returns real-time suggestions for a slash command option configured with autocomplete.
+- **App Icon:** `tune`
+
+### `listenForButtonClick` / `listenForSelectMenu` / `listenForModalSubmit`
+Dedicated event listeners bound to specific Custom IDs.
 
 ---
 
 ## 6. Webhooks
 
-- `sendWebhook` : Envoie un message via une URL de webhook Discord (`webhookUrl`, `content`, `username`, `avatarUrl`, `embeds`).
-- `getWebhook` / `listWebhooks` : Inspecte les webhooks existants d'un salon.
-- `createWebhook` / `editWebhook` / `deleteWebhook` : Cycle de vie complet des webhooks Discord.
+Creating and posting via Discord Webhooks. (Color: `#009688` — Teal)
+
+### `sendWebhook`
+Sends a message through a Discord webhook with custom username and avatar.
+- **App Icon:** `webhook`
+- **Parameters:** `webhookUrl`, `content`, `username`, `avatarUrl`, `embeds`.
+- **Script Equivalent:** `$webhookSend[url;content;username;avatar]`.
+
+### `editWebhook` / `deleteWebhook` / `listWebhooks` / `getWebhook`
+Manage channel webhooks.
 
 ---
 
 ## 7. Guild & Members
 
-- `getMember` : Récupère les informations complètes d'un membre (rôles, date d'arrivée, permissions).
-- `listMembers` : Parcourt les membres du serveur.
-- `updateGuild` : Modifie le nom, la description ou les paramètres du serveur.
-- `leaveGuild` : Force le bot à quitter le serveur spécifié.
-- `createEmoji` / `updateEmoji` / `deleteEmoji` : Gestion dynamique des émojis du serveur.
-- `getGuildOnboarding` / `updateGuildOnboarding` : Configuration de l'accueil communautaire Discord.
+Global server settings, custom emojis, and member profiles. (Color: `#7986CB` — Indigo)
+
+### `updateGuild` / `leaveGuild`
+Modifies server settings (name, icon, banner) or instructs the bot to leave the server.
+- **App Icon:** `settings` / `exit_to_app`
+
+### `createEmoji` / `updateEmoji` / `deleteEmoji`
+Manages custom server emojis from an image URL.
+- **App Icon:** `add_reaction` / `no_photography`
+
+### `listMembers` / `getMember`
+Retrieves member details (join date, roles, permissions).
+- **Output:** `((action.<key>.roles))`, `((action.<key>.joinedAt))`.
+
+### `getGuildOnboarding` / `updateGuildOnboarding`
+Inspects or updates native Discord onboarding configurations.
 
 ---
 
 ## 8. HTTP & Variables
 
-### Variables d'Exécution
-- `setTemporaryVariable` : Enregistre une variable temporaire valable pendant l'exécution actuelle (`name`, `value`). Équivalent BDFD : `$var[nom;valeur]`.
+Memory management, external API requests, and data persistence. (Color: `#00BCD4` — Cyan)
 
-### Variables Persistantes (Base de données)
-- `setGlobalVariable` / `getGlobalVariable` / `removeGlobalVariable` : Variables globales du bot.
-- `setScopedVariable` / `getScopedVariable` / `removeScopedVariable` : Variables scopées :
-  - `scope` : `user`, `guild` (serveur), `channel`, `guildMember` (membre sur un serveur), `message`.
-  - `key` : Nom de la variable.
-  - `targetId` : ID de la cible (ex: ID du membre).
-  - `value` : Valeur enregistrée.
-- `appendArrayElement` / `removeArrayElement` / `queryArray` : Manipulation de listes et tableaux dans la base.
+> [!CAUTION]
+> **No `$let`:** The `$let` bracket syntax does not exist. Use `setTemporaryVariable` (`$var`) for temporary execution variables, and `setScopedVariable` (`$setVar` / `$setUserVar` / `$setServerVar`) for persistent database storage.
 
-### Requêtes Web HTTP
-- `httpRequest` : Exécute un appel REST externe (`GET`, `POST`, `PUT`, `DELETE`, `PATCH`).
-  - `url` *(string)* : Adresse de l'API.
-  - `method` *(string)* : Méthode HTTP.
-  - `headers` *(map)* : En-têtes HTTP (Bearer token, Content-Type).
-  - `body` *(string/json)* : Données envoyées.
-  - **Résultat :** Stocke le corps de réponse dans `((action.<key>))` ou permet l'extraction JSONPath.
+### `setTemporaryVariable`
+Stores a value in memory exclusively for the duration of the current command.
+- **App Icon:** `data_object`
+- **Parameters:** `name` *(string)*, `value` *(string / JSON)*.
+- **Script Equivalent:** `$var[name;value]`.
+
+### `setScopedVariable` / `getScopedVariable` / `removeScopedVariable`
+Stores or retrieves a persistent variable saved in the database.
+- **App Icon:** `inventory_2` / `find_in_page`
+- **Parameters:**
+  - `scope` *(select: `global` \| `user` \| `guild` \| `member` \| `channel`)*: Data isolation scope.
+  - `key` *(string)*: Variable key.
+  - `value` *(string / JSON)*: Stored value.
+- **Script Equivalents:**
+  - Global: `$setVar[key;val]` / `$getVar[key]`
+  - User: `$setUserVar[key;val]` / `$getUserVar[key]`
+  - Server: `$setServerVar[key;val]` / `$getServerVar[key]`
+  - Member: `$setMemberVar[key;val]` / `$getMemberVar[key]`
+
+### `httpRequest`
+Performs an external REST HTTP request (GET, POST, PUT, DELETE) with headers and JSON body.
+- **App Icon:** `http`
+- **Parameters:** `url`, `method`, `headers`, `body`.
+- **Output:** `((action.<key>))` contains the parsed response JSON.
+
+### `appendArrayElement` / `removeArrayElement` / `queryArray`
+Manipulates JSON lists and arrays stored in the database.
 
 ---
 
 ## 9. Logic & Flow
 
-Blocs de contrôle du flux d'exécution :
+Execution control, conditional branches, and loops. (Color: `#E91E63` — Pink)
 
 ### `ifBlock`
-Branchement conditionnel (Si / Alors / Sinon).
-- **Structure :**
-  - `condition.variable` : Variable de gauche (ex: `((user.id))`, `((action.code))`).
-  - `condition.operator` : `equals`, `notEquals`, `contains`, `notContains`, `greaterThan`, `lessThan`, `isEmpty`, `isNotEmpty`, `matches`.
-  - `condition.value` : Valeur de comparaison.
-  - `thenActions` : Liste de blocs exécutés si la condition est vraie.
-  - `elseActions` : Liste de blocs exécutés si la condition est fausse.
+Conditional branching block with `thenActions` and `elseActions`.
+- **App Icon:** `account_tree`
+- **Parameters:** `variable`, `operator` (`equals`, `notEquals`, `contains`, `greaterThan`, `lessThan`), `value`.
+- **Script Equivalent:** `$if[...] ... $else ... $endif`.
 
-### `forLoop`
-Répète une séquence d'actions un nombre déterminé de fois.
-- **Paramètres :** `iterations` (nombre), `maxIterations` (limite de sécurité), `bodyActions`.
+### `stopUnless`
+Immediately terminates the command if a condition is not met (safety guard).
+- **App Icon:** `filter_alt`
+- **Parameters:** `condition`, `errorMessage`.
+- **Script Equivalent:** `$onlyIf[condition;errorMessage]`.
 
-### `jsonForEachLoop`
-Itère sur chaque élément d'un tableau JSON renvoyé par une API HTTP.
-- **Paramètres :** `jsonArray`, `itemVariable`, `bodyActions`.
-
-### `cooldown`
-Bloque l'exécution si la commande est spammée.
-- **Paramètres :** `duration` (ex: `30s`), `scope` (`user`, `guild`, `channel`, `global`), `errorMessage`.
-
-### `wait`
-Met l'exécution en pause pendant un laps de temps.
-- **Paramètres :** `duration` (ex: `5s`, `2m`).
-
-### `stop` / `stopUnless`
-Interrompt immédiatement l'exécution du reste du workflow.
+### `forLoop` / `jsonForEachLoop`
+Repeats a group of actions a set number of times (max 100 iterations).
+- **App Icon:** `loop` / `repeat`
 
 ### `calculate`
-Effectue un calcul mathématique complexe et enregistre le résultat.
-- **Paramètres :** `expression` (ex: `10 * 5 + ((user.points))`).
+Evaluates a complex mathematical expression (`+`, `-`, `*`, `/`, `^`, parentheses).
+- **App Icon:** `calculate`
+- **Script Equivalent:** `$calculate[expression]` or `$c[expr]`.
+
+### `cooldown`
+Enforces a cooldown before a member can execute the command again.
+- **App Icon:** `timer`
+- **Parameters:** `duration` (e.g. `30s`), `scope` (`user`, `guild`, `channel`).
+
+### `wait`
+Pauses execution for a specified duration before continuing.
+- **App Icon:** `hourglass_bottom`
+- **Parameters:** `duration` (e.g. `3s`, `1m`).
+- **Script Equivalent:** `$wait[duration]`.
+
+### `stop`
+Immediately stops workflow execution without raising an error.
+- **App Icon:** `stop_circle`
+- **Script Equivalent:** `$stop`.
+
+### `skipActions` / `jumpToAction`
+Skips upcoming actions or jumps directly to a designated action key.
+
+### `randomChoice`
+Selects a random element from a list of options with or without weighting.
+- **App Icon:** `casino`
 
 ---
 
 ## 10. Workflows & Scripts
 
-- `runWorkflow` : Exécute un workflow modulaire indépendant en lui passant des arguments (`workflowName`, `entryPoint`, `arguments`).
-- `runBdfdScript` : Exécute un extrait de script BDScript compilé à l'intérieur d'un bloc visuel.
-- `runtimeJsonBlock` : Parse et manipule des objets JSON en mémoire.
-- `runtimeImageBlock` / `canvas*Block` : Moteur de rendu graphique 2D Canvas (génération d'images de bienvenue, cartes de profil).
-- `registerGuildCommands` / `unregisterGuildCommands` : Synchronise les commandes Slash auprès de Discord.
+Advanced modular composition and server-side Canvas rendering. (Color: `#FF6E40` — Deep Orange)
+
+### `runWorkflow`
+Executes another reusable workflow defined in the bot, passing arguments to it.
+- **App Icon:** `account_tree`
+- **Parameters:** `workflowId`, `parameters`.
+- **Output:** `((action.<key>))` contains the value returned by the invoked workflow.
+
+### `runBdfdScript`
+Executes a raw BDScript snippet directly inside a visual block sequence.
+- **App Icon:** `code`
+
+### `runtimeImageBlock` & Canvas Actions
+High-fidelity server-side image composition engine:
+- `canvasCreateBlock`: Creates a blank drawing canvas (width, height, color).
+- `canvasLoadImageBlock`: Downloads and positions an external image or avatar.
+- `canvasDrawTextBlock`: Renders styled text with font, size, and alignment.
+- `canvasDrawCircleBlock` / `canvasDrawRectBlock` / `canvasDrawLineBlock`: Geometric shapes.
+
+### `registerGuildCommands` / `unregisterGuildCommands`
+Dynamically registers or unregisters slash commands on a Discord server.
+
+### `log` / `debugProfile`
+Prints debug information to the runner console or profiles execution time.
 
 ---
 
-## 11. Music
+## 11. Music (Lavalink)
 
-Contrôles du lecteur audio Lavalink pour les bots musicaux :
-- `joinVoice` / `leaveVoice` : Rejoindre ou quitter le salon vocal de l'utilisateur.
-- `playMusic` : Lancer la lecture d'un titre ou d'une playlist (YouTube, SoundCloud, Spotify, URL directe).
-- `pauseMusic` / `resumeMusic` : Mettre en pause ou reprendre la lecture.
-- `skipMusic` / `stopMusic` : Passer au morceau suivant ou vider la file d'attente.
-- `setMusicVolume` / `setMusicLoop` / `seekMusic` : Ajuster le volume, la boucle ou la position de lecture.
-- `getMusicInfo` : Récupère le titre en cours, la durée et la progression.
+Audio streaming controls powered by a Lavalink node. (Color: `#AEEA00` — Lime Green)
+
+- `playMusic`: Plays a track from YouTube, SoundCloud, or direct URL.
+- `pauseMusic` / `resumeMusic`: Pauses or resumes playback.
+- `skipMusic` / `stopMusic`: Skips to the next track or clears the queue.
+- `setMusicVolume`: Adjusts playback volume (0 to 200%).
+- `setMusicLoop`: Toggles repeat mode (single track or full queue).
+- `seekMusic`: Seeks to a specific playback position.
+- `getMusicInfo`: Retrieves currently playing track title, duration, and progress.
+- `joinVoice` / `leaveVoice`: Connects or disconnects the bot from a voice channel.
 
 ---
 
-## 12. Déclencheurs & Entry Points
+## 12. Triggers & Entry Points
 
-Tout script ou workflow de blocs commence par un **Bloc d'Entrée** (EntryPoint) qui définit ce qui réveille le bot :
+Entry points that trigger block execution:
 
-1. **Commande Slash (`interaction`)** : Déclenché par une commande d'application Discord (`/nom`). Déclare des arguments typés (`string`, `integer`, `user`, `channel`, `role`, `boolean`).
-2. **Commande Préfixe (`message`)** : Déclenché par un message textuel classique commençant par un préfixe (ex: `!ping`). Supporte les alias.
-3. **Événements Gateway (`event`)** : Déclenché par l'un des 50+ événements du catalogue Discord (`EventCatalog`) :
-   - `guildMemberAdd` (Arrivée de membre)
-   - `guildMemberRemove` (Départ de membre)
-   - `messageCreate` (Nouveau message)
-   - `messageReactionAdd` (Ajout de réaction)
-   - `channelCreate` / `channelDelete` (Gestion de salons)
-   - `voiceStateUpdate` (Activité en vocal)
-   - `autoModerationActionExecution` (Alerte AutoMod)
+- **Slash Command (`chatInput`)**: `/command` with typed options.
+- **User Context Menu (`userContextMenu`)**: Right-click member &gt; Apps.
+- **Message Context Menu (`messageContextMenu`)**: Right-click message &gt; Apps.
+- **Discord Events (`events`)**: `guildMemberAdd`, `guildMemberRemove`, `messageCreate`, `reactionAdd`, etc.
+- **Scheduled Cron (`cron`)**: Recurring execution every X minutes/hours.
+- **Components (`button`, `selectMenu`, `modalSubmit`)**: Responding to interactions on Custom IDs.

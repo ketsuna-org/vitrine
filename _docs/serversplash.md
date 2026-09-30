@@ -29,7 +29,7 @@ None.
 - **Type**: `string`
 - The URL of the splash image, or an empty string if not available.
 
-## Usage
+## Examples
 
 ### Simple display
 

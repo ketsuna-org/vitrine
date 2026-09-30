@@ -10,7 +10,7 @@ Marks the end of a `$loop` block.
 
 ## Syntax
 
-```
+```bdfd
 $endLoop
 ```
 
@@ -28,7 +28,7 @@ Every `$loop` **must** be paired with exactly one `$endLoop`. Forgetting to clos
 
 ### Basic Loop
 
-```
+```bdfd
 $loop[3]
 This message repeats 3 times.
 $endLoop
@@ -36,7 +36,7 @@ $endLoop
 
 ### Loop with Inner Logic
 
-```
+```bdfd
 $var[total;0]
 $loop[5]
 $var[total;$sum[$total;10]]
@@ -48,7 +48,7 @@ Total: $total
 
 ### Nested Loops
 
-```
+```bdfd
 $loop[2]
 Row:
 $loop[3]

@@ -35,7 +35,7 @@ No parameters.
 | 1800 | 30 minutes |
 | 3600 | 1 hour |
 
-## Usage
+## Examples
 
 ### Formatted display
 

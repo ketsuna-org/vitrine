@@ -12,3 +12,15 @@ $setGuildMemberVar stores a value persistently in the BDFD database under a guil
 When called with two arguments, it sets the variable for the current command author in the current guild. When a User ID is provided, it sets for that user in the current guild. When both User ID and Guild ID are provided, it sets for the exact guild-member combination.
 
 The scope is `guildMember`, ideal for per-user-per-server data like XP, warnings, ranks, inventory, economy balances (server-specific), and moderation records. This function does not return any output — use $getGuildMemberVar to read. To reset, use $resetGuildMemberVar.
+
+## Examples
+
+### Assign Guild Member Rank
+
+```bdfd
+$setGuildMemberVar[rank;Veteran;$authorID;$guildID]
+$title[Rank Updated]
+$description[<@$authorID> is now assigned rank **Veteran** on this server!]
+$color[#9B30FF]
+$sendMessage[]
+```

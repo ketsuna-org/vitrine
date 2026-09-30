@@ -52,7 +52,7 @@ Like `$onlyIf` and `$argsCheck`, place cooldown functions at the **top** of your
 
 ## Example: Full Command with Cooldown
 
-```
+```bdfd
 $cooldown[30s;⏳ Cooldown is active. Try again in $getCooldown seconds.]
 $onlyIf[$message!=;❌ You must provide a message.]
 Processing your message: $message

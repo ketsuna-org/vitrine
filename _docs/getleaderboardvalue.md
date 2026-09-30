@@ -41,3 +41,14 @@ The returned value corresponds to the internal variable `((leaderboard.value))` 
 - [`$serverLeaderboard`](/docs/serverleaderboard) — Server-level leaderboard
 - [`$userLeaderboard`](/docs/userleaderboard) — Personal leaderboard
 - [`$textSplit`](/docs/textsplit) — Split the result of a leaderboard
+
+## Examples
+
+### High Score Value
+
+```bdfd
+$title[Leaderboard Score]
+$description[<@$authorID>, your high score is **$getLeaderboardValue** points!]
+$color[#57F287]
+$sendMessage[]
+```

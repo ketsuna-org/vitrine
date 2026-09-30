@@ -26,7 +26,7 @@ No parameters.
 
 Enables user mentions for the next message. Mentioned users will receive a notification.
 
-## Usage
+## Examples
 
 ### Personal notification
 

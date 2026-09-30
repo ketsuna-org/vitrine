@@ -27,7 +27,7 @@ No parameters.
 - **Type**: `string`
 - The direct URL of the server icon (PNG or WEBP format), or an empty string if no icon is set.
 
-## Usage
+## Examples
 
 ### Icon in an embed
 

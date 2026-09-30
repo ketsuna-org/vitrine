@@ -33,30 +33,16 @@ $log[value]
 
 ## Examples
 
-**Logarithm of 1:**
-```
-$log[1]
-→ 0
-```
+### Natural Logarithm Calculation
 
-**Logarithm of e (approx.):**
+```bdfd
+$title[Math: Natural Logarithm]
+$description[Logarithm of `1`: **$log[1]**]
+$addField[Log of 1000;$log[1000];yes]
+$addField[Log of 0.5;$log[0.5];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-$log[2.718281828]
-→ ~1
-```
-
-**Logarithm of a large number:**
-```
-$log[1000]
-→ 6.907755...
-```
-
-**Logarithm of a fraction:**
-```
-$log[0.5]
-→ -0.693147...
-```
-
 ## Notes
 
 - This is the **natural** logarithm (base e), not the base 10 logarithm.

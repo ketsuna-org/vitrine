@@ -34,29 +34,16 @@ $sub[a;b]
 
 ## Examples
 
-**Simple subtraction:**
-```
-$sub[10;3]
-→ 7
-```
+### Subtraction Calculation
 
-**Negative result:**
+```bdfd
+$title[Math: Subtraction]
+$description[Result of `10 - 3`: **$sub[10;3]**]
+$addField[Negative Difference;$sub[5;10];yes]
+$addField[Decimal Difference;$sub[10.5;3.2];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-$sub[5;10]
-→ -5
-```
-
-**With decimals:**
-```
-$sub[10.5;3.2]
-→ 7.3
-```
-
-**Profit calculation:**
-```
-$sub[$getVar[revenue];$getVar[expense]]
-```
-
 ## Notes
 
 - Only two arguments are accepted. To subtract several values, nest the calls: `$sub[$sub[a;b];c]` or use `$calculate[a - b - c]`.

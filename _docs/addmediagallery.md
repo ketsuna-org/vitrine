@@ -28,7 +28,7 @@ $addMediaGallery[(id)]
 
 Initializes a media gallery. Elements are added using `$addMediaGalleryItem[]`. The gallery is displayed as an interactive component with navigation.
 
-## Usage
+## Examples
 
 ### Simple gallery
 

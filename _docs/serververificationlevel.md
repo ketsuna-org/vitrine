@@ -35,7 +35,7 @@ None.
 | 3 | High | Members of the server for more than 10 minutes |
 | 4 | Very High | Accounts with a verified phone number |
 
-## Usage
+## Examples
 
 ### Simple display
 

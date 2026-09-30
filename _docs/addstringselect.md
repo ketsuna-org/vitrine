@@ -11,7 +11,7 @@ Creates a select menu of type "string" — a dropdown menu with predefined text 
 
 ## Syntax
 
-```
+```bdfd
 $addStringSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 ```
 
@@ -35,7 +35,7 @@ Unlike `$newSelectMenu` + `$addSelectMenuOption`, `$addStringSelect` and `$addSt
 
 ### Simple menu
 
-```
+```bdfd
 $addStringSelect[menu_pays;Choose a country]
 $addStringSelectOption[France;fr]
 $addStringSelectOption[Belgium;be]
@@ -46,7 +46,7 @@ $sendMessage[Select your country]
 
 ### Menu with multiple selection
 
-```
+```bdfd
 $addStringSelect[menu_hobbies;Your hobbies;1;5]
 $addStringSelectOption[Reading;reading;;📚]
 $addStringSelectOption[Sport;sport;;⚽]
@@ -58,7 +58,7 @@ $sendMessage[What are your hobbies?]
 
 ### Disabled menu
 
-```
+```bdfd
 $addStringSelect[menu_indispo;Unavailable;1;1;true]
 $addStringSelectOption[Option A;a]
 $sendMessage[This menu is temporarily disabled]
@@ -66,7 +66,7 @@ $sendMessage[This menu is temporarily disabled]
 
 ## Handling the interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==menu_pays]
   $sendMessage[You chose: $message]

@@ -37,3 +37,14 @@ This allows the same command code to handthe both invocation methods seamlessly.
 | `$args` / `$args[index]` | Access individual arguments |
 | `$argCount` | Count how many arguments were provided |
 | `$argsCheck` | Validate argument count and block if insufficient |
+
+## Examples
+
+### Read Command Arguments with Embed
+
+```bdfd
+$title[Command Arguments Inspector]
+$description[Total args: **$argsCount**\nFirst arg: `$args[1]`\nAll args: `$args`]
+$color[#5865F2]
+$sendMessage[]
+```

@@ -55,3 +55,14 @@ You can write conditions inside `$if` directly (e.g., `$if[$getUserVar[gold]>0]`
 - Using a single `=` instead of `==` — BDFD requires double equals for equality.
 - Comparing the result with `== "true"` (with quotes) — BDFD expressions usually interpret bare `true`, not quoted `"true"`.
 - Expecting boolean-like truthiness — `$checkCondition` returns a **string**. Empty string checks will not work; always compare with `==true` or `==false`.
+
+## Examples
+
+### Evaluating a Numerical Threshold
+
+```bdfd
+$title[Condition Evaluation]
+$description[Is user balance greater than 100? **$checkCondition[$getUserVar[coins]>100]**]
+$color[#5865F2]
+$sendMessage[]
+```

@@ -30,7 +30,7 @@ $addModalCheckbox[customId;label;(default)]
 
 Adds a checkbox to the modal. The submitted value is `yes` or `no`, accessible via `$input[customId]`.
 
-## Usage
+## Examples
 
 ### Simple checkbox
 

@@ -42,3 +42,15 @@ With `$onlyIfMessageContains` (equivalent, cleaner):
 ```
 $onlyIfMessageContains[!admin]
 ```
+
+## Examples
+
+### Enforcing Specific Keywords
+
+```bdfd
+$onlyIfMessageContains[help;support;❌ Please include either `help` or `support` in your inquiry!]
+$title[Support Desk Ticket]
+$description[Thank you for contacting support! Your message: *$message*]
+$color[#5865F2]
+$sendMessage[]
+```

@@ -35,7 +35,7 @@ $addModalTextInput[customId;label;(style);(placeholder);(default);(required);(mi
 
 Adds the TextInput component to the current modal. The input value is accessible via `$input[customId]` in the modal's interaction handler.
 
-## Usage
+## Examples
 
 ### Required short field
 

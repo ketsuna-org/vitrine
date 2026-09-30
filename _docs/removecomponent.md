@@ -28,7 +28,7 @@ $removeComponent[customId]
 
 Removes the component from the message. If no component with this `customId` exists, nothing happens.
 
-## Usage
+## Examples
 
 ### Removal after click
 

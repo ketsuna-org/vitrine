@@ -28,7 +28,7 @@ $addModalTextDisplay[content]
 
 Adds a text display component to the modal. No interactive value is returned — this component does not produce any form data.
 
-## Usage
+## Examples
 
 ### General instructions
 

@@ -32,7 +32,7 @@ If you call `$suppressErrors`, embed errors are already suppressed — you don't
 
 ## Example: Graceful Embed Fallback
 
-```
+```bdfd
 $embedSuppressErrors
 $title[$var[title]]
 $description[$var[body]]

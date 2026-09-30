@@ -50,6 +50,18 @@ Comparisons return `"true"` or `"false"`:
 - `==` equal to
 - `!=` not equal to
 
+## Examples
+
+### Math Expression Evaluator
+
+```bdfd
+$var[result;$calculate[($message[1] + 10) * 2 / 4]]
+$title[Math Calculator 🧮]
+$description[Formula: `($message[1] + 10) * 2 / 4`\nResult: **$var[result]**]
+$color[#5865F2]
+$sendMessage[]
+```
+
 ## Notes
 
 - The expression is evaluated with a server-side math parser.

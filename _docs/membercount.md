@@ -27,7 +27,7 @@ None.
 - **Type** : `integer`
 - The total number of members (users + bots).
 
-## Usage
+## Examples
 
 ### Simple display
 

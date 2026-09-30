@@ -24,3 +24,14 @@ When a Type parameter is provided, only variables of that type are counted:
 ## Comparison with $listVar
 
 While `$listVar` gives the names and values of temporary variables, `$variablesCount` gives only the count. Use `$variablesCount` when you need a numeric check (e.g., "are there at least 3 variables?") without the overhead of formatting a full list.
+
+## Examples
+
+### Display Variable Count
+
+```bdfd
+$title[Variables Stats]
+$description[This bot defines **$variablesCount** persistent variables.]
+$color[#5865F2]
+$sendMessage[]
+```

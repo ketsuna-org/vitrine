@@ -70,3 +70,25 @@ test('Markdown examples use supported temporary-variable syntax', async () => {
     assert.match(await readFile(new URL(`../_docs/${slug}.md`, import.meta.url), 'utf8'), /status: incomplete/);
   }
 });
+
+test('MCP prompts/list and prompts/get expose valid prompts and error on unknown', async () => {
+  const promptList = await rpc('prompts/list');
+  assert.equal(Array.isArray(promptList.result.prompts), true);
+  const promptNames = promptList.result.prompts.map(p => p.name);
+  assert.ok(promptNames.includes('command_authoring_rules'));
+  assert.ok(promptNames.includes('production_ticket_workflow'));
+
+  const rules = await rpc('prompts/get', { name: 'command_authoring_rules' });
+  assert.match(rules.result.messages[1].content.text, /NO \$let/);
+  assert.match(rules.result.messages[1].content.text, /NO \$sendMessage/);
+
+  const ticketWorkflow = await rpc('prompts/get', { name: 'production_ticket_workflow' });
+  assert.match(ticketWorkflow.result.messages[1].content.text, /\$createChannel/);
+  assert.match(ticketWorkflow.result.messages[1].content.text, /\$addButton\[no;close_ticket;/);
+  assert.match(ticketWorkflow.result.messages[1].content.text, /\$deleteChannels\[\$channelID\]/);
+
+  const unknown = await rpc('prompts/get', { name: 'non_existent_prompt' });
+  assert.ok(unknown.error);
+  assert.equal(unknown.error.code, -32602);
+});
+

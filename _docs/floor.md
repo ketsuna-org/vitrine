@@ -32,30 +32,17 @@ $floor[value]
 
 ## Examples
 
-**Positive number:**
-```
-$floor[3.9]
-→ 3
+### Rounding Decimals Down
 
-$floor[3.1]
-→ 3
+```bdfd
+$title[Math: Floor Function]
+$description[Original value: `3.9`
+Rounded down: **$floor[3.9]**]
+$addField[Negative Value;$floor[-3.1];yes]
+$addField[Integer;$floor[5];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-
-**Negative number:**
-```
-$floor[-3.1]
-→ -4
-
-$floor[-3.9]
-→ -4
-```
-
-**Integer:**
-```
-$floor[5]
-→ 5
-```
-
 ## Comparison floor / ceil / round
 
 | Value | $floor[] | $ceil[] | $round[] |

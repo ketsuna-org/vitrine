@@ -14,3 +14,14 @@ If a second argument (User ID) is provided, the variable is read for that specif
 Variables are defined and configured in the Bot Creator Variables UI, where you can set default values. If a variable has not been set via $setUserVar but a default value exists in the definitions, $getUserVar returns that default. If neither a stored value nor a default exists, an empty string is returned.
 
 > **JavaScript (BDJS) equivalent:** `await db.user.get('name')` — see [db.user](/docs/javascript/db-user/).
+
+## Examples
+
+### User Wallet Balance
+
+```bdfd
+$title[User Balance 🪙]
+$description[<@$authorID>, you have **$getUserVar[coins;$authorID]** coins in your wallet!]
+$color[#FEE75C]
+$sendMessage[]
+```

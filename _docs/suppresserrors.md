@@ -37,3 +37,15 @@ The suppression applies to the **current command only**. It does not affect othe
 | `$suppressErrors` | All runtime error messages |
 | `$embedSuppressErrors` | Errors specific to embed rendering |
 | `$suppressErrorLogging` | Error logging (internal only, not user-visible) |
+
+## Examples
+
+### User-Friendly Fallback Message
+
+```bdfd
+$suppressErrors[⚠️ An unexpected error occurred while executing this command.]
+$title[Safe Execution]
+$description[User command executed with custom error fallback.]
+$color[#5865F2]
+$sendMessage[]
+```

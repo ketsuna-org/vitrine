@@ -14,3 +14,15 @@ The scope is `user`, meaning the context ID is `((author.id))` by default. This 
 Variables must first be defined in the Bot Creator Variables UI. The value stored can be any string, including numbers, booleans, JSON, or the output of other BDFD functions. To reset a variable to its default value, use $resetUserVar.
 
 > **JavaScript (BDJS) equivalent:** `await db.user.set('name', value)` — see [db.user](/docs/javascript/db-user/).
+
+## Examples
+
+### Claim Daily Reward
+
+```bdfd
+$setUserVar[coins;500;$authorID]
+$title[Daily Reward Claimed 🎁]
+$description[<@$authorID> claimed 500 daily coins! Current balance: **500** 🪙]
+$color[#57F287]
+$sendMessage[]
+```

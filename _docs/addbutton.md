@@ -11,7 +11,7 @@ Adds an interactive button to the message (legacy style). Allows controlling the
 
 ## Syntax
 
-```
+```bdfd
 $addButton[newRow;customIdOrURL;label;(style);(disabled);(emoji);(messageId)]
 ```
 
@@ -41,14 +41,14 @@ $addButton[newRow;customIdOrURL;label;(style);(disabled);(emoji);(messageId)]
 
 ### Simple button
 
-```
+```bdfd
 $addButton[no;my_button;Click here;primary;false;😊]
 $sendMessage[Press the button]
 ```
 
 ### New line with two buttons
 
-```
+```bdfd
 $addButton[no;btn_ok;✅ Validate;success]
 $addButton[no;btn_no;❌ Decline;danger]
 $sendMessage[Choose an option]
@@ -56,7 +56,7 @@ $sendMessage[Choose an option]
 
 ### Disabled button with emoji
 
-```
+```bdfd
 $addButton[no;btn_lock;🔒 Locked;secondary;true]
 $sendMessage[Action not available]
 ```

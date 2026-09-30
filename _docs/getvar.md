@@ -31,3 +31,14 @@ The second parameter determines the scope:
 | Scope | Local | Global or user |
 | Performance | Fast (in-memory) | DB read |
 | Use case | Temporary calculations | Long-term storage |
+
+## Examples
+
+### Read Global Variable
+
+```bdfd
+$title[Global Setting]
+$description[Maintenance mode: `$getVar[maintenanceMode]`]
+$color[#5865F2]
+$sendMessage[]
+```

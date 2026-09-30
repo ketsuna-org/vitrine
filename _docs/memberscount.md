@@ -27,7 +27,7 @@ None.
 - **Type** : `integer`
 - The total number of members.
 
-## Usage
+## Examples
 
 ### Simple display
 

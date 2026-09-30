@@ -33,37 +33,15 @@ $modulo[a;b]
 
 ## Examples
 
-**Simple modulo:**
-```
-$modulo[17;5]
-→ 2
-```
+### Modulo Remainder Calculation
 
-**Even/odd detection:**
+```bdfd
+$title[Math: Modulo Remainder]
+$description[Remainder of `17 % 5`: **$modulo[17;5]**]
+$addField[Even Check ($modulo[4;2]);$if[$modulo[4;2]==0;Even;Odd];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-$modulo[$getVar[number];2]
-→ 0 if even, 1 if odd
-```
-
-**With exact multiples:**
-```
-$modulo[20;5]
-→ 0
-```
-
-**Modulo by zero (protected):**
-```
-$modulo[42;0]
-→ 0
-```
-
-## Common Use Cases
-
-- Checking if a number is divisible by another.
-- Alternating behaviors (even/odd).
-- Cycling through a list (index % size).
-- Calculating cycles (every N iterations).
-
 ## Notes
 
 - For negative numbers, the behavior follows standard mathematical definitions: `$modulo[-17;5]` → `-2`.

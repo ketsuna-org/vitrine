@@ -32,7 +32,7 @@ When running a JavaScript bot, the Bot Settings screen replaces the audio (Laval
 4. Enter your connection string (URI) or configure individual fields:
    - **Direct URI**: e.g., `postgresql://user:pass@host:5432/dbname`, `mongodb+srv://user:pass@cluster.mongodb.net/dbname`
    - **Individual Fields**: Host, Port, Database Name, Username, Password, and SSL toggle.
-5. Tap **Enregistrer la configuration** (Save).
+5. Tap **Save Configuration**.
 6. Next time your bot starts or syncs, the database pool is automatically initialized.
 
 ---

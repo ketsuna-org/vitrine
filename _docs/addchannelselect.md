@@ -10,7 +10,7 @@ Creates a select menu of channels. Allows users to choose one or multiple channe
 
 ## Syntax
 
-```
+```bdfd
 $addChannelSelect[customId;placeholder;(minValues);(maxValues);(disabled);(channelTypes)]
 ```
 
@@ -43,35 +43,35 @@ By default, all types are displayed.
 
 ### Channel selection
 
-```
+```bdfd
 $addChannelSelect[menu_channel;Choose a channel]
 $sendMessage[Select a channel]
 ```
 
 ### Text channel only
 
-```
+```bdfd
 $addChannelSelect[menu_text;Text channel;1;1;false;text]
 $sendMessage[Choose a text channel]
 ```
 
 ### Voice and stage channels
 
-```
+```bdfd
 $addChannelSelect[menu_vocal;Voice channel;1;3;false;voice,stage]
 $sendMessage[Select voice channels]
 ```
 
 ### Disabled menu
 
-```
+```bdfd
 $addChannelSelect[menu_chan_disabled;Unavailable;1;1;true]
 $sendMessage[This menu is disabled]
 ```
 
 ## Handling the interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==menu_channel]
   $sendMessage[Selected channel: <#$message>]

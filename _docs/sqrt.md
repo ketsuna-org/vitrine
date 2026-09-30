@@ -34,35 +34,16 @@ $sqrt[value]
 
 ## Examples
 
-**Perfect square:**
-```
-$sqrt[16]
-→ 4
+### Square Root Calculation
 
-$sqrt[25]
-→ 5
-
-$sqrt[100]
-→ 10
+```bdfd
+$title[Math: Square Root]
+$description[Square root of `16`: **$sqrt[16]**]
+$addField[Square root of 25;$sqrt[25];yes]
+$addField[Non-integer root ($sqrt[2]);$sqrt[2];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-
-**Non-integer root:**
-```
-$sqrt[2]
-→ 1.4142135623730951
-```
-
-**Root of zero:**
-```
-$sqrt[0]
-→ 0
-```
-
-**Hypotenuse calculation (Pythagorean theorem):**
-```
-$sqrt[$calculate[$getVar[a]^2 + $getVar[b]^2]]
-```
-
 ## Notes
 
 - Do not use with negative numbers.

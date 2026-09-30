@@ -29,7 +29,7 @@ None.
 - **Type**: `string`
 - The region of the server (e.g., `"europe"`, `"us-west"`, `"automatic"`, etc.).
 
-## Usage
+## Examples
 
 ### Simple display
 

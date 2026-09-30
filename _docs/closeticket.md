@@ -20,3 +20,16 @@ Do not rely on it to delete a channel created by `$newTicket`, validate a ticket
 For an explicit close action, validate the caller and compare the target ID with stored ticket data, then use [removeChannel](/docs/blocks-channels/#removechannel). Save any required transcript first. Send the interaction response before deleting its channel.
 
 See the complete guide: [Support Ticket System Guide](/docs/tickets/).
+
+## Examples
+
+### Recommended Modern Pattern vs Legacy Helper
+
+```bdfd
+;; For production private tickets, delete the channel explicitly:
+$title[Support Ticket Closed 🔒]
+$description[Ticket closed by <@$authorID>. This channel will be removed.]
+$color[#DA373C]
+$sendMessage[]
+$deleteChannels[$channelID]
+```

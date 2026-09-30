@@ -10,7 +10,7 @@ Retrieves the value of a parameter passed to a user-defined function. Only valid
 
 ## Syntax
 
-```
+```bdfd
 $funcArg[paramName]
 ```
 
@@ -30,7 +30,7 @@ The value is resolved from the caller's scope, so it can contain BDFD variables,
 
 ### Access by name
 
-```
+```bdfd
 $func[welcome;user]
 $funcReturn[Welcome, $funcArg[user]!]
 $funcEnd
@@ -39,7 +39,7 @@ $sendMessage[$funcCall[welcome;$username]]
 
 ### Multiple parameters
 
-```
+```bdfd
 $func[format;label;value]
 **$funcArg[label]:** $funcArg[value]
 $funcEnd
@@ -50,7 +50,7 @@ Output: `**Score:** 100`
 
 ### With calculations
 
-```
+```bdfd
 $func[double;x]
 $funcReturn[$calculate[$funcArg[x] * 2]]
 $funcEnd

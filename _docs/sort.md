@@ -79,3 +79,16 @@ $sendMessage[Items (A-Z): $sort[,;asc]]
 - **Numerical sort**: Numbers are sorted numerically (`2` before `10`), which is the expected behavior. For alphabetical sorting, behavior may differ.
 - **Separator consistency**: The same separator is used for both input parsing and output joining.
 - **Works with spreads context**: Can operate on the current `$textSplit` result, using the separator to join the output.
+
+## Examples
+
+### Sorting Split Numerical Data
+
+```bdfd
+$textSplit[5,2,9,1,7;,]
+$sort[asc]
+$title[Sorted Numbers]
+$description[Numbers in ascending order: **$joinSplitText[, ]**]
+$color[#57F287]
+$sendMessage[]
+```

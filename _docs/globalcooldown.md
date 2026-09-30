@@ -11,7 +11,7 @@ Enforces a global cooldown on command execution across all servers and all users
 
 ## Syntax
 
-```
+```bdfd
 $globalCooldown[duration;(errorMessage)]
 ```
 
@@ -57,28 +57,28 @@ Always place `$globalCooldown` at the **top** of your command, before any side e
 
 ### Basic Global Cooldown
 
-```
+```bdfd
 $globalCooldown[1h]
 $sendMessage[This command can only be used once per hour globally.]
 ```
 
 ### With Custom Error Message
 
-```
+```bdfd
 $globalCooldown[30m;⏳ This command is on global cooldown. Please wait.]
 $sendMessage[Command executed!]
 ```
 
 ### Displaying Remaining Time
 
-```
+```bdfd
 $globalCooldown[10m;⏳ Global cooldown! Try again in $getCooldown[global] seconds.]
 $sendMessage[Processing...]
 ```
 
 ### Combined with Other Checks
 
-```
+```bdfd
 $globalCooldown[30s;⏳ Global cooldown active!]
 $cooldown[10s;⏳ You're on cooldown!]
 $onlyIf[$message!=;❌ Please provide a message.]

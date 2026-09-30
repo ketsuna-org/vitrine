@@ -8,3 +8,15 @@ syntax: $jsonKey[]
 description: Returns the current key during a $jsonForEach iteration. Must be called inside a $jsonForEach block.
 ---
 $jsonKey returns the current key name during $jsonForEach iteration. It is only meaningful inside a $jsonForEach.. $endJsonForEach block. Pair with $jsonValue[] (no arguments) to access the corresponding value. This is the primary way to process key-value pairs in JSON objects.
+
+## Examples
+
+### Access Object Key by Numerical Index
+
+```bdfd
+$jsonParse[{"apple":5,"banana":10}]
+$title[Object Key]
+$description[First object key: `$jsonKey[0]`]
+$color[#5865F2]
+$sendMessage[]
+```

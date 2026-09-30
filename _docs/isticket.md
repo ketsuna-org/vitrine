@@ -16,3 +16,14 @@ The compiler maps this function to `((channel.isTicket))`. The current `$newTick
 Track created ticket IDs in scoped storage and compare the current channel with that data. Names beginning with `ticket-` are not sufficient to authenticate a ticket.
 
 Read the [Support Ticket System Guide](/docs/tickets/), the [channel Blocks reference](/docs/blocks-channels/) for explicit creation and closure, and the [execution model](/docs/execution-model/) for compatibility rules.
+
+## Examples
+
+### Ticket Validation Example
+
+```bdfd
+$title[Ticket Verification]
+$description[Channel <#$channelID> ticket status: **$isTicket**]
+$color[#5865F2]
+$sendMessage[]
+```

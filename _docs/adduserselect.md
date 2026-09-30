@@ -10,7 +10,7 @@ Creates a select menu of users. Allows users to choose one or multiple members o
 
 ## Syntax
 
-```
+```bdfd
 $addUserSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 ```
 
@@ -32,28 +32,28 @@ A **user select** displays a list of server members. The user can select one or 
 
 ### Selection of a user
 
-```
+```bdfd
 $addUserSelect[menu_user;Choose a member]
 $sendMessage[Select a user]
 ```
 
 ### Multiple selection
 
-```
+```bdfd
 $addUserSelect[menu_mods;Choose moderators;1;5]
 $sendMessage[Select 1 to 5 moderators]
 ```
 
 ### Disabled menu
 
-```
+```bdfd
 $addUserSelect[menu_user_disabled;Selection disabled;1;1;true]
 $sendMessage[This menu is temporarily unavailable]
 ```
 
 ## Handling the interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==menu_user]
   $sendMessage[Selected user: <@$message>]

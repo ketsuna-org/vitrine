@@ -10,7 +10,7 @@ Returns a value from a user-defined function. The function call resolves to this
 
 ## Syntax
 
-```
+```bdfd
 $funcReturn[value]
 ```
 
@@ -30,7 +30,7 @@ Only the **last** `$funcReturn` executed matters — if multiple `$funcReturn` c
 
 ### Simple return
 
-```
+```bdfd
 $func[greet;name]
 $funcReturn[Hello $funcArg[name]!]
 $funcEnd
@@ -41,7 +41,7 @@ Output: `Hello World!`
 
 ### Without return — uses body text
 
-```
+```bdfd
 $func[wave;who]
 Waving at $funcArg[who]...
 $funcEnd
@@ -52,7 +52,7 @@ Output: `Waving at Alice...`
 
 ### Return with inline functions
 
-```
+```bdfd
 $func[double;x]
 $funcReturn[$calculate[$funcArg[x] * 2]]
 $funcEnd
@@ -63,7 +63,7 @@ Output: `42`
 
 ### Conditional return
 
-```
+```bdfd
 $func[status;score]
 $if[$checkCondition[$funcArg[score] >= 50]]
 $funcReturn[Pass]

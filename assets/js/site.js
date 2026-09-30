@@ -38,32 +38,32 @@ window.drawPremiumBlogCover = function(canvas) {
       ctx.closePath();
     };
 
-    // 1. Dark corporate background
+    // 1. Dark Bot Creator mobile theme background
     const bgGrad = ctx.createLinearGradient(0, 0, baseWidth, baseHeight);
-    bgGrad.addColorStop(0, "#0d1117");
-    bgGrad.addColorStop(1, "#161b22");
+    bgGrad.addColorStop(0, "#111111");
+    bgGrad.addColorStop(1, "#1D1D1D");
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, baseWidth, baseHeight);
 
-    // 2. Subtle gradient glows (Dark corporate)
-    // Glow 1: Top Right (Primary tint)
+    // 2. Subtle gradient glows (Bot Creator Brand Purple)
+    // Glow 1: Top Right (Brand Secondary tint)
     const glow1 = ctx.createRadialGradient(baseWidth * 0.8, baseHeight * 0.25, 20, baseWidth * 0.8, baseHeight * 0.25, 180);
-    glow1.addColorStop(0, "rgba(124, 138, 255, 0.06)");
-    glow1.addColorStop(1, "rgba(124, 138, 255, 0)");
+    glow1.addColorStop(0, "rgba(155, 48, 255, 0.12)");
+    glow1.addColorStop(1, "rgba(155, 48, 255, 0)");
     ctx.fillStyle = glow1;
     ctx.fillRect(0, 0, baseWidth, baseHeight);
 
-    // Glow 2: Bottom Left (Secondary tint)
+    // Glow 2: Bottom Left (Brand Primary tint)
     const glow2 = ctx.createRadialGradient(baseWidth * 0.2, baseHeight * 0.8, 10, baseWidth * 0.2, baseHeight * 0.8, 220);
-    glow2.addColorStop(0, "rgba(139, 148, 158, 0.08)");
-    glow2.addColorStop(1, "rgba(139, 148, 158, 0)");
+    glow2.addColorStop(0, "rgba(106, 15, 162, 0.14)");
+    glow2.addColorStop(1, "rgba(106, 15, 162, 0)");
     ctx.fillStyle = glow2;
     ctx.fillRect(0, 0, baseWidth, baseHeight);
 
-    // Glow 3: Center Mid (Primary lighter)
+    // Glow 3: Center Mid (Soft purple highlight)
     const glow3 = ctx.createRadialGradient(baseWidth * 0.6, baseHeight * 0.6, 30, baseWidth * 0.6, baseHeight * 0.6, 140);
-    glow3.addColorStop(0, "rgba(124, 138, 255, 0.04)");
-    glow3.addColorStop(1, "rgba(124, 138, 255, 0)");
+    glow3.addColorStop(0, "rgba(177, 157, 247, 0.08)");
+    glow3.addColorStop(1, "rgba(177, 157, 247, 0)");
     ctx.fillStyle = glow3;
     ctx.fillRect(0, 0, baseWidth, baseHeight);
 
@@ -459,6 +459,27 @@ const initSite = () => {
       console.error("Delayed font load hook failed", err);
     });
   }
+
+  // Dual-view Tabs Handler (Blocks Mode vs Script Mode)
+  const initDualViewTabs = () => {
+    document.querySelectorAll(".dual-view-tabs").forEach((container) => {
+      const nav = container.querySelector(".dual-view-nav");
+      if (!nav) return;
+      const buttons = nav.querySelectorAll(".dual-tab-btn");
+      const panels = container.querySelectorAll(".dual-tab-panel");
+      buttons.forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active"));
+          panels.forEach((p) => p.classList.remove("active"));
+          btn.classList.add("active");
+          if (panels[index]) {
+            panels[index].classList.add("active");
+          }
+        });
+      });
+    });
+  };
+  initDualViewTabs();
 };
 
 // Bulletproof loader: Activate immediately if DOM is already parsed,

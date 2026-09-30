@@ -29,7 +29,7 @@ No parameters.
 - **Type**: `string`
 - The ID of the rules channel, or an empty string if not configured.
 
-## Usage
+## Examples
 
 ### Simple Display
 

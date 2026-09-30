@@ -83,3 +83,16 @@ $sendMessage[$joinSplitText[ ]]
 - **Out-of-bounds**: Removing an invalid index silently does nothing.
 - **No return**: Do not use inline; it's an action function.
 - **Permanent for this execution**: The removal cannot be undone within the same command, but the original text is not permanently lost — it can be re-split from the source.
+
+## Examples
+
+### Deleting an Element from Spreads Context
+
+```bdfd
+$textSplit[cat,dog,rabbit,hamster;,]
+$removeSplitTextElement[2]
+$title[Removed Element]
+$description[Remaining pets after removing index 2: `$joinSplitText[, ]`]
+$color[#5865F2]
+$sendMessage[]
+```

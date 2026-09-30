@@ -28,7 +28,7 @@ $addSection[(id)]
 
 Initializes a section in the current container. Subsequent components are added to this section.
 
-## Usage
+## Examples
 
 ### Container with a section
 

@@ -27,7 +27,7 @@ No parameters.
 - **Type**: `integer`
 - The number of active Nitro boosts on the server.
 
-## Usage
+## Examples
 
 ### Simple display
 

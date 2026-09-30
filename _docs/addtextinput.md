@@ -35,7 +35,7 @@ $addTextInput[customId;label;(style);(placeholder);(default);(required);(minLeng
 
 Adds the TextInput to the message. The input value is retrieved via `$input[customId]` in the interaction handler.
 
-## Usage
+## Examples
 
 ### Search field
 

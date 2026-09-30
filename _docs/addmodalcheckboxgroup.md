@@ -30,7 +30,7 @@ $addModalCheckboxGroup[customId;label;(required)]
 
 Initializes a checkbox group. Checked values are accessible via `$input[customId]` as a comma-separated list.
 
-## Usage
+## Examples
 
 ### Interests group
 

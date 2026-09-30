@@ -10,7 +10,7 @@ Deletes a specific message. The bot must have permission to manage messages in t
 
 ## Syntax
 
-```
+```bdfd
 $deleteMessage[messageId]
 ```
 
@@ -28,14 +28,14 @@ $deleteMessage[messageId]
 
 ### Deletion of the triggering message
 
-```
+```bdfd
 $deleteMessage[$messageID]
 Command executed discreetly.
 ```
 
 ### Deletion after action
 
-```
+```bdfd
 $sendMessage[Processing...]
 $wait[3s]
 $deleteMessage[$sentMessageId]
@@ -44,7 +44,7 @@ $sendMessage[Processing complete!]
 
 ### Deletion in an interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==btn_delete]
   $deleteMessage[$messageID]
@@ -54,7 +54,7 @@ $endif
 
 ### Deletion of a specific message
 
-```
+```bdfd
 $deleteMessage[123456789012345678]
 ```
 

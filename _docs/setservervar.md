@@ -12,3 +12,15 @@ $setServerVar stores a value persistently in the BDFD database under a guild-sco
 When called with two arguments (`name` and `value`), it sets the variable for the current guild (`((guild.id))`). When a Guild ID is provided, the variable is set for the specified server.
 
 The scope is `guild`, meaning the value is shared server-wide. This is ideal for server settings such as prefixes, welcome channels, auto-roles, logging channels, and similar configuration values. This function does not return any output — use $getServerVar to read the value. To reset, use $resetServerVar.
+
+## Examples
+
+### Set Ticket Category ID
+
+```bdfd
+$setServerVar[ticketCategory;987654321098765432;$guildID]
+$title[Server Config Saved]
+$description[Support tickets category set to ID `987654321098765432`.]
+$color[#5865F2]
+$sendMessage[]
+```

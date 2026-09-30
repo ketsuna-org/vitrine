@@ -8,6 +8,8 @@ description: respondWithMessage versus sendMessage; content, embeds, channels an
 
 # Message Blocks
 
+> 💡 **Resource:** Find the full list and schema of all 112+ no-code actions in the **[Complete Blocks Dictionary](/docs/blocks-dictionary/)**, as well as the introductory guide in **[Introduction to Blocks](/docs/blocks/)**.
+
 | Action | Purpose | Payload |
 |---|---|---|
 | `respondWithMessage` | Reply to the active interaction; without an interaction, falls back to a channel send when a client and channel are available. | `content` string; optional `embeds` list, `components` list, `ephemeral` boolean, `channelId` string for fallback. |

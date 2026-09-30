@@ -74,3 +74,17 @@ $sendMessage[You sent $getTextSplitLength lines]
 - **Empty elements**: If the separator appears consecutively (e.g., `a;;b` with separator `;`), empty string elements are created. Plan your logic accordingly.
 - **No auto-trim**: Leading/trailing spaces in elements are preserved. Use `$trimSpace` on individual elements if needed.
 - **Memory**: The spreads array exists only for the current command execution. It is not persisted across commands or sessions.
+
+## Examples
+
+### Parsing Comma-Separated Values
+
+```bdfd
+$textSplit[$message;,]
+$title[CSV Data Split]
+$description[Parsed **$getTextSplitLength** elements from input.]
+$addField[Item 1;$splitText[0];yes]
+$addField[Item 2;$splitText[1];yes]
+$color[#5865F2]
+$sendMessage[]
+```

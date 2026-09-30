@@ -70,3 +70,14 @@ $endif
 - **Locale-independent**: Basic ASCII uppercasing is applied. Behavior with non-ASCII characters may vary.
 - **Only letters**: Digits, punctuation, and whitespace pass through unchanged.
 - **Often paired with $toLowercase**: Choose one convention and stick with it for comparisons.
+
+## Examples
+
+### Converting Text to Uppercase
+
+```bdfd
+$title[SHOUTING FORMATTER]
+$description[Uppercase: **$toUpperCase[$message]**]
+$color[#5865F2]
+$sendMessage[]
+```

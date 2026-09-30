@@ -27,7 +27,7 @@ No parameters.
 - **Type**: `string`
 - The ID of the system channel, or an empty string if not configured.
 
-## Usage
+## Examples
 
 ### Simple Display
 

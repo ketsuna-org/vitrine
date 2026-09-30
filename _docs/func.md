@@ -11,7 +11,7 @@ Defines a reusable user-defined function that can be called later with `$funcCal
 
 ## Syntax
 
-```
+```bdfd
 $func[name;param1;param2;...]
   ...body...
 $funcEnd
@@ -39,7 +39,7 @@ Inside the function body:
 
 ### Simple function with $funcReturn
 
-```
+```bdfd
 $func[greet;name]
 $funcReturn[Hello $funcArg[name]!]
 $funcEnd
@@ -50,7 +50,7 @@ Output: `Hello World!`
 
 ### Function without $funcReturn (text body)
 
-```
+```bdfd
 $func[wave;who]
 Waving at $funcArg[who]...
 $funcEnd
@@ -61,7 +61,7 @@ Output: `Waving at Alice...`
 
 ### Multiple parameters
 
-```
+```bdfd
 $func[add;a;b]
 $funcReturn[$funcArg[a] + $funcArg[b]]
 $funcEnd
@@ -72,7 +72,7 @@ Output: `Result: 10 + 20`
 
 ### Multiple calls
 
-```
+```bdfd
 $func[tag;val]
 $funcReturn[<$funcArg[val]>]
 $funcEnd

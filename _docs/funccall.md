@@ -10,7 +10,7 @@ Calls a user-defined function previously declared with `$func[name;...]`. The ca
 
 ## Syntax
 
-```
+```bdfd
 $funcCall[funcName;arg1;arg2;...]
 ```
 
@@ -31,7 +31,7 @@ If the function uses `$funcReturn`, that value becomes the result. Otherwise, th
 
 ### Basic call with return
 
-```
+```bdfd
 $func[greet;name]
 $funcReturn[Hello $funcArg[name]!]
 $funcEnd
@@ -40,7 +40,7 @@ $sendMessage[$funcCall[greet;World]]
 
 ### Call with runtime placeholders
 
-```
+```bdfd
 $func[say;msg]
 $funcReturn[You said: $funcArg[msg]]
 $funcEnd
@@ -51,7 +51,7 @@ At runtime: `You said: <actual username>`
 
 ### Chaining calls
 
-```
+```bdfd
 $func[wrap;x]
 $funcReturn[[$funcArg[x]]]
 $funcEnd
@@ -65,7 +65,7 @@ Output: `[{hello}]`
 
 ### Calling an undefined function
 
-```
+```bdfd
 $sendMessage[$funcCall[notfound;test]]
 ```
 

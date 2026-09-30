@@ -32,7 +32,7 @@ $addCheckboxGroupOption[menuId;label;value;(description);(default)]
 
 Adds the option to the parent group. No direct return value.
 
-## Usage
+## Examples
 
 ### With explicit menuId
 

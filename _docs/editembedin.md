@@ -44,7 +44,7 @@ Schedules the delayed editing of the embed. The new embed is defined after the c
 | Preserves the text of the message | Replaces the entire content |
 | Ideal for visual updates | Ideal for complete transitions |
 
-## Usage
+## Examples
 
 ### Progress indicator
 

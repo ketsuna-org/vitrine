@@ -11,7 +11,7 @@ Marks the end of a user-defined function block started with `$func[...]`.
 
 ## Syntax
 
-```
+```bdfd
 $funcEnd
 ```
 
@@ -29,7 +29,7 @@ Nested `$func` definitions are supported — each inner `$func` must have its ow
 
 ### Basic definition
 
-```
+```bdfd
 $func[greet;name]
 $funcReturn[Hello $funcArg[name]!]
 $funcEnd
@@ -37,7 +37,7 @@ $funcEnd
 
 ### Multiple functions
 
-```
+```bdfd
 $func[one]
 One
 $funcEnd
@@ -53,7 +53,7 @@ Output: `One Two`
 
 ### Nested functions
 
-```
+```bdfd
 $func[outer]
 $func[inner;x]
 $funcReturn[<$funcArg[x]>]

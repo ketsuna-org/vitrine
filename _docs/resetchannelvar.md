@@ -12,3 +12,15 @@ $resetChannelVar restores a channel-scoped variable to its default value defined
 When called with only a `name`, it resets the variable for the current channel. When a Channel ID is provided, it resets the variable for the specified channel.
 
 Use this function to clear channel-specific settings, reset counters, or restore channel defaults. After resetting, $getChannelVar returns the default value (if defined) or an empty string. This function does not return any output.
+
+## Examples
+
+### Reset Channel Variable
+
+```bdfd
+$resetChannelVar[topicLock;$channelID]
+$title[Reset Variable]
+$description[Reset `topicLock` variable for channel <#$channelID> to its default value.]
+$color[#57F287]
+$sendMessage[]
+```

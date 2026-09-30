@@ -20,3 +20,19 @@ It does not configure private creator/staff permissions, send an optional welcom
 For a working channel creation sequence, use [Channel and permission Blocks](/docs/blocks-channels/): `createChannel` with `categoryId`, explicit permissions, a welcome message and storage of the created ID. Configure a private parent category first. Use the action result rather than nesting this helper in a temporary-variable assignment.
 
 See also [Support Ticket System Guide](/docs/tickets/), [$closeTicket](/docs/closeticket/), [$isTicket](/docs/isticket/) and [Execution model](/docs/execution-model/).
+
+## Examples
+
+### Recommended Modern Pattern vs Legacy Helper
+
+```bdfd
+;; For production private tickets, create a channel with explicit permissions:
+$var[ticketChan;$createChannel[ticket-$username;text;123456789012345678]]
+$editChannelPerms[$var[ticketChan];$authorID;+viewchannel;+sendmessages]
+$useChannel[$var[ticketChan]]
+$title[Support Ticket Created 🎫]
+$description[Welcome <@$authorID>! A staff member will assist you shortly.]
+$color[#5865F2]
+$addButton[no;close_ticket;Close Ticket;danger]
+$sendMessage[]
+```

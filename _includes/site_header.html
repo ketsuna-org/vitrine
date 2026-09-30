@@ -22,9 +22,11 @@
         </button>
         <div class="absolute top-full left-0 mt-2 w-60 rounded-xl bg-surface-container-lowest border border-outline-variant shadow-neon opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
           <a href="{{ t.paths.home | relative_url }}" class="block px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Overview</a>
+          <a href="{{ '/docs/blocks/' | relative_url }}" class="block px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Blocks (Visual No-Code)</a>
           <a href="{{ t.paths.docs | relative_url }}" class="block px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">BDFD Function Reference</a>
           <a href="{{ '/docs/javascript/' | relative_url }}" class="block px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">JavaScript API</a>
           <div class="border-t border-outline-variant my-1 mx-3"></div>
+          <a href="{{ '/docs/tickets/' | relative_url }}" class="block px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Ticket System Guide</a>
           <a href="{{ t.paths.guides | relative_url }}" class="block px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Guides & Tutorials</a>
           <a href="{{ '/docs/getting-started/' | relative_url }}" class="block px-4 py-2 text-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Getting Started</a>
         </div>
@@ -76,8 +78,12 @@
       <nav class="flex flex-col gap-4 w-full">
         <a class="flex h-14 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-base font-bold text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98"
           href="{{ t.paths.home | relative_url }}">Documentation Overview</a>
+        <a class="flex h-14 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-base font-bold text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98"
+          href="{{ '/docs/blocks/' | relative_url }}">Blocks (No-Code)</a>
         <a class="flex h-14 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-base font-bold text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98{% if active_key == 'docs' %} !text-primary border-primary/50 bg-surface-container-high{% endif %}"
           href="{{ t.paths.docs | relative_url }}">BDFD Reference</a>
+        <a class="flex h-14 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-base font-bold text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98"
+          href="{{ '/docs/tickets/' | relative_url }}">Tickets Guide</a>
         <a class="flex h-14 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-base font-bold text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98"
           href="{{ '/docs/javascript/' | relative_url }}">JavaScript API</a>
         <a class="flex h-14 w-full items-center justify-center rounded-xl bg-surface-container border border-outline-variant text-base font-bold text-on-surface hover:text-primary hover:border-primary/50 transition-all active:scale-98{% if active_key == 'guides' %} !text-primary border-primary/50 bg-surface-container-high{% endif %}"

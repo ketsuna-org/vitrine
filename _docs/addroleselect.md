@@ -10,7 +10,7 @@ Creates a select menu of roles. Allows users to choose one or multiple roles on 
 
 ## Syntax
 
-```
+```bdfd
 $addRoleSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 ```
 
@@ -34,28 +34,28 @@ Ideal for self-role systems, department selection, or notification menus.
 
 ### Role assignment
 
-```
+```bdfd
 $addRoleSelect[menu_role;Choose your role]
 $sendMessage[Select your main role]
 ```
 
 ### Multiple self-roles
 
-```
+```bdfd
 $addRoleSelect[menu_notifs;Notifications;1;3]
 $sendMessage[Choose the notifications to receive]
 ```
 
 ### Disabled menu
 
-```
+```bdfd
 $addRoleSelect[menu_role_disabled;Selection closed;1;1;true]
 $sendMessage[Registrations are closed]
 ```
 
 ## Handling the interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==menu_role]
   $giveRole[$authorID;$message]

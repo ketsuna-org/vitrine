@@ -27,7 +27,7 @@ None.
 - **Type**: `string`
 - The ID (Snowflake) of the owner of the server.
 
-## Usage
+## Examples
 
 ### Mention the owner
 

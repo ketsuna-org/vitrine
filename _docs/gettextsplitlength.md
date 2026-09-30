@@ -76,3 +76,17 @@ Processing element $math[$getTextSplitIndex+1] of $getTextSplitLength...
 - **Read-only**: This function reports the count; it does not modify the split text array.
 - **After each $textSplit**: The length reflects the most recent split. Calling `$textSplit` again resets it.
 - **No parameter**: This function takes no arguments.
+
+## Examples
+
+### Counting Split Items
+
+```bdfd
+$textSplit[$message; ]
+$title[Word Count Breakdown]
+$description[Your message contains **$getTextSplitLength** words.]
+$addField[First Word;$splitText[0];yes]
+$addField[Last Word;$splitText[-1];yes]
+$color[#5865F2]
+$sendMessage[]
+```

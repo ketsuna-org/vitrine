@@ -72,3 +72,17 @@ Processing: $message
 | Cross-workflow | No | Yes |
 | Same-workflow | Yes | Yes |
 | Use case | Branches, loops | Reusable subroutines |
+
+## Examples
+
+### Jumping Past Intermediate Actions
+
+```bdfd
+$if[$message==skip]
+  $jumpToAction[action_finish]
+$endif
+$title[Step 1 In Progress]
+$description[Processing normal execution flow...]
+$color[#5865F2]
+$sendMessage[]
+```

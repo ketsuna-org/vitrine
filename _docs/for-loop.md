@@ -51,3 +51,16 @@ Values can be:
 - Infinite loops are generally impossible since iteration is over a fixed list.
 - Nested loops are supported; each `$for` tracks its own `$loopIndex` / `$loopCount` scope.
 - Performance can degrade with very large lists; keep iterations reasonable (a few hundred items at most for responsive bot behavior).
+
+## Examples
+
+### Stepwise Sequence Loop
+
+```bdfd
+$title[Countdown Loop]
+$description[Executing repetition sequence:]
+$for[i;1;5;1]
+  $sendMessage[Step $var[i] of 5 complete!]
+$endFor
+$color[#5865F2]
+```

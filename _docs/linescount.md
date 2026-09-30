@@ -73,3 +73,14 @@ $sendMessage[Your submission: $linesCount[$message] lines, $charCount[$message] 
 - **Trailing newline**: A trailing `\n` may or may not create an additional empty line depending on the BDFD runtime. Test your specific version.
 - **Empty string = 0**: Different from a single non-empty line which returns `"1"`.
 - **Return type**: The return value is a string, compatible with numeric comparisons in `$checkCondition` and `$math`.
+
+## Examples
+
+### Counting Lines in User Input
+
+```bdfd
+$title[Line Counter]
+$description[Your text contains **$linesCount[$message]** lines of code.]
+$color[#5865F2]
+$sendMessage[]
+```

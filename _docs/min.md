@@ -33,30 +33,15 @@ $min[value1;value2;...]
 
 ## Examples
 
-**Simple minimum:**
-```
-$min[10;3]
-→ 3
-```
+### Lowest Value Comparison
 
-**Multiple values:**
+```bdfd
+$title[Math: Minimum Value]
+$description[The lowest number among `5, 12, 3, 8, 1` is: **$min[5;12;3;8;1]**]
+$addField[Comparison with Negatives;$min[-5;10;-2;0];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-$min[5;12;3;8;1]
-→ 1
-```
-
-**With negative numbers:**
-```
-$min[-5;10;-2;0]
-→ -5
-```
-
-**With decimal numbers:**
-```
-$min[2.5;1.1;3.9]
-→ 1.1
-```
-
 ## Notes
 
 - To find the largest value, use `$max[]`.

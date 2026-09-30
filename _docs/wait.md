@@ -52,3 +52,16 @@ Without `$defer`, Discord will show "This interaction failed" because no respons
 - **Waiting for user input**: Use `$awaitFunc` instead — it resumes on an actual event rather than a fixed timer.
 - **Cooldown enforcement**: Use `$cooldown` instead — it persists across command invocations.
 - **Long delays (>15 minutes)**: Discord interaction tokens expire, so very long waits may fail. Use alternative approaches like scheduled tasks or workflows.
+
+## Examples
+
+### Delayed Follow-up Message
+
+```bdfd
+$title[Timed Notification]
+$description[Processing request, please wait 3 seconds...]
+$color[#FEE75C]
+$sendMessage[]
+$wait[3s]
+$editMessage[$messageID;✅ Operation completed successfully!]
+```

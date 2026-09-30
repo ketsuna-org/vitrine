@@ -50,3 +50,19 @@ $endif
 ## Duration Format
 
 Same format as `$cooldown`: `Xs` for seconds, `Xm` for minutes, `Xh` for hours, `Xd` for days, `Xms` for milliseconds. Combined formats like `2m30s` are also supported.
+
+## Examples
+
+### Reducing Cooldown for VIP Members
+
+```bdfd
+$cooldown[10m;⏳ Slow down! Cooldown active.]
+$if[$hasRole[$authorID;123456789012345678]==true]
+  ;; VIP role members get a reduced cooldown of 1 minute
+  $changeCooldownTime[1m]
+$endif
+$title[Daily Reward Claimed]
+$description[You received **100 coins**! VIP members have a reduced 1m cooldown.]
+$color[#57F287]
+$sendMessage[]
+```

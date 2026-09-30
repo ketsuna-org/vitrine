@@ -12,3 +12,14 @@ $getChannelVar reads a variable scoped to a Discord channel. The variable value 
 Variables are defined and configured in the Bot Creator Variables UI, where you can set default values per variable. If a variable has not been set via $setChannelVar but a default exists in the definitions, $getChannelVar returns that default. If neither a stored value nor a default exists, an empty string is returned.
 
 > **JavaScript (BDJS) equivalent:** `await db.channel.get('name')` — see [db.channel](/docs/javascript/db-channel/).
+
+## Examples
+
+### Channel Slowmode Config
+
+```bdfd
+$title[Channel Settings]
+$description[Custom slowmode: `$getChannelVar[customSlowmode;$channelID]` seconds]
+$color[#5865F2]
+$sendMessage[]
+```

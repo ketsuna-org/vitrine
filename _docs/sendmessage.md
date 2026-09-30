@@ -29,7 +29,7 @@ $color[#FF0000]
 
 The compiler emits the pending response automatically. Do not append an empty send to every example. Keep the mutations belonging to one response together; action boundaries can flush a pending response.
 
-## Explicit send
+## Examples: Explicit Send
 
 ```bdfd
 $sendMessage[Hello world!]

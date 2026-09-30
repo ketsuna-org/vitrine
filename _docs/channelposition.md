@@ -38,7 +38,7 @@ $channelPosition[(channelID)]
 $sendMessage[This channel is at position $channelPosition]
 ```
 
-### Comparer les positions
+### Compare positions
 
 ```bdfd
 $if[$channelPosition==0]

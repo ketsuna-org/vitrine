@@ -32,30 +32,17 @@ $ceil[value]
 
 ## Examples
 
-**Positive number:**
-```
-$ceil[3.1]
-→ 4
+### Rounding Decimals Up
 
-$ceil[3.9]
-→ 4
+```bdfd
+$title[Math: Ceiling Function]
+$description[Original value: `3.1`
+Rounded up: **$ceil[3.1]**]
+$addField[Negative Value;$ceil[-3.9];yes]
+$addField[Integer;$ceil[5];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-
-**Negative number:**
-```
-$ceil[-3.9]
-→ -3
-
-$ceil[-3.1]
-→ -3
-```
-
-**Integer:**
-```
-$ceil[5]
-→ 5
-```
-
 ## Comparison of floor / ceil / round
 
 | Value | $floor[] | $ceil[] | $round[] |

@@ -12,13 +12,13 @@ Marks the message as a reply to an existing message. Used before `$sendMessage`.
 
 ### Reply to the user's message (0 arguments)
 
-```
+```bdfd
 $reply
 ```
 
 ### Reply to a specific message
 
-```
+```bdfd
 $reply[channelId;messageId]
 ```
 
@@ -41,21 +41,21 @@ Without arguments, `$reply` replies to the message that triggered the command or
 
 ### Simple reply
 
-```
+```bdfd
 $reply
 $sendMessage[Here is your reply!]
 ```
 
 ### Reply to a specific message
 
-```
+```bdfd
 $reply[$channelID;123456789012345678]
 $sendMessage[Reply to a specific message]
 ```
 
 ### Reply in $onInteraction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==btn_help]
   $reply
@@ -65,7 +65,7 @@ $endif
 
 ### Reply with embeds
 
-```
+```bdfd
 $reply
 $newEmbed[title=Reply;description=Reply details;color=#3498DB]
 $sendMessage[]

@@ -47,3 +47,15 @@ With `$argsCheck` (equivalent, cleaner):
 ```
 $argsCheck[>=;2;Error: at least 2 arguments required.]
 ```
+
+## Examples
+
+### Enforcing Required Arguments
+
+```bdfd
+$argsCheck[>2;❌ You must provide at least 2 arguments! Syntax: `!poll <question> <options...>`]
+$title[Poll Created]
+$description[Question: **$message**]
+$color[#5865F2]
+$sendMessage[]
+```

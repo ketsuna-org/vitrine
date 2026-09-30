@@ -34,7 +34,7 @@ No parameters.
 | 2 | 7 | Server banner, 256 kbps audio, +100 emojis |
 | 3 | 14 | Custom URL, 384 kbps audio, +150 emojis |
 
-## Usage
+## Examples
 
 ### Simple display
 

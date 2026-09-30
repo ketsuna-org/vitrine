@@ -31,7 +31,7 @@ $onlyIf[condition]
 
 When no error message is provided and the condition fails, execution stops silently. The user receives no response. Use this when you want to silently reject invalid input without cluttering the chat.
 
-## Common Patterns
+## Examples
 
 ### Permission Guards
 

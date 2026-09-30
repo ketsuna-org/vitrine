@@ -27,7 +27,7 @@ No parameters.
 - **Type**: `string`
 - The description of the server, or an empty string if no description is set.
 
-## Usage
+## Examples
 
 ### Display the description
 

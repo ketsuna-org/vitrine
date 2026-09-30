@@ -11,7 +11,7 @@ Generates a custom error that stops the command execution with the provided mess
 
 ## Syntax
 
-```
+```bdfd
 $error[message]
 ```
 
@@ -31,7 +31,7 @@ Unlike `$stop` which silently stops execution, `$error` explicitly signals that 
 
 ### Missing parameter
 
-```
+```bdfd
 $if[$message==]
   $error[❌ Please provide a message.]
 $endif
@@ -40,7 +40,7 @@ $sendMessage[$message]
 
 ### Invalid value
 
-```
+```bdfd
 $if[$isNumber[$message]!=true]
   $error[❌ The provided value must be a number.]
 $endif
@@ -49,7 +49,7 @@ $sendMessage[Valid number: $message]
 
 ### Permission check
 
-```
+```bdfd
 $if[$checkContains[$userPerms;BanMembers]!=true]
   $error[❌ You need the Ban Members permission to use this command.]
 $endif
@@ -59,7 +59,7 @@ $sendMessage[User banned.]
 
 ### Conditional validation
 
-```
+```bdfd
 $var[age;$message]
 $if[$var[age]<18]
   $error[❌ You must be at least 18 years old.]

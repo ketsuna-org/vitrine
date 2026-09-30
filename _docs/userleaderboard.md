@@ -70,3 +70,17 @@ Then loop through the entries with `$splitText`, `$getLeaderboardPosition`, and 
 - [`$textSplit`](/docs/textsplit) — Parse the result
 - [`$getUserVar`](/docs/getuservar) — Read a user variable
 - [`$setUserVar`](/docs/setuservar) — Set a user variable
+
+## Examples
+
+### Personal Leaderboard Neighborhood
+
+```bdfd
+$title[🏆 Personal Rank Standing]
+$description[Your position and direct competitors in **$serverName**:
+
+$userLeaderboard[xp;desc]]
+$color[#FEE75C]
+$footer[Keep chatting to reach the top 3!]
+$sendMessage[]
+```

@@ -63,3 +63,21 @@ If `$stop` is called inside a `$try` block, it halts execution **before** the `$
 - Placing `$endTry` before `$catch` — the parser expects `$catch` before `$endTry`.
 - Assuming `$error` is available outside `$catch` — it is scoped to the catch block only.
 - Catching an error but doing nothing with it — at minimum, log it to help with debugging.
+
+## Examples
+
+### Error-Protected Expression Evaluation
+
+```bdfd
+$try
+  $var[result;$calculate[$message]]
+  $title[Calculation Succeeded]
+  $description[Result: **$var[result]**]
+  $color[#57F287]
+$catch
+  $title[Calculation Failed]
+  $description[Invalid mathematical expression provided!]
+  $color[#ED4245]
+$endTry
+$sendMessage[]
+```

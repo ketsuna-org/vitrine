@@ -14,3 +14,14 @@ When called with only a `name`, it reads from the guild where the command is bei
 Variables are defined and configured in the Bot Creator Variables UI, where you can set default values per variable. If a variable has not been set via $setGuildVar but a default exists in the definitions, $getGuildVar returns that default. If neither a stored value nor a default exists, an empty string is returned.
 
 > **JavaScript (BDJS) equivalent:** `await db.guild.get('name')` — see [db.guild](/docs/javascript/db-guild/).
+
+## Examples
+
+### Server Configuration
+
+```bdfd
+$title[Server Settings]
+$description[Prefix: `$getGuildVar[prefix;$guildID]`\nWelcome channel: <#$getGuildVar[welcomeChan;$guildID]>]
+$color[#5865F2]
+$sendMessage[]
+```

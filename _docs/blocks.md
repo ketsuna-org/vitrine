@@ -3,39 +3,81 @@ layout: doc
 title: Blocks — Visual No-Code Programming Reference
 category: "Blocks"
 api_type: blocks
-description: Comprehensive guide to the Bot Creator visual Blocks system. Learn block anatomy, mobile canvas workflow, beginner tutorials, and bidirectional equivalence with BDScript.
+description: Complete guide to the Bot Creator visual Blocks system. Block anatomy, mobile visual flow, step-by-step beginner projects, and bidirectional equivalence with BDScript.
 permalink: /docs/blocks/
 ---
 
 # Blocks — Visual No-Code Programming
 
-The **Blocks** system is Bot Creator's visual programming engine. Inspired by modular block environments (like Scratch), it enables users on iOS, Android, and Desktop to build sophisticated Discord bots without writing raw code.
+The **Blocks** system is Bot Creator's visual programming engine. Inspired by modular snap-together card environments (like Scratch), it enables creators on iOS, Android, and Desktop to build complete Discord bots without writing a single line of raw code.
 
-Blocks run natively on the high-performance Dart engine. Each block compiles into a structured, type-safe `Action` with deterministic inputs, outputs, and lifecycle error handling.
+Blocks run directly on the native Dart engine. Each block compiles into a structured, typed, deterministic `Action` with inputs, outputs, and a unified error lifecycle handler.
 
 ---
 
-## 1. Anatomy of a Block
+## 1. Block Anatomy
 
-In the mobile editor, blocks appear as stacked, interlocking cards connected top-to-bottom.
+In the mobile app, blocks are represented as rounded cards stacked vertically, connected by flow lines:
 
-```text
-┌──────────────────────────────────────────────────────────────┐
-│ [Icon]  ACTION NAME                                   [Key]  │  <── Header (Category Color)
-├──────────────────────────────────────────────────────────────┤
-│  Input Field 1 : [ Value / Placeholder ((...))             ] │
-│  Dropdown      : [ Selected Option                        ▼] │
-│  Toggle Switch : [✔ Enabled]                                 │
-├──────────────────────────────────────────────────────────────┤
-│  ⚙ Paramètres avancés : Dépendances, Gestion des erreurs    │  <── Lifecycle Controls
-└──────────────────────────────────────────────────────────────┘
-                               │
-                               ▼ (Connecteur de flux)
-```
+<div class="block-flow-canvas my-6">
+  <div class="scratch-block-card block-cat-messages">
+    <div class="scratch-block-header">
+      <div class="scratch-block-strip"></div>
+      <span class="material-symbols-outlined scratch-block-icon">send</span>
+      <span class="scratch-block-title">SEND A MESSAGE</span>
+      <span class="scratch-block-badge">Key: my_message</span>
+    </div>
+    <div class="scratch-block-body">
+      <div class="scratch-block-field">
+        <span class="scratch-block-label">
+          <span>Target channel</span>
+          <span class="text-[10px] font-mono text-[#B19DF7]">string</span>
+        </span>
+        <div class="scratch-block-input"><span class="var-tag">((channel.id))</span></div>
+      </div>
+      <div class="scratch-block-field">
+        <span class="scratch-block-label">
+          <span>Message text content</span>
+          <span class="text-[10px] font-mono text-[#B19DF7]">string</span>
+        </span>
+        <div class="scratch-block-input">Hello <span class="var-tag">((user.username))</span>! Welcome to <span class="var-tag">((guild.name))</span>.</div>
+      </div>
+      <div class="scratch-block-toggle-row">
+        <span class="text-xs font-semibold text-on-surface">Automatically pin message</span>
+        <span class="sim-switch"></span>
+      </div>
+    </div>
+  </div>
 
-### JSON Structure Under the Hood
+  <div class="scratch-block-connector">
+    <div class="scratch-block-connector-line"></div>
+    <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+    <div class="scratch-block-connector-add">+</div>
+  </div>
 
-When saved or synchronized, every block is serialized into a JSON `Action` object:
+  <div class="scratch-block-card block-cat-interactions">
+    <div class="scratch-block-header">
+      <div class="scratch-block-strip"></div>
+      <span class="material-symbols-outlined scratch-block-icon">chat</span>
+      <span class="scratch-block-title">RESPOND TO INTERACTION</span>
+      <span class="scratch-block-badge">Terminal</span>
+    </div>
+    <div class="scratch-block-body">
+      <div class="scratch-block-field">
+        <span class="scratch-block-label">Text content</span>
+        <div class="scratch-block-input">Message sent to the channel!</div>
+      </div>
+      <div class="scratch-block-toggle-row">
+        <span class="text-xs font-semibold text-on-surface">Ephemeral Reply (visible only to you)</span>
+        <span class="sim-switch active"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+### Underlying JSON Structure
+
+Each block corresponds to an `Action` object serialized in the bot:
 
 ```json
 {
@@ -49,7 +91,7 @@ When saved or synchronized, every block is serialized into a JSON `Action` objec
     "skipCount": 0
   },
   "payload": {
-    "content": "Bonjour ((user.username)) ! Bienvenue sur ((guild.name)).",
+    "content": "Hello ((user.username))! Welcome to ((guild.name)).",
     "ephemeral": true
   }
 }
@@ -57,229 +99,350 @@ When saved or synchronized, every block is serialized into a JSON `Action` objec
 
 ### Field Definitions
 
-| Champ | Type | Description |
+| Field | Type | Description |
 |---|---|---|
-| `type` | String | Identifiant exact du bloc (ex: `sendMessage`, `createChannel`, `ifBlock`). Sensible à la casse. |
-| `payload` | Object | Dictionnaire des paramètres spécifiques au bloc (noms, IDs, contenus, booléens). |
-| `key` | String | Identifiant unique optionnel attribué au résultat du bloc (ex: `ticket_chan`). |
-| `enabled` | Boolean | Défaut: `true`. Si `false`, le moteur saute l'exécution du bloc sans lever d'erreur. |
-| `depend_on` | Array<String> | Liste des clés d'actions dont ce bloc dépend avant d'être exécuté. |
-| `error` | Object | Politique de gestion d'erreur : `mode` (`stop`, `continue`, `jump`, `skip`), `jumpToActionId`, `skipCount`. |
+| `type` | String | Exact block identifier corresponding to `BotCreatorActionType` (e.g. `sendMessage`, `createChannel`, `ifBlock`). |
+| `payload` | Object | Dictionary of block parameters (IDs, text, booleans, embeds, options). |
+| `key` | String | Optional unique identifier assigned to the block output for subsequent references (`((action.key))`). |
+| `enabled` | Boolean | Default: `true`. If `false`, the engine skips the action without raising an error. |
+| `depend_on` | Array&lt;String&gt; | Keys of prerequisite actions that must execute before this block runs. |
+| `error` | Object | Error handling behavior: `mode` (`stop`, `continue`, `jump`, `skip`). |
 
 ---
 
-## 2. Entrées, Sorties et Variables de Contexte
+## 2. Inputs, Outputs, and Context Variables
 
-### Variables de Contexte Discord `((...))`
-Les blocs ont un accès direct aux métadonnées de l'événement en cours grâce aux balises de template :
-- **Utilisateur** : `((user.id))`, `((user.username))`, `((user.avatar))`
-- **Serveur** : `((guild.id))`, `((guild.name))`, `((guild.memberCount))`
-- **Salon** : `((channel.id))`, `((channel.name))`
-- **Options Slash** : `((opts.nom_argument))` (ou `((opts.nom_argument.id))` pour les membres/salons/rôles)
-- **Interaction** : `((interaction.customId))`, `((interaction.userId))`
+### Discord Context Variables `((...))`
+Input fields accept dynamic placeholders resolved at runtime:
+- **User**: `((user.id))`, `((user.username))`, `((user.avatar))`
+- **Guild / Server**: `((guild.id))`, `((guild.name))`, `((guild.memberCount))`
+- **Channel**: `((channel.id))`, `((channel.name))`
+- **Slash Options**: `((opts.option_name))` (or `((opts.option_name.id))` for IDs)
+- **Components**: `((interaction.customId))`, `((interaction.userId))`
 
-### Sorties de Blocs `((action.<key>))`
-Lorsqu'un bloc produit un résultat (par exemple, `createChannel` crée un salon et retourne son Snowflake ID, ou `httpRequest` retourne une réponse JSON), assignez-lui un **Key** dans l'éditeur (ex: `mon_salon`).
-Les blocs suivants peuvent alors référencer cette valeur :
+### Block Outputs `((action.<key>))`
+When a block produces an identifier or result (for example `createChannel` creates a channel and returns its Snowflake ID, or `httpRequest` returns a JSON object), assign it a **Key** in the editor (e.g. `ticket_chan`).
+Subsequent blocks access it via:
 ```text
-((action.mon_salon))
+((action.ticket_chan))
 ```
 
 ---
 
-## 3. Guide pas-à-pas pour les débutants : Créer son bot sans coder
+## 3. Step-by-Step Beginner Guide: 3 Core Projects
 
-Voici 3 projets fondamentaux montrant la transcription exacte entre l'interface visuelle mobile, le JSON des blocs et le code BDScript.
+Each project includes an interactive dual view: see how it connects in the mobile app or read the equivalent script code, along with a simulated Discord visual preview!
 
 ---
 
-### Projet 1 : La commande Slash `/ping`
+### Project 1: The `/ping` Slash Command
 
-**Objectif :** Créer une commande qui répond avec la latence du bot dans un bel embed.
+**Goal:** Build a slash command that replies with the bot's latency in a clean embed.
 
-#### Rendu Visuel (UI Mobile)
-```text
-[ Événement : Commande Slash /ping ]
-   │
-   └── [ Action : Répondre à l'interaction ]
-          ├── Contenu : ""
-          ├── Éphémère : Non
-          └── Embeds :
-                 └── [ Embed 1 ]
-                        ├── Titre : "🏓 Pong !"
-                        ├── Description : "Latence API : **((bot.ping))ms**"
-                        └── Couleur : #5865F2 (Bleu Discord)
-```
+<div class="dual-view-tabs">
+  <div class="dual-view-nav">
+    <button class="dual-tab-btn active" type="button">
+      <span class="material-symbols-outlined tab-accent">dashboard</span>
+      <span>Blocks View (App Mode)</span>
+    </button>
+    <button class="dual-tab-btn" type="button">
+      <span class="material-symbols-outlined tab-accent">code</span>
+      <span>Script View (BDFD / BDScript)</span>
+    </button>
+  </div>
 
-#### Équivalence Bi-directionnelle
+  <div class="dual-tab-panel active">
+    <div class="block-flow-canvas">
+      
+      <!-- Trigger -->
+      <div class="scratch-block-card block-cat-entrypoint">
+        <div class="scratch-block-header">
+          <div class="scratch-block-strip"></div>
+          <span class="material-symbols-outlined scratch-block-icon">terminal</span>
+          <span class="scratch-block-title">SLASH COMMAND: /ping</span>
+          <span class="scratch-block-badge">Trigger</span>
+        </div>
+        <div class="scratch-block-body">
+          <div class="text-xs text-on-surface-variant">Command name: <code>/ping</code> • Description: Measures bot latency.</div>
+        </div>
+      </div>
 
-:::: tabs
+      <div class="scratch-block-connector">
+        <div class="scratch-block-connector-line"></div>
+        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+      </div>
 
-::: tab Blocks (JSON)
-```json
-[
-  {
-    "type": "respondWithMessage",
-    "key": "ping_reply",
-    "payload": {
-      "content": "",
-      "ephemeral": false,
-      "embeds": [
-        {
-          "title": "🏓 Pong !",
-          "description": "Latence API : **((bot.ping))ms**",
-          "color": "#5865F2"
-        }
-      ]
-    }
-  }
-]
-```
-:::
+      <!-- Action -->
+      <div class="scratch-block-card block-cat-interactions">
+        <div class="scratch-block-header">
+          <div class="scratch-block-strip"></div>
+          <span class="material-symbols-outlined scratch-block-icon">chat</span>
+          <span class="scratch-block-title">RESPOND TO INTERACTION</span>
+          <span class="scratch-block-badge">Terminal</span>
+        </div>
+        <div class="scratch-block-body">
+          <div class="scratch-block-field">
+            <span class="scratch-block-label">Embed Title</span>
+            <div class="scratch-block-input">🏓 Pong!</div>
+          </div>
+          <div class="scratch-block-field">
+            <span class="scratch-block-label">Embed Description</span>
+            <div class="scratch-block-input">WebSocket API Latency: <span class="var-tag">((bot.ping))</span>ms</div>
+          </div>
+          <div class="scratch-block-field">
+            <span class="scratch-block-label">Embed Color</span>
+            <div class="scratch-block-input">#5865F2 <span class="text-xs text-on-surface-variant font-sans">(Blurple)</span></div>
+          </div>
+          <div class="scratch-block-toggle-row">
+            <span class="text-xs font-semibold text-on-surface">Ephemeral Reply</span>
+            <span class="sim-switch"></span>
+          </div>
+        </div>
+      </div>
 
-::: tab BDScript (BDFD)
+    </div>
+  </div>
+
+  <div class="dual-tab-panel">
 ```bdfd
-$title[🏓 Pong !]
-$description[Latence API : **$ping ms**]
+;; Native slash command reply (no $sendMessage needed)
+$title[🏓 Pong!]
+$description[WebSocket API Latency: **$ping ms**]
 $color[#5865F2]
 ```
-:::
+  </div>
+</div>
 
-::::
+#### Realistic Discord Preview
+
+<div class="discord-simulator-frame">
+  <div class="discord-msg-row">
+    <div class="discord-avatar">🤖</div>
+    <div class="discord-msg-content">
+      <div class="discord-header">
+        <span class="discord-username">Bot Creator Assistant</span>
+        <span class="discord-bot-tag">BOT ✔</span>
+        <span class="discord-timestamp">Today at 3:00 PM</span>
+      </div>
+      <div class="discord-embed" style="--embed-color: #5865F2;">
+        <div class="discord-embed-title">🏓 Pong!</div>
+        <div class="discord-embed-desc">WebSocket API Latency: <strong>24 ms</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ---
 
-### Projet 2 : Message de Bienvenue Automatique
+### Project 2: Automatic Welcome Message
 
-**Objectif :** Lorsqu'un nouveau membre rejoint le serveur, envoyer un message de bienvenue personnalisé dans le salon `#bienvenue`.
+**Goal:** When a new member joins the server, send a personalized welcome message to the `#welcome` channel.
 
-#### Rendu Visuel (UI Mobile)
-```text
-[ Événement : Nouveau membre rejoint (guildMemberAdd) ]
-   │
-   └── [ Action : Envoyer un message ]
-          ├── Salon : 112233445566778899 (ID du salon #bienvenue)
-          └── Contenu : "Bienvenue <@((user.id))> sur **((guild.name))** ! 🎉\nNous sommes désormais ((guild.memberCount)) membres !"
-```
+<div class="dual-view-tabs">
+  <div class="dual-view-nav">
+    <button class="dual-tab-btn active" type="button">
+      <span class="material-symbols-outlined tab-accent">dashboard</span>
+      <span>Blocks View (App Mode)</span>
+    </button>
+    <button class="dual-tab-btn" type="button">
+      <span class="material-symbols-outlined tab-accent">code</span>
+      <span>Script View (BDFD / BDScript)</span>
+    </button>
+  </div>
 
-#### Équivalence Bi-directionnelle
+  <div class="dual-tab-panel active">
+    <div class="block-flow-canvas">
+      
+      <!-- Trigger -->
+      <div class="scratch-block-card block-cat-entrypoint">
+        <div class="scratch-block-header">
+          <div class="scratch-block-strip"></div>
+          <span class="material-symbols-outlined scratch-block-icon">person_add</span>
+          <span class="scratch-block-title">EVENT: guildMemberAdd</span>
+          <span class="scratch-block-badge">Event</span>
+        </div>
+        <div class="scratch-block-body">
+          <div class="text-xs text-on-surface-variant">Triggered automatically whenever a user joins the Discord server.</div>
+        </div>
+      </div>
 
-:::: tabs
+      <div class="scratch-block-connector">
+        <div class="scratch-block-connector-line"></div>
+        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+      </div>
 
-::: tab Blocks (JSON)
-```json
-[
-  {
-    "type": "sendMessage",
-    "payload": {
-      "channelId": "112233445566778899",
-      "content": "Bienvenue <@((user.id))> sur **((guild.name))** ! 🎉\nNous sommes désormais ((guild.memberCount)) membres !"
-    }
-  }
-]
-```
-:::
+      <!-- Action -->
+      <div class="scratch-block-card block-cat-messages">
+        <div class="scratch-block-header">
+          <div class="scratch-block-strip"></div>
+          <span class="material-symbols-outlined scratch-block-icon">send</span>
+          <span class="scratch-block-title">SEND A MESSAGE</span>
+          <span class="scratch-block-badge">Action</span>
+        </div>
+        <div class="scratch-block-body">
+          <div class="scratch-block-field">
+            <span class="scratch-block-label">Target channel (#welcome channel ID)</span>
+            <div class="scratch-block-input">112233445566778899</div>
+          </div>
+          <div class="scratch-block-field">
+            <span class="scratch-block-label">Text content</span>
+            <div class="scratch-block-input">Welcome &lt;@<span class="var-tag">((user.id))</span>&gt; to **<span class="var-tag">((guild.name))</span>**! 🎉 We are now <span class="var-tag">((guild.memberCount))</span> members!</div>
+          </div>
+        </div>
+      </div>
 
-::: tab BDScript (BDFD)
+    </div>
+  </div>
+
+  <div class="dual-tab-panel">
 ```bdfd
+;; Triggered on guildMemberAdd event
 $useChannel[112233445566778899]
-Bienvenue <@$authorID> sur **$serverName** ! 🎉
-Nous sommes désormais $membersCount membres !
+Welcome <@$authorID> to **$serverName**! 🎉
+We are now $membersCount members!
 ```
-:::
+  </div>
+</div>
 
-::::
+#### Realistic Discord Preview
+
+<div class="discord-simulator-frame">
+  <div class="discord-msg-row">
+    <div class="discord-avatar">🤖</div>
+    <div class="discord-msg-content">
+      <div class="discord-header">
+        <span class="discord-username">Bot Creator Assistant</span>
+        <span class="discord-bot-tag">BOT ✔</span>
+        <span class="discord-timestamp">Today at 3:05 PM</span>
+      </div>
+      <div>Welcome <span class="bg-[#5865F2]/20 text-[#B19DF7] px-1 rounded">@Jeremy</span> to <strong>Bot Creator Community</strong>! 🎉 We are now 1,420 members!</div>
+    </div>
+  </div>
+</div>
 
 ---
 
-### Projet 3 : Rôle interactif par Bouton (Auto-Rôle)
+### Project 3: Interactive Role Assignment via Button
 
-**Objectif :** Un message comporte un bouton "Devenir Membre". Quand un utilisateur clique, il reçoit le rôle sans spammer le salon.
+**Goal:** Deploy a verification panel with an interactive button. When clicked, the user receives a role without public chat clutter.
 
-#### 1. Envoi du message initial
-```text
-[ Événement : Commande Slash /setup-roles ]
-   │
-   ├── [ Action : Envoyer un message ]
-   │      ├── Salon : ((channel.id))
-   │      ├── Contenu : "Cliquez sur le bouton ci-dessous pour obtenir le rôle Membre :"
-   │      └── Boutons :
-   │             └── [ Bouton Vert : "Vérifier mon profil" | ID: btn_auto_role ]
-   │
-   └── [ Action : Répondre à l'interaction ]  ─── Éphémère : Oui
-          └── Contenu : "Panneau de rôle déployé !"
-```
+<div class="dual-view-tabs">
+  <div class="dual-view-nav">
+    <button class="dual-tab-btn active" type="button">
+      <span class="material-symbols-outlined tab-accent">dashboard</span>
+      <span>Blocks View (App Mode)</span>
+    </button>
+    <button class="dual-tab-btn" type="button">
+      <span class="material-symbols-outlined tab-accent">code</span>
+      <span>Script View (BDFD / BDScript)</span>
+    </button>
+  </div>
 
-#### 2. Workflow de clic de bouton
-```text
-[ Événement : Clic de Bouton (interactionCreate) ]
-   │
-   ├── [ Condition : ((interaction.customId)) == btn_auto_role ]
-   │      │
-   │      ├── [ Action : Ajouter un rôle ]
-   │      │      ├── Utilisateur : ((interaction.userId))
-   │      │      └── Rôle : 998877665544332211 (ID du rôle Membre)
-   │      │
-   │      └── [ Action : Répondre à l'interaction ]
-   │             ├── Contenu : "✅ Vous avez reçu le rôle Membre !"
-   │             └── Éphémère : Oui
-```
+  <div class="dual-tab-panel active">
+    <div class="block-flow-canvas">
+      
+      <!-- Trigger -->
+      <div class="scratch-block-card block-cat-entrypoint">
+        <div class="scratch-block-header">
+          <div class="scratch-block-strip"></div>
+          <span class="material-symbols-outlined scratch-block-icon">touch_app</span>
+          <span class="scratch-block-title">BUTTON CLICK: verify_member</span>
+          <span class="scratch-block-badge">Trigger</span>
+        </div>
+        <div class="scratch-block-body">
+          <div class="text-xs text-on-surface-variant">Triggered when the button with customId <code>verify_member</code> is pressed.</div>
+        </div>
+      </div>
 
-#### Équivalence Bi-directionnelle
+      <div class="scratch-block-connector">
+        <div class="scratch-block-connector-line"></div>
+        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+      </div>
 
-:::: tabs
+      <!-- Action 1: Add Role -->
+      <div class="scratch-block-card block-cat-moderation">
+        <div class="scratch-block-header">
+          <div class="scratch-block-strip"></div>
+          <span class="material-symbols-outlined scratch-block-icon">person_add_alt_1</span>
+          <span class="scratch-block-title">ADD A ROLE</span>
+          <span class="scratch-block-badge">Moderation</span>
+        </div>
+        <div class="scratch-block-body">
+          <div class="scratch-block-field">
+            <span class="scratch-block-label">Target user</span>
+            <div class="scratch-block-input"><span class="var-tag">((user.id))</span></div>
+          </div>
+          <div class="scratch-block-field">
+            <span class="scratch-block-label">Role identifier (Member Role ID)</span>
+            <div class="scratch-block-input">998877665544332211</div>
+          </div>
+        </div>
+      </div>
 
-::: tab Blocks (JSON)
-```json
-[
-  {
-    "type": "ifBlock",
-    "payload": {
-      "condition.variable": "((interaction.customId))",
-      "condition.operator": "equals",
-      "condition.value": "btn_auto_role",
-      "thenActions": [
-        {
-          "type": "addRole",
-          "payload": {
-            "userId": "((interaction.userId))",
-            "roleId": "998877665544332211"
-          }
-        },
-        {
-          "type": "respondWithMessage",
-          "payload": {
-            "content": "✅ Vous avez reçu le rôle Membre !",
-            "ephemeral": true
-          }
-        }
-      ]
-    }
-  }
-]
-```
-:::
+      <div class="scratch-block-connector">
+        <div class="scratch-block-connector-line"></div>
+        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+      </div>
 
-::: tab BDScript (BDFD)
+      <!-- Action 2: Ephemeral Reply -->
+      <div class="scratch-block-card block-cat-interactions">
+        <div class="scratch-block-header">
+          <div class="scratch-block-strip"></div>
+          <span class="material-symbols-outlined scratch-block-icon">chat</span>
+          <span class="scratch-block-title">RESPOND TO INTERACTION</span>
+          <span class="scratch-block-badge">Terminal</span>
+        </div>
+        <div class="scratch-block-body">
+          <div class="scratch-block-field">
+            <span class="scratch-block-label">Text content</span>
+            <div class="scratch-block-input">✅ Congratulations <span class="var-tag">((user.username))</span>! You have been given the Member role.</div>
+          </div>
+          <div class="scratch-block-toggle-row">
+            <span class="text-xs font-semibold text-on-surface">Ephemeral Reply</span>
+            <span class="sim-switch active"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="dual-tab-panel">
 ```bdfd
-$if[((interaction.customId))==btn_auto_role]
-  $giveRole[((interaction.userId));998877665544332211]
-  $ephemeral
-  ✅ Vous avez reçu le rôle Membre !
-$endif
+;; Button click event on verify_member
+$giveRole[$authorID;998877665544332211]
+$ephemeral
+✅ Congratulations $username! You have been given the Member role.
 ```
-:::
+  </div>
+</div>
 
-::::
+#### Realistic Discord Preview
+
+<div class="discord-simulator-frame">
+  <div class="discord-msg-row">
+    <div class="discord-avatar">🤖</div>
+    <div class="discord-msg-content">
+      <div class="discord-header">
+        <span class="discord-username">Bot Creator Assistant</span>
+        <span class="discord-bot-tag">BOT ✔</span>
+        <span class="discord-timestamp">Today at 3:10 PM</span>
+      </div>
+      <div>✅ Congratulations <strong>Jeremy</strong>! You have been given the Member role.</div>
+      <div class="discord-ephemeral-notice">
+        <span class="material-symbols-outlined">visibility_off</span>
+        <span>Only you can see this • <a href="#" class="underline hover:text-white" onclick="return false;">Dismiss message</a></span>
+      </div>
+    </div>
+  </div>
+</div>
 
 ---
 
-## 4. Explorer les Blocs par Catégorie
+## 4. Explore All Blocks
 
-Pour consulter la liste exhaustive des **112 blocs** disponibles dans l'application mobile avec leurs champs détaillés :
+To browse all **112 blocks** available in the mobile app with their fields, default values, and script equivalents:
 
-- 📖 **[Dictionnaire complet des Blocks](/docs/blocks-dictionary/)** — Catalogue exhaustif de tous les blocs et paramètres.
-- 💬 **[Blocs Messages & Réponses](/docs/blocks-messages/)** — `sendMessage`, `respondWithMessage`, embeds et composants.
-- 📁 **[Blocs Salons & Permissions](/docs/blocks-channels/)** — Création, permissions, modération et suppression de salons.
-- 🔀 **[Blocs Contrôle de Flux](/docs/blocks-control-flow/)** — Conditions `ifBlock`, boucles `forLoop`, attentes et appels de workflows.
-- 🎫 **[Système de Tickets](/docs/tickets/)** — Système complet et robuste de tickets privés en Blocks et BDFD.
+- 📖 **[Complete Blocks Dictionary](/docs/blocks-dictionary/)** — Exhaustive catalog of all 12 categories and 100% of actions.
+- 🎫 **[Support Ticket System Guide](/docs/tickets/)** — Architecture and production deployment of private support channels.
+- ⚙️ **[Execution Model & Best Practices](/docs/execution-model/)** — Acknowledgment rules, state management, and optimization tips.

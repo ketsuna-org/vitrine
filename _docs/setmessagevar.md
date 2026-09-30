@@ -12,3 +12,15 @@ $setMessageVar stores a value persistently in the BDFD database under a message-
 When called with two arguments (`name` and `value`), it sets the variable for the message that triggered the current command or event. When a Message ID is provided, the variable is set for the specified message.
 
 The scope is `message`, making it ideal for tracking message status, reaction roles, polls, click counters, and any metadata that should be attached to a particular message. This function does not return any output — use $getMessageVar to read the value. There is currently no dedicated resetter for message-scoped variables; use $setMessageVar with an empty value to clear it.
+
+## Examples
+
+### Mark Message as Starred
+
+```bdfd
+$setMessageVar[starred;true;$messageID]
+$title[Message Starred ⭐]
+$description[Message has been added to the starboard!]
+$color[#FEE75C]
+$sendMessage[]
+```

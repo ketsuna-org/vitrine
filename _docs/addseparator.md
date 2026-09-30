@@ -10,7 +10,7 @@ Adds a visual separator in the current action row. Useful to space out or visual
 
 ## Syntax
 
-```
+```bdfd
 $addSeparator[(divider);(spacing)]
 ```
 
@@ -37,7 +37,7 @@ $addSeparator[(divider);(spacing)]
 
 ### Simple separator
 
-```
+```bdfd
 $addActionRow
 $addButtonCV2[btn_left;Left;primary]
 $addSeparator
@@ -47,7 +47,7 @@ $sendMessage[Spaced buttons]
 
 ### With a separation line
 
-```
+```bdfd
 $addActionRow
 $addButtonCV2[btn_1;Option A;success]
 $addSeparator[yes]
@@ -57,7 +57,7 @@ $sendMessage[Options separated by a line]
 
 ### Large spacing
 
-```
+```bdfd
 $addActionRow
 $addTextDisplay[Text to the left]
 $addSeparator[no;lg]

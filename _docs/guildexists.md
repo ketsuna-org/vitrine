@@ -31,7 +31,7 @@ $guildExists[guildId]
 
 > **Note**: The return value is a **string** (`"true"` / `"false"`), not a boolean. For conditions, compare with `==true` or `==false`.
 
-## Usage
+## Examples
 
 ### Simple Check
 

@@ -96,3 +96,20 @@ $eval[$var[action]]
 | Performance | Slower (parses at runtime) | Faster (pre-parsed) |
 | Safety | Risk of injection | Safe (static reference) |
 | Flexibility | Maximum (any code) | Limited to predefined workflows |
+
+## Examples
+
+### Evaluating BDScript Code
+
+```bdfd
+$onlyForIDs[123456789012345678;❌ Owner only!]
+$title[Code Evaluation]
+$description[Evaluating BDScript snippet:
+```bdfd
+$message
+```
+Result:
+$eval[$message]]
+$color[#5865F2]
+$sendMessage[]
+```

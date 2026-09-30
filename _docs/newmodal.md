@@ -29,7 +29,7 @@ $newModal[title;customId]
 
 This function does not return a value directly. It initializes an internal context in which the functions to add components (`$addModalTextInput`, etc.) operate.
 
-## Usage
+## Examples
 
 ### Basic Modal
 

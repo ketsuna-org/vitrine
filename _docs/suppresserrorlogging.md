@@ -36,3 +36,15 @@ $suppressErrorLogging disables the internal logging of runtime errors for the cu
 | `$suppressErrorLogging` | Unchanged | Unchanged | Suppressed |
 
 All three can be combined independently to achieve the exact level of error visibility you need.
+
+## Examples
+
+### Silent Error Logging
+
+```bdfd
+$suppressErrorLogging
+$title[Silent Execution]
+$description[Bot internal errors will not clutter the server console.]
+$color[#5865F2]
+$sendMessage[]
+```

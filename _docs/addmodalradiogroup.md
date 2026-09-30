@@ -30,7 +30,7 @@ $addModalRadioGroup[customId;label;(required)]
 
 Initializes a radio group. The value of the selected option is accessible via `$input[customId]`.
 
-## Usage
+## Examples
 
 ### Simple radio group
 

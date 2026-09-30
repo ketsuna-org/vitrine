@@ -12,3 +12,15 @@ $resetMemberVar restores a guild-member-scoped variable to its default value def
 When called with only a `name`, it resets the variable for the current command author in the current guild. When a User ID is provided, it resets for that user in the current guild. When both User ID and Guild ID are provided, it resets for the exact guild-member combination.
 
 Use this function to clear warnings, reset XP after a season, remove moderation flags, or restore member defaults after an unban/unmute. After resetting, $getMemberVar returns the default value (if defined) or an empty string. This function does not return any output.
+
+## Examples
+
+### Reset Member Streak
+
+```bdfd
+$resetMemberVar[dailyStreak;$authorID]
+$title[Streak Reset]
+$description[Daily streak has been reset for <@$authorID>.]
+$color[#DA373C]
+$sendMessage[]
+```

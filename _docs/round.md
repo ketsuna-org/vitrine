@@ -32,36 +32,17 @@ $round[value]
 
 ## Examples
 
-**Rounding up:**
+### Rounding to Nearest Integer
+
+```bdfd
+$title[Math: Round Function]
+$description[Rounding `3.5`: **$round[3.5]**
+Rounding `3.4`: **$round[3.4]**]
+$addField[Negative Value;$round[-3.6];yes]
+$addField[Exact Integer;$round[5];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-$round[3.5]
-→ 4
-
-$round[3.6]
-→ 4
-
-$round[3.9]
-→ 4
-```
-
-**Rounding down:**
-```
-$round[3.4]
-→ 3
-
-$round[3.1]
-→ 3
-```
-
-**Negative number:**
-```
-$round[-3.4]
-→ -3
-
-$round[-3.6]
-→ -4
-```
-
 ## Comparison: floor / ceil / round
 
 | Value | $floor[] | $ceil[] | $round[] |

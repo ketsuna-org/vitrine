@@ -46,7 +46,7 @@ No parameters.
 | `PRIVATE_THREADS` | Private threads enabled |
 | `THREADS_ENABLED` | Threads enabled |
 
-## Usage
+## Examples
 
 ### Display features
 

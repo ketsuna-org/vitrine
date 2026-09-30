@@ -10,7 +10,7 @@ Returns the server's verification level as an integer (0 to 4). Alias of `$serve
 
 ## Syntax
 
-```
+```bdfd
 $serverVerificationLvl
 ```
 
@@ -38,13 +38,13 @@ This function takes no parameters.
 
 ### Simple display
 
-```
+```bdfd
 $sendMessage[🔒 Verification level: $serverVerificationLvl]
 ```
 
 ### Interpreted message
 
-```
+```bdfd
 $var[vl;$serverVerificationLvl]
 $if[$var[vl]==0]
   $sendMessage[🔒 No restrictions]
@@ -61,7 +61,7 @@ $endif
 
 ### Server info embed
 
-```
+```bdfd
 $title[Server Configuration]
 $addField[Verification level;$serverVerificationLvl;yes]
 $addField[Server name;$serverName;yes]

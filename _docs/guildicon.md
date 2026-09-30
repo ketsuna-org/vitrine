@@ -27,7 +27,7 @@ No parameters.
 - **Type** : `string`
 - The direct URL of the icon (PNG/WEBP format), or an empty string.
 
-## Usage
+## Examples
 
 ### Embed with icon
 

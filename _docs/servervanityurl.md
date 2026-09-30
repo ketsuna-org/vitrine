@@ -29,7 +29,7 @@ None.
 - **Type**: `string`
 - The code of the custom URL (e.g., `"my-server"`), or an empty string if not available.
 
-## Usage
+## Examples
 
 ### Invite link
 

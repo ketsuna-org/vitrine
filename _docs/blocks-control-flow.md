@@ -8,6 +8,8 @@ description: ifBlock conditions, nested actions, forLoop, wait, stop and runWork
 
 # Control flow Blocks
 
+> 💡 **Resource:** Find the full list and schema of all 112+ no-code actions in the **[Complete Blocks Dictionary](/docs/blocks-dictionary/)**, as well as the execution model in **[Execution Model & Best Practices](/docs/execution-model/)**.
+
 ## ifBlock
 
 `condition.variable` is the left operand string, `condition.operator` the comparison, and `condition.value` the right operand string. `thenActions` and `elseActions` are lists of action objects.

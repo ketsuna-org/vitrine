@@ -67,3 +67,15 @@ $var[title;$cropText[$message;50]]
 - **Suffix is not included in maxLength**: The `maxLength` value controls how many characters of the *original text* are kept. The suffix is added on top. For example, `$cropText[abcdef;3;...]` produces `"abc..."` (6 total characters).
 - **Hard cut with empty suffix**: `$cropText[text;5;]` with an empty third argument simply returns the first 5 characters.
 - **Works with numbers/symbols**: All characters count equally — no special handling of Unicode or emoji width.
+
+## Examples
+
+### Truncating Long Text
+
+```bdfd
+$title[Text Cropping]
+$description[Preview: **$cropText[$message;0;50]...**]
+$footer[Original length: $charCount[$message] chars]
+$color[#5865F2]
+$sendMessage[]
+```

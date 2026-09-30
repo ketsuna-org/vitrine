@@ -82,3 +82,15 @@ Total : $var[total]
 | Cross-workflow | Yes | No |
 | Same-workflow | Yes | Yes |
 | Best for | Reusable subroutines | Branches and loops |
+
+## Examples
+
+### Triggering a Background Workflow
+
+```bdfd
+$title[Workflow Triggered]
+$description[Invoking backend verification workflow for member <@$authorID>...]
+$color[#5865F2]
+$sendMessage[]
+$callWorkflow[verify_user;$authorID]
+```

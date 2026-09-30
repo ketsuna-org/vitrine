@@ -37,7 +37,7 @@ $editIn[duration;(messageId)]
 
 Schedules the delayed editing. The new content is defined after the call to `$editIn[]`.
 
-## Usage
+## Examples
 
 ### Loading indicator
 

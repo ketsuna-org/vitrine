@@ -27,7 +27,7 @@ No parameters.
 - **Type** : `integer`
 - The number of online members.
 
-## Usage
+## Examples
 
 ### Simple display
 

@@ -17,7 +17,7 @@ runner:
   commands:
     pull: "docker pull ketsuna-org/bot-creator-runner:latest"
     volume: "docker volume create bot_creator_data"
-    run: "docker run --rm -p 8080:8080 -e BOT_CREATOR_WEB_HOST=0.0.0.0 -e BOT_CREATOR_API_TOKEN=votre_token -v bot_creator_data:/data ketsuna-org/bot-creator-runner:latest"
+    run: "docker run --rm -p 8080:8080 -e BOT_CREATOR_WEB_HOST=0.0.0.0 -e BOT_CREATOR_API_TOKEN=your_token -v bot_creator_data:/data ketsuna-org/bot-creator-runner:latest"
   notes:
     - "Exposes a HTTP API for remote control via the Bot Creator application."
     - "Persists bot configurations, variables, and logs inside the mounted /data volume."

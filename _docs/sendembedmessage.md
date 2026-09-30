@@ -30,7 +30,7 @@ $sendEmbedMessage[(channelId);(messageId)]
 - **Type**: `string`
 - Returns the identifier of the message created or edited. Can be used for subsequent operations.
 
-## Usage
+## Examples
 
 ### Simple embed in the current channel
 

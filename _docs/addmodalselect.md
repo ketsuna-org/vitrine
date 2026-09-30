@@ -31,7 +31,7 @@ $addModalSelect[customId;label;(placeholder);(required)]
 
 Adds the Select component to the current modal. The selected value is accessible via `$input[customId]` in the interaction handler.
 
-## Usage
+## Examples
 
 ### Dropdown menu with options
 

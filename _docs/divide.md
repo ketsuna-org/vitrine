@@ -33,30 +33,16 @@ $divide[a;b]
 
 ## Examples
 
-**Simple division:**
-```
-$divide[10;2]
-→ 5
-```
+### Division and Average Calculation
 
-**Decimal result:**
+```bdfd
+$title[Math: Division]
+$description[Result of `10 / 2`: **$divide[10;2]**]
+$addField[Decimal Result;$divide[10;3];yes]
+$addField[Safe Division by Zero;$divide[42;0];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-$divide[10;3]
-→ 3.333333...
-```
-
-**Division by zero (protected):**
-```
-$divide[42;0]
-→ 0
-```
-
-**Average calculation:**
-```
-$divide[$sum[12;15;18];3]
-→ 15
-```
-
 ## Notes
 
 - Protection against division by zero prevents accidental crashes, but note: `0` can be a legitimate result or an error indicator depending on the context.

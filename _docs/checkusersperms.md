@@ -10,7 +10,7 @@ Checks if one or multiple users have all the specified permissions. Returns `tru
 
 ## Syntax
 
-```
+```bdfd
 $checkUsersPerms[userIds;permissions;(separator);(amount)]
 ```
 
@@ -35,7 +35,7 @@ The permissions check is done with an **AND** logic: all listed permissions must
 
 ### Checking multiple users
 
-```
+```bdfd
 $if[$checkUsersPerms[$authorID;$mentioned[1];KickMembers]==true]
   $kick[$mentioned[2]]
   $sendMessage[User kicked.]
@@ -46,7 +46,7 @@ $endif
 
 ### At least 2 users must have Administrator
 
-```
+```bdfd
 $if[$checkUsersPerms[$authorID;$mentioned[1];$mentioned[2];Administrator;;2]==true]
   $sendMessage[At least 2 users are administrators.]
 $else
@@ -56,7 +56,7 @@ $endif
 
 ### Custom separator
 
-```
+```bdfd
 $var[ids;$authorID,$mentioned[1],$mentioned[2]]
 $if[$checkUsersPerms[$var[ids];ManageMessages;,]==true]
   $clear[50]

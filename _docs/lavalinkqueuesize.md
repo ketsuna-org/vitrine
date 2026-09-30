@@ -8,3 +8,14 @@ syntax: $lavalinkQueueSize[]
 description: Returns the number of tracks currently in the music queue
 ---
 Returns the number of tracks currently waiting in the music queue. This count does not include the track that is currently playing. Use this to display queue status or check if the queue is empty before adding more tracks.
+
+## Examples
+
+### Song Queue Length
+
+```bdfd
+$title[Music Queue 🎵]
+$description[There are **$lavalinkQueueSize** songs waiting in queue.]
+$color[#AEEA00]
+$sendMessage[]
+```

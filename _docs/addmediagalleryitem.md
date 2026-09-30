@@ -31,7 +31,7 @@ $addMediaGalleryItem[url;(description);(spoiler);(galleryId)]
 
 Adds the image to the gallery. No direct return value.
 
-## Usage
+## Examples
 
 ### With explicit galleryId
 

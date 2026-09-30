@@ -10,7 +10,7 @@ Adds role IDs to the command's blacklist. Users with any of the specified roles 
 
 ## Syntax
 
-```
+```bdfd
 $blacklistRolesIDs[roleIds;(errorMessage)]
 ```
 
@@ -31,21 +31,21 @@ If no custom error message is provided, a default message is sent.
 
 ### Default error
 
-```
+```bdfd
 $blacklistRolesIDs[123456789012345678]
 $sendMessage[Command executed successfully.]
 ```
 
 ### Multiple roles with custom message
 
-```
+```bdfd
 $blacklistRolesIDs[111111111111111111;222222222222222222;333333333333333333;❌ You are not allowed to use this command.]
 $sendMessage[Processing...]
 ```
 
 ### Variable-based blacklist
 
-```
+```bdfd
 $blacklistRolesIDs[$getServerVar[blacklistedRoles];⛔ Access denied.]
 $sendMessage[Done.]
 ```

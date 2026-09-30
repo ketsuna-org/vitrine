@@ -86,3 +86,20 @@ This evaluates to `"true"` when at least one condition from each group is true â
 - **Single condition**: Use the condition directly. `$or` requires at least 2 arguments.
 - **Forgetting `==true` in $if**: Always write `$if[$or[...]==true]`.
 - **Confusing AND/OR logic**: `$or` returns `"true"` when ANY condition is true. For "ALL must be true", use `$and`.
+
+## Examples
+
+### Combining Alternative Permissions
+
+```bdfd
+$if[$or[$hasRole[$authorID;123456789012345678];$authorID==111222333444555666]==true]
+  $title[Admin Access Granted]
+  $description[Welcome to the control panel, <@$authorID>!]
+  $color[#57F287]
+$else
+  $title[Access Denied]
+  $description[You lack administrative credentials.]
+  $color[#ED4245]
+$endif
+$sendMessage[]
+```

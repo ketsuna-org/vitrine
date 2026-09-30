@@ -65,3 +65,20 @@ $if[$checkContains[$message;admin]==true]
 - Forgetting `$endif` causes a parse error.
 - Using `=` instead of `==` for equality — BDFD requires double equals.
 - Comparing strings with numeric operators — make sure the value type matches the comparison intent.
+
+## Examples
+
+### Conditional Response Flow
+
+```bdfd
+$if[$getUserVar[coins]>=100]
+  $title[Purchase Successful]
+  $description[You bought the VIP pass for 100 coins!]
+  $color[#57F287]
+$else
+  $title[Insufficient Funds]
+  $description[You need 100 coins, but only have **$getUserVar[coins]**.]
+  $color[#ED4245]
+$endif
+$sendMessage[]
+```

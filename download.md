@@ -146,9 +146,9 @@ permalink: /download/
                 <code class="text-primary text-sm font-mono whitespace-nowrap">{{ downloads.runner.commands.pull }}</code>
               </div>
             </div>
-            <button data-copy="{{ downloads.runner.commands.pull }}" data-copy-success="{% if page.locale == 'fr' %}Copié !{% else %}Copied!{% endif %}" class="button-outline !h-10 !px-4 text-xs font-bold w-fit flex items-center gap-2 self-end">
+            <button data-copy="{{ downloads.runner.commands.pull }}" data-copy-success="Copied!" class="button-outline !h-10 !px-4 text-xs font-bold w-fit flex items-center gap-2 self-end">
               <span class="material-symbols-outlined text-sm">content_copy</span>
-              <span>{% if page.locale == 'fr' %}Copier{% else %}Copy{% endif %}</span>
+              <span>Copy</span>
             </button>
           </div>
 
@@ -160,9 +160,9 @@ permalink: /download/
                 <code class="text-primary text-sm font-mono whitespace-nowrap">{{ downloads.runner.commands.volume }}</code>
               </div>
             </div>
-            <button data-copy="{{ downloads.runner.commands.volume }}" data-copy-success="{% if page.locale == 'fr' %}Copié !{% else %}Copied!{% endif %}" class="button-outline !h-10 !px-4 text-xs font-bold w-fit flex items-center gap-2 self-end">
+            <button data-copy="{{ downloads.runner.commands.volume }}" data-copy-success="Copied!" class="button-outline !h-10 !px-4 text-xs font-bold w-fit flex items-center gap-2 self-end">
               <span class="material-symbols-outlined text-sm">content_copy</span>
-              <span>{% if page.locale == 'fr' %}Copier{% else %}Copy{% endif %}</span>
+              <span>Copy</span>
             </button>
           </div>
 
@@ -174,9 +174,9 @@ permalink: /download/
                 <code class="text-primary text-sm font-mono whitespace-nowrap">{{ downloads.runner.commands.run }}</code>
               </div>
             </div>
-            <button data-copy="{{ downloads.runner.commands.run }}" data-copy-success="{% if page.locale == 'fr' %}Copié !{% else %}Copied!{% endif %}" class="button-outline !h-10 !px-4 text-xs font-bold w-fit flex items-center gap-2 self-end">
+            <button data-copy="{{ downloads.runner.commands.run }}" data-copy-success="Copied!" class="button-outline !h-10 !px-4 text-xs font-bold w-fit flex items-center gap-2 self-end">
               <span class="material-symbols-outlined text-sm">content_copy</span>
-              <span>{% if page.locale == 'fr' %}Copier{% else %}Copy{% endif %}</span>
+              <span>Copy</span>
             </button>
           </div>
         </div>

@@ -72,3 +72,17 @@ $editSplitText[3;***REDACTED***]
 - **Works with any index**: Both positive and negative indices are supported.
 - **No return value**: Do not use `$editSplitText` inside expressions expecting a value.
 - **Requires prior split**: Must be called after `$textSplit`, otherwise nothing happens.
+
+## Examples
+
+### Modifying an Array Element
+
+```bdfd
+$textSplit[apple,banana,orange;,]
+$editSplitText[1;mango]
+$title[Array Element Updated]
+$description[Replaced index 1 with **$splitText[1]**.
+Full list: `$joinSplitText[, ]`]
+$color[#57F287]
+$sendMessage[]
+```

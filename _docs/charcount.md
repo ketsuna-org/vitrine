@@ -75,3 +75,14 @@ $endif
 - **Newlines**: `\n` counts as 1 character.
 - **Empty input**: Returns `"0"`, not an error.
 - **Return type**: The return value is a string, but can be used in `$math` or `$checkCondition` for numeric comparisons.
+
+## Examples
+
+### Measuring Message Length
+
+```bdfd
+$title[Message Character Count]
+$description[Your message contains **$charCount[$message]** characters.]
+$color[#5865F2]
+$sendMessage[]
+```

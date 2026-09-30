@@ -10,7 +10,7 @@ Adds an option to a select menu of type string, created with `$addStringSelect`.
 
 ## Syntax
 
-```
+```bdfd
 $addStringSelectOption[label;value;(description);(emoji);(default);(menuId)]
 ```
 
@@ -33,7 +33,7 @@ $addStringSelectOption[label;value;(description);(emoji);(default);(menuId)]
 
 ### Simple options
 
-```
+```bdfd
 $addStringSelect[menu_boisson;Choose a drink]
 $addStringSelectOption[Coffee;coffee;Hot and strong;☕]
 $addStringSelectOption[Tea;tea;Flavored infusion;🍵]
@@ -44,7 +44,7 @@ $sendMessage[What would you like to drink?]
 
 ### Default option
 
-```
+```bdfd
 $addStringSelect[menu_volume;Volume]
 $addStringSelectOption[Low;low;;🔈]
 $addStringSelectOption[Medium;medium;;🔉;true]
@@ -54,7 +54,7 @@ $sendMessage[Set the volume]
 
 ### Multiple menus with menuId
 
-```
+```bdfd
 $addStringSelect[menu_entree;Starter]
 $addStringSelectOption[Salad;salad;;🥗]
 $addStringSelectOption[Soup;soup;;🍜]

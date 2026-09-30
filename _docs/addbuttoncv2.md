@@ -11,7 +11,7 @@ Adds an interactive button to the message using the Component V2 style. This but
 
 ## Syntax
 
-```
+```bdfd
 $addButtonCV2[customIdOrURL;label;(style);(disabled);(emoji)]
 ```
 
@@ -33,14 +33,14 @@ Unlike `$addButton` (legacy), `$addButtonCV2` does not have a `newRow` parameter
 
 ### Simple button
 
-```
+```bdfd
 $addButtonCV2[my_button;Click here;primary]
 $sendMessage[Press the button]
 ```
 
 ### Multiple buttons on distinct rows
 
-```
+```bdfd
 $addActionRow
 $addButtonCV2[btn_yes;✅ Yes;success]
 $addButtonCV2[btn_no;❌ No;danger]
@@ -52,14 +52,14 @@ $sendMessage[Make your choice]
 
 ### Link button
 
-```
+```bdfd
 $addButtonCV2[https://discord.com;Discord Website;link;false;🌐]
 $sendMessage[Visit the website]
 ```
 
 ### Disabled button
 
-```
+```bdfd
 $addButtonCV2[btn_disabled;Unavailable;primary;true;🚫]
 $sendMessage[Feature coming soon]
 ```
@@ -68,7 +68,7 @@ $sendMessage[Feature coming soon]
 
 Clicks on buttons are handled via the `$onInteraction` event:
 
-```
+```bdfd
 $onInteraction
 $if[$customID==my_button]
   $sendMessage[You clicked!]

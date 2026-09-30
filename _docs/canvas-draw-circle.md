@@ -8,3 +8,15 @@ syntax: $canvasDrawCircle[x;y;radius;color;fill;blend?;container?]
 description: Draws a circle (filled or outlined) with optional blend mode support
 ---
 Circles are drawn using the midpoint algorithm for pixel-precise rendering. When `fill` is true, the circle is filled solid; when false, only a 1-pixel outline is drawn. Specifying a blend mode triggers per-pixel blending instead of the default fast-path, which may be slightly slower but enables compositing effects like multiply, screen, and overlay.
+
+## Examples
+
+### Draw Colored Indicator Circle
+
+```bdfd
+$canvasCreate[statusBadge;300;100;#1E1E1E]
+$canvasDrawCircle[50;50;30;#57F287;true;source-over;statusBadge]
+$canvasDrawText[statusBadge;Online & Operational;100;58;18;#FFFFFF]
+$attachImage[statusBadge]
+$sendMessage[Service health check badge.]
+```

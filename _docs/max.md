@@ -33,29 +33,15 @@ $max[value1;value2;...]
 
 ## Examples
 
-**Simple maximum:**
-```
-$max[10;3]
-→ 10
-```
+### Highest Value Comparison
 
-**Multiple values:**
+```bdfd
+$title[Math: Maximum Value]
+$description[The highest number among `5, 12, 3, 8, 1` is: **$max[5;12;3;8;1]**]
+$addField[Comparison with Negatives;$max[-5;10;-2;0];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-$max[5;12;3;8;1]
-→ 12
-```
-
-**With negative numbers:**
-```
-$max[-5;10;-2;0]
-→ 10
-```
-
-**High score:**
-```
-$max[$getVar[scoreP1];$getVar[scoreP2];$getVar[scoreP3]]
-```
-
 ## Notes
 
 - To find the lowest value, use `$min[]`.

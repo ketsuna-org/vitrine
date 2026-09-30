@@ -1,7 +1,5 @@
 code: "en"
 label: "English"
-switch_label: "FR"
-language_switch: "Francais"
 
 paths:
   home: "/"

@@ -8,3 +8,18 @@ syntax: $playMusic[query;channelID?;userId?]
 description: Plays a track from a search query or URL, auto-joining a voice channel if needed
 ---
 Searches for a track by query or plays directly from a supported URL (YouTube, SoundCloud, etc.). If the bot is not already in a voice channel, it automatically joins the user's voice channel (or the specified channel). If a track is already playing, the new track is added to the queue.
+
+## Examples
+
+### Search and Play Track
+
+```bdfd
+$playMusic[$message]
+$title[🎵 Music Player]
+$description[Searching and queuing: **$message**\nRequested by: <@$authorID>]
+$color[#AEEA00]
+$addButton[no;music_pause;Pause;secondary;⏸️]
+$addButton[no;music_skip;Skip;secondary;⏭️]
+$addButton[no;music_stop;Stop;danger;⏹️]
+$sendMessage[]
+```

@@ -11,7 +11,7 @@ Makes the response ephemeral (visible only to the user who triggered the interac
 
 ## Syntax
 
-```
+```bdfd
 $ephemeral
 ```
 
@@ -29,14 +29,14 @@ This function is particularly useful for:
 
 ### Simple ephemeral response
 
-```
+```bdfd
 $ephemeral
 $sendMessage[This message is visible only to you.]
 ```
 
 ### With embeds
 
-```
+```bdfd
 $ephemeral
 $newEmbed[title=Information;description=Private data;color=#9B59B6]
 $sendMessage[]
@@ -44,7 +44,7 @@ $sendMessage[]
 
 ### In an interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==btn_secret]
   $ephemeral
@@ -54,7 +54,7 @@ $endif
 
 ### Ephemeral error message
 
-```
+```bdfd
 $if[$argsCount==0]
   $ephemeral
   $sendMessage[❌ You must provide an argument!]

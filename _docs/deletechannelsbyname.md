@@ -10,7 +10,7 @@ Deletes channels that match a given name. Supports wildcards (`*`) to target mul
 
 ## Syntax
 
-```
+```bdfd
 $deleteChannelsByName[channelName]
 ```
 
@@ -30,28 +30,28 @@ The bot must have the `MANAGE_CHANNELS` permission to use this function. Deletio
 
 ### Delete a specific channel
 
-```
+```bdfd
 $deleteChannelsByName[general-chat]
 $sendMessage[Channel deleted.]
 ```
 
 ### Delete with wildcard
 
-```
+```bdfd
 $deleteChannelsByName[spam-*]
 $sendMessage[All spam channels deleted.]
 ```
 
 ### Ticket cleanup
 
-```
+```bdfd
 $deleteChannelsByName[ticket-*]
 $sendMessage[All ticket channels deleted.]
 ```
 
 ### Conditional deletion
 
-```
+```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
   $deleteChannelsByName[temp-*]
   $sendMessage[Temporary channels deleted.]

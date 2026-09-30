@@ -31,27 +31,27 @@ Discord interactions (Slash Commands, Buttons, Select Menus, Modals) have strict
 
 ```bdfd
 ;; ✅ CORRECT: Implicit native reply
-Bonjour $username ! Bienvenue sur $serverName.
+Hello $username! Welcome to $serverName.
 ```
 
 ```bdfd
 ;; ✅ CORRECT: Embed-only native reply
-$title[Règles du Serveur]
-$description[Respectez les autres membres.]
+$title[Server Rules]
+$description[Respect other members.]
 $color[#5865F2]
 ```
 
 ```bdfd
-;; ❌ INCORRECT: Inutile et risque de double envoi ou conflit d'acquittement
-Bonjour $username !
-$sendMessage[Bonjour $username !]
+;; ❌ INCORRECT: Unnecessary and risks double sending or acknowledgment conflicts
+Hello $username!
+$sendMessage[Hello $username!]
 ```
 
 3. **Ephemeral Visibility:**
    - To make an interaction reply private (visible only to the user who triggered it), simply add the `$ephemeral` flag in BDFD:
    ```bdfd
    $ephemeral
-   Ce message n'est visible que par vous.
+   This message is only visible to you.
    ```
    - In Blocks, set `"ephemeral": true` on the `respondWithMessage` action.
 
@@ -65,72 +65,72 @@ $sendMessage[Bonjour $username !]
 ## 2. Variables & State Management (No `$let`!)
 
 > [!CAUTION]
-> **Syntaxe fantôme `$let` :** La syntaxe `$let[...]` **N'EXISTE PAS** dans le moteur Bot Creator. Toute tentative d'utilisation déclenche une erreur de diagnostic immédiate à la compilation.
+> **Phantom syntax `$let`:** The `$let` bracket syntax **DOES NOT EXIST** in the Bot Creator engine. Any attempt to use it triggers an immediate diagnostic error at compile time.
 
 Bot Creator distinguishes two types of variables:
 
 ### A. Temporary Execution Variables (`$var`)
 Scoped exclusively to the current command invocation. Lost when the command finishes.
 
-- **Écriture (BDScript):** `$var[nom;valeur]`
-- **Lecture (BDScript):** `$var[nom]`
-- **Blocs:** Action `setTemporaryVariable` (`name`, `value`).
+- **Write (BDScript):** `$var[name;value]`
+- **Read (BDScript):** `$var[name]`
+- **Blocks:** Action `setTemporaryVariable` (`name`, `value`).
 
 ```bdfd
 $var[userCount;$membersCount]
-$var[greeting;Bienvenue]
+$var[greeting;Welcome]
 
-$var[greeting] à tous nos $var[userCount] membres !
+$var[greeting] to all our $var[userCount] members!
 ```
 
 ### B. Persistent Database Variables (`$setVar` / Scoped Storage)
 Saved in the bot's cloud or SQLite database across restarts and server reloads.
 
-- **Variables Globales:**
-  - BDScript : `$setVar[key;value]` / `$getVar[key]`
-  - Blocs : `setGlobalVariable` / `getGlobalVariable`
-- **Variables Scopées par Utilisateur:**
-  - BDScript : `$setUserVar[key;value]` / `$getUserVar[key]`
-  - Blocs : `setScopedVariable` (`scope: user`) / `getScopedVariable`
-- **Variables Scopées par Serveur (Guild):**
-  - BDScript : `$setServerVar[key;value]` (ou `$setGuildVar`) / `$getServerVar[key]`
-  - Blocs : `setScopedVariable` (`scope: guild`) / `getScopedVariable`
-- **Variables Scopées par Membre (Guild + User):**
-  - BDScript : `$setMemberVar[key;value]` / `$getMemberVar[key]`
-- **Variables Scopées par Salon:**
-  - BDScript : `$setChannelVar[key;value]` / `$getChannelVar[key]`
+- **Global Variables:**
+  - BDScript: `$setVar[key;value]` / `$getVar[key]`
+  - Blocks: `setGlobalVariable` / `getGlobalVariable`
+- **User-Scoped Variables:**
+  - BDScript: `$setUserVar[key;value]` / `$getUserVar[key]`
+  - Blocks: `setScopedVariable` (`scope: user`) / `getScopedVariable`
+- **Guild-Scoped Variables (Server):**
+  - BDScript: `$setServerVar[key;value]` (or `$setGuildVar`) / `$getServerVar[key]`
+  - Blocks: `setScopedVariable` (`scope: guild`) / `getScopedVariable`
+- **Member-Scoped Variables (Guild + User):**
+  - BDScript: `$setMemberVar[key;value]` / `$getMemberVar[key]`
+- **Channel-Scoped Variables:**
+  - BDScript: `$setChannelVar[key;value]` / `$getChannelVar[key]`
 
 ---
 
-## 3. Options de Commandes Slash
+## 3. Slash Command Options
 
-In Bot Creator, options passed to a slash command (`/ban @user raison:spam`) are injected directly into the runtime environment:
+In Bot Creator, options passed to a slash command (`/ban @user reason:spam`) are injected directly into the runtime environment:
 
-- **Valeur textuelle / brute :** `((opts.<nom_option>))` (ex: `((opts.raison))`)
-- **Identifiant Snowflake (Utilisateur, Salon, Rôle) :** `((opts.<nom_option>.id))` (ex: `((opts.cible.id))`)
-- **Fallback positionnel :** `((arg.1))`, `((arg.2))`
+- **Textual / Raw Value:** `((opts.<option_name>))` (e.g. `((opts.reason))`)
+- **Snowflake ID (User, Channel, Role):** `((opts.<option_name>.id))` (e.g. `((opts.target.id))`)
+- **Positional Fallback:** `((arg.1))`, `((arg.2))`
 
 > [!NOTE]
-> Ne cherchez pas de fonction `$slashOption[...]`. L'accès aux options se fait nativement via les placeholders `((opts.nom))` en BDFD et en Blocs.
+> Do not look for a `$slashOption[...]` function. Options are accessed natively via `((opts.name))` placeholders in both BDFD and Blocks.
 
 ---
 
-## 4. Système de Tickets Discord
+## 4. Discord Ticket System
 
-Ne vous fiez pas aux fonctions historiques incomplètes `$newTicket` et `$closeTicket`. Pour créer un système de tickets robuste en production :
-1. Créez une catégorie privée fermée à `@everyone`.
-2. Utilisez `createChannel` (avec `categoryId`) pour créer le salon.
-3. Configurez les permissions avec `editChannelPermissions` (`allow: 68608` pour le membre).
-4. Envoyez le message de bienvenue avec un bouton de fermeture (`customId: close_ticket`).
-5. Fermez et supprimez le salon avec `removeChannel`.
+Do not rely on incomplete legacy functions `$newTicket` and `$closeTicket`. To build a robust ticket system in production:
+1. Create a private category closed to `@everyone`.
+2. Use `createChannel` (with `categoryId`) to create the channel.
+3. Configure permissions with `editChannelPermissions` (`allow: 68608` for the member).
+4. Send the welcome message with a close button (`customId: close_ticket`).
+5. Close and delete the channel with `removeChannel`.
 
-Consultez le tutoriel complet : **[Guide Complet du Système de Tickets](/docs/tickets/)**.
+Read the full walkthrough: **[Complete Ticket System Guide](/docs/tickets/)**.
 
 ---
 
-## 5. Règles d'Or pour les Modèles de Langage (LLMs / MCP)
+## 5. Golden Rules for Language Models (LLMs / MCP)
 
-1. **Séparation Stricte :** Ne mélangez jamais le JSON des Blocs avec la syntaxe BDFD. Un bloc `sendMessage` prend un payload JSON `{ "content": "..." }`, pas une chaîne `$sendMessage[...]`.
-2. **Zéro Fonctions Inventées :** Ne documentez et ne proposez jamais de fonctions comme `$let`, `$sendResponse`, `$respondWithMessage`, ou `$slashOption`.
-3. **Respectez le statut `incomplete` :** Avertissez toujours l'utilisateur des limites des fonctions marquées comme incomplètes (`$newTicket`, `$closeTicket`).
-4. **Acquittement Propre :** Dans les Slash Commands, privilégiez toujours la réponse native ou éphémère (`$ephemeral`) sans doubler par un `$sendMessage`.
+1. **Strict Separation:** Never mix Blocks JSON with BDFD syntax. A `sendMessage` block takes a JSON payload `{ "content": "..." }`, not a string `$sendMessage[...]`.
+2. **Zero Invented Functions:** Never document or suggest non-existent functions such as `$let`, `$sendResponse`, `$respondWithMessage`, or `$slashOption`.
+3. **Respect `incomplete` Status:** Always alert users to the limitations of functions marked incomplete (`$newTicket`, `$closeTicket`).
+4. **Clean Acknowledgment:** In slash commands, always prefer native or ephemeral (`$ephemeral`) replies without doubling up with a `$sendMessage`.

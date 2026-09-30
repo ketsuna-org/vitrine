@@ -72,3 +72,15 @@ $endif
 - **Zero-based**: The first element is at index `0`, not `1`. Add 1 for human-readable numbering.
 - **Loop context only**: Meaningful values are only available inside a split text iteration loop.
 - **No parameter**: This function takes no arguments — calling it with any brackets `$getTextSplitIndex[]` may cause unexpected behavior.
+
+## Examples
+
+### Finding Index of a Value
+
+```bdfd
+$textSplit[red,green,blue,yellow;,]
+$title[Search Element Index]
+$description[The color `blue` is located at index: **$getTextSplitIndex[blue]**]
+$color[#5865F2]
+$sendMessage[]
+```

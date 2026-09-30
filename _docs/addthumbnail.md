@@ -30,7 +30,7 @@ $addThumbnail[url;(description);(spoiler)]
 
 Adds the thumbnail image to the current section of the container. The image is rendered in a small format.
 
-## Usage
+## Examples
 
 ### User avatar
 

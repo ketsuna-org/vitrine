@@ -80,3 +80,17 @@ $setUserVar[xp;$sum[$getUserVar[xp];$random[10;50]];$authorID]
 - [`$userLeaderboard`](/docs/userleaderboard) — Rank of the current user
 - [`$textSplit`](/docs/textsplit) — Parse the result
 - [`$setUserVar`](/docs/setuservar) — Set a user variable
+
+## Examples
+
+### Guild Level Leaderboard
+
+```bdfd
+$title[🏆 Server Level Leaderboard]
+$description[Top ranked members in **$serverName**:
+
+$serverLeaderboard[level;desc]]
+$color[#FEE75C]
+$footer[Rankings refresh every 10 minutes]
+$sendMessage[]
+```

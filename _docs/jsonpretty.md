@@ -8,3 +8,15 @@ syntax: $jsonPretty[indent?]
 description: Prettifies the current internal JSON structure into a human-readable, indented JSON string for display or debugging.
 ---
 $jsonPretty is useful for debugging JSON data or displaying it to users in a readable format. Unlike $jsonStringify which produces compact output, $jsonPretty adds line breaks and indentation. Use inside code blocks (```json) for embed descriptions. If no JSON context exists, returns an empty string.
+
+## Examples
+
+### Format JSON Output
+
+```bdfd
+$jsonParse[{"status":"ok","code":200}]
+$title[Pretty Printed JSON]
+$description[```json\n$jsonPretty\n```]
+$color[#5865F2]
+$sendMessage[]
+```

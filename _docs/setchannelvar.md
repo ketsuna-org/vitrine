@@ -12,3 +12,15 @@ $setChannelVar stores a value persistently in the BDFD database under a channel-
 When called with two arguments (`name` and `value`), it sets the variable for the current channel (`((channel.id))`). When a Channel ID is provided, the variable is set for the specified channel.
 
 The scope is `channel`, making it ideal for per-channel settings like locks, slowmode, topic tracking, message counters, or channel-specific configurations. This function does not return any output — use $getChannelVar to read the value. To reset, use $resetChannelVar.
+
+## Examples
+
+### Set Channel Alert Flag
+
+```bdfd
+$setChannelVar[alertMuted;true;$channelID]
+$title[Channel Alerts]
+$description[Channel <#$channelID> alerts have been muted.]
+$color[#5865F2]
+$sendMessage[]
+```

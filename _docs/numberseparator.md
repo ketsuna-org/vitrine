@@ -71,3 +71,14 @@ $sendMessage[Level $getUserVar[level] — XP: $numberSeparator[$getUserVar[xp]]]
 - **Negative numbers**: Formatting with negative sign is supported: `$numberSeparator[-5000]` → `"-5,000"`.
 - **Non-numeric input**: If the input cannot be parsed as a number, it is returned unchanged.
 - **Large numbers**: Handles arbitrarily large integers within BDFD's numeric limits.
+
+## Examples
+
+### Formatting Numbers with Thousands Separators
+
+```bdfd
+$title[Bank Vault Balance]
+$description[Total reserves: **$$numberSeparator[1250000;,]**]
+$color[#57F287]
+$sendMessage[]
+```

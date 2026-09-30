@@ -30,3 +30,20 @@ This function only checks **temporary** variables created with `$var`. It does n
 - **Lazy initialization**: set a variable only if it hasn't been set yet.
 - **Guard clauses**: skip logic that depends on a variable being present.
 - **Debugging**: verify that expected intermediate values are available.
+
+## Examples
+
+### Checking Variable Configuration
+
+```bdfd
+$if[$varExists[userScore]==true]
+  $title[Score System Online]
+  $description[Your score: **$getUserVar[userScore]**]
+  $color[#57F287]
+$else
+  $title[System Offline]
+  $description[The `userScore` variable is not configured.]
+  $color[#ED4245]
+$endif
+$sendMessage[]
+```

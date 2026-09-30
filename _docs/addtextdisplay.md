@@ -10,7 +10,7 @@ Adds a text display component in an action row. Allows displaying static text am
 
 ## Syntax
 
-```
+```bdfd
 $addTextDisplay[content]
 ```
 
@@ -28,7 +28,7 @@ $addTextDisplay[content]
 
 ### Label before a button
 
-```
+```bdfd
 $addActionRow
 $addTextDisplay[Status:]
 $addButtonCV2[btn_status;Activate;success]
@@ -37,7 +37,7 @@ $sendMessage[Controls]
 
 ### Label before a select
 
-```
+```bdfd
 $addActionRow
 $addTextDisplay[Role:]
 $addRoleSelect[menu_role;Choose a role]
@@ -46,7 +46,7 @@ $sendMessage[Configuration]
 
 ### Formatted text with multiple components
 
-```
+```bdfd
 $addActionRow
 $addTextDisplay[Volume]
 $addSeparator[no;sm]
@@ -58,7 +58,7 @@ $sendMessage[Volume control]
 
 ### Status indicator
 
-```
+```bdfd
 $addActionRow
 $addTextDisplay[🔴 Offline]
 $addSeparator[no;md]

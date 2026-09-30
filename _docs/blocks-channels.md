@@ -8,6 +8,8 @@ description: createChannel, editChannelPermissions and removeChannel contracts; 
 
 # Channel Blocks
 
+> 💡 **Resource:** Find the full list and schema of all 112+ no-code actions in the **[Complete Blocks Dictionary](/docs/blocks-dictionary/)**, as well as a detailed walkthrough in the **[Ticket System Guide](/docs/tickets/)**.
+
 ## createChannel
 
 Requires a guild context and the bot's Manage Channels permission. The action result is the channel ID; a failure raises an action error.

@@ -30,3 +30,15 @@ Variable names are case-insensitive. `$var[Name]`, `$var[NAME]`, and `$var[name]
 ## Silent Failure
 
 When reading a variable that does not exist, `$var` returns an empty string rather than throwing an error. This means you should always validate if a variable exists before relying on its value, for example using `$varExists[]`.
+
+## Examples
+
+### Temporary Variable Usage
+
+```bdfd
+$var[greeting;Welcome to the community]
+$title[Local Variable Example]
+$description[$var[greeting], <@$authorID>! 🎉]
+$color[#5865F2]
+$sendMessage[]
+```

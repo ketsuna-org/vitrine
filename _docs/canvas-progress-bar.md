@@ -8,3 +8,15 @@ syntax: $canvasProgressBar[x;y;width;height;value;fillColor;bgColor?;borderColor
 description: Draws a progress bar (horizontal or vertical) with background, fill, and optional border
 ---
 The `value` parameter should be a number between 0 and 100 representing the fill percentage. If `bgColor` is omitted, the unfilled portion is left transparent. Note: the `borderRadius` parameter is accepted by the transpiler but is not yet rendered at runtime — rounded progress bars will appear with sharp corners. Horizontal bars fill left-to-right; vertical bars fill bottom-to-top.
+
+## Examples
+
+### Render Level XP Progress Bar
+
+```bdfd
+$canvasCreate[levelCard;600;140;#181818]
+$canvasDrawText[levelCard;Level 15 — 75% XP;30;45;20;#FFFFFF]
+$canvasProgressBar[30;70;540;26;75;#5865F2;#2F3136;3;10;levelCard]
+$attachImage[levelCard]
+$sendMessage[Rendered dynamic XP progress bar.]
+```

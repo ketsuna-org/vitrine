@@ -30,7 +30,7 @@ $addModalFileUpload[customId;label;(required)]
 
 Adds the upload component to the modal. The URL and metadata of the file are accessible via `$input[customId]` after submission.
 
-## Usage
+## Examples
 
 ### Upload required
 

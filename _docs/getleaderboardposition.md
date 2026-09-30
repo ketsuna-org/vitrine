@@ -40,3 +40,14 @@ Typically, you use `$getLeaderboardPosition` with `$textSplit` to split the lead
 - [`$serverLeaderboard`](/docs/serverleaderboard) — Server-level leaderboard
 - [`$userLeaderboard`](/docs/userleaderboard) — Personal leaderboard
 - [`$textSplit`](/docs/textsplit) — Split the result of a leaderboard
+
+## Examples
+
+### Leaderboard Rank
+
+```bdfd
+$title[Leaderboard Rank 🏆]
+$description[<@$authorID>, your current rank is **#$getLeaderboardPosition**!]
+$color[#FEE75C]
+$sendMessage[]
+```

@@ -10,7 +10,7 @@ Adds an option to an existing select menu created with `$newSelectMenu`.
 
 ## Syntax
 
-```
+```bdfd
 $addSelectMenuOption[menuId;label;value;(description);(emoji);(default)]
 ```
 
@@ -33,7 +33,7 @@ This function must be called after `$newSelectMenu` to populate the menu. Each c
 
 ### Options with descriptions
 
-```
+```bdfd
 $newSelectMenu[menu_lang;Choose a language]
 $addSelectMenuOption[menu_lang;JavaScript;js;Dynamic web language;🟨]
 $addSelectMenuOption[menu_lang;Python;py;Polyvalent language;🐍]
@@ -43,7 +43,7 @@ $sendMessage[Which language do you prefer?]
 
 ### Option by default
 
-```
+```bdfd
 $newSelectMenu[menu_theme;Theme;1;1]
 $addSelectMenuOption[menu_theme;Light;light;Light mode;☀️]
 $addSelectMenuOption[menu_theme;Dark;dark;Dark mode;🌙;true]
@@ -52,7 +52,7 @@ $sendMessage[Choose your theme]
 
 ### Menu with emojis only
 
-```
+```bdfd
 $newSelectMenu[menu_react;Quick reaction]
 $addSelectMenuOption[menu_react;Like;like;;👍]
 $addSelectMenuOption[menu_react;Love;love;;❤️]

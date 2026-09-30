@@ -8,3 +8,15 @@ syntax: $httpStatus[]
 description: Returns the HTTP status code from the most recent HTTP request made by $httpGet, $httpPost, $httpPut, $httpPatch, or $httpDelete
 ---
 $httpStatus returns the numeric HTTP status code from the last HTTP request executed by any of the HTTP functions. This is essential for error handling: check whether the request succeeded (200–299), was redirected (300–399), failed due to client error (400–499), or encountered a server error (500–599). Combine $httpStatus with $if conditionals to build robust API interactions that gracefully handle failures.
+
+## Examples
+
+### Verify API Status Code
+
+```bdfd
+$httpGet[https://httpbin.org/status/200]
+$title[HTTP Status Check]
+$description[API endpoint returned HTTP status code: **$httpStatus** ✅]
+$color[#57F287]
+$sendMessage[]
+```

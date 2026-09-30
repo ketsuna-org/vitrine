@@ -26,7 +26,7 @@ No parameters.
 
 Enables role mentions for the next message sent. Roles mentioned in the content will notify their members.
 
-## Usage
+## Examples
 
 ### Announcement with ping
 

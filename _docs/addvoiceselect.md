@@ -10,7 +10,7 @@ Creates a select menu of voice channels. Allows users to choose one or multiple 
 
 ## Syntax
 
-```
+```bdfd
 $addVoiceSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 ```
 
@@ -34,7 +34,7 @@ This function must be placed after `$addActionRow` to be organized on a specific
 
 ### Voice channel selection
 
-```
+```bdfd
 $addActionRow
 $addVoiceSelect[menu_voice;Choose a voice channel]
 $sendMessage[Select a voice channel]
@@ -42,7 +42,7 @@ $sendMessage[Select a voice channel]
 
 ### Multiple voice channels
 
-```
+```bdfd
 $addActionRow
 $addVoiceSelect[menu_voices;Voice channels;1;10]
 $sendMessage[Select up to 10 voice channels]
@@ -50,7 +50,7 @@ $sendMessage[Select up to 10 voice channels]
 
 ### Disabled menu
 
-```
+```bdfd
 $addActionRow
 $addVoiceSelect[menu_voice_disabled;Unavailable;1;1;true]
 $sendMessage[This menu is disabled]
@@ -58,7 +58,7 @@ $sendMessage[This menu is disabled]
 
 ## Handling the interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==menu_voice]
   $sendMessage[Selected voice channel: <#$message>]

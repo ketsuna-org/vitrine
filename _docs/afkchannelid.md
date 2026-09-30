@@ -29,7 +29,7 @@ $afkChannelID
 - **Type**: `string`
 - The ID of the AFK channel, or an empty string if not configured.
 
-## Usage
+## Examples
 
 ### Displaying the AFK channel
 

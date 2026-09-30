@@ -27,7 +27,7 @@ None.
 - **Type**: `string`
 - The current name of the server.
 
-## Usage
+## Examples
 
 ### Welcome message
 

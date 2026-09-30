@@ -11,7 +11,7 @@ Repeats a block of code a fixed number of times. The loop block must be closed w
 
 ## Syntax
 
-```
+```bdfd
 $loop[iterations]
 ```
 
@@ -38,14 +38,14 @@ Every `$loop` **must** be closed with `$endLoop`. Missing `$endLoop` causes a pa
 
 ### Simple Repetition
 
-```
+```bdfd
 $loop[3]
 Hello! This is iteration #...
 $endLoop
 ```
 
 **Output:**
-```
+```bdfd
 Hello! This is iteration #...
 Hello! This is iteration #...
 Hello! This is iteration #...
@@ -53,7 +53,7 @@ Hello! This is iteration #...
 
 ### Sending Multiple Messages
 
-```
+```bdfd
 $loop[5]
 $sendMessage[Spam protection reminder!]
 $endLoop
@@ -61,7 +61,7 @@ $endLoop
 
 ### With Conditional Logic
 
-```
+```bdfd
 $loop[10]
 $if[$random[0;1]==0]
   Heads!
@@ -73,7 +73,7 @@ $endLoop
 
 ### Using with Variables
 
-```
+```bdfd
 $var[counter;0]
 $loop[5]
 $var[counter;$sum[$counter;1]]

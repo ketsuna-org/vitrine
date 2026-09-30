@@ -8,3 +8,14 @@ syntax: $lavalinkIsLooping[]
 description: 'Returns "true" if looping is currently enabled, "false" otherwise'
 ---
 Returns "true" if the music player has looping enabled (either track loop or queue loop). Returns "false" if loop mode is off. Use $setMusicLoop to change the loop mode.
+
+## Examples
+
+### Check Loop Mode
+
+```bdfd
+$title[Loop Mode Status]
+$description[Looping enabled: **$lavalinkIsLooping** 🔁]
+$color[#AEEA00]
+$sendMessage[]
+```

@@ -43,7 +43,7 @@ $serverInfo[property]
 | `banner` | URL of the banner | `$serverBanner` |
 | `vanityURL` | Custom invite URL code | `$serverVanityURL` |
 
-## Usage
+## Examples
 
 ### Retrieve a property
 

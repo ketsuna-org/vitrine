@@ -31,3 +31,15 @@ Error: required variable missing.
 $stop
 $endif
 ```
+
+## Examples
+
+### Guarding Against Missing Variable Definition
+
+```bdfd
+$varExistError[coins;❌ Variable `coins` has not been registered in your bot settings!]
+$title[Variable Verified]
+$description[Variable `coins` exists. Current value: **$getUserVar[coins]**]
+$color[#57F287]
+$sendMessage[]
+```

@@ -40,3 +40,15 @@ When the cooldown is active, `$getCooldown` returns the remaining time and embed
 ## Conditional Logic
 
 You can use `$getCooldown` in `$if` conditions to adjust behavior based on remaining time. For example, offering a reduced-cooldown path for premium users or applying progressive penalties.
+
+## Examples
+
+### Displaying Remaining Cooldown Time
+
+```bdfd
+$cooldown[1h;⏳ Command is on cooldown! Time remaining: **$getCooldown** seconds.]
+$title[Daily Work Completed]
+$description[You worked hard and earned **250 coins**! Run this again in 1 hour.]
+$color[#57F287]
+$sendMessage[]
+```

@@ -27,7 +27,7 @@ No parameters.
 - **Type**: `string`
 - A string containing all custom emojis on the server, each in the format `<:name:id>` (or `<a:name:id>` for animated emojis).
 
-## Usage
+## Examples
 
 ### Display all emojis
 

@@ -63,3 +63,20 @@ $if[$and[cond1;cond2]==true]
 - **Non-boolean results**: If a condition returns something other than `"true"` or `"false"` (e.g., a number or empty string), the behavior is undefined — always ensure your conditions resolve to `"true"` or `"false"`.
 - **Single condition**: `$and` requires at least 2 arguments. For a single condition, just use the condition directly without `$and`.
 - **Forgetting `==true` in $if**: Write `$if[$and[...]==true]`, not `$if[$and[...]]`.
+
+## Examples
+
+### Checking Multiple Conditions
+
+```bdfd
+$if[$and[$message!=;$getUserVar[coins]>=50]==true]
+  $title[Transaction Approved]
+  $description[Both conditions met! Deducting 50 coins for: **$message**]
+  $color[#57F287]
+$else
+  $title[Transaction Denied]
+  $description[You must provide an item name and have at least 50 coins.]
+  $color[#ED4245]
+$endif
+$sendMessage[]
+```

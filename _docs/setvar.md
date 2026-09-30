@@ -23,3 +23,15 @@ The third parameter determines the scope:
 - **Overwrite behavior**: calling `$setVar` on an existing variable replaces its value — there is no append mode.
 - **Case insensitivity**: `$setVar[Score;100]` and `$setVar[score;200]` target the same variable.
 - **No return value**: this function performs a write action and returns void. It cannot be used inline in a string — use it as a standalone statement.
+
+## Examples
+
+### Save Global Variable
+
+```bdfd
+$setVar[announcementBanner;Welcome all new members!]
+$title[Global Variable Set]
+$description[Saved global banner: **$getVar[announcementBanner]**]
+$color[#5865F2]
+$sendMessage[]
+```

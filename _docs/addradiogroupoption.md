@@ -32,7 +32,7 @@ $addRadioGroupOption[menuId;label;value;(description);(default)]
 
 Adds the option to the parent group. The selected value is accessible via `$input[menuId]`.
 
-## Usage
+## Examples
 
 ### Group with detailed options
 

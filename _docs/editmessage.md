@@ -10,7 +10,7 @@ Modifies an existing message sent by the bot. Replaces the content and/or the em
 
 ## Syntax
 
-```
+```bdfd
 $editMessage[messageId;newContent]
 ```
 
@@ -34,27 +34,27 @@ The `messageId` can be obtained via:
 
 ### Simple edit
 
-```
+```bdfd
 $editMessage[123456789012345678;Updated content!]
 ```
 
 ### Edit after sending
 
-```
+```bdfd
 $sendMessage[Original message]
 $editMessage[$sentMessageId;Modified message!]
 ```
 
 ### Edit with new embeds
 
-```
+```bdfd
 $newEmbed[title=Update;description=The information has changed;color=#FFA500]
 $editMessage[$sentMessageId;]
 ```
 
 ### Edit with updated buttons
 
-```
+```bdfd
 $addActionRow
 $addButtonCV2[btn_done;Done;success;true]
 $editMessage[$sentMessageId;Action completed ✅]
@@ -62,7 +62,7 @@ $editMessage[$sentMessageId;Action completed ✅]
 
 ### In $onInteraction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==btn_edit]
   $editMessage[$messageID;Message edited by interaction]

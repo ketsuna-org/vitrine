@@ -12,3 +12,15 @@ $resetGuildVar restores a guild-scoped variable to its default value defined in 
 When called with only a `name`, it resets the variable for the current guild. When a Guild ID is provided, it resets the variable for the specified server.
 
 Use this function to revert server settings to their defaults, clear maintenance mode, or perform bulk resets. After resetting, $getGuildVar returns the default value (if defined) or an empty string. This function does not return any output.
+
+## Examples
+
+### Reset Guild Prefix
+
+```bdfd
+$resetGuildVar[customPrefix;$guildID]
+$title[Reset Guild Prefix]
+$description[The guild prefix has been reset to default.]
+$color[#57F287]
+$sendMessage[]
+```

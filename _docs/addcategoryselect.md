@@ -10,7 +10,7 @@ Creates a select menu of server categories. Allows users to choose one or multip
 
 ## Syntax
 
-```
+```bdfd
 $addCategorySelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 ```
 
@@ -34,7 +34,7 @@ This function must be placed after `$addActionRow` to be organized on a specific
 
 ### Category selection
 
-```
+```bdfd
 $addActionRow
 $addCategorySelect[menu_cat;Choose a category]
 $sendMessage[Select a category]
@@ -42,7 +42,7 @@ $sendMessage[Select a category]
 
 ### Multiple categories
 
-```
+```bdfd
 $addActionRow
 $addCategorySelect[menu_cats;Select categories;1;5]
 $sendMessage[Select up to 5 categories]
@@ -50,7 +50,7 @@ $sendMessage[Select up to 5 categories]
 
 ### Disabled menu
 
-```
+```bdfd
 $addActionRow
 $addCategorySelect[menu_cat_disabled;Unavailable;1;1;true]
 $sendMessage[This menu is currently disabled]
@@ -58,7 +58,7 @@ $sendMessage[This menu is currently disabled]
 
 ## Handling the interaction
 
-```
+```bdfd
 $onInteraction
 $if[$customID==menu_cat]
   $sendMessage[Selected category: <#$message>]

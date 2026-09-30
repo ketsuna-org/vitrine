@@ -29,3 +29,14 @@ Only **temporary** variables (`$var`) are listed. Global and user-scoped variabl
 - **Debugging**: verify that variables are set to expected values at various points in a complex command.
 - **Logging / error messages**: include the variable state in error output to help users diagnose issues.
 - **Dynamic inspection**: check which variables exist before branching logic.
+
+## Examples
+
+### Inspect Defined Variables
+
+```bdfd
+$title[Database Variables]
+$description[Defined server variables:\n`$listVar[server]`]
+$color[#5865F2]
+$sendMessage[]
+```

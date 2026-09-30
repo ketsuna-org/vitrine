@@ -35,29 +35,16 @@ $multi[a;b]
 
 ## Examples
 
-**Simple multiplication:**
-```
-$multi[6;7]
-→ 42
-```
+### Multiplication Calculation
 
-**With decimals:**
+```bdfd
+$title[Math: Multiplication]
+$description[Result of `6 * 7`: **$multi[6;7]**]
+$addField[Decimal Multiply;$multi[2.5;4];yes]
+$addField[Negative Multiply;$multi[-3;5];yes]
+$color[#5865F2]
+$sendMessage[]
 ```
-$multi[2.5;4]
-→ 10
-```
-
-**Calculating total price:**
-```
-$multi[$getVar[unitPrice];$getVar[quantity]]
-```
-
-**By zero:**
-```
-$multi[100;0]
-→ 0
-```
-
 ## Notes
 
 - Only supports two arguments. To multiply more values, nest them: `$multi[$multi[a;b];c]` or use `$calculate[a * b * c]`.

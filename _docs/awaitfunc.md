@@ -60,3 +60,15 @@ $addButton[no;❌ No]
 $awaitFunc[button;$authorID]
 $sendMessage[You clicked a button!]
 ```
+
+## Examples
+
+### Interactive Confirmation Prompt
+
+```bdfd
+$title[Awaiting Input]
+$description[Please type `confirm` within 30 seconds to proceed.]
+$color[#FEE75C]
+$sendMessage[]
+$awaitFunc[confirm_handler;30s;$authorID]
+```

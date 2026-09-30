@@ -8,3 +8,14 @@ syntax: $lavalinkAuthor[]
 description: Returns the author/artist of the currently playing track
 ---
 Returns the author or artist name of the currently playing track. For YouTube tracks, this typically returns the channel name. If no track is playing, returns an empty string.
+
+## Examples
+
+### Display Track Artist
+
+```bdfd
+$title[Track Artist 🎤]
+$description[Artist: **$lavalinkAuthor**]
+$color[#AEEA00]
+$sendMessage[]
+```
