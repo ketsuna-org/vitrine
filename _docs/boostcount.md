@@ -64,14 +64,14 @@ $sendMessage[$channelID[boosts]]
 ### Progress bar
 
 ```bdfd
-$let[current;$boostCount]
-$let[needed;$boostRequired]
+$var[current;$boostCount]
+$var[needed;$boostRequired]
 
 $title[📈 Boost Progression]
 $description[
-**$current / $needed** boosts for the next level
+**$var[current] / $var[needed]** boosts for the next level
 
-Progression: $math[$current*100/$needed]%
+Progression: $math[$var[current]*100/$var[needed]]%
 ]
 $color[#F47FFF]
 $sendMessage[]

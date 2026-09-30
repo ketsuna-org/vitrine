@@ -46,10 +46,10 @@ $createChannel[name;(type);(categoryID);(topic);(nsfw);(slowmode)]
 ### Log channel
 
 ```bdfd
-$let[logChan;$createChannel[logs-bot;0;123456789;;false;0]]
-$if[$logChan!=]
-  $channelSendMessage[$logChan;Log system enabled.]
-  $sendMessage[Log channel created: <#$logChan>]
+$var[logChan;$createChannel[logs-bot;0;123456789;;false;0]]
+$if[$var[logChan]!=]
+  $channelSendMessage[$var[logChan];Log system enabled.]
+  $sendMessage[Log channel created: <#$var[logChan]>]
 $else
   $sendMessage[Error: MANAGE_CHANNELS permission required.]
 $endif
@@ -58,19 +58,19 @@ $endif
 ### Dynamic ticket channel
 
 ```bdfd
-$let[ticketChan;$createChannel[ticket-$username;0;123456789;Ticket for $username;false;0]]
-$if[$ticketChan!=]
-  $channelSendMessage[$ticketChan;Welcome $username! Describe your issue.]
-  $sendMessage[Ticket created: <#$ticketChan>]
+$var[ticketChan;$createChannel[ticket-$username;0;123456789;Ticket for $username;false;0]]
+$if[$var[ticketChan]!=]
+  $channelSendMessage[$var[ticketChan];Welcome $username! Describe your issue.]
+  $sendMessage[Ticket created: <#$var[ticketChan]>]
 $endif
 ```
 
 ### Category + channels
 
 ```bdfd
-$let[cat;$createChannel[New Project;4;0]]
-$let[chat;$createChannel[discussion;0;$cat]]
-$let[voice;$createChannel[Voice;2;$cat]]
+$var[cat;$createChannel[New Project;4;0]]
+$var[chat;$createChannel[discussion;0;$var[cat]]]
+$var[voice;$createChannel[Voice;2;$var[cat]]]
 $sendMessage[Category and channels created!]
 ```
 

@@ -51,10 +51,10 @@ $endif
 
 ```bdfd
 $if[$authorID==OWNER_ID]
-  $let[targetGuild;$message[1]]
-  $if[$targetGuild!=]
-    $botLeave[$targetGuild]
-    $sendMessage[Bot removed from the server $targetGuild.]
+  $var[targetGuild;$message[1]]
+  $if[$var[targetGuild]!=]
+    $botLeave[$var[targetGuild]]
+    $sendMessage[Bot removed from the server $var[targetGuild].]
   $else
     $sendMessage[Usage: !leave <guildID>]
   $endif

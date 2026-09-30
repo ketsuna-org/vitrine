@@ -16,10 +16,10 @@ Download the app for [mobile or desktop](/download/). Create a Discord applicati
 
 | Mode | When to use | Documentation |
 |------|-------------|---------------|
-| **Visual + BDScript** | Block editor, `$functions` | [BDFD Function Reference](/docs/) |
+| **Blocks** | Visual actions and workflows | [Blocks reference](/docs/blocks/) || **BDScript** | Text and `$functions` compiled to actions | [BDFD Function Reference](/docs/) |
 | **BDJS (JavaScript)** | Full scripting power | [JavaScript API](/docs/javascript/) |
 
-Use [$scriptLanguage](/docs/scriptlanguage/) in BDScript to detect which mode is active.
+Use [$scriptLanguage](/docs/scriptlanguage/) in BDScript to detect which mode is active.Read [Execution model and compatibility](/docs/execution-model/) before copying examples: slash replies can be implicit and ticket helpers are incomplete.
 
 ## 3. Build your first command
 

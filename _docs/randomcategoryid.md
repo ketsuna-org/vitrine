@@ -66,7 +66,7 @@ $sendMessage[]
 ### Existence check
 
 ```bdfd
-$let[cat;$randomCategoryID]
+$var[cat;$randomCategoryID]
 $if[$get[cat]==]
   $title[⚠️ No categories]
   $description[This server has no categories.]

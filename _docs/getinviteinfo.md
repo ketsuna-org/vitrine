@@ -41,10 +41,10 @@ $getInviteInfo[code]
 ### Check an invite
 
 ```bdfd
-$let[info;$getInviteInfo[$message[1]]]
-$if[$info!=]
+$var[info;$getInviteInfo[$message[1]]]
+$if[$var[info]!=]
   $sendMessage[Invite information:
->>> $info]
+>>> $var[info]]
 $else
   $sendMessage[❌ Invalid or expired invite.]
 $endif
@@ -55,11 +55,11 @@ $endif
 ```bdfd
 $if[$checkContains[$message;discord.gg]==true]
   $deleteCommand
-  $let[code;$replaceText[$message;https://discord.gg/;]]
-  $let[info;$getInviteInfo[$code]]
-  $if[$info!=]
+  $var[code;$replaceText[$message;https://discord.gg/;]]
+  $var[info;$getInviteInfo[$var[code]]]
+  $if[$var[info]!=]
     $sendMessage[⚠️ $username, external invites are not allowed. \
-(Invite to: $info)]
+(Invite to: $var[info])]
   $else
     $sendMessage[⚠️ $username, invites are not allowed.]
   $endif

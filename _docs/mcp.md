@@ -3,6 +3,7 @@ description: Model Context Protocol server for AI-assisted documentation lookup.
 layout: doc
 translation_key: docs
 category: "Meta"
+api_type: general
 ---
 
 # MCP Server
@@ -23,13 +24,17 @@ https://bot-creator.fr/api/mcp
 
 | Tool | Description |
 |------|-------------|
-| `search_docs` | Search function docs by name, slug, or category. Returns matches with their slugs. |
-| `get_doc` | Fetch the raw markdown of a function doc by slug (e.g. `sendmessage`). |
+| `search_docs` | Search by name, slug, category or description. Optional `api_type`: `blocks`, `bdfd`, `javascript`, `general`. Returns mode, compatibility status and slugs. |
+| `get_doc` | Fetch the deployed Markdown and its mode/status by slug (e.g. `blocks`, `execution-model`, `sendmessage`). |
 | `list_posts` | List blog posts, optionally filtered by `locale` (`en` / `fr`). |
 | `search_posts` | Search blog posts by title or description. |
 | `get_post` | Fetch the raw markdown of a blog post by slug (e.g. `image-creation-canvas-functions-in-bdfd`). |
 
 ## Quick example (curl)
+
+Read `execution-model` first. Use `search_docs` with `api_type: "blocks"` for visual actions, and read the full payload contracts. BDFD temporary variables use `$var`; slash commands can reply without `$sendMessage`. Ticket helpers marked `incomplete` must not be presented as working private-ticket systems.
+
+The build publishes `/api/docs-index.json` and `/api/docs/<slug>.md` together. `get_doc` reads these deployed artifacts so its content matches the search index, rather than fetching another GitHub revision.
 
 ```bash
 # 1. Initialize the session
@@ -42,13 +47,13 @@ curl -X POST https://bot-creator.fr/api/mcp \
 curl -X POST https://bot-creator.fr/api/mcp \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
-  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"search_docs","arguments":{"query":"canvas"}}}'
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"search_docs","arguments":{"query":"channels","api_type":"blocks"}}}'
 
 # 3. Read a doc
 curl -X POST https://bot-creator.fr/api/mcp \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
-  -d '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"get_doc","arguments":{"slug":"sendmessage"}}}'
+  -d '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"get_doc","arguments":{"slug":"blocks-channels"}}}'
 ```
 
 ## Connect from opencode

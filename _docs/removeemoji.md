@@ -56,18 +56,18 @@ $endif
 ### Secure removal with confirmation
 
 ```bdfd
-$let[name;$noMentionMessage]
-$if[$emojiExists[$name]==true]
-  $removeEmoji[$name]
+$var[name;$noMentionMessage]
+$if[$emojiExists[$var[name]]==true]
+  $removeEmoji[$var[name]]
   $title[🗑️ Emoji removed]
   $description[
-  **Name:** $name
+  **Name:** $var[name]
   **Removed by:** $userName[$authorID]
   ]
   $color[#ED4245]
   $sendMessage[]
 $else
-  $sendMessage[❌ No emoji named **$name** found.]
+  $sendMessage[❌ No emoji named **$var[name]** found.]
 $endif
 ```
 

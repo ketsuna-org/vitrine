@@ -42,14 +42,14 @@ $findUser[name/mention/ID]
 ### Search by command argument
 
 ```bdfd
-$let[target;$findUser[$message]]
-$if[$target!=]
+$var[target;$findUser[$message]]
+$if[$var[target]!=]
   $title[User Found]
   $description[
-  **ID:** $target
-  **Name:** $userName[$target]
+  **ID:** $var[target]
+  **Name:** $userName[$var[target]]
   ]
-  $thumbnail[$userAvatar[$target]]
+  $thumbnail[$userAvatar[$var[target]]]
   $color[#5865F2]
   $sendMessage[]
 $else
@@ -60,11 +60,11 @@ $endif
 ### Search and action
 
 ```bdfd
-$let[target;$findUser[$message[1]]]
-$if[$target!=]
+$var[target;$findUser[$message[1]]]
+$if[$var[target]!=]
   $if[$checkContains[$userPerms;KickMembers]==true]
-    $kick[$target]
-    $sendMessage[$userName[$target] was kicked.]
+    $kick[$var[target]]
+    $sendMessage[$userName[$var[target]] was kicked.]
   $endif
 $else
   $sendMessage[User not found.]
@@ -74,12 +74,12 @@ $endif
 ### Search with fallback
 
 ```bdfd
-$let[target;$findUser[$message]]
-$if[$target!=]
-  $sendMessage[User: $userName[$target]]
+$var[target;$findUser[$message]]
+$if[$var[target]!=]
+  $sendMessage[User: $userName[$var[target]]]
 $else
   $sendMessage[User not found. Defaulting to the author.]
-  $let[target;$authorID]
+  $var[target;$authorID]
 $endif
 ```
 

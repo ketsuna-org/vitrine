@@ -45,8 +45,8 @@ $sendMessage[Cleaned message: $removeLinks]
 ### Secure echo command
 
 ```bdfd
-$let[safe;$removeLinks]
-$sendMessage[$safe]
+$var[safe;$removeLinks]
+$sendMessage[$var[safe]]
 ```
 
 ### Comparison and alert

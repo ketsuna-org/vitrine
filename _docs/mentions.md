@@ -36,8 +36,8 @@ $mentions
 
 ```bdfd
 $if[$mentions!=]
-  $let[count;$arrayCount[$splitText[$mentions;,]]]
-  $sendMessage[$count user(s) mentioned: $mentions]
+  $var[count;$arrayCount[$splitText[$mentions;,]]]
+  $sendMessage[$var[count] user(s) mentioned: $mentions]
 $else
   $sendMessage[No users mentioned.]
 $endif
@@ -46,13 +46,13 @@ $endif
 ### Loop through mentions
 
 ```bdfd
-$let[mentionsList;$splitText[$mentions;,]]
-$let[i;0]
-$let[total;$arrayCount[$mentionsList]]
-$while[$i<$total]
-  $let[target;$arrayGet[$mentionsList;$i]]
-  $sendMessage[User: <@$target>]
-  $let[i;$sum[$i;1]]
+$var[mentionsList;$splitText[$mentions;,]]
+$var[i;0]
+$var[total;$arrayCount[$var[mentionsList]]]
+$while[$var[i]<$var[total]]
+  $var[target;$arrayGet[$var[mentionsList];$var[i]]]
+  $sendMessage[User: <@$var[target]>]
+  $var[i;$sum[$var[i];1]]
 $endwhile
 ```
 
@@ -60,15 +60,15 @@ $endwhile
 
 ```bdfd
 $if[$mentions!=]
-  $let[list;$splitText[$mentions;,]]
-  $let[i;0]
-  $let[total;$arrayCount[$list]]
-  $while[$i<$total]
-    $let[id;$arrayGet[$list;$i]]
-    $kick[$id]
-    $let[i;$sum[$i;1]]
+  $var[list;$splitText[$mentions;,]]
+  $var[i;0]
+  $var[total;$arrayCount[$var[list]]]
+  $while[$var[i]<$var[total]]
+    $var[id;$arrayGet[$var[list];$var[i]]]
+    $kick[$var[id]]
+    $var[i;$sum[$var[i];1]]
   $endwhile
-  $sendMessage[$total user(s) kicked.]
+  $sendMessage[$var[total] user(s) kicked.]
 $else
   $sendMessage[Mention at least one user.]
 $endif

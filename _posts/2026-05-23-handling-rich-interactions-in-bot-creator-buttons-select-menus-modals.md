@@ -43,13 +43,14 @@ When clicked, the runner triggers the `interactionCreate` event. You can easily 
 
 ```bdfd
 $if[((interaction.customId))==button_verify]
-  $sendResponse[Your account has been successfully verified! // ephemeral]
+  $ephemeral
+  Your account has been successfully verified!
   $giveRole[((interaction.userId));112233445566778899]
 $endif
 ```
 
 > [!TIP]
-> See [$sendResponse](/docs/sendresponse/) for the recommended way to reply to component interactions, including ephemeral confirmations.
+> Use [$ephemeral](/docs/ephemeral/) to make interaction responses private to the user who clicked the button. In Blocks, use `respondWithMessage` with `ephemeral: true`.
 
 > [!TIP]
 > Always verify that `((interaction.kind))` equals `button` if you have overlapping custom IDs between buttons and dropdowns to prevent execution leakage.
@@ -113,7 +114,8 @@ $if[((interaction.kind))==modal]
     $setVar[profile_name;((modal.user_realname));((interaction.userId))]
     $setVar[profile_desc;((modal.user_description));((interaction.userId))]
     
-    $sendResponse[Profile successfully configured, ((user.username))! // ephemeral]
+    $ephemeral
+    Profile successfully configured, ((user.username))!
   $endif
 $endif
 ```

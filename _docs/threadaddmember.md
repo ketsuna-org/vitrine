@@ -40,9 +40,9 @@ This function does not return any value.
 ### Adding the Creator
 
 ```bdfd
-$let[thread;$startThread[Support - $username;1440]]
-$threadAddMember[$thread;$authorID]
-$channelSendMessage[$thread;Your support thread is ready, $username!]
+$var[thread;$startThread[Support - $username;1440]]
+$threadAddMember[$var[thread];$authorID]
+$channelSendMessage[$var[thread];Your support thread is ready, $username!]
 ```
 
 ### Adding Moderators
@@ -55,11 +55,11 @@ $sendMessage[<@$mentioned[1]> has been added to the thread.]
 ### Automatic Staff Addition
 
 ```bdfd
-$let[thread;$startThread[Ticket #$random[1000;9999];1440]]
-$threadAddMember[$thread;$authorID]
-$threadAddMember[$thread;MODERATOR_ROLE_ID_1]
-$threadAddMember[$thread;MODERATOR_ROLE_ID_2]
-$channelSendMessage[$thread;Welcome! A member of the staff will assist you.]
+$var[thread;$startThread[Ticket #$random[1000;9999];1440]]
+$threadAddMember[$var[thread];$authorID]
+$threadAddMember[$var[thread];MODERATOR_ROLE_ID_1]
+$threadAddMember[$var[thread];MODERATOR_ROLE_ID_2]
+$channelSendMessage[$var[thread];Welcome! A member of the staff will assist you.]
 ```
 
 ## Notes

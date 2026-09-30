@@ -53,7 +53,7 @@ Timestamp (ms): $getTimestampMs
 ### Performance measurement
 
 ```bdfd
-$let[start;$getTimestampMs]
+$var[start;$getTimestampMs]
 
 $title[🔍 Performance Test]
 $description[
@@ -61,8 +61,8 @@ Calculation in progress...
 ]
 $sendMessage[]
 
-$let[end;$getTimestampMs]
-$let[duration;$sub[$get[end];$get[start]]]
+$var[end;$getTimestampMs]
+$var[duration;$sub[$get[end];$get[start]]]
 
 $title[📊 Result]
 $description[
@@ -75,9 +75,9 @@ $sendMessage[]
 ### Precise cooldown (anti-spam)
 
 ```bdfd
-$let[now;$getTimestampMs]
-$let[last;$getUserVar[lastCmd]]
-$let[diff;$sub[$get[now];$get[last]]]
+$var[now;$getTimestampMs]
+$var[last;$getUserVar[lastCmd]]
+$var[diff;$sub[$get[now];$get[last]]]
 
 $if[$get[diff]<2000]
   $title[⏳ Too Fast!]
@@ -96,8 +96,8 @@ Your command has run successfully!
 ### Conversion to seconds
 
 ```bdfd
-$let[ms;$getTimestampMs]
-$let[seconds;$math[$get[ms] / 1000]]
+$var[ms;$getTimestampMs]
+$var[seconds;$math[$get[ms] / 1000]]
 
 Timestamp (ms): $get[ms]
 Timestamp (seconds): $get[seconds]

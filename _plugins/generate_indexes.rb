@@ -44,6 +44,10 @@ module Vitrine
       priority :low
 
       def generate(site)
+        docs = site.collections.fetch("docs", nil)&.docs || []
+        docs.each do |doc|
+          add_static_file(site, "api/docs", "#{doc.basename_without_ext}.md", doc.content)
+        end
         add_static_file(site, "api", "docs-index.json", docs_index(site).to_json)
         add_static_file(site, "api", "posts-index.json", posts_index(site).to_json)
         add_static_file(site, ".", "llms.txt", llms_summary(site))
@@ -66,6 +70,9 @@ module Vitrine
             "name"     => doc.data["title"] || function_name_from_slug(slug),
             "category" => doc.data["category"],
             "api_type" => doc.data["api_type"] || "bdfd",
+            "description" => doc.data["description"],
+            "status" => doc.data["status"] || "documented",
+            "markdown_url" => "#{SITE_URL}/api/docs/#{slug}.md",
             "url"      => "#{SITE_URL}#{doc.url}",
           }
         end.sort_by { |d| d.fetch("slug") }
@@ -109,6 +116,10 @@ module Vitrine
         body << "- [llms-full.txt](https://bot-creator.fr/llms-full.txt): Complete documentation as a single Markdown file"
         body << "- [Getting started](https://bot-creator.fr/docs/getting-started/): Documentation quick start"
         body << "- [JavaScript API](https://bot-creator.fr/docs/javascript/): BDJS script globals (db.*, interaction, message)"
+        body << "- [Blocks Guide](https://bot-creator.fr/docs/blocks/): Visual no-code programming reference"
+        body << "- [Blocks Dictionary](https://bot-creator.fr/docs/blocks-dictionary/): Complete catalog of all 112 block actions"
+        body << "- [Support Ticket System](https://bot-creator.fr/docs/tickets/): Complete production-ready ticket system"
+        body << "- [Execution model](https://bot-creator.fr/docs/execution-model/): Implicit slash replies, variables, interaction lifecycle and limits"
         body << "- [MCP server](https://bot-creator.fr/docs/mcp/): Connect via Model Context Protocol"
         body << ""
         body << "## Function reference by category"
@@ -134,7 +145,7 @@ module Vitrine
         parts = []
         parts << "# Bot Creator — Full Documentation"
         parts << ""
-        parts << "> Complete function reference for Bot Creator (BDFD). Generated from the docs collection."
+        parts << "> Bot Creator reference for Blocks, BDFD and JavaScript. Generated from the same docs collection as the MCP index. Read execution-model first and respect each page's compatibility status."
         parts << ""
         parts << "---"
         parts << ""

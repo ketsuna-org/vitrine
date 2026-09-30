@@ -43,10 +43,10 @@ $startThread[name;(autoArchiveDuration);(messageID)]
 ### Support thread
 
 ```bdfd
-$let[thread;$startThread[Support - $username;10080]]
-$if[$thread!=]
-  $channelSendMessage[$thread;Welcome to your support thread, $username! A moderator will answer you soon.]
-  $sendMessage[Support thread created: <#$thread>]
+$var[thread;$startThread[Support - $username;10080]]
+$if[$var[thread]!=]
+  $channelSendMessage[$var[thread];Welcome to your support thread, $username! A moderator will answer you soon.]
+  $sendMessage[Support thread created: <#$var[thread]>]
 $else
   $sendMessage[Impossible to create the thread. Missing permissions.]
 $endif
@@ -56,11 +56,11 @@ $endif
 
 ```bdfd
 $if[$checkContains[$message;!discussion]==true]
-  $let[topic;$message[1]]
-  $let[thread;$startThread[$topic;4320]]
-  $if[$thread!=]
-    $threadAddMember[$thread;$authorID]
-    $sendMessage[Discussion created: <#$thread>]
+  $var[topic;$message[1]]
+  $var[thread;$startThread[$var[topic];4320]]
+  $if[$var[thread]!=]
+    $threadAddMember[$var[thread];$authorID]
+    $sendMessage[Discussion created: <#$var[thread]>]
   $endif
 $endif
 ```

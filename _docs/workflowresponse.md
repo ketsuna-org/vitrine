@@ -76,5 +76,5 @@ $endif
 ## Notes
 
 - `$workflowResponse` is overwritten with each new call to `$workflow`.
-- Store the value in a temporary variable if you need to reuse it: `$let[rep;$workflowResponse]`.
+- Store the value in a temporary variable if you need to reuse it: `$var[rep;$workflowResponse]`.
 - The response depends entirely on what the workflow returns via `$sendMessage` or `$return`.

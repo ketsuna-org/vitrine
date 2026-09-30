@@ -2,6 +2,7 @@
 layout: doc
 title: Deployment & Hosting
 category: "Meta"
+api_type: general
 description: Choose between app hosting and the self-hosted Docker runner for running Bot Creator bots.
 permalink: /docs/deployment/
 ---

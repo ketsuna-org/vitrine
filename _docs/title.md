@@ -27,11 +27,11 @@ $title[text;(embedIndex)]
 
 ## Return Value
 
-This function returns nothing; it modifies the response currently being constructed. The embed is sent via `$sendMessage[]`.
+This function returns nothing; it modifies the response currently being constructed. The pending embed is emitted automatically for a slash response; `$sendMessage[]` can also send it explicitly. See [Execution model](/docs/execution-model/).
 
 ## Behavior
 
-- `$title[]` is a **response mutation**: it is added to the response currently in progress and will be sent upon the next `$sendMessage[]` call.
+- `$title[]` is a **response mutation**: it is added to the response currently in progress and is emitted with the pending response, or by an explicit `$sendMessage[]` call.
 - If you call `$title[]` multiple times before a `$sendMessage[]`, only the last call will be applied to that specific embed.
 - The order of calls is important: place `$title[]` before `$description[]`, `$color[]`, etc.
 

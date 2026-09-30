@@ -72,19 +72,20 @@ $sendMessage[]
 ```bdfd
 ;; Retrieve arguments based on the type
 $if[$commandType==slash]
-  $var[arg1;$slashOption[target]]
-  $var[arg2;$slashOption[reason]]
+  $var[arg1;((opts.target))]
+  $var[arg2;((opts.reason))]
 $else
   $var[arg1;$message[1]]
   $var[arg2;$message[2]]
 $endif
 
-$sendMessage[🎯 Target: $var[arg1] | Reason: $var[arg2]]
+🎯 Target: $var[arg1] | Reason: $var[arg2]
 ```
 
 ## Related functions
 
-- [$slashOption](/docs/slashoption/) — read slash command option values by name or index
+- [$isSlash](/docs/isslash/) — check if the command was triggered via slash command
+- [Execution model](/docs/execution-model/) — options variables and command execution
 
 ## Notes
 

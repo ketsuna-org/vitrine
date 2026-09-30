@@ -51,13 +51,13 @@ $sendMessage[]
 ### Custom message according to the house
 
 ```bdfd
-$let[house;$hypeSquad[$authorID]]
+$var[house;$hypeSquad[$authorID]]
 
-$if[$house==Bravery]
+$if[$var[house]==Bravery]
   🟣 House of Courage
-$elseif[$house==Brilliance]
+$elseif[$var[house]==Brilliance]
   🟠 House of Brilliance
-$elseif[$house==Balance]
+$elseif[$var[house]==Balance]
   🟢 House of Balance
 $else
   ⚪ No HypeSquad house

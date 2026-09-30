@@ -67,8 +67,8 @@ $sendMessage[]
 ### Account Age
 
 ```bdfd
-$let[creation;$creationDate[$authorID]]
-Your Discord account was created on **$creation**.
+$var[creation;$creationDate[$authorID]]
+Your Discord account was created on **$var[creation]**.
 ```
 
 ## Notes

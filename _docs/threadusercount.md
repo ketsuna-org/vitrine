@@ -53,19 +53,19 @@ $sendMessage[]
 ### Popularity Alert
 
 ```bdfd
-$let[userCount;$threadUserCount[$threadID]]
-$if[$userCount>=10]
-  $sendMessage[This thread has attracted $userCount participants! 🔥]
+$var[userCount;$threadUserCount[$threadID]]
+$if[$var[userCount]>=10]
+  $sendMessage[This thread has attracted $var[userCount] participants! 🔥]
 $endif
 ```
 
 ### Participation Monitoring
 
 ```bdfd
-$let[members;$threadUserCount[$threadID]]
-$let[messages;$threadMessageCount[$threadID]]
-$let[ratio;$round[$divide[$messages;$members]]]
-$sendMessage[Average of $ratio messages per participant.]
+$var[members;$threadUserCount[$threadID]]
+$var[messages;$threadMessageCount[$threadID]]
+$var[ratio;$round[$divide[$var[messages];$var[members]]]]
+$sendMessage[Average of $var[ratio] messages per participant.]
 ```
 
 ## Notes

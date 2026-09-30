@@ -36,9 +36,9 @@ $mentionedRoles
 
 ```bdfd
 $if[$mentionedRoles!=]
-  $let[roles;$splitText[$mentionedRoles;,]]
-  $let[count;$arrayCount[$roles]]
-  $sendMessage[$count role(s) mentioned.]
+  $var[roles;$splitText[$mentionedRoles;,]]
+  $var[count;$arrayCount[$var[roles]]]
+  $sendMessage[$var[count] role(s) mentioned.]
 $else
   $sendMessage[No roles mentioned.]
 $endif
@@ -48,9 +48,9 @@ $endif
 
 ```bdfd
 $if[$mentionedRoles!=]
-  $let[firstRole;$splitText[$mentionedRoles;,;1]]
-  $giveRole[$mentioned;$firstRole]
-  $sendMessage[Role <@&$firstRole> added to <@$mentioned>!]
+  $var[firstRole;$splitText[$mentionedRoles;,;1]]
+  $giveRole[$mentioned;$var[firstRole]]
+  $sendMessage[Role <@&$var[firstRole]> added to <@$mentioned>!]
 $else
   $sendMessage[Mention a role to assign.]
 $endif
@@ -60,18 +60,18 @@ $endif
 
 ```bdfd
 $if[$mentionedRoles!=]
-  $let[roles;$splitText[$mentionedRoles;,]]
-  $let[i;0]
-  $let[total;$arrayCount[$roles]]
-  $let[output;]
-  $while[$i<$total]
-    $let[roleID;$arrayGet[$roles;$i]]
-    $let[output;$output - <@&$roleID>
+  $var[roles;$splitText[$mentionedRoles;,]]
+  $var[i;0]
+  $var[total;$arrayCount[$var[roles]]]
+  $var[output;]
+  $while[$var[i]<$var[total]]
+    $var[roleID;$arrayGet[$var[roles];$var[i]]]
+    $var[output;$var[output] - <@&$var[roleID]>
 ]
-    $let[i;$sum[$i;1]]
+    $var[i;$sum[$var[i];1]]
   $endwhile
   $sendMessage[Mentioned roles:
-$output]
+$var[output]]
 $endif
 ```
 

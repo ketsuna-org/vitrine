@@ -37,8 +37,8 @@ Current timestamp: $getTimestamp
 ### Duration calculation
 
 ```bdfd
-$let[now;$getTimestamp]
-$let[event;1718697600]
+$var[now;$getTimestamp]
+$var[event;1718697600]
 Time remaining: $sub[$get[event];$get[now]] seconds
 ```
 

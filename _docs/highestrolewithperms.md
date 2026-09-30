@@ -41,9 +41,9 @@ $highestRoleWithPerms[permission1;permission2;...]
 ### Find a moderator role
 
 ```bdfd
-$let[modRole;$highestRoleWithPerms[ManageMessages]]
-$if[$modRole!=]
-  $sendMessage[Your moderation role: $roleName[$modRole]]
+$var[modRole;$highestRoleWithPerms[ManageMessages]]
+$if[$var[modRole]!=]
+  $sendMessage[Your moderation role: $roleName[$var[modRole]]]
 $else
   $sendMessage[You do not have a moderation role.]
 $endif
@@ -60,12 +60,12 @@ $endif
 ### Role with ban permissions
 
 ```bdfd
-$let[banRole;$highestRoleWithPerms[BanMembers]]
-$if[$banRole!=]
+$var[banRole;$highestRoleWithPerms[BanMembers]]
+$if[$var[banRole]!=]
   $title[Ban Role]
   $description[
-  **Role:** $roleName[$banRole]
-  **ID:** $banRole
+  **Role:** $roleName[$var[banRole]]
+  **ID:** $var[banRole]
   ]
   $color[#ED4245]
   $sendMessage[]

@@ -1,77 +1,40 @@
 ---
 layout: doc
-translation_key: docs
+title: $sendMessage
 category: "Embed & Message"
+function_name: sendMessage
+api_type: bdfd
+description: Explicit message send; ordinary slash replies can use text or embed mutations without this function.
 ---
 
 # $sendMessage
 
-Sends a message with its content, embeds, and components (buttons, select menus).
+`$sendMessage[content]` explicitly sends the supplied content together with the pending response's embeds and components. Content can be empty when an embed or components provide the message body.
 
-## Syntax
+## Slash commands do not require an explicit send
 
+This is a complete BDFD slash response:
+
+```bdfd
+Hello $username!
 ```
-$sendMessage[content]
+
+This is a complete embed-only response:
+
+```bdfd
+$title[Announcement]
+$description[This is an important announcement.]
+$color[#FF0000]
 ```
 
-## Parameters
+The compiler emits the pending response automatically. Do not append an empty send to every example. Keep the mutations belonging to one response together; action boundaries can flush a pending response.
 
-| Parameter | Description | Required |
-|-----------|-------------|:-----------:|
-| `content` | Text content of the message | Yes |
+## Explicit send
 
-## Description
-
-`$sendMessage` is the main command to send a message in the channel where the command was executed. If embeds (via `$newEmbed`, `$addEmbedField`, etc.) or components (via `$addActionRow`, `$addButtonCV2`, etc.) were constructed before this call, they are automatically included in the message.
-
-The text content can be empty (`$sendMessage[]`) if only embeds or components are sent.
-
-## Examples
-
-### Simple message
-
-```
+```bdfd
 $sendMessage[Hello world!]
 ```
 
-### With embeds
+For another channel, read [$channelSendMessage](/docs/channelsendmessage/). The current compiler reads the first `$sendMessage` argument as content; do not use a second argument as a channel ID.
 
-```
-$newEmbed[title=Announcement;description=This is an important announcement;color=#FF0000]
-$sendMessage[]
-```
-
-### With buttons
-
-```
-$addActionRow
-$addButtonCV2[btn_yes;Yes;success]
-$addButtonCV2[btn_no;No;danger]
-$sendMessage[Do you confirm?]
-```
-
-### Complete message
-
-```
-$newEmbed[title=Welcome;description=Welcome to the server!;color=#00FF00]
-$addActionRow
-$addButtonCV2[btn_rules;Rules;primary]
-$addButtonCV2[btn_roles;Roles;secondary]
-$sendMessage[Welcome $username!]
-```
-
-### Response in $onInteraction
-
-```
-$onInteraction
-$if[$customID==btn_yes]
-  $sendMessage[You have confirmed!]
-$endif
-```
-
-## Notes
-
-- `$sendMessage` sends in the current channel. To send in another channel, use `$sendMessage[content;channelId]` (depending on version) or `$channelSendMessage`.
-- The content can be empty if you are only sending embeds/components.
-- In `$onInteraction`, the message is sent in response to the interaction.
-- Flag functions applicable before `$sendMessage`: `$reply`, `$ephemeral`, `$tts`, `$noMention`, `$allowMention`.
+Use [Message Blocks](/docs/blocks-messages/) when editing visual actions: `respondWithMessage` handles interaction replies and `sendMessage` sends channel messages. See [Execution model](/docs/execution-model/) for the distinction between authoring modes.

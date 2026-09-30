@@ -39,7 +39,7 @@ Random user ID: $randomUserID
 ### Store in a variable
 
 ```bdfd
-$let[winner;$randomUserID]
+$var[winner;$randomUserID]
 The winner is: <@$get[winner]>
 ```
 

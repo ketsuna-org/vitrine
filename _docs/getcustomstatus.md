@@ -42,9 +42,9 @@ $getCustomStatus[(userID)]
 
 ```bdfd
 $title[💬 Custom Status]
-$let[status;$getCustomStatus[$authorID]]
-$if[$status!=]
-  Your custom status: **$status**
+$var[status;$getCustomStatus[$authorID]]
+$if[$var[status]!=]
+  Your custom status: **$var[status]**
 $else
   You have not set a custom status.
 $endif
@@ -68,9 +68,9 @@ $sendMessage[]
 ### Status change log
 
 ```bdfd
-$let[newStatus;$getCustomStatus[$authorID]]
-$if[$newStatus!=]
-  📝 **$userName** changed their custom status: *$newStatus*
+$var[newStatus;$getCustomStatus[$authorID]]
+$if[$var[newStatus]!=]
+  📝 **$userName** changed their custom status: *$var[newStatus]*
 $endif
 ```
 

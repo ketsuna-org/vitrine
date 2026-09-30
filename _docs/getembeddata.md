@@ -43,13 +43,13 @@ $getEmbedData[messageID;embedIndex;field]
 ### Read the title and description
 
 ```bdfd
-$let[title;$getEmbedData[$messageID;1;title]]
-$let[desc;$getEmbedData[$messageID;1;description]]
+$var[title;$getEmbedData[$messageID;1;title]]
+$var[desc;$getEmbedData[$messageID;1;description]]
 
 $title[📋 Embed detected]
 $description[
-**Title:** $title
-**Description:** $desc
+**Title:** $var[title]
+**Description:** $var[desc]
 ]
 $sendMessage[]
 ```
@@ -57,9 +57,9 @@ $sendMessage[]
 ### Extract a named field
 
 ```bdfd
-$let[score;$getEmbedData[$messageID;1;field:Score]]
-$if[$score!=]
-  The score is: **$score**
+$var[score;$getEmbedData[$messageID;1;field:Score]]
+$if[$var[score]!=]
+  The score is: **$var[score]**
 $else
   Field "Score" not found.
 $endif
@@ -68,29 +68,29 @@ $endif
 ### Retrieve media
 
 ```bdfd
-$let[image;$getEmbedData[$noMentionMessage;1;image]]
-$let[thumb;$getEmbedData[$noMentionMessage;1;thumbnail]]
+$var[image;$getEmbedData[$noMentionMessage;1;image]]
+$var[thumb;$getEmbedData[$noMentionMessage;1;thumbnail]]
 
-$if[$image!=]
-  $image[$image]
+$if[$var[image]!=]
+  $image[$var[image]]
 $endif
-$if[$thumb!=]
-  $thumbnail[$thumb]
+$if[$var[thumb]!=]
+  $thumbnail[$var[thumb]]
 $endif
 ```
 
 ### Recreate an embed
 
 ```bdfd
-$let[title;$getEmbedData[$messageID;1;title]]
-$let[desc;$getEmbedData[$messageID;1;description]]
-$let[footer;$getEmbedData[$messageID;1;footer]]
-$let[color;$getEmbedData[$messageID;1;color]]
+$var[title;$getEmbedData[$messageID;1;title]]
+$var[desc;$getEmbedData[$messageID;1;description]]
+$var[footer;$getEmbedData[$messageID;1;footer]]
+$var[color;$getEmbedData[$messageID;1;color]]
 
-$title[$title]
-$description[$desc]
-$footer[$footer]
-$color[$color]
+$title[$var[title]]
+$description[$var[desc]]
+$footer[$var[footer]]
+$color[$var[color]]
 $sendMessage[]
 ```
 

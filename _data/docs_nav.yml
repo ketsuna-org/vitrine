@@ -1,4 +1,5 @@
 bdfd_categories:
+  - "Blocks"
   - "Embed & Message"
   - "Variables"
   - "Control Flow"
@@ -115,6 +116,10 @@ javascript_api:
     path: "/docs/javascript/placeholders/"
 
 hub_links:
+  - title: "Blocks Reference"
+    description: "Visual actions, payloads, results, permissions and control flow."
+    path: "/docs/blocks/"
+    icon: "view_module"
   - title: "BDFD Function Reference"
     description: "Syntax and parameters for every $function."
     path: "/docs/"

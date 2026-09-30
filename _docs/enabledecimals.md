@@ -51,10 +51,10 @@ $sendMessage[10 ÷ 3 = $calculate[10/3]]
 ### Comparison before/after
 
 ```bdfd
-$let[without;$calculate[10/3]]
+$var[without;$calculate[10/3]]
 $enableDecimals
-$let[with;$calculate[10/3]]
-$sendMessage[Without: $without | With: $with]
+$var[with;$calculate[10/3]]
+$sendMessage[Without: $var[without] | With: $var[with]]
 ```
 
 ## Notes

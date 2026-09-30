@@ -45,11 +45,11 @@ $userReacted[messageID;userID;emoji]
 
 ```bdfd
 $nominalTrigger
-$let[msgID;$sendMessage[✅ React to accept the rules.]]
+$var[msgID;$sendMessage[✅ React to accept the rules.]]
 $addCmdReactions[✅]
 
 $onReactionAdd[✅]
-$if[$userReacted[$msgID;$authorID;✅]==true]
+$if[$userReacted[$var[msgID];$authorID;✅]==true]
   $giveRole[$authorID;$roleID[Member]]
   $sendDM[$authorID;Welcome! You have accepted the rules.]
 $endif
@@ -58,11 +58,11 @@ $endif
 ### Interactive poll
 
 ```bdfd
-$let[pollMsg;$sendMessage[Vote for your choice!]]
+$var[pollMsg;$sendMessage[Vote for your choice!]]
 $addCmdReactions[👍;👎]
 
-$let[voted;$userReacted[$pollMsg;$authorID;👍]]
-$if[$voted==true]
+$var[voted;$userReacted[$var[pollMsg];$authorID;👍]]
+$if[$var[voted]==true]
   $sendMessage[Thanks for your vote 👍!]
 $else
   $sendMessage[You have not voted 👍 yet.]

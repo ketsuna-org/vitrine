@@ -27,7 +27,7 @@ $description[text;(embedIndex)]
 
 ## Return value
 
-This function returns nothing; it modifies the response currently being constructed. The embed is sent via `$sendMessage[]`.
+This function returns nothing; it modifies the response currently being constructed. The pending embed is emitted automatically for a slash response; `$sendMessage[]` can also send it explicitly. See [Execution model](/docs/execution-model/).
 
 ## Behavior
 

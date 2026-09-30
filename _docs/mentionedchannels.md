@@ -36,9 +36,9 @@ $mentionedChannels
 
 ```bdfd
 $if[$mentionedChannels!=]
-  $let[channels;$splitText[$mentionedChannels;,]]
-  $let[count;$arrayCount[$channels]]
-  $sendMessage[$count channel(s) mentioned.]
+  $var[channels;$splitText[$mentionedChannels;,]]
+  $var[count;$arrayCount[$var[channels]]]
+  $sendMessage[$var[count] channel(s) mentioned.]
 $else
   $sendMessage[No channels mentioned in this message.]
 $endif
@@ -48,8 +48,8 @@ $endif
 
 ```bdfd
 $if[$mentionedChannels!=]
-  $let[firstChannel;$splitText[$mentionedChannels;,;1]]
-  $sendMessage[First channel mentioned: <#$firstChannel>]
+  $var[firstChannel;$splitText[$mentionedChannels;,;1]]
+  $sendMessage[First channel mentioned: <#$var[firstChannel]>]
 $endif
 ```
 
@@ -57,8 +57,8 @@ $endif
 
 ```bdfd
 $if[$mentionedChannels!=]
-  $let[target;$splitText[$mentionedChannels;,;1]]
-  $sendMessage[Message to <#$target>]
+  $var[target;$splitText[$mentionedChannels;,;1]]
+  $sendMessage[Message to <#$var[target]>]
 $endif
 ```
 

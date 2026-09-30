@@ -37,8 +37,8 @@ None.
 
 ```bdfd
 $debug
-$let[result;$calculate[2+2]]
-$sendMessage[Result: $result]
+$var[result;$calculate[2+2]]
+$sendMessage[Result: $var[result]]
 ```
 
 ### Conditional debug

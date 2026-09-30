@@ -1,80 +1,18 @@
 ---
 layout: doc
-title: $isTicket
-translation_key: docs
-category: "Math & Text"
+title: $isTicket — incomplete compatibility
+category: "Moderation"
 function_name: isTicket
+api_type: bdfd
+status: incomplete
 syntax: $isTicket
-description: Checks if the current channel is a ticket channel opened with $newTicket.
+description: Resolves a channel.isTicket placeholder, but the current ticket helper does not establish a persistent ticket marker.
 ---
 
 # $isTicket
 
-The function `$isTicket` checks if the current channel is a ticket created via the `$newTicket[]` function in BDFD. Tickets are temporary channels used for support.
+The compiler maps this function to `((channel.isTicket))`. The current `$newTicket` channel executor does not establish a persistent ticket marker, so this placeholder is not a reliable ticket detector. Do not assume it always returns `true` or `false` or use it as an authorization guard.
 
-## Syntax
+Track created ticket IDs in scoped storage and compare the current channel with that data. Names beginning with `ticket-` are not sufficient to authenticate a ticket.
 
-```
-$isTicket
-```
-
-## Parameters
-
-None.
-
-## Return Value
-
-- **Type**: Boolean
-- `true` if the current channel is a BDFD ticket.
-- `false` if it is not a ticket (normal channel, DM, etc.).
-
-## Behavior
-
-- Only recognizes tickets created via `$newTicket[]`.
-- Useful for restricting or adapting commands to the ticket context.
-- Tickets are identified by an internal BDFD marker.
-
-## Examples
-
-### Command restricted to tickets
-
-```bdfd
-$if[$isTicket==false]
-  $sendMessage[❌ This command can only be used in a ticket.]
-  $stop
-$endif
-
-;; Command logic
-$sendMessage[📋 Processing the ticket...]
-```
-
-### Contextual close button
-
-```bdfd
-$if[$isTicket==true]
-  $addButton[close;Close Ticket;danger]
-  $sendMessage[📌 Active ticket - Use the button below to close it.]
-$else
-  $sendMessage[❌ You are not in a ticket channel.]
-$endif
-```
-
-### Channel information
-
-```bdfd
-$title[📋 Channel Info]
-$description[
-**Name:** $channelName
-**ID:** $channelID
-**Ticket:** $if[$isTicket==true]✅ Yes$else❌ No$endif
-**NSFW:** $if[$isNSFW==true]🔞 Yes$else✅ No$endif
-]
-$sendMessage[]
-```
-
-## Notes
-
-- Only detects tickets created by `$newTicket[]`.
-- To close a ticket, use `$closeTicket[]`.
-- To create a ticket, use `$newTicket[]`.
-- Only works in a server (not in DMs).
+Read the [Support Ticket System Guide](/docs/tickets/), the [channel Blocks reference](/docs/blocks-channels/) for explicit creation and closure, and the [execution model](/docs/execution-model/) for compatibility rules.

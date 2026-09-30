@@ -48,8 +48,8 @@ $sendMessage[Cleaned message: $removeContains[spam]]
 ### Remove bad words
 
 ```bdfd
-$let[filtered;$removeContains[insult]]
-$sendMessage[Filtered message: $filtered]
+$var[filtered;$removeContains[insult]]
+$sendMessage[Filtered message: $var[filtered]]
 ```
 
 ### Multiple cleanup

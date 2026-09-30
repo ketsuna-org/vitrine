@@ -57,8 +57,8 @@ $endif
 ### Count roles
 
 ```bdfd
-$let[count;$arrayCount[$splitText[$userRoles;,]]]
-$sendMessage[You have $count roles on this server.]
+$var[count;$arrayCount[$splitText[$userRoles;,]]]
+$sendMessage[You have $var[count] roles on this server.]
 ```
 
 ## Notes

@@ -40,11 +40,11 @@ No parameters.
 
 ```bdfd
 $if[$repliedMessageID!=]
-  $let[msg;$getMessage[$channelID;$repliedMessageID]]
+  $var[msg;$getMessage[$channelID;$repliedMessageID]]
   $title[📝 Reply to a message]
   $description[
   **Original author:** $userName[$messageAuthorID[$channelID;$repliedMessageID]]
-  **Message:** $msg
+  **Message:** $var[msg]
   ]
   $sendMessage[]
 $else
@@ -56,11 +56,11 @@ $endif
 
 ```bdfd
 $if[$repliedMessageID!=]
-  $let[author;$messageAuthorID[$channelID;$repliedMessageID]]
+  $var[author;$messageAuthorID[$channelID;$repliedMessageID]]
   $title[⚠️ Report]
   $description[
   **Reported message:** ||$getMessage[$channelID;$repliedMessageID]||
-  **Author:** $userName[$author]
+  **Author:** $userName[$var[author]]
   **Reported by:** $userName[$authorID]
   ]
   $color[#ED4245]
@@ -74,9 +74,9 @@ $endif
 
 ```bdfd
 $if[$repliedMessageID!=]
-  $let[msg;$getMessage[$channelID;$repliedMessageID]]
+  $var[msg;$getMessage[$channelID;$repliedMessageID]]
   $title[🗑️ Message deleted]
-  $description[Message from **$userName[$messageAuthorID[$channelID;$repliedMessageID]]** deleted.\nContent: ||$msg||]
+  $description[Message from **$userName[$messageAuthorID[$channelID;$repliedMessageID]]** deleted.\nContent: ||$var[msg]||]
   $deleteMessage[$channelID;$repliedMessageID]
   $sendMessage[]
 $endif

@@ -47,9 +47,9 @@ $addMessageReactions[$rulesChannelID;123456789012345678;✅]
 ### Reaction to a stored message
 
 ```bdfd
-$let[msgID;$getUserVar[lastMessageID]]
-$let[chanID;$getUserVar[lastChannelID]]
-$addMessageReactions[$chanID;$msgID;👍;👎]
+$var[msgID;$getUserVar[lastMessageID]]
+$var[chanID;$getUserVar[lastChannelID]]
+$addMessageReactions[$var[chanID];$var[msgID];👍;👎]
 ```
 
 ### Reacting to a giveaway message

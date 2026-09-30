@@ -46,9 +46,9 @@ $addMentionableSelectMenu[mention_select;1;Choose a user or role]
 $sendMessage[Select an entity:]
 
 $onInteraction[mention_select]
-$let[id;$getMentionableSelectUserID]
+$var[id;$getMentionableSelectUserID]
 $title[Selected entity]
-$description[ID: $id]
+$description[ID: $var[id]]
 $sendMessage[]
 ```
 
@@ -56,11 +56,11 @@ $sendMessage[]
 
 ```bdfd
 $onInteraction[mention_select]
-$let[id;$getMentionableSelectUserID]
-$if[$hasRole[$id;$guildID]==true]
-  This is a role: @&$id
+$var[id;$getMentionableSelectUserID]
+$if[$hasRole[$var[id];$guildID]==true]
+  This is a role: @&$var[id]
 $else
-  This is a user: <@$id>
+  This is a user: <@$var[id]>
 $endif
 ```
 

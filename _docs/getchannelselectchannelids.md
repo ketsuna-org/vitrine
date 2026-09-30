@@ -42,13 +42,13 @@ $getChannelSelectChannelIDs[(separator)]
 
 ```bdfd
 $onInteraction[channel_select]
-$let[channels;$getChannelSelectChannelIDs[, ]]
+$var[channels;$getChannelSelectChannelIDs[, ]]
 $title[📋 Selected Channels]
 $description[
-**IDs:** $channels
+**IDs:** $var[channels]
 
 **List:**
-$textSplit[$channels;, ]
+$textSplit[$var[channels];, ]
 > <#[$splitText[$index]]>
 $endTextSplit
 ]
@@ -60,10 +60,10 @@ $sendMessage[]
 
 ```bdfd
 $onInteraction[channel_select]
-$let[list;$getChannelSelectChannelIDs[,]]
-$let[count;$length[$splitText[$list;,]]]
-I have registered **$count** channel(s).
-$textSplit[$list;,]
+$var[list;$getChannelSelectChannelIDs[,]]
+$var[count;$length[$splitText[$var[list];,]]]
+I have registered **$var[count]** channel(s).
+$textSplit[$var[list];,]
   Channel $index: $channelName[$splitText[$index]]
 $endTextSplit
 ```

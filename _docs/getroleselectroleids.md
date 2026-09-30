@@ -42,9 +42,9 @@ $getRoleSelectRoleIDs[(separator)]
 
 ```bdfd
 $onInteraction[role_select]
-$let[roles;$getRoleSelectRoleIDs[,]]
+$var[roles;$getRoleSelectRoleIDs[,]]
 
-$textSplit[$roles;,]
+$textSplit[$var[roles];,]
   $giveRole[$authorID;$splitText[$index]]
   + Role added: $roleName[$splitText[$index]]
 $endTextSplit
@@ -56,12 +56,12 @@ $sendMessage[✅ All roles have been assigned!]
 
 ```bdfd
 $onInteraction[role_select]
-$let[list;$getRoleSelectRoleIDs[, ]]
-$let[count;$length[$splitText[$list;, ]]]
+$var[list;$getRoleSelectRoleIDs[, ]]
+$var[count;$length[$splitText[$var[list];, ]]]
 
-$title[🎭 $count role(s) selected]
+$title[🎭 $var[count] role(s) selected]
 $description[
-$textSplit[$list;, ]
+$textSplit[$var[list];, ]
   $index. $roleName[$splitText[$index]]
 $endTextSplit
 ]

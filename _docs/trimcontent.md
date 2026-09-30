@@ -47,8 +47,8 @@ $sendMessage[Result: "$trimContent[   Hello World   ]"]
 ### Cleaning User Input
 
 ```bdfd
-$let[input;$trimContent[$message[2]]]
-$sendMessage[Cleaned argument: "$input"]
+$var[input;$trimContent[$message[2]]]
+$sendMessage[Cleaned argument: "$var[input]"]
 ```
 
 ### Comparison Without Spaces
@@ -62,9 +62,9 @@ $endif
 ### Cleaning After Extraction
 
 ```bdfd
-$let[extracted;$subString[$message;0;10]]
-$let[clean;$trimContent[$extracted]]
-$sendMessage[$clean]
+$var[extracted;$subString[$message;0;10]]
+$var[clean;$trimContent[$var[extracted]]]
+$sendMessage[$var[clean]]
 ```
 
 ## Notes

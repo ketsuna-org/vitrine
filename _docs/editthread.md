@@ -58,9 +58,9 @@ $channelSendMessage[$threadID;Thread reopened for discussion.]
 ### Rename based on subject
 
 ```bdfd
-$let[newName;[FAQ] $noMentionMessage]
-$editThread[$threadID;$newName]
-$sendMessage[Thread renamed to: $newName]
+$var[newName;[FAQ] $noMentionMessage]
+$editThread[$threadID;$var[newName]]
+$sendMessage[Thread renamed to: $var[newName]]
 ```
 
 ## Notes

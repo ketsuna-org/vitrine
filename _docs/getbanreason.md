@@ -41,13 +41,13 @@ $getBanReason[userID]
 ### Ban verification
 
 ```bdfd
-$let[reason;$getBanReason[$mentioned[1]]]
-$if[$reason!=]
+$var[reason;$getBanReason[$mentioned[1]]]
+$if[$var[reason]!=]
   $title[🔨 Banned User]
   $description[
   **User:** $userName[$mentioned[1]]
   **ID:** $mentioned[1]
-  **Reason:** $reason
+  **Reason:** $var[reason]
   ]
   $color[#ED4245]
   $sendMessage[]
@@ -59,11 +59,11 @@ $endif
 ### Ban log
 
 ```bdfd
-$let[reason;$getBanReason[$userID]]
+$var[reason;$getBanReason[$userID]]
 $title[📋 Ban Details]
 $description[
 **User:** $userName[$userID] ($userID)
-**Ban Reason:** $reason
+**Ban Reason:** $var[reason]
 **Checked on:** $date[$day]/$date[$month]/$date[$year]
 ]
 $color[#5865F2]
@@ -74,13 +74,13 @@ $sendMessage[]
 
 ```bdfd
 $if[$checkContains[$userPerms;BanMembers]==true]
-  $let[target;$findUser[$message]]
-  $if[$target!=]
-    $let[reason;$getBanReason[$target]]
-    $if[$reason!=]
-      $sendMessage[**$userName[$target]** is banned. Reason: $reason]
+  $var[target;$findUser[$message]]
+  $if[$var[target]!=]
+    $var[reason;$getBanReason[$var[target]]]
+    $if[$var[reason]!=]
+      $sendMessage[**$userName[$var[target]]** is banned. Reason: $var[reason]]
     $else
-      $sendMessage[**$userName[$target]** is not banned.]
+      $sendMessage[**$userName[$var[target]]** is not banned.]
     $endif
   $else
     $sendMessage[User not found.]

@@ -49,7 +49,7 @@ $sendMessage[$unEscape[Line 1\nLine 2\nLine 3]]
 ### Message Formatted from a Variable
 
 ```bdfd
-$let[data;Name: John\nAge: 25\nCity: Paris]
+$var[data;Name: John\nAge: 25\nCity: Paris]
 $sendMessage[$unEscape[$var[data]]]
 ```
 

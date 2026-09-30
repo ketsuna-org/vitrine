@@ -52,8 +52,8 @@ $sendMessage[]
 ### With explicit ID
 
 ```bdfd
-$let[emoji;$customEmoji[boost;123456789012345678]]
-$title[🚀 Boost detected $emoji]
+$var[emoji;$customEmoji[boost;123456789012345678]]
+$title[🚀 Boost detected $var[emoji]]
 $description[Thank you for your boost!]
 $color[#F47FFF]
 $sendMessage[]

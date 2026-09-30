@@ -46,10 +46,10 @@ $addRoleSelectMenu[role_select;1;Choose your role]
 $sendMessage[Select a role:]
 
 $onInteraction[role_select]
-$let[roleID;$getRoleSelectRoleID]
-$giveRole[$authorID;$roleID]
+$var[roleID;$getRoleSelectRoleID]
+$giveRole[$authorID;$var[roleID]]
 $title[Role Assigned]
-$description[You have received the role **$roleName[$roleID]**!]
+$description[You have received the role **$roleName[$var[roleID]]**!]
 $color[#57F287]
 $sendMessage[]
 ```
@@ -58,12 +58,12 @@ $sendMessage[]
 
 ```bdfd
 $onInteraction[role_select]
-$let[first;$getRoleSelectRoleID[1]]
-$let[second;$getRoleSelectRoleID[2]]
+$var[first;$getRoleSelectRoleID[1]]
+$var[second;$getRoleSelectRoleID[2]]
 $title[Selected Roles]
 $description[
-**Role 1:** $roleName[$first]
-**Role 2:** $roleName[$second]
+**Role 1:** $roleName[$var[first]]
+**Role 2:** $roleName[$var[second]]
 ]
 $sendMessage[]
 ```

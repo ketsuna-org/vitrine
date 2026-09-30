@@ -1,86 +1,22 @@
 ---
 layout: doc
-title: $closeTicket
-translation_key: docs
+title: $closeTicket — incomplete compatibility
 category: "Moderation"
 function_name: closeTicket
+api_type: bdfd
+status: incomplete
 syntax: $closeTicket[(errorMessage)]
-description: Closes and deletes the current ticket channel. If the channel is not a ticket, an optional error message can be displayed.
+description: Incomplete ticket helper. Emits a channel update, not deletion; use an explicit removeChannel action after validating stored ticket data.
 ---
 
 # $closeTicket
 
-The `$closeTicket[]` function **closes and deletes a ticket** (the current channel). It is equivalent to `$deleteChannels[$channelID]` with check validation.
+This helper is **incomplete**. The compiler emits an `updateChannel` action with `archived: true` and `locked: true` for the current channel. These are thread settings, not text-channel deletion.
 
-## Syntax
+The optional argument is passed as `errorMessage`. It is not an authorization check and does not prevent a caller from closing a ticket. The current channel executor does not implement a complete ticket-marker validation for this helper.
 
-```
-$closeTicket[(errorMessage)]
-```
+Do not rely on it to delete a channel created by `$newTicket`, validate a ticket or enforce staff permissions. In particular, placing `$closeTicket[Only moderators can close this ticket]` in a denied branch is not a permission guard.
 
-## Parameters
+For an explicit close action, validate the caller and compare the target ID with stored ticket data, then use [removeChannel](/docs/blocks-channels/#removechannel). Save any required transcript first. Send the interaction response before deleting its channel.
 
-| Parameter | Description |
-|---|---|
-| `errorMessage` | Optional - Message sent if the command is not executed in a ticket channel. Default: "This channel is not a ticket." |
-
-## Return value
-
-This function does not return a value.
-
-## Behavior
-
-- Deletes the channel in which the command is executed.
-- Designed for use in channels created by `$newTicket[]`.
-- If the channel is not a recognized ticket, displays the error message.
-- The bot must have `MANAGE_CHANNELS` permission.
-
-## Examples
-
-### Simple closure
-
-```bdfd
-$closeTicket
-```
-
-### Closure with confirmation
-
-```bdfd
-$sendMessage[Closing the ticket in 5 seconds...]
-$wait[5]
-$closeTicket
-```
-
-### Closure with logs
-
-```bdfd
-$let[logChannel;123456789]
-$channelSendMessage[$logChannel;Ticket closed by $username.]
-$closeTicket
-```
-
-### Conditional closure
-
-```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
-  $closeTicket
-$else
-  $closeTicket[Only administrators and moderators can close this ticket.]
-$endif
-```
-
-### Closure with backup
-
-```bdfd
-$let[transcript;$getChannelMessages[$channelID;100]]
-$setUserVar[lastTicketTranscript;$transcript]
-$channelSendMessage[$logChannel;Transcript saved. Ticket closed by $username.]
-$closeTicket
-```
-
-## Notes
-
-- `$closeTicket[]` deletes the channel — this action is irreversible.
-- Save important information before closing (transcripts, logs).
-- Custom error messages help prevent accidental closures.
-- For a closure without deletion, archive the channel using `$modifyChannel[]` instead.
+See the complete guide: [Support Ticket System Guide](/docs/tickets/).

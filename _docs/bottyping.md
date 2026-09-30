@@ -57,8 +57,8 @@ $sendMessage[✅ Results found!]
 
 ```bdfd
 $botTyping
-$let[result;$httpGet[https://api.example.com/data]]
-$if[$result!=]
+$var[result;$httpGet[https://api.example.com/data]]
+$if[$var[result]!=]
   $sendMessage[Data retrieved successfully.]
 $else
   $sendMessage[Error during retrieval.]

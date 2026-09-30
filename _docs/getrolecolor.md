@@ -41,20 +41,20 @@ $getRoleColor[roleID]
 ### Simple display
 
 ```bdfd
-$let[roleID;$roleID[Admin]]
-Color of the role **$roleName[$roleID]**: $getRoleColor[$roleID]
+$var[roleID;$roleID[Admin]]
+Color of the role **$roleName[$var[roleID]]**: $getRoleColor[$var[roleID]]
 ```
 
 ### Embed colored according to the role
 
 ```bdfd
-$let[roleID;$highestRole[$authorID]]
+$var[roleID;$highestRole[$authorID]]
 $title[👤 Profile of $userName]
 $description[
-**Main role:** $roleName[$roleID]
-**Color:** $getRoleColor[$roleID]
+**Main role:** $roleName[$var[roleID]]
+**Color:** $getRoleColor[$var[roleID]]
 ]
-$color[$getRoleColor[$roleID]]
+$color[$getRoleColor[$var[roleID]]]
 $thumbnail[$userAvatar[$authorID]]
 $sendMessage[]
 ```
@@ -74,15 +74,15 @@ $sendMessage[]
 ### Dynamic embed
 
 ```bdfd
-$let[color;$getRoleColor[$highestRole[$authorID]]]
+$var[color;$getRoleColor[$highestRole[$authorID]]]
 
-$if[$color==#000000]
-  $let[color;#5865F2]
+$if[$var[color]==#000000]
+  $var[color;#5865F2]
 $endif
 
 $title[Title]
 $description[Description]
-$color[$color]
+$color[$var[color]]
 $sendMessage[]
 ```
 

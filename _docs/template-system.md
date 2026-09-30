@@ -3,6 +3,7 @@ layout: doc
 title: "Template System — ((...)) Placeholders & Functions"
 translation_key: docs
 category: "Meta"
+api_type: general
 description: >
   Reference guide for the ((...)) template system used in Bot Creator
   messages, embeds, and action payloads. Covers variable placeholders,

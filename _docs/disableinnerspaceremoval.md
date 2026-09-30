@@ -48,7 +48,7 @@ $sendMessage[
 
 ```bdfd
 $disableInnerSpaceRemoval
-$let[codeBlock;    function hello() {        return "world";    }]
+$var[codeBlock;    function hello() {        return "world";    }]
 $sendMessage[```js
 $codeBlock
 ```]

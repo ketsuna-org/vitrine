@@ -59,8 +59,8 @@ $endif
 ### Extracting the first word
 
 ```bdfd
-$let[firstWord;$splitText[1; ;$input]]
-$sendMessage[First word: $firstWord]
+$var[firstWord;$splitText[1; ;$input]]
+$sendMessage[First word: $var[firstWord]]
 ```
 
 ## Notes

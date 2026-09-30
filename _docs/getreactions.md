@@ -43,14 +43,14 @@ $getReactions[channelID;messageID;emoji]
 ### Poll results
 
 ```bdfd
-$let[yes;$getReactions[$channelID;$messageID;👍]]
-$let[no;$getReactions[$channelID;$messageID;👎]]
+$var[yes;$getReactions[$channelID;$messageID;👍]]
+$var[no;$getReactions[$channelID;$messageID;👎]]
 
 $title[Results of the poll]
 $description[
-**Yes:** $yes vote(s)
-**No:** $no vote(s)
-**Total:** $sum[$yes;$no] votes
+**Yes:** $var[yes] vote(s)
+**No:** $var[no] vote(s)
+**Total:** $sum[$var[yes];$var[no]] votes
 ]
 $color[#5865F2]
 $sendMessage[]
@@ -59,20 +59,20 @@ $sendMessage[]
 ### Threshold verification
 
 ```bdfd
-$let[votes;$getReactions[$channelID;$messageID;✅]]
-$if[$votes>=5]
+$var[votes;$getReactions[$channelID;$messageID;✅]]
+$if[$var[votes]>=5]
   $sendMessage[Threshold of 5 votes reached! Action executed.]
 $else
-  $sendMessage[Still $sub[5;$votes] vote(s) needed.]
+  $sendMessage[Still $sub[5;$var[votes]] vote(s) needed.]
 $endif
 ```
 
 ### Giveaway
 
 ```bdfd
-$let[participants;$getReactions[$channelID;$giveawayMsg;🎉]]
-$if[$participants>0]
-  $sendMessage[**$participants** participant(s) in the giveaway!]
+$var[participants;$getReactions[$channelID;$giveawayMsg;🎉]]
+$if[$var[participants]>0]
+  $sendMessage[**$var[participants]** participant(s) in the giveaway!]
 $else
   $sendMessage[No participants at the moment.]
 $endif

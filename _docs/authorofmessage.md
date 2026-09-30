@@ -34,8 +34,8 @@ $authorOfMessage[messageID]
 ### Retrieving the author
 
 ```bdfd
-$let[author;$authorOfMessage[$message[1]]]
-$sendMessage[This message was sent by <@$author>]
+$var[author;$authorOfMessage[$message[1]]]
+$sendMessage[This message was sent by <@$var[author]>]
 ```
 
 ### Verify the owner of a message
@@ -51,21 +51,21 @@ $endif
 ### Log of deletion
 
 ```bdfd
-$let[msgID;$message[1]]
-$let[author;$authorOfMessage[$msgID]]
-$channelSendMessage[123456789;Message $msgID deleted — Author: <@$author>]
+$var[msgID;$message[1]]
+$var[author;$authorOfMessage[$var[msgID]]]
+$channelSendMessage[123456789;Message $var[msgID] deleted — Author: <@$var[author]>]
 ```
 
 ### Message info command
 
 ```bdfd
-$let[msgID;$message[1]]
-$let[author;$authorOfMessage[$msgID]]
+$var[msgID;$message[1]]
+$var[author;$authorOfMessage[$var[msgID]]]
 $title[📋 Message Info]
 $description[
-**ID**: $msgID
-**Author**: <@$author> ($author)
-**Content**: $getMessage[$msgID]
+**ID**: $var[msgID]
+**Author**: <@$var[author]> ($var[author])
+**Content**: $getMessage[$var[msgID]]
 ]
 $sendMessage[]
 ```

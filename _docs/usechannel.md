@@ -38,8 +38,8 @@ None. The context is modified.
 ### Redirect Logs
 
 ```bdfd
-$let[logChannel;123456789012345678]
-$useChannel[$logChannel]
+$var[logChannel;123456789012345678]
+$useChannel[$var[logChannel]]
 $title[📋 Command Log]
 $description[
 **User:** $username

@@ -58,8 +58,8 @@ $endif
 ### Comparison of roles
 
 ```bdfd
-$let[modRole;123456789012345678]
-$if[$rolePosition[$highestRole]>=$rolePosition[$modRole]]
+$var[modRole;123456789012345678]
+$if[$rolePosition[$highestRole]>=$rolePosition[$var[modRole]]]
   $sendMessage[You have a role greater than or equal to Moderator.]
 $endif
 ```

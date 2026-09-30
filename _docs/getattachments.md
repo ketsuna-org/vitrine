@@ -41,9 +41,9 @@ $getAttachments[messageID]
 ### Simple retrieval
 
 ```bdfd
-$let[atts;$getAttachments[$messageID]]
-$if[$atts!=]
-  Attachments: $atts
+$var[atts;$getAttachments[$messageID]]
+$if[$var[atts]!=]
+  Attachments: $var[atts]
 $else
   No attachments in this message.
 $endif
@@ -52,9 +52,9 @@ $endif
 ### Loop through attachments
 
 ```bdfd
-$let[atts;$getAttachments[$messageID]]
-$if[$atts!=]
-  $textSplit[$atts;, ]
+$var[atts;$getAttachments[$messageID]]
+$if[$var[atts]!=]
+  $textSplit[$var[atts];, ]
     📎 Attachment $index: $splitText[$index]
   $endTextSplit
 $endif
@@ -63,10 +63,10 @@ $endif
 ### Save image
 
 ```bdfd
-$let[url;$getAttachments[$noMentionMessage]]
-$if[$url!=]
-  $let[first;$splitText[$url;, ;1]]
-  $image[$first]
+$var[url;$getAttachments[$noMentionMessage]]
+$if[$var[url]!=]
+  $var[first;$splitText[$var[url];, ;1]]
+  $image[$var[first]]
   $sendMessage[Image retrieved:]
 $else
   $sendMessage[No image found.]

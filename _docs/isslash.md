@@ -75,19 +75,19 @@ $sendMessage[]
 ```bdfd
 ;; This command works in prefix and slash mode
 $if[$isSlash==true]
-  $var[args;$slashOption[1]]
+  $var[args;((opts.input))]
 $else
   $var[args;$message[1]]
 $endif
 
 ;; Common processing
-$sendMessage[You provided: $var[args]]
+You provided: $var[args]
 ```
 
 ## Related functions
 
-- [$slashOption](/docs/slashoption/) — read slash command option values
-- [$sendResponse](/docs/sendresponse/) — direct interaction replies (including `// ephemeral`)
+- [$ephemeral](/docs/ephemeral/) — make an interaction response visible only to the command caller
+- [Execution model](/docs/execution-model/) — understand implicit slash replies and option variables
 
 ## Notes
 

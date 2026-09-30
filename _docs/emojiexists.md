@@ -52,14 +52,14 @@ $endif
 ### Before creation
 
 ```bdfd
-$let[name;$noMentionMessage]
-$if[$emojiExists[$name]==true]
-  $sendMessage[❌ An emoji named **$name** already exists.]
+$var[name;$noMentionMessage]
+$if[$emojiExists[$var[name]]==true]
+  $sendMessage[❌ An emoji named **$var[name]** already exists.]
 $else
-  $let[url;$getAttachments[$noMentionMessage]]
-  $if[$url!=]
-    $addEmoji[$name;$url]
-    $sendMessage[✅ Emoji **$name** created !]
+  $var[url;$getAttachments[$noMentionMessage]]
+  $if[$var[url]!=]
+    $addEmoji[$var[name];$var[url]]
+    $sendMessage[✅ Emoji **$var[name]** created !]
   $else
     $sendMessage[❌ Please attach an image.]
   $endif

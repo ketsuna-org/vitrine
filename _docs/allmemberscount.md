@@ -51,15 +51,15 @@ $sendMessage[]
 ### Comparison of humans vs bots
 
 ```bdfd
-$let[humans;$membersCount]
-$let[bots;$botCount]
-$let[total;$allMembersCount]
+$var[humans;$membersCount]
+$var[bots;$botCount]
+$var[total;$allMembersCount]
 
 $title[👥 Server Composition]
 $description[
-**Total:** $total members
-**👤 Humans:** $humans ($math[$humans*100/$total]%)
-**🤖 Bots:** $bots ($math[$bots*100/$total]%)
+**Total:** $var[total] members
+**👤 Humans:** $var[humans] ($math[$var[humans]*100/$var[total]]%)
+**🤖 Bots:** $var[bots] ($math[$var[bots]*100/$var[total]]%)
 ]
 $color[#57F287]
 $sendMessage[]

@@ -53,8 +53,8 @@ $sendMessage[]
 ### Activity Check
 
 ```bdfd
-$let[msgCount;$threadMessageCount[$threadID]]
-$if[$msgCount<=1]
+$var[msgCount;$threadMessageCount[$threadID]]
+$if[$var[msgCount]<=1]
   $channelSendMessage[$threadID;This thread seems inactive. Feel free to ask your questions!]
 $endif
 ```
@@ -62,8 +62,8 @@ $endif
 ### Auto Archiving
 
 ```bdfd
-$let[msgCount;$threadMessageCount[$threadID]]
-$if[$msgCount>=100]
+$var[msgCount;$threadMessageCount[$threadID]]
+$if[$var[msgCount]>=100]
   $editThread[$threadID;[$threadName];true;true]
   $sendMessage[Thread archived automatically (100 messages reached).]
 $endif

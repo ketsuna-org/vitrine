@@ -41,17 +41,17 @@ $voiceUserLimit[(channelID)]
 ### Checking capacity
 
 ```bdfd
-$let[limit;$voiceUserLimit]
-$let[users;$voiceMembersCount]
+$var[limit;$voiceUserLimit]
+$var[users;$voiceMembersCount]
 
-$if[$limit==0]
-  Unlimited channel — **$users** user(s) connected.
+$if[$var[limit]==0]
+  Unlimited channel — **$var[users]** user(s) connected.
 $else
-  Channel: **$users / $limit** users.
-  $if[$users>=$limit]
+  Channel: **$var[users] / $var[limit]** users.
+  $if[$var[users]>=$var[limit]]
     ⚠️ Channel full!
   $else
-    ✅ $math[$limit-$users] spot(s) available.
+    ✅ $math[$var[limit]-$var[users]] spot(s) available.
   $endif
 $endif
 ```
@@ -72,14 +72,14 @@ $sendMessage[]
 ### Checking for a specific channel
 
 ```bdfd
-$let[target;$channelID[Gaming Channel]]
-$let[limit;$voiceUserLimit[$target]]
-$let[users;$voiceMembersCount[$target]]
+$var[target;$channelID[Gaming Channel]]
+$var[limit;$voiceUserLimit[$var[target]]]
+$var[users;$voiceMembersCount[$var[target]]]
 
-$if[$users<$limit]
-  $sendMessage[✅ You can join <#$target>.]
+$if[$var[users]<$var[limit]]
+  $sendMessage[✅ You can join <#$var[target]>.]
 $else
-  $sendMessage[❌ <#$target> is full ($users/$limit).]
+  $sendMessage[❌ <#$var[target]> is full ($var[users]/$var[limit]).]
 $endif
 ```
 

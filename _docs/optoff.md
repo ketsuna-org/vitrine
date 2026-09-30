@@ -48,9 +48,9 @@ $sendMessage[x = $var[x]]
 
 ```bdfd
 $optOff
-$let[a;1]
-$onlyIf[$let[a]!=;Missing value]
-$sendMessage[$let[a]]
+$var[a;1]
+$onlyIf[$var[a]!=;Missing value]
+$sendMessage[$var[a]]
 ```
 
 ## Notes

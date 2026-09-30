@@ -45,8 +45,8 @@ $addEmoji[name;url;(roleID)]
 
 ```bdfd
 $if[$checkContains[$userPerms;ManageEmojisAndStickers]==true]
-  $let[emoji;$addEmoji[cool;https://example.com/cool.png]]
-  $sendMessage[✅ Emoji added : $emoji]
+  $var[emoji;$addEmoji[cool;https://example.com/cool.png]]
+  $sendMessage[✅ Emoji added : $var[emoji]]
 $else
   $sendMessage[❌ Permission denied.]
 $endif
@@ -55,12 +55,12 @@ $endif
 ### Emoji with attachment
 
 ```bdfd
-$let[url;$getAttachments[$noMentionMessage]]
-$if[$url!=]
-  $let[firstUrl;$splitText[$url;, ;1]]
-  $let[emojiName;$noMentionMessage]
-  $let[emoji;$addEmoji[$emojiName;$firstUrl]]
-  $sendMessage[✅ Emoji created : $emoji]
+$var[url;$getAttachments[$noMentionMessage]]
+$if[$var[url]!=]
+  $var[firstUrl;$splitText[$var[url];, ;1]]
+  $var[emojiName;$noMentionMessage]
+  $var[emoji;$addEmoji[$var[emojiName];$var[firstUrl]]]
+  $sendMessage[✅ Emoji created : $var[emoji]]
 $else
   $sendMessage[❌ No image found. Please attach an image to your message.]
 $endif
@@ -69,10 +69,10 @@ $endif
 ### Staff-restricted emoji
 
 ```bdfd
-$let[staffRole;$roleID[Staff]]
-$let[emoji;$addEmoji[confidential;https://example.com/lock.png;$staffRole]]
-$if[$emoji!=]
-  $sendMessage[✅ Emoji **$emoji** created and restricted to the role <@&$staffRole>.]
+$var[staffRole;$roleID[Staff]]
+$var[emoji;$addEmoji[confidential;https://example.com/lock.png;$var[staffRole]]]
+$if[$var[emoji]!=]
+  $sendMessage[✅ Emoji **$var[emoji]** created and restricted to the role <@&$var[staffRole]>.]
 $else
   $sendMessage[❌ Error during emoji creation.]
 $endif
@@ -81,16 +81,16 @@ $endif
 ### Validation of the name
 
 ```bdfd
-$let[name;$message]
-$if[$length[$name]<2]
+$var[name;$message]
+$if[$length[$var[name]]<2]
   $sendMessage[❌ The name must be at least 2 characters.]
-$elseif[$length[$name]>32]
+$elseif[$length[$var[name]]>32]
   $sendMessage[❌ The name must not exceed 32 characters.]
-$elseif[$emojiExists[$name]==true]
-  $sendMessage[❌ An emoji named **$name** already exists.]
+$elseif[$emojiExists[$var[name]]==true]
+  $sendMessage[❌ An emoji named **$var[name]** already exists.]
 $else
-  $let[emoji;$addEmoji[$name;$getAttachments[$noMentionMessage]]]
-  $sendMessage[✅ Emoji **$emoji** created !]
+  $var[emoji;$addEmoji[$var[name];$getAttachments[$noMentionMessage]]]
+  $sendMessage[✅ Emoji **$var[emoji]** created !]
 $endif
 ```
 

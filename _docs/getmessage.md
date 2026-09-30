@@ -42,10 +42,10 @@ $getMessage[channelID;messageID]
 ### Quoting a message
 
 ```bdfd
-$let[msgContent;$getMessage[$channelID;$noMentionMessage]]
-$if[$msgContent!=]
+$var[msgContent;$getMessage[$channelID;$noMentionMessage]]
+$if[$var[msgContent]!=]
   $title[Quoted Message]
-  $description[>>> $msgContent]
+  $description[>>> $var[msgContent]]
   $footer[Message ID: $noMentionMessage]
   $color[#5865F2]
   $sendMessage[]
@@ -57,13 +57,13 @@ $endif
 ### Log of deleted message
 
 ```bdfd
-$let[msgContent;$getMessage[$channelID;$messageID]]
-$if[$msgContent!=]
+$var[msgContent;$getMessage[$channelID;$messageID]]
+$if[$var[msgContent]!=]
   $title[🗑️ Retrieved Message]
   $description[
   **Author:** $username
   **Content:**
->>> $msgContent
+>>> $var[msgContent]
   ]
   $color[#ED4245]
   $channelSendMessage[$logChannel;]
@@ -73,8 +73,8 @@ $endif
 ### Content verification
 
 ```bdfd
-$let[target;$getMessage[$channelID;$message[1]]]
-$if[$checkContains[$target;http]==true]
+$var[target;$getMessage[$channelID;$message[1]]]
+$if[$checkContains[$var[target];http]==true]
   $sendMessage[⚠️ This message contains a link.]
 $else
   $sendMessage[✅ No links detected.]

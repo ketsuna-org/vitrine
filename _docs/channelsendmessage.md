@@ -42,7 +42,7 @@ $channelSendMessage[channelID;content]
 ### Moderation logs
 
 ```bdfd
-$let[logChannel;123456789012345678]
+$var[logChannel;123456789012345678]
 $title[⚠️ Moderation Action]
 $description[
 **Moderator:** $username
@@ -51,19 +51,19 @@ $description[
 **Reason:** $noMentionMessage
 ]
 $color[#ED4245]
-$channelSendMessage[$logChannel;]
+$channelSendMessage[$var[logChannel];]
 $sendMessage[User banned.]
 ```
 
 ### Welcome notification
 
 ```bdfd
-$let[welcomeChannel;123456789]
+$var[welcomeChannel;123456789]
 $title[👋 Welcome!]
 $description[Welcome to **$serverName**, $username! You are member #$membersCount!]
 $thumbnail[$authorAvatar]
 $color[#57F287]
-$channelSendMessage[$welcomeChannel;]
+$channelSendMessage[$var[welcomeChannel];]
 ```
 
 ### Send to a mentioned channel

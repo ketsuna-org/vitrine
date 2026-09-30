@@ -40,20 +40,20 @@ This function does not return a value. The deletion is performed silently.
 ### Deletion of a webhook
 
 ```bdfd
-$let[hookID;123456789]
-$let[hookToken;abcdefghijklmnop]
-$webhookDelete[$hookID;$hookToken]
+$var[hookID;123456789]
+$var[hookToken;abcdefghijklmnop]
+$webhookDelete[$var[hookID];$var[hookToken]]
 $sendMessage[Webhook deleted.]
 ```
 
 ### Extraction from a stored URL
 
 ```bdfd
-$let[url;$getUserVar[tempHook]]
-$let[parts;$splitText[$url;/]]
-$let[hookID;$getTextSplitIndex[$parts;5]]
-$let[hookToken;$getTextSplitIndex[$parts;6]]
-$webhookDelete[$hookID;$hookToken]
+$var[url;$getUserVar[tempHook]]
+$var[parts;$splitText[$var[url];/]]
+$var[hookID;$getTextSplitIndex[$var[parts];5]]
+$var[hookToken;$getTextSplitIndex[$var[parts];6]]
+$webhookDelete[$var[hookID];$var[hookToken]]
 $sendMessage[Webhook cleaned up.]
 ```
 

@@ -15,7 +15,7 @@ const componentFiles = [
   'removeallcomponents', 'customid', 'getstringselectvalue', 'getstringselectvalues',
   'getchannelselectchannelid', 'getchannelselectchannelids', 'getroleselectroleid',
   'getroleselectroleids', 'getuserselectuserid', 'getuserselectuserids',
-  'getmentionableselectuserid', 'getmentionableselectuserids', 'sendresponse', 'ephemeral',
+  'getmentionableselectuserid', 'getmentionableselectuserids', 'ephemeral',
 ];
 
 const descriptions = {

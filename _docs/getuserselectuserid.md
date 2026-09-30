@@ -46,15 +46,15 @@ $addUserSelectMenu[user_select;1;Select a user]
 $sendMessage[Choose a user to check:]
 
 $onInteraction[user_select]
-$let[userID;$getUserSelectUserID]
+$var[userID;$getUserSelectUserID]
 $title[👤 User Profile]
 $description[
-**Name:** $userName[$userID]
-**ID:** $userID
-**Joined on:** $memberJoinDate[$userID]
-**Roles:** $userRoles[$userID]
+**Name:** $userName[$var[userID]]
+**ID:** $var[userID]
+**Joined on:** $memberJoinDate[$var[userID]]
+**Roles:** $userRoles[$var[userID]]
 ]
-$thumbnail[$userAvatar[$userID]]
+$thumbnail[$userAvatar[$var[userID]]]
 $color[#5865F2]
 $sendMessage[]
 ```
@@ -63,10 +63,10 @@ $sendMessage[]
 
 ```bdfd
 $onInteraction[user_select]
-$let[target;$getUserSelectUserID]
-$sendDM[$target;⚠️ You have received a warning on **$serverName**.]
+$var[target;$getUserSelectUserID]
+$sendDM[$var[target];⚠️ You have received a warning on **$serverName**.]
 $title[✅ Warning Sent]
-$description[A DM was sent to **$userName[$target]**.]
+$description[A DM was sent to **$userName[$var[target]]**.]
 $sendMessage[]
 ```
 

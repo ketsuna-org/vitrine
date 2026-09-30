@@ -99,14 +99,16 @@ $addButton[no;role_design;Designer;success;no;🎨]
 $nomention
 $if[((interaction.customId))==role_dev]
   $giveRole[((interaction.userId));112233445566778899]
-  $sendResponse[✅ The **Developer** role has been added to your profile! // ephemeral]
+  $ephemeral
+  ✅ The **Developer** role has been added to your profile!
 $endif
 
 $if[((interaction.customId))==role_design]
   $giveRole[((interaction.userId));998877665544332211]
-  $sendResponse[✅ The **Designer** role has been added to your profile! // ephemeral]
+  $ephemeral
+  ✅ The **Designer** role has been added to your profile!
 $endif
 ```
 
 > [!IMPORTANT]
-> Always mark interaction responses as `ephemeral` (using `// ephemeral` comments or settings) when you want the success message to be private, visible only to the clicking user. This prevents channel clutter!
+> Use [$ephemeral](/docs/ephemeral/) at the start of your interaction callback to make the success message private, visible only to the clicking user. In Blocks, check the `ephemeral` toggle on the `respondWithMessage` action. This keeps public channels clean!

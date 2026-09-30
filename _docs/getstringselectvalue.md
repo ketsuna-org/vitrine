@@ -46,17 +46,17 @@ $addStringSelectMenu[nav;Choose an action;Home:home;Profile:profile;Help:help]
 $sendMessage[What do you want to do?]
 
 $onInteraction[nav]
-$let[action;$getStringSelectValue]
+$var[action;$getStringSelectValue]
 
-$if[$action==home]
+$if[$var[action]==home]
   $title[🏠 Home]
   $description[Welcome to the server!]
   $sendMessage[]
-$elseif[$action==profile]
+$elseif[$var[action]==profile]
   $title[👤 Profile of $userName]
   $description[Joined on $creationDate[$authorID]...]
   $sendMessage[]
-$elseif[$action==help]
+$elseif[$var[action]==help]
   $title[❓ Help]
   $description[Use /help to view the commands.]
   $sendMessage[]
@@ -67,9 +67,9 @@ $endif
 
 ```bdfd
 $onInteraction[menu]
-$let[val;$getStringSelectValue]
+$var[val;$getStringSelectValue]
 
-$switch[$val]
+$switch[$var[val]]
   $case[option1]
     Action 1 executed.
   $break

@@ -46,11 +46,11 @@ $addChannelSelectMenu[channel_select;1;Select a channel to monitor]
 $sendMessage[Please choose a channel:]
 
 $onInteraction[channel_select]
-$let[channelID;$getChannelSelectChannelID]
+$var[channelID;$getChannelSelectChannelID]
 $title[Selected Channel]
 $description[
-**ID:** $channelID
-**Name:** $channelName[$channelID]
+**ID:** $var[channelID]
+**Name:** $channelName[$var[channelID]]
 ]
 $sendMessage[]
 ```
@@ -59,8 +59,8 @@ $sendMessage[]
 
 ```bdfd
 $onInteraction[channel_select]
-$let[count;$length[$splitText[$getChannelSelectChannelIDs[,];,]]]
-You have selected **$count** channel(s):
+$var[count;$length[$splitText[$getChannelSelectChannelIDs[,];,]]]
+You have selected **$var[count]** channel(s):
 $textSplit[$getChannelSelectChannelIDs[,];,]
 > <#[$splitText[$index]]> (ID: $splitText[$index])
 $endTextSplit

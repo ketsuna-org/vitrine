@@ -61,10 +61,10 @@ $sendMessage[]
 ### While loop with index
 
 ```bdfd
-$let[count;0]
+$var[count;0]
 $while[$var[count]<5]
   $sendMessage[Iteration #$i]
-  $let[count;$c[$var[count]+1]]
+  $var[count;$c[$var[count]+1]]
 $endWhile
 ```
 

@@ -44,9 +44,9 @@ $webhookCreate[channelID;name;(avatarURL)]
 ### Simple creation
 
 ```bdfd
-$let[hook;$webhookCreate[$channelID;Server Logger]]
-$if[$hook!=]
-  $webhookSend[$hook;Webhook for logs created successfully!]
+$var[hook;$webhookCreate[$channelID;Server Logger]]
+$if[$var[hook]!=]
+  $webhookSend[$var[hook];Webhook for logs created successfully!]
 $else
   $sendMessage[Failure: MANAGE_WEBHOOKS permission required.]
 $endif
@@ -55,8 +55,8 @@ $endif
 ### Creation with storage
 
 ```bdfd
-$let[logHook;$webhookCreate[$channelID;Logs;$serverIcon]]
-$setUserVar[logWebhook;$logHook]
+$var[logHook;$webhookCreate[$channelID;Logs;$serverIcon]]
+$setUserVar[logWebhook;$var[logHook]]
 $sendMessage[Webhook of logs configured!]
 ```
 

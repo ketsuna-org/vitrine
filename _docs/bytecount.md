@@ -40,9 +40,9 @@ $byteCount[text]
 ### Checking before sending
 
 ```bdfd
-$let[size;$byteCount[$message]]
-$if[$size>2000]
-  $sendMessage[⚠️ Message too long ($size bytes). Discord limit: 2000 characters.]
+$var[size;$byteCount[$message]]
+$if[$var[size]>2000]
+  $sendMessage[⚠️ Message too long ($var[size] bytes). Discord limit: 2000 characters.]
 $else
   $sendMessage[$message]
 $endif
@@ -51,13 +51,13 @@ $endif
 ### Checking stored data
 
 ```bdfd
-$let[data;$getVar[userData]]
-$let[size;$byteCount[$data]]
+$var[data;$getVar[userData]]
+$var[size;$byteCount[$var[data]]]
 
 $title[📦 User Data]
 $description[
-**Size:** $size bytes ($math[$size/1024] KB)
-**Number of characters:** $length[$data]
+**Size:** $var[size] bytes ($math[$var[size]/1024] KB)
+**Number of characters:** $length[$var[data]]
 ]
 $sendMessage[]
 ```
@@ -65,13 +65,13 @@ $sendMessage[]
 ### Size comparison
 
 ```bdfd
-$let[ascii;$byteCount[Hello World]]
-$let[unicode;$byteCount[Héllö Wörld]]
-$let[emoji;$byteCount[Hello 👋]]
+$var[ascii;$byteCount[Hello World]]
+$var[unicode;$byteCount[Héllö Wörld]]
+$var[emoji;$byteCount[Hello 👋]]
 
-ASCII: $ascii bytes
-Unicode (accents): $unicode bytes
-With emoji: $emoji bytes
+ASCII: $var[ascii] bytes
+Unicode (accents): $var[unicode] bytes
+With emoji: $var[emoji] bytes
 ```
 
 ## Notes

@@ -73,30 +73,31 @@ $sendMessage[]
 ```bdfd
 $if[$slashID!=]
   $var[mode;slash]
-  $var[args;$slashOption[1]]
+  $var[args;((opts.input))]
 $else
   $var[mode;prefix]
   $var[args;$message[1]]
 $endif
 
-$sendMessage[📌 Mode: $var[mode] | Args: $var[args]]
+📌 Mode: $var[mode] | Args: $var[args]
 ```
 
 ### Command information for support
 
 ```bdfd
 $if[$slashID!=]
-  $sendMessage[🆔 **Slash Command ID:** $slashID
-  ┗ Name: $commandName]
+  🆔 **Slash Command ID:** $slashID
+  ┗ Name: $commandName
 $else
-  $sendMessage[📝 **Prefix Command**
-  ┗ Trigger: $commandTrigger]
+  📝 **Prefix Command**
+  ┗ Trigger: $commandTrigger
 $endif
 ```
 
 ## Related functions
 
-- [$slashOption](/docs/slashoption/) — read slash command option values
+- [$isSlash](/docs/isslash/) — check if command is running in slash mode
+- [Execution model](/docs/execution-model/) — options variables and slash interaction flow
 
 ## Notes
 

@@ -56,8 +56,8 @@ $sendMessage[22/7 = $c[22/7]]
 ### Levels system
 
 ```bdfd
-$let[xp;$getVar[xp]]
-$let[level;$c[$var[xp]/100]]
+$var[xp;$getVar[xp]]
+$var[level;$c[$var[xp]/100]]
 $sendMessage[Level: $round[$var[level];0]]
 ```
 
@@ -66,7 +66,7 @@ $sendMessage[Level: $round[$var[level];0]]
 ```bdfd
 $var[price;49]
 $var[quantity;3]
-$let[total;$c[$var[price]*$var[quantity]]]
+$var[total;$c[$var[price]*$var[quantity]]]
 $sendMessage[Total: $var[total]€]
 ```
 

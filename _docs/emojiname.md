@@ -41,10 +41,10 @@ $emojiName[emojiID]
 ### Identification of emoji
 
 ```bdfd
-$let[emojiID;$message[1]]
-$let[name;$emojiName[$emojiID]]
-$if[$name!=]
-  Emoji detected: **$name** (ID: $emojiID)
+$var[emojiID;$message[1]]
+$var[name;$emojiName[$var[emojiID]]]
+$if[$var[name]!=]
+  Emoji detected: **$var[name]** (ID: $var[emojiID])
 $else
   Emoji not found.
 $endif
@@ -53,9 +53,9 @@ $endif
 ### Log of emojis used
 
 ```bdfd
-$let[id;$message[1]]
-$if[$id!=]
-  $sendMessage[$channelID[logs];📊 Emoji **$emojiName[$id]** used by $userName in $channelName.]
+$var[id;$message[1]]
+$if[$var[id]!=]
+  $sendMessage[$channelID[logs];📊 Emoji **$emojiName[$var[id]]** used by $userName in $channelName.]
 $endif
 ```
 

@@ -2,6 +2,7 @@
 layout: doc
 title: Interactions Overview
 category: "Meta"
+api_type: general
 description: Buttons, select menus, modals, and slash commands — how Bot Creator handles rich Discord interactions.
 permalink: /docs/interactions-overview/
 ---
@@ -29,40 +30,36 @@ Every interaction exposes:
 | `((interaction.channelId))` | Channel ID |
 | `((interaction.guildId))` | Server ID (empty in DMs) |
 | `((interaction.messageId))` | Message holding the component |
+| `((opts.<name>))` | Slash command option value (or `((opts.<name>.id))` for user/channel/role IDs) |
 
-## BDScript workflow
+## Responding to an interaction
 
-### 1. Build the UI
+Unlike standard messages, an interaction expects an acknowledgment or response within 3 seconds.
 
-Use component builders to attach elements to a message:
-
-- [$addButton](/docs/addbutton/) / [$addButtonCV2](/docs/addbuttoncv2/)
-- [$addStringSelect](/docs/addstringselect/)
-- [$newModal](/docs/newmodal/)
-
-### 2. Handle the callback
-
-Route by `((interaction.customId))` in an event workflow:
+### In BDScript (BDFD)
+Emitting text or embed content automatically sends the interaction reply. Use `$ephemeral` to make it visible only to the interacting user. Do not append `$sendMessage` in slash commands unless you need a separate message in the channel.
 
 ```bdfd
 $if[((interaction.customId))==btn_verify]
-  $sendResponse[Verified! // ephemeral]
+  $ephemeral
+  Verified! Your account has been unlocked.
 $endif
 ```
 
-See [$sendResponse](/docs/sendresponse/) for direct interaction replies.
+### In Blocks
+Use the dedicated `respondWithMessage` action with the `ephemeral` checkbox:
 
-### 3. Read select values
+```json
+{
+  "type": "respondWithMessage",
+  "payload": {
+    "content": "Verified! Your account has been unlocked.",
+    "ephemeral": true
+  }
+}
+```
 
-| Select type | Getter |
-|-------------|--------|
-| String select | [$getStringSelectValue](/docs/getstringselectvalue/) |
-| User select | [$getUserSelectUserId](/docs/getuserselectuserid/) |
-| Role select | [$getRoleSelectRoleId](/docs/getroleselectroleid/) |
-| Channel select | [$getChannelSelectChannelId](/docs/getchannelselectchannelid/) |
-
-## JavaScript workflow
-
+### In JavaScript (BDJS)
 In BDJS scripts, use the global `interaction` object:
 
 ```javascript
@@ -73,11 +70,20 @@ if (interaction.isButton()) {
 
 See [Components](/docs/javascript/components/) and [interaction](/docs/javascript/interaction/).
 
+## 3. Read select values
+
+| Select type | Getter |
+|-------------|--------|
+| String select | [$getStringSelectValue](/docs/getstringselectvalue/) |
+| User select | [$getUserSelectUserId](/docs/getuserselectuserid/) |
+| Role select | [$getRoleSelectRoleId](/docs/getroleselectroleid/) |
+| Channel select | [$getChannelSelectChannelId](/docs/getchannelselectchannelid/) |
+
 ## Slash commands
 
-Slash commands are interactions too. Read options with [$slashOption](/docs/slashoption/) in BDScript or `interaction.options.getString()` in JavaScript.
+Slash commands are interactions too. Read options directly with `((opts.<name>))` (or `((opts.<name>.id))`) in BDScript and Blocks, or `interaction.options.getString('name')` in JavaScript.
 
-For slow commands, call [$defer](/docs/defer/) first to avoid Discord's 3-second timeout.
+For long operations, call [$defer](/docs/defer/) (or use the `deferInteraction` block) first to avoid Discord's 3-second timeout.
 
 ## Guides
 

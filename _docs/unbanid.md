@@ -41,12 +41,12 @@ $unBanID[userID]
 ### Unban from a list
 
 ```bdfd
-$let[bans;$getBanList[, ]]
-$textSplit[$bans;, ]
-  $let[userID;$splitText[$index]]
-  $if[$checkCondition[$userID==$mentioned[1]]==true]
-    $unBanID[$userID]
-    ✅ **$userName[$userID]** was unbanned.
+$var[bans;$getBanList[, ]]
+$textSplit[$var[bans];, ]
+  $var[userID;$splitText[$index]]
+  $if[$checkCondition[$var[userID]==$mentioned[1]]==true]
+    $unBanID[$var[userID]]
+    ✅ **$userName[$var[userID]]** was unbanned.
     $break
   $endif
 $endTextSplit
@@ -55,12 +55,12 @@ $endTextSplit
 ### Scheduled unban
 
 ```bdfd
-$let[target;$noMentionMessage]
-$if[$isBanned[$target]==true]
-  $unBanID[$target]
+$var[target;$noMentionMessage]
+$if[$isBanned[$var[target]]==true]
+  $unBanID[$var[target]]
   $title[🔓 Automatic unban]
   $description[
-  User **$target** was unbanned (end of ban duration).
+  User **$var[target]** was unbanned (end of ban duration).
   ]
   $color[#57F287]
   $sendMessage[$channelID[mod-logs]]

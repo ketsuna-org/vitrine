@@ -45,19 +45,19 @@ $getUserStatus[userID]
 ### Display the status with an emoji
 
 ```bdfd
-$let[status;$getUserStatus[$userID]]
-$if[$status==online]
-  $let[emoji;🟢]
-$elseif[$status==idle]
-  $let[emoji;🟡]
-$elseif[$status==dnd]
-  $let[emoji;🔴]
+$var[status;$getUserStatus[$userID]]
+$if[$var[status]==online]
+  $var[emoji;🟢]
+$elseif[$var[status]==idle]
+  $var[emoji;🟡]
+$elseif[$var[status]==dnd]
+  $var[emoji;🔴]
 $else
-  $let[emoji;⚫]
+  $var[emoji;⚫]
 $endif
 
 $title[Status of $userName]
-$description[**Status:** $emoji $status]
+$description[**Status:** $var[emoji] $var[status]]
 $color[#5865F2]
 $sendMessage[]
 ```
@@ -66,8 +66,8 @@ $sendMessage[]
 
 ```bdfd
 $if[$mentioned!=]
-  $let[status;$getUserStatus[$mentioned]]
-  $sendMessage[<@$mentioned> is currently: **$status**]
+  $var[status;$getUserStatus[$mentioned]]
+  $sendMessage[<@$mentioned> is currently: **$var[status]**]
 $else
   $sendMessage[Please mention a user.]
 $endif

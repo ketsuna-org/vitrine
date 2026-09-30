@@ -38,13 +38,13 @@ None.
 ### Logging without pinging
 
 ```bdfd
-$let[logChannel;123456789]
+$var[logChannel;123456789]
 $title[📋 New Message]
 $description[
 **Author:** $username
 **Content:** $noMentionMessage
 ]
-$channelSendMessage[$logChannel;]
+$channelSendMessage[$var[logChannel];]
 ```
 
 ### Secure say command

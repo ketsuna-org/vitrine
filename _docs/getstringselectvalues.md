@@ -42,10 +42,10 @@ $getStringSelectValues[(separator)]
 
 ```bdfd
 $onInteraction[menu]
-$let[vals;$getStringSelectValues[,]]
+$var[vals;$getStringSelectValues[,]]
 
 You selected:
-$textSplit[$vals;,]
+$textSplit[$var[vals];,]
   - Option: $splitText[$index]
 $endTextSplit
 
@@ -56,9 +56,9 @@ $sendMessage[]
 
 ```bdfd
 $onInteraction[menu]
-$let[choices;$getStringSelectValues[,]]
+$var[choices;$getStringSelectValues[,]]
 
-$textSplit[$choices;,]
+$textSplit[$var[choices];,]
   $if[$splitText[$index]==notif]
     $sendDM[$authorID;🔔 Notifications enabled!]
   $elseif[$splitText[$index]==news]

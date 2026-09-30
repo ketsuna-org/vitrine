@@ -42,9 +42,9 @@ $getMentionableSelectUserIDs[(separator)]
 
 ```bdfd
 $onInteraction[mention_select]
-$let[list;$getMentionableSelectUserIDs[, ]]
+$var[list;$getMentionableSelectUserIDs[, ]]
 $title[📋 Selected Entities]
-$description[$list]
+$description[$var[list]]
 $sendMessage[]
 ```
 
@@ -52,8 +52,8 @@ $sendMessage[]
 
 ```bdfd
 $onInteraction[mention_select]
-$let[list;$getMentionableSelectUserIDs[,]]
-$textSplit[$list;,]
+$var[list;$getMentionableSelectUserIDs[,]]
+$textSplit[$var[list];,]
   $if[$hasRole[$splitText[$index];$guildID]==true]
     Role: $roleName[$splitText[$index]]
   $else

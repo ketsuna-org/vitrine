@@ -56,9 +56,9 @@ $sendMessage[]
 ### Use with JSON parsing
 
 ```bdfd
-$let[info;$userInfo]
-$let[name;$jsonParse[$info;username]]
-$sendMessage[Name: $name]
+$var[info;$userInfo]
+$var[name;$jsonParse[$var[info];username]]
+$sendMessage[Name: $var[name]]
 ```
 
 ## Notes

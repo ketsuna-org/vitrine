@@ -42,9 +42,9 @@ $getUserSelectUserIDs[(separator)]
 
 ```bdfd
 $onInteraction[user_select]
-$let[users;$getUserSelectUserIDs[,]]
+$var[users;$getUserSelectUserIDs[,]]
 
-$textSplit[$users;,]
+$textSplit[$var[users];,]
   $sendDM[$splitText[$index];📢 Important message from **$serverName**!]
 $endTextSplit
 
@@ -58,15 +58,15 @@ $sendMessage[]
 
 ```bdfd
 $onInteraction[user_select]
-$let[users;$getUserSelectUserIDs[,]]
-$let[count;$length[$splitText[$users;,]]]
+$var[users;$getUserSelectUserIDs[,]]
+$var[count;$length[$splitText[$var[users];,]]]
 
-$textSplit[$users;,]
+$textSplit[$var[users];,]
   $giveRole[$splitText[$index];$roleID[Member]]
 $endTextSplit
 
 $title[🎭 Role Assigned]
-$description[The role **Member** was given to **$count** user(s).]
+$description[The role **Member** was given to **$var[count]** user(s).]
 $color[#5865F2]
 $sendMessage[]
 ```

@@ -53,14 +53,14 @@ $endif
 ### Unban with Confirmation
 
 ```bdfd
-$let[target;$mentioned[1]]
+$var[target;$mentioned[1]]
 
-$if[$isBanned[$target]==true]
-  $unBan[$target]
+$if[$isBanned[$var[target]]==true]
+  $unBan[$var[target]]
   $title[🔓 Unban]
   $description[
-  **User:** $userName[$target] ($target)
-  **Previous Reason:** $getBanReason[$target]
+  **User:** $userName[$var[target]] ($var[target])
+  **Previous Reason:** $getBanReason[$var[target]]
   **Unbanned by:** $userName[$authorID]
   ]
   $color[#57F287]
@@ -74,8 +74,8 @@ $endif
 
 ```bdfd
 $if[$message!=]
-  $let[exists;$userExists[$message]]
-  $if[$exists==true]
+  $var[exists;$userExists[$message]]
+  $if[$var[exists]==true]
     $unBan[$message]
     $sendMessage[✅ User **$message** unbanned.]
   $elseif[$isBanned[$message]==true]

@@ -41,8 +41,8 @@ $dmChannelID[userID]
 ### Retrieving the DM ID
 
 ```bdfd
-$let[dmChannel;$dmChannelID[$authorID]]
-$sendMessage[Your private conversation with the bot: $dmChannel]
+$var[dmChannel;$dmChannelID[$authorID]]
+$sendMessage[Your private conversation with the bot: $var[dmChannel]]
 ```
 
 ### Sending to the DM via useChannel

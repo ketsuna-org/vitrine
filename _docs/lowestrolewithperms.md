@@ -41,30 +41,30 @@ $lowestRoleWithPerms[permission1;permission2;...]
 ### Find the lowest role with voice access
 
 ```bdfd
-$let[voiceRole;$lowestRoleWithPerms[Connect;Speak]]
-$if[$voiceRole!=]
-  $sendMessage[Your lowest voice role: $roleName[$voiceRole]]
+$var[voiceRole;$lowestRoleWithPerms[Connect;Speak]]
+$if[$var[voiceRole]!=]
+  $sendMessage[Your lowest voice role: $roleName[$var[voiceRole]]]
 $endif
 ```
 
 ### Check basic permissions
 
 ```bdfd
-$let[basicRole;$lowestRoleWithPerms[SendMessages;ReadMessageHistory]]
-$if[$basicRole!=]
-  $sendMessage[The role $roleName[$basicRole] grants you message access.]
+$var[basicRole;$lowestRoleWithPerms[SendMessages;ReadMessageHistory]]
+$if[$var[basicRole]!=]
+  $sendMessage[The role $roleName[$var[basicRole]] grants you message access.]
 $endif
 ```
 
 ### Comparison between highest/lowest
 
 ```bdfd
-$let[highest;$highestRoleWithPerms[ManageMessages]]
-$let[lowest;$lowestRoleWithPerms[ManageMessages]]
+$var[highest;$highestRoleWithPerms[ManageMessages]]
+$var[lowest;$lowestRoleWithPerms[ManageMessages]]
 $title[Moderation Permissions]
 $description[
-**Highest Role:** $roleName[$highest]
-**Lowest Role:** $roleName[$lowest]
+**Highest Role:** $roleName[$var[highest]]
+**Lowest Role:** $roleName[$var[lowest]]
 ]
 $color[#5865F2]
 $sendMessage[]

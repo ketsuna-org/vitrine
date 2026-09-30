@@ -2,6 +2,7 @@
 layout: doc
 title: Events & Placeholders
 category: "Meta"
+api_type: general
 description: How event-driven workflows and ((...)) placeholders work in Bot Creator bots.
 permalink: /docs/events-and-placeholders/
 ---
@@ -39,15 +40,29 @@ $sendMessage[Welcome ((user.username))! You joined ((guild.name)).]
 | `((channel.*))` | `((channel.id))`, `((channel.name))` |
 | `((message.*))` | `((message.content))`, `((message.id))` |
 | `((interaction.*))` | `((interaction.customId))`, `((interaction.kind))` |
+| `((opts.*))` | `((opts.reason))`, `((opts.target.id))` (Slash command options) |
 
 ## Interaction placeholders
 
-When a user clicks a button or submits a modal, interaction placeholders are populated automatically:
+When a user clicks a button or submits a modal, interaction placeholders are populated automatically.
 
+**BDScript (BDFD):**
 ```bdfd
 $if[((interaction.kind))==button]
-  $sendResponse[Clicked: ((interaction.customId)) // ephemeral]
+  $ephemeral
+  Clicked: ((interaction.customId))
 $endif
+```
+
+**Blocks:**
+```json
+{
+  "type": "respondWithMessage",
+  "payload": {
+    "content": "Clicked: ((interaction.customId))",
+    "ephemeral": true
+  }
+}
 ```
 
 See [Interactions overview](/docs/interactions-overview/) for component-specific patterns.

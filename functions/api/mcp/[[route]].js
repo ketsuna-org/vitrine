@@ -111,6 +111,7 @@ async function handleSingle(req) {
             protocolVersion: PROTOCOL_VERSION,
             capabilities: CAPABILITIES,
             serverInfo: SERVER_INFO,
+            instructions: "Read execution-model before generating commands. Search the requested api_type (blocks, bdfd or javascript), then read the matching docs. BDFD uses $var for temporary variables and supports implicit slash responses. Respect compatibility status: ticket helpers are incomplete. Do not invent functions or infer Blocks payloads from BDFD signatures.",
           },
         };
 
@@ -148,11 +149,12 @@ const TOOLS_META = [
   {
     name: "search_docs",
     description:
-      "Search Bot Creator function documentation by name, slug, or category. Returns matching docs with their slugs (use get_doc to read full content).",
+      "Search Bot Creator Blocks, BDFD and JavaScript documentation. Filter api_type for the requested mode; read execution-model first. Results include compatibility status; use get_doc for contracts and examples.",
     inputSchema: {
       type: "object",
       properties: {
         query: { type: "string", description: "Search term (matched case-insensitively against name, slug, category)." },
+        api_type: { type: "string", enum: ["blocks", "bdfd", "javascript", "general"], description: "Filter documentation by execution mode." },
         limit: { type: "integer", description: "Max results (default 25).", default: 25, minimum: 1, maximum: 100 },
       },
       required: ["query"],
@@ -161,7 +163,7 @@ const TOOLS_META = [
   {
     name: "get_doc",
     description:
-      "Fetch the raw markdown for a Bot Creator function doc by slug (e.g. 'sendmessage', 'canvas_draw_arc'). Returns the file's full markdown content.",
+      "Read deployed documentation by slug: execution-model, blocks, blocks-channels, sendmessage, etc. Includes mode and compatibility metadata. Ticket helpers are incomplete; read their limitations before proposing them.",
     inputSchema: {
       type: "object",
       properties: {
@@ -292,15 +294,17 @@ async function fetchPostsIndex() {
   return res.json();
 }
 
-async function toolSearchDocs({ query, limit }) {
+async function toolSearchDocs({ query, limit, api_type }) {
   const q = normalize(query);
   const lim = clampLimit(limit, 25);
   if (!q) throw new Error("`query` is required");
+  if (api_type && !["blocks", "bdfd", "javascript", "general"].includes(api_type)) throw new Error("Invalid api_type");
 
   const docs = await fetchDocsIndex();
   const scored = docs
+    .filter((d) => !api_type || (d.api_type || "bdfd") === api_type)
     .map((d) => {
-      const haystack = [normalize(d.slug), normalize(d.name), normalize(d.category)].join(" ");
+      const haystack = [normalize(d.slug), normalize(d.name), normalize(d.category), normalize(d.description), normalize(d.api_type)].join(" ");
       let score = 0;
       if (normalize(d.slug) === q) score += 100;
       if (normalize(d.name) === q) score += 90;
@@ -327,14 +331,19 @@ async function toolGetDoc({ slug }) {
   // Defensive: only allow simple slugs.
   if (!/^[a-z0-9_-]+$/i.test(slug)) throw new Error("Invalid slug");
 
-  const url = `${GITHUB_RAW}/_docs/${slug}.md`;
+  const docs = await fetchDocsIndex();
+  const doc = docs.find((d) => d.slug === slug);
+  if (!doc) return { ...toolText(`Doc not found: ${slug}. Use search_docs to find the correct slug.`), isError: true };
+  // The index and Markdown are built together; never mix deployed metadata
+  // with a different revision from the repository's default branch.
+  const url = `${SITE_ORIGIN}/api/docs/${slug}.md`;
   const res = await fetch(url, { cf: { cacheTtl: 600, cacheEverything: true } });
   if (res.status === 404) {
-    return toolText(`Doc not found: ${slug}. Use search_docs to find the correct slug.`);
+    return { ...toolText(`Doc not found: ${slug}. Use search_docs to find the correct slug.`), isError: true };
   }
-  if (!res.ok) throw new Error(`GitHub returned ${res.status} for ${url}`);
+  if (!res.ok) throw new Error(`Documentation returned ${res.status}`);
   const markdown = await res.text();
-  return toolText(markdown);
+  return toolText(`Mode: ${doc.api_type || "bdfd"}\nStatus: ${doc.status || "documented"}\nSource: ${doc.url}\n\n${markdown}`);
 }
 
 async function toolListPosts({ locale, limit }) {
