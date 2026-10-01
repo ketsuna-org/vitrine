@@ -58,13 +58,13 @@ home:
     body: "Complete reference for BDFD $functions, JavaScript scripting (db.*, interaction), and step-by-step guides."
     primary_cta: "Browse documentation"
     secondary_cta: "Read guides"
-    screenshot_alt: "Bot Creator dashboard — Create and host Discord bots"
+    screenshot_alt: "Bot Creator Android workspace with an online Discord bot"
   pillars:
     title: "Explore the documentation"
     descriptions:
       - "Visual block builder and BDFD $function reference for every command."
-      - "Full JavaScript API — db.*, interaction, message, and require()."
-      - "Tutorials from bot token setup to advanced interactions."
+      - "Create, organize, and edit your bot commands from one workspace."
+      - "Keep reusable workflows organized in your bot workspace."
   featured:
     title: "Popular references"
   how_it_works:

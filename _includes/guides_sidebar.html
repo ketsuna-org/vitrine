@@ -3,14 +3,14 @@
 
 <div class="flex flex-col gap-6">
   <div class="relative flex items-center bg-surface-container border border-outline-variant rounded-lg p-1.5 focus-within:border-primary transition-all">
-    <span class="material-symbols-outlined text-on-surface-variant/50 ml-2 mr-1.5 text-lg">search</span>
-    <input type="text" id="sidebar-search-input" placeholder="Search guides..."
-      class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-on-surface-variant/40 pr-2 text-sm py-1">
+    <svg class="reicon text-on-surface-variant ml-2 mr-1.5 text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#search"></use></svg>
+    <input type="text" id="sidebar-search-input" aria-label="Search guide navigation" placeholder="Search guides..."
+      class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-on-surface-variant pr-2 text-sm py-1">
   </div>
 
   <div class="sidebar-group">
-    <a href="{{ t.paths.guides | relative_url }}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-bold text-primary bg-primary/10 border border-primary/20 mb-2">
-      <span class="material-symbols-outlined text-base">library_books</span>
+    <a href="{{ t.paths.guides | relative_url }}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-bold text-on-surface-variant hover:text-primary mb-2">
+      <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#library_books"></use></svg>
       All Guides
     </a>
 
@@ -22,10 +22,10 @@
         <div class="sidebar-cat-group">
           <button class="sidebar-cat-header flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-toggle-target="guide-cat-list-{{ cat_slug }}">
             <span class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-base text-primary/70">article</span>
+              <svg class="reicon text-base text-primary/70" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#article"></use></svg>
               <span>{{ cat }}</span>
             </span>
-            <span class="material-symbols-outlined text-sm transition-transform duration-200{% if page.category == cat %} rotate-180{% endif %}" id="guide-cat-list-{{ cat_slug }}-arrow">expand_more</span>
+            <svg class="reicon text-sm transition-transform duration-200{% if page.category == cat %} rotate-180{% endif %}" id="guide-cat-list-{{ cat_slug }}-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#expand_more"></use></svg>
           </button>
           <ul id="guide-cat-list-{{ cat_slug }}" class="flex flex-col gap-1 pl-4 mt-1{% unless page.category == cat %} hidden{% endunless %}">
             {% for post in cat_posts %}

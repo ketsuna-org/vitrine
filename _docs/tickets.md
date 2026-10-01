@@ -44,11 +44,11 @@ To ensure total confidentiality for conversations between the user and staff:
 <div class="dual-view-tabs">
   <div class="dual-view-nav">
     <button class="dual-tab-btn active" type="button">
-      <span class="material-symbols-outlined tab-accent">dashboard</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
       <span>Blocks View (App Mode)</span>
     </button>
     <button class="dual-tab-btn" type="button">
-      <span class="material-symbols-outlined tab-accent">code</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
       <span>Script View (BDFD / BDScript)</span>
     </button>
   </div>
@@ -60,7 +60,7 @@ To ensure total confidentiality for conversations between the user and staff:
       <div class="scratch-block-card block-cat-entrypoint">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">terminal</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#terminal"></use></svg>
           <span class="scratch-block-title">SLASH COMMAND: /ticket</span>
           <span class="scratch-block-badge">Trigger</span>
         </div>
@@ -71,14 +71,14 @@ To ensure total confidentiality for conversations between the user and staff:
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action 1: Create Channel -->
       <div class="scratch-block-card block-cat-channels">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">add_box</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#add_box"></use></svg>
           <span class="scratch-block-title">CREATE A CHANNEL</span>
           <span class="scratch-block-badge">Key: ticket_chan</span>
         </div>
@@ -100,14 +100,14 @@ To ensure total confidentiality for conversations between the user and staff:
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action 2: Edit Permissions -->
       <div class="scratch-block-card block-cat-channels">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">lock_open</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#lock_open"></use></svg>
           <span class="scratch-block-title">EDIT PERMISSIONS</span>
           <span class="scratch-block-badge">Depends: ticket_chan</span>
         </div>
@@ -129,14 +129,14 @@ To ensure total confidentiality for conversations between the user and staff:
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action 3: Send Message in Ticket -->
       <div class="scratch-block-card block-cat-messages">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">send</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#send"></use></svg>
           <span class="scratch-block-title">SEND A MESSAGE (Ticket Channel)</span>
           <span class="scratch-block-badge">Depends: ticket_chan</span>
         </div>
@@ -158,14 +158,14 @@ To ensure total confidentiality for conversations between the user and staff:
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action 4: Interaction Reply (Terminal) -->
       <div class="scratch-block-card block-cat-interactions">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">chat</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
           <span class="scratch-block-title">RESPOND TO INTERACTION (Slash Reply)</span>
           <span class="scratch-block-badge">Terminal</span>
         </div>
@@ -186,8 +186,7 @@ To ensure total confidentiality for conversations between the user and staff:
 
   <div class="dual-tab-panel">
     <p class="text-sm text-on-surface-variant mb-4">BDScript code executed by the engine:</p>
-```bdfd
-;; 1. Create text channel under the private category
+<pre><code class="language-bdfd">;; 1. Create text channel under the private category
 $var[ticketChan;$createChannel[ticket-$username;text;123456789012345678]]
 
 ;; 2. Grant permissions to creator (+viewchannel, +sendmessages, +readmessagehistory)
@@ -195,16 +194,16 @@ $editChannelPerms[$var[ticketChan];$authorID;+viewchannel;+sendmessages;+readmes
 
 ;; 3. Send welcome embed with close button to the new channel
 $useChannel[$var[ticketChan]]
-$title[Support & Help]
-$description[Hello <@$authorID>! Please describe your issue here.\nA support team member will assist you shortly.\n\nTo close this ticket, click the red button below.]
+$title[Support &amp; Help]
+$description[Hello &lt;@$authorID&gt;! Please describe your issue here.\nA support team member will assist you shortly.\n\nTo close this ticket, click the red button below.]
 $color[#5865F2]
 $addButton[no;close_ticket;Close Ticket;danger]
 
 ;; 4. Reset channel and acknowledge the slash command ephemerally (no double $sendMessage!)
 $useChannel[]
 $ephemeral
-✅ Your support ticket has been created: <#$var[ticketChan]>
-```
+✅ Your support ticket has been created: &lt;#$var[ticketChan]&gt;
+</code></pre>
   </div>
 </div>
 
@@ -223,7 +222,7 @@ Here is what the user immediately sees in the channel where they ran `/ticket`:
       </div>
       <div>✅ Your support ticket has been created: <strong class="text-[#B19DF7]">#ticket-jeremy</strong></div>
       <div class="discord-ephemeral-notice">
-        <span class="material-symbols-outlined">visibility_off</span>
+        <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#visibility_off"></use></svg>
         <span>Only you can see this • <a href="#" class="underline hover:text-white" onclick="return false;">Dismiss message</a></span>
       </div>
     </div>
@@ -260,7 +259,7 @@ Here is what is posted inside the `#ticket-jeremy` channel:
       <!-- Action Button -->
       <div class="discord-components-row">
         <button class="discord-btn discord-btn-danger" type="button">
-          <span class="material-symbols-outlined text-sm">lock</span>
+          <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#lock"></use></svg>
           <span>Close Ticket</span>
         </button>
       </div>
@@ -278,11 +277,11 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
 <div class="dual-view-tabs">
   <div class="dual-view-nav">
     <button class="dual-tab-btn active" type="button">
-      <span class="material-symbols-outlined tab-accent">dashboard</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
       <span>Blocks View (App Mode)</span>
     </button>
     <button class="dual-tab-btn" type="button">
-      <span class="material-symbols-outlined tab-accent">code</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
       <span>Script View (BDFD / BDScript)</span>
     </button>
   </div>
@@ -294,7 +293,7 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
       <div class="scratch-block-card block-cat-entrypoint">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">touch_app</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#touch_app"></use></svg>
           <span class="scratch-block-title">BUTTON CLICK: close_ticket</span>
           <span class="scratch-block-badge">Trigger</span>
         </div>
@@ -305,14 +304,14 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action 1: Respond to Interaction -->
       <div class="scratch-block-card block-cat-interactions">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">chat</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
           <span class="scratch-block-title">RESPOND TO INTERACTION</span>
           <span class="scratch-block-badge">Acknowledgment</span>
         </div>
@@ -330,14 +329,14 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action 2: Wait -->
       <div class="scratch-block-card block-cat-logic">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">hourglass_empty</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#hourglass_empty"></use></svg>
           <span class="scratch-block-title">WAIT</span>
           <span class="scratch-block-badge">Timer</span>
         </div>
@@ -351,14 +350,14 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action 3: Remove Channel -->
       <div class="scratch-block-card block-cat-channels">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">remove_circle</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#remove_circle"></use></svg>
           <span class="scratch-block-title">DELETE CHANNEL</span>
           <span class="scratch-block-badge">Destruction</span>
         </div>
@@ -375,8 +374,7 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
 
   <div class="dual-tab-panel">
     <p class="text-sm text-on-surface-variant mb-4">BDScript interaction handler:</p>
-```bdfd
-;; 1. Immediately acknowledge the click to prevent the Discord 3s timeout
+<pre><code class="language-bdfd">;; 1. Immediately acknowledge the click to prevent the Discord 3s timeout
 🔒 Close requested by $username. Deleting this channel in 3 seconds...
 
 ;; 2. Clean wait timer
@@ -384,7 +382,7 @@ $wait[3s]
 
 ;; 3. Permanently delete the ticket channel
 $deleteChannels[$channelID]
-```
+</code></pre>
   </div>
 </div>
 

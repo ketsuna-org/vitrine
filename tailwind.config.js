@@ -22,7 +22,7 @@ module.exports = {
         "primary":                   "#B19DF7",
         "primary-vibrant":           "#9B30FF",
         "primary-dark":              "#6A0FA2",
-        "on-primary":                "#ffffff",
+        "on-primary":                "#111111",
         "primary-container":         "#231536",
         "on-primary-container":      "#eaddfe",
         "primary-fixed":             "#eaddfe",

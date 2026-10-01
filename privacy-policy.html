@@ -7,13 +7,13 @@ translation_key: privacy
 content_language: en
 ---
 
-<main class="min-h-screen py-16 lg:py-24">
+<div class="min-h-screen py-16 lg:py-24">
   <div class="mx-auto max-w-4xl px-6">
     <!-- Header -->
     <header class="mb-16" data-reveal>
       <div class="flex flex-wrap items-center gap-3 mb-6">
         <span class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
-          <span class="material-symbols-outlined text-sm">security</span>
+          <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#security"></use></svg>
           Privacy
         </span>
         <span class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 border border-outline-variant">
@@ -81,19 +81,19 @@ content_language: en
         <h3 class="text-lg font-bold text-on-surface mb-4">Data that will be deleted</h3>
         <ul class="space-y-3 mb-6">
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <span class="material-symbols-outlined text-primary text-lg">delete</span>
+            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#delete"></use></svg>
             <span>Your user profile (Discord user ID, username, email address, avatar)</span>
           </li>
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <span class="material-symbols-outlined text-primary text-lg">delete</span>
+            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#delete"></use></svg>
             <span>Cloud-stored bot configurations, workflows, and related data (Firebase Firestore)</span>
           </li>
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <span class="material-symbols-outlined text-primary text-lg">delete</span>
+            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#delete"></use></svg>
             <span>Authentication credentials (Firebase Authentication)</span>
           </li>
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <span class="material-symbols-outlined text-primary text-lg">delete</span>
+            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#delete"></use></svg>
             <span>Advertising consent preferences</span>
           </li>
         </ul>
@@ -101,15 +101,15 @@ content_language: en
         <h3 class="text-lg font-bold text-on-surface mb-4">Data that may be retained</h3>
         <ul class="space-y-3 mb-6">
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <span class="material-symbols-outlined text-primary text-lg">info</span>
+            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#info"></use></svg>
             <span><strong>Analytics & diagnostics data</strong> (Google Analytics for Firebase, Firebase Crashlytics, PostHog) — usage events, performance metrics, and error reports (which may be associated with your Discord user ID to diagnose account-specific issues) are retained for product improvement and debugging.</span>
           </li>
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <span class="material-symbols-outlined text-primary text-lg">info</span>
+            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#info"></use></svg>
             <span><strong>Crash reports</strong> (Firebase Crashlytics) — anonymized stack traces are retained for up to 90 days after collection to fix bugs.</span>
           </li>
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <span class="material-symbols-outlined text-primary text-lg">info</span>
+            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#info"></use></svg>
             <span><strong>Legal obligations</strong> — if we are required by law to retain certain data (e.g. transaction records), we will keep only what is legally required for the applicable retention period.</span>
           </li>
         </ul>
@@ -127,19 +127,19 @@ content_language: en
         <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Privacy policies of services we use</h2>
         <ul class="space-y-4">
           <li class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary">public</span>
+            <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#public"></use></svg>
             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Google Privacy Policy (Firebase, AdMob)</a>
           </li>
           <li class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary">public</span>
+            <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#public"></use></svg>
             <a href="https://www.is.com/privacy-policy/" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Unity / IronSource Privacy Policy</a>
           </li>
           <li class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary">public</span>
+            <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#public"></use></svg>
             <a href="https://discord.com/privacy" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Discord Privacy Policy</a>
           </li>
           <li class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary">public</span>
+            <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#public"></use></svg>
             <a href="https://discord.com/terms" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Discord Terms of Service</a>
           </li>
         </ul>
@@ -156,4 +156,4 @@ content_language: en
       </footer>
     </div>
   </div>
-</main>
+</div>
