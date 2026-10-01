@@ -304,7 +304,7 @@ const initSite = () => {
       // Convert standard blockquote to premium custom glass alert
       bq.className = `gfm-alert gfm-alert-${type.toLowerCase()}`;
       
-      // Map BDFD-harmonized Material symbol vector icons & headers
+      // Map semantic Reicon sprite keys and alert headers
       let icon = "info";
       let titleText = "Note";
       if (type === "TIP") { icon = "lightbulb"; titleText = "Tip"; }
@@ -316,93 +316,162 @@ const initSite = () => {
       const header = document.createElement("div");
       header.className = "gfm-alert-header";
       header.innerHTML = `
-        <span class="material-symbols-outlined text-lg">${icon}</span>
+        <svg class="reicon text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#${icon}"></use></svg>
         <span class="gfm-alert-title">${titleText}</span>
       `;
       bq.insertBefore(header, bq.firstChild);
     }
   });
 
-  const navToggle = document.querySelector("[data-menu-toggle]");
-  const navShell = navToggle?.closest(".nav-shell");
-  const navPanel = document.querySelector("[data-menu-panel]");
-
-  if (navToggle && navShell && navPanel) {
-    const openLabel = navToggle.getAttribute("data-label-open") || navToggle.getAttribute("aria-label") || "Open navigation";
-    const closeLabel = navToggle.getAttribute("data-label-close") || "Close navigation";
-
-    const closeMenu = ({ restoreFocus = false } = {}) => {
-      navShell.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
-      navToggle.setAttribute("aria-label", openLabel);
-
-      if (restoreFocus) {
-        navToggle.focus();
-      }
-    };
-
-    const openMenu = () => {
-      navShell.classList.add("is-open");
-      navToggle.setAttribute("aria-expanded", "true");
-      navToggle.setAttribute("aria-label", closeLabel);
-    };
-
-    console.log("initSite: Mobile navigation panel and modal controllers bound.");
-
-    navToggle.addEventListener("click", () => {
-      const isOpen = navShell.classList.contains("is-open");
-      console.log("initSite: Hamburger toggle button clicked. Current isOpen =", isOpen);
-      if (isOpen) {
-        closeMenu();
+  const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex="0"]';
+  // Drawers share keyboard, focus, background inertness, and scroll handling.
+  const bindDrawer = ({ panel, trigger, closeButton, breakpoint, openClass, onChange }) => {
+    if (!panel || !trigger) return;
+    let open = false;
+    let previousFocus;
+    let previousOverflow;
+    let inertElements = [];
+    const narrow = () => window.innerWidth < breakpoint;
+    const setOpen = (next, restoreFocus = true) => {
+      next = next && narrow();
+      if (next === open) return;
+      open = next;
+      trigger.setAttribute('aria-expanded', String(open));
+      panel.classList.toggle(openClass, open);
+      onChange?.(open);
+      if (open) {
+        previousFocus = document.activeElement;
+        previousOverflow = document.body.style.overflow;
+        panel.hidden = false;
+        panel.inert = false;
+        panel.setAttribute('role', 'dialog');
+        panel.setAttribute('aria-modal', 'true');
+        let branch = panel;
+        while (branch.parentElement && branch.parentElement !== document.documentElement) {
+          for (const sibling of branch.parentElement.children) {
+            if (sibling !== branch && !sibling.inert && !['SCRIPT', 'STYLE', 'LINK'].includes(sibling.tagName)) {
+              sibling.inert = true;
+              inertElements.push(sibling);
+            }
+          }
+          branch = branch.parentElement;
+        }
+        document.body.style.overflow = 'hidden';
+        (closeButton || panel.querySelector(focusableSelector))?.focus();
       } else {
-        openMenu();
+        for (const element of inertElements) element.inert = false;
+        inertElements = [];
+        document.body.style.overflow = previousOverflow || '';
+        panel.hidden = narrow();
+        panel.inert = narrow();
+        panel.removeAttribute('aria-modal');
+        if (!narrow()) panel.removeAttribute('role');
+        if (restoreFocus) (previousFocus?.isConnected ? previousFocus : trigger).focus();
+      }
+    };
+    trigger.addEventListener('click', () => setOpen(!open));
+    closeButton?.addEventListener('click', () => setOpen(false));
+    panel.addEventListener('click', event => {
+      if (event.target === panel) setOpen(false);
+      if (event.target.closest('a[href]')) setOpen(false, false);
+    });
+    document.addEventListener('keydown', event => {
+      if (!open) return;
+      if (event.key === 'Escape') { event.preventDefault(); setOpen(false); }
+      if (event.key === 'Tab') {
+        const controls = [...panel.querySelectorAll(focusableSelector)].filter(element => element.getClientRects().length);
+        const first = controls[0], last = controls.at(-1);
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
       }
     });
+    const sync = () => {
+      if (!narrow() && open) setOpen(false, false);
+      panel.hidden = narrow() && !open;
+      panel.inert = narrow() && !open;
+      if (!narrow()) { panel.removeAttribute('role'); panel.removeAttribute('aria-modal'); }
+    };
+    window.addEventListener('resize', sync);
+    sync();
+  };
+  const navToggle = document.querySelector('[data-menu-toggle]');
+  const navShell = document.querySelector('.nav-shell');
+  const navPanel = document.querySelector('[data-menu-panel]');
+  if (navPanel) document.body.appendChild(navPanel);
+  bindDrawer({
+    panel: navPanel, trigger: navToggle, closeButton: navPanel?.querySelector('[data-menu-close-btn]'),
+    breakpoint: 768, openClass: 'is-open',
+    onChange: open => { navShell?.classList.toggle('is-open', open); navToggle?.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); }
+  });
+  // Site navigation must remain hidden on desktop even though the sections sidebar remains visible.
+  if (navPanel && window.innerWidth >= 768) { navPanel.hidden = true; navPanel.inert = true; }
+  window.addEventListener('resize', () => { if (navPanel && window.innerWidth >= 768) { navPanel.hidden = true; navPanel.inert = true; } });
+  bindDrawer({
+    panel: document.getElementById('docs-sidebar'), trigger: document.getElementById('sidebar-toggle-btn'),
+    closeButton: document.getElementById('sidebar-close-btn'), breakpoint: 1024, openClass: 'is-active'
+  });
 
-    const closeBtn = navPanel.querySelector("[data-menu-close-btn]");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", () => {
-        console.log("initSite: Modal inner close button clicked. Closing menu...");
-        closeMenu();
-      });
-    }
-
-    navPanel.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        console.log("initSite: Modal link clicked. Closing menu...");
-        closeMenu();
-      });
-    });
-
-    document.addEventListener("click", (event) => {
-      if (navShell.classList.contains("is-open") && !navShell.contains(event.target)) {
-        closeMenu();
+  document.querySelectorAll('[data-docs-dropdown]').forEach(container => {
+    const button = container.querySelector('[data-docs-trigger]');
+    const menu = container.querySelector('[data-docs-menu]');
+    const links = [...menu.querySelectorAll('a')];
+    const setOpen = open => { menu.hidden = !open; button.setAttribute('aria-expanded', String(open)); };
+    button.addEventListener('click', () => setOpen(menu.hidden));
+    container.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { event.preventDefault(); setOpen(false); button.focus(); }
+      if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+        event.preventDefault(); setOpen(true);
+        const current = links.indexOf(document.activeElement);
+        const index = event.key === 'Home' ? 0 : event.key === 'End' ? links.length - 1 : event.key === 'ArrowDown' ? (current + 1) % links.length : (current <= 0 ? links.length - 1 : current - 1);
+        links[index]?.focus();
       }
     });
+    container.addEventListener('focusout', event => { if (!container.contains(event.relatedTarget)) setOpen(false); });
+    document.addEventListener('click', event => { if (!container.contains(event.target)) setOpen(false); });
+  });
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && navShell.classList.contains("is-open")) {
-        closeMenu({ restoreFocus: true });
-      }
+  document.querySelectorAll('[data-document-article]').forEach(article => {
+    const headings = [...article.querySelectorAll('h2[id], section[id] > h2')];
+    const entries = [];
+    headings.forEach((heading, index) => {
+      const target = heading.id ? heading : heading.parentElement;
+      if (!target.id) target.id = `document-section-${index + 1}`;
+      if (!entries.some(entry => entry.id === target.id)) entries.push({ id: target.id, text: heading.textContent.trim() });
     });
-  }
+    document.querySelectorAll('[data-document-toc]').forEach(nav => {
+      if (!entries.length) return;
+      nav.replaceChildren(...entries.map(entry => {
+        const link = document.createElement('a');
+        link.href = `#${entry.id}`; link.textContent = entry.text;
+        link.className = 'text-on-surface-variant hover:text-primary transition-colors';
+        return link;
+      }));
+    });
+  });
 
-  document.querySelectorAll("[data-copy]").forEach((button) => {
-    button.addEventListener("click", async () => {
-      const text = button.getAttribute("data-copy");
-      const defaultLabel = button.getAttribute("data-copy-label") || button.textContent.trim();
-      const copiedLabel = button.getAttribute("data-copy-success") || "Copied";
-
+  document.querySelectorAll('[data-copy]').forEach(button => {
+    const label = button.querySelector('span') || button;
+    const initialLabel = label.textContent.trim();
+    let status;
+    const report = (message, failed) => {
+      if (!status) {
+        status = document.createElement('p');
+        status.className = 'copy-feedback text-xs text-on-surface-variant';
+        status.setAttribute('role', 'status');
+        status.setAttribute('aria-live', 'polite');
+        button.after(status);
+      }
+      status.textContent = message;
+      status.classList.toggle('text-error', failed);
+    };
+    button.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(text);
-        button.textContent = copiedLabel;
-        button.classList.add("is-copied");
-        window.setTimeout(() => {
-          button.textContent = defaultLabel;
-          button.classList.remove("is-copied");
-        }, 1800);
-      } catch (_error) {
-        button.textContent = text;
+        await navigator.clipboard.writeText(button.dataset.copy);
+        label.textContent = button.dataset.copySuccess || 'Copied!';
+        report('Copied to clipboard.', false);
+        window.setTimeout(() => { label.textContent = initialLabel; }, 1800);
+      } catch {
+        report('Could not copy. Select the command and copy it manually.', true);
       }
     });
   });
@@ -460,26 +529,43 @@ const initSite = () => {
     });
   }
 
-  // Dual-view Tabs Handler (Blocks Mode vs Script Mode)
-  const initDualViewTabs = () => {
-    document.querySelectorAll(".dual-view-tabs").forEach((container) => {
-      const nav = container.querySelector(".dual-view-nav");
-      if (!nav) return;
-      const buttons = nav.querySelectorAll(".dual-tab-btn");
-      const panels = container.querySelectorAll(".dual-tab-panel");
-      buttons.forEach((btn, index) => {
-        btn.addEventListener("click", () => {
-          buttons.forEach((b) => b.classList.remove("active"));
-          panels.forEach((p) => p.classList.remove("active"));
-          btn.classList.add("active");
-          if (panels[index]) {
-            panels[index].classList.add("active");
-          }
-        });
+  // Native buttons provide Enter/Space. Arrow keys select and focus a neighboring tab.
+  document.querySelectorAll('.dual-view-tabs').forEach((container, groupIndex) => {
+    const nav = container.querySelector('.dual-view-nav');
+    if (!nav) return;
+    const tabs = [...nav.querySelectorAll('.dual-tab-btn')];
+    const panels = [...container.children].filter(child => child.classList.contains('dual-tab-panel'));
+    nav.setAttribute('role', 'tablist');
+    nav.setAttribute('aria-label', 'Example view');
+    const select = index => {
+      tabs.forEach((tab, tabIndex) => {
+        const active = tabIndex === index;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        if (panels[tabIndex]) { panels[tabIndex].classList.toggle('active', active); panels[tabIndex].hidden = !active; }
+      });
+    };
+    tabs.forEach((tab, index) => {
+      tab.id = `example-${groupIndex}-tab-${index}`;
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-controls', `example-${groupIndex}-panel-${index}`);
+      if (panels[index]) {
+        panels[index].id = `example-${groupIndex}-panel-${index}`;
+        panels[index].setAttribute('role', 'tabpanel');
+        panels[index].setAttribute('aria-labelledby', tab.id);
+        panels[index].tabIndex = 0;
+      }
+      tab.addEventListener('click', () => select(index));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        select(next); tabs[next].focus();
       });
     });
-  };
-  initDualViewTabs();
+    select(Math.max(0, tabs.findIndex(tab => tab.classList.contains('active'))));
+  });
 };
 
 // Bulletproof loader: Activate immediately if DOM is already parsed,

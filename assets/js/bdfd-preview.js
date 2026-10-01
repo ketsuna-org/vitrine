@@ -594,7 +594,7 @@
       <div class="scratch-block-card block-cat-entrypoint">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">terminal</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#terminal"></use></svg>
           <span class="scratch-block-title">DISCORD TRIGGER / COMMAND</span>
           <span class="scratch-block-badge">Entry</span>
         </div>
@@ -604,7 +604,7 @@
       </div>
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#arrow_drop_down"></use></svg>
         <div class="scratch-block-connector-add">+</div>
       </div>
     `;
@@ -621,7 +621,7 @@
         <div class="scratch-block-card ${catClass}">
           <div class="scratch-block-header">
             <div class="scratch-block-strip"></div>
-            <span class="material-symbols-outlined scratch-block-icon">${icon}</span>
+            <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#${icon}"></use></svg>
             <span class="scratch-block-title">${escapeHtml(title)}</span>
             <span class="scratch-block-badge">${cat}</span>
           </div>
@@ -651,7 +651,7 @@
         html += `
           <div class="scratch-block-connector">
             <div class="scratch-block-connector-line"></div>
-            <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+            <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#arrow_drop_down"></use></svg>
             <div class="scratch-block-connector-add">+</div>
           </div>
         `;
@@ -674,7 +674,7 @@
       <div class="discord-preview-badge-header">
         <span>Discord Simulator Live Preview</span>
         <span class="badge-tag">
-          <span class="material-symbols-outlined text-[13px]">smart_toy</span>
+          <svg class="reicon text-[13px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#smart_toy"></use></svg>
           Bot Simulator
         </span>
       </div>
@@ -696,7 +696,7 @@
     if (attachment) {
       html += `
         <div class="discord-attachment-file mb-2">
-          <span class="material-symbols-outlined file-icon">attachment</span>
+          <svg class="reicon file-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#attachment"></use></svg>
           <div class="file-info">
             <span class="file-name">${escapeHtml(attachment.name)}</span>
             <span class="file-size">142.5 KB</span>
@@ -773,7 +773,7 @@
           <button class="discord-btn ${styleClass}" type="button" onclick="return false;">
             ${btn.emoji ? `<span>${escapeHtml(btn.emoji)}</span>` : ''}
             <span>${escapeHtml(btn.label)}</span>
-            ${btn.style === 'link' ? '<span class="material-symbols-outlined text-[13px]">open_in_new</span>' : ''}
+            ${btn.style === 'link' ? '<svg class="reicon text-[13px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#open_in_new"></use></svg>' : ''}
           </button>
         `;
       });
@@ -784,7 +784,7 @@
       html += `
         <div class="discord-select-menu mt-2">
           <span>${escapeHtml(selectMenu.placeholder)}</span>
-          <span class="material-symbols-outlined text-base">expand_more</span>
+          <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#expand_more"></use></svg>
         </div>
       `;
     }
@@ -792,7 +792,7 @@
     if (isEphemeral) {
       html += `
         <div class="discord-ephemeral-notice mt-2">
-          <span class="material-symbols-outlined">visibility_off</span>
+          <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#visibility_off"></use></svg>
           <span>Only you can see this • <a href="#" class="underline hover:text-white" onclick="return false;">Dismiss message</a></span>
         </div>
       `;
@@ -840,16 +840,16 @@
       nav.className = 'dual-view-nav';
       nav.innerHTML = `
         <button class="dual-tab-btn active" type="button">
-          <span class="material-symbols-outlined tab-accent">dashboard</span>
+          <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#dashboard"></use></svg>
           <span>Blocks View (App Mode)</span>
         </button>
         <button class="dual-tab-btn" type="button">
-          <span class="material-symbols-outlined tab-accent">code</span>
+          <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#code"></use></svg>
           <span>Script View (BDFD / BDScript)</span>
         </button>
         <div class="dual-tab-actions">
           <button class="dual-copy-btn" type="button" title="Copy code snippet">
-            <span class="material-symbols-outlined text-[14px]">content_copy</span>
+            <svg class="reicon text-[14px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#content_copy"></use></svg>
             <span>Copy</span>
           </button>
         </div>
@@ -884,17 +884,24 @@
 
       const copyBtn = nav.querySelector('.dual-copy-btn');
       if (copyBtn) {
-        copyBtn.addEventListener('click', () => {
-          if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(rawCode).then(() => {
-              const span = copyBtn.querySelector('span:last-child');
-              if (span) {
-                const original = span.textContent;
-                span.textContent = 'Copied!';
-                setTimeout(() => { span.textContent = original; }, 2000);
-              }
-            }).catch(() => {});
+        const status = document.createElement('p');
+        status.className = 'copy-feedback text-xs';
+        status.setAttribute('role', 'status');
+        status.setAttribute('aria-live', 'polite');
+        status.hidden = true;
+        nav.after(status);
+        copyBtn.addEventListener('click', async () => {
+          const label = copyBtn.querySelector('span:last-child');
+          try {
+            await navigator.clipboard.writeText(rawCode);
+            if (label) { label.textContent = 'Copied!'; setTimeout(() => { label.textContent = 'Copy'; }, 2000); }
+            status.textContent = 'Code copied to clipboard.';
+            status.classList.remove('text-error');
+          } catch {
+            status.textContent = 'Could not copy. Open Script View and select the code to copy it manually.';
+            status.classList.add('text-error');
           }
+          status.hidden = false;
         });
       }
 

@@ -647,7 +647,7 @@
   border-top: 1px solid #383a40;
 }
 
-.discord-ephemeral-notice .material-symbols-outlined {
+.discord-ephemeral-notice .reicon {
   font-size: 14px;
 }
 
@@ -829,3 +829,22 @@
   color: #949BA4;
 }
 
+
+/* Keep long syntax and example controls inside narrow document columns. */
+.markdown-body { overflow-x: visible; overflow-wrap: anywhere; min-width: 0; }
+.markdown-body > * { max-width: 100%; }
+.dual-view-tabs, .dual-tab-panel { min-width: 0; max-width: 100%; }
+.dual-view-nav { flex-wrap: wrap; }
+.dual-tab-btn { min-height: 44px; min-width: 0; flex: 1 1 160px; text-align: left; }
+.dual-tab-btn span { min-width: 0; }
+.dual-tab-actions { margin-left: auto; }
+.scratch-block-header { flex-wrap: wrap; }
+.scratch-block-title { min-width: 100px; }
+.scratch-block-input { overflow-wrap: anywhere; }
+@media (max-width: 479px) {
+  .markdown-body { font-size: 1rem; line-height: 1.7; }
+  .markdown-body h2 { font-size: 1.45rem; line-height: 1.3; margin-top: 2rem; }
+  .markdown-body h3 { font-size: 1.2rem; line-height: 1.35; }
+  .dual-tab-btn { padding: 8px 10px; flex-basis: 100%; font-size: 12px; }
+  .block-flow-canvas { padding: 14px 8px; }
+}

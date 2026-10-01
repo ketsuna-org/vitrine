@@ -45,8 +45,19 @@ module Vitrine
 
       def generate(site)
         docs = site.collections.fetch("docs", nil)&.docs || []
+        top_level_names = docs.reject { |doc| doc.relative_path.sub(%r{^/?_docs/}, "").include?("/") }.map(&:basename_without_ext)
         docs.each do |doc|
-          add_static_file(site, "api/docs", "#{doc.basename_without_ext}.md", doc.content)
+          markdown_path = doc.relative_path.sub(%r{^/?_docs/}, "")
+          directory = File.dirname(markdown_path)
+          if directory == "."
+            add_static_file(site, "api/docs", "#{doc.basename_without_ext}.md", doc.content)
+          else
+            # Preserve unambiguous existing aliases; nested paths identify the exact page.
+            add_static_file(site, "api/docs/#{directory}", File.basename(markdown_path), doc.content)
+            unless top_level_names.include?(doc.basename_without_ext)
+              add_static_file(site, "api/docs", "#{doc.basename_without_ext}.md", doc.content)
+            end
+          end
         end
         add_static_file(site, "api", "docs-index.json", docs_index(site).to_json)
         add_static_file(site, "api", "posts-index.json", posts_index(site).to_json)

@@ -6,12 +6,12 @@
   {% include site_header.html locale=locale t=t %}
 
   <main id="main-content" class="min-h-screen py-8 lg:py-16" tabindex="-1">
-    <div class="max-w-full mx-auto px-6 lg:px-12">
+    <div class="content-shell max-w-full mx-auto px-4 sm:px-6 lg:px-12">
       <!-- Mobile Sidebar Toggle -->
       <div class="lg:hidden mb-6">
-        <button id="sidebar-toggle-btn"
+        <button id="sidebar-toggle-btn" aria-expanded="false" aria-controls="docs-sidebar"
           class="flex h-11 min-h-[44px] items-center gap-2.5 bg-surface-container-low border border-outline-variant rounded-xl px-5 py-2.5 text-sm font-bold text-on-surface hover:bg-surface-container hover:border-primary/50 active:scale-95 transition-all shadow-sm">
-          <span class="material-symbols-outlined text-primary text-base">menu_open</span>
+          <svg class="reicon text-primary text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#menu_open"></use></svg>
           <span>{{ page.sidebar_toggle_label | default: "Browse sections" }}</span>
         </button>
       </div>
@@ -19,13 +19,13 @@
       <!-- Two-column layout: Sidebar + Content -->
       <div class="flex gap-8 lg:gap-12 items-start relative w-full">
         <!-- LEFT SIDEBAR -->
-        <aside id="docs-sidebar" class="docs-sidebar">
+        <aside id="docs-sidebar" class="docs-sidebar" aria-label="Browse documentation and guides">
           <div class="docs-sidebar-inner">
             <div class="flex items-center justify-between mb-4 lg:hidden border-b border-outline-variant pb-4">
               <h3 class="font-display text-base font-bold text-on-surface">{{ page.sidebar_title | default: "Navigation" }}</h3>
-              <button id="sidebar-close-btn"
+              <button id="sidebar-close-btn" aria-label="Close sections"
                 class="flex h-10 w-10 min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-surface-container border border-outline-variant text-on-surface active:scale-90 transition-all">
-                <span class="material-symbols-outlined">close</span>
+                <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
               </button>
             </div>
 
@@ -52,48 +52,6 @@
   {% include site_footer.html t=t %}
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
 
-  <script>
-    (function() {
-      const sidebar = document.getElementById('docs-sidebar');
-      const toggleBtn = document.getElementById('sidebar-toggle-btn');
-      const closeBtn = document.getElementById('sidebar-close-btn');
 
-      if (!sidebar || !toggleBtn) return;
-
-      const openSidebar = function() {
-        sidebar.classList.add('is-active');
-        document.body.style.overflow = 'hidden';
-      };
-
-      const closeSidebar = function() {
-        sidebar.classList.remove('is-active');
-        document.body.style.overflow = '';
-      };
-
-      toggleBtn.addEventListener('click', openSidebar);
-
-      if (closeBtn) {
-        closeBtn.addEventListener('click', closeSidebar);
-      }
-
-      sidebar.addEventListener('click', function(e) {
-        if (e.target === sidebar && sidebar.classList.contains('is-active')) {
-          closeSidebar();
-        }
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && sidebar.classList.contains('is-active')) {
-          closeSidebar();
-        }
-      });
-
-      window.addEventListener('resize', function() {
-        if (window.innerWidth >= 1024 && sidebar.classList.contains('is-active')) {
-          closeSidebar();
-        }
-      });
-    })();
-  </script>
 </body>
 </html>

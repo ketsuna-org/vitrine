@@ -4,14 +4,14 @@
 {% assign screenshots = site.data.screenshots.screens %}
 {% assign all_docs = site.docs %}
 
-<main class="bg-background overflow-x-hidden">
+<div class="bg-background overflow-x-hidden">
   <!-- Hero -->
   <section class="relative overflow-hidden bg-surface py-16 lg:py-24">
     <div class="mx-auto max-w-7xl px-6 relative z-10">
       <div class="grid items-center gap-12 lg:grid-cols-2">
         <div class="flex flex-col gap-6">
           <div class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
-            <span class="material-symbols-outlined text-sm">menu_book</span>
+            <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#menu_book"></use></svg>
             {{ t.home.hero.eyebrow }}
           </div>
           <h1 class="font-display text-4xl font-black leading-tight text-on-surface md:text-5xl lg:text-6xl">
@@ -20,17 +20,17 @@
           <p class="max-w-xl text-lg text-on-surface-variant">{{ t.home.hero.body }}</p>
           <div class="flex flex-col gap-3 sm:flex-row">
             <a href="{{ t.paths.docs | relative_url }}" class="flex h-12 min-h-[44px] items-center justify-center gap-2 rounded-xl bg-primary px-6 text-base font-bold text-on-primary hover:brightness-110 transition-all">
-              <span class="material-symbols-outlined">code</span>
+              <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
               {{ t.home.hero.primary_cta }}
             </a>
             <a href="{{ t.paths.guides | relative_url }}" class="flex h-12 min-h-[44px] items-center justify-center gap-2 rounded-xl border border-outline-variant bg-surface-container-low px-6 text-base font-bold text-on-surface hover:border-primary/30 transition-all">
-              <span class="material-symbols-outlined">library_books</span>
+              <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#library_books"></use></svg>
               {{ t.home.hero.secondary_cta }}
             </a>
           </div>
         </div>
         <div class="flex justify-center lg:justify-end max-w-sm mx-auto lg:max-w-md w-full">
-          {% include responsive_screenshot.html screen_id="screen-1-create-host" alt=t.home.hero.screenshot_alt loading="eager" class="w-full max-w-[320px] mx-auto drop-shadow-2xl" %}
+          {% include responsive_screenshot.html screen_id="home" alt=t.home.hero.screenshot_alt loading="eager" class="w-full max-w-[320px] mx-auto drop-shadow-2xl" %}
         </div>
       </div>
     </div>
@@ -43,12 +43,12 @@
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         {% for screen in screenshots offset:1 limit:3 %}
         <a href="{{ screen.link | relative_url }}" class="group flex flex-col rounded-2xl border border-outline-variant bg-surface-container overflow-hidden hover:border-primary/30 transition-all">
-          <div class="overflow-hidden bg-[#0c1222]">
+          <div class="overflow-hidden bg-surface-container-low">
             {% include responsive_screenshot.html screen_id=screen.file alt=screen.headline class="w-full object-cover transition-transform group-hover:scale-[1.02]" %}
           </div>
           <div class="p-5">
             <div class="flex items-center gap-2 text-primary mb-2">
-              <span class="material-symbols-outlined">{{ screen.icon }}</span>
+              <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#{{ screen.icon }}"></use></svg>
               <span class="text-xs font-bold uppercase tracking-wider">{{ screen.headline }}</span>
             </div>
             <p class="text-sm text-on-surface-variant">{{ t.home.pillars.descriptions[forloop.index0] }}</p>
@@ -114,14 +114,14 @@
           <h2 class="font-display text-3xl font-bold text-on-surface mb-4">{{ t.home.cta.title }}</h2>
           <p class="text-on-surface-variant mb-6">{{ t.home.cta.body }}</p>
           <a href="{{ t.paths.download | relative_url }}" class="inline-flex h-12 items-center gap-2 rounded-xl bg-primary px-6 text-base font-bold text-on-primary hover:brightness-110 transition-all">
-            <span class="material-symbols-outlined">download</span>
+            <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#download"></use></svg>
             {{ t.home.cta.primary }}
           </a>
         </div>
         <div class="max-w-xs mx-auto">
-          {% include responsive_screenshot.html screen_id="screen-5-deploy-scale" alt="Deploy and scale" class="w-full drop-shadow-xl" %}
+          {% include responsive_screenshot.html screen_id="hosting" alt="Bot Creator Android hosting controls for an online Discord bot" class="w-full drop-shadow-xl" %}
         </div>
       </div>
     </div>
   </section>
-</main>
+</div>

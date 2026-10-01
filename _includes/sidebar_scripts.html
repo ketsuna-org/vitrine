@@ -1,48 +1,62 @@
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const activeItem = document.querySelector('#docs-sidebar .bg-primary\\/10');
-  if (activeItem) {
-    setTimeout(() => activeItem.scrollIntoView({ block: 'nearest' }), 100);
-  }
-
-  document.querySelectorAll("[data-toggle-target]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const targetId = btn.getAttribute("data-toggle-target");
-      const targetList = document.getElementById(targetId);
-      const arrow = document.getElementById(targetId + "-arrow");
-      if (!targetList) return;
-      const isHidden = targetList.classList.contains("hidden");
-      targetList.classList.toggle("hidden", !isHidden);
-      if (arrow) arrow.classList.toggle("rotate-180", isHidden);
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.getElementById('docs-sidebar');
+  if (!sidebar) return;
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+  sidebar.querySelectorAll('a[href]').forEach(link => {
+    const path = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '') || '/';
+    const active = path === currentPath;
+    link.classList.toggle('bg-primary/10', active);
+    link.classList.toggle('text-primary', active);
+    link.classList.toggle('border-primary/20', active);
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
   });
-
-  const searchInput = document.getElementById("sidebar-search-input");
+  const activeItem = sidebar.querySelector('[aria-current="page"]');
+  if (activeItem && window.innerWidth >= 1024) {
+    const scroller = sidebar.querySelector('.docs-sidebar-inner');
+    if (scroller) scroller.scrollTop = Math.max(0, activeItem.offsetTop - scroller.clientHeight / 2);
+  }
+  const buttons = [...sidebar.querySelectorAll('[data-toggle-target]')];
+  const setGroup = (button, expanded) => {
+    const list = document.getElementById(button.dataset.toggleTarget);
+    if (!list) return;
+    list.classList.toggle('hidden', !expanded);
+    button.setAttribute('aria-expanded', String(expanded));
+    button.setAttribute('aria-controls', list.id);
+    document.getElementById(list.id + '-arrow')?.classList.toggle('rotate-180', expanded);
+  };
+  buttons.forEach(button => {
+    const list = document.getElementById(button.dataset.toggleTarget);
+    if (!list) return;
+    setGroup(button, !list.classList.contains('hidden'));
+    button.addEventListener('click', () => setGroup(button, list.classList.contains('hidden')));
+  });
+  const searchInput = sidebar.querySelector('#sidebar-search-input');
   if (!searchInput) return;
-
-  searchInput.addEventListener("input", (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    const items = document.querySelectorAll(".sidebar-item");
-    const groups = document.querySelectorAll(".sidebar-cat-group");
-
-    if (!query) {
-      items.forEach(item => { item.closest("li").style.display = ""; });
-      return;
-    }
-
+  const items = [...sidebar.querySelectorAll('.sidebar-item')];
+  let savedGroups = null;
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    if (query && !savedGroups) savedGroups = new Map(buttons.map(button => [button, button.getAttribute('aria-expanded') === 'true']));
     items.forEach(item => {
-      const term = item.getAttribute("data-search-term") || "";
-      item.closest("li").style.display = term.includes(query) ? "" : "none";
+      const term = item.dataset.searchTerm || item.textContent;
+      item.closest('li').style.display = !query || term.toLowerCase().includes(query) ? '' : 'none';
     });
-
-    groups.forEach(group => {
-      const list = group.querySelector("ul");
+    buttons.forEach(button => {
+      const list = document.getElementById(button.dataset.toggleTarget);
+      const group = button.closest('.sidebar-cat-group');
       if (!list) return;
-      const visible = Array.from(list.querySelectorAll("li")).some(li => li.style.display !== "none");
-      list.classList.toggle("hidden", !visible);
-      const arrow = document.getElementById(list.id + "-arrow");
-      if (arrow) arrow.classList.toggle("rotate-180", visible);
+      if (query) {
+        const visible = [...list.querySelectorAll('li')].some(item => item.style.display !== 'none');
+        if (group) group.style.display = visible ? '' : 'none';
+        setGroup(button, visible);
+      } else {
+        if (group) group.style.display = '';
+        if (savedGroups) setGroup(button, savedGroups.get(button));
+      }
     });
+    if (!query) savedGroups = null;
   });
 });
 </script>

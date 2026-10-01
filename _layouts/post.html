@@ -8,9 +8,9 @@ layout: with-sidebar
 <!-- Breadcrumbs -->
 <nav class="mb-8 flex items-center gap-2 text-sm font-medium text-on-surface-variant" aria-label="Breadcrumb">
   <a href="{{ t.paths.home | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.home }}</a>
-  <span class="material-symbols-outlined text-base">chevron_right</span>
+  <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chevron_right"></use></svg>
   <a href="{{ t.paths.guides | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.guides }}</a>
-  <span class="material-symbols-outlined text-base">chevron_right</span>
+  <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chevron_right"></use></svg>
   <span class="text-on-surface truncate">{{ page.title }}</span>
 </nav>
 
@@ -56,13 +56,13 @@ layout: with-sidebar
 
         <div class="mt-12 flex items-center justify-between">
           <a href="{{ t.paths.guides | relative_url }}" class="flex items-center gap-2 font-bold text-on-surface hover:text-primary transition-colors">
-            <span class="material-symbols-outlined">arrow_back</span>
+            <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_back"></use></svg>
             {{ t.guides.back_to_guides }}
           </a>
           <div class="flex items-center gap-4">
             <span class="text-sm font-medium text-on-surface-variant">{{ t.guides.share }}</span>
             <a href="#" class="h-10 w-10 flex items-center justify-center rounded-full bg-surface-container border border-outline-variant hover:bg-primary/10 hover:text-primary transition-colors">
-              <span class="material-symbols-outlined text-lg">share</span>
+              <svg class="reicon text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#share"></use></svg>
             </a>
           </div>
         </div>
@@ -88,7 +88,7 @@ layout: with-sidebar
       <p class="text-sm text-on-surface-variant mb-4">{{ t.guides.sidebar_help_body }}</p>
       <a href="https://discord.gg/K37nuphaDP" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline" target="_blank" rel="noopener noreferrer">
         {{ t.guides.sidebar_help_cta }}
-        <span class="material-symbols-outlined text-sm">open_in_new</span>
+        <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#open_in_new"></use></svg>
       </a>
     </div>
   </aside>

@@ -7,8 +7,6 @@ description: Complete guide to the Bot Creator visual Blocks system. Block anato
 permalink: /docs/blocks/
 ---
 
-# Blocks — Visual No-Code Programming
-
 The **Blocks** system is Bot Creator's visual programming engine. Inspired by modular snap-together card environments (like Scratch), it enables creators on iOS, Android, and Desktop to build complete Discord bots without writing a single line of raw code.
 
 Blocks run directly on the native Dart engine. Each block compiles into a structured, typed, deterministic `Action` with inputs, outputs, and a unified error lifecycle handler.
@@ -23,7 +21,7 @@ In the mobile app, blocks are represented as rounded cards stacked vertically, c
   <div class="scratch-block-card block-cat-messages">
     <div class="scratch-block-header">
       <div class="scratch-block-strip"></div>
-      <span class="material-symbols-outlined scratch-block-icon">send</span>
+      <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#send"></use></svg>
       <span class="scratch-block-title">SEND A MESSAGE</span>
       <span class="scratch-block-badge">Key: my_message</span>
     </div>
@@ -51,14 +49,14 @@ In the mobile app, blocks are represented as rounded cards stacked vertically, c
 
   <div class="scratch-block-connector">
     <div class="scratch-block-connector-line"></div>
-    <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+    <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
     <div class="scratch-block-connector-add">+</div>
   </div>
 
   <div class="scratch-block-card block-cat-interactions">
     <div class="scratch-block-header">
       <div class="scratch-block-strip"></div>
-      <span class="material-symbols-outlined scratch-block-icon">chat</span>
+      <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
       <span class="scratch-block-title">RESPOND TO INTERACTION</span>
       <span class="scratch-block-badge">Terminal</span>
     </div>
@@ -142,11 +140,11 @@ Each project includes an interactive dual view: see how it connects in the mobil
 <div class="dual-view-tabs">
   <div class="dual-view-nav">
     <button class="dual-tab-btn active" type="button">
-      <span class="material-symbols-outlined tab-accent">dashboard</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
       <span>Blocks View (App Mode)</span>
     </button>
     <button class="dual-tab-btn" type="button">
-      <span class="material-symbols-outlined tab-accent">code</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
       <span>Script View (BDFD / BDScript)</span>
     </button>
   </div>
@@ -158,7 +156,7 @@ Each project includes an interactive dual view: see how it connects in the mobil
       <div class="scratch-block-card block-cat-entrypoint">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">terminal</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#terminal"></use></svg>
           <span class="scratch-block-title">SLASH COMMAND: /ping</span>
           <span class="scratch-block-badge">Trigger</span>
         </div>
@@ -169,14 +167,14 @@ Each project includes an interactive dual view: see how it connects in the mobil
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action -->
       <div class="scratch-block-card block-cat-interactions">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">chat</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
           <span class="scratch-block-title">RESPOND TO INTERACTION</span>
           <span class="scratch-block-badge">Terminal</span>
         </div>
@@ -204,12 +202,11 @@ Each project includes an interactive dual view: see how it connects in the mobil
   </div>
 
   <div class="dual-tab-panel">
-```bdfd
-;; Native slash command reply (no $sendMessage needed)
+<pre><code class="language-bdfd">;; Native slash command reply (no $sendMessage needed)
 $title[🏓 Pong!]
 $description[WebSocket API Latency: **$ping ms**]
 $color[#5865F2]
-```
+</code></pre>
   </div>
 </div>
 
@@ -241,11 +238,11 @@ $color[#5865F2]
 <div class="dual-view-tabs">
   <div class="dual-view-nav">
     <button class="dual-tab-btn active" type="button">
-      <span class="material-symbols-outlined tab-accent">dashboard</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
       <span>Blocks View (App Mode)</span>
     </button>
     <button class="dual-tab-btn" type="button">
-      <span class="material-symbols-outlined tab-accent">code</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
       <span>Script View (BDFD / BDScript)</span>
     </button>
   </div>
@@ -257,7 +254,7 @@ $color[#5865F2]
       <div class="scratch-block-card block-cat-entrypoint">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">person_add</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#person_add"></use></svg>
           <span class="scratch-block-title">EVENT: guildMemberAdd</span>
           <span class="scratch-block-badge">Event</span>
         </div>
@@ -268,14 +265,14 @@ $color[#5865F2]
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action -->
       <div class="scratch-block-card block-cat-messages">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">send</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#send"></use></svg>
           <span class="scratch-block-title">SEND A MESSAGE</span>
           <span class="scratch-block-badge">Action</span>
         </div>
@@ -295,12 +292,11 @@ $color[#5865F2]
   </div>
 
   <div class="dual-tab-panel">
-```bdfd
-;; Triggered on guildMemberAdd event
+<pre><code class="language-bdfd">;; Triggered on guildMemberAdd event
 $useChannel[112233445566778899]
-Welcome <@$authorID> to **$serverName**! 🎉
+Welcome &lt;@$authorID&gt; to **$serverName**! 🎉
 We are now $membersCount members!
-```
+</code></pre>
   </div>
 </div>
 
@@ -329,11 +325,11 @@ We are now $membersCount members!
 <div class="dual-view-tabs">
   <div class="dual-view-nav">
     <button class="dual-tab-btn active" type="button">
-      <span class="material-symbols-outlined tab-accent">dashboard</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
       <span>Blocks View (App Mode)</span>
     </button>
     <button class="dual-tab-btn" type="button">
-      <span class="material-symbols-outlined tab-accent">code</span>
+      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
       <span>Script View (BDFD / BDScript)</span>
     </button>
   </div>
@@ -345,7 +341,7 @@ We are now $membersCount members!
       <div class="scratch-block-card block-cat-entrypoint">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">touch_app</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#touch_app"></use></svg>
           <span class="scratch-block-title">BUTTON CLICK: verify_member</span>
           <span class="scratch-block-badge">Trigger</span>
         </div>
@@ -356,14 +352,14 @@ We are now $membersCount members!
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action 1: Add Role -->
       <div class="scratch-block-card block-cat-moderation">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">person_add_alt_1</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#person_add_alt_1"></use></svg>
           <span class="scratch-block-title">ADD A ROLE</span>
           <span class="scratch-block-badge">Moderation</span>
         </div>
@@ -381,14 +377,14 @@ We are now $membersCount members!
 
       <div class="scratch-block-connector">
         <div class="scratch-block-connector-line"></div>
-        <span class="material-symbols-outlined scratch-block-connector-arrow">arrow_drop_down</span>
+        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
       </div>
 
       <!-- Action 2: Ephemeral Reply -->
       <div class="scratch-block-card block-cat-interactions">
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
-          <span class="material-symbols-outlined scratch-block-icon">chat</span>
+          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
           <span class="scratch-block-title">RESPOND TO INTERACTION</span>
           <span class="scratch-block-badge">Terminal</span>
         </div>
@@ -408,12 +404,11 @@ We are now $membersCount members!
   </div>
 
   <div class="dual-tab-panel">
-```bdfd
-;; Button click event on verify_member
+<pre><code class="language-bdfd">;; Button click event on verify_member
 $giveRole[$authorID;998877665544332211]
 $ephemeral
 ✅ Congratulations $username! You have been given the Member role.
-```
+</code></pre>
   </div>
 </div>
 
@@ -430,7 +425,7 @@ $ephemeral
       </div>
       <div>✅ Congratulations <strong>Jeremy</strong>! You have been given the Member role.</div>
       <div class="discord-ephemeral-notice">
-        <span class="material-symbols-outlined">visibility_off</span>
+        <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#visibility_off"></use></svg>
         <span>Only you can see this • <a href="#" class="underline hover:text-white" onclick="return false;">Dismiss message</a></span>
       </div>
     </div>
