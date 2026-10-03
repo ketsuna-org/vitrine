@@ -111,6 +111,59 @@ module Vitrine
       # reaches the native reader. Code fences are sized to preserve literal code.
       def native_markdown(node)
         return node.text.gsub(/([\\`*\[\]])/, '\\\\\1') if node.text?
+        classes = node['class'].to_s.split if node.element?
+        if classes&.include?('dual-view-tabs')
+          labels = node.css('.dual-tab-btn').map { |button| button.text.strip }
+          panels = node.css('.dual-tab-panel').each_with_index.map do |panel, index|
+            { 'label' => labels[index].to_s, 'markdown' => native_markdown(panel).strip }
+          end
+          return native_preview('bc-dual-view', { 'panels' => panels })
+        elsif classes&.include?('block-flow-canvas') || classes&.include?('scratch-block-card')
+          cards = classes.include?('scratch-block-card') ? [node] : node.css('.scratch-block-card')
+          blocks = cards.map do |block|
+            body = block.at_css('.scratch-block-body')&.dup
+            body&.css('.scratch-block-field, .scratch-block-toggle-row')&.remove
+            {
+              'title' => block.at_css('.scratch-block-title')&.text.to_s.strip,
+              'badge' => block.at_css('.scratch-block-badge')&.text.to_s.strip,
+              'category' => block['class'].to_s[/\bblock-cat-([\w-]+)/, 1].to_s,
+              'description' => body ? native_markdown(body).strip : '',
+              'fields' => block.css('.scratch-block-field').map { |field| {
+                'label' => field.at_css('.scratch-block-label')&.text.to_s.strip,
+                'value' => native_markdown(field.at_css('.scratch-block-input') || field).strip
+              } },
+              'toggles' => block.css('.scratch-block-toggle-row').map { |toggle| {
+                'label' => toggle.text.strip,
+                'enabled' => toggle.at_css('.sim-switch')&.[]('class').to_s.split.include?('active')
+              } }
+            }
+          end
+          return native_preview('bc-block-flow', { 'blocks' => blocks })
+        elsif classes&.include?('discord-simulator-frame')
+          messages = node.css('.discord-msg-row').map do |row|
+            content = row.at_css('.discord-msg-content')&.dup
+            content&.css('.discord-header, .discord-embed, .discord-components-row, .discord-ephemeral-notice')&.remove
+            {
+              'avatar' => row.at_css('.discord-avatar')&.text.to_s.strip,
+              'username' => row.at_css('.discord-username')&.text.to_s.strip,
+              'timestamp' => row.at_css('.discord-timestamp')&.text.to_s.strip,
+              'botTag' => row.at_css('.discord-bot-tag')&.text.to_s.strip,
+              'content' => content ? native_markdown(content).strip : '',
+              'embeds' => row.css('.discord-embed').map { |embed| {
+                'color' => embed['style'].to_s[/--embed-color:\s*(#[a-fA-F0-9]{6})/, 1],
+                'title' => embed.at_css('.discord-embed-title')&.text.to_s.strip,
+                'description' => embed.at_css('.discord-embed-desc').then { |desc| desc ? native_markdown(desc).strip : '' },
+                'footer' => embed.at_css('.discord-embed-footer')&.text.to_s.strip
+              } },
+              'buttons' => row.css('.discord-btn').map { |button| {
+                'label' => button.text.strip,
+                'style' => button['class'].to_s[/\bdiscord-btn-(\w+)/, 1].to_s
+              } },
+              'ephemeral' => row.at_css('.discord-ephemeral-notice')&.text.to_s.strip
+            }
+          end
+          return native_preview('bc-discord-preview', { 'messages' => messages })
+        end
         children = -> { node.children.map { |child| native_markdown(child) }.join }
         case node.name
         when "script", "style", "svg", "iframe" then ""
@@ -150,6 +203,12 @@ module Vitrine
         when "p", "div", "section", "details", "summary" then "\n\n#{children.call.strip}\n\n"
         else children.call
         end
+      end
+
+      def native_preview(kind, data)
+        json = JSON.pretty_generate({ 'version' => 1 }.merge(data))
+        fence = '`' * [3, (json.scan(/`+/).map(&:length).max || 0) + 1].max
+        "\n\n#{fence}#{kind}\n#{json}\n#{fence}\n\n"
       end
 
       def add_static_file(site, dir, name, content)

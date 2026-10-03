@@ -56,6 +56,33 @@ class NativeDocumentationTest
     assert_includes content, '[Jump](#custom-target)'
   end
 
+  def test_real_examples_export_structured_previews_and_switchable_panels
+    %w[blocks tickets].each do |name|
+      source = File.read(File.expand_path("../_docs/#{name}.md", __dir__)).sub(/\A---.*?---\s*/m, '')
+      content = markdown(source)
+      previews = content.scan(/(`{3,})bc-([\w-]+)\n(.*?)\n\1/m).map { |_, kind, json| [kind, JSON.parse(json)] }
+      dual = previews.select { |kind, _| kind == 'dual-view' }.map(&:last)
+      discord = previews.select { |kind, _| kind == 'discord-preview' }.map(&:last)
+      assert !dual.empty?
+      assert !discord.empty?
+      dual.each do |view|
+        assert_equal 1, view['version']
+        assert_equal 2, view['panels'].length
+        assert_includes view['panels'][0]['markdown'], 'bc-block-flow'
+        assert_includes view['panels'][1]['markdown'], '```bdfd'
+        flow_json = view['panels'][0]['markdown'][/(`{3,})bc-block-flow\n(.*?)\n\1/m, 2]
+        assert !JSON.parse(flow_json)['blocks'].empty?
+      end
+      assert_equal 'Bot Creator Assistant', discord.first['messages'].first['username']
+      assert discord.any? { |frame| frame['messages'].any? { |message| !message['embeds'].empty? } }
+      if name == 'tickets'
+        assert discord.any? { |frame| frame['messages'].any? { |message| message['buttons'].any? { |button| button['label'] == 'Close Ticket' } } }
+      end
+      refute_includes content, '<div'
+      refute_includes content, 'onclick'
+    end
+  end
+
   def test_nested_pages_have_unique_identity_and_liquid_is_resolved
     Dir.mktmpdir do |source|
       FileUtils.mkdir_p("#{source}/_docs/sub")
