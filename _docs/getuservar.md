@@ -7,9 +7,11 @@ function_name: getUserVar
 syntax: $getUserVar[name] or $getUserVar[name;User ID] or $getUserVar[name;User ID;Guild ID]
 description: Reads the value of a user-scoped variable. Returns the stored value for the current user, or a specific user when an ID is provided.
 ---
-$getUserVar reads a scoped variable stored persistently in the BDFD database. The variable is scoped to the user level, meaning its value is tied to a specific Discord user. When called with only a `name`, it reads the variable of the user who triggered the current command (`((author.id))`).
+$getUserVar reads a persistent variable for a user in a server. With only a name, it uses the current author and current server. Values are isolated by the `guildMember` context `guildId:userId`.
 
-If a second argument (User ID) is provided, the variable is read for that specific user. When a third argument (Guild ID) is also provided, the scope shifts to `guildMember`, using the composite key `guildId:userId` for the context. This is useful when the same user may have different variable values across different servers.
+The optional User ID selects another user; the optional Guild ID selects another server. An empty User ID uses the author. For a user value shared across all servers, use `$getVar[name;User ID]`.
+
+Existing bots without a completed variable migration retain their legacy user-global behavior until migrated.
 
 Variables are defined and configured in the Bot Creator Variables UI, where you can set default values. If a variable has not been set via $setUserVar but a default value exists in the definitions, $getUserVar returns that default. If neither a stored value nor a default exists, an empty string is returned.
 

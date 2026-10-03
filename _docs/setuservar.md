@@ -4,12 +4,14 @@ title: $setUserVar[]
 translation_key: docs
 category: "Variables"
 function_name: setUserVar
-syntax: $setUserVar[name;value] or $setUserVar[name;value;User ID]
+syntax: $setUserVar[name;value;(User ID;Guild ID)]
 description: Stores a value into a user-scoped variable. Writes to the current user's variable, or to a specific user when a User ID is provided.
 ---
 $setUserVar stores a value persistently in the BDFD database under a user-scoped variable. When called with two arguments (`name` and `value`), it sets the variable for the user who triggered the current command. When a third argument (User ID) is provided, the variable is set for that specific user.
 
-The scope is `user`, meaning the context ID is `((author.id))` by default. This function does not return any output — it performs a silent write operation. Use $getUserVar to read the value back.
+The scope is `guildMember`: the current server and author are used by default. The optional fourth argument selects another server; an empty User ID uses the author. This function produces no output. Use `$getUserVar` to read the value back, or `$setVar[name;value;User ID]` for a user value shared across servers.
+
+Existing bots without a completed variable migration retain their legacy user-global behavior until migrated.
 
 Variables must first be defined in the Bot Creator Variables UI. The value stored can be any string, including numbers, booleans, JSON, or the output of other BDFD functions. To reset a variable to its default value, use $resetUserVar.
 
