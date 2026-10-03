@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "nokogiri"
+require "digest"
+
 # Generates JSON indexes consumed by the MCP server at /api/mcp.
 # Outputs:
 #   /api/docs-index.json   -> [{ slug, name, category, url }, ...]
@@ -61,11 +64,89 @@ module Vitrine
         end
         add_static_file(site, "api", "docs-index.json", docs_index(site).to_json)
         add_static_file(site, "api", "posts-index.json", posts_index(site).to_json)
+        generate_native_library(site, docs, "docs")
+        generate_native_library(site, site.posts.docs, "guides")
         add_static_file(site, ".", "llms.txt", llms_summary(site))
         add_static_file(site, ".", "llms-full.txt", llms_full(site))
       end
 
       private
+
+      def generate_native_library(site, documents, library)
+        index = documents.map do |doc|
+          id = if library == "docs"
+                 doc.relative_path.sub(%r{^/?_docs/}, "").sub(/\.md\z/, "")
+               else
+                 doc.basename_without_ext
+               end
+          # Resolve site/page Liquid before exporting, without the site's layout.
+          payload = site.site_payload.merge("page" => doc.to_liquid)
+          rendered = site.liquid_renderer.file(doc.relative_path).parse(doc.content)
+                         .render!(payload, registers: { site: site, page: doc.to_liquid })
+          html = Kramdown::Document.new(rendered, input: "GFM").to_html
+          markdown = native_markdown(Nokogiri::HTML.fragment(html)).strip + "\n"
+          directory = File.dirname(id)
+          target = directory == "." ? "api/native/#{library}" : "api/native/#{library}/#{directory}"
+          add_static_file(site, target, "#{File.basename(id)}.md", markdown)
+          {
+            "id" => id,
+            "name" => doc.data["title"] || function_name_from_slug(doc.basename_without_ext),
+            "description" => doc.data["description"],
+            "category" => doc.data["category"],
+            "api_type" => doc.data["api_type"] || (library == "docs" ? "bdfd" : "general"),
+            "status" => doc.data["status"] || "documented",
+            "locale" => doc.data["locale"] || "en",
+            "translation_key" => doc.data["translation_key"],
+            "url" => "#{SITE_URL}#{doc.url}",
+            "markdown_url" => "#{SITE_URL}/api/native/#{library}/#{id}.md",
+            "revision" => Digest::SHA256.hexdigest(markdown),
+          }
+        end
+        index.sort_by! { |entry| entry.fetch("name").downcase } if library == "docs"
+        index.reverse! if library == "guides"
+        add_static_file(site, "api", "native-#{library}-index.json", index.to_json)
+      end
+
+      # Convert presentation HTML to portable Markdown; no CSS or executable HTML
+      # reaches the native reader. Code fences are sized to preserve literal code.
+      def native_markdown(node)
+        return node.text.gsub(/([\\`*\[\]])/, '\\\\\1') if node.text?
+        children = -> { node.children.map { |child| native_markdown(child) }.join }
+        case node.name
+        when "script", "style", "svg", "iframe" then ""
+        when "pre"
+          code = node.at_css("code") || node
+          fence = "`" * [3, (code.text.scan(/`+/).map(&:length).max || 0) + 1].max
+          language = code["class"].to_s[/\blanguage-([\w+-]+)/, 1].to_s
+          "\n\n#{fence}#{language}\n#{code.text.rstrip}\n#{fence}\n\n"
+        when "code"
+          fence = "`" * [(node.text.scan(/`+/).map(&:length).max || 0) + 1, 1].max
+          "#{fence} #{node.text} #{fence}"
+        when /^h([1-6])$/ then "\n\n#{'#' * Regexp.last_match(1).to_i} #{children.call.strip}\n\n"
+        when "a" then "[#{children.call}](#{node['href']})"
+        when "img" then "![#{node['alt']}](#{node['src']})"
+        when "strong", "b" then "**#{children.call}**"
+        when "em", "i" then "*#{children.call}*"
+        when "br" then "  \n"
+        when "hr" then "\n\n---\n\n"
+        when "blockquote" then "\n\n" + children.call.strip.lines.map { |line| "> #{line}" }.join + "\n\n"
+        when "ul", "ol"
+          items = node.element_children.select { |child| child.name == "li" }
+          "\n\n" + items.each_with_index.map do |item, i|
+            prefix = node.name == "ol" ? "#{i + 1}. " : "- "
+            lines = native_markdown(item).strip.lines
+            prefix + lines.shift.to_s + lines.map { |line| "  #{line}" }.join + "\n"
+          end.join + "\n"
+        when "table"
+          rows = node.css("tr").map do |row|
+            row.element_children.map { |cell| native_markdown(cell).strip.gsub("|", "\\|").gsub(/\s*\n\s*/, " ") }
+          end
+          return "" if rows.empty?
+          "\n\n| #{rows.first.join(' | ')} |\n| #{rows.first.map { '---' }.join(' | ')} |\n" + rows.drop(1).map { |row| "| #{row.join(' | ')} |\n" }.join + "\n"
+        when "p", "div", "section", "details", "summary" then "\n\n#{children.call.strip}\n\n"
+        else children.call
+        end
+      end
 
       def add_static_file(site, dir, name, content)
         site.static_files << InMemoryStaticFile.new(site, dir, name, content)

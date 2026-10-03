@@ -150,5 +150,5 @@ test('every BDFD function documentation file in _docs/ has a working ```bdfd cod
     }
   }
 
-  assert.equal(testedFunctions, 543, 'Expected all 543 BDFD functions to be verified');
+  assert.equal(testedFunctions, 544, 'Expected all 544 documented functions, including Bot Creator extensions, to be verified');
 });

@@ -127,6 +127,18 @@ Section content...
 
 ## Deployment
 
+### Native App Documentation API
+
+The Jekyll build exports `/api/native-docs-index.json` and
+`/api/native-guides-index.json`, plus portable Markdown under
+`/api/native/docs/` and `/api/native/guides/`. These use the existing `_docs` and
+`_posts` sources, resolve Liquid, preserve nested page identities and include
+SHA-256 content revisions. The existing MCP exports remain unchanged.
+
+Run `npm run test:native-docs` with the Ruby/Bundler environment available, then
+`JEKYLL_ENV=production bundle exec jekyll build`. Deploy these public files before
+releasing an App version using the native documentation reader.
+
 ### GitHub Pages
 1. Enable GitHub Pages in repository settings
 2. Set source branch to `gh-pages`

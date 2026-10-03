@@ -4,6 +4,7 @@
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
   "main": "postcss.config.js",
   "scripts": {
+    "test:native-docs": "bundle exec ruby tests/native_documentation_test.rb",
     "test": "node --test tests/*.test.mjs",
     "resize-images": "node scripts/resize-images.js"
   },
