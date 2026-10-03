@@ -122,7 +122,11 @@ module Vitrine
         when "code"
           fence = "`" * [(node.text.scan(/`+/).map(&:length).max || 0) + 1, 1].max
           "#{fence} #{node.text} #{fence}"
-        when /^h([1-6])$/ then "\n\n#{'#' * Regexp.last_match(1).to_i} #{children.call.strip}\n\n"
+        when /^h([1-6])$/
+          level = Regexp.last_match(1).to_i
+          anchor = node['id'].to_s
+          suffix = anchor.empty? ? "" : " {##{anchor}}"
+          "\n\n#{'#' * level} #{children.call.strip}#{suffix}\n\n"
         when "a" then "[#{children.call}](#{node['href']})"
         when "img" then "![#{node['alt']}](#{node['src']})"
         when "strong", "b" then "**#{children.call}**"

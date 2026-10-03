@@ -50,6 +50,12 @@ class NativeDocumentationTest
     assert_includes content, "| xp | 5 |"
   end
 
+  def test_original_heading_anchors_survive_export
+    content = markdown('<h2 id="custom-target">A different title</h2><a href="#custom-target">Jump</a>')
+    assert_includes content, '## A different title {#custom-target}'
+    assert_includes content, '[Jump](#custom-target)'
+  end
+
   def test_nested_pages_have_unique_identity_and_liquid_is_resolved
     Dir.mktmpdir do |source|
       FileUtils.mkdir_p("#{source}/_docs/sub")
