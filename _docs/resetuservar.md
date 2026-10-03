@@ -7,7 +7,9 @@ function_name: resetUserVar
 syntax: $resetUserVar[name] or $resetUserVar[name;User ID]
 description: Resets a user-scoped variable to its default value (as defined in the Bot Creator Variables UI), or removes it if no default exists.
 ---
-$resetUserVar restores a user-scoped variable to its default value, or removes the stored value entirely if no default is defined in the Bot Creator Variables UI. It performs a `resetScopedVariable` action with scope `user`.
+$resetUserVar restores server/member variables to their default value, or removes stored values if no default is defined. Without a User ID it resets every stored member value; with a User ID it resets only that user's member values. Global-user values used by `$getVar[name;User ID]` are preserved.
+
+Existing bots without a completed variable migration retain their legacy reset behavior until migrated.
 
 When called with only a `name`, it resets the variable for the current command author. When a User ID is provided, it resets the variable for that specific user.
 
