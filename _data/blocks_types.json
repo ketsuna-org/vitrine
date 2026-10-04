@@ -1,0 +1,274 @@
+{
+  "Action": {
+    "desc": "Une action Blocks. Toujours { type, payload }, où type est un nom d'action du manifeste et payload ses params.",
+    "fields": {
+      "type": "string",
+      "payload": "object?"
+    }
+  },
+  "Embed": {
+    "desc": "Embed Discord. Les valeurs acceptent les placeholders ((...)). color: hex #RRGGBB.",
+    "fields": {
+      "title": "string?",
+      "url": "string?",
+      "description": "string?",
+      "color": "string?",
+      "author": "EmbedAuthor?",
+      "footer": "EmbedFooter?",
+      "thumbnail": "EmbedMedia?",
+      "image": "EmbedMedia?",
+      "timestamp": "string?",
+      "fields": "EmbedField[]?"
+    }
+  },
+  "EmbedAuthor": {
+    "fields": {
+      "name": "string",
+      "icon_url": "string?",
+      "url": "string?"
+    }
+  },
+  "EmbedFooter": {
+    "fields": {
+      "text": "string",
+      "icon_url": "string?"
+    }
+  },
+  "EmbedMedia": {
+    "fields": {
+      "url": "string"
+    }
+  },
+  "EmbedField": {
+    "fields": {
+      "name": "string",
+      "value": "string",
+      "inline": "boolean?"
+    }
+  },
+  "Condition": {
+    "desc": "Condition feuille OU groupe. Feuille: variable+operator+value. Groupe: group (and|or) + conditions[] + negate optionnel.",
+    "oneOf": [
+      "ConditionLeaf",
+      "ConditionGroup"
+    ]
+  },
+  "ConditionLeaf": {
+    "fields": {
+      "variable": "string",
+      "operator": "equals|notEquals|equalsIgnoreCase|contains|containsIgnoreCase|notContains|containsItem|startsWith|endsWith|greaterThan|lessThan|greaterOrEqual|lessOrEqual|isEmpty|isNotEmpty|matches|hasPermission?",
+      "value": "string|number?"
+    }
+  },
+  "ConditionGroup": {
+    "fields": {
+      "group": "and|or",
+      "conditions": "Condition[]",
+      "negate": "boolean?"
+    }
+  },
+  "ComponentsDef": {
+    "desc": "Valeur du param components pour message/composants V2: { components: Component[] }.",
+    "fields": {
+      "components": "Component[]"
+    }
+  },
+  "Component": {
+    "desc": "Nœud de composant, discriminé par type. Les boutons et menus peuvent porter des actions inline (Action[]) exécutées au clic.",
+    "discriminator": "type",
+    "variants": {
+      "actionRow": {
+        "components": "Component[]"
+      },
+      "button": {
+        "label": "string?",
+        "style": "primary|secondary|success|danger|link|premium?",
+        "customId": "string?",
+        "url": "string?",
+        "emoji": "string?",
+        "disabled": "string?",
+        "skuId": "string?",
+        "actions": "Action[]?"
+      },
+      "stringSelect": {
+        "customId": "string?",
+        "placeholder": "string?",
+        "options": "SelectOption[]",
+        "minValues": "number?",
+        "maxValues": "number?",
+        "disabled": "string?",
+        "actions": "Action[]?"
+      },
+      "userSelect": {
+        "customId": "string?",
+        "placeholder": "string?",
+        "minValues": "number?",
+        "maxValues": "number?",
+        "disabled": "string?",
+        "actions": "Action[]?"
+      },
+      "roleSelect": {
+        "customId": "string?",
+        "placeholder": "string?",
+        "minValues": "number?",
+        "maxValues": "number?",
+        "disabled": "string?",
+        "actions": "Action[]?"
+      },
+      "mentionableSelect": {
+        "customId": "string?",
+        "placeholder": "string?",
+        "minValues": "number?",
+        "maxValues": "number?",
+        "disabled": "string?",
+        "actions": "Action[]?"
+      },
+      "channelSelect": {
+        "customId": "string?",
+        "placeholder": "string?",
+        "minValues": "number?",
+        "maxValues": "number?",
+        "disabled": "string?",
+        "actions": "Action[]?"
+      },
+      "textInput": {
+        "customId": "string?",
+        "label": "string?",
+        "style": "short|paragraph?",
+        "placeholder": "string?",
+        "required": "boolean?"
+      },
+      "section": {
+        "components": "Component[]",
+        "accessory": "Component?"
+      },
+      "textDisplay": {
+        "content": "string"
+      },
+      "thumbnail": {
+        "media": "Media",
+        "description": "string?",
+        "isSpoiler": "boolean?"
+      },
+      "mediaGallery": {
+        "items": "MediaGalleryItem[]"
+      },
+      "file": {
+        "file": "Media",
+        "isSpoiler": "boolean?"
+      },
+      "separator": {
+        "isDivider": "boolean?",
+        "spacing": "number?"
+      },
+      "container": {
+        "components": "Component[]",
+        "accentColor": "string?",
+        "isSpoiler": "boolean?"
+      },
+      "label": {
+        "label": "string",
+        "description": "string?",
+        "component": "Component"
+      }
+    }
+  },
+  "SelectOption": {
+    "fields": {
+      "label": "string",
+      "value": "string",
+      "description": "string?",
+      "emoji": "string?",
+      "isDefault": "boolean?"
+    }
+  },
+  "Media": {
+    "fields": {
+      "url": "string"
+    }
+  },
+  "MediaGalleryItem": {
+    "fields": {
+      "media": "Media",
+      "description": "string?",
+      "isSpoiler": "boolean?"
+    }
+  },
+  "AllowedMentions": {
+    "desc": "Mentions autorisées sur le message (ping control).",
+    "fields": {
+      "parse": "string[]?",
+      "users": "string[]?",
+      "roles": "string[]?"
+    }
+  },
+  "WebhookEmbed": {
+    "desc": "Embed webhook: seuls title, description, color, footer sont lus.",
+    "fields": {
+      "title": "string?",
+      "description": "string?",
+      "color": "string?",
+      "footer": "EmbedFooter|string?"
+    }
+  },
+  "ComponentsDefV2": {
+    "desc": "Définition Component V2 : { components, ephemeral? }. ephemeral se place ICI (et non au niveau du payload) pour respondWithComponentV2/sendComponentV2.",
+    "fields": {
+      "components": "Component[]",
+      "ephemeral": "boolean?"
+    }
+  },
+  "ModalTextInput": {
+    "desc": "Champ texte du format modal legacy (inputs[]).",
+    "fields": {
+      "customId": "string",
+      "label": "string",
+      "style": "short|paragraph?",
+      "placeholder": "string?",
+      "defaultValue": "string?",
+      "required": "boolean?",
+      "minLength": "number?",
+      "maxLength": "number?"
+    }
+  },
+  "ElseIfBranch": {
+    "desc": "Branche else-if d'un ifBlock : une condition (feuille ou groupe) et ses actions.",
+    "fields": {
+      "variable": "string?",
+      "operator": "string?",
+      "value": "string|number?",
+      "group": "and|or?",
+      "conditions": "Condition[]?",
+      "negate": "boolean?",
+      "actions": "Action[]"
+    }
+  },
+  "RuntimeJsonOperation": {
+    "desc": "Opération d'un runtimeJsonBlock.",
+    "fields": {
+      "op": "get|set|unset|clear|exists|stringify|pretty|initArray|arrayAppend|arrayUnshift|arrayPop|arrayShift|arraySort|arrayReverse|arrayCount|arrayIndex|joinArray|keys",
+      "path": "string[]?",
+      "value": "string?",
+      "forceString": "boolean?",
+      "separator": "string?",
+      "order": "asc|desc?",
+      "descending": "boolean?",
+      "indent": "string|number?",
+      "readIndex": "string|number?"
+    }
+  },
+  "CanvasOperation": {
+    "desc": "Opération d'image canvas (clé op + champs propres à l'opération : width, height, color, url, dataUrl, x, y, container...).",
+    "fields": {
+      "op": "create|loadImage|compositeImage|drawText|drawCircle|drawRect|drawLine|progressBar|setPixel|invert|grayscale|rotate|container",
+      "container": "string?",
+      "width": "string|number?",
+      "height": "string|number?",
+      "color": "string?",
+      "url": "string?",
+      "dataUrl": "string?",
+      "x": "string|number?",
+      "y": "string|number?"
+    }
+  }
+}

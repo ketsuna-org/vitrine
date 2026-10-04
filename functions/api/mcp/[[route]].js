@@ -15,6 +15,8 @@
 //   returns a single JSON-RPC `result` to the caller — no notifications,
 //   no server-initiated messages — so we do not lose any spec compliance.
 
+import { buildIndex, plan } from "./planner.mjs";
+
 const SITE_ORIGIN = "https://bot-creator.fr";
 const GITHUB_RAW = "https://raw.githubusercontent.com/ketsuna-org/vitrine/master";
 const PROTOCOL_VERSION = "2025-11-25";
@@ -112,7 +114,7 @@ async function handleSingle(req) {
             protocolVersion: PROTOCOL_VERSION,
             capabilities: CAPABILITIES,
             serverInfo: SERVER_INFO,
-            instructions: "Use get_schema_manifest to retrieve strict compact type signatures ({ desc, params }) for Blocks (~3k tokens), BDFD, or JS before generating code. Read execution-model before generating commands. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) PRODUCTION TICKET SYSTEMS: $newTicket and $closeTicket are INCOMPLETE legacy helpers that lack private permissions. Always implement tickets using explicit createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button ($addButton[no;close_ticket;Close Ticket;danger]), and an interaction handler that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
+            instructions: "Use get_schema_manifest to retrieve strict compact type signatures ({ desc, params }) for Blocks (~3k tokens), BDFD, or JS before generating code. Read execution-model before generating commands. For Blocks, nested params (embeds, components, conditions, thenActions) use named types: fetch them with get_schema_manifest mode='types', and ALWAYS run generated Blocks JSON through validate_actions and fix every error before delivering it. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) PRODUCTION TICKET SYSTEMS: $newTicket and $closeTicket are INCOMPLETE legacy helpers that lack private permissions. Always implement tickets using explicit createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button ($addButton[no;close_ticket;Close Ticket;danger]), and an interaction handler that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
           },
         };
 
@@ -156,14 +158,14 @@ const TOOLS_META = [
   {
     name: "get_schema_manifest",
     description:
-      "Get the compact typed grammar/schema dictionary for Bot Creator. Returns parameter types and descriptions for compiler validation. Default mode 'blocks' (~3k tokens) contains all 118 native block actions. Fast, strict, and zero-hallucination.",
+      "Get the compact typed grammar/schema dictionary for Bot Creator. Returns parameter types and descriptions for compiler validation. Default mode 'blocks' (~3k tokens) contains every native block action (list them with list_actions). Nested params reference named types (e.g. Embed[], ComponentsDef, Action[]) defined by mode='types'. Fast, strict, and zero-hallucination.",
     inputSchema: {
       type: "object",
       properties: {
         mode: {
           type: "string",
-          enum: ["blocks", "bdfd", "javascript", "all"],
-          description: "Authoring mode to retrieve. Default is 'blocks'.",
+          enum: ["blocks", "bdfd", "javascript", "types", "all"],
+          description: "Authoring mode to retrieve. Default is 'blocks'. Use 'types' for the named nested types (Embed, Component, Condition, Action…) referenced by Blocks params.",
           default: "blocks",
         },
         category: {
@@ -171,6 +173,47 @@ const TOOLS_META = [
           description: "Optional category filter (e.g. 'Messages', 'Moderation', 'Variables', 'Logic').",
         },
       },
+    },
+  },
+  {
+    name: "plan_solution",
+    description:
+      "START HERE for any BDFD/Blocks command request. One call, no LLM: returns the best-fitting functions (with signatures), the gotchas that apply, a validated skeleton when a known recipe matches, and a decision (auto = write it now, review = docs_get 1-2 functions, ask_user = clarify). Far cheaper than search_docs + get_doc loops.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        intent: { type: "string", description: "What the command must do, in the user's words (FR or EN).", maxLength: 500 },
+        mode: { type: "string", enum: ["bdfd", "blocks"], description: "Authoring mode. Default 'bdfd'.", default: "bdfd" },
+        budget: { type: "integer", description: "Max functions to return (default 10).", default: 10, minimum: 1, maximum: 20 },
+      },
+      required: ["intent"],
+    },
+  },
+  {
+    name: "list_actions",
+    description:
+      "List every native Blocks action name with its category and description only (very small). Use it to pick action names, then get_doc / get_schema_manifest(category) for their params.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        category: { type: "string", description: "Optional category filter (e.g. 'Messages', 'Moderation')." },
+      },
+    },
+  },
+  {
+    name: "validate_actions",
+    description:
+      "Validate a Blocks action list ([{ type, payload }]) against the manifest: unknown action names (with suggestions), missing required params, wrong types/enums, unknown params, and nested embeds/components/conditions/thenActions. Call it on generated JSON and fix every error before delivering it.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        actions: {
+          type: "array",
+          description: "Array of Blocks actions, each { type: string, payload: object }.",
+          items: { type: "object" },
+        },
+      },
+      required: ["actions"],
     },
   },
   {
@@ -182,7 +225,7 @@ const TOOLS_META = [
       properties: {
         query: { type: "string", description: "Search term (matched case-insensitively against name, slug, category)." },
         api_type: { type: "string", enum: ["blocks", "bdfd", "javascript", "general"], description: "Filter documentation by execution mode." },
-        limit: { type: "integer", description: "Max results (default 25).", default: 25, minimum: 1, maximum: 100 },
+        limit: { type: "integer", description: "Max results (default 8).", default: 8, minimum: 1, maximum: 100 },
       },
       required: ["query"],
     },
@@ -337,6 +380,15 @@ async function handleToolCall(req) {
       case "get_schema_manifest":
         result = await toolGetSchemaManifest(args);
         break;
+      case "plan_solution":
+        result = await toolPlanSolution(args);
+        break;
+      case "list_actions":
+        result = await toolListActions(args);
+        break;
+      case "validate_actions":
+        result = await toolValidateActions(args);
+        break;
       case "search_docs":
         result = await toolSearchDocs(args);
         break;
@@ -420,17 +472,26 @@ async function toolGetSchemaManifest({ mode = "blocks", category } = {}) {
   const manifest = await fetchSchemaManifest();
   const targetMode = mode || "blocks";
 
-  if (targetMode !== "all" && !["blocks", "bdfd", "javascript"].includes(targetMode)) {
-    throw new Error(`Invalid mode: ${targetMode}. Valid modes are 'blocks', 'bdfd', 'javascript', 'all'.`);
+  if (targetMode !== "all" && !["blocks", "bdfd", "javascript", "types"].includes(targetMode)) {
+    throw new Error(`Invalid mode: ${targetMode}. Valid modes are 'blocks', 'bdfd', 'javascript', 'types', 'all'.`);
+  }
+
+  if (targetMode === "types") {
+    return toolText(JSON.stringify(manifest.types || {}));
   }
 
   let resultData;
   if (targetMode === "all") {
     resultData = manifest.modes || {};
+    if (manifest.types) resultData = { ...resultData, types: manifest.types };
     if (category) {
       const catNorm = normalize(category);
       const filtered = {};
       for (const [m, dict] of Object.entries(resultData)) {
+        if (m === "types") {
+          filtered[m] = dict;
+          continue;
+        }
         filtered[m] = {};
         for (const [k, v] of Object.entries(dict)) {
           if (normalize(v.category).includes(catNorm)) {
@@ -455,12 +516,245 @@ async function toolGetSchemaManifest({ mode = "blocks", category } = {}) {
     }
   }
 
-  return toolText(JSON.stringify(resultData, null, 2));
+  return toolText(JSON.stringify(resultData));
+}
+
+let plannerCache = { at: 0, index: null };
+
+async function toolPlanSolution({ intent, mode = "bdfd", budget } = {}) {
+  if (typeof intent !== "string" || !intent.trim()) throw new Error("`intent` is required");
+  if (!["bdfd", "blocks"].includes(mode)) throw new Error("`mode` must be 'bdfd' or 'blocks'");
+  if (!plannerCache.index || Date.now() - plannerCache.at > 300_000) {
+    const [docs, manifest] = await Promise.all([fetchDocsIndex(), fetchSchemaManifest()]);
+    plannerCache = { at: Date.now(), index: buildIndex({ docs, manifest }) };
+  }
+  return toolText(JSON.stringify(plan(plannerCache.index, { intent: intent.slice(0, 500), mode, budget })));
+}
+
+async function toolListActions({ category } = {}) {
+  const manifest = await fetchSchemaManifest();
+  const catNorm = category ? normalize(category) : "";
+  const actions = Object.entries(manifest.modes?.blocks || {})
+    .filter(([, v]) => !catNorm || normalize(v.category).includes(catNorm))
+    .map(([name, v]) => ({ name, category: v.category, desc: v.desc }));
+  return toolText(JSON.stringify({ count: actions.length, actions }));
+}
+
+// --- Blocks validation ---------------------------------------------------
+
+const PRIMITIVES = new Set(["string", "number", "boolean", "object"]);
+
+function hasPlaceholder(v) {
+  return typeof v === "string" && v.includes("((");
+}
+
+function levenshtein(a, b) {
+  const dp = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) dp[0][j] = j;
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+  }
+  return dp[a.length][b.length];
+}
+
+function closest(name, candidates) {
+  const n = normalize(name);
+  let best = null;
+  let bestDist = Infinity;
+  for (const c of candidates) {
+    const d = levenshtein(n, normalize(c));
+    if (d < bestDist) {
+      bestDist = d;
+      best = c;
+    }
+  }
+  return best !== null && bestDist <= Math.max(2, Math.floor(n.length / 3)) ? best : null;
+}
+
+function describeValue(v) {
+  if (v === null) return "null";
+  return Array.isArray(v) ? "array" : typeof v;
+}
+
+function isPlainObject(v) {
+  return v !== null && typeof v === "object" && !Array.isArray(v);
+}
+
+// Validates `value` against a type spec string ("string?", "Embed[]", "a|b?"…).
+// Pushes { path, message } entries into `issues.errors` / `issues.warnings`.
+function checkType(value, spec, path, ctx, issues) {
+  let base = String(spec).trim();
+  if (base.endsWith("?")) base = base.slice(0, -1);
+
+  if (base.endsWith("[]")) {
+    if (!Array.isArray(value)) {
+      issues.errors.push({ path, message: `expected array (${spec}), got ${describeValue(value)}` });
+      return;
+    }
+    value.forEach((item, i) => checkType(item, base.slice(0, -2), `${path}[${i}]`, ctx, issues));
+    return;
+  }
+
+  const alts = base.split("|").map((a) => a.trim()).filter(Boolean);
+
+  // Single named type.
+  if (alts.length === 1 && ctx.types[alts[0]]) {
+    checkNamedType(value, alts[0], path, ctx, issues);
+    return;
+  }
+
+  for (const alt of alts) {
+    if (alt === "string" && typeof value === "string") return;
+    if (alt === "number" && (typeof value === "number" || (typeof value === "string" && (hasPlaceholder(value) || (value.trim() !== "" && Number.isFinite(Number(value))))))) return;
+    if (alt === "boolean" && (typeof value === "boolean" || (typeof value === "string" && (hasPlaceholder(value) || ["true", "false"].includes(value.toLowerCase()))))) return;
+    if (alt === "object" && isPlainObject(value)) return;
+    if (ctx.types[alt]) {
+      const probe = { errors: [], warnings: [] };
+      checkNamedType(value, alt, path, ctx, probe);
+      if (probe.errors.length === 0) {
+        issues.warnings.push(...probe.warnings);
+        return;
+      }
+    }
+    if (!PRIMITIVES.has(alt) && !ctx.types[alt]) {
+      if (typeof value === "string" && (hasPlaceholder(value) || normalize(value) === normalize(alt))) return;
+    }
+  }
+
+  const literals = alts.filter((a) => !PRIMITIVES.has(a) && !ctx.types[a]);
+  const hint = literals.length > 0 && alts.length === literals.length ? ` Allowed: ${literals.join(", ")}.` : "";
+  issues.errors.push({ path, message: `expected ${alts.join(" | ")}, got ${describeValue(value)}${typeof value === "string" ? ` "${value}"` : ""}.${hint}`.replace(/\.\.$/, ".") });
+}
+
+function checkFields(obj, fields, path, ctx, issues, ignore = []) {
+  for (const [key, spec] of Object.entries(fields)) {
+    const optional = String(spec).trim().endsWith("?");
+    if (obj[key] === undefined || obj[key] === null) {
+      if (!optional) issues.errors.push({ path: `${path}.${key}`, message: "required field is missing" });
+      continue;
+    }
+    checkType(obj[key], spec, `${path}.${key}`, ctx, issues);
+  }
+  for (const key of Object.keys(obj)) {
+    if (key in fields || ignore.includes(key)) continue;
+    const near = closest(key, Object.keys(fields));
+    issues.warnings.push({ path: `${path}.${key}`, message: `unknown field${near ? `, did you mean "${near}"?` : ""}` });
+  }
+}
+
+function checkNamedType(value, name, path, ctx, issues) {
+  if (name === "Action") {
+    checkAction(value, path, ctx, issues);
+    return;
+  }
+  const def = ctx.types[name];
+  if (!isPlainObject(value)) {
+    issues.errors.push({ path, message: `expected ${name} object, got ${describeValue(value)}` });
+    return;
+  }
+  if (def.oneOf) {
+    // Condition: leaf vs group is decided by the presence of `group`.
+    if (name === "Condition") {
+      checkNamedType(value, value.group !== undefined ? "ConditionGroup" : "ConditionLeaf", path, ctx, issues);
+      return;
+    }
+    const probes = def.oneOf.map((alt) => {
+      const probe = { errors: [], warnings: [] };
+      checkNamedType(value, alt, path, ctx, probe);
+      return probe;
+    });
+    if (!probes.some((p) => p.errors.length === 0)) issues.errors.push(...probes[0].errors);
+    return;
+  }
+  if (def.discriminator) {
+    const kind = value[def.discriminator];
+    const variants = def.variants || {};
+    if (typeof kind !== "string" || !variants[kind]) {
+      const near = typeof kind === "string" ? closest(kind, Object.keys(variants)) : null;
+      issues.errors.push({
+        path: `${path}.${def.discriminator}`,
+        message: `unknown ${name} ${def.discriminator} ${JSON.stringify(kind)}${near ? `, did you mean "${near}"?` : `. Allowed: ${Object.keys(variants).join(", ")}`}`,
+      });
+      return;
+    }
+    checkFields(value, variants[kind], path, ctx, issues, [def.discriminator]);
+    return;
+  }
+  checkFields(value, def.fields || {}, path, ctx, issues);
+}
+
+function checkAction(action, path, ctx, issues) {
+  if (!isPlainObject(action)) {
+    issues.errors.push({ path, message: `expected action object { type, payload }, got ${describeValue(action)}` });
+    return;
+  }
+  const type = action.type;
+  if (typeof type !== "string" || !type) {
+    issues.errors.push({ path: `${path}.type`, message: "action type is required (string)" });
+    return;
+  }
+  const def = ctx.blocks[type];
+  if (!def) {
+    const near = closest(type, Object.keys(ctx.blocks));
+    issues.errors.push({
+      path: `${path}.type`,
+      message: `unknown action "${type}"${near ? `, did you mean "${near}"?` : ". Use list_actions to see valid names."}`,
+    });
+    return;
+  }
+  if (def.unsupported) {
+    issues.errors.push({ path: `${path}.type`, message: `action "${type}" cannot be used here: ${def.unsupported}` });
+    return;
+  }
+  const payload = action.payload ?? {};
+  if (!isPlainObject(payload)) {
+    issues.errors.push({ path: `${path}.payload`, message: `payload must be an object, got ${describeValue(payload)}` });
+    return;
+  }
+  // Engine-level keys accepted on any action payload.
+  checkFields(payload, def.params || {}, `${path}.payload`, ctx, issues, ["key", "tryCatch", "id", "enabled"]);
+  ctx.count += 1;
+}
+
+async function toolValidateActions({ actions } = {}) {
+  if (typeof actions === "string") {
+    try {
+      actions = JSON.parse(actions);
+    } catch {
+      throw new Error("`actions` must be an array of { type, payload } (got an unparsable string)");
+    }
+  }
+  if (isPlainObject(actions)) actions = [actions];
+  if (!Array.isArray(actions)) throw new Error("`actions` must be an array of { type, payload }");
+
+  const manifest = await fetchSchemaManifest();
+  const ctx = { blocks: manifest.modes?.blocks || {}, types: manifest.types || {}, count: 0 };
+  const issues = { errors: [], warnings: [] };
+  actions.forEach((a, i) => checkAction(a, `actions[${i}]`, ctx, issues));
+
+  return toolText(
+    JSON.stringify({ valid: issues.errors.length === 0, checked: ctx.count, errors: issues.errors, warnings: issues.warnings })
+  );
+}
+
+// Search rows stay small: the model reads them on every following turn.
+function compactDoc(d) {
+  const description = String(d.description ?? "");
+  return {
+    slug: d.slug,
+    name: d.name,
+    ...(d.syntax ? { syntax: d.syntax } : {}),
+    ...(description ? { description: description.length > 90 ? `${description.slice(0, 87)}...` : description } : {}),
+    ...(d.status && d.status !== "documented" ? { status: d.status } : {}),
+    ...(d.api_type && d.api_type !== "bdfd" ? { api_type: d.api_type } : {}),
+  };
 }
 
 async function toolSearchDocs({ query, limit, api_type }) {
   const q = normalize(query);
-  const lim = clampLimit(limit, 25);
+  const lim = clampLimit(limit, 8);
   if (!q) throw new Error("`query` is required");
   if (api_type && !["blocks", "bdfd", "javascript", "general"].includes(api_type)) throw new Error("Invalid api_type");
 
@@ -481,12 +775,12 @@ async function toolSearchDocs({ query, limit, api_type }) {
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, lim)
-    .map((x) => x.d);
+    .map((x) => compactDoc(x.d));
 
   return toolText(
     scored.length === 0
       ? `No docs matched "${query}".`
-      : JSON.stringify({ count: scored.length, results: scored }, null, 2)
+      : JSON.stringify({ count: scored.length, results: scored })
   );
 }
 
@@ -510,19 +804,19 @@ async function toolGetDoc({ slug, full_markdown = false }) {
       // 1. Match Blocks action
       for (const [key, val] of Object.entries(manifest.modes.blocks || {})) {
         if (normalize(key) === normalize(slug)) {
-          return toolText(JSON.stringify({ type: key, ...val }, null, 2));
+          return toolText(JSON.stringify({ type: key, ...val }));
         }
       }
       // 2. Match BDFD function
       for (const [key, val] of Object.entries(manifest.modes.bdfd || {})) {
         if (normalize(key) === normalize(slug) || normalize(key) === normalize(`$${slug}`)) {
-          return toolText(JSON.stringify({ name: key, ...val }, null, 2));
+          return toolText(JSON.stringify({ name: key, ...val }));
         }
       }
       // 3. Match JavaScript module
       for (const [key, val] of Object.entries(manifest.modes.javascript || {})) {
         if (normalize(key) === normalize(slug) || normalize(val.slug) === normalize(slug)) {
-          return toolText(JSON.stringify({ module: key, ...val }, null, 2));
+          return toolText(JSON.stringify({ module: key, ...val }));
         }
       }
     }
@@ -534,7 +828,7 @@ async function toolGetDoc({ slug, full_markdown = false }) {
         syntax: doc.syntax,
         params: doc.params,
         api_type: doc.api_type || "bdfd",
-      }, null, 2));
+      }));
     }
   }
 
@@ -557,7 +851,7 @@ async function toolListPosts({ locale, limit }) {
     posts = posts.filter((p) => normalize(p.locale) === l);
   }
   posts = posts.slice(0, lim);
-  return toolText(JSON.stringify({ count: posts.length, results: posts }, null, 2));
+  return toolText(JSON.stringify({ count: posts.length, results: posts }));
 }
 
 async function toolSearchPosts({ query, limit }) {
@@ -584,7 +878,7 @@ async function toolSearchPosts({ query, limit }) {
   return toolText(
     scored.length === 0
       ? `No posts matched "${query}".`
-      : JSON.stringify({ count: scored.length, results: scored }, null, 2)
+      : JSON.stringify({ count: scored.length, results: scored })
   );
 }
 
