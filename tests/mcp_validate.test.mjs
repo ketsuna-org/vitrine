@@ -155,3 +155,24 @@ test('the Action type lists exactly the fields the Dart Action serializes (contr
   const dartFields = [...body.matchAll(/'(\w+)':/g)].map(m => m[1]).sort();
   assert.deepEqual(Object.keys(types.Action.fields).sort(), dartFields);
 });
+
+test('result-naming fields the engine ignores are errors; real storeAs params stay valid', async () => {
+  const bad = await call('validate_actions', { actions: [{ type: 'calculate', payload: { expression: '1+1', storeAs: 'temp.total' } }] });
+  assert.equal(bad.data.valid, false);
+  assert.match(bad.data.errors[0].message, /does not exist.*`key` on the ACTION.*Accepted payload fields: expression/s);
+  const ok = await call('validate_actions', { actions: [{ type: 'getScopedVariable', key: 'prev', payload: { scope: 'guildMember', key: 'warns', storeAs: 'anciens' } }] });
+  assert.equal(ok.data.valid, true, JSON.stringify(ok.data));
+  const typo = await call('validate_actions', { actions: [{ type: 'calculate', payload: { expresion: '1' } }] });
+  assert.match(typo.data.warnings[0].message, /did you mean "expression".*Accepted:/s);
+});
+
+test('blocks manifest: compact index by default, exact schemas with names, nothing too large for the app', async () => {
+  const index = (await call('get_schema_manifest', { mode: 'blocks' })).data;
+  assert.ok(index.categories.Logic.includes('calculate'));
+  assert.ok(JSON.stringify(index).length < 4000, `index is ${JSON.stringify(index).length} bytes`);
+  const some = (await call('get_schema_manifest', { mode: 'blocks', names: ['calculate', 'SetScopedVariable', 'nope'] })).data;
+  assert.ok(some.calculate.params.expression && some.setScopedVariable.params.scope);
+  assert.deepEqual(some._unknown, ['nope']);
+  const cat = (await call('get_schema_manifest', { mode: 'blocks', category: 'Logic' })).data;
+  assert.ok(cat.ifBlock);
+});

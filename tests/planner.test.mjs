@@ -57,6 +57,7 @@ const GOLDEN = [
   ['bouton cliquable', 'bdfd', ['$addbutton'], 'auto'],
   ['commande /warn pour avertir un membre et compter ses avertissements', 'bdfd', ['$setguildmembervar', '$getguildmembervar', '$onlyperms'], 'auto'],
   ['ping with latency', 'blocks', ['respondwithmessage'], 'auto'],
+  ['slash command warn: store a warnings count per member and reply', 'blocks', ['getscopedvariable', 'calculate', 'setscopedvariable'], 'auto'],
 ];
 
 test('golden intents select the expected functions in a compact answer', () => {
