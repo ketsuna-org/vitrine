@@ -4,41 +4,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   Bot Creator — site design layer
+   Flat surfaces, hairline borders, violet reserved for actions and links.
+   ========================================================================== */
+
 @layer base {
   :root {
-    /* Bot Creator mobile AppTheme — neutral graphite surfaces */
-    --background:              #111111;
-    --on-background:           #f0f0f0;
-    --primary:                 #B19DF7;
-    --on-primary:              #111111;
-    --surface:                 #111111;
-    --on-surface:              #f0f0f0;
-    --surface-container:       #1D1D1D;
-    --surface-container-low:   #151515;
-    --surface-container-high:  #262626;
-    --surface-container-highest: #2D2D2D;
-    --surface-variant:         #262626;
-    --on-surface-variant:      #888888;
-    --outline:                 #292929;
-    --outline-variant:         #202020;
-    --tertiary:                #111111;
-    --on-tertiary:             #f0f0f0;
+    --background:                #0D0D0F;
+    --on-background:             #EDEDF0;
+    --primary:                   #B19DF7;
+    --on-primary:                #111111;
+    --surface:                   #0D0D0F;
+    --on-surface:                #EDEDF0;
+    --surface-container:         #17171B;
+    --surface-container-low:     #121215;
+    --surface-container-lowest:  #0A0A0C;
+    --surface-container-high:    #1F1F25;
+    --surface-container-highest: #26262D;
+    --surface-variant:           #1F1F25;
+    --on-surface-variant:        #A1A1AB;
+    --outline:                   #2A2A31;
+    --outline-variant:           #232329;
+    --tertiary:                  #0D0D0F;
+    --on-tertiary:               #EDEDF0;
 
-    /* Legacy variable mappings for markdown.css */
-    --text-100:    #f0f0f0;
-    --text-200:    #888888;
-    --text-300:    #6e7681;
-    --text-400:    #484f58;
+    /* Legacy variable names consumed by markdown.css */
+    --text-100:    #EDEDF0;
+    --text-200:    #A1A1AB;
+    --text-300:    #7C7C87;
+    --text-400:    #55555F;
     --accent-500:  #B19DF7;
-    --mint-400:    #888888;
-    --font-display: "Inter", sans-serif;
-    --font-mono:    "JetBrains Mono", monospace;
+    --mint-400:    #B19DF7;
+    --font-display: "Geist", system-ui, sans-serif;
+    --font-mono:    "Geist Mono", ui-monospace, monospace;
+
+    --header-h: 56px;
+    --gutter: 16px;
   }
+
+  @media (min-width: 640px) { :root { --gutter: 24px; } }
 
   html {
     scroll-behavior: smooth;
     background-color: var(--background);
     overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
@@ -46,402 +57,364 @@
     min-height: 100vh;
     background-color: var(--background);
     color: var(--on-background);
-    font-family: "Inter", sans-serif;
-    font-display: swap;
+    font-family: "Geist", system-ui, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+  img { max-width: 100%; height: auto; }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Inter", sans-serif;
+    font-family: "Geist", system-ui, sans-serif;
     color: var(--on-background);
+    letter-spacing: -0.02em;
   }
 
-  .reicon {
-    vertical-align: middle;
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+  ::selection { background: rgba(177, 157, 247, .32); }
+}
 
-  /* Custom scrollbar — dark corporate style */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--surface-container);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--outline);
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--on-surface-variant);
-  }
+/* ==========================================================================
+   Custom scrollbars
+   Native bars are hidden once scrollbar.js is running (html.cs) so the look is
+   identical on every OS. Scrolling itself stays native (wheel, touch, keys).
+   ========================================================================== */
+html.cs,
+html.cs [data-cscroll],
+html.cs .cs-host > * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html.cs::-webkit-scrollbar,
+html.cs [data-cscroll]::-webkit-scrollbar,
+html.cs .cs-host > *::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.cs-host { position: relative; min-width: 0; max-width: 100%; }
+
+.cs-track {
+  position: absolute;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity .2s ease;
+  touch-action: none;
+}
+.cs-track.is-visible,
+.cs-track.is-dragging,
+.cs-host:hover > .cs-track.is-scrollable { opacity: 1; }
+.cs-track:not(.is-scrollable) { display: none; }
+
+.cs-v { top: 2px; bottom: 2px; right: 2px; width: 10px; }
+.cs-h { left: 2px; right: 2px; bottom: 2px; height: 10px; }
+.cs-v.cs-both { bottom: 14px; }
+.cs-h.cs-both { right: 14px; }
+
+.cs-thumb {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(237, 237, 240, .22);
+  transition: background-color .15s ease;
+}
+.cs-v .cs-thumb { left: 2px; right: 2px; min-height: 36px; }
+.cs-h .cs-thumb { top: 2px; bottom: 2px; min-width: 36px; }
+.cs-track:hover .cs-thumb,
+.cs-track.is-dragging .cs-thumb { background: rgba(177, 157, 247, .75); }
+
+/* The page bar floats above everything, outside any host. */
+.cs-page {
+  position: fixed;
+  top: 0; bottom: 0; right: 0;
+  width: 14px;
+  z-index: 200;
+  opacity: 0;
+  transition: opacity .25s ease;
+  touch-action: none;
+}
+.cs-page.is-visible,
+.cs-page.is-dragging,
+.cs-page:hover { opacity: 1; }
+.cs-page:not(.is-scrollable) { display: none; }
+.cs-page .cs-thumb { left: 3px; right: 3px; min-height: 44px; background: rgba(237, 237, 240, .28); }
+.cs-page:hover .cs-thumb,
+.cs-page.is-dragging .cs-thumb { background: rgba(177, 157, 247, .8); }
+
+@media (pointer: coarse) {
+  .cs-page { width: 8px; }
+  .cs-page .cs-thumb { left: 2px; right: 2px; }
 }
 
 @layer components {
-  /* =========================================================================
-     Neon → Corporate shadow replacements (class names preserved)
-     ========================================================================= */
-  .neon-glow {
-    box-shadow: 0 1px 3px rgba(124, 138, 255, 0.08), 0 1px 2px rgba(0, 0, 0, 0.3);
+
+  /* Buttons -------------------------------------------------------------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 text-[15px] font-semibold no-underline transition-colors;
+    height: 44px;
+    min-height: 44px;
+    white-space: nowrap;
+  }
+  .btn-lg { height: 48px; padding-left: 24px; padding-right: 24px; font-size: 16px; }
+  .btn-primary { background: var(--primary); color: var(--on-primary); }
+  .btn-primary:hover { background: #C4B4F9; }
+  .btn-secondary { border: 1px solid var(--outline); color: var(--on-surface); font-weight: 500; }
+  .btn-secondary:hover { background: var(--surface-container); border-color: var(--outline-ghost, #33333B); }
+  .btn-ghost { color: var(--primary); font-weight: 500; padding-left: 8px; padding-right: 8px; }
+  .btn-ghost:hover { color: #D3C7FB; }
+
+  /* Legacy names kept for templates not yet migrated */
+  .button-primary { @apply btn btn-primary; }
+  .button-outline { @apply btn btn-secondary; }
+
+  /* One neutral badge ---------------------------------------------------- */
+  .badge {
+    @apply inline-flex items-center rounded-full border border-outline px-2.5 text-xs font-medium text-on-surface-variant;
+    height: 22px;
   }
 
-  .neon-glow-strong {
-    box-shadow: 0 2px 8px rgba(124, 138, 255, 0.12), 0 2px 4px rgba(0, 0, 0, 0.4);
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--primary);
   }
 
-  .neon-border {
-    border: 1px solid var(--outline-variant);
-    transition: all 0.2s ease;
+  /* Header --------------------------------------------------------------- */
+  .nav-shell {
+    /* No backdrop-filter here: it would turn the header into the containing block of the fixed mobile panel. */
+    background: var(--background);
+    border-bottom: 1px solid var(--outline-variant);
   }
-
-  .neon-border:hover {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 1px rgba(124, 138, 255, 0.18);
+  .nav-link {
+    @apply inline-flex items-center rounded-md px-3 text-sm font-medium text-on-surface-variant transition-colors;
+    height: 44px;
   }
+  .nav-link:hover, .nav-link[aria-current="page"] { color: var(--on-surface); }
 
-  /* =========================================================================
-     Header — dark corporate sticky bar
-     ========================================================================= */
-  .glass-header {
-    background: rgba(22, 27, 34, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--outline);
-  }
+  .docs-dropdown-menu { margin-top: 0; }
+  [data-docs-trigger][aria-expanded="true"] .reicon { transform: rotate(180deg); }
 
-  /* =========================================================================
-     Buttons
-     ========================================================================= */
-  .button-primary {
-    @apply inline-flex items-center justify-center bg-primary text-on-primary font-bold px-6 py-3 min-h-[3rem] rounded-xl transition-all;
-    @apply hover:brightness-110 active:scale-[0.98];
-  }
-
-  .button-outline {
-    @apply inline-flex items-center justify-center border border-outline bg-transparent text-on-surface font-bold px-6 py-3 min-h-[3rem] rounded-xl transition-all;
-    @apply hover:bg-surface-container active:scale-[0.98];
-  }
-
-  /* =========================================================================
-     Post card
-     ========================================================================= */
-  .post-card {
-    @apply bg-surface-container-low border border-outline-variant rounded-[2rem] p-8 md:p-12;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  /* =========================================================================
-     Mobile nav panel overlay
-     ========================================================================= */
+  /* Mobile navigation sheet ---------------------------------------------- */
   .nav-panel-mobile {
-    background-color: rgba(0, 0, 0, 0.65) !important;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--background);
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity .2s ease, visibility .2s ease;
   }
-
-  .nav-shell.is-open .nav-panel-mobile {
+  .nav-panel-mobile.is-open {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
   }
+  .nav-mobile-bar {
+    flex: 0 0 var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 0 var(--gutter);
+    border-bottom: 1px solid var(--outline-variant);
+  }
+  .nav-mobile-scroll { flex: 1 1 auto; min-height: 0; position: relative; }
+  .nav-mobile-scroll > [data-cscroll] { height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 8px var(--gutter) 40px; }
+  .nav-mobile-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
+    border-bottom: 1px solid var(--outline-variant);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--on-surface);
+  }
+  .nav-mobile-sub { font-size: 15px; font-weight: 400; color: var(--on-surface-variant); min-height: 48px; padding-left: 12px; }
+  .nav-shell.is-open [data-menu-toggle] .menu-icon-open { display: none; }
+  .nav-shell.is-open [data-menu-toggle] .menu-icon-close { display: block; }
+  [data-menu-toggle] .menu-icon-open { display: block; }
+  [data-menu-toggle] .menu-icon-close { display: none; }
 
-  .nav-panel-mobile > div {
-    transform: translateY(20px) scale(0.95);
-    opacity: 0;
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+  /* Docs shell ----------------------------------------------------------- */
+  .docs-sidebar { @apply flex-shrink-0 self-stretch; width: 272px; }
+  .docs-sidebar-sticky {
+    position: sticky;
+    top: calc(var(--header-h) + 16px);
+    height: calc(100vh - var(--header-h) - 32px);
+    position: sticky;
+  }
+  .docs-sidebar-sticky > .docs-sidebar-inner {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 12px;
   }
 
-  .nav-shell.is-open .nav-panel-mobile > div {
-    transform: translateY(0) scale(1);
-    opacity: 1;
+  .docs-toc-rail {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
   }
 
-  .nav-shell.is-open .menu-icon-open {
-    display: none !important;
-  }
+  /* Sidebar items */
+  .sidebar-item { border: 0 !important; border-radius: 6px !important; }
+  .sidebar-item.bg-primary\/10 { background: rgba(177, 157, 247, .12) !important; }
 
-  .nav-shell.is-open .menu-icon-close {
-    display: block !important;
-  }
-
-  /* Hide scrollbar utility */
-  .scrollbar-none::-webkit-scrollbar {
-    display: none !important;
-  }
-  .scrollbar-none {
-    -ms-overflow-style: none !important;
-    scrollbar-width: none !important;
-  }
-
-  /* =========================================================================
-     Mobile left category / sidebar drawer
-     ========================================================================= */
-  @media (max-width: 1023px) {
-    #mobile-category-drawer {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    #mobile-category-drawer.is-active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    #mobile-category-drawer-pane {
-      transform: translateX(-100%);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    #mobile-category-drawer.is-active #mobile-category-drawer-pane {
-      transform: translateX(0);
-    }
-  }
-
-  /* MongoDB-style persistent sidebar */
-  .docs-sidebar {
-    @apply w-64 lg:w-72 flex-shrink-0 self-stretch;
-  }
-
-  .docs-sidebar-inner {
-    @apply sticky top-24 overflow-y-auto h-[calc(100vh-8rem)] pr-2;
-  }
-
+  /* Drawer on small screens */
   @media (max-width: 1023px) {
     .docs-sidebar {
-      @apply fixed inset-0 z-[120] bg-background/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300;
+      position: fixed;
+      inset: 0;
+      z-index: 140;
+      width: 100%;
+      height: 100dvh;
+      background: rgba(0, 0, 0, .6);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .2s ease, visibility .2s ease;
     }
-
-    .docs-sidebar.is-active {
-      @apply opacity-100 pointer-events-auto;
+    .docs-sidebar.is-active { opacity: 1; visibility: visible; pointer-events: auto; }
+    .docs-sidebar-sticky {
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      height: 100%;
+      width: min(340px, calc(100vw - 40px));
+      background: var(--surface-container-low);
+      border-right: 1px solid var(--outline);
+      transform: translateX(-100%);
+      transition: transform .25s cubic-bezier(.16, 1, .3, 1);
     }
-
-    .docs-sidebar-inner {
-      @apply w-[320px] max-w-[85vw] h-full bg-surface-container-lowest border-r border-outline-variant rounded-r-xl p-6 pb-12 shadow-2xl transform -translate-x-full transition-transform duration-300 overflow-y-auto;
-    }
-
-    .docs-sidebar.is-active .docs-sidebar-inner {
-      @apply translate-x-0;
-    }
+    .docs-sidebar.is-active .docs-sidebar-sticky { transform: translateX(0); }
+    .docs-sidebar-sticky > .docs-sidebar-inner { padding: 16px 16px 48px; }
   }
 
-  /* =========================================================================
-     GFM alerts — dark theme colors
-     ========================================================================= */
-  .gfm-alert {
-    margin: 2rem 0;
-    padding: 1.25rem 1.5rem;
-    border-left: 4px solid var(--outline);
-    border-radius: 0 0.5rem 0.5rem 0;
-    background-color: var(--surface-container-low);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  /* Bottom action bar (mobile docs and articles) ---------------------------- */
+  .mobile-bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 90;
+    display: flex;
+    background: rgba(18, 18, 21, .94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--outline-variant);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mobile-bar button {
+    flex: 1;
+    height: 52px;
+    background: transparent;
+    border: 0;
+    color: var(--on-surface);
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .mobile-bar button + button { border-left: 1px solid var(--outline-variant); }
+  @media (min-width: 1024px) { .mobile-bar { display: none; } }
+  .has-mobile-bar { padding-bottom: 72px; }
+  @media (min-width: 1024px) { .has-mobile-bar { padding-bottom: 0; } }
+
+  /* TOC sheet */
+  .toc-sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 160;
+    display: flex;
+    align-items: flex-end;
+    background: rgba(0, 0, 0, .6);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .2s ease, visibility .2s ease;
+  }
+  .toc-sheet.is-active { opacity: 1; visibility: visible; pointer-events: auto; }
+  .toc-sheet-panel {
+    width: 100%;
+    max-height: 75dvh;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    background: var(--surface-container-low);
+    border-top: 1px solid var(--outline);
+    border-radius: 16px 16px 0 0;
+    transform: translateY(100%);
+    transition: transform .25s cubic-bezier(.16, 1, .3, 1);
+  }
+  .toc-sheet.is-active .toc-sheet-panel { transform: translateY(0); }
+  .toc-sheet-body { position: relative; min-height: 0; flex: 1 1 auto; }
+  .toc-sheet-body > [data-cscroll] { max-height: calc(75dvh - 64px); overflow-y: auto; overscroll-behavior: contain; padding: 4px var(--gutter) 24px; }
+  .toc-sheet-body a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    border-bottom: 1px solid var(--outline-variant);
+    color: var(--on-surface);
+    font-size: 16px;
   }
 
+  /* Alerts / callouts -------------------------------------------------------- */
+  .gfm-alert {
+    margin: 1.5rem 0;
+    padding: .25rem 0 .25rem 1rem;
+    border-left: 2px solid var(--primary);
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
   .gfm-alert-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-weight: 800;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    gap: .5rem;
+    font-weight: 600;
+    font-size: .875rem;
   }
+  .gfm-alert-header .reicon { font-size: 1.1rem; }
+  .gfm-alert p { margin: 0 !important; font-size: .95rem; color: var(--on-surface-variant); line-height: 1.6; }
+  .gfm-alert-note      { border-left-color: #58a6ff; } .gfm-alert-note .gfm-alert-header { color: #58a6ff; }
+  .gfm-alert-tip       { border-left-color: #3fb950; } .gfm-alert-tip .gfm-alert-header { color: #3fb950; }
+  .gfm-alert-important { border-left-color: #a371f7; } .gfm-alert-important .gfm-alert-header { color: #a371f7; }
+  .gfm-alert-warning   { border-left-color: #d29922; } .gfm-alert-warning .gfm-alert-header { color: #d29922; }
+  .gfm-alert-caution   { border-left-color: #f85149; } .gfm-alert-caution .gfm-alert-header { color: #f85149; }
 
-  .gfm-alert-header .reicon {
-    font-size: 1.25rem;
+  /* Tables --------------------------------------------------------------- */
+  .table-responsive-wrapper {
+    margin: 1.25rem 0 1.75rem;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--outline);
+    border-radius: 8px;
   }
-
-  .gfm-alert p {
-    margin: 0 !important;
-    font-size: 0.95rem;
-    color: var(--on-surface-variant);
-    line-height: 1.6;
+  .table-responsive-wrapper table { min-width: 560px; width: 100%; border-collapse: collapse; margin: 0; }
+  .table-responsive-wrapper th, .table-responsive-wrapper td { white-space: normal; }
+  .table-responsive-wrapper th:first-child, .table-responsive-wrapper td:first-child {
+    position: sticky; left: 0; z-index: 1; background-clip: padding-box;
   }
+  .table-responsive-wrapper th:first-child { background: var(--surface-container-low); }
+  .table-responsive-wrapper td:first-child { background: var(--background); }
 
-  /* GFM variant colors — dark theme */
-  .gfm-alert-note {
-    border-left-color: #58a6ff;
-    background-color: rgba(56, 139, 253, 0.08);
+  /* 404 --------------------------------------------------------------------- */
+  .not-found {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 72px var(--gutter) 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
-  .gfm-alert-note .gfm-alert-header {
-    color: #58a6ff;
-  }
-
-  .gfm-alert-tip {
-    border-left-color: #3fb950;
-    background-color: rgba(63, 185, 80, 0.08);
-  }
-  .gfm-alert-tip .gfm-alert-header {
-    color: #3fb950;
-  }
-
-  .gfm-alert-important {
-    border-left-color: #a371f7;
-    background-color: rgba(163, 113, 247, 0.08);
-  }
-  .gfm-alert-important .gfm-alert-header {
-    color: #a371f7;
-  }
-
-  .gfm-alert-warning {
-    border-left-color: #d29922;
-    background-color: rgba(210, 153, 34, 0.08);
-  }
-  .gfm-alert-warning .gfm-alert-header {
-    color: #d29922;
-  }
-
-  .gfm-alert-caution {
-    border-left-color: #f85149;
-    background-color: rgba(248, 81, 73, 0.08);
-  }
-  .gfm-alert-caution .gfm-alert-header {
-    color: #f85149;
-  }
-
-/* =========================================================================
-   Responsive horizontal scrollable tables
-   ========================================================================= */
-.table-responsive-wrapper {
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
-  overflow-x: auto !important;
-  width: 100%;
-  -webkit-overflow-scrolling: touch;
-  border: 1px solid var(--outline);
-  border-radius: 0.5rem;
-  background-color: var(--surface-container-low);
 }
 
-.table-responsive-wrapper table {
-  min-width: 650px;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table-responsive-wrapper th,
-.table-responsive-wrapper td {
-  white-space: normal;
-}
-
-/* Sticky first column */
-.table-responsive-wrapper th:first-child,
-.table-responsive-wrapper td:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  background-clip: padding-box;
-}
-
-.table-responsive-wrapper th:first-child {
-  background: var(--surface-container-high);
-}
-
-.table-responsive-wrapper td:first-child {
-  background: var(--surface-container-low);
-}
-
-/* Scroll shadow indicator */
-.table-responsive-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 2rem;
-  border-radius: 0 0.5rem 0.5rem 0;
-  background: linear-gradient(to right, transparent, rgba(13, 17, 23, 0.8));
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.table-responsive-wrapper.is-scrollable {
-  position: relative;
-}
-
-.table-responsive-wrapper.is-scrollable::after {
-  opacity: 1;
-}
-
-.table-responsive-wrapper.is-scrollable.scrolled-end::after {
-  opacity: 0;
-}
-
-
-
-/* =========================================================================
-   Dark code block — elements using bg-[#080d19] are now on dark bg,
-   keep light text for contrast
-   ========================================================================= */
-.bg-\[\#080d19\] {
-  color: #dae2fd !important;
-}
-
-.bg-\[\#080d19\] code {
-  color: #dae2fd !important;
-}
-
-/* =========================================================================
-   Sidebar toggle button (mobile)
-   ========================================================================= */
-.sidebar-toggle {
-  @apply lg:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors;
-}
-
-/* =========================================================================
-   Homepage Hero Title Gradient
-   ========================================================================= */
-.home-hero-title span {
-  background: linear-gradient(135deg, #B19DF7 0%, #a5b4fc 50%, #c084fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 12px rgba(124, 138, 255, 0.25));
-}
-}
-
-/* =========================================================================
-   Cloudflare Zaraz Consent Modal Custom Theme Override for Contrast/Accessibility
-   ========================================================================= */
-dialog.cf_modal, .cf_modal {
-  background-color: var(--surface-container-high) !important;
-  color: var(--on-surface) !important;
-  border: 1px solid var(--outline-variant) !important;
-}
-
-dialog.cf_modal *, .cf_modal * {
-  color: var(--on-surface) !important;
-}
-
-dialog.cf_modal button, .cf_modal button {
-  background-color: var(--primary) !important;
-  color: var(--on-primary) !important;
-}
-
-dialog.cf_modal button:hover, .cf_modal button:hover {
-  filter: brightness(1.1);
-}
-
-/* Predictable SVG icons without a font download or visible ligature fallback. */
+/* ==========================================================================
+   Global helpers
+   ========================================================================== */
 .reicon {
   display: inline-block;
   width: 1em;
@@ -449,6 +422,8 @@ dialog.cf_modal button:hover, .cf_modal button:hover {
   flex: 0 0 auto;
   font-size: 20px;
   vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .reicon.text-xs, .reicon.text-sm { font-size: 16px; }
 .reicon.text-base { font-size: 20px; }
@@ -456,101 +431,48 @@ dialog.cf_modal button:hover, .cf_modal button:hover {
 .reicon.text-3xl { font-size: 32px; }
 .reicon.text-5xl, .reicon.text-6xl { font-size: 48px; }
 [hidden] { display: none !important; }
-:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
-[id] { scroll-margin-top: 6rem; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+[id] { scroll-margin-top: calc(var(--header-h) + 24px); }
 .guide-syntax { max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
-.docs-dropdown-menu { margin-top: 0; }
-[data-docs-trigger][aria-expanded="true"] .reicon { transform: rotate(180deg); }
+.copy-feedback { margin: 8px 0 0; font-size: 12px; line-height: 1.5; }
+.app-capture { display: block; width: 100%; }
+.app-capture-image { border: 1px solid var(--outline); border-radius: 20px; background: var(--background); }
+.scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
 
-/* Drawers render against the viewport. Their own contents scroll on short screens. */
-.nav-panel-mobile {
-  position: fixed;
-  inset: 0;
-  z-index: 150;
-  width: 100%;
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  background: rgba(3, 5, 10, .82) !important;
-  backdrop-filter: blur(8px);
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
+@media (max-width: 639px) {
+  .doc-tools { margin-left: 0 !important; }
 }
-.nav-mobile-dialog {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  max-height: calc(100dvh - 24px);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 22px 16px 16px;
-  border: 1px solid var(--outline);
-  border-radius: 20px;
-  background: var(--surface-container-low);
-}
-.nav-panel-mobile > .nav-mobile-dialog {
-  transform: none;
-  opacity: 1;
-}
-.nav-mobile-dialog > div { padding-top: 0; }
-.nav-mobile-dialog > div > nav { padding-top: 4px; }
-.nav-mobile-dialog nav a { padding: 10px 12px; }
-.nav-mobile-close { z-index: 1; }
-@media (max-width: 1023px) {
-  .docs-sidebar {
-    position: fixed;
-    inset: 0;
-    z-index: 140;
-    width: 100%;
-    height: 100dvh;
-    max-width: none;
-    background: rgba(3, 5, 10, .76);
-    backdrop-filter: blur(5px);
-  }
-  .docs-sidebar-inner {
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: min(320px, calc(100vw - 48px));
-    max-width: none;
-    height: 100%;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    padding: 20px 16px 36px;
-    background: var(--surface-container-low);
-  }
-}
-@media (max-width: 479px) {
-  .header-inner { padding-left: 12px; padding-right: 12px; gap: 8px; }
-  .brand-link { gap: 7px; flex-shrink: 0; }
-  .brand-title { font-size: 16px; white-space: nowrap; }
-  .brand-link > div { width: 32px; height: 32px; padding: 4px; }
-  .header-inner > div { gap: 8px; }
-  .header-inner > div > a { padding-left: 12px; padding-right: 12px; font-size: 12px; }
-  .doc-article h1 { font-size: 26px; overflow-wrap: anywhere; }
-  .doc-tools { margin-left: 0; }
-  .doc-article > header > div { gap: 8px; }
-}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
-.copy-feedback { margin: 8px 0 0; font-size: 12px; line-height: 1.5; }
-.doc-tools > .copy-feedback { flex-basis: 100%; text-align: right; }
-.dual-view-tabs > .copy-feedback { padding: 0 14px; }
 
-/* SVG base display must not override the mobile toggle hidden state. */
-[data-menu-toggle] .menu-icon-open { display: block; }
-[data-menu-toggle] .menu-icon-close { display: none; }
-.nav-shell.is-open [data-menu-toggle] .menu-icon-open { display: none; }
-.nav-shell.is-open [data-menu-toggle] .menu-icon-close { display: block; }
-
-/* Real mobile UI uses the same neutral framing as cards in the app. */
-.app-capture { display: block; width: 100%; }
-.app-capture-image {
-  border: 1px solid #292929;
-  border-radius: 24px;
-  background: #111111;
+/* ==========================================================================
+   Cloudflare Zaraz consent modal — match the site (Cloudflare injects it).
+   ========================================================================== */
+#zaraz-consent-modal, dialog.cf_modal, .cf_modal {
+  font-family: "Geist", system-ui, sans-serif !important;
+  background: var(--surface-container-low) !important;
+  color: var(--on-surface) !important;
+  border: 1px solid var(--outline) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .55) !important;
 }
+#zaraz-consent-modal *, dialog.cf_modal *, .cf_modal * {
+  font-family: inherit !important;
+  color: var(--on-surface) !important;
+  border-color: var(--outline) !important;
+}
+#zaraz-consent-modal a, dialog.cf_modal a, .cf_modal a { color: var(--primary) !important; text-decoration: underline; }
+#zaraz-consent-modal button, dialog.cf_modal button, .cf_modal button {
+  min-height: 44px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--outline) !important;
+  background: transparent !important;
+  color: var(--on-surface) !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+}
+#zaraz-consent-modal button:hover, dialog.cf_modal button:hover, .cf_modal button:hover { filter: brightness(1.1); }

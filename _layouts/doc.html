@@ -7,170 +7,129 @@ layout: with-sidebar
 {% assign is_js = false %}
 {% if page.api_type == 'javascript' %}{% assign is_js = true %}{% endif %}
 
-<nav class="mb-8 flex flex-wrap items-center gap-2 text-sm font-medium text-on-surface-variant" aria-label="Breadcrumb">
-  <a href="{{ t.paths.home | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.home }}</a>
-  <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chevron_right"></use></svg>
-  <a href="{{ t.paths.docs | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.docs }}</a>
-  <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chevron_right"></use></svg>
+{% comment %}
+  Function pages keep their title in the Markdown body (# $name). Lift it into the header so it is
+  not repeated, and use the first paragraph as the lead instead of repeating the description.
+{% endcomment %}
+{% assign body_html = content %}
+{% assign display_title = page.title %}
+{% assign lead_html = '' %}
+{% assign body_lead = body_html | strip | slice: 0, 3 %}
+{% if body_lead == '<h1' %}
+  {% assign h1_parts = body_html | split: '</h1>' %}
+  {% assign display_title = h1_parts[0] | strip_html | strip %}
+  {% assign body_html = body_html | remove_first: h1_parts[0] | remove_first: '</h1>' %}
+{% endif %}
+{% assign body_lead = body_html | strip | slice: 0, 2 %}
+{% if body_lead == '<p' %}
+  {% assign p_parts = body_html | split: '</p>' %}
+  {% assign lead_html = p_parts[0] | strip | append: '</p>' %}
+  {% assign body_html = body_html | remove_first: p_parts[0] | remove_first: '</p>' %}
+{% endif %}
+
+<nav class="mb-6 flex items-center gap-2 overflow-x-auto whitespace-nowrap text-sm text-on-surface-variant scrollbar-none" aria-label="Breadcrumb">
+  <a href="{{ t.paths.docs | relative_url }}" class="hover:text-on-surface">{{ t.nav.docs }}</a>
+  <span aria-hidden="true">/</span>
   {% if is_js %}
-  <a href="{{ '/docs/javascript/' | relative_url }}" class="hover:text-primary transition-colors">JavaScript API</a>
-  <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chevron_right"></use></svg>
+  <a href="{{ '/docs/javascript/' | relative_url }}" class="hover:text-on-surface">JavaScript API</a>
+  <span aria-hidden="true">/</span>
   {% elsif page.category %}
-  <a href="{{ t.paths.docs | relative_url }}#{{ page.category | slugify }}" class="hover:text-primary transition-colors">{{ page.category }}</a>
-  <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chevron_right"></use></svg>
+  <a href="{{ t.paths.docs | relative_url }}#{{ page.category | slugify }}" class="hover:text-on-surface">{{ page.category }}</a>
+  <span aria-hidden="true">/</span>
   {% endif %}
-  <span class="text-on-surface truncate">{{ page.title }}</span>
+  <span class="text-on-surface">{{ display_title }}</span>
 </nav>
 
-<div class="doc-layout grid grid-cols-1 gap-8 lg:grid-cols-12">
-  <div class="lg:col-span-8">
-    <article data-document-article class="doc-article bg-surface-container-low border border-outline-variant rounded-xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-neon">
-      <!-- Mobile TOC -->
-      <details class="lg:hidden mb-8 rounded-xl border border-outline-variant bg-surface-container p-4">
-        <summary class="text-sm font-bold text-on-surface cursor-pointer min-h-[44px] flex items-center">On this page</summary>
-        <nav class="mt-3 flex flex-col gap-2 text-sm doc-toc-mobile" data-document-toc aria-label="On this page">
-          {% if page.syntax %}<a href="#syntax" class="text-on-surface-variant hover:text-primary">Syntax</a>{% endif %}
-          {% if page.parameters %}<a href="#parameters" class="text-on-surface-variant hover:text-primary">Parameters</a>{% endif %}
-          {% if page.returns %}<a href="#returns" class="text-on-surface-variant hover:text-primary">Return Value</a>{% endif %}
-          <a href="#content" class="text-on-surface-variant hover:text-primary">Content</a>
-          {% if page.examples %}<a href="#examples" class="text-on-surface-variant hover:text-primary">Examples</a>{% endif %}
-          {% if page.related %}<a href="#related" class="text-on-surface-variant hover:text-primary">Related</a>{% endif %}
-        </nav>
-      </details>
-
-      <header class="mb-7" id="content">
-        <div class="mb-6 flex flex-wrap items-center gap-3">
-          <span class="rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
-            {{ page.category | default: "Function" }}
-          </span>
-          {% if page.function_name %}
-          <span class="rounded-full bg-surface-container px-3 py-0.5 text-[10px] font-bold text-on-surface-variant border border-outline-variant">
-            {{ page.function_name }}
-          </span>
-          {% endif %}
-          {% include ai_tools_dropdown.html %}
-        </div>
-        <h1 class="font-bold text-2xl leading-tight text-on-surface md:text-4xl lg:text-5xl mb-6">
-          {{ page.title }}
-        </h1>
-        {% if page.description %}
-        <p class="text-base leading-relaxed text-on-surface-variant">
-          {{ page.description }}
-        </p>
-        {% endif %}
-      </header>
-
-      {% if page.syntax %}
-      <div id="syntax" class="mb-10 rounded-xl bg-surface-container border border-primary/20 p-6 font-mono overflow-x-auto">
-        <div class="text-[10px] font-bold text-primary uppercase tracking-widest mb-3">Syntax</div>
-        <code class="text-base md:text-lg font-bold text-on-surface whitespace-pre-wrap break-words">{{ page.syntax }}</code>
+<div class="doc-layout flex items-start gap-12">
+  <article data-document-article class="doc-article min-w-0 flex-1">
+    <header id="content" class="mb-8 flex flex-col gap-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="badge">{{ page.category | default: "Reference" }}</span>
+        {% if page.function_name and page.function_name != display_title %}<span class="font-mono text-sm text-on-surface-variant">{{ page.function_name }}</span>{% endif %}
       </div>
+      <h1 class="m-0 break-words font-mono text-[1.75rem] font-medium leading-tight tracking-tight sm:text-4xl">{{ display_title }}</h1>
+      {% if lead_html != '' %}
+      <div class="doc-lead max-w-[46rem] text-base leading-relaxed text-on-surface-variant sm:text-lg">{{ lead_html }}</div>
+      {% elsif page.description %}
+      <p class="m-0 max-w-[46rem] text-base leading-relaxed text-on-surface-variant sm:text-lg">{{ page.description }}</p>
       {% endif %}
+      {% include ai_tools_dropdown.html %}
+    </header>
 
-      {% if page.parameters %}
-      <section id="parameters" class="mb-12">
-        <h2 class="text-2xl font-bold text-on-surface mb-6">Parameters</h2>
-        <!-- Mobile cards -->
-        <div class="md:hidden flex flex-col gap-4">
-          {% for param in page.parameters %}
-          <div class="rounded-xl border border-outline-variant bg-surface-container p-4">
-            <div class="font-mono font-bold text-primary mb-2">{{ param.name }}</div>
-            <div class="text-xs text-on-surface-variant space-y-1">
-              <div><strong>Type:</strong> {{ param.type }}</div>
-              <div><strong>Required:</strong> {% if param.required %}Yes{% else %}No{% endif %}</div>
-              {% if param.default %}<div><strong>Default:</strong> <code>{{ param.default }}</code></div>{% endif %}
-              <div>{{ param.description }}</div>
-            </div>
+    {% if page.syntax %}
+    <section id="syntax" class="mb-10">
+      <h2 class="mb-3 text-[1.35rem] font-semibold">Syntax</h2>
+      <div class="overflow-hidden rounded-lg border border-outline bg-surface-container-low">
+        <div class="border-b border-outline px-4 py-2 font-mono text-xs text-on-surface-variant">{% if is_js %}javascript{% else %}bdfd{% endif %}</div>
+        <pre class="m-0 overflow-x-auto p-4 font-mono text-sm leading-7" data-cscroll-x><code>{{ page.syntax }}</code></pre>
+      </div>
+    </section>
+    {% endif %}
+
+    {% if page.parameters %}
+    <section id="parameters" class="mb-10">
+      <h2 class="mb-3 text-[1.35rem] font-semibold">Parameters</h2>
+      <ul class="m-0 list-none border-t border-outline p-0">
+        {% for param in page.parameters %}
+        <li class="flex flex-wrap gap-x-6 gap-y-1.5 border-b border-outline py-4">
+          <div class="flex basis-full flex-col gap-1 sm:basis-[200px]">
+            <code class="break-all font-mono text-sm text-primary">{{ param.name }}</code>
+            <span class="text-xs text-on-surface-variant">{% if param.required %}Required{% else %}Optional{% endif %} · {{ param.type }}{% if param.default %} · default <code>{{ param.default }}</code>{% endif %}</span>
           </div>
-          {% endfor %}
-        </div>
-        <!-- Desktop table -->
-        <div class="hidden md:block overflow-x-auto rounded-xl border border-outline-variant">
-          <table class="w-full text-left text-sm doc-params-table">
-            <thead class="bg-surface-container">
-              <tr>
-                <th class="px-6 py-4 font-bold text-on-surface">Parameter</th>
-                <th class="px-6 py-4 font-bold text-on-surface">Type</th>
-                <th class="px-6 py-4 font-bold text-on-surface">Required</th>
-                <th class="px-6 py-4 font-bold text-on-surface">Default</th>
-                <th class="px-6 py-4 font-bold text-on-surface">Description</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-outline-variant">
-              {% for param in page.parameters %}
-              <tr class="hover:bg-surface-container/50 transition-colors">
-                <td class="px-6 py-4 font-mono font-bold text-primary">{{ param.name }}</td>
-                <td class="px-6 py-4"><span class="rounded-full bg-primary/5 px-3 py-0.5 text-xs font-bold text-primary border border-primary/10">{{ param.type }}</span></td>
-                <td class="px-6 py-4">{% if param.required %}<span class="text-error font-bold text-xs">Required</span>{% else %}<span class="text-on-surface-variant text-xs">Optional</span>{% endif %}</td>
-                <td class="px-6 py-4 font-mono text-sm text-on-surface-variant">{% if param.default %}<code>{{ param.default }}</code>{% else %}—{% endif %}</td>
-                <td class="px-6 py-4 text-on-surface-variant">{{ param.description }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </section>
-      {% endif %}
-
-      {% if page.returns %}
-      <section id="returns" class="mb-12">
-        <h2 class="text-2xl font-bold text-on-surface mb-6">Return Value</h2>
-        <div class="rounded-xl bg-surface-container border border-outline-variant p-6">
-          <span class="rounded-full bg-primary/10 px-3 py-0.5 text-xs font-bold text-primary border border-primary/10">{{ page.returns.type }}</span>
-          <p class="text-on-surface-variant mt-3">{{ page.returns.description }}</p>
-        </div>
-      </section>
-      {% endif %}
-
-      <div class="markdown-body article-prose">
-        {{ content }}
-      </div>
-
-      {% if page.examples %}
-      <section id="examples" class="mt-12">
-        <h2 class="text-2xl font-bold text-on-surface mb-6">Examples</h2>
-        {% for example in page.examples %}
-        <div class="mb-8 rounded-xl bg-surface-container border border-outline-variant overflow-hidden">
-          {% if example.title %}<div class="bg-surface-container-low px-6 py-3 border-b border-outline-variant"><h3 class="font-bold text-on-surface text-sm">{{ example.title }}</h3></div>{% endif %}
-          {% if example.code %}<div class="p-6 overflow-x-auto"><pre class="{% if is_js %}language-javascript{% else %}language-bdfd{% endif %}"><code>{{ example.code | escape }}</code></pre></div>{% endif %}
-          {% if example.description %}<div class="px-6 pb-6 text-sm text-on-surface-variant">{{ example.description }}</div>{% endif %}
-        </div>
+          <div class="min-w-0 flex-1 basis-[240px] text-[15px] leading-relaxed text-on-surface-variant">{{ param.description }}</div>
+        </li>
         {% endfor %}
-      </section>
-      {% endif %}
+      </ul>
+    </section>
+    {% endif %}
 
-      {% if page.related %}
-      <footer id="related" class="mt-16 border-t border-outline-variant pt-12">
-        <h3 class="text-lg font-bold text-on-surface mb-4">Related</h3>
-        <div class="flex flex-wrap gap-3">
-          {% for func_name in page.related %}
-          {% assign related_doc = site.docs | where: "function_name", func_name | first %}
-          {% if related_doc %}
-          <a href="{{ related_doc.url | relative_url }}" class="inline-flex items-center gap-2 rounded-lg bg-surface-container border border-outline-variant px-4 py-2 text-sm font-mono font-bold text-primary hover:bg-primary/10 transition-all">${{ func_name }}</a>
-          {% endif %}
-          {% endfor %}
-        </div>
-      </footer>
-      {% endif %}
-    </article>
-  </div>
+    {% if page.returns %}
+    <section id="returns" class="mb-10">
+      <h2 class="mb-3 text-[1.35rem] font-semibold">Return value</h2>
+      <p class="m-0 text-[15px] leading-relaxed text-on-surface-variant"><code class="font-mono text-primary">{{ page.returns.type }}</code> · {{ page.returns.description }}</p>
+    </section>
+    {% endif %}
 
-  <aside class="hidden lg:flex lg:col-span-4 flex-col gap-8">
-    <div class="sticky top-24 rounded-xl bg-surface-container-low border border-outline-variant p-6 shadow-neon">
-      <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">On this page</h3>
-      <nav data-document-toc aria-label="On this page" class="flex flex-col gap-2 text-sm">
-        {% if page.syntax %}<a href="#syntax" class="text-on-surface-variant hover:text-primary transition-colors">Syntax</a>{% endif %}
-        {% if page.parameters %}<a href="#parameters" class="text-on-surface-variant hover:text-primary transition-colors">Parameters</a>{% endif %}
-        {% if page.returns %}<a href="#returns" class="text-on-surface-variant hover:text-primary transition-colors">Return Value</a>{% endif %}
-        <a href="#content" class="text-on-surface-variant hover:text-primary transition-colors">Content</a>
-        {% if page.examples %}<a href="#examples" class="text-on-surface-variant hover:text-primary transition-colors">Examples</a>{% endif %}
-        {% if page.related %}<a href="#related" class="text-on-surface-variant hover:text-primary transition-colors">Related</a>{% endif %}
-      </nav>
+    <div class="markdown-body article-prose">
+      {{ body_html }}
     </div>
-    <div class="rounded-xl bg-[#5865F2]/10 border border-[#5865F2]/20 p-6">
-      <h3 class="text-base font-bold text-[#5865F2] mb-2">{{ t.guides.sidebar_help_title }}</h3>
-      <p class="text-xs text-on-surface-variant mb-4">{{ t.guides.sidebar_help_body }}</p>
-      <a href="https://discord.gg/K37nuphaDP" class="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-[#5865F2] text-white text-sm font-bold" target="_blank" rel="noopener noreferrer">{{ t.guides.sidebar_help_cta }}</a>
+
+    {% if page.examples %}
+    <section id="examples" class="mt-12">
+      <h2 class="mb-4 text-[1.35rem] font-semibold">Examples</h2>
+      {% for example in page.examples %}
+      <div class="mb-6">
+        {% if example.title %}<h3 class="mb-2 text-base font-semibold">{{ example.title }}</h3>{% endif %}
+        {% if example.code %}<div class="overflow-hidden rounded-lg border border-outline bg-surface-container-low"><pre class="m-0 overflow-x-auto p-4 text-sm leading-7 {% if is_js %}language-javascript{% else %}language-bdfd{% endif %}" data-cscroll-x><code>{{ example.code | escape }}</code></pre></div>{% endif %}
+        {% if example.description %}<p class="mt-2 text-sm text-on-surface-variant">{{ example.description }}</p>{% endif %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if page.related %}
+    <section id="related" class="mt-12 border-t border-outline pt-8">
+      <h2 class="mb-3 text-[1.35rem] font-semibold">Related</h2>
+      <div class="flex flex-wrap gap-2">
+        {% for func_name in page.related %}
+        {% assign related_doc = site.docs | where: "function_name", func_name | first %}
+        {% if related_doc %}
+        <a href="{{ related_doc.url | relative_url }}" class="inline-flex h-11 items-center rounded-lg border border-outline px-3.5 font-mono text-sm text-on-surface hover:border-primary hover:text-primary">${{ func_name }}</a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+  </article>
+
+  <aside class="hidden w-56 flex-none xl:block" aria-label="On this page">
+    <div class="docs-toc-rail">
+      <h2 class="mb-2 text-xs font-medium uppercase tracking-wider text-on-surface-variant">On this page</h2>
+      <nav data-document-toc aria-label="On this page" class="flex flex-col gap-0.5 text-sm"></nav>
+      <div class="mt-8 border-t border-outline-variant pt-4">
+        <p class="m-0 mb-2 text-sm text-on-surface-variant">{{ t.guides.sidebar_help_body }}</p>
+        <a href="https://discord.gg/K37nuphaDP" class="text-sm font-medium text-primary" target="_blank" rel="noopener noreferrer">{{ t.guides.sidebar_help_cta }}</a>
+      </div>
     </div>
   </aside>
 </div>

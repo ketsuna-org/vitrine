@@ -1,57 +1,71 @@
 {% assign t = site.data.locales[page.locale] %}
-{% assign nav = site.data.docs_nav %}
 {% assign featured = site.data.home_featured %}
 {% assign screenshots = site.data.screenshots.screens %}
 {% assign all_docs = site.docs %}
+{% assign doc_count = all_docs.size %}
 
-<div class="bg-background overflow-x-hidden">
+<div class="home">
   <!-- Hero -->
-  <section class="relative overflow-hidden bg-surface py-16 lg:py-24">
-    <div class="mx-auto max-w-7xl px-6 relative z-10">
-      <div class="grid items-center gap-12 lg:grid-cols-2">
-        <div class="flex flex-col gap-6">
-          <div class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
-            <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#menu_book"></use></svg>
-            {{ t.home.hero.eyebrow }}
-          </div>
-          <h1 class="font-display text-4xl font-black leading-tight text-on-surface md:text-5xl lg:text-6xl">
-            {{ t.home.hero.title }}
-          </h1>
-          <p class="max-w-xl text-lg text-on-surface-variant">{{ t.home.hero.body }}</p>
-          <div class="flex flex-col gap-3 sm:flex-row">
-            <a href="{{ t.paths.docs | relative_url }}" class="flex h-12 min-h-[44px] items-center justify-center gap-2 rounded-xl bg-primary px-6 text-base font-bold text-on-primary hover:brightness-110 transition-all">
-              <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
-              {{ t.home.hero.primary_cta }}
-            </a>
-            <a href="{{ t.paths.guides | relative_url }}" class="flex h-12 min-h-[44px] items-center justify-center gap-2 rounded-xl border border-outline-variant bg-surface-container-low px-6 text-base font-bold text-on-surface hover:border-primary/30 transition-all">
-              <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#library_books"></use></svg>
-              {{ t.home.hero.secondary_cta }}
-            </a>
-          </div>
+  <section class="mx-auto flex max-w-[1200px] flex-wrap items-center gap-10 px-4 pb-16 pt-14 sm:px-6 lg:gap-16 lg:pb-24 lg:pt-24">
+    <div class="flex flex-1 basis-[440px] flex-col gap-6">
+      <div class="eyebrow">{{ t.home.hero.eyebrow }}</div>
+      <h1 class="m-0 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl lg:text-[3.5rem]">{{ t.home.hero.title }}</h1>
+      <p class="m-0 max-w-[34rem] text-lg leading-relaxed text-on-surface-variant sm:text-xl">{{ t.home.hero.body }}</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary btn-lg">{{ t.home.hero.primary_cta }}</a>
+        <a href="{{ t.paths.docs | relative_url }}" class="btn btn-secondary btn-lg">{{ t.home.hero.secondary_cta }}</a>
+      </div>
+      <p class="m-0 text-sm text-on-surface-variant">Mobile, desktop, and Docker.</p>
+    </div>
+    <div class="flex flex-1 basis-[300px] justify-center lg:justify-end">
+      {% include responsive_screenshot.html screen_id="home" alt=t.home.hero.screenshot_alt loading="eager" class="mx-auto w-full max-w-[300px]" %}
+    </div>
+  </section>
+
+  <!-- Three ways to build -->
+  <section id="features" class="border-t border-outline-variant">
+    <div class="mx-auto flex max-w-[1200px] flex-col gap-10 px-4 py-16 sm:px-6 lg:py-20">
+      <div class="flex max-w-2xl flex-col gap-3">
+        <h2 class="m-0 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">Three ways to build the same bot</h2>
+        <p class="m-0 text-lg leading-relaxed text-on-surface-variant">Start visually and move to code when you need it. Every function in the reference is also available in the block builder.</p>
+      </div>
+      <div class="grid grid-cols-1 border-t border-outline-variant md:grid-cols-3">
+        <div class="flex flex-col gap-3 border-b border-outline-variant py-7 md:border-b-0 md:pr-8">
+          <div class="eyebrow">01 · No code</div>
+          <h3 class="m-0 text-xl font-semibold">Visual blocks</h3>
+          <p class="m-0 leading-relaxed text-on-surface-variant">Stack blocks for messages, buttons, channels and moderation. Create and edit commands from your phone.</p>
+          <a class="text-sm font-medium text-primary" href="{{ '/docs/blocks/' | relative_url }}">Explore blocks</a>
         </div>
-        <div class="flex justify-center lg:justify-end max-w-sm mx-auto lg:max-w-md w-full">
-          {% include responsive_screenshot.html screen_id="home" alt=t.home.hero.screenshot_alt loading="eager" class="w-full max-w-[320px] mx-auto drop-shadow-2xl" %}
+        <div class="flex flex-col gap-3 border-b border-outline-variant py-7 md:border-b-0 md:border-l md:px-8">
+          <div class="eyebrow">02 · BDFD</div>
+          <h3 class="m-0 text-xl font-semibold">$functions</h3>
+          <p class="m-0 leading-relaxed text-on-surface-variant">Write BDFD scripts with the full $function reference at hand, from $if to $cooldown.</p>
+          <pre class="m-0 overflow-x-auto rounded-lg border border-outline bg-surface-container-low p-3 font-mono text-[13px] leading-7" data-cscroll-x><code>$title[Pong!]
+$description[$ping ms]</code></pre>
+        </div>
+        <div class="flex flex-col gap-3 py-7 md:border-l md:border-outline-variant md:pl-8">
+          <div class="eyebrow">03 · BDJS</div>
+          <h3 class="m-0 text-xl font-semibold">JavaScript</h3>
+          <p class="m-0 leading-relaxed text-on-surface-variant">Script with the JavaScript API, including <code class="font-mono text-sm text-on-surface">db.*</code> for persistence and <code class="font-mono text-sm text-on-surface">interaction</code> for replies.</p>
+          <a class="text-sm font-medium text-primary" href="{{ '/docs/javascript/' | relative_url }}">JavaScript API</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Doc pillars with screenshots 2-4 -->
-  <section class="bg-surface-container-low py-16 border-y border-outline-variant/30">
-    <div class="mx-auto max-w-7xl px-6">
-      <h2 class="font-display text-3xl font-bold text-on-surface mb-10 text-center">{{ t.home.pillars.title }}</h2>
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+  <!-- Product tour -->
+  <section class="border-t border-outline-variant bg-surface-container-low">
+    <div class="mx-auto flex max-w-[1200px] flex-col gap-10 px-4 py-16 sm:px-6 lg:py-20">
+      <h2 class="m-0 max-w-2xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{{ t.home.pillars.title }}</h2>
+      <div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-3">
         {% for screen in screenshots offset:1 limit:3 %}
-        <a href="{{ screen.link | relative_url }}" class="group flex flex-col rounded-2xl border border-outline-variant bg-surface-container overflow-hidden hover:border-primary/30 transition-all">
-          <div class="overflow-hidden bg-surface-container-low">
-            {% include responsive_screenshot.html screen_id=screen.file alt=screen.headline class="w-full object-cover transition-transform group-hover:scale-[1.02]" %}
+        <a href="{{ screen.link | relative_url }}" class="group flex flex-col gap-4">
+          <div class="overflow-hidden rounded-xl border border-outline bg-background px-6 pt-6">
+            {% include responsive_screenshot.html screen_id=screen.file alt=screen.headline class="mx-auto w-full max-w-[240px]" %}
           </div>
-          <div class="p-5">
-            <div class="flex items-center gap-2 text-primary mb-2">
-              <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#{{ screen.icon }}"></use></svg>
-              <span class="text-xs font-bold uppercase tracking-wider">{{ screen.headline }}</span>
-            </div>
-            <p class="text-sm text-on-surface-variant">{{ t.home.pillars.descriptions[forloop.index0] }}</p>
+          <div class="flex flex-col gap-1">
+            <h3 class="m-0 text-lg font-semibold group-hover:text-primary">{{ screen.headline }}</h3>
+            <p class="m-0 text-[15px] leading-relaxed text-on-surface-variant">{{ t.home.pillars.descriptions[forloop.index0] }}</p>
           </div>
         </a>
         {% endfor %}
@@ -60,67 +74,69 @@
   </section>
 
   <!-- Quick start -->
-  <section class="bg-surface py-16">
-    <div class="mx-auto max-w-7xl px-6">
-      <h2 class="font-display text-3xl font-bold text-on-surface mb-8">{{ t.home.how_it_works.title }}</h2>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+  <section class="border-t border-outline-variant">
+    <div class="mx-auto flex max-w-[1200px] flex-col gap-10 px-4 py-16 sm:px-6 lg:py-20">
+      <h2 class="m-0 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{{ t.home.how_it_works.title }}</h2>
+      <ol class="m-0 grid list-none grid-cols-1 gap-8 p-0 md:grid-cols-3">
         {% for step in t.home.how_it_works.steps %}
-        <div class="rounded-xl border border-outline-variant bg-surface-container-low p-6">
-          <div class="text-xs font-bold text-primary uppercase tracking-widest mb-2">Step {{ forloop.index }}</div>
-          <h3 class="font-bold text-lg text-on-surface mb-2">{{ step.title }}</h3>
-          <p class="text-sm text-on-surface-variant">{{ step.body }}</p>
-        </div>
+        <li class="flex flex-col gap-2 border-t border-outline pt-5">
+          <span class="font-mono text-[13px] text-primary">{{ forloop.index }}</span>
+          <h3 class="m-0 text-xl font-semibold">{{ step.title }}</h3>
+          <p class="m-0 leading-relaxed text-on-surface-variant">{{ step.body }}</p>
+        </li>
         {% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Reference and guides -->
+  <section class="border-t border-outline-variant bg-surface-container-low">
+    <div class="mx-auto flex max-w-[1200px] flex-wrap gap-12 px-4 py-16 sm:px-6 lg:gap-16 lg:py-20">
+      <div class="flex flex-1 basis-[380px] flex-col gap-5">
+        <h2 class="m-0 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{{ t.home.featured.title }}</h2>
+        <p class="m-0 text-lg leading-relaxed text-on-surface-variant">Over {{ doc_count | divided_by: 50 | times: 50 }} reference pages for BDFD $functions and the JavaScript API, written to be read on a phone.</p>
+        <div class="flex flex-wrap gap-2">
+          {% for fn in featured.popular_functions %}
+            {% assign doc = all_docs | where: "function_name", fn | first %}
+            {% if doc %}
+            <a href="{{ doc.url | relative_url }}" class="inline-flex h-11 items-center rounded-lg border border-outline px-3.5 font-mono text-sm text-on-surface hover:border-primary hover:text-primary">${{ fn }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div><a href="{{ t.paths.docs | relative_url }}" class="btn btn-secondary">Browse the reference</a></div>
+      </div>
+      <div class="flex flex-1 basis-[380px] flex-col">
+        <div class="eyebrow pb-3 !text-on-surface-variant">Popular guides</div>
+        <ul class="m-0 list-none p-0">
+          {% for slug in featured.popular_guides %}
+            {% assign post = site.posts | where_exp: "p", "p.url contains slug" | first %}
+            {% if post %}
+            <li class="border-t border-outline last:border-b">
+              <a href="{{ post.url | relative_url }}" class="flex min-h-[64px] flex-col justify-center gap-0.5 py-3.5 text-on-surface hover:text-primary">
+                <span class="text-[17px] font-medium leading-snug">{{ post.title }}</span>
+                <span class="text-sm text-on-surface-variant">{{ post.category }}</span>
+              </a>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- Popular references -->
-  <section class="bg-surface-container-low py-16 border-y border-outline-variant/30">
-    <div class="mx-auto max-w-7xl px-6">
-      <h2 class="font-display text-3xl font-bold text-on-surface mb-8">{{ t.home.featured.title }}</h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div>
-          <h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-widest mb-4">Functions</h3>
-          <div class="flex flex-wrap gap-2">
-            {% for fn in featured.popular_functions %}
-              {% assign doc = all_docs | where: "function_name", fn | first %}
-              {% if doc %}
-              <a href="{{ doc.url | relative_url }}" class="rounded-lg bg-surface-container border border-outline-variant px-3 py-2 text-sm font-mono font-bold text-primary hover:border-primary/30 transition-all">${{ fn }}</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-        <div>
-          <h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-widest mb-4">Guides</h3>
-          <ul class="space-y-2">
-            {% for slug in featured.popular_guides %}
-              {% assign post = site.posts | where_exp: "p", "p.url contains slug" | first %}
-              {% if post %}
-              <li><a href="{{ post.url | relative_url }}" class="text-sm font-medium text-on-surface hover:text-primary transition-colors">{{ post.title }}</a></li>
-              {% endif %}
-            {% endfor %}
-          </ul>
+  <!-- Download -->
+  <section class="border-t border-outline-variant">
+    <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-10 px-4 py-16 sm:px-6 lg:py-20">
+      <div class="flex flex-1 basis-[420px] flex-col gap-4">
+        <h2 class="m-0 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{{ t.home.cta.title }}</h2>
+        <p class="m-0 max-w-xl text-lg leading-relaxed text-on-surface-variant">{{ t.home.cta.body }}</p>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary btn-lg">{{ t.home.cta.primary }}</a>
+          <a href="{{ '/guides/runner-docker-api-only/' | relative_url }}" class="btn btn-secondary btn-lg">Docker runner guide</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Download CTA with screen 5 -->
-  <section class="bg-surface py-16">
-    <div class="mx-auto max-w-7xl px-6">
-      <div class="grid items-center gap-10 lg:grid-cols-2 rounded-2xl border border-outline-variant bg-surface-container-low p-8 lg:p-12">
-        <div>
-          <h2 class="font-display text-3xl font-bold text-on-surface mb-4">{{ t.home.cta.title }}</h2>
-          <p class="text-on-surface-variant mb-6">{{ t.home.cta.body }}</p>
-          <a href="{{ t.paths.download | relative_url }}" class="inline-flex h-12 items-center gap-2 rounded-xl bg-primary px-6 text-base font-bold text-on-primary hover:brightness-110 transition-all">
-            <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#download"></use></svg>
-            {{ t.home.cta.primary }}
-          </a>
-        </div>
-        <div class="max-w-xs mx-auto">
-          {% include responsive_screenshot.html screen_id="hosting" alt="Bot Creator Android hosting controls for an online Discord bot" class="w-full drop-shadow-xl" %}
-        </div>
+      <div class="mx-auto w-full max-w-[240px] flex-none">
+        {% include responsive_screenshot.html screen_id="hosting" alt="Bot Creator Android hosting controls for an online Discord bot" class="w-full" %}
       </div>
     </div>
   </section>
