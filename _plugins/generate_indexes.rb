@@ -267,6 +267,12 @@ module Vitrine
           blocks = JSON.parse(File.read(grammar_path)) if File.exist?(grammar_path)
         end
 
+        types = site.data["blocks_types"] || {}
+        if types.empty?
+          types_path = File.join(site.source, "_data", "blocks_types.json")
+          types = JSON.parse(File.read(types_path)) if File.exist?(types_path)
+        end
+
         docs = site.collections.fetch("docs", nil)&.docs || []
         bdfd = {}
         javascript = {}
@@ -316,6 +322,7 @@ module Vitrine
 
         {
           "version" => "1.0",
+          "types" => types,
           "modes" => {
             "blocks" => blocks,
             "bdfd" => bdfd,

@@ -27,7 +27,9 @@ https://bot-creator.fr/api/mcp
 
 | Tool / Prompt | Type | Description |
 |---|---|---|
-| `get_schema_manifest` | Tool | Grammaire et dictionnaire de types compacts (`{ desc, params }`). Mode par défaut `'blocks'` (~3k tokens) pour l'exhaustivité des 118 actions natives. Supporte aussi `'bdfd'`, `'javascript'`, `'all'` et filtre `category`. |
+| `get_schema_manifest` | Tool | Grammaire et dictionnaire de types compacts (`{ desc, params }`). Mode par défaut `'blocks'` (~3k tokens) pour l'exhaustivité des actions natives. Supporte aussi `'bdfd'`, `'javascript'`, `'types'` (types imbriqués : `Embed`, `Component`, `Condition`, `Action`…), `'all'` et filtre `category`. |
+| `list_actions` | Tool | Liste légère des noms d'actions Blocks (nom, catégorie, description), filtrable par `category`. |
+| `validate_actions` | Tool | Valide un tableau `[{ type, payload }]` : actions inconnues (avec suggestion), paramètres requis, types/enums, embeds, composants, conditions et `thenActions` imbriqués. Renvoie `{ valid, errors[{path,message}], warnings }`. |
 | `search_docs` | Tool | Recherche dans la documentation. Inclut directement les signatures de paramètres typés (`params`, `syntax`, `description`), statuts de compatibilité et slugs. |
 | `get_doc` | Tool | Renvoie par défaut la définition de type compacte (`full_markdown: false`) pour économiser les tokens et éviter les hallucinations. Définir `full_markdown: true` pour le guide Markdown complet. |
 | `list_posts` | Tool | Liste les articles de blog, filtrables par langue (`en` / `fr`). |
