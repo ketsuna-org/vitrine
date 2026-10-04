@@ -158,7 +158,7 @@ const key = (name) => normalize(String(name).replace(/\[\]$/, "")).replace(/^\$/
 export function buildIndex({ docs = [], manifest = {} }) {
   const entries = new Map();
   const add = (e) => {
-    const k = key(e.name);
+    const k = `${e.mode}:${key(e.name)}`;
     const prev = entries.get(k);
     entries.set(k, { ...prev, ...Object.fromEntries(Object.entries(e).filter(([, v]) => v != null)) });
   };
@@ -171,7 +171,7 @@ export function buildIndex({ docs = [], manifest = {} }) {
     const display = `$${name.replace(/\[\]$/, "").replace(/^\$/, "")}`;
     add({ mode: "bdfd", name: display, desc: v.desc, category: v.category, sig: v.syntax });
     // A display name from the manifest keeps its real casing ($userName rather than $username).
-    const e = entries.get(key(display));
+    const e = entries.get(`bdfd:${key(display)}`);
     if (e) e.name = display;
   }
   for (const [name, v] of Object.entries(manifest.modes?.blocks ?? {})) {
@@ -244,7 +244,7 @@ function matchRecipes(base, mode) {
 
 const GLOBAL_GOTCHAS = {
   bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply.",
-  blocks: "Blocks are {type,payload}: validate with docs_validate_actions before proposing them.",
+  blocks: "Blocks are {type,key?,payload}. To reuse a result, set `key` ON THE ACTION, not in payload ({\"type\":\"calculate\",\"key\":\"total\",\"payload\":{…}} then ((action.total))); without a key it is action_<position>. Validate with docs_validate_actions.",
 };
 
 /**
@@ -269,7 +269,7 @@ export function plan(index, { intent, mode = "bdfd", budget = 10 }) {
   for (const { e, s } of ranked.slice(0, 40)) pool.set(key(e.name), { e, s: s / (top || 1), recipe: false });
   if (recipe) {
     recipe.r.fns.forEach((fn, i) => {
-      const e = index.lookup.get(key(fn));
+      const e = index.lookup.get(`${mode}:${key(fn)}`);
       const entry = { ...(e ?? { mode, category: "", desc: "" }), name: fn }; // curated casing wins
       pool.set(key(fn), { e: entry, s: 2 - i * 0.02, recipe: true });
     });
@@ -279,13 +279,13 @@ export function plan(index, { intent, mode = "bdfd", budget = 10 }) {
     m.r.fns.forEach((fn, i) => {
       const k = key(fn);
       if (pool.has(k)) return;
-      pool.set(k, { e: { ...(index.lookup.get(k) ?? { mode, category: "", desc: "" }), name: fn }, s: 1.5 - i * 0.02, recipe: true });
+      pool.set(k, { e: { ...(index.lookup.get(`${mode}:${k}`) ?? { mode, category: "", desc: "" }), name: fn }, s: 1.5 - i * 0.02, recipe: true });
     });
   }
 
   const chosen = [];
   const perCategory = new Map();
-  const cutoff = recipe ? 0.55 : 0.4;
+  const cutoff = recipe ? 0.85 : 0.4;
   const candidates = [...pool.values()].sort((a, b) => b.s - a.s);
   while (chosen.length < limit && candidates.length) {
     let bestIdx = -1;
@@ -297,7 +297,7 @@ export function plan(index, { intent, mode = "bdfd", budget = 10 }) {
     });
     const [pick] = candidates.splice(bestIdx, 1);
     if (!pick.recipe && pick.s < cutoff) break;
-    if (!pick.recipe && recipe && chosen.length >= recipe.r.fns.length + extra.reduce((n, m) => n + m.r.fns.length, 0) + 2) break;
+    if (!pick.recipe && recipe && chosen.length >= recipe.r.fns.length + extra.reduce((n, m) => n + m.r.fns.length, 0) + 1) break;
     chosen.push(pick);
     perCategory.set(pick.e.category, (perCategory.get(pick.e.category) ?? 0) + 1);
   }

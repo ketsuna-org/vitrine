@@ -114,7 +114,7 @@ async function handleSingle(req) {
             protocolVersion: PROTOCOL_VERSION,
             capabilities: CAPABILITIES,
             serverInfo: SERVER_INFO,
-            instructions: "Use get_schema_manifest to retrieve strict compact type signatures ({ desc, params }) for Blocks (~3k tokens), BDFD, or JS before generating code. Read execution-model before generating commands. For Blocks, nested params (embeds, components, conditions, thenActions) use named types: fetch them with get_schema_manifest mode='types', and ALWAYS run generated Blocks JSON through validate_actions and fix every error before delivering it. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) PRODUCTION TICKET SYSTEMS: $newTicket and $closeTicket are INCOMPLETE legacy helpers that lack private permissions. Always implement tickets using explicit createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button ($addButton[no;close_ticket;Close Ticket;danger]), and an interaction handler that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
+            instructions: "Use get_schema_manifest to retrieve strict compact type signatures ({ desc, params }) for Blocks (~3k tokens), BDFD, or JS before generating code. Read execution-model before generating commands. For Blocks, nested params (embeds, components, conditions, thenActions) use named types: fetch them with get_schema_manifest mode='types', and ALWAYS run generated Blocks JSON through validate_actions and fix every error before delivering it. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) PRODUCTION TICKET SYSTEMS: $newTicket and $closeTicket are INCOMPLETE legacy helpers that lack private permissions. Always implement tickets using explicit createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button ($addButton[no;close_ticket;Close Ticket;danger]), and an interaction handler that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. An action is { type, key?, payload }: to reuse a result later, set `key` ON THE ACTION (not in payload), e.g. {\"type\":\"calculate\",\"key\":\"total\",\"payload\":{...}} then read ((action.total)); without a key the result is action_<position>. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
           },
         };
 
@@ -713,8 +713,20 @@ function checkAction(action, path, ctx, issues) {
     issues.errors.push({ path: `${path}.payload`, message: `payload must be an object, got ${describeValue(payload)}` });
     return;
   }
-  // Engine-level keys accepted on any action payload.
-  checkFields(payload, def.params || {}, `${path}.payload`, ctx, issues, ["key", "tryCatch", "id", "enabled"]);
+  // The action's own fields (key, enabled, depend_on, error) live next to `type`, not in the payload.
+  const own = ctx.types.Action?.fields || {};
+  for (const field of Object.keys(action)) {
+    if (field === "type" || field === "payload") continue;
+    if (!own[field]) issues.warnings.push({ path: `${path}.${field}`, message: `unknown action field (known: ${Object.keys(own).join(", ")})` });
+    else checkType(action[field], own[field], `${path}.${field}`, ctx, issues);
+  }
+  if (payload.key !== undefined && !(def.params && "key" in def.params)) {
+    issues.warnings.push({
+      path: `${path}.payload.key`,
+      message: `"key" is ignored inside payload for ${type}: put it on the action itself ({"type":"${type}","key":"${String(payload.key)}","payload":{…}}) so the result is readable as ((action.${String(payload.key)}))`,
+    });
+  }
+  checkFields(payload, def.params || {}, `${path}.payload`, ctx, issues, ["tryCatch"]);
   ctx.count += 1;
 }
 
