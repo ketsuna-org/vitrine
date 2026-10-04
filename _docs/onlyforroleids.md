@@ -37,7 +37,7 @@ $onlyForRoleIDs[roleID1;roleID2;...;(errorMessage)]
 
 ```bdfd
 $onlyForRoleIDs[123456789012345678;❌ Reserved for staff.]
-$ban[$mentioned[1]]
+$ban[Moderation]
 ```
 
 ### Multi-roles

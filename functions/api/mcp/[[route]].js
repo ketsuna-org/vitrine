@@ -112,7 +112,7 @@ async function handleSingle(req) {
             protocolVersion: PROTOCOL_VERSION,
             capabilities: CAPABILITIES,
             serverInfo: SERVER_INFO,
-            instructions: "Read execution-model before generating commands. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) PRODUCTION TICKET SYSTEMS: $newTicket and $closeTicket are INCOMPLETE legacy helpers that lack private permissions. Always implement tickets using explicit createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button ($addButton[no;close_ticket;Close Ticket;danger]), and an interaction handler that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
+            instructions: "Use get_schema_manifest to retrieve strict compact type signatures ({ desc, params }) for Blocks (~3k tokens), BDFD, or JS before generating code. Read execution-model before generating commands. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) PRODUCTION TICKET SYSTEMS: $newTicket and $closeTicket are INCOMPLETE legacy helpers that lack private permissions. Always implement tickets using explicit createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button ($addButton[no;close_ticket;Close Ticket;danger]), and an interaction handler that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
           },
         };
 
@@ -154,9 +154,29 @@ function jsonrpcError(id, code, message) {
 
 const TOOLS_META = [
   {
+    name: "get_schema_manifest",
+    description:
+      "Get the compact typed grammar/schema dictionary for Bot Creator. Returns parameter types and descriptions for compiler validation. Default mode 'blocks' (~3k tokens) contains all 118 native block actions. Fast, strict, and zero-hallucination.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        mode: {
+          type: "string",
+          enum: ["blocks", "bdfd", "javascript", "all"],
+          description: "Authoring mode to retrieve. Default is 'blocks'.",
+          default: "blocks",
+        },
+        category: {
+          type: "string",
+          description: "Optional category filter (e.g. 'Messages', 'Moderation', 'Variables', 'Logic').",
+        },
+      },
+    },
+  },
+  {
     name: "search_docs",
     description:
-      "Search Bot Creator Blocks, BDFD and JavaScript documentation. Filter api_type for the requested mode; read execution-model first. Results include compatibility status; use get_doc for contracts and examples.",
+      "Search Bot Creator Blocks, BDFD and JavaScript documentation. Filter api_type for the requested mode; read execution-model first. Results include compact parameter types ({ params, syntax, description }), compatibility status, and slugs.",
     inputSchema: {
       type: "object",
       properties: {
@@ -170,11 +190,16 @@ const TOOLS_META = [
   {
     name: "get_doc",
     description:
-      "Read deployed documentation by slug: execution-model, blocks, blocks-channels, sendmessage, etc. Includes mode and compatibility metadata. Ticket helpers are incomplete; read their limitations before proposing them.",
+      "Read documentation or schema by slug/action name. By default (full_markdown=false), returns the ultra-compact JSON type definition { desc, params } to save tokens and prevent hallucinations. Set full_markdown=true only if you explicitly need the full human guide/examples.",
     inputSchema: {
       type: "object",
       properties: {
-        slug: { type: "string", description: "Doc slug (filename without .md, e.g. 'sendmessage')." },
+        slug: { type: "string", description: "Doc slug or block action name (e.g. 'sendMessage', 'banUser', 'sendmessage', 'execution-model')." },
+        full_markdown: {
+          type: "boolean",
+          description: "If true, returns the raw Markdown documentation. Default is false (returns compact type schema).",
+          default: false,
+        },
       },
       required: ["slug"],
     },
@@ -309,6 +334,9 @@ async function handleToolCall(req) {
   let result;
   try {
     switch (name) {
+      case "get_schema_manifest":
+        result = await toolGetSchemaManifest(args);
+        break;
       case "search_docs":
         result = await toolSearchDocs(args);
         break;
@@ -361,6 +389,15 @@ function normalize(s) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+async function fetchSchemaManifest() {
+  const res = await fetch(`${SITE_ORIGIN}/api/schema-manifest.json`, {
+    headers: { Accept: "application/json" },
+    cf: { cacheTtl: 300, cacheEverything: true },
+  });
+  if (!res.ok) throw new Error(`schema-manifest.json returned ${res.status}`);
+  return res.json();
+}
+
 async function fetchDocsIndex() {
   const res = await fetch(`${SITE_ORIGIN}/api/docs-index.json`, {
     headers: { Accept: "application/json" },
@@ -377,6 +414,48 @@ async function fetchPostsIndex() {
   });
   if (!res.ok) throw new Error(`posts-index.json returned ${res.status}`);
   return res.json();
+}
+
+async function toolGetSchemaManifest({ mode = "blocks", category } = {}) {
+  const manifest = await fetchSchemaManifest();
+  const targetMode = mode || "blocks";
+
+  if (targetMode !== "all" && !["blocks", "bdfd", "javascript"].includes(targetMode)) {
+    throw new Error(`Invalid mode: ${targetMode}. Valid modes are 'blocks', 'bdfd', 'javascript', 'all'.`);
+  }
+
+  let resultData;
+  if (targetMode === "all") {
+    resultData = manifest.modes || {};
+    if (category) {
+      const catNorm = normalize(category);
+      const filtered = {};
+      for (const [m, dict] of Object.entries(resultData)) {
+        filtered[m] = {};
+        for (const [k, v] of Object.entries(dict)) {
+          if (normalize(v.category).includes(catNorm)) {
+            filtered[m][k] = v;
+          }
+        }
+      }
+      resultData = filtered;
+    }
+  } else {
+    const dict = manifest.modes?.[targetMode] || {};
+    if (category) {
+      const catNorm = normalize(category);
+      resultData = {};
+      for (const [k, v] of Object.entries(dict)) {
+        if (normalize(v.category).includes(catNorm)) {
+          resultData[k] = v;
+        }
+      }
+    } else {
+      resultData = dict;
+    }
+  }
+
+  return toolText(JSON.stringify(resultData, null, 2));
 }
 
 async function toolSearchDocs({ query, limit, api_type }) {
@@ -411,17 +490,56 @@ async function toolSearchDocs({ query, limit, api_type }) {
   );
 }
 
-async function toolGetDoc({ slug }) {
+async function toolGetDoc({ slug, full_markdown = false }) {
   if (!slug || typeof slug !== "string") throw new Error("`slug` is required");
-  // Defensive: only allow simple slugs.
-  if (!/^[a-z0-9_-]+$/i.test(slug)) throw new Error("Invalid slug");
+  // Defensive: only allow simple slugs and identifiers.
+  if (!/^[a-z0-9_$-]+$/i.test(slug)) throw new Error("Invalid slug");
 
   const docs = await fetchDocsIndex();
-  const doc = docs.find((d) => d.slug === slug);
-  if (!doc) return { ...toolText(`Doc not found: ${slug}. Use search_docs to find the correct slug.`), isError: true };
-  // The index and Markdown are built together; never mix deployed metadata
-  // with a different revision from the repository's default branch.
-  const url = `${SITE_ORIGIN}/api/docs/${slug}.md`;
+  const doc = docs.find((d) => normalize(d.slug) === normalize(slug) || normalize(d.name) === normalize(slug));
+
+  if (!full_markdown) {
+    let manifest = null;
+    try {
+      manifest = await fetchSchemaManifest();
+    } catch {
+      manifest = null;
+    }
+
+    if (manifest?.modes) {
+      // 1. Match Blocks action
+      for (const [key, val] of Object.entries(manifest.modes.blocks || {})) {
+        if (normalize(key) === normalize(slug)) {
+          return toolText(JSON.stringify({ type: key, ...val }, null, 2));
+        }
+      }
+      // 2. Match BDFD function
+      for (const [key, val] of Object.entries(manifest.modes.bdfd || {})) {
+        if (normalize(key) === normalize(slug) || normalize(key) === normalize(`$${slug}`)) {
+          return toolText(JSON.stringify({ name: key, ...val }, null, 2));
+        }
+      }
+      // 3. Match JavaScript module
+      for (const [key, val] of Object.entries(manifest.modes.javascript || {})) {
+        if (normalize(key) === normalize(slug) || normalize(val.slug) === normalize(slug)) {
+          return toolText(JSON.stringify({ module: key, ...val }, null, 2));
+        }
+      }
+    }
+
+    if (doc?.params) {
+      return toolText(JSON.stringify({
+        name: doc.name,
+        desc: doc.description,
+        syntax: doc.syntax,
+        params: doc.params,
+        api_type: doc.api_type || "bdfd",
+      }, null, 2));
+    }
+  }
+
+  if (!doc) return { ...toolText(`Doc not found: ${slug}. Use search_docs to find the correct slug or get_schema_manifest for types.`), isError: true };
+  const url = `${SITE_ORIGIN}/api/docs/${doc.slug}.md`;
   const res = await fetch(url, { cf: { cacheTtl: 600, cacheEverything: true } });
   if (res.status === 404) {
     return { ...toolText(`Doc not found: ${slug}. Use search_docs to find the correct slug.`), isError: true };

@@ -35,7 +35,7 @@ No parameters. `$onlyAdmin` is used alone, without arguments.
 
 ```bdfd
 $onlyAdmin
-$ban[$mentioned[1]]
+$ban[Moderation]
 $sendMessage[<@$mentioned[1]> was banned.]
 ```
 

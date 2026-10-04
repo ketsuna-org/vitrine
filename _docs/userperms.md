@@ -48,7 +48,7 @@ $sendMessage[]
 
 ```bdfd
 $if[$checkContains[$userPerms;BanMembers]==true]
-  $ban[$mentioned]
+  $ban[Moderation]
   $sendMessage[<@$mentioned> was banned.]
 $else
   $sendMessage[You do not have permission to ban members.]

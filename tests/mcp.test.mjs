@@ -20,8 +20,9 @@ async function withFetch(mock, run) {
 
 test('catalog exposes authoring modes and initialize guidance', async () => {
   const catalog = (await rpc('tools/list')).result.tools;
+  assert.ok(catalog.some(t => t.name === 'get_schema_manifest'), 'get_schema_manifest is exposed in tools');
   assert.deepEqual(catalog.find(t => t.name === 'search_docs').inputSchema.properties.api_type.enum, ['blocks', 'bdfd', 'javascript', 'general']);
-  assert.match((await rpc('initialize')).result.instructions, /execution-model/);
+  assert.match((await rpc('initialize')).result.instructions, /get_schema_manifest/);
 });
 
 test('search filters Blocks and searches descriptions, retaining compatibility', async () => {
@@ -41,7 +42,8 @@ test('get_doc reads deployed content from the same origin as its index', async (
     urls.push(url);
     return url.endsWith('.json') ? Response.json(docs) : new Response('# Blocks contract');
   }, async () => {
-    const reply = await rpc('tools/call', { name: 'get_doc', arguments: { slug: 'blocks-channels' } });
+    // With full_markdown: true, bypasses schema manifest and fetches raw markdown directly
+    const reply = await rpc('tools/call', { name: 'get_doc', arguments: { slug: 'blocks-channels', full_markdown: true } });
     assert.match(reply.result.content[0].text, /Mode: blocks/);
     assert.match(reply.result.content[0].text, /# Blocks contract/);
     assert.deepEqual(urls, ['https://bot-creator.fr/api/docs-index.json', 'https://bot-creator.fr/api/docs/blocks-channels.md']);
@@ -90,5 +92,86 @@ test('MCP prompts/list and prompts/get expose valid prompts and error on unknown
   const unknown = await rpc('prompts/get', { name: 'non_existent_prompt' });
   assert.ok(unknown.error);
   assert.equal(unknown.error.code, -32602);
+});
+
+test('get_schema_manifest returns compact typed schemas for blocks', async () => {
+  const manifestData = {
+    version: '1.0',
+    modes: {
+      blocks: {
+        sendMessage: {
+          desc: 'Envoie un message',
+          category: 'Messages',
+          params: { channelId: 'string?', content: 'string?' },
+          output: '((action.<key>))'
+        },
+        banUser: {
+          desc: 'Bannit un membre',
+          category: 'Moderation',
+          params: { userId: 'string', reason: 'string?' }
+        }
+      },
+      bdfd: {
+        $sendMessage: { desc: 'Explicit message send', syntax: '$sendMessage[content]', params: { content: 'string' } }
+      }
+    }
+  };
+
+  await withFetch(async url => {
+    if (url.endsWith('schema-manifest.json')) return Response.json(manifestData);
+    return Response.json(docs);
+  }, async () => {
+    // 1. Default mode is 'blocks'
+    const reply = await rpc('tools/call', { name: 'get_schema_manifest', arguments: {} });
+    assert.equal(reply.result.isError, undefined);
+    const blocks = JSON.parse(reply.result.content[0].text);
+    assert.ok(blocks.sendMessage);
+    assert.equal(blocks.sendMessage.params.channelId, 'string?');
+    assert.equal(blocks.banUser.params.userId, 'string');
+
+    // 2. Category filtering
+    const filteredReply = await rpc('tools/call', { name: 'get_schema_manifest', arguments: { mode: 'blocks', category: 'Messages' } });
+    const filteredBlocks = JSON.parse(filteredReply.result.content[0].text);
+    assert.ok(filteredBlocks.sendMessage);
+    assert.equal(filteredBlocks.banUser, undefined);
+
+    // 3. Mode 'bdfd'
+    const bdfdReply = await rpc('tools/call', { name: 'get_schema_manifest', arguments: { mode: 'bdfd' } });
+    const bdfd = JSON.parse(bdfdReply.result.content[0].text);
+    assert.ok(bdfd.$sendMessage);
+    assert.equal(bdfd.$sendMessage.params.content, 'string');
+
+    // 4. Invalid mode error
+    const errReply = await rpc('tools/call', { name: 'get_schema_manifest', arguments: { mode: 'unknown_mode' } });
+    assert.equal(errReply.result.isError, true);
+  });
+});
+
+test('get_doc returns compact type schema by default without full markdown prose', async () => {
+  const manifestData = {
+    version: '1.0',
+    modes: {
+      blocks: {
+        banUser: {
+          desc: 'Bannit un membre',
+          category: 'Moderation',
+          params: { userId: 'string', reason: 'string?' }
+        }
+      }
+    }
+  };
+
+  await withFetch(async url => {
+    if (url.endsWith('schema-manifest.json')) return Response.json(manifestData);
+    return Response.json(docs);
+  }, async () => {
+    const reply = await rpc('tools/call', { name: 'get_doc', arguments: { slug: 'banUser' } });
+    assert.equal(reply.result.isError, undefined);
+    const parsed = JSON.parse(reply.result.content[0].text);
+    assert.equal(parsed.type, 'banUser');
+    assert.equal(parsed.desc, 'Bannit un membre');
+    assert.equal(parsed.params.userId, 'string');
+    assert.equal(parsed.params.reason, 'string?');
+  });
 });
 

@@ -33,7 +33,7 @@ $getBanReason[userID]
 ## Behavior
 
 - The bot must have the `BAN_MEMBERS` permission to view ban reasons.
-- The reason returned is the one provided during the ban (via `$ban[userID;reason]`).
+- The reason returned is the one provided during the ban (via `$banID[reason;userID]`).
 - If the user is not banned, it returns an empty string.
 
 ## Examples

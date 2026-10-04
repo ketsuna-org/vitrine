@@ -189,7 +189,7 @@ Administrative and disciplinary actions applied to server members. (Color: `#FF4
 Permanently bans a user from the server or revokes an existing ban.
 - **App Icon:** `block` / `person_add`
 - **Parameters:** `userId`, `reason`, `deleteMessageDays` *(0 to 7)*.
-- **Script Equivalent:** `$ban[userID;reason]` / `$unban[userID]`.
+- **Script Equivalent:** `$banID[reason;userID]` / `$unbanID[userID]`.
 
 ### `kickUser`
 Kicks a member from the server.

@@ -36,7 +36,7 @@ $isAdmin
 
 ```bdfd
 $if[$isAdmin==true]
-  $ban[$mentioned]
+  $ban[Moderation]
   $sendMessage[<@$mentioned> was banned.]
 $else
   $sendMessage[Only administrators can use this command.]

@@ -27,13 +27,14 @@ https://bot-creator.fr/api/mcp
 
 | Tool / Prompt | Type | Description |
 |---|---|---|
-| `search_docs` | Tool | Search documentation by name, slug, category or description. Filter `api_type`: `blocks`, `bdfd`, `javascript`, `general`. Returns mode, compatibility status, and slugs. |
-| `get_doc` | Tool | Fetch deployed Markdown contracts and compatibility metadata by slug (e.g. `blocks`, `blocks-dictionary`, `tickets`, `execution-model`, `sendmessage`). |
-| `list_posts` | Tool | List blog posts, optionally filtered by `locale` (`en` / `fr`). |
-| `search_posts` | Tool | Search blog posts by title or description. |
-| `get_post` | Tool | Fetch raw markdown of a blog post by slug. |
-| `command_authoring_rules` | Prompt | Crucial interaction lifecycle rules, variable scope separation, few-shot examples, and LLM gotchas. |
-| `production_ticket_workflow` | Prompt | Production-ready Discord ticket system template using private channel creation, permission overwrites, and interactive close button. |
+| `get_schema_manifest` | Tool | Grammaire et dictionnaire de types compacts (`{ desc, params }`). Mode par défaut `'blocks'` (~3k tokens) pour l'exhaustivité des 118 actions natives. Supporte aussi `'bdfd'`, `'javascript'`, `'all'` et filtre `category`. |
+| `search_docs` | Tool | Recherche dans la documentation. Inclut directement les signatures de paramètres typés (`params`, `syntax`, `description`), statuts de compatibilité et slugs. |
+| `get_doc` | Tool | Renvoie par défaut la définition de type compacte (`full_markdown: false`) pour économiser les tokens et éviter les hallucinations. Définir `full_markdown: true` pour le guide Markdown complet. |
+| `list_posts` | Tool | Liste les articles de blog, filtrables par langue (`en` / `fr`). |
+| `search_posts` | Tool | Recherche parmi les articles de blog par titre ou description. |
+| `get_post` | Tool | Récupère le Markdown brut d'un article de blog par son slug. |
+| `command_authoring_rules` | Prompt | Règles de cycle d'interaction, séparation des portées de variables, exemples few-shot et pièges LLM. |
+| `production_ticket_workflow` | Prompt | Modèle complet de système de tickets Discord en production (salons privés, permissions et bouton interactif). |
 
 ---
 

@@ -52,7 +52,7 @@ $clear[50]
 
 ```bdfd
 $onlyForChannels[123456789012345678]
-$ban[$mentioned[1]]
+$ban[Moderation]
 ```
 
 ## Notes

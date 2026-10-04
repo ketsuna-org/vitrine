@@ -57,7 +57,7 @@ To ensure total confidentiality for conversations between the user and staff:
     <div class="block-flow-canvas">
       
       <!-- Entry Point -->
-      <div class="scratch-block-card block-cat-entrypoint">
+      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;slash&quot;,&quot;name&quot;:&quot;ticket&quot;}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#terminal"></use></svg>
@@ -75,7 +75,7 @@ To ensure total confidentiality for conversations between the user and staff:
       </div>
 
       <!-- Action 1: Create Channel -->
-      <div class="scratch-block-card block-cat-channels">
+      <div class="scratch-block-card block-cat-channels" data-native-action='{&quot;type&quot;:&quot;createChannel&quot;,&quot;key&quot;:&quot;ticket_chan&quot;,&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;name&quot;:&quot;ticket-((user.username))&quot;,&quot;type&quot;:&quot;text&quot;,&quot;categoryId&quot;:&quot;123456789012345678&quot;}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#add_box"></use></svg>
@@ -104,7 +104,7 @@ To ensure total confidentiality for conversations between the user and staff:
       </div>
 
       <!-- Action 2: Edit Permissions -->
-      <div class="scratch-block-card block-cat-channels">
+      <div class="scratch-block-card block-cat-channels" data-native-action='{&quot;type&quot;:&quot;editChannelPermissions&quot;,&quot;depend_on&quot;:[&quot;ticket_chan&quot;],&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;channelId&quot;:&quot;((action.ticket_chan))&quot;,&quot;targetType&quot;:&quot;member&quot;,&quot;targetId&quot;:&quot;((user.id))&quot;,&quot;allow&quot;:&quot;68608&quot;,&quot;deny&quot;:&quot;0&quot;}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#lock_open"></use></svg>
@@ -133,7 +133,7 @@ To ensure total confidentiality for conversations between the user and staff:
       </div>
 
       <!-- Action 3: Send Message in Ticket -->
-      <div class="scratch-block-card block-cat-messages">
+      <div class="scratch-block-card block-cat-messages" data-native-action='{&quot;type&quot;:&quot;sendMessage&quot;,&quot;depend_on&quot;:[&quot;ticket_chan&quot;],&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;channelId&quot;:&quot;((action.ticket_chan))&quot;,&quot;content&quot;:&quot;Hello &lt;@((user.id))&gt;!&quot;,&quot;embeds&quot;:[{&quot;title&quot;:&quot;🎫 Support &amp; Help&quot;,&quot;description&quot;:&quot;Welcome to your private support channel. Please describe your issue below.&quot;,&quot;color&quot;:&quot;#5865F2&quot;}],&quot;components&quot;:{&quot;items&quot;:[{&quot;type&quot;:&quot;actionRow&quot;,&quot;components&quot;:[{&quot;type&quot;:&quot;button&quot;,&quot;customId&quot;:&quot;close_ticket&quot;,&quot;label&quot;:&quot;Close Ticket&quot;,&quot;style&quot;:4}]}]}}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#send"></use></svg>
@@ -162,7 +162,7 @@ To ensure total confidentiality for conversations between the user and staff:
       </div>
 
       <!-- Action 4: Interaction Reply (Terminal) -->
-      <div class="scratch-block-card block-cat-interactions">
+      <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;depend_on&quot;:[&quot;ticket_chan&quot;],&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;content&quot;:&quot;✅ Your support ticket has been created: &lt;#((action.ticket_chan))&gt;&quot;,&quot;ephemeral&quot;:true}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
@@ -290,7 +290,7 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
     <div class="block-flow-canvas">
       
       <!-- Entry Point -->
-      <div class="scratch-block-card block-cat-entrypoint">
+      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;event&quot;,&quot;event&quot;:&quot;interactionCreate&quot;,&quot;customId&quot;:&quot;close_ticket&quot;}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#touch_app"></use></svg>
@@ -308,7 +308,7 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
       </div>
 
       <!-- Action 1: Respond to Interaction -->
-      <div class="scratch-block-card block-cat-interactions">
+      <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;content&quot;:&quot;🔒 Close requested. Deleting this channel in 3 seconds...&quot;,&quot;ephemeral&quot;:false}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
@@ -333,7 +333,7 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
       </div>
 
       <!-- Action 2: Wait -->
-      <div class="scratch-block-card block-cat-logic">
+      <div class="scratch-block-card block-cat-logic" data-native-action='{&quot;type&quot;:&quot;wait&quot;,&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;duration&quot;:&quot;3s&quot;}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#hourglass_empty"></use></svg>
@@ -354,7 +354,7 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
       </div>
 
       <!-- Action 3: Remove Channel -->
-      <div class="scratch-block-card block-cat-channels">
+      <div class="scratch-block-card block-cat-channels" data-native-action='{&quot;type&quot;:&quot;removeChannel&quot;,&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;channelId&quot;:&quot;((channel.id))&quot;}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#remove_circle"></use></svg>

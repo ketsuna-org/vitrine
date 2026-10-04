@@ -56,7 +56,7 @@ $if[$checkUserPerms[$mentioned[1];Administrator]==true]
   $sendMessage[⚠️ You cannot perform this action on an administrator.]
   $stop
 $endif
-$ban[$mentioned[1]]
+$ban[Moderation]
 ```
 
 ### Multi-permissions
