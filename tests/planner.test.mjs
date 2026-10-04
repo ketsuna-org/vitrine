@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { buildIndex, plan, RECIPES } from '../functions/api/mcp/planner.mjs';
+import { buildIndex, plan, rankDocs, RECIPES } from '../functions/api/mcp/planner.mjs';
 
 const { onRequestPost } = await import(pathToFileURL(fileURLToPath(new URL('../functions/api/mcp/[[route]].js', import.meta.url))).href);
 
@@ -55,6 +55,7 @@ const GOLDEN = [
   ['afficher l\'avatar d\'un utilisateur', 'bdfd', ['$useravatar'], 'auto'],
   ['annonce avec embed et couleur', 'bdfd', ['$title', '$description', '$color'], 'auto'],
   ['bouton cliquable', 'bdfd', ['$addbutton'], 'auto'],
+  ['commande /warn pour avertir un membre et compter ses avertissements', 'bdfd', ['$setguildmembervar', '$getguildmembervar', '$onlyperms'], 'auto'],
   ['ping with latency', 'blocks', ['respondwithmessage'], 'auto'],
 ];
 
@@ -98,5 +99,40 @@ test('plan_solution is exposed over MCP and answers in one small call', async ()
     assert.ok(result.content[0].text.length < 1500);
     const bad = await onRequestPost({ request: new Request('https://bot-creator.fr/api/mcp', { method: 'POST', body: JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'tools/call', params: { name: 'plan_solution', arguments: { intent: '' } } }) }) });
     assert.equal((await bad.json()).result.isError, true);
+  } finally { globalThis.fetch = original; }
+});
+
+// Queries a real Copilot session issued (and every one returned "No docs matched").
+const SEARCH_CASES = [
+  ['find user', 'finduser'],
+  ['sum math', 'sum'],
+  ['ephemeral reply', 'ephemeral'],
+  ['onlyIf condition stop', 'onlyif'],
+  ['$authorID user ID of message author', 'authorid'],
+  ['mention user tag argument slash', 'mentioned'],
+  ['slash command option argument value get', 'args'],
+  ['mention', 'mentioned'],
+];
+
+test('multi-word documentation queries find the function instead of dead-ending', () => {
+  const bdfdDocs = docs.filter(d => d.api_type === 'bdfd');
+  for (const [query, slug] of SEARCH_CASES) {
+    const slugs = rankDocs(bdfdDocs, query, 8).map(x => x.doc.slug);
+    assert.ok(slugs.includes(slug), `"${query}": expected ${slug} in ${slugs.join(', ') || '(nothing)'}`);
+  }
+  assert.equal(rankDocs(bdfdDocs, 'ping', 3)[0].doc.slug, 'ping');
+  assert.deepEqual(rankDocs(bdfdDocs, 'zzzz qqqq', 5), []);
+});
+
+test('search_docs over MCP never answers "No docs matched" when a word has a close document', async () => {
+  const original = globalThis.fetch;
+  globalThis.fetch = async () => Response.json(docs);
+  try {
+    const call = async args => JSON.parse((await (await onRequestPost({ request: new Request('https://bot-creator.fr/api/mcp', { method: 'POST', body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'search_docs', arguments: args } }) }) })).json()).result.content[0].text);
+    const hit = await call({ query: 'find user', api_type: 'bdfd' });
+    assert.equal(hit.results[0].slug, 'finduser');
+    const near = await call({ query: 'moderation warn warnsystem', api_type: 'bdfd' });
+    assert.ok((near.results ?? near.suggestions).length > 0, 'a query with no full match must still return suggestions');
+    assert.ok(JSON.stringify(hit).length < 1500, 'results stay compact');
   } finally { globalThis.fetch = original; }
 });
