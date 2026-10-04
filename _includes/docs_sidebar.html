@@ -52,10 +52,13 @@
             <ul id="cat-list-{{ cat_slug }}" class="flex flex-col gap-1 pl-4 mt-1 {% unless is_active_cat or page.url == '/docs/' %}hidden{% endunless %}">
               {% for doc in cat_docs %}
                 <li>
+                  {% assign doc_first_line = doc.content | slice: 0, 80 | strip | split: "\n" | first %}
+                  {% assign doc_label = doc.title %}
+                  {% if doc_first_line contains "# " %}{% assign doc_label = doc_first_line | remove: "# " | strip %}{% endif %}
                   <a href="{{ doc.url | relative_url }}"
-                     class="sidebar-item block px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all {% if page.url == doc.url %}bg-primary/10 text-primary border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
-                     data-search-term="{{ doc.title | downcase }} {{ doc.description | default: '' | downcase }} {{ doc.function_name | default: '' | downcase }}">
-                    {{ doc.title }}
+                     class="sidebar-item block px-3 py-2 rounded-md text-[13px] font-mono transition-all {% if page.url == doc.url %}bg-primary/10 text-primary{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
+                     data-search-term="{{ doc.title | downcase }} {{ doc_label | downcase }} {{ doc.description | default: '' | downcase }} {{ doc.function_name | default: '' | downcase }}">
+                    {{ doc_label }}
                   </a>
                 </li>
               {% endfor %}

@@ -4,92 +4,60 @@ layout: with-sidebar
 
 {% assign locale = page.locale | default: site.lang | default: 'en' %}
 {% assign t = site.data.locales[locale] %}
+{% assign post_list = site.posts | where: "locale", "en" %}
 
-<!-- Breadcrumbs -->
-<nav class="mb-8 flex items-center gap-2 text-sm font-medium text-on-surface-variant" aria-label="Breadcrumb">
-  <a href="{{ t.paths.home | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.home }}</a>
-  <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chevron_right"></use></svg>
-  <a href="{{ t.paths.guides | relative_url }}" class="hover:text-primary transition-colors">{{ t.nav.guides }}</a>
-  <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chevron_right"></use></svg>
-  <span class="text-on-surface truncate">{{ page.title }}</span>
+<nav class="mb-6 flex items-center gap-2 overflow-x-auto whitespace-nowrap text-sm text-on-surface-variant scrollbar-none" aria-label="Breadcrumb">
+  <a href="{{ t.paths.guides | relative_url }}" class="hover:text-on-surface">{{ t.nav.guides }}</a>
+  <span aria-hidden="true">/</span>
+  <span class="text-on-surface">{{ page.categories | first | default: page.category }}</span>
 </nav>
 
-<div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
-  <!-- Main Content -->
-  <div class="lg:col-span-8">
-    <article class="bg-surface-container-low border border-outline-variant rounded-xl p-8 lg:p-12 shadow-neon">
-      <header class="mb-12">
-        <div class="mb-6 flex flex-wrap items-center gap-3">
-          <span class="rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
-            {{ page.categories | first | default: t.guides.eyebrow }}
-          </span>
-          <span class="text-sm text-on-surface-variant">{{ page.date | date: "%Y-%m-%d" }}</span>
-        </div>
-        <h1 class="font-bold text-4xl leading-tight text-on-surface md:text-5xl lg:text-6xl mb-6">
-          {{ page.title }}
-        </h1>
-        <p class="text-xl leading-relaxed text-on-surface-variant italic">
-          {{ page.description | default: t.guides.subtitle }}
-        </p>
-      </header>
-
-      <div class="markdown-body article-prose">
-        {{ content }}
+<div class="flex items-start gap-12">
+  <article data-document-article class="min-w-0 flex-1">
+    <header class="mb-8 flex flex-col gap-3">
+      <div class="text-[13px] text-on-surface-variant">
+        {{ page.categories | first | default: t.guides.eyebrow }} · <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
       </div>
+      <h1 class="m-0 text-[1.875rem] font-semibold leading-[1.15] tracking-tight sm:text-4xl lg:text-[2.75rem]">{{ page.title }}</h1>
+      <p class="m-0 max-w-[46rem] text-base leading-relaxed text-on-surface-variant sm:text-lg">{{ page.description | default: t.guides.subtitle }}</p>
+    </header>
 
-      <!-- Footer CTA -->
-      <footer class="mt-16 border-t border-outline-variant pt-12">
-        <div class="flex flex-col gap-8 rounded-xl bg-surface-container p-8 border border-outline-variant">
-          <div class="max-w-xl">
-            <h2 class="text-2xl font-bold text-on-surface mb-2">{{ t.guides.next_title }}</h2>
-            <p class="text-on-surface-variant">{{ t.guides.next_body }}</p>
-          </div>
-          <div class="flex flex-wrap gap-4">
-            <a href="{{ t.paths.download | relative_url }}" class="bg-primary text-on-primary px-sm py-2 rounded-lg hover:brightness-110 transition-all text-sm font-bold inline-flex items-center justify-center h-11">
-              {{ t.guides.next_download }}
-            </a>
-            <a href="{{ t.paths.home | relative_url }}" class="inline-flex items-center justify-center h-11 px-sm rounded-lg border border-outline-variant text-on-surface-variant text-sm font-bold hover:bg-surface-container-high transition-colors">
-              {{ t.guides.next_home }}
-            </a>
-          </div>
-        </div>
-
-        <div class="mt-12 flex items-center justify-between">
-          <a href="{{ t.paths.guides | relative_url }}" class="flex items-center gap-2 font-bold text-on-surface hover:text-primary transition-colors">
-            <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_back"></use></svg>
-            {{ t.guides.back_to_guides }}
-          </a>
-          <div class="flex items-center gap-4">
-            <span class="text-sm font-medium text-on-surface-variant">{{ t.guides.share }}</span>
-            <a href="#" class="h-10 w-10 flex items-center justify-center rounded-full bg-surface-container border border-outline-variant hover:bg-primary/10 hover:text-primary transition-colors">
-              <svg class="reicon text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#share"></use></svg>
-            </a>
-          </div>
-        </div>
-      </footer>
-    </article>
-  </div>
-
-  <!-- Sidebar -->
-  <aside class="lg:col-span-4 flex flex-col gap-8">
     {% if page.toc %}
-    <div class="sticky top-24 rounded-xl bg-surface-container-low border border-outline-variant p-6 shadow-neon">
-      <h3 class="text-lg font-bold text-on-surface mb-4 uppercase tracking-widest text-xs opacity-60">
-        {{ t.guides.toc }}
-      </h3>
-      <div class="toc-content">
-        {{ content | toc_only }}
-      </div>
-    </div>
+    <details class="mb-8 rounded-lg border border-outline bg-surface-container-low xl:hidden">
+      <summary class="flex min-h-[48px] cursor-pointer items-center justify-between px-4 text-sm font-semibold">
+        <span>In this guide</span>
+        <svg class="reicon text-on-surface-variant" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#expand_more"></use></svg>
+      </summary>
+      <div class="toc-content border-t border-outline px-4 py-2">{{ content | toc_only }}</div>
+    </details>
     {% endif %}
 
-    <div class="rounded-xl bg-primary/5 border border-primary/10 p-6">
-      <h3 class="text-lg font-bold text-primary mb-2">{{ t.guides.sidebar_help_title }}</h3>
-      <p class="text-sm text-on-surface-variant mb-4">{{ t.guides.sidebar_help_body }}</p>
-      <a href="https://discord.gg/K37nuphaDP" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline" target="_blank" rel="noopener noreferrer">
-        {{ t.guides.sidebar_help_cta }}
-        <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#open_in_new"></use></svg>
-      </a>
+    <div class="markdown-body article-prose">
+      {{ content }}
+    </div>
+
+    <footer class="mt-14 border-t border-outline pt-8">
+      <div class="flex flex-col gap-2">
+        <h2 class="m-0 text-xl font-semibold">{{ t.guides.next_title }}</h2>
+        <p class="m-0 text-on-surface-variant">{{ t.guides.next_body }}</p>
+      </div>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary">{{ t.guides.next_download }}</a>
+        <a href="{{ t.paths.guides | relative_url }}" class="btn btn-secondary">{{ t.guides.back_to_guides }}</a>
+      </div>
+    </footer>
+  </article>
+
+  <aside class="hidden w-60 flex-none xl:block" aria-label="{{ t.guides.toc }}">
+    <div class="docs-toc-rail">
+      {% if page.toc %}
+      <h2 class="mb-2 text-xs font-medium uppercase tracking-wider text-on-surface-variant">{{ t.guides.toc }}</h2>
+      <div class="toc-content">{{ content | toc_only }}</div>
+      {% endif %}
+      <div class="mt-8 border-t border-outline-variant pt-4">
+        <p class="m-0 mb-2 text-sm text-on-surface-variant">{{ t.guides.sidebar_help_body }}</p>
+        <a href="https://discord.gg/K37nuphaDP" class="text-sm font-medium text-primary" target="_blank" rel="noopener noreferrer">{{ t.guides.sidebar_help_cta }}</a>
+      </div>
     </div>
   </aside>
 </div>

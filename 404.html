@@ -8,17 +8,13 @@ content_language: en
 ---
 {% assign t = site.data.locales[page.locale] %}
 
-<section class="site-grid page-section not-found-shell">
-  <div class="not-found-card" data-reveal>
-    <div class="eyebrow-row">
-      <span class="eyebrow-pill">404</span>
-      <span class="meta-chip">Route unavailable</span>
-    </div>
-    <h1>{{ t.not_found.title }}</h1>
-    <p>{{ t.not_found.body }}</p>
-    <div class="button-row">
-      <a class="button button-primary" href="{{ t.paths.home | relative_url }}">{{ t.not_found.cta }}</a>
-      <a class="button button-secondary" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
-    </div>
+<section class="not-found">
+  <div class="eyebrow">404</div>
+  <h1 class="m-0 text-3xl font-semibold tracking-tight sm:text-4xl">{{ t.not_found.title }}</h1>
+  <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ t.not_found.body }} Try the documentation, or head back to a known place.</p>
+  <div class="flex flex-wrap gap-3 pt-2">
+    <a class="btn btn-primary btn-lg" href="{{ t.paths.home | relative_url }}">{{ t.not_found.cta }}</a>
+    <a class="btn btn-secondary btn-lg" href="{{ t.paths.docs | relative_url }}">{{ t.nav.docs }}</a>
+    <a class="btn btn-secondary btn-lg" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
   </div>
 </section>

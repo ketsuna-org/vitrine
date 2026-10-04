@@ -410,6 +410,19 @@ const initSite = () => {
     panel: document.getElementById('docs-sidebar'), trigger: document.getElementById('sidebar-toggle-btn'),
     closeButton: document.getElementById('sidebar-close-btn'), breakpoint: 1024, openClass: 'is-active'
   });
+  // "On this page" sheet (mobile): shown only when the article has at least two sections.
+  const tocButton = document.getElementById('toc-toggle-btn');
+  const tocSheet = document.getElementById('toc-sheet');
+  if (tocButton && tocSheet) {
+    const sections = document.querySelectorAll('[data-document-article] h2[id], [data-document-article] section[id] > h2');
+    if (sections.length >= 2) {
+      tocButton.hidden = false;
+      bindDrawer({
+        panel: tocSheet, trigger: tocButton, closeButton: document.getElementById('toc-close-btn'),
+        breakpoint: 1024, openClass: 'is-active'
+      });
+    }
+  }
 
   document.querySelectorAll('[data-docs-dropdown]').forEach(container => {
     const button = container.querySelector('[data-docs-trigger]');

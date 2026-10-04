@@ -15,11 +15,8 @@ sidebar_title: Documentation
 {% assign ordered_cats = nav.bdfd_categories %}
 
 <header class="mb-12">
-  <div class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20 mb-6">
-    <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#menu_book"></use></svg>
-    Documentation Hub
-  </div>
-  <h1 class="font-display text-3xl font-black leading-tight text-on-surface md:text-5xl lg:text-6xl mb-6" id="docs-title-anchor">
+  <div class="eyebrow mb-4">Documentation Hub</div>
+  <h1 class="font-display text-3xl font-semibold leading-tight text-on-surface md:text-5xl lg:text-5xl mb-6" id="docs-title-anchor">
     Bot Creator Documentation
   </h1>
   <p class="max-w-3xl text-lg leading-relaxed text-on-surface-variant">
@@ -30,8 +27,8 @@ sidebar_title: Documentation
 <!-- Three pillars -->
 <section class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-6 mb-16">
   {% for hub in nav.hub_links %}
-  <a href="{{ hub.path | relative_url }}" class="group flex flex-col gap-4 rounded-xl bg-surface-container-low border border-outline-variant p-6 hover:border-primary/30 hover:shadow-md transition-all">
-    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+  <a href="{{ hub.path | relative_url }}" class="group flex flex-col gap-4 rounded-lg bg-surface-container-low border border-outline-variant p-6 hover:border-primary/30 hover: transition-all">
+    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
       <svg class="reicon text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#{{ hub.icon }}"></use></svg>
     </div>
     <h2 class="font-display text-xl font-bold text-on-surface group-hover:text-primary transition-colors">{{ hub.title }}</h2>
@@ -42,7 +39,7 @@ sidebar_title: Documentation
 </section>
 
 <!-- Getting Started -->
-<section class="mb-16 rounded-xl bg-surface-container-low border border-outline-variant p-8" id="getting-started">
+<section class="mb-16 rounded-lg bg-surface-container-low border border-outline-variant p-8" id="getting-started">
   <h2 class="font-display text-2xl font-bold text-on-surface mb-6 flex items-center gap-2">
     <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#rocket_launch"></use></svg>
     Getting Started
@@ -82,14 +79,14 @@ sidebar_title: Documentation
 </section>
 
 <!-- Sticky search + category jump (mobile friendly) -->
-<div class="docs-index-search sticky top-16 z-30 mb-10 -mx-2 px-2 py-3 bg-background/95 backdrop-blur-sm border-b border-outline-variant/50 lg:static lg:bg-transparent lg:border-0 lg:p-0 lg:m-0">
+<div class="docs-index-search sticky top-14 z-30 mb-10 -mx-2 px-2 py-3 bg-background/95 backdrop-blur-sm border-b border-outline-variant/50 lg:static lg:bg-transparent lg:border-0 lg:p-0 lg:m-0">
   <div class="flex flex-col sm:flex-row gap-3 max-w-3xl">
-    <div class="relative flex-grow flex items-center bg-surface-container-low border border-outline-variant rounded-xl p-1.5 focus-within:border-primary transition-all">
+    <div class="relative flex-grow flex items-center bg-surface-container-low border border-outline-variant rounded-lg p-1.5 focus-within:border-primary transition-all">
       <svg class="reicon text-on-surface-variant ml-4 mr-2" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#search"></use></svg>
       <input type="text" id="docs-search-input" aria-label="Search function reference" placeholder="Search functions..."
         class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-on-surface-variant pr-4 text-base py-2.5 min-h-[44px]">
     </div>
-    <select id="docs-category-jump" aria-label="Jump to documentation category" class="min-h-[44px] rounded-xl border border-outline-variant bg-surface-container-low px-4 text-sm font-medium text-on-surface">
+    <select id="docs-category-jump" aria-label="Jump to documentation category" class="min-h-[44px] rounded-lg border border-outline-variant bg-surface-container-low px-4 text-sm font-medium text-on-surface">
       <option value="">Jump to category</option>
       {% for cat in ordered_cats %}
         {% assign cat_docs = all_docs | where: "category", cat %}
@@ -103,6 +100,7 @@ sidebar_title: Documentation
 
 {% if all_docs.size > 0 %}
 <div class="space-y-16" id="docs-directory">
+  <span id="function-reference" aria-hidden="true"></span>
   <section class="mb-8">
     <h2 class="font-display text-2xl font-bold text-on-surface mb-4 flex items-center gap-2">
       <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#terminal"></use></svg>
@@ -126,7 +124,7 @@ sidebar_title: Documentation
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
       {% for doc in cat_docs %}
       <a href="{{ doc.url | relative_url }}"
-         class="docs-function-card group flex flex-col gap-3 rounded-xl bg-surface-container-low border border-outline-variant p-5 hover:border-primary/30 hover:bg-surface-container transition-all"
+         class="docs-function-card group flex flex-col gap-3 rounded-lg bg-surface-container-low border border-outline-variant p-5 hover:border-primary/30 hover:bg-surface-container transition-all"
          data-doc-name="{{ doc.function_name | downcase }}"
          data-doc-title="{{ doc.title | downcase }}"
          data-doc-desc="{{ doc.description | default: '' | downcase }}">
@@ -142,7 +140,7 @@ sidebar_title: Documentation
   {% endfor %}
 </div>
 
-<div id="docs-no-results" class="hidden rounded-xl bg-surface-container-low border border-outline-variant p-12 text-center">
+<div id="docs-no-results" class="hidden rounded-lg bg-surface-container-low border border-outline-variant p-12 text-center">
   <svg class="reicon text-5xl text-on-surface-variant/20 mb-4" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#search_off"></use></svg>
   <h3 class="text-xl font-bold text-on-surface mb-2">No functions found</h3>
 </div>

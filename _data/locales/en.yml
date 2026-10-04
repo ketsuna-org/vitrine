@@ -53,22 +53,22 @@ common:
 
 home:
   hero:
-    eyebrow: "Documentation portal"
-    title: "Bot Creator Documentation"
-    body: "Complete reference for BDFD $functions, JavaScript scripting (db.*, interaction), and step-by-step guides."
-    primary_cta: "Browse documentation"
-    secondary_cta: "Read guides"
+    eyebrow: "Discord bot workspace"
+    title: "Build, run, and control Discord bots from one workspace."
+    body: "Design commands with visual blocks, BDFD $functions or JavaScript. Host from the app or on the Docker runner for 24/7 uptime."
+    primary_cta: "Download Bot Creator"
+    secondary_cta: "Read the docs"
     screenshot_alt: "Bot Creator Android workspace with an online Discord bot"
   pillars:
-    title: "Explore the documentation"
+    title: "Everything you need to run a bot"
     descriptions:
       - "Visual block builder and BDFD $function reference for every command."
       - "Create, organize, and edit your bot commands from one workspace."
       - "Keep reusable workflows organized in your bot workspace."
   featured:
-    title: "Popular references"
+    title: "A reference you can actually search"
   how_it_works:
-    title: "Quick start path"
+    title: "From token to online in three steps"
     subtitle: "From install to deployed bot in three steps."
     steps:
       - title: "Create your bot"
@@ -78,8 +78,8 @@ home:
       - title: "Deploy and monitor"
         body: "Host from the app or use the Docker runner for 24/7 uptime."
   cta:
-    title: "Deploy & Scale Up"
-    body: "Download Bot Creator for mobile, desktop, or connect the Docker runner."
+    title: "Run it where you work"
+    body: "Download Bot Creator for mobile or desktop, or connect the Docker runner for a bot that stays online."
     primary: "Download Bot Creator"
     secondary: "View documentation"
 

@@ -1,246 +1,121 @@
+/* =========================================================================
+   Prose — documentation and guides
+   ========================================================================= */
 .markdown-body {
   color: var(--text-100);
-  font-size: 1.04rem;
-  line-height: 1.82;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  max-width: 72ch;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
+.markdown-body > :first-child { margin-top: 0; }
+.markdown-body > :last-child { margin-bottom: 0; }
+.markdown-body > * { max-width: 100%; }
 
-.markdown-body > :first-child {
-  margin-top: 0;
-}
-
-.markdown-body > :last-child {
-  margin-bottom: 0;
-}
-
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-  margin: 2.4rem 0 0.9rem;
+.markdown-body h1, .markdown-body h2, .markdown-body h3,
+.markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  margin: 2.25rem 0 .75rem;
   color: var(--text-100);
   font-family: var(--font-display);
-  letter-spacing: -0.045em;
-  line-height: 1.08;
-  scroll-margin-top: 7.5rem;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.25;
+  scroll-margin-top: calc(var(--header-h) + 24px);
 }
+.markdown-body h1 { font-size: 1.75rem; }
+.markdown-body h2 { font-size: 1.5rem; padding-top: .5rem; }
+.markdown-body h3 { font-size: 1.2rem; }
+.markdown-body h4, .markdown-body h5, .markdown-body h6 { font-size: 1.05rem; }
 
-.markdown-body h1 {
-  font-size: 2rem;
+.markdown-body p, .markdown-body ul, .markdown-body ol,
+.markdown-body table, .markdown-body blockquote, .markdown-body pre, .markdown-body hr {
+  margin: 0 0 1.25rem;
 }
-
-.markdown-body h2 {
-  font-size: 1.7rem;
-}
-
-.markdown-body h3 {
-  font-size: 1.35rem;
-}
-
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-  font-size: 1.1rem;
-}
-
-.markdown-body p,
-.markdown-body ul,
-.markdown-body ol,
-.markdown-body table,
-.markdown-body blockquote,
-.markdown-body pre,
-.markdown-body hr {
-  margin: 0 0 1.3rem;
-}
-
-.markdown-body ul,
-.markdown-body ol {
-  padding-left: 1.4rem;
-}
-
-.markdown-body li {
-  margin-bottom: 0.5rem;
-  color: var(--text-200);
-}
-
-.markdown-body li::marker {
-  color: var(--accent-500);
-}
+.markdown-body ul, .markdown-body ol { padding-left: 1.35rem; }
+.markdown-body ul { list-style: disc; }
+.markdown-body ol { list-style: decimal; }
+.markdown-body ul ul { list-style: circle; }
+.markdown-body li { margin-bottom: .4rem; color: var(--text-100); }
+.markdown-body li > ul, .markdown-body li > ol { margin-top: .4rem; margin-bottom: .4rem; }
+.markdown-body li::marker { color: var(--text-300); }
 
 .markdown-body a {
-  color: var(--mint-400);
+  color: var(--accent-500);
   text-decoration: underline;
-  text-decoration-color: rgba(113, 229, 190, 0.36);
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
+  text-decoration-color: rgba(177, 157, 247, .4);
+  text-decoration-thickness: .08em;
+  text-underline-offset: .18em;
 }
-
-.markdown-body a:hover {
-  color: var(--text-100);
-  text-decoration-color: rgba(113, 229, 190, 0.68);
-}
-
-.markdown-body strong {
-  color: var(--text-100);
-}
-
-.markdown-body em {
-  color: var(--text-200);
-}
+.markdown-body a:hover { color: #D3C7FB; text-decoration-color: currentColor; }
+.markdown-body strong { color: var(--text-100); font-weight: 600; }
+.markdown-body em { color: var(--text-100); }
 
 .markdown-body code {
-  padding: 0.16rem 0.42rem;
-  border-radius: 0.55rem;
-  background: rgba(255, 255, 255, 0.06);
+  padding: .1rem .38rem;
+  border-radius: 4px;
+  background: var(--surface-container-high);
   color: var(--text-100);
   font-family: var(--font-mono);
-  font-size: 0.94em;
+  font-size: .88em;
 }
-
 .markdown-body pre {
-  padding: 1rem 1.1rem;
+  padding: 1rem;
   overflow-x: auto;
-  border: 1px solid rgba(135, 172, 228, 0.18);
-  border-radius: 1rem;
-  background: rgba(4, 9, 19, 0.96);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+  background: var(--surface-container-low);
+  font-size: .875rem;
+  line-height: 1.7;
 }
-
-.markdown-body pre code {
-  padding: 0;
-  background: transparent;
-  color: inherit;
-}
+.markdown-body pre code { padding: 0; background: transparent; color: inherit; font-size: inherit; }
 
 .markdown-body blockquote {
-  padding: 1rem 1.15rem;
-  border-left: 3px solid var(--mint-400);
-  border-radius: 0 1rem 1rem 0;
-  background: rgba(255, 255, 255, 0.04);
+  padding: .1rem 0 .1rem 1rem;
+  border-left: 2px solid var(--accent-500);
+  background: transparent;
   color: var(--text-200);
 }
+.markdown-body blockquote > :last-child { margin-bottom: 0; }
+.markdown-body hr { border: 0; height: 1px; background: var(--outline); margin: 2rem 0; }
 
-.markdown-body hr {
-  border: 0;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(113, 229, 190, 0.3), rgba(135, 172, 228, 0.12), transparent 70%);
+.markdown-body > img, .markdown-body p > img:only-child, .markdown-body p > a:only-child > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--outline);
+  border-radius: 8px;
 }
 
-.markdown-body > img,
-.markdown-body p > img:only-child,
-.markdown-body p > a:only-child > img {
-  width: auto;
-  max-width: min(100%, 31rem);
-  max-height: 28rem;
-  margin: 1.5rem auto;
-  border-radius: 1.1rem;
-}
+.markdown-body table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.markdown-body th, .markdown-body td { padding: .65rem .85rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--outline-variant); }
+.markdown-body th { color: var(--text-100); font-weight: 600; background: var(--surface-container-low); border-bottom: 1px solid var(--outline); }
+.markdown-body td { color: var(--text-200); }
+.markdown-body td code { white-space: nowrap; }
 
-.markdown-body table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
-  border: 1px solid rgba(135, 172, 228, 0.18);
-  border-radius: 1rem;
-}
+.markdown-body .anchor { margin-left: .4rem; color: var(--text-400); text-decoration: none; opacity: 0; transition: opacity .15s; }
+.markdown-body h2:hover .anchor, .markdown-body h3:hover .anchor, .markdown-body h4:hover .anchor, .markdown-body .anchor:focus { opacity: 1; }
+.markdown-body .anchor:hover { color: var(--accent-500); }
 
-.markdown-body th,
-.markdown-body td {
-  padding: 0.9rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(135, 172, 228, 0.1);
-}
-
-.markdown-body th {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-100);
-}
-
-.markdown-body td {
-  color: var(--text-200);
-}
-
-.markdown-body .anchor {
-  margin-left: 0.35rem;
-  color: var(--text-400);
-  text-decoration: none;
-  opacity: 0;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
-
-.markdown-body h2:hover .anchor,
-.markdown-body h3:hover .anchor,
-.markdown-body h4:hover .anchor,
-.markdown-body .anchor:focus {
-  opacity: 1;
-}
-
-.markdown-body .anchor:hover {
-  color: var(--mint-400);
-}
-
-.toc-content {
-  display: grid;
-  gap: 0.3rem;
-}
-
-.toc-content ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.toc-content ul ul {
-  margin-top: 0.25rem;
-  padding-left: 0.9rem;
-  border-left: 1px solid rgba(135, 172, 228, 0.12);
-}
-
-.toc-content li + li {
-  margin-top: 0.2rem;
-}
-
+/* Table of contents rendered by jekyll-toc */
+.toc-content ul { list-style: none; margin: 0; padding: 0; }
+.toc-content ul ul { padding-left: .85rem; margin-top: .15rem; }
+.toc-content li { margin: 0; }
 .toc-content a {
   display: block;
-  padding: 0.55rem 0.75rem;
-  border-radius: 0.9rem;
-  color: var(--text-300);
-  line-height: 1.45;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  padding: .3rem 0;
+  color: var(--text-200);
+  font-size: .875rem;
+  line-height: 1.4;
+  text-decoration: none;
 }
+.toc-content a:hover, .toc-content a:focus { color: var(--accent-500); }
 
-.toc-content a:hover,
-.toc-content a:focus {
-  background: rgba(89, 182, 255, 0.1);
-  color: var(--text-100);
-}
-
-@media (max-width: 720px) {
-  .markdown-body {
-    font-size: 1rem;
-  }
-
-  .markdown-body > img,
-  .markdown-body p > img:only-child,
-  .markdown-body p > a:only-child > img {
-    max-width: 100%;
-    max-height: none;
-  }
-
-  .markdown-body h2 {
-    font-size: 1.5rem;
-  }
-
-  .markdown-body h3 {
-    font-size: 1.25rem;
-  }
-
-  .markdown-body table {
-    min-width: 28rem;
-  }
+@media (max-width: 639px) {
+  .markdown-body { font-size: 1rem; line-height: 1.7; }
+  .markdown-body h2 { font-size: 1.35rem; margin-top: 2rem; }
+  .markdown-body h3 { font-size: 1.15rem; }
+  .markdown-body pre { margin-left: 0; margin-right: 0; padding: .85rem; font-size: .8125rem; }
 }
 
 /* =========================================================================
@@ -847,4 +722,24 @@
   .markdown-body h3 { font-size: 1.2rem; line-height: 1.35; }
   .dual-tab-btn { padding: 8px 10px; flex-basis: 100%; font-size: 12px; }
   .block-flow-canvas { padding: 14px 8px; }
+}
+
+
+/* =========================================================================
+   Flat framing for the block visualizer (no card inside a card)
+   ========================================================================= */
+.block-flow-canvas { background-color: var(--surface-container-low); border-color: var(--outline); border-radius: 12px; box-shadow: none; }
+.scratch-block-card { box-shadow: none; }
+.scratch-block-card:hover { box-shadow: none; }
+.dual-view-tabs { background-color: transparent; border-color: var(--outline); border-radius: 12px; }
+.dual-view-nav { background-color: var(--surface-container-low); border-bottom-color: var(--outline); }
+.dual-tab-btn.active { background: var(--surface-container-high); box-shadow: none; }
+@media (max-width: 639px) {
+  .dual-view-tabs { border-radius: 10px; }
+  .dual-view-nav { padding: 4px; gap: 4px; }
+  .dual-tab-btn { flex: 1 1 0; min-width: 0; justify-content: center; text-align: center; padding: 8px 6px; font-size: 12px; }
+  .dual-tab-btn .tab-accent { display: none; }
+  .dual-tab-actions { margin-left: 0; flex: 1 1 100%; justify-content: flex-end; }
+  .dual-tab-panel { padding: 0; }
+  .block-flow-canvas { border: 0; border-radius: 0; background: transparent; padding: 12px; margin: 0; }
 }

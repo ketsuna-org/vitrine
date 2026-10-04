@@ -1,14 +1,30 @@
 {% assign t = include.t %}
 
-<footer class="bg-surface-container-low w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center gap-md border-t border-outline-variant">
-  <div>
-    <div class="font-bold text-on-surface text-lg">{{ t.meta.site_title }}</div>
-    <div class="text-on-surface-variant text-sm">© 2026 {{ t.meta.site_title }}. Built with passion by Aetheric Tech.</div>
+<footer class="border-t border-outline-variant">
+  <div class="mx-auto flex max-w-[1360px] flex-wrap justify-between gap-10 px-4 py-12 sm:px-6">
+    <div class="flex max-w-xs flex-col gap-2">
+      <div class="text-base font-semibold text-on-surface">{{ t.meta.site_title }}</div>
+      <p class="m-0 text-sm leading-relaxed text-on-surface-variant">{{ t.shell.footer_tagline }}</p>
+      <p class="m-0 text-sm text-on-surface-variant">© 2026 {{ t.meta.site_title }}. Built by Aetheric Tech.</p>
+    </div>
+    <div class="flex flex-wrap gap-x-16 gap-y-8">
+      <nav class="flex flex-col" aria-label="Product">
+        <span class="pb-2 text-xs text-on-surface-variant">{{ t.shell.footer_product }}</span>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ '/#features' | relative_url }}">Features</a>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.footer_downloads }}</a>
+      </nav>
+      <nav class="flex flex-col" aria-label="Resources">
+        <span class="pb-2 text-xs text-on-surface-variant">{{ t.shell.footer_resources }}</span>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.docs | relative_url }}">{{ t.nav.docs }}</a>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="https://discord.gg/K37nuphaDP" rel="noopener noreferrer">Discord</a>
+      </nav>
+      <nav class="flex flex-col" aria-label="Legal">
+        <span class="pb-2 text-xs text-on-surface-variant">{{ t.shell.footer_legal }}</span>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.terms | relative_url }}">{{ t.shell.footer_terms }}</a>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.privacy | relative_url }}">{{ t.nav.privacy }}</a>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="mailto:contact@bot-creator.fr">Contact</a>
+      </nav>
+    </div>
   </div>
-  <nav class="flex flex-wrap gap-md">
-    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="{{ t.paths.terms | relative_url }}">{{ t.shell.footer_terms }}</a>
-    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="{{ t.paths.privacy | relative_url }}">{{ t.nav.privacy }}</a>
-    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="{{ t.paths.docs | relative_url }}">{{ t.nav.docs }}</a>
-    <a class="text-on-surface-variant hover:text-on-surface underline transition-colors" href="mailto:contact@bot-creator.fr">Contact</a>
-  </nav>
 </footer>
