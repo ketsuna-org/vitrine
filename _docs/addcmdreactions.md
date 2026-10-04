@@ -48,7 +48,7 @@ $suppressErrors[Action completed.]
 ```bdfd
 $if[$checkContains[$userPerms;Administrator]==true]
   $addCmdReactions[✅]
-  $ban[$mentioned[1]]
+  $ban[Moderation]
 $else
   $addCmdReactions[❌]
   $ephemeral[You do not have permission.]

@@ -38,7 +38,7 @@ $onlyBotPerms[permission1;permission2;...;(errorMessage)]
 
 ```bdfd
 $onlyBotPerms[BanMembers;❌ I do not have the **BanMembers** permission. Please contact an admin.]
-$ban[$mentioned[1]]
+$ban[Moderation]
 ```
 
 ### Multi-permission check

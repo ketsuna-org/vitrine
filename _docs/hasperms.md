@@ -44,7 +44,7 @@ $hasPerms[userID;permission1;permission2;...]
 
 ```bdfd
 $if[$hasPerms[$authorID;BanMembers]==true]
-  $ban[$mentioned[1];$noMentionMessage]
+  $banID[$noMentionMessage;$mentioned[1]]
   $sendMessage[Member banned.]
 $else
   $sendMessage[❌ You do not have permission to ban.]

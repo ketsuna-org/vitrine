@@ -43,7 +43,7 @@ $sendMessage[Moderation command executed.]
 
 ```bdfd
 $ignoreChannels[111111111111111111;222222222222222222;333333333333333333]
-$ban[$mentioned[1]]
+$ban[Moderation]
 ```
 
 ### Ignore announcement channels

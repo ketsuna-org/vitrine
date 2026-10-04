@@ -39,7 +39,7 @@ $onlyPerms[permission1;permission2;...;(errorMessage)]
 
 ```bdfd
 $onlyPerms[BanMembers;❌ Ban permission required.]
-$ban[$mentioned[1];Reason provided by staff]
+$banID[Reason provided by staff;$mentioned[1]]
 $sendMessage[$mentioned[1] has been banned.]
 ```
 
@@ -60,7 +60,7 @@ $kick[$mentioned[1]]
 
 ## Notes
 
-- Permission names are case-sensitive. Use Discord's exact PascalCase notation (`BanMembers`, not `banmembers`).
+- Bot Creator normalizes permission names; both `BanMembers` and `banmembers` are accepted.
 - To check the **bot's** permissions, use `$onlyBotPerms`.
 - For an inline check (without interrupting the command), use `$hasPerms`.
 - Place `$onlyPerms` at the beginning of the command to avoid any partial execution.

@@ -71,7 +71,15 @@ class NativeDocumentationTest
         assert_includes view['panels'][0]['markdown'], 'bc-block-flow'
         assert_includes view['panels'][1]['markdown'], '```bdfd'
         flow_json = view['panels'][0]['markdown'][/(`{3,})bc-block-flow\n(.*?)\n\1/m, 2]
-        assert !JSON.parse(flow_json)['blocks'].empty?
+        blocks = JSON.parse(flow_json)['blocks']
+        assert !blocks.empty?
+        blocks.each do |block|
+          assert block['action'] || block['trigger']
+          if block['action']
+            assert block['action']['type'].is_a?(String)
+            assert block['action']['payload'].is_a?(Hash)
+          end
+        end
       end
       assert_equal 'Bot Creator Assistant', discord.first['messages'].first['username']
       assert discord.any? { |frame| frame['messages'].any? { |message| !message['embeds'].empty? } }

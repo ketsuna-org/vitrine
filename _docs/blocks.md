@@ -18,7 +18,7 @@ Blocks run directly on the native Dart engine. Each block compiles into a struct
 In the mobile app, blocks are represented as rounded cards stacked vertically, connected by flow lines:
 
 <div class="block-flow-canvas my-6">
-  <div class="scratch-block-card block-cat-messages">
+  <div class="scratch-block-card block-cat-messages" data-native-action='{&quot;type&quot;:&quot;sendMessage&quot;,&quot;payload&quot;:{&quot;channelId&quot;:&quot;((channel.id))&quot;,&quot;content&quot;:&quot;Hello ((user.username))! Welcome to ((guild.name)).&quot;,&quot;tts&quot;:false}}'>
     <div class="scratch-block-header">
       <div class="scratch-block-strip"></div>
       <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#send"></use></svg>
@@ -53,7 +53,7 @@ In the mobile app, blocks are represented as rounded cards stacked vertically, c
     <div class="scratch-block-connector-add">+</div>
   </div>
 
-  <div class="scratch-block-card block-cat-interactions">
+  <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;payload&quot;:{&quot;content&quot;:&quot;Message sent to the channel!&quot;,&quot;ephemeral&quot;:true}}'>
     <div class="scratch-block-header">
       <div class="scratch-block-strip"></div>
       <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
@@ -153,7 +153,7 @@ Each project includes an interactive dual view: see how it connects in the mobil
     <div class="block-flow-canvas">
       
       <!-- Trigger -->
-      <div class="scratch-block-card block-cat-entrypoint">
+      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;slash&quot;,&quot;name&quot;:&quot;ping&quot;}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#terminal"></use></svg>
@@ -171,7 +171,7 @@ Each project includes an interactive dual view: see how it connects in the mobil
       </div>
 
       <!-- Action -->
-      <div class="scratch-block-card block-cat-interactions">
+      <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;payload&quot;:{&quot;embeds&quot;:[{&quot;title&quot;:&quot;🏓 Pong!&quot;,&quot;description&quot;:&quot;WebSocket API Latency: ((bot.ping))ms&quot;,&quot;color&quot;:&quot;#5865F2&quot;}],&quot;ephemeral&quot;:false}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
@@ -251,7 +251,7 @@ $color[#5865F2]
     <div class="block-flow-canvas">
       
       <!-- Trigger -->
-      <div class="scratch-block-card block-cat-entrypoint">
+      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;event&quot;,&quot;event&quot;:&quot;guildMemberAdd&quot;}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#person_add"></use></svg>
@@ -269,7 +269,7 @@ $color[#5865F2]
       </div>
 
       <!-- Action -->
-      <div class="scratch-block-card block-cat-messages">
+      <div class="scratch-block-card block-cat-messages" data-native-action='{&quot;type&quot;:&quot;sendMessage&quot;,&quot;payload&quot;:{&quot;channelId&quot;:&quot;112233445566778899&quot;,&quot;content&quot;:&quot;Welcome &lt;@((user.id))&gt; to **((guild.name))**! 🎉 We are now ((guild.memberCount)) members!&quot;}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#send"></use></svg>
@@ -338,7 +338,7 @@ We are now $membersCount members!
     <div class="block-flow-canvas">
       
       <!-- Trigger -->
-      <div class="scratch-block-card block-cat-entrypoint">
+      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;event&quot;,&quot;event&quot;:&quot;interactionCreate&quot;,&quot;customId&quot;:&quot;verify_member&quot;}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#touch_app"></use></svg>
@@ -356,7 +356,7 @@ We are now $membersCount members!
       </div>
 
       <!-- Action 1: Add Role -->
-      <div class="scratch-block-card block-cat-moderation">
+      <div class="scratch-block-card block-cat-moderation" data-native-action='{&quot;type&quot;:&quot;addRole&quot;,&quot;payload&quot;:{&quot;userId&quot;:&quot;((user.id))&quot;,&quot;roleId&quot;:&quot;998877665544332211&quot;}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#person_add_alt_1"></use></svg>
@@ -381,7 +381,7 @@ We are now $membersCount members!
       </div>
 
       <!-- Action 2: Ephemeral Reply -->
-      <div class="scratch-block-card block-cat-interactions">
+      <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;payload&quot;:{&quot;content&quot;:&quot;✅ Congratulations ((user.username))! You have been given the Member role.&quot;,&quot;ephemeral&quot;:true}}'>
         <div class="scratch-block-header">
           <div class="scratch-block-strip"></div>
           <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>

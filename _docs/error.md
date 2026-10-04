@@ -53,7 +53,7 @@ $sendMessage[Valid number: $message]
 $if[$checkContains[$userPerms;BanMembers]!=true]
   $error[❌ You need the Ban Members permission to use this command.]
 $endif
-$ban[$mentioned[1]]
+$ban[Moderation]
 $sendMessage[User banned.]
 ```
 

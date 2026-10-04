@@ -71,7 +71,7 @@ $if[$hasRole[$roleID[Staff]]==false]
 $endif
 
 ;; Command executed
-$ban[$mentioned[1];Banned by $userName]
+$banID[Banned by $userName;$mentioned[1]]
 $sendMessage[🔨 <@$mentioned[1]> was banned.]
 ```
 

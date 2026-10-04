@@ -1,0 +1,999 @@
+{
+  "sendMessage": {
+    "desc": "Envoie un message, embed ou composants dans un salon ou en MP",
+    "category": "Messages",
+    "params": {
+      "channelId": "string?",
+      "content": "string?",
+      "targetType": "channel|user?",
+      "userId": "string?",
+      "embeds": "object[]?",
+      "components": "object?",
+      "messageMode": "normal|componentv2?"
+    },
+    "output": "((action.<key>))"
+  },
+  "editMessage": {
+    "desc": "Modifie le contenu ou les embeds d'un message existant envoyé par le bot",
+    "category": "Messages",
+    "params": {
+      "channelId": "string",
+      "messageId": "string",
+      "content": "string?",
+      "embeds": "object[]?"
+    }
+  },
+  "deleteMessages": {
+    "desc": "Supprime un message spécifique ou purge des messages récents",
+    "category": "Messages",
+    "params": {
+      "channelId": "string",
+      "messageId": "string?",
+      "messageCount": "number?",
+      "onlyUserId": "string?",
+      "filterBots": "boolean?",
+      "delay": "string?"
+    }
+  },
+  "pinMessage": {
+    "desc": "Épingle un message dans un salon textuel",
+    "category": "Messages",
+    "params": {
+      "channelId": "string",
+      "messageId": "string"
+    }
+  },
+  "unpinMessage": {
+    "desc": "Désépingle un message d'un salon",
+    "category": "Messages",
+    "params": {
+      "channelId": "string",
+      "messageId": "string"
+    }
+  },
+  "getMessage": {
+    "desc": "Récupère les métadonnées d'un message existant (auteur, contenu, timestamp)",
+    "category": "Messages",
+    "params": {
+      "channelId": "string",
+      "messageId": "string"
+    },
+    "output": "((action.<key>.content)), ((action.<key>.authorId))"
+  },
+  "createPoll": {
+    "desc": "Crée un sondage Discord natif avec plusieurs choix",
+    "category": "Messages",
+    "params": {
+      "channelId": "string",
+      "question": "string",
+      "answers": "string[]",
+      "durationHours": "number?",
+      "allowMultiselect": "boolean?"
+    }
+  },
+  "endPoll": {
+    "desc": "Termine immédiatement un sondage actif",
+    "category": "Messages",
+    "params": {
+      "channelId": "string",
+      "messageId": "string"
+    }
+  },
+  "deleteTrigger": {
+    "desc": "Supprime le message déclencheur de la commande ($deletecommand)",
+    "category": "Messages",
+    "params": {}
+  },
+  "attachImage": {
+    "desc": "Attache une image générée dynamiquement via Canvas au message sortant",
+    "category": "Messages",
+    "params": {
+      "canvasName": "string",
+      "fileName": "string?"
+    }
+  },
+  "sendDm": {
+    "desc": "Envoie un message privé direct à un utilisateur",
+    "category": "Messages",
+    "params": {
+      "userId": "string",
+      "content": "string?",
+      "embeds": "object[]?"
+    }
+  },
+  "addReaction": {
+    "desc": "Ajoute une réaction émoji sur un message",
+    "category": "Reactions",
+    "params": {
+      "channelId": "string",
+      "messageId": "string",
+      "emoji": "string"
+    }
+  },
+  "removeReaction": {
+    "desc": "Retire une réaction d'un message",
+    "category": "Reactions",
+    "params": {
+      "channelId": "string",
+      "messageId": "string",
+      "emoji": "string",
+      "userId": "string?"
+    }
+  },
+  "clearAllReactions": {
+    "desc": "Supprime toutes les réactions d'un message",
+    "category": "Reactions",
+    "params": {
+      "channelId": "string",
+      "messageId": "string"
+    }
+  },
+  "createChannel": {
+    "desc": "Crée un nouveau salon ou une catégorie sur le serveur",
+    "category": "Channels",
+    "params": {
+      "name": "string",
+      "type": "text|voice|category|announcement|stage?",
+      "categoryId": "string?",
+      "topic": "string?"
+    },
+    "output": "((action.<key>))"
+  },
+  "updateChannel": {
+    "desc": "Modifie les propriétés d'un salon (nom, topic, position, nsfw, verrouillage)",
+    "category": "Channels",
+    "params": {
+      "channelId": "string",
+      "name": "string?",
+      "topic": "string?",
+      "position": "number?",
+      "nsfw": "boolean?",
+      "archived": "boolean?",
+      "locked": "boolean?"
+    }
+  },
+  "removeChannel": {
+    "desc": "Supprime définitivement un salon ou une catégorie",
+    "category": "Channels",
+    "params": {
+      "channelId": "string"
+    }
+  },
+  "editChannelPermissions": {
+    "desc": "Configure les permissions d'un rôle ou d'un membre sur un salon",
+    "category": "Channels",
+    "params": {
+      "channelId": "string",
+      "targetType": "role|member",
+      "targetId": "string",
+      "allow": "string|number?",
+      "deny": "string|number?"
+    }
+  },
+  "deleteChannelPermission": {
+    "desc": "Supprime une dérogation de permission personnalisée sur un salon",
+    "category": "Channels",
+    "params": {
+      "channelId": "string",
+      "targetId": "string"
+    }
+  },
+  "createInvite": {
+    "desc": "Génère un lien d'invitation Discord pour un salon",
+    "category": "Channels",
+    "params": {
+      "channelId": "string",
+      "maxAge": "number?",
+      "maxUses": "number?",
+      "temporary": "boolean?",
+      "unique": "boolean?"
+    },
+    "output": "((action.<key>.url)), ((action.<key>.code))"
+  },
+  "deleteInvite": {
+    "desc": "Supprime une invitation Discord existante",
+    "category": "Channels",
+    "params": {
+      "inviteCode": "string"
+    }
+  },
+  "getInvite": {
+    "desc": "Récupère les détails et statistiques d'une invitation",
+    "category": "Channels",
+    "params": {
+      "inviteCode": "string"
+    },
+    "output": "((action.<key>))"
+  },
+  "createThread": {
+    "desc": "Crée un fil de discussion public ou privé dans un salon",
+    "category": "Channels",
+    "params": {
+      "channelId": "string",
+      "name": "string",
+      "messageId": "string?",
+      "type": "publicThread|privateThread?",
+      "autoArchiveDuration": "number?"
+    },
+    "output": "((action.<key>))"
+  },
+  "addThreadMember": {
+    "desc": "Ajoute un membre à un fil de discussion",
+    "category": "Channels",
+    "params": {
+      "channelId": "string",
+      "threadId": "string",
+      "userId": "string"
+    }
+  },
+  "removeThreadMember": {
+    "desc": "Retire un membre d'un fil de discussion",
+    "category": "Channels",
+    "params": {
+      "channelId": "string",
+      "threadId": "string",
+      "userId": "string"
+    }
+  },
+  "banUser": {
+    "desc": "Bannit définitivement un utilisateur du serveur",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "reason": "string?",
+      "deleteMessageDays": "number?"
+    }
+  },
+  "unbanUser": {
+    "desc": "Révoque le bannissement d'un utilisateur",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "reason": "string?"
+    }
+  },
+  "kickUser": {
+    "desc": "Expulse un membre du serveur",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "reason": "string?"
+    }
+  },
+  "muteUser": {
+    "desc": "Applique une exclusion temporaire (timeout natif)",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "duration": "string",
+      "reason": "string?"
+    }
+  },
+  "unmuteUser": {
+    "desc": "Révoque l'exclusion temporaire (timeout) d'un membre",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "reason": "string?"
+    }
+  },
+  "addRole": {
+    "desc": "Assigne un rôle Discord à un membre",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "roleId": "string"
+    }
+  },
+  "removeRole": {
+    "desc": "Retire un rôle Discord d'un membre",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "roleId": "string"
+    }
+  },
+  "setNickname": {
+    "desc": "Modifie le pseudo serveur d'un membre",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "nickname": "string"
+    }
+  },
+  "slowmode": {
+    "desc": "Définit le délai de slowmode sur un salon textuel (0 pour désactiver)",
+    "category": "Moderation",
+    "params": {
+      "channelId": "string",
+      "seconds": "number"
+    }
+  },
+  "moveToVoiceChannel": {
+    "desc": "Déplace un membre vocal vers un autre salon vocal",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "channelId": "string"
+    }
+  },
+  "disconnectFromVoice": {
+    "desc": "Déconnecte un membre de son salon vocal",
+    "category": "Moderation",
+    "params": {
+      "userId": "string"
+    }
+  },
+  "serverMuteMember": {
+    "desc": "Rend muet un membre au niveau du serveur vocal",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "mute": "boolean"
+    }
+  },
+  "serverDeafenMember": {
+    "desc": "Rend sourd un membre au niveau du serveur vocal",
+    "category": "Moderation",
+    "params": {
+      "userId": "string",
+      "deaf": "boolean"
+    }
+  },
+  "createAutoModRule": {
+    "desc": "Crée une règle AutoMod Discord native (mots bloqués, spam, mentions)",
+    "category": "Moderation",
+    "params": {
+      "name": "string",
+      "eventType": "number",
+      "triggerType": "number",
+      "triggerMetadata": "object?",
+      "actions": "object[]"
+    }
+  },
+  "deleteAutoModRule": {
+    "desc": "Supprime une règle AutoMod",
+    "category": "Moderation",
+    "params": {
+      "ruleId": "string"
+    }
+  },
+  "listAutoModRules": {
+    "desc": "Liste les règles AutoMod configurées sur le serveur",
+    "category": "Moderation",
+    "params": {},
+    "output": "((action.<key>))"
+  },
+  "updateAutoMod": {
+    "desc": "Met à jour une règle AutoMod existante",
+    "category": "Moderation",
+    "params": {
+      "ruleId": "string",
+      "name": "string?",
+      "enabled": "boolean?",
+      "actions": "object[]?"
+    }
+  },
+  "respondWithMessage": {
+    "desc": "Répond nativement à l'interaction déclencheuse (slash command, bouton)",
+    "category": "Interactions",
+    "params": {
+      "content": "string?",
+      "ephemeral": "boolean?",
+      "embeds": "object[]?",
+      "components": "object?"
+    }
+  },
+  "deferInteraction": {
+    "desc": "Acquitte l'interaction pour éviter le timeout de 3s (l'application 'réfléchit...')",
+    "category": "Interactions",
+    "params": {
+      "ephemeral": "boolean?"
+    }
+  },
+  "respondWithComponentV2": {
+    "desc": "Répond à l'interaction via le moteur Component V2 (sections, médias)",
+    "category": "Interactions",
+    "params": {
+      "components": "object",
+      "ephemeral": "boolean?"
+    }
+  },
+  "sendComponentV2": {
+    "desc": "Envoie un message Component V2 (déprécié, préférer respondWithComponentV2)",
+    "category": "Interactions",
+    "params": {
+      "channelId": "string?",
+      "components": "object"
+    }
+  },
+  "editComponentV2": {
+    "desc": "Modifie un message Component V2 existant",
+    "category": "Interactions",
+    "params": {
+      "channelId": "string",
+      "messageId": "string",
+      "components": "object"
+    }
+  },
+  "respondWithModal": {
+    "desc": "Affiche un formulaire modal interactif avec champs de saisie",
+    "category": "Interactions",
+    "params": {
+      "customId": "string",
+      "title": "string",
+      "components": "object[]"
+    }
+  },
+  "editInteractionMessage": {
+    "desc": "Modifie la réponse initiale déjà transmise à l'interaction",
+    "category": "Interactions",
+    "params": {
+      "content": "string?",
+      "embeds": "object[]?",
+      "components": "object?"
+    }
+  },
+  "respondWithAutocomplete": {
+    "desc": "Renvoie les suggestions en temps réel pour une option slash autocomplétée",
+    "category": "Interactions",
+    "params": {
+      "choices": "object[]"
+    }
+  },
+  "listenForButtonClick": {
+    "desc": "Déclenche des actions lors d'un clic sur un bouton identifié par customId",
+    "category": "Interactions",
+    "params": {
+      "customId": "string"
+    }
+  },
+  "listenForSelectMenu": {
+    "desc": "Déclenche des actions lors d'une sélection dans un menu déroulant",
+    "category": "Interactions",
+    "params": {
+      "customId": "string"
+    }
+  },
+  "listenForModalSubmit": {
+    "desc": "Déclenche des actions lors de la soumission d'un formulaire modal",
+    "category": "Interactions",
+    "params": {
+      "customId": "string"
+    }
+  },
+  "listenAndExecute": {
+    "desc": "Écoute un customId d'interaction et exécute une séquence d'actions",
+    "category": "Interactions",
+    "params": {
+      "customId": "string",
+      "actions": "object[]"
+    }
+  },
+  "sendWebhook": {
+    "desc": "Envoie un message via un webhook Discord avec pseudo et avatar personnalisés",
+    "category": "Webhooks",
+    "params": {
+      "webhookUrl": "string",
+      "content": "string?",
+      "username": "string?",
+      "avatarUrl": "string?",
+      "embeds": "object[]?"
+    }
+  },
+  "editWebhook": {
+    "desc": "Modifie le nom, l'avatar ou le salon d'un webhook",
+    "category": "Webhooks",
+    "params": {
+      "webhookId": "string",
+      "name": "string?",
+      "avatar": "string?",
+      "channelId": "string?"
+    }
+  },
+  "deleteWebhook": {
+    "desc": "Supprime définitivement un webhook",
+    "category": "Webhooks",
+    "params": {
+      "webhookId": "string"
+    }
+  },
+  "listWebhooks": {
+    "desc": "Liste les webhooks configurés dans un salon ou sur le serveur",
+    "category": "Webhooks",
+    "params": {
+      "channelId": "string?"
+    },
+    "output": "((action.<key>))"
+  },
+  "getWebhook": {
+    "desc": "Récupère les propriétés et l'URL d'un webhook existant",
+    "category": "Webhooks",
+    "params": {
+      "webhookId": "string"
+    },
+    "output": "((action.<key>))"
+  },
+  "updateGuild": {
+    "desc": "Modifie les paramètres du serveur (nom, icône, bannière, description)",
+    "category": "Guild",
+    "params": {
+      "name": "string?",
+      "icon": "string?",
+      "banner": "string?",
+      "description": "string?"
+    }
+  },
+  "leaveGuild": {
+    "desc": "Fait quitter le serveur actuel par le bot",
+    "category": "Guild",
+    "params": {}
+  },
+  "createEmoji": {
+    "desc": "Crée un émoji personnalisé sur le serveur",
+    "category": "Guild",
+    "params": {
+      "name": "string",
+      "image": "string",
+      "roles": "string[]?"
+    }
+  },
+  "updateEmoji": {
+    "desc": "Met à jour le nom ou les rôles autorisés d'un émoji personnalisé",
+    "category": "Guild",
+    "params": {
+      "emojiId": "string",
+      "name": "string?",
+      "roles": "string[]?"
+    }
+  },
+  "deleteEmoji": {
+    "desc": "Supprime un émoji personnalisé du serveur",
+    "category": "Guild",
+    "params": {
+      "emojiId": "string"
+    }
+  },
+  "listMembers": {
+    "desc": "Liste les membres du serveur avec pagination",
+    "category": "Guild",
+    "params": {
+      "limit": "number?",
+      "after": "string?"
+    },
+    "output": "((action.<key>))"
+  },
+  "getMember": {
+    "desc": "Récupère les informations d'un membre (rôles, date d'arrivée, permissions)",
+    "category": "Guild",
+    "params": {
+      "userId": "string"
+    },
+    "output": "((action.<key>))"
+  },
+  "getGuildOnboarding": {
+    "desc": "Récupère la configuration d'onboarding Discord du serveur",
+    "category": "Guild",
+    "params": {},
+    "output": "((action.<key>))"
+  },
+  "updateGuildOnboarding": {
+    "desc": "Met à jour les étapes et salons par défaut de l'onboarding Discord",
+    "category": "Guild",
+    "params": {
+      "enabled": "boolean?",
+      "prompts": "object[]?",
+      "defaultChannelIds": "string[]?"
+    }
+  },
+  "updateSelfUser": {
+    "desc": "Modifie le pseudo global ou l'avatar du bot",
+    "category": "Guild",
+    "params": {
+      "username": "string?",
+      "avatar": "string?"
+    }
+  },
+  "setTemporaryVariable": {
+    "desc": "Enregistre une variable éphémère en mémoire ($var) pour la commande actuelle",
+    "category": "Variables",
+    "params": {
+      "name": "string",
+      "value": "string|number|boolean"
+    }
+  },
+  "setGlobalVariable": {
+    "desc": "Enregistre une variable persistante globale bot en base ($setVar)",
+    "category": "Variables",
+    "params": {
+      "key": "string",
+      "value": "string|number|boolean"
+    }
+  },
+  "getGlobalVariable": {
+    "desc": "Récupère une variable persistante globale ($getVar)",
+    "category": "Variables",
+    "params": {
+      "key": "string"
+    },
+    "output": "((action.<key>))"
+  },
+  "removeGlobalVariable": {
+    "desc": "Supprime une variable persistante globale de la base",
+    "category": "Variables",
+    "params": {
+      "key": "string"
+    }
+  },
+  "setScopedVariable": {
+    "desc": "Enregistre une variable persistante avec portée ($setUserVar, $setServerVar...)",
+    "category": "Variables",
+    "params": {
+      "scope": "global|user|guild|member|channel",
+      "key": "string",
+      "targetId": "string?",
+      "value": "string|number|boolean"
+    }
+  },
+  "getScopedVariable": {
+    "desc": "Lit une variable persistante avec portée ($getUserVar, $getServerVar...)",
+    "category": "Variables",
+    "params": {
+      "scope": "global|user|guild|member|channel",
+      "key": "string",
+      "targetId": "string?"
+    },
+    "output": "((action.<key>))"
+  },
+  "removeScopedVariable": {
+    "desc": "Supprime une variable persistante avec portée",
+    "category": "Variables",
+    "params": {
+      "scope": "global|user|guild|member|channel",
+      "key": "string",
+      "targetId": "string?"
+    }
+  },
+  "renameScopedVariable": {
+    "desc": "Renomme la clé d'une variable persistante",
+    "category": "Variables",
+    "params": {
+      "scope": "global|user|guild|member|channel",
+      "oldKey": "string",
+      "newKey": "string"
+    }
+  },
+  "listScopedVariableIndex": {
+    "desc": "Liste / classement de variables persistantes (leaderboard)",
+    "category": "Variables",
+    "params": {
+      "scope": "global|user|guild|member|channel",
+      "key": "string",
+      "order": "asc|desc?",
+      "limit": "number?"
+    },
+    "output": "((action.<key>))"
+  },
+  "appendArrayElement": {
+    "desc": "Ajoute un élément à une liste JSON en variable",
+    "category": "Variables",
+    "params": {
+      "variable": "string",
+      "element": "any"
+    }
+  },
+  "removeArrayElement": {
+    "desc": "Retire un élément d'une liste JSON en variable",
+    "category": "Variables",
+    "params": {
+      "variable": "string",
+      "index": "number?",
+      "element": "any?"
+    }
+  },
+  "queryArray": {
+    "desc": "Filtre et extrait des éléments d'un tableau JSON",
+    "category": "Variables",
+    "params": {
+      "variable": "string",
+      "query": "string"
+    },
+    "output": "((action.<key>))"
+  },
+  "httpRequest": {
+    "desc": "Exécute une requête REST HTTP externe (GET, POST, PUT, DELETE, PATCH)",
+    "category": "Variables",
+    "params": {
+      "url": "string",
+      "method": "GET|POST|PUT|DELETE|PATCH?",
+      "headers": "object?",
+      "body": "string|object?"
+    },
+    "output": "((action.<key>))"
+  },
+  "ifBlock": {
+    "desc": "Bloc de branchement conditionnel avec branches thenActions et elseActions",
+    "category": "Logic",
+    "params": {
+      "variable": "string",
+      "operator": "equals|notEquals|contains|greaterThan|lessThan",
+      "value": "string|number",
+      "thenActions": "object[]",
+      "elseActions": "object[]?"
+    }
+  },
+  "stopUnless": {
+    "desc": "Interrompt immédiatement la commande si une condition est fausse ($onlyIf)",
+    "category": "Logic",
+    "params": {
+      "condition": "string",
+      "errorMessage": "string?"
+    }
+  },
+  "forLoop": {
+    "desc": "Répète un groupe d'actions un nombre déterminé de fois (max 100)",
+    "category": "Logic",
+    "params": {
+      "iterations": "number",
+      "actions": "object[]"
+    }
+  },
+  "jsonForEachLoop": {
+    "desc": "Itère sur chaque élément d'un tableau JSON et exécute les actions",
+    "category": "Logic",
+    "params": {
+      "array": "string|object[]",
+      "itemVariable": "string",
+      "actions": "object[]"
+    }
+  },
+  "calculate": {
+    "desc": "Calcule une expression mathématique (+, -, *, /, ^)",
+    "category": "Logic",
+    "params": {
+      "expression": "string"
+    },
+    "output": "((action.<key>))"
+  },
+  "cooldown": {
+    "desc": "Applique un délai avant réutilisation d'une commande",
+    "category": "Logic",
+    "params": {
+      "duration": "string",
+      "scope": "user|guild|channel?",
+      "errorMessage": "string?"
+    }
+  },
+  "wait": {
+    "desc": "Suspend l'exécution du workflow pendant une durée donnée (ex: 3s, 1m)",
+    "category": "Logic",
+    "params": {
+      "duration": "string"
+    }
+  },
+  "stop": {
+    "desc": "Arrête immédiatement l'exécution sans générer d'erreur ($stop)",
+    "category": "Logic",
+    "params": {}
+  },
+  "skipActions": {
+    "desc": "Saute un nombre défini d'actions suivantes dans la séquence",
+    "category": "Logic",
+    "params": {
+      "count": "number"
+    }
+  },
+  "jumpToAction": {
+    "desc": "Saute directement à l'action identifiée par sa clé (key)",
+    "category": "Logic",
+    "params": {
+      "targetKey": "string"
+    }
+  },
+  "randomChoice": {
+    "desc": "Sélectionne aléatoirement une valeur parmi une liste avec pondérations optionnelles",
+    "category": "Logic",
+    "params": {
+      "options": "string[]",
+      "weights": "number[]?"
+    },
+    "output": "((action.<key>))"
+  },
+  "runWorkflow": {
+    "desc": "Invoque un workflow réutilisable du bot en lui transmettant des arguments",
+    "category": "Workflows",
+    "params": {
+      "workflowId": "string",
+      "parameters": "object?"
+    },
+    "output": "((action.<key>))"
+  },
+  "runBdfdScript": {
+    "desc": "Exécute un extrait de code BDScript direct dans le flux de blocs",
+    "category": "Workflows",
+    "params": {
+      "code": "string"
+    },
+    "output": "((action.<key>))"
+  },
+  "runtimeJsonBlock": {
+    "desc": "Parse ou filtre un document JSON en mémoire",
+    "category": "Workflows",
+    "params": {
+      "input": "string",
+      "path": "string?"
+    },
+    "output": "((action.<key>))"
+  },
+  "runtimeImageBlock": {
+    "desc": "Conteneur racine pour la génération et composition d'image Canvas",
+    "category": "Workflows",
+    "params": {
+      "width": "number",
+      "height": "number",
+      "subActions": "object[]"
+    }
+  },
+  "canvasCreateBlock": {
+    "desc": "Crée un canvas vierge (largeur, hauteur, couleur de fond)",
+    "category": "Canvas",
+    "params": {
+      "width": "number",
+      "height": "number",
+      "backgroundColor": "string?"
+    }
+  },
+  "canvasLoadImageBlock": {
+    "desc": "Télécharge et positionne une image externe sur le canvas",
+    "category": "Canvas",
+    "params": {
+      "url": "string",
+      "x": "number",
+      "y": "number",
+      "width": "number?",
+      "height": "number?"
+    }
+  },
+  "canvasDrawTextBlock": {
+    "desc": "Rend du texte avec police, taille et couleur sur le canvas",
+    "category": "Canvas",
+    "params": {
+      "text": "string",
+      "x": "number",
+      "y": "number",
+      "fontSize": "number?",
+      "color": "string?",
+      "font": "string?"
+    }
+  },
+  "canvasDrawCircleBlock": {
+    "desc": "Dessine un cercle ou disque coloré sur le canvas",
+    "category": "Canvas",
+    "params": {
+      "x": "number",
+      "y": "number",
+      "radius": "number",
+      "color": "string"
+    }
+  },
+  "canvasDrawRectBlock": {
+    "desc": "Dessine un rectangle sur le canvas avec bords arrondis optionnels",
+    "category": "Canvas",
+    "params": {
+      "x": "number",
+      "y": "number",
+      "width": "number",
+      "height": "number",
+      "color": "string",
+      "borderRadius": "number?"
+    }
+  },
+  "canvasDrawLineBlock": {
+    "desc": "Trace une ligne entre deux points sur le canvas",
+    "category": "Canvas",
+    "params": {
+      "startX": "number",
+      "startY": "number",
+      "endX": "number",
+      "endY": "number",
+      "color": "string",
+      "lineWidth": "number?"
+    }
+  },
+  "registerGuildCommands": {
+    "desc": "Enregistre dynamiquement des slash commands sur un serveur Discord",
+    "category": "Workflows",
+    "params": {
+      "commands": "object[]"
+    }
+  },
+  "unregisterGuildCommands": {
+    "desc": "Supprime des commandes slash enregistrées sur un serveur",
+    "category": "Workflows",
+    "params": {
+      "commandNames": "string[]"
+    }
+  },
+  "log": {
+    "desc": "Écrit un message dans les logs du runner pour le débogage",
+    "category": "Debug",
+    "params": {
+      "message": "string",
+      "level": "info|warn|error?"
+    }
+  },
+  "debugProfile": {
+    "desc": "Mesure et journalise le temps d'exécution d'un bloc d'actions",
+    "category": "Debug",
+    "params": {
+      "label": "string"
+    }
+  },
+  "playMusic": {
+    "desc": "Joue un flux audio Lavalink (YouTube, SoundCloud ou URL directe)",
+    "category": "Music",
+    "params": {
+      "query": "string",
+      "channelId": "string?"
+    }
+  },
+  "pauseMusic": {
+    "desc": "Met en pause la lecture audio courante",
+    "category": "Music",
+    "params": {}
+  },
+  "resumeMusic": {
+    "desc": "Reprend la lecture audio suspendue",
+    "category": "Music",
+    "params": {}
+  },
+  "skipMusic": {
+    "desc": "Passe au morceau audio suivant dans la file d'attente",
+    "category": "Music",
+    "params": {}
+  },
+  "stopMusic": {
+    "desc": "Arrête la musique et réinitialise la file d'attente",
+    "category": "Music",
+    "params": {}
+  },
+  "setMusicVolume": {
+    "desc": "Ajuste le volume de restitution audio (0 à 200%)",
+    "category": "Music",
+    "params": {
+      "volume": "number"
+    }
+  },
+  "setMusicLoop": {
+    "desc": "Définit le mode de répétition audio (désactivé, piste, file d'attente)",
+    "category": "Music",
+    "params": {
+      "mode": "off|track|queue"
+    }
+  },
+  "seekMusic": {
+    "desc": "Déplace la position de lecture audio à un timestamp en millisecondes",
+    "category": "Music",
+    "params": {
+      "positionMs": "number"
+    }
+  },
+  "getMusicInfo": {
+    "desc": "Récupère les métadonnées de la piste audio en cours (titre, durée, progression)",
+    "category": "Music",
+    "params": {},
+    "output": "((action.<key>))"
+  },
+  "joinVoice": {
+    "desc": "Connecte le bot au salon vocal spécifié",
+    "category": "Music",
+    "params": {
+      "channelId": "string"
+    }
+  },
+  "leaveVoice": {
+    "desc": "Déconnecte le bot de son salon vocal",
+    "category": "Music",
+    "params": {}
+  }
+}

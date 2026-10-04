@@ -4,47 +4,36 @@ title: $kickMention
 translation_key: docs
 category: "Moderation"
 function_name: kickMention
-syntax: $kickMention
-description: Kicks the user mentioned in the message.
+syntax: $kickMention[(reason)]
+description: Kicks the first user mentioned in a prefix command.
 ---
 
 # $kickMention
 
-The function `$kickMention` **automatically kicks the user mentioned** in the triggering message. This is a convenient shortcut that avoids the need to specify an ID. The bot must have the `Kick Members` permission.
+`$kickMention` targets the first user mention in the triggering message. It accepts an optional reason.
 
 ## Syntax
 
-```
+```text
 $kickMention
+$kickMention[reason]
 ```
-
-## Parameters
-
-No parameters. The function automatically detects the mentioned user.
-
-## Return Value
-
-None. The mentioned user is kicked.
 
 ## Examples
 
-### Simple kick
+### Prefix command example
+
+Configure a prefix command named `kick`. Invoke it as `!kick @member`.
 
 ```bdfd
-$kickMention
-$sendMessage[Member kicked successfully!]
+$nomention
+$onlyPerms[kickmembers;You need Kick Members permission.]
+$onlyBotPerms[kickmembers;The bot needs Kick Members permission.]
+$onlyIf[$mentioned[1]!=;Usage: !kick @member]
+$onlyIf[$mentioned[1]!=$authorID;You cannot kick yourself.]
+$onlyIf[$mentioned[1]!=$serverOwner;The server owner cannot be kicked.]
+$kickMention[Rules violation]
+Member kicked successfully.
 ```
 
-### Kick with default reason
-
-```bdfd
-$kickMention
-$sendMessage[<@$mentioned[1]> has been kicked for violating the rules.]
-```
-
-## Notes
-
-- The triggering message must contain a user mention.
-- The bot must have the `Kick Members` permission.
-- To kick a specific user by ID, use `$kick`.
-- If no mention is present, the behavior may be undefined.
+A missing mention fails target validation. The bot must have a highest role above the target's highest role. To supply a user ID explicitly, use `$kick[userID;reason]`.

@@ -4,50 +4,47 @@ title: $banID
 translation_key: docs
 category: "Moderation"
 function_name: banID
-syntax: $banID[userID;(reason)]
-description: Bans a user by their user ID.
+syntax: $banID[reason;(userID)]
+description: Bans a user ID, with the reason as the first argument.
 ---
 
 # $banID
 
-The `$banID` function **bans a user by their Discord ID**, even if they are not present on the server. The bot must have the `BanMembers` permission.
+`$banID[reason;userID]` takes the reason first and the target ID second. When the ID is omitted, Bot Creator uses the last message argument.
 
 ## Syntax
 
+```text
+$banID
+$banID[reason]
+$banID[reason;userID]
 ```
-$banID[userID;(reason)]
-```
-
-## Parameters
-
-| Parameter | Description |
-|---|---|
-| `userID` | The Discord ID of the user to ban. Required. |
-| `reason` | Optional. The ban reason. |
-
-## Return value
-
-None. The user is banned from the server.
 
 ## Examples
 
-### Ban by ID simple
+### Explicit ID
+
+Replace the sample ID with a real member ID before running this example.
 
 ```bdfd
-$banID[123456789012345678;Raid]
-$sendMessage[User 123456789012345678 banned for raiding.]
+$onlyPerms[banmembers;You need Ban Members permission.]
+$onlyBotPerms[banmembers;The bot needs Ban Members permission.]
+$banID[Raid;123456789012345678]
+Member banned for raiding.
 ```
 
-### Preventive ban
+### Prefix command example
+
+Configure a prefix command named `ban`. Invoke it as `!ban 123456789012345678`.
 
 ```bdfd
-$banID[$message[1]]
-$sendMessage[User $message[1] preventively banned.]
+$onlyPerms[banmembers;You need Ban Members permission.]
+$onlyBotPerms[banmembers;The bot needs Ban Members permission.]
+$onlyIf[$message[1]!=;Usage: !ban userID]
+$onlyIf[$message[1]!=$authorID;You cannot ban yourself.]
+$onlyIf[$message[1]!=$serverOwner;The server owner cannot be banned.]
+$banID[Moderation; $message[1]]
+Member banned successfully.
 ```
 
-## Notes
-
-- Allows banning a user who is no longer on the server.
-- Useful for preventive bans.
-- The bot must have the `BanMembers` permission.
-- Unlike `$ban`, this does not delete messages.
+The bot needs a highest role above the target's highest role. Bot Creator currently checks the target's server membership before banning, so this implementation cannot promise a preventive ban of an absent user. The function returns no text and does not delete past messages.

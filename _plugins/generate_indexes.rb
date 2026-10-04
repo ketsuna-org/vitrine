@@ -64,6 +64,7 @@ module Vitrine
         end
         add_static_file(site, "api", "docs-index.json", docs_index(site).to_json)
         add_static_file(site, "api", "posts-index.json", posts_index(site).to_json)
+        add_static_file(site, "api", "schema-manifest.json", schema_manifest(site).to_json)
         generate_native_library(site, docs, "docs")
         generate_native_library(site, site.posts.docs, "guides")
         add_static_file(site, ".", "llms.txt", llms_summary(site))
@@ -124,6 +125,8 @@ module Vitrine
             body = block.at_css('.scratch-block-body')&.dup
             body&.css('.scratch-block-field, .scratch-block-toggle-row')&.remove
             {
+              'action' => block['data-native-action'] ? JSON.parse(block['data-native-action']) : nil,
+              'trigger' => block['data-native-trigger'] ? JSON.parse(block['data-native-trigger']) : nil,
               'title' => block.at_css('.scratch-block-title')&.text.to_s.strip,
               'badge' => block.at_css('.scratch-block-badge')&.text.to_s.strip,
               'category' => block['class'].to_s[/\bblock-cat-([\w-]+)/, 1].to_s,
@@ -217,20 +220,108 @@ module Vitrine
       end
 
       def docs_index(site)
+        blocks = site.data["blocks_grammar"] || {}
+        if blocks.empty?
+          grammar_path = File.join(site.source, "_data", "blocks_grammar.json")
+          blocks = JSON.parse(File.read(grammar_path)) if File.exist?(grammar_path)
+        end
+
         docs = site.collections.fetch("docs", nil)&.docs || []
         docs.map do |doc|
           slug = doc.basename_without_ext
+          api_type = doc.data["api_type"] || "bdfd"
+          block_info = blocks[slug] || blocks[doc.data["function_name"]]
+          params = block_info ? block_info["params"] : nil
+
+          if params.nil? && doc.data["syntax"] && doc.data["syntax"] =~ /\[(.*)\]/
+            params = {}
+            $1.split(";").map(&:strip).each do |arg|
+              clean_arg = arg.gsub(/[^a-zA-Z0-9_()]/, "")
+              if clean_arg =~ /^\((.+)\)$/
+                params[$1] = "string?"
+              elsif !clean_arg.empty?
+                params[clean_arg] = "string"
+              end
+            end
+          end
+
           {
             "slug"     => slug,
             "name"     => doc.data["title"] || function_name_from_slug(slug),
             "category" => doc.data["category"],
-            "api_type" => doc.data["api_type"] || "bdfd",
+            "api_type" => api_type,
             "description" => doc.data["description"],
+            "syntax"   => doc.data["syntax"],
+            "params"   => params,
             "status" => doc.data["status"] || "documented",
             "markdown_url" => "#{SITE_URL}/api/docs/#{slug}.md",
             "url"      => "#{SITE_URL}#{doc.url}",
-          }
+          }.compact
         end.sort_by { |d| d.fetch("slug") }
+      end
+
+      def schema_manifest(site)
+        blocks = site.data["blocks_grammar"] || {}
+        if blocks.empty?
+          grammar_path = File.join(site.source, "_data", "blocks_grammar.json")
+          blocks = JSON.parse(File.read(grammar_path)) if File.exist?(grammar_path)
+        end
+
+        docs = site.collections.fetch("docs", nil)&.docs || []
+        bdfd = {}
+        javascript = {}
+
+        docs.each do |doc|
+          slug = doc.basename_without_ext
+          api_type = doc.data["api_type"] || (doc.relative_path.include?("javascript") ? "javascript" : "bdfd")
+          desc = doc.data["description"]
+          category = doc.data["category"] || (api_type == "javascript" ? "JavaScript API" : "General")
+
+          if api_type == "bdfd"
+            syntax = doc.data["syntax"]
+            name = doc.data["title"] || function_name_from_slug(slug)
+            next unless syntax || doc.data["function_name"] || name.start_with?("$")
+
+            params = {}
+            if syntax && syntax =~ /\[(.*)\]/
+              $1.split(";").map(&:strip).each do |arg|
+                clean_arg = arg.gsub(/[^a-zA-Z0-9_()]/, "")
+                if clean_arg =~ /^\((.+)\)$/
+                  params[$1] = "string?"
+                elsif !clean_arg.empty?
+                  params[clean_arg] = "string"
+                end
+              end
+            end
+
+            entry = {
+              "desc" => desc,
+              "category" => category,
+              "syntax" => syntax,
+              "params" => params
+            }
+            entry.delete_if { |_, v| v.nil? }
+            bdfd[name] = entry
+          elsif api_type == "javascript"
+            name = doc.data["title"] || slug
+            entry = {
+              "desc" => desc,
+              "category" => category,
+              "slug" => slug
+            }
+            entry.delete_if { |_, v| v.nil? }
+            javascript[name] = entry
+          end
+        end
+
+        {
+          "version" => "1.0",
+          "modes" => {
+            "blocks" => blocks,
+            "bdfd" => bdfd,
+            "javascript" => javascript
+          }
+        }
       end
 
       def posts_index(site)

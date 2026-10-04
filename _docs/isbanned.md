@@ -44,7 +44,7 @@ $isBanned[userID]
 $if[$isBanned[$mentioned[1]]==true]
   $sendMessage[⚠️ <@$mentioned[1]> is already banned from this server.]
 $else
-  $ban[$mentioned[1];Reason provided by $userName]
+  $banID[Reason provided by $userName;$mentioned[1]]
   $sendMessage[🔨 <@$mentioned[1]> was banned.]
 $endif
 ```
