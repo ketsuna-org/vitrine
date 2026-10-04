@@ -122,10 +122,13 @@ test('get_schema_manifest returns compact typed schemas for blocks', async () =>
     if (url.endsWith('schema-manifest.json')) return Response.json(manifestData);
     return Response.json(docs);
   }, async () => {
-    // 1. Default mode is 'blocks'
+    // 1. Default mode is 'blocks': a compact index (the full dictionary is too large for the app)
     const reply = await rpc('tools/call', { name: 'get_schema_manifest', arguments: {} });
     assert.equal(reply.result.isError, undefined);
-    const blocks = JSON.parse(reply.result.content[0].text);
+    const index = JSON.parse(reply.result.content[0].text);
+    assert.deepEqual(index.categories.Messages, ['sendMessage']);
+    const named = await rpc('tools/call', { name: 'get_schema_manifest', arguments: { names: ['sendMessage', 'banUser'] } });
+    const blocks = JSON.parse(named.result.content[0].text);
     assert.ok(blocks.sendMessage);
     assert.equal(blocks.sendMessage.params.channelId, 'string?');
     assert.equal(blocks.banUser.params.userId, 'string');

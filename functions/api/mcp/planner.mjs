@@ -113,6 +113,12 @@ const RECIPES = [
     skeleton: "$title[Bienvenue $userName !]\n$description[Tu es le membre n°$membersCount de **$serverName**.]\n$color[57F287]",
   },
   {
+    id: "counter-blocks", mode: "blocks", need: 1, prio: 2, words: ["warn", "avertir", "avertissement", "compteur", "counter", "points", "xp", "niveau", "level", "increment"],
+    fns: ["getScopedVariable", "calculate", "setScopedVariable", "respondWithMessage"],
+    skeleton: '[{"type":"getScopedVariable","key":"prev","payload":{"scope":"guildMember","key":"warns","contextId":"((opts.membre))"}},{"type":"calculate","key":"total","payload":{"expression":"((action.prev)) + 1"}},{"type":"setScopedVariable","payload":{"scope":"guildMember","key":"warns","valueType":"number","numberValue":"((action.total))","contextId":"((opts.membre))"}},{"type":"respondWithMessage","payload":{"content":"<@((opts.membre))> a maintenant ((action.total)) avertissement(s)."}}]',
+    gotchas: ["Chain results with `key` ON THE ACTION (not in payload): calculate with key \"total\" is read as ((action.total)). The `storeAs` field exists only on getScopedVariable and queryArray.", "An unset scoped value reads empty: declare a number default of 0 with local_set_variable (scope guildMember) so ((action.prev)) + 1 works the first time.", "Slash options are ((opts.<name>)); the member option's user id is ((opts.membre))."],
+  },
+  {
     id: "ping-blocks", mode: "blocks", need: 1, words: ["ping", "latence", "latency"],
     fns: ["respondWithMessage"],
     skeleton: '[{"type":"respondWithMessage","payload":{"embeds":[{"title":"🏓 Pong!","description":"Latence : **((bot.ping)) ms**","color":"#5865F2"}]}}]',

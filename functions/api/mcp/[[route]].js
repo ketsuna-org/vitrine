@@ -172,6 +172,11 @@ const TOOLS_META = [
           type: "string",
           description: "Optional category filter (e.g. 'Messages', 'Moderation', 'Variables', 'Logic').",
         },
+        names: {
+          type: "array",
+          items: { type: "string" },
+          description: "Blocks mode: exact action names whose full parameter schemas to return in ONE call (max 20), e.g. ['calculate','setScopedVariable','respondWithMessage'].",
+        },
       },
     },
   },
@@ -468,7 +473,7 @@ async function fetchPostsIndex() {
   return res.json();
 }
 
-async function toolGetSchemaManifest({ mode = "blocks", category } = {}) {
+async function toolGetSchemaManifest({ mode = "blocks", category, names } = {}) {
   const manifest = await fetchSchemaManifest();
   const targetMode = mode || "blocks";
 
@@ -478,6 +483,28 @@ async function toolGetSchemaManifest({ mode = "blocks", category } = {}) {
 
   if (targetMode === "types") {
     return toolText(JSON.stringify(manifest.types || {}));
+  }
+
+  // Blocks: the full manifest is ~30 KB and too large for the app to hand back to the model, which then
+  // asks category by category. Without a filter return a compact index; `names` fetches exact schemas.
+  if (targetMode === "blocks") {
+    const blocks = manifest.modes?.blocks || {};
+    const wanted = (Array.isArray(names) ? names : typeof names === "string" ? names.split(/[,\s]+/) : []).map((n) => String(n).trim()).filter(Boolean);
+    if (wanted.length > 0) {
+      const found = {};
+      const unknown = [];
+      for (const n of wanted.slice(0, 20)) {
+        const hit = Object.keys(blocks).find((k) => normalize(k) === normalize(n));
+        if (hit) found[hit] = blocks[hit];
+        else unknown.push(n);
+      }
+      return toolText(JSON.stringify(unknown.length ? { ...found, _unknown: unknown, _hint: "Use list_actions for valid names." } : found));
+    }
+    if (!category) {
+      const index = {};
+      for (const [name, v] of Object.entries(blocks)) (index[v.category || "Other"] ||= []).push(v.unsupported ? `${name} (unsupported)` : name);
+      return toolText(JSON.stringify({ note: "Compact index. Get exact parameters with names=[...] (up to 20 actions, one call) or category=<one of the keys below>. Nested types: mode='types'.", categories: index }));
+    }
   }
 
   let resultData;
@@ -543,6 +570,9 @@ async function toolListActions({ category } = {}) {
 // --- Blocks validation ---------------------------------------------------
 
 const PRIMITIVES = new Set(["string", "number", "boolean", "object"]);
+
+// Names the Copilot invents to store a result; no Blocks action reads them.
+const RESULT_NAMING_FIELDS = new Set(["storeAs", "saveAs", "outputVariable", "outputKey", "resultKey", "resultVariable", "output", "assignTo", "into", "target_variable", "storeIn"]);
 
 function hasPlaceholder(v) {
   return typeof v === "string" && v.includes("((");
@@ -640,7 +670,16 @@ function checkFields(obj, fields, path, ctx, issues, ignore = []) {
   for (const key of Object.keys(obj)) {
     if (key in fields || ignore.includes(key)) continue;
     const near = closest(key, Object.keys(fields));
-    issues.warnings.push({ path: `${path}.${key}`, message: `unknown field${near ? `, did you mean "${near}"?` : ""}` });
+    const accepted = Object.keys(fields).filter((f) => !ignore.includes(f)).join(", ");
+    if (RESULT_NAMING_FIELDS.has(key)) {
+      // The engine silently ignores these, so the action "works" but its result stays unreadable.
+      issues.errors.push({
+        path: `${path}.${key}`,
+        message: `"${key}" does not exist: the engine ignores it. Name the result with \`key\` on the ACTION itself ({"type":…,"key":"total","payload":{…}}) and read it as ((action.total)). Accepted payload fields: ${accepted || "none"}.`,
+      });
+      continue;
+    }
+    issues.warnings.push({ path: `${path}.${key}`, message: `unknown field${near ? `, did you mean "${near}"?` : ""}. Accepted: ${accepted || "none"}` });
   }
 }
 
