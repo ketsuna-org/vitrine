@@ -752,6 +752,13 @@ function checkAction(action, path, ctx, issues) {
     issues.errors.push({ path: `${path}.payload`, message: `payload must be an object, got ${describeValue(payload)}` });
     return;
   }
+  // guildMember variables are stored per server AND user: contextId is "<guildId>:<userId>".
+  if (payload.scope === "guildMember" && typeof payload.contextId === "string" && payload.contextId.trim() && !payload.contextId.includes(":")) {
+    issues.errors.push({
+      path: `${path}.payload.contextId`,
+      message: `a guildMember contextId must be "<guildId>:<userId>", got "${payload.contextId}" (a bare user id is refused at runtime). Use "((guild.id)):${payload.contextId.startsWith("((") ? payload.contextId : "<userId>"}" or omit contextId for the current member.`,
+    });
+  }
   // The action's own fields (key, enabled, depend_on, error) live next to `type`, not in the payload.
   const own = ctx.types.Action?.fields || {};
   for (const field of Object.keys(action)) {
