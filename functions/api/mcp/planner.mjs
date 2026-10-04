@@ -79,6 +79,12 @@ const RECIPES = [
     gotchas: ["$ban[(reason)] bans the FIRST MENTIONED user (reason is not a user ID); use $banID[reason;userID] for an explicit ID. Guard with $onlyPerms/$onlyBotPerms."],
   },
   {
+    id: "warn", mode: "bdfd", need: 1, prio: 2, words: ["warn", "avertir", "avertissement", "strike", "sanction"],
+    fns: ["$onlyPerms", "$onlyIf", "$findUser", "$message", "$setGuildMemberVar", "$getGuildMemberVar", "$calculate", "$var"],
+    skeleton: "$onlyPerms[moderatemembers;Permission Modérer les membres requise.]\n$var[cible;$findUser[$message[membre]]]\n$onlyIf[$var[cible]!=;Membre introuvable.]\n$setGuildMemberVar[warns;$calculate[$getGuildMemberVar[warns;$var[cible]]+1];$var[cible]]\n⚠️ <@$var[cible]> a maintenant $getGuildMemberVar[warns;$var[cible]] avertissement(s).",
+    gotchas: ["Slash options are read by name: $message[optionName] ($args is empty in a slash invocation).", "Per-server counters: $setGuildMemberVar/$getGuildMemberVar[key;userID]; an unset value is empty, so declare a default of 0 with local_set_variable."],
+  },
+  {
     id: "variables", mode: "bdfd", need: 1, words: ["variable", "stocker", "sauvegarder", "save", "compteur", "counter", "economie", "economy", "xp", "niveau", "level", "argent", "money"],
     fns: ["$setUserVar", "$getUserVar", "$setServerVar", "$getServerVar", "$setVar", "$getVar", "$var", "$calculate"],
     skeleton: "$setUserVar[points;$calculate[$getUserVar[points]+1]]\nPoints : **$getUserVar[points]**",
@@ -331,6 +337,73 @@ export function plan(index, { intent, mode = "bdfd", budget = 10 }) {
     out.skeleton = recipe.r.skeleton;
   }
   return out;
+}
+
+// --- Documentation search ------------------------------------------------------------------------
+//
+// search_docs used to look for the WHOLE query as one substring, so any multi-word query
+// ("find user", "sum math") matched nothing and the model kept rephrasing, one model round per
+// attempt. rankDocs scores word by word (names, joined neighbours, descriptions, synonyms).
+
+function docWords(d) {
+  const slug = key(d.slug ?? "");
+  const name = key(d.name ?? "");
+  return {
+    slug,
+    name,
+    nameParts: new Set(nameTokens(d.name || d.slug || "")),
+    desc: new Set(tokenize(d.description)),
+    cat: new Set(tokenize(d.category)),
+  };
+}
+
+function scoreDoc(w, tokens, expanded, flat) {
+  let score = 0;
+  if (flat && (w.slug === flat || w.name === flat)) score += 100;
+  const one = (t, weight) => {
+    let s = 0;
+    if (w.slug === t || w.name === t) s += 20;
+    else if (t.length >= 3 && (w.slug.includes(t) || w.name.includes(t))) s += 8;
+    if (w.nameParts.has(t)) s += 6;
+    if (w.desc.has(t)) s += 2;
+    if (w.cat.has(t)) s += 1;
+    return s * weight;
+  };
+  for (const t of tokens) score += one(t, 1);
+  for (const [t, weight] of expanded) if (!tokens.includes(t)) score += one(t, weight);
+  for (let i = 0; i + 1 < tokens.length; i++) {
+    if (w.slug === tokens[i] + tokens[i + 1] || w.slug === tokens[i + 1] + tokens[i]) score += 25;
+  }
+  return score;
+}
+
+/** Ranks docs-index rows for a free-text query. Returns [{ doc, score }] best first, score > 0 only. */
+export function rankDocs(docs, query, limit = 8) {
+  const { base, weights } = expandQuery(query);
+  const flat = normalize(query).replace(/[^a-z0-9]/g, "");
+  const tokens = [...new Set(base)];
+  if (tokens.length === 0 && !flat) return [];
+  const ranked = [];
+  for (const d of docs) {
+    const score = scoreDoc(docWords(d), tokens, weights, flat);
+    if (score > 0) ranked.push({ doc: d, score });
+  }
+  return ranked.sort((a, b) => b.score - a.score || String(a.doc.slug).localeCompare(String(b.doc.slug))).slice(0, limit);
+}
+
+/** Closest documents when nothing matched the whole query: best hit of each single word. */
+export function suggestDocs(docs, query, limit = 5) {
+  const seen = new Set();
+  const out = [];
+  for (const t of [...new Set(tokenize(query))]) {
+    for (const { doc } of rankDocs(docs, t, 2)) {
+      if (!seen.has(doc.slug)) {
+        seen.add(doc.slug);
+        out.push(doc);
+      }
+    }
+  }
+  return out.slice(0, limit);
 }
 
 export { RECIPES, SYNONYMS };

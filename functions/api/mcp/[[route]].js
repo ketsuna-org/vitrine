@@ -15,7 +15,7 @@
 //   returns a single JSON-RPC `result` to the caller — no notifications,
 //   no server-initiated messages — so we do not lose any spec compliance.
 
-import { buildIndex, plan } from "./planner.mjs";
+import { buildIndex, plan, rankDocs, suggestDocs } from "./planner.mjs";
 
 const SITE_ORIGIN = "https://bot-creator.fr";
 const GITHUB_RAW = "https://raw.githubusercontent.com/ketsuna-org/vitrine/master";
@@ -753,34 +753,21 @@ function compactDoc(d) {
 }
 
 async function toolSearchDocs({ query, limit, api_type }) {
-  const q = normalize(query);
   const lim = clampLimit(limit, 8);
-  if (!q) throw new Error("`query` is required");
+  if (!normalize(query)) throw new Error("`query` is required");
   if (api_type && !["blocks", "bdfd", "javascript", "general"].includes(api_type)) throw new Error("Invalid api_type");
 
   const docs = await fetchDocsIndex();
-  const scored = docs
-    .filter((d) => !api_type || (d.api_type || "bdfd") === api_type)
-    .map((d) => {
-      const haystack = [normalize(d.slug), normalize(d.name), normalize(d.category), normalize(d.description), normalize(d.api_type)].join(" ");
-      let score = 0;
-      if (normalize(d.slug) === q) score += 100;
-      if (normalize(d.name) === q) score += 90;
-      if (normalize(d.slug).includes(q)) score += 50;
-      if (normalize(d.name).includes(q)) score += 40;
-      if (normalize(d.category).includes(q)) score += 10;
-      if (haystack.includes(q)) score += 5;
-      return { d, score };
-    })
-    .filter((x) => x.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, lim)
-    .map((x) => compactDoc(x.d));
+  const pool = docs.filter((d) => !api_type || (d.api_type || "bdfd") === api_type);
+  const ranked = rankDocs(pool, query, lim).map((x) => compactDoc(x.doc));
+  if (ranked.length > 0) return toolText(JSON.stringify({ count: ranked.length, results: ranked }));
 
+  // Never dead-end: the closest documents for each word of the query, so the next call can be get_doc.
+  const closest = suggestDocs(pool, query, 5).map(compactDoc);
   return toolText(
-    scored.length === 0
-      ? `No docs matched "${query}".`
-      : JSON.stringify({ count: scored.length, results: scored })
+    closest.length === 0
+      ? `No docs matched "${query}". Try a function name (e.g. "ban", "setuservar") or call plan_solution with the intent.`
+      : JSON.stringify({ count: 0, message: `Nothing matched all of "${query}". Closest documents by word:`, suggestions: closest })
   );
 }
 
