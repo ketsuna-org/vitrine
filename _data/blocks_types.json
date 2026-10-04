@@ -1,8 +1,12 @@
 {
   "Action": {
-    "desc": "Une action Blocks. Toujours { type, payload }, où type est un nom d'action du manifeste et payload ses params.",
+    "desc": "Une action Blocks, à la racine : { type, key?, payload }. `key` (à la racine, PAS dans payload) nomme le résultat : avec key=\"total\", le résultat se lit ((action.total)) (et ((action.total.result)) si l'action le prévoit) dans les actions suivantes ; sans key il s'appelle action_<position> (action_0 pour la première). enabled=false désactive l'action ; depend_on liste des clés d'actions requises ; error = messages d'erreur.",
     "fields": {
       "type": "string",
+      "key": "string?",
+      "enabled": "boolean?",
+      "depend_on": "string[]?",
+      "error": "object?",
       "payload": "object?"
     }
   },

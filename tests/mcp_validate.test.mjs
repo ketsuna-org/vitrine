@@ -134,3 +134,24 @@ test('unsupported actions are rejected by validate_actions', async () => {
   assert.equal(data.valid, false);
   assert.match(data.errors[0].message, /cannot be used here/);
 });
+
+test('an action carries key/enabled/depend_on at its root: a key inside payload is flagged', async () => {
+  const ok = await call('validate_actions', { actions: [
+    { type: 'calculate', key: 'total', enabled: true, depend_on: [], payload: { expression: '1+1' } },
+    { type: 'setTemporaryVariable', payload: { key: 'x', value: '1' } }, // here `key` is the variable name
+  ] });
+  assert.equal(ok.data.valid, true, JSON.stringify(ok.data.errors));
+  assert.deepEqual(ok.data.warnings, []);
+  const misplaced = await call('validate_actions', { actions: [{ type: 'calculate', payload: { key: 'total', expression: '1+1' } }] });
+  assert.ok(misplaced.data.warnings.some(w => w.path === 'actions[0].payload.key' && /put it on the action itself/.test(w.message)), JSON.stringify(misplaced.data));
+  const typo = await call('validate_actions', { actions: [{ type: 'calculate', keey: 'total', payload: { expression: '1' } }] });
+  assert.ok(typo.data.warnings.some(w => w.path === 'actions[0].keey'));
+});
+
+test('the Action type lists exactly the fields the Dart Action serializes (contract with bot-creator)', async () => {
+  let dart;
+  try { dart = await readFile(new URL('../../bot-creator/packages/shared/lib/types/action.dart', import.meta.url), 'utf8'); } catch { return; }
+  const body = dart.slice(dart.indexOf('Map<String, dynamic> toJson()'), dart.indexOf('factory Action.fromJson'));
+  const dartFields = [...body.matchAll(/'(\w+)':/g)].map(m => m[1]).sort();
+  assert.deepEqual(Object.keys(types.Action.fields).sort(), dartFields);
+});
