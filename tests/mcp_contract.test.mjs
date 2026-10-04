@@ -5,10 +5,11 @@
 // Sibling repositories are optional: every check is skipped when its checkout is missing.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { readFile } from 'node:fs/promises';
 
 const source = await readFile(new URL('../functions/api/mcp/[[route]].js', import.meta.url), 'utf8');
-const { onRequestPost } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+const { onRequestPost } = await import(pathToFileURL(fileURLToPath(new URL('../functions/api/mcp/[[route]].js', import.meta.url))).href);
 
 async function tryRead(rel) {
   try { return await readFile(new URL(rel, import.meta.url), 'utf8'); } catch { return null; }

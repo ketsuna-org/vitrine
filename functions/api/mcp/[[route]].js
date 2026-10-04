@@ -15,6 +15,8 @@
 //   returns a single JSON-RPC `result` to the caller — no notifications,
 //   no server-initiated messages — so we do not lose any spec compliance.
 
+import { buildIndex, plan } from "./planner.mjs";
+
 const SITE_ORIGIN = "https://bot-creator.fr";
 const GITHUB_RAW = "https://raw.githubusercontent.com/ketsuna-org/vitrine/master";
 const PROTOCOL_VERSION = "2025-11-25";
@@ -174,6 +176,20 @@ const TOOLS_META = [
     },
   },
   {
+    name: "plan_solution",
+    description:
+      "START HERE for any BDFD/Blocks command request. One call, no LLM: returns the best-fitting functions (with signatures), the gotchas that apply, a validated skeleton when a known recipe matches, and a decision (auto = write it now, review = docs_get 1-2 functions, ask_user = clarify). Far cheaper than search_docs + get_doc loops.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        intent: { type: "string", description: "What the command must do, in the user's words (FR or EN).", maxLength: 500 },
+        mode: { type: "string", enum: ["bdfd", "blocks"], description: "Authoring mode. Default 'bdfd'.", default: "bdfd" },
+        budget: { type: "integer", description: "Max functions to return (default 10).", default: 10, minimum: 1, maximum: 20 },
+      },
+      required: ["intent"],
+    },
+  },
+  {
     name: "list_actions",
     description:
       "List every native Blocks action name with its category and description only (very small). Use it to pick action names, then get_doc / get_schema_manifest(category) for their params.",
@@ -209,7 +225,7 @@ const TOOLS_META = [
       properties: {
         query: { type: "string", description: "Search term (matched case-insensitively against name, slug, category)." },
         api_type: { type: "string", enum: ["blocks", "bdfd", "javascript", "general"], description: "Filter documentation by execution mode." },
-        limit: { type: "integer", description: "Max results (default 25).", default: 25, minimum: 1, maximum: 100 },
+        limit: { type: "integer", description: "Max results (default 8).", default: 8, minimum: 1, maximum: 100 },
       },
       required: ["query"],
     },
@@ -364,6 +380,9 @@ async function handleToolCall(req) {
       case "get_schema_manifest":
         result = await toolGetSchemaManifest(args);
         break;
+      case "plan_solution":
+        result = await toolPlanSolution(args);
+        break;
       case "list_actions":
         result = await toolListActions(args);
         break;
@@ -458,7 +477,7 @@ async function toolGetSchemaManifest({ mode = "blocks", category } = {}) {
   }
 
   if (targetMode === "types") {
-    return toolText(JSON.stringify(manifest.types || {}, null, 2));
+    return toolText(JSON.stringify(manifest.types || {}));
   }
 
   let resultData;
@@ -497,7 +516,19 @@ async function toolGetSchemaManifest({ mode = "blocks", category } = {}) {
     }
   }
 
-  return toolText(JSON.stringify(resultData, null, 2));
+  return toolText(JSON.stringify(resultData));
+}
+
+let plannerCache = { at: 0, index: null };
+
+async function toolPlanSolution({ intent, mode = "bdfd", budget } = {}) {
+  if (typeof intent !== "string" || !intent.trim()) throw new Error("`intent` is required");
+  if (!["bdfd", "blocks"].includes(mode)) throw new Error("`mode` must be 'bdfd' or 'blocks'");
+  if (!plannerCache.index || Date.now() - plannerCache.at > 300_000) {
+    const [docs, manifest] = await Promise.all([fetchDocsIndex(), fetchSchemaManifest()]);
+    plannerCache = { at: Date.now(), index: buildIndex({ docs, manifest }) };
+  }
+  return toolText(JSON.stringify(plan(plannerCache.index, { intent: intent.slice(0, 500), mode, budget })));
 }
 
 async function toolListActions({ category } = {}) {
@@ -506,7 +537,7 @@ async function toolListActions({ category } = {}) {
   const actions = Object.entries(manifest.modes?.blocks || {})
     .filter(([, v]) => !catNorm || normalize(v.category).includes(catNorm))
     .map(([name, v]) => ({ name, category: v.category, desc: v.desc }));
-  return toolText(JSON.stringify({ count: actions.length, actions }, null, 2));
+  return toolText(JSON.stringify({ count: actions.length, actions }));
 }
 
 // --- Blocks validation ---------------------------------------------------
@@ -704,13 +735,26 @@ async function toolValidateActions({ actions } = {}) {
   actions.forEach((a, i) => checkAction(a, `actions[${i}]`, ctx, issues));
 
   return toolText(
-    JSON.stringify({ valid: issues.errors.length === 0, checked: ctx.count, errors: issues.errors, warnings: issues.warnings }, null, 2)
+    JSON.stringify({ valid: issues.errors.length === 0, checked: ctx.count, errors: issues.errors, warnings: issues.warnings })
   );
+}
+
+// Search rows stay small: the model reads them on every following turn.
+function compactDoc(d) {
+  const description = String(d.description ?? "");
+  return {
+    slug: d.slug,
+    name: d.name,
+    ...(d.syntax ? { syntax: d.syntax } : {}),
+    ...(description ? { description: description.length > 90 ? `${description.slice(0, 87)}...` : description } : {}),
+    ...(d.status && d.status !== "documented" ? { status: d.status } : {}),
+    ...(d.api_type && d.api_type !== "bdfd" ? { api_type: d.api_type } : {}),
+  };
 }
 
 async function toolSearchDocs({ query, limit, api_type }) {
   const q = normalize(query);
-  const lim = clampLimit(limit, 25);
+  const lim = clampLimit(limit, 8);
   if (!q) throw new Error("`query` is required");
   if (api_type && !["blocks", "bdfd", "javascript", "general"].includes(api_type)) throw new Error("Invalid api_type");
 
@@ -731,12 +775,12 @@ async function toolSearchDocs({ query, limit, api_type }) {
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, lim)
-    .map((x) => x.d);
+    .map((x) => compactDoc(x.d));
 
   return toolText(
     scored.length === 0
       ? `No docs matched "${query}".`
-      : JSON.stringify({ count: scored.length, results: scored }, null, 2)
+      : JSON.stringify({ count: scored.length, results: scored })
   );
 }
 
@@ -760,19 +804,19 @@ async function toolGetDoc({ slug, full_markdown = false }) {
       // 1. Match Blocks action
       for (const [key, val] of Object.entries(manifest.modes.blocks || {})) {
         if (normalize(key) === normalize(slug)) {
-          return toolText(JSON.stringify({ type: key, ...val }, null, 2));
+          return toolText(JSON.stringify({ type: key, ...val }));
         }
       }
       // 2. Match BDFD function
       for (const [key, val] of Object.entries(manifest.modes.bdfd || {})) {
         if (normalize(key) === normalize(slug) || normalize(key) === normalize(`$${slug}`)) {
-          return toolText(JSON.stringify({ name: key, ...val }, null, 2));
+          return toolText(JSON.stringify({ name: key, ...val }));
         }
       }
       // 3. Match JavaScript module
       for (const [key, val] of Object.entries(manifest.modes.javascript || {})) {
         if (normalize(key) === normalize(slug) || normalize(val.slug) === normalize(slug)) {
-          return toolText(JSON.stringify({ module: key, ...val }, null, 2));
+          return toolText(JSON.stringify({ module: key, ...val }));
         }
       }
     }
@@ -784,7 +828,7 @@ async function toolGetDoc({ slug, full_markdown = false }) {
         syntax: doc.syntax,
         params: doc.params,
         api_type: doc.api_type || "bdfd",
-      }, null, 2));
+      }));
     }
   }
 
@@ -807,7 +851,7 @@ async function toolListPosts({ locale, limit }) {
     posts = posts.filter((p) => normalize(p.locale) === l);
   }
   posts = posts.slice(0, lim);
-  return toolText(JSON.stringify({ count: posts.length, results: posts }, null, 2));
+  return toolText(JSON.stringify({ count: posts.length, results: posts }));
 }
 
 async function toolSearchPosts({ query, limit }) {
@@ -834,7 +878,7 @@ async function toolSearchPosts({ query, limit }) {
   return toolText(
     scored.length === 0
       ? `No posts matched "${query}".`
-      : JSON.stringify({ count: scored.length, results: scored }, null, 2)
+      : JSON.stringify({ count: scored.length, results: scored })
   );
 }
 

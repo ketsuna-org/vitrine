@@ -1,9 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { readFile, readdir } from 'node:fs/promises';
 
 const source = await readFile(new URL('../functions/api/mcp/[[route]].js', import.meta.url), 'utf8');
-const { onRequestPost } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+const { onRequestPost } = await import(pathToFileURL(fileURLToPath(new URL('../functions/api/mcp/[[route]].js', import.meta.url))).href);
 const docs = [
   { slug: 'blocks-channels', name: 'Blocks — channels', category: 'Blocks', api_type: 'blocks', status: 'documented', description: 'Create private tickets', url: 'https://bot-creator.fr/docs/blocks-channels/' },
   { slug: 'newticket', name: '$newTicket', category: 'Moderation', api_type: 'bdfd', status: 'incomplete' },

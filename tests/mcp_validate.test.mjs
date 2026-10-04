@@ -1,9 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { readFile } from 'node:fs/promises';
 
 const source = await readFile(new URL('../functions/api/mcp/[[route]].js', import.meta.url), 'utf8');
-const { onRequestPost } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+const { onRequestPost } = await import(pathToFileURL(fileURLToPath(new URL('../functions/api/mcp/[[route]].js', import.meta.url))).href);
 const blocks = JSON.parse(await readFile(new URL('../_data/blocks_grammar.json', import.meta.url), 'utf8'));
 const types = JSON.parse(await readFile(new URL('../_data/blocks_types.json', import.meta.url), 'utf8'));
 const manifest = { version: '1.0', types, modes: { blocks, bdfd: {}, javascript: {} } };
