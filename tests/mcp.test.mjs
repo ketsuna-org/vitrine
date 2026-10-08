@@ -179,3 +179,29 @@ test('get_doc returns compact type schema by default without full markdown prose
   });
 });
 
+
+test('get_doc returns the markdown of a JavaScript page instead of its manifest stub', async () => {
+  const manifest = { version: '1.0', modes: { javascript: { interaction: { desc: 'stub', category: 'JavaScript API', slug: 'interaction' } } } };
+  const jsDocs = [{ slug: 'interaction', name: 'interaction', category: 'JavaScript API', api_type: 'javascript', description: 'stub', url: 'https://bot-creator.fr/docs/javascript/interaction/' }];
+  await withFetch(async url => {
+    if (url.endsWith('schema-manifest.json')) return Response.json(manifest);
+    if (url.endsWith('.md')) return new Response('## interaction.options.getString');
+    return Response.json(jsDocs);
+  }, async () => {
+    const reply = await rpc('tools/call', { name: 'get_doc', arguments: { slug: 'interaction' } });
+    assert.match(reply.result.content[0].text, /Mode: javascript/);
+    assert.match(reply.result.content[0].text, /getString/);
+  });
+});
+
+test('plan_solution supports the javascript mode with a ready recipe and no BDFD functions', async () => {
+  const reply = await rpc('tools/call', { name: 'plan_solution', arguments: { mode: 'javascript', intent: 'гра вгадай число з db' } });
+  const plan = JSON.parse(reply.result.content[0].text);
+  assert.equal(plan.decision, 'auto');
+  assert.equal(plan.mode, 'javascript');
+  assert.ok(plan.recipes.some(r => r.id === 'guess-game' && r.options[0].name === 'guess'));
+  assert.match(plan.contract.storage, /db\.user\.get/);
+  assert.ok(!('functions' in plan));
+  const unknown = JSON.parse((await rpc('tools/call', { name: 'plan_solution', arguments: { mode: 'javascript', intent: 'quelque chose de rare' } })).result.content[0].text);
+  assert.equal(unknown.decision, 'review');
+});
