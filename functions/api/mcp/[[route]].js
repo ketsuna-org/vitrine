@@ -16,6 +16,7 @@
 //   no server-initiated messages — so we do not lose any spec compliance.
 
 import { buildIndex, plan, rankDocs, suggestDocs } from "./planner.mjs";
+import { planJavascript } from "./js_recipes.mjs";
 
 const SITE_ORIGIN = "https://bot-creator.fr";
 const GITHUB_RAW = "https://raw.githubusercontent.com/ketsuna-org/vitrine/master";
@@ -183,12 +184,12 @@ const TOOLS_META = [
   {
     name: "plan_solution",
     description:
-      "START HERE for any BDFD/Blocks command request. One call, no LLM: returns the best-fitting functions (with signatures), the gotchas that apply, a validated skeleton when a known recipe matches, and a decision (auto = write it now, review = docs_get 1-2 functions, ask_user = clarify). Far cheaper than search_docs + get_doc loops.",
+      "START HERE for any BDFD/Blocks/JavaScript command request. One call, no LLM: returns the best-fitting functions (with signatures), the gotchas that apply, a validated skeleton when a known recipe matches, and a decision (auto = write it now, review = docs_get 1-2 functions, ask_user = clarify). Far cheaper than search_docs + get_doc loops.",
     inputSchema: {
       type: "object",
       properties: {
         intent: { type: "string", description: "What the command must do, in the user's words (FR or EN).", maxLength: 500 },
-        mode: { type: "string", enum: ["bdfd", "blocks"], description: "Authoring mode. Default 'bdfd'.", default: "bdfd" },
+        mode: { type: "string", enum: ["bdfd", "blocks", "javascript"], description: "Authoring mode. Default 'bdfd'; use 'javascript' for a JavaScript (BDJS) bot.", default: "bdfd" },
         budget: { type: "integer", description: "Max functions to return (default 10).", default: 10, minimum: 1, maximum: 20 },
       },
       required: ["intent"],
@@ -550,7 +551,8 @@ let plannerCache = { at: 0, index: null };
 
 async function toolPlanSolution({ intent, mode = "bdfd", budget } = {}) {
   if (typeof intent !== "string" || !intent.trim()) throw new Error("`intent` is required");
-  if (!["bdfd", "blocks"].includes(mode)) throw new Error("`mode` must be 'bdfd' or 'blocks'");
+  if (!["bdfd", "blocks", "javascript"].includes(mode)) throw new Error("`mode` must be 'bdfd', 'blocks' or 'javascript'");
+  if (mode === "javascript") return toolText(JSON.stringify(planJavascript({ intent: intent.slice(0, 500) })));
   if (!plannerCache.index || Date.now() - plannerCache.at > 300_000) {
     const [docs, manifest] = await Promise.all([fetchDocsIndex(), fetchSchemaManifest()]);
     plannerCache = { at: Date.now(), index: buildIndex({ docs, manifest }) };
@@ -752,6 +754,13 @@ function checkAction(action, path, ctx, issues) {
     issues.errors.push({ path: `${path}.payload`, message: `payload must be an object, got ${describeValue(payload)}` });
     return;
   }
+  // guildMember variables are stored per server AND user: contextId is "<guildId>:<userId>".
+  if (payload.scope === "guildMember" && typeof payload.contextId === "string" && payload.contextId.trim() && !payload.contextId.includes(":")) {
+    issues.errors.push({
+      path: `${path}.payload.contextId`,
+      message: `a guildMember contextId must be "<guildId>:<userId>", got "${payload.contextId}" (a bare user id is refused at runtime). Use "((guild.id)):${payload.contextId.startsWith("((") ? payload.contextId : "<userId>"}" or omit contextId for the current member.`,
+    });
+  }
   // The action's own fields (key, enabled, depend_on, error) live next to `type`, not in the payload.
   const own = ctx.types.Action?.fields || {};
   for (const field of Object.keys(action)) {
@@ -851,10 +860,14 @@ async function toolGetDoc({ slug, full_markdown = false }) {
           return toolText(JSON.stringify({ name: key, ...val }));
         }
       }
-      // 3. Match JavaScript module
-      for (const [key, val] of Object.entries(manifest.modes.javascript || {})) {
-        if (normalize(key) === normalize(slug) || normalize(val.slug) === normalize(slug)) {
-          return toolText(JSON.stringify({ module: key, ...val }));
+      // 3. Match JavaScript module. The manifest entry is only a 2-line stub ({module, desc, category,
+      // slug}); when a documentation page exists, fall through to its markdown so the model gets the
+      // real API instead of a dead end.
+      if (!(doc && (doc.api_type || "bdfd") === "javascript")) {
+        for (const [key, val] of Object.entries(manifest.modes.javascript || {})) {
+          if (normalize(key) === normalize(slug) || normalize(val.slug) === normalize(slug)) {
+            return toolText(JSON.stringify({ module: key, ...val }));
+          }
         }
       }
     }

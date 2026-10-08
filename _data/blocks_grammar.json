@@ -861,7 +861,7 @@
     "output": "((action.<key>)) = REMOVED"
   },
   "setScopedVariable": {
-    "desc": "Enregistre une variable persistante avec portée (guild, user, channel, guildMember, message).",
+    "desc": "Enregistre une variable persistante avec portée (guild, user, channel, guildMember, message). guildMember : contextId = \"<guildId>:<userId>\" (ex. ((guild.id)):((opts.membre))) ; l'omettre cible le membre courant. Un simple identifiant de membre est refusé.",
     "category": "Variables",
     "params": {
       "scope": "guild|user|channel|guildMember|message",
@@ -878,7 +878,7 @@
     "output": "((action.<key>.value)) ((action.<key>.persisted)) ((action.<key>.key)) ((action.<key>.scope)) ; aussi ((<scope>.<key>))"
   },
   "getScopedVariable": {
-    "desc": "Lit une variable persistante avec portée.",
+    "desc": "Lit une variable persistante avec portée. guildMember : contextId = \"<guildId>:<userId>\" (ex. ((guild.id)):((opts.membre))) ; l'omettre cible le membre courant. Un simple identifiant de membre est refusé.",
     "category": "Variables",
     "params": {
       "scope": "guild|user|channel|guildMember|message",
@@ -889,7 +889,7 @@
     "output": "((action.<key>)) = valeur ; aussi ((<scope>.<key>)) et la variable storeAs"
   },
   "removeScopedVariable": {
-    "desc": "Supprime (ou réinitialise à la valeur par défaut) une variable persistante avec portée.",
+    "desc": "Supprime (ou réinitialise à la valeur par défaut) une variable persistante avec portée. guildMember : contextId = \"<guildId>:<userId>\" (ex. ((guild.id)):((opts.membre))) ; l'omettre cible le membre courant. Un simple identifiant de membre est refusé.",
     "category": "Variables",
     "params": {
       "scope": "guild|user|channel|guildMember|message",
@@ -903,7 +903,7 @@
     "output": "((action.<key>)) = REMOVED ou RESET"
   },
   "renameScopedVariable": {
-    "desc": "Renomme la clé d'une variable persistante dans le contexte courant.",
+    "desc": "Renomme la clé d'une variable persistante dans le contexte courant. guildMember : contextId = \"<guildId>:<userId>\" (ex. ((guild.id)):((opts.membre))) ; l'omettre cible le membre courant. Un simple identifiant de membre est refusé.",
     "category": "Variables",
     "params": {
       "scope": "guild|user|channel|guildMember|message",

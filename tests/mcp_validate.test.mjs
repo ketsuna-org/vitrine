@@ -176,3 +176,15 @@ test('blocks manifest: compact index by default, exact schemas with names, nothi
   const cat = (await call('get_schema_manifest', { mode: 'blocks', category: 'Logic' })).data;
   assert.ok(cat.ifBlock);
 });
+
+test('a guildMember contextId must be guildId:userId', async () => {
+  const bare = await call('validate_actions', { actions: [{ type: 'getScopedVariable', payload: { scope: 'guildMember', key: 'warns', contextId: '((opts.membre))' } }] });
+  assert.equal(bare.data.valid, false);
+  assert.match(bare.data.errors[0].message, /<guildId>:<userId>.*\(\(guild\.id\)\):\(\(opts\.membre\)\)/s);
+  for (const contextId of ['((guild.id)):((opts.membre))', '10:20', undefined]) {
+    const ok = await call('validate_actions', { actions: [{ type: 'getScopedVariable', payload: { scope: 'guildMember', key: 'warns', ...(contextId ? { contextId } : {}) } }] });
+    assert.equal(ok.data.valid, true, JSON.stringify(ok.data));
+  }
+  const user = await call('validate_actions', { actions: [{ type: 'getScopedVariable', payload: { scope: 'user', key: 'k', contextId: '123' } }] });
+  assert.equal(user.data.valid, true, 'other scopes keep a bare id');
+});
