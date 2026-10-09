@@ -8,6 +8,7 @@ paths:
   docs: "/docs/"
   privacy: "/privacy-policy.html"
   terms: "/terms-of-sale.html"
+  legal: "/legal-notice.html"
 
 meta:
   site_title: "Bot Creator"
@@ -37,6 +38,7 @@ shell:
   footer_release_notes: "Release notes"
   footer_privacy: "Privacy policy"
   footer_terms: "Terms of Sale"
+  footer_legal_notice: "Legal notice"
   footer_rights: "Built for teams that want control, clarity, and a clean path to production."
 
 common:

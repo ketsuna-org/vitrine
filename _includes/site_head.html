@@ -9,8 +9,6 @@
   <!-- Preconnect to critical origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
-  <link rel="dns-prefetch" href="https://fundingchoicesmessages.google.com">
 
   <!-- Google Fonts loaded asynchronously to prevent render blocking -->
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -40,4 +38,5 @@
   <link rel="alternate" hreflang="en" href="{{ page.url | absolute_url }}">
   <link rel="alternate" hreflang="x-default" href="{{ site.data.locales.en.paths.home | absolute_url }}">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9146609240142753" crossorigin="anonymous"></script>
+  <script src="{{ '/assets/js/consent.js' | relative_url }}" defer></script>
 </head>

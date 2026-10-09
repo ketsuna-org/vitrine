@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Privacy policy
-description: How Bot Creator handles local storage, cloud diagnostics, advertising, and user data.
+description: What Bot Creator collects, where it is stored, who receives it, how long it is kept and how to exercise your rights.
 locale: en
 translation_key: privacy
 content_language: en
@@ -9,150 +9,165 @@ content_language: en
 
 <div class="min-h-screen py-16 lg:py-24">
   <div class="mx-auto max-w-4xl px-6">
-    <!-- Header -->
     <header class="mb-16" data-reveal>
       <div class="flex flex-wrap items-center gap-3 mb-6">
         <span class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
           <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#security"></use></svg>
           Privacy
         </span>
-        <span class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 border border-outline-variant">
-          Local-first · Cloud diagnostics
-        </span>
       </div>
       <h1 class="font-display text-3xl font-black leading-tight text-on-surface md:text-5xl lg:text-6xl mb-8">
-        Bot Creator keeps bot data on your device while using cloud services for diagnostics, analytics, and advertising.
+        Privacy policy
       </h1>
       <p class="text-xl leading-relaxed text-on-surface-variant italic border-l-4 border-primary pl-6 py-2">
-        Bot configurations, workflows, and runtime state stay local. Diagnostic data, crash reports, and advertising identifiers are transmitted to third-party services described below.
+        Bot Creator is local-first, but it also runs cloud services. This page describes what each of them stores, who receives it and what we cannot yet offer.
       </p>
     </header>
 
-    <!-- Content -->
     <div class="space-y-12">
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
-        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Local storage</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Your bot data stays on the device or machine running the product.</h2>
-        <p class="text-on-surface-variant leading-relaxed">Bot Creator stores metadata, command settings, workflows, variables, and runtime data in the local app directory or the mounted runner volume. Diagnostic and analytics data is sent to third-party services as described in the sections below.</p>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="controller">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Who we are</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">The data controller is Jeremy SOLER, sole trader in France.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4">Bot Creator (website <strong>bot-creator.fr</strong>, mobile and desktop apps, the Docker runner, the Manager API at <strong>api.bot-creator.fr</strong>, the web console at <strong>app.bot-creator.fr</strong> and the dashboards hosted at <strong>dash-&lt;id&gt;.bot-creator.fr</strong>) is published by Jeremy SOLER, Entrepreneur Individuel, 9 rue Gagnée, 94200 Ivry-sur-Seine, France (SIRET 883 556 128 00014). Contact for any privacy request: <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a>.</p>        <p class="text-on-surface-variant leading-relaxed mb-4">No separate data protection officer is designated: privacy requests are handled directly by the publisher, Jeremy SOLER.</p>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
-        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Optional backups</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Google Drive is used for backup and restore only.</h2>
-        <p class="text-on-surface-variant leading-relaxed">When you connect Google Drive, Bot Creator syncs backup data to the AppData folder. On the runner, OAuth tokens stay in the mounted volume so they survive restarts.</p>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="summary">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">In short</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">What is stored where, honestly.</h2>
+        <ul class="space-y-2 mb-4">
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>If you only use the app with your own bot and local features</strong>: bot configuration and your bot token stay on your device (token in the system secure storage). The app still sends usage analytics and crash reports to third parties (see “Analytics and crash reporting”) and shows ads unless you subscribe.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>If you sign in with Discord, use cloud hosting, the Copilot (AI) or the web console</strong>: your account, your bots’ configuration and, when you save it to the cloud, your <strong>bot token are stored on our servers</strong> (the token is encrypted at rest). Earlier versions of this policy said tokens were never stored in a database. That was not accurate for cloud features and is corrected here.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>AI Copilot messages are sent to a third-party AI provider</strong> (DeepSeek).</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>There is currently no self-service “delete my account” or “export my data” button.</strong> You exercise your rights by email (see “Your rights”).</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">We do not sell your data. Discord data is used only to run the service you asked for, and is not sold or licensed to anyone.</li>
+        </ul>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
-        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Diagnostics, analytics & crash reporting</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Diagnostic and usage data is collected via Firebase & performance monitoring.</h2>
-        <p class="text-on-surface-variant leading-relaxed">Bot Creator uses <strong>Google Analytics for Firebase</strong>, <strong>Firebase Crashlytics</strong>, and <strong>Firebase Performance Monitoring</strong> (as well as PostHog on desktop) to understand app usage, monitor responsiveness, and diagnose crashes. These services collect device type, operating system version, IP address (anonymized), Firebase Installation ID, performance traces, in-app actions, and crash stack traces. When signed in, your Discord account ID is published to diagnostic SDKs to investigate reported issues and assist customer support.</p>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="website">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">This website (bot-creator.fr)</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">What the website itself does when you visit it.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4"><strong>Advertising.</strong> The website displays ads from <strong>Google AdSense</strong>. The AdSense script is loaded on every page, so <strong>Google receives your IP address and technical request data even if you refuse advertising cookies</strong>. Visitors in the EEA, the UK and Switzerland see a consent message from Google (a certified consent management platform, Funding Choices) that decides whether Google and its partners may use cookies and identifiers to personalize and measure ads. If you refuse, Google serves only ads that do not use cookies for personalization, as configured in our AdSense account. You can change your choice at any time with “Ad &amp; cookie settings” in the footer. See <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">Google’s advertising policy</a>.</p>        <p class="text-on-surface-variant leading-relaxed mb-4"><strong>Fonts.</strong> The website loads fonts from Google Fonts (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>), which transmits your IP address and browser details to Google when a page is displayed.</p>        <p class="text-on-surface-variant leading-relaxed mb-4"><strong>Hosting.</strong> The website is a static site hosted on <strong>Cloudflare Pages</strong> (Cloudflare, Inc., United States), which receives technical logs (IP address, requested URL, user agent). Cloudflare keeps these logs according to its own policy.</p>        <p class="text-on-surface-variant leading-relaxed mb-4"><strong>Public MCP server.</strong> <code>bot-creator.fr/api/mcp</code> serves public documentation to AI tools. It requires no account; requests are processed by the hosting platform and are subject to its technical logs.</p>        <p class="text-on-surface-variant leading-relaxed mb-4"><strong>Content editors.</strong> The <code>/admin</code> editor, reserved for site editors, loads a script from unpkg.com and signs in through GitHub via an OAuth proxy. It is not used by visitors.</p>        <p class="text-on-surface-variant leading-relaxed mb-4">The website itself does not use analytics cookies and sets no cookie or browser storage of its own; cookies set by Google are those described above.</p>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
-        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Advertising & tracking</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Ads are served by third-party networks.</h2>
-        <p class="text-on-surface-variant leading-relaxed mb-6">Bot Creator displays ads provided by <strong>Google AdMob</strong> and <strong>IronSource</strong>. These SDKs collect advertising identifiers (IDFA on iOS, AAID on Android), IP address, and interaction data to deliver personalized or non-personalized ads. A consent dialog powered by <strong>Google UMP (User Messaging Platform)</strong> is shown at launch so you can choose whether to allow personalized advertising. You can also revoke consent at any time from your device settings.</p>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="data">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Data we process</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Categories, purposes and retention.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4">Retention periods below are those configured in the software today. Where we write “until deletion”, no automatic purge exists yet; the data is removed when your account is deleted at your request.</p>        <div class="overflow-x-auto mb-4"><table class="w-full text-sm text-on-surface-variant"><thead><tr><th class="text-left p-2 border-b border-outline-variant">Data</th><th class="text-left p-2 border-b border-outline-variant">Where / who</th><th class="text-left p-2 border-b border-outline-variant">Purpose</th><th class="text-left p-2 border-b border-outline-variant">Retention</th></tr></thead><tbody><tr><td class="p-2 align-top border-b border-outline-variant/50">Discord account: user ID, username, display name, avatar. Discord sign-in requests the <code>identify</code> scope only (<strong>not</strong> your email address or your server list).</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database (PostgreSQL)</td><td class="p-2 align-top border-b border-outline-variant/50">Sign-in, ownership of bots, support</td><td class="p-2 align-top border-b border-outline-variant/50">Until account deletion</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Discord OAuth access and refresh tokens</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database, encrypted (AES-GCM)</td><td class="p-2 align-top border-b border-outline-variant/50">Keep you signed in with Discord</td><td class="p-2 align-top border-b border-outline-variant/50">Until account deletion</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Email and password hash, only if you register with email and password (bcrypt hash; we never store the password itself)</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database</td><td class="p-2 align-top border-b border-outline-variant/50">Sign-in</td><td class="p-2 align-top border-b border-outline-variant/50">Until account deletion</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Session refresh tokens (hashed), push notification device tokens (FCM) and platform / language</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database</td><td class="p-2 align-top border-b border-outline-variant/50">Sessions, notifications</td><td class="p-2 align-top border-b border-outline-variant/50">Until expiry / revocation / deletion</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50"><strong>Discord bot tokens</strong>, when you save a bot to the cloud, use the cloud runner or the web console; bot OAuth client secret and bot database credentials when you provide them</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database, encrypted (AES-GCM). Decrypted in memory by our servers and runners to connect your bot. The owner can retrieve their token from the app.</td><td class="p-2 align-top border-b border-outline-variant/50">Run your bot</td><td class="p-2 align-top border-b border-outline-variant/50">Until you remove the bot or your account is deleted</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Bot configuration: commands, workflows, scripts, variables and values that your commands store (these may contain Discord user IDs, server IDs or anything your own commands save), versions, statistics (command name, server ID, locale, latency)</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database and <strong>Cloudflare R2</strong> object storage (bucket located in Europe); runner volumes</td><td class="p-2 align-top border-b border-outline-variant/50">Run and edit your bot, history and rollback</td><td class="p-2 align-top border-b border-outline-variant/50">Configuration and variables: until deletion. Execution sessions and hourly statistics: 30 days. Runner logs (technical messages, no message content): 7 days. Command execution records: until deletion.</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Activity log of your account actions: action, request path, status, <strong>IP address</strong>, user agent, filtered request payloads (secrets masked)</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database and object storage</td><td class="p-2 align-top border-b border-outline-variant/50">Security, abuse prevention, support</td><td class="p-2 align-top border-b border-outline-variant/50">90 days</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Team and collaborator data: bot team members, collaborator permissions, in-bot team chat messages</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database</td><td class="p-2 align-top border-b border-outline-variant/50">Collaboration features</td><td class="p-2 align-top border-b border-outline-variant/50">Until deletion</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">AI Copilot: your messages, the answers, and the context sent with them (bot configuration, commands, runtime state, tool results); request and result records</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database; sent to DeepSeek (see below)</td><td class="p-2 align-top border-b border-outline-variant/50">Provide the Copilot</td><td class="p-2 align-top border-b border-outline-variant/50">Conversations: until you delete them; 90 days after you delete a conversation. Requests without a conversation: 90 days. Usage counters: kept.</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Shared AI command library: commands you contribute, with contributor links (you can opt out)</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database</td><td class="p-2 align-top border-b border-outline-variant/50">Improve Copilot suggestions</td><td class="p-2 align-top border-b border-outline-variant/50">Until you withdraw / account deletion</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Purchases: store transaction IDs, product IDs and the <strong>raw notifications</strong> received from Apple, Google and Ko-fi; Stripe identifiers (none yet, as Stripe payments are not open); AI credit ledger</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database; Apple, Google, Stripe; Google Play purchase logs are also exported to ChartMogul (analytics provider)</td><td class="p-2 align-top border-b border-outline-variant/50">Entitlements, accounting, fraud prevention</td><td class="p-2 align-top border-b border-outline-variant/50">Until account deletion; accounting records as long as law requires</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Dashboard (web) visitors: Discord user ID, username and server list of members who sign in on a dashboard; session cookie (see below). We do not collect page-view statistics on dashboards.</td><td class="p-2 align-top border-b border-outline-variant/50">Manager database / dashboard service</td><td class="p-2 align-top border-b border-outline-variant/50">Run the dashboard, statistics for its owner</td><td class="p-2 align-top border-b border-outline-variant/50">Until deletion; no automatic purge</td></tr><tr><td class="p-2 align-top border-b border-outline-variant/50">Backups you create with Google Drive</td><td class="p-2 align-top border-b border-outline-variant/50">Your own Google Drive, hidden application data folder only (<code>drive.appdata</code> scope)</td><td class="p-2 align-top border-b border-outline-variant/50">Backup and restore</td><td class="p-2 align-top border-b border-outline-variant/50">Until you delete them</td></tr></tbody></table></div>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
-        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Ad-funded cloud storage (coming soon)</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Watch ads to unlock cloud storage for your bot data.</h2>
-        <p class="text-on-surface-variant leading-relaxed">A future version of Bot Creator will let you watch ads to earn cloud storage for your bot configurations, workflows, and related data. When you opt in, selected data will be stored on <strong>Firebase Firestore</strong> on your behalf. This is a functional feature: cloud storage is provided as a service in exchange for ad views, not for analytics or tracking purposes. You will be clearly informed before any data leaves your device.</p>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="analytics">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Analytics and crash reporting</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Used inside the apps; there is no opt-out setting yet.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4">The apps use <strong>Google Analytics for Firebase</strong>, <strong>Firebase Crashlytics</strong> and <strong>Firebase Performance Monitoring</strong> (Android, iOS and web builds; not the desktop builds) and <strong>PostHog</strong> (all platforms, EU-hosted at <code>eu.i.posthog.com</code>). They collect events (screens, app open, creating a bot or a command, subscription steps), device type, operating system, language, performance traces, crash stack traces, IP address and installation identifiers.</p>        <p class="text-on-surface-variant leading-relaxed mb-4">When you are signed in, your <strong>Discord user ID is sent as is (not hashed)</strong> to Firebase Analytics, Crashlytics and PostHog, together with properties such as platform, premium tier, number of bots (bucketed) and language.</p>        <p class="text-on-surface-variant leading-relaxed mb-4">For about <strong>20&nbsp;% of installations</strong>, PostHog also records <strong>session replays</strong> of the app screen. At the moment text and images displayed on screen are <strong>not masked</strong>, so a replay can show what you see in the app, including bot names and command contents. A fix that masks texts and images in replays is being prepared; until it is published in the apps, replays are not masked.</p>        <p class="text-on-surface-variant leading-relaxed mb-4">PostHog is used internally only, to group user journeys and build heatmaps in order to improve the product, not for advertising. There is currently <strong>no setting in the app to switch analytics off</strong>. You can object to this processing by writing to <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a>. Retention is set by the providers (Crashlytics crash reports are kept for up to 90 days); we do not control a shorter period.</p>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
-        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Your responsibility</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Protect your tokens, exports, backups, and connected accounts.</h2>
-        <p class="text-on-surface-variant leading-relaxed">Bot Creator is a <strong>third-party service</strong> that interacts with the Discord platform. Discord bot tokens are sensitive credentials governed by <a href="https://discord.com/terms" target="_blank" rel="noopener" class="text-primary hover:underline font-bold">Discord's Terms of Service</a>. Tokens are stored locally on your device. When you use the cloud runner, your token is transmitted to our servers at startup to connect your bot, but it is <strong>never stored in a database</strong> and only lives in memory for the duration of the session. You are responsible for keeping your tokens, device, backups, and connected Google account secure.</p>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="ads">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Advertising in the apps</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Google AdMob, with consent prompts.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4">The free version of the apps shows ads from <strong>Google AdMob</strong>, which collects advertising identifiers (IDFA on iOS, AAID on Android), IP address and interaction data. A consent dialog based on <strong>Google UMP</strong> is shown on launch (and Apple’s App Tracking Transparency prompt on iOS). You can reopen your choices at any time from “Manage ad privacy choices” in the app settings. We do not use any ad mediation partner: ads come from AdMob only. Earlier versions of this policy named IronSource; it is not used.</p>        <p class="text-on-surface-variant leading-relaxed mb-4">Watching a rewarded ad can grant Copilot credits; the credit is attributed on our server. A paid subscription removes ads.</p>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
-        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Authentication</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Discord sign-in connects your account securely.</h2>
-        <p class="text-on-surface-variant leading-relaxed">Bot Creator offers authentication via <strong>Discord OAuth2</strong>. When connected, the app collects your Discord user ID, username, email address, and avatar to authenticate your session, associate diagnostics and telemetry with your account for bug resolution, and manage cloud services.</p>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="ai">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">AI Copilot</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Your messages leave our servers for DeepSeek.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4">The Copilot is provided by our Manager, not by the app directly. Your messages and the context needed to answer (bot configuration, commands, runtime state and tool results) are sent to the <strong>DeepSeek</strong> API (<code>api.deepseek.com</code>) using our own account key. DeepSeek (Hangzhou DeepSeek Artificial Intelligence Co., Ltd.) processes them in <strong>China</strong>, as our processor under its standard online API terms and privacy policy, which we accepted when creating the API account. Data is encrypted in transit (HTTPS). The European Commission has not adopted an adequacy decision for China. The legal basis is performance of the contract (you ask for the Copilot, art. 6(1)(b) GDPR). We have <strong>no standard contractual clauses or other art. 46 GDPR safeguard</strong> in place with DeepSeek: its standard API terms are governed by Chinese law. The transfer is made because it is necessary to deliver what you ask the Copilot to do. Do not send personal data about other people in Copilot messages.</p>        <p class="text-on-surface-variant leading-relaxed mb-4">The context is sent as is: <strong>nothing is automatically removed or masked before it is sent</strong>. The Copilot is instructed never to ask for or repeat tokens or secrets, but that is an instruction to the model, not a technical filter: <strong>do not write tokens or personal data of third parties in Copilot messages</strong>.</p>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30 hover:neon-glow" data-reveal id="data-deletion">
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="discord">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Discord data and bot tokens</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">How we handle data that comes from Discord.</h2>
+        <ul class="space-y-2 mb-4">
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">We use Discord data (your identity, your applications and their team, and the events your bots receive) only to provide the features you use. We do not sell it, license it to data brokers, or use it to build advertising profiles. The Discord user ID is, however, sent to the analytics providers listed above.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Bots run on your device, on our runners or on a runner you host. A bot’s gateway intents are those you enable in the bot configuration and the Discord developer portal (for example Guild Members, Presences or Message Content). Runners process events in memory to execute your commands. Our logs and statistics do not record message content; data that <strong>your own commands</strong> save into variables or into a database you connect is stored as you configured it.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>If you run a bot in a Discord server, you are responsible for informing and obtaining rights from the members of that server.</strong> For the data your bots save through Bot Creator, you are the controller and we act as your processor, storing it on your instruction.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Bot tokens are credentials governed by <a href="https://discord.com/developers/docs/policies-and-agreements/developer-terms-of-service" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">Discord’s Developer Terms of Service</a> and <a href="https://discord.com/developers/docs/policies-and-agreements/developer-policy" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">Developer Policy</a>. You can revoke a token at any time in the Discord developer portal; Bot Creator will then be unable to connect your bot.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">On request we delete the Discord data associated with your account (see “Data deletion”). Bot Creator is an independent service and is not affiliated with or endorsed by Discord.</li>
+        </ul>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="web">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Web console and dashboards</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Cookies, storage and who is responsible.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4"><strong>Cookies.</strong> The console and the dashboards set one strictly necessary session cookie each: <code>bcm_creator_app</code> (console, <code>app.bot-creator.fr</code>) and <code>bcm_cms_dash</code> (member sign-in on a dashboard). They contain your session tokens, are signed but not encrypted, <code>HttpOnly</code>, <code>SameSite=Lax</code>, <code>Secure</code>, bound to the host, and expire with the session. The console also stores two “tutorial already seen” flags and a panel width in your browser’s localStorage. We set no advertising or tracking cookie there.</p>        <p class="text-on-surface-variant leading-relaxed mb-4"><strong>Third-party content.</strong> The console and dashboards load fonts from Google Fonts and, on the console, a script from jsDelivr (GSAP); Discord CDN avatars are displayed; dashboard owners can embed YouTube or Vimeo videos. Each of these receives your IP address when displayed.</p>        <p class="text-on-surface-variant leading-relaxed mb-4"><strong>Dashboards hosted for bot owners.</strong> A dashboard at <code>dash-&lt;id&gt;.bot-creator.fr</code> or on a custom domain is operated by the owner of the bot. The owner decides its content and is responsible towards its visitors; Bot Creator hosts it and processes sign-in data for the owner. Default “Terms” and “Privacy” pages are generated for each dashboard as placeholders that the owner must replace with their own.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="payments">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Payments</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Stores and Ko-fi today; Stripe is planned.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4"><strong>App stores</strong> (Apple, Google, Steam) process payments for subscriptions bought there; we receive transaction identifiers and status notifications. <strong>Stripe</strong> is <strong>not yet used for payments</strong>: web plans and creator sales are planned. When they open, Checkout will be hosted by Stripe (we will not see your card number) and this policy will be updated before the first sale. <strong>Ko-fi</strong> notifies us of donations or purchases made there. We keep identifiers and status, not card data.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="infra">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Hosting and service providers</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">The providers that receive data from us.</h2>
+        <ul class="space-y-2 mb-4">
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>Infrastructure</strong>: our servers (API, databases, runners) are hosted by <strong>OVHcloud</strong> in <strong>Gravelines, France</strong> (OpenStack region GRA), on a Kubernetes cluster fronted by <strong>Cloudflare</strong> (proxy and custom-domain service); container images are stored on GitHub Container Registry. The database volume is not encrypted at disk level (sensitive fields such as bot tokens are encrypted by the application). There is no separate database backup; a full backup of the whole server is taken every day.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>Google</strong> (Firebase Analytics, Crashlytics, Performance, Cloud Messaging for notifications, AdMob, AdSense, Google Drive when you connect it, Google Play billing, Google Fonts).</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>PostHog</strong> (product analytics, EU region). <strong>DeepSeek</strong> (AI Copilot). <strong>Apple</strong>, <strong>Ko-fi</strong>, <strong>ChartMogul</strong> (payments and subscription analytics); <strong>Stripe</strong> is planned, not yet in use.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>Discord</strong> (sign-in and the bot platform).</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>Cloudflare R2</strong> (S3-compatible object storage) for configuration and log payloads.</li>
+        </ul>        <p class="text-on-surface-variant leading-relaxed mb-4">Some of these providers are located outside the European Economic Area (notably the United States). For Google and Cloudflare (United States, and Stripe once it is used), transfers rely on the EU–US Data Privacy Framework and/or standard contractual clauses. PostHog is used on its EU region. Apple, Ko-fi and ChartMogul act under their own terms. For DeepSeek (China), see the AI Copilot section.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="legal-basis">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Legal bases</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Why we are allowed to process this data.</h2>
+        <ul class="space-y-2 mb-4">
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>Contract</strong>: account, bots, hosting, subscriptions, support.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>Consent</strong>: personalized advertising (AdMob UMP / ATT, website banner).</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>Legitimate interest</strong>: security and abuse prevention (activity log), diagnostics, crash reporting and product analytics.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5"><strong>Legal obligation</strong>: accounting and tax records.</li>
+        </ul>        <p class="text-on-surface-variant leading-relaxed mb-4">The apps are not directed to children. A Discord account is required to use most features, and Discord sets its own minimum age. We do not verify age. If you believe a child under 15 has given us personal data, contact us and we will delete it.</p>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="data-deletion">
         <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Data deletion</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Request deletion of your Bot Creator account and data</h2>
-        <h3 class="text-lg font-bold text-on-surface mb-4">How to request deletion</h3>
-        <p class="text-on-surface-variant leading-relaxed mb-6">To request the deletion of the data associated with your <strong>Bot Creator</strong> account, send an email to <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a> with the subject line <strong>"Data deletion request"</strong>. Include the email address or Discord username linked to your account so we can identify your data. We will acknowledge your request within 7 days and complete the deletion within 30 days.</p>
-        
-        <h3 class="text-lg font-bold text-on-surface mb-4">Data that will be deleted</h3>
-        <ul class="space-y-3 mb-6">
-          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#delete"></use></svg>
-            <span>Your user profile (Discord user ID, username, email address, avatar)</span>
-          </li>
-          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#delete"></use></svg>
-            <span>Cloud-stored bot configurations, workflows, and related data (Firebase Firestore)</span>
-          </li>
-          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#delete"></use></svg>
-            <span>Authentication credentials (Firebase Authentication)</span>
-          </li>
-          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#delete"></use></svg>
-            <span>Advertising consent preferences</span>
-          </li>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Request deletion of your Bot Creator account and data.</h2>
+        <h3 class="text-lg font-bold text-on-surface mb-3 mt-6">How to request deletion</h3>        <p class="text-on-surface-variant leading-relaxed mb-4">There is no self-service deletion yet. Send an email to <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a> with the subject <strong>“Data deletion request”</strong>, from the address linked to your account or mentioning your Discord user ID so that we can identify you. We reply without undue delay and, in any case, <strong>within one month</strong>.</p>        <h3 class="text-lg font-bold text-on-surface mb-3 mt-6">What is deleted</h3>        <ul class="space-y-2 mb-4">
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Your account and Discord / email identity, OAuth tokens and sessions.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Your bots, their configuration, variables, versions, statistics, and the stored bot tokens and credentials (also from object storage and Redis).</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Your activity log and its stored payloads.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Your AI Copilot conversations, requests and results, and your contributions to the shared command library (an entry shared with another contributor stays for them).</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Purchase links, collaborator links and team messages tied to your account.</li>
+        </ul>        <h3 class="text-lg font-bold text-on-surface mb-3 mt-6">What may remain</h3>        <ul class="space-y-2 mb-4">
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Aggregated AI usage and cost counters, which are kept without the content of your conversations.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Purchase and invoice records that we must keep for accounting and tax purposes.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Administrative audit entries and technical logs held by our infrastructure providers, until they expire. Server backups and administrative audit entries are kept for at most 90 days, sometimes less.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Data held by third parties under their own policies: Google (Firebase, AdMob), PostHog, Stripe, Apple, Google Play, Discord. Write to them directly to exercise your rights on data they hold as independent controllers.</li>
+          <li class="text-on-surface-variant text-sm leading-relaxed list-disc ml-5">Data stored on your own device (including your token in secure storage) and in your own Google Drive, which you delete yourself.</li>
         </ul>
-
-        <h3 class="text-lg font-bold text-on-surface mb-4">Data that may be retained</h3>
-        <ul class="space-y-3 mb-6">
-          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#info"></use></svg>
-            <span><strong>Analytics & diagnostics data</strong> (Google Analytics for Firebase, Firebase Crashlytics, PostHog) — usage events, performance metrics, and error reports (which may be associated with your Discord user ID to diagnose account-specific issues) are retained for product improvement and debugging.</span>
-          </li>
-          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#info"></use></svg>
-            <span><strong>Crash reports</strong> (Firebase Crashlytics) — anonymized stack traces are retained for up to 90 days after collection to fix bugs.</span>
-          </li>
-          <li class="flex items-start gap-3 text-on-surface-variant text-sm">
-            <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#info"></use></svg>
-            <span><strong>Legal obligations</strong> — if we are required by law to retain certain data (e.g. transaction records), we will keep only what is legally required for the applicable retention period.</span>
-          </li>
-        </ul>
-        <p class="text-on-surface-variant text-sm italic">Data stored locally on your device (bot tokens, configurations, logs) is not transmitted to our servers and must be deleted by you directly by uninstalling the app or clearing its data.</p>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="rights">
         <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Your rights</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">GDPR & CCPA rights</h2>
-        <p class="text-on-surface-variant leading-relaxed">If you are located in the European Economic Area, the United Kingdom, or California, you have the right to access, rectify, erase, restrict processing, object to processing, and request portability of your personal data. To exercise any of these rights, contact <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a>.</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">GDPR and other privacy laws.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4">If you are in the European Economic Area, the United Kingdom or California, you have the right to access, rectify, erase, restrict, object to processing and port your personal data, and to withdraw consent at any time. There is no self-service export yet: on request we send you your data in a structured, commonly used format, within one month. Write to <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a>. You may also lodge a complaint with your data protection authority (in France, the <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-bold">CNIL</a>).</p>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="third-party">
         <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Third-party policies</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Privacy policies of services we use</h2>
-        <ul class="space-y-4">
-          <li class="flex items-center gap-3">
-            <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#public"></use></svg>
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Google Privacy Policy (Firebase, AdMob)</a>
-          </li>
-          <li class="flex items-center gap-3">
-            <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#public"></use></svg>
-            <a href="https://www.is.com/privacy-policy/" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Unity / IronSource Privacy Policy</a>
-          </li>
-          <li class="flex items-center gap-3">
-            <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#public"></use></svg>
-            <a href="https://discord.com/privacy" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Discord Privacy Policy</a>
-          </li>
-          <li class="flex items-center gap-3">
-            <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#public"></use></svg>
-            <a href="https://discord.com/terms" target="_blank" rel="noopener" class="text-on-surface hover:text-primary transition-colors font-medium">Discord Terms of Service</a>
-          </li>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Privacy policies of services we use.</h2>
+        <ul class="space-y-3">
+          <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors font-medium">Google (Firebase, AdMob, AdSense, Drive, Fonts)</a></li>
+          <li><a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors font-medium">PostHog</a></li>
+          <li><a href="https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html" target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors font-medium">DeepSeek</a></li>
+          <li><a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors font-medium">Stripe</a></li>
+          <li><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors font-medium">Cloudflare</a></li>
+          <li><a href="https://discord.com/privacy" target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors font-medium">Discord</a></li>
+          <li><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors font-medium">Apple</a></li>
+          <li><a href="https://more.ko-fi.com/privacy" target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors font-medium">Ko-fi</a></li>
+          <li><a href="https://chartmogul.com/privacy/" target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors font-medium">ChartMogul</a></li>
         </ul>
       </article>
 
-      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
-        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Contact</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Questions about privacy, data, or advertising</h2>
-        <p class="text-on-surface-variant leading-relaxed">For product and privacy questions, contact <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a>.</p>
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="changes">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Changes and contact</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Questions about privacy.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4">We update this page when processing changes. The date below is the date of the last review. For questions, contact <a href="mailto:contact@bot-creator.fr" class="text-primary hover:underline font-bold">contact@bot-creator.fr</a>.</p>
       </article>
 
-      <footer class="pt-12 border-t border-outline-variant text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/40">
-        Last updated: April 10, 2026
+      <footer class="pt-12 border-t border-outline-variant text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/60">
+        Last reviewed: October 9, 2026
       </footer>
     </div>
   </div>
