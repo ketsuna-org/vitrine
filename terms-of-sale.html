@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Terms of Sale
-description: Terms governing Bot Creator paid subscriptions sold through authorized stores.
+description: Terms governing Bot Creator paid subscriptions sold through authorized stores and through the web console (Stripe).
 locale: en
 translation_key: terms
 content_language: en
@@ -19,14 +19,14 @@ permalink: /terms-of-sale.html
           Terms of Sale
         </span>
         <span class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 border border-outline-variant">
-          Store-first subscriptions
+          Stores and web (Stripe)
         </span>
       </div>
       <h1 class="font-display text-3xl font-black leading-tight text-on-surface md:text-5xl lg:text-6xl mb-8">
-        Bot Creator paid subscriptions are sold through authorized stores under a consumer-first legal framework.
+        Bot Creator paid subscriptions are sold through authorized stores and, for the web console, through Stripe.
       </h1>
       <p class="text-xl leading-relaxed text-on-surface-variant italic border-l-4 border-primary pl-6 py-2">
-        These terms explain how Bot Creator paid subscriptions (3€ or 20€ / month), including the ad removal offer, are offered, billed, renewed, canceled, and supported when purchased through an authorized store (Google PlayStore, Apple App Store).
+        These terms explain how Bot Creator paid subscriptions (3€ or 20€ / month), including the ad removal offer, are offered, billed, renewed, canceled, and supported when purchased through an authorized store (Google PlayStore, Apple App Store) or, for web console plans, through Stripe. The 3€ / 20€ prices apply to store subscriptions; web console plan prices are shown in section 7a.
       </p>
     </header>
 
@@ -76,7 +76,7 @@ permalink: /terms-of-sale.html
       <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
         <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">2. Scope</p>
         <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">These terms govern consumer subscriptions sold through an authorized store.</h2>
-        <p class="text-on-surface-variant leading-relaxed mb-6">They apply when a consumer buys or uses a paid Bot Creator subscription through Apple App Store, Google Play, Steam, or another authorized store later made available by Bot Creator.</p>
+        <p class="text-on-surface-variant leading-relaxed mb-6">They apply when a consumer buys or uses a paid Bot Creator subscription through Apple App Store, Google Play, Steam, or another authorized store later made available by Bot Creator, and when a consumer subscribes to a Pro or Business plan in the web console (app.bot-creator.fr) through Stripe (section 7a).</p>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
             <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#check_circle"></use></svg>
@@ -136,7 +136,7 @@ permalink: /terms-of-sale.html
 
       <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
         <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">5. Pricing and taxes</p>
-        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">The store checkout is the source of truth for price, currency, taxes, and billing period.</h2>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">The store checkout (or the Stripe checkout page for web plans) is the source of truth for price, currency, taxes, and billing period.</h2>
         <p class="text-on-surface-variant leading-relaxed mb-6">Prices are shown in the relevant store interface when you purchase or renew a subscription. Prices, currencies, taxes, and billing periods may vary by country, platform, promotional offer, or store policy.</p>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
@@ -169,11 +169,11 @@ permalink: /terms-of-sale.html
       <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30 hover:neon-glow" data-reveal>
         <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">7. Store billing priority</p>
         <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Payment, renewal, cancellation, receipts, and refund routing are governed first by the store that billed you.</h2>
-        <p class="text-on-surface-variant leading-relaxed mb-6">Bot Creator does not process card payments directly on this website for the subscription described in these terms. If a store billed your subscription, the operational rules and interfaces of that store control the purchase workflow for that transaction, subject to mandatory law.</p>
+        <p class="text-on-surface-variant leading-relaxed mb-6">Bot Creator does not process card payments directly on this website (bot-creator.fr). Web console plans are paid on a checkout page hosted by Stripe (section 7a). If a store billed your subscription, the operational rules and interfaces of that store control the purchase workflow for that transaction, subject to mandatory law.</p>
         <ul class="space-y-3">
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
             <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#payments"></use></svg>
-            <span>Payment is collected through the authorized store, not through a direct checkout on this site.</span>
+            <span>For store subscriptions, payment is collected through the authorized store, not through a direct checkout on this site.</span>
           </li>
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
             <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#history"></use></svg>
@@ -184,6 +184,25 @@ permalink: /terms-of-sale.html
             <span>If there is a difference between a generic description on this site and the store workflow shown at checkout or in store support documentation, the store workflow prevails for payment operations.</span>
           </li>
         </ul>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="web-plans">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">7a. Web console plans (Stripe)</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">Pro and Business plans bought in the web console are paid by card through Stripe.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4">In the web console (app.bot-creator.fr), a bot owner can subscribe a bot to a <strong>Pro</strong> or <strong>Business</strong> plan, billed monthly or yearly (a discount applies to yearly billing). Pro enables production publication with one custom domain; Business adds several domains and higher publication limits. The subscription is per bot. Payment is made on a checkout page hosted by <strong>Stripe</strong>; Bot Creator never sees your card number and stores only Stripe identifiers and subscription status. Access is activated once Stripe confirms the payment.</p>
+        <ul class="space-y-3 mb-4">
+          <li class="text-on-surface-variant text-sm list-disc ml-5"><strong>Prices:</strong> shown on the console billing page before payment. Current prices: <mark class="rounded px-1" style="background:#fde68a;color:#1a1a1a" data-legal-todo>[TO COMPLETE: Pro and Business monthly prices in EUR and the yearly discount, from the Manager configuration]</mark></li>
+          <li class="text-on-surface-variant text-sm list-disc ml-5"><strong>Taxes:</strong> VAT not applicable, art. 293 B of the French CGI. <mark class="rounded px-1" style="background:#fde68a;color:#1a1a1a" data-legal-todo>[TO COMPLETE: confirm this still holds for web sales and the applicable thresholds]</mark></li>
+          <li class="text-on-surface-variant text-sm list-disc ml-5"><strong>Renewal and cancellation:</strong> plans renew automatically until canceled. <mark class="rounded px-1" style="background:#fde68a;color:#1a1a1a" data-legal-todo>[TO COMPLETE: how to cancel a web plan (customer portal or support) and the effect on the paid period]</mark></li>
+          <li class="text-on-surface-variant text-sm list-disc ml-5"><strong>Withdrawal and refunds:</strong> consumers resident in the EU have a 14-day right of withdrawal for distance contracts, which they may lose once they have asked for immediate access and the service has been fully performed, where the law allows it. <mark class="rounded px-1" style="background:#fde68a;color:#1a1a1a" data-legal-todo>[TO COMPLETE: legal wording and a checkout step collecting the immediate-access request: the checkout does not currently display these terms or ask for acceptance]</mark></li>
+          <li class="text-on-surface-variant text-sm list-disc ml-5"><strong>Invoices:</strong> available from the console billing page (Stripe hosted invoice and PDF).</li>
+        </ul>
+      </article>
+
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="creator-sales">
+        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">7b. Sales by creators (Stripe Connect)</p>
+        <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">When a creator sells something through their dashboard, the creator is the seller.</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-4">Creators can connect their own Stripe Express account to sell products or subscriptions through the commerce tools. In those sales the <strong>creator is the seller and merchant</strong>: prices, taxes, delivery, refunds, withdrawal rights and the seller’s legal notices are the creator’s responsibility. Bot Creator provides the technical tooling and is not a party to the sale. Platform fees, if any: <mark class="rounded px-1" style="background:#fde68a;color:#1a1a1a" data-legal-todo>[TO COMPLETE: commission or application fee taken by Bot Creator on Connect sales, if any]</mark>. Buyers should contact the creator for any request about a purchase made through a creator’s dashboard.</p>
       </article>
 
       <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal>
@@ -350,13 +369,13 @@ permalink: /terms-of-sale.html
           </li>
           <li class="flex items-start gap-3 text-on-surface-variant text-sm">
             <svg class="reicon text-primary text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#check_circle"></use></svg>
-            <span>Updated versions will be posted on this website, and material changes will apply prospectively subject to mandatory law and any required store notice.</span>
+            <span>Web console plans (sections 7a and 7b) apply from <mark class="rounded px-1" style="background:#fde68a;color:#1a1a1a" data-legal-todo>[TO COMPLETE: date of first web sale]</mark>. Updated versions will be posted on this website, and material changes will apply prospectively subject to mandatory law and any required store notice.</span>
           </li>
         </ul>
       </article>
 
       <footer class="pt-12 border-t border-outline-variant text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/40">
-        Last updated: March 27, 2026
+        Last updated: October 9, 2026
       </footer>
     </div>
   </div>
