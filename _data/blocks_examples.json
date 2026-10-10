@@ -1,0 +1,241 @@
+{
+  "anatomy_send": {
+    "type": "sendMessage",
+    "key": "my_message",
+    "values": {
+      "channelId": "((channel.id))",
+      "content": "Hello ((user.username))! Welcome to ((guild.name)).",
+      "tts": false
+    }
+  },
+  "anatomy_respond": {
+    "type": "respondWithMessage",
+    "values": {
+      "content": "Message sent to the channel!",
+      "ephemeral": true
+    }
+  },
+  "ping_reply": {
+    "type": "respondWithMessage",
+    "values": {
+      "embeds": [
+        {
+          "title": "🏓 Pong!",
+          "description": "WebSocket API Latency: ((bot.ping))ms",
+          "color": "#5865F2"
+        }
+      ]
+    }
+  },
+  "welcome_send": {
+    "type": "sendMessage",
+    "values": {
+      "channelId": "112233445566778899",
+      "content": "Welcome <@((user.id))> to **((guild.name))**! 🎉 We are now ((guild.memberCount)) members!"
+    }
+  },
+  "verify_add_role": {
+    "type": "addRole",
+    "values": {
+      "userId": "((user.id))",
+      "roleId": "998877665544332211"
+    }
+  },
+  "verify_reply": {
+    "type": "respondWithMessage",
+    "values": {
+      "content": "✅ Congratulations ((user.username))! You have been given the Member role.",
+      "ephemeral": true
+    }
+  },
+  "if_in_server": {
+    "type": "ifBlock",
+    "values": {
+      "condition.variable": "((guild.id))",
+      "condition.operator": "isNotEmpty",
+      "thenActions": [
+        {
+          "type": "respondWithMessage",
+          "values": {
+            "content": "This command is running in a server."
+          }
+        }
+      ],
+      "elseActions": [
+        {
+          "type": "respondWithMessage",
+          "values": {
+            "content": "Use this command in a server."
+          }
+        }
+      ]
+    }
+  },
+  "for_three": {
+    "type": "forLoop",
+    "values": {
+      "mode": "simple",
+      "iterations": "3",
+      "bodyActions": [
+        {
+          "type": "sendMessage",
+          "values": {
+            "channelId": "123456789012345678",
+            "content": "One iteration"
+          }
+        }
+      ]
+    }
+  },
+  "wait_two": {
+    "type": "wait",
+    "values": {
+      "duration": "2s"
+    }
+  },
+  "reply_hello": {
+    "type": "respondWithMessage",
+    "key": "reply",
+    "values": {
+      "content": "Hello ((user.username))!",
+      "ephemeral": true
+    }
+  },
+  "notify_channel": {
+    "type": "sendMessage",
+    "key": "notification",
+    "values": {
+      "channelId": "123456789012345678",
+      "content": "The workflow finished."
+    }
+  },
+  "ticket_create_channel": {
+    "type": "createChannel",
+    "key": "ticket_channel",
+    "values": {
+      "name": "ticket-((user.id))",
+      "type": "text",
+      "categoryId": "123456789012345678"
+    }
+  },
+  "ticket_permissions": {
+    "type": "editChannelPermissions",
+    "values": {
+      "channelId": "((action.ticket_channel))",
+      "targetType": "member",
+      "targetId": "((user.id))",
+      "permissions": {
+        "viewChannel": "allow",
+        "sendMessages": "allow",
+        "readMessageHistory": "allow"
+      }
+    }
+  },
+  "ticket_welcome": {
+    "type": "sendMessage",
+    "values": {
+      "channelId": "((action.ticket_channel))",
+      "content": "Welcome <@((user.id))>. Describe your issue here."
+    }
+  },
+  "ticket_confirm": {
+    "type": "respondWithMessage",
+    "values": {
+      "content": "Ticket created: <#((action.ticket_channel))>",
+      "ephemeral": true
+    }
+  },
+  "ticket_remove_channel": {
+    "type": "removeChannel",
+    "values": {
+      "channelId": "((channel.id))"
+    }
+  },
+  "ticket_welcome_panel": {
+    "type": "sendMessage",
+    "values": {
+      "channelId": "((action.ticket_chan))",
+      "content": "Hello <@((user.id))>!",
+      "embeds": [
+        {
+          "title": "🎫 Support & Help",
+          "description": "Welcome to your private support channel. Please describe your issue below.",
+          "color": "#5865F2"
+        }
+      ],
+      "components": {
+        "items": [
+          {
+            "type": "actionRow",
+            "components": [
+              {
+                "type": "button",
+                "customId": "close_ticket",
+                "label": "Close Ticket",
+                "style": "danger"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "ticket_chan": {
+    "type": "createChannel",
+    "key": "ticket_chan",
+    "values": {
+      "name": "ticket-((user.username))",
+      "type": "text",
+      "categoryId": "123456789012345678"
+    }
+  },
+  "ticket_chan_permissions": {
+    "type": "editChannelPermissions",
+    "values": {
+      "channelId": "((action.ticket_chan))",
+      "targetType": "member",
+      "targetId": "((user.id))",
+      "permissions": {
+        "viewChannel": "allow",
+        "sendMessages": "allow",
+        "readMessageHistory": "allow"
+      }
+    }
+  },
+  "ticket_created_reply": {
+    "type": "respondWithMessage",
+    "values": {
+      "content": "✅ Your support ticket has been created: <#((action.ticket_chan))>",
+      "ephemeral": true
+    }
+  },
+  "ticket_close_reply": {
+    "type": "respondWithMessage",
+    "values": {
+      "content": "🔒 Close requested. Deleting this channel in 3 seconds...",
+      "ephemeral": false
+    }
+  },
+  "ticket_close_wait": {
+    "type": "wait",
+    "values": {
+      "duration": "3s"
+    }
+  },
+  "thread_create": {
+    "type": "createThread",
+    "key": "ticket_thread",
+    "values": {
+      "channelId": "123456789012345678",
+      "name": "ticket-((user.username))",
+      "type": "private"
+    }
+  },
+  "thread_add_member": {
+    "type": "addThreadMember",
+    "values": {
+      "threadId": "((action.ticket_thread))",
+      "userId": "((user.id))"
+    }
+  }
+}
