@@ -4,28 +4,31 @@ title: $serverName[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverName
-syntax: $serverName
+syntax: $serverName[(guildID)]
 description: Returns the name of the server (guild) in which the command is executed.
 ---
 
 # $serverName[] — Name of the Server
 
-`$serverName[]` returns the name of the Discord server in which the command is executed.
+`$serverName[]` returns the name of the Discord server in which the command is executed, or of the server whose ID is given.
 
 ## Syntax
 
 ```
-$serverName
+$serverName[(guildID)]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `guildID` | *(Optional)* The ID of a server. If omitted, the current server is used. When an argument is given it must be a positive integer, otherwise `Invalid guild ID.` is raised. |
 
 ## Return Value
 
 - **Type**: `string`
-- The current name of the server.
+- Without argument: the `guild.name` context variable supplied by the host if present, otherwise the name fetched from Discord for the current server.
+- With an ID: the name of that server; `Guild not found.` is raised if it cannot be fetched.
 
 ## Examples
 
@@ -61,6 +64,4 @@ $endif
 
 ## Notes
 
-- `$serverName[]` is an alias of `$guildName[]`.
-- The returned value is dynamic: it reflects the current name of the server, even if it was recently changed.
-- Useful for customizing messages based on the server.
+- `$serverName` and `$guildName` use the same handler and are interchangeable.

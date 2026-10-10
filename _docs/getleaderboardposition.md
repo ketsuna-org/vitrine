@@ -22,10 +22,10 @@ $getLeaderboardPosition[type;varName;sort;(userID)]
 
 | Parameter | Description |
 |---|---|
-| `type` | Required. The scope of the variable: `user` (variable of the members of the current server) or `globalUser` (global user variable). `server` is refused by this function. |
-| `varName` | Required. The name of the variable used for the ranking. |
-| `sort` | Required. `desc` (highest value first) or `asc` (lowest value first). |
-| `userID` | Optional. The user whose rank is returned. Defaults to the author of the command. |
+| `type` | Required. The scope of the variable: `user` (values of the members of the current server, as written by `$setUserVar`) or `globalUser` (global user values, as written by `$setVar[name;value;userID]`). Case-insensitive. `server` is refused by this function (`Variable type must be user or globalUser.`). In a bot that still uses the legacy user-variable behavior, `user` ranks the global user values like `globalUser`. |
+| `varName` | Required. The name of the variable used for the ranking (an empty name raises `A variable name is required.`). |
+| `sort` | Required. `desc` (highest value first) or `asc` (lowest value first), case-insensitive. Anything else, including an empty value, raises `Sort type must be asc or desc.` |
+| `userID` | Optional. The user whose rank is returned. If omitted or empty, the author of the command is used. |
 
 ## Return Value
 
@@ -36,16 +36,16 @@ $getLeaderboardPosition[type;varName;sort;(userID)]
 
 ## Behavior
 
-- The ranking is built from the persisted values of the variable; entries whose value is not a number are ignored.
+- The ranking is built from the persisted values of the variable; entries whose value is not a number are ignored. At most the first 20000 stored values are read.
 - With the `user` type, only the members of the current server are ranked.
 - It is typically paired with `$getLeaderboardValue`, which reads the entry at a given position.
 
 ## See Also
 
 - [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Get the entry at a given position
-- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Global user leaderboard
-- [`$serverLeaderboard`](/docs/serverleaderboard) — Server-level leaderboard
-- [`$userLeaderboard`](/docs/userleaderboard) — Personal leaderboard
+- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Top 10 of global user values
+- [`$serverLeaderboard`](/docs/serverleaderboard) — Top 10 of servers
+- [`$userLeaderboard`](/docs/userleaderboard) — Top 10 of the members of the server
 
 ## Examples
 

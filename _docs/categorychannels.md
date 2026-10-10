@@ -65,6 +65,8 @@ $endif
 
 ## Notes
 
-- Only the channels whose parent is the category are listed; the category itself is not included.
+- Only the channels whose parent is the category are listed; the category itself is not included. Threads are not listed.
+- The order is the one in which Discord returns the server's channels.
+- If the current channel has no category, `$channelCategoryID` is empty and the call fails with `Invalid category ID.`
 - Use `$channelCategoryID` to get the category of the current channel.
 - To list all channels on the server, use `$channelNames`.

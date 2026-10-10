@@ -4,28 +4,31 @@ title: $emojiCount
 translation_key: docs
 category: "Entity Info"
 function_name: emojiCount
-syntax: $emojiCount
-description: Returns the number of custom emojis available on the Discord server.
+syntax: $emojiCount[(serverID)]
+description: Returns the number of custom emojis of the current server, or of the server whose ID is given.
 ---
 
 # $emojiCount — Number of Emojis
 
-The `$emojiCount` function returns the total number of custom emojis available on the server, including both static and animated emojis.
+The `$emojiCount` function returns the number of custom emojis of a server (all the emojis returned by Discord for the server's emoji list, static and animated alike).
 
 ## Syntax
 
 ```
-$emojiCount
+$emojiCount[(serverID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description | Required |
+|-----------|-------------|:--------:|
+| `serverID` | ID of the server to count. If omitted or empty, the current server is used. A value that is not a positive number raises `Invalid guild ID.` | No |
 
 ## Return value
 
 - **Type**: `integer`
-- The total number of custom emojis.
+- The number of custom emojis of the server. `0` if it has none.
+- Outside a server (and without `serverID`) the lookup fails with `Emoji listing requires a guild.`
 
 ## Examples
 
@@ -35,19 +38,10 @@ No parameters.
 $sendMessage[🎨 There are **$emojiCount** custom emojis on this server!]
 ```
 
-### Emoji slots available
+### Another server
 
 ```bdfd
-$var[maxEmojiSlots;50]
-$if[$boostLevel==1]
-$var[maxEmojiSlots;100]
-$elseIf[$boostLevel==2]
-$var[maxEmojiSlots;150]
-$elseIf[$boostLevel==3]
-$var[maxEmojiSlots;250]
-$endif
-$var[remainingSlots;$sub[$var[maxEmojiSlots];$emojiCount]]
-$sendMessage[🎨 $emojiCount/$var[maxEmojiSlots] emoji slots used. $var[remainingSlots] remaining.]
+$sendMessage[That server has $emojiCount[123456789012345678] custom emojis.]
 ```
 
 ### Server Info Embed
@@ -55,27 +49,12 @@ $sendMessage[🎨 $emojiCount/$var[maxEmojiSlots] emoji slots used. $var[remaini
 ```bdfd
 $title[📊 $serverName]
 $addField[🎨 Emojis;$emojiCount;yes]
-$addField[🏷️ Stickers;$stickerCount;yes]
 $addField[🚀 Boosts;$serverBoostCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
 ```
 
-### Warning if limit is almost reached
-
-```bdfd
-$if[$emojiCount>=$var[maxEmojiSlots]]
-$sendMessage[⚠️ All emoji slots are used!]
-$elseIf[$emojiCount>=$sub[$var[maxEmojiSlots];10]]
-$sendMessage[⚠️ Only $sub[$var[maxEmojiSlots];$emojiCount] emoji slots are available.]
-$endif
-```
-
 ## Notes
 
-- The default emoji limit is 50 static + 50 animated emojis.
-- The server boost level increases these limits:
-  - Level 1: 100 static + 100 animated
-  - Level 2: 150 static + 150 animated
-  - Level 3: 250 static + 250 animated
-- To get the complete list of emojis (not just the count), use `$serverEmojis`.
+- Related: `$emoteCount` (emojis of the current server only, no argument) and `$serverEmojis`, which lists the emojis of a server rather than counting them.
+- The list is requested from Discord each time the function runs.

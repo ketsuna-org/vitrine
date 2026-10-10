@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: boostLevel
 syntax: $boostLevel
-description: Returns the Nitro boost level of the Discord server (0, 1, 2 or 3).
+description: Returns the boost level (tier) of the current Discord server, as reported by Discord.
 ---
 
 # $boostLevel[] — Server Boost Level
 
-`$boostLevel[]` returns the current Nitro boost level of the server, a value between 0 and 3.
+`$boostLevel[]` returns the current boost level (premium tier) of the server, as reported by Discord.
 
 ## Syntax
 
@@ -20,19 +20,13 @@ $boostLevel
 
 ## Parameters
 
-No parameters.
+No parameters (passing one is an error).
 
 ## Return value
 
 - **Type**: `integer`
-- An integer from 0 to 3:
-
-| Level | Boosts required | Main Advantages |
-|--------|---------------|---------------------|
-| 0 | 0 | No advantages |
-| 1 | 2 | +50 emoji slots, animated icon, 128 kbps audio |
-| 2 | 7 | Server banner, 256 kbps audio, +100 emojis |
-| 3 | 14 | Custom URL, 384 kbps audio, +150 emojis |
+- The numeric tier value of the server given by Discord (`0` when the server has no boost level; `1`, `2` and `3` for the boost levels).
+- If Discord does not give a value, the error `Guild boost level is unavailable.` is raised.
 
 ## Examples
 
@@ -69,43 +63,17 @@ $endif
 $color[#F47FFF]
 ```
 
-### Checking perks
-
-```bdfd
-$if[$boostLevel>=1]
-$sendMessage[✅ Animated icon available]
-$endif
-$if[$boostLevel>=2]
-$sendMessage[✅ Server banner available]
-$endif
-$if[$boostLevel>=3]
-$sendMessage[✅ Custom URL available]
-$endif
-```
-
 ### Info server with boost
 
 ```bdfd
-$if[$boostLevel>=3]
-$var[audio;384 kbps]
-$elseIf[$boostLevel>=2]
-$var[audio;256 kbps]
-$elseIf[$boostLevel>=1]
-$var[audio;128 kbps]
-$else
-$var[audio;Standard]
-$endif
 $title[$serverName]
 $addField[🚀 Boost Level;$boostLevel ($serverBoostCount boosts);yes]
 $addField[🎨 Emojis;$emojiCount;yes]
-$addField[🔊 Audio Quality;$var[audio];yes]
 $thumbnail[$serverIcon]
 $color[#F47FFF]
 ```
 
 ## Notes
 
-- The boost level is calculated automatically depending on the number of Nitro boosts.
-- Each tier unlocks cumulative perks (level 3 includes level 1 and 2 perks).
-- Expired boosts are automatically removed.
-- To get the exact number of boosts, use `$serverBoostCount[]`.
+- The server is read from Discord each time the function runs.
+- To get the exact number of boosts, use `$boostCount` or `$serverBoostCount[]`.

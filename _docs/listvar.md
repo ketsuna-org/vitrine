@@ -5,37 +5,45 @@ translation_key: docs
 category: "Variables"
 function_name: listVar
 syntax: $listVar[(separator)]
-description: Returns a formatted list of all temporary variables currently defined in the execution context.
+description: Returns the names of all the variables declared by the bot (all scopes and global variables), joined by a separator.
 ---
 
-$listVar is a diagnostic and debugging function that provides visibility into all currently active temporary variables. Each entry in the output includes both the variable name and its current value.
+$listVar returns the **names** of the variables declared by the bot, joined by a separator. It does not return their values.
+
+## Syntax
+
+```
+$listVar[(separator)]
+```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `separator` | Optional - Text inserted between two names. Default: `, ` (a comma followed by a space). The text is used as is: `\n` is **not** converted to a line break. Since `;` separates arguments, a separator cannot contain an unescaped `;`. |
 
 ## Output Format
 
-Variables are listed with their names and values in the format `name: "value"`. The default separator is a comma followed by a space: `, `. To customize this, provide a separator string:
+The names are listed in the order of the variable catalogue (the declared variables of every scope, then the bot's global variables), for example `coins, level, prefix`. Names that only differ by letter case appear once (the first spelling is kept). A name starting with `bc_` is listed without that prefix. If nothing is declared, the result is an empty string.
 
-- `$listVar[\n]` — one variable per line.
-- `$listVar[ | ]` — pipe-separated list.
-- `$listVar[; ]` — semicolon-separated list.
+## What is listed
 
-Use `\n` for a literal newline character in the separator.
-
-## Scope
-
-Only **temporary** variables (`$var`) are listed. Global and user-scoped variables (`$getVar`/`$setVar`) are **not** included. There is no built-in equivalent for listing persistent variables.
-
-## When to Use
-
-- **Debugging**: verify that variables are set to expected values at various points in a complex command.
-- **Logging / error messages**: include the variable state in error output to help users diagnose issues.
-- **Dynamic inspection**: check which variables exist before branching logic.
+- The variables declared in the bot's variable catalogue (user, member, server, channel and message scopes). A variable is declared in the Variables UI, or automatically the first time a `$set...Var` function writes it.
+- The bot's global variables (the ones used with `$getVar` / `$setVar` without a user ID).
+- Temporary variables created with `$var` are **not** listed.
 
 ## Examples
 
-### Inspect Defined Variables
+### List the declared variables
 
 ```bdfd
-$title[Database Variables]
-$description[Defined server variables:\n`$listVar[server]`]
+$title[Declared variables]
+$description[$listVar[, ]]
 $color[#5865F2]
+```
+
+### Pipe-separated list
+
+```bdfd
+$sendMessage[Variables: $listVar[ | ]]
 ```

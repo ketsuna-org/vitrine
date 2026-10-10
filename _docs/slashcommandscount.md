@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: slashCommandsCount
 syntax: $slashCommandsCount
-description: Returns the number of registered slash commands on the bot.
+description: Returns the number of global slash (chat input) commands registered on Discord for the bot.
 ---
 
 # $slashCommandsCount
 
-The function `$slashCommandsCount` **returns the number of slash commands** registered on the bot (excluding prefix commands).
+The function `$slashCommandsCount` **returns the number of global slash commands** of the bot: the engine asks Discord for the application's global commands and counts those of the chat input type.
 
 ## Syntax
 
@@ -25,13 +25,13 @@ None.
 ## Return Value
 
 - **Type**: Integer
-- The number of slash commands (e.g., `25`).
+- The number of global chat input commands (e.g., `25`).
 
 ## Behavior
 
-- Counts only slash commands.
-- Does not count prefix commands.
-- Useful for checking Discord limits (100 slash commands per application).
+- The list is read from Discord at each call (not from the bot's stored commands).
+- Only global commands of the chat input type are counted; guild-specific commands, user/message context menu commands and prefix commands are not.
+- `$commandsCount` counts the bot's stored commands instead (see its page).
 
 ## Examples
 
@@ -40,20 +40,17 @@ None.
 ```bdfd
 $title[📊 Commands]
 $addField[🔹 Slash;$slashCommandsCount;yes]
-$addField[🔸 Prefix;$calculate[$commandsCount-$slashCommandsCount];yes]
-$addField[📦 Total;$commandsCount;yes]
-$footer[Discord Limit: 100 slash commands]
+$addField[📦 Stored commands;$commandsCount;yes]
 $color[#5865F2]
 ```
 
-### Checking Discord limit
+### Simple condition
 
 ```bdfd
-$if[$slashCommandsCount>=100]
-  $sendMessage[⚠️ **Warning:** You have reached the limit of 100 Discord slash commands. New slash commands might not register.]
+$if[$slashCommandsCount==0]
+  $sendMessage[No global slash command is registered yet.]
 $else
-  $var[restant;$calculate[100-$slashCommandsCount]]
-  $sendMessage[✅ $slashCommandsCount/100 slash commands used ($var[restant] remaining).]
+  $sendMessage[✅ $slashCommandsCount global slash commands registered.]
 $endif
 ```
 
@@ -62,11 +59,10 @@ $endif
 ```bdfd
 $title[🤖 $botName - Statistics]
 $description[
-**Total commands:** $commandsCount
-**Slash:** $slashCommandsCount
-**Prefix:** $calculate[$commandsCount-$slashCommandsCount]
+**Stored commands:** $commandsCount
+**Global slash commands:** $slashCommandsCount
 **Servers:** $guildCount
-**Users:** $membersCount
+**Members of this server:** $membersCount
 ]
 $thumbnail[$userAvatar[$botID]]
 $color[#57F287]
@@ -74,7 +70,5 @@ $color[#57F287]
 
 ## Notes
 
-- Counts only slash commands.
-- For the total (prefix + slash), use `$commandsCount`.
-- Discord limits to 100 slash commands per application.
+- For the number of stored commands of the bot, use `$commandsCount`.
 - For the ID of a slash command, use `$slashID`.

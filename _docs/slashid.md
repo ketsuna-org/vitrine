@@ -4,42 +4,42 @@ title: $slashID
 translation_key: docs
 category: "Entity Info"
 function_name: slashID
-syntax: $slashID
-description: Returns the Discord ID of the slash command currently being executed.
+syntax: $slashID[(commandName)]
+description: Returns the Discord ID of the slash command being executed, or of the global slash command with the given name. Raises an error when the ID is unavailable.
 ---
 
 # $slashID
 
-The function `$slashID` **returns the Discord ID (snowflake) of the slash command** currently being executed. If the command is not a slash command, it returns an empty string.
+The function `$slashID` **returns the Discord ID (snowflake) of a slash command**: either the command currently being executed, or a global slash command found by name.
 
 ## Syntax
 
 ```
-$slashID
+$slashID[(commandName)]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `commandName` | *(Optional)* The exact name of a global slash command of the bot. If omitted, the command being executed is used. An empty value raises `Slash command name is required.`; an unknown name raises `Global slash command not found.` |
 
 ## Return Value
 
 - **Type**: String
-- The Discord ID of the slash command (e.g., `1234567890123456789`).
-- An empty string if the current command is a prefix command.
+- Without argument: the value of the `interaction.command.id` context variable supplied by the host. If it is missing or empty (for example outside a slash command), the error `Executed slash command ID is unavailable.` is raised: the function does **not** return an empty string.
+- With a name: the ID of the global chat input command with that name, read from Discord.
 
 ## Behavior
 
-- The ID is assigned by Discord during the registration of the command.
-- Useful for logging, debugging, or unique identification.
-- Returns empty for prefix commands.
+- Because of the error, test `$isSlash` first when the same script can run as a slash command and as a prefix command.
 
 ## Examples
 
 ### Detailed log
 
 ```bdfd
-$if[$slashID!=]
+$if[$isSlash==true]
   $log[🔹 SLASH | ID: $slashID | Name: $commandName | User: $userName ($authorID) | Server: $serverName]
 $else
   $log[🔸 PREFIX | Name: $commandName | Trigger: $commandTrigger | User: $userName]
@@ -59,7 +59,6 @@ $description[
 **Trigger:** $commandTrigger
 **Type:** $commandType
 **Folder:** $commandFolder
-**Slash ID:** $slashID
 **Author:** $userName ($authorID)
 **Server:** $serverName ($guildID)
 **Channel:** $channelName[$channelID] ($channelID)
@@ -70,21 +69,19 @@ $color[#5865F2]
 ### Conditional behavior
 
 ```bdfd
-$if[$slashID!=]
+$if[$isSlash==true]
   $var[mode;slash]
-  $var[args;((opts.input))]
 $else
   $var[mode;prefix]
-  $var[args;$message[1]]
 $endif
 
-📌 Mode: $var[mode] | Args: $var[args]
+📌 Mode: $var[mode]
 ```
 
 ### Command information for support
 
 ```bdfd
-$if[$slashID!=]
+$if[$isSlash==true]
   🆔 **Slash Command ID:** $slashID
   ┗ Name: $commandName
 $else
@@ -100,7 +97,5 @@ $endif
 
 ## Notes
 
-- Returns an empty string for prefix commands.
-- The ID is unique and assigned by Discord.
-- Useful for technical support (provide the ID in case of a bug).
+- Outside a slash command, `$slashID` without argument raises an error; it never returns an empty string.
 - To check if a command is a slash command, use `$isSlash` or `$commandType`.

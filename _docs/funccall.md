@@ -6,7 +6,7 @@ category: "Misc"
 
 # $funcCall
 
-Calls a user-defined function previously declared with `$func[name;...]`. The call is expanded inline at compile-time.
+Calls a user-defined function previously declared with `$func[name;...]`. The function body runs at the moment of the call.
 
 ## Syntax
 
@@ -18,14 +18,14 @@ $funcCall[funcName;arg1;arg2;...]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `funcName` | Name of the function to call (must match a `$func` definition) | Yes |
-| `arg1`, `arg2`, ... | Arguments passed to the function's parameters | No |
+| `funcName` | Name of the function to call (case-insensitive, must match a `$func` already defined). An empty name is an error ("A function name is required."). | Yes |
+| `arg1`, `arg2`, ... | Arguments for the function's parameters, in the order of the `$func` header. At most 100. | No |
 
 ## Description
 
-`$funcCall` invokes a user-defined function. The function body is expanded **at compile-time** — all text, inline functions, and `$funcArg` references are resolved and inserted at the call site.
+`$funcCall` invokes a user-defined function and returns its result. The arguments are evaluated first and bound to the parameters; missing arguments become empty text and extra arguments are ignored. Then the body runs, with its output collected rather than sent.
 
-If the function uses `$funcReturn`, that value becomes the result. Otherwise, the accumulated text content of the function body is used.
+If the body executes `$funcReturn`, the value of the last executed `$funcReturn` becomes the result. Otherwise, the text produced by the body is the result.
 
 ## Examples
 
@@ -53,7 +53,7 @@ At runtime: `You said: <actual username>`
 
 ```bdfd
 $func[wrap;x]
-$funcReturn[[$funcArg[x]]]
+$funcReturn[($funcArg[x])]
 $funcEnd
 $func[bracket;v]
 $funcReturn[{$funcArg[v]}]
@@ -61,7 +61,7 @@ $funcEnd
 $sendMessage[$funcCall[wrap;$funcCall[bracket;hello]]]
 ```
 
-Output: `[{hello}]`
+Output: `({hello})`
 
 ### Calling an undefined function
 
@@ -69,11 +69,12 @@ Output: `[{hello}]`
 $sendMessage[$funcCall[notfound;test]]
 ```
 
-Returns empty string with a diagnostic warning.
+Returns an empty string (and records a warning in the execution trace).
 
 ## Notes
 
-- The function must be defined **before** the call
-- Calls are resolved at compile-time — not at runtime
-- Max recursion depth: 10 calls
-- If the function is not found, returns an empty string and emits a diagnostic
+- The function must be defined **before** the call is executed.
+- The body is executed at each call, at runtime.
+- Calls can nest up to 10 deep; a deeper call returns an empty string.
+- If the function is not found, the result is an empty string; no error is raised.
+- Anything that the body sends explicitly (for example with `$sendMessage`) is sent when the call runs.

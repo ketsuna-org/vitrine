@@ -25,7 +25,8 @@ None.
 ## Return Value
 
 - **Type**: `string`
-- The ID (Snowflake) of the owner of the server.
+- The ID (Snowflake) of the owner of the current server, fetched from Discord.
+- The error `Guild not found.` is raised if the server cannot be fetched.
 
 ## Examples
 
@@ -64,7 +65,5 @@ $sendMessage[<@$serverOwner>, a user is requesting your attention.]
 
 ## Notes
 
-- The owner is the user who created the server or to whom the ownership was transferred.
-- The ID of the owner remains unchanged as long as the ownership is not transferred.
+- `$serverOwner` takes no argument.
 - Use `$username[$serverOwner]` to get the name of the owner without mentioning them.
-- To check if the current user is the owner, you can also use `$isOwner[]`.

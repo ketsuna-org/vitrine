@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: onlyBotChannelPerms
 syntax: $onlyBotChannelPerms[channelID;permission1;permission2;...;errorMessage]
-description: A guard function that stops execution if the bot does not have the specified permissions in the current channel.
+description: A guard function that stops execution if the bot does not have the specified permissions in a given channel (the current channel if the ID is empty).
 ---
 
 # $onlyBotChannelPerms
@@ -24,14 +24,16 @@ At least 3 arguments are required: the channel, at least one permission, and the
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `channelID` | String | Required. ID of the channel to check. If empty, the current channel is used. An invalid ID raises an error. |
+| `channelID` | String | Required. ID of the channel to check. If empty, the current channel is used. An invalid ID raises `Invalid Discord ID.` |
 | `permission1;permission2;...` | String[] | Required, at least one. Channel permissions that the bot must have in this channel. Separator `;`. An empty or unknown permission raises an error. |
 | `errorMessage` | String | Required (the last argument, may be empty). The message output if the bot lacks any of the permissions. |
 
 ## Behavior
 
 - Checks the effective permissions of the bot in the **channel given by `channelID`**.
-- Takes channel overwrites into account (specific channel permissions modifying role inheritance).
+- Takes channel overwrites into account (specific channel permissions modifying role inheritance); for a thread, the overwrites of its parent channel are used. The channel must be a server channel.
+- The bot must be able to see the channel (`View Channel`) for any listed permission to count; permissions that depend on sending (`MentionEveryone`, `SendTTSMessages`, `AttachFiles`, `EmbedLinks`) also require `SendMessages` (`SendMessagesInThreads` in a thread), and in a voice or stage channel the voice-related permissions require `Connect`.
+- The `Administrator` permission (and server ownership) passes every check.
 - If any permission is missing, the command execution is halted and `errorMessage` is output.
 - Works even if the bot has the permission server-wide, but the channel has a deny overwrite.
 
@@ -65,5 +67,5 @@ $sendMessage[Here is the report.]
 ## Notes
 
 - `$onlyBotChannelPerms` checks **channel** permissions, while `$onlyBotPerms` checks **server** permissions.
-- Channel permissions include: `SendMessages`, `EmbedLinks`, `AttachFiles`, `AddReactions`, `UseExternalEmojis`, `Connect`, `Speak`, `Stream`, `UseVAD`, `PrioritySpeaker`, `MuteMembers`, `DeafenMembers`, `MoveMembers`, `ViewChannel`, `ReadMessageHistory`, `SendTTSMessages`, `UseApplicationCommands`, `ManageMessages`, `ManageChannels`, `CreateInstantInvite`, `UseEmbeddedActivities`.
+- Permission names are case-insensitive and ignore non-alphanumeric characters, for example `SendMessages`, `EmbedLinks`, `AttachFiles`, `AddReactions`, `UseExternalEmojis`, `Connect`, `Speak`, `Stream`, `UseVAD`, `PrioritySpeaker`, `MuteMembers`, `DeafenMembers`, `MoveMembers`, `ViewChannel`, `ReadMessageHistory`, `SendTTSMessages`, `UseApplicationCommands`, `ManageMessages`, `ManageChannels`, `CreateInstantInvite`. An unknown name (for example `UseEmbeddedActivities`) raises `Invalid permission.`
 - Combine with `$onlyBotPerms` for a complete check (server + channel).

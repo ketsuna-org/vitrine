@@ -71,7 +71,8 @@ Row:
 
 ## Notes
 
-- `$endLoop` takes no parameters — adding any will cause a parse error.
-- This closes only the legacy `$loop` block, **not** the `$for` loop (which uses `$endFor`).
+- `$endLoop` takes no parameters — adding any is an error ("$endloop does not accept arguments.").
+- A `$endLoop` with no open `$loop` is an error ("Unexpected $endLoop."), as is a `$loop` that is never closed ("Missing $endloop.").
+- This closes only a `$loop` block, **not** the `$for` loop (which uses `$endFor`): mixing them is an error. See [$loop](/docs/loop/).
 - The parser treats `$loop` / `$endLoop` as structural tokens, similar to `$if` / `$endif`.
 - When nesting loops, ensure each `$loop` has its corresponding `$endLoop` in the correct order (LIFO: Last In, First Out).

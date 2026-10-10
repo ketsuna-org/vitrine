@@ -36,7 +36,7 @@ The argument is optional (`$closeTicket` and `$closeTicket[]` are both accepted)
 
 ```bdfd
 $onlyPerms[ManageChannels;Only staff can close tickets.]
-$channelSendMessage[123456789012345678;Ticket $channelName closed by <@$authorID>.]
+$channelSendMessage[123456789012345678;Ticket $channelName[$channelID] closed by <@$authorID>.]
 $closeTicket[This channel is not a ticket.]
 ```
 

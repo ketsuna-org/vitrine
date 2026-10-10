@@ -30,7 +30,7 @@ A bare `$onlyNSFW` (no brackets) is invalid: it takes exactly one argument.
 
 - If the channel is NSFW, the command continues normally.
 - If the channel is **not** NSFW, the command is interrupted (implicit `$stop`) and `errorMessage` is output in place of the response; with an empty `errorMessage` nothing is displayed.
-- Equivalent to `$onlyIf[$channelNSFW==true;errorMessage]` but more concise.
+- Comparable to `$onlyIf[$channelNSFW==true;errorMessage]`, but for a thread the NSFW flag of its parent channel is used, and the guard also stops when the channel cannot be found.
 
 ## Examples
 

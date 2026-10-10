@@ -13,7 +13,7 @@ toc: true
 ---
 A **loop** allows your Discord bot to repeat a block of text or actions multiple times. Instead of copy-pasting the same lines over and over, you can use a loop to do it automatically.
 
-In BDFD, the functions **`$for`** and **`$loop`** are **identical twins**. They work exactly the same way, support the same rules, and can be used completely interchangeably! You can also close either loop with either **`$endfor`** or **`$endloop`**.
+In BDFD, the functions **`$for`** and **`$loop`** are **identical twins**. They work exactly the same way, support the same rules, and can be used completely interchangeably! Each loop must be closed by its own end tag: `$for` with **`$endfor`**, `$loop` with **`$endloop`** (using the other one is an "Unexpected `$endfor`/`$endloop`" error).
 
 Loops are perfect for:
 * Printing repeating lists (like leaderboard slots or store items).
@@ -24,7 +24,7 @@ Loops are perfect for:
 
 ## 💡 Quick Overview of Loop Types
 
-BDFD supports two types of loops:
+BDFD supports two main types of loops (there is also a list form, `$for[item;a;b;c]`, and `$while`, see the end of this guide):
 
 | Loop Type | What it does | Best For |
 | :--- | :--- | :--- |
@@ -52,7 +52,7 @@ $loop[number]
 $endloop
 ```
 
-* **`number`**: How many times you want the loop to repeat (e.g., `5`, or a variable like `$getUserVar[hunts]`).
+* **`number`**: How many times you want the loop to repeat (e.g., `5`, or a variable like `$getUserVar[hunts]`). It must be a non-negative whole number; anything else (`-1`, `abc`, `2.5`) is an error ("Expected a nonnegative integer loop count.").
 
 ### Useful Shortcut Variables
 Inside the loop, you can use these shortcuts to show the current iteration number:
@@ -116,6 +116,7 @@ $endloop
 1. **`start`**: Create your counter variable and set its starting value.
    * *Example:* `i=1` (creates a counter named `i` starting at 1).
    * *Example (Multi-counter):* `i=1,j=10` (creates two counters).
+   * Counters are whole numbers.
 2. **`condition`**: Tells the loop when to keep going. The loop stops as soon as this is no longer true.
    * *Operators you can use:*
      * `<` (Less than)
@@ -124,6 +125,7 @@ $endloop
      * `>=` (Greater than or equal to)
      * `==` (Equal to)
      * `!=` (Not equal to)
+   * Both sides must be whole numbers (a single `=` is an error: "Invalid integer loop condition").
    * *Example:* `i<=5` (keep going as long as the counter `i` is 5 or less).
 3. **`update`**: Tells the loop how to count at the end of each step.
    * *Stepping values you can use:*
@@ -132,6 +134,8 @@ $endloop
      * `i+=2` (add 2 to `i` - useful for skipping numbers)
      * `i-=3` (subtract 3 from `i`)
      * `i*=2` (multiply `i` by 2)
+     * `i/=2` (divide `i` by 2, dividing by zero is an error)
+   * Several updates are separated by commas, e.g. `i++,j--`. An update can only change a counter declared in `start`.
 
 ### Accessing your Counter Value
 To show the current value of your counter inside the loop, just write its name as a function:
@@ -159,8 +163,8 @@ Counting by twos:
 
 #### Example B: T-Minus Countdown (Using `$for`)
 ```bdfd
-$for[seconds=5; seconds>0; seconds--]
-  🚀 Launching in $seconds...
+$for[i=5; i>0; i--]
+  🚀 Launching in $i...
 $endfor
 🔥 BLASTOFF! 🎆
 ```
@@ -179,10 +183,15 @@ $endfor
 ## ⚠️ Important Rules & Safety Tips
 
 > [!WARNING]
-> **The 100-Loop Limit**
-> To prevent your bot from freezing, lagging, or crashing, BDFD restricts loops (both `$for` and `$loop`) to a maximum of **100 repetitions**. If your loop is set to run more than 100 times, it will automatically stop at 100.
+> **Execution limit**
+> There is no fixed "100 repetitions" cap. Instead, the whole script has a step budget shared by every statement and loop iteration. A loop that runs too long (for example `$while[1==1]`, or a huge count such as `$for[1000000]`) stops the command with the error "Execution step limit exceeded." Keep your loops as small as possible.
 
 > [!TIP]
 > **Stopping Loops Early**
-> * **`$stop`**: If your bot encounters a `$stop` inside the loop, it will immediately halt the command and send whatever text it has generated so far.
-> * **`$cooldown[...]`**: If a user is on cooldown, BDFD will stop the loop immediately and send your custom cooldown message.
+> * **`$break`**: leaves the current loop. **`$continue`** skips to the next iteration (both are errors outside a loop).
+> * **`$stop`**: halts the whole command immediately and sends whatever text has been generated so far.
+> * **`$cooldown[...]`**: if the user is on cooldown, the command stops (including the loop) and the cooldown message is sent.
+
+### Other loop forms
+* **List loop**: `$for[item;a;b;c]` runs once per listed value; `$item` is the current value (the first argument must be a plain name).
+* **While loop**: `$while[condition]` ... `$endwhile` repeats as long as the condition is true; `$i` is the 0-based iteration.

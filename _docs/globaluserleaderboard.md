@@ -5,12 +5,12 @@ translation_key: docs
 category: "Variables"
 function_name: globalUserLeaderboard
 syntax: $globalUserLeaderboard[variable] or $globalUserLeaderboard[variable;sort]
-description: Generates a global ranking of all users based on a variable, sorted in descending order by default.
+description: Writes the top 10 of the global user values of a variable into the description of the first embed, sorted in descending order by default.
 ---
 
 # $globalUserLeaderboard
 
-The function `$globalUserLeaderboard` generates a global ranking of all users of the bot, based on the values of a user variable. It is the primary tool to create cross-server leaderboards and motivate competition between users.
+The function `$globalUserLeaderboard` ranks the **global user values** of a variable (the values written with `$setVar[name;value;userID]`, shared across servers) and writes the **top 10** into the **description of the first embed** of the response. It returns an empty string.
 
 ## Syntax
 
@@ -21,42 +21,29 @@ $globalUserLeaderboard[variable;sort]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `variable` | Yes | The name of the global user variable to rank |
-| `sort` | No | `desc` (descending, default) or `asc` (ascending) |
+| `variable` | Yes | The name of the variable to rank (an empty name raises `A variable name is required.`) |
+| `sort` | No | `desc` (descending, default when omitted or empty) or `asc` (ascending), case-insensitive. Any other value raises `Sort type must be asc or desc.` |
 
 ## How It Works
 
-1. `$globalUserLeaderboard` is a **placeholder**: it is replaced at runtime by the dedicated leaderboard action.
-2. The system scans the global variables of **all users** of the bot.
-3. The entries are sorted according to the specified direction.
-4. The result is a multiline string where each line represents an entry of the leaderboard.
+1. The stored values of the variable for **all users** (user scope) are read; values that are not numbers are ignored (at most the first 20000 stored values are read).
+2. The entries are sorted according to the specified direction and only the first 10 are kept.
+3. The description of the first embed (embed index 1) is **replaced** by one line per entry, in the format `N. username - value` (the username, or the user ID if the user cannot be found; integer values are printed without decimals).
+4. The function itself returns an empty string, so its result cannot be captured with `$textSplit` or inside other text: the ranking only appears in the embed description. A `$description` placed in the same command sets the same field, so only use one of them.
 
-The format of each line is typically:
-```
-username
-```
-Or potentially a combined format depending on the bot configuration.
+An error `No message service configured.` is raised if the command has no message output.
 
 ## Typical Usage
 
-The classic pattern to use a leaderboard:
-
-```
-$textSplit[$globalUserLeaderboard[score;desc];\n]
-```
-
-Then iterate through the elements with `$splitText[index]`, `$getLeaderboardPosition` and `$getLeaderboardValue`.
+Put the function next to the other embed parts (title, color...). To build your own display, read the entries one by one with `$getLeaderboardValue[globalUser;variable;sort;position]`.
 
 ## Data Persistence
 
-For the ranking to be meaningful, user variables must be populated beforehand via:
-
-- [`$setUserVar`](/docs/setuservar) — Set a variable for a user
-- [`$getUserVar`](/docs/getuservar) — Read a user variable
+For the ranking to be meaningful, the global user values must be populated beforehand via [`$setVar`](/docs/setvar) with a user ID (read them with [`$getVar`](/docs/getvar)). Values written with `$setUserVar` are server-member values (except in bots that still use the legacy user-variable behavior) and are ranked by [`$userLeaderboard`](/docs/userleaderboard) instead.
 
 Example of score update:
 ```
-$setUserVar[score;$sum[$getUserVar[score];10];$authorID]
+$setVar[score;$sum[$getVar[score;$authorID];10];$authorID]
 ```
 
 ## Sorting
@@ -66,19 +53,18 @@ $setUserVar[score;$sum[$getUserVar[score];10];$authorID]
 
 ## Important Notes
 
-- Users who do not have the specified variable are ignored in the ranking.
-- The number of entries returned depends on the bot configuration and the leaderboard action.
-- For a ranking limited to a specific server, use [`$serverLeaderboard`](/docs/serverleaderboard).
-- To see only the current user's position, use [`$userLeaderboard`](/docs/userleaderboard).
+- Users who do not have the specified variable are ignored in the ranking, as are values that are not numbers.
+- At most the first 10 entries are shown.
+- For the members of the current server, use [`$userLeaderboard`](/docs/userleaderboard); for a ranking of servers, use [`$serverLeaderboard`](/docs/serverleaderboard).
+- To get the rank of one user, use [`$getLeaderboardPosition`](/docs/getleaderboardposition).
 
 ## See Also
 
-- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rank in the active leaderboard
-- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Value in the active leaderboard
-- [`$serverLeaderboard`](/docs/serverleaderboard) — Ranking limited to the server
-- [`$userLeaderboard`](/docs/userleaderboard) — Current user's position
-- [`$textSplit`](/docs/textsplit) — Parse the result
-- [`$setUserVar`](/docs/setuservar) — Set a user variable
+- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rank of a user
+- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Entry at a given position
+- [`$serverLeaderboard`](/docs/serverleaderboard) — Ranking of servers
+- [`$userLeaderboard`](/docs/userleaderboard) — Ranking of the members of the server
+- [`$setVar`](/docs/setvar) — Set a global user value
 
 ## Examples
 
@@ -86,9 +72,6 @@ $setUserVar[score;$sum[$getUserVar[score];10];$authorID]
 
 ```bdfd
 $title[🌍 Global Economy Leaderboard]
-$description[Top users across all servers:
-
-$globalUserLeaderboard[coins;desc]]
+$globalUserLeaderboard[coins;desc]
 $color[#FEE75C]
-$footer[Updated every 5 minutes]
 ```
