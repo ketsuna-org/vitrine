@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userServerAvatar
 syntax: $userServerAvatar[userID]
-description: Returns the URL of the member's server-specific avatar, or their global avatar if none is set.
+description: Returns the URL of the member's server-specific avatar, or their global avatar if none is set. The user must be a member of the server.
 ---
 
 # $userServerAvatar
 
-The `$userServerAvatar` function returns the **URL of the server-specific avatar** of a member. Discord Nitro subscribers can set a different avatar for each server.
+The `$userServerAvatar` function returns the **URL of the server-specific avatar** of a member, falling back to the global avatar.
 
 ## Syntax
 
@@ -59,5 +59,5 @@ $endif
 
 ## Notes
 
-- Customizing avatars per server is a **Discord Nitro** feature.
+- Errors: `Invalid user ID.` and `User is not a member of this guild.`
 - `$authorAvatar` is the zero-argument equivalent for the global avatar of the author.

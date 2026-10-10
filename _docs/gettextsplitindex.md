@@ -28,6 +28,7 @@ $getTextSplitIndex[value]
 - **Type**: `string` (representing a number)
 - The **one-based** position of the first element equal to `value` (1 for the first element, 2 for the second, etc.).
 - `-1` if no element equals `value`, or if no `$textSplit[]` was performed.
+- An empty `value` matches the first empty element, if there is one.
 
 ## Usage
 
@@ -65,6 +66,7 @@ $sendMessage[$splitText[$sum[$getTextSplitIndex[key2];1]]]
 - **One-based**: the first element is at position `1`, consistent with `$splitText[]`.
 - **First match only**: if the value appears several times, the position of the first occurrence is returned.
 - **Required parameter**: `$getTextSplitIndex` without brackets is refused; the function takes exactly one parameter.
+- **Not a loop counter**: it searches a value; it does not return a "current index" during iteration.
 
 ## Examples
 

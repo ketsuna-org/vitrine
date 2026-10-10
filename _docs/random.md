@@ -36,7 +36,8 @@ A random number as a string. Without arguments: an integer from 0 to 9. With `mi
 
 - A new value is drawn each time the function is evaluated.
 - `min` is inclusive and `max` is exclusive: `$random[1;7]` returns 1 to 6.
-- Both bounds must be finite numbers with `max` greater than `min`; otherwise an error is raised.
+- Both bounds must be finite numbers with `max` greater than `min`; otherwise the error "Random requires increasing finite bounds." is raised.
+- Without arguments, `$random` returns an integer from 0 to 9, or a decimal in `[0, 10)` when decimals are enabled with `$enableDecimals`.
 - While decimals are disabled (default), bounds with a fractional part are rounded up and the range must still contain an integer.
 
 ## Examples

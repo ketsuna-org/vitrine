@@ -79,8 +79,8 @@ $endif
 
 ## Notes
 
-- `$memberCount` and `$membersCount` are identical.
 - The count includes all members, including bots.
+- The value is the number of members the bot obtains by listing the server's members from Discord (1000 per request), not a cached counter. It is the same function as `$membersCount` (and `$getMembersCount`).
 - To get only the number of human users, use `$sub[$memberCount;$botCount]`.
-- To get the number of online members, use `$onlineMembers`.
+- `$onlineMembers` returns a host-supplied online count when there is one; otherwise it returns the same total as `$memberCount` (see its page).
 

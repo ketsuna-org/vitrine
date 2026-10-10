@@ -37,4 +37,4 @@ $kickMention[Rules violation]
 Member kicked successfully.
 ```
 
-A missing mention fails target validation ("Missing or invalid user ID."). The bot must have a highest role above the target's highest role. To supply a user ID explicitly, use `$kick[userID;reason]`.
+A missing mention fails target validation ("Missing or invalid user ID."). The reason is limited to 512 characters. Before kicking, the engine checks that the **command author** has the `Kick Members` permission; if not, an error is raised. The bot also needs `Kick Members`, and its highest role must be above the target's highest role (the server owner cannot be kicked). To supply a user ID explicitly, use `$kick[userID;reason]`.

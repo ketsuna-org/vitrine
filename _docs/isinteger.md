@@ -5,7 +5,7 @@ translation_key: docs
 category: "Math & Text"
 function_name: isInteger
 syntax: $isInteger[value]
-description: Checks if a value is an integer (positive, negative or zero).
+description: Checks if a value is an integer (positive, negative or zero) that fits in a 64-bit signed integer.
 ---
 
 # $isInteger
@@ -22,7 +22,7 @@ $isInteger[value]
 
 | Parameter | Description |
 |---|---|
-| `value` | The value to test. |
+| `value` | The value to test. Required, exactly one argument. |
 
 ## Return Value
 
@@ -33,9 +33,12 @@ $isInteger[value]
 ## Behavior
 
 - Decimal numbers (`3.14`, `2.0`) return `false`.
-- Integers in scientific notation are not recognized.
-- `0` is a valid integer.
-- Spaces around the number can invalidate the test.
+- Scientific notation (`1e3`) returns `false`.
+- `0` is a valid integer; a `+` or `-` sign is accepted (`+5`, `-10`).
+- Spaces around the number are ignored: `$isInteger[ 5 ]` → `true`.
+- A hexadecimal integer with the `0x` prefix is also accepted: `$isInteger[0xFF]` → `true` (`0b11` is `false`).
+- Integers beyond the 64-bit signed range (`99999999999999999999`) return `false`.
+- Unlike `$isNumber[]`, it does not check finiteness or decimal formats.
 
 ## Examples
 

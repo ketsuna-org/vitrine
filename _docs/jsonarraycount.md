@@ -4,10 +4,14 @@ title: $jsonArrayCount[]
 translation_key: docs
 category: "HTTP & JSON"
 function_name: jsonArrayCount
-syntax: $jsonArrayCount[key]
-description: Returns the number of items in a JSON array.
+syntax: $jsonArrayCount[(key);(...)]
+description: Returns the number of items in the JSON array at a path of the current document, or 0 if the value is missing or is not an array.
 ---
-$jsonArrayCount returns the number of elements in the JSON array found at the given path, or `0` if the value is missing or is not an array. The path is given as separate arguments (one per level), not with dot notation: `$fn[user;premium]` targets `user` then `premium`. A numeric segment selects an element when the current value is an array. Empty segments are ignored; with no argument, the whole document is targeted. This is useful for pagination, boundary checks, conditional logic based on array size, or displaying counts to users. For iteration over all elements, prefer $jsonForEach.
+$jsonArrayCount returns the number of elements of the JSON array found at the given path, or `0` if the value is missing or is not an array. It never modifies the document.
+
+## Parameters
+
+The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. With no argument, the whole document is targeted (so the result is `0` unless the document itself is an array).
 
 ## Examples
 
@@ -19,3 +23,5 @@ $title[Inventory Item Count]
 $description[You have **$jsonArrayCount[items]** items in your bag.]
 $color[#5865F2]
 ```
+
+Use `$jsonForEach` to iterate over all the elements.

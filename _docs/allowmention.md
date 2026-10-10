@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $allowMention
 
-Enables mentions in the response. When replying, the user will be explicitly pinged/mentioned.
+Accepted for compatibility. In the engine it does nothing.
 
 ## Syntax
 
@@ -16,41 +16,28 @@ $allowMention
 
 ## Description
 
-`$allowMention` is a **flag** (without arguments) used before `$sendMessage`, generally in combination with `$reply`. It explicitly enables the mention/ping of the user in a response.
+`$allowMention` takes no argument (passing one is an error) and returns an empty string. The engine registers it as a no-op: it does not change the mentions of the message, it does not add a ping to `$reply`, and it does not cancel `$noMention`.
 
-Although the default behavior of `$reply` already includes a ping, `$allowMention` allows making the intent explicit and overriding any default configurations.
+To control which mentions can notify, use:
+
+| Function | Effect |
+|------|-------|
+| `$noMention` | Disables all mention notifications (users and roles) |
+| `$allowUserMentions[(userID;...)]` | Only the listed user IDs can be pinged (none if no argument) |
+| `$allowRoleMentions[(roleID;...)]` | Only the listed role IDs can be pinged (none if no argument) |
 
 ## Examples
 
-### Response with explicit ping
+### Harmless call
 
 ```bdfd
-$reply
 $allowMention
 $sendMessage[Hey $username, look at this!]
 ```
 
-### In an interaction
-
-```bdfd
-$if[$customID==btn_alert]
-  $reply
-  $allowMention
-  $sendMessage[⚠️ Important alert for you!]
-$endif
-```
-
-## Comparison
-
-| Flag | Effect |
-|------|-------|
-| *(none)* | Default behavior |
-| `$noMention` | Disables all mentions |
-| `$allowMention` | Enables mentions (explicit) |
+The message is sent exactly as if `$allowMention` were absent.
 
 ## Notes
 
-- `$allowMention` enables the pinging of the user in a response.
-- Useful for making the intent explicit in the code.
-- The flag must be placed before `$sendMessage`.
-- Used in conjunction with `$reply`.
+- Engine comment: `$message` returns the raw mention text, so there is nothing to disable.
+- It does not need to be placed before `$sendMessage` or combined with `$reply`.

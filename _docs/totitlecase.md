@@ -9,7 +9,7 @@ description: Converts the first letter of each word to uppercase and the rest to
 ---
 # $toTitlecase — Convert to Title Case
 
-`$toTitlecase` capitalizes the first letter of every word and lowercases the rest. Words are delimitd by whitespace. This is useful for formatting names, titles, or display text.
+`$toTitlecase` capitalizes the first letter of every word and lowercases the rest. Words are delimited by the **space character** only. This is useful for formatting names, titles, or display text.
 
 ## Syntax
 
@@ -59,9 +59,11 @@ Transforms `"new york"` → `"New York"`, `"LOS ANGELES"` → `"Los Angeles"`.
 
 ## Important Notes
 
-- **Word boundaries**: Words are separated by whitespace. Punctuation attached to words may affect capitalization.
+- **Word boundaries**: the text is cut only at the space character (`U+0020`). A hyphen, an apostrophe, a tab or a line break does not start a new word: `$toTitlecase[hello-world o'neil]` → `Hello-world O'neil`, and in a two-line text only the first word of the whole text is capitalized.
+- Consecutive spaces are kept as they are.
 - **All subsequent letters are lowered**: `"mCDONALD"` → `"Mcdonald"`. For proper name casing, additional logic may be needed.
-- **ASCII only**: Non-ASCII character behavior depends on the BDFD runtime.
+- **Accented letters** are converted too: `$toTitlecase[école élève]` → `École Élève`.
+- Exactly one argument is required; `$toTitlecase[]` returns an empty string.
 
 ## Examples
 
@@ -69,6 +71,6 @@ Transforms `"new york"` → `"New York"`, `"LOS ANGELES"` → `"Los Angeles"`.
 
 ```bdfd
 $title[Title Case Formatter]
-$description[Formatted title: **$toTitleCase[$message]**]
+$description[Formatted title: **$toTitlecase[$message]**]
 $color[#5865F2]
 ```

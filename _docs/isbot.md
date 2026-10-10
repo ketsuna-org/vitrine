@@ -23,12 +23,12 @@ $isBot
 - **Type**: String `"true"` or `"false"`
 - `"true"`: The account is a bot.
 - `"false"`: The account is a normal user.
+- An empty string if the host supplied neither the `author.isBot` nor the `user.isBot` context variable.
 
 ## Behavior
 
 - `$isBot` takes **no arguments**.
-- Detection is based on the `bot` property of the Discord user object.
-- Webhooks return `"true"` in certain contexts.
+- The engine does not query Discord: it returns the text of the `author.isBot` context variable, or else of `user.isBot`, as supplied by the host. Whether webhooks count as bots depends on the host.
 
 ## Examples
 
@@ -65,4 +65,4 @@ $endif
 
 - Very useful for preventing bots from executing certain commands (anti-looping).
 - Typically used with `$stop` to silently ignore executions triggered by other bots.
-- `$isBot` is case-insensitive in comparisons (`==true` / `==True` / `==TRUE`).
+- Comparisons with `==` are case-sensitive: compare with lowercase `true`.

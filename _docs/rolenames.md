@@ -49,4 +49,3 @@ $sendMessage[The server has $roleCount roles: $roleNames]
 - The `@everyone` role is generally included in the list.
 - Roles are listed in the order returned by Discord; no hierarchy sort is applied.
 - A role name containing a comma cannot be told apart from the separator.
-- To get IDs instead of names, use a different approach.

@@ -20,19 +20,17 @@ $unBan
 
 ## Parameters
 
-| Parameter | Description |
-|---|---|
-This function takes no argument. It reads the text of the message that triggered the command (`message.content`) and looks for a banned user whose username equals it (case-insensitive). An error is raised if that text is empty. To unban by ID, use `$unBanID[]`.
+This function takes no argument (a bracket form `$unBan[...]` is rejected). It reads the text of the message that triggered the command (`message.content`; for a prefix command, the arguments after the command name joined by spaces, i.e. what `$message` returns) and looks for a banned user whose username equals it (case-insensitive, full ban list searched). To unban by ID, use `$unBanID[]`.
 
 ## Return Value
 
 - **Type**: String (empty)
 - An empty string if the unban is successful.
-- An error is raised if no banned user matches or if the bot lacks permissions.
+- An error is raised if the text is empty (`A banned username is required.`), if no banned user matches (`Banned user not found`), or if the bot lacks the `Ban Members` permission.
 
 ## Behavior
 
-- The bot must have the `BAN_MEMBERS` permission.
+- The bot must have the `Ban Members` permission.
 - The user must be in the server's ban list.
 - The ban list is searched by username; for an ID, use `$unBanID[]`.
 

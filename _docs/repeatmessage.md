@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: repeatMessage
 syntax: $repeatMessage[count;message]
-description: Sends a message multiple times. The message is repeated 'count' times in the channel.
+description: Returns the given text repeated count times (0 to 10), with nothing between the copies. It does not send anything by itself.
 ---
-# $repeatMessage — Repeat a Message
+# $repeatMessage — Repeat a Text
 
-`$repeatMessage` sends the same message to the channel a specified number of times. It is an action function — it performs the sends directly without producing an inline return value.
+`$repeatMessage` returns the `message` text repeated `count` times, concatenated one after the other. It is an ordinary text function: it **sends nothing** on its own, the result becomes part of the text where the call is written.
 
 ## Syntax
 
@@ -19,55 +19,51 @@ $repeatMessage[count;message]
 
 ## Parameters
 
-- **count** *(integer, required)* — How many times to send. Must be a positive integer.
-- **message** *(string, required)* — The content to send. Can include embeds, variables, and other functions.
+- **count** *(integer, required)* — How many times the text is repeated. An integer from `0` to `10` (surrounding spaces are ignored). A non-integer raises "Expected an integer in argument 1."; a value outside `0..10` raises "Repeat amount must be between 0 and 10.".
+- **message** *(string, required)* — The text to repeat. It is evaluated once and not trimmed.
 
 ## Behavior
 
-- **Action-only**: This function does not return a value. It sends messages to the channel as a side effect.
-- Each repetition is sent as a separate Discord message.
-- The function blocks until all messages are sent (subject to Discord rate limits).
+- Returns `message` concatenated `count` times, without separator or line break: `$repeatMessage[3;Hello]` → `HelloHelloHello`.
+- `count` of `0` gives an empty string.
+- Exactly two arguments are required.
+- Because it is only a text function, the repeated text is sent in the **same** message as the rest of the script output; it does not create several Discord messages.
 
 ## Usage
 
 ```
-$repeatMessage[3;Hello World!]
-```
-
-Sends:
-```
-Hello World!
-Hello World!
-Hello World!
+$repeatMessage[3;Hello]    → "HelloHelloHello"
+$repeatMessage[2;ab ]      → "ab ab "
+$repeatMessage[0;x]        → "" (empty)
 ```
 
 ## Common Patterns
 
-### Spam Command (Use with Caution)
+### Repeated Pattern
 
-```
-$repeatMessage[5;$username sent a message!]
-```
-
-### Announcement Emphasis
-
-```
-$repeatMessage[3;$sendMessage[🎉 ATTENTION EVERYONE! 🎉]]
+```bdfd
+$repeatMessage[5;🎉]
 ```
 
-### Testing
+### Visual Separator
 
+```bdfd
+$description[$repeatMessage[10;=-]]
 ```
-$repeatMessage[10;Test message $getTextSplitIndex]
+
+### Repeat With a Line Break
+
+To put each copy on its own line, include the line break in the text:
+
+```bdfd
+$repeatMessage[3;Hello
+]
 ```
 
 ## Important Notes
 
-- **Rate Limits**: Discord enforces rate limits on message sending (typically 5 messages per 5 seconds per channel). Sending too many messages too quickly may cause the bot to be rate-limited or the command to fail. Use `$repeatMessage` sparingly.
-- **No return value**: Do not use `$repeatMessage` inside expressions or as arguments to other functions expecting a value.
-- **Best for small counts**: Stick to small `count` values (1–5). For larger counts, consider sending a single message with repeated content using `$joinSplitText` or a loop.
-- **Discord ToS**: Excessive message spamming may violate Discord's Terms of Service. Use responsibly.
-- **Channel context**: Messages are sent to the channel where the command was triggered.
+- **Maximum 10**: for more copies, nest calls (`$repeatMessage[10;$repeatMessage[10;x]]` gives 100).
+- **Evaluated once**: functions inside `message` are executed once, then the result is copied: `$repeatMessage[3;$sendMessage[x]]` sends one message `x` (not three) and returns an empty text.
 
 ## Examples
 
@@ -75,6 +71,6 @@ $repeatMessage[10;Test message $getTextSplitIndex]
 
 ```bdfd
 $title[Repeating Announcement]
-$description[$repeatMessage[Echo! ;3]]
+$description[$repeatMessage[3;Echo! ]]
 $color[#5865F2]
 ```

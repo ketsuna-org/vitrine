@@ -56,7 +56,6 @@ $endif
 
 ## Notes
 
-- `$membersCount` and `$memberCount` are interchangeable.
-- Includes both humans and bots.
+- `$membersCount` and `$memberCount` use the same implementation: the number of members obtained by listing the server's members from Discord (1000 per request), bots included.
 - To get the count of human users only, use `$sub[$membersCount;$botCount]`.
 

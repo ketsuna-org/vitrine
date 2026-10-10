@@ -26,7 +26,7 @@ None.
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the triggering message. |
+| `string` | The value of the `message.id` context variable supplied by the host (the ID of the triggering message), or an empty string if the host supplied none. |
 
 ## Examples
 
@@ -57,7 +57,6 @@ $sendMessage[Message processed and deleted.]
 
 ## Notes
 
-- The ID is unique and allows you to precisely identify a message.
-- Can be used with `$deleteMessage`, `$editMessage`, or `$messageURL`.
-- In interactions (buttons), `$messageID` returns the ID of the original message.
+- Can be used with `$deleteMessage` and `$editMessage`.
+- `$messageID` takes no argument.
 

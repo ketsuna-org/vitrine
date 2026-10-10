@@ -22,11 +22,11 @@ $allowUserMentions[(userID;...)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:--------:|
-| `userID` | A Discord user ID allowed to be pinged (repeatable). Empty values are ignored. | No |
+| `userID` | A Discord user ID allowed to be pinged (repeatable). Surrounding spaces are removed and empty values are ignored. | No |
 
 ## Return value
 
-None. The restriction applies to the message being built; an invalid ID raises an error.
+None (empty string). The restriction is stored on the message being built. A value that is not a positive number raises the error `Invalid Discord ID.`
 
 ## Examples
 
@@ -83,7 +83,9 @@ $endif
 
 ## Notes
 
-- Without any of these functions, the message can ping the users and roles it mentions.
+- Without any of these functions (and without `$noMention`), the engine adds no mention restriction to the message.
+- `$noMention` replaces the whole mention setting with "ping nobody"; a later `$allowUserMentions[userID]` restores the listed users only.
+- The setting applies to the message being built, so call it before the `$sendMessage` that sends it.
 - Combine `$allowUserMentions` and `$allowRoleMentions` to control users and roles independently.
 - To send a completely silent message, use `$noMention`.
 - Respect your server rules regarding excessive pinging.

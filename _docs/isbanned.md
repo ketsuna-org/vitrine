@@ -10,7 +10,7 @@ description: Checks if a user is banned from the current server.
 
 # $isBanned
 
-The function `$isBanned[userID]` **checks if a user is currently banned** from the server where the command was executed. The bot must have the `BanMembers` permission.
+The function `$isBanned[userID]` **checks if a user is currently banned** from the server where the command was executed. The bot must have the `BanMembers` permission (or Administrator).
 
 ## Syntax
 
@@ -22,19 +22,19 @@ $isBanned[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user to check. |
+| `userID` | Required, exactly one argument. A positive integer ID; anything else raises the error "Invalid user ID.". |
 
 ## Return Value
 
 - **Type**: Boolean
-- `true` if the user is banned from the server.
-- `false` if the user is not banned or does not exist.
+- `"true"` if the user is banned from the server.
+- `"false"` if Discord answers that there is no ban for this ID (including a user who does not exist).
 
 ## Behavior
 
-- The bot needs the `BanMembers` permission to consult the ban list.
-- Works even if the user has left the server.
-- Checks only the current server.
+- The bot needs the `BanMembers` permission (or Administrator) to consult the ban list. Without it the command stops with an error message ("I do not have permission to read bans...") instead of returning `false`.
+- The check is a lookup of a ban by user ID, so it does not require the user to be a member of the server.
+- Checks only the current server, and needs a server context (outside a server the call fails with "Missing guildId").
 
 ## Examples
 
@@ -76,7 +76,7 @@ $endif
 
 ## Notes
 
-- The bot must have the `BanMembers` permission for this function to return a reliable result.
+- Without the `BanMembers` permission the function fails instead of returning a result.
 - To get the ban reason, use `$getBanReason[]`.
-- To ban or unban, use `$ban[]` or `$unban[]`.
+- To ban or unban, use `$ban[]`, `$banID[]`, `$unban` or `$unbanID[]`.
 - Works only within a server context (not in DMs).

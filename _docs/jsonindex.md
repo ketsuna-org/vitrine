@@ -5,9 +5,14 @@ translation_key: docs
 category: "HTTP & JSON"
 function_name: jsonIndex
 syntax: $jsonIndex[]
-description: Returns the current iteration index during a $jsonForEach loop. Zero-based — starts at 0 for the first element. Must be called inside a $jsonForEach block.
+description: Returns the zero-based index of the current element during a $jsonForEach loop; an empty string outside a loop.
 ---
-$jsonIndex returns the current iteration index (0-based) when used inside a $jsonForEach block. This is useful for numbered lists, conditional logic based on position (e.g., treating the first or last element differently), or limiting output to the first N items. Outside of $jsonForEach, it returns 0.
+$jsonIndex returns the current iteration index (starting at `0`) inside a `$jsonForEach` block. It takes no argument.
+
+## Behavior
+
+- Inside `$jsonForEach` it is `0` for the first element, `1` for the second, and so on. This is the position in the loop, also for objects (use `$jsonKey` for the key).
+- **Outside** a `$jsonForEach` block it returns an empty string (not `0`).
 
 ## Examples
 

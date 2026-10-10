@@ -22,8 +22,8 @@ $setNickname[nickname;(userID)]
 
 | Parameter | Description |
 |---|---|
-| `nickname` | The new nickname to apply. Required. Leave empty to reset the nickname. |
-| `userID` | Optional. The ID of the target user. If omitted, the mentioned user is targeted. |
+| `nickname` | The new nickname to apply. Required; at most 32 characters (a longer value raises an error). An empty value is sent as an empty nickname (the Discord nickname is cleared). |
+| `userID` | Optional. The ID of the target user. If omitted, the command author is targeted (not a mentioned user). An empty or non-numeric ID raises `Missing or invalid user ID.` |
 
 ## Return Value
 
@@ -48,12 +48,8 @@ $sendMessage[Nickname of <@$mentioned[1]> reset.]
 ### Moderation command
 
 ```bdfd
-$if[$argCount<1]
-  $sendMessage[Usage: !nick <@mention> <new nickname>]
-  $stop
-$endif
-
-$setNickname[$replaceText[$message;-;$mentioned[1];];$mentioned[1]]
+$onlyIf[$mentioned[1]!=;Usage: !nick @member new nickname]
+$setNickname[$message[>1];$mentioned[1]]
 $sendMessage[✅ Nickname modified.]
 ```
 
@@ -67,6 +63,7 @@ $sendMessage[Formatted nickname applied.]
 ## Notes
 
 - The bot must have the `Manage Nicknames` permission.
-- The bot cannot modify the nickname of a user with a higher role than its own.
+- The nickname is rejected by the engine if it exceeds 32 characters.
+- The bot needs `Manage Nicknames`; if Discord refuses the change (for example a target above the bot's highest role), an error is raised.
 - To change the global username of the bot, use `$changeUsername`.
-- Leaving `nickname` empty resets the nickname to the default username.
+- An empty `nickname` clears the member's nickname.

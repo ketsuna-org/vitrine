@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $noMention
 
-Disables user mentions in the reply. When replying to a message, the user will not be pinged/mentioned.
+Disables mention notifications in the message: nothing is pinged (users and roles).
 
 ## Syntax
 
@@ -16,40 +16,44 @@ $noMention
 
 ## Description
 
-`$noMention` is a **flag** (without arguments) that is used before `$sendMessage`, generally in combination with `$reply`. It prevents pinging/mentioning the user in a reply, which is useful for silent replies.
+`$noMention` takes no argument (passing one is an error). It sets the allowed mentions of the message being built to "none" (`parse: []`): mentions such as `<@userId>` or `<@&roleId>` are displayed but nobody is notified.
 
-By default, `$reply` pings the author of the target message. `$noMention` disables this behavior.
+The setting is stored on the pending state of the command and is applied to:
+
+- the command's main response (text, embeds and components built by the command);
+- the messages sent with `$sendMessage[]` after it, until the main response has been sent.
+
+`$sendEmbedMessage[]` does not use this setting: it first sends the pending main response, then sends its own message without any mention restriction.
+
+It replaces any earlier `$allowUserMentions[]` / `$allowRoleMentions[]` restriction. Those functions called afterwards add their listed IDs back on top of it.
 
 ## Examples
 
-### Silent Reply
+### Silent reply
 
 ```bdfd
 $reply
 $noMention
-$sendMessage[Here is your reply, without a notification]
+Here is your reply, without a notification
 ```
 
-### In an interaction
+### Silent message
 
 ```bdfd
-$if[$customID==btn_silent]
-  $reply
-  $noMention
-  $sendMessage[Action performed silently]
-$endif
+$noMention
+$sendMessage[Hello <@$authorID>, nobody is pinged by this message.]
 ```
 
 ## Comparison
 
-| Flag | Effect |
+| Function | Effect |
 |------|-------|
-| *(none)* | Default behavior |
-| `$noMention` | Disables all user mentions |
-| `$allowMention` | Enables user mentions (explicit) |
+| *(none)* | The engine adds no mention restriction |
+| `$noMention` | Nobody is pinged |
+| `$allowUserMentions[(userID;...)]` | Only the listed users can be pinged |
+| `$allowRoleMentions[(roleID;...)]` | Only the listed roles can be pinged |
+| `$allowMention` | Accepted but does nothing |
 
 ## Notes
 
-- `$noMention` disables user pings, not other types of mentions (like `@everyone` or `@role`).
-- Particularly useful with `$reply` for non-intrusive responses.
-- Flag should be placed before `$sendMessage`.
+- Place it before the `$sendMessage[]` it should affect; the main response is covered wherever it is placed.

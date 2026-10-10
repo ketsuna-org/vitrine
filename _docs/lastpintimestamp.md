@@ -52,5 +52,5 @@ $endif
 
 - The timestamp is in **seconds** (Unix time), directly usable in Discord `<t:...>` tags.
 - Returns an empty string (`""`) if no message is pinned.
-- Useful for checking pinning activity in a channel.
+- A channel that cannot hold messages raises `Channel does not support messages.`
 

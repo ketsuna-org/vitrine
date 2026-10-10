@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botName
 syntax: $botName
-description: Returns the username of the bot.
+description: Returns the username of the bot (`Bot` when the context does not provide it).
 ---
 
 # $botName
 
-The `$botName` function **returns the current username of the bot** as it appears on Discord.
+The `$botName` function **returns the username of the bot** as known to the command context.
 
 ## Syntax
 
@@ -20,18 +20,18 @@ $botName
 
 ## Parameters
 
-None.
+None (passing one is an error).
 
 ## Return value
 
 - **Type**: String
-- The username of the bot (e.g., `MySuperBot`).
+- The username of the bot (e.g., `MySuperBot`), read from the context variable `bot.username` (filled from the bot account known to the gateway cache), otherwise `bot.name`.
+- If neither is available, the text `Bot`.
 
 ## Behavior
 
 - Returns the username of the bot, not the server display name (nickname).
-- The name is the one configured in the Discord Developer Portal.
-- Updates automatically if the bot is renamed.
+- No request is made to Discord by the function itself.
 
 ## Examples
 
@@ -68,7 +68,6 @@ $sendMessage[Hello! I am $botName, a versatile bot created with BDFD. 💪]
 
 ## Notes
 
-- `$botName` is read-only.
-- To change the name of the bot, use `$changeUsername[]`.
+- `$botName` is read-only. (`$changeUsername[]` does not rename the bot: it changes the server nickname of a user.)
 - To get the ID of the bot, use `$botID`.
 - For the avatar, use `$userAvatar[$botID]`.

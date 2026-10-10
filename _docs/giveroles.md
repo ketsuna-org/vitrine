@@ -58,7 +58,7 @@ $sendMessage[Welcome $userName! Default roles assigned.]
 
 ## Notes
 
-- The bot must have the `ManageRoles` permission.
+- The bot must have the `ManageRoles` permission; each role must be below the bot's highest role, and `@everyone` and managed roles cannot be assigned.
 - The roles are separated by `;` in the syntax.
 - To assign a single role, `$giveRole` is simpler.
 - To replace all existing roles, use `$setUserRoles`.

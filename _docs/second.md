@@ -5,14 +5,12 @@ translation_key: docs
 category: "Date & Time"
 function_name: second
 syntax: $second
-description: Returns the current second (0 to 59). Resolved at runtime.
+description: Returns the current second (0 to 59), in UTC or in the timezone set with $time.
 ---
 
 # $second[]
 
 The function `$second[]` returns the current second (from 0 to 59).
-
-> **Important:** This function uses the special identifier `((second))` which is resolved at **runtime**.
 
 ## Syntax
 
@@ -20,11 +18,11 @@ The function `$second[]` returns the current second (from 0 to 59).
 $second
 ```
 
-> **Note:** This function does not take any parameters.
+> **Note:** This function does not take any parameters (passing one is an error).
 
 ## Return Value
 
-A number between 0 and 59 representing the current second.
+A number between 0 and 59 representing the current second, with no leading zero (for example `5`, not `05`).
 
 ## Examples
 
@@ -50,4 +48,4 @@ $footer[Updated at each execution]
 
 ## Notes
 
-- Use `$time[]` to get the formatted time `HH:MM:SS` directly.
+- The value is read in UTC unless a timezone was set earlier with `$time[timezone]`.

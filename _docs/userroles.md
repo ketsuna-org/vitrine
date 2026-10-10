@@ -31,6 +31,8 @@ $userRoles[userID]
 - **Type**: String
 - The names of the user's roles, separated by line breaks (`\n`).
 - Role IDs that do not match a role of the server are omitted.
+- The names follow the order of the member's role list as returned by Discord; they are not sorted by server hierarchy.
+- The user must be a member of the current server (the member lookup is done in that server).
 
 ## Examples
 

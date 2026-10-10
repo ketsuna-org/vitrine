@@ -7,7 +7,7 @@ function_name: pauseMusic
 syntax: $pauseMusic[]
 description: Pauses the current music playback
 ---
-Pauses the currently playing track. The track can be resumed later with $resumeMusic. If no track is playing, this function has no effect. Use $lavalinkIsPaused to check the current pause state.
+Pauses the player of the server. The track can be resumed later with $resumeMusic. Takes no argument and returns an empty string. If the bot has no active player, nothing happens (no error). Requires a server and a configured music (Lavalink) service, otherwise an error is raised. Use $lavalinkIsPaused to check the current pause state.
 
 ## Examples
 

@@ -37,7 +37,7 @@ $customEmoji[name]
 
 ## Examples
 
-## Simple display
+### Simple display
 
 ```bdfd
 $title[Welcome!]
@@ -81,4 +81,4 @@ $endif Verified User
 
 - If no emoji has this name, the function returns an empty string.
 - Emojis from other servers are found only if the bot is in the server hosting them.
-- To get the markup from an emoji ID, see the other emoji functions (`$emojiName`, `$isEmojiAnimated`).
+- Emoji functions that start from an ID are `$emojiName[emojiID]` and `$isEmojiAnimated[emojiID]`.

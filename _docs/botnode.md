@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botNode
 syntax: $botNode
-description: Returns the identifier of the node (runner) on which the bot is executed.
+description: Returns the node identifier supplied by the host in the context (`bot.node`), or `1` when none is supplied.
 ---
 
 # $botNode
 
-The `$botNode` function **returns the identifier of the node (runner)** on which the BDFD bot is currently running. Each bot is assigned to a specific runner of the BDFD infrastructure.
+The `$botNode` function returns the node identifier that the host provides to the command in the context variable `bot.node`.
 
 ## Syntax
 
@@ -20,18 +20,17 @@ $botNode
 
 ## Parameters
 
-None.
+None (passing one is an error).
 
 ## Return value
 
 - **Type**: String
-- The identifier of the node (e.g., `node-14`, `us-east-3`).
+- The value of `bot.node`.
+- If the context does not provide it, the text `1`. The engine itself does not set this variable, so it is normally `1`.
 
 ## Behavior
 
-- The node is assigned automatically by BDFD.
-- It can change during a migration or maintenance.
-- Useful for diagnostics and technical support.
+- No request is made to Discord: the value only comes from the context.
 
 ## Examples
 
@@ -77,7 +76,5 @@ $footer[Node: $botNode | $nodeVersion]
 
 ## Notes
 
-- The node is managed automatically by BDFD.
-- In case of performance issues, provide your `$botNode` to BDFD support.
 - For the version of the runtime, use `$nodeVersion`.
 - For the script language, use `$scriptLanguage`.

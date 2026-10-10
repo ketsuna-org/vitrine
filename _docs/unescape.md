@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: unEscape
 syntax: $unEscape[text]
-description: Converts the escape sequences in a string into their real characters. For example, \n becomes a real line break.
+description: Returns its text unchanged. Its only effect is inside $randomText, where semicolons in the text become option separators.
 ---
 # $unEscape
 
-The function `$unEscape[]` **converts escape sequences** (`\n`, `\t`, `\\`, etc.) into their real characters.
+The function `$unEscape[]` returns the text it receives **unchanged**. It does **not** convert `\n`, `\t` or any other escape sequence into a real character.
 
 ## Syntax
 
@@ -21,53 +21,39 @@ $unEscape[text]
 
 | Parameter | Description |
 |---|---|
-| `text` | String containing escape sequences to resolve. |
+| `text` | The text to return. Required, exactly one argument; two or more arguments are refused ("Invalid argument count"). |
 
 ## Return Value
 
 - **Type**: String
-- The text with escape sequences resolved.
+- The same text as the argument: `$unEscape[abc]` → `abc`, `$unEscape[]` → empty.
 
-## Supported Sequences
+## Behavior
 
-| Sequence | Result |
-|---|---|
-| `\n` | Line break |
-| `\t` | Tab |
-| `\\` | Backslash |
-| `\"` | Double quote |
-| `\'` | Single quote |
+- Outside `$randomText[]`, `$unEscape[x]` is the same as `x`.
+- Inside `$randomText[]`, when an argument contains an `$unEscape[]` call, every `;` in the text returned by `$unEscape[]` is treated as an option separator. Text written next to the call stays attached to the neighbouring option: `$randomText[x$unEscape[a\;b]y]` chooses between `xa` and `by`.
+- Other functions are not affected: the text they receive from `$unEscape[]` keeps its semicolons.
+- The `\;`, `\[`, `\]` and `\$` sequences are handled by the script parser on literal text (the backslash is removed and the character is kept), whether or not `$unEscape[]` is used. `\n` is not an escape sequence of the engine: it stays as the two characters `\` and `n`.
 
 ## Examples
 
-### Multi-line Text
+### Several options in one text (with $randomText)
 
 ```bdfd
-$sendMessage[$unEscape[Line 1\nLine 2\nLine 3]]
+$randomText[$unEscape[red\;green\;blue]]
 ```
 
-### Message Formatted from a Variable
+This chooses randomly between `red`, `green` and `blue`, for example when the list of options comes from a single string.
+
+### Plain pass-through
 
 ```bdfd
-$var[data;Name: John\nAge: 25\nCity: Paris]
-$sendMessage[$unEscape[$var[data]]]
+$sendMessage[$unEscape[Hello $username]]
 ```
 
-### Code with Quotes
-
-```bdfd
-$sendMessage[$unEscape[He said: \"Hello!\" ]]
-```
-
-### Embed with Formatted Description
-
-```bdfd
-$title[Information]
-$description[$unEscape[**User:** $username\n**ID:** $authorID\n**Role:** $getRole[$authorID;1]]]
-```
+This sends the same text as `$sendMessage[Hello $username]`.
 
 ## Notes
 
-- Do not confuse with `$disableSpecialEscaping` which disables BDFD interpretation.
-- Useful for formatting text stored in variables or databases.
-- To encode text for URLs, use `$urlEncode[]`.
+- `$disableSpecialEscaping` is accepted for compatibility but does nothing in this engine.
+- To encode or decode URL text, use `$url[]`.

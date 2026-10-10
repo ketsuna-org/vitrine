@@ -31,9 +31,10 @@ An empty string.
 
 ## Behavior
 
-- The bot must have the `MANAGE_CHANNELS` permission.
+- The bot must have the `Manage Channels` permission on each channel (plus `Manage Threads` for a thread); otherwise an error is raised.
+- Each ID must belong to a server channel; a channel that is not a guild channel raises an error.
 - Deletion is **irreversible**.
-- All IDs are validated first: if any ID is not a positive integer, the function raises "Invalid channel ID." and nothing is deleted.
+- All IDs are validated first: if any ID is not a positive integer, the function raises "Invalid channel ID." and nothing is deleted. The channels are then deleted one after the other; if one deletion fails, the error is raised and the following channels are not deleted.
 
 ## Examples
 
@@ -72,6 +73,4 @@ $sendMessage[Channels deleted.]
 ## Notes
 
 - **Irreversible action**: use with caution.
-- Deleted channels cannot be restored via the API.
-- For categories, deletion also deletes all child channels.
-- `$deleteChannelsByName[name1;name2;...]` matches channel names exactly (no wildcards) and raises "No matching channels found." if none match.
+- `$deleteChannelsByName[name1;name2;...]` matches channel names exactly (names are trimmed, no wildcards; an empty name raises "Channel name is required.") and raises "No matching channels found." if none match.

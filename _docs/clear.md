@@ -10,7 +10,7 @@ description: Deletes a specified number of messages in the channel.
 
 # $clear
 
-The `$clear` function **deletes a specified number of messages** in the current channel. This function is dedicated to bulk-deleting messages (moderation), not to be confused with the variable function `$clear` of the same name. The bot must have the `ManageMessages` permission.
+The `$clear` function **deletes a specified number of messages** in the current channel. The bot must have the `Manage Messages` and `Read Message History` permissions.
 
 ## Syntax
 
@@ -22,8 +22,8 @@ $clear[(amount);(userID);(removePinned)]
 
 | Parameter | Description |
 |---|---|
-| `amount` | Number of messages to delete (1-100). If written without brackets (`$clear`), the first argument of the command is used. An empty `$clear[]` is an error. Any other value raises the error `$clear amount must be between 1 and 100.` |
-| `userID` | Optional. Filter: only deletes messages from this user. Must be a positive ID when not empty. |
+| `amount` | Number of messages to delete (1-100). If written without brackets (`$clear`), the first argument of the command is used. An empty `$clear[]`, a non-number or a value outside 1-100 raises the error `$clear amount must be between 1 and 100.` |
+| `userID` | Optional. Filter: only deletes messages from this user. Must be a positive ID when not empty, otherwise `Invalid user ID.` is raised. |
 | `removePinned` | Optional. `"no"`, `"false"`, `"0"` or `"n"` to keep pinned messages. Any other value, including an empty one, deletes pinned messages too. Default behavior: pinned messages are deleted. |
 
 ## Return value
@@ -68,9 +68,10 @@ $sendMessage[10 messages deleted (pinned messages kept).]
 
 ## Notes
 
-- The bot must have the `ManageMessages` and `ReadMessageHistory` permissions.
-- Maximum 100 messages per call (Discord API limitation).
-- Messages older than 14 days cannot be deleted by the Discord API.
+- The bot must have the `Manage Messages` and `Read Message History` permissions in the server; otherwise an error is raised.
+- Maximum 100 messages per call (values outside 1-100 are rejected).
+- The most recent messages of the channel are examined (and filtered by `userID` / `removePinned`) until `amount` matching messages are found. The message that triggered the command is not excluded, so in a prefix command it counts as one of the messages.
+- Messages younger than 14 days are bulk-deleted; older ones, and a single leftover message, are deleted one at a time. A message that cannot be deleted is skipped without an error.
+- The channel must be a text channel, otherwise an error is raised.
 - Pinned messages are deleted unless `removePinned` is `"no"`, `"false"`, `"0"` or `"n"`.
 - To set `removePinned` without filtering by user, leave the `userID` field empty (e.g., `$clear[10;;no]`).
-- This `$clear` function is dedicated to moderation. To clear a variable, see `$clear` in the Variables category.

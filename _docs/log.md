@@ -4,48 +4,43 @@ title: $log[]
 translation_key: docs
 category: "Math & Text"
 function_name: log
-syntax: $log[value]
-description: Calculates the natural logarithm (base e) of a number.
+syntax: $log[message]
+description: Records a message in the execution log. It returns nothing and sends nothing to Discord.
 ---
 
 # $log[]
 
-The function `$log[]` calculates the **natural logarithm** (denoted as `ln`), which is the logarithm in base `e` (≈ 2.71828).
+The function `$log[]` hands a text message to the host's execution log. It is a debugging aid: it is **not** a mathematical function, and it has no relation to logarithms.
 
 ## Syntax
 
 ```
-$log[value]
+$log[message]
 ```
 
 ## Parameters
 
-| Parameter | Type   | Required | Description                                        |
-|-----------|--------|-------------|----------------------------------------------------|
-| `value`  | number | Yes         | The number whose logarithm to calculate. Must be > 0. |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `message` | text | Yes | The text to record. It is evaluated like any other argument. |
 
 ## Behavior
 
-- Returns the natural logarithm of the value as a decimal number (double precision).
-- `$log[1]` → `0` (because e^0 = 1).
-- `$log[e]` → `1` (because e^1 = e).
-- For `0` or negative numbers, the behavior is undefined (may return `-Infinity`, `NaN` or generate an error).
+- Takes exactly one argument; two or more arguments are rejected ("Invalid argument count").
+- Always returns an empty string, so it never adds anything to the message.
+- It does not send anything to the channel.
+- The message is only recorded when the host that runs the script provides a log collector (the command sandbox collects the messages in its list of logs). When no collector is provided, the call does nothing.
 
 ## Examples
 
-### Natural Logarithm Calculation
+### Record a value while debugging
 
 ```bdfd
-$title[Math: Natural Logarithm]
-$description[Logarithm of `1`: **$log[1]**]
-$addField[Log of 1000;$log[1000];yes]
-$addField[Log of 0.5;$log[0.5];yes]
-$color[#5865F2]
+$log[Command run by $username]
+Done!
 ```
+
 ## Notes
 
-- This is the **natural** logarithm (base e), not the base 10 logarithm.
-- For base 10 logarithm, use inside `$calculate[]`: `$calculate[log10(value)]`.
-- For a logarithm in an arbitrary base, use the change of base formula: `log_b(a) = ln(a) / ln(b)`, which translates to `$calculate[log(a) / log(b)]`.
-- The inverse function is exponential: `$calculate[exp(value)]`.
-- The precision matches that of a Java `double` (~15 significant digits).
+- There is no logarithm function: `$calculate[]` does not support `log`, `ln` or `log10` either.
+- See also `$logQuota` for the remaining log quota.

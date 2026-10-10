@@ -59,7 +59,7 @@ If `$stop` is called inside a `$try` block, it halts execution **before** the `$
 
 ## Common Pitfalls
 
-- Forgetting `$endTry` produces a parse error.
+- Forgetting `$endTry` produces a parse error ("Missing $endtry.").
 - Placing `$endTry` before `$catch` — the parser expects `$catch` before `$endTry`.
 - Using `$error` outside `$catch` — it only holds a value once an error has been caught.
 - Using arguments on the delimiters — `$catch` and `$endTry` accept none, and a `$try` with arguments is not a block.

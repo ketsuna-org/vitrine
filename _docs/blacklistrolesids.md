@@ -1,58 +1,67 @@
 ---
 layout: doc
+title: $blacklistRolesIDs
 translation_key: docs
 category: "Moderation"
+function_name: blacklistRolesIDs
+syntax: $blacklistRolesIDs[roleID1;roleID2;...;errorMessage]
+description: Guard function that blacklists roles by ID. If the user has any of the roles, the command is interrupted.
 ---
 
 # $blacklistRolesIDs
 
-Adds role IDs to the command's blacklist. Users with any of the specified roles will not be able to execute the command.
+The guard function `$blacklistRolesIDs` blocks the execution of the command for users who have at least one of the listed roles, identified by their **ID**. It is the ID variant of `$blacklistRoles`, which compares role names.
 
 ## Syntax
 
-```bdfd
-$blacklistRolesIDs[roleIds;(errorMessage)]
+```
+$blacklistRolesIDs[roleID1;roleID2;...;errorMessage]
 ```
 
 ## Parameters
 
-| Parameter | Description | Required |
-|-----------|-------------|:-----------:|
-| `roleIds` | IDs of the roles to blacklist, separated by `;` | Yes |
-| `errorMessage` | Custom error message sent when a user has a blacklisted role | No |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `roleID1;roleID2;...` | Snowflake[] | The IDs of the blacklisted roles. At least one value is required (empty values are ignored). |
+| `errorMessage` | String | **Required**, always the **last** argument. Message returned when the guard stops the command; it replaces the output of the script. Leave it empty (`;` at the end) for a silent stop. |
 
-## Description
+The function therefore needs at least 2 arguments. With a single argument, the call is rejected ("Invalid argument count").
 
-`$blacklistRolesIDs` is a **guard function** that blocks command execution if the user has at least one of the specified roles. The check is performed with an **OR** condition: a single match among the listed roles is enough to block the user.
+## Behavior
 
-The last argument is the error message sent when the user is blocked, so at least one role ID followed by a message is required.
+- Compares the values with the **ID** of each role of the user (each non-empty value must be a valid Discord ID, otherwise an error "Invalid Discord ID." is raised). The `@everyone` role (whose ID is the server ID) counts as a role of the user, so blacklisting the server ID blocks everyone.
+- The match is an **OR**: a single matching role is enough to block the user.
+- If the user has at least one of the roles, the script is stopped and the error message is used as output.
+- If the user has none (or all values are empty), the command continues.
+
+## Return Value
+
+Returns an empty string when the command continues. When the guard stops the command, the script is stopped and the error message (last argument) is used as its output.
 
 ## Examples
 
-### Default error
+### Block one role
 
 ```bdfd
 $blacklistRolesIDs[123456789012345678;❌ You are not allowed to use this command.]
 $sendMessage[Command executed successfully.]
 ```
 
-### Multiple roles with custom message
+### Multiple roles
 
 ```bdfd
 $blacklistRolesIDs[111111111111111111;222222222222222222;333333333333333333;❌ You are not allowed to use this command.]
 $sendMessage[Processing...]
 ```
 
-### Variable-based blacklist
+### Silent stop
 
 ```bdfd
-$blacklistRolesIDs[$getServerVar[blacklistedRoles];⛔ Access denied.]
+$blacklistRolesIDs[123456789012345678;]
 $sendMessage[Done.]
 ```
 
 ## Notes
 
-- Uses an **OR** logic: the user is blocked if they have **any** of the listed roles.
-- Role IDs must be valid Discord snowflakes (18-19 digits).
-- To whitelist roles, use `$onlyForRoleIDs`.
-- For easier maintenance, store blacklisted role IDs in server variables.
+- To whitelist roles by ID, use `$onlyForRoleIDs`.
+- To compare role names instead, use `$blacklistRoles`.

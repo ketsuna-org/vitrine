@@ -4,71 +4,58 @@ title: $allowRoleMentions[]
 translation_key: docs
 category: "Embed & Message"
 function_name: allowRoleMentions
-syntax: $allowRoleMentions
-description: Allows role mentions in the current message. Without this call, mentioning roles in the message content will not notify the members.
+syntax: $allowRoleMentions[(roleID;...)]
+description: Restricts which roles can be pinged by the message to the listed role IDs. Without any ID, no role is pinged.
 ---
 
-# $allowRoleMentions[] — Allow Role Mentions
+# $allowRoleMentions[(roleID;...)] — Restrict Role Mentions
 
-`$allowRoleMentions[]` enables member notifications when a role is mentioned in the message. Without this call, role tags like `<@&roleId>` are displayed but do **not** trigger a notification.
+By default the message can ping every role it mentions. `$allowRoleMentions` limits role pings to the IDs you list. Called without arguments, it allows **no** role ping: `<@&roleId>` is displayed but nobody is notified.
 
 ## Syntax
 
 ```
-$allowRoleMentions
+$allowRoleMentions[(roleID;...)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description | Required |
+|-----------|-------------|:--------:|
+| `roleID` | A Discord role ID allowed to be pinged (repeatable). Surrounding spaces are removed and empty values are ignored. | No |
 
 ## Return value
 
-Enables role mentions for the next message sent. Roles mentioned in the content will notify their members.
+None (empty string). The restriction is stored on the message being built. A value that is not a positive number raises the error `Invalid Discord ID.`
 
 ## Examples
 
-### Announcement with ping
+### Announcement pinging only one role
 
 ```bdfd
-$allowRoleMentions
-$sendMessage[<@&$roleID[Moderator]> A report has been submitted, please check.]
+$allowRoleMentions[123456789012345678]
+$sendMessage[<@&123456789012345678> A report has been submitted, please check.]
 ```
 
-### Event notification
+### Mention a role without notifying
 
 ```bdfd
 $allowRoleMentions
-$title[🎉 Server Event]
-$description[<@&$roleID[Event_Ping]> A new event begins in 1 hour!]
-$addField[Details;Weekly tournament;yes]
-$addField[Reward;5000 gold coins;yes]
-$color[#F1C40F]
+$sendMessage[<@&123456789012345678> will not be notified by this message.]
 ```
 
-### Reminder with mention
+### Roles and users together
 
 ```bdfd
-$allowRoleMentions
-$sendMessage[⏰ <@&$roleID[Staff]> Staff meeting in 10 minutes!]
-```
-
-### Conditional message
-
-```bdfd
-$if[$var[important]==yes]
-$allowRoleMentions
-$sendMessage[<@&$roleID[Everyone_Important]> Critical alert!]
-$else
-$noMention
-$sendMessage[Minor update available]
-$endif
+$allowUserMentions[$authorID]
+$allowRoleMentions[123456789012345678]
+$sendMessage[<@$authorID> suggested an idea. <@&123456789012345678> please check.]
 ```
 
 ## Notes
 
-- Without `$allowRoleMentions[]`, mentioned roles appear as text but do not trigger a notification.
-- The effect only applies to the next message sent (via `$sendMessage` or other sending functions).
-- To explicitly disable all mentions, use `$noMention`.
+- Without `$allowRoleMentions[]` (and without `$noMention`), the message is sent without any mention restriction from the engine.
 - `$allowRoleMentions[]` only affects **role mentions**. For users, use `$allowUserMentions[]`.
-- Useful for important announcements while avoiding accidental pings in ordinary messages.
+- The two functions can be combined; each one restricts only its own kind of mention.
+- `$noMention` replaces the whole mention setting (users and roles) with "ping nobody". A later `$allowRoleMentions[roleID]` restores the listed roles only.
+- The setting applies to the message being built, so it must be called before the `$sendMessage` that sends it.

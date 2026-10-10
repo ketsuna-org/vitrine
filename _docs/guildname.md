@@ -4,7 +4,7 @@ title: $guildName[]
 translation_key: docs
 category: "Entity Info"
 function_name: guildName
-syntax: $guildName
+syntax: $guildName[(guildID)]
 description: Alias of $serverName. Returns the name of the Discord server.
 ---
 
@@ -15,17 +15,20 @@ description: Alias of $serverName. Returns the name of the Discord server.
 ## Syntax
 
 ```
-$guildName
+$guildName[(guildID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description |
+|---|---|
+| `guildID` | *(Optional)* The ID of a server. When omitted, the current server is used. When an argument is given it must be a positive integer, otherwise `Invalid guild ID.` is raised. |
 
 ## Return Value
 
 - **Type**: `string`
-- The current name of the server.
+- Without argument: the `guild.name` context variable supplied by the host if present, otherwise the name fetched from Discord for the current server.
+- With an ID: the name of that server. `Guild not found.` is raised if it cannot be fetched.
 
 ## Examples
 
@@ -62,6 +65,4 @@ $endif
 
 ## Notes
 
-- `$guildName[]` and `$serverName[]` are interchangeable.
-- The term "guild" comes from the Discord API (Discord API Guilds).
-- The name returned is always the current name, reflecting any recent change.
+- `$guildName` and `$serverName` use the same handler and are interchangeable.

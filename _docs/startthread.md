@@ -22,10 +22,10 @@ $startThread[name;channelID;messageID;(autoArchiveDuration);(returnID)]
 
 | Parameter | Description |
 |---|---|
-| `name` | Name of the thread (1 to 100 characters). |
-| `channelID` | ID of the parent channel (text or announcement channel). |
+| `name` | Name of the thread (1 to 100 characters, not all blank; otherwise `Thread name must contain 1 to 100 characters.`). |
+| `channelID` | ID of the parent channel (text or announcement channel; any other type raises `Threads require a text or announcement parent.`). |
 | `messageID` | ID of the source message. Can be left empty to create a thread without a source message (required for an announcement channel). |
-| `autoArchiveDuration` | Optional - Duration of inactivity before archiving, in minutes: 60, 1440 (24h), 4320 (3d), 10080 (7d). Default: 60. Any other value raises an error. |
+| `autoArchiveDuration` | Optional - Duration of inactivity before archiving, in minutes: 60, 1440 (24h), 4320 (3d), 10080 (7d). Default: 60. Empty means 60. Any other value raises `Invalid thread archive duration.` (or `Expected an integer.`). |
 | `returnID` | Optional - `yes` to return the ID of the created thread, `no` otherwise. Default: `no`. Any other value raises an error. |
 
 ## Return Value
@@ -37,7 +37,8 @@ $startThread[name;channelID;messageID;(autoArchiveDuration);(returnID)]
 ## Behavior
 
 - The parent channel must be a text channel or an announcement channel. An announcement channel requires a source message.
-- The bot must have the `CREATE_PUBLIC_THREADS` permission in the channel.
+- The bot must have `View Channel` and `Create Public Threads` in the parent channel; otherwise the error `Missing permissions for the thread operation.` is raised.
+- The third argument must be present, but may be empty. When it holds a message ID, the thread is created from that message.
 - The thread is always created as a public thread.
 
 ## Examples
@@ -63,5 +64,5 @@ $endif
 
 ## Notes
 
-- Archived threads can be unarchived with `$editThread[]`.
 - The name of the thread can be modified later with `$editThread[]`.
+- Adding members to the new thread is done with `$threadAddMember[]`.

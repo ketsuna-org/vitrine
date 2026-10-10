@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: splitText
 syntax: $splitText[index]
-description: Retrieves the element at the specified index from the most recent $textSpreads operation.
+description: Retrieves the element at the given 1-based index (or < for the first, > for the last) from the most recent $textSplit.
 ---
-# $splitText — Access Spreads Element
+# $splitText — Access a Split Element
 
-`$splitText` retrieves a single element from the array produced by the most recent `$textSplit` call. It is the primary way to access individual pieces of spreads text.
+`$splitText` retrieves a single element from the list produced by the most recent `$textSplit` call.
 
 ## Syntax
 
@@ -19,40 +19,35 @@ $splitText[index]
 
 ## Parameters
 
-- **index** *(integer, required)* — The zero-based position of the element to retrieve. Negative indices are supported: `-1` returns the last element, `-2` the second-to-last, and so on.
+- **index** *(required)* — The position of the element, **starting at 1**. Besides an integer, two selectors are accepted: `<` for the first element and `>` for the last one. Surrounding spaces are ignored. Any other value (text, empty) raises the error "Split index must be an integer, < or >.".
 
 ## Return Value
 
 - **Type**: `string`
-- Returns the text content of the element at the specified index.
-- Returns an **empty string** `""` if the index is out of bounds (too large or too small).
-- No error or warning is emitted for out-of-bounds access — it silently returns empty.
+- Returns the text of the element at the given position.
+- Returns an **empty string** if the index is `0`, negative or larger than the number of elements. No error is raised.
+- Returns an empty string if no `$textSplit` has been run yet.
 
 ## Usage
 
-`$splitText` only works after `$textSplit` has been called in the same command execution. Without a prior split, `$splitText` returns an empty string.
-
 ```
 $textSplit[Hello World Foo Bar; ]
-$splitText[0]  → "Hello"
-$splitText[2]  → "Foo"
-$splitText[-1] → "Bar"
+$splitText[1]  → "Hello"
+$splitText[3]  → "Foo"
+$splitText[>]  → "Bar"
+$splitText[<]  → "Hello"
+$splitText[0]  → "" (index 0 does not exist)
+$splitText[-1] → "" (negative indices are not supported)
 $splitText[99] → "" (out of bounds)
 ```
 
-## Negative Indices
+## Getting the Last Element
 
-Negative indices count backward from the end:
-
-| Spreads result | Index `-1` | Index `-2` | Index `-3` |
-|-------------|-----------|-----------|-----------|
-| `[A, B, C, D]` | `D` | `C` | `B` |
-
-This is useful for retrieving the last element without knowing the total length:
+Negative indices are not supported. Use `>` to get the last element, or `$getTextSplitLength` as the index:
 
 ```
 $textSplit[$message; ]
-$sendMessage[The last word you typed was: $splitText[-1]]
+$sendMessage[The last word you typed was: $splitText[>]]
 ```
 
 ## Common Patterns
@@ -61,15 +56,15 @@ $sendMessage[The last word you typed was: $splitText[-1]]
 
 ```
 $textSplit[$getUserVar[list];,]
-$var[first;$splitText[0]]
-$var[last;$splitText[-1]]
+$var[first;$splitText[<]]
+$var[last;$splitText[>]]
 ```
 
 ### Conditional Element Check
 
 ```
 $textSplit[$message; ]
-$if[$splitText[0]==!help]
+$if[$splitText[1]==!help]
   $sendMessage[Help command detected!]
 $endif
 ```
@@ -78,14 +73,14 @@ $endif
 
 ```
 $textSplit[$message; ]
-$sendMessage[Args: 1=$splitText[0], 2=$splitText[1], 3=$splitText[2]]
+$sendMessage[Args: 1=$splitText[1], 2=$splitText[2], 3=$splitText[3]]
 ```
 
 ## Important Notes
 
-- **Depends on $textSplit**: `$splitText` is meaningless without a prior `$textSplit` call. It reads from the current spreads context.
-- **Silent out-of-bounds**: Accessing an invalid index returns `""` without error. Always validate with `$getTextSplitLength` if bounds are uncertain.
-- **No mutation**: `$splitText` is read-only. Use `$editSplitText` to modify elements.
+- **Depends on $textSplit**: `$splitText` has nothing to read without a prior `$textSplit` call; it then returns an empty string.
+- **Silent out-of-bounds**: an index outside `1..length` returns `""` without error. Check `$getTextSplitLength` if bounds are uncertain.
+- **No mutation**: `$splitText` only reads. Use `$editSplitText[]` to replace an element.
 
 ## Examples
 
@@ -95,8 +90,8 @@ $sendMessage[Args: 1=$splitText[0], 2=$splitText[1], 3=$splitText[2]]
 $textSplit[$message; ]
 $title[Text Analysis]
 $description[Original sentence: *$message*]
-$addField[First Word;$splitText[0];yes]
-$addField[Second Word;$splitText[1];yes]
-$addField[Last Word;$splitText[-1];yes]
+$addField[First Word;$splitText[1];yes]
+$addField[Second Word;$splitText[2];yes]
+$addField[Last Word;$splitText[>];yes]
 $color[#5865F2]
 ```

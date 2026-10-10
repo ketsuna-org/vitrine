@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: ignoreLinks
 syntax: $ignoreLinks
-description: A function guard that silently stops execution if the triggering message contains an HTTP/HTTPS link.
+description: Accepted for compatibility with BDFD scripts; in this engine it does nothing and returns an empty string.
 ---
 
 # $ignoreLinks
 
-The function guard `$ignoreLinks` detects the presence of **HTTP/HTTPS links** in the triggering message. If a link is found, command execution is silently interrupted.
+`$ignoreLinks` is accepted by the engine so that existing BDFD scripts still run, but it has **no effect**: it does not inspect the triggering message, does not stop the command and sends nothing.
 
 ## Syntax
 
@@ -20,25 +20,22 @@ $ignoreLinks
 
 ## Parameters
 
-No parameters. `$ignoreLinks` is used on its own.
+No parameters. Writing `$ignoreLinks[...]` with any argument is an error (`Invalid argument count`).
+
+## Return Value
+
+Empty string.
 
 ## Behavior
 
-- Analyzes the content of the message searching for `http://` or `https://`.
-- If a link is found, the command is immediately interrupted **without a message**.
-- If no link is found, the command continues normally.
-- Detects all standard links (HTTP and HTTPS), but not links like `discord.gg`, `ftp://`, etc.
+- The command always continues after `$ignoreLinks`, whether or not the message contains a link.
+- Verified by running the engine: `$ignoreLinks see https://x.com ok` outputs ` see https://x.com ok`.
 
 ## Examples
 
-### Anti-link spam command
+### Manual link check
 
-```bdfd
-$ignoreLinks
-$sendMessage[Your message was processed (no link detected).]
-```
-
-### With custom error message
+To refuse messages that contain a link, test the text yourself.
 
 ```bdfd
 $if[$checkContains[$message;https://;http://]==true]
@@ -60,7 +57,5 @@ $sendMessage[Message processed.]
 
 ## Notes
 
-- `$ignoreLinks` is **silent**: the user receives no notification. To inform the user, use manual checking with `$checkContains`.
-- It does not detect links in the format `discord.gg/invite` or hidden Markdown links `[text](https://...)`. To cover these cases, use `$checkContains`.
-- `$ignoreLinks` only checks the triggering message, not embeds or attachments.
-- Ideal for channels where links are forbidden (spam/phishing prevention).
+- To strip `http://` / `https://` links from the text that your script outputs, use `$removeLinks`.
+- To block a command by link detection, use `$checkContains` (as above) together with `$stop`.

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: disableSpecialEscaping
 syntax: $disableSpecialEscaping
-description: Disables the automatic escaping of special characters (brackets, semicolons, etc.) in parameters. The characters are interpreted literally.
+description: Accepted for compatibility with BDFD scripts; in this engine it does nothing and returns an empty string.
 ---
 # $disableSpecialEscaping
 
-The `$disableSpecialEscaping` function **disables the automatic escaping** of special characters in the command. This allows using `[`, `]`, `;`, etc. without them being interpreted as BDFD syntax delimiters.
+The `$disableSpecialEscaping` function is accepted so that scripts written for BDFD still run. In this engine its handler does nothing and returns an empty string: it does **not** change how brackets, semicolons or functions are interpreted.
 
 ## Syntax
 
@@ -19,45 +19,29 @@ $disableSpecialEscaping
 
 ## Parameters
 
-None.
+None. Any argument is refused ("Invalid argument count").
 
 ## Return value
 
-None.
+An empty string.
 
 ## Behavior
 
-- Without this function, `[` and `]` trigger BDFD function syntax.
-- With it, these characters are treated as raw text.
-- **Warning**: actual BDFD functions are no longer interpreted after `$disableSpecialEscaping`.
+- Parsing is identical with or without this function: functions placed after it are still executed, and nested balanced brackets keep working. For example `$replaceText[a [b] c;b;z]` returns `a [z] c` both with and without it.
+- It never raises an error for a valid call.
 
 ## Examples
 
-### Displaying literal brackets
+### Script ported from BDFD
 
 ```bdfd
 $disableSpecialEscaping
-$sendMessage[The format is [optional] in the doc]
-; Displays: The format is [optional] in the doc
+$replaceText[a [b] c;b;z]
 ```
 
-### Message with code syntax
-
-```bdfd
-$disableSpecialEscaping
-$sendMessage[Use name[index] to read an item.]
-```
-
-### Combination with other flags
-
-```bdfd
-$disableSpecialEscaping
-$disableInnerSpaceRemoval
-$sendMessage[Raw format: [value]; parameter = true]
-```
+The result is `a [z] c`, exactly as without the flag.
 
 ## Notes
 
-- Irreversible in the command: all functions after `$disableSpecialEscaping` are disabled.
-- Place this function at the **end of the code**, after all other BDFD functions.
-- Alternative: use `$unEscape[]` for specific portions of text.
+- Do not rely on it to print raw `[`, `]` or `;`; put a backslash before the character instead (e.g. `\[`).
+- Related no-op functions: `$alternativeParsing`, `$optOff`, `$disableInnerSpaceRemoval`.

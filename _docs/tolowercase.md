@@ -26,11 +26,7 @@ $toLowercase[text]
 - **Type**: `string`
 - Returns the input text with all letters converted to lowercase.
 - Non-alphabetic characters (numbers, symbols, spaces) remain unchanged.
-
-## Evaluation Behavior
-
-- **Static text** (no placeholders): Converted at compile time.
-- **Contains placeholders** (e.g., `$message`, variables): Evaluated at runtime.
+- Exactly one argument is required (`$toLowercase` without brackets or with two arguments is refused: "Invalid argument count"); `$toLowercase[]` returns an empty string.
 
 ## Usage
 
@@ -46,7 +42,7 @@ $toLowercase[$message]  → user's message in lowercase
 ### Case-Insensitive Command Detection
 
 ```
-$if[$toLowercase[$splitText[0]]==!ping]
+$if[$toLowercase[$splitText[1]]==!ping]
   $sendMessage[Pong!]
 $endif
 ```
@@ -69,7 +65,7 @@ $endif
 
 ## Important Notes
 
-- **Locale-independent**: Basic ASCII lowercasing is applied. Behavior with non-ASCII characters (accented letters, etc.) may vary.
+- **Not limited to ASCII**: accented letters are converted too: `$toLowercase[ÉCOLE]` → `école`.
 - **Only letters**: Digits, punctuation, and whitespace pass through unchanged.
 - **Combine with $replaceText**: Use `$toLowercase` before `$replaceText` for consistent matching.
 
@@ -80,6 +76,6 @@ $endif
 ```bdfd
 $title[Lowercase Conversion]
 $description[Original: `$message`
-Lowercase: **$toLowerCase[$message]**]
+Lowercase: **$toLowercase[$message]**]
 $color[#5865F2]
 ```

@@ -25,14 +25,15 @@ $trimSpace[text]
 
 - **Type**: `string`
 - Returns the text with all leading and trailing whitespace removed.
-- Whitespace includes: spaces, tabs (`\t`), newlines (`\n`), and carriage returns (`\r`).
+- Whitespace includes spaces, tabs, line breaks, carriage returns and other Unicode whitespace such as the non-breaking space.
+- `\n` and `\t` written in a script are **not** converted to real line breaks or tabs by the engine; they stay as two characters.
 
 ## Usage
 
 ```
 $trimSpace[  hello  ]        → "hello"
 $trimSpace[  foo bar  ]      → "foo bar"
-$trimSpace[\n  text\n]       → "text"
+$trimSpace[  text  ]        → "text"
 $trimSpace[   ]              → "" (empty string)
 $trimSpace[$message]         → user input with no accidental spacing
 ```
@@ -70,6 +71,7 @@ $endif
 - **Preserves internal spaces**: Only leading and trailing whitespace is removed. `"hello   world"` stays `"hello   world"`.
 - **Empty result**: If the text is all whitespace, returns an empty string.
 - **Often combined**: Use `$trimSpace` with `$toLowercase` for robust input normalization.
+- Exactly one argument is required ("Invalid argument count" otherwise); `$trimContent[]` does the same job.
 
 ## Examples
 

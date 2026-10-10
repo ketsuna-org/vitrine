@@ -34,6 +34,7 @@ $dmChannelID[(userID)]
 
 - The user ID argument does not change the result: the value comes from the command context (`user.dmChannelId`).
 - When no DM channel ID is present in the context, the result is empty.
+- Nothing in the engine sets `user.dmChannelId`, so unless the command context is given a variable with that name the result is always an empty string.
 
 ## Examples
 
@@ -41,22 +42,16 @@ $dmChannelID[(userID)]
 
 ```bdfd
 $var[dmChannel;$dmChannelID[$authorID]]
-$sendMessage[Your private conversation with the bot: $var[dmChannel]]
-```
-
-### Sending to the DM via useChannel
-
-```bdfd
-$useChannel[$dmChannelID[$authorID]]
-$sendMessage[This message is sent in private.]
+$sendMessage[DM channel from the context: $var[dmChannel]]
 ```
 
 ### Logging of DM channel
 
 ```bdfd
-$log[DM opened with <@$authorID> - Channel: $dmChannelID[$authorID]]
+$log[DM channel of <@$authorID>: $dmChannelID[$authorID]]
 ```
 
 ## Notes
 
-- To send a private message, `$dm` is simpler.
+- To send a private message, use `$dm[]`: it does not need a channel ID.
+- Because the result is usually empty, do not rely on it to build a destination for `$useChannel[]`.

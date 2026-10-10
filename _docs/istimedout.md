@@ -22,7 +22,7 @@ $isTimedOut[userID]
 
 | Parameter | Description |
 |---|---|
-| `userID` | Required. The Discord ID of the member to check. An invalid ID raises an error. |
+| `userID` | Required. The Discord ID of the member to check. An ID that is not a positive integer raises `Invalid user ID.` |
 
 ## Return Value
 
@@ -34,8 +34,7 @@ $isTimedOut[userID]
 
 - `$isTimedOut` takes **exactly one argument**, the user ID; a bare `$isTimedOut` is invalid.
 - It returns `"true"` only if the member has a timeout end date that is still in the future.
-- The timeout is a Discord feature that temporarily prevents a member from speaking or sending messages.
-- The duration of the timeout is defined by the moderators (up to 28 days).
+- A user who is not a member of the server raises the error `User is not a member of this guild.`
 
 ## Examples
 
@@ -62,6 +61,4 @@ $color[#ED4245]
 
 ## Notes
 
-- The timeout is a **temporary** sanction (maximum 28 days).
-- A timed-out user cannot send messages, join voice channels, or react.
 - Useful for preventing sanctioned users from using the bot's commands.

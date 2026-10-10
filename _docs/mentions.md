@@ -4,7 +4,7 @@ title: $mentions
 translation_key: docs
 category: "Entity Info"
 function_name: mentions
-syntax: $mentions
+syntax: $mentions[(unused)]
 description: Returns the list of all user IDs mentioned in the message, separated by commas.
 ---
 
@@ -15,20 +15,23 @@ The function `$mentions` returns the **list of all user IDs mentioned** in the c
 ## Syntax
 
 ```
-$mentions
+$mentions[(unused)]
 ```
+
+## Parameters
+
+One optional argument is accepted but ignored.
 
 ## Return Value
 
-- **Type** : List of snowflakes separated by commas
-- Example: `123456789,987654321,555555555`
-- Empty string if no users are mentioned
+- **Type** : String
+- The text of the `message.mentions` context variable as the host supplied it: normally the user IDs separated by commas (for example `123456789,987654321`).
+- Empty string if the host supplied no such variable.
 
 ## Behavior
 
-- `$mentions` takes **no arguments**.
-- Returns all user mentions of the message.
-- To retrieve only the first mention, use `$mentioned`.
+- Unlike `$mentioned`, `$mentions` does not validate or parse the list, and it does not raise an error in a slash command.
+- To retrieve a single mention, use `$mentioned[index]`.
 
 ## Examples
 
@@ -64,10 +67,11 @@ $if[$mentions!=]
 $else
   $sendMessage[Mention at least one user.]
 $endif
+```
 
 ## Notes
 
-- `$mentions` returns all IDs at once, separated by commas.
+- `$mentions` returns the whole list at once.
 - To iterate, split the list with `$textSplit[$mentions;,]`, then read the parts with `$splitText[index]` (1-based) and count them with `$getTextSplitLength`.
-- Does not detect `@everyone` or `@here` mentions.
+
 

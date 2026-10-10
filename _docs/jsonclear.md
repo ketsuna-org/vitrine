@@ -5,9 +5,14 @@ translation_key: docs
 category: "HTTP & JSON"
 function_name: jsonClear
 syntax: $jsonClear[]
-description: Clears the current internal JSON object, resetting it to an empty state. All previously set keys, values, and arrays are discarded.
+description: Resets the current JSON document to an empty object {} and returns an empty string.
 ---
-$jsonClear resets the internal JSON state entirely. This is useful when you need to reuse JSON variables in a loop, or when switching between different JSON data sources to avoid data leakage. After clearing, the context is equivalent to calling $json[] with no arguments — an empty object ready for new data.
+$jsonClear resets the JSON document of the current command to an empty object `{}`; everything previously stored is discarded. It takes no argument and returns an empty string.
+
+## Behavior
+
+- After `$jsonClear`, `$jsonStringify` returns `{}` and `$jsonExists` (no argument) returns `true`.
+- `$jsonClear` is not the same as `$json` with no argument, which only reads the document. `$jsonUnset` with no argument has the same effect as `$jsonClear`.
 
 ## Examples
 
@@ -17,6 +22,6 @@ $jsonClear resets the internal JSON state entirely. This is useful when you need
 $jsonParse[{"temp":"data"}]
 $jsonClear
 $title[Clear JSON Context]
-$description[Internal JSON state has been purged.]
+$description[JSON document after clearing: `$jsonStringify`]
 $color[#5865F2]
 ```

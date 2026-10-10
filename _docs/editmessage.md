@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $editMessage
 
-Modifies an existing message sent by the bot. Replaces the content and/or the embeds and components of the target message.
+Edits an existing message sent by the bot: replaces its text and, optionally, its embed.
 
 ## Syntax
 
@@ -20,15 +20,17 @@ $editMessage[channelId;messageId;newContent;(title;description;color;footer)]
 |-----------|-------------|:-----------:|
 | `channelId` | ID of the channel containing the message | Yes |
 | `messageId` | ID of the message to modify | Yes |
-| `newContent` | New text content of the message | Yes |
-| `title` | Embed title (providing any embed field replaces the embed) | No |
-| `description` | Embed description | No |
-| `color` | Embed color (`#RRGGBB`) | No |
-| `footer` | Embed footer text | No |
+| `newContent` | New text content of the message (the argument must be present; it can be empty). Maximum 2000 characters. | Yes |
+| `title` | Embed title, maximum 256 characters (providing the 4th argument, even empty, replaces the embed) | No |
+| `description` | Embed description, maximum 4096 characters | No |
+| `color` | Embed color: `#RRGGBB`, `RRGGBB` (hex) or an integer. A value made only of digits is read as a decimal integer. Invalid values raise `Invalid embed color.` | No |
+| `footer` | Embed footer text, maximum 2048 characters | No |
 
 ## Description
 
-`$editMessage` updates an existing message of a channel. When the optional embed fields (`title`, `description`, `color`, `footer`) are given, the message embed is replaced by an embed built from them.
+`$editMessage` updates an existing message of a channel and returns an empty string. The text of the message is always replaced by `newContent`. When at least one of the optional embed arguments is present (3 to 7 arguments are accepted), the embed of the message is replaced by one built from them; if all of them are empty the embed is removed. Components are not changed.
+
+The edit is performed immediately, on an existing message, and affects neither the pending response nor `$sendMessage[]`. Both IDs must be positive integers (`Invalid Discord ID.` otherwise).
 
 The `messageId` can be obtained via:
 - `$sendMessage[text;yes]`, which returns the ID of the sent message
@@ -67,7 +69,8 @@ $endif
 
 ## Notes
 
-- The bot can only modify its own messages.
-- If `newContent` is empty and no embed field is provided, the message may become empty (behavior depending on version).
-- Giving any embed field replaces the original embed.
+- `newContent` always replaces the text of the message, even when it is empty.
+- Giving the embed arguments (even empty ones) replaces the original embed; omitting them leaves the embed untouched.
+- The combined length of title, description and footer cannot exceed 6000 characters (`Embed text exceeds Discord limits.`).
+- Editing a message written by someone else fails with `Only the bot own messages can be edited.`
 - Use `$sendMessage[text;yes]` to retrieve the ID of the message sent.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: replyIn
 syntax: $replyIn[duration]
-description: Schedules a delayed response to a message. The bot will send the content defined after $replyIn as a response to the original message after the specified delay.
+description: Pauses the execution of the command for the given duration (at least 1 second, at most 40 minutes). It does not reply to anything by itself.
 ---
 
-# $replyIn[] — Delayed Response
+# $replyIn[] — Delay
 
-`$replyIn[]` schedules the sending of a response to the message after a delay. The content defined after `$replyIn[]` will be sent as a reply to the original message.
+`$replyIn[]` **waits** for the given duration, then the command continues with the code that follows. It does not send or schedule a reply by itself and does not change how the following content is sent: it behaves like `$wait[]`, with a minimum of one second.
 
 ## Syntax
 
@@ -22,70 +22,43 @@ $replyIn[duration]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `duration` | Yes | The delay before the response. Format: number + unit. |
+| `duration` | Yes | The time to wait. A plain number is read as seconds; otherwise `number + unit` parts (`3s`, `1m`, `1m30s`). Must be at least 1 second and at most 40 minutes. |
 
 ## Duration Format
 
 | Format | Unit | Example |
 |--------|-------|---------|
+| `X` | Seconds (plain number) | `3` |
 | `Xs` | Seconds | `3s`, `10s` |
 | `Xm` | Minutes | `1m`, `5m` |
-| `Xh` | Hours | `1h` |
+| `Xh` | Hours | `1h` (rejected: above 40 minutes) |
+
+Longer spellings (`sec`, `minutes`, ...) and the units `d`, `w`, `y` are parsed too, but the total must stay within 40 minutes. An invalid or out-of-range duration raises `Duration must be positive and at most 40 minutes, with a minimum of one second.`
 
 ## Return Value
 
-Schedules a delayed response. The subsequent content is sent as a reply to the triggering message.
+An empty string, returned after the delay has elapsed.
 
 ## Examples
 
-### Simple delayed response
+### Wait between two messages
 
 ```bdfd
-$replyIn[3s]
 $sendMessage[Please wait, processing your request...]
+$replyIn[3s]
+$sendMessage[Done!]
 ```
 
-### Information after delay
+### Delay before the final response
 
 ```bdfd
 $replyIn[5s]
-$title[Server Information]
-$description[**Name:** $serverName\n**Members:** $membersCount]
-$color[#5865F2]
-$footer[Requested by $username]
-```
-
-### Simulation of processing
-
-```bdfd
-$replyIn[2s]
-$sendMessage[🔍 Search in progress...]
-$replyIn[5s]
-$sendMessage[✅ Result found: $var[result]]
-```
-
-### Scheduled notifications
-
-```bdfd
-$replyIn[1m]
-$sendMessage[⏰ Reminder: your meeting starts in 5 minutes!]
-```
-
-### With embeds
-
-```bdfd
-$replyIn[4s]
-$title[Analysis Complete]
-$description[Here is the analysis requested by $username]
-$addField[Status;Completed;yes]
-$addField[Execution time;$var[exec_time]ms;yes]
-$color[#27AE60]
+Here is the information, 5 seconds later.
 ```
 
 ## Notes
 
-- The message is sent as a **reply** to the original message.
-- The maximum recommended duration is 15 minutes.
-- Multiple successive `$replyIn[]` calls will send several delayed responses.
-- Unlike `$editIn[]`, a new message is created instead of editing the existing one.
-- If the original message is deleted before the delay expires, the response may fail.
+- The wait happens during the execution of the command, at the position of the call; the command is not finished until the delay is over.
+- The result does not depend on a reply: to reply to a message use `$reply`.
+- To delay the deletion or the edit of the response without blocking, use `$deleteIn[]`, `$editIn[]` or `$editEmbedIn[]`.
+- `$wait[]` does the same without the one-second minimum.

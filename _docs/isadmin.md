@@ -35,6 +35,7 @@ $isAdmin[userID]
 - `$isAdmin` takes **one argument**, the user ID; a bare `$isAdmin` is invalid.
 - The `Administrator` permission grants **all** permissions on the server.
 - The server owner is implicitly an administrator (returns `"true"`).
+- The permissions of the user are the union of the permissions of their roles (including `@everyone`); a user who is not a member of the server makes the Discord lookup fail with an error instead of returning `"false"`.
 
 ## Examples
 

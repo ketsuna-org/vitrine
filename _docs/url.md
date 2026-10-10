@@ -22,14 +22,14 @@ $url[mode;text]
 
 | Parameter | Description |
 |---|---|
-| `mode` | Required - `encode` or `decode` (case-insensitive). Any other value raises an error. |
+| `mode` | Required - `encode` or `decode` (case-insensitive, surrounding spaces ignored). Any other value raises the error `Mode must be encode or decode.` |
 | `text` | Required - The text to encode or decode. |
 
 ## Return Value
 
 - **Type** : String
 - With `encode`, the text encoded as a query component (spaces become `+`, special characters are percent-encoded).
-- With `decode`, the decoded text. An error is raised if the text is not valid URL encoding.
+- With `decode`, the decoded text. An error is raised if the text is not valid URL encoding (for example `%zz`).
 
 ## Examples
 

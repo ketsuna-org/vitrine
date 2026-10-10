@@ -29,6 +29,7 @@ $floor[value]
 - For a positive number: removes the decimal part. `$floor[3.9]` → `3`.
 - For a negative number: rounds down to the next lower integer (more negative). `$floor[-3.1]` → `-4`.
 - For an integer: returns the integer itself.
+- Exactly one argument is required. A value that is not a finite number (text, empty) raises the error "Expected a finite number in argument 1.".
 
 ## Examples
 
@@ -52,9 +53,9 @@ $color[#5865F2]
 | `-3.2` | `-4`     | `-3`    | `-3`     |
 | `-3.5` | `-4`     | `-3`    | `-3`*    |
 
-*The exact behavior of `$round[]` for values ending in `.5` may depend on the implementation.
+*`$round[]` rounds a value ending in `.5` toward positive infinity: `$round[3.5]` → `4`, `$round[-3.5]` → `-3`.
 
 ## Notes
 
-- The result is always an integer (as a string).
+- The result is an integer, returned as text (it is not affected by `$enableDecimals`).
 - Useful for calculations of pagination, levels, or any situation requiring an integer.

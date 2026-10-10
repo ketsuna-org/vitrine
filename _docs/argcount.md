@@ -8,7 +8,7 @@ syntax: $argCount
 description: Returns the number of arguments passed to the current command.
 ---
 
-$argCount tells you exactly how many arguments were supplied by the user. It is a simple but essential function for input validation — almost every command that accepts arguments should check `$argCount` before proceeding.
+$argCount returns the number of arguments of the current command: the runtime variable `args.count` when it is set (prefix commands set it to the number of words after the command name), otherwise the number of whitespace-separated words of `message.content`. It takes no argument (`$argCount[]` with empty brackets is also accepted). It is a simple but essential function for input validation — almost every command that accepts arguments should check `$argCount` before proceeding.
 
 ## Return Value
 
@@ -27,8 +27,8 @@ $if[$argCount!=0]
 ## Relationship with $args
 
 - `$argCount` tells you _how many_ arguments exist.
-- `$args` / `$args[index]` lets you _retrieve_ them.
-- Valid indices for `$args[index]` range from `0` to `$argCount - 1`.
+- `$args` / `$args[index]` lets you _retrieve_ them (see the page of `$args` for a quirk: it skips the first word of `message.content`). `$message[index]` returns the word at that position directly.
+- `$args[index]` is 1-indexed: valid indices range from `1` to `$argCount`; `0` returns an empty string.
 
 ## Common Pattern
 

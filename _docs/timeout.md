@@ -10,7 +10,7 @@ description: Temporarily times out a user (temporary silence).
 
 # $timeout
 
-The function `$timeout` times out a user on Discord. During the specified duration, the user cannot send messages, speak in voice channels, or react. The bot must have the `ModerateMembers` permission.
+The function `$timeout` times out a user on Discord. It sets Discord's communication timeout on the member until the given duration has elapsed. The bot must have the `ModerateMembers` permission.
 
 ## Syntax
 
@@ -22,8 +22,8 @@ $timeout[duration;(userID)]
 
 | Parameter | Description |
 |---|---|
-| `duration` | Duration of the timeout. Required. Units accepted: `ms`, `s`, `m`, `h`, `d`, `w`, `y` (also `sec`, `min`, `hour`, `day`, `week`, `year` in singular or plural), which can be combined (e.g. `1h30m`). A bare number is read as seconds. Examples: `60s`, `5m`, `1h`, `7d`. Must be positive and at most 28 days, otherwise an error is raised. |
-| `userID` | Optional - The ID of the user. If omitted or empty, the timeout is applied to the users mentioned in the message; an error is raised if there is none. |
+| `duration` | Duration of the timeout. Required. Units accepted: `ms`, `s`, `m`, `h`, `d`, `w`, `y` (also `millisecond`, `sec`, `second`, `min`, `minute`, `hour`, `day`, `week`, `year`, and their plural forms), which can be combined (e.g. `1h30m`); decimals are accepted. A bare number is read as seconds. Examples: `60s`, `5m`, `1h`, `7d`. Must be positive and at most 28 days, otherwise an error is raised. |
+| `userID` | Optional - The ID of the user. If omitted or empty, the timeout is applied to every user mentioned in the message; an error is raised if there is none. |
 
 ## Return Value
 

@@ -21,12 +21,12 @@ $getSlowmode[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | *(Optional)* The ID of the channel. Default: current channel. |
+| `channelID` | *(Optional)* The ID of the channel. Default: the current channel (the `channel.id` supplied by the host). Must be a positive integer, otherwise the error `Invalid channel ID.` is raised; an unknown channel raises `Channel not found.` |
 
 ## Return Value
 
 - **Type**: Number (string)
-- The slowmode in seconds (`0`, `5`, `10`, `15`, `30`, `60`, `120`, `300`, `600`, `900`, `1800`, `3600`, `7200`, `21600`).
+- The slowmode of the channel in seconds (`0` when slowmode is off, or when the channel type has no slowmode).
 
 ## Examples
 
@@ -65,5 +65,4 @@ $endif
 ## Notes
 
 - `0` means slowmode is disabled.
-- The possible values are limited by Discord (5s, 10s, 15s, 30s, 1m, 2m, 5m, 10m, 15m, 30m, 1h, 2h, 6h).
-- To modify the slowmode, use `$modifyChannel[]`.
+- To modify the slowmode, use `$slowmode[channelID;time]` or `$modifyChannel`.

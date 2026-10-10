@@ -4,18 +4,18 @@ title: $getMessage
 translation_key: docs
 category: "Moderation"
 function_name: getMessage
-syntax: $getMessage[channelID;messageID]
-description: Gets the text content of a message specified by its channel and message ID.
+syntax: $getMessage[channelID;messageID;(property)]
+description: Gets the content, author ID, author username or author avatar URL of a message specified by its channel and message ID.
 ---
 
 # $getMessage
 
-The function `$getMessage[]` retrieves the **text content** of a message from its channel and message ID.
+The function `$getMessage[]` retrieves a property of a message (by default its **text content**) from its channel and message ID.
 
 ## Syntax
 
 ```
-$getMessage[channelID;messageID]
+$getMessage[channelID;messageID;(property)]
 ```
 
 ## Parameters
@@ -24,18 +24,19 @@ $getMessage[channelID;messageID]
 |---|---|
 | `channelID` | The ID of the channel containing the message. |
 | `messageID` | The ID of the message to retrieve. |
+| `property` | Optional. One of `content` (default), `authorID`, `username` (the author's username) or `avatar` (the author's avatar URL). Case-sensitive; any other value raises `Unknown message property.` |
 
 ## Return Value
 
 - **Type**: String
-- The text content of the message.
-- An empty string if the message does not exist, was deleted, or is inaccessible.
+- The requested property of the message: its text content by default (not embeds or attachments), the author ID, the author username, or the author avatar URL (empty if the author has no avatar).
+- Both IDs must be positive numbers, otherwise the error `Invalid Discord ID.` is raised; a channel that does not support messages raises `Channel does not support messages.`
+- There is no empty-string fallback: if the message cannot be fetched from Discord (it does not exist or is not accessible), the call fails with an error.
 
 ## Behavior
 
-- Returns only the text content (not embeds, attachments, etc.).
-- The bot must have access to the channel and the `READ_MESSAGE_HISTORY` permission.
-- The message must be less than 14 days old (Discord API limitation for unpinned messages).
+- The message is fetched from Discord when the function runs; no age limit is applied by the engine.
+- Use `$getEmbedData` to read the embeds of a message.
 
 ## Examples
 
@@ -53,20 +54,10 @@ $else
 $endif
 ```
 
-### Log of deleted message
+### Author of a message
 
 ```bdfd
-$var[msgContent;$getMessage[$channelID;$messageID]]
-$if[$var[msgContent]!=]
-  $title[🗑️ Retrieved Message]
-  $description[
-  **Author:** $username
-  **Content:**
->>> $var[msgContent]
-  ]
-  $color[#ED4245]
-  $channelSendMessage[123456789012345678;]
-$endif
+$sendMessage[Message $message[1] was written by <@$getMessage[$channelID;$message[1];authorID]> ($getMessage[$channelID;$message[1];username]).]
 ```
 
 ### Content verification
@@ -82,6 +73,5 @@ $endif
 
 ## Notes
 
-- Limited to the last 14 days for unpinned messages (Discord API restriction).
-- Does not retrieve embeds, only raw text.
+- With the default property, only the raw text is returned (no embeds).
 - Useful for citation systems, logs, and moderation.

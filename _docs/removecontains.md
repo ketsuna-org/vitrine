@@ -34,8 +34,10 @@ Both arguments are required: a call with one argument is refused.
 
 ## Behavior
 
-- Case-sensitive.
-- Removes all occurrences, not just the first one.
+- Case-sensitive: `$removeContains[aAa;a]` → `A`.
+- Removes all occurrences, not just the first one. Occurrences are found from left to right without overlapping: `$removeContains[aaa;aa]` → `a`.
+- An empty `toRemove` removes nothing: the text is returned unchanged.
+- Exactly two arguments are required; three or more are refused ("Invalid argument count").
 - Only the text passed as the first argument is processed.
 
 ## Examples

@@ -25,7 +25,7 @@ No parameters.
 ## Return Value
 
 - **Type**: `string`
-- The ID of the server as a numeric string.
+- The value of the `guild.id` context variable supplied by the host (the ID of the current server), or an empty string if the host supplied none.
 
 ## Examples
 
@@ -59,6 +59,5 @@ $sendMessage[Server link: https://discord.com/channels/$guildID]
 
 ## Notes
 
-- `$guildID[]` is strictly identical to `$serverID[]`. Use whichever feels more natural.
-- The term "guild" is the technical name used by the Discord API to refer to a server.
-- The ID is permanent and never changes, unlike the name.
+- `$guildID` and `$serverID` read the same `guild.id` value and both accept no argument.
+- In a DM the host does not supply a server ID, so the result is empty.

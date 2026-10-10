@@ -26,7 +26,7 @@ $editEmbedIn[duration;title;(description);(footer);(color)]
 | `title` | Yes (may be empty) | New embed title. The argument must be present, but it may be empty when `description` or `footer` is set. |
 | `description` | No | New embed description (empty by default). |
 | `footer` | No | New embed footer text (empty by default). |
-| `color` | No | Embed color: `#RRGGBB`, `RRGGBB` (hex) or an integer. Invalid values raise "Invalid embed color.". |
+| `color` | No | Embed color: `#RRGGBB`, `RRGGBB` (hex) or an integer between 0 and 16777215. A value made only of digits is read as a decimal integer (`123456` is the number 123456, not hex). Invalid values raise "Invalid embed color.". |
 
 Between 2 and 5 arguments are accepted. At least one of `title`, `description`, `footer` must be non-empty ("At least one embed text field is required.").
 
@@ -34,8 +34,13 @@ Between 2 and 5 arguments are accepted. At least one of `title`, `description`, 
 
 | Format | Unit | Example |
 |--------|-------|---------|
+| `X` | Seconds (plain number, decimals allowed) | `5`, `2.5` |
+| `Xms` | Milliseconds | `500ms` |
 | `Xs` | Seconds | `3s`, `10s` |
 | `Xm` | Minutes | `1m`, `5m` |
+| `Xh` | Hours | `1h` (rejected: above 40 minutes) |
+
+Longer spellings (`sec`, `minutes`, ...) and units `d`, `w`, `y` are parsed too, and parts can be combined (`1m30s`), but the total must stay within 40 minutes.
 
 ## Return value
 
@@ -65,6 +70,8 @@ $editEmbedIn[3s;✅ Search completed;3 results found;Completed;#2ECC71]
 
 ## Notes
 
+- Limits: title 256 characters, description 4096, footer 2048, 6000 in total (otherwise the call fails with a Discord-limits error).
+- The edit targets the command's main response; messages sent with `$sendMessage[]` are not edited, and with no main response nothing is edited.
 - The embed is replaced entirely by the one built from the arguments (no merging): omitted fields become empty.
 - The edit is built with an empty `content` and a replacement embed.
 - The maximum duration is 40 minutes.

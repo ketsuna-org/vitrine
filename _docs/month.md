@@ -5,14 +5,12 @@ translation_key: docs
 category: "Date & Time"
 function_name: month
 syntax: $month
-description: Returns the current month as a number (1 to 12). Resolved at runtime.
+description: Returns the English name of the current month (January to December), in UTC or in the timezone set with $time.
 ---
 
 # $month
 
-The function `$month` returns the number of the current month (from 1 to 12).
-
-> **Important:** This function uses the special identifier `((month))` which is resolved at **runtime**.
+The function `$month` returns the **English name** of the current month (for example `October`). It does not return a number.
 
 ## Syntax
 
@@ -20,26 +18,11 @@ The function `$month` returns the number of the current month (from 1 to 12).
 $month
 ```
 
-> **Note:** This function takes no parameters.
+> **Note:** This function takes no parameters (passing one is an error).
 
 ## Return Value
 
-A number between 1 and 12 representing the current month:
-
-| Value | Month |
-|--------|------|
-| 1 | January |
-| 2 | February |
-| 3 | March |
-| 4 | April |
-| 5 | May |
-| 6 | June |
-| 7 | July |
-| 8 | August |
-| 9 | September |
-| 10 | October |
-| 11 | November |
-| 12 | December |
+One of `January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`.
 
 ## Examples
 
@@ -49,16 +32,17 @@ A number between 1 and 12 representing the current month:
 Current month: $month
 ```
 
-### Seasonal Message
+### Conditional message
 
 ```bdfd
-$if[$month>=6&&$month<=8]
-☀️ It is summer!
-$elseif[$month==12||$month<=2]
-❄️ It is winter!
+$if[$month==December]
+❄️ It is December!
+$else
+It is not December.
 $endif
 ```
 
 ## Notes
 
-- The value depends on the system date of the server running the bot.
+- The value is read in UTC unless a timezone was set earlier with `$time[timezone]`.
+- The name is always in English; use `$date` for a numeric `YYYY-MM-DD` date.

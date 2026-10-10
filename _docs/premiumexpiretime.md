@@ -4,35 +4,33 @@ title: $premiumExpireTime
 translation_key: docs
 category: "Entity Info"
 function_name: premiumExpireTime
-syntax: $premiumExpireTime
-description: Returns the expiration date of the bot's BDFD premium subscription.
+syntax: $premiumExpireTime[(unused)]
+description: Returns the premium expiration value supplied by the host in premium.expireTime, or an empty string.
 ---
 
 # $premiumExpireTime
 
-The `$premiumExpireTime` function **returns the expiration date of the bot's BDFD premium subscription**. Premium unlocks advanced features (more commands, more servers, etc.).
+The `$premiumExpireTime` function returns the value of the `premium.expireTime` context variable supplied by the host. The engine does not look up any subscription itself.
 
 ## Syntax
 
 ```
-$premiumExpireTime
+$premiumExpireTime[(unused)]
 ```
 
 ## Parameters
 
-None.
+One optional argument is accepted but ignored.
 
 ## Return Value
 
 - **Type**: String
-- Expiration date in timestamp format if the bot is premium.
-- Empty string if the bot has no premium subscription.
+- The text of the `premium.expireTime` (or `premium.expiretime`) context variable exactly as the host supplied it; its format is not defined by the engine.
+- Empty string if the host supplied none.
 
 ## Behavior
 
-- Returns a date only if a premium subscription is active.
-- After expiration, premium features are disabled.
-- The format is an ISO 8601 timestamp.
+- The value is returned unchanged: the engine does not parse, convert or format it.
 
 ## Examples
 
@@ -91,7 +89,5 @@ $addField[📝 Language;$scriptLanguage;yes]
 
 ## Notes
 
-- Empty string = no premium.
+- An empty string means the host supplied no value.
 - For hosting, use `$hostingExpireTime`.
-- BDFD premium offers: more commands, more servers, exclusive features.
-- The value is the raw expiration timestamp provided by the host; `$premiumExpireTime` takes no processing.

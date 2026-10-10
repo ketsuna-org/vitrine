@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botListHide
 syntax: $botListHide
-description: Hides the bot from the public BDFD bot list.
+description: Compatibility flag for the BDFD bot list. It takes no argument and has no effect in the engine.
 ---
 
 # $botListHide
 
-The `$botListHide` function **removes the bot from the public BDFD bot list**. Once hidden, the bot will no longer appear in the community directory.
+The `$botListHide` function is a **compatibility flag** for the BDFD bot list. In the engine it is accepted and does nothing: it returns an empty string and does not hide or change anything.
 
 ## Syntax
 
@@ -20,42 +20,28 @@ $botListHide
 
 ## Parameters
 
-None.
+None (passing one is an error: "Invalid argument count").
 
 ## Return value
 
-None. The bot is hidden from the public list.
+- **Type**: String
+- Always an empty string.
 
 ## Behavior
 
-- Irreversible action via script (contact support to make the bot visible again).
-- The bot continues to function normally.
-- Only visibility in the BDFD directory is affected.
+- The engine has no bot list: calling the function has no visible effect and stores nothing.
+- Like `$botListDescription[]`, it exists so that scripts coming from BDFD are accepted.
 
 ## Examples
 
-### Simple hiding
+### Harmless call
 
 ```bdfd
 $botListHide
-$sendMessage[🔒 The bot has been removed from the public BDFD list.]
+$sendMessage[Done.]
 ```
 
-### Secured owner command
-
-```bdfd
-$if[$authorID!=$botOwnerID]
-  $ephemeral
-  $sendMessage[❌ This command is reserved for the owner.]
-  $stop
-$endif
-
-$botListHide
-$sendMessage[✅ **$botName** has been hidden from the BDFD bot list.
-⚠️ This action is permanent. Contact support to undo.]
-```
-
-### Configuration panel
+### Owner-only command
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
@@ -64,21 +50,11 @@ $if[$authorID!=$botOwnerID]
   $stop
 $endif
 
-$var[action;$message[1]]
-$if[$var[action]==hide]
-  $botListHide
-  $sendMessage[🔒 Bot hidden.]
-$elseif[$var[action]==desc]
-  $botListDescription[$message[2]]
-  $sendMessage[📝 Description updated.]
-$else
-  $sendMessage[❌ Usage: !botconfig <hide|desc> [text]]
-$endif
+$botListHide
+$sendMessage[✅ Flag accepted (it has no effect in this engine).]
 ```
 
 ## Notes
 
-- `$botListHide` is permanent via script.
-- To manage the description, use `$botListDescription[]`.
-- The bot remains fully functional even when hidden.
-- Use this function if you do not want your bot to appear in the public directory.
+- Do not rely on it to hide the bot from any list.
+- The related function `$botListDescription[]` is also a no-op.

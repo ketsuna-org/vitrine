@@ -45,7 +45,7 @@ $if[$var[desc]==]
 $endif
 
 $botListDescription[$var[desc]]
-$sendMessage[✅ Bot description updated!]
+$sendMessage[✅ Description flag applied (no effect in this engine).]
 ```
 
 ### Owner-only command

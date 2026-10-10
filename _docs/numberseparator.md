@@ -4,36 +4,38 @@ title: $numberSeparator[]
 translation_key: docs
 category: "Math & Text"
 function_name: numberSeparator
-syntax: $numberSeparator[number]
-description: Formats a number by adding thousands separators (commas) for readability.
+syntax: $numberSeparator[number;(separator)]
+description: Formats an integer by inserting a separator (comma by default) between groups of three digits.
 ---
-# $numberSeparator — Format Number with Commas
+# $numberSeparator — Format Number with Separators
 
-`$numberSeparator` inserts thousands separators (commas) into a number to make it more human-readable. It handles integers and decimal values, leaving the decimal portion untouched.
+`$numberSeparator` inserts a separator between groups of three digits of an integer to make it more human-readable. The separator is `,` unless you give another one.
 
 ## Syntax
 
 ```
-$numberSeparator[number]
+$numberSeparator[number;(separator)]
 ```
 
 ## Parameters
 
-- **number** *(number or numeric string, required)* — The value to format.
+- **number** *(integer, required)* — The value to format. Leading and trailing spaces are ignored; an optional `+` or `-` sign is accepted. A decimal number (`1234.5`), text or an empty value raises the error "Number must be an integer.".
+- **separator** *(text, optional)* — The text inserted between the groups of three digits. Default: `,`. An empty separator also gives `,`. Any text is accepted, including several characters.
 
 ## Return Value
 
 - **Type**: `string`
-- Returns the formatted number with commas. If the input is not a valid number, it may be returned unchanged.
+- Returns the digits grouped by three from the right, joined by the separator, with the `-` sign kept for negative numbers.
 
 ## Usage
 
 ```
 $numberSeparator[1000]          → "1,000"
-$numberSeparator[50000]         → "50,000"
 $numberSeparator[1234567890]    → "1,234,567,890"
 $numberSeparator[999]           → "999"
-$numberSeparator[1500.75]       → "1,500.75"
+$numberSeparator[-1234567]      → "-1,234,567"
+$numberSeparator[1234567;.]     → "1.234.567"
+$numberSeparator[1234567; ]     → "1 234 567"
 $numberSeparator[0]             → "0"
 ```
 
@@ -46,19 +48,6 @@ $sendMessage[Your balance: $numberSeparator[$getUserVar[coins]] coins]
 ```
 Output: `Your balance: 12,500 coins`
 
-### Server Statistics
-
-```
-$sendMessage[Members: $numberSeparator[$membersCount]]
-```
-Output: `Members: 25,342`
-
-### Scoreboards
-
-```
-$sendMessage[#$getTextSplitIndex - Score: $numberSeparator[$splitText]]
-```
-
 ### Experience Points
 
 ```
@@ -67,10 +56,10 @@ $sendMessage[Level $getUserVar[level] — XP: $numberSeparator[$getUserVar[xp]]]
 
 ## Important Notes
 
-- **Decimal handling**: The decimal part (after `.`) is preserved as-is without separators.
-- **Negative numbers**: Formatting with negative sign is supported: `$numberSeparator[-5000]` → `"-5,000"`.
-- **Non-numeric input**: If the input cannot be parsed as a number, it is returned unchanged.
-- **Large numbers**: Handles arbitrarily large integers within BDFD's numeric limits.
+- **Integers only**: decimal numbers are not formatted; they raise an error. Remove the decimal part first, for example with `$floor[]` or `$round[]`.
+- **Negative numbers**: the sign is kept: `$numberSeparator[-5000]` → `"-5,000"`.
+- **Non-numeric input**: it is not returned unchanged; it raises "Number must be an integer.".
+- **Large numbers**: integers of any size are accepted.
 
 ## Examples
 
@@ -78,6 +67,6 @@ $sendMessage[Level $getUserVar[level] — XP: $numberSeparator[$getUserVar[xp]]]
 
 ```bdfd
 $title[Bank Vault Balance]
-$description[Total reserves: **$$numberSeparator[1250000;,]**]
+$description[Total reserves: **$numberSeparator[1250000;,]**]
 $color[#57F287]
 ```

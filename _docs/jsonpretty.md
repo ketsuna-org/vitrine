@@ -4,10 +4,20 @@ title: $jsonPretty[]
 translation_key: docs
 category: "HTTP & JSON"
 function_name: jsonPretty
-syntax: $jsonPretty[indent?]
-description: Prettifies the current internal JSON structure into a human-readable, indented JSON string for display or debugging.
+syntax: $jsonPretty[(indent)]
+description: Returns the current JSON document as indented, multi-line JSON text; the indent defaults to 2 spaces.
 ---
-$jsonPretty is useful for debugging JSON data or displaying it to users in a readable format. Unlike $jsonStringify which produces compact output, $jsonPretty adds line breaks and indentation. Use inside code blocks (```json) for embed descriptions. If no JSON context exists, returns an empty string.
+$jsonPretty returns the JSON document with line breaks and indentation, unlike `$jsonStringify` which is compact. The document is not modified.
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `indent` | Optional. Number of spaces per level. Default: `2`. A non-numeric or negative value also gives `2`. `0` keeps the line breaks but removes the indentation. |
+
+## Behavior
+
+- Returns an empty string when no JSON document exists yet.
 
 ## Examples
 
@@ -16,6 +26,6 @@ $jsonPretty is useful for debugging JSON data or displaying it to users in a rea
 ```bdfd
 $jsonParse[{"status":"ok","code":200}]
 $title[Pretty Printed JSON]
-$description[```json\n$jsonPretty\n```]
+$description[$jsonPretty]
 $color[#5865F2]
 ```

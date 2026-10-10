@@ -23,7 +23,7 @@ $footerIcon[url;(embedIndex)]
 | Parameter | Description |
 |---|---|
 | `url` | URL of the image to use as the footer's icon. |
-| `embedIndex` | Optional. Index of the target embed (Default: 1). |
+| `embedIndex` | Optional. Index of the targeted embed, from 1 to 10 (1 by default, also when empty). Any other value is an error. |
 
 ## Return Value
 
@@ -66,6 +66,5 @@ $color[#57F287]
 
 ## Notes
 
-- `$footerIcon[]` must be called **after** `$footer[]`, otherwise there is no footer to apply the icon to.
-- If `$footerIcon[]` is called before `$footer[]`, the icon will be ignored.
+- The icon is only sent when the same embed also has footer **text** (`$footer[]`). The order of the two calls does not matter, but an icon without text is dropped.
 - The URL must point to a publicly accessible image.

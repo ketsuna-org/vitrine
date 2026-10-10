@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: nodeVersion
 syntax: $nodeVersion
-description: Returns the Node.js runtime version on which the bot is running.
+description: Returns the version string supplied by the host in bot.nodeVersion, or v20.0.0 when the host supplies none.
 ---
 
 # $nodeVersion
 
-The function `$nodeVersion` **returns the current Node.js runtime version** on which the BDFD bot is running.
+The function `$nodeVersion` returns the value of the `bot.nodeVersion` context variable supplied by the host. The engine itself does not detect any Node.js version.
 
 ## Syntax
 
@@ -25,13 +25,12 @@ None.
 ## Return Value
 
 - **Type** : String
-- The Node.js version (e.g. `v18.15.0`, `v20.10.0`).
+- The text of the `bot.nodeVersion` context variable as supplied by the host.
+- `v20.0.0` if the host supplied none.
 
 ## Behavior
 
-- Returns the full version prefixed with `v`.
-- The version is determined by the BDFD infrastructure (cannot be modified).
-- Useful for debugging and checking feature compatibility.
+- The value is returned unchanged. Because of the default, the function never returns an empty string and does not prove which runtime executes the command.
 
 ## Examples
 
@@ -59,7 +58,6 @@ $description[
 **Language :** $scriptLanguage
 **Commands :** $commandsCount
 ]
-$footer[BDFD Infrastructure]
 ```
 
 ### Startup Log
@@ -70,7 +68,5 @@ $log[🚀 $botName started | Node: $botNode | Runtime: $nodeVersion | Lang: $scr
 
 ## Notes
 
-- Read-only version managed by BDFD.
-- Automatically updated by the BDFD infrastructure.
-- For information on the bot node, use `$botNode`.
+- `$nodeVersion` takes no argument.
 - For the script language, use `$scriptLanguage`.

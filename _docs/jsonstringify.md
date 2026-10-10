@@ -5,9 +5,14 @@ translation_key: docs
 category: "HTTP & JSON"
 function_name: jsonStringify
 syntax: $jsonStringify[]
-description: Converts the current internal JSON structure back into a compact JSON string with no extra whitespace.
+description: Returns the current JSON document as compact JSON text; empty if no JSON document exists yet.
 ---
-$jsonStringify returns the internal JSON as a compact, minified string — ideal for sending in API requests, storing in variables, or logging. For human-readable output, use $jsonPretty instead. If no JSON has been initialised (via $json or $jsonParse), the function returns an empty string.
+$jsonStringify returns the JSON document of the current command as compact JSON text (no extra whitespace). It takes no argument. For indented output use `$jsonPretty`.
+
+## Behavior
+
+- Returns an empty string if no JSON document exists yet (nothing loaded with `$json` / `$jsonParse` and nothing set).
+- After `$jsonClear` it returns `{}`.
 
 ## Examples
 

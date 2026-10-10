@@ -23,7 +23,7 @@ $title[text;(embedIndex)]
 | Parameter | Description |
 |---|---|
 | `text` | The text of the title. You can use Discord markdown syntax (bold, italics, underline, etc.). |
-| `embedIndex` | Optional. Index of the embed to modify (default is 0). Use this index to build multiple embeds in the same message (maximum of 10). |
+| `embedIndex` | Optional. Index of the embed to modify, from 1 to 10 (1 by default, also when empty). Any other value is an error. Use it to build several embeds in the same message (maximum of 10). |
 
 ## Return Value
 
@@ -33,7 +33,9 @@ This function returns nothing; it modifies the response currently being construc
 
 - `$title[]` is a **response mutation**: it is added to the response currently in progress and is emitted with the pending response at the end of the script.
 - If you call `$title[]` several times for the same embed index, only the last call is applied.
-- The order of calls is important: place `$title[]` before `$description[]`, `$color[]`, etc.
+- The order of the embed functions does not matter: each call fills one property of the embed at its index, and the embed is built when the response is sent.
+- The title is limited to **256 characters**; a longer text is an error ("Embed text cannot exceed 256 characters."). The total text of all the embeds (titles, descriptions, fields, footers, author names) is limited to 6000 characters.
+- An embed whose properties are all empty is not sent.
 
 ## Examples
 

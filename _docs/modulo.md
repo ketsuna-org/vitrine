@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: modulo
 syntax: $modulo[a;b]
-description: Calculates the remainder of the division of a by b (a % b). If b = 0, returns 0.
+description: Calculates the remainder of the integer division of a by b (a % b). Dividing by 0 is an error.
 ---
 
 # $modulo[]
 
-The function `$modulo[]` returns the remainder of the division of `a` by `b` (modulo operation: `a % b`). Like `$divide[]`, it is protected against division by zero.
+The function `$modulo[]` returns the remainder of the division of `a` by `b` (modulo operation: `a % b`). Both arguments must be integers.
 
 ## Syntax
 
@@ -22,14 +22,16 @@ $modulo[a;b]
 
 | Parameter | Type   | Required | Description        |
 |-----------|--------|-------------|--------------------|
-| `a`       | number | Yes         | The dividend.      |
-| `b`       | number | Yes         | The divisor.       |
+| `a`       | integer | Yes         | The dividend.      |
+| `b`       | integer | Yes         | The divisor (not `0`).       |
 
 ## Behavior
 
 - Returns the remainder of `a` divided by `b`.
-- If `b = 0`, returns `0` (built-in protection).
-- The result always has the same sign as the dividend `a`.
+- Both values must be integers (decimal, text or empty values raise "Expected an integer in argument N."). Integers of any size are accepted.
+- If `b = 0`, the call fails with the error "Cannot take remainder by zero.".
+- Exactly two arguments are required.
+- The result has the same sign as the dividend `a`.
 
 ## Examples
 
@@ -43,4 +45,4 @@ $color[#5865F2]
 ```
 ## Notes
 
-- For negative numbers, the behavior follows standard mathematical definitions: `$modulo[-17;5]` → `-2`.
+- The sign follows the dividend: `$modulo[-17;5]` → `-2`, `$modulo[17;-5]` → `2`.

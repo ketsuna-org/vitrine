@@ -4,33 +4,35 @@ title: $sub[]
 translation_key: docs
 category: "Math & Text"
 function_name: sub
-syntax: $sub[a;b]
-description: Subtracts the second value from the first (a - b).
+syntax: $sub[value1;value2;(value3;...)]
+description: Subtracts the following values from the first one (a - b - c ...).
 ---
 
 # $sub[]
 
-The function `$sub[]` performs a subtraction between two values: `a - b`.
+The function `$sub[]` subtracts every following value from the first one, from left to right. It needs at least 2 arguments and has no upper limit.
 
 ## Syntax
 
 ```
-$sub[a;b]
+$sub[value1;value2;(value3;...)]
 ```
 
 ## Parameters
 
 | Parameter | Type   | Required | Description                        |
 |-----------|--------|-------------|------------------------------------|
-| `a`       | number | Yes         | The starting value (minuend).     |
-| `b`       | number | Yes         | The value to subtract (subtrahend). |
+| `value1` | number | Yes | The starting value (minuend). |
+| `value2;(value3;...)` | number | Yes (at least `value2`) | The values to subtract, in order. |
 
 ## Behavior
 
-- Returns `a - b`.
+- Returns `value1 - value2 - value3 ...`. `$sub[10;3;2]` → `5`.
 - The result can be negative.
-- Supports decimal numbers.
-- If the values are not numerical, the behavior is undefined.
+- Integers are subtracted exactly (arbitrary size). If a decimal number is involved, the subtraction is done on decimals.
+- A value that is not a finite number (text, empty) raises the error "Expected a finite number in argument N.".
+- Fewer than 2 arguments is rejected ("Invalid argument count").
+- Unless decimals are enabled with `$enableDecimals`, a non-integer result is rounded to the nearest integer (`$sub[10.5;3.2]` → `7`).
 
 ## Examples
 
@@ -45,5 +47,6 @@ $color[#5865F2]
 ```
 ## Notes
 
-- Only two arguments are accepted. To subtract several values, nest the calls: `$sub[$sub[a;b];c]` or use `$calculate[a - b - c]`.
+- Use `$enableDecimals[yes]` to keep decimal results (`$sub[10.5;3.2]` → `7.3`).
+- For more complex operations, use `$calculate[]`.
 - The separator is the semicolon `;`.

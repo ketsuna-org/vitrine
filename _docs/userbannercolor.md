@@ -10,7 +10,7 @@ description: Returns the banner color of a user in hexadecimal format (RRGGBB, w
 
 # $userBannerColor
 
-The `$userBannerColor` function returns the **banner color** (banner color of the Discord user) of the given user.
+The `$userBannerColor` function returns the **profile accent color** of the given Discord user (the engine reads the `accentColor` of the user, which Discord also exposes as the banner color).
 
 ## Syntax
 
@@ -28,12 +28,13 @@ $userBannerColor[userID]
 
 - **Type**: String (hexadecimal)
 - Format: `RRGGBB` in upper case, **without** `#` (e.g., `5865F2`)
-- An empty string if the user has no banner color.
+- An empty string if the user has no accent color (the value is not available).
 
 ## Behavior
 
 - `$userBannerColor` requires one argument: used without argument it is invalid.
-- Can be used directly in `$color[]` (which accepts hexadecimal with or without `#`).
+- The value is the 24-bit color number in hexadecimal, left-padded with zeros to 6 digits and upper-cased.
+- `$color[]` accepts a 6-digit hexadecimal value with or without `#`.
 
 ## Examples
 
@@ -56,5 +57,4 @@ $endif
 
 ## Notes
 
-- Coupled with `$userBanner[]`, it allows you to create embeds with a custom theme for each user.
 - If the user has no banner color, make sure to provide a fallback color.
