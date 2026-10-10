@@ -4,38 +4,41 @@ title: $getReactions
 translation_key: docs
 category: "Moderation"
 function_name: getReactions
-syntax: $getReactions[channelID;messageID;emoji]
-description: Returns the number of reactions for a specific emoji on a given message. Allows counting votes or interactions.
+syntax: $getReactions[channelID;messageID;separator;emoji]
+description: Returns the list of the users who reacted to a message with a given emoji, separated by the chosen separator.
 ---
 
 # $getReactions
 
-The function `$getReactions[]` retrieves the **number of reactions** for a specific emoji on a given message.
+The function `$getReactions[]` retrieves the **users who reacted** to a message with a specific emoji.
 
 ## Syntax
 
 ```
-$getReactions[channelID;messageID;emoji]
+$getReactions[channelID;messageID;separator;emoji]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the channel containing the message. |
-| `messageID` | The ID of the target message. |
-| `emoji` | The emoji to count. Unicode (`👍`) or custom (`<:name:ID>`). |
+| `channelID` | The ID of the channel containing the message. Required. |
+| `messageID` | The ID of the target message. Required. |
+| `separator` | The text inserted between each user name. Required (may be empty). |
+| `emoji` | The emoji to read. Unicode (`👍`), custom (`<:name:ID>` or `<a:name:ID>`), the ID of a custom emoji, or a `:name:` alias known to the engine. Required. |
 
 ## Return Value
 
-- **Type**: Integer
-- The number of times the emoji was used as a reaction on the message.
-- Returns `0` if the emoji is not present.
+- **Type**: String
+- The names of the users who reacted with this emoji, joined with the separator (all pages of reactions are read).
+- The user name, followed by `#discriminator` only for accounts that still have one.
+- An empty string if nobody reacted with this emoji.
+- An error is raised if an ID is invalid, if the emoji is empty or invalid, or if the message cannot be read.
 
 ## Behavior
 
-- Counts ONLY the number of reactions, not specific users.
-- A single person can count for 1 even if they reacted several times (only one reaction per emoji per user).
+- Returns the users, not a count.
+- Each user appears once.
 - The bot must have access to the channel to read the reactions.
 
 ## Examples
@@ -43,43 +46,31 @@ $getReactions[channelID;messageID;emoji]
 ### Poll results
 
 ```bdfd
-$var[yes;$getReactions[$channelID;$messageID;👍]]
-$var[no;$getReactions[$channelID;$messageID;👎]]
-
 $title[Results of the poll]
 $description[
-**Yes:** $var[yes] vote(s)
-**No:** $var[no] vote(s)
-**Total:** $sum[$var[yes];$var[no]] votes
+**Yes:** $getReactions[$channelID;$messageID;, ;👍]
+**No:** $getReactions[$channelID;$messageID;, ;👎]
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
-### Threshold verification
+### Nobody has validated
 
 ```bdfd
-$var[votes;$getReactions[$channelID;$messageID;✅]]
-$if[$var[votes]>=5]
-  $sendMessage[Threshold of 5 votes reached! Action executed.]
+$if[$getReactions[$channelID;$messageID;,;✅]==]
+  $sendMessage[Nobody has reacted with ✅ yet.]
 $else
-  $sendMessage[Still $sub[5;$var[votes]] vote(s) needed.]
+  $sendMessage[Validated by: $getReactions[$channelID;$messageID;, ;✅]]
 $endif
 ```
 
 ### Giveaway
 
 ```bdfd
-$var[participants;$getReactions[$channelID;$giveawayMsg;🎉]]
-$if[$var[participants]>0]
-  $sendMessage[**$var[participants]** participant(s) in the giveaway!]
-$else
-  $sendMessage[No participants at the moment.]
-$endif
+$sendMessage[Participants: $getReactions[$channelID;$messageID;, ;🎉]]
 ```
 
 ## Notes
 
-- The count includes the bot itself if it has reacted.
-- Useful for voting systems, polls, and giveaways.
-- Alternative methods are required to retrieve the list of users who reacted.
+- To test whether one given user reacted, use `$userReacted[channelID;messageID;userID;emoji]`.
+- To count the reactions, split the result with `$textSplit[]` and read `$getTextSplitLength` (an empty result still gives one empty element).

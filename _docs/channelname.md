@@ -4,25 +4,25 @@ title: $channelName
 translation_key: docs
 category: "Entity Info"
 function_name: channelName
-syntax: $channelName[(channelID)]
-description: Returns the name of the current Discord channel or of a specific channel via its ID.
+syntax: $channelName[channelID]
+description: Returns the name of a Discord channel from its ID.
 ---
 
 # $channelName
 
-The `$channelName` function returns the **name** of a Discord channel. By default, it returns the name of the channel where the command is executed, but it can also return the name of a specific channel if an ID is provided.
+The `$channelName` function returns the **name** of a Discord channel. The channel ID is required; use `$channelID` to target the channel where the command is executed.
 
 ## Syntax
 
 ```
-$channelName[(channelID)]
+$channelName[channelID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
+| `channelID` | Required. The ID of the target channel. An invalid ID raises `Invalid channel ID.` and an unknown channel raises `Channel not found.` |
 
 ## Return value
 
@@ -35,7 +35,7 @@ $channelName[(channelID)]
 ### Name of the current channel
 
 ```bdfd
-$sendMessage[Welcome to #$channelName!]
+$sendMessage[Welcome to #$channelName[$channelID]!]
 ```
 
 ### Name of a specific channel
@@ -47,7 +47,7 @@ $sendMessage[The channel is: $channelName[123456789012345678]]
 ### Check the name of a channel
 
 ```bdfd
-$if[$channelName==general]
+$if[$channelName[$channelID]==general]
   $sendMessage[You are in the general channel.]
 $endif
 ```
@@ -55,5 +55,5 @@ $endif
 ## Notes
 
 - For text channels, the name is returned without the `#` prefix. Add it manually if needed.
-- The name of voice channels is displayed in the same way (e.g., `Voice 1`).
-- To list all channels, use `$channelNames`.
+- The name of voice channels and categories is returned in the same way (e.g., `Voice 1`).
+- To list all channels, use `$channelNames[separator]`.

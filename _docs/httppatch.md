@@ -19,5 +19,4 @@ $httpPatch[https://api.example.com/users/123;{"status":"active"}]
 $title[HTTP PATCH Request]
 $description[Resource updated. Status: **$httpStatus**]
 $color[#57F287]
-$sendMessage[]
 ```

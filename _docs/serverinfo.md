@@ -4,95 +4,45 @@ title: $serverInfo[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverInfo
-syntax: $serverInfo[property]
-description: Returns a specific property of the server object (or the entire object without arguments). Allows dynamic access to server information.
+syntax: $serverInfo[(guildID);(field)]
+description: Returns the runtime value `guild.info` of the current context, or an empty string when none is provided. The arguments are not read by the engine.
 ---
 
 # $serverInfo[] — Server Information
 
-`$serverInfo[]` is a versatile function that allows you to access server information. Without arguments, it returns the complete raw server object; with a property name, it returns that specific value.
+`$serverInfo[]` returns the text stored in the runtime variable `guild.info` of the current execution context. If the context does not provide this variable, the function returns an empty string.
 
 ## Syntax
 
 ```
 $serverInfo
-$serverInfo[property]
+$serverInfo[(guildID);(field)]
 ```
+
+The function accepts from 0 to 2 arguments.
 
 ## Parameters
 
 | Parameter | Required | Default | Description |
-|-----------|-------------|--------|-------------|
-| `property` | No | — | Name of the property to retrieve. |
+|-----------|----------|---------|-------------|
+| `guildID` | No | — | Accepted but not read by the engine. |
+| `field` | No | — | Accepted but not read by the engine: no property selection (`name`, `id`, `ownerID`...) is performed. |
 
-## Properties Available
+## Return Value
 
-| Property | Description | Equivalent |
-|-----------|-------------|------------|
-| `name` | Name of the server | `$serverName` |
-| `id` | ID of the server | `$serverID` |
-| `icon` | URL of the icon | `$serverIcon` |
-| `ownerID` | ID of the owner | `$serverOwner` |
-| `description` | Description of the server | `$serverDescription` |
-| `region` | Region of the server | `$serverRegion` |
-| `verificationLevel` | Verification level | `$serverVerificationLevel` |
-| `memberCount` | Number of members | `$membersCount` |
-| `boostCount` | Number of boosts | `$serverBoostCount` |
-| `boostLevel` | Boost level | `$boostLevel` |
-| `emojiCount` | Number of emojis | `$emojiCount` |
-| `banner` | URL of the banner | `$serverBanner` |
-| `vanityURL` | Custom invite URL code | `$serverVanityURL` |
+- **Type**: `string`
+- The value of `guild.info` provided by the execution context, or `""` when the context does not provide it. The engine does not build a server object by itself.
 
 ## Examples
 
-### Retrieve a property
-
 ```bdfd
-$sendMessage[Server Name: **$serverInfo[name]**]
-$sendMessage[Owner: <@$serverInfo[ownerID]>]
-```
-
-### Retrieve all information
-
-```bdfd
-$title[Complete Server Information]
-$description[Raw server data]
-$addField[Server Object;$serverInfo;no]
+$title[Server information]
+$description[$serverInfo]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
-### Dynamic usage
-
-```bdfd
-$var[prop;$message[1]]
-$if[$var[prop]!=]
-  $sendMessage[$serverInfo[$var[prop]]]
-$else
-  $sendMessage[Usage: !serverinfo <property>]
-$endif
-```
-
-### Summary Embed
-
-```bdfd
-$title[$serverInfo[name]]
-$description[$serverInfo[description]]
-$addField[🆔 ID;$serverInfo[id];yes]
-$addField[👑 Owner;<@$serverInfo[ownerID]>;yes]
-$addField[👥 Members;$serverInfo[memberCount];yes]
-$addField[🚀 Boosts;$serverInfo[boostCount] (Lvl. $serverInfo[boostLevel]);yes]
-$addField[🎨 Emojis;$serverInfo[emojiCount];yes]
-$addField[🔒 Verification;$serverInfo[verificationLevel];yes]
-$thumbnail[$serverInfo[icon]]
-$image[$serverInfo[banner]]
-$color[#5865F2]
-$sendEmbedMessage
-```
+The description is empty when the execution context does not provide `guild.info`.
 
 ## Notes
 
-- `$serverInfo[]` without arguments returns a raw JSON object — useful for debugging or logging.
-- Property names are case-sensitive (camelCase).
-- Prefer dedicated functions (`$serverName`, `$serverID`, etc.) for simple usage — `$serverInfo[]` is best for dynamic access.
-- Not all properties are always available (e.g. `banner` if the boost level is insufficient).
+- To read specific server properties, use the dedicated functions: `$serverName`, `$serverIcon`, `$serverBoostCount`, `$serverVerificationLevel`, `$membersCount`, `$emojiCount`, etc.

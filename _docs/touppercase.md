@@ -79,5 +79,4 @@ $endif
 $title[SHOUTING FORMATTER]
 $description[Uppercase: **$toUpperCase[$message]**]
 $color[#5865F2]
-$sendMessage[]
 ```

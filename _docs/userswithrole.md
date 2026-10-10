@@ -52,7 +52,8 @@ $usersWithRole[$roleID[VIP];
 ### Count members
 
 ```bdfd
-$sendMessage[There are $length[$usersWithRole[$roleID[Member];,]] members with the Member role.]
+$textSplit[$usersWithRole[$roleID[Member]];, ]
+$sendMessage[There are $getTextSplitLength members with the Member role.]
 ```
 
 ### Check if a role is empty
@@ -66,11 +67,11 @@ $endif
 ### Notify admins
 
 ```bdfd
-$sendMessage[$usersWithRole[$roleID[Admin]] New important alert!]
+$sendMessage[Administrator IDs: $usersWithRole[$roleID[Admin]]]
 ```
 
 ## Notes
 
-- Members are generally returned in the form of mentions.
+- Members are returned as user IDs joined by the separator.
 - The exact format may vary depending on the version of BDFD.
 - Useful for targeted announcements or community management.

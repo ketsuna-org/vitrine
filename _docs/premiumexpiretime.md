@@ -43,43 +43,50 @@ $var[premium;$premiumExpireTime]
 $if[$var[premium]==]
   $sendMessage[❌ This bot has no active premium subscription.]
 $else
-  $var[days;$dateDiff[$var[premium]]]
   $sendMessage[💎 **Premium active!**
-  > Expires on: $formatDate[$var[premium];DD/MM/YYYY]
-  > Days remaining: $var[days] days]
+  > Expires on: $var[premium]]
 $endif
 ```
 
-### Renewal alert
+### Notify the owner
 
 ```bdfd
-$var[premium;$premiumExpireTime]
-$if[$var[premium]==]
+$if[$premiumExpireTime==]
   $stop
 $endif
 
-$var[days;$dateDiff[$var[premium]]]
-$if[$var[days]<=3]
-  $sendDM[$botOwnerID;🚨 **$botName Premium** expires in $var[days] days! Remember to renew.]
-$endif
+$dm[$botOwnerID]
+$sendMessage[💎 **$botName Premium** expires on: $premiumExpireTime. Remember to renew.]
 ```
 
 ### Owner dashboard
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Reserved for the owner.]
+  $ephemeral
+  $sendMessage[❌ Reserved for the owner.]
   $stop
+$endif
+
+$if[$hostingExpireTime==]
+  $var[hosting;Free]
+$else
+  $var[hosting;$hostingExpireTime]
+$endif
+$if[$premiumExpireTime==]
+  $var[premium;❌ None]
+  $color[#ED4245]
+$else
+  $var[premium;$premiumExpireTime]
+  $color[#57F287]
 $endif
 
 $title[📊 $botName Dashboard]
 $addField[🟢 Status;Online;yes]
-$addField[📅 Hosting;$if[$hostingExpireTime==]Free$else$hostingExpireTime$endif;yes]
-$addField[💎 Premium;$if[$premiumExpireTime==]❌ None$elseExpires $formatDate[$premiumExpireTime;DD/MM/YYYY]$endif;yes]
+$addField[📅 Hosting;$var[hosting];yes]
+$addField[💎 Premium;$var[premium];yes]
 $addField[⚡ Runtime;$nodeVersion;yes]
 $addField[📝 Language;$scriptLanguage;yes]
-$color[$if[$premiumExpireTime==]#ED4245$else#57F287$endif]
-$sendMessage[]
 ```
 
 ## Notes
@@ -87,4 +94,4 @@ $sendMessage[]
 - Empty string = no premium.
 - For hosting, use `$hostingExpireTime`.
 - BDFD premium offers: more commands, more servers, exclusive features.
-- `$dateDiff[$premiumExpireTime]` returns the number of days remaining.
+- The value is the raw expiration timestamp provided by the host; `$premiumExpireTime` takes no processing.

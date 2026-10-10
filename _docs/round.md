@@ -41,7 +41,6 @@ Rounding `3.4`: **$round[3.4]**]
 $addField[Negative Value;$round[-3.6];yes]
 $addField[Exact Integer;$round[5];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Comparison: floor / ceil / round
 

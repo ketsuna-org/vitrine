@@ -82,5 +82,4 @@ $title[Lowercase Conversion]
 $description[Original: `$message`
 Lowercase: **$toLowerCase[$message]**]
 $color[#5865F2]
-$sendMessage[]
 ```

@@ -59,7 +59,6 @@ $var[result;$calculate[($message[1] + 10) * 2 / 4]]
 $title[Math Calculator 🧮]
 $description[Formula: `($message[1] + 10) * 2 / 4`\nResult: **$var[result]**]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

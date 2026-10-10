@@ -41,45 +41,37 @@ None. The pixel is modified directly on the canvas.
 ### Single pixel
 
 ```bdfd
-$canvasCreate[100;100]
+$canvasCreate[pixel;100;100]
 $canvasSetPixel[50;50;#FF0000]
-$attachCanvas[]
+$attachImage[pixel]
 $sendMessage[🔴 Red pixel placed at the center!]
 ```
 
 ### Draw a horizontal line
 
 ```bdfd
-$canvasCreate[200;100]
-$for[x;0;199;1]
-  $canvasSetPixel[$for[x];50;#5865F2]
+$canvasCreate[line;200;100]
+$for[i=0;i<200;i++]
+  $canvasSetPixel[$i;50;#5865F2]
 $endfor
-$attachCanvas[]
+$attachImage[line]
 $sendMessage[📏 Blue line drawn!]
 ```
 
 ### Cross at the center
 
 ```bdfd
-$canvasCreate[100;100]
-$for[i;30;70;1]
-  $canvasSetPixel[$for[i];50;#FF0000]
-  $canvasSetPixel[50;$for[i];#FF0000]
+$canvasCreate[cross;100;100]
+$for[i=30;i<=70;i++]
+  $canvasSetPixel[$i;50;#FF0000]
+  $canvasSetPixel[50;$i;#FF0000]
 $endfor
-$attachCanvas[]
+$attachImage[cross]
 $sendMessage[➕ Red cross drawn!]
-```
-
-### Draw where the user clicks (interaction)
-
-```bdfd
-$canvasSetPixel[$mouseX;$mouseY;$message[1]]
-$attachCanvas[]
 ```
 
 ## Notes
 
 - Coordinates start at 0 (not 1).
-- To fill an entire area, use `$canvasFill[]` or `$canvasDrawRect[]`.
-- To read a pixel, use `$canvasGetPixel[]`.
+- To fill an entire area, use `$canvasDrawRect[]`.
 - Modifying many pixels one by one can be slow; prefer vector drawing functions.

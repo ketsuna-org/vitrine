@@ -35,7 +35,9 @@ $sendMessage[Attention to all members!]
 
 ```bdfd
 $tts
-$newEmbed[title=Voice Announcement;description=This is an important announcement;color=#E74C3C]
+$title[Voice Announcement]
+$description[This is an important announcement]
+$color[#E74C3C]
 $sendMessage[Important announcement!]
 ```
 

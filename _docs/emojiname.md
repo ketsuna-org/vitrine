@@ -55,7 +55,7 @@ $endif
 ```bdfd
 $var[id;$message[1]]
 $if[$var[id]!=]
-  $sendMessage[$channelID[logs];📊 Emoji **$emojiName[$var[id]]** used by $userName in $channelName.]
+  $sendMessage[$channelID[logs];📊 Emoji **$emojiName[$var[id]]** used by $userName in $channelName[$channelID].]
 $endif
 ```
 
@@ -63,12 +63,7 @@ $endif
 
 ```bdfd
 $title[📋 Server Emojis]
-$description[
-$textSplit[$serverEmojis[,];, ]
-  $index. $splitText[$index] — $emojiName[$splitText[$index]]
-$endTextSplit
-]
-$sendMessage[]
+$description[$serverEmojis[$guildID;, ]]
 ```
 
 ## Notes

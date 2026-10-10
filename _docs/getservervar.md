@@ -21,5 +21,4 @@ Variables are defined and configured in the Bot Creator Variables UI, where you 
 $title[Guild Configuration]
 $description[Auto-role ID: <@&$getServerVar[autoRole]>]
 $color[#5865F2]
-$sendMessage[]
 ```

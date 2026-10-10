@@ -51,7 +51,6 @@ $title[Photo of the Day]
 $description[A beautiful photo selected for you.]
 $image[https://picsum.photos/800/400]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Avatar as a large image
@@ -61,7 +60,6 @@ $title[Avatar of $username]
 $description[**ID:** $authorID]
 $image[$authorAvatar]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Embed combining image and thumbnail
@@ -76,7 +74,6 @@ $description[
 $thumbnail[https://cdn.example.com/product-icon.png]
 $image[https://cdn.example.com/product-banner.png]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ## Notes

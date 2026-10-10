@@ -4,31 +4,29 @@ title: $channelTopic
 translation_key: docs
 category: "Entity Info"
 function_name: channelTopic
-syntax: $channelTopic[(channelID)]
-description: Returns the topic of a Discord text channel.
+syntax: $channelTopic
+description: Returns the topic of the current Discord channel.
 ---
 
 # $channelTopic
 
-The `$channelTopic` function returns the **topic** of a Discord text channel. The topic is the text displayed at the top of the channel, generally used to describe its purpose.
+The `$channelTopic` function returns the **topic** of the channel where the command is executed. The topic is the text displayed at the top of the channel, generally used to describe its purpose.
 
 ## Syntax
 
 ```
-$channelTopic[(channelID)]
+$channelTopic
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|---|---|
-| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
+None. The function takes no argument and always reads the current channel (`$channelTopic[...]` with an argument is refused).
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `string` | The topic of the channel. Returns an empty string if no topic is set or if the channel is not a text channel. |
+| `string` | The topic of the channel. Returns an empty string if no topic is set or if the channel type has no topic. |
 
 ## Examples
 
@@ -51,14 +49,13 @@ $endif
 ### Topic in an embed
 
 ```bdfd
-$title[#$channelName]
+$title[#$channelName[$channelID]]
 $description[Topic: $channelTopic]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes
 
-- Only works for channels of type `text` and `news`.
-- For voice channels, categories, etc., the function returns an empty string.
-- Maximum length of a topic is 1024 characters.
+- Topics are returned for text, announcement, forum and media channels.
+- For other channel types (voice, categories, threads, etc.), the function returns an empty string.
+- The function raises an error if the current channel cannot be resolved.

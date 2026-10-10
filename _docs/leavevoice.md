@@ -18,5 +18,4 @@ $leaveVoice
 $title[Voice Disconnected 🔇]
 $description[Bot left the voice channel and cleared audio playback.]
 $color[#DA373C]
-$sendMessage[]
 ```

@@ -4,76 +4,48 @@ title: $webhookTitle
 translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookTitle
-syntax: $webhookTitle[text]
-description: Sets the title of the embed for the next message sent via $webhookSend.
+syntax: $webhookTitle[webhookURL;title]
+description: Stages the title of the embed for the next message sent to this webhook with $webhookSend.
 ---
 
 # $webhookTitle
 
-The `$webhookTitle` function allows you to **set the title** of the embed for the next webhook message.
+The `$webhookTitle` function stages the title of the embed for the message that will be sent to the given webhook.
 
 ## Syntax
 
 ```
-$webhookTitle[text]
+$webhookTitle[webhookURL;title]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `text` | The title of the embed. Maximum 256 characters. Supports emojis and variables. |
+| `webhookURL` | **Required.** The full Discord webhook URL (`https://discord.com/api/webhooks/ID/TOKEN`). An invalid URL raises `Invalid Discord webhook URL.` |
+| `title` | **Required.** The value to stage. It must contain 1 to 256 characters; otherwise the error `Webhook text must contain 1–256 characters.` is raised. |
+
+Exactly two arguments are required; any other count is refused ("Invalid argument count").
 
 ## Return Value
 
-This function does not return a value. It only sets the title of the next embed.
+An empty string. The value is only staged; nothing is sent yet.
 
 ## Behavior
 
-- The title appears at the top of the embed, in larger, bold text.
-- If no title is defined but a description is, the embed will be created without a title.
-- The title is reset after each `$webhookSend`.
+- The value is staged per webhook URL.
+- The title is part of the embed, which is sent with `$webhookSend`.
+- Calling `$webhookTitle` again for the same webhook replaces the staged value.
+- `$webhookSend[webhookURL]` sends the staged message and clears it.
+- If a staged message (with text content or an embed other than just a color) has not been sent when the script ends normally, it is sent automatically. If the script is stopped, staged webhook messages are discarded.
 
 ## Examples
 
-### Dynamic title
+### Embed with a title
 
 ```bdfd
-$webhookTitle[🔨 Moderation Action]
-$webhookDescription[
-**Action:** $message[1]
-**User:** $userName[$mentioned[1]]
-**Reason:** $noMentionMessage
-]
-$webhookColor[#ED4245]
-$webhookFooter[Moderation • $username]
-$webhookSend[$modHook;]
+$webhookTitle[https://discord.com/api/webhooks/123456/abcdef;✅ Task Completed]
+$webhookDescription[https://discord.com/api/webhooks/123456/abcdef;The automatic data backup was completed successfully.]
+$webhookColor[https://discord.com/api/webhooks/123456/abcdef;#57F287]
+$webhookSend[https://discord.com/api/webhooks/123456/abcdef]
 ```
-
-### Title with emoji
-
-```bdfd
-$webhookTitle[✅ Task Completed]
-$webhookDescription[The automatic data backup was completed successfully.]
-$webhookColor[#57F287]
-$webhookSend[$webhookURL;]
-```
-
-### Multiple embeds (conceptual)
-
-```bdfd
-$webhookTitle[First embed]
-$webhookDescription[Content of the first embed.]
-$webhookSend[$webhookURL;]
-
-$webhookTitle[Second embed]
-$webhookDescription[Content of the second embed.]
-$webhookColor[#FEE75C]
-$webhookSend[$webhookURL;]
-```
-
-## Notes
-
-- Maximum 256 characters for the title.
-- The title is bold and larger than the description.
-- An embed can exist without a title (description only), but a title alone (without description) also works.

@@ -4,51 +4,64 @@ title: $getLeaderboardValue[]
 translation_key: docs
 category: "Variables"
 function_name: getLeaderboardValue
-syntax: $getLeaderboardValue
-description: Returns the value (score, points, etc.) associated with the current position in the active leaderboard.
+syntax: $getLeaderboardValue[type;varName;sort;position;(returnType)]
+description: Returns the entry (name, ID or value) found at a given position in the ranking of a stored variable.
 ---
 
 # $getLeaderboardValue
 
-The function `$getLeaderboardValue` returns the value associated with the current position in the active leaderboard. This can be a score, a number of coins, XP points, or any other variable the ranking is based on.
+The function `$getLeaderboardValue[]` returns the entry found at a given **position** of the ranking built from a stored variable.
 
-This function only makes sense **in the context of iterating through a leaderboard** — that is, after calling `$globalUserLeaderboard`, `$serverLeaderboard` or `$userLeaderboard` and while iterating through their results with `$textSplit`.
+## Syntax
 
-## How It Works
+```
+$getLeaderboardValue[type;varName;sort;position;(returnType)]
+```
 
-When iterating through a leaderboard, each entry contains an identifier (user) and a value (the score). `$getLeaderboardValue` exposes this value for the entry currently being processed.
+## Parameters
 
-The returned value corresponds to the internal variable `((leaderboard.value))` which is resolved at runtime by the dedicated leaderboard action.
+| Parameter | Description |
+|---|---|
+| `type` | Required. The scope of the variable: `user` (members of the current server), `globalUser` or `server`. |
+| `varName` | Required. The name of the variable used for the ranking. |
+| `sort` | Required. `desc` (highest value first) or `asc` (lowest value first). |
+| `position` | Required. The rank to read (integer of 1 or more). |
+| `returnType` | Optional. `id` (the ID of the entry), `value` (its value) or `none` (name and value). Defaults to `none`. |
 
-## Use Cases
+## Return Value
 
-- Display each player's score in a ranking
-- Compare values between different positions
-- Trigger rewards based on the score reached
-- Format congratulation messages with the score
+- **Type**: String
+- With `none` (default): `Name - value`, where the name is the username (or the server name for the `server` type), or the ID if the name cannot be found.
+- With `id`: the ID of the user or server at this position.
+- With `value`: the value of the variable at this position.
+- An empty string if the position is beyond the end of the ranking.
+- An error is raised if the type, the variable name, the sort, the position or the return type is invalid.
 
-## Important
+## Behavior
 
-- `$getLeaderboardValue` **returns nothing** outside the context of an active leaderboard.
-- The function takes **no parameters**.
-- It is almost always used with `$getLeaderboardPosition` for a complete display (rank + value).
-- The returned value depends on the variable the leaderboard was built on (for example, if the leaderboard is based on `coins`, the value will be the number of coins).
+- The ranking is built from the persisted values of the variable; entries whose value is not a number are ignored.
+- With the `user` type, only the members of the current server are ranked.
+- It is typically paired with `$getLeaderboardPosition`, which gives the rank of a user.
 
 ## See Also
 
-- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Get the rank in the leaderboard
+- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Get the rank of a user
 - [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Global user leaderboard
 - [`$serverLeaderboard`](/docs/serverleaderboard) — Server-level leaderboard
 - [`$userLeaderboard`](/docs/userleaderboard) — Personal leaderboard
-- [`$textSplit`](/docs/textsplit) — Split the result of a leaderboard
 
 ## Examples
 
-### High Score Value
+### Best player
 
 ```bdfd
 $title[Leaderboard Score]
-$description[<@$authorID>, your high score is **$getLeaderboardValue** points!]
+$description[First place: **$getLeaderboardValue[user;coins;desc;1]**]
 $color[#57F287]
-$sendMessage[]
+```
+
+### Score of the third place
+
+```bdfd
+$sendMessage[Score of the 3rd: $getLeaderboardValue[user;coins;desc;3;value]]
 ```

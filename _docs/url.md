@@ -4,53 +4,47 @@ title: $url
 translation_key: docs
 category: "Variables"
 function_name: url
-syntax: $url
-description: "Returns the URL of the web page currently loaded in the bot's context. Useful in web interactions or dashboards."
+syntax: $url[mode;text]
+description: "Encodes or decodes a text as a URL query component."
 ---
 
 # $url
 
-The function `$url` returns the **URL of the current web context** in which the bot is running.
+The function `$url[]` **encodes or decodes** a text as a URL query component.
 
 ## Syntax
 
 ```
-$url
+$url[mode;text]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `mode` | Required - `encode` or `decode` (case-insensitive). Any other value raises an error. |
+| `text` | Required - The text to encode or decode. |
 
 ## Return Value
 
 - **Type** : String
-- The URL of the current context (web page, dashboard, etc.).
-
-## Behavior
-
-- Returns the page URL if the bot is executed in a web context.
-- May return an empty string outside a web context.
+- With `encode`, the text encoded as a query component (spaces become `+`, special characters are percent-encoded).
+- With `decode`, the decoded text. An error is raised if the text is not valid URL encoding.
 
 ## Examples
 
-### Display the current URL
+### Encode a search
 
 ```bdfd
-$sendMessage[Current URL: $url]
+$sendMessage[https://www.google.com/search?q=$url[encode;$message]]
 ```
 
-### Check a specific page
+### Decode a text
 
 ```bdfd
-$if[$checkContains[$url;/dashboard]==true]
-  $sendMessage[You are on the dashboard.]
-$else
-  $sendMessage[You are on: $url]
-$endif
+$sendMessage[Decoded: $url[decode;hello+world%21]]
 ```
 
 ## Notes
 
-- Context-dependent: returns nothing in classic Discord commands.
-- Useful for web-based applications and BDFD dashboards.
+- Used on its own (`$url` with no argument), the function is invalid: both arguments are required.

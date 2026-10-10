@@ -47,8 +47,7 @@ $isNSFW
 ### Restricted command
 
 ```bdfd
-$if[$isNSFW==true]
-  ;; Display NSFW content
+$if[$isNSFW[$channelID]==true]
   $sendMessage[🔞 NSFW content...]
 $else
   $sendMessage[❌ This command can only be used in an NSFW channel.]
@@ -60,12 +59,11 @@ $endif
 ```bdfd
 $title[📺 Channel information]
 $description[
-**Name:** $channelName
+**Name:** $channelName[$channelID]
 **ID:** $channelID
-**NSFW:** $if[$isNSFW==true]🔞 Yes$else✅ No$endif
-**Category:** $channelCategory
+**NSFW:** $if[$isNSFW[$channelID]==true;🔞 Yes;✅ No]
+**Category:** $channelCategoryID[$channelID]
 ]
-$sendMessage[]
 ```
 
 ### Check another channel

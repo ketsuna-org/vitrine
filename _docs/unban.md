@@ -4,88 +4,68 @@ title: $unBan
 translation_key: docs
 category: "Moderation"
 function_name: unBan
-syntax: $unBan[userID]
-description: Unbans a user from the server using their ID. The user will be able to rejoin the server with a new invite.
+syntax: $unBan
+description: Unbans the banned user whose username matches the text of the message. The user will be able to rejoin the server with a new invite.
 ---
 
 # $unBan
 
-The function `$unBan[]` allows you to **unban a user** from the server using their Discord ID. Once unbanned, the user will be able to rejoin the server with a new invite.
+The function `$unBan` allows you to **unban a user** from the server, found by **username** in the server ban list. Once unbanned, the user will be able to rejoin the server with a new invite.
 
 ## Syntax
 
 ```
-$unBan[userID]
+$unBan
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The Discord ID of the user to unban. |
+This function takes no argument. It reads the text of the message that triggered the command (`message.content`) and looks for a banned user whose username equals it (case-insensitive). An error is raised if that text is empty. To unban by ID, use `$unBanID[]`.
 
 ## Return Value
 
-- **Type**: String (empty on success)
+- **Type**: String (empty)
 - An empty string if the unban is successful.
-- An error message if the user is not banned or if the bot lacks permissions.
+- An error is raised if no banned user matches or if the bot lacks permissions.
 
 ## Behavior
 
 - The bot must have the `BAN_MEMBERS` permission.
 - The user must be in the server's ban list.
-- The ID can be retrieved via `$mentioned[]`, `$findUser[]`, or any other method.
-- The user does not receive an unban notification.
+- The ban list is searched by username; for an ID, use `$unBanID[]`.
 
 ## Examples
 
 ### Simple Unban
 
 ```bdfd
-$if[$checkContains[$userPerms;BanMembers]==true]
-  $unBan[$mentioned[1]]
-  $sendMessage[✅ **$userName[$mentioned[1]]** was unbanned.]
-$else
-  $sendMessage[❌ Permission denied.]
-$endif
+$unBan
+$sendMessage[✅ **$message** was unbanned.]
 ```
 
 ### Unban with Confirmation
 
 ```bdfd
-$var[target;$mentioned[1]]
-
-$if[$isBanned[$var[target]]==true]
-  $unBan[$var[target]]
-  $title[🔓 Unban]
-  $description[
-  **User:** $userName[$var[target]] ($var[target])
-  **Previous Reason:** $getBanReason[$var[target]]
-  **Unbanned by:** $userName[$authorID]
-  ]
-  $color[#57F287]
-  $sendMessage[]
-$else
-  $sendMessage[❌ This user is not banned.]
-$endif
+$unBan
+$title[🔓 Unban]
+$description[
+**User:** $message
+**Unbanned by:** $username
+]
+$color[#57F287]
+$sendMessage[Unban done.]
 ```
 
-### Command with Manual ID
+### Command with a username
 
 ```bdfd
-$if[$message!=]
-  $var[exists;$userExists[$message]]
-  $if[$var[exists]==true]
-    $unBan[$message]
-    $sendMessage[✅ User **$message** unbanned.]
-  $elseif[$isBanned[$message]==true]
-    $unBan[$message]
-    $sendMessage[✅ User **$message** unbanned.]
-  $else
-    $sendMessage[❌ Invalid ID or user not banned.]
-  $endif
+$if[$message==]
+  $sendMessage[Please provide the username of a banned user.]
 $else
-  $sendMessage[Please provide a user ID.]
+  $unBan
+  $sendMessage[✅ User **$message** unbanned.]
 $endif
 ```
 
@@ -93,5 +73,5 @@ $endif
 
 - The unbanned user does not automatically rejoin the server; they must use an invite.
 - Works only if the user is in the ban list.
-- The ID is the only reliable method, because a banned user is no longer in the server.
+- To unban by ID, use `$unBanID[]`.
 

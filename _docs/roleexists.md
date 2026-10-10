@@ -4,7 +4,7 @@ title: $roleExists
 translation_key: docs
 category: "Entity Info"
 function_name: roleExists
-syntax: $roleExists[roleID;(guildID)]
+syntax: $roleExists[roleID]
 description: Checks if a role exists on the server. Returns "true" or "false".
 ---
 
@@ -15,15 +15,14 @@ The function `$roleExists` checks if a **Discord role exists** on the server usi
 ## Syntax
 
 ```
-$roleExists[roleID;(guildID)]
+$roleExists[roleID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role to check. Required. |
-| `guildID` | Optional. The ID of the target server. If omitted, the current server is used. |
+| `roleID` | The ID of the role to check in the current server. Required. A value that is not a positive number returns `"false"`. |
 
 ## Return Value
 
@@ -51,14 +50,6 @@ $if[$roleExists[$roleID[Member]]==true]
   $sendMessage[Member role granted!]
 $else
   $sendMessage[The Member role does not exist. Please contact an administrator.]
-$endif
-```
-
-### On another server
-
-```bdfd
-$if[$roleExists[123456789012345678;987654321098765432]==true]
-  $sendMessage[Role valid.]
 $endif
 ```
 

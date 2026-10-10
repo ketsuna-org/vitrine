@@ -42,7 +42,6 @@ $description[Square root of `16`: **$sqrt[16]**]
 $addField[Square root of 25;$sqrt[25];yes]
 $addField[Non-integer root ($sqrt[2]);$sqrt[2];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Notes
 

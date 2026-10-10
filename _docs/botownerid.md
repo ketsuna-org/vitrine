@@ -44,7 +44,8 @@ $if[$var[motif]==]
   $stop
 $endif
 
-$sendDM[$botOwnerID;📬 **Contact from $userName** ($authorID)
+$dm[$botOwnerID]
+$sendMessage[📬 **Contact from $userName** ($authorID)
 Server: $serverName ($guildID)
 Message: $var[motif]]
 
@@ -55,7 +56,8 @@ $sendMessage[✅ Your message has been forwarded to the bot owner.]
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ This command is reserved for the bot owner.]
+  $ephemeral
+  $sendMessage[❌ This command is reserved for the bot owner.]
   $stop
 $endif
 
@@ -71,9 +73,8 @@ $addField[Owner;<@$botOwnerID>;yes]
 $addField[ID;$botID;yes]
 $addField[Node;$botNode;yes]
 $addField[Version;$nodeVersion;yes]
-$thumbnail[$botAvatar]
+$thumbnail[$userAvatar[$botID]]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

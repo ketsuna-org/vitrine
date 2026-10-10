@@ -36,8 +36,8 @@ $mentions
 
 ```bdfd
 $if[$mentions!=]
-  $var[count;$arrayCount[$splitText[$mentions;,]]]
-  $sendMessage[$var[count] user(s) mentioned: $mentions]
+  $textSplit[$mentions;,]
+  $sendMessage[$getTextSplitLength user(s) mentioned: $mentions]
 $else
   $sendMessage[No users mentioned.]
 $endif
@@ -46,37 +46,28 @@ $endif
 ### Loop through mentions
 
 ```bdfd
-$var[mentionsList;$splitText[$mentions;,]]
-$var[i;0]
-$var[total;$arrayCount[$var[mentionsList]]]
-$while[$var[i]<$var[total]]
-  $var[target;$arrayGet[$var[mentionsList];$var[i]]]
-  $sendMessage[User: <@$var[target]>]
-  $var[i;$sum[$var[i];1]]
-$endwhile
+$textSplit[$mentions;,]
+$loop[$getTextSplitLength]
+  $sendMessage[User: <@$splitText[$loopCount]>]
+$endLoop
 ```
 
 ### Multi-target command
 
 ```bdfd
 $if[$mentions!=]
-  $var[list;$splitText[$mentions;,]]
-  $var[i;0]
-  $var[total;$arrayCount[$var[list]]]
-  $while[$var[i]<$var[total]]
-    $var[id;$arrayGet[$var[list];$var[i]]]
-    $kick[$var[id]]
-    $var[i;$sum[$var[i];1]]
-  $endwhile
-  $sendMessage[$var[total] user(s) kicked.]
+  $textSplit[$mentions;,]
+  $loop[$getTextSplitLength]
+    $kick[$splitText[$loopCount]]
+  $endLoop
+  $sendMessage[$getTextSplitLength user(s) kicked.]
 $else
   $sendMessage[Mention at least one user.]
 $endif
-```
 
 ## Notes
 
 - `$mentions` returns all IDs at once, separated by commas.
-- To iterate, use `$splitText[$mentions;,]` to create an array.
+- To iterate, split the list with `$textSplit[$mentions;,]`, then read the parts with `$splitText[index]` (1-based) and count them with `$getTextSplitLength`.
 - Does not detect `@everyone` or `@here` mentions.
 

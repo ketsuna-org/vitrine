@@ -41,7 +41,6 @@ $description[Logarithm of `1`: **$log[1]**]
 $addField[Log of 1000;$log[1000];yes]
 $addField[Log of 0.5;$log[0.5];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Notes
 

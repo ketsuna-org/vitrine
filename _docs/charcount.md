@@ -84,5 +84,4 @@ $endif
 $title[Message Character Count]
 $description[Your message contains **$charCount[$message]** characters.]
 $color[#5865F2]
-$sendMessage[]
 ```

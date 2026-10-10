@@ -66,10 +66,9 @@ $checkContains[$toLowercase[$message];$toLowercase[Admin]]
 
 ```bdfd
 $if[$checkContains[$message;discord.gg;https://]==true]
-  $deleteMessage[$messageID]
+  $deleteMessage[$channelID;$messageID]
   $title[Automod Warning]
   $description[<@$authorID>, links and invites are not allowed in this channel!]
   $color[#ED4245]
-  $sendMessage[]
 $endif
 ```

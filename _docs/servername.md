@@ -41,7 +41,6 @@ $sendMessage[Welcome to **$serverName**! We are glad to have you with us.]
 $title[$serverName — Rules]
 $description[Please read the rules of $serverName carefully.]
 $color[#E74C3C]
-$sendEmbedMessage
 ```
 
 ### Logs

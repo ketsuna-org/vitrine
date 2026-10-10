@@ -37,13 +37,12 @@ $userName
 $title[Welcome $userName!]
 $description[We are delighted to welcome you to the server 🎉]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Create a custom embed
 
 ```bdfd
-$author[$userName;$userAvatar]
+$author[$userName;$authorAvatar]
 $title[User Profile]
 $description[
 **Name:** $userName
@@ -51,7 +50,6 @@ $description[
 **Tag:** $userTag
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

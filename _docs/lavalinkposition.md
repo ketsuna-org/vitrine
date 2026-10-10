@@ -17,5 +17,4 @@ Returns the current playback position of the currently playing track in millisec
 $title[Track Progress]
 $description[Current position: `$lavalinkPosition` / `$lavalinkDuration`]
 $color[#AEEA00]
-$sendMessage[]
 ```

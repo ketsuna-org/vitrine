@@ -69,7 +69,8 @@ test('Markdown examples use supported temporary-variable syntax', async () => {
       assert.doesNotMatch(text, /\$let\[/, `${folder}/${file} contains an unsupported temporary-variable setter`);
     }
   }
-  for (const slug of ['newticket', 'closeticket', 'isticket']) {
+  // $newTicket is implemented by the engine (5 to 7 arguments), so its page no longer says "incomplete".
+  for (const slug of ['closeticket', 'isticket']) {
     assert.match(await readFile(new URL(`../_docs/${slug}.md`, import.meta.url), 'utf8'), /status: incomplete/);
   }
 });
@@ -204,4 +205,15 @@ test('plan_solution supports the javascript mode with a ready recipe and no BDFD
   assert.ok(!('functions' in plan));
   const unknown = JSON.parse((await rpc('tools/call', { name: 'plan_solution', arguments: { mode: 'javascript', intent: 'quelque chose de rare' } })).result.content[0].text);
   assert.equal(unknown.decision, 'review');
+});
+
+test('get_doc accepts the $name spelling of a function slug', async () => {
+  const bdfdDocs = [{ slug: 'getmessagevar', name: '$getMessageVar[]', category: 'Variables', api_type: 'bdfd', status: 'documented', url: 'https://bot-creator.fr/docs/getmessagevar/' }];
+  await withFetch(async url => (url.endsWith('.json') ? Response.json(bdfdDocs) : new Response('# getMessageVar')), async () => {
+    for (const slug of ['getmessagevar', '$getMessageVar']) {
+      const reply = await rpc('tools/call', { name: 'get_doc', arguments: { slug, full_markdown: true } });
+      assert.equal(reply.result.isError, undefined, slug);
+      assert.match(reply.result.content[0].text, /# getMessageVar/);
+    }
+  });
 });

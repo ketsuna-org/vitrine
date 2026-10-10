@@ -18,5 +18,4 @@ $seekMusic[120]
 $title[Track Seeked ⏩]
 $description[Jumped to position: **2:00** (120 seconds).]
 $color[#AEEA00]
-$sendMessage[]
 ```

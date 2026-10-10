@@ -4,30 +4,34 @@ title: $userAvatar
 translation_key: docs
 category: "Entity Info"
 function_name: userAvatar
-syntax: $userAvatar
-description: Returns the global avatar URL of the user who triggered the command.
+syntax: $userAvatar[userID]
+description: Returns the global avatar URL of a user. For the author of the command, use $authorAvatar.
 ---
 
 # $userAvatar
 
-The variable `$userAvatar` returns the **global avatar URL** of the user who triggered the command.
+The function `$userAvatar[]` returns the **global avatar URL** of the given user.
 
 ## Syntax
 
 ```
-$userAvatar
+$userAvatar[userID]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `userID` | Required - The ID of the user. An invalid ID, or an unknown user, raises an error. |
 
 ## Return Value
 
 - **Type**: String (URL)
-- URL of the Discord avatar image in PNG or WebP format
-- If the user does not have a custom avatar, returns the default Discord avatar (color based on the discriminator/ID)
+- The avatar URL of the user (`avatar.url` of the Discord user).
 
 ## Behavior
 
-- `$userAvatar` takes **no arguments**.
-- The returned URL points to the Discord CDN (`cdn.discordapp.com`).
+- `$userAvatar` requires one argument: used without argument it is invalid. For the author of the command, use `$authorAvatar` (no argument).
 - The avatar is the **global** image of the user, not the server-specific one (see `$userServerAvatar`).
 
 ## Examples
@@ -36,27 +40,26 @@ $userAvatar
 
 ```bdfd
 $title[Avatar of $userName]
-$image[$userAvatar]
+$image[$authorAvatar]
 $color[#5865F2]
-$sendMessage[]
+$sendMessage[Avatar]
 ```
 
 ### Display Avatar as Thumbnail in a Profile
 
 ```bdfd
-$author[$userName;$userAvatar]
+$author[$userName;$authorAvatar]
 $title[User Profile]
-$thumbnail[$userAvatar]
+$thumbnail[$authorAvatar]
 $description[
 **Name:** $userName
 **ID:** $userID
 ]
 $color[#5865F2]
-$sendMessage[]
+$sendMessage[Profile]
 ```
 
 ## Notes
 
-- Discord avatar URLs can be modified by adding `?size=256` or `?size=1024` to change the resolution.
 - For the server-specific avatar (if set), use `$userServerAvatar`.
-- The user can change their avatar at any time.
+- For the avatar of the command author without argument, use `$authorAvatar`.

@@ -4,38 +4,40 @@ title: $allowUserMentions[]
 translation_key: docs
 category: "Embed & Message"
 function_name: allowUserMentions
-syntax: $allowUserMentions
-description: Allows user mentions in the current message. Without this call, mentioning users in the message content will not notify the concerned individuals.
+syntax: $allowUserMentions[(userID;...)]
+description: Restricts which users can be pinged by the message to the listed user IDs. Without any ID, no user is pinged.
 ---
 
-# $allowUserMentions[] — Allow User Mentions
+# $allowUserMentions[(userID;...)] — Restrict User Mentions
 
-`$allowUserMentions[]` enables user notifications when they are mentioned in the message. Without this call, tags like `<@userId>` appear visually but do **not** trigger a notification.
+By default the message can ping every user it mentions. `$allowUserMentions` limits user pings to the IDs you list. Called without arguments, it allows **no** user ping: `<@userId>` is displayed but nobody is notified.
 
 ## Syntax
 
 ```
-$allowUserMentions
+$allowUserMentions[(userID;...)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description | Required |
+|-----------|-------------|:--------:|
+| `userID` | A Discord user ID allowed to be pinged (repeatable). Empty values are ignored. | No |
 
 ## Return value
 
-Enables user mentions for the next message. Mentioned users will receive a notification.
+None. The restriction applies to the message being built; an invalid ID raises an error.
 
 ## Examples
 
-### Personal notification
+### Ping only the author
 
 ```bdfd
-$allowUserMentions
+$allowUserMentions[$authorID]
 $sendMessage[<@$authorID> Your profile has been successfully updated!]
 ```
 
-### Response to a command
+### Mention without notifying
 
 ```bdfd
 $allowUserMentions
@@ -45,29 +47,28 @@ $addField[Status;In preparation;yes]
 $color[#2ECC71]
 ```
 
-### Multiple mentions
+### Several allowed users
 
 ```bdfd
-$allowUserMentions
-$sendMessage[<@$var[winner1]> and <@$var[winner2]> won the giveaway! 🎉]
+$allowUserMentions[123456789012345678;234567890123456789]
+$sendMessage[<@123456789012345678> and <@234567890123456789> won the giveaway! 🎉]
 ```
 
 ### Combination with RoleMentions
 
 ```bdfd
-$allowUserMentions
-$allowRoleMentions
-$sendMessage[<@$authorID> suggested an idea. <@&$roleID[Admin]> please check.]
+$allowUserMentions[$authorID]
+$allowRoleMentions[123456789012345678]
+$sendMessage[<@$authorID> suggested an idea. <@&123456789012345678> please check.]
 ```
 
 ### Conditional
 
 ```bdfd
 $if[$var[notify]==yes]
-$allowUserMentions
 $sendMessage[<@$var[targetId]> You have a new message!]
 $else
-$noMentions
+$noMention
 $sendMessage[You have a new message (silent notification)]
 $endif
 ```
@@ -75,16 +76,14 @@ $endif
 ## Mention Control
 
 | Function | Effect |
-|----------|-------|
-| `$allowRoleMentions` | Enables notifications for role mentions |
-| `$allowUserMentions` | Enables notifications for user mentions |
-| `$allowMentions` | Enables all mentions (roles + users) |
-| `$noMentions` | Disables all mention notifications |
+|----------|--------|
+| `$allowRoleMentions[(roleID;...)]` | Restricts role pings to the listed role IDs (none if no argument) |
+| `$allowUserMentions[(userID;...)]` | Restricts user pings to the listed user IDs (none if no argument) |
+| `$noMention` | Disables all mention notifications (users and roles) |
 
 ## Notes
 
-- Without this function, `<@userId>` displays as a visual mention but without an audible ping or notification.
-- The effect is **one-time**: it only applies to the next message sent.
-- For important announcements, combine it with `$allowRoleMentions[]`.
-- To send a completely silent message (even for mentioned users), use `$noMentions[]`.
+- Without any of these functions, the message can ping the users and roles it mentions.
+- Combine `$allowUserMentions` and `$allowRoleMentions` to control users and roles independently.
+- To send a completely silent message, use `$noMention`.
 - Respect your server rules regarding excessive pinging.

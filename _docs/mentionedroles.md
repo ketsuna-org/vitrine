@@ -4,41 +4,45 @@ title: $mentionedRoles
 translation_key: docs
 category: "Entity Info"
 function_name: mentionedRoles
-syntax: $mentionedRoles
-description: Returns the list of role IDs mentioned in the message (via @role), separated by commas.
+syntax: $mentionedRoles[index]
+description: Returns the ID of the role mentioned at the given position in the message (1, < for the first, > for the last).
 ---
 
 # $mentionedRoles
 
-The function `$mentionedRoles` returns the **list of role IDs mentioned** in the message, via the `@role` syntax.
+The function `$mentionedRoles` returns the **ID of the role mentioned** at a given position in the message, via the `@role` syntax.
 
 ## Syntax
 
 ```
-$mentionedRoles
+$mentionedRoles[index]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `index` | Required. Position of the mention: a positive integer (1 is the first), `<` for the first, `>` for the last. Any other value raises an error. |
 
 ## Return Value
 
-- **Type** : List of snowflakes separated by commas
-- Example: `123456789,987654321`
-- Empty string if no roles are mentioned
+- **Type** : Snowflake (numeric string) or empty string
+- ID of the role mentioned at the requested position
+- Empty string if there is no such mention
 
 ## Behavior
 
-- `$mentionedRoles` takes **no arguments**.
-- Detects role mentions formatted as `@role-name`.
-- Only mentionable roles (where the role's "@mention this role" setting is enabled) are detected.
+- `$mentionedRoles` requires exactly one argument: a bare `$mentionedRoles` is invalid. It has no fallback argument.
+- Reads the role mentions of the message; it raises an error in a slash command (use the command options instead).
+- Returns a single ID per call; call it with several indexes to read several roles.
 
 ## Examples
 
 ### Check mentioned roles
 
 ```bdfd
-$if[$mentionedRoles!=]
-  $var[roles;$splitText[$mentionedRoles;,]]
-  $var[count;$arrayCount[$var[roles]]]
-  $sendMessage[$var[count] role(s) mentioned.]
+$if[$mentionedRoles[1]!=]
+  $sendMessage[At least one role is mentioned.]
 $else
   $sendMessage[No roles mentioned.]
 $endif
@@ -47,37 +51,25 @@ $endif
 ### Add a mentioned role
 
 ```bdfd
-$if[$mentionedRoles!=]
-  $var[firstRole;$splitText[$mentionedRoles;,;1]]
-  $giveRole[$mentioned;$var[firstRole]]
-  $sendMessage[Role <@&$var[firstRole]> added to <@$mentioned>!]
+$if[$mentionedRoles[1]!=]
+  $var[firstRole;$mentionedRoles[1]]
+  $giveRole[$mentioned[1];$var[firstRole]]
+  $sendMessage[Role <@&$var[firstRole]> added to <@$mentioned[1]>!]
 $else
   $sendMessage[Mention a role to assign.]
 $endif
 ```
 
-### List mentioned roles
+### First and last mentioned roles
 
 ```bdfd
-$if[$mentionedRoles!=]
-  $var[roles;$splitText[$mentionedRoles;,]]
-  $var[i;0]
-  $var[total;$arrayCount[$var[roles]]]
-  $var[output;]
-  $while[$var[i]<$var[total]]
-    $var[roleID;$arrayGet[$var[roles];$var[i]]]
-    $var[output;$var[output] - <@&$var[roleID]>
-]
-    $var[i;$sum[$var[i];1]]
-  $endwhile
-  $sendMessage[Mentioned roles:
-$var[output]]
+$if[$mentionedRoles[1]!=]
+  $sendMessage[First role: <@&$mentionedRoles[<]>, last role: <@&$mentionedRoles[>]>]
 $endif
 ```
 
 ## Notes
 
-- A role must have the "Allow anyone to @mention this role" option enabled to be detected.
-- The returned IDs are numeric snowflakes.
+- The returned ID is a numeric snowflake.
 - To get the name of a role from its ID, use `$roleName[ID]`.
 

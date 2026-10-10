@@ -15,12 +15,14 @@ description: Removes all buttons from a message in a single operation. Other com
 ## Syntax
 
 ```
-$removeButtons
+$removeButtons[(messageID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description | Required |
+|-----------|-------------|:--------:|
+| `messageID` | ID of an existing message whose buttons are removed. Without it, the buttons of the message being built are removed. | No |
 
 ## Return Value
 
@@ -28,40 +30,46 @@ Removes all buttons from the message. Other components (TextInput, Select Menus)
 
 ## Examples
 
+A button click triggers the script; read which component was clicked with `$customID` (see `$customID`).
+
 ### Disable after voting
 
 ```bdfd
-$onInteraction[vote_yes]
-$removeButtons
-$editMessage[✅ Vote recorded: **Yes**]
-$endInteraction
+$if[$customID==vote_yes]
+  $removeButtons[123456789012345678]
+  $editMessage[$channelID;123456789012345678;✅ Vote recorded: **Yes**]
+$endif
 ```
 
 ### Self-locking interface
 
 ```bdfd
-$onInteraction[poll_choice]
-$removeButtons
-$var[choice;$input[poll_choice]]
-$editMessage[Thank you for your vote: **$var[choice]**]
-$endInteraction
+$if[$customID==poll_a]
+  $removeButtons[123456789012345678]
+  $editMessage[$channelID;123456789012345678;Thank you for your vote: **$customID**]
+$endif
 ```
 
 ### Confirmation with removal
 
+Sending the buttons:
+
 ```bdfd
-$addButton[confirm;Confirm;Success;yes;confirm_action]
-$addButton[cancel;Cancel;Danger;yes;cancel_action]
+$addButton[yes;confirm_action;Confirm;success]
+$addButton[no;cancel_action;Cancel;danger]
+$sendMessage[Do you confirm this action?]
+```
 
-$onInteraction[confirm_action]
-$removeButtons
-$editMessage[✅ Action confirmed and executed!]
-$endInteraction
+Handling the click:
 
-$onInteraction[cancel_action]
-$removeButtons
-$editMessage[❌ Action cancelled]
-$endInteraction
+```bdfd
+$if[$customID==confirm_action]
+  $removeButtons[123456789012345678]
+  $editMessage[$channelID;123456789012345678;✅ Action confirmed and executed!]
+$elseif[$customID==cancel_action]
+  $removeButtons[123456789012345678]
+  $editMessage[$channelID;123456789012345678;❌ Action cancelled]
+$endif
 ```
 
 ### Temporary admin panel
@@ -69,15 +77,10 @@ $endInteraction
 ```bdfd
 $title[Admin Panel]
 $description[Choose an action:]
-$addButton[ban;Ban;Danger;;admin_ban]
-$addButton[kick;Kick;Secondary;;admin_kick]
-$addButton[mute;Mute;Primary;;admin_mute]
-$footer[Single use — the panel disables after use]
-
-$onInteraction[admin_ban]
-$removeButtons
-$editMessage[User banned]
-$endInteraction
+$addButton[yes;admin_ban;Ban;danger]
+$addButton[no;admin_kick;Kick;secondary]
+$addButton[no;admin_mute;Mute;primary]
+$footer[Single use — remove the buttons once an action is chosen]
 ```
 
 ## Notes
@@ -86,4 +89,4 @@ $endInteraction
 - TextInput, Select Menus, and other non-button components are preserved.
 - To remove a specific button, use `$removeComponent[customId]`.
 - To remove absolutely all components, use `$removeAllComponents[]`.
-- Used primarily in `$onInteraction` handlers after processing.
+- Used primarily in scripts triggered by a component interaction, after processing.

@@ -4,7 +4,7 @@ title: $getMentionableSelectUserIDs
 translation_key: docs
 category: "Components & Interactions"
 function_name: getMentionableSelectUserIDs
-syntax: $getMentionableSelectUserIDs[(separator)]
+syntax: $getMentionableSelectUserIDs[separator;(limit)]
 description: Gets all mentionable entity IDs (users and roles) selected via a multi-select mentionable menu.
 ---
 
@@ -15,55 +15,47 @@ The function `$getMentionableSelectUserIDs[]` retrieves all **mentionable entity
 ## Syntax
 
 ```
-$getMentionableSelectUserIDs[(separator)]
+$getMentionableSelectUserIDs[separator;(limit)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `separator` | Optional - The separator between each ID. Defaults to `, ` (comma + space). |
+| `separator` | The separator inserted between each element. Required (it may be a single space or any text). |
+| `limit` | Optional - The maximum number of elements returned (integer of 1 or more). If empty or omitted, all selected elements are returned. |
 
 ## Return Value
 
 - **Type**: String
 - The complete list of selected IDs.
 - An empty string if no entity was selected.
+- An error is raised if the limit is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no mentionable selection.
 
 ## Behavior
 
 - Returns both user and role IDs.
 - Compatible with `$textSplit[]` for individual processing.
-- The menu must allow multiple selections (`maxValues > 1`).
+- Only usable in the callback of a component interaction carrying a mentionable selection.
 
 ## Examples
 
 ### List chosen entities
 
 ```bdfd
-$onInteraction[mention_select]
 $var[list;$getMentionableSelectUserIDs[, ]]
 $title[📋 Selected Entities]
 $description[$var[list]]
-$sendMessage[]
 ```
 
-### Processing loop
+### Limit the number of entities
 
 ```bdfd
-$onInteraction[mention_select]
-$var[list;$getMentionableSelectUserIDs[,]]
-$textSplit[$var[list];,]
-  $if[$hasRole[$splitText[$index];$guildID]==true]
-    Role: $roleName[$splitText[$index]]
-  $else
-    User: $userName[$splitText[$index]]
-  $endif
-$endTextSplit
+$description[First two entities: $getMentionableSelectUserIDs[, ;2]]
 ```
 
 ## Notes
 
 - For a single selection, use `$getMentionableSelectUserID[]`.
 - IDs can be mixed (users and roles in the same list).
-- Use `$hasRole[]` to distinguish a role from a user.
+- Use `$roleExists[]` to distinguish a role from a user.

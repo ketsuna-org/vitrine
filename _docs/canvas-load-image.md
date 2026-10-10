@@ -20,5 +20,4 @@ $attachImage[composite]
 $title[Loaded Remote Image]
 $description[Downloaded and rendered remote asset onto canvas.]
 $color[#5865F2]
-$sendMessage[]
 ```

@@ -42,13 +42,12 @@ $description[
 **ID:** $userID
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Check if the user has a legacy discriminator
 
 ```bdfd
-$if[$discriminator!=0]
+$if[$discriminator[$authorID]!=0]
   $sendMessage[You have a legacy account: $userTag]
 $else
   $sendMessage[You have a new account format: $userTag]

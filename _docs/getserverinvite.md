@@ -45,15 +45,12 @@ $title[🌐 Server Invite]
 $description[
 Here is the invite link for **$serverName**:
 
-```
 $getServerInvite
-```
 
 Share it with your friends!
 ]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Display in a welcome message
@@ -67,7 +64,6 @@ $getServerInvite
 We are now **$membersCount** members!
 ]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Complete server information
@@ -82,7 +78,6 @@ $description[
 ]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

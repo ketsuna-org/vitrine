@@ -42,13 +42,12 @@ $title[🌐 Servers of the Bot]
 $description[$serverNames]
 $footer[Total: $serverCount servers]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Check presence on a server
 
 ```bdfd
-$if[$serverNames$contains[Gaming Community]]
+$if[$checkContains[$serverNames;Gaming Community]==true]
 $sendMessage[✅ The bot is indeed on the Gaming Community!]
 $else
 $sendMessage[❌ The bot is not on the Gaming Community.]
@@ -63,7 +62,6 @@ $addField[🌐 Total servers;$serverCount;yes]
 $addField[📋 List;$serverNames;no]
 $addField[🔢 Shard;$shardID;yes]
 $color[#2ECC71]
-$sendEmbedMessage
 ```
 
 ## Notes

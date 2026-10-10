@@ -43,7 +43,6 @@ $addField[🌐 Guilds;$guildCount;yes]
 $addField[🔢 Shard;$shardID;yes]
 $addField[📶 Ping;$ping ms;yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Popularity Condition

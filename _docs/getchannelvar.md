@@ -21,5 +21,4 @@ Variables are defined and configured in the Bot Creator Variables UI, where you 
 $title[Channel Settings]
 $description[Custom slowmode: `$getChannelVar[customSlowmode;$channelID]` seconds]
 $color[#5865F2]
-$sendMessage[]
 ```

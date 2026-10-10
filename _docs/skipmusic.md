@@ -18,5 +18,4 @@ $skipMusic
 $title[Track Skipped ⏭️]
 $description[Skipped to next song in the queue by <@$authorID>.]
 $color[#AEEA00]
-$sendMessage[]
 ```

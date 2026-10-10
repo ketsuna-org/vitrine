@@ -41,7 +41,7 @@ $sendMessage[✅ Username of <@$mentioned[1]> changed to "Corrected Name".]
 ### Administrative command
 
 ```bdfd
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $changeUsernameWithID[$findUser[$message[1]];$message[2]]
   $sendMessage[Username of user $message[1] changed.]
 $else

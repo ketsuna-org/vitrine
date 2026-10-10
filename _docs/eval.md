@@ -104,12 +104,7 @@ $eval[$var[action]]
 ```bdfd
 $onlyForIDs[123456789012345678;❌ Owner only!]
 $title[Code Evaluation]
-$description[Evaluating BDScript snippet:
-```bdfd
-$message
-```
-Result:
+$description[Result:
 $eval[$message]]
 $color[#5865F2]
-$sendMessage[]
 ```

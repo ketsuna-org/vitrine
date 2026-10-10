@@ -49,7 +49,6 @@ $addField[Username;$username]
 $addField[ID;$authorID]
 $addField[Creation Date;$creationDate[$authorID]]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Inline fields (3 per row)
@@ -60,7 +59,6 @@ $addField[Alice;1500 pts;yes]
 $addField[Bob;1200 pts;yes]
 $addField[Charlie;980 pts;yes]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Mixed inline and non-inline
@@ -74,7 +72,6 @@ $addField[Channels;$channelCount;yes]
 $addField[Server ID;$guildID;yes]
 $addField[Description;A great community server!]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Insertion at a specific position
@@ -87,7 +84,6 @@ $addField[Second;Content 2;no;1]
 $title[Field Order]
 $description[Field 2 has been inserted at position 1.]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

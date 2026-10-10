@@ -43,12 +43,11 @@ Modifies the response currently being constructed. Returns nothing.
 $title[Profile]
 $description[
 **Name:** $username
-**Tag:** $discriminator
+**Tag:** $discriminator[$authorID]
 ]
 $footer[Requested by $username]
 $footerIcon[$authorAvatar]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Conditional icon
@@ -56,14 +55,13 @@ $sendMessage[]
 ```bdfd
 $title[Server Status]
 $description[The server is operational.]
-$footer[Last check: $time]
+$footer[Last check: $hour:$minute]
 $if[$var[status]==online]
   $footerIcon[https://cdn.example.com/green.png]
 $else
   $footerIcon[https://cdn.example.com/red.png]
 $endif
 $color[#57F287]
-$sendMessage[]
 ```
 
 ## Notes

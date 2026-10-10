@@ -4,66 +4,49 @@ title: $webhookUsername
 translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookUsername
-syntax: $webhookUsername[name]
-description: Sets the username displayed for the next message sent via $webhookSend.
+syntax: $webhookUsername[webhookURL;name]
+description: Renames the Discord webhook.
 ---
 
 # $webhookUsername
 
-The `$webhookUsername` function allows you to **set the username** that will be displayed for the next message sent via `$webhookSend`.
+The `$webhookUsername` function **renames the webhook** itself. The change is applied immediately to the Discord webhook; it is not a per-message override.
 
 ## Syntax
 
 ```
-$webhookUsername[name]
+$webhookUsername[webhookURL;name]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `name` | The name to display. Maximum 80 characters. Supports emojis and variables. |
+| `webhookURL` | **Required.** The full Discord webhook URL (`https://discord.com/api/webhooks/ID/TOKEN`). An invalid URL raises `Invalid Discord webhook URL.` |
+| `name` | **Required.** The new name, 2 to 80 characters; otherwise the error `Webhook name must contain 2–80 characters.` is raised. |
+
+Exactly two arguments are required; any other count is refused ("Invalid argument count").
 
 ## Return Value
 
-This function does not return a value. It only sets the name for the next `$webhookSend`.
+An empty string.
 
 ## Behavior
 
-- The name replaces the default name of the webhook for this sending.
-- The name is reset after each `$webhookSend`.
-- If no name is defined, the original name of the webhook is used.
+- The webhook is updated on Discord when the function runs, and the new name stays until changed again.
+- It does not depend on `$webhookSend` and is not reset after a send.
 
 ## Examples
 
-### Fixed name
+### Rename a webhook
 
 ```bdfd
-$webhookUsername[📢 Server Announcements]
-$webhookContent[New update available!]
-$webhookSend[$webhookURL;]
+$webhookUsername[https://discord.com/api/webhooks/123456/abcdef;📢 Server Announcements]
 ```
 
-### Dynamic name
+### Rename then send
 
 ```bdfd
-$webhookUsername[$username (via webhook)]
-$webhookAvatarURL[$authorAvatar]
-$webhookContent[$message]
-$webhookSend[$webhookURL;]
+$webhookUsername[https://discord.com/api/webhooks/123456/abcdef;Notifier]
+$webhookSend[https://discord.com/api/webhooks/123456/abcdef;New update available!]
 ```
-
-### Anonymization
-
-```bdfd
-$webhookUsername[Anonymous Message]
-$webhookAvatarURL[https://cdn.example.com/anonymous.png]
-$webhookContent[$noMentionMessage]
-$webhookSend[$confessionHook;]
-```
-
-## Notes
-
-- The name cannot exceed 80 characters.
-- Webhooks with names impersonating official roles (Admin, Moderator) can be misleading — use them ethically.
-- Combine with `$webhookAvatarURL[]` for a complete customization.

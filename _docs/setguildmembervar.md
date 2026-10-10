@@ -22,5 +22,4 @@ $setGuildMemberVar[rank;Veteran;$authorID;$guildID]
 $title[Rank Updated]
 $description[<@$authorID> is now assigned rank **Veteran** on this server!]
 $color[#9B30FF]
-$sendMessage[]
 ```

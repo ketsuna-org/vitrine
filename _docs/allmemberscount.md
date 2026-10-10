@@ -45,7 +45,6 @@ $description[
 **Bots:** $botCount
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Comparison of humans vs bots
@@ -58,11 +57,10 @@ $var[total;$allMembersCount]
 $title[👥 Server Composition]
 $description[
 **Total:** $var[total] members
-**👤 Humans:** $var[humans] ($math[$var[humans]*100/$var[total]]%)
-**🤖 Bots:** $var[bots] ($math[$var[bots]*100/$var[total]]%)
+**👤 Humans:** $var[humans] ($calculate[$var[humans]*100/$var[total]]%)
+**🤖 Bots:** $var[bots] ($calculate[$var[bots]*100/$var[total]]%)
 ]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Welcome counter

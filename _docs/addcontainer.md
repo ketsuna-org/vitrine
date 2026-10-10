@@ -48,7 +48,7 @@ $addContainer[profile;#5865F2;no]
 $addSection
 $addThumbnail[$authorAvatar]
 $addField[User;$username;no]
-$addField[Joined on;$memberJoinDate;no]
+$addField[Account created;$creationDate[$authorID];no]
 ```
 
 ### Spoiler container

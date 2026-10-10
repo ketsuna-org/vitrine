@@ -41,7 +41,6 @@ $description[
 **Lowest Role:** $roleName[$lowestRole]
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Check the lowest role

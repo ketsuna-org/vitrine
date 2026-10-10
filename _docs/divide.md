@@ -41,7 +41,6 @@ $description[Result of `10 / 2`: **$divide[10;2]**]
 $addField[Decimal Result;$divide[10;3];yes]
 $addField[Safe Division by Zero;$divide[42;0];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Notes
 

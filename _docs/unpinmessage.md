@@ -4,7 +4,7 @@ title: $unpinMessage
 translation_key: docs
 category: "Moderation"
 function_name: unpinMessage
-syntax: $unpinMessage[messageID]
+syntax: $unpinMessage[channelID;messageID]
 description: Removes a pinned message from the pinned messages list of the channel.
 ---
 
@@ -15,53 +15,52 @@ The function `$unpinMessage[]` allows **removing a message from the pinned messa
 ## Syntax
 
 ```
-$unpinMessage[messageID]
+$unpinMessage[channelID;messageID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
+| `channelID` | The ID of the channel containing the message. |
 | `messageID` | The ID of the message to unpin. |
 
 ## Return Value
 
-This function does not return a value.
+None (empty string). An error is raised if an ID is invalid or if the bot lacks permissions.
 
 ## Behavior
 
-- The bot must have the `MANAGE_MESSAGES` permission.
+- The bot must have the `VIEW_CHANNEL` and `PIN_MESSAGES` permissions in the channel.
 - The message is not deleted, only unpinned.
-- If the message is not pinned, nothing happens.
 
 ## Examples
 
 ### Unpin After Action
 
 ```bdfd
-$unpinMessage[$noMentionMessage]
+$unpinMessage[$channelID;$noMentionMessage]
 $sendMessage[Message unpinned.]
 ```
 
 ### Automatic Cleanup
 
 ```bdfd
-$unpinMessage[$messageID]
-$editMessage[This message is no longer relevant.]
+$unpinMessage[$channelID;$messageID]
+$editMessage[$channelID;$messageID;This message is no longer relevant.]
 ```
 
 ### Announcement Rotation
 
 ```bdfd
-$unpinMessage[$oldAnnouncementID]
+$unpinMessage[$channelID;123456789012345678]
 $title[New Announcement]
 $description[$noMentionMessage]
-$sendMessage[]
-$pinMessage[$messageID]
+$sendMessage[New announcement posted]
+$pinMessage
 ```
 
 ## Notes
 
-- Users are not notified when a message is unpinned.
 - A message can be re-pinned after having been unpinned.
 - Combine with `$pinMessage[]` to manage rotating announcements.

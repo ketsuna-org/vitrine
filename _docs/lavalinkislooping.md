@@ -17,5 +17,4 @@ Returns "true" if the music player has looping enabled (either track loop or que
 $title[Loop Mode Status]
 $description[Looping enabled: **$lavalinkIsLooping** 🔁]
 $color[#AEEA00]
-$sendMessage[]
 ```

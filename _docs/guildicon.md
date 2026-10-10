@@ -36,7 +36,6 @@ $title[$guildName]
 $thumbnail[$guildIcon]
 $description[$serverDescription]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Footer with icon
@@ -45,7 +44,6 @@ $sendEmbedMessage
 $footer[$guildName;$guildIcon]
 $description[Official message]
 $color[#2ECC71]
-$sendEmbedMessage
 ```
 
 ### Icon check

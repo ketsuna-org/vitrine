@@ -4,26 +4,36 @@ title: $variablesCount[]
 translation_key: docs
 category: "Variables"
 function_name: variablesCount
-syntax: $variablesCount[(Type)]
-description: Counts the number of variables currently active. Optionally filters by variable type.
+syntax: $variablesCount[type]
+description: Counts the number of variables declared for a given type (user, globaluser, server or channel).
 ---
 
-$variablesCount provides a quick way to check how many variables are active in the current execution context. This is useful for validation, debugging, and conditional logic.
+$variablesCount returns how many variables are declared for the given type.
+
+## Syntax
+
+```
+$variablesCount[type]
+```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `type` | **Required.** The kind of variable to count: `user`, `globaluser`, `server` or `channel` (surrounding spaces are ignored). Any other value raises the error `Unknown variable type.` |
+
+`$variablesCount` without brackets, or with more than one argument, is refused ("Invalid argument count").
 
 ## Return Value
 
-The count is always returned as a string representation of an integer (e.g., `"3"`, `"0"`, `"15"`). When used in numeric comparisons, BDFD will automatically coerce the string to a number.
+The count of declared variables of that type, as a string representation of an integer (e.g., `"3"`, `"0"`, `"15"`).
 
 ## Type Filtering
 
-When a Type parameter is provided, only variables of that type are counted:
-
-- `$variablesCount` — count all active variables (all types).
-- `$variablesCount[temp]` — count only temporary variables.
-
-## Comparison with $listVar
-
-While `$listVar` gives the names and values of temporary variables, `$variablesCount` gives only the count. Use `$variablesCount` when you need a numeric check (e.g., "are there at least 3 variables?") without the overhead of formatting a full list.
+- `user`: user variables (per-member variables in a server; user variables in legacy mode).
+- `globaluser`: global user variables.
+- `server`: server variables.
+- `channel`: channel variables.
 
 ## Examples
 
@@ -31,7 +41,6 @@ While `$listVar` gives the names and values of temporary variables, `$variablesC
 
 ```bdfd
 $title[Variables Stats]
-$description[This bot defines **$variablesCount** persistent variables.]
+$description[This bot defines **$variablesCount[server]** server variables.]
 $color[#5865F2]
-$sendMessage[]
 ```

@@ -44,7 +44,6 @@ $addField[👤 Humans;$var[humans];yes]
 $addField[🤖 Bots;$botCount;yes]
 $addField[👥 Total;$membersCount;yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Alert if too many bots
@@ -65,7 +64,6 @@ $addField[🤖 Bots;$botCount;yes]
 $addField[🟢 Online;$onlineMembers;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ## Notes

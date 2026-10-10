@@ -38,7 +38,6 @@ $title[$serverName]
 $description[$serverDescription]
 $image[$serverBanner]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Server welcome page
@@ -52,7 +51,6 @@ $addField[Boosts;$serverBoostCount;yes]
 $thumbnail[$serverIcon]
 $color[#2ECC71]
 $footer[$serverName]
-$sendEmbedMessage
 ```
 
 ### Check and fallback
@@ -65,7 +63,6 @@ $else
 $endif
 $title[$serverName]
 $image[$var[bannerURL]]
-$sendEmbedMessage
 ```
 
 ## Notes

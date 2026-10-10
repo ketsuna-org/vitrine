@@ -4,39 +4,40 @@ title: $debug
 translation_key: docs
 category: "Flags & Debug"
 function_name: debug
-syntax: $debug
-description: Enables debug mode for the current command. Displays diagnostic information in the console or BDFD logs.
+syntax: $debug[value]
+description: Accepts exactly one argument and returns an empty string; in this engine it has no other effect.
 ---
 # $debug
 
-The `$debug` function **enables debug mode** for the currently executing command.
+The `$debug[]` function takes exactly one argument. In this engine its handler ignores the argument and returns an empty string: it does not enable any debug mode.
 
 ## Syntax
 
 ```
-$debug
+$debug[value]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `value` | Required (exactly one argument). Ignored by the engine. |
 
 ## Return value
 
-None.
+An empty string.
 
 ## Behavior
 
-- Once enabled, BDFD displays additional diagnostic information.
-- Helps to trace errors, variable values, and execution flow.
-- Debug mode is automatically disabled at the end of the command.
+- The engine does not produce any diagnostic output for this function.
+- `$debug` without brackets is refused ("Invalid argument count"): one argument is required.
 
 ## Examples
 
 ### Simple debug
 
 ```bdfd
-$debug
+$debug[on]
 $var[result;$calculate[2+2]]
 $sendMessage[Result: $var[result]]
 ```
@@ -45,21 +46,19 @@ $sendMessage[Result: $var[result]]
 
 ```bdfd
 $if[$message[1]==--debug]
-  $debug
+  $debug[on]
 $endif
-$sendMessage[Debug enabled for this execution.]
+$sendMessage[Debug argument received (no effect).]
 ```
 
 ### Debug in a complex command
 
 ```bdfd
-$debug
-$var[userData;$getGlobalUserVar[$authorID;xp]]
-$sendMessage[XP: $userData]
+$debug[on]
+$var[userData;$getUserVar[xp;$authorID]]
+$sendMessage[XP: $var[userData]]
 ```
 
 ## Notes
 
-- Debugging consumes logging resources; avoid enabling it in production.
-- Combine with `$log[]` for custom logs.
-- Useful for troubleshooting unexpected behaviors.
+- For custom logs, use `$log[]` (one argument, forwarded to the engine's log callback).

@@ -41,7 +41,6 @@ Rounded down: **$floor[3.9]**]
 $addField[Negative Value;$floor[-3.1];yes]
 $addField[Integer;$floor[5];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Comparison floor / ceil / round
 

@@ -4,75 +4,50 @@ title: $colorRole
 translation_key: docs
 category: "Entity Info"
 function_name: colorRole
-syntax: $colorRole[userID;(guildID)]
-description: Returns the hex color of the highest colored role of a user.
+syntax: $colorRole[color]
+description: Sets the color of the first role mentioned in the message.
 ---
 
 # $colorRole
 
-The `$colorRole` function returns the **hex color** of a user's highest colored role. Very useful for customizing embeds according to a user's role color.
+The `$colorRole` function **changes the color** of the first role mentioned in the command message. It does not return anything.
 
 ## Syntax
 
 ```
-$colorRole[userID;(guildID)]
+$colorRole[color]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user. Required. |
-| `guildID` | Optional. The ID of the target server. |
+| `color` | Required. The new color, as hex (`#5865F2`, or hex digits) or as a decimal number between 0 and 16777215. An invalid color raises `Invalid role color.` |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `string` | Hex color code (e.g., `#5865F2`), or `""` if they have no colored role. |
+| `string` | An empty string. The color of the role is modified. |
 
 ## Examples
 
-### Display the color
+### Change the color of a role
 
 ```bdfd
-$sendMessage[Your role color: $colorRole[$authorID]]
+$colorRole[#E74C3C]
+$sendMessage[The role color has been changed.]
 ```
 
-### Custom embed
+### Color given by the user
 
 ```bdfd
-$title[Profile of $username]
-$description[
-**Role:** $roleName[$getRole[$authorID;1]]
-**Color:** $colorRole[$authorID]
-]
-$color[$colorRole[$authorID]]
-$sendMessage[]
+$colorRole[$message[2]]
+$sendMessage[Color updated.]
 ```
-
-### Color of another user
-
-```bdfd
-$sendMessage[Color of <@$mentioned[1]>: $colorRole[$mentioned[1]]]
-```
-
-### Fallback if no color
-
-```bdfd
-$if[$colorRole[$authorID]!=]
-  $color[$colorRole[$authorID]]
-$else
-  $color[#5865F2]
-$endif
-$title[Profile]
-$description[User information]
-$sendMessage[]
-```
+Usage: `!color @Role #3498DB`
 
 ## Notes
 
-- Returns an empty string if the user does not have a role with a color.
-- The color is in the format hexadecimal with `#`.
-- Perfect for use with `$color[]` in embeds.
-- Unlike `$getRoleColor`, `$colorRole` targets a **user**, not a role.
+- The role to modify is the first role mentioned in the message. If no role is mentioned, the function raises `Missing or invalid role ID.`
+- To read the color of a role, use `$getRoleColor`; to change several properties at once, use `$modifyRole`.

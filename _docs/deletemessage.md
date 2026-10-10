@@ -11,13 +11,14 @@ Deletes a specific message. The bot must have permission to manage messages in t
 ## Syntax
 
 ```bdfd
-$deleteMessage[messageId]
+$deleteMessage[channelId;messageId]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
+| `channelId` | ID of the channel containing the message | Yes |
 | `messageId` | ID of the message to delete | Yes |
 
 ## Description
@@ -29,25 +30,24 @@ $deleteMessage[messageId]
 ### Deletion of the triggering message
 
 ```bdfd
-$deleteMessage[$messageID]
+$deleteMessage[$channelID;$messageID]
 Command executed discreetly.
 ```
 
 ### Deletion after action
 
 ```bdfd
-$sendMessage[Processing...]
+$var[sentID;$sendMessage[Processing...;yes]]
 $wait[3s]
-$deleteMessage[$sentMessageId]
+$deleteMessage[$channelID;$var[sentID]]
 $sendMessage[Processing complete!]
 ```
 
 ### Deletion in an interaction
 
 ```bdfd
-$onInteraction
 $if[$customID==btn_delete]
-  $deleteMessage[$messageID]
+  $deleteMessage[$channelID;$messageID]
   $sendMessage[Message deleted][ephemeral]
 $endif
 ```
@@ -55,13 +55,13 @@ $endif
 ### Deletion of a specific message
 
 ```bdfd
-$deleteMessage[123456789012345678]
+$deleteMessage[$channelID;123456789012345678]
 ```
 
 ## Notes
 
-- The `messageId` parameter is required.
+- The `channelId` and `messageId` parameters are required.
 - The bot must have `MANAGE_MESSAGES` to delete other users' messages.
 - Deleted messages cannot be recovered.
-- To delete the user's message that triggered the command, use `$messageID`.
+- To delete the user's message that triggered the command, use `$deleteMessage[$channelID;$messageID]`.
 - After deletion, it is common to send an ephemeral confirmation.

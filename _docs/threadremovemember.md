@@ -40,16 +40,16 @@ This function does not return any value.
 ### Closing a Ticket
 
 ```bdfd
-$threadRemoveMember[$threadID;$authorID]
-$editThread[$threadID;[Closed] Ticket;true;true]
+$threadRemoveMember[123456789012345678;$authorID]
+$editThread[123456789012345678;[Closed] Ticket;true;true]
 $sendMessage[Ticket closed and user removed.]
 ```
 
 ### Removal After Resolution
 
 ```bdfd
-$threadRemoveMember[$threadID;$mentioned[1]]
-$channelSendMessage[$threadID;<@$mentioned[1]> has been removed from the thread.]
+$threadRemoveMember[123456789012345678;$mentioned[1]]
+$channelSendMessage[123456789012345678;<@$mentioned[1]> has been removed from the thread.]
 ```
 
 ## Notes

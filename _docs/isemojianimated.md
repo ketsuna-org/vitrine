@@ -52,14 +52,17 @@ $endif
 ### Emoji Statistics
 
 ```bdfd
+$if[$isEmojiAnimated[$message[1]]==true]
+  $var[animated;Yes]
+$else
+  $var[animated;No]
+$endif
 $title[📊 Emoji Info]
 $description[
 **Emoji:** $message[1]
-**Animated:** $if[$isEmojiAnimated[$message[1]]==true]Yes$elseNo$endif
+**Animated:** $var[animated]
 **Name:** $emojiName[$message[1]]
-**ID:** $emojiID[$message[1]]
 ]
-$sendMessage[]
 ```
 
 ### Filter Animated Emojis
@@ -80,4 +83,3 @@ $endif
 - Static format: `<:name:id>` → `false`.
 - Unicode emoji: `😀` → `false`.
 - To get the name of an emoji, use `$emojiName[]`.
-- To get the ID of an emoji, use `$emojiID[]`.

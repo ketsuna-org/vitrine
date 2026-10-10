@@ -4,25 +4,28 @@ title: $publishMessage
 translation_key: docs
 category: "Moderation"
 function_name: publishMessage
-syntax: $publishMessage[messageID]
-description: Publishes a message to subscribed servers (announcement channel feature). Allows broadcasting a message beyond the original server.
+syntax: $publishMessage[channelID;messageID]
+description: Publishes a message of an announcement channel to the servers that follow it.
 ---
 
 # $publishMessage
 
-The `$publishMessage[]` function allows **publishing a message** from an announcement channel to all subscribed servers.
+The `$publishMessage[]` function allows **publishing a message** (crossposting) from an announcement channel to all subscribed servers.
 
 ## Syntax
 
 ```
-$publishMessage[messageID]
+$publishMessage[channelID;messageID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message to publish (must be in an announcement channel). |
+| `channelID` | Required. The ID of the announcement channel containing the message. |
+| `messageID` | Required. The ID of the message to publish. |
+
+Both arguments must be valid IDs, otherwise an error is raised.
 
 ## Return Value
 
@@ -30,39 +33,25 @@ This function does not return a value.
 
 ## Behavior
 
-- Requires a channel of type **announcement** (type 5).
-- The bot must have the `MANAGE_MESSAGES` or `SEND_MESSAGES` permission in the announcement channel.
+- Requires a channel of type **announcement**; otherwise an error is raised ("Publishing requires an announcement channel").
+- The bot must have the `View Channel` and `Send Messages` permissions in the channel, plus `Manage Messages` if the message was not sent by the bot itself.
 - The message is broadcast to all servers that follow this announcement channel.
-- Publishing may take a few seconds.
 
 ## Examples
 
 ### Publish an announcement
 
 ```bdfd
-$title[📢 Bot update]
-$description[
-**New version:** 2.0.0
-**Changes:**
-- New !help command
-- Bug fixes
-- Improved performance
-]
-$color[#5865F2]
-$channelSendMessage[$announcementChannel;]
-$publishMessage[$messageID]
-$sendMessage[Announcement published!]
+$var[announcement;$sendMessage[New version 2.0.0 is out: new !help command, bug fixes and improved performance.;yes]]
+$publishMessage[$channelID;$var[announcement]]
 ```
 
 ### Conditional publication
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
-  $title[Announcement from $username]
-  $description[$noMentionMessage]
-  $footer[Published by $username]
-  $channelSendMessage[$announcementChannel;]
-  $publishMessage[$messageID]
+$if[$isAdmin[$authorID]==true]
+  $var[announcement;$sendMessage[Announcement from $username: $noMentionMessage;yes]]
+  $publishMessage[$channelID;$var[announcement]]
   $sendMessage[✅ Announcement published successfully.]
 $else
   $sendMessage[❌ Permission denied.]

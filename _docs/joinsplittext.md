@@ -85,5 +85,4 @@ $description[Languages formatted:
 • $joinSplitText[
 • ]]
 $color[#5865F2]
-$sendMessage[]
 ```

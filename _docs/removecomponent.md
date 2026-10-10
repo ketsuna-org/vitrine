@@ -33,48 +33,48 @@ Removes the component from the message. If no component with this `customId` exi
 ### Removal after click
 
 ```bdfd
-$onInteraction[confirm_btn]
-$removeComponent[confirm_btn]
-$removeComponent[cancel_btn]
-$editMessage[✅ Action confirmed!]
-$endInteraction
+$if[$customID==confirm_btn]
+  $removeComponent[confirm_btn]
+  $removeComponent[cancel_btn]
+  $editMessage[$channelID;$messageID;✅ Action confirmed!]
+$endif
 ```
 
 ### Disable a button after use
 
 ```bdfd
-$onInteraction[claim_reward]
-$removeComponent[claim_reward]
-$sendMessage[$username has claimed the reward!]
-$endInteraction
+$if[$customID==claim_reward]
+  $removeComponent[claim_reward]
+  $sendMessage[$username has claimed the reward!]
+$endif
 ```
 
 ### Remove multiple specific components
 
 ```bdfd
-$onInteraction[reset_form]
-$removeComponent[name_input]
-$removeComponent[email_input]
-$removeComponent[submit_btn]
-$editMessage[Form reset]
-$endInteraction
+$if[$customID==reset_form]
+  $removeComponent[name_input]
+  $removeComponent[email_input]
+  $removeComponent[submit_btn]
+  $editMessage[$channelID;$messageID;Form reset]
+$endif
 ```
 
 ### Menu that disappears after selection
 
 ```bdfd
-$onInteraction[select_role]
-$removeComponent[role_menu]
-$var[role;$input[role_menu]]
-$giveRole[$authorID;$var[role]]
-$editMessage[Role **$var[role]** assigned!]
-$endInteraction
+$if[$customID==role_menu]
+  $removeComponent[role_menu]
+  $var[role;$getRoleSelectRoleID[1]]
+  $giveRole[$authorID;$var[role]]
+  $editMessage[$channelID;$messageID;Role <@&$var[role]> assigned!]
+$endif
 ```
 
 ## Notes
 
 - The `customId` must match exactly the one defined when creating the component (`$addButton[customId;...]`, `$addTextInput[customId;...]`, etc.).
 - If the component doesn't exist, the function fails silently.
-- Used primarily in `$onInteraction` handlers to modify the message after a user action.
+- Used primarily in the script run by a component interaction (read with `$customID`) to modify the message after a user action.
 - To remove all buttons at once, use `$removeButtons[]`.
 - To remove everything, use `$removeAllComponents[]`.

@@ -38,9 +38,8 @@ None.
 ### Feature Compatibility Check
 
 ```bdfd
-$var[version;$nodeVersion]
-$var[major;$textSplit[$var[version];v]]
-$var[major;$textSplit[$var[major];.;1]]
+$textSplit[$nodeVersion;.]
+$var[major;$replaceText[$splitText[1];v;]]
 
 $if[$var[major]>=18]
   $sendMessage[✅ Your runtime supports the latest features.]
@@ -61,7 +60,6 @@ $description[
 **Commands :** $commandsCount
 ]
 $footer[BDFD Infrastructure]
-$sendMessage[]
 ```
 
 ### Startup Log

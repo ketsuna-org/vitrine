@@ -20,5 +20,4 @@ $attachImage[profileCard]
 $title[Custom Image Attachment]
 $description[Your profile card has been rendered successfully!]
 $color[#9B30FF]
-$sendMessage[]
 ```

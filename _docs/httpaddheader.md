@@ -20,5 +20,4 @@ $httpGet[https://api.example.com/v1/profile]
 $title[API Request with Custom Headers]
 $description[Status: **$httpStatus**\nResult: `$httpResult`]
 $color[#00BCD4]
-$sendMessage[]
 ```

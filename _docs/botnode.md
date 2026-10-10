@@ -46,14 +46,14 @@ $addField[⚡ Runtime;$nodeVersion;yes]
 $addField[📝 Language;$scriptLanguage;yes]
 $footer[Hosting expires: $hostingExpireTime]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Debug command (owner only)
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Reserved for the owner.]
+  $ephemeral
+  ❌ Reserved for the owner.
   $stop
 $endif
 
@@ -65,10 +65,7 @@ $description[
 **Runtime:** $nodeVersion
 **Language:** $scriptLanguage
 **Commands:** $commandsCount
-**CPU:** $cpu
-**RAM:** $ram
 ]
-$sendMessage[]
 ```
 
 ### Message signature

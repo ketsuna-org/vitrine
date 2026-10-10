@@ -84,5 +84,4 @@ $endif
 $title[Step 1 In Progress]
 $description[Processing normal execution flow...]
 $color[#5865F2]
-$sendMessage[]
 ```

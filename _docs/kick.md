@@ -18,7 +18,7 @@ description: Kicks a specific user from the Discord server.
 $kick[userID;(reason)]
 ```
 
-`userID` is the target's Discord ID; `reason` is optional. The argument-free form `$kick` targets the command author. An explicitly empty target does not target the author: it fails with `Missing or invalid userId`.
+`userID` is the target's Discord ID; `reason` is optional. The argument-free form `$kick` targets the command author. An explicitly empty target does not target the author: it fails with `Missing or invalid user ID.`.
 
 ## Examples
 

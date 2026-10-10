@@ -18,5 +18,4 @@ $setMusicVolume[80]
 $title[Volume Adjusted 🔉]
 $description[Master music volume set to **80%**.]
 $color[#AEEA00]
-$sendMessage[]
 ```

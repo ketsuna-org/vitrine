@@ -37,7 +37,7 @@ $addContainer[user_info;#E67E22;no]
 $addSection
 $addField[Username;$username;no]
 $addField[ID;$authorID;no]
-$addField[Registration date;$creationDate;no]
+$addField[Registration date;$creationDate[$authorID];no]
 ```
 
 ### Multi-section container
@@ -54,7 +54,7 @@ $addField[Messages;$var[msg_count];yes]
 $addField[XP;$var[xp];yes]
 
 $addSection[footer]
-$addTextDisplay[📅 Member since $memberJoinDate]
+$addTextDisplay[📅 Member since $userJoined[$authorID]]
 ```
 
 ### Sections in a complex message

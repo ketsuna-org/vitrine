@@ -4,8 +4,8 @@ title: $onlyAdmin
 translation_key: docs
 category: "Moderation"
 function_name: onlyAdmin
-syntax: $onlyAdmin
-description: A guard function that stops command execution if the user is not an administrator of the server.
+syntax: $onlyAdmin[errorMessage]
+description: A guard function that stops command execution if the author is not an administrator of the server, optionally sending an error message.
 ---
 
 # $onlyAdmin
@@ -15,48 +15,51 @@ The guard function `$onlyAdmin` immediately stops the execution of the command i
 ## Syntax
 
 ```
-$onlyAdmin
+$onlyAdmin[errorMessage]
 ```
 
 ## Parameters
 
-No parameters. `$onlyAdmin` is used alone, without arguments.
+| Parameter | Description |
+|---|---|
+| `errorMessage` | Required (may be empty: `$onlyAdmin[]`). Message returned when the author is not an administrator. |
+
+A bare `$onlyAdmin` (no brackets) is invalid: it takes exactly one argument.
 
 ## Behavior
 
 - If the user is an administrator, the command continues normally.
-- If the user is **not** an administrator, the command is immediately interrupted (implicit `$stop`).
-- No error message is sent by default — the bot remains silent.
-- Functional equivalent to `$onlyPerms[administrator]` but more readable and concise.
+- If the author is **not** an administrator, the command is immediately interrupted (implicit `$stop`) and `errorMessage` is output in place of the response.
+- With an empty `errorMessage` nothing is displayed.
+- The check reads the effective permissions of the author in the server (`Administrator`).
 
 ## Examples
 
 ### Restricting a command to administrators
 
 ```bdfd
-$onlyAdmin
+$onlyAdmin[Only administrators can use this command.]
 $ban[Moderation]
-$sendMessage[<@$mentioned[1]> was banned.]
+$sendMessage[<@$mentioned[1;no]> was banned.]
 ```
 
 ### Administration Panel
 
 ```bdfd
-$onlyAdmin
+$onlyAdmin[]
 $title[⚙️ Admin Panel]
 $description[
 **Available Commands:**
 `!ban`, `!kick`, `!mute`, `!config`
 ]
 $color[#ED4245]
-$sendMessage[]
 ```
 
 ### Hybrid Command (Admin or Moderator role)
 
 ```bdfd
-$if[$isAdmin==false]
-  $onlyForRoles[123456789012345678]
+$if[$isAdmin[$authorID]==false]
+  $onlyForRoleIDs[123456789012345678;Permission denied.]
 $endif
 $sendMessage[Moderation action allowed.]
 ```
@@ -64,6 +67,4 @@ $sendMessage[Moderation action allowed.]
 ## Notes
 
 - `$onlyAdmin` only checks the `Administrator` permission. To check other permissions, use `$onlyPerms`.
-- The owner of the server is implicitly an administrator and passes this guard.
-- To add a custom error message, use `$onlyPerms[administrator;Error message]` instead.
 - Place this function at the **very top** of the command, before any other logic.

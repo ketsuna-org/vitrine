@@ -59,13 +59,12 @@ $description[
 **Trigger:** $commandTrigger
 **Type:** $commandType
 **Folder:** $commandFolder
-**Slash ID:** $if[$slashID!=]$slashID$elseN/A (prefix)$endif
+**Slash ID:** $slashID
 **Author:** $userName ($authorID)
 **Server:** $serverName ($guildID)
-**Channel:** $channelName ($channelID)
+**Channel:** $channelName[$channelID] ($channelID)
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Conditional behavior

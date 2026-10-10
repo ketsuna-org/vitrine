@@ -22,7 +22,7 @@ $voiceUserLimit[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional - The ID of the voice channel. By default, the channel where the author is located. |
+| `channelID` | Optional - The ID of the voice channel. By default, the current channel. |
 
 ## Return Value
 
@@ -32,41 +32,32 @@ $voiceUserLimit[(channelID)]
 
 ## Behavior
 
-- If no channelID is provided and the author is not in a voice channel, it returns `0` or an error.
+- If no channelID is provided, the current channel is used.
 - The limit is set during creation/modification of the channel.
 - Useful for checking capacity before joining or inviting.
 
 ## Examples
 
-### Checking capacity
+### Checking the limit
 
 ```bdfd
-$var[limit;$voiceUserLimit]
-$var[users;$voiceMembersCount]
+$var[limit;$voiceUserLimit[123456789012345678]]
 
 $if[$var[limit]==0]
-  Unlimited channel — **$var[users]** user(s) connected.
+  Unlimited channel.
 $else
-  Channel: **$var[users] / $var[limit]** users.
-  $if[$var[users]>=$var[limit]]
-    ⚠️ Channel full!
-  $else
-    ✅ $math[$var[limit]-$var[users]] spot(s) available.
-  $endif
+  Channel limited to **$var[limit]** users.
 $endif
 ```
 
 ### Voice channel info
 
 ```bdfd
-$title[🔊 $channelName[$voiceChannelID]]
+$title[🔊 Voice channel]
 $description[
-**Connected:** $voiceMembersCount
-**Limit:** $if[$voiceUserLimit==0]Unlimited$else$voiceUserLimit$endif
-**Bitrate:** $voiceBitrate kbps
+**Limit:** $voiceUserLimit[123456789012345678] (0 = unlimited)
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Checking for a specific channel
@@ -74,12 +65,11 @@ $sendMessage[]
 ```bdfd
 $var[target;$channelID[Gaming Channel]]
 $var[limit;$voiceUserLimit[$var[target]]]
-$var[users;$voiceMembersCount[$var[target]]]
 
-$if[$var[users]<$var[limit]]
-  $sendMessage[✅ You can join <#$var[target]>.]
+$if[$var[limit]==0]
+  $sendMessage[<#$var[target]> has no user limit.]
 $else
-  $sendMessage[❌ <#$var[target]> is full ($var[users]/$var[limit]).]
+  $sendMessage[<#$var[target]> is limited to $var[limit] users.]
 $endif
 ```
 

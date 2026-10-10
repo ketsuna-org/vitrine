@@ -4,7 +4,7 @@ title: $addCmdReactions
 translation_key: docs
 category: "Moderation"
 function_name: addCmdReactions
-syntax: $addCmdReactions[emoji1;emoji2;...]
+syntax: $addCmdReactions[emoji1;(emoji2);(...)]
 description: Adds one or more reactions to the user's command message (the message that triggered the command).
 ---
 
@@ -15,24 +15,27 @@ The `$addCmdReactions[]` function **adds reactions directly to the user's messag
 ## Syntax
 
 ```
-$addCmdReactions[emoji1;emoji2;...]
+$addCmdReactions[emoji1;(emoji2);(...)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `emoji1;emoji2;...` | List of emojis separated by `;`. Supports Unicode and custom emojis. |
+| `emoji1` | Required. At least one emoji is needed (`$addCmdReactions` without brackets is refused). |
+| `emoji2;...` | Optional. Any number of additional emojis, separated by `;`. |
+
+An emoji can be a Unicode emoji, a custom emoji in the form `<:name:ID>` / `<a:name:ID>`, a numeric emoji ID, or a BDFD alias such as `:name:` (unknown aliases are an error). An empty argument or plain ASCII text is an error.
 
 ## Return value
 
-This function does not return a value. The reactions are added to the command message.
+Returns an empty string. The reactions are added immediately to the command message (the message identified by the `message.id` variable in the channel `channel.id`).
 
 ## Behavior
 
-- Unlike `$addReactions[]`, this function targets the **trigger** message (the user's message).
+- Unlike `$addReactions[]`, which waits for the bot's response to be sent, this function targets the **trigger** message (the user's message) at the moment it runs.
+- If the channel or message ID is not available in the execution context, the call fails with an invalid-ID error.
 - Useful for giving quick visual feedback without sending a message.
-- The bot must have the permission `ADD_REACTIONS` in the channel.
 
 ## Examples
 
@@ -46,12 +49,10 @@ $suppressErrors[Action completed.]
 ### Conditional feedback
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
+$if[$checkContains[$message;yes]==true]
   $addCmdReactions[✅]
-  $ban[Moderation]
 $else
   $addCmdReactions[❌]
-  $ephemeral[You do not have permission.]
 $endif
 ```
 
@@ -60,13 +61,11 @@ $endif
 ```bdfd
 $addCmdReactions[⏳]
 $wait[2]
-$removeReaction[$channelID;$messageID;⏳]
+$removeReaction[$channelID;$messageID;$authorID;⏳]
 $addCmdReactions[✅]
 ```
 
 ## Notes
 
-- `$addCmdReactions[]` only works if the trigger message still exists.
 - Does not require sending a response message.
 - Ideal for quick commands where a simple emoji is enough for confirmation.
-

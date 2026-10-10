@@ -40,5 +40,4 @@ The second parameter determines the scope:
 $title[Global Setting]
 $description[Maintenance mode: `$getVar[maintenanceMode]`]
 $color[#5865F2]
-$sendMessage[]
 ```

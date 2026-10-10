@@ -59,9 +59,8 @@ $sendMessage[This menu is currently disabled]
 ## Handling the interaction
 
 ```bdfd
-$onInteraction
 $if[$customID==menu_cat]
-  $sendMessage[Selected category: <#$message>]
+  $sendMessage[Selected category: <#$getChannelSelectChannelID[1]>]
 $endif
 ```
 

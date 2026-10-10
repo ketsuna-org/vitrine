@@ -4,34 +4,37 @@ title: $clearReactions
 translation_key: docs
 category: "Moderation"
 function_name: clearReactions
-syntax: $clearReactions[messageID]
-description: Removes all reactions from a specific message. Usually requires appropriate permissions to clear reactions from other users.
+syntax: $clearReactions[channelID;messageID;emoji]
+description: Removes all reactions, or all reactions of one emoji, from a specific message.
 ---
 
 # $clearReactions
 
-The `$clearReactions[]` function **removes all reactions** from a message in a single operation.
+The `$clearReactions[]` function **removes the reactions** of a message: all of them with `!all`, or only those of one emoji.
 
 ## Syntax
 
 ```
-$clearReactions[messageID]
+$clearReactions[channelID;messageID;emoji]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message from which you want to remove all reactions. |
+| `channelID` | Required. The ID of the channel containing the message. |
+| `messageID` | Required. The ID of the message. |
+| `emoji` | Required. `!all` to remove every reaction, or the emoji whose reactions must be removed (Unicode emoji, `<:name:ID>` custom emoji, emoji ID, or a `:alias:`). An empty emoji is an error. |
 
 ## Return value
 
-This function does not return a value.
+This function does not return a value (empty string).
 
 ## Behavior
 
-- Removes ALL reactions from the message, including those of other users if the bot has the `MANAGE_MESSAGES` permission.
-- If the bot does not have `MANAGE_MESSAGES`, only the bot's own reactions can be deleted.
+- With `!all`, removes ALL reactions from the message.
+- With an emoji, removes all reactions of that emoji from the message.
+- Both IDs must be positive numeric IDs.
 - Useful for resetting a reaction system (poll, giveaway, etc.).
 
 ## Examples
@@ -39,7 +42,7 @@ This function does not return a value.
 ### Resetting a poll
 
 ```bdfd
-$clearReactions[$messageID]
+$clearReactions[$channelID;$messageID;!all]
 $addMessageReactions[$channelID;$messageID;👍;👎;🤷]
 $sendMessage[The votes have been reset.]
 ```
@@ -47,20 +50,19 @@ $sendMessage[The votes have been reset.]
 ### Automatic cleanup
 
 ```bdfd
-$clearReactions[$messageID]
+$clearReactions[$channelID;$messageID;!all]
 $addReactions[✅]
-$editMessage[Finished!]
+$editMessage[$channelID;$messageID;Finished!]
 ```
 
 ### Removal after closing
 
 ```bdfd
-$clearReactions[$messageID]
+$clearReactions[$channelID;$messageID;!all]
 $sendMessage[This poll is now closed.]
 ```
 
 ## Notes
 
-- `$clearReactions[]` removes all reactions, not just the bot's.
-- Requires the `MANAGE_MESSAGES` permission to delete other users' reactions.
-- To delete a specific reaction, use `$removeReaction[]`.
+- `$clearReactions[channelID;messageID;!all]` removes all reactions, not just the bot's.
+- To remove one emoji, pass it as the third argument.

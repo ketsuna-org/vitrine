@@ -25,5 +25,4 @@ Variables are defined and configured in the Bot Creator Variables UI, where you 
 $title[User Balance 🪙]
 $description[<@$authorID>, you have **$getUserVar[coins;$authorID]** coins in your wallet!]
 $color[#FEE75C]
-$sendMessage[]
 ```

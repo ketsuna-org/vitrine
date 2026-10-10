@@ -14,9 +14,8 @@ Joins a Discord voice channel. If no channel ID is provided, the bot automatical
 ### Connect Bot to Voice Channel
 
 ```bdfd
-$joinVoice[$voiceID]
+$joinVoice
 $title[Voice Connected 🔊]
-$description[Bot successfully connected to <#$voiceID>!]
+$description[Bot successfully connected to your voice channel!]
 $color[#AEEA00]
-$sendMessage[]
 ```

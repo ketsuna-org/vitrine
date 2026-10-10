@@ -40,11 +40,10 @@ None.
 ```bdfd
 $title[📊 Commands]
 $addField[🔹 Slash;$slashCommandsCount;yes]
-$addField[🔸 Prefix;$math[$commandsCount-$slashCommandsCount];yes]
+$addField[🔸 Prefix;$calculate[$commandsCount-$slashCommandsCount];yes]
 $addField[📦 Total;$commandsCount;yes]
 $footer[Discord Limit: 100 slash commands]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Checking Discord limit
@@ -53,7 +52,7 @@ $sendMessage[]
 $if[$slashCommandsCount>=100]
   $sendMessage[⚠️ **Warning:** You have reached the limit of 100 Discord slash commands. New slash commands might not register.]
 $else
-  $var[restant;$math[100-$slashCommandsCount]]
+  $var[restant;$calculate[100-$slashCommandsCount]]
   $sendMessage[✅ $slashCommandsCount/100 slash commands used ($var[restant] remaining).]
 $endif
 ```
@@ -65,13 +64,12 @@ $title[🤖 $botName - Statistics]
 $description[
 **Total commands:** $commandsCount
 **Slash:** $slashCommandsCount
-**Prefix:** $math[$commandsCount-$slashCommandsCount]
+**Prefix:** $calculate[$commandsCount-$slashCommandsCount]
 **Servers:** $guildCount
 **Users:** $membersCount
 ]
-$thumbnail[$botAvatar]
+$thumbnail[$userAvatar[$botID]]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ## Notes

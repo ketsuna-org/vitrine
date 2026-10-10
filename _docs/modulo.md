@@ -40,7 +40,6 @@ $title[Math: Modulo Remainder]
 $description[Remainder of `17 % 5`: **$modulo[17;5]**]
 $addField[Even Check ($modulo[4;2]);$if[$modulo[4;2]==0;Even;Odd];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Notes
 

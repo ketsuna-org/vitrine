@@ -4,24 +4,24 @@ title: $cropText[]
 translation_key: docs
 category: "Math & Text"
 function_name: cropText
-syntax: $cropText[text;maxLength;(suffix)]
-description: "Truncates text to a maximum length and optionally appends a suffix (default: \"...\") when truncation occurs."
+syntax: $cropText[text;maxLength;suffix]
+description: "Truncates text to a maximum length and appends a suffix when truncation occurs."
 ---
 # $cropText — Truncate Text
 
-`$cropText` limits a string to a maximum character length. If the text exceeds the limit, it is cut at `maxLength` characters and a suffix (default `"..."`) is appended to indicate truncation. If the text is within the limit, it is returned unchanged.
+`$cropText` limits a string to a maximum character length. If the text exceeds the limit, it is cut at `maxLength` characters and the suffix is appended to indicate truncation. If the text is within the limit, it is returned unchanged.
 
 ## Syntax
 
 ```
-$cropText[text;maxLength;(suffix)]
+$cropText[text;maxLength;suffix]
 ```
 
 ## Parameters
 
 - **text** *(string, required)* — The source text.
-- **maxLength** *(integer, required)* — The maximum character count. Text longer than this is truncated.
-- **suffix** *(string, optional)* — String appended after truncation. Default: `"..."`. Pass an empty value for a hard cut with no indicator.
+- **maxLength** *(integer, required)* — The maximum character count (a non-negative integer, otherwise the function raises `Maximum characters must be a non-negative integer.`). Text longer than this is truncated.
+- **suffix** *(string, required)* — String appended after truncation. Pass an empty value for a hard cut with no indicator. The call is refused with fewer than 3 arguments.
 
 ## Return Value
 
@@ -32,8 +32,8 @@ $cropText[text;maxLength;(suffix)]
 ## Usage
 
 ```
-$cropText[Hello World;5]       → "Hello..."
-$cropText[Hello World;20]      → "Hello World" (no truncation)
+$cropText[Hello World;5;...]   → "Hello..."
+$cropText[Hello World;20;...]  → "Hello World" (no truncation)
 $cropText[Hello World;5;~]     → "Hello~"
 $cropText[Hello World;3;]      → "Hel" (hard cut)
 ```
@@ -45,7 +45,7 @@ $cropText[Hello World;3;]      → "Hel" (hard cut)
 Discord embed fields have character limits. Use `$cropText` to ensure compliance:
 
 ```
-$cropText[$getUserVar[bio];1024]
+$cropText[$getUserVar[bio];1024;...]
 ```
 
 ### Message Preview
@@ -53,20 +53,20 @@ $cropText[$getUserVar[bio];1024]
 Show a snippet of a long message:
 
 ```
-$sendMessage[Latest post: $cropText[$getUserVar[lastPost];100; [...]]
+$sendMessage[Latest post: $cropText[$getUserVar[lastPost];100;...]]
 ```
 
 ### Title Formatting
 
 ```
-$var[title;$cropText[$message;50]]
+$var[title;$cropText[$message;50;...]]
 ```
 
 ## Important Notes
 
 - **Suffix is not included in maxLength**: The `maxLength` value controls how many characters of the *original text* are kept. The suffix is added on top. For example, `$cropText[abcdef;3;...]` produces `"abc..."` (6 total characters).
 - **Hard cut with empty suffix**: `$cropText[text;5;]` with an empty third argument simply returns the first 5 characters.
-- **Works with numbers/symbols**: All characters count equally — no special handling of Unicode or emoji width.
+- **Works with numbers/symbols**: All characters count equally; a Unicode character made of a surrogate pair (such as most emoji) counts as one character.
 
 ## Examples
 
@@ -74,8 +74,7 @@ $var[title;$cropText[$message;50]]
 
 ```bdfd
 $title[Text Cropping]
-$description[Preview: **$cropText[$message;0;50]...**]
+$description[Preview: **$cropText[$message;50;...]**]
 $footer[Original length: $charCount[$message] chars]
 $color[#5865F2]
-$sendMessage[]
 ```

@@ -31,23 +31,23 @@ Removes all components from the message, making it non-interactive.
 ### Form finalization
 
 ```bdfd
-$onInteraction[submit_form]
-$removeAllComponents
-$var[name;$input[name_input]]
-$var[email;$input[email_input]]
-$editMessage[✅ Form submitted!
+$if[$customID==submit_form]
+  $removeAllComponents[$messageID]
+  $var[name;$input[name_input]]
+  $var[email;$input[email_input]]
+  $editMessage[$channelID;$messageID;✅ Form submitted!
 **Name:** $var[name]
 **Email:** $var[email]]
-$endInteraction
+$endif
 ```
 
 ### Lock after expiration
 
 ```bdfd
-$onInteraction[timeout_event]
-$removeAllComponents
-$editMessage[⏰ This panel has expired. Interaction is no longer possible.]
-$endInteraction
+$if[$customID==timeout_event]
+  $removeAllComponents[$messageID]
+  $editMessage[$channelID;$messageID;⏰ This panel has expired. Interaction is no longer possible.]
+$endif
 ```
 
 ### Complete cleanup
@@ -57,16 +57,14 @@ $addTextInput[query;Search;short;Search...;;yes;2;100]
 $addButton[search;Search;Primary;;search_btn]
 $addButton[cancel;Cancel;Danger;;cancel_btn]
 
-$onInteraction[search_btn]
-$removeAllComponents
-$var[query;$input[query]]
-$editMessage[Results for **$var[query]**:\nNo results found.]
-$endInteraction
-
-$onInteraction[cancel_btn]
-$removeAllComponents
-$editMessage[Search cancelled]
-$endInteraction
+$if[$customID==search_btn]
+  $removeAllComponents[$messageID]
+  $var[query;$input[query]]
+  $editMessage[$channelID;$messageID;Results for **$var[query]**:\nNo results found.]
+$elseif[$customID==cancel_btn]
+  $removeAllComponents[$messageID]
+  $editMessage[$channelID;$messageID;Search cancelled]
+$endif
 ```
 
 ### Configuration panel
@@ -77,11 +75,11 @@ $description[Modify your settings]
 $addTextInput[nickname;Nickname;short;$nickname;;no;2;32]
 $addButton[save;Save;Success;;save_config]
 
-$onInteraction[save_config]
-$removeAllComponents
-$var[nick;$input[nickname]]
-$editMessage[✅ Nickname updated: **$var[nick]**]
-$endInteraction
+$if[$customID==save_config]
+  $removeAllComponents[$messageID]
+  $var[nick;$input[nickname]]
+  $editMessage[$channelID;$messageID;✅ Nickname updated: **$var[nick]**]
+$endif
 ```
 
 ## Comparison of removal functions
@@ -96,5 +94,5 @@ $endInteraction
 
 - After `$removeAllComponents[]`, the message can no longer receive user interactions.
 - Used to "consume" an interface after processing.
-- To be used in `$onInteraction` handlers with `$editMessage[]` or `$sendMessage[]`.
+- To be used in the script run for an interaction (read the clicked component with `$customID`), with `$editMessage[]` or `$sendMessage[]`.
 - Irreversible: once removed, components cannot be restored without sending a new message.

@@ -26,7 +26,7 @@ $addRoleSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 
 ## Description
 
-A **role select** displays the list of roles on the server. The user can select one or several. The IDs of the selected roles are returned in `$onInteraction`.
+A **role select** displays the list of roles on the server. The user can select one or several. The IDs of the selected roles are read in the component callback with `$getRoleSelectRoleID[index]` or `$getRoleSelectRoleIDs[separator]`.
 
 Ideal for self-role systems, department selection, or notification menus.
 
@@ -56,10 +56,9 @@ $sendMessage[Registrations are closed]
 ## Handling the interaction
 
 ```bdfd
-$onInteraction
 $if[$customID==menu_role]
-  $giveRole[$authorID;$message]
-  $sendMessage[You have received the role <@&$message>!]
+  $giveRole[$authorID;$getRoleSelectRoleID[1]]
+  $sendMessage[You have received the role <@&$getRoleSelectRoleID[1]>!]
 $endif
 ```
 

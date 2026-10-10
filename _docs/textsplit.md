@@ -86,5 +86,4 @@ $description[Parsed **$getTextSplitLength** elements from input.]
 $addField[Item 1;$splitText[0];yes]
 $addField[Item 2;$splitText[1];yes]
 $color[#5865F2]
-$sendMessage[]
 ```

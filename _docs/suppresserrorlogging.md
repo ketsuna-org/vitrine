@@ -46,5 +46,4 @@ $suppressErrorLogging
 $title[Silent Execution]
 $description[Bot internal errors will not clutter the server console.]
 $color[#5865F2]
-$sendMessage[]
 ```

@@ -51,7 +51,6 @@ $if[$var[target]!=]
   ]
   $thumbnail[$userAvatar[$var[target]]]
   $color[#5865F2]
-  $sendMessage[]
 $else
   $sendMessage[No user found for "$message".]
 $endif
@@ -62,7 +61,7 @@ $endif
 ```bdfd
 $var[target;$findUser[$message[1]]]
 $if[$var[target]!=]
-  $if[$checkContains[$userPerms;KickMembers]==true]
+  $if[$checkUserPerms[$authorID;KickMembers]==true]
     $kick[$var[target]]
     $sendMessage[$userName[$var[target]] was kicked.]
   $endif

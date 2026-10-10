@@ -45,7 +45,6 @@ $if[$isBooster==true]
   - And much more!
   ]
   $color[#F47FFF]
-  $sendMessage[]
 $endif
 ```
 

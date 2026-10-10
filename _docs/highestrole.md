@@ -36,13 +36,12 @@ $highestRole
 
 ```bdfd
 $title[Profile of $userName]
-$author[$userName;$userAvatar]
+$author[$userName;$userAvatar[$authorID]]
 $description[
 **Highest Role:** <@&$highestRole>
 **Role Name:** $roleName[$highestRole]
 ]
-$color[$getRoleColor[$highestRole]]
-$sendMessage[]
+$color[#$getRoleColor[$highestRole]]
 ```
 
 ### Check hierarchy

@@ -47,5 +47,4 @@ $suppressErrors[⚠️ An unexpected error occurred while executing this command
 $title[Safe Execution]
 $description[User command executed with custom error fallback.]
 $color[#5865F2]
-$sendMessage[]
 ```

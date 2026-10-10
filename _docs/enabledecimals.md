@@ -4,31 +4,34 @@ title: $enableDecimals
 translation_key: docs
 category: "Flags & Debug"
 function_name: enableDecimals
-syntax: $enableDecimals
-description: Enables decimal display in calculation results. By default, BDFD rounds numerical results.
+syntax: $enableDecimals[enable]
+description: Enables or disables decimal results in calculations for the current command. By default, results are rounded to the nearest integer.
 ---
 # $enableDecimals
 
-The `$enableDecimals` function **enables decimal display** in calculations for the current command.
+The `$enableDecimals[]` function **enables or disables decimal display** in calculations for the current command.
 
 ## Syntax
 
 ```
-$enableDecimals
+$enableDecimals[enable]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `enable` | Required (exactly one argument). `yes`, `true`, `on` or `enable` to enable decimals; `no`, `false`, `off` or `disable` to disable them. Any other value raises "Expected an enable-decimals boolean.". A bare `$enableDecimals` is refused ("Invalid argument count"). |
 
 ## Return value
 
-None.
+An empty string.
 
 ## Behavior
 
-- Without `$enableDecimals`, BDFD rounds the results of `$calculate[]`.
-- With `$enableDecimals`, the results include decimals.
+- Without it (default: disabled), the non-integer results of `$calculate[]`, `$sum[]`, `$sub[]`, `$multi[]`, `$divide[]` and `$sqrt[]` are rounded to the nearest integer, and `$random` without arguments returns an integer from 0 to 9.
+- With `$enableDecimals[yes]`, the results keep their decimals (and `$random` without arguments returns a decimal between 0 and 10).
+- `$enableDecimals[no]` turns it off again.
 - The effect is limited to the current command.
 
 ## Examples
@@ -36,7 +39,7 @@ None.
 ### Calculation with decimals
 
 ```bdfd
-$enableDecimals
+$enableDecimals[yes]
 $sendMessage[10 ÷ 3 = $calculate[10/3]]
 ; Displays: 10 ÷ 3 = 3.3333333333333335
 ```
@@ -52,7 +55,7 @@ $sendMessage[10 ÷ 3 = $calculate[10/3]]
 
 ```bdfd
 $var[without;$calculate[10/3]]
-$enableDecimals
+$enableDecimals[yes]
 $var[with;$calculate[10/3]]
 $sendMessage[Without: $var[without] | With: $var[with]]
 ```
@@ -61,4 +64,4 @@ $sendMessage[Without: $var[without] | With: $var[with]]
 
 - Place before the calculations concerned.
 - To round to N decimals, use `$round[$calculate[...];N]`.
-- Also affects divisions in `$if[]` conditions.
+- The `enable` argument is required: use `$enableDecimals[yes]`.

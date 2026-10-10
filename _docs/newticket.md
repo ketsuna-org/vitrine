@@ -1,38 +1,61 @@
 ---
 layout: doc
-title: $newTicket — incomplete compatibility
+title: $newTicket
 category: "Moderation"
 function_name: newTicket
 api_type: bdfd
-status: incomplete
-syntax: $newTicket[name;(categoryID)]
-description: Incomplete ticket helper. Compiles to channel creation without a complete private-ticket lifecycle; use channel Blocks instead.
+syntax: $newTicket[categoryIDorName;noSubjectMessage;inTicketMessage;messageToUser;errorMessage;(ticketNumber);(returnMessageID)]
+description: Creates a private ticket channel for the command author, sends an optional message in it, and answers the user.
 ---
 
 # $newTicket
 
-This helper is **incomplete** in the current Dart compiler/runtime. Do not use it as a ready-made private support-ticket system.
+The function `$newTicket[]` creates a **private text channel** named `ticket-...` for the author of the command, optionally inside a category, then sends a welcome message in the new channel and a confirmation to the user.
 
-The compiler reads the channel **name first** and category ID second. It emits a `createChannel` action with `parentId` and `isTicket`, but the channel executor reads `categoryId` and does not implement the `isTicket` marker. Consequently, this helper does not reliably place the channel in the requested category or establish ticket recognition.
+## Syntax
 
-It does not configure private creator/staff permissions, send an optional welcome message, enforce ticket limits or provide the documented inline channel-ID return that older examples assumed. There is no third welcome-message parameter in this builder.
+```
+$newTicket[categoryIDorName;noSubjectMessage;inTicketMessage;messageToUser;errorMessage;(ticketNumber);(returnMessageID)]
+```
 
-For a working channel creation sequence, use [Channel and permission Blocks](/docs/blocks-channels/): `createChannel` with `categoryId`, explicit permissions, a welcome message and storage of the created ID. Configure a private parent category first. Use the action result rather than nesting this helper in a temporary-variable assignment.
+At least the first 5 arguments are required (they may be empty); a call with fewer than 5 or more than 7 arguments is refused.
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `categoryIDorName` | Required (may be empty). ID of the category, or name of a category (case-insensitive). Empty creates the channel without a category. An unknown category name is a failure (see `errorMessage`). |
+| `noSubjectMessage` | Required (may be empty). Text used as the ticket subject when the command was called without any text. |
+| `inTicketMessage` | Required (may be empty). Message sent inside the new ticket channel. Empty means no message is sent in the channel. |
+| `messageToUser` | Required (may be empty). Text added to the response of the command (the confirmation shown to the user). |
+| `errorMessage` | Required (may be empty). Text added to the response if the ticket could not be created. If it is empty, a failure raises an error instead. |
+| `ticketNumber` | Optional. Integer used as the channel name suffix. Any non-integer value raises an error. |
+| `returnMessageID` | Optional. `yes`/`true` to return the ID of the message sent in the ticket channel, `no`/`false` (default) to return nothing. Any other value raises an error. |
+
+In `inTicketMessage` and in `messageToUser`, `{subject}` is replaced by the ticket subject and `{channel}` by the mention of the new channel (`<#id>`).
+
+## Behavior
+
+- The channel is named `ticket-<suffix>`, where the suffix is `ticketNumber` if given, otherwise the author's username (lowercase, characters other than letters, digits, `-` and `_` replaced by `-`), otherwise the author's ID.
+- The subject is the content of the command message (`message.content`); if it is empty, `noSubjectMessage` is used.
+- Permissions of the channel: `@everyone` cannot view it; the author and the bot can view it, send messages and read the history.
+- If `inTicketMessage` is not empty, it is sent in the new channel (the pending response is flushed first).
+- `messageToUser` is appended to the response of the command.
+- Returns the ID of the message sent in the ticket channel only when `returnMessageID` is `yes`/`true` and `inTicketMessage` was not empty; otherwise it returns an empty string.
+- The function raises an error if the ticket service or the message output is unavailable.
 
 See also [Support Ticket System Guide](/docs/tickets/), [$closeTicket](/docs/closeticket/), [$isTicket](/docs/isticket/) and [Execution model](/docs/execution-model/).
 
 ## Examples
 
-### Recommended Modern Pattern vs Legacy Helper
+### Create a ticket in a category
 
 ```bdfd
-;; For production private tickets, create a channel with explicit permissions:
-$var[ticketChan;$createChannel[ticket-$username;text;123456789012345678]]
-$editChannelPerms[$var[ticketChan];$authorID;+viewchannel;+sendmessages]
-$useChannel[$var[ticketChan]]
-$title[Support Ticket Created 🎫]
-$description[Welcome <@$authorID>! A staff member will assist you shortly.]
-$color[#5865F2]
-$addButton[no;close_ticket;Close Ticket;danger]
-$sendMessage[]
+$newTicket[Support;No subject given;Hello <@$authorID>, a staff member will help you about: {subject};Your ticket is ready: {channel};Could not create the ticket.]
+```
+
+### Without category, with a ticket number
+
+```bdfd
+$newTicket[;General request;Welcome to your ticket!;Ticket created: {channel};Ticket creation failed.;42]
 ```

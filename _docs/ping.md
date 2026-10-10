@@ -46,7 +46,7 @@ A number representing the WebSocket latency in milliseconds.
 ```bdfd
 $title[🏓 Pong!]
 $description[WebSocket latency: **$ping ms**]
-$color[$if[$ping<100]#00FF00$elseif[$ping<200]#FFFF00$else#FF0000$endif]
+$color[#5865F2]
 $footer[🤖 $username]
 ```
 

@@ -46,14 +46,15 @@ $sendMessage[Result of your command...]
 ```bdfd
 $deleteCommand
 $addReactions[✅]
-$ephemeral[Command executed successfully.]
+$ephemeral
+$sendMessage[Command executed successfully.]
 ```
 
 ### Anti-spam protection
 
 ```bdfd
 $deleteCommand
-$if[$checkContains[$userPerms;Administrator]==false]
+$if[$checkContains[$userPerms[$authorID;-1;, ];ADMINISTRATOR]==false]
   $sendMessage[This command is reserved for administrators.]
   $suppressErrors[]
 $else
@@ -65,9 +66,10 @@ $endif
 
 ```bdfd
 $deleteCommand
-$channelSendMessage[$modChannel;Anonymous message:
+$channelSendMessage[123456789012345678;Anonymous message:
 >>> $noMentionMessage]
-$ephemeral[Your message has been sent to the moderation team.]
+$ephemeral
+$sendMessage[Your message has been sent to the moderation team.]
 ```
 
 ## Notes

@@ -4,32 +4,31 @@ title: $roleNames
 translation_key: docs
 category: "Entity Info"
 function_name: roleNames
-syntax: $roleNames[(separator);(guildID)]
-description: Returns a list of all role names on the server, separated by a customizable delimiter.
+syntax: $roleNames
+description: Returns the list of all role names of the current server, separated by commas.
 ---
 
 # $roleNames
 
-The function `$roleNames` returns the **complete list of names** of all roles on the server, separated by a customizable delimiter.
+The function `$roleNames` returns the **complete list of names** of all roles on the server, separated by a comma (`,`, without space).
 
 ## Syntax
 
 ```
-$roleNames[(separator);(guildID)]
+$roleNames
 ```
+
+The function takes no argument.
 
 ## Parameters
 
-| Parameter | Description |
-|---|---|
-| `separator` | Optional. The separator between each role name. Default: `, `. |
-| `guildID` | Optional. The ID of the target server. Default: current server. |
+This function takes no parameter; the separator is always `,` and the server is always the current one.
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | All role names concatenated with the chosen separator. |
+| `string` | All role names joined with `,`. |
 
 ## Examples
 
@@ -39,28 +38,15 @@ $roleNames[(separator);(guildID)]
 $sendMessage[**Roles on the server:** $roleNames]
 ```
 
-### List with line breaks
-
-```bdfd
-$sendMessage[**List of roles:**
-$roleNames[
-]]
-```
-
-### With custom separator
-
-```bdfd
-$sendMessage[Roles: $roleNames[ | ]]
-```
-
 ### Count and list
 
 ```bdfd
-$sendMessage[The server has $roleCount roles: $roleNames[, ]]
+$sendMessage[The server has $roleCount roles: $roleNames]
 ```
 
 ## Notes
 
 - The `@everyone` role is generally included in the list.
-- Roles are listed according to their hierarchical order (from highest to lowest).
+- Roles are listed in the order returned by Discord; no hierarchy sort is applied.
+- A role name containing a comma cannot be told apart from the separator.
 - To get IDs instead of names, use a different approach.

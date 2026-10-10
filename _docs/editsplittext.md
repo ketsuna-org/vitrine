@@ -84,5 +84,4 @@ $title[Array Element Updated]
 $description[Replaced index 1 with **$splitText[1]**.
 Full list: `$joinSplitText[, ]`]
 $color[#57F287]
-$sendMessage[]
 ```

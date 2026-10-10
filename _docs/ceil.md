@@ -41,7 +41,6 @@ Rounded up: **$ceil[3.1]**]
 $addField[Negative Value;$ceil[-3.9];yes]
 $addField[Integer;$ceil[5];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Comparison of floor / ceil / round
 

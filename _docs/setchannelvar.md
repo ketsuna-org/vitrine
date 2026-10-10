@@ -22,5 +22,4 @@ $setChannelVar[alertMuted;true;$channelID]
 $title[Channel Alerts]
 $description[Channel <#$channelID> alerts have been muted.]
 $color[#5865F2]
-$sendMessage[]
 ```

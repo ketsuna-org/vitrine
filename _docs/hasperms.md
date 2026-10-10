@@ -23,19 +23,22 @@ $hasPerms[userID;permission1;permission2;...]
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `userID` | Snowflake | The ID of the user whose permissions to check. |
-| `permission1;permission2;...` | String[] | List of permissions to verify. **All** permissions must be present. |
+| `permission1;permission2;...` | String[] | List of permissions to verify (at least one is required). **All** permissions must be present. |
 
 ## Return Value
 
 - **Type**: String `"true"` or `"false"`
 - `"true"`: the user has **all** listed permissions
 - `"false"`: at least one permission is missing
+- An error is raised if the user ID is invalid, if a permission name is empty or unknown, or if the member cannot be read.
 
 ## Behavior
 
-- Checks the global permissions of the user on the server.
+- Checks the permissions of the user on the server (from their roles; channel overwrites are not applied).
 - The check is of type **AND**: all listed permissions are required.
-- The `Administrator` permission implicitly satisfies all others.
+- The `Administrator` permission (and server ownership) implicitly satisfies all others.
+- A member currently timed out only keeps the view-channel and read-history permissions.
+- Permission names are case-insensitive and ignore spaces and symbols; aliases such as `Admin`, `Ban` and `Kick` are accepted.
 - **Does not interrupt** the command (unlike `$onlyPerms`).
 
 ## Examples
@@ -84,6 +87,6 @@ $endif
 
 - `$hasPerms` is an **inline** function: it does not block the command. Use it with `$if` to create conditional behaviors.
 - For the bot, use `$botID` as the `userID`.
-- Permission names are in **PascalCase** (`BanMembers`, `KickMembers`, `ManageMessages`, etc.).
+- Permission names are usually written in PascalCase (`BanMembers`, `KickMembers`, `ManageMessages`, etc.); case does not matter.
 - For a check with automatic interruption, use `$onlyPerms` (user) or `$onlyBotPerms` (bot).
 - `$checkUserPerms` is an alias of `$hasPerms`.

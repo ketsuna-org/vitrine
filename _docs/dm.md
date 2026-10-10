@@ -4,45 +4,44 @@ title: $dm
 translation_key: docs
 category: "Embed & Message"
 function_name: dm
-syntax: $dm[userID;content]
-description: Sends a private message (DM) to a user. The bot must be able to DM the target user.
+syntax: $dm[(userID)]
+description: Redirects the response of the current command to a private message (DM) to a user (the author by default).
 ---
 
 # $dm
 
-The `$dm[]` function **sends a private message** to a Discord user.
+The `$dm` function **redirects the response** of the command (text, embeds, components built in the command) to a Discord user's private messages instead of the channel.
 
 ## Syntax
 
 ```
-$dm[userID;content]
+$dm[(userID)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the recipient. |
-| `content` | The content of the message (markdown and mentions supported). |
+| `userID` | Optional. The ID of the recipient (a positive integer, else the error "Invalid user ID." is raised). If omitted or empty (`$dm`, `$dm[]`), the command author is used. |
+
+There is no `content` parameter: the message content is the rest of the command's text (and embeds).
 
 ## Return value
 
-- **Type**: Snowflake (string)
-- The ID of the message sent.
-- Empty string if the DM is impossible (user blocked, DMs closed).
+- An empty string. The function only sets the recipient; the message is sent when the response is flushed.
 
 ## Behavior
 
-- The bot must be able to send DMs to the user (not blocked, DMs open).
-- Embeds defined before `$dm[]` are included.
-- If the user has closed their DMs, the function fails silently.
+- Sets the destination of the response draft to the user's DMs; the response (text, embeds, components) is sent there instead of the channel.
+- If the response is empty (no text, no embed, no component), nothing is sent.
 
 ## Examples
 
 ### Simple DM to the author
 
 ```bdfd
-$dm[$authorID;Thank you for using the command!]
+$dm[$authorID]
+Thank you for using the command!
 ```
 
 ### DM with embed
@@ -52,22 +51,21 @@ $title[📬 Notification]
 $description[Your request has been successfully received.\n\nA moderator will reply to you shortly.]
 $color[#5865F2]
 $footer[$serverName Team]
-$dm[$authorID;]
+$dm[$authorID]
 ```
 
 ### DM to a mentioned user
 
 ```bdfd
 $if[$mentioned[1]!=]
-  $dm[$mentioned[1];$username sent you this message: $noMentionMessage]
-  $sendMessage[DM sent successfully!]
+  $dm[$mentioned[1]]
+  $username sent you this message: $noMentionMessage
 $else
-  $sendMessage[Please mention a user.]
+  Please mention a user.
 $endif
 ```
 
 ## Notes
 
-- Unlike `$sendMessage`, the DM does not appear in the current channel.
-- Limit of 2000 characters per message.
-- For welcome DMs, check that the user accepts DMs.
+- Unlike `$sendMessage`, the response is not posted in the current channel.
+- `$dm` applies to the command's main response, not to each `$sendMessage` call.

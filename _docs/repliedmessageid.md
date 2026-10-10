@@ -43,10 +43,9 @@ $if[$repliedMessageID!=]
   $var[msg;$getMessage[$channelID;$repliedMessageID]]
   $title[📝 Reply to a message]
   $description[
-  **Original author:** $userName[$messageAuthorID[$channelID;$repliedMessageID]]
+  **Original author:** $userName[$authorOfMessage[$channelID;$repliedMessageID]]
   **Message:** $var[msg]
   ]
-  $sendMessage[]
 $else
   $sendMessage[Please reply to a message to use this command.]
 $endif
@@ -56,7 +55,7 @@ $endif
 
 ```bdfd
 $if[$repliedMessageID!=]
-  $var[author;$messageAuthorID[$channelID;$repliedMessageID]]
+  $var[author;$authorOfMessage[$channelID;$repliedMessageID]]
   $title[⚠️ Report]
   $description[
   **Reported message:** ||$getMessage[$channelID;$repliedMessageID]||
@@ -76,9 +75,8 @@ $endif
 $if[$repliedMessageID!=]
   $var[msg;$getMessage[$channelID;$repliedMessageID]]
   $title[🗑️ Message deleted]
-  $description[Message from **$userName[$messageAuthorID[$channelID;$repliedMessageID]]** deleted.\nContent: ||$var[msg]||]
+  $description[Message from **$userName[$authorOfMessage[$channelID;$repliedMessageID]]** deleted.\nContent: ||$var[msg]||]
   $deleteMessage[$channelID;$repliedMessageID]
-  $sendMessage[]
 $endif
 ```
 

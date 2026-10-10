@@ -4,69 +4,70 @@ title: $addModalSelect[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addModalSelect
-syntax: $addModalSelect[customId;label;(placeholder);(required)]
-description: Adds a dropdown menu (select/dropdown) to a Discord modal. The options are added using $addSelectMenuOption[].
+syntax: $addModalSelect[type;label;description;customId;(placeholder);(minValues);(maxValues);(required);(disabled)]
+description: Adds a select menu (Components V2) to the modal being built. Options are added with $addSelectMenuOption[] for the "string" type.
 ---
 
-# $addModalSelect[] — Modal Dropdown Menu
+# $addModalSelect[] — Modal Select Menu
 
-`$addModalSelect[]` adds a dropdown menu (select menu) to a modal. The menu options are defined using `$addSelectMenuOption[]` after this call.
+`$addModalSelect[]` adds a select menu to the modal being built with `$newModal[]`. For a `string` menu, options are added afterwards with `$addSelectMenuOption[]`.
 
 ## Syntax
 
 ```
-$addModalSelect[customId;label;(placeholder);(required)]
+$addModalSelect[type;label;description;customId;(placeholder);(minValues);(maxValues);(required);(disabled)]
 ```
 
 ## Parameters
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Yes | — | Unique identifier to retrieve the value after submission. |
+| `type` | Yes | — | Menu type, as read by the component parser: `string`, `user`, `role`, `mentionable`, `channel`, `category` or `voice`. |
 | `label` | Yes | — | Text displayed above the menu. |
-| `placeholder` | No | — | Placeholder text when the menu is not selected. |
-| `required` | No | `yes` | `yes` if required, `no` otherwise. |
+| `description` | Yes | — | Description under the label. May be left empty (`;;`). |
+| `customId` | Yes | — | Identifier of the menu; also used as the first argument of `$addSelectMenuOption[]`. |
+| `placeholder` | No | empty | Placeholder text. |
+| `minValues` | No | `1` | Minimum number of selections (integer from 0 to 25). |
+| `maxValues` | No | `1` | Maximum number of selections (integer from 1 to 25). |
+| `required` | No | `yes` | `yes`/`true` or `no`/`false`. |
+| `disabled` | No | `no` | `yes`/`true` or `no`/`false`. |
 
 ## Return value
 
-Adds the Select component to the current modal. The selected value is accessible via `$input[customId]` in the interaction handler.
+Returns an empty string. The menu is added to the current modal; its value is read with `$input[customId]`.
+
+## Errors
+
+- Without a prior `$newModal[]`, the engine creates a default modal (ID `modal`, title `Modal`) to receive the input.
+- `required`/`disabled` values other than yes/no/true/false and out-of-range numbers are errors.
+- When the modal is sent, it must contain 1 to 5 inputs (text displays count as inputs).
 
 ## Examples
 
 ### Dropdown menu with options
 
 ```bdfd
-$newModal[Preferences;pref_modal]
-$addModalSelect[language;Language;Choose your language...;yes]
-$addSelectMenuOption[French;fr;French language]
-$addSelectMenuOption[English;en;English language]
-$addSelectMenuOption[Spanish;es;Spanish language]
+$newModal[pref_modal;Preferences]
+$addModalSelect[string;Language;;language;Choose your language...;1;1;yes]
+$addSelectMenuOption[language;French;fr;French language]
+$addSelectMenuOption[language;English;en;English language]
+$addSelectMenuOption[language;Spanish;es;Spanish language]
 ```
 
 ### Optional menu
 
 ```bdfd
-$newModal[Survey;survey_modal]
+$newModal[survey_modal;Survey]
 $addModalTextDisplay[Bonus question (optional):]
-$addModalSelect[os;Operating system;Select your OS;no]
-$addSelectMenuOption[Windows;win]
-$addSelectMenuOption[macOS;mac]
-$addSelectMenuOption[Linux;linux]
-```
-
-### Retrieving the value
-
-```bdfd
-$onInteraction[modal_submit]
-$var[lang;$input[language]]
-$sendMessage[Selected language: $var[lang]]
-$endInteraction
+$addModalSelect[string;Operating system;;os;Select your OS;1;1;no]
+$addSelectMenuOption[os;Windows;win;]
+$addSelectMenuOption[os;macOS;mac;]
+$addSelectMenuOption[os;Linux;linux;]
 ```
 
 ## Notes
 
-- Must be followed by calls to `$addSelectMenuOption[]` to set the available choices.
-- The `customId` must be unique within the modal.
-- Maximum of 25 options per dropdown menu (Discord limitation).
-- The value returned by `$input[]` is the `value` of the selected option, not its `label`.
-
+- `$addSelectMenuOption[]` needs at least 4 arguments (`menuId;label;value;description`, the description may be empty); the first one is the `customId` of the menu.
+- Only `string` menus accept options (otherwise: "Only string selects take options.").
+- A select menu supports at most 25 options.
+- `$newModal[]` takes the modal ID first, then its title.

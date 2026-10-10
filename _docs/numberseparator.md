@@ -80,5 +80,4 @@ $sendMessage[Level $getUserVar[level] — XP: $numberSeparator[$getUserVar[xp]]]
 $title[Bank Vault Balance]
 $description[Total reserves: **$$numberSeparator[1250000;,]**]
 $color[#57F287]
-$sendMessage[]
 ```

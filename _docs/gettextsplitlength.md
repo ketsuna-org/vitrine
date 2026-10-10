@@ -88,5 +88,4 @@ $description[Your message contains **$getTextSplitLength** words.]
 $addField[First Word;$splitText[0];yes]
 $addField[Last Word;$splitText[-1];yes]
 $color[#5865F2]
-$sendMessage[]
 ```

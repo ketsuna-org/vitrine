@@ -52,11 +52,22 @@ Please read the rules here: <#$rulesChannelID> 📋]
 
 ```bdfd
 $title[⚙️ Configuration — $serverName]
-$addField[📋 Rules;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNot configured$endif;yes]
-$addField[📢 System;$if[$systemChannelID!=]<#$systemChannelID>$elseNot configured$endif;yes]
-$addField[💤 AFK;$if[$afkChannelID!=]<#$afkChannelID>$elseNot configured$endif;yes]
+$var[rules;Not configured]
+$var[system;Not configured]
+$var[afk;Not configured]
+$if[$rulesChannelID!=]
+  $var[rules;<#$rulesChannelID>]
+$endif
+$if[$systemChannelID!=]
+  $var[system;<#$systemChannelID>]
+$endif
+$if[$afkChannelID!=]
+  $var[afk;<#$afkChannelID>]
+$endif
+$addField[📋 Rules;$var[rules];yes]
+$addField[📢 System;$var[system];yes]
+$addField[💤 AFK;$var[afk];yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Redirection to rules

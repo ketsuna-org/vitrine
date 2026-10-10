@@ -4,74 +4,67 @@ title: $getTextSplitIndex
 translation_key: docs
 category: "Math & Text"
 function_name: getTextSplitIndex
-syntax: $getTextSplitIndex
-description: Returns the current index during split text iteration within loops. Useful for tracking position inside a split text loop.
+syntax: $getTextSplitIndex[value]
+description: Returns the position (starting at 1) of a value in the elements produced by the last $textSplit, or -1 if it is not found.
 ---
-# $getTextSplitIndex — Current Split Text Iteration Index
+# $getTextSplitIndex — Position of a Value in the Split Text
 
-`$getTextSplitIndex` returns the current position (index) during split text iteration. It is typically used inside a split text loop to know which element is being processed.
+`$getTextSplitIndex[value]` searches `value` among the elements created by the last `$textSplit[]` and returns its position.
 
 ## Syntax
 
 ```
-$getTextSplitIndex
+$getTextSplitIndex[value]
 ```
 
-This function takes **no parameters**.
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `value` | The text to search for. Required. It must match an element exactly (same case, no trimming). |
 
 ## Return Value
 
 - **Type**: `string` (representing a number)
-- Returns the zero-based index of the current element in a split text iteration.
-- Returns `"0"` if called outside a split text loop context.
+- The **one-based** position of the first element equal to `value` (1 for the first element, 2 for the second, etc.).
+- `-1` if no element equals `value`, or if no `$textSplit[]` was performed.
 
 ## Usage
 
-When iterating over split text elements, `$getTextSplitIndex` tells you the position:
-
 ```
-$textSplit[red;green;blue;yellow;]
+$textSplit[red,green,blue,yellow;,]
 ```
 
-During iteration, `$getTextSplitIndex` produces:
-
-| Element | Index |
+| Call | Result |
 |---------|-------|
-| `red`   | `0`   |
-| `green` | `1`   |
-| `blue`  | `2`   |
-| `yellow`| `3`   |
+| `$getTextSplitIndex[red]` | `1` |
+| `$getTextSplitIndex[green]` | `2` |
+| `$getTextSplitIndex[blue]` | `3` |
+| `$getTextSplitIndex[purple]` | `-1` |
 
 ## Common Patterns
 
-### Numbered List Output
+### Check that a value is present
 
-```
-$textSplit[First;Second;Third;]
-$sendMessage[$math[$getTextSplitIndex+1]. $splitText]
-```
-
-### Conditional Logic Based on Position
-
-```
-$if[$getTextSplitIndex==0]
-  This is the first element: $splitText
+```bdfd
+$textSplit[$message;,]
+$if[$getTextSplitIndex[admin]!=-1]
+  $sendMessage[The list contains "admin".]
 $endif
 ```
 
-### Select First N Elements
+### Read the element that follows a value
 
-```
-$if[$getTextSplitIndex<5]
-  $sendMessage[Element $math[$getTextSplitIndex+1]: $splitText]
-$endif
+```bdfd
+$textSplit[key1,value1,key2,value2;,]
+$sendMessage[$splitText[$sum[$getTextSplitIndex[key2];1]]]
 ```
 
 ## Important Notes
 
-- **Zero-based**: The first element is at index `0`, not `1`. Add 1 for human-readable numbering.
-- **Loop context only**: Meaningful values are only available inside a split text iteration loop.
-- **No parameter**: This function takes no arguments — calling it with any brackets `$getTextSplitIndex[]` may cause unexpected behavior.
+- **One-based**: the first element is at position `1`, consistent with `$splitText[]`.
+- **First match only**: if the value appears several times, the position of the first occurrence is returned.
+- **Required parameter**: `$getTextSplitIndex` without brackets is refused; the function takes exactly one parameter.
 
 ## Examples
 
@@ -82,5 +75,4 @@ $textSplit[red,green,blue,yellow;,]
 $title[Search Element Index]
 $description[The color `blue` is located at index: **$getTextSplitIndex[blue]**]
 $color[#5865F2]
-$sendMessage[]
 ```

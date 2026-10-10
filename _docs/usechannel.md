@@ -48,7 +48,6 @@ $description[
 **Date:** $day/$month/$year
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Send a Cross Notification

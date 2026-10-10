@@ -23,7 +23,7 @@ $endTry
 
 1. The parser executes the body between `$try` and `$catch`.
 2. If **no error** occurs, the `$catch` block is skipped entirely and execution resumes after `$endTry`.
-3. If **any error** occurs inside the `$try` body, execution immediately jumps to `$catch`. The error is consumed — it will not propagate outside the try-catch.
+3. If **any function error** occurs inside the `$try` body, execution immediately jumps to `$catch`. The error is consumed — it will not propagate outside the try-catch. An error raised inside the `$catch` block itself is not caught by that same `$try`. `$catch` is optional: without it, an error in the body is swallowed and execution resumes after `$endTry`.
 
 **Important:** `$endTry` is always required, even if no `$catch` is provided.
 
@@ -33,14 +33,14 @@ Inside the `$catch` block, the `$error` variable provides access to the caught e
 
 | Usage                | Returns                                       |
 |----------------------|-----------------------------------------------|
-| `$error`             | The error message as a string                 |
-| `$error[message]`    | Same as above — the error message             |
+| `$error`             | The full error text (with a BDFD location prefix of the form `BDFD L<line>:<column> $function: ...`) |
+| `$error[message]`    | The error message alone, without the location prefix |
 | `$error[command]`    | The name of the command that caused the error |
 | `$error[source]`     | The source line or context of the error       |
 | `$error[row]`        | The row number where the error occurred       |
 | `$error[column]`     | The column number where the error occurred    |
 
-Outside the `$catch` block, `$error` is empty or undefined. It only has meaning within the catch scope.
+Any other type (the types are lowercase) raises the error `Error type must be command, message, source, row or column.` `$error` is empty until an error has been caught; it is meant to be used within the `$catch` block. The recorded values are not cleared when the block ends.
 
 ## Nesting
 
@@ -55,13 +55,14 @@ If `$stop` is called inside a `$try` block, it halts execution **before** the `$
 - **API calls**: Wrap `$httpGet` / `$httpPost` calls to handle network failures.
 - **User input parsing**: Catch errors when parsing or coercing user-supplied values.
 - **Fallback logic**: Try a primary operation, fall back to a secondary on failure.
-- **Logging**: Use `$catch` to log errors with `$eprint` or save them to a variable for later inspection.
+- **Logging**: Use `$catch` to log errors with `$log[]` or save them to a variable for later inspection.
 
 ## Common Pitfalls
 
 - Forgetting `$endTry` produces a parse error.
 - Placing `$endTry` before `$catch` — the parser expects `$catch` before `$endTry`.
-- Assuming `$error` is available outside `$catch` — it is scoped to the catch block only.
+- Using `$error` outside `$catch` — it only holds a value once an error has been caught.
+- Using arguments on the delimiters — `$catch` and `$endTry` accept none, and a `$try` with arguments is not a block.
 - Catching an error but doing nothing with it — at minimum, log it to help with debugging.
 
 ## Examples
@@ -79,5 +80,5 @@ $catch
   $description[Invalid mathematical expression provided!]
   $color[#ED4245]
 $endTry
-$sendMessage[]
+$sendMessage[Calculation processed]
 ```
