@@ -19,5 +19,4 @@ $httpPost[https://api.example.com/webhooks;{"event":"member_join","user":"$usern
 $title[HTTP POST Request]
 $description[Payload dispatched. Status code: **$httpStatus**]
 $color[#00BCD4]
-$sendMessage[]
 ```

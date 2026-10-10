@@ -19,5 +19,4 @@ $var[next;$jsonArrayShift[queue]]
 $title[Array Shift (FIFO)]
 $description[Next item served: **$var[next]**]
 $color[#57F287]
-$sendMessage[]
 ```

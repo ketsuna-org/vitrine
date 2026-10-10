@@ -5,7 +5,7 @@ translation_key: docs
 category: "Control Flow"
 function_name: i
 syntax: $i
-description: Alias of $loopIndex. Returns the current index (iteration number) in a $forEach, $while, or $repeat loop.
+description: Alias of $loopIndex. Returns the current zero-based index (iteration number) in a $for, $loop, $while, or $jsonForEach loop.
 aliases:
   - $loopIndex
 ---
@@ -26,36 +26,30 @@ None.
 ## Return Value
 
 - **Type**: Number (string)
-- The current index (1-based for `$forEach`, 0-based for `$while`/`$repeat`).
+- The current 0-based index of the innermost loop. Outside a loop, the engine raises `Loop index outside a loop.`
 
 ## Behavior
 
-- In `$forEach`: starts at 1.
-- In `$while` and `$repeat`: starts at 0 or depending on your counter.
+- Starts at 0 in `$for`, `$loop`, `$while` and `$jsonForEach` loops.
 - Incremented automatically at each iteration.
+- For a 1-based count, use `$loopCount`.
 
 ## Examples
 
-### ForEach with index
+### List loop with index
 
 ```bdfd
-$forEach[user;$mentioned]
-  $sendMessage[#$i: <@$loopValue>]
-$endForEach
+$for[color;red;green;blue]
+  $sendMessage[#$i: $color]
+$endFor
 ```
 
 ### Numbered list
 
 ```bdfd
-$title[📋 Member List]
-$description[
-$forEach[member;$membersCount]
-  $if[$i<=10]
-    **#$i** — $username[$member[$i]]
-  $endif
-$endForEach
-]
-$sendMessage[]
+$for[5]
+  $sendMessage[**#$loopCount** — index $i]
+$endFor
 ```
 
 ### While loop with index
@@ -64,7 +58,7 @@ $sendMessage[]
 $var[count;0]
 $while[$var[count]<5]
   $sendMessage[Iteration #$i]
-  $var[count;$c[$var[count]+1]]
+  $var[count;$sum[$var[count];1]]
 $endWhile
 ```
 
@@ -72,4 +66,4 @@ $endWhile
 
 - `$i` is identical to `$loopIndex` — just shorter and faster to type.
 - Frequently used in loops for numbering.
-- In `$forEach`, `$i` starts at 1, not 0.
+- `$i` starts at 0; use `$loopCount` to start at 1.

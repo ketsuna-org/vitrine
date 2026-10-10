@@ -22,5 +22,4 @@ $resetGuildMemberVar[warnings;$authorID;$guildID]
 $title[Reset Member Warnings]
 $description[Reset warnings for member <@$authorID> back to 0.]
 $color[#57F287]
-$sendMessage[]
 ```

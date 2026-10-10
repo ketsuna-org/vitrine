@@ -58,7 +58,6 @@ $description[
 **Timed Out:** $isTimedOut[$authorID]
 ]
 $color[#ED4245]
-$sendMessage[]
 ```
 
 ## Notes

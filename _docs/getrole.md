@@ -62,7 +62,6 @@ $sendMessage[Your second role: $roleName[$getRole[$authorID;2]]]
 $title[Profile]
 $description[Color of your main role]
 $color[$getRoleColor[$getRole[$authorID;1]]]
-$sendMessage[]
 ```
 
 ### Role of another user

@@ -40,15 +40,14 @@ $description[
 $memberPerms
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Moderation command
 
 ```bdfd
 $if[$checkContains[$memberPerms;KickMembers]==true]
-  $kick[$mentioned]
-  $sendMessage[<@$mentioned> was kicked.]
+  $kick[$mentioned[1]]
+  $sendMessage[<@$mentioned[1]> was kicked.]
 $else
   $sendMessage[KickMembers permission required.]
 $endif

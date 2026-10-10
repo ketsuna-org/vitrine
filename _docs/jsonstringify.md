@@ -18,5 +18,4 @@ $jsonParse[{"command":"ticket","active":true}]
 $title[Serialized JSON]
 $description[`$jsonStringify`]
 $color[#00BCD4]
-$sendMessage[]
 ```

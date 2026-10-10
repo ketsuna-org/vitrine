@@ -45,8 +45,8 @@ $isNumber[value]
 $var[price;$message[1]]
 $if[$isNumber[$var[price]]==true]
   $if[$var[price]>=0]
-    $var[tax;$math[$var[price]*0.2]]
-    $sendMessage[💰 Price: $var[price]€ | VAT: $var[tax]€ | Total: $math[$var[price]+$var[tax]]€]
+    $var[tax;$calculate[$var[price]*0.2]]
+    $sendMessage[💰 Price: $var[price]€ | VAT: $var[tax]€ | Total: $calculate[$var[price]+$var[tax]]€]
   $else
     $sendMessage[❌ The price must be positive.]
   $endif
@@ -61,8 +61,8 @@ $endif
 $var[a;$message[1]]
 $var[b;$message[2]]
 $if[$isNumber[$var[a]]==true&&$isNumber[$var[b]]==true]
-  $sendMessage[📊 $var[a] + $var[b] = $math[$var[a]+$var[b]]]
-  $sendMessage[📊 $var[a] × $var[b] = $math[$var[a]*$var[b]]]
+  $sendMessage[📊 $var[a] + $var[b] = $calculate[$var[a]+$var[b]]]
+  $sendMessage[📊 $var[a] × $var[b] = $calculate[$var[a]*$var[b]]]
 $else
   $sendMessage[❌ Please enter two valid numbers.]
 $endif

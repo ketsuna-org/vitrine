@@ -43,31 +43,21 @@ $getChannelSelectChannelIDs[separator;(limit)]
 ### List of selected channels
 
 ```bdfd
-$onInteraction[channel_select]
 $var[channels;$getChannelSelectChannelIDs[, ]]
 $title[📋 Selected Channels]
-$description[
-**IDs:** $var[channels]
-
-**List:**
-$textSplit[$var[channels];, ]
-> <#[$splitText[$index]]>
-$endTextSplit
-]
+$description[**IDs:** $var[channels]]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Loop through each channel
 
 ```bdfd
-$onInteraction[channel_select]
 $var[list;$getChannelSelectChannelIDs[,]]
-$var[count;$length[$splitText[$var[list];,]]]
-I have registered **$var[count]** channel(s).
 $textSplit[$var[list];,]
-  Channel $index: $channelName[$splitText[$index]]
-$endTextSplit
+I have registered **$getTextSplitLength** channel(s).
+$for[i=1;i<=$getTextSplitLength;i++]
+  Channel $i: $channelName[$splitText[$i]]
+$endfor
 ```
 
 ## Notes

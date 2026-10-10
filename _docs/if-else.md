@@ -85,5 +85,4 @@ $else
   $description[You need 100 coins, but only have **$getUserVar[coins]**.]
   $color[#ED4245]
 $endif
-$sendMessage[]
 ```

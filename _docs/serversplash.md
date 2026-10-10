@@ -49,7 +49,6 @@ $description[$serverDescription]
 $image[$serverSplash]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Custom invite page
@@ -61,7 +60,6 @@ $image[$serverSplash]
 $addField[Invite Link;discord.gg/$serverVanityURL;yes]
 $addField[Members;$membersCount;yes]
 $color[#9B59B6]
-$sendEmbedMessage
 ```
 
 ## Notes

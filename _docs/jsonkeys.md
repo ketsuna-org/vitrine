@@ -18,5 +18,4 @@ $jsonParse[{"id":1,"name":"Bot","status":"online"}]
 $title[JSON Object Keys]
 $description[Keys list: `$jsonKeys`]
 $color[#00BCD4]
-$sendMessage[]
 ```

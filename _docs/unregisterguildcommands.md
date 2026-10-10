@@ -37,7 +37,7 @@ None (empty string). An error is raised if the operation fails.
 ### Manual Cleanup
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
+$if[$checkUserPerms[$authorID;Administrator]==true]
   $unregisterGuildCommands[$guildID]
   $sendMessage[✅ Slash commands deleted from this server.]
 $else

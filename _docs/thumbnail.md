@@ -55,7 +55,6 @@ $description[
 ]
 $thumbnail[$authorAvatar]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Thumbnail with Server Icon
@@ -68,7 +67,6 @@ We are now **$membersCount** members!
 ]
 $thumbnail[$serverIcon]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Combining Thumbnail and Image
@@ -84,9 +82,8 @@ $description[
 ]
 $thumbnail[https://cdn.example.com/update-icon.png]
 $image[https://cdn.example.com/update-banner.png]
-$footer[Published at $time]
+$footer[Published on $day $month $year]
 $color[#FEE75C]
-$sendMessage[]
 ```
 
 ## Notes

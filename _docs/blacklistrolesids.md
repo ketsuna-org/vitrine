@@ -25,14 +25,14 @@ $blacklistRolesIDs[roleIds;(errorMessage)]
 
 `$blacklistRolesIDs` is a **guard function** that blocks command execution if the user has at least one of the specified roles. The check is performed with an **OR** condition: a single match among the listed roles is enough to block the user.
 
-If no custom error message is provided, a default message is sent.
+The last argument is the error message sent when the user is blocked, so at least one role ID followed by a message is required.
 
 ## Examples
 
 ### Default error
 
 ```bdfd
-$blacklistRolesIDs[123456789012345678]
+$blacklistRolesIDs[123456789012345678;❌ You are not allowed to use this command.]
 $sendMessage[Command executed successfully.]
 ```
 

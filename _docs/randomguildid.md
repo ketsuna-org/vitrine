@@ -37,7 +37,6 @@ Random server ID: $randomGuildID
 ```bdfd
 $title[Random server]
 $description[Name: $serverName[$randomGuildID]]
-$addField[Members:;$membersCount[$randomGuildID]]
 ```
 
 ## Notes

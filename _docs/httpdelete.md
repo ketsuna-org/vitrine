@@ -18,5 +18,4 @@ $httpDelete[https://api.example.com/items/42]
 $title[HTTP DELETE Request]
 $description[Deleted resource. Status response code: **$httpStatus**]
 $color[#DA373C]
-$sendMessage[]
 ```

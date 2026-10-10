@@ -19,5 +19,4 @@ $var[removed;$jsonArrayPop[queue]]
 $title[Array Pop]
 $description[Popped item: **$var[removed]**\nRemaining queue: `$jsonStringify`]
 $color[#DA373C]
-$sendMessage[]
 ```

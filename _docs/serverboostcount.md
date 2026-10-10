@@ -41,9 +41,8 @@ $sendMessage[🚀 **$serverBoostCount** Nitro boosts on this server!]
 $title[🚀 Boosters of $serverName]
 $description[Thank you to the $serverBoostCount boosters supporting the server!]
 $addField[Current Level;$boostLevel;yes]
-$addField[Next Tier;$if[$boostLevel<3]Only $sub[$var[boostsNeeded];$serverBoostCount] boosts to go!$elseMaximum level reached 🎉$endif;yes]
+$addField[Boosts to Level 3;$sub[14;$serverBoostCount];yes]
 $color[#F47FFF]
-$sendEmbedMessage
 ```
 
 ### Complete server info
@@ -57,7 +56,6 @@ $addField[🚀 Boosts;$serverBoostCount (Level $boostLevel);yes]
 $addField[🎨 Emojis;$emojiCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Tier progression check

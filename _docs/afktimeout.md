@@ -55,10 +55,13 @@ $sendMessage[💤 AFK Delay: **$var[timeoutText]**]
 
 ```bdfd
 $title[⚙️ Settings of $serverName]
-$addField[💤 AFK Channel;$if[$afkChannelID!=]<#$afkChannelID>$elseNone$endif;yes]
+$var[afk;None]
+$if[$afkChannelID!=]
+  $var[afk;<#$afkChannelID>]
+$endif
+$addField[💤 AFK Channel;$var[afk];yes]
 $addField[⏱️ AFK Delay;$round[$divide[$afkTimeout;60]] minutes;yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Alert if delay is very short

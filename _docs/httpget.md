@@ -20,5 +20,4 @@ $httpGet[https://api.github.com/repos/ketsuna-org/bot-creator]
 $title[GitHub Repository Info]
 $description[Status: **$httpStatus**\nRaw response preview: `$httpResult`]
 $color[#00BCD4]
-$sendMessage[]
 ```

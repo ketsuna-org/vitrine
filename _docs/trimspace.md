@@ -79,5 +79,4 @@ $endif
 $title[Trimmed String]
 $description[Cleaned input: `**$trimSpace[$message]**`]
 $color[#5865F2]
-$sendMessage[]
 ```

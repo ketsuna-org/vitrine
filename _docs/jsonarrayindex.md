@@ -18,5 +18,4 @@ $jsonParse[{"colors":["#5865F2","#57F287","#FEE75C"]}]
 $title[Array Index Access]
 $description[Primary color at index 0: `$jsonArrayIndex[colors;0]`]
 $color[#5865F2]
-$sendMessage[]
 ```

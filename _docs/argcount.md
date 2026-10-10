@@ -52,5 +52,4 @@ $description[You provided **$argCount[]** arguments in your command.]
 $addField[Expected;At least 2 arguments;yes]
 $addField[Received;$argCount[];yes]
 $color[#5865F2]
-$sendMessage[]
 ```

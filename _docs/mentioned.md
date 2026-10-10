@@ -59,7 +59,7 @@ $endif
 
 ```bdfd
 $if[$mentioned[1;no]!=]
-  $if[$checkContains[$userPerms;KickMembers]==true]
+  $if[$checkUserPerms[$authorID;KickMembers]==true]
     $kick[$mentioned[1;no]]
     $sendMessage[<@$mentioned[1;no]> was kicked.]
   $else

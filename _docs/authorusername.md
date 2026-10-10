@@ -37,11 +37,10 @@ $authorUsername
 $title[Command executed]
 $author[$authorUsername;$authorAvatar]
 $description[
-**Author:** $authorUsername#$discriminator
+**Author:** $authorUsername#$discriminator[$authorID]
 **ID:** $authorID
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

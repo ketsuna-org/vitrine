@@ -64,8 +64,8 @@ const RECIPES = [
   },
   {
     id: "userinfo", mode: "bdfd", need: 1, words: ["userinfo", "profil", "profile", "avatar", "pdp"],
-    fns: ["$userName", "$userID", "$userAvatar", "$title", "$description", "$thumbnail", "$color"],
-    skeleton: "$title[$userName]\n$thumbnail[$userAvatar]\n$description[ID : $userID]\n$color[5865F2]",
+    fns: ["$userName", "$userID", "$authorAvatar", "$title", "$description", "$thumbnail", "$color"],
+    skeleton: "$title[$userName]\n$thumbnail[$authorAvatar]\n$description[ID : $userID]\n$color[5865F2]",
   },
   {
     id: "serverinfo", mode: "bdfd", need: 1, words: ["serverinfo", "serveur", "server", "guild"],
@@ -105,7 +105,7 @@ const RECIPES = [
     id: "ticket", mode: "bdfd", need: 1, prio: 3, words: ["ticket", "tickets", "support"],
     fns: ["$createChannel", "$editChannelPerms", "$useChannel", "$addButton", "$deleteChannels", "$var", "$wait"],
     skeleton: "$var[chan;$createChannel[ticket-$userName;text]]\n$editChannelPerms[$var[chan];$authorID;68608;0]\n$useChannel[$var[chan]]\nTicket ouvert par <@$authorID>\n$addButton[no;close_ticket;Close Ticket;danger]",
-    gotchas: ["Do not use $newTicket/$closeTicket (incomplete legacy). Create the channel, grant the author 68608 with $editChannelPerms, add a close button; the close_ticket button handler runs $deleteChannels[$channelID]."],
+    gotchas: ["$newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] creates a private channel named ticket-<number or author name> (@everyone denied, author and bot allowed) and posts messageInTicket in it; $closeTicket only deletes a channel whose name starts with ticket-. Add a close button with $addButton and delete the channel from the button handler with $closeTicket (or $deleteChannels[$channelID])."],
   },
   {
     id: "welcome", mode: "bdfd", need: 1, words: ["welcome", "bienvenue", "accueil", "join", "rejoint", "arrivee"],

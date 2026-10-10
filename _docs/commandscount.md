@@ -42,10 +42,9 @@ $title[🤖 $botName]
 $addField[📊 Statistics;;yes]
 $addField[Total commands;$commandsCount;yes]
 $addField[Slash;$slashCommandsCount;yes]
-$addField[Prefix;$math[$commandsCount-$slashCommandsCount];yes]
-$thumbnail[$botAvatar]
+$addField[Prefix;$calculate[$commandsCount-$slashCommandsCount];yes]
+$thumbnail[$userAvatar[$botID]]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Comparison of servers and commands
@@ -59,7 +58,6 @@ $description[
 **Slash:** $slashCommandsCount
 **Runtime:** $nodeVersion
 ]
-$sendMessage[]
 ```
 
 ### Update announcement

@@ -37,30 +37,21 @@ None. The canvas is modified directly.
 ### Simple inversion
 
 ```bdfd
-$canvasLoad[$attachment]
+$canvasCreate[photo;512;512]
+$canvasLoadImage[$getAttachments[0];0;0;512;512]
 $canvasInvert
-$attachCanvas[]
+$attachImage[photo]
 $sendMessage[🔄 Image inverted!]
-```
-
-### Temporary negative effect
-
-```bdfd
-$canvasLoad[$attachment]
-$canvasInvert
-$attachCanvas[negative.png]
-$canvasInvert  ;; Return to original
-$attachCanvas[original.png]
-$sendMessage[🔁 Original + Negative:]
 ```
 
 ### Combination of effects
 
 ```bdfd
-$canvasLoad[$attachment]
+$canvasCreate[photo;512;512]
+$canvasLoadImage[$getAttachments[0];0;0;512;512]
 $canvasGrayscale
 $canvasInvert
-$attachCanvas[]
+$attachImage[photo]
 $sendMessage[🎞️ Grayscale + Negative!]
 ```
 

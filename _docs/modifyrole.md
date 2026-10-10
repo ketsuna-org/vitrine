@@ -59,7 +59,7 @@ $sendMessage[✅ Moderator role fully updated.]
 ### Modification command
 
 ```bdfd
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $modifyRole[$roleID[$message[1]];$message[2];$message[3]]
   $sendMessage[Role modified.]
 $else

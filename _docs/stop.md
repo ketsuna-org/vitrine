@@ -66,11 +66,10 @@ If `$stop` is called inside a `$try` block, the `$catch` block is **not** execut
 ### Halting Execution for Bots
 
 ```bdfd
-$if[$isBot[$authorID]==true]
+$if[$isBot==true]
   $stop
 $endif
 $title[User Verified]
 $description[Hello <@$authorID>, your command has been processed.]
 $color[#5865F2]
-$sendMessage[]
 ```

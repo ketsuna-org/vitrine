@@ -12,7 +12,7 @@ Enforces a per-server (guild) cooldown on command execution. When triggered, all
 ## Syntax
 
 ```bdfd
-$serverCooldown[duration;(errorMessage)]
+$serverCooldown[duration;errorMessage]
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ $serverCooldown[duration;(errorMessage)]
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
 | `duration` | The cooldown duration | Yes |
-| `errorMessage` | Custom error message shown when the cooldown is active | No |
+| `errorMessage` | Message shown when the cooldown is active (the argument is required; if left empty, an error "Command is on cooldown." is raised instead) | Yes |
 
 ## Duration Format
 
@@ -39,15 +39,15 @@ $serverCooldown[duration;(errorMessage)]
 
 | Function | Scope | Behavior |
 |----------|-------|----------|
-| `$cooldown[duration;(msg)]` | **User** | One cooldown per user |
-| `$serverCooldown[duration;(msg)]` | **Guild** | One cooldown per server |
-| `$globalCooldown[duration;(msg)]` | **Global** | One cooldown for the entire bot |
+| `$cooldown[duration;msg]` | **User** | One cooldown per user |
+| `$serverCooldown[duration;msg]` | **Guild** | One cooldown per server |
+| `$globalCooldown[duration;msg]` | **Global** | One cooldown for the entire bot |
 
 ## How It Works
 
 1. When the command runs, `$serverCooldown` checks if a cooldown is active for the current server.
 2. If **no cooldown is active** → a new server cooldown is set and execution continues.
-3. If **a cooldown is active** → the optional `errorMessage` is sent, and execution **stops immediately**. No further code runs.
+3. If **a cooldown is active** → the `errorMessage` is sent, and execution **stops immediately**. No further code runs.
 
 ## Place at the Top
 
@@ -58,7 +58,7 @@ Always place `$serverCooldown` at the **top** of your command, before any side e
 ### Basic Server Cooldown
 
 ```bdfd
-$serverCooldown[10s]
+$serverCooldown[10s;⏳ Please wait before using this command again.]
 $sendMessage[Command executed!]
 ```
 

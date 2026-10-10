@@ -17,5 +17,4 @@ Returns the total duration of the currently playing track in milliseconds. To di
 $title[Song Length ⏱️]
 $description[Track duration: **$lavalinkDuration**]
 $color[#AEEA00]
-$sendMessage[]
 ```

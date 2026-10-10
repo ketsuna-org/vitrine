@@ -39,15 +39,14 @@ $title[Welcome $displayName!]
 $description[
 We are thrilled to welcome you to **$serverName**!
 ]
-$thumbnail[$userAvatar]
+$thumbnail[$userAvatar[$authorID]]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### User profile
 
 ```bdfd
-$author[$displayName;$userAvatar]
+$author[$displayName;$userAvatar[$authorID]]
 $title[User Profile]
 $description[
 **Display Name:** $displayName
@@ -56,7 +55,6 @@ $description[
 **ID:** $userID
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

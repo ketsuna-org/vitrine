@@ -60,12 +60,12 @@ $sendMessage[Channel unlocked.]
 
 ```bdfd
 $editChannelPerms[$channelID;;-viewChannel]
-$editChannelPerms[$channelID;$vipRoleID;+viewChannel]
+$editChannelPerms[$channelID;123456789012345678;+viewChannel]
 $sendMessage[Channel made private for the VIP role.]
 ```
 
 ## Notes
 
-- Several permissions can be changed in one call: `$editChannelPerms[$channelID;$vipRoleID;+viewChannel;+sendMessages;-manageMessages]`.
+- Several permissions can be changed in one call: `$editChannelPerms[$channelID;123456789012345678;+viewChannel;+sendMessages;-manageMessages]`.
 - An empty `roleOrUserID` targets @everyone (a local convention of this engine).
 - `$modifyChannelPerms[]` is a separate function taking a single permission list as its second argument.

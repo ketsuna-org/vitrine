@@ -17,7 +17,7 @@ const front = text => Object.fromEntries([...(text.match(/^---\n([\s\S]*?)\n---/
 
 // Argument counts one syntax string advertises. A parameter written `(x)` or `x?` is optional, and every
 // parameter inside a `( ... ; ... )` group is optional. `...` marks a variadic tail.
-function advertisedCounts(syntax) {
+function advertisedCounts(syntax, variadicMins = []) {
   const counts = new Set();
   for (const alt of syntax.split(/\s+or\s+|\s*\/\s*(?=\$)/)) {
     const m = alt.trim().match(/\$\w+\[(.*)\]\s*$/);
@@ -51,7 +51,7 @@ function advertisedCounts(syntax) {
     const required = named.filter(i => !i.optional).length;
     // `role1;role2;...` is ambiguous about how many repeats are mandatory, so a variadic syntax is only
     // checked against the engine's upper bound.
-    if (variadic) { counts.add(99); continue; }
+    if (variadic) { counts.add(99); variadicMins.push(required); continue; }
     // A `(a;b)` group is all-or-nothing; a lone `(x)` is one optional parameter.
     const groups = new Map();
     for (const i of named) if (i.group) groups.set(i.group, (groups.get(i.group) ?? 0) + 1);
@@ -98,4 +98,78 @@ test('every documented BDFD function exists in the engine snapshot', async () =>
   }
   // Control-flow keywords are handled by the parser, not the function registry.
   assert.deepEqual(unknown.filter(f => !['for-loop.md', 'try-catch.md', 'jsonforeach.md'].includes(f)), []);
+});
+
+// Variadic syntaxes (`a;b;...`): pages differ on whether the repeated parameter right before `...` counts as
+// mandatory, so the engine minimum must be the documented mandatory count or one less. The upper bound is
+// checked by the first test.
+test('variadic syntaxes advertise the engine minimum argument count', async () => {
+  const wrong = [];
+  for (const file of (await readdir(dir)).sort()) {
+    if (!file.endsWith('.md')) continue;
+    const f = front(await readFile(new URL(file, dir), 'utf8'));
+    if ((f.api_type || 'bdfd') !== 'bdfd' || !f.function_name || structural.has(f.function_name.toLowerCase())) continue;
+    const sig = snapshot[f.function_name.toLowerCase()];
+    if (!sig) continue;
+    const mins = [];
+    advertisedCounts(f.syntax ?? '', mins);
+    for (const m of mins) if (sig.min > m || sig.min < m - 1) wrong.push(`${file} (doc ${m}, engine ${sig.min})`);
+  }
+  assert.deepEqual(wrong, []);
+});
+
+// Parser-level keywords (bot-creator, engine/bdfd/program.dart `structuralFunctionNames`): they are not in the
+// function registry but are valid in scripts.
+const parserKeywords = new Set(['if', 'elseif', 'else', 'endif', 'for', 'loop', 'while', 'endfor', 'endloop', 'endwhile',
+  'jsonforeach', 'endjsonforeach', 'try', 'catch', 'endtry', 'func', 'funcend']);
+const knownName = name => snapshot[name.toLowerCase()] || parserKeywords.has(name.toLowerCase());
+const callNames = code => [...code.matchAll(/(?<!\\)\$([A-Za-z_]\w*)/g)].map(m => m[1]);
+
+test('every function called in a ```bdfd example of _docs exists in the engine', async () => {
+  const unknown = [];
+  for (const file of (await readdir(dir)).sort()) {
+    if (!file.endsWith('.md')) continue;
+    const text = await readFile(new URL(file, dir), 'utf8');
+    for (const block of text.matchAll(/^```bdfd[^\n]*\n([\s\S]*?)^```\s*$/gm)) {
+      for (const name of callNames(block[1])) if (!knownName(name)) unknown.push(`${file}: $${name}`);
+    }
+  }
+  assert.deepEqual(unknown, [], 'Examples must only call functions the engine has (use `scripts/check-bdfd-examples.dart` against the engine for full validation).');
+});
+
+test('MCP planner recipes only name functions the engine has', async () => {
+  const { RECIPES } = await import('../functions/api/mcp/planner.mjs');
+  const unknown = [];
+  for (const [i, r] of Object.entries(RECIPES)) {
+    const recipe = r.r ?? r;
+    for (const fn of recipe.fns ?? []) if (fn.startsWith('$') && !knownName(fn.slice(1))) unknown.push(`recipe ${i} fns: ${fn}`);
+    if (recipe.skeleton && !recipe.skeleton.trim().startsWith('[')) {
+      for (const name of callNames(recipe.skeleton)) if (!knownName(name)) unknown.push(`recipe ${i} skeleton: $${name}`);
+    }
+  }
+  assert.deepEqual(unknown, []);
+});
+
+test('control-flow pages document their closing token', async () => {
+  const closers = { if: '$endif', for: '$endfor', while: '$endwhile', loop: '$endloop', jsonforeach: '$endjsonforeach', try: '$endtry', func: '$funcend' };
+  const missing = [];
+  for (const file of (await readdir(dir)).sort()) {
+    if (!file.endsWith('.md')) continue;
+    const f = front(await readFile(new URL(file, dir), 'utf8'));
+    const closer = closers[(f.function_name ?? '').toLowerCase()];
+    if (closer && !(f.syntax ?? '').toLowerCase().includes(closer)) missing.push(file);
+  }
+  assert.deepEqual(missing, []);
+});
+
+test('examples never call $sendMessage with an empty text (the engine refuses it at run time)', async () => {
+  const bad = [];
+  for (const file of (await readdir(dir)).sort()) {
+    if (!file.endsWith('.md')) continue;
+    const text = await readFile(new URL(file, dir), 'utf8');
+    for (const block of text.matchAll(/^```bdfd[^\n]*\n([\s\S]*?)^```\s*$/gm)) {
+      if (/\$sendMessage\[\s*(;[^\]]*)?\]/.test(block[1])) bad.push(file);
+    }
+  }
+  assert.deepEqual(bad, []);
 });

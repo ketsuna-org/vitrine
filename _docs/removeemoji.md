@@ -41,7 +41,7 @@ $removeEmoji[name]
 ### Simple removal
 
 ```bdfd
-$if[$checkContains[$userPerms;ManageEmojisAndStickers]==true]
+$if[$checkUserPerms[$authorID;ManageEmojis]==true]
   $if[$emojiExists[$noMentionMessage]==true]
     $removeEmoji[$noMentionMessage]
     $sendMessage[✅ Emoji **$noMentionMessage** removed.]
@@ -65,7 +65,6 @@ $if[$emojiExists[$var[name]]==true]
   **Removed by:** $userName[$authorID]
   ]
   $color[#ED4245]
-  $sendMessage[]
 $else
   $sendMessage[❌ No emoji named **$var[name]** found.]
 $endif

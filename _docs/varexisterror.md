@@ -44,5 +44,4 @@ $varExistError[coins;❌ Variable `coins` has not been registered in your bot se
 $title[Variable Verified]
 $description[Variable `coins` exists. Current value: **$getUserVar[coins]**]
 $color[#57F287]
-$sendMessage[]
 ```

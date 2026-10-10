@@ -40,7 +40,7 @@ $sendMessage[✅ The bot is now named "My Awesome Bot".]
 ### Conditional change
 
 ```bdfd
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $changeUsername[$message[1]]
   $sendMessage[Bot username updated.]
 $else

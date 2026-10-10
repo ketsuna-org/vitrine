@@ -27,12 +27,12 @@ $title[text;(embedIndex)]
 
 ## Return Value
 
-This function returns nothing; it modifies the response currently being constructed. The pending embed is emitted automatically for a slash response; `$sendMessage[]` can also send it explicitly. See [Execution model](/docs/execution-model/).
+This function returns nothing; it modifies the response currently being constructed. The pending embed is emitted automatically at the end of the script as the response; `$sendMessage[text]` does not send it, it posts a separate channel message and leaves the pending response untouched. See [Execution model](/docs/execution-model/).
 
 ## Behavior
 
-- `$title[]` is a **response mutation**: it is added to the response currently in progress and is emitted with the pending response, or by an explicit `$sendMessage[]` call.
-- If you call `$title[]` multiple times before a `$sendMessage[]`, only the last call will be applied to that specific embed.
+- `$title[]` is a **response mutation**: it is added to the response currently in progress and is emitted with the pending response at the end of the script.
+- If you call `$title[]` several times for the same embed index, only the last call is applied.
 - The order of calls is important: place `$title[]` before `$description[]`, `$color[]`, etc.
 
 ## Examples
@@ -43,7 +43,6 @@ This function returns nothing; it modifies the response currently being construc
 $title[Welcome to the server!]
 $description[Thank you for joining us 🎉]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Title with Markdown Formatting
@@ -52,7 +51,6 @@ $sendMessage[]
 $title[**Important Announcement** — *Must Read* 📢]
 $description[Here is the latest news of the server.]
 $color[#FF0000]
-$sendMessage[]
 ```
 
 ### Multi-embed: Different Titles for Each Embed
@@ -66,7 +64,6 @@ $title[Second embed;1]
 $description[Content of the second embed;1]
 $color[#57F287;1]
 
-$sendMessage[]
 ```
 
 ## Notes

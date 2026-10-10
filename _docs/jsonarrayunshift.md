@@ -19,5 +19,4 @@ $jsonArrayUnshift[tasks;Deploy Release]
 $title[Prepend Array Item]
 $description[Tasks list: `$jsonStringify`]
 $color[#5865F2]
-$sendMessage[]
 ```

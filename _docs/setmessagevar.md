@@ -22,5 +22,4 @@ $setMessageVar[starred;true;$messageID]
 $title[Message Starred ⭐]
 $description[Message has been added to the starboard!]
 $color[#FEE75C]
-$sendMessage[]
 ```

@@ -40,7 +40,7 @@ Random user ID: $randomUserID
 
 ```bdfd
 $var[winner;$randomUserID]
-The winner is: <@$get[winner]>
+The winner is: <@$var[winner]>
 ```
 
 ## Notes

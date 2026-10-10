@@ -39,7 +39,8 @@ None.
 
 ```bdfd
 $if[$commandType==slash]
-  $sendEphemeral[✅ Operation successful!]
+  $ephemeral
+  ✅ Operation successful!
 $else
   $sendMessage[✅ Operation successful!]
 $endif
@@ -61,10 +62,13 @@ $endif
 $title[⚙️ Command details]
 $addField[Name;$commandName;yes]
 $addField[Trigger;$commandTrigger;yes]
-$addField[Type;$if[$commandType==slash]🔹 Slash$else🔸 Prefix$endif;yes]
+$var[kind;🔸 Prefix]
+$if[$commandType==slash]
+  $var[kind;🔹 Slash]
+$endif
+$addField[Type;$var[kind];yes]
 $addField[Folder;$commandFolder;yes]
 $footer[Language: $scriptLanguage]
-$sendMessage[]
 ```
 
 ### Hybrid command with arguments
@@ -91,5 +95,5 @@ $endif
 
 - Possible values: `prefix` or `slash`.
 - For a simple boolean check, use `$isSlash`.
-- Ephemeral responses (`$sendEphemeral[]`) only work with `slash` commands.
+- Ephemeral responses (`$ephemeral`) only work with `slash` commands.
 - The type is configured in the BDFD console when creating the command.

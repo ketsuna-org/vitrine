@@ -43,7 +43,6 @@ $title[Math: Maximum Value]
 $description[The highest number among `5, 12, 3, 8, 1` is: **$max[5;12;3;8;1]**]
 $addField[Comparison with Negatives;$max[-5;10;-2;0];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Notes
 

@@ -30,6 +30,5 @@ See the complete guide: [Support Ticket System Guide](/docs/tickets/).
 $title[Support Ticket Closed 🔒]
 $description[Ticket closed by <@$authorID>. This channel will be removed.]
 $color[#DA373C]
-$sendMessage[]
 $deleteChannels[$channelID]
 ```

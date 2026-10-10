@@ -39,7 +39,7 @@ Current timestamp: $getTimestamp
 ```bdfd
 $var[now;$getTimestamp]
 $var[event;1718697600]
-Time remaining: $sub[$get[event];$get[now]] seconds
+Time remaining: $sub[$var[event];$var[now]] seconds
 ```
 
 ### Store a timestamp

@@ -66,7 +66,6 @@ $title[Server Configuration]
 $addField[Verification level;$serverVerificationLvl;yes]
 $addField[Server name;$serverName;yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ## Notes

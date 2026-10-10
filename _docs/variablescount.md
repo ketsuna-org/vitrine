@@ -43,5 +43,4 @@ The count of declared variables of that type, as a string representation of an i
 $title[Variables Stats]
 $description[This bot defines **$variablesCount[server]** server variables.]
 $color[#5865F2]
-$sendMessage[]
 ```

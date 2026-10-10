@@ -55,8 +55,9 @@ $endif
 $var[atts;$getAttachments[$messageID]]
 $if[$var[atts]!=]
   $textSplit[$var[atts];, ]
-    📎 Attachment $index: $splitText[$index]
-  $endTextSplit
+  $for[$getTextSplitLength]
+    📎 Attachment $loopCount: $splitText[$loopCount]
+  $endFor
 $endif
 ```
 
@@ -65,7 +66,8 @@ $endif
 ```bdfd
 $var[url;$getAttachments[$noMentionMessage]]
 $if[$var[url]!=]
-  $var[first;$splitText[$var[url];, ;1]]
+  $textSplit[$var[url];, ]
+  $var[first;$splitText[1]]
   $image[$var[first]]
   $sendMessage[Image retrieved:]
 $else

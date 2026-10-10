@@ -38,7 +38,7 @@ This function does not return a value.
 ### Manual registration
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
+$if[$isAdmin[$authorID]==true]
   $registerGuildCommands[$guildID]
   $sendMessage[✅ Slash commands registered on this server!]
 $else

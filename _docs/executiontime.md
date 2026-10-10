@@ -42,10 +42,9 @@ No parameters.
 $title[⚡ Performance]
 $description[
 **Execution time:** $executionTime ms
-**API Ping:** $botPing ms
+**API Ping:** $ping ms
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Dynamic footer
@@ -55,7 +54,6 @@ $title[📊 Statistics]
 $description[Complex command with a lot of data...]
 $footer[⏱️ Executed in $executionTime ms]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Slowness condition
@@ -72,4 +70,4 @@ $endif
 
 - The measured time depends on the complexity of the command and network latency.
 - `$executionTime` measures the time on the bot side, not the user latency.
-- For WebSocket/API latency, use `$botPing` or `$ping`.
+- For WebSocket/API latency, use `$ping`.

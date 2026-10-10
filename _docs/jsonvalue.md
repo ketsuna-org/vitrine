@@ -18,5 +18,4 @@ $jsonParse[{"weather":{"city":"Paris","temp":"22°C"}}]
 $title[Weather Forecast ⛅]
 $description[City: **$jsonValue[weather;city]**\nTemperature: **$jsonValue[weather;temp]**]
 $color[#5865F2]
-$sendMessage[]
 ```

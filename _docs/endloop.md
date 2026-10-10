@@ -10,7 +10,7 @@ Marks the end of a `$loop` block.
 
 ## Syntax
 
-```bdfd
+```text
 $endLoop
 ```
 
@@ -39,9 +39,9 @@ $endLoop
 ```bdfd
 $var[total;0]
 $loop[5]
-$var[total;$sum[$total;10]]
+$var[total;$sum[$var[total];10]]
 $endLoop
-Total: $total
+Total: $var[total]
 ```
 
 **Output:** `Total: 50`

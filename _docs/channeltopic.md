@@ -49,10 +49,9 @@ $endif
 ### Topic in an embed
 
 ```bdfd
-$title[#$channelName]
+$title[#$channelName[$channelID]]
 $description[Topic: $channelTopic]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

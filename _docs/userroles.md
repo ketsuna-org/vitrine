@@ -40,7 +40,6 @@ $userRoles[userID]
 $title[Roles of $username]
 $description[$userRoles[$authorID]]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Check for a specific role

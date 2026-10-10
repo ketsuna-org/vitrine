@@ -19,5 +19,4 @@ $jsonArrayReverse[list]
 $title[Reversed Array]
 $description[Reversed order: `$jsonStringify`]
 $color[#5865F2]
-$sendMessage[]
 ```

@@ -50,7 +50,7 @@ $color[#5865F2]
 
 ```bdfd
 $onlyBotChannelPerms[123456789012345678;Connect;Speak;❌ I do not have access to this voice channel.]
-$joinVC[123456789012345678]
+$joinVoice[123456789012345678]
 $sendMessage[Connecting to the voice channel...]
 ```
 
@@ -58,7 +58,7 @@ $sendMessage[Connecting to the voice channel...]
 
 ```bdfd
 $onlyBotChannelPerms[$channelID;AttachFiles;❌ I cannot send files here.]
-$attachment[./report.pdf]
+$addFile[https://example.com/report.pdf]
 $sendMessage[Here is the report.]
 ```
 

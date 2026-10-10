@@ -44,7 +44,6 @@ $title[Welcome!]
 $description[
 $customEmoji[wave] Welcome to the server $customEmoji[party]!
 ]
-$sendMessage[]
 ```
 
 ### Stored in a variable
@@ -54,7 +53,6 @@ $var[emoji;$customEmoji[boost]]
 $title[🚀 Boost detected $var[emoji]]
 $description[Thank you for your boost!]
 $color[#F47FFF]
-$sendMessage[]
 ```
 
 ### Menu with emojis
@@ -67,7 +65,6 @@ $customEmoji[announce] Announcements
 $customEmoji[chat] General Discussion
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Conditional emoji

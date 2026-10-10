@@ -52,7 +52,7 @@ $sendMessage[All ticket channels deleted.]
 ### Conditional deletion
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
+$if[$checkUserPerms[$authorID;Administrator]==true]
   $deleteChannelsByName[temp-*]
   $sendMessage[Temporary channels deleted.]
 $else

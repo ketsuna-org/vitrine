@@ -45,5 +45,4 @@ $else
   $description[The `userScore` variable is not configured.]
   $color[#ED4245]
 $endif
-$sendMessage[]
 ```

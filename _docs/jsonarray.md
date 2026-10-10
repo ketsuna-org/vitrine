@@ -24,5 +24,4 @@ $jsonParse[{"tags":["discord","bot","bdfd","blocks"]}]
 $title[JSON Array Elements]
 $description[First tag: `$jsonValue[tags;0]`\nTotal tags: **$jsonArrayCount[tags]**]
 $color[#00BCD4]
-$sendMessage[]
 ```

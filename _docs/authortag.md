@@ -43,7 +43,6 @@ $description[
 **ID:** $authorID
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

@@ -44,7 +44,7 @@ $isValidHex[value]
 ```bdfd
 $var[couleur;$message[1]]
 $if[$isValidHex[$var[couleur]]==true]
-  $embedAddField[Color;$var[couleur];yes]
+  $addField[Color;$var[couleur];yes]
   $color[$var[couleur]]
   $sendMessage[✅ Embed with the color $var[couleur].]
 $else
@@ -73,7 +73,6 @@ $if[$isValidHex[$var[hex]]==true]
   $description[**Hex:** $var[hex]]
   $color[$var[hex]]
   $addTimestamp[]
-  $sendMessage[]
 $else
   $sendMessage[❌ Invalid hex format. Usage: !color #5865F2]
 $endif

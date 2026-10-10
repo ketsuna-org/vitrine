@@ -42,7 +42,6 @@ $description[Result of `10 - 3`: **$sub[10;3]**]
 $addField[Negative Difference;$sub[5;10];yes]
 $addField[Decimal Difference;$sub[10.5;3.2];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Notes
 

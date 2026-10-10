@@ -18,5 +18,4 @@ $jsonParse[{"skills":["Dart","JavaScript","BDFD"]}]
 $title[Developer Skills]
 $description[Skills: **$jsonJoinArray[skills;, ]**]
 $color[#9B30FF]
-$sendMessage[]
 ```

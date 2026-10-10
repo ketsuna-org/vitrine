@@ -18,5 +18,4 @@ $resumeMusic
 $title[Music Resumed ▶️]
 $description[Audio playback continued by <@$authorID>.]
 $color[#57F287]
-$sendMessage[]
 ```

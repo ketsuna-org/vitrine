@@ -18,5 +18,4 @@ $jsonParse[{"items":["Sword","Shield","Potion"]}]
 $title[Inventory Item Count]
 $description[You have **$jsonArrayCount[items]** items in your bag.]
 $color[#5865F2]
-$sendMessage[]
 ```

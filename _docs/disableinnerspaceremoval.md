@@ -48,10 +48,10 @@ $sendMessage[
 
 ```bdfd
 $disableInnerSpaceRemoval
-$var[codeBlock;    function hello() {        return "world";    }]
-$sendMessage[```js
-$codeBlock
-```]
+$sendMessage[Indented list:
+    - first item
+        - nested item
+    - second item]
 ```
 
 ### Comparison

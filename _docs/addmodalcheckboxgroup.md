@@ -66,10 +66,10 @@ $addCheckboxGroupOption[;Export data;export]
 ### Retrieving values
 
 ```bdfd
-$onInteraction[profile_submit]
-$var[hobbies;$input[hobbies]]
-$sendMessage[Selected hobbies: $var[hobbies]]
-$endInteraction
+$if[$customID==profile_submit]
+  $var[hobbies;$input[hobbies]]
+  $sendMessage[Selected hobbies: $var[hobbies]]
+$endif
 ```
 
 ## Notes

@@ -52,7 +52,7 @@ $sendMessage[The votes have been reset.]
 ```bdfd
 $clearReactions[$channelID;$messageID;!all]
 $addReactions[✅]
-$editMessage[Finished!]
+$editMessage[$channelID;$messageID;Finished!]
 ```
 
 ### Removal after closing

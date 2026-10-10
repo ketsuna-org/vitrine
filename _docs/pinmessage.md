@@ -54,7 +54,7 @@ $pinMessage
 ### Conditional pinning
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
+$if[$checkUserPerms[$authorID;Administrator]==true]
   $description[$noMentionMessage]
   $pinMessage
   $addCmdReactions[📌]

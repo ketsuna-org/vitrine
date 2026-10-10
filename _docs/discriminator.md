@@ -47,7 +47,6 @@ $if[$discriminator[$authorID]!=0000]
   **Discriminator:** $discriminator[$authorID]
   ]
   $color[#5865F2]
-  $sendMessage[]
 $else
   $title[Pomelo Account]
   $description[
@@ -55,7 +54,6 @@ $else
   (No discriminator)
   ]
   $color[#57F287]
-  $sendMessage[]
 $endif
 ```
 

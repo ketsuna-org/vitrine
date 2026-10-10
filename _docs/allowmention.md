@@ -33,21 +33,11 @@ $sendMessage[Hey $username, look at this!]
 ### In an interaction
 
 ```bdfd
-$onInteraction
 $if[$customID==btn_alert]
   $reply
   $allowMention
   $sendMessage[⚠️ Important alert for you!]
 $endif
-```
-
-### Response with embeds and mention
-
-```bdfd
-$reply
-$allowMention
-$newEmbed[title=Attention;description=This requires your attention;color=#E74C3C]
-$sendMessage[]
 ```
 
 ## Comparison

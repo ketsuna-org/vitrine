@@ -48,7 +48,6 @@ $if[$var[status]!=]
 $else
   You have not set a custom status.
 $endif
-$sendMessage[]
 ```
 
 ### Rich profile card
@@ -56,13 +55,12 @@ $sendMessage[]
 ```bdfd
 $title[👤 $userName[$mentioned[1]]]
 $description[
-**Status:** $userStatus[$mentioned[1]]
+**Status:** $getUserStatus[$mentioned[1]]
 **Custom Status:** $getCustomStatus[$mentioned[1]]
 **HypeSquad:** $hypeSquad[$mentioned[1]]
 ]
 $thumbnail[$userAvatar[$mentioned[1]]]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Status change log
@@ -76,6 +74,6 @@ $endif
 
 ## Notes
 
-- The custom status is distinct from the presence status (online, dnd, etc.) which is retrieved via `$userStatus[]`.
+- The custom status is distinct from the presence status (online, dnd, etc.) which is retrieved via `$getUserStatus[]`.
 - If the user has set an emoji in their status, only the text is returned.
 - The custom status can contain up to 128 characters.

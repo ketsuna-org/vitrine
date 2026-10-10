@@ -59,7 +59,6 @@ $if[$isAdmin[$authorID]==true]
   `/ban`, `/kick`, `/mute`, `/config`
   ]
   $color[#ED4245]
-  $sendMessage[]
 $endif
 ```
 

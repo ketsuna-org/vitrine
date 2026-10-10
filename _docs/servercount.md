@@ -42,7 +42,6 @@ $title[📊 Bot Statistics]
 $addField[🌐 Servers;$serverCount;yes]
 $addField[🔢 Shard;$shardID;yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Custom status message
@@ -54,7 +53,6 @@ $addField[Servers;$serverCount;yes]
 $addField[Latency;$ping ms;yes]
 $footer[Developed with BDFD]
 $color[#2ECC71]
-$sendEmbedMessage
 ```
 
 ### Popularity message

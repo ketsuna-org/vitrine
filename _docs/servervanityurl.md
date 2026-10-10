@@ -51,7 +51,6 @@ $addField[Members;$membersCount;yes]
 $thumbnail[$serverIcon]
 $image[$serverSplash]
 $color[#9B59B6]
-$sendEmbedMessage
 ```
 
 ### Welcome page
@@ -63,7 +62,6 @@ $addField[👑 Owner;<@$serverOwner>;yes]
 $addField[👥 Members;$membersCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ## Notes

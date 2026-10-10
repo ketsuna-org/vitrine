@@ -71,5 +71,4 @@ Transforms `"new york"` → `"New York"`, `"LOS ANGELES"` → `"Los Angeles"`.
 $title[Title Case Formatter]
 $description[Formatted title: **$toTitleCase[$message]**]
 $color[#5865F2]
-$sendMessage[]
 ```

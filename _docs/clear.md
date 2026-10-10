@@ -49,12 +49,9 @@ $sendMessage[🧹 Messages from <@$mentioned[1]> deleted.]
 ### Clear command with verification
 
 ```bdfd
-$if[$argsCount<1]
-  $sendMessage[Usage: !clear <number>]
-  $stop
-$endif
+$argsCheck[>=1;Usage: !clear <number>]
 
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $clear[$message[1]]
   $sendMessage[🧹 $message[1] messages deleted.]
 $else

@@ -19,5 +19,4 @@ $jsonUnset[token]
 $title[Sanitized JSON Object]
 $description[Output after unset: `$jsonStringify`]
 $color[#5865F2]
-$sendMessage[]
 ```

@@ -25,5 +25,4 @@ Read the [Support Ticket System Guide](/docs/tickets/), the [channel Blocks refe
 $title[Ticket Verification]
 $description[Channel <#$channelID> ticket status: **$isTicket**]
 $color[#5865F2]
-$sendMessage[]
 ```

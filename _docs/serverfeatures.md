@@ -57,7 +57,7 @@ $sendMessage[🛠️ Active Features: $serverFeatures]
 ### Detect a feature
 
 ```bdfd
-$if[$serverFeatures$contains[COMMUNITY]]
+$if[$checkContains[$serverFeatures;COMMUNITY]==true]
   $sendMessage[✅ This server is a community server.]
 $else
   $sendMessage[ℹ️ This server is not configured as a community.]
@@ -72,20 +72,19 @@ $addField[Features;$serverFeatures;yes]
 $addField[Boost Level;$boostLevel;yes]
 $addField[Members;$membersCount;yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Multiple checks
 
 ```bdfd
 $var[features;$serverFeatures]
-$if[$var[features]$contains[NEWS]]
+$if[$checkContains[$var[features];NEWS]==true]
   $sendMessage[📢 Announcement channels enabled]
 $endif
-$if[$var[features]$contains[VANITY_URL]]
+$if[$checkContains[$var[features];VANITY_URL]==true]
   $sendMessage[🔗 Custom URL: discord.gg/$serverVanityURL]
 $endif
-$if[$var[features]$contains[ANIMATED_ICON]]
+$if[$checkContains[$var[features];ANIMATED_ICON]==true]
   $sendMessage[🎬 Animated icon available]
 $endif
 ```
@@ -93,6 +92,6 @@ $endif
 ## Notes
 
 - The features list is returned as a single comma-separated string, not an array.
-- Use `$contains[]` to check the presence of a specific feature.
+- Use `$checkContains[]` to check the presence of a specific feature.
 - Available features depend on the boost level and the status of the server (e.g. partnered, verified).
 - Some features can be enabled manually in the server settings (e.g. COMMUNITY).

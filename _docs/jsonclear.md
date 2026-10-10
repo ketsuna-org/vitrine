@@ -19,5 +19,4 @@ $jsonClear
 $title[Clear JSON Context]
 $description[Internal JSON state has been purged.]
 $color[#5865F2]
-$sendMessage[]
 ```

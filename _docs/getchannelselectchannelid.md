@@ -34,8 +34,7 @@ $getChannelSelectChannelID[index]
 
 - Only usable in a component callback (interaction type 3), otherwise the error "Select values require a component callback." is raised.
 - Raises "This callback has no channelSelect selection." if the callback carries no channel selection.
-- Used in interactions of type `$onInteraction[]` or `$selectMenuInteractionID[]`.
-- Works with channel select menus (type `channel` in `$addChannelSelectMenu[]`).
+- Used in the callback of a channel select menu created with `$addChannelSelect[]`; identify the menu with `$customID`.
 - If the user selects multiple channels, use `$getChannelSelectChannelIDs[]` to retrieve all of them.
 
 ## Examples
@@ -43,29 +42,27 @@ $getChannelSelectChannelID[index]
 ### Simple retrieval
 
 ```bdfd
-$nomentionMessage
-$addChannelSelectMenu[channel_select;1;Select a channel to monitor]
+$addChannelSelect[channel_select;Select a channel to monitor]
 $sendMessage[Please choose a channel:]
+```
 
-$onInteraction[channel_select]
+In the callback script of the menu:
+
+```bdfd
 $var[channelID;$getChannelSelectChannelID[1]]
 $title[Selected Channel]
 $description[
 **ID:** $var[channelID]
 **Name:** $channelName[$var[channelID]]
 ]
-$sendMessage[]
 ```
 
 ### Handling multiple selections
 
 ```bdfd
-$onInteraction[channel_select]
-$var[count;$length[$splitText[$getChannelSelectChannelIDs[,];,]]]
-You have selected **$var[count]** channel(s):
-$textSplit[$getChannelSelectChannelIDs[,];,]
-> <#[$splitText[$index]]> (ID: $splitText[$index])
-$endTextSplit
+$if[$customID==channel_select]
+  $sendMessage[You have selected **$getChannelSelectChannelCount** channel(s): $getChannelSelectChannelIDs[, ]]
+$endif
 ```
 
 ## Notes

@@ -55,7 +55,6 @@ $description[
 **VIP hoisted:** $isHoisted[$roleID[VIP]]
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

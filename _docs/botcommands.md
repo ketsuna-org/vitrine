@@ -43,32 +43,10 @@ $botCommands[separator]
 $title[📚 Commands of $botName]
 $description[
 Here are all my commands:
-```
 $botCommands[, ]
-```
 ]
 $footer[Total: $commandsCount commands]
 $color[#5865F2]
-$sendMessage[]
-```
-
-### Paged help
-
-```bdfd
-$var[cmds;$botCommands[,]]
-$var[lines;$textSplit[$var[cmds];,]]
-$var[pages;$math[$arrayLength[$var[lines]]/10]]
-$var[page;$message[1]]
-$if[$isInteger[$var[page]]==false]
-  $var[page;1]
-$endif
-
-$title[📚 Commands (page $var[page]/$var[pages])]
-$description[
-$arraySlice[$var[lines];$math[($var[page]-1)*10];10]
-]
-$footer[Total: $commandsCount commands]
-$sendMessage[]
 ```
 
 ## Notes

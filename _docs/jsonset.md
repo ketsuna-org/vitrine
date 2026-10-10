@@ -19,5 +19,4 @@ $jsonSet[user.xp;150]
 $title[JSON Set Value]
 $description[Updated object: `$jsonStringify`]
 $color[#57F287]
-$sendMessage[]
 ```

@@ -22,5 +22,4 @@ $setServerVar[ticketCategory;987654321098765432;$guildID]
 $title[Server Config Saved]
 $description[Support tickets category set to ID `987654321098765432`.]
 $color[#5865F2]
-$sendMessage[]
 ```

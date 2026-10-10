@@ -4,7 +4,7 @@ title: $callWorkflow[]
 translation_key: docs
 category: "Control Flow"
 function_name: callWorkflow
-syntax: $callWorkflow[name;arg1;arg2;...]
+syntax: $callWorkflow[name;(arg1);(arg2);...]
 description: Calls another workflow by name, optionally passing arguments. The called workflow executes, then execution resumes in the caller. The function itself returns an empty string; read the results with $workflowResponse.
 ---
 $callWorkflow enables modular command design by allowing one workflow to invoke another as a subroutine. This promotes code reuse, separation of concerns, and cleaner organization of complex bot logic.
@@ -84,6 +84,5 @@ Result : $workflowResponse[output]
 $title[Workflow Triggered]
 $description[Invoking backend verification workflow for member <@$authorID>...]
 $color[#5865F2]
-$sendMessage[]
 $callWorkflow[verify_user;$authorID]
 ```

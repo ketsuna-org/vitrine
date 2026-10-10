@@ -48,7 +48,6 @@ $if[$var[msgContent]!=]
   $description[>>> $var[msgContent]]
   $footer[Message ID: $noMentionMessage]
   $color[#5865F2]
-  $sendMessage[]
 $else
   $sendMessage[Message not found.]
 $endif
@@ -66,7 +65,7 @@ $if[$var[msgContent]!=]
 >>> $var[msgContent]
   ]
   $color[#ED4245]
-  $channelSendMessage[$logChannel;]
+  $channelSendMessage[123456789012345678;]
 $endif
 ```
 

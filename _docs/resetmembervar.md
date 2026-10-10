@@ -22,5 +22,4 @@ $resetMemberVar[dailyStreak;$authorID]
 $title[Streak Reset]
 $description[Daily streak has been reset for <@$authorID>.]
 $color[#DA373C]
-$sendMessage[]
 ```

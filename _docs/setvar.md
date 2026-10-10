@@ -33,5 +33,4 @@ $setVar[announcementBanner;Welcome all new members!]
 $title[Global Variable Set]
 $description[Saved global banner: **$getVar[announcementBanner]**]
 $color[#5865F2]
-$sendMessage[]
 ```

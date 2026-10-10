@@ -66,5 +66,4 @@ You can write conditions inside `$if` directly (e.g., `$if[$getUserVar[gold]>0]`
 $title[Condition Evaluation]
 $description[Is user balance greater than 100? **$checkCondition[$getUserVar[coins]>100]**]
 $color[#5865F2]
-$sendMessage[]
 ```

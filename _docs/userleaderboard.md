@@ -82,5 +82,4 @@ $description[Your position and direct competitors in **$serverName**:
 $userLeaderboard[xp;desc]]
 $color[#FEE75C]
 $footer[Keep chatting to reach the top 3!]
-$sendMessage[]
 ```

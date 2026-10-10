@@ -51,5 +51,4 @@ $cooldown[1h;⏳ Command is on cooldown! Time remaining: **$getCooldown[normal]*
 $title[Daily Work Completed]
 $description[You worked hard and earned **250 coins**! Run this again in 1 hour.]
 $color[#57F287]
-$sendMessage[]
 ```

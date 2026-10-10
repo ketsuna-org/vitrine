@@ -77,5 +77,4 @@ $title[Text Cropping]
 $description[Preview: **$cropText[$message;50;...]**]
 $footer[Original length: $charCount[$message] chars]
 $color[#5865F2]
-$sendMessage[]
 ```

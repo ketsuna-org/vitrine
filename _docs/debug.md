@@ -55,8 +55,8 @@ $sendMessage[Debug argument received (no effect).]
 
 ```bdfd
 $debug[on]
-$var[userData;$getGlobalUserVar[$authorID;xp]]
-$sendMessage[XP: $userData]
+$var[userData;$getUserVar[xp;$authorID]]
+$sendMessage[XP: $var[userData]]
 ```
 
 ## Notes

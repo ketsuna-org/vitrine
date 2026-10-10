@@ -40,41 +40,45 @@ None. The canvas is rotated and resized if necessary.
 ### Simple 90° rotation
 
 ```bdfd
-$canvasLoad[$attachment]
+$canvasCreate[img;400;400;#202225]
+$canvasLoadImage[$authorAvatar;0;0;400;400]
 $canvasRotate[90]
-$attachCanvas[]
+$attachImage
 $sendMessage[↪️ Image rotated by 90°!]
 ```
 
 ### Complete flip (180°)
 
 ```bdfd
-$canvasLoad[$attachment]
+$canvasCreate[img;400;400;#202225]
+$canvasLoadImage[$authorAvatar;0;0;400;400]
 $canvasRotate[180]
-$attachCanvas[]
+$attachImage
 $sendMessage[🔃 Image flipped!]
 ```
 
 ### Counterclockwise rotation
 
 ```bdfd
-$canvasLoad[$attachment]
+$canvasCreate[img;400;400;#202225]
+$canvasLoadImage[$authorAvatar;0;0;400;400]
 $canvasRotate[-45]
-$attachCanvas[]
+$attachImage
 $sendMessage[↩️ Counterclockwise rotation of 45°!]
 ```
 
 ### User-controlled rotation
 
 ```bdfd
-$canvasLoad[$attachment]
+$canvasCreate[img;400;400;#202225]
+$canvasLoadImage[$authorAvatar;0;0;400;400]
 $canvasRotate[$message[1]]
-$attachCanvas[]
+$attachImage
 $sendMessage[The image has been rotated by $message[1]°!]
 ```
 
 ## Notes
 
-- The canvas must be created or loaded before rotation.
+- The canvas must be created (`$canvasCreate`) before rotation; load an image into it with `$canvasLoadImage`.
 - Rotations of 90°, 180°, or 270° are optimized and do not degrade the quality.
 - Non-orthogonal rotations (e.g., 45°) require resampling.

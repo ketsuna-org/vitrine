@@ -84,7 +84,7 @@ $color[#5865F2]
 ### C-style loop
 
 ```bdfd
-$for[n=1;n<=3;n++]
-  $sendMessage[Number $n]
+$for[i=1;i<=3;i++]
+  $sendMessage[Number $i]
 $endFor
 ```

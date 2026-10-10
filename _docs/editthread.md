@@ -47,23 +47,23 @@ An empty string.
 ### Close a support thread
 
 ```bdfd
-$editThread[$threadID;[resolved] Support;yes;!unchanged;yes]
-$channelSendMessage[$threadID;This thread has been marked as resolved and locked.]
+$editThread[$channelID;[resolved] Support;yes;!unchanged;yes]
+$channelSendMessage[$channelID;This thread has been marked as resolved and locked.]
 $sendMessage[Thread closed.]
 ```
 
 ### Unarchive a thread
 
 ```bdfd
-$editThread[$threadID;Active support;no;10080;no]
-$channelSendMessage[$threadID;Thread reopened for discussion.]
+$editThread[$channelID;Active support;no;10080;no]
+$channelSendMessage[$channelID;Thread reopened for discussion.]
 ```
 
 ### Rename based on subject
 
 ```bdfd
 $var[newName;[FAQ] $noMentionMessage]
-$editThread[$threadID;$var[newName]]
+$editThread[$channelID;$var[newName]]
 $sendMessage[Thread renamed to: $var[newName]]
 ```
 
@@ -71,4 +71,5 @@ $sendMessage[Thread renamed to: $var[newName]]
 
 - An archived thread cannot receive new messages until it is unarchived.
 - Locked threads can be unlocked with `locked` set to `no`.
+- Inside a thread, `$channelID` is the ID of that thread.
 - The archive duration is ignored if the thread is already manually archived.

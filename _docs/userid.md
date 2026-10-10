@@ -37,7 +37,6 @@ $userID
 $title[Your User ID]
 $description[**ID:** `$userID`]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Use the ID in a condition

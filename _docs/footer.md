@@ -49,7 +49,6 @@ $description[
 ]
 $footer[Requested by $username]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Footer with custom icon
@@ -60,7 +59,6 @@ $description[This bot was created with BDFD.]
 $footer[Powered by Bot Designer for Discord]
 $footerIcon[https://bdfd.com/logo.png]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Footer with dynamic avatar
@@ -72,7 +70,6 @@ $footer[Executed by $username]
 $footerIcon[$authorAvatar]
 $addTimestamp
 $color[#57F287]
-$sendMessage[]
 ```
 
 ## Notes

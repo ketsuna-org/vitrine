@@ -18,9 +18,8 @@ The scope is `guildMember`, ideal for per-user-per-server data like XP, warnings
 ### Increase User Reputation
 
 ```bdfd
-$setMemberVar[reputation;$add[$getMemberVar[reputation;$authorID];1];$authorID]
+$setMemberVar[reputation;$sum[$getMemberVar[reputation;$authorID];1];$authorID]
 $title[Reputation +1 ⭐]
 $description[<@$authorID> now has **$getMemberVar[reputation;$authorID]** reputation points!]
 $color[#FEE75C]
-$sendMessage[]
 ```

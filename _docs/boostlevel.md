@@ -67,7 +67,6 @@ $if[$boostLevel<3]
 $addField[Next Level;$var[boostsNeeded] boosts remaining for level $var[nextLevel];yes]
 $endif
 $color[#F47FFF]
-$sendEmbedMessage
 ```
 
 ### Checking perks
@@ -87,13 +86,21 @@ $endif
 ### Info server with boost
 
 ```bdfd
+$if[$boostLevel>=3]
+$var[audio;384 kbps]
+$elseIf[$boostLevel>=2]
+$var[audio;256 kbps]
+$elseIf[$boostLevel>=1]
+$var[audio;128 kbps]
+$else
+$var[audio;Standard]
+$endif
 $title[$serverName]
 $addField[🚀 Boost Level;$boostLevel ($serverBoostCount boosts);yes]
 $addField[🎨 Emojis;$emojiCount;yes]
-$addField[🔊 Audio Quality;$if[$boostLevel>=3]384 kbps$elseIf[$boostLevel>=2]256 kbps$elseIf[$boostLevel>=1]128 kbps$elseStandard$endif;yes]
+$addField[🔊 Audio Quality;$var[audio];yes]
 $thumbnail[$serverIcon]
 $color[#F47FFF]
-$sendEmbedMessage
 ```
 
 ## Notes

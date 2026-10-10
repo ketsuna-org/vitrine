@@ -64,7 +64,6 @@ $sendMessage[$unEscape[He said: \"Hello!\" ]]
 ```bdfd
 $title[Information]
 $description[$unEscape[**User:** $username\n**ID:** $authorID\n**Role:** $getRole[$authorID;1]]]
-$sendMessage[]
 ```
 
 ## Notes

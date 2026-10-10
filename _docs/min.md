@@ -43,7 +43,6 @@ $title[Math: Minimum Value]
 $description[The lowest number among `5, 12, 3, 8, 1` is: **$min[5;12;3;8;1]**]
 $addField[Comparison with Negatives;$min[-5;10;-2;0];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Notes
 

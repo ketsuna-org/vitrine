@@ -17,5 +17,4 @@ Returns "true" if the music player is currently paused, and "false" if it is act
 $title[Player State]
 $description[Is playback paused? **$lavalinkIsPaused**]
 $color[#AEEA00]
-$sendMessage[]
 ```

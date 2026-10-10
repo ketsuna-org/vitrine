@@ -19,5 +19,4 @@ $httpPut[https://api.example.com/configs/bot;{"theme":"dark"}]
 $title[HTTP PUT Request]
 $description[Configuration replaced. Status: **$httpStatus**]
 $color[#5865F2]
-$sendMessage[]
 ```

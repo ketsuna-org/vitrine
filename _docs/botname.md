@@ -43,9 +43,8 @@ $description[
 I am **$botName**, your assistant.
 Type `!help` to see my commands.
 ]
-$thumbnail[$botAvatar]
+$thumbnail[$userAvatar[$botID]]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### About page
@@ -57,9 +56,8 @@ $addField[ID;$botID;yes]
 $addField[Owner;<@$botOwnerID>;yes]
 $addField[Commands;$commandsCount;yes]
 $addField[Node;$botNode;yes]
-$thumbnail[$botAvatar]
+$thumbnail[$userAvatar[$botID]]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Introduction
@@ -73,4 +71,4 @@ $sendMessage[Hello! I am $botName, a versatile bot created with BDFD. 💪]
 - `$botName` is read-only.
 - To change the name of the bot, use `$changeUsername[]`.
 - To get the ID of the bot, use `$botID`.
-- For the avatar, use `$botAvatar`.
+- For the avatar, use `$userAvatar[$botID]`.

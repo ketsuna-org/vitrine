@@ -27,7 +27,7 @@ $description[text;(embedIndex)]
 
 ## Return value
 
-This function returns nothing; it modifies the response currently being constructed. The pending embed is emitted automatically for a slash response; `$sendMessage[]` can also send it explicitly. See [Execution model](/docs/execution-model/).
+This function returns nothing; it modifies the response currently being constructed. The pending embed is emitted automatically at the end of the script as the response; `$sendMessage[text]` does not send it, it posts a separate channel message and leaves the pending response untouched. See [Execution model](/docs/execution-model/).
 
 ## Behavior
 
@@ -44,7 +44,6 @@ This function returns nothing; it modifies the response currently being construc
 $title[Information]
 $description[Here is the requested information. Use the buttons below to navigate.]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Multi-line description with markdown
@@ -60,7 +59,6 @@ $description[
 *Thank you for your understanding!*
 ]
 $color[#ED4245]
-$sendMessage[]
 ```
 
 ### Description with dynamic variables
@@ -73,7 +71,6 @@ $description[
 **Registration Date:** $creationDate[$authorID]
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

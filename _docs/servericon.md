@@ -36,7 +36,6 @@ $title[$serverName]
 $description[Here is the icon of our server]
 $image[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Thumbnail in a welcome message
@@ -47,7 +46,6 @@ $thumbnail[$serverIcon]
 $description[Welcome to $serverName, $username!]
 $addField[Members;$membersCount;yes]
 $color[#2ECC71]
-$sendEmbedMessage
 ```
 
 ### Check if the server has an icon
@@ -66,7 +64,6 @@ $endif
 $footer[$serverName;$serverIcon]
 $description[Official message from the server]
 $color[#F1C40F]
-$sendEmbedMessage
 ```
 
 ## Notes

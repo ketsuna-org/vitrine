@@ -43,7 +43,6 @@ $title[Join our server!]
 $embeddedURL[https://discord.gg/example]
 $description[Click on the title to join us.]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Informative embed with a link
@@ -57,19 +56,17 @@ Category: Utilities
 ]
 $footer[Official documentation]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Multiple embeds with different URLs
 
 ```bdfd
-$title[Website]
-$embeddedURL[https://example.com]
-$description[Our official website.]
-$addEmbed
-$title[Discord]
+$title[Website;1]
+$embeddedURL[https://example.com;1]
+$description[Our official website.;1]
+$title[Discord;2]
 $embeddedURL[https://discord.gg/example;2]
-$description[Our Discord server.]
+$description[Our Discord server.;2]
 ```
 
 ## Notes

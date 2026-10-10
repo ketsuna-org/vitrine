@@ -30,19 +30,9 @@ $noMention
 $sendMessage[Here is your reply, without a notification]
 ```
 
-### Discrete reply with embeds
-
-```bdfd
-$reply
-$noMention
-$newEmbed[title=Result;description=Operation completed;color=#2ECC71]
-$sendMessage[]
-```
-
 ### In an interaction
 
 ```bdfd
-$onInteraction
 $if[$customID==btn_silent]
   $reply
   $noMention

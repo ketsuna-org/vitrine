@@ -31,7 +31,7 @@ No parameters.
 
 - Counts the boosts of all members who have boosted the server.
 - Each user can provide 1 or 2 boosts depending on their Nitro tier.
-- The value influences the boost level of the server ($boostTier).
+- The value influences the boost level of the server ($boostLevel).
 
 ## Examples
 
@@ -41,12 +41,10 @@ No parameters.
 $title[🚀 Server Boosts]
 $description[
 **Number of boosts:** $boostCount
-**Level:** Level $boostTier
-**Next level:** $boostRequired boosts required
+**Level:** Level $boostLevel
 ]
 $thumbnail[$serverIcon]
 $color[#F47FFF]
-$sendMessage[]
 ```
 
 ### Thank-you message
@@ -55,30 +53,27 @@ $sendMessage[]
 $title[💜 Boost detected!]
 $description[
 Thank you **$username** for your boost! 
-The server now has **$boostCount** boosts and is at **level $boostTier**!
+The server now has **$boostCount** boosts and is at **level $boostLevel**!
 ]
 $color[#9B59B6]
 $sendMessage[$channelID[boosts]]
 ```
 
-### Progress bar
+### Storing the values
 
 ```bdfd
 $var[current;$boostCount]
-$var[needed;$boostRequired]
+$var[level;$boostLevel]
 
 $title[📈 Boost Progression]
 $description[
-**$var[current] / $var[needed]** boosts for the next level
-
-Progression: $math[$var[current]*100/$var[needed]]%
+**$var[current]** boosts, server at level **$var[level]**
 ]
 $color[#F47FFF]
-$sendMessage[]
 ```
 
 ## Notes
 
 - Boosts are tied to members' Nitro subscriptions.
 - The boost is removed if the member leaves the server or stops their subscription.
-- For the current level, use `$boostTier` (1, 2, or 3).
+- For the current level, use `$boostLevel`.

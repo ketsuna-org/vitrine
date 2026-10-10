@@ -52,7 +52,6 @@ Click on the link below to invite the bot to your server:
 - Read message history
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Link in a code block
@@ -62,11 +61,8 @@ $title[🔗 Invite Link]
 $description[
 Share this link to invite the bot:
 
-```
-$getBotInvite
-```
+`$getBotInvite`
 ]
-$sendMessage[]
 ```
 
 ### Info + Invite command
@@ -80,9 +76,8 @@ $description[
 
 [🔗 Invite the bot]($getBotInvite)
 ]
-$thumbnail[$botAvatar]
+$thumbnail[$userAvatar[$botID]]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ## Notes

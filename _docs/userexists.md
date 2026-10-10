@@ -40,14 +40,13 @@ $userExists[userID/mention]
 ### Check a mention
 
 ```bdfd
-$if[$userExists[$mentioned]==true]
-  $title[Information on <@$mentioned>]
+$if[$userExists[$mentioned[1]]==true]
+  $title[Information on <@$mentioned[1]>]
   $description[
-  **ID:** $mentioned
-  **Name:** $userName[$mentioned]
+  **ID:** $mentioned[1]
+  **Name:** $userName[$mentioned[1]]
   ]
   $color[#5865F2]
-  $sendMessage[]
 $else
   $sendMessage[I cannot find this user.]
 $endif

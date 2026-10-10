@@ -41,7 +41,7 @@ $sendMessage[All sanctions for <@$mentioned[1]> have been lifted.]
 ### Role Cleanup
 
 ```bdfd
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $takeRoles[$mentioned[1];$roleID[VIP];$roleID[Staff];$roleID[Mod]]
   $sendMessage[All special roles removed from <@$mentioned[1]>.]
 $endif

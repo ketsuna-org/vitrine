@@ -45,7 +45,6 @@ $hypeSquad[(userID)]
 ```bdfd
 $title[🏠 HypeSquad]
 $description[Your HypeSquad house: **$hypeSquad**]
-$sendMessage[]
 ```
 
 ### Custom message according to the house
@@ -74,7 +73,6 @@ $description[
 **Badges:** $userBadges[$mentioned[1]]
 ]
 $thumbnail[$userAvatar[$mentioned[1]]]
-$sendMessage[]
 ```
 
 ## Notes

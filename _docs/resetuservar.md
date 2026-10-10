@@ -24,5 +24,4 @@ $resetUserVar[bio;$authorID]
 $title[Profile Reset]
 $description[Your bio has been cleared.]
 $color[#5865F2]
-$sendMessage[]
 ```

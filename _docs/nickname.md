@@ -52,7 +52,6 @@ $description[
 **Display Name:** $displayName
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

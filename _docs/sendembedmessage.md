@@ -68,4 +68,4 @@ $var[msgId;$sendEmbedMessage[$channelID;;Editable Message;;This message was sent
 
 - If every embed field is empty, the message is sent with its content only (no embed).
 - Mentions allowed or restricted with `$allowUserMentions`, `$allowRoleMentions` or `$noMention` apply to the message.
-- To send a plain text message to the current channel, use `$sendMessage[]`.
+- To send a plain text message to the current channel, use `$sendMessage[text]` (the text is required).

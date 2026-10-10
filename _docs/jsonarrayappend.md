@@ -19,5 +19,4 @@ $jsonArrayAppend[roles;Moderator]
 $title[Array Append]
 $description[Updated roles array: `$jsonStringify`]
 $color[#57F287]
-$sendMessage[]
 ```

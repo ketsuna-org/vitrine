@@ -18,5 +18,4 @@ $setMusicLoop[track]
 $title[Loop Enabled 🔂]
 $description[Now looping current track: **$lavalinkPlaying**]
 $color[#AEEA00]
-$sendMessage[]
 ```

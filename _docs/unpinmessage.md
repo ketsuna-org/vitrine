@@ -53,11 +53,11 @@ $editMessage[$channelID;$messageID;This message is no longer relevant.]
 ### Announcement Rotation
 
 ```bdfd
-$unpinMessage[$channelID;$oldAnnouncementID]
+$unpinMessage[$channelID;123456789012345678]
 $title[New Announcement]
 $description[$noMentionMessage]
 $sendMessage[New announcement posted]
-$pinMessage[$messageID]
+$pinMessage
 ```
 
 ## Notes

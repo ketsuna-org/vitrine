@@ -43,7 +43,6 @@ $description[Result of `6 * 7`: **$multi[6;7]**]
 $addField[Decimal Multiply;$multi[2.5;4];yes]
 $addField[Negative Multiply;$multi[-3;5];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Notes
 

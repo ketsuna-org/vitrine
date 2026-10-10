@@ -31,7 +31,7 @@ None.
 ## Behavior
 
 - Allows adapting behavior based on the invocation mode.
-- Useful for sending ephemeral responses in slash mode (`$sendEphemeral[]`).
+- Useful for sending ephemeral responses in slash mode (`$ephemeral`).
 - No parameters: current command context only.
 
 ## Examples
@@ -40,7 +40,8 @@ None.
 
 ```bdfd
 $if[$isSlash==true]
-  $sendEphemeral[✅ Action completed successfully!]
+  $ephemeral
+  $sendMessage[✅ Action completed successfully!]
 $else
   $sendMessage[✅ Action completed successfully!]
 $endif
@@ -59,15 +60,18 @@ $endif
 ### Info Message
 
 ```bdfd
-$var[type;$if[$isSlash==true]Slash$elsePrefix$endif]
+$if[$isSlash==true]
+  $var[type;Slash]
+$else
+  $var[type;Prefix]
+$endif
 $title[ℹ️ Command Information]
 $description[
 **Name:** $commandName
 **Type:** $var[type]
 **Folder:** $commandFolder
 ]
-$color[$if[$isSlash==true]#5865F2$else#57F287$endif]
-$sendMessage[]
+$color[#5865F2]
 ```
 
 ### Hybrid Command
@@ -93,5 +97,5 @@ You provided: $var[args]
 
 - `$isSlash` takes no parameters.
 - To get the precise command type, use `$commandType`.
-- Ephemeral responses (`$sendEphemeral[]`) only work in slash mode.
+- Ephemeral responses (`$ephemeral`) only work in slash mode.
 - `$isSlash` is evaluated in the context of the currently executing command.

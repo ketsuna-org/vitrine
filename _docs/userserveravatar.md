@@ -45,7 +45,6 @@ $title[Avatars of $username]
 $thumbnail[$userAvatar[$authorID]]
 $image[$userServerAvatar[$authorID]]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Detect a custom server avatar

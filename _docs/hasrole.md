@@ -56,16 +56,16 @@ $if[$hasRole[$authorID;$roleID[Admin]]==true]
   - `!kick <user>` - Kick a member
   - `!warn <user> <reason>` - Warn
   ]
-  $sendMessage[]
 $else
-  $sendEphemeral[❌ Access reserved for Administrators.]
+  $ephemeral
+  ❌ Access reserved for Administrators.
 $endif
 ```
 
 ### Staff Command
 
 ```bdfd
-$if[$hasRole[$roleID[Staff]]==false]
+$if[$hasRole[$authorID;$roleID[Staff]]==false]
   $sendMessage[❌ Permission denied. Staff role required.]
   $stop
 $endif
@@ -90,9 +90,9 @@ $endif
 ### Role Badge
 
 ```bdfd
-$if[$hasRole[$roleID[VIP]]==true]
+$if[$hasRole[$authorID;$roleID[VIP]]==true]
   $var[badge;👑 VIP]
-$elseif[$hasRole[$roleID[Booster]]==true]
+$elseif[$hasRole[$authorID;$roleID[Booster]]==true]
   $var[badge;🚀 Booster]
 $else
   $var[badge;👤 Member]

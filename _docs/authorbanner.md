@@ -38,8 +38,7 @@ $authorBanner
 $if[$authorBanner!=]
   $title[Banner of $authorUsername]
   $image[$authorBanner]
-  $color[$userBannerColor]
-  $sendMessage[]
+  $color[$userBannerColor[$authorID]]
 $else
   $sendMessage[$authorUsername does not have a Nitro banner.]
 $endif
@@ -53,11 +52,10 @@ $title[Profile of $authorUsername]
 $description[**ID:** $authorID]
 $image[$authorBanner]
 $thumbnail[$authorAvatar]
-$color[$userBannerColor]
-$sendMessage[]
+$color[$userBannerColor[$authorID]]
 ```
 
 ## Notes
 
 - Always check if `$authorBanner` is not empty before using it as an embed image.
-- For the accent color of the banner, use `$userBannerColor`.
+- For the accent color of the banner, use `$userBannerColor[userID]`.

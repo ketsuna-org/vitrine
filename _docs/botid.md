@@ -46,7 +46,6 @@ $description[
 **Node:** $botNode
 ]
 $footer[Bot ID: $botID]
-$sendMessage[]
 ```
 
 ### Custom Invite Link

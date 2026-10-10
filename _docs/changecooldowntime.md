@@ -61,5 +61,4 @@ $cooldown[10m;⏳ Wait %time% before using this command again.]
 $title[Daily Reward Claimed]
 $description[You received **100 coins**!]
 $color[#57F287]
-$sendMessage[]
 ```

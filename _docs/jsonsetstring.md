@@ -19,5 +19,4 @@ $jsonSetString[status;operational]
 $title[Set String Field]
 $description[Result: `$jsonStringify`]
 $color[#5865F2]
-$sendMessage[]
 ```

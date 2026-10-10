@@ -67,9 +67,8 @@ $sendMessage[This menu is temporarily disabled]
 ## Handling the interaction
 
 ```bdfd
-$onInteraction
 $if[$customID==menu_pays]
-  $sendMessage[You chose: $message]
+  $sendMessage[You chose: $getStringSelectValue[1]]
 $endif
 ```
 

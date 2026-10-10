@@ -44,7 +44,6 @@ $addField[Owner;<@$serverOwner>;yes]
 $addField[Members;$membersCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Check if a description exists
@@ -60,7 +59,7 @@ $endif
 ### Filter by keyword in the description
 
 ```bdfd
-$if[$toLowercase[$serverDescription]$contains[gaming]]
+$if[$checkContains[$toLowercase[$serverDescription];gaming]==true]
   $sendMessage[This server is dedicated to gaming!]
 $else
   $sendMessage[This server is not categorized as gaming.]

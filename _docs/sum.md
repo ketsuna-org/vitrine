@@ -45,7 +45,6 @@ $title[Math: Sum Calculation]
 $description[Sum of `5 + 10 + 15`: **$sum[5;10;15]**]
 $addField[Negative Values;$sum[42;-2];yes]
 $color[#5865F2]
-$sendMessage[]
 ```
 ## Notes
 

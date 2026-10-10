@@ -40,7 +40,7 @@ $sendMessage[🔊 <@$mentioned[1]> can speak again!]
 ### Conditional unmute
 
 ```bdfd
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $unmute[$mentioned[1]]
   $sendMessage[Member re-enabled in voice.]
 $else

@@ -47,14 +47,14 @@ $sendMessage[Channel deleted.]
 ### Ticket cleanup
 
 ```bdfd
-$deleteChannels[$ticketID]
+$deleteChannels[123456789012345678]
 $sendMessage[Ticket closed and channel deleted.]
 ```
 
 ### Conditional deletion
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
+$if[$checkUserPerms[$authorID;Administrator]==true]
   $deleteChannels[$mentionedChannels[1]]
   $sendMessage[Channels deleted.]
 $else

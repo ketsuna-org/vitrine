@@ -70,7 +70,6 @@ $if[$var[banRole]!=]
   **ID:** $var[banRole]
   ]
   $color[#ED4245]
-  $sendMessage[]
 $endif
 ```
 

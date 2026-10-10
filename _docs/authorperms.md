@@ -31,7 +31,7 @@ No parameters.
 ## Behavior
 
 - Returns the effective permissions of the user (taking into account roles and channel permissions).
-- Equivalent to `$userPerms[$authorID]`.
+- Read from the execution context (`author.permissions`, then `member.permissions`); empty if neither is provided. To compute the permissions of a given user, use `$userPerms[userID;amount;separator]`.
 - Permission names are in English (Discord API format).
 
 ## Examples
@@ -50,12 +50,7 @@ $endif
 
 ```bdfd
 $title[🔑 Your Permissions]
-$description[
-$textSplit[$authorPerms;, ]
-  $index. $splitText[$index]
-$endTextSplit
-]
-$sendMessage[]
+$description[$authorPerms]
 ```
 
 ### Admin-only command
@@ -90,4 +85,4 @@ $endif
 
 - Use `$checkContains[$authorPerms;Permission]` to test a specific permission.
 - Permissions are returned in English (Discord API names).
-- `$authorPerms` is a shortcut for `$userPerms[$authorID]`.
+- To list the permissions of a specific user, use `$userPerms[userID;-1;, ]`.

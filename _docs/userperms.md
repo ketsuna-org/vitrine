@@ -57,7 +57,7 @@ $sendMessage[Permissions]
 ```bdfd
 $if[$checkContains[$userPerms[$authorID;-1;,];BAN_MEMBERS]==true]
   $ban[Moderation]
-  $sendMessage[<@$mentioned> was banned.]
+  $sendMessage[<@$mentioned[1]> was banned.]
 $else
   $sendMessage[You do not have permission to ban members.]
 $endif
@@ -67,7 +67,7 @@ $endif
 
 ```bdfd
 $if[$checkContains[$userPerms[$authorID;-1;,];MANAGE_MESSAGES]==true]
-  $deleteMessage[$messageID[$mentioned]]
+  $deleteMessage[$channelID;$messageID]
   $sendMessage[Message deleted.]
 $else
   $sendMessage[ManageMessages permission required.]

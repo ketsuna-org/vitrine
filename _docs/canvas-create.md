@@ -20,5 +20,4 @@ $attachImage[card]
 $title[Canvas Created]
 $description[Rendered custom 600x200 canvas graphic.]
 $color[#5865F2]
-$sendMessage[]
 ```

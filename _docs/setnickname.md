@@ -48,7 +48,7 @@ $sendMessage[Nickname of <@$mentioned[1]> reset.]
 ### Moderation command
 
 ```bdfd
-$if[$argsCount<1]
+$if[$argCount<1]
   $sendMessage[Usage: !nick <@mention> <new nickname>]
   $stop
 $endif

@@ -45,12 +45,11 @@ $endif
 
 ```bdfd
 $title[⚙️ Configuration of $serverName]
-$addField[💤 AFK Channel;$if[$afkChannelID!=]<#$afkChannelID>$elseNot configured$endif;yes]
+$addField[💤 AFK Channel;$if[$afkChannelID!=;<#$afkChannelID>;Not configured];yes]
 $addField[⏱️ AFK Delay;$afkTimeout seconds;yes]
-$addField[📋 Rules Channel;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNot configured$endif;yes]
-$addField[📢 System Channel;$if[$systemChannelID!=]<#$systemChannelID>$elseNot configured$endif;yes]
+$addField[📋 Rules Channel;$if[$rulesChannelID!=;<#$rulesChannelID>;Not configured];yes]
+$addField[📢 System Channel;$if[$systemChannelID!=;<#$systemChannelID>;Not configured];yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Configuration log

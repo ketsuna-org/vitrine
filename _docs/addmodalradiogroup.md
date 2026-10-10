@@ -63,14 +63,16 @@ $addRadioGroupOption[;Spanish;es]
 ### Retrieving the selection
 
 ```bdfd
-$onInteraction[signup_submit]
-$var[gender;$input[gender]]
-$if[$var[gender]==male]
-  $sendMessage[Welcome to the server!]
-$elseif[$var[gender]==female]
-  $sendMessage[Welcome to the server!]
+$if[$customID==signup_modal]
+  $var[gender;$input[gender]]
+  $if[$var[gender]==male]
+    $sendMessage[You chose Male.]
+  $elseif[$var[gender]==female]
+    $sendMessage[You chose Female.]
+  $else
+    $sendMessage[Welcome to the server!]
+  $endif
 $endif
-$endInteraction
 ```
 
 ## Notes

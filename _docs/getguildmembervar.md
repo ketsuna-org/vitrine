@@ -21,5 +21,4 @@ Variables are defined and configured in the Bot Creator Variables UI, where you 
 $title[Member Level]
 $description[User <@$authorID> is Level **$getGuildMemberVar[level;$authorID;$guildID]**!]
 $color[#5865F2]
-$sendMessage[]
 ```

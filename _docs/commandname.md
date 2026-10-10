@@ -38,7 +38,7 @@ None.
 ### Execution log
 
 ```bdfd
-$log[📌 $userName ($authorID) executed /$commandName in #$channelName on $serverName]
+$log[📌 $userName ($authorID) executed /$commandName in #$channelName[$channelID] on $serverName]
 ```
 
 ### Contextual help
@@ -52,7 +52,6 @@ $description[
 **Trigger:** $commandTrigger
 ]
 $footer[Used by $userName]
-$sendMessage[]
 ```
 
 ### Custom error handling
@@ -69,7 +68,7 @@ $endif
 
 ```bdfd
 $var[count;$getVar[usage_$commandName]]
-$var[count;$math[$var[count]+1]]
+$var[count;$calculate[$var[count]+1]]
 $setVar[usage_$commandName;$var[count]]
 $log[📊 $commandName used $var[count] times]
 ```

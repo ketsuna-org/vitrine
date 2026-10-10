@@ -48,7 +48,6 @@ $description[
 **Account created on:** $creationDate[$authorID]
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Different icon based on role
@@ -65,7 +64,6 @@ $endif
 $title[Warning]
 $description[Please respect the server rules.]
 $color[#ED4245]
-$sendMessage[]
 ```
 
 ## Notes

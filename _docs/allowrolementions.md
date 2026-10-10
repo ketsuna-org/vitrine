@@ -60,7 +60,7 @@ $if[$var[important]==yes]
 $allowRoleMentions
 $sendMessage[<@&$roleID[Everyone_Important]> Critical alert!]
 $else
-$noMentions
+$noMention
 $sendMessage[Minor update available]
 $endif
 ```
@@ -69,6 +69,6 @@ $endif
 
 - Without `$allowRoleMentions[]`, mentioned roles appear as text but do not trigger a notification.
 - The effect only applies to the next message sent (via `$sendMessage` or other sending functions).
-- To explicitly disable all mentions, use `$noMentions[]`.
+- To explicitly disable all mentions, use `$noMention`.
 - `$allowRoleMentions[]` only affects **role mentions**. For users, use `$allowUserMentions[]`.
 - Useful for important announcements while avoiding accidental pings in ordinary messages.

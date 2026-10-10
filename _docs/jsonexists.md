@@ -18,5 +18,4 @@ $jsonParse[{"user":{"id":"123","premium":true}}]
 $title[JSON Key Verification]
 $description[Does user, premium exist? **$jsonExists[user;premium]**]
 $color[#57F287]
-$sendMessage[]
 ```

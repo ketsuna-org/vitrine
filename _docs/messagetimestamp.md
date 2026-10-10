@@ -36,28 +36,28 @@ None.
 $sendMessage[Message timestamp: $messageTimestamp]
 ```
 
-### Format the date
+### Display as a Discord date
 
 ```bdfd
-$sendMessage[Message sent on $formatDate[$messageTimestamp;MM/DD/YYYY at HH:mm:ss]]
+$sendMessage[Message sent on <t:$floor[$divide[$messageTimestamp;1000]]:f>]
 ```
 
 ### Calculate the age of the message
 
 ```bdfd
-$sendMessage[Message age: $truncate[$sub[$dateNow;$messageTimestamp]/1000] seconds.]
+$sendMessage[Message age: $floor[$divide[$sub[$getTimestampMs;$messageTimestamp];1000]] seconds.]
 ```
 
 ### Display in Discord relative format
 
 ```bdfd
-$sendMessage[Message sent <t:$truncate[$messageTimestamp/1000]:R>]
+$sendMessage[Message sent <t:$floor[$divide[$messageTimestamp;1000]]:R>]
 ```
 
 ## Notes
 
 - The timestamp is returned in **milliseconds**. Divide by `1000` to get seconds.
-- Use with `$formatDate` for a human-readable display.
-- `$dateNow` returns the current timestamp, useful for calculating durations.
+- Use it in a Discord timestamp (`<t:seconds:format>`) for a human-readable display.
+- `$getTimestampMs` returns the current timestamp in milliseconds, useful for calculating durations.
 - For the edit timestamp, use `$messageEditedTimestamp`.
 

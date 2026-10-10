@@ -51,7 +51,7 @@ $sendMessage[Staff role created!]
 ### Creation with conditions
 
 ```bdfd
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $createRole[$message[1];$message[2];no;no]
   $sendMessage[Role created.]
 $else

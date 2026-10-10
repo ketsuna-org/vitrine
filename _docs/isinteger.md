@@ -69,8 +69,8 @@ $endif
 ```bdfd
 $var[number;$message[1]]
 $if[$isInteger[$var[number]]==true]
-  $for[i;1;$var[number];1]
-    Counter: $for[i]
+  $for[i=1;i<=$var[number];i++]
+    Counter: $i
   $endfor
 $else
   $sendMessage[Please enter an integer.]
