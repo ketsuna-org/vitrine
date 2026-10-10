@@ -4,29 +4,42 @@ title: $addMediaGallery[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addMediaGallery
-syntax: $addMediaGallery[(id)]
+syntax: $addMediaGallery[(id);(containerId)]
 description: Creates a media gallery in a message. The gallery groups multiple media elements (images) that can be browsed by the user.
 ---
 
 # $addMediaGallery[] — Media Gallery
 
-`$addMediaGallery[]` creates a gallery container allowing the display of multiple images in an interactive component. The user can navigate between the images in the gallery.
+`$addMediaGallery[]` starts a Components V2 media gallery: a block that shows several images together. Images are added with `$addMediaGalleryItem[]`.
 
 ## Syntax
 
-```
-$addMediaGallery[(id)]
+```text
+$addMediaGallery[(id);(containerId)]
 ```
 
 ## Parameters
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `id` | No | Optional identifier for the gallery. |
+| `id` | No | Identifier used to target this gallery from the `galleryId` argument of `$addMediaGalleryItem[]`. It is not sent to Discord. |
+| `containerId` | No | Accepted but not used: the gallery goes into the latest `$addContainer` of the script, if any. |
 
 ## Return value
 
-Initializes a media gallery. Elements are added using `$addMediaGalleryItem[]`. The gallery is displayed as an interactive component with navigation.
+Returns an empty string. The gallery is created empty.
+
+## Behavior
+
+- Items are added with `$addMediaGalleryItem[]`, which targets the last gallery unless a `galleryId` is given.
+- The gallery ends a section being built with `$addSection`.
+- The engine does not check that the gallery has items, nor their number.
+
+## Components V2 rules
+
+- Layout components (`$addContainer`, `$addSection`, `$addSeparator`, `$addTextDisplay`, `$addMediaGallery`, `$addThumbnail`, `$addFile`) make the response a Components V2 message. Such a message cannot carry content or embeds: the text written in the script and the embed functions are not sent.
+- Buttons and select menus (`$addButtonCV2`, `$addStringSelect`, ...) must be added **before** any text display, separator, thumbnail, file or media gallery of the script: added afterwards, they fail with `type 'Null' is not a subtype of type 'List<dynamic>' in type cast`.
+- A button added right after `$addContainer` or `$addSection` is silently lost: write `$addActionRow` first.
 
 ## Examples
 
@@ -42,40 +55,22 @@ $addMediaGalleryItem[https://cdn.example.com/work3.png;Project 3]
 ### Gallery in a container
 
 ```bdfd
-$addContainer[showcase;#E67E22;no]
-$addSection
+$addContainer[showcase;#E67E22]
 $addTextDisplay[**Creation Gallery**]
 $addMediaGallery[creations]
-$addMediaGalleryItem[$var[img1];Original Creation]
-$addMediaGalleryItem[$var[img2];Variant]
-$addMediaGalleryItem[$var[img3];Final Version]
+$addMediaGalleryItem[https://cdn.example.com/a.png;Original]
+$addMediaGalleryItem[https://cdn.example.com/b.png;Variant]
 ```
 
-### Gallery with spoiler
+### Gallery with spoiler images
 
 ```bdfd
 $addMediaGallery[spoiler_gallery]
-$addMediaGalleryItem[https://cdn.example.com/secret.png;Exclusive Content;yes]
+$addMediaGalleryItem[https://cdn.example.com/secret.png;Exclusive content;yes]
 $addMediaGalleryItem[https://cdn.example.com/bonus.png;Bonus;yes]
-```
-
-### In a complete embed
-
-```bdfd
-$title[Portfolio]
-$description[Discover my latest creations]
-$color[#5865F2]
-$addMediaGallery[works]
-$addMediaGalleryItem[https://site.com/img1.jpg;Design A]
-$addMediaGalleryItem[https://site.com/img2.jpg;Design B]
-$addMediaGalleryItem[https://site.com/img3.jpg;Design C]
-$footer[Page 1/1]
 ```
 
 ## Notes
 
 - Gallery elements are added using `$addMediaGalleryItem[]`.
-- Navigation between images is done using arrows in the Discord interface.
-- The gallery ID in `$addMediaGalleryItem[]` can be omitted to target the last gallery created.
-- URLs must point to publicly accessible images.
-
+- Embeds (`$title`, `$description`, ...) cannot be combined with a gallery: a Components V2 message carries no embed.

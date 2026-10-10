@@ -1,4 +1,11 @@
-
+---
+layout: doc
+title: $addModalSelect[]
+translation_key: docs
+category: "Components & Interactions"
+function_name: addModalSelect
+syntax: $addModalSelect[customId;label;(placeholder);(required)]
+description: Adds a dropdown menu (select/dropdown) to a Discord modal. The options are added using $addSelectMenuOption[].
 ---
 
 # $addModalSelect[] — Modal Select Menu

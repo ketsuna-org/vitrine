@@ -11,7 +11,7 @@ $jsonJoinArray joins the elements of a JSON array into one string, with a separa
 
 ## Parameters
 
-The **last argument is the separator**; all the arguments before it form the path. At least two arguments are required (`$jsonJoinArray[key]` is refused). The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key.
+The **last argument is the separator**; all the arguments before it form the path. At least two arguments are required (`$jsonJoinArray[key]` is refused). The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. At most 100 arguments are accepted in total.
 
 The separator is used as written (`, ` keeps its space) and can be empty. Backslash sequences such as `\n` are not converted: they stay as two characters.
 

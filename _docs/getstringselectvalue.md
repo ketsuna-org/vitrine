@@ -4,17 +4,17 @@ title: $getStringSelectValue
 translation_key: docs
 category: "Components & Interactions"
 function_name: getStringSelectValue
-syntax: $getStringSelectValue[index]
+syntax: $getStringSelectValue[(index)]
 description: Gets the value of the option selected by the user in a string select menu.
 ---
 
 # $getStringSelectValue
 
-The function `$getStringSelectValue[]` retrieves the value of the option chosen by the user in a string select menu.
+`$getStringSelectValue[]` returns one selected value of the string select menu that triggered the current interaction.
 
 ## Syntax
 
-```
+```text
 $getStringSelectValue[index]
 ```
 
@@ -22,53 +22,45 @@ $getStringSelectValue[index]
 
 | Parameter | Description |
 |---|---|
-| `index` | The index of the selected value (1 = first). Required, integer of 1 or more. |
+| `index` | Position of the selected value, starting at 1. Required: a positive integer, otherwise `Selection index must be a positive integer.` |
 
 ## Return Value
 
 - **Type**: String
-- The value associated with the selected option.
-- An empty string if the index is beyond the number of selected options.
-- An error is raised if the index is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no string selection.
+- The selected value at that position.
+- An empty string when `index` is greater than the number of selected items.
 
 ## Behavior
 
-- Only usable in the callback of a component interaction carrying a string selection (menu created via `$addStringSelect[]`, options added with `$addStringSelectOption[]`).
-- The returned value is the value of the option chosen by the user, not its label.
-- Very useful for triggering specific actions according to the chosen value.
+- It raises `Select values require a component callback.` outside of a component interaction (interaction type 3), and `This callback has no stringSelect selection.` when the interaction that triggered the script is not a string select menu.
+- Select values are the `value` of the options (`$addStringSelectOption`), not their labels.
+- The number of selected items is returned by `$getStringSelectCount`.
+- Without brackets (`$getStringSelectValue`) the engine refuses the call (`Invalid argument count`).
 
 ## Examples
 
-### Simple navigation menu
+### First selection
 
 ```bdfd
-$var[action;$getStringSelectValue[1]]
-
-$if[$var[action]==home]
-  $title[🏠 Home]
-  $description[Welcome to the server!]
-$elseif[$var[action]==profile]
-  $title[👤 Profile of $userName]
-  $description[Joined on $creationDate[$authorID]...]
-$elseif[$var[action]==help]
-  $title[❓ Help]
-  $description[Use /help to view the commands.]
-$endif
+You chose: $getStringSelectValue[1]
 ```
 
-### Display the second choice
+### Second selection (empty if there is only one)
 
 ```bdfd
-$var[second;$getStringSelectValue[2]]
-$if[$var[second]==]
-  $sendMessage[Only one option selected.]
-$else
-  $sendMessage[Second option: $var[second]]
+First: $getStringSelectValue[1]\nSecond: $getStringSelectValue[2]
+```
+
+### In an interaction handler
+
+```bdfd
+$if[$customID==my_menu]
+  You chose: $getStringSelectValue[1]
 $endif
 ```
 
 ## Notes
 
-- The index starts at 1 and is required: `$getStringSelectValue` without brackets is refused.
-- For multiple-choice select menus, use `$getStringSelectValues[]`.
-- The value can be any string defined in the menu.
+- The index starts at 1 (0 is an error).
+- For all the selections at once, use `$getStringSelectValues[separator;(limit)]`.
+- The menu is created with `$addStringSelect`.

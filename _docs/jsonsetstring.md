@@ -11,7 +11,7 @@ $jsonSetString writes a value into the JSON document and always stores it as a J
 
 ## Parameters
 
-The **last argument is the value**; all the arguments before it form the path. The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. Missing levels are created, as in `$jsonSet`.
+The **last argument is the value**; all the arguments before it form the path. The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. At most 100 arguments are accepted in total. Missing levels are created, as in `$jsonSet`.
 
 ## Behavior
 

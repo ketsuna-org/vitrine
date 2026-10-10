@@ -11,7 +11,7 @@ $jsonArrayIndex **searches** an array: it returns the zero-based position of the
 
 ## Parameters
 
-The **last argument is the value to look for**; all the arguments before it form the path. The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key.
+The **last argument is the value to look for**; all the arguments before it form the path. The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. At most 100 arguments are accepted in total.
 
 The value is converted like in `$jsonSet` before comparing (`2` matches the number `2` but not the string `"2"`; `true` matches the boolean). Objects and arrays never match (the result is `-1`).
 

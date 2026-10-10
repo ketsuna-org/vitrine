@@ -1,4 +1,11 @@
-
+---
+layout: doc
+title: $addModalTextDisplay[]
+translation_key: docs
+category: "Components & Interactions"
+function_name: addModalTextDisplay
+syntax: $addModalTextDisplay[content]
+description: Displays a static informational text in a modal. This component is not interactive — it only serves to present instructions, descriptions, or information to the user.
 ---
 
 # $addModalTextDisplay[] — Modal Text Display

@@ -14,7 +14,7 @@ $jsonKeys returns the key names of a JSON object, joined by a separator. It does
 - With **no argument**, the keys of the whole document are returned, separated by `,`.
 - With **one argument**, it is the path (not a separator) and the separator is `,`.
 - With **two or more arguments**, the **last one is the separator** (used as written, it can be empty) and the preceding ones are the path.
-- The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key.
+- The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. At most 100 arguments are accepted in total.
 
 ## Return Value
 

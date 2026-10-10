@@ -4,17 +4,17 @@ title: $getMentionableSelectUserID
 translation_key: docs
 category: "Components & Interactions"
 function_name: getMentionableSelectUserID
-syntax: $getMentionableSelectUserID[index]
+syntax: $getMentionableSelectUserID[(index)]
 description: Gets the ID of the mentionable entity (user or role) selected via a mentionable select menu.
 ---
 
 # $getMentionableSelectUserID
 
-The function `$getMentionableSelectUserID[]` allows **retrieving the ID of the mentionable entity** selected by the user via a mentionable select menu (users + roles).
+`$getMentionableSelectUserID[]` returns one selected ID of the mentionable select menu that triggered the current interaction.
 
 ## Syntax
 
-```
+```text
 $getMentionableSelectUserID[index]
 ```
 
@@ -22,44 +22,45 @@ $getMentionableSelectUserID[index]
 
 | Parameter | Description |
 |---|---|
-| `index` | The index of the entity in the selection (1 = first). Required, integer of 1 or more. |
+| `index` | Position of the selected ID, starting at 1. Required: a positive integer, otherwise `Selection index must be a positive integer.` |
 
 ## Return Value
 
-- **Type** : String (Snowflake ID)
-- The Discord ID of the selected user or role.
-- An empty string if the index is beyond the number of selected entities.
-- An error is raised if the index is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no mentionable selection.
+- **Type**: String
+- The selected ID at that position.
+- An empty string when `index` is greater than the number of selected items.
 
 ## Behavior
 
-- Only usable in the callback of a component interaction carrying a mentionable selection (menu created with `$addMentionableSelect`).
-- The mentionable menu accepts both users and roles.
-- The returned ID can be a user ID or a role ID depending on what the user chose.
+- It raises `Select values require a component callback.` outside of a component interaction (interaction type 3), and `This callback has no mentionableSelect selection.` when the interaction that triggered the script is not a mentionable select menu.
+- The selection is read from the users resolved by Discord: **when at least one user is selected, only the user IDs are returned** (selected roles are not included); when only roles are selected, the IDs of those roles are returned.
+- The number of selected items is returned by `$getMentionableSelectUserCount`.
+- Without brackets (`$getMentionableSelectUserID`) the engine refuses the call (`Invalid argument count`).
 
 ## Examples
 
-### Simple retrieval
+### First selection
 
 ```bdfd
-$var[id;$getMentionableSelectUserID[1]]
-$title[Selected entity]
-$description[ID: $var[id]]
+Selected ID: $getMentionableSelectUserID[1]
 ```
 
-### Check the entity type
+### Second selection (empty if there is only one)
 
 ```bdfd
-$var[id;$getMentionableSelectUserID[1]]
-$if[$roleExists[$var[id]]==true]
-  This is a role: @&$var[id]
-$else
-  This is a user: <@$var[id]>
+Second ID: $getMentionableSelectUserID[2]
+```
+
+### In an interaction handler
+
+```bdfd
+$if[$customID==my_menu]
+  Selected ID: $getMentionableSelectUserID[1]
 $endif
 ```
 
 ## Notes
 
-- The index starts at 1 and is required: `$getMentionableSelectUserID` without brackets is refused.
-- For multiple selections, use `$getMentionableSelectUserIDs[]`.
-- The returned ID may correspond to a user OR a role.
+- The index starts at 1 (0 is an error).
+- For all the selections at once, use `$getMentionableSelectUserIDs[separator;(limit)]`.
+- The menu is created with `$addMentionableSelect`.

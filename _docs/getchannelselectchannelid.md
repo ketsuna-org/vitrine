@@ -4,17 +4,17 @@ title: $getChannelSelectChannelID
 translation_key: docs
 category: "Components & Interactions"
 function_name: getChannelSelectChannelID
-syntax: $getChannelSelectChannelID[index]
+syntax: $getChannelSelectChannelID[(index)]
 description: Gets the ID of the channel selected by the user via a channel select menu. Allows getting the result of an interaction.
 ---
 
 # $getChannelSelectChannelID
 
-The `$getChannelSelectChannelID[]` function allows you to **retrieve the ID of the channel** chosen by the user in a channel select menu.
+`$getChannelSelectChannelID[]` returns one selected channel ID of the channel select menu that triggered the current interaction.
 
 ## Syntax
 
-```
+```text
 $getChannelSelectChannelID[index]
 ```
 
@@ -22,52 +22,45 @@ $getChannelSelectChannelID[index]
 
 | Parameter | Description |
 |---|---|
-| `index` | Required (exactly one argument) - The index of the channel in the selection (1 = first). Must be a positive integer, otherwise "Selection index must be a positive integer.". A bare `$getChannelSelectChannelID` is refused ("Invalid argument count"). |
+| `index` | Position of the selected channel ID, starting at 1. Required: a positive integer, otherwise `Selection index must be a positive integer.` |
 
 ## Return Value
 
-- **Type**: String (Snowflake ID)
-- The Discord ID of the selected channel.
-- An empty string if `index` is greater than the number of selected channels.
+- **Type**: String
+- The selected channel ID at that position.
+- An empty string when `index` is greater than the number of selected items.
 
 ## Behavior
 
-- Only usable in a component callback (interaction type 3), otherwise the error "Select values require a component callback." is raised.
-- Raises "This callback has no channelSelect selection." if the callback carries no channel selection.
-- Used in the callback of a channel select menu created with `$addChannelSelect[]`; identify the menu with `$customID`.
-- If the user selects multiple channels, use `$getChannelSelectChannelIDs[]` to retrieve all of them.
+- It raises `Select values require a component callback.` outside of a component interaction (interaction type 3), and `This callback has no channelSelect selection.` when the interaction that triggered the script is not a channel select menu.
+- The IDs are those of the channels picked in the menu; `$addCategorySelect` and `$addVoiceSelect` menus are channel menus too and use these functions.
+- The number of selected items is returned by `$getChannelSelectChannelCount`.
+- Without brackets (`$getChannelSelectChannelID`) the engine refuses the call (`Invalid argument count`).
 
 ## Examples
 
-### Simple retrieval
+### First selection
 
 ```bdfd
-$addChannelSelect[channel_select;Select a channel to monitor]
-$sendMessage[Please choose a channel:]
+Selected channel: <#$getChannelSelectChannelID[1]>
 ```
 
-In the callback script of the menu:
+### Second selection (empty if there is only one)
 
 ```bdfd
-$var[channelID;$getChannelSelectChannelID[1]]
-$title[Selected Channel]
-$description[
-**ID:** $var[channelID]
-**Name:** $channelName[$var[channelID]]
-]
+Second channel: <#$getChannelSelectChannelID[2]>
 ```
 
-### Handling multiple selections
+### In an interaction handler
 
 ```bdfd
-$if[$customID==channel_select]
-  $sendMessage[You have selected **$getChannelSelectChannelCount** channel(s): $getChannelSelectChannelIDs[, ]]
+$if[$customID==my_menu]
+  Selected channel: <#$getChannelSelectChannelID[1]>
 $endif
 ```
 
 ## Notes
 
-- The index is required and starts at 1 (not 0).
-- Only works in interaction callbacks.
-- For multiple selections, use `$getChannelSelectChannelIDs[]` instead.
-- The returned channel can be of any type (text, voice, category, etc.).
+- The index starts at 1 (0 is an error).
+- For all the selections at once, use `$getChannelSelectChannelIDs[separator;(limit)]`.
+- The menu is created with `$addChannelSelect`.

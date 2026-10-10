@@ -4,7 +4,7 @@ title: $userBadges
 translation_key: docs
 category: "Entity Info"
 function_name: userBadges
-syntax: $userBadges
+syntax: $userBadges[(userID)]
 description: Returns the badges text supplied by the execution context in the user.badges variable; empty when the context does not provide it.
 ---
 
@@ -15,12 +15,12 @@ The function `$userBadges` returns the text stored in the execution context vari
 ## Syntax
 
 ```
-$userBadges
+$userBadges[(userID)]
 ```
 
 ## Parameters
 
-The engine accepts one optional argument (`$userBadges[userID]`) but **ignores it**: the result is the same with or without it.
+The engine accepts one optional argument but **ignores it**: the result is the same with or without it, and it never looks the user up.
 
 ## Return Value
 

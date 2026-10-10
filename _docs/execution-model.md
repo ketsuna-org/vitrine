@@ -111,7 +111,7 @@ In a BDFD slash command, read an option with `$message[optionName]`: when the co
 Reason: $message[reason]
 ```
 
-In `((...))` placeholders (see the [template system](/docs/template-system/)), the same options are stored as the variables `opts.<option_name>` (for example `((opts.reason))`).
+In `((...))` placeholders (see the [template system](/docs/template-system/)), the same options are stored as the variables `opts.<option_name>` (for example `((opts.reason))`). For user, channel, role and mentionable options the ID is also stored as `opts.<option_name>.id` (for a user option, `opts.<option_name>` itself is the username).
 
 > [!NOTE]
 > There is no `$slashOption[...]` function: it is not registered, so it would be left as literal text.

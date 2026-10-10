@@ -11,7 +11,7 @@ $jsonArrayUnshift adds a value to the front of a JSON array — the equivalent o
 
 ## Parameters
 
-The **last argument is the value**; all the arguments before it form the path. The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key.
+The **last argument is the value**; all the arguments before it form the path. The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. At most 100 arguments are accepted in total.
 
 The value is converted like in `$jsonSet` (JSON text, `true`/`false`/`null` and numbers keep their type; anything else is a string).
 

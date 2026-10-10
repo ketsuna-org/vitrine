@@ -1,4 +1,11 @@
-
+---
+layout: doc
+title: $newModal[]
+translation_key: docs
+category: "Components & Interactions"
+function_name: newModal
+syntax: $newModal[customId;title]
+description: Creates a new modal (interactive pop-up window) with a title and a custom identifier to handle submissions.
 ---
 
 # $newModal[] — Create a Modal

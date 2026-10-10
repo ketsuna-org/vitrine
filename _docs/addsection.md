@@ -4,77 +4,68 @@ title: $addSection[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addSection
-syntax: $addSection[(id)]
-description: Creates a section inside a container. Sections allow organizing content (fields, text, thumbnails) in a structured way within a visual container.
+syntax: $addSection[(id);(containerId)]
+description: Starts a section: text displays that can have a thumbnail. The text displays and the thumbnail added next belong to it.
 ---
 
-# $addSection[] — Section inside a Container
+# $addSection[] — Section
 
-`$addSection[]` creates a section inside a container previously initialized with `$addContainer[]`. Sections visually structure content and can contain fields, text, and media.
+`$addSection[]` starts a Components V2 section: a block of text displays that can have a thumbnail on its side.
 
 ## Syntax
 
-```
-$addSection[(id)]
+```text
+$addSection[(id);(containerId)]
 ```
 
 ## Parameters
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `id` | No | Optional identifier for the section. |
+| `id` | No | Accepted but not used. |
+| `containerId` | No | Accepted but not used: the section goes into the latest `$addContainer` of the script, if any, whatever this value. |
 
 ## Return value
 
-Initializes a section in the current container. Subsequent components are added to this section.
+Returns an empty string. The section is created empty.
+
+## Behavior
+
+- The `$addTextDisplay[]` calls that follow become the texts of the section, and `$addThumbnail[]` sets its thumbnail (a second thumbnail replaces the first).
+- The section stays open until `$addSeparator`, `$addMediaGallery`, `$addFile`, `$addActionRow`, a select menu, `$addContainer` or another `$addSection`. Text displays written after that are outside of it.
+- A section can be used with or without `$addContainer`: after `$addContainer`, the section is placed inside the container.
+- The engine does not check the number of texts of the section nor whether it has a thumbnail.
+
+## Components V2 rules
+
+- Layout components (`$addContainer`, `$addSection`, `$addSeparator`, `$addTextDisplay`, `$addMediaGallery`, `$addThumbnail`, `$addFile`) make the response a Components V2 message. Such a message cannot carry content or embeds: the text written in the script and the embed functions are not sent.
+- Buttons and select menus (`$addButtonCV2`, `$addStringSelect`, ...) must be added **before** any text display, separator, thumbnail, file or media gallery of the script: added afterwards, they fail with `type 'Null' is not a subtype of type 'List<dynamic>' in type cast`.
+- A button added right after `$addContainer` or `$addSection` is silently lost: write `$addActionRow` first.
 
 ## Examples
 
-### Container with a section
+### Section with a thumbnail
 
 ```bdfd
-$addContainer[user_info;#E67E22;no]
 $addSection
-$addField[Username;$username;no]
-$addField[ID;$authorID;no]
-$addField[Registration date;$creationDate[$authorID];no]
+$addTextDisplay[**Profile**]
+$addTextDisplay[Level 12]
+$addThumbnail[https://example.com/avatar.png;Avatar]
 ```
 
-### Multi-section container
+### Sections in a container
 
 ```bdfd
-$addContainer[embed;#9B59B6;no]
-
-$addSection[header]
-$addThumbnail[$authorAvatar]
-$addTextDisplay[**Profile of $username**]
-
-$addSection[stats]
-$addField[Messages;$var[msg_count];yes]
-$addField[XP;$var[xp];yes]
-
-$addSection[footer]
-$addTextDisplay[📅 Member since $userJoined[$authorID]]
-```
-
-### Sections in a complex message
-
-```bdfd
-$addContainer[shop;#3498DB;no]
-
-$addSection[item1]
-$addField[Article;Legendary sword;yes]
-$addField[Price;5000 gold coins;yes]
-
-$addSection[item2]
-$addField[Article;Mystic shield;yes]
-$addField[Price;3500 gold coins;yes]
+$addContainer[shop;#3498DB]
+$addSection
+$addTextDisplay[**Legendary sword** - 5000 gold]
+$addThumbnail[https://example.com/sword.png;Sword]
+$addSection
+$addTextDisplay[**Mystic shield** - 3500 gold]
+$addThumbnail[https://example.com/shield.png;Shield]
 ```
 
 ## Notes
 
-- Must be used inside a container (`$addContainer`).
-- Multiple sections can coexist in the same container.
-- Each section can contain fields (`$addField`), text (`$addTextDisplay`), or a thumbnail (`$addThumbnail`).
-- The order of addition determines the display order in the message.
-
+- The order of the calls is the display order.
+- Embed fields (`$addField`) are not components: they cannot be used in a section.

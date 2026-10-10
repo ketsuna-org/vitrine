@@ -1,4 +1,11 @@
-
+---
+layout: doc
+title: $addModalFileUpload[]
+translation_key: docs
+category: "Components & Interactions"
+function_name: addModalFileUpload
+syntax: $addModalFileUpload[customId;label;(required)]
+description: Adds a file upload component to a Discord modal. Allows the user to attach a file directly from the modal.
 ---
 
 # $addModalFileUpload[] — Modal File Upload

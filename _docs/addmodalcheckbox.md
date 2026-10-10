@@ -1,4 +1,11 @@
-
+---
+layout: doc
+title: $addModalCheckbox[]
+translation_key: docs
+category: "Components & Interactions"
+function_name: addModalCheckbox
+syntax: $addModalCheckbox[customId;label;(default)]
+description: Adds an individual checkbox to a Discord modal.
 ---
 
 # $addModalCheckbox[] — Modal Checkbox

@@ -10,11 +10,11 @@ description: Creates a visual container in a Discord message. The containers can
 
 # $addContainer[] — Visual Container
 
-`$addContainer[]` creates a container in a Discord message. Containers offer visual structure with an optional colored border and the ability to be hidden behind a spoiler.
+`$addContainer[]` starts a Components V2 container: a block with an optional colored border that groups the components added after it.
 
 ## Syntax
 
-```
+```text
 $addContainer[(id);(accentColor);(spoiler)]
 ```
 
@@ -22,59 +22,63 @@ $addContainer[(id);(accentColor);(spoiler)]
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `id` | No | — | Container identifier. |
-| `accentColor` | No | — | Hex color of the border (ex: `#FF0000`). |
-| `spoiler` | No | `no` | `yes` to mask, `no` otherwise. |
+| `id` | No | — | Accepted but not used: it does not appear in the sent message. |
+| `accentColor` | No | none | Color of the left border, as 6 hexadecimal digits with or without `#` (for example `#FF0000`). Any other value is ignored when the message is built. |
+| `spoiler` | No | `no` | `yes`/`true` to hide the container behind a spoiler, `no`/`false` (also when empty) otherwise. Any other value is an error (`Expected yes or no, got "<value>".`). |
 
 ## Return value
 
-Initializes a container. Components added afterward (sections, thumbnails, galleries) insert into this container.
+Returns an empty string. The container is created empty; the components added afterwards are placed inside it.
+
+## Behavior
+
+- **Everything added after `$addContainer` goes inside this container**, until the end of the script or until the next `$addContainer`, which starts a new container at the top level. There is no way to close a container: components written before `$addContainer` stay outside it.
+- A container can hold text displays, separators, sections, media galleries and action rows with buttons or selects.
+
+## Components V2 rules
+
+- Layout components (`$addContainer`, `$addSection`, `$addSeparator`, `$addTextDisplay`, `$addMediaGallery`, `$addThumbnail`, `$addFile`) make the response a Components V2 message. Such a message cannot carry content or embeds: the text written in the script and the embed functions are not sent.
+- Buttons and select menus (`$addButtonCV2`, `$addStringSelect`, ...) must be added **before** any text display, separator, thumbnail, file or media gallery of the script: added afterwards, they fail with `type 'Null' is not a subtype of type 'List<dynamic>' in type cast`.
+- A button added right after `$addContainer` or `$addSection` is silently lost: write `$addActionRow` first.
 
 ## Examples
-
-### Basic container
-
-```bdfd
-$addContainer
-$addSection
-$addField[Status;Online;yes]
-$addField[Uptime;24h;yes]
-```
 
 ### Container with accent color
 
 ```bdfd
-$addContainer[profile;#5865F2;no]
-$addSection
-$addThumbnail[$authorAvatar]
-$addField[User;$username;no]
-$addField[Account created;$creationDate[$authorID];no]
+$addContainer[profile;#5865F2]
+$addTextDisplay[**Server status**]
+$addSeparator
+$addTextDisplay[All systems operational]
 ```
 
 ### Spoiler container
 
 ```bdfd
 $addContainer[secret;;yes]
-$addSection
-$addTextDisplay[**Spoiler Alert!** Click to reveal the content.]
+$addTextDisplay[**Spoiler alert!** Click to reveal the content.]
 ```
 
-### Multiple containers
+### Two containers
 
 ```bdfd
-$addContainer[header;#2ECC71;no]
-$addSection
-$addField[Title;Welcome to the server;no]
+$addContainer[header;#2ECC71]
+$addTextDisplay[Welcome to the server]
+$addContainer[body;#3498DB]
+$addTextDisplay[We are delighted to have you here.]
+```
 
-$addContainer[body;#3498DB;no]
-$addSection
-$addField[Description;We are delighted to welcome you!;no]
+### Container with buttons
+
+```bdfd
+$addContainer[panel;#E67E22]
+$addActionRow
+$addButtonCV2[yes;Yes;success]
+$addButtonCV2[no;No;danger]
+$addTextDisplay[Choose an option]
 ```
 
 ## Notes
 
-- Containers are a visual feature specific to BDFD; they are not part of the native Discord API.
-- A container can contain multiple sections ($addSection).
-- The `accentColor` must be a hexadecimal format starting with `#`.
-- Spoiler mode hides all content in the container until the user clicks on it.
-
+- In this last example the buttons come before the text display, as required by the rule above; the container displays its components in the order they were added.
+- Containers are a Discord Components V2 feature.

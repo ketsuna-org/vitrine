@@ -5,31 +5,33 @@ translation_key: docs
 category: "Components & Interactions"
 function_name: customID
 syntax: $customID
-description: Returns the custom ID (customId) of the interaction component that triggered the callback (button, select menu, modal). Read in the script run for a component or modal interaction.
+description: Returns the custom ID (customId) of the interaction component that triggered the callback (button, select menu, modal). Used in $onInteraction.
 ---
+
 # $customID
 
-The `$customID` function returns the **customId** of the component (button, select menu, modal) that triggered an interaction.
+The `$customID` function returns the **custom ID** of the component or modal that triggered the current interaction.
 
 ## Syntax
 
-```
+```text
 $customID
 ```
 
 ## Parameters
 
-None.
+None (it takes no argument).
 
 ## Return value
 
 - **Type**: String
-- The customId set during the creation of the component.
+- For a button or select menu click, the custom ID of that component; for a modal submission, the custom ID of the modal (the first argument of `$newModal[]`).
 
 ## Behavior
 
-- Must be used in a script run by a component (button, select menu) or modal interaction; otherwise the engine raises `Custom ID requires a component or modal interaction callback.`
-- Allows differentiating which button/menu was used.
+- It must be used in a script run for a component or modal interaction; otherwise the engine raises `Custom ID requires a component or modal interaction callback.`
+- If the interaction carries no custom ID, it raises `Interaction custom ID is missing.`
+- It allows telling which button, menu or modal was used.
 
 ## Examples
 
@@ -37,33 +39,21 @@ None.
 
 ```bdfd
 $if[$customID==accept]
-  $sendMessage[Request accepted.]
-$elseIf[$customID==refuse]
-  $sendMessage[Request denied.]
-$elseIf[$customID==info]
-  $sendMessage[More information soon.]
-$endif
-```
-
-### Log interactions
-
-```bdfd
-$log[Interaction received — customID: $customID — by $username]
-```
-
-### Branching on several IDs
-
-```bdfd
-$if[$customID==confirm]
-  $sendMessage[✅ Confirmed]
-$elseif[$customID==cancel]
-  $sendMessage[❌ Cancelled]
+  Request accepted.
+$elseif[$customID==refuse]
+  Request denied.
 $else
-  $sendMessage[Unknown action: $customID]
+  Unknown action: $customID
 $endif
+```
+
+### Echo the ID
+
+```bdfd
+Interaction received, custom ID: $customID
 ```
 
 ## Notes
 
-- Essential for systems of buttons and interactive menus.
-- The customId is set by the developer in `$addButton[]`, `$addSelectMenu[]`, etc.
+- The custom ID is the one set when the component was created, for example in `$addButtonCV2[]`, `$addStringSelect[]` or `$newModal[]`.
+- Select values are read with `$getStringSelectValue[]` and the other `$get*Select*` functions, and modal fields with `$input[]`.

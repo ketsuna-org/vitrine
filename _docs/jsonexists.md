@@ -11,7 +11,7 @@ $jsonExists returns the text `true` if the path exists in the current JSON docum
 
 ## Parameters
 
-The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. With no argument, the whole document is checked and the result is `true`, even when no JSON has been loaded.
+The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. At most 100 arguments are accepted in total. With no argument, the whole document is checked and the result is `true`, even when no JSON has been loaded.
 
 Dot notation is not supported: `$jsonExists[user.id]` looks for a key literally named `user.id`. An array index outside the array (negative or too large) does not exist.
 

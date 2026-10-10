@@ -42,7 +42,7 @@ Welcome ((user.username))! You joined ((guild.name)).
 | `((channel.*))` | `((channel.id))`, `((channel.name))` |
 | `((message.*))` | `((message.content))`, `((message.id))` |
 | `((interaction.*))` | `((interaction.customId))`, `((interaction.kind))` |
-| `((opts.*))` | `((opts.reason))` (slash command options, and modal inputs) |
+| `((opts.*))` | `((opts.reason))`, `((opts.target.id))` (slash command options: for user, channel, role and mentionable options the ID is `opts.<name>.id`; modal inputs are also stored as `opts.<key>`) |
 
 ## Interaction placeholders
 

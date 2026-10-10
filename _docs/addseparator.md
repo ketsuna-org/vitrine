@@ -6,69 +6,59 @@ category: "Components & Interactions"
 
 # $addSeparator
 
-Adds a visual separator in the current action row. Useful to space out or visually group components.
+Adds a separator (an empty space or a thin line) between the components of a Components V2 message.
 
 ## Syntax
 
-```bdfd
-$addSeparator[(divider);(spacing)]
+```text
+$addSeparator[(divider);(spacing);(containerId)]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `divider` | `"yes"` to display a separation line, `"no"` (default) | No |
-| `spacing` | Size of the spacing (values: `sm`, `md`, `lg`) | No |
+| `divider` | `yes`/`true` to display a separation line, `no`/`false` for a space only. Default (omitted or empty): `yes`. Any other value is an error (`Expected yes or no, got "<value>".`). | No |
+| `spacing` | Size of the spacing: `2` gives a large spacing; any other value, or none, gives a small one. Values such as `sm`, `md` or `lg` are not recognized (they give a small spacing). | No |
+| `containerId` | Accepted but not used: the separator goes into the latest `$addContainer` of the script, if any. | No |
 
 ## Description
 
-`$addSeparator` inserts a space or a separation line between components of the same action row. It does not create a new row — for that, use `$addActionRow`.
+`$addSeparator` adds a standalone separator at the top level of the message (or in the latest container). It is not part of an action row, it does not separate buttons from each other, and it ends the section being built with `$addSection`.
 
-## Spacing options
+## Components V2 rules
 
-| Value | Approximate size |
-|--------|---------------------|
-| `sm` | Small spacing |
-| `md` | Medium spacing |
-| `lg` | Large spacing |
+- Layout components (`$addContainer`, `$addSection`, `$addSeparator`, `$addTextDisplay`, `$addMediaGallery`, `$addThumbnail`, `$addFile`) make the response a Components V2 message. Such a message cannot carry content or embeds: the text written in the script and the embed functions are not sent.
+- Buttons and select menus (`$addButtonCV2`, `$addStringSelect`, ...) must be added **before** any text display, separator, thumbnail, file or media gallery of the script: added afterwards, they fail with `type 'Null' is not a subtype of type 'List<dynamic>' in type cast`.
+- A button added right after `$addContainer` or `$addSection` is silently lost: write `$addActionRow` first.
 
 ## Examples
 
 ### Simple separator
 
 ```bdfd
-$addActionRow
-$addButtonCV2[btn_left;Left;primary]
+$addTextDisplay[First block]
 $addSeparator
-$addButtonCV2[btn_right;Right;secondary]
-$sendMessage[Spaced buttons]
+$addTextDisplay[Second block]
 ```
 
-### With a separation line
+### Space without a line
 
 ```bdfd
-$addActionRow
-$addButtonCV2[btn_1;Option A;success]
+$addTextDisplay[Title]
+$addSeparator[no;2]
+$addTextDisplay[Content with a large space above]
+```
+
+### In a container
+
+```bdfd
+$addContainer[card;#5865F2]
+$addTextDisplay[Service status]
 $addSeparator[yes]
-$addButtonCV2[btn_2;Option B;danger]
-$sendMessage[Options separated by a line]
-```
-
-### Large spacing
-
-```bdfd
-$addActionRow
-$addTextDisplay[Text to the left]
-$addSeparator[no;lg]
-$addTextDisplay[Text to the right]
-$sendMessage[Well-spaced text]
+$addTextDisplay[Online]
 ```
 
 ## Notes
 
-- The separator is inserted in the current action row.
-- It does not count towards the limit of 5 components per line.
-- The separation line (`divider: yes`) is a thin horizontal line.
-- Compatible with all components: buttons, select menus, text displays.
-
+- The separator counts as a Components V2 element: the message cannot carry normal content or embeds.
