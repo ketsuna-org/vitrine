@@ -55,7 +55,7 @@ $sendMessage[✅ Restricted role configured.]
 ### Permission management command
 
 ```bdfd
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $modifyRolePerms[$roleID[$message[1]];$message[2]]
   $sendMessage[Permissions updated.]
 $else

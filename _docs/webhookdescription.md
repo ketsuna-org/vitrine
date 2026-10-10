@@ -4,86 +4,48 @@ title: $webhookDescription
 translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookDescription
-syntax: $webhookDescription[text]
-description: Sets the description (body) of the embed for the next message sent via $webhookSend.
+syntax: $webhookDescription[webhookURL;description]
+description: Stages the description (body) of the embed for the next message sent to this webhook with $webhookSend.
 ---
 
 # $webhookDescription
 
-The `$webhookDescription` function allows you to **set the description** (main body) of the embed for the next webhook message.
+The `$webhookDescription` function stages the description (body) of the embed for the message that will be sent to the given webhook.
 
 ## Syntax
 
 ```
-$webhookDescription[text]
+$webhookDescription[webhookURL;description]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `text` | The content of the embed description. Supports markdown, mentions, and emojis. Max 4096 characters. |
+| `webhookURL` | **Required.** The full Discord webhook URL (`https://discord.com/api/webhooks/ID/TOKEN`). An invalid URL raises `Invalid Discord webhook URL.` |
+| `description` | **Required.** The value to stage. It must contain 1 to 4096 characters; otherwise the error `Webhook text must contain 1–4096 characters.` is raised. |
+
+Exactly two arguments are required; any other count is refused ("Invalid argument count").
 
 ## Return Value
 
-This function does not return a value. It only sets the description of the next embed.
+An empty string. The value is only staged; nothing is sent yet.
 
 ## Behavior
 
-- The description appears below the title of the embed.
-- Supports full markdown: bold, italics, links, lists, code blocks, etc.
-- Line breaks are preserved.
-- The description is reset after each `$webhookSend`.
+- The value is staged per webhook URL.
+- The description is part of the embed, which is sent with `$webhookSend`.
+- Calling `$webhookDescription` again for the same webhook replaces the staged value.
+- `$webhookSend[webhookURL]` sends the staged message and clears it.
+- If a staged message (with text content or an embed other than just a color) has not been sent when the script ends normally, it is sent automatically. If the script is stopped, staged webhook messages are discarded.
 
 ## Examples
 
 ### Simple description
 
 ```bdfd
-$webhookTitle[Server Statistics]
-$webhookDescription[
-**Members:** $membersCount
-**Online:** $onlineMembers
-**Bots:** $botCount
-**Boost:** Level $boostLevel
-]
-$webhookColor[#5865F2]
-$webhookSend[$webhookURL;]
+$webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Server Statistics]
+$webhookDescription[https://discord.com/api/webhooks/123456/abcdef;**Members:** $memberCount]
+$webhookColor[https://discord.com/api/webhooks/123456/abcdef;#5865F2]
+$webhookSend[https://discord.com/api/webhooks/123456/abcdef]
 ```
-
-### Formatted description
-
-```bdfd
-$webhookTitle[Moderation Report]
-$webhookDescription[
-**Moderator:** $username
-**Action:** Ban
-**User:** $userName[$mentioned[1]]
-**Reason:** $message[2]
-
-*Action performed on $date[$day]/$date[$month]/$date[$year]*
-]
-$webhookColor[#ED4245]
-$webhookSend[$logHook;]
-```
-
-### Conditional description
-
-```bdfd
-$if[$checkContains[$message;!report]==true]
-  $webhookTitle[New Report]
-  $webhookDescription[
-  **Reported by:** $username
-  **Reported user:** $userName[$mentioned[1]]
-  **Reason:** $noMentionMessage
-  ]
-  $webhookColor[#FEE75C]
-  $webhookSend[$reportHook;]
-$endif
-```
-
-## Notes
-
-- Maximum 4096 characters for the description.
-- The description is the main body of the embed.
-- Combine title + description + color for a visually complete embed.

@@ -4,9 +4,10 @@ title: $authorOfMessage
 translation_key: docs
 category: "Embed & Message"
 function_name: authorOfMessage
-syntax: $authorOfMessage[messageID]
-description: Returns the ID of the author of a specific message, identified by its ID.
+syntax: $authorOfMessage[channelID;messageID]
+description: Returns the ID of the author of a specific message, identified by its channel ID and its message ID.
 ---
+
 # $authorOfMessage
 
 The `$authorOfMessage[]` function returns the **author ID** of a given message.
@@ -14,64 +15,57 @@ The `$authorOfMessage[]` function returns the **author ID** of a given message.
 ## Syntax
 
 ```
-$authorOfMessage[messageID]
+$authorOfMessage[channelID;messageID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the target message. |
+| `channelID` | Required. ID of the channel containing the message. |
+| `messageID` | Required. ID of the target message. |
+
+Both IDs must be positive integers, otherwise the call fails with "Invalid Discord ID.". Both arguments are required: `$authorOfMessage[messageID]` with a single argument is refused.
 
 ## Return value
 
 - **Type**: Snowflake (string)
-- The user ID of the author of the message.
-- Empty string if the message is not found.
+- The user ID of the author of the message, read from the message fetched from Discord.
+- The engine has no branch returning an empty string for a missing message.
 
 ## Examples
 
 ### Retrieving the author
 
 ```bdfd
-$var[author;$authorOfMessage[$message[1]]]
+$var[author;$authorOfMessage[$channelID;$message[1]]]
 $sendMessage[This message was sent by <@$var[author]>]
 ```
 
 ### Verify the owner of a message
 
 ```bdfd
-$if[$authorOfMessage[$messageID]==$authorID]
+$if[$authorOfMessage[$channelID;$messageID]==$authorID]
   $sendMessage[This message belongs to you.]
 $else
   $sendMessage[This message does not belong to you.]
 $endif
 ```
 
-### Log of deletion
-
-```bdfd
-$var[msgID;$message[1]]
-$var[author;$authorOfMessage[$var[msgID]]]
-$channelSendMessage[123456789;Message $var[msgID] deleted — Author: <@$var[author]>]
-```
-
 ### Message info command
 
 ```bdfd
 $var[msgID;$message[1]]
-$var[author;$authorOfMessage[$var[msgID]]]
+$var[author;$authorOfMessage[$channelID;$var[msgID]]]
 $title[📋 Message Info]
 $description[
 **ID**: $var[msgID]
 **Author**: <@$var[author]> ($var[author])
-**Content**: $getMessage[$var[msgID]]
+**Content**: $getMessage[$channelID;$var[msgID]]
 ]
-$sendMessage[]
 ```
 
 ## Notes
 
 - The bot must have access to the channel containing the message.
-- DM messages can be accessed if the bot has access.
 - For the current message, `$authorID` is more direct.

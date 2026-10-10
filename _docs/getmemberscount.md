@@ -44,7 +44,6 @@ You are member **#$getMembersCount**!
 ]
 $thumbnail[$authorAvatar]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Size Condition
@@ -70,7 +69,6 @@ $description[
 **Roles:** $roleCount
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

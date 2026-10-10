@@ -41,151 +41,22 @@ To ensure total confidentiality for conversations between the user and staff:
 
 ## 2. Step 1: `/ticket` Command (Creation & Welcome)
 
-<div class="dual-view-tabs">
-  <div class="dual-view-nav">
-    <button class="dual-tab-btn active" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
-      <span>Blocks View (App Mode)</span>
-    </button>
-    <button class="dual-tab-btn" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
-      <span>Script View (BDFD / BDScript)</span>
-    </button>
-  </div>
+<div class="block-flow-canvas my-6">
+{% app_entry kind="slash" name="ticket" %}
+{% include block_connector.html %}
+{% app_block example="ticket_chan" %}
+{% include block_connector.html %}
+{% app_block example="ticket_chan_permissions" %}
+{% include block_connector.html %}
+{% app_block example="ticket_welcome_panel" %}
+{% include block_connector.html %}
+{% app_block example="ticket_created_reply" %}
+</div>
 
-  <div class="dual-tab-panel active">
-    <div class="block-flow-canvas">
-      
-      <!-- Entry Point -->
-      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;slash&quot;,&quot;name&quot;:&quot;ticket&quot;}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#terminal"></use></svg>
-          <span class="scratch-block-title">SLASH COMMAND: /ticket</span>
-          <span class="scratch-block-badge">Trigger</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="text-xs text-on-surface-variant">Triggered when a member uses the slash command <code>/ticket</code> on the server.</div>
-        </div>
-      </div>
+The last three blocks depend on the channel created by the first one: they read its ID with `((action.ticket_chan))`, the **Action Key** of *Create Channel*. Replace the category ID with your private support category.
 
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action 1: Create Channel -->
-      <div class="scratch-block-card block-cat-channels" data-native-action='{&quot;type&quot;:&quot;createChannel&quot;,&quot;key&quot;:&quot;ticket_chan&quot;,&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;name&quot;:&quot;ticket-((user.username))&quot;,&quot;type&quot;:&quot;text&quot;,&quot;categoryId&quot;:&quot;123456789012345678&quot;}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#add_box"></use></svg>
-          <span class="scratch-block-title">CREATE A CHANNEL</span>
-          <span class="scratch-block-badge">Key: ticket_chan</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Channel name</span>
-            <div class="scratch-block-input">ticket-<span class="var-tag">((user.username))</span></div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Channel type</span>
-            <div class="scratch-block-input">Text (0)</div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Parent Category (Support Category ID)</span>
-            <div class="scratch-block-input">123456789012345678</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action 2: Edit Permissions -->
-      <div class="scratch-block-card block-cat-channels" data-native-action='{&quot;type&quot;:&quot;editChannelPermissions&quot;,&quot;depend_on&quot;:[&quot;ticket_chan&quot;],&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;channelId&quot;:&quot;((action.ticket_chan))&quot;,&quot;targetType&quot;:&quot;member&quot;,&quot;targetId&quot;:&quot;((user.id))&quot;,&quot;allow&quot;:&quot;68608&quot;,&quot;deny&quot;:&quot;0&quot;}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#lock_open"></use></svg>
-          <span class="scratch-block-title">EDIT PERMISSIONS</span>
-          <span class="scratch-block-badge">Depends: ticket_chan</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Channel ID</span>
-            <div class="scratch-block-input"><span class="var-tag">((action.ticket_chan))</span></div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Target (User)</span>
-            <div class="scratch-block-input"><span class="var-tag">((user.id))</span></div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Allowed permissions (Bitmask or flags)</span>
-            <div class="scratch-block-input">68608 <span class="text-xs text-on-surface-variant font-sans">(View Channel + Send + Read History)</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action 3: Send Message in Ticket -->
-      <div class="scratch-block-card block-cat-messages" data-native-action='{&quot;type&quot;:&quot;sendMessage&quot;,&quot;depend_on&quot;:[&quot;ticket_chan&quot;],&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;channelId&quot;:&quot;((action.ticket_chan))&quot;,&quot;content&quot;:&quot;Hello &lt;@((user.id))&gt;!&quot;,&quot;embeds&quot;:[{&quot;title&quot;:&quot;🎫 Support &amp; Help&quot;,&quot;description&quot;:&quot;Welcome to your private support channel. Please describe your issue below.&quot;,&quot;color&quot;:&quot;#5865F2&quot;}],&quot;components&quot;:{&quot;items&quot;:[{&quot;type&quot;:&quot;actionRow&quot;,&quot;components&quot;:[{&quot;type&quot;:&quot;button&quot;,&quot;customId&quot;:&quot;close_ticket&quot;,&quot;label&quot;:&quot;Close Ticket&quot;,&quot;style&quot;:4}]}]}}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#send"></use></svg>
-          <span class="scratch-block-title">SEND A MESSAGE (Ticket Channel)</span>
-          <span class="scratch-block-badge">Depends: ticket_chan</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Target channel</span>
-            <div class="scratch-block-input"><span class="var-tag">((action.ticket_chan))</span></div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Embed — Title &amp; Description</span>
-            <div class="scratch-block-input">🎫 Support &amp; Help — Welcome &lt;@<span class="var-tag">((user.id))</span>&gt;!</div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Components (Action button)</span>
-            <div class="scratch-block-input">Red Button [Close Ticket] | customId: close_ticket</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action 4: Interaction Reply (Terminal) -->
-      <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;depend_on&quot;:[&quot;ticket_chan&quot;],&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;content&quot;:&quot;✅ Your support ticket has been created: &lt;#((action.ticket_chan))&gt;&quot;,&quot;ephemeral&quot;:true}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
-          <span class="scratch-block-title">RESPOND TO INTERACTION (Slash Reply)</span>
-          <span class="scratch-block-badge">Terminal</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Text content</span>
-            <div class="scratch-block-input">✅ Your ticket has been created: &lt;#<span class="var-tag">((action.ticket_chan))</span>&gt;</div>
-          </div>
-          <div class="scratch-block-toggle-row">
-            <span class="text-xs font-semibold text-on-surface">Ephemeral Reply (visible only to you)</span>
-            <span class="sim-switch active"></span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="dual-tab-panel">
-    <p class="text-sm text-on-surface-variant mb-4">BDScript code executed by the engine:</p>
+<details class="block-json-ref">
+<summary>The same flow written in BDFD Code mode</summary>
 <pre><code class="language-bdfd">;; 1. Create text channel under the private category
 $var[ticketChan;$createChannel[ticket-$username;text;123456789012345678]]
 
@@ -204,8 +75,7 @@ $useChannel[]
 $ephemeral
 ✅ Your support ticket has been created: &lt;#$var[ticketChan]&gt;
 </code></pre>
-  </div>
-</div>
+</details>
 
 ### Discord Visual Preview: Immediate Confirmation
 
@@ -274,106 +144,18 @@ Here is what is posted inside the `#ticket-jeremy` channel:
 
 When a member or moderator clicks the **Close Ticket** button (`customId: close_ticket`), Discord emits the `interactionCreate` event.
 
-<div class="dual-view-tabs">
-  <div class="dual-view-nav">
-    <button class="dual-tab-btn active" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
-      <span>Blocks View (App Mode)</span>
-    </button>
-    <button class="dual-tab-btn" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
-      <span>Script View (BDFD / BDScript)</span>
-    </button>
-  </div>
+<div class="block-flow-canvas my-6">
+{% app_entry event="interactionCreate" custom_id="close_ticket" %}
+{% include block_connector.html %}
+{% app_block example="ticket_close_reply" %}
+{% include block_connector.html %}
+{% app_block example="ticket_close_wait" %}
+{% include block_connector.html %}
+{% app_block example="ticket_remove_channel" %}
+</div>
 
-  <div class="dual-tab-panel active">
-    <div class="block-flow-canvas">
-      
-      <!-- Entry Point -->
-      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;event&quot;,&quot;event&quot;:&quot;interactionCreate&quot;,&quot;customId&quot;:&quot;close_ticket&quot;}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#touch_app"></use></svg>
-          <span class="scratch-block-title">BUTTON CLICK: close_ticket</span>
-          <span class="scratch-block-badge">Trigger</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="text-xs text-on-surface-variant">Triggered when the red button with Custom ID <code>close_ticket</code> is clicked.</div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action 1: Respond to Interaction -->
-      <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;content&quot;:&quot;🔒 Close requested. Deleting this channel in 3 seconds...&quot;,&quot;ephemeral&quot;:false}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
-          <span class="scratch-block-title">RESPOND TO INTERACTION</span>
-          <span class="scratch-block-badge">Acknowledgment</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Notice message</span>
-            <div class="scratch-block-input">🔒 Ticket closure requested by <span class="var-tag">((user.username))</span>. Deleting channel in 3 seconds...</div>
-          </div>
-          <div class="scratch-block-toggle-row">
-            <span class="text-xs font-semibold text-on-surface">Ephemeral</span>
-            <span class="sim-switch"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action 2: Wait -->
-      <div class="scratch-block-card block-cat-logic" data-native-action='{&quot;type&quot;:&quot;wait&quot;,&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;duration&quot;:&quot;3s&quot;}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#hourglass_empty"></use></svg>
-          <span class="scratch-block-title">WAIT</span>
-          <span class="scratch-block-badge">Timer</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Wait duration</span>
-            <div class="scratch-block-input">3s</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action 3: Remove Channel -->
-      <div class="scratch-block-card block-cat-channels" data-native-action='{&quot;type&quot;:&quot;removeChannel&quot;,&quot;enabled&quot;:true,&quot;payload&quot;:{&quot;channelId&quot;:&quot;((channel.id))&quot;}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#remove_circle"></use></svg>
-          <span class="scratch-block-title">DELETE CHANNEL</span>
-          <span class="scratch-block-badge">Destruction</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Channel to delete</span>
-            <div class="scratch-block-input"><span class="var-tag">((channel.id))</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="dual-tab-panel">
-    <p class="text-sm text-on-surface-variant mb-4">BDScript interaction handler:</p>
+<details class="block-json-ref">
+<summary>The same flow written in BDFD Code mode</summary>
 <pre><code class="language-bdfd">;; 1. Immediately acknowledge the click to prevent the Discord 3s timeout
 🔒 Close requested by $username. Deleting this channel in 3 seconds...
 
@@ -383,8 +165,7 @@ $wait[3s]
 ;; 3. Permanently delete the ticket channel
 $deleteChannels[$channelID]
 </code></pre>
-  </div>
-</div>
+</details>
 
 ### Discord Visual Preview: Closure Notification
 
@@ -404,9 +185,13 @@ $deleteChannels[$channelID]
 
 ---
 
-## 4. Complete JSON Representation (Runtime Action Engine)
+## 4. Saved Structure (reference for API and MCP users)
 
-Here is the exact JSON structure stored in the database and executed sequentially by the native Dart runtime:
+The blocks above are stored as the following `Action` objects and run in order by the native engine. You never write this by hand in the app; it is the format to use through the API or the MCP.
+
+<details class="block-json-ref">
+<summary>Show the JSON of the two flows</summary>
+
 
 ### Ticket Creation
 ```json
@@ -429,8 +214,11 @@ Here is the exact JSON structure stored in the database and executed sequentiall
       "channelId": "((action.ticket_chan))",
       "targetType": "member",
       "targetId": "((user.id))",
-      "allow": "68608",
-      "deny": "0"
+      "permissions": {
+        "viewChannel": "allow",
+        "sendMessages": "allow",
+        "readMessageHistory": "allow"
+      }
     }
   },
   {
@@ -456,7 +244,7 @@ Here is the exact JSON structure stored in the database and executed sequentiall
                 "type": "button",
                 "customId": "close_ticket",
                 "label": "Close Ticket",
-                "style": 4
+                "style": "danger"
               }
             ]
           }
@@ -504,13 +292,24 @@ Here is the exact JSON structure stored in the database and executed sequentiall
 ]
 ```
 
+</details>
+
 ---
 
 ## 5. Lightweight Alternative: Tickets via Private Threads
 
-If your server is approaching Discord's 500-channel limit, or if you prefer keeping history organized without creating entire text channels, you can use **Private Threads**:
+If your server is approaching Discord's 500-channel limit, or if you prefer keeping history organized without creating entire text channels, you can use **private threads**:
 
 1. Create a general ticket landing channel `#support-tickets`.
-2. When `/ticket` is run, invoke the `createThread` action with `type: "privateThread"`.
-3. Add the user with `addThreadMember`.
-4. To archive and close the ticket without destroying it, use `updateChannel` with `archived: true` and `locked: true`.
+2. When `/ticket` is run, use the *Create Thread* block in that channel with **Type** set to `private` (any other value creates a public thread).
+3. Add the user with the *Add Thread Member* block.
+
+<div class="block-flow-canvas my-6">
+{% app_entry kind="slash" name="ticket" %}
+{% include block_connector.html %}
+{% app_block example="thread_create" %}
+{% include block_connector.html %}
+{% app_block example="thread_add_member" %}
+</div>
+
+To archive and close the ticket without destroying it, the engine's *Update Channel* block reads `archived` and `locked` payload keys for a thread. The editor does not show these two fields, so set them through the API or the MCP.

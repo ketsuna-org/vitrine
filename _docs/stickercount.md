@@ -44,7 +44,6 @@ $addField[🎨 Emojis;$emojiCount;yes]
 $addField[🚀 Boosts;$serverBoostCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Availability check
@@ -65,7 +64,6 @@ $addField[🎨 Emojis;$emojiCount;yes]
 $addField[🏷️ Stickers;$stickerCount;yes]
 $addField[📦 Total content;$sum[$emojiCount;$stickerCount];yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ## Notes

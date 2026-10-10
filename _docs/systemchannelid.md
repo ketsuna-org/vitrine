@@ -42,12 +42,26 @@ $endif
 ### Embed Configuration
 
 ```bdfd
+$if[$systemChannelID!=]
+  $var[sys;<#$systemChannelID>]
+$else
+  $var[sys;Not configured]
+$endif
+$if[$rulesChannelID!=]
+  $var[rules;<#$rulesChannelID>]
+$else
+  $var[rules;Not configured]
+$endif
+$if[$afkChannelID!=]
+  $var[afk;<#$afkChannelID>]
+$else
+  $var[afk;Not configured]
+$endif
 $title[⚙️ Configuration of $serverName]
-$addField[📢 System Channel;$if[$systemChannelID!=]<#$systemChannelID>$elseNot configured$endif;yes]
-$addField[📋 Rules Channel;$if[$rulesChannelID!=]<#$rulesChannelID>$elseNot configured$endif;yes]
-$addField[💤 AFK Channel;$if[$afkChannelID!=]<#$afkChannelID>$elseNot configured$endif;yes]
+$addField[📢 System Channel;$var[sys];yes]
+$addField[📋 Rules Channel;$var[rules];yes]
+$addField[💤 AFK Channel;$var[afk];yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Configuration Log

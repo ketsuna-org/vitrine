@@ -4,28 +4,37 @@ title: $for / $endFor + $loopIndex / $loopCount / $loopIteration
 translation_key: docs
 category: "Control Flow"
 function_name: for
-syntax: $for[iteratorName;values].. $endFor
-description: Iterates over a list of values, executing the block once per item with loop metadata variables.
+syntax: $for[iteratorName;value1;(value2);...] ... $endFor
+description: Repeats a block, either once per listed value ($for[name;v1;v2;...]), a given number of times ($for[count]) or with a C-style header ($for[i=0;i<5;i++]), with loop metadata variables.
 ---
 # $for / $endFor — For Loop
 
-The `$for` token defines a loop that iterates over a semicolon-separated list of values or an array reference. Like `$if`, these are **structural tokens** processed at the BDFD parser level. Every `$for` must be closed with `$endFor`.
+The `$for` token opens a loop that must be closed with `$endFor`. Like `$if`, these are **structural tokens** processed at the BDFD parser level. The engine accepts three forms, chosen by the number and shape of the arguments:
+
+| Form | Syntax | Behavior |
+|---|---|---|
+| Value list | `$for[name;value1;(value2);...]` | One iteration per value after the first argument; `name` receives the current value. |
+| Counted | `$for[count]` | `count` iterations (a non-negative integer, else "Expected a nonnegative integer loop count."); `$i` holds the 0-based index. |
+| C-style | `$for[i=0;i<5;i++]` | Initialization; condition; update. Integers only. |
+
+A `$for` with no argument is a parse error ("Expected a loop argument.").
 
 ## Loop Metadata Variables
 
-Inside a `$for...$endFor` block, three special variables provide information about the current iteration:
+Inside a `$for...$endFor` block, these functions (each with no argument) provide information about the current iteration:
 
 | Variable         | Value                              | Description                          |
 |------------------|------------------------------------|--------------------------------------|
-| `$loopIndex`     | 0, 1, 2, 3,..                   | Zero-based index of the current item |
-| `$loopCount`     | 1, 2, 3, 4,..                   | One-based count of the current item  |
+| `$loopIndex`     | 0, 1, 2, 3,..                   | Zero-based index of the current iteration |
+| `$loopCount`     | 1, 2, 3, 4,..                   | One-based count of the current iteration  |
 | `$loopIteration` | same as `$loopIndex` (`0, 1, 2`)   | Alias for the zero-based index       |
+| `$i`             | same as `$loopIndex`               | Alias for the zero-based index (in counted loops, `$i` is also bound as the loop variable) |
 
-These variables are only valid inside the `$for...$endFor` block. Using them outside a loop produces an empty string or may cause an error.
+Used outside a loop, they raise the error "Loop index outside a loop.".
 
 ## Iterator Variable
 
-The first parameter (`iteratorName`) is a variable name you choose. On each iteration, it receives the current value from the list. Reference it inside the loop with `$iteratorName`:
+In the value-list form, the first parameter (`name`) must be a literal identifier (letters, digits, `_`, not starting with a digit; otherwise "Invalid iterator name."). On each iteration it receives the current value. Reference it inside the loop with `$name`:
 
 ```
 $for[color;red;green;blue]
@@ -35,32 +44,47 @@ $endFor
 
 ## Values Format
 
-Values can be:
-- **A literal semicolon-separated list**: `$for[item;one;two;three]`
-- **A variable that resolves to a list**: `$for[player;$getGlobalUserVar[partyMembers]]`
-- The semicolons are the delimiter — avoid using semicolons inside individual values unless you escape them.
+- Each argument after the first is **one value**: `$for[item;one;two;three]` runs three times.
+- A value is evaluated before the loop starts. A function result containing semicolons is **not** split into several values: `$for[player;$getGlobalUserVar[partyMembers]]` runs once, with the whole result.
 
-## Interaction with $stop and $skipActions
+## C-style Loops
 
-- Use `$stop` inside a loop to halt **all** further execution, breaking out of the loop and the entire action sequence.
-- Use `$skipActions[n]` inside a loop to skip the next `n` actions (which may jump to the next iteration).
+`$for[init;condition;update]` uses integer variables:
+
+- `init`: assignments separated by commas, e.g. `i=0` or `i=0,j=10` (only `=` is allowed).
+- `condition`: an integer comparison (`==`, `!=`, `>=`, `<=`, `>`, `<`), otherwise "Invalid integer loop condition".
+- `update`: `++`, `--`, `+=`, `-=`, `*=`, `/=` or `=` on variables declared in `init`.
+- The variables are referenced inside the body with `$name`.
+
+## Control: $break, $continue, $stop
+
+- `$break` leaves the current loop; `$continue` goes to the next iteration (in a C-style loop the update clause still runs). Both are errors outside a loop.
+- `$stop` halts the whole script, including the loop.
 
 ## Common Pitfalls
 
-- Forgetting `$endFor` causes a parse error — the parser treats everything after `$for` as body content.
-- Infinite loops are generally impossible since iteration is over a fixed list.
-- Nested loops are supported; each `$for` tracks its own `$loopIndex` / `$loopCount` scope.
-- Performance can degrade with very large lists; keep iterations reasonable (a few hundred items at most for responsive bot behavior).
+- Forgetting `$endFor` causes a parse error.
+- A C-style loop whose condition never becomes false is not bounded by the list; the engine stops it with its execution limits (budget/timeout).
+- Nested loops are supported; `$loopIndex` / `$loopCount` refer to the innermost loop.
+- Keep iterations reasonable for responsive bot behavior.
 
 ## Examples
 
-### Stepwise Sequence Loop
+### Counted loop
 
 ```bdfd
 $title[Countdown Loop]
 $description[Executing repetition sequence:]
-$for[i;1;5;1]
-  $sendMessage[Step $var[i] of 5 complete!]
+$for[5]
+  $sendMessage[Step $loopCount of 5 complete!]
 $endFor
 $color[#5865F2]
+```
+
+### C-style loop
+
+```bdfd
+$for[i=1;i<=3;i++]
+  $sendMessage[Number $i]
+$endFor
 ```

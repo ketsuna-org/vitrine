@@ -46,7 +46,6 @@ $addField[Verification Level;$serverVerificationLevel;yes]
 $addField[Boost Level;$boostLevel;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Logs

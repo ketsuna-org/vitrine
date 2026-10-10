@@ -51,7 +51,7 @@ $endif
 ### Secure deletion command
 
 ```bdfd
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $if[$roleExists[$roleID[$message[1]]]==true]
     $deleteRole[$roleID[$message[1]]]
     $sendMessage[✅ Role deleted successfully.]

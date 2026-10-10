@@ -53,10 +53,9 @@ $reply[$channelID;123456789012345678]
 $sendMessage[Reply to a specific message]
 ```
 
-### Reply in $onInteraction
+### Reply to a button click
 
 ```bdfd
-$onInteraction
 $if[$customID==btn_help]
   $reply
   $sendMessage[Here is the requested help]
@@ -67,8 +66,9 @@ $endif
 
 ```bdfd
 $reply
-$newEmbed[title=Reply;description=Reply details;color=#3498DB]
-$sendMessage[]
+$title[Reply]
+$description[Reply details]
+$color[#3498DB]
 ```
 
 ## Notes
@@ -76,4 +76,3 @@ $sendMessage[]
 - Without arguments, `$reply` automatically uses the triggering message.
 - `$reply` must be placed before `$sendMessage`.
 - The reply pings the user by default. Use `$noMention` before to disable the ping.
-- Also works in `$onInteraction`.

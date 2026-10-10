@@ -28,7 +28,7 @@ $addMentionableSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 
 A **mentionable select** combines the selection of users and roles in a single menu. The user can choose either members or roles of the server.
 
-The returned values are IDs. Use `$roleExists` to determine if an ID corresponds to a role or to a user.
+The selected IDs are read with `$getMentionableSelectUserID[]` (the user IDs when users were selected, otherwise the selected values). Use `$roleExists` to determine if an ID corresponds to a role or to a user.
 
 ## Examples
 
@@ -56,12 +56,12 @@ $sendMessage[Menu disabled]
 ## Handling the interaction
 
 ```bdfd
-$onInteraction
 $if[$customID==menu_mention]
-  $if[$roleExists[$message]==true]
-    $sendMessage[Selected role: <@&$message>]
+  $var[target;$getMentionableSelectUserID[1]]
+  $if[$roleExists[$var[target]]==true]
+    $sendMessage[Selected role: <@&$var[target]>]
   $else
-    $sendMessage[Selected user: <@$message>]
+    $sendMessage[Selected user: <@$var[target]>]
   $endif
 $endif
 ```

@@ -82,5 +82,4 @@ $sendMessage[Your submission: $linesCount[$message] lines, $charCount[$message] 
 $title[Line Counter]
 $description[Your text contains **$linesCount[$message]** lines of code.]
 $color[#5865F2]
-$sendMessage[]
 ```

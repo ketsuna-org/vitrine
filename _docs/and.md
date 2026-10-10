@@ -4,7 +4,7 @@ title: $and
 translation_key: docs
 category: "Control Flow"
 function_name: and
-syntax: $and[condition1;condition2;...]
+syntax: $and[condition1;(condition2);(...)]
 description: Logical AND — returns "true" only if ALL provided conditions evaluate to true.
 ---
 # $and — Logical AND
@@ -17,13 +17,11 @@ description: Logical AND — returns "true" only if ALL provided conditions eval
 $and[condition1;condition2;...;conditionN]
 ```
 
-`$and` accepts an **unlimitd number** of arguments (minimum 2). Each argument is a BDFD expression that is expected to resolve to either `"true"` or `"false"`.
+`$and` accepts **1 to 100** arguments. Each argument must resolve to `true`, `false`, or a comparison using `==`, `!=`, `>=`, `<=`, `>` or `<` (e.g. `$getUserVar[coins]>=50`). Any other value is an error ("Invalid condition"). With two operands that are both numbers the comparison is numeric, otherwise it is a text comparison.
 
 ## Evaluation
 
-Each condition argument is resolved at runtime. Unlike many programming languages, BDFD's `$and` does **not** guarantee short-circuit evaluation — all conditions may be evaluated regardless of whether an earlier one already returned `"false"`.
-
-This means you should be cautious about conditions that have side effects (like sending messages or modifying variables), as they may execute even when the overall result is already determined to be false.
+Each condition argument is resolved at runtime. Conditions are evaluated from left to right and `$and` **short-circuits**: as soon as one condition is false, it returns `"false"` and the remaining arguments are not evaluated (so their side effects, and any error they would raise, do not happen).
 
 ## Truth Table
 
@@ -59,9 +57,9 @@ $if[$and[cond1;cond2]==true]
 
 ## Common Pitfalls
 
-- **Assuming short-circuit**: Do not rely on conditions being evaluated left-to-right or stopping early. Avoid placing side-effect-heavy functions inside `$and`.
-- **Non-boolean results**: If a condition returns something other than `"true"` or `"false"` (e.g., a number or empty string), the behavior is undefined — always ensure your conditions resolve to `"true"` or `"false"`.
-- **Single condition**: `$and` requires at least 2 arguments. For a single condition, just use the condition directly without `$and`.
+- **Order matters**: conditions are evaluated left to right and evaluation stops at the first false one, so put cheap or guarding checks first.
+- **Non-boolean results**: If a condition is neither `true`, `false` nor a comparison (e.g., a lone number or an empty string), the engine raises an "Invalid condition" error.
+- **No argument**: `$and` requires at least 1 argument (and at most 100); a bare `$and` is refused.
 - **Forgetting `==true` in $if**: Write `$if[$and[...]==true]`, not `$if[$and[...]]`.
 
 ## Examples
@@ -78,5 +76,4 @@ $else
   $description[You must provide an item name and have at least 50 coins.]
   $color[#ED4245]
 $endif
-$sendMessage[]
 ```

@@ -53,7 +53,7 @@ $endif
 
 ```bdfd
 $if[$isBanned[$message[1]]==true]
-  $unban[$message[1]]
+  $unbanID[$message[1]]
   $sendMessage[✅ The user $message[1] was unbanned.]
 $else
   $sendMessage[❌ This ID is not banned.]

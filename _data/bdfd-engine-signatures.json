@@ -1,0 +1,2194 @@
+{
+ "addactionrow": {
+  "min": 0,
+  "max": 2
+ },
+ "addbutton": {
+  "min": 4,
+  "max": 7
+ },
+ "addbuttoncv2": {
+  "min": 2,
+  "max": 6
+ },
+ "addcategoryselect": {
+  "min": 1,
+  "max": 6
+ },
+ "addchannelselect": {
+  "min": 1,
+  "max": 7
+ },
+ "addcheckboxgroupoption": {
+  "min": 2,
+  "max": 5
+ },
+ "addcmdreactions": {
+  "min": 1,
+  "max": null
+ },
+ "addcontainer": {
+  "min": 0,
+  "max": 3
+ },
+ "addemoji": {
+  "min": 3,
+  "max": 3
+ },
+ "addfield": {
+  "min": 2,
+  "max": 4
+ },
+ "addfile": {
+  "min": 1,
+  "max": 2
+ },
+ "addmediagallery": {
+  "min": 0,
+  "max": 2
+ },
+ "addmediagalleryitem": {
+  "min": 1,
+  "max": 4
+ },
+ "addmentionableselect": {
+  "min": 1,
+  "max": 6
+ },
+ "addmessagereactions": {
+  "min": 3,
+  "max": null
+ },
+ "addmodalcheckbox": {
+  "min": 3,
+  "max": 4
+ },
+ "addmodalcheckboxgroup": {
+  "min": 3,
+  "max": 6
+ },
+ "addmodalfileupload": {
+  "min": 3,
+  "max": 6
+ },
+ "addmodalradiogroup": {
+  "min": 3,
+  "max": 4
+ },
+ "addmodalselect": {
+  "min": 4,
+  "max": 9
+ },
+ "addmodaltextdisplay": {
+  "min": 1,
+  "max": 1
+ },
+ "addmodaltextinput": {
+  "min": 3,
+  "max": 9
+ },
+ "addradiogroupoption": {
+  "min": 2,
+  "max": 5
+ },
+ "addreactions": {
+  "min": 1,
+  "max": null
+ },
+ "addroleselect": {
+  "min": 1,
+  "max": 6
+ },
+ "addsection": {
+  "min": 0,
+  "max": 2
+ },
+ "addselectmenuoption": {
+  "min": 4,
+  "max": 7
+ },
+ "addseparator": {
+  "min": 0,
+  "max": 3
+ },
+ "addstringselect": {
+  "min": 1,
+  "max": 6
+ },
+ "addstringselectoption": {
+  "min": 2,
+  "max": 6
+ },
+ "addtextdisplay": {
+  "min": 1,
+  "max": 2
+ },
+ "addtextinput": {
+  "min": 3,
+  "max": 8
+ },
+ "addthumbnail": {
+  "min": 1,
+  "max": 4
+ },
+ "addtimestamp": {
+  "min": 0,
+  "max": 1
+ },
+ "adduserselect": {
+  "min": 1,
+  "max": 6
+ },
+ "addvoiceselect": {
+  "min": 1,
+  "max": 6
+ },
+ "afkchannelid": {
+  "min": 0,
+  "max": 0
+ },
+ "afktimeout": {
+  "min": 0,
+  "max": 1
+ },
+ "allmemberscount": {
+  "min": 0,
+  "max": 0
+ },
+ "allowmention": {
+  "min": 0,
+  "max": 0
+ },
+ "allowrolementions": {
+  "min": 0,
+  "max": null
+ },
+ "allowusermentions": {
+  "min": 0,
+  "max": null
+ },
+ "alternativeparsing": {
+  "min": 0,
+  "max": 1
+ },
+ "and": {
+  "min": 1,
+  "max": 100
+ },
+ "argcount": {
+  "min": 0,
+  "max": 0
+ },
+ "args": {
+  "min": 0,
+  "max": 1
+ },
+ "argscheck": {
+  "min": 2,
+  "max": 3
+ },
+ "attachimage": {
+  "min": 0,
+  "max": 1
+ },
+ "author": {
+  "min": 1,
+  "max": 2
+ },
+ "authoravatar": {
+  "min": 0,
+  "max": 0
+ },
+ "authorbanner": {
+  "min": 0,
+  "max": 0
+ },
+ "authoricon": {
+  "min": 1,
+  "max": 2
+ },
+ "authorid": {
+  "min": 0,
+  "max": 0
+ },
+ "authorofmessage": {
+  "min": 2,
+  "max": 2
+ },
+ "authorperms": {
+  "min": 0,
+  "max": 2
+ },
+ "authortag": {
+  "min": 0,
+  "max": 0
+ },
+ "authorurl": {
+  "min": 1,
+  "max": 2
+ },
+ "authorusername": {
+  "min": 0,
+  "max": 0
+ },
+ "awaitfunc": {
+  "min": 1,
+  "max": 3
+ },
+ "ban": {
+  "min": 0,
+  "max": 1
+ },
+ "banid": {
+  "min": 0,
+  "max": 2
+ },
+ "blacklistids": {
+  "min": 2,
+  "max": null
+ },
+ "blacklistroles": {
+  "min": 2,
+  "max": null
+ },
+ "blacklistrolesids": {
+  "min": 2,
+  "max": null
+ },
+ "blacklistservers": {
+  "min": 2,
+  "max": null
+ },
+ "blacklistusers": {
+  "min": 2,
+  "max": null
+ },
+ "boostcount": {
+  "min": 0,
+  "max": 0
+ },
+ "boostlevel": {
+  "min": 0,
+  "max": 0
+ },
+ "botcommands": {
+  "min": 1,
+  "max": 1
+ },
+ "botcount": {
+  "min": 0,
+  "max": 1
+ },
+ "botid": {
+  "min": 0,
+  "max": 0
+ },
+ "botleave": {
+  "min": 0,
+  "max": 1
+ },
+ "botlistdescription": {
+  "min": 1,
+  "max": 1
+ },
+ "botlisthide": {
+  "min": 0,
+  "max": 0
+ },
+ "botname": {
+  "min": 0,
+  "max": 0
+ },
+ "botnode": {
+  "min": 0,
+  "max": 0
+ },
+ "botownerid": {
+  "min": 0,
+  "max": 0
+ },
+ "bottyping": {
+  "min": 0,
+  "max": 0
+ },
+ "break": {
+  "min": 0,
+  "max": 0
+ },
+ "bytecount": {
+  "min": 1,
+  "max": 1
+ },
+ "c": {
+  "min": 1,
+  "max": 1
+ },
+ "calculate": {
+  "min": 1,
+  "max": 1
+ },
+ "callworkflow": {
+  "min": 1,
+  "max": 100
+ },
+ "canvascompositeimage": {
+  "min": 5,
+  "max": 8
+ },
+ "canvascontainer": {
+  "min": 5,
+  "max": 6
+ },
+ "canvascreate": {
+  "min": 3,
+  "max": 4
+ },
+ "canvasdrawcircle": {
+  "min": 5,
+  "max": 7
+ },
+ "canvasdrawline": {
+  "min": 6,
+  "max": 8
+ },
+ "canvasdrawrect": {
+  "min": 6,
+  "max": 8
+ },
+ "canvasdrawtext": {
+  "min": 5,
+  "max": 8
+ },
+ "canvasgrayscale": {
+  "min": 0,
+  "max": 1
+ },
+ "canvasinvert": {
+  "min": 0,
+  "max": 1
+ },
+ "canvasloadimage": {
+  "min": 1,
+  "max": 6
+ },
+ "canvasprogressbar": {
+  "min": 7,
+  "max": 13
+ },
+ "canvasrotate": {
+  "min": 1,
+  "max": 2
+ },
+ "canvassetpixel": {
+  "min": 3,
+  "max": 4
+ },
+ "categorychannels": {
+  "min": 2,
+  "max": 3
+ },
+ "categorycount": {
+  "min": 0,
+  "max": 1
+ },
+ "categoryid": {
+  "min": 1,
+  "max": 1
+ },
+ "ceil": {
+  "min": 1,
+  "max": 1
+ },
+ "changecooldowntime": {
+  "min": 4,
+  "max": 4
+ },
+ "changeusername": {
+  "min": 1,
+  "max": 1
+ },
+ "changeusernamewithid": {
+  "min": 2,
+  "max": 2
+ },
+ "channelcategoryid": {
+  "min": 0,
+  "max": 1
+ },
+ "channelcount": {
+  "min": 0,
+  "max": 0
+ },
+ "channelexists": {
+  "min": 1,
+  "max": 1
+ },
+ "channelid": {
+  "min": 0,
+  "max": 1
+ },
+ "channelidfromname": {
+  "min": 1,
+  "max": 1
+ },
+ "channelname": {
+  "min": 1,
+  "max": 1
+ },
+ "channelnames": {
+  "min": 1,
+  "max": 2
+ },
+ "channelnsfw": {
+  "min": 0,
+  "max": 1
+ },
+ "channelposition": {
+  "min": 0,
+  "max": 1
+ },
+ "channelsendmessage": {
+  "min": 2,
+  "max": 3
+ },
+ "channeltopic": {
+  "min": 0,
+  "max": 0
+ },
+ "channeltype": {
+  "min": 1,
+  "max": 1
+ },
+ "charcount": {
+  "min": 1,
+  "max": 1
+ },
+ "checkcondition": {
+  "min": 1,
+  "max": 1
+ },
+ "checkcontains": {
+  "min": 2,
+  "max": 100
+ },
+ "checkuserperms": {
+  "min": 2,
+  "max": null
+ },
+ "checkusersperms": {
+  "min": 2,
+  "max": null
+ },
+ "clear": {
+  "min": 0,
+  "max": 3
+ },
+ "clearreactions": {
+  "min": 3,
+  "max": 3
+ },
+ "closeticket": {
+  "min": 0,
+  "max": 1
+ },
+ "color": {
+  "min": 1,
+  "max": 2
+ },
+ "colorrole": {
+  "min": 1,
+  "max": 1
+ },
+ "commandfolder": {
+  "min": 0,
+  "max": 0
+ },
+ "commandname": {
+  "min": 0,
+  "max": 0
+ },
+ "commandscount": {
+  "min": 0,
+  "max": 0
+ },
+ "commandtrigger": {
+  "min": 0,
+  "max": 0
+ },
+ "commandtype": {
+  "min": 0,
+  "max": 0
+ },
+ "continue": {
+  "min": 0,
+  "max": 0
+ },
+ "cooldown": {
+  "min": 2,
+  "max": 2
+ },
+ "createchannel": {
+  "min": 2,
+  "max": 3
+ },
+ "createrole": {
+  "min": 2,
+  "max": 4
+ },
+ "creationdate": {
+  "min": 1,
+  "max": 2
+ },
+ "croptext": {
+  "min": 3,
+  "max": 3
+ },
+ "customemoji": {
+  "min": 1,
+  "max": 1
+ },
+ "customid": {
+  "min": 0,
+  "max": 0
+ },
+ "date": {
+  "min": 0,
+  "max": 0
+ },
+ "day": {
+  "min": 0,
+  "max": 0
+ },
+ "debug": {
+  "min": 1,
+  "max": 1
+ },
+ "defer": {
+  "min": 0,
+  "max": 1
+ },
+ "deletechannels": {
+  "min": 1,
+  "max": null
+ },
+ "deletechannelsbyname": {
+  "min": 1,
+  "max": null
+ },
+ "deletecommand": {
+  "min": 0,
+  "max": 0
+ },
+ "deletein": {
+  "min": 1,
+  "max": 1
+ },
+ "deletemessage": {
+  "min": 2,
+  "max": 2
+ },
+ "deleterole": {
+  "min": 1,
+  "max": 1
+ },
+ "description": {
+  "min": 1,
+  "max": 2
+ },
+ "disableinnerspaceremoval": {
+  "min": 0,
+  "max": 0
+ },
+ "disablespecialescaping": {
+  "min": 0,
+  "max": 0
+ },
+ "discriminator": {
+  "min": 1,
+  "max": 1
+ },
+ "displayname": {
+  "min": 0,
+  "max": 1
+ },
+ "divide": {
+  "min": 2,
+  "max": null
+ },
+ "dm": {
+  "min": 0,
+  "max": 1
+ },
+ "dmchannelid": {
+  "min": 0,
+  "max": 1
+ },
+ "editbutton": {
+  "min": 3,
+  "max": 6
+ },
+ "editchannelperms": {
+  "min": 3,
+  "max": null
+ },
+ "editembedin": {
+  "min": 2,
+  "max": 5
+ },
+ "editin": {
+  "min": 2,
+  "max": 2
+ },
+ "editmessage": {
+  "min": 3,
+  "max": 7
+ },
+ "editselectmenu": {
+  "min": 3,
+  "max": 5
+ },
+ "editselectmenuoption": {
+  "min": 4,
+  "max": 7
+ },
+ "editsplittext": {
+  "min": 2,
+  "max": 2
+ },
+ "editthread": {
+  "min": 1,
+  "max": 6
+ },
+ "embeddedurl": {
+  "min": 1,
+  "max": 2
+ },
+ "embedsuppresserrors": {
+  "min": 2,
+  "max": 6
+ },
+ "emojicount": {
+  "min": 0,
+  "max": 1
+ },
+ "emojiexists": {
+  "min": 1,
+  "max": 1
+ },
+ "emojiname": {
+  "min": 1,
+  "max": 1
+ },
+ "emotecount": {
+  "min": 0,
+  "max": 0
+ },
+ "enabled": {
+  "min": 1,
+  "max": 2
+ },
+ "enabledecimals": {
+  "min": 1,
+  "max": 1
+ },
+ "ephemeral": {
+  "min": 0,
+  "max": 0
+ },
+ "error": {
+  "min": 0,
+  "max": 1
+ },
+ "eval": {
+  "min": 1,
+  "max": 1
+ },
+ "executiontime": {
+  "min": 0,
+  "max": 0
+ },
+ "findchannel": {
+  "min": 1,
+  "max": 1
+ },
+ "findrole": {
+  "min": 1,
+  "max": 1
+ },
+ "finduser": {
+  "min": 1,
+  "max": 2
+ },
+ "floor": {
+  "min": 1,
+  "max": 1
+ },
+ "footer": {
+  "min": 1,
+  "max": 2
+ },
+ "footericon": {
+  "min": 1,
+  "max": 2
+ },
+ "funcarg": {
+  "min": 1,
+  "max": 1
+ },
+ "funccall": {
+  "min": 1,
+  "max": 101
+ },
+ "funcreturn": {
+  "min": 1,
+  "max": 1
+ },
+ "getattachments": {
+  "min": 1,
+  "max": 1
+ },
+ "getbanreason": {
+  "min": 1,
+  "max": 2
+ },
+ "getbotinvite": {
+  "min": 0,
+  "max": 0
+ },
+ "getchannelselectchannelcount": {
+  "min": 0,
+  "max": 0
+ },
+ "getchannelselectchannelid": {
+  "min": 1,
+  "max": 1
+ },
+ "getchannelselectchannelids": {
+  "min": 1,
+  "max": 2
+ },
+ "getchannelvar": {
+  "min": 1,
+  "max": 2
+ },
+ "getcooldown": {
+  "min": 1,
+  "max": 1
+ },
+ "getcustomstatus": {
+  "min": 0,
+  "max": 1
+ },
+ "getembeddata": {
+  "min": 4,
+  "max": 4
+ },
+ "getguildmembervar": {
+  "min": 1,
+  "max": 3
+ },
+ "getguildvar": {
+  "min": 1,
+  "max": 2
+ },
+ "getinviteinfo": {
+  "min": 2,
+  "max": 2
+ },
+ "getleaderboardposition": {
+  "min": 3,
+  "max": 4
+ },
+ "getleaderboardvalue": {
+  "min": 4,
+  "max": 5
+ },
+ "getmemberscount": {
+  "min": 0,
+  "max": 0
+ },
+ "getmembervar": {
+  "min": 1,
+  "max": 3
+ },
+ "getmentionableselectusercount": {
+  "min": 0,
+  "max": 0
+ },
+ "getmentionableselectuserid": {
+  "min": 1,
+  "max": 1
+ },
+ "getmentionableselectuserids": {
+  "min": 1,
+  "max": 2
+ },
+ "getmessage": {
+  "min": 2,
+  "max": 3
+ },
+ "getmessagevar": {
+  "min": 1,
+  "max": 2
+ },
+ "getreactions": {
+  "min": 4,
+  "max": 4
+ },
+ "getrole": {
+  "min": 0,
+  "max": 3
+ },
+ "getrolecolor": {
+  "min": 1,
+  "max": 1
+ },
+ "getroleselectrolecount": {
+  "min": 0,
+  "max": 0
+ },
+ "getroleselectroleid": {
+  "min": 1,
+  "max": 1
+ },
+ "getroleselectroleids": {
+  "min": 1,
+  "max": 2
+ },
+ "getserverinvite": {
+  "min": 0,
+  "max": 1
+ },
+ "getservervar": {
+  "min": 1,
+  "max": 2
+ },
+ "getslowmode": {
+  "min": 0,
+  "max": 1
+ },
+ "getstringselectcount": {
+  "min": 0,
+  "max": 0
+ },
+ "getstringselectvalue": {
+  "min": 1,
+  "max": 1
+ },
+ "getstringselectvalues": {
+  "min": 1,
+  "max": 2
+ },
+ "gettextsplitindex": {
+  "min": 1,
+  "max": 1
+ },
+ "gettextsplitlength": {
+  "min": 0,
+  "max": 0
+ },
+ "gettimestamp": {
+  "min": 0,
+  "max": 1
+ },
+ "gettimestampms": {
+  "min": 0,
+  "max": 0
+ },
+ "getuserselectusercount": {
+  "min": 0,
+  "max": 0
+ },
+ "getuserselectuserid": {
+  "min": 1,
+  "max": 1
+ },
+ "getuserselectuserids": {
+  "min": 1,
+  "max": 2
+ },
+ "getuserstatus": {
+  "min": 0,
+  "max": 1
+ },
+ "getuservar": {
+  "min": 1,
+  "max": 3
+ },
+ "getvar": {
+  "min": 1,
+  "max": 2
+ },
+ "giverole": {
+  "min": 1,
+  "max": 2
+ },
+ "giveroles": {
+  "min": 2,
+  "max": null
+ },
+ "globalcooldown": {
+  "min": 2,
+  "max": 2
+ },
+ "globaluserleaderboard": {
+  "min": 1,
+  "max": 2
+ },
+ "guildbanner": {
+  "min": 1,
+  "max": 1
+ },
+ "guildcount": {
+  "min": 0,
+  "max": 0
+ },
+ "guildexists": {
+  "min": 1,
+  "max": 1
+ },
+ "guildicon": {
+  "min": 0,
+  "max": 1
+ },
+ "guildid": {
+  "min": 0,
+  "max": 0
+ },
+ "guildname": {
+  "min": 0,
+  "max": 1
+ },
+ "hasperms": {
+  "min": 2,
+  "max": null
+ },
+ "hasrole": {
+  "min": 2,
+  "max": 2
+ },
+ "highestrole": {
+  "min": 0,
+  "max": 1
+ },
+ "highestrolewithperms": {
+  "min": 1,
+  "max": null
+ },
+ "hostingexpiretime": {
+  "min": 0,
+  "max": 1
+ },
+ "hour": {
+  "min": 0,
+  "max": 0
+ },
+ "httpaddheader": {
+  "min": 2,
+  "max": 2
+ },
+ "httpdelete": {
+  "min": 1,
+  "max": 2
+ },
+ "httpget": {
+  "min": 1,
+  "max": 2
+ },
+ "httphead": {
+  "min": 1,
+  "max": 2
+ },
+ "httppatch": {
+  "min": 1,
+  "max": 2
+ },
+ "httppost": {
+  "min": 1,
+  "max": 2
+ },
+ "httpput": {
+  "min": 1,
+  "max": 2
+ },
+ "httpresult": {
+  "min": 0,
+  "max": 100
+ },
+ "httpstatus": {
+  "min": 0,
+  "max": 0
+ },
+ "hypesquad": {
+  "min": 0,
+  "max": 1
+ },
+ "i": {
+  "min": 0,
+  "max": 0
+ },
+ "if": {
+  "min": 2,
+  "max": 3
+ },
+ "ignorechannels": {
+  "min": 2,
+  "max": null
+ },
+ "ignorelinks": {
+  "min": 0,
+  "max": 0
+ },
+ "image": {
+  "min": 1,
+  "max": 2
+ },
+ "input": {
+  "min": 1,
+  "max": 1
+ },
+ "isadmin": {
+  "min": 1,
+  "max": 1
+ },
+ "isbanned": {
+  "min": 1,
+  "max": 1
+ },
+ "isboolean": {
+  "min": 1,
+  "max": 1
+ },
+ "isbooster": {
+  "min": 0,
+  "max": 2
+ },
+ "isbot": {
+  "min": 0,
+  "max": 0
+ },
+ "isemojianimated": {
+  "min": 1,
+  "max": 1
+ },
+ "ishoisted": {
+  "min": 1,
+  "max": 1
+ },
+ "isinteger": {
+  "min": 1,
+  "max": 1
+ },
+ "ismentionable": {
+  "min": 1,
+  "max": 1
+ },
+ "ismentioned": {
+  "min": 1,
+  "max": 1
+ },
+ "ismessageedited": {
+  "min": 2,
+  "max": 2
+ },
+ "isnsfw": {
+  "min": 1,
+  "max": 1
+ },
+ "isnumber": {
+  "min": 1,
+  "max": 1
+ },
+ "isslash": {
+  "min": 0,
+  "max": 0
+ },
+ "isticket": {
+  "min": 0,
+  "max": 1
+ },
+ "istimedout": {
+  "min": 1,
+  "max": 1
+ },
+ "isuserdmenabled": {
+  "min": 0,
+  "max": 1
+ },
+ "isvalidhex": {
+  "min": 1,
+  "max": 1
+ },
+ "joinsplittext": {
+  "min": 1,
+  "max": 1
+ },
+ "joinvoice": {
+  "min": 0,
+  "max": 1
+ },
+ "json": {
+  "min": 0,
+  "max": 100
+ },
+ "jsonarray": {
+  "min": 0,
+  "max": 100
+ },
+ "jsonarrayappend": {
+  "min": 2,
+  "max": 100
+ },
+ "jsonarraycount": {
+  "min": 0,
+  "max": 100
+ },
+ "jsonarrayindex": {
+  "min": 2,
+  "max": 100
+ },
+ "jsonarraypop": {
+  "min": 0,
+  "max": 100
+ },
+ "jsonarrayreverse": {
+  "min": 0,
+  "max": 100
+ },
+ "jsonarrayshift": {
+  "min": 0,
+  "max": 100
+ },
+ "jsonarraysort": {
+  "min": 1,
+  "max": 100
+ },
+ "jsonarrayunshift": {
+  "min": 2,
+  "max": 100
+ },
+ "jsonclear": {
+  "min": 0,
+  "max": 0
+ },
+ "jsonexists": {
+  "min": 0,
+  "max": 100
+ },
+ "jsonindex": {
+  "min": 0,
+  "max": 0
+ },
+ "jsonjoinarray": {
+  "min": 2,
+  "max": 100
+ },
+ "jsonkey": {
+  "min": 0,
+  "max": 0
+ },
+ "jsonkeys": {
+  "min": 0,
+  "max": 100
+ },
+ "jsonparse": {
+  "min": 1,
+  "max": 1
+ },
+ "jsonpretty": {
+  "min": 0,
+  "max": 1
+ },
+ "jsonset": {
+  "min": 2,
+  "max": 100
+ },
+ "jsonsetstring": {
+  "min": 2,
+  "max": 100
+ },
+ "jsonstringify": {
+  "min": 0,
+  "max": 0
+ },
+ "jsonunset": {
+  "min": 0,
+  "max": 100
+ },
+ "jsonvalue": {
+  "min": 0,
+  "max": 100
+ },
+ "jumptoaction": {
+  "min": 1,
+  "max": 1
+ },
+ "kick": {
+  "min": 0,
+  "max": 2
+ },
+ "kickmention": {
+  "min": 1,
+  "max": 1
+ },
+ "lastmessageid": {
+  "min": 0,
+  "max": 0
+ },
+ "lastpintimestamp": {
+  "min": 0,
+  "max": 0
+ },
+ "lavalinkauthor": {
+  "min": 0,
+  "max": 0
+ },
+ "lavalinkduration": {
+  "min": 0,
+  "max": 0
+ },
+ "lavalinkislooping": {
+  "min": 0,
+  "max": 0
+ },
+ "lavalinkispaused": {
+  "min": 0,
+  "max": 0
+ },
+ "lavalinkplaying": {
+  "min": 0,
+  "max": 0
+ },
+ "lavalinkposition": {
+  "min": 0,
+  "max": 0
+ },
+ "lavalinkqueuesize": {
+  "min": 0,
+  "max": 0
+ },
+ "lavalinkvolume": {
+  "min": 0,
+  "max": 0
+ },
+ "leavevoice": {
+  "min": 0,
+  "max": 0
+ },
+ "linescount": {
+  "min": 1,
+  "max": 1
+ },
+ "listvar": {
+  "min": 0,
+  "max": 1
+ },
+ "log": {
+  "min": 1,
+  "max": 1
+ },
+ "logquota": {
+  "min": 0,
+  "max": 0
+ },
+ "loopcount": {
+  "min": 0,
+  "max": 0
+ },
+ "loopindex": {
+  "min": 0,
+  "max": 0
+ },
+ "loopiteration": {
+  "min": 0,
+  "max": 0
+ },
+ "lowestrole": {
+  "min": 0,
+  "max": 1
+ },
+ "lowestrolewithperms": {
+  "min": 1,
+  "max": null
+ },
+ "max": {
+  "min": 2,
+  "max": null
+ },
+ "membercount": {
+  "min": 0,
+  "max": 0
+ },
+ "memberid": {
+  "min": 0,
+  "max": 0
+ },
+ "membernick": {
+  "min": 0,
+  "max": 1
+ },
+ "memberperms": {
+  "min": 0,
+  "max": 3
+ },
+ "memberscount": {
+  "min": 0,
+  "max": 0
+ },
+ "mentioned": {
+  "min": 1,
+  "max": 2
+ },
+ "mentionedchannels": {
+  "min": 1,
+  "max": 2
+ },
+ "mentionedroles": {
+  "min": 1,
+  "max": 1
+ },
+ "mentions": {
+  "min": 0,
+  "max": 1
+ },
+ "message": {
+  "min": 0,
+  "max": 2
+ },
+ "messageeditedtimestamp": {
+  "min": 2,
+  "max": 2
+ },
+ "messageid": {
+  "min": 0,
+  "max": 0
+ },
+ "messagetimestamp": {
+  "min": 0,
+  "max": 2
+ },
+ "messagetype": {
+  "min": 0,
+  "max": 2
+ },
+ "messageurl": {
+  "min": 0,
+  "max": 2
+ },
+ "min": {
+  "min": 2,
+  "max": null
+ },
+ "minute": {
+  "min": 0,
+  "max": 0
+ },
+ "modifychannel": {
+  "min": 1,
+  "max": 6
+ },
+ "modifychannelperms": {
+  "min": 3,
+  "max": 3
+ },
+ "modifyrole": {
+  "min": 1,
+  "max": 6
+ },
+ "modifyroleperms": {
+  "min": 2,
+  "max": null
+ },
+ "modulo": {
+  "min": 2,
+  "max": 2
+ },
+ "month": {
+  "min": 0,
+  "max": 0
+ },
+ "multi": {
+  "min": 2,
+  "max": null
+ },
+ "mute": {
+  "min": 1,
+  "max": 1
+ },
+ "newmodal": {
+  "min": 2,
+  "max": 2
+ },
+ "newselectmenu": {
+  "min": 3,
+  "max": 5
+ },
+ "newticket": {
+  "min": 5,
+  "max": 7
+ },
+ "nickname": {
+  "min": 0,
+  "max": 1
+ },
+ "nodeversion": {
+  "min": 0,
+  "max": 0
+ },
+ "nomention": {
+  "min": 0,
+  "max": 0
+ },
+ "nomentionmessage": {
+  "min": 0,
+  "max": 0
+ },
+ "numberseparator": {
+  "min": 1,
+  "max": 2
+ },
+ "onlinemembers": {
+  "min": 0,
+  "max": 1
+ },
+ "onlyadmin": {
+  "min": 1,
+  "max": 1
+ },
+ "onlybotchannelperms": {
+  "min": 3,
+  "max": null
+ },
+ "onlybotperms": {
+  "min": 2,
+  "max": null
+ },
+ "onlyforcategories": {
+  "min": 2,
+  "max": null
+ },
+ "onlyforchannels": {
+  "min": 2,
+  "max": null
+ },
+ "onlyforids": {
+  "min": 2,
+  "max": null
+ },
+ "onlyforroleids": {
+  "min": 2,
+  "max": null
+ },
+ "onlyforroles": {
+  "min": 2,
+  "max": null
+ },
+ "onlyforservers": {
+  "min": 2,
+  "max": null
+ },
+ "onlyforusers": {
+  "min": 2,
+  "max": null
+ },
+ "onlyif": {
+  "min": 1,
+  "max": 2
+ },
+ "onlyifmessagecontains": {
+  "min": 3,
+  "max": null
+ },
+ "onlynsfw": {
+  "min": 1,
+  "max": 1
+ },
+ "onlyperms": {
+  "min": 2,
+  "max": null
+ },
+ "optoff": {
+  "min": 0,
+  "max": 0
+ },
+ "or": {
+  "min": 1,
+  "max": 100
+ },
+ "parentid": {
+  "min": 0,
+  "max": 1
+ },
+ "pausemusic": {
+  "min": 0,
+  "max": 0
+ },
+ "ping": {
+  "min": 0,
+  "max": 0
+ },
+ "pinmessage": {
+  "min": 0,
+  "max": 0
+ },
+ "playmusic": {
+  "min": 1,
+  "max": 3
+ },
+ "premiumexpiretime": {
+  "min": 0,
+  "max": 1
+ },
+ "publishmessage": {
+  "min": 2,
+  "max": 2
+ },
+ "random": {
+  "min": 0,
+  "max": 2,
+  "counts": [
+   0,
+   2
+  ]
+ },
+ "randomcategoryid": {
+  "min": 0,
+  "max": 1
+ },
+ "randomchannelid": {
+  "min": 0,
+  "max": 0
+ },
+ "randomguildid": {
+  "min": 0,
+  "max": 0
+ },
+ "randommention": {
+  "min": 0,
+  "max": 0
+ },
+ "randomroleid": {
+  "min": 0,
+  "max": 1
+ },
+ "randomstring": {
+  "min": 1,
+  "max": 1
+ },
+ "randomtext": {
+  "min": 1,
+  "max": null
+ },
+ "randomuser": {
+  "min": 0,
+  "max": 0
+ },
+ "randomuserid": {
+  "min": 0,
+  "max": 0
+ },
+ "registerguildcommands": {
+  "min": 0,
+  "max": 1
+ },
+ "removeallcomponents": {
+  "min": 0,
+  "max": 1
+ },
+ "removebuttons": {
+  "min": 0,
+  "max": 1
+ },
+ "removecomponent": {
+  "min": 1,
+  "max": 2
+ },
+ "removecontains": {
+  "min": 2,
+  "max": 2
+ },
+ "removeemoji": {
+  "min": 1,
+  "max": 1
+ },
+ "removelinks": {
+  "min": 0,
+  "max": 0
+ },
+ "removereaction": {
+  "min": 4,
+  "max": 4
+ },
+ "removesplittextelement": {
+  "min": 1,
+  "max": 1
+ },
+ "repeatmessage": {
+  "min": 2,
+  "max": 2
+ },
+ "replacetext": {
+  "min": 3,
+  "max": 4
+ },
+ "repliedmessageid": {
+  "min": 0,
+  "max": 0
+ },
+ "reply": {
+  "min": 0,
+  "max": 2
+ },
+ "replyin": {
+  "min": 1,
+  "max": 1
+ },
+ "resetchannelvar": {
+  "min": 1,
+  "max": 1
+ },
+ "resetglobaluservar": {
+  "min": 1,
+  "max": 2
+ },
+ "resetguildmembervar": {
+  "min": 1,
+  "max": 3
+ },
+ "resetguildvar": {
+  "min": 1,
+  "max": 1
+ },
+ "resetmembervar": {
+  "min": 1,
+  "max": 3
+ },
+ "resetservervar": {
+  "min": 1,
+  "max": 1
+ },
+ "resetuservar": {
+  "min": 1,
+  "max": 2
+ },
+ "resumemusic": {
+  "min": 0,
+  "max": 0
+ },
+ "rolecount": {
+  "min": 0,
+  "max": 0
+ },
+ "roleexists": {
+  "min": 1,
+  "max": 1
+ },
+ "rolegrant": {
+  "min": 2,
+  "max": null
+ },
+ "roleid": {
+  "min": 1,
+  "max": 1
+ },
+ "roleinfo": {
+  "min": 1,
+  "max": 1
+ },
+ "rolename": {
+  "min": 1,
+  "max": 1
+ },
+ "rolenames": {
+  "min": 0,
+  "max": 0
+ },
+ "roleperms": {
+  "min": 2,
+  "max": 3
+ },
+ "roleposition": {
+  "min": 1,
+  "max": 1
+ },
+ "round": {
+  "min": 1,
+  "max": 2
+ },
+ "ruleschannelid": {
+  "min": 0,
+  "max": 1
+ },
+ "scriptlanguage": {
+  "min": 0,
+  "max": 0
+ },
+ "second": {
+  "min": 0,
+  "max": 0
+ },
+ "seekmusic": {
+  "min": 1,
+  "max": 1
+ },
+ "sendembedmessage": {
+  "min": 2,
+  "max": 14
+ },
+ "sendmessage": {
+  "min": 1,
+  "max": 2
+ },
+ "serverbanner": {
+  "min": 0,
+  "max": 1
+ },
+ "serverboostcount": {
+  "min": 0,
+  "max": 1
+ },
+ "serverchannelexists": {
+  "min": 1,
+  "max": 1
+ },
+ "servercooldown": {
+  "min": 2,
+  "max": 2
+ },
+ "servercount": {
+  "min": 0,
+  "max": 0
+ },
+ "serverdescription": {
+  "min": 0,
+  "max": 0
+ },
+ "serveremojis": {
+  "min": 2,
+  "max": 2
+ },
+ "serverexists": {
+  "min": 1,
+  "max": 1
+ },
+ "serverfeatures": {
+  "min": 0,
+  "max": 1
+ },
+ "servericon": {
+  "min": 0,
+  "max": 0
+ },
+ "serverid": {
+  "min": 0,
+  "max": 0
+ },
+ "serverinfo": {
+  "min": 0,
+  "max": 2
+ },
+ "serverleaderboard": {
+  "min": 1,
+  "max": 2
+ },
+ "servername": {
+  "min": 0,
+  "max": 1
+ },
+ "servernames": {
+  "min": 0,
+  "max": 0
+ },
+ "serverowner": {
+  "min": 0,
+  "max": 0
+ },
+ "serverregion": {
+  "min": 0,
+  "max": 1
+ },
+ "serversplash": {
+  "min": 0,
+  "max": 1
+ },
+ "servervanityurl": {
+  "min": 0,
+  "max": 1
+ },
+ "serververificationlevel": {
+  "min": 0,
+  "max": 1
+ },
+ "serververificationlvl": {
+  "min": 0,
+  "max": 0
+ },
+ "setchannelvar": {
+  "min": 2,
+  "max": 3
+ },
+ "setguildmembervar": {
+  "min": 2,
+  "max": 4
+ },
+ "setguildvar": {
+  "min": 2,
+  "max": 3
+ },
+ "setmembervar": {
+  "min": 2,
+  "max": 4
+ },
+ "setmessagevar": {
+  "min": 2,
+  "max": 3
+ },
+ "setmusicloop": {
+  "min": 1,
+  "max": 1
+ },
+ "setmusicvolume": {
+  "min": 1,
+  "max": 1
+ },
+ "setnickname": {
+  "min": 1,
+  "max": 2
+ },
+ "setservervar": {
+  "min": 2,
+  "max": 3
+ },
+ "setuserroles": {
+  "min": 2,
+  "max": null
+ },
+ "setuservar": {
+  "min": 2,
+  "max": 4
+ },
+ "setvar": {
+  "min": 2,
+  "max": 3
+ },
+ "shardid": {
+  "min": 0,
+  "max": 0
+ },
+ "skipactions": {
+  "min": 1,
+  "max": 1
+ },
+ "skipmusic": {
+  "min": 0,
+  "max": 0
+ },
+ "slashcommandscount": {
+  "min": 0,
+  "max": 0
+ },
+ "slashid": {
+  "min": 0,
+  "max": 1
+ },
+ "slowmode": {
+  "min": 2,
+  "max": 2
+ },
+ "sort": {
+  "min": 4,
+  "max": null
+ },
+ "splittext": {
+  "min": 1,
+  "max": 1
+ },
+ "sqrt": {
+  "min": 1,
+  "max": 1
+ },
+ "startthread": {
+  "min": 3,
+  "max": 5
+ },
+ "stickercount": {
+  "min": 0,
+  "max": 1
+ },
+ "stop": {
+  "min": 0,
+  "max": 0
+ },
+ "stopmusic": {
+  "min": 0,
+  "max": 0
+ },
+ "sub": {
+  "min": 2,
+  "max": null
+ },
+ "sum": {
+  "min": 2,
+  "max": null
+ },
+ "suppresserrorlogging": {
+  "min": 0,
+  "max": 0
+ },
+ "suppresserrors": {
+  "min": 0,
+  "max": 1
+ },
+ "systemchannelid": {
+  "min": 0,
+  "max": 0
+ },
+ "takerole": {
+  "min": 1,
+  "max": 2
+ },
+ "takeroles": {
+  "min": 2,
+  "max": null
+ },
+ "textsplit": {
+  "min": 2,
+  "max": 2
+ },
+ "threadaddmember": {
+  "min": 2,
+  "max": 2
+ },
+ "threadmessagecount": {
+  "min": 0,
+  "max": 0
+ },
+ "threadremovemember": {
+  "min": 2,
+  "max": 2
+ },
+ "threadusercount": {
+  "min": 0,
+  "max": 0
+ },
+ "thumbnail": {
+  "min": 1,
+  "max": 2
+ },
+ "time": {
+  "min": 1,
+  "max": 1
+ },
+ "timeout": {
+  "min": 1,
+  "max": 2
+ },
+ "title": {
+  "min": 1,
+  "max": 2
+ },
+ "tolowercase": {
+  "min": 1,
+  "max": 1
+ },
+ "totitlecase": {
+  "min": 1,
+  "max": 1
+ },
+ "touppercase": {
+  "min": 1,
+  "max": 1
+ },
+ "trimcontent": {
+  "min": 1,
+  "max": 1
+ },
+ "trimspace": {
+  "min": 1,
+  "max": 1
+ },
+ "tts": {
+  "min": 0,
+  "max": 0
+ },
+ "unban": {
+  "min": 0,
+  "max": 0
+ },
+ "unbanid": {
+  "min": 0,
+  "max": 1
+ },
+ "unescape": {
+  "min": 1,
+  "max": 1
+ },
+ "unmute": {
+  "min": 1,
+  "max": 1
+ },
+ "unpinmessage": {
+  "min": 2,
+  "max": 2
+ },
+ "unregisterguildcommands": {
+  "min": 0,
+  "max": 1
+ },
+ "untimeout": {
+  "min": 0,
+  "max": 1
+ },
+ "uptime": {
+  "min": 0,
+  "max": 0
+ },
+ "url": {
+  "min": 2,
+  "max": 2
+ },
+ "usechannel": {
+  "min": 1,
+  "max": 1
+ },
+ "useravatar": {
+  "min": 1,
+  "max": 1
+ },
+ "userbadges": {
+  "min": 0,
+  "max": 1
+ },
+ "userbanner": {
+  "min": 1,
+  "max": 1
+ },
+ "userbannercolor": {
+  "min": 1,
+  "max": 1
+ },
+ "userexists": {
+  "min": 1,
+  "max": 1
+ },
+ "userid": {
+  "min": 0,
+  "max": 0
+ },
+ "userinfo": {
+  "min": 1,
+  "max": 1
+ },
+ "userjoined": {
+  "min": 1,
+  "max": 2
+ },
+ "userjoineddiscord": {
+  "min": 1,
+  "max": 2
+ },
+ "userleaderboard": {
+  "min": 1,
+  "max": 2
+ },
+ "username": {
+  "min": 0,
+  "max": 1
+ },
+ "userperms": {
+  "min": 3,
+  "max": 3
+ },
+ "userreacted": {
+  "min": 4,
+  "max": 4
+ },
+ "userroles": {
+  "min": 1,
+  "max": 1
+ },
+ "userserveravatar": {
+  "min": 1,
+  "max": 1
+ },
+ "userswithrole": {
+  "min": 1,
+  "max": 3
+ },
+ "usertag": {
+  "min": 0,
+  "max": 1
+ },
+ "var": {
+  "min": 1,
+  "max": 2
+ },
+ "varexisterror": {
+  "min": 2,
+  "max": 2
+ },
+ "varexists": {
+  "min": 1,
+  "max": 1
+ },
+ "variablescount": {
+  "min": 1,
+  "max": 1
+ },
+ "voiceuserlimit": {
+  "min": 0,
+  "max": 1
+ },
+ "wait": {
+  "min": 1,
+  "max": 1
+ },
+ "webhookavatarurl": {
+  "min": 2,
+  "max": 2
+ },
+ "webhookcolor": {
+  "min": 2,
+  "max": 2
+ },
+ "webhookcontent": {
+  "min": 2,
+  "max": 2
+ },
+ "webhookcreate": {
+  "min": 2,
+  "max": 3
+ },
+ "webhookdelete": {
+  "min": 1,
+  "max": 1
+ },
+ "webhookdescription": {
+  "min": 2,
+  "max": 2
+ },
+ "webhookfooter": {
+  "min": 2,
+  "max": 2
+ },
+ "webhooksend": {
+  "min": 1,
+  "max": 13
+ },
+ "webhooktitle": {
+  "min": 2,
+  "max": 2
+ },
+ "webhookusername": {
+  "min": 2,
+  "max": 2
+ },
+ "workflowresponse": {
+  "min": 0,
+  "max": 1
+ },
+ "year": {
+  "min": 0,
+  "max": 0
+ }
+}

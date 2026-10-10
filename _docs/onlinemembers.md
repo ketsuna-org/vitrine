@@ -44,7 +44,6 @@ $addField[👥 Total;$membersCount;yes]
 $addField[📊 Ratio;$round[$multi[$divide[$onlineMembers;$membersCount];100]]%;yes]
 $thumbnail[$serverIcon]
 $color[#2ECC71]
-$sendEmbedMessage
 ```
 
 ### Calculating activity rate
@@ -67,7 +66,6 @@ $addField[👥 Total;$membersCount;yes]
 $addField[🤖 Bots;$botCount;yes]
 $addField[🚀 Boosts;$serverBoostCount;yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ## Notes

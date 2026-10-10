@@ -4,32 +4,31 @@ title: $roleID
 translation_key: docs
 category: "Entity Info"
 function_name: roleID
-syntax: $roleID[name;(guildID)]
-description: Returns the ID of a Discord role from its name or mention. Case-insensitive.
+syntax: $roleID[name]
+description: Returns the ID of a Discord role from its exact name in the current server.
 ---
 
 # $roleID
 
-The function `$roleID` returns the **ID** of a Discord role from its **name** or **mention**. The search is case-insensitive.
+The function `$roleID` returns the **ID** of a Discord role from its **name**. The name must match exactly (case-sensitive) and be unique among the roles of the server.
 
 ## Syntax
 
 ```
-$roleID[name;(guildID)]
+$roleID[name]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `name` | The name of the role or a raw mention (`<@&id>`). |
-| `guildID` | Optional. The ID of the target server. If omitted, the current server is used. |
+| `name` | The exact name of the role (case-sensitive). Required. An empty name returns `""`. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the role, or `""` if not found. |
+| `snowflake` (string) | The ID of the role, or `""` if no role or several roles have this name. |
 
 ## Examples
 
@@ -49,20 +48,8 @@ $else
 $endif
 ```
 
-### From a mention
-
-```bdfd
-$sendMessage[ID extracted from the mention: $roleID[<@&123456789012345678>]]
-```
-
-### On another server
-
-```bdfd
-$sendMessage[Role ID on another server: $roleID[Mod;987654321098765432]]
-```
-
 ## Notes
 
-- If multiple roles have the exact same name, only the first found is returned.
-- A raw mention (`<@&id>`) is accepted as a parameter.
-- Use `$findRole` for a partial name search.
+- If several roles have the exact same name, the function returns an empty string.
+- A mention (`<@&id>`) is not resolved: the argument is compared to role names only.
+- Use `$findRole` to look up a role from a name, an ID or a mention.

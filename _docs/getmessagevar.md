@@ -23,5 +23,4 @@ Variables are defined and configured in the Bot Creator Variables UI, where you 
 $title[Reaction Count]
 $description[Upvotes on message: **$getMessageVar[upvotes;$messageID]** 👍]
 $color[#5865F2]
-$sendMessage[]
 ```

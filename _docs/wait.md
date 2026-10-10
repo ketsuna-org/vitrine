@@ -61,7 +61,6 @@ Without `$defer`, Discord will show "This interaction failed" because no respons
 $title[Timed Notification]
 $description[Processing request, please wait 3 seconds...]
 $color[#FEE75C]
-$sendMessage[]
 $wait[3s]
-$editMessage[$messageID;✅ Operation completed successfully!]
+$editMessage[$channelID;$messageID;✅ Operation completed successfully!]
 ```

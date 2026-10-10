@@ -54,7 +54,6 @@ $addField[Server ID;$serverID;yes]
 $addField[Owner;$serverOwner;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Notification to the owner

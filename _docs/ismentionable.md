@@ -4,7 +4,7 @@ title: $isMentionable
 translation_key: docs
 category: "Entity Info"
 function_name: isMentionable
-syntax: $isMentionable[roleID;(guildID)]
+syntax: $isMentionable[roleID]
 description: "Checks if a role is mentionable. Returns \"true\" or \"false\"."
 ---
 
@@ -15,15 +15,14 @@ The function `$isMentionable` checks if a Discord role is **mentionable** by ser
 ## Syntax
 
 ```
-$isMentionable[roleID;(guildID)]
+$isMentionable[roleID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role. Required. |
-| `guildID` | Optional. The ID of the target server. |
+| `roleID` | Required. The ID of the role (in the current server). An invalid ID raises "Invalid role ID."; an ID that is not a role of the server raises "Role not found." |
 
 ## Return Value
 
@@ -57,14 +56,8 @@ $if[$isMentionable[$roleID[Modo]]==false]
 $endif
 ```
 
-### Retrieve via $roleInfo
-
-```bdfd
-$sendMessage[Mentionable: $roleInfo[123456789012345678;mentionable]]
-```
-
 ## Notes
 
 - Returns a string `"true"` or `"false"`.
-- Equivalent to `$roleInfo[roleID;mentionable]`.
+- Takes exactly one argument; there is no `guildID` parameter.
 - Useful for checking before sending a role mention.

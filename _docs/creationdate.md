@@ -44,11 +44,10 @@ $creationDate[entityID]
 $title[👤 $userName[$authorID]]
 $description[
 **Account created on:** $creationDate[$authorID]
-**Joined on:** $memberJoinDate[$authorID]
+**Joined on:** $userJoined[$authorID]
 **ID:** $authorID
 ]
 $thumbnail[$userAvatar[$authorID]]
-$sendMessage[]
 ```
 
 ### Server info
@@ -57,11 +56,10 @@ $sendMessage[]
 $title[📋 $serverName]
 $description[
 **Created on:** $creationDate[$guildID]
-**Owner:** $userName[$ownerID]
+**Owner:** $userName[$serverOwner]
 **Members:** $membersCount
 ]
 $thumbnail[$serverIcon]
-$sendMessage[]
 ```
 
 ### Account Age

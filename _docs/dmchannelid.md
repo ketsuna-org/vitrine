@@ -4,8 +4,8 @@ title: $dmChannelID
 translation_key: docs
 category: "Embed & Message"
 function_name: dmChannelID
-syntax: $dmChannelID[userID]
-description: Retrieves the DM channel ID (private conversation) between the bot and a user. Automatically creates the DM channel if it does not exist yet.
+syntax: $dmChannelID[(userID)]
+description: Returns the DM channel ID stored in the command context for the user (variable user.dmChannelId), or an empty string if none is set. Does not create a DM channel.
 ---
 
 # $dmChannelID
@@ -15,26 +15,25 @@ The `$dmChannelID[]` function returns the **DM channel ID** (private conversatio
 ## Syntax
 
 ```
-$dmChannelID[userID]
+$dmChannelID[(userID)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user whose DM channel ID is requested. |
+| `userID` | Optional. Accepted (0 or 1 argument) but **ignored** by the engine. |
 
 ## Return value
 
 - **Type**: Snowflake (string)
-- The ID of the DM channel.
-- Automatically creates the DM channel if necessary.
+- The value of the context variable `user.dmChannelId`, or an empty string if it is not set.
+- The engine does not create or look up a DM channel.
 
 ## Behavior
 
-- Creates the DM channel if the conversation does not exist yet.
-- Useful for combining with `$useChannel[]` or `$channelSendMessage[]`.
-- Does not fail if the user has closed their DMs (the channel is created, but sending messages may fail).
+- The user ID argument does not change the result: the value comes from the command context (`user.dmChannelId`).
+- When no DM channel ID is present in the context, the result is empty.
 
 ## Examples
 
@@ -60,6 +59,4 @@ $log[DM opened with <@$authorID> - Channel: $dmChannelID[$authorID]]
 
 ## Notes
 
-- The DM channel is persistent once created by Discord.
-- To send a private message, `$dm[]` is simpler.
-- Use `$dmChannelID[]` when you need the ID for other operations.
+- To send a private message, `$dm` is simpler.

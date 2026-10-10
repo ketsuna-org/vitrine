@@ -17,5 +17,4 @@ Returns the number of tracks currently waiting in the music queue. This count do
 $title[Music Queue 🎵]
 $description[There are **$lavalinkQueueSize** songs waiting in queue.]
 $color[#AEEA00]
-$sendMessage[]
 ```

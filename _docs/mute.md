@@ -4,57 +4,51 @@ title: $mute
 translation_key: docs
 category: "Moderation"
 function_name: mute
-syntax: $mute[userID;(reason)]
-description: Mutes a user on the server.
+syntax: $mute[roleName]
+description: Grants a role, identified by its name, to the user(s) mentioned in the message (role-based mute).
 ---
 
 # $mute
 
-The function `$mute` **mutes a user** on the Discord server. This prevents them from speaking in voice channels. The bot must have the `MuteMembers` permission.
+The function `$mute[]` is a **role-based mute**: it gives the server role whose name is `roleName` to the user(s) mentioned in the command message. It does not apply the Discord voice mute; the effect of the mute depends on the permissions of the role you give (for example a role that cannot send messages).
 
 ## Syntax
 
 ```
-$mute[userID;(reason)]
+$mute[roleName]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user to mute. Required. |
-| `reason` | Optional. The reason for the mute. |
+| `roleName` | Required. The exact name of the role to grant (case-sensitive). An error is raised if no role has this name. |
 
 ## Return Value
 
-None. The user is muted.
+None. The role is added to each mentioned user.
+
+## Behavior
+
+- The users are taken from the user mentions of the command message. If the message mentions no user, an error is raised (the author is never used as a fallback).
+- The role is looked up by exact name among the roles of the server.
+- The bot must be allowed to manage the role (the engine checks it and returns a permission error otherwise).
+- There is no reason parameter: `$mute` accepts exactly one argument.
 
 ## Examples
 
 ### Simple Mute
 
 ```bdfd
-$mute[$mentioned[1];Spam vocal]
-$sendMessage[<@$mentioned[1]> was muted for voice spam.]
-```
-
-### Mute with moderation command
-
-```bdfd
-$if[$argsCount<1]
-  $sendMessage[Usage: !mute <@mention> <reason>]
-  $stop
-$endif
-
-$mute[$mentioned[1];$replaceText[$message;-;$mentioned[1];]]
-$sendMessage[🔇 <@$mentioned[1]> is now muted.]
+$mute[Muted]
+$sendMessage[<@$mentioned[1]> was muted.]
 ```
 
 ### Verification before mute
 
 ```bdfd
-$if[$isAdmin==true]
-  $mute[$mentioned[1];Violation of voice rules]
+$if[$isAdmin[$authorID]==true]
+  $mute[Muted]
   $sendMessage[Member muted.]
 $else
   $sendMessage[Permission denied.]
@@ -63,8 +57,6 @@ $endif
 
 ## Notes
 
-- The bot must have the `MuteMembers` permission.
-- The mute prevents users from speaking in voice channels, not from writing in text channels.
-- To prevent sending messages, create a role without write permissions and use `$giveRole`.
-- To unmute the user, use `$unmute`.
+- Create beforehand a role (here `Muted`) whose permissions prevent speaking or writing, and keep its name identical to the one passed to `$mute`.
+- To remove the role again, use `$unmute[roleName]`.
 - For a temporary timeout, use `$timeout`.

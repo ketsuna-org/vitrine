@@ -59,7 +59,6 @@ $addField[🏷️ Stickers;$stickerCount;yes]
 $addField[🚀 Boosts;$serverBoostCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Warning if limit is almost reached

@@ -38,5 +38,4 @@ Only **temporary** variables (`$var`) are listed. Global and user-scoped variabl
 $title[Database Variables]
 $description[Defined server variables:\n`$listVar[server]`]
 $color[#5865F2]
-$sendMessage[]
 ```

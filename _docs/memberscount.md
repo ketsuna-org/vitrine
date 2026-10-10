@@ -44,7 +44,6 @@ $addField[🟢 Online;$onlineMembers;yes]
 $addField[🤖 Bots;$botCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Comparison

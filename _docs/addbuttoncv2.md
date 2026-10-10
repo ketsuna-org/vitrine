@@ -66,10 +66,9 @@ $sendMessage[Feature coming soon]
 
 ## Handling interactions
 
-Clicks on buttons are handled via the `$onInteraction` event:
+Clicks on buttons are handled by the script run for the interaction, which reads the clicked button with `$customID`:
 
 ```bdfd
-$onInteraction
 $if[$customID==my_button]
   $sendMessage[You clicked!]
 $endif

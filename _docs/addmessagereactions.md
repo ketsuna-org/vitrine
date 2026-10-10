@@ -55,7 +55,7 @@ $addMessageReactions[$var[chanID];$var[msgID];👍;👎]
 ### Reacting to a giveaway message
 
 ```bdfd
-$addMessageReactions[$giveawayChannel;123456789;🎉]
+$addMessageReactions[123456789012345678;123456789;🎉]
 $sendMessage[React with 🎉 to participate!]
 ```
 

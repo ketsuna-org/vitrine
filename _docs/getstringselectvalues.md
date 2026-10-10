@@ -4,7 +4,7 @@ title: $getStringSelectValues
 translation_key: docs
 category: "Components & Interactions"
 function_name: getStringSelectValues
-syntax: $getStringSelectValues[(separator)]
+syntax: $getStringSelectValues[separator;(limit)]
 description: Gets all option values selected in a multi-select string select menu.
 ---
 
@@ -15,24 +15,26 @@ The function `$getStringSelectValues[]` retrieves all option values chosen by th
 ## Syntax
 
 ```
-$getStringSelectValues[(separator)]
+$getStringSelectValues[separator;(limit)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `separator` | Optional - The separator between each value. Defaults to `, ` (comma + space). |
+| `separator` | The separator inserted between each element. Required (it may be a single space or any text). |
+| `limit` | Optional - The maximum number of elements returned (integer of 1 or more). If empty or omitted, all selected elements are returned. |
 
 ## Return Value
 
 - **Type**: String
 - The list of all selected values, separated by the delimiter.
 - An empty string if no option was selected.
+- An error is raised if the limit is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no string selection.
 
 ## Behavior
 
-- Used with a string select menu configured with `maxValues > 1`.
+- Only usable in the callback of a component interaction carrying a string selection.
 - Returns the values (not the labels) of the chosen options.
 - Allows processing multiple choices in a single interaction.
 
@@ -41,34 +43,18 @@ $getStringSelectValues[(separator)]
 ### Processing multiple choices
 
 ```bdfd
-$onInteraction[menu]
-$var[vals;$getStringSelectValues[,]]
-
-You selected:
-$textSplit[$var[vals];,]
-  - Option: $splitText[$index]
-$endTextSplit
-
-$sendMessage[]
+$var[vals;$getStringSelectValues[, ]]
+$sendMessage[You selected: $var[vals]]
 ```
 
-### Conditional loop
+### Limit the number of values
 
 ```bdfd
-$onInteraction[menu]
-$var[choices;$getStringSelectValues[,]]
-
-$textSplit[$var[choices];,]
-  $if[$splitText[$index]==notif]
-    $sendDM[$authorID;🔔 Notifications enabled!]
-  $elseif[$splitText[$index]==news]
-    $sendDM[$authorID;📰 Newsletter enabled!]
-  $endif
-$endTextSplit
+$sendMessage[First two choices: $getStringSelectValues[, ;2]]
 ```
 
 ## Notes
 
 - For a single selection, use `$getStringSelectValue[]`.
 - The separator can be customized to make parsing easier.
-- The values are defined in `$addStringSelectMenu[]`.
+- The values are defined with `$addStringSelectOption[]`.

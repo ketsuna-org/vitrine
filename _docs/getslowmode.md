@@ -59,7 +59,6 @@ $if[$getSlowmode>0]
   $title[⏱️ Slowmode Active]
   $description[The channel <#$channelID> has a slowmode of **$getSlowmode seconds**.]
   $color[#FEE75C]
-  $sendMessage[]
 $endif
 ```
 

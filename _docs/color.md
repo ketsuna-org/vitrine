@@ -57,7 +57,6 @@ This function does not return anything: it modifies the response currently being
 $title[Information]
 $description[Your profile has been updated.]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Red embed (error)
@@ -66,7 +65,6 @@ $sendMessage[]
 $title[Error]
 $description[You do not have permission to use this command.]
 $color[#ED4245]
-$sendMessage[]
 ```
 
 ### Green embed (success)
@@ -75,7 +73,6 @@ $sendMessage[]
 $title[Success]
 $description[The operation completed successfully!]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ## Notes

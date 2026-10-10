@@ -69,6 +69,5 @@ $sendMessage[You clicked a button!]
 $title[Awaiting Input]
 $description[Please type `confirm` within 30 seconds to proceed.]
 $color[#FEE75C]
-$sendMessage[]
 $awaitFunc[confirm_handler;30s;$authorID]
 ```

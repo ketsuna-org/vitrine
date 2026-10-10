@@ -17,6 +17,7 @@
     </a>
     <a href="{{ '/docs/blocks/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Blocks Guide</a>
     <a href="{{ '/docs/blocks-dictionary/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Blocks Dictionary</a>
+    <a href="{{ '/playground/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Playground</a>
     <a href="{{ '/docs/tickets/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Ticket System Guide</a>
     <a href="{{ '/docs/execution-model/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Execution &amp; compatibility</a>
     <a href="{{ '/docs/javascript/' | relative_url }}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all mt-1">
@@ -52,9 +53,8 @@
             <ul id="cat-list-{{ cat_slug }}" class="flex flex-col gap-1 pl-4 mt-1 {% unless is_active_cat or page.url == '/docs/' %}hidden{% endunless %}">
               {% for doc in cat_docs %}
                 <li>
-                  {% assign doc_first_line = doc.content | slice: 0, 80 | strip | split: "\n" | first %}
-                  {% assign doc_label = doc.title %}
-                  {% if doc_first_line contains "# " %}{% assign doc_label = doc_first_line | remove: "# " | strip %}{% endif %}
+                  {% comment %} Label = front matter title (short name). Never derive it from the page body. {% endcomment %}
+                  {% assign doc_label = doc.title | default: doc.function_name %}
                   <a href="{{ doc.url | relative_url }}"
                      class="sidebar-item block px-3 py-2 rounded-md text-[13px] font-mono transition-all {% if page.url == doc.url %}bg-primary/10 text-primary{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
                      data-search-term="{{ doc.title | downcase }} {{ doc_label | downcase }} {{ doc.description | default: '' | downcase }} {{ doc.function_name | default: '' | downcase }}">

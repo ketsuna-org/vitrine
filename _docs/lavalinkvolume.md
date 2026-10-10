@@ -17,5 +17,4 @@ Returns the current playback volume level as an integer between 0 (silent) and 1
 $title[Volume Level 🔊]
 $description[Current audio playback volume: **$lavalinkVolume%**]
 $color[#AEEA00]
-$sendMessage[]
 ```

@@ -41,7 +41,6 @@ $description[
 **Tag:** $authorTag
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Owner verification

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: lowestRoleWithPerms
 syntax: $lowestRoleWithPerms[permission1;permission2;...]
-description: Returns the ID of the lowest role of the user that possesses the specified permissions.
+description: Returns the ID of the lowest role of the server (in the role hierarchy) that possesses all the specified permissions.
 ---
 
 # $lowestRoleWithPerms
 
-The function `$lowestRoleWithPerms[]` returns the **ID of the lowest role** of the user that possesses one or more specific permissions.
+The function `$lowestRoleWithPerms[]` returns the **ID of the lowest role of the server** (in the role hierarchy) that possesses one or more specific permissions.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ $lowestRoleWithPerms[permission1;permission2;...]
 
 | Parameter | Description |
 |---|---|
-| `permissions` | One or more Discord permissions, separated by semicolons. All listed permissions must be present on the role. |
+| `permission1;permission2;...` | Required, at least one. Discord permissions, separated by semicolons. All listed permissions must be present on the role. A role with the `Administrator` permission counts as having all of them. An unknown permission name raises an error. |
 
 ## Return Value
 
@@ -32,9 +32,9 @@ $lowestRoleWithPerms[permission1;permission2;...]
 
 ## Behavior
 
-- Scans the user's roles from lowest to highest.
-- Returns the **first** (lowest) role that possesses **all** specified permissions.
-- Permission names are in English (matching the Discord API nomenclature).
+- Scans all the roles of the server (not only the roles of a given user), ordered by the role hierarchy.
+- Returns the **lowest** role that possesses **all** specified permissions.
+- Permission names are in English; case and non-alphanumeric characters are ignored (e.g. `SendMessages`), and some aliases (e.g. `admin`, `ban`, `kick`) are accepted.
 
 ## Examples
 
@@ -43,7 +43,7 @@ $lowestRoleWithPerms[permission1;permission2;...]
 ```bdfd
 $var[voiceRole;$lowestRoleWithPerms[Connect;Speak]]
 $if[$var[voiceRole]!=]
-  $sendMessage[Your lowest voice role: $roleName[$var[voiceRole]]]
+  $sendMessage[Lowest role granting voice access: $roleName[$var[voiceRole]]]
 $endif
 ```
 
@@ -52,7 +52,7 @@ $endif
 ```bdfd
 $var[basicRole;$lowestRoleWithPerms[SendMessages;ReadMessageHistory]]
 $if[$var[basicRole]!=]
-  $sendMessage[The role $roleName[$var[basicRole]] grants you message access.]
+  $sendMessage[The role $roleName[$var[basicRole]] is the lowest role granting message access.]
 $endif
 ```
 
@@ -67,7 +67,6 @@ $description[
 **Lowest Role:** $roleName[$var[lowest]]
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

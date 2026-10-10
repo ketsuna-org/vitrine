@@ -56,11 +56,9 @@ $endif
 $title[📊 Bot Status]
 $description[
 **Logs Remaining**: $logQuota
-**RAM Used**: $ram
 **Uptime**: $uptime
 ]
 $color[#FEE75C]
-$sendMessage[]
 ```
 
 ## Notes

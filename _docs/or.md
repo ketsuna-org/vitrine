@@ -4,8 +4,8 @@ title: $or
 translation_key: docs
 category: "Control Flow"
 function_name: or
-syntax: $or[condition1;condition2;...]
-description: Logical OR — returns "true" if at least one of the provided conditions evaluates to true.
+syntax: $or[condition1;(condition2;...)]
+description: Logical OR — returns "true" if at least one of the provided conditions evaluates to true (1 to 100 conditions).
 ---
 # $or — Logical OR
 
@@ -14,14 +14,14 @@ description: Logical OR — returns "true" if at least one of the provided condi
 ## Syntax
 
 ```
-$or[condition1;condition2;...;conditionN]
+$or[condition1;(condition2;...;conditionN)]
 ```
 
-`$or` accepts an **unlimitd number** of arguments (minimum 2). Each argument is a BDFD expression expected to resolve to either `"true"` or `"false"`.
+`$or` accepts **1 to 100 arguments**; with more than 100 arguments the call is refused. Each argument is a condition: either `"true"` or `"false"`, or a comparison such as `a==b`, `a!=b`, `a>b`, `a>=b`, `a<b`, `a<=b`.
 
 ## Evaluation
 
-All condition arguments are resolved at runtime. BDFD's `$or` does **not** guarantee short-circuit evaluation — even if the first condition returns `"true"`, subsequent conditions may still be evaluated. Avoid putting side-effect-producing functions inside `$or` unless you intend for them to always execute.
+Conditions are evaluated from left to right and `$or` **stops at the first condition that is true**: the following arguments are not evaluated. Do not rely on functions with side effects placed after a condition that may be true.
 
 ## Truth Table
 
@@ -81,9 +81,9 @@ This evaluates to `"true"` when at least one condition from each group is true �
 
 ## Common Pitfalls
 
-- **Assuming short-circuit**: All conditions are evaluated. Do not place commands with side effects inside `$or`.
-- **Non-boolean results**: Ensure each condition resolves to `"true"` or `"false"`. Non-boolean results produce undefined behavior.
-- **Single condition**: Use the condition directly. `$or` requires at least 2 arguments.
+- **Short-circuit**: evaluation stops at the first true condition, so later arguments (and their side effects) are skipped in that case.
+- **Invalid conditions**: each condition must be `"true"`, `"false"` or a comparison; anything else raises an "Invalid condition" error.
+- **Single condition**: `$or[condition]` is accepted but is equivalent to the condition itself.
 - **Forgetting `==true` in $if**: Always write `$if[$or[...]==true]`.
 - **Confusing AND/OR logic**: `$or` returns `"true"` when ANY condition is true. For "ALL must be true", use `$and`.
 
@@ -101,5 +101,4 @@ $else
   $description[You lack administrative credentials.]
   $color[#ED4245]
 $endif
-$sendMessage[]
 ```

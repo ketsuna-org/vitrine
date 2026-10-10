@@ -4,37 +4,42 @@ title: $messageEditedTimestamp
 translation_key: docs
 category: "Entity Info"
 function_name: messageEditedTimestamp
-syntax: $messageEditedTimestamp
-description: Returns the timestamp of the last edit of the triggering message, or an empty string if it has not been edited.
+syntax: $messageEditedTimestamp[channelID;messageID]
+description: Returns the Unix timestamp (in seconds) of the last edit of a message, or an empty string if it has not been edited.
 ---
 
 # $messageEditedTimestamp
 
-The function `$messageEditedTimestamp` returns the **timestamp of the last edit** of the triggering message. If the message has never been edited, it returns an empty string.
+The function `$messageEditedTimestamp` returns the **timestamp of the last edit** of a message identified by its channel and ID. If the message has never been edited, it returns an empty string.
 
 ## Syntax
 
 ```
-$messageEditedTimestamp
+$messageEditedTimestamp[channelID;messageID]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `channelID` | Required. ID of the channel containing the message. |
+| `messageID` | Required. ID of the message. |
+
+Both arguments must be valid IDs; a bare `$messageEditedTimestamp` is invalid.
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` or `""` | Timestamp in milliseconds, or an empty string if the message has not been edited. |
+| `integer` or `""` | Unix timestamp in seconds, or an empty string if the message has not been edited. |
 
 ## Examples
 
 ### Display the edit date
 
 ```bdfd
-$if[$messageEditedTimestamp!=]
-  $sendMessage[Message edited on $formatDate[$messageEditedTimestamp;MM/DD/YYYY at HH:mm]]
+$if[$messageEditedTimestamp[$channelID;$messageID]!=]
+  $sendMessage[Message edited at Unix timestamp $messageEditedTimestamp[$channelID;$messageID]]
 $else
   $sendMessage[Original message (not edited).]
 $endif
@@ -43,22 +48,22 @@ $endif
 ### Display in relative format
 
 ```bdfd
-$if[$messageEditedTimestamp!=]
-  $sendMessage[Edited <t:$truncate[$messageEditedTimestamp/1000]:R>]
+$if[$messageEditedTimestamp[$channelID;$messageID]!=]
+  $sendMessage[Edited <t:$messageEditedTimestamp[$channelID;$messageID]:R>]
 $endif
 ```
 
 ### Log edits
 
 ```bdfd
-$if[$messageEditedTimestamp!=]
-  $channelSendMessage[$channelIDFromName[logs];$username edited their message (ID: $messageID) on $formatDate[$messageEditedTimestamp;MM/DD/YYYY HH:mm]]
+$if[$messageEditedTimestamp[$channelID;$messageID]!=]
+  $channelSendMessage[$channelIDFromName[logs];$username edited their message (ID: $messageID) at Unix timestamp $messageEditedTimestamp[$channelID;$messageID]]
 $endif
 ```
 
 ## Notes
 
 - Returns an **empty** string (`""`) if never edited, not `0`.
-- Use `$isMessageEdited` for a simpler boolean test.
-- The timestamp is in milliseconds; divide by `1000` for seconds.
+- Use `$isMessageEdited[channelID;messageID]` for a simpler boolean test.
+- The timestamp is in seconds (Unix time), directly usable in Discord `<t:...>` tags.
 

@@ -11,8 +11,10 @@ Repeats a block of code a fixed number of times. The loop block must be closed w
 
 ## Syntax
 
-```bdfd
+```text
 $loop[iterations]
+...
+$endLoop
 ```
 
 ## Parameters
@@ -45,7 +47,7 @@ $endLoop
 ```
 
 **Output:**
-```bdfd
+```text
 Hello! This is iteration #...
 Hello! This is iteration #...
 Hello! This is iteration #...
@@ -76,8 +78,8 @@ $endLoop
 ```bdfd
 $var[counter;0]
 $loop[5]
-$var[counter;$sum[$counter;1]]
-Count: $counter
+$var[counter;$sum[$var[counter];1]]
+Count: $var[counter]
 $endLoop
 ```
 

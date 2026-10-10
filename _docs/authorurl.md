@@ -47,7 +47,6 @@ $description[
 Click on the name above to open the Discord profile.
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Conditional link
@@ -62,7 +61,6 @@ $endif
 $title[Navigation]
 $description[Select a page in the menu below.]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Author with all attributes separated
@@ -75,7 +73,6 @@ $title[Created with BDFD]
 $description[This bot was created with Bot Designer for Discord.]
 $footer[Version 2.0]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

@@ -45,13 +45,12 @@ $endif
 
 ```bdfd
 $title[Member Information]
-$author[$memberNick;$userAvatar]
+$author[$memberNick;$authorAvatar]
 $description[
 **ID:** $memberID
 **Permissions:** $memberPerms
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

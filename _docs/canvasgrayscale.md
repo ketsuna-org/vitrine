@@ -37,36 +37,39 @@ None. The canvas is modified directly.
 ### Simple conversion to black and white
 
 ```bdfd
-$canvasLoad[$attachment]
+$canvasCreate[photo;400;400]
+$canvasLoadImage[https://example.com/photo.png;0;0;400;400]
 $canvasGrayscale
-$attachCanvas[]
+$attachImage[photo]
 $sendMessage[🎨 Image converted to grayscale!]
 ```
 
-### Old photo effect
+### Grayscale then invert
 
 ```bdfd
-$canvasLoad[$attachment]
+$canvasCreate[photo;400;400]
+$canvasLoadImage[https://example.com/photo.png;0;0;400;400]
 $canvasGrayscale
-$canvasColor[#6b4c2a]  ;; Sepia effect via tinting
-$attachCanvas[]
-$sendMessage[🕰️ Vintage effect applied!]
+$canvasInvert
+$attachImage[photo]
+$sendMessage[🕰️ Negative effect applied!]
 ```
 
 ### Before/After comparison
 
 ```bdfd
-$var[original;$attachment]
-$canvasLoad[$var[original]]
-$attachCanvas[before.png]
-
+$canvasCreate[before;400;400]
+$canvasLoadImage[https://example.com/photo.png;0;0;400;400]
+$canvasCreate[after;400;400]
+$canvasLoadImage[https://example.com/photo.png;0;0;400;400]
 $canvasGrayscale
-$attachCanvas[after.png]
+$attachImage[before]
+$attachImage[after]
 $sendMessage[⚫ Original vs Grayscale:]
 ```
 
 ## Notes
 
-- The canvas must be created or loaded before calling this function (via `$canvasCreate[]`, `$canvasLoad[]`, etc.).
+- The canvas must be created or loaded before calling this function (via `$canvasCreate[]`, then `$canvasLoadImage[]`, etc.).
 - To invert the colors, use `$canvasInvert` instead.
 - For rotation, use `$canvasRotate[degrees]`.

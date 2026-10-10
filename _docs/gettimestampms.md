@@ -55,21 +55,16 @@ Timestamp (ms): $getTimestampMs
 ```bdfd
 $var[start;$getTimestampMs]
 
-$title[🔍 Performance Test]
-$description[
-Calculation in progress...
-]
-$sendMessage[]
+$sendMessage[🔍 Calculation in progress...]
 
 $var[end;$getTimestampMs]
-$var[duration;$sub[$get[end];$get[start]]]
+$var[duration;$sub[$var[end];$var[start]]]
 
 $title[📊 Result]
 $description[
-Operation completed in **$get[duration] ms**.
+Operation completed in **$var[duration] ms**.
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Precise cooldown (anti-spam)
@@ -77,19 +72,18 @@ $sendMessage[]
 ```bdfd
 $var[now;$getTimestampMs]
 $var[last;$getUserVar[lastCmd]]
-$var[diff;$sub[$get[now];$get[last]]]
+$var[diff;$sub[$var[now];$var[last]]]
 
-$if[$get[diff]<2000]
+$if[$var[diff]<2000]
   $title[⏳ Too Fast!]
   $description[
-  Please wait another **$math[(2000 - $get[diff]) / 1000]** seconds.
+  Please wait another **$calculate[(2000 - $var[diff]) / 1000]** seconds.
   ]
   $color[#ED4245]
-  $sendMessage[]
-  $stop[]
+  $stop
 $endif
 
-$setUserVar[lastCmd;$get[now]]
+$setUserVar[lastCmd;$var[now]]
 Your command has run successfully!
 ```
 
@@ -97,14 +91,14 @@ Your command has run successfully!
 
 ```bdfd
 $var[ms;$getTimestampMs]
-$var[seconds;$math[$get[ms] / 1000]]
+$var[seconds;$calculate[$var[ms] / 1000]]
 
-Timestamp (ms): $get[ms]
-Timestamp (seconds): $get[seconds]
+Timestamp (ms): $var[ms]
+Timestamp (seconds): $var[seconds]
 ```
 
 ## Notes
 
 - The precision is accurate to the millisecond (1 ms = 0.001 seconds).
 - To compare with a timestamp in seconds, do not forget to convert: multiply seconds by 1000 or divide milliseconds by 1000.
-- The returned values are integers, but calculations with `$math[]` can produce decimal numbers during conversion.
+- The returned values are integers, but calculations with `$calculate[]` can produce decimal numbers during conversion.

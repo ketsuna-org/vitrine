@@ -58,7 +58,7 @@ $if[$emojiExists[$var[name]]==true]
 $else
   $var[url;$getAttachments[$noMentionMessage]]
   $if[$var[url]!=]
-    $addEmoji[$var[name];$var[url]]
+    $addEmoji[$var[name];$var[url];no]
     $sendMessage[✅ Emoji **$var[name]** created !]
   $else
     $sendMessage[❌ Please attach an image.]

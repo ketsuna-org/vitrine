@@ -47,10 +47,9 @@ $title[🎨 Server Emojis]
 $description[
 **Total number:** $emojiCount
 **Limit:** 50 emojis (more for boosted servers)
-**Remaining slots:** $math[50-$emojiCount]
+**Remaining slots:** $calculate[50-$emojiCount]
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Limit alert
@@ -59,7 +58,7 @@ $sendMessage[]
 $if[$emojiCount>=50]
   $sendMessage[⚠️ The emoji limit has been reached ($emojiCount/50). Delete some unused emojis.]
 $else
-  $sendMessage[✅ $math[50-$emojiCount] emoji slots available.]
+  $sendMessage[✅ $calculate[50-$emojiCount] emoji slots available.]
 $endif
 ```
 
@@ -73,7 +72,6 @@ $description[
 **Roles:** $roleCount
 **Emojis:** $emoteCount
 ]
-$sendMessage[]
 ```
 
 ## Notes

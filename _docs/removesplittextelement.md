@@ -94,5 +94,4 @@ $removeSplitTextElement[2]
 $title[Removed Element]
 $description[Remaining pets after removing index 2: `$joinSplitText[, ]`]
 $color[#5865F2]
-$sendMessage[]
 ```

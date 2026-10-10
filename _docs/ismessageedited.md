@@ -4,23 +4,26 @@ title: $isMessageEdited
 translation_key: docs
 category: "Entity Info"
 function_name: isMessageEdited
-syntax: $isMessageEdited
-description: "Checks if the triggering message was edited. Returns \"true\" or \"false\"."
+syntax: $isMessageEdited[channelID;messageID]
+description: "Checks if a message was edited. Returns \"true\" or \"false\"."
 ---
 
 # $isMessageEdited
 
-The function `$isMessageEdited` checks if the triggering message was **edited** by its author. It returns `"true"` or `"false"`.
+The function `$isMessageEdited` checks if the given message was **edited**. It returns `"true"` or `"false"`.
 
 ## Syntax
 
 ```
-$isMessageEdited
+$isMessageEdited[channelID;messageID]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description |
+|---|---|
+| `channelID` | Required. The ID of the channel containing the message. |
+| `messageID` | Required. The ID of the message. |
 
 ## Return Value
 
@@ -33,7 +36,7 @@ No parameters.
 ### Simple check
 
 ```bdfd
-$if[$isMessageEdited==true]
+$if[$isMessageEdited[$channelID;$messageID]==true]
   $sendMessage[⚠️ This message was modified.]
 $else
   $sendMessage[Original message.]
@@ -43,7 +46,7 @@ $endif
 ### Edit log
 
 ```bdfd
-$if[$isMessageEdited==true]
+$if[$isMessageEdited[$channelID;$messageID]==true]
   $channelSendMessage[$channelIDFromName[logs];$username edited their message $messageURL]
 $endif
 $sendMessage[Command executed.]
@@ -52,7 +55,7 @@ $sendMessage[Command executed.]
 ### User warning
 
 ```bdfd
-$if[$isMessageEdited==true]
+$if[$isMessageEdited[$channelID;$messageID]==true]
   $sendMessage[Warning: your command comes from an edited message.]
   $stop
 $endif
@@ -61,5 +64,5 @@ $endif
 ## Notes
 
 - Returns a string `"true"` or `"false"`, not a boolean.
-- To get the edit date, use `$messageEditedTimestamp`.
-- Useful for detecting if a command was modified after sending.
+- To get the edit date, use `$messageEditedTimestamp[channelID;messageID]`.
+- A bare `$isMessageEdited` is invalid: both arguments are required. Invalid IDs raise an error.

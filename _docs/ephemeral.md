@@ -38,14 +38,14 @@ $sendMessage[This message is visible only to you.]
 
 ```bdfd
 $ephemeral
-$newEmbed[title=Information;description=Private data;color=#9B59B6]
-$sendMessage[]
+$title[Information]
+$description[Private data]
+$color[#9B59B6]
 ```
 
 ### In an interaction
 
 ```bdfd
-$onInteraction
 $if[$customID==btn_secret]
   $ephemeral
   $sendMessage[🔒 Secret action completed!]
@@ -55,7 +55,7 @@ $endif
 ### Ephemeral error message
 
 ```bdfd
-$if[$argsCount==0]
+$if[$argCount==0]
   $ephemeral
   $sendMessage[❌ You must provide an argument!]
   $stop

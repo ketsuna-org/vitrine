@@ -4,60 +4,64 @@ title: $onlyForUsers
 translation_key: docs
 category: "Moderation"
 function_name: onlyForUsers
-syntax: $onlyForUsers[userID1;userID2;...;(errorMessage)]
-description: Guard function that stops execution if the user is not part of the list of authorized IDs.
+syntax: $onlyForUsers[username1;username2;...;errorMessage]
+description: Guard function that stops execution if the username of the user is not in the list.
 ---
 
 # $onlyForUsers
 
-The guard function `$onlyForUsers` restricts command execution to a specific list of users, identified by their Discord ID. If the user who triggers the command is not in the list, the command is interrupted.
+The guard function `$onlyForUsers` restricts command execution to a list of users identified by their **username** (not their ID). To restrict by ID, use `$onlyForIDs`.
 
 ## Syntax
 
 ```
-$onlyForUsers[userID1;userID2;...;(errorMessage)]
+$onlyForUsers[username1;username2;...;errorMessage]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID1;userID2;...` | Snowflake[] | List of Discord IDs of authorized users. Separator `;`. |
-| `errorMessage` | String (optional) | Message sent to unauthorized users. |
+| `username1;username2;...` | String[] | Usernames of authorized users, separated by `;`. The comparison ignores case. At least one value is required (empty values are ignored). |
+| `errorMessage` | String | **Required**, always the **last** argument. Message returned when the guard stops the command; it replaces the output of the script. Leave it empty (`;` at the end) for a silent stop. |
+
+The function therefore needs at least 2 arguments. With a single argument, the call is rejected ("Invalid argument count").
 
 ## Behavior
 
-- Compares the triggering user's ID with the provided list.
-- If the ID matches one of the IDs in the list, the command continues.
-- If the ID matches **no** ID in the list, the command is interrupted.
-- The error message, if provided, is sent before the interruption.
+- Compares the username of the triggering user (`author.username`) with each value, **case-insensitively**. Values are not trimmed.
+- If the username matches one of the values, the command continues.
+- If it matches none (or the list contains only empty values), the script is stopped and the error message is used as output.
+
+## Return Value
+
+Returns an empty string when the command continues. When the guard stops the command, the script is stopped and the error message (last argument) is used as its output.
 
 ## Examples
 
-### Owner-only command
+### Restricted command
 
 ```bdfd
-$onlyForUsers[$botOwnerID;❌ Command reserved for the bot owner.]
-$restart
-```
-
-### Multiple trusted users
-
-```bdfd
-$onlyForUsers[111111111111111111;222222222222222222;333333333333333333;❌ Access denied.]
+$onlyForUsers[jeremy;❌ Command reserved for the bot owner.]
 $sendMessage[Welcome to the control panel.]
 ```
 
-### Without error message
+### Several users
 
 ```bdfd
-$onlyForUsers[123456789012345678]
-$eval[$message]
+$onlyForUsers[alice;bob;carol;❌ Access denied.]
+$sendMessage[Welcome to the control panel.]
+```
+
+### Silent stop
+
+```bdfd
+$onlyForUsers[alice;]
+$sendMessage[Hello alice.]
 ```
 
 ## Notes
 
-- Discord IDs are 17 to 19 digit numbers (snowflakes). Enable **Developer Mode** in Discord to obtain them (right-click → Copy ID).
-- `$onlyForUsers` checks the user ID, not the name or tag. Use `$onlyForRoles` for a role-based check.
-- `$onlyForIDs` is an alias of `$onlyForUsers` — the two functions are interchangeable.
+- `$onlyForUsers` checks the **username**, not the ID. Usernames can change; for a reliable check use `$onlyForIDs`.
+- For a role-based check, use `$onlyForRoles` or `$onlyForRoleIDs`.
 - To blacklist users instead of whitelisting them, use `$blacklistUsers` or `$blacklistIDs`.

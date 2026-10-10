@@ -4,52 +4,57 @@ title: $userBannerColor
 translation_key: docs
 category: "Entity Info"
 function_name: userBannerColor
-syntax: $userBannerColor
-description: Returns the accent color of the profile banner of the user in hexadecimal format.
+syntax: $userBannerColor[userID]
+description: Returns the banner color of a user in hexadecimal format (RRGGBB, without #).
 ---
 
 # $userBannerColor
 
-The `$userBannerColor` function returns the **accent color** associated with the profile banner of the user. This color is automatically extracted by Discord from the banner.
+The `$userBannerColor` function returns the **banner color** (banner color of the Discord user) of the given user.
 
 ## Syntax
 
 ```
-$userBannerColor
+$userBannerColor[userID]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `userID` | Required - The ID of the user. An invalid ID, or an unknown user, raises an error. |
 
 ## Return Value
 
 - **Type**: String (hexadecimal)
-- Format: `#RRGGBB` (e.g., `#5865F2`)
-- If the user does not have a banner, it returns an empty string.
+- Format: `RRGGBB` in upper case, **without** `#` (e.g., `5865F2`)
+- An empty string if the user has no banner color.
 
 ## Behavior
 
-- `$userBannerColor` takes **no arguments**.
-- The color is determined by Discord from the user's Nitro banner.
-- Can be used directly in `$color[]` to visually match the embed to the profile's theme.
+- `$userBannerColor` requires one argument: used without argument it is invalid.
+- Can be used directly in `$color[]` (which accepts hexadecimal with or without `#`).
 
 ## Examples
 
 ### Themed embed
 
 ```bdfd
-$if[$userBannerColor!=]
+$if[$userBannerColor[$authorID]!=]
   $title[Profile of $userName]
   $description[The colors of this embed match your banner!]
-  $color[$userBannerColor]
-  $author[$userName;$userAvatar]
-  $sendMessage[]
+  $color[$userBannerColor[$authorID]]
+  $author[$userName;$authorAvatar]
+  $sendMessage[Profile]
 $else
   $title[Profile of $userName]
   $description[You do not have a banner.]
   $color[#5865F2]
-  $sendMessage[]
+  $sendMessage[Profile]
 $endif
 ```
 
 ## Notes
 
-- Coupled with `$userBanner`, it allows you to create embeds with a custom theme for each user.
-- If the user does not have a banner, make sure to provide a fallback color.
+- Coupled with `$userBanner[]`, it allows you to create embeds with a custom theme for each user.
+- If the user has no banner color, make sure to provide a fallback color.

@@ -4,7 +4,7 @@ title: $roleCount
 translation_key: docs
 category: "Entity Info"
 function_name: roleCount
-syntax: $roleCount[(guildID)]
+syntax: $roleCount
 description: Returns the total number of roles on the Discord server.
 ---
 
@@ -15,14 +15,14 @@ The function `$roleCount` returns the **total number of roles** present on the D
 ## Syntax
 
 ```
-$roleCount[(guildID)]
+$roleCount
 ```
+
+The function takes no argument.
 
 ## Parameters
 
-| Parameter | Description |
-|---|---|
-| `guildID` | Optional. The ID of the target server. If omitted, the current server is used. |
+This function takes no parameter; it always counts the roles of the current server.
 
 ## Return Value
 

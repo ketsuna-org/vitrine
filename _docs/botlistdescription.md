@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: botListDescription
 syntax: $botListDescription[text]
-description: Sets or returns the description of the bot displayed in the BDFD bot list.
+description: Compatibility flag for the BDFD bot list description. It takes exactly one argument and has no effect in the engine.
 ---
 
 # $botListDescription
 
-The `$botListDescription[text]` function **sets or returns the description of the bot** as it appears on the public BDFD bot list.
+The `$botListDescription[text]` function is a **compatibility flag** for the description of the bot on the BDFD bot list. In the engine it is accepted and produces no output (it does nothing else).
 
 ## Syntax
 
@@ -18,29 +18,20 @@ The `$botListDescription[text]` function **sets or returns the description of th
 $botListDescription[text]
 ```
 
-To read the current description:
-
-```
-$botListDescription
-```
-
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `text` | Optional - The new description to set. If omitted, returns the current description. |
+| `text` | Required (exactly one argument) - The description. A bare `$botListDescription` is refused ("Invalid argument count"). |
 
 ## Return value
 
 - **Type**: String
-- If called without a parameter: the current description.
-- If called with a parameter: nothing (the description is updated).
+- Always an empty string; the function only acts as a flag.
 
 ## Behavior
 
-- The description is visible on the bot's public page in the BDFD Bot List.
-- Character limit: generally 200-300 characters.
-- Basic markdown may be supported depending on the list.
+- The engine does not store the description and cannot read it back.
 
 ## Examples
 
@@ -57,40 +48,19 @@ $botListDescription[$var[desc]]
 $sendMessage[✅ Bot description updated!]
 ```
 
-### Display the current description
-
-```bdfd
-$title[📋 Description of the bot]
-$description[
-$botListDescription
-]
-$footer[Use !setdesc to modify]
-$sendMessage[]
-```
-
-### Owner command to manage visibility
+### Owner-only command
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Reserved for the owner.]
+  $sendMessage[❌ Reserved for the owner.]
   $stop
 $endif
 
-$var[action;$message[1]]
-$if[$var[action]==set]
-  $botListDescription[$message[2]]
-  $sendMessage[✅ Description updated.]
-$elseif[$var[action]==show]
-  $sendMessage[📋 **Current description:**
-  $botListDescription]
-$else
-  $sendMessage[❌ Usage: !botlist <set|show> [description]]
-$endif
+$botListDescription[A helpful moderation bot]
+$sendMessage[✅ Description flag applied.]
 ```
 
 ## Notes
 
-- Without parameters, the function returns the current description.
-- With a parameter, it overwrites the previous description.
+- The function requires one argument and always returns an empty string.
 - To hide the bot from the list, use `$botListHide`.
-- The update may take a few minutes before becoming visible.

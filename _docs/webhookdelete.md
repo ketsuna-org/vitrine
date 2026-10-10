@@ -4,61 +4,43 @@ title: $webhookDelete
 translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookDelete
-syntax: $webhookDelete[webhookID;webhookToken]
-description: Deletes an existing Discord webhook using its ID and token. Useful for cleaning up dynamically created webhooks.
+syntax: $webhookDelete[webhookURL]
+description: Deletes an existing Discord webhook from its URL.
 ---
 
 # $webhookDelete
 
-The `$webhookDelete` function allows you to **delete an existing Discord webhook** using its ID and token.
+The `$webhookDelete` function **deletes an existing Discord webhook** identified by its URL.
 
 ## Syntax
 
 ```
-$webhookDelete[webhookID;webhookToken]
+$webhookDelete[webhookURL]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `webhookID` | The ID of the webhook (first part of the URL after `/webhooks/`). |
-| `webhookToken` | The token of the webhook (second part after the ID). |
+| `webhookURL` | **Required.** The full Discord webhook URL (`https://discord.com/api/webhooks/ID/TOKEN`). An invalid URL raises `Invalid Discord webhook URL.` |
+
+Exactly one argument is required; any other count is refused ("Invalid argument count").
 
 ## Return Value
 
-This function does not return a value. The deletion is performed silently.
+An empty string. The deletion is performed silently.
 
 ## Behavior
 
-- The bot must have the `MANAGE_WEBHOOKS` permission or be the creator of the webhook.
+- The webhook is deleted through Discord using the ID and token contained in the URL.
+- Any message staged for this webhook (see `$webhookSend`) is discarded.
 - Once deleted, the webhook can no longer be used.
-- Remaining URLs pointing to this webhook will become invalid.
 
 ## Examples
 
 ### Deletion of a webhook
 
 ```bdfd
-$var[hookID;123456789]
-$var[hookToken;abcdefghijklmnop]
-$webhookDelete[$var[hookID];$var[hookToken]]
+$webhookDelete[https://discord.com/api/webhooks/123456/abcdef]
 $sendMessage[Webhook deleted.]
 ```
-
-### Extraction from a stored URL
-
-```bdfd
-$var[url;$getUserVar[tempHook]]
-$var[parts;$splitText[$var[url];/]]
-$var[hookID;$getTextSplitIndex[$var[parts];5]]
-$var[hookToken;$getTextSplitIndex[$var[parts];6]]
-$webhookDelete[$var[hookID];$var[hookToken]]
-$sendMessage[Webhook cleaned up.]
-```
-
-## Notes
-
-- Webhooks created via the Discord interface can only be deleted by an administrator.
-- Webhooks created by the bot can be deleted by it.
-- Delete temporary webhooks after use to avoid accumulation.

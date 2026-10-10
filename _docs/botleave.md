@@ -39,7 +39,7 @@ This function does not return a value.
 ### Leave the current server
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
+$if[$checkUserPerms[$authorID;Administrator]==true]
   $sendMessage[Goodbye! The bot is leaving this server.]
   $botLeave
 $else

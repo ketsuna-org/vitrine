@@ -18,5 +18,4 @@ $jsonParse[{"bot":"Bot Creator","version":"2.0"}]
 $title[JSON Context Overview]
 $description[Bot Name: **$jsonValue[bot]**\nEngine Version: **$jsonValue[version]**]
 $color[#00BCD4]
-$sendMessage[]
 ```

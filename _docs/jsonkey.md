@@ -11,12 +11,11 @@ $jsonKey returns the current key name during $jsonForEach iteration. It is only 
 
 ## Examples
 
-### Access Object Key by Numerical Index
+### Iterate over the keys of an object
 
 ```bdfd
 $jsonParse[{"apple":5,"banana":10}]
-$title[Object Key]
-$description[First object key: `$jsonKey[0]`]
-$color[#5865F2]
-$sendMessage[]
+$jsonForEach
+  $sendMessage[Key: $jsonKey = $jsonValue]
+$endJsonForEach
 ```

@@ -18,5 +18,4 @@ $jsonParse[{"title":"Welcome","description":"Enjoy your stay!","color":"#5865F2"
 $title[$jsonValue[title]]
 $description[$jsonValue[description]]
 $color[$jsonValue[color]]
-$sendMessage[]
 ```

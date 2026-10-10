@@ -4,25 +4,26 @@ title: $channelNames
 translation_key: docs
 category: "Entity Info"
 function_name: channelNames
-syntax: $channelNames[(separator)]
-description: Returns a list of all channel names on the server, separated by a customizable separator.
+syntax: $channelNames[separator;(guildID)]
+description: Returns a list of all channel names on the server, joined by the separator you provide.
 ---
 
 # $channelNames
 
-The `$channelNames` function returns the **complete list of names** of all channels on the server, separated by a customizable delimiter.
+The `$channelNames` function returns the **complete list of names** of all channels on the server, joined by the separator you provide.
 
 ## Syntax
 
 ```
-$channelNames[(separator)]
+$channelNames[separator;(guildID)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `separator` | Optional. The separator between each channel name. Default: `, ` (comma + space). |
+| `separator` | Required. The text inserted between each channel name. |
+| `guildID` | Optional. The ID of the server to list. Defaults to the current server; an invalid ID raises `Invalid guild ID.` |
 
 ## Return value
 
@@ -35,7 +36,7 @@ $channelNames[(separator)]
 ### Simple list
 
 ```bdfd
-$sendMessage[**Server channels:** $channelNames]
+$sendMessage[**Server channels:** $channelNames[, ]]
 ```
 
 ### List with newlines
@@ -60,6 +61,5 @@ $sendMessage[The server has $channelCount channels: $channelNames[, ]]
 
 ## Notes
 
-- Only channels visible to the bot are listed.
 - Categories are included in the list.
-- To get IDs instead of names, use a loop with `$findChannel` instead.
+- Active threads are not included.

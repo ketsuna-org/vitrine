@@ -18,5 +18,4 @@ $jsonParse[{"status":"ok","code":200}]
 $title[Pretty Printed JSON]
 $description[```json\n$jsonPretty\n```]
 $color[#5865F2]
-$sendMessage[]
 ```

@@ -22,12 +22,12 @@ $giveRoles[userID;role1;role2;...]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the target user. Required. |
+| `userID` | The ID of the target user. Required (mentions are not used). |
 | `role1;role2;...` | The IDs of the roles to assign, separated by `;`. Required. |
 
 ## Return Value
 
-None. All specified roles are assigned.
+None. All specified roles are assigned. An error is raised if the user ID or a role ID is invalid.
 
 ## Examples
 
@@ -41,7 +41,7 @@ $sendMessage[<@$mentioned[1]> has received the Member and Notifications roles.]
 ### Grouped assignment with a condition
 
 ```bdfd
-$if[$isAdmin==true]
+$if[$isAdmin[$authorID]==true]
   $giveRoles[$mentioned[1];$roleID[Modo];$roleID[Staff];$roleID[VIP]]
   $sendMessage[All staff roles assigned to <@$mentioned[1]>.]
 $else
@@ -62,4 +62,4 @@ $sendMessage[Welcome $userName! Default roles assigned.]
 - The roles are separated by `;` in the syntax.
 - To assign a single role, `$giveRole` is simpler.
 - To replace all existing roles, use `$setUserRoles`.
-- Roles already possessed by the user are ignored.
+- The user and each role must be valid IDs; the roles are assigned one after the other, so an invalid role stops the call after the previous roles were assigned.

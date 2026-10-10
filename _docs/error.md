@@ -50,7 +50,7 @@ $sendMessage[Valid number: $message]
 ### Permission check
 
 ```bdfd
-$if[$checkContains[$userPerms;BanMembers]!=true]
+$if[$checkUserPerms[$authorID;BanMembers]!=true]
   $error[❌ You need the Ban Members permission to use this command.]
 $endif
 $ban[Moderation]

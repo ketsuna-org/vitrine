@@ -99,5 +99,4 @@ $var[clean;$replaceText[$getUserVar[rawText];\n;, ]]
 $title[Text Filter]
 $description[Censored text: **$replaceText[$message;badword;****]**]
 $color[#5865F2]
-$sendMessage[]
 ```

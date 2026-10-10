@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: getRoleColor
 syntax: $getRoleColor[roleID]
-description: Gets the hexadecimal color of a Discord role. Returns the color in #RRGGBB format.
+description: Gets the hexadecimal color of a Discord role. Returns the color as six uppercase hexadecimal digits (RRGGBB, without #).
 ---
 
 # $getRoleColor
@@ -27,14 +27,14 @@ $getRoleColor[roleID]
 ## Return Value
 
 - **Type**: String
-- The color in hexadecimal `#RRGGBB` format.
-- `#000000` (black) if the role has no defined color (default color).
+- The color as six uppercase hexadecimal digits `RRGGBB`, without a leading `#` (add the `#` yourself where one is needed).
+- `000000` (black) if the role has no defined color (default color).
 
 ## Behavior
 
 - Extracts the color configured for the role.
-- Returns `#000000` for roles without a color (default transparent).
-- The color is usable directly in `$color[]` or any other context requiring a color.
+- Returns `000000` for roles without a color (default transparent).
+- Prefix the result with `#` to use it as a hex color, e.g. `$color[#$getRoleColor[roleID]]`.
 
 ## Examples
 
@@ -54,9 +54,8 @@ $description[
 **Main role:** $roleName[$var[roleID]]
 **Color:** $getRoleColor[$var[roleID]]
 ]
-$color[$getRoleColor[$var[roleID]]]
+$color[#$getRoleColor[$var[roleID]]]
 $thumbnail[$userAvatar[$authorID]]
-$sendMessage[]
 ```
 
 ### Role palette
@@ -64,17 +63,15 @@ $sendMessage[]
 ```bdfd
 $title[🎨 Role Colors]
 $description[
-$textSplit[$serverRoles[,];, ]
-  $index. $roleName[$splitText[$index]] — $getRoleColor[$splitText[$index]]
-$endTextSplit
+**Admin:** $getRoleColor[$roleID[Admin]]
+**Moderator:** $getRoleColor[$roleID[Moderator]]
 ]
-$sendMessage[]
 ```
 
 ### Dynamic embed
 
 ```bdfd
-$var[color;$getRoleColor[$highestRole[$authorID]]]
+$var[color;#$getRoleColor[$highestRole[$authorID]]]
 
 $if[$var[color]==#000000]
   $var[color;#5865F2]
@@ -83,11 +80,10 @@ $endif
 $title[Title]
 $description[Description]
 $color[$var[color]]
-$sendMessage[]
 ```
 
 ## Notes
 
-- If the role has a default color (no color), `$getRoleColor` returns `#000000`.
-- Tip: use `$if[$getRoleColor[$roleID]==#000000]` to detect roles without a color.
-- The color is compatible with the embed `$color[]` function.
+- If the role has a default color (no color), `$getRoleColor` returns `000000`.
+- Tip: use `$if[$getRoleColor[$roleID]==000000]` to detect roles without a color.
+- Once prefixed with `#`, the color can be passed to the embed `$color[]` function.

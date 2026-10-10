@@ -4,67 +4,61 @@ title: $addModalFileUpload[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addModalFileUpload
-syntax: $addModalFileUpload[customId;label;(required)]
-description: Adds a file upload component to a Discord modal. Allows the user to attach a file directly from the modal.
+syntax: $addModalFileUpload[label;description;customId;(minFiles);(maxFiles);(required)]
+description: Adds a file upload component (Components V2) to the modal being built.
 ---
 
 # $addModalFileUpload[] — Modal File Upload
 
-`$addModalFileUpload[]` adds a component allowing the user to attach a file directly from a Discord modal. The uploaded file is then accessible in the interaction handler.
+`$addModalFileUpload[]` adds a file upload component to the modal being built with `$newModal[]`.
 
 ## Syntax
 
 ```
-$addModalFileUpload[customId;label;(required)]
+$addModalFileUpload[label;description;customId;(minFiles);(maxFiles);(required)]
 ```
 
 ## Parameters
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Yes | — | Unique identifier for the file field. |
 | `label` | Yes | — | Text displayed above the field. |
-| `required` | No | `yes` | `yes` if required, `no` otherwise. |
+| `description` | Yes | — | Description under the label. May be left empty (`;;`). |
+| `customId` | Yes | — | Identifier of the field. |
+| `minFiles` | No | `1` | Minimum number of files (integer from 0 to 10). |
+| `maxFiles` | No | `1` | Maximum number of files (integer from 1 to 10). |
+| `required` | No | `yes` | `yes`/`true` or `no`/`false`. |
 
 ## Return value
 
-Adds the upload component to the modal. The URL and metadata of the file are accessible via `$input[customId]` after submission.
+Returns an empty string. The component is added to the current modal.
+
+## Errors
+
+- Without a prior `$newModal[]`, the engine creates a default modal (ID `modal`, title `Modal`) to receive the input.
+- `required`/`disabled` values other than yes/no/true/false and out-of-range numbers are errors.
+- When the modal is sent, it must contain 1 to 5 inputs (text displays count as inputs).
 
 ## Examples
 
 ### Upload required
 
 ```bdfd
-$newModal[Application;apply_modal]
+$newModal[apply_modal;Application]
 $addModalTextDisplay[Please attach your CV in PDF format.]
-$addModalTextInput[motivation;Cover letter;paragraph;;;yes;50;1000]
-$addModalFileUpload[cv;Your CV (PDF);yes]
+$addModalTextInput[Cover letter;;motivation;paragraph;50;1000;yes]
+$addModalFileUpload[Your CV (PDF);;cv;1;1;yes]
 ```
 
 ### Optional upload with other fields
 
 ```bdfd
-$newModal[Report;report_modal]
-$addModalTextInput[description;Description of the problem;paragraph;;;yes;20;1000]
-$addModalFileUpload[screenshot;Screenshot (optional);no]
-```
-
-### Processing the file
-
-```bdfd
-$onInteraction[apply_submit]
-$var[cv_url;$input[cv]]
-$var[motivation;$input[motivation]]
-$sendMessage[New application received!
-CV: $var[cv_url]
-Motivation: $var[motivation]]
-$endInteraction
+$newModal[report_modal;Report]
+$addModalTextInput[Description of the problem;;description;paragraph;20;1000;yes]
+$addModalFileUpload[Screenshot (optional);;screenshot;0;1;no]
 ```
 
 ## Notes
 
-- The file is temporarily hosted by Discord; the returned URL is a Discord CDN URL.
-- The `customId` must be unique within the modal.
-- The maximum size of the file is determined by Discord (usually 25 MB depending on the server's boost level).
+- `$newModal[]` takes the modal ID first, then its title.
 - This component is only available in modals (not in regular messages).
-

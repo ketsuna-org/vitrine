@@ -4,64 +4,60 @@ title: $slowmode
 translation_key: docs
 category: "Entity Info"
 function_name: slowmode
-syntax: $slowmode[(channelID)]
-description: Returns the current slowmode delay of a Discord channel, in seconds. Read-only function (getter).
+syntax: $slowmode[channelID;time]
+description: Sets the slowmode delay of a Discord channel (write function). To read the current value, use $getSlowmode.
 ---
 
 # $slowmode
 
-The function `$slowmode` returns the current **slowmode delay** of a Discord channel, expressed in seconds. This is a **read-only** function (getter).
+The function `$slowmode` **sets the slowmode delay** of a Discord channel. It is a **setter**: it does not return the current value (use [`$getSlowmode`](/docs/getslowmode/) for that).
 
 ## Syntax
 
 ```
-$slowmode[(channelID)]
+$slowmode[channelID;time]
 ```
+
+The function requires exactly 2 arguments.
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
+| `channelID` | The ID of the target channel. Required; an invalid ID raises "Invalid channel ID.". |
+| `time` | The new delay. Required. A plain number is read as seconds; a BDFD duration (`10s`, `5m`, `1h`, `1m30s`...) is also accepted. `0` disables slowmode. |
 
 ## Return Value
 
-| Type | Description |
-|---|---|
-| `integer` | The delay in seconds. `0` means slowmode is disabled. |
+This function does not return a value.
 
-## Possible Values
+## Allowed range
 
-Discord allows the following slowmode values (in seconds): `0`, `5`, `10`, `15`, `30`, `60`, `120`, `300`, `600`, `900`, `1800`, `3600`, `7200`, `21600`.
+The delay must be between `0` and 6 hours (`21600` seconds). Any other value, or an unreadable duration, raises the error "Slowmode must be between 0 and 6 hours.".
 
 ## Examples
 
-### Display the slowmode
+### Set a 10 second slowmode
 
 ```bdfd
-$sendMessage[Current slowmode: $slowmode second(s)]
+$slowmode[$channelID;10s]
+$sendMessage[Slowmode set to 10 seconds.]
 ```
 
-### Check if slowmode is active
+### Disable slowmode
 
 ```bdfd
-$if[$slowmode>0]
-  $sendMessage[⏳ This channel has a slowmode of $slowmode second(s).]
-$else
-  $sendMessage[No slowmode in this channel.]
-$endif
+$slowmode[$channelID;0]
+$sendMessage[Slowmode disabled.]
 ```
 
-### Alert on high slowmode
+### Slowmode on another channel
 
 ```bdfd
-$if[$slowmode>=300]
-  $sendMessage[⚠️ Warning: this channel has a very high slowmode ($slowmode seconds).]
-$endif
+$slowmode[123456789012345678;5m]
 ```
 
 ## Notes
 
-- `$slowmode` is a **getter**: it does not modify the slowmode.
-- Returns `0` if the channel has no slowmode.
-- Only works on text channels.
+- `$slowmode` is a **setter**: use `$getSlowmode` to read the current slowmode.
+- The delay is stored in whole seconds.

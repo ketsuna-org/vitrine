@@ -19,5 +19,4 @@ $jsonArraySort[scores]
 $title[Sorted Scores]
 $description[Sorted ascending: `$jsonStringify`]
 $color[#5865F2]
-$sendMessage[]
 ```

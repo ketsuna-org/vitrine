@@ -58,7 +58,7 @@ Always place `$globalCooldown` at the **top** of your command, before any side e
 ### Basic Global Cooldown
 
 ```bdfd
-$globalCooldown[1h]
+$globalCooldown[1h;This command is on global cooldown.]
 $sendMessage[This command can only be used once per hour globally.]
 ```
 

@@ -60,7 +60,6 @@ $description[
 **Example:**
 `$commandTrigger value1 optional`
 ]
-$sendMessage[]
 ```
 
 ### Detailed log
@@ -78,8 +77,7 @@ $addField[Trigger;$commandTrigger;yes]
 $addField[Type;$commandType;yes]
 $addField[Author;$userName;yes]
 $addField[Folder;$commandFolder;yes]
-$footer[Executed on $formatDate[$dateStamp]]
-$sendMessage[]
+$footer[Executed on $date]
 ```
 
 ## Notes

@@ -23,5 +23,4 @@ Variables are defined and configured in the Bot Creator Variables UI, where you 
 $title[Server Settings]
 $description[Prefix: `$getGuildVar[prefix;$guildID]`\nWelcome channel: <#$getGuildVar[welcomeChan;$guildID]>]
 $color[#5865F2]
-$sendMessage[]
 ```

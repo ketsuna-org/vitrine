@@ -4,65 +4,61 @@ title: $changeCooldownTime[]
 translation_key: docs
 category: "Control Flow"
 function_name: changeCooldownTime
-syntax: $changeCooldownTime[duration]
-description: Modifies the remaining duration of the currently active cooldown. Can be used to extend or reduce an existing cooldown.
+syntax: $changeCooldownTime[days;hours;minutes;seconds]
+description: Sets the labels (days, hours, minutes, seconds) used by the %time% placeholders in the error message of the cooldown functions.
 ---
-$changeCooldownTime lets you dynamically modify the remaining time of an active cooldown. This is useful for penalty systems, admin overrides, or adaptive rate limiting where the cooldown duration depends on user behavior.
+$changeCooldownTime customizes the **unit labels** displayed in the cooldown error message. It does not change the duration of a cooldown.
 
 ## How It Works
 
-1. A cooldown must already be active (set by `$cooldown`, `$serverCooldown`, or `$globalCooldown` earlier in the same command).
-2. Calling `$changeCooldownTime` replaces the **remaining** time — not the total original duration.
-3. The new duration is applied immediately.
+1. `$cooldown`, `$serverCooldown` and `$globalCooldown` take an error message that can contain time placeholders (`%time%`, `%time-d%`, `%time-h%`, `%time-m%`, `%time-s%`).
+2. By default, the placeholders are followed by the labels `Days`, `Hours`, `Minutes` and `Seconds`.
+3. `$changeCooldownTime[days;hours;minutes;seconds]` replaces these four labels for the rest of the current execution.
+4. The function returns an empty string.
+
+## Syntax
+
+```
+$changeCooldownTime[days;hours;minutes;seconds]
+```
+
+## Parameters
+
+All four parameters are required and must not be empty (an empty label raises the error `Cooldown time labels must not be empty.`).
+
+| Parameter | Description |
+|---|---|
+| `days` | Label shown after a number of days (default `Days`). |
+| `hours` | Label shown after a number of hours (default `Hours`). |
+| `minutes` | Label shown after a number of minutes (default `Minutes`). |
+| `seconds` | Label shown after a number of seconds (default `Seconds`). |
+
+## Placeholders
+
+| Placeholder | Replaced by |
+|---|---|
+| `%time%` | The remaining time in the largest unit that is at least 1 (seconds if less than 1 second), e.g. `1.5 Minutes`. |
+| `%time-d%` | The remaining time in days, e.g. `0.1 Days`. |
+| `%time-h%` | The remaining time in hours. |
+| `%time-m%` | The remaining time in minutes. |
+| `%time-s%` | The remaining time in seconds. |
+
+Amounts are rounded to one decimal place (a trailing `.0` is removed).
 
 ## Important Notes
 
-- **Must be called after a cooldown is set**. If no cooldown is active, calling `$changeCooldownTime` has no meaningful effect.
-- **Replaces the remaining time**, not the original duration. For example, if a 60s cooldown has 45s left, `$changeCooldownTime[10s]` sets it to 10s remaining (not adds 10s).
-- **Works with all cooldown scopes**: modifies whichever cooldown was most recently set (user, server, or global).
-
-## Common Use Cases
-
-### Adaptive Rate Limiting
-
-Increase the cooldown for users who trigger anti-spam rules:
-
-```
-$cooldown[30s]
-$if[$messageLength>500]
-$changeCooldownTime[5m]
-$sendMessage[⚠️ Long messages: cooldown extended to 5 minutes.]
-$endif
-```
-
-### Admin Bypass
-
-Admins can reset their cooldown:
-
-```
-$cooldown[60s;⏳ Cooldown active.]
-$if[$hasPerms[$authorID;Administrator]]
-$changeCooldownTime[1s]
-$sendMessage[🔓 Cooldown bypassed (admin).]
-$endif
-```
-
-## Duration Format
-
-Same format as `$cooldown`: `Xs` for seconds, `Xm` for minutes, `Xh` for hours, `Xd` for days, `Xms` for milliseconds. Combined formats like `2m30s` are also supported.
+- **Must be called before the cooldown function**, because the labels are read when the cooldown error message is built.
+- The labels apply only to the current execution.
+- The cooldown duration itself is set by `$cooldown`, `$serverCooldown` or `$globalCooldown`.
 
 ## Examples
 
-### Reducing Cooldown for VIP Members
+### Localized cooldown message
 
 ```bdfd
-$cooldown[10m;⏳ Slow down! Cooldown active.]
-$if[$hasRole[$authorID;123456789012345678]==true]
-  ;; VIP role members get a reduced cooldown of 1 minute
-  $changeCooldownTime[1m]
-$endif
+$changeCooldownTime[jours;heures;minutes;secondes]
+$cooldown[10m;⏳ Wait %time% before using this command again.]
 $title[Daily Reward Claimed]
-$description[You received **100 coins**! VIP members have a reduced 1m cooldown.]
+$description[You received **100 coins**!]
 $color[#57F287]
-$sendMessage[]
 ```

@@ -56,7 +56,9 @@ layout: with-sidebar
       {% include ai_tools_dropdown.html %}
     </header>
 
-    {% if page.syntax %}
+    {% comment %} Many pages already carry a Syntax section in their body: do not render it twice. {% endcomment %}
+    {% assign body_has_syntax = false %}{% if body_html contains 'id="syntax"' %}{% assign body_has_syntax = true %}{% endif %}
+    {% if page.syntax and body_has_syntax == false %}
     <section id="syntax" class="mb-10">
       <h2 class="mb-3 text-[1.35rem] font-semibold">Syntax</h2>
       <div class="overflow-hidden rounded-lg border border-outline bg-surface-container-low">

@@ -40,5 +40,4 @@ $var[greeting;Welcome to the community]
 $title[Local Variable Example]
 $description[$var[greeting], <@$authorID>! 🎉]
 $color[#5865F2]
-$sendMessage[]
 ```

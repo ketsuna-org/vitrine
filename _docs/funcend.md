@@ -11,7 +11,7 @@ Marks the end of a user-defined function block started with `$func[...]`.
 
 ## Syntax
 
-```bdfd
+```text
 $funcEnd
 ```
 

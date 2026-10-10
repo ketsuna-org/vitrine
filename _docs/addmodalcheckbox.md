@@ -4,58 +4,52 @@ title: $addModalCheckbox[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addModalCheckbox
-syntax: $addModalCheckbox[customId;label;(default)]
-description: Adds an individual checkbox to a Discord modal.
+syntax: $addModalCheckbox[label;description;customId;(default)]
+description: Adds an individual checkbox to the modal being built.
 ---
 
 # $addModalCheckbox[] — Modal Checkbox
 
-`$addModalCheckbox[]` adds a single checkbox to a modal. Unlike `$addModalCheckboxGroup[]` which creates a group, this function creates a single isolated checkbox.
+`$addModalCheckbox[]` adds a single checkbox to the modal being built with `$newModal[]`. Unlike `$addModalCheckboxGroup[]` which creates a group, this function creates a single isolated checkbox.
 
 ## Syntax
 
 ```
-$addModalCheckbox[customId;label;(default)]
+$addModalCheckbox[label;description;customId;(default)]
 ```
 
 ## Parameters
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Yes | — | Unique identifier to retrieve the state. |
-| `label` | Yes | — | Text displayed next to the checkbox. |
-| `default` | No | `no` | `yes` if checked by default, `no` otherwise. |
+| `label` | Yes | — | Text of the checkbox. |
+| `description` | Yes | — | Description under the label. May be left empty (`;;`). |
+| `customId` | Yes | — | Identifier used to retrieve the state. |
+| `default` | No | `no` | `yes`/`true` if checked by default, `no`/`false` otherwise. |
 
 ## Return value
 
-Adds a checkbox to the modal. The submitted value is `yes` or `no`, accessible via `$input[customId]`.
+Returns an empty string. The checkbox is added to the current modal.
+
+## Errors
+
+- Without a prior `$newModal[]`, the engine creates a default modal (ID `modal`, title `Modal`) to receive the input.
+- `required`/`disabled` values other than yes/no/true/false and out-of-range numbers are errors.
+- When the modal is sent, it must contain 1 to 5 inputs (text displays count as inputs).
 
 ## Examples
 
 ### Simple checkbox
 
 ```bdfd
-$newModal[Registration;register_modal]
-$addModalTextInput[name;Name;short;;;yes;2;50]
-$addModalCheckbox[newsletter;Subscribe to newsletter;yes]
-$addModalCheckbox[tos;Accept Terms of Service;no]
-```
-
-### Verifying the state
-
-```bdfd
-$onInteraction[modal_register]
-$if[$input[tos]==yes]
-  $sendMessage[Terms accepted ✓]
-$else
-  $sendMessage[You must accept the terms!]
-$endif
-$endInteraction
+$newModal[register_modal;Registration]
+$addModalTextInput[Name;;name;short;2;50;yes]
+$addModalCheckbox[Subscribe to newsletter;;newsletter;yes]
+$addModalCheckbox[Accept Terms of Service;;tos;no]
 ```
 
 ## Notes
 
 - For groups of checkboxes with multiple options, use `$addModalCheckboxGroup[]` and `$addCheckboxGroupOption[]`.
-- The returned state is a string: `yes` or `no`.
-- An individual checkbox counts as a component towards the limit of 5 components per modal.
-
+- An individual checkbox counts as an input towards the limit of 5 inputs per modal.
+- `$newModal[]` takes the modal ID first, then its title.

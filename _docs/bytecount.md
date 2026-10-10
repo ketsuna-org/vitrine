@@ -56,10 +56,9 @@ $var[size;$byteCount[$var[data]]]
 
 $title[📦 User Data]
 $description[
-**Size:** $var[size] bytes ($math[$var[size]/1024] KB)
-**Number of characters:** $length[$var[data]]
+**Size:** $var[size] bytes ($calculate[$var[size]/1024] KB)
+**Number of characters:** $charCount[$var[data]]
 ]
-$sendMessage[]
 ```
 
 ### Size comparison
@@ -76,6 +75,6 @@ With emoji: $var[emoji] bytes
 
 ## Notes
 
-- `$byteCount` differs from `$length`: `$length` counts characters, `$byteCount` counts bytes.
+- `$byteCount` differs from `$charCount`: `$charCount` counts characters, `$byteCount` counts bytes.
 - With pure ASCII text, both values are identical.
 - Discord limits messages to 2000 characters (not bytes), but this function remains useful for storage calculations.

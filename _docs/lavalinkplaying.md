@@ -19,5 +19,4 @@ $description[Title: **$lavalinkPlaying**\nArtist: **$lavalinkAuthor**\nDuration:
 $color[#AEEA00]
 $addButton[no;music_pause;Pause;secondary;⏸️]
 $addButton[no;music_skip;Skip;secondary;⏭️]
-$sendMessage[]
 ```

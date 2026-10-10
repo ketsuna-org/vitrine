@@ -44,10 +44,10 @@ $sendMessage[$replaceText[Hello [World];[ ];-]]
 
 ```bdfd
 $alternativeParsing
-$if[$checkContains[$message;[;]==true]
-  $sendMessage[Content detected.]
+$if[$checkContains[$message;[test]]==true]
+  $sendMessage[Bracketed text detected.]
 $else
-  $sendMessage[No content.]
+  $sendMessage[No bracketed text.]
 $endif
 ```
 

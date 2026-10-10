@@ -21,5 +21,4 @@ $color[#AEEA00]
 $addButton[no;music_pause;Pause;secondary;⏸️]
 $addButton[no;music_skip;Skip;secondary;⏭️]
 $addButton[no;music_stop;Stop;danger;⏹️]
-$sendMessage[]
 ```

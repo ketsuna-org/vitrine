@@ -4,25 +4,25 @@ title: $registerGuildCommands
 translation_key: docs
 category: "Moderation"
 function_name: registerGuildCommands
-syntax: $registerGuildCommands[guildID]
-description: Registers the bot's slash commands on a specific server. Slash commands are immediately available after registration.
+syntax: $registerGuildCommands[(guildID)]
+description: Registers the bot's local-only slash commands on a server (the current server by default).
 ---
 
 # $registerGuildCommands
 
-The `$registerGuildCommands[]` function allows **registering the bot's slash commands** on a specific server.
+The `$registerGuildCommands[]` function allows **registering the bot's slash commands** on a server.
 
 ## Syntax
 
 ```
-$registerGuildCommands[guildID]
+$registerGuildCommands[(guildID)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `guildID` | The ID of the server where to register the slash commands. |
+| `guildID` | Optional. The ID of the server where to register the slash commands. If omitted or empty, the current server is used. A non-numeric or non-positive value raises an error. |
 
 ## Return Value
 
@@ -30,16 +30,15 @@ This function does not return a value.
 
 ## Behavior
 
-- The slash commands defined in the bot are registered on the target server.
-- Guild commands are available immediately (unlike global commands which can take up to 1 hour).
-- The bot must have the `applications.commands` permission on the server.
+- The slash commands (chat input) of the bot that are marked as local-only are registered on the target server.
+- If neither the argument nor the current context gives a server, an error is returned ("No guildId provided").
 
 ## Examples
 
 ### Manual registration
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
+$if[$isAdmin[$authorID]==true]
   $registerGuildCommands[$guildID]
   $sendMessage[✅ Slash commands registered on this server!]
 $else
@@ -47,10 +46,10 @@ $else
 $endif
 ```
 
-### Automatic registration
+### Registration on the current server
 
 ```bdfd
-$registerGuildCommands[$guildID]
+$registerGuildCommands
 $sendMessage[Slash commands synced.]
 ```
 
@@ -65,7 +64,4 @@ $endif
 
 ## Notes
 
-- Guild commands are faster to update than global commands.
-- Useful for testing new commands before global deployment.
-- To remove commands, use `$unregisterGuildCommands[]`.
-- Maximum 100 slash commands per server.
+- To remove the commands of a server, use `$unregisterGuildCommands[(guildID)]`.

@@ -18,5 +18,4 @@ $stopMusic
 $title[Music Stopped ⏹️]
 $description[Playback stopped and the queue has been cleared.]
 $color[#DA373C]
-$sendMessage[]
 ```

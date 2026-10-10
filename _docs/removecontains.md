@@ -4,43 +4,46 @@ title: $removeContains
 translation_key: docs
 category: "Math & Text"
 function_name: removeContains
-syntax: $removeContains[text]
+syntax: $removeContains[text;toRemove]
 description: Removes all occurrences of a string in a given text. Searches and replaces with an empty string.
 ---
 
 # $removeContains
 
-The `$removeContains[]` function **removes all occurrences** of a string in the text. It operates on the message text ($message) or the current text context.
+The `$removeContains[]` function **removes all occurrences** of a string in a text given as the first argument.
 
 ## Syntax
 
 ```
-$removeContains[text]
+$removeContains[text;toRemove]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `text` | The string to remove. |
+| `text` | Required. The text in which to remove occurrences (for example `$message`). |
+| `toRemove` | Required. The string to remove. |
+
+Both arguments are required: a call with one argument is refused.
 
 ## Return Value
 
 - **Type**: String
-- The text without the occurrences of the target string.
+- The text without the occurrences of `toRemove`.
 
 ## Behavior
 
 - Case-sensitive.
 - Removes all occurrences, not just the first one.
-- Works on the user message or the text value in context.
+- Only the text passed as the first argument is processed.
 
 ## Examples
 
 ### Clean a message
 
 ```bdfd
-$sendMessage[Cleaned message: $removeContains[spam]]
+$sendMessage[Cleaned message: $removeContains[$message;spam]]
 ; For a message "this is spam marketing"
 ; Result: "this is  marketing"
 ```
@@ -48,15 +51,14 @@ $sendMessage[Cleaned message: $removeContains[spam]]
 ### Remove bad words
 
 ```bdfd
-$var[filtered;$removeContains[insult]]
+$var[filtered;$removeContains[$message;insult]]
 $sendMessage[Filtered message: $var[filtered]]
 ```
 
 ### Multiple cleanup
 
 ```bdfd
-$sendMessage[$removeContains[badword1]]
-$sendMessage[$removeContains[badword2]]
+$sendMessage[$removeContains[$removeContains[$message;badword1];badword2]]
 ```
 
 ## Notes

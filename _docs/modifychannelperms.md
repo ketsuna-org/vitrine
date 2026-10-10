@@ -42,7 +42,7 @@ This function does not return any value.
 
 ```bdfd
 $modifyChannelPerms[$channelID;$guildID;-viewchannel]
-$modifyChannelPerms[$channelID;$vipRoleID;+viewchannel +sendmessages]
+$modifyChannelPerms[$channelID;123456789012345678;+viewchannel +sendmessages]
 $sendMessage[VIP Channel configured.]
 ```
 
@@ -63,7 +63,7 @@ $sendMessage[🔓 Channel unlocked.]
 ### Mixed Permissions
 
 ```bdfd
-$modifyChannelPerms[$channelID;$mutedRoleID;-sendmessages -speak -connect]
+$modifyChannelPerms[$channelID;987654321098765432;-sendmessages -speak -connect]
 $sendMessage[Permissions of the muted role applied.]
 ```
 

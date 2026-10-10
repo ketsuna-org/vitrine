@@ -48,7 +48,6 @@ Selected category: <#$randomCategoryID>
 **Name:** $channelName[$randomCategoryID]
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Random assignment
@@ -60,23 +59,21 @@ You have been assigned to the **$channelName[$randomCategoryID]** category!
 ]
 $footer[ID: $randomCategoryID]
 $color[#57F287]
-$sendMessage[]
 ```
 
 ### Existence check
 
 ```bdfd
 $var[cat;$randomCategoryID]
-$if[$get[cat]==]
+$if[$var[cat]==]
   $title[⚠️ No categories]
   $description[This server has no categories.]
   $color[#ED4245]
 $else
   $title[✅ Category found]
-  $description[Category: **$channelName[$get[cat]]** (ID: `$get[cat]`)]
+  $description[Category: **$channelName[$var[cat]]** (ID: `$var[cat]`)]
   $color[#57F287]
 $endif
-$sendMessage[]
 ```
 
 ## Notes

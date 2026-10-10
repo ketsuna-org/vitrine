@@ -35,13 +35,12 @@ $userBadges
 
 ```bdfd
 $title[Profile of $userName]
-$author[$userName;$userAvatar]
+$author[$userName;$userAvatar[$userID]]
 $description[
 **ID:** $userID
 **Badges:** $userBadges
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Check a Specific Badge

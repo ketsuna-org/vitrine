@@ -77,5 +77,4 @@ $repeatMessage[10;Test message $getTextSplitIndex]
 $title[Repeating Announcement]
 $description[$repeatMessage[Echo! ;3]]
 $color[#5865F2]
-$sendMessage[]
 ```

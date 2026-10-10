@@ -26,5 +26,4 @@ $setUserVar[coins;500;$authorID]
 $title[Daily Reward Claimed 🎁]
 $description[<@$authorID> claimed 500 daily coins! Current balance: **500** 🪙]
 $color[#57F287]
-$sendMessage[]
 ```

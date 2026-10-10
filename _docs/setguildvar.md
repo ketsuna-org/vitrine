@@ -22,5 +22,4 @@ $setGuildVar[modLogChan;123456789012345678;$guildID]
 $title[Audit Logs Configured]
 $description[Moderation logs will be posted to <#123456789012345678>.]
 $color[#57F287]
-$sendMessage[]
 ```

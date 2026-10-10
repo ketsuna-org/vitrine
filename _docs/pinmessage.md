@@ -4,25 +4,23 @@ title: $pinMessage
 translation_key: docs
 category: "Moderation"
 function_name: pinMessage
-syntax: $pinMessage[messageID]
-description: Pins a message in the current channel. The message will appear in the channel's pinned messages list.
+syntax: $pinMessage
+description: Pins the message sent by the current script's response. The message will appear in the channel's pinned messages list.
 ---
 
 # $pinMessage
 
-The `$pinMessage[]` function allows **pinning a message** in its channel. Pinned messages appear in the dedicated section of the channel.
+The `$pinMessage` function **pins the message sent by the script** (the response of the command) in its channel. Pinned messages appear in the dedicated section of the channel.
 
 ## Syntax
 
 ```
-$pinMessage[messageID]
+$pinMessage
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|---|---|
-| `messageID` | The ID of the message to pin. |
+None. `$pinMessage` takes no arguments (`$pinMessage[messageID]` is refused).
 
 ## Return Value
 
@@ -30,9 +28,10 @@ This function does not return a value.
 
 ## Behavior
 
-- The bot must have the `MANAGE_MESSAGES` permission.
-- Maximum 50 pinned messages per channel.
-- Pinning works in the channel where the message is located.
+- The pin is deferred: it is applied to the main response of the script (not to messages sent separately with `$sendMessage`), once that response has been sent.
+- The script output must support deferred pinning, otherwise an error is raised; an error is also raised if the sent message has no usable channel/message ID.
+- The bot needs the `Pin Messages` permission in the channel.
+- To pin or unpin an arbitrary message by ID, use the functions that take `channelID` and `messageID` (for example `$unpinMessage[channelID;messageID]`).
 
 ## Examples
 
@@ -42,22 +41,22 @@ This function does not return a value.
 $title[📢 Important announcement]
 $description[$noMentionMessage]
 $color[#FEE75C]
-$sendMessage[]
-$pinMessage[$messageID]
+$pinMessage
 ```
 
-### Pin a specific message
+### Pin a text response
 
 ```bdfd
-$pinMessage[$mentionedMessage]
-$sendMessage[Message pinned!]
+This message will be pinned.
+$pinMessage
 ```
 
 ### Conditional pinning
 
 ```bdfd
-$if[$checkContains[$userPerms;Administrator]==true]
-  $pinMessage[$noMentionMessage]
+$if[$checkUserPerms[$authorID;Administrator]==true]
+  $description[$noMentionMessage]
+  $pinMessage
   $addCmdReactions[📌]
 $else
   $sendMessage[Only administrators can pin.]
@@ -66,6 +65,5 @@ $endif
 
 ## Notes
 
-- Discord notifies the concerned users when a message is pinned.
 - To unpin, use `$unpinMessage[]`.
 - Pinned messages remain visible even after years.

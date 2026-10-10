@@ -92,5 +92,4 @@ $description[Top ranked members in **$serverName**:
 $serverLeaderboard[level;desc]]
 $color[#FEE75C]
 $footer[Rankings refresh every 10 minutes]
-$sendMessage[]
 ```

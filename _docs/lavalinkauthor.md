@@ -17,5 +17,4 @@ Returns the author or artist name of the currently playing track. For YouTube tr
 $title[Track Artist 🎤]
 $description[Artist: **$lavalinkAuthor**]
 $color[#AEEA00]
-$sendMessage[]
 ```

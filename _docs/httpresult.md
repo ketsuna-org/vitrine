@@ -18,5 +18,4 @@ $httpGet[https://dummyjson.com/quotes/random]
 $title[Random Quote 📜]
 $description[Response: `$httpResult`]
 $color[#5865F2]
-$sendMessage[]
 ```

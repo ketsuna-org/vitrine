@@ -4,7 +4,7 @@ title: $setUserRoles
 translation_key: docs
 category: "Moderation"
 function_name: setUserRoles
-syntax: $setUserRoles[userID;role1;role2;...]
+syntax: $setUserRoles[userID;role1;(role2;...)]
 description: Sets the exact list of roles for a user, replacing all of their current roles.
 ---
 
@@ -15,15 +15,18 @@ The function `$setUserRoles` **replaces all roles of a user** with a new list. U
 ## Syntax
 
 ```
-$setUserRoles[userID;role1;role2;...]
+$setUserRoles[userID;role1;(role2;...)]
 ```
+
+At least 2 arguments are required: the user ID and one role ID.
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
 | `userID` | The ID of the target user. Required. |
-| `role1;role2;...` | List of role IDs to set, separated by `;`. |
+| `role1` | ID of the first role to set. Required. |
+| `role2;...` | Optional. Other role IDs to set, separated by `;`. Every ID must be a valid positive number, otherwise the error "Missing or invalid role ID." is raised. |
 
 ## Return Value
 
@@ -48,19 +51,8 @@ $sendMessage[Roles of <@$mentioned[1]> updated.]
 ### Promoting a member
 
 ```bdfd
-$if[$isAdmin==true]
-  $setUserRoles[$mentioned[1];$roleID[Moderator];$roleID[Staff]]
-  $sendMessage[<@$mentioned[1]> is now a Moderator!]
-$else
-  $sendMessage[Permission denied.]
-$endif
-```
-
-### Clearing all roles
-
-```bdfd
-$setUserRoles[$mentioned[1]]
-$sendMessage[All roles of <@$mentioned[1]> have been removed.]
+$setUserRoles[$mentioned[1];$roleID[Moderator];$roleID[Staff]]
+$sendMessage[<@$mentioned[1]> is now a Moderator!]
 ```
 
 ## Notes
@@ -69,5 +61,5 @@ $sendMessage[All roles of <@$mentioned[1]> have been removed.]
 - **All existing roles are removed** before applying the new ones.
 - To simply add roles, use `$giveRoles` instead.
 - To remove specific roles, use `$takeRoles` instead.
-- Leaving the role list empty removes all roles (except the @everyone role).
+- The role list cannot be empty: `$setUserRoles[userID]` is refused (at least one role ID is required).
 - The @everyone role cannot be removed.

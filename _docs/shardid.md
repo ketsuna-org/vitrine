@@ -43,7 +43,6 @@ $addField[🔢 Shard;$shardID;yes]
 $addField[🌐 Servers (on this shard);$serverCount;yes]
 $addField[📶 Ping;$ping ms;yes]
 $color[#2ECC71]
-$sendEmbedMessage
 ```
 
 ### Log with shard
@@ -61,7 +60,6 @@ $addField[Server;$serverName ($serverID);yes]
 $addField[Channel;$channelID;yes]
 $addField[User;$username ($authorID);yes]
 $color[#E74C3C]
-$sendEmbedMessage
 ```
 
 ## Notes

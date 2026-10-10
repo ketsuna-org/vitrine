@@ -35,7 +35,7 @@ $checkUserPerms[userID;permission1;permission2;...]
 
 - **Inline** check: Does not interrupt the command.
 - **AND** check: All listed permissions are required.
-- `Administrator` covers all permissions.
+- `Administrator` (and server ownership) covers all permissions.
 
 ## Examples
 
@@ -74,4 +74,6 @@ $endif
 - `$checkUserPerms` and `$hasPerms` are **interchangeable**. Use whichever syntax is most explicit for your context.
 - For the bot itself, pass `$botID` as the `userID`.
 - For a check with automatic interruption (guard), use `$onlyPerms`.
-- Permissions are in **PascalCase**: `BanMembers`, `ManageMessages`, `Administrator`, etc.
+- Permission names are case-insensitive and ignore non-alphanumeric characters (`BanMembers`, `ManageMessages`, `Administrator`, etc.). Short aliases such as `Admin`, `Ban` or `Kick` are accepted. An unknown name raises the error `Invalid permission.`
+- `userID` must be a positive numeric ID, otherwise the function raises `Invalid user ID.`
+- The server owner and members with `Administrator` always get `"true"`.

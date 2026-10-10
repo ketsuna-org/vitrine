@@ -45,7 +45,8 @@ $sendMessage[🔒 The bot has been removed from the public BDFD list.]
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ This command is reserved for the owner.]
+  $ephemeral
+  $sendMessage[❌ This command is reserved for the owner.]
   $stop
 $endif
 
@@ -58,7 +59,8 @@ $sendMessage[✅ **$botName** has been hidden from the BDFD bot list.
 
 ```bdfd
 $if[$authorID!=$botOwnerID]
-  $sendEphemeral[❌ Reserved for the owner.]
+  $ephemeral
+  $sendMessage[❌ Reserved for the owner.]
   $stop
 $endif
 

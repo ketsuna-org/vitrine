@@ -49,7 +49,7 @@ $sendMessage[2^8 = $c[2^8]]
 ### Calculation with decimals
 
 ```bdfd
-$enableDecimals
+$enableDecimals[yes]
 $sendMessage[22/7 = $c[22/7]]
 ```
 

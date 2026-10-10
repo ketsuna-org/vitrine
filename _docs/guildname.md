@@ -44,7 +44,6 @@ $addField[ID;$guildID;yes]
 $addField[Members;$membersCount;yes]
 $thumbnail[$guildIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Logs

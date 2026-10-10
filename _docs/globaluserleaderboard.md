@@ -91,5 +91,4 @@ $description[Top users across all servers:
 $globalUserLeaderboard[coins;desc]]
 $color[#FEE75C]
 $footer[Updated every 5 minutes]
-$sendMessage[]
 ```

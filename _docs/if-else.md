@@ -21,7 +21,7 @@ When the parser encounters a `$if[condition]` token, it evaluates the condition.
 
 ## Condition Syntax
 
-Conditions are BDFD expressions. They are not traditional programming language booleans — they are evaluated at runtime by the BDFD expression engine.
+The condition text is first evaluated (functions are expanded), then interpreted. It must either be exactly `true` or `false`, or contain a comparison `left operator right`; anything else raises the error `Invalid condition`. The text is split at the first operator found. If both sides are numbers they are compared numerically, otherwise they are compared as text (lexicographic order).
 
 ### Supported Comparison Operators
 
@@ -36,7 +36,7 @@ Conditions are BDFD expressions. They are not traditional programming language b
 
 ### Logical Operators
 
-Combine multiple conditions with `$and` and `$or`:
+Combine multiple conditions with `$and` and `$or`. Each takes 1 to 100 conditions and returns `true` or `false`:
 
 ```
 $if[$and[$getUserVar[gold]>=100;$getUserVar[rank]>=5]==true]
@@ -45,12 +45,16 @@ $if[$or[$checkContains[$message;ping];$checkContains[$message;pong]]==true]
 
 ### Inline Check Functions
 
-Use `$checkCondition` or `$checkContains` inside an `$if`:
+Use `$checkCondition[condition]` (one condition, returns `true` or `false`) or `$checkContains[text;phrase;...]` inside an `$if`:
 
 ```
-$if[$checkCondition[>=;$getUserVar[age];18]==true]
+$if[$checkCondition[$getUserVar[age]>=18]==true]
 $if[$checkContains[$message;admin]==true]
 ```
+
+## Inline Form
+
+With two or three arguments, `$if[condition;then;else]` is a regular function: it returns `then` when the condition is true, otherwise `else` (an empty string if `else` is omitted). It needs no `$endif`.
 
 ## Structural Rules
 
@@ -64,7 +68,8 @@ $if[$checkContains[$message;admin]==true]
 
 - Forgetting `$endif` causes a parse error.
 - Using `=` instead of `==` for equality — BDFD requires double equals.
-- Comparing strings with numeric operators — make sure the value type matches the comparison intent.
+- A non-numeric value on either side makes the comparison textual (`10` vs `9abc` is compared as text).
+- A condition without a comparison operator (other than `true` / `false`) is an error.
 
 ## Examples
 
@@ -80,5 +85,4 @@ $else
   $description[You need 100 coins, but only have **$getUserVar[coins]**.]
   $color[#ED4245]
 $endif
-$sendMessage[]
 ```

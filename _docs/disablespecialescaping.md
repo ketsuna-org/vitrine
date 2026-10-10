@@ -45,7 +45,7 @@ $sendMessage[The format is [optional] in the doc]
 
 ```bdfd
 $disableSpecialEscaping
-$sendMessage[Use $if[condition] for conditions.]
+$sendMessage[Use name[index] to read an item.]
 ```
 
 ### Combination with other flags

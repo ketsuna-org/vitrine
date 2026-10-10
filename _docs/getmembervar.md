@@ -23,5 +23,4 @@ Variables are defined and configured in the Bot Creator Variables UI, where you 
 $title[User Profile]
 $description[Experience: **$getMemberVar[xp;$authorID]** XP]
 $color[#5865F2]
-$sendMessage[]
 ```

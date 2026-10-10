@@ -4,84 +4,55 @@ title: $attachImage
 translation_key: docs
 category: "Image & Canvas"
 function_name: attachImage
-syntax: $attachImage[name;url;(spoiler)]
-description: Attaches a remote image to the response message using a name and a URL.
+syntax: $attachImage[(canvasName)]
+description: Renders a canvas created with $canvasCreate[] and attaches it to the response as a PNG image named after the canvas.
 ---
 
 # $attachImage
 
-The `$attachImage[name;url;(spoiler)]` function **attaches a remote image** to the next message sent via `$sendMessage[]`. The image is downloaded from the provided URL and attached as a Discord attachment.
+The `$attachImage[(canvasName)]` function **renders a canvas** built with the `$canvas*` functions and attaches the resulting PNG to the message sent with the response. It does not download a remote image: the image is the canvas.
 
 ## Syntax
 
 ```
-$attachImage[name;url;(spoiler)]
+$attachImage
+$attachImage[canvasName]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `name` | File name as it will appear in Discord (e.g., `photo.png`, `avatar.gif`). |
-| `url` | URL of the image to download. Must be a publicly accessible HTTPS URL. |
-| `spoiler` | Optional - `true` to mark the image as a spoiler (blurred until clicked). |
+| `canvasName` | Optional. Name of a canvas created with `$canvasCreate[]`. When omitted, the current canvas (the last one created or selected) is used. |
+
+Note that `$attachImage[]` (empty brackets) passes an empty name, which does not match a canvas created with a name.
 
 ## Return value
 
-None. The image is queued for the next `$sendMessage[]`.
+Returns an empty string. The rendered image is stored in the temporary variable `_canvasAttachment_<name>`, and the message sender attaches it as `<name>.png`.
 
 ## Behavior
 
-- The image is downloaded by the bot from the provided URL.
-- The file name must include a valid extension (.png, .jpg, .gif, .webp, etc.).
-- Spoiler images are blurred in Discord until the user clicks on them.
-- Supports PNG, JPEG, GIF, WebP formats (size limit according to the bot's limit).
+- If the canvas does not exist, the call fails with: `Canvas "<name>" does not exist; use $canvasCreate first`.
+- Canvases that are still pending when the response is sent are rendered automatically, so `$attachImage` is only needed to render a canvas explicitly at a given point.
+- The operations of the canvas (`$canvasCreate[]`, `$canvasGrayscale`, ...) must be written before the call.
 
 ## Examples
 
-### Attaching a simple image
+### Attaching the current canvas
 
 ```bdfd
-$attachImage[logo.png;https://mysite.com/logo.png]
-$sendMessage[Here is our logo!]
+$canvasCreate[card;400;200;#202225]
+$attachImage
 ```
 
-### Image as a spoiler
+### Attaching a named canvas
 
 ```bdfd
-$attachImage[spoiler_alert.png;https://mysite.com/spoiler.png;true]
-$sendMessage[⚠️ Spoiler warning below:]
-```
-
-### Avatar of a user
-
-```bdfd
-$attachImage[avatar_$username.png;$userAvatar[$mentioned[1]]]
-$sendMessage[Avatar of <@$mentioned[1]>:]
-```
-
-### Multiple images
-
-```bdfd
-$attachImage[before.png;$attachment[1]]
-$attachImage[after.png;$attachment[2]]
-$sendMessage[Comparison before/after:]
-```
-
-### Integration with Canvas
-
-```bdfd
-$canvasLoad[$attachment]
-$canvasGrayscale
-$attachCanvas[result.png]
-$attachImage[original.png;$attachment]
-$sendMessage[🔲 Original vs Grayscale:]
+$canvasCreate[banner;600;200;#5865F2]
+$attachImage[banner]
 ```
 
 ## Notes
 
-- The URL must start with `https://` and be accessible without authentication.
-- The maximum size depends on the bot's limit (generally 8 MB).
-- To attach the current canvas, use `$attachCanvas[]`.
-- To attach a local file (non-image), use `$attachFile[]`.
-- Attachments are only consumed by the next `$sendMessage[]`.
+- The attachment file name is the canvas name followed by `.png`.

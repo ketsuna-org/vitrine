@@ -68,7 +68,6 @@ $title[Configuration of $serverName]
 $addField[Verification level;$serverVerificationLevel;yes]
 $addField[AFK Timeout;$afkTimeout seconds;yes]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ## Notes

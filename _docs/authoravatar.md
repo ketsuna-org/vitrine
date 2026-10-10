@@ -38,7 +38,6 @@ $authorAvatar
 $title[Avatar of $authorUsername]
 $image[$authorAvatar]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Author of embed with avatar
@@ -48,7 +47,6 @@ $author[$authorUsername;$authorAvatar]
 $title[Message]
 $description[Message content...]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Complete profile
@@ -62,7 +60,6 @@ $description[
 **ID:** $authorID
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes

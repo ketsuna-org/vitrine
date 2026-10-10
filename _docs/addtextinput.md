@@ -4,79 +4,61 @@ title: $addTextInput[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addTextInput
-syntax: $addTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
-description: Adds a text input field directly in a message (message component, non-modal). Supports the "short" and "paragraph" styles.
+syntax: $addTextInput[customId;style;label;(minLength);(maxLength);(required);(default);(placeholder)]
+description: Adds a classic text input to the modal being built with $newModal[]. The style must be "short" or "paragraph".
 ---
 
-# $addTextInput[] — Message Text Input
+# $addTextInput[] — Modal Text Input (classic)
 
-`$addTextInput[]` adds a text input component directly in a Discord message. Unlike `$addModalTextInput[]` which requires a modal, this function inserts the text field as an interactive component of the message.
+`$addTextInput[]` adds a text input to the modal started with `$newModal[]`. It is not a message component: it requires a modal to be in progress. For the Components V2 modal inputs, see `$addModalTextInput[]`.
 
 ## Syntax
 
 ```
-$addTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
+$addTextInput[customId;style;label;(minLength);(maxLength);(required);(default);(placeholder)]
 ```
 
 ## Parameters
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Yes | — | Unique identifier of the field. |
-| `label` | Yes | — | Label text. |
-| `style` | No | `short` | `short` or `paragraph`. |
-| `placeholder` | No | — | Placeholder text. |
-| `default` | No | — | Default value. |
-| `required` | No | `yes` | `yes` or `no`. |
-| `minLength` | No | — | Minimum number of characters. |
-| `maxLength` | No | — | Maximum number of characters. |
+| `customId` | Yes | — | Unique identifier of the field (1 to 100 characters). |
+| `style` | Yes | — | `short` or `paragraph` (any other value is an error). |
+| `label` | Yes | — | Label text (1 to 45 characters). |
+| `minLength` | No | `0` | Minimum number of characters (integer from 0 to 4000). |
+| `maxLength` | No | `4000` | Maximum number of characters (integer from 1 to 4000). Must not be lower than `minLength`. |
+| `required` | No | `yes` | `yes`/`true` or `no`/`false`. |
+| `default` | No | empty | Pre-filled value (0 to 4000 characters). |
+| `placeholder` | No | empty | Placeholder text (0 to 100 characters). |
 
 ## Return value
 
-Adds the TextInput to the message. The input value is retrieved via `$input[customId]` in the interaction handler.
+Returns an empty string. The input is added to the current modal.
+
+## Errors
+
+- `$newModal[]` must have been called before, otherwise: "Create a modal before adding text inputs."
+- A modal supports at most 5 inputs, and input IDs must be unique.
+- An invalid `style`, a length out of range, a non-integer `minLength`/`maxLength`, or a `required` value other than yes/no/true/false is an error.
 
 ## Examples
 
-### Search field
+### Search modal
 
 ```bdfd
-$title[Search]
-$description[Enter your search term below]
-$addTextInput[query;Search term;short;Search...;;yes;2;100]
-$addButton[search;Search;Primary;;search_action]
+$newModal[search_modal;Search]
+$addTextInput[query;short;Search term;2;100;yes;;Search...]
 ```
 
-### Feedback form
+### Feedback modal
 
 ```bdfd
-$title[Feedback]
-$description[We want your opinion!]
-$addTextInput[name;Your name;short;Anonymous;;no;0;50]
-$addTextInput[message;Your message;paragraph;Write your feedback here...;;yes;10;1000]
-$addButton[submit;Send;Success]
+$newModal[feedback_modal;Feedback]
+$addTextInput[name;short;Your name;0;50;no;;Anonymous]
+$addTextInput[message;paragraph;Your message;10;1000;yes;;Write your feedback here...]
 ```
-
-### Processing the response
-
-```bdfd
-$onInteraction[search_action]
-$var[query;$input[query]]
-$sendMessage[Results for: **$var[query]**]
-$endInteraction
-```
-
-## Differences with $addModalTextInput[]
-
-| Message TextInput | Modal TextInput |
-|-------------------|-----------------|
-| Directly in the message | In a modal (pop-up) |
-| Often accompanied by buttons | Submitted with the modal's Submit button |
-| No limit of 5 components | Limited to 5 components per modal |
 
 ## Notes
 
-- The `customId` must be unique within the message.
-- The value is retrieved via `$input[customId]` in a `$onInteraction` handler.
-- `minLength` and `maxLength` are validated on the Discord client side.
-- Label max 45 characters, placeholder max 100 characters.
-
+- `$newModal[]` takes the modal ID first, then its title.
+- The submitted value is read with `$input[customId]` when the modal is handled.

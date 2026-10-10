@@ -18,5 +18,4 @@ $httpGet[https://httpbin.org/status/200]
 $title[HTTP Status Check]
 $description[API endpoint returned HTTP status code: **$httpStatus** ✅]
 $color[#57F287]
-$sendMessage[]
 ```

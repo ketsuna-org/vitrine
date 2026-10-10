@@ -5,49 +5,59 @@ translation_key: docs
 category: "Control Flow"
 function_name: workflowResponse
 syntax: $workflowResponse
-description: Returns the last response or value produced by a BDFD workflow. Useful for chaining workflows or retrieving results.
+description: Returns the status or a named result of the last workflow run with $callWorkflow.
 ---
 # $workflowResponse
 
-The `$workflowResponse` function returns the **last response** produced by a BDFD workflow.
+The `$workflowResponse` function returns information about the **last workflow run with `$callWorkflow`**.
 
 ## Syntax
 
 ```
 $workflowResponse
+$workflowResponse[property]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `property` | Optional - Name of a result of the last workflow. Without it, the status of the last call is returned. |
 
 ## Return Value
 
 - **Type**: String
-- The value returned by the last workflow executed.
+- Without argument: `WORKFLOW_OK:` followed by the entry point of the workflow that was called (for example `WORKFLOW_OK:main`).
+- With `property`: the named result of the last workflow (for a BDFD script workflow, `output` is the text it produced); an empty string if there is none.
 - Empty string if no workflow has been called yet.
 
 ## Behavior
 
-- Stores the response of the last `$workflow` called.
-- The value persists until the end of the command or until the next workflow is called.
-- Allows chaining of workflows.
+- The values are set by each `$callWorkflow[name;...]` call and overwritten by the next one.
+- A workflow that stops the script also stops the calling script.
 
 ## Examples
 
-### Call and retrieve
+### Call and retrieve the status
 
 ```bdfd
-$workflow[calculSalaire;$authorID]
-$sendMessage[Your calculated salary: $workflowResponse €]
+$callWorkflow[dailyReward;user=$authorID]
+$sendMessage[Workflow status: $workflowResponse]
+```
+
+### Read the output of a script workflow
+
+```bdfd
+$callWorkflow[calculSalaire;user=$authorID]
+$sendMessage[Your calculated salary: $workflowResponse[output] €]
 ```
 
 ### Chain of workflows
 
 ```bdfd
-$workflow[verifyUser;$authorID]
-$if[$workflowResponse==ok]
-  $workflow[processOrder;$input]
+$callWorkflow[verifyUser;user=$authorID]
+$if[$workflowResponse[output]==ok]
+  $callWorkflow[processOrder;user=$authorID]
   $sendMessage[Order processed: $workflowResponse]
 $else
   $sendMessage[Verification failed.]
@@ -57,24 +67,12 @@ $endif
 ### Log of workflow
 
 ```bdfd
-$workflow[dailyReward;$authorID]
-$log[Daily reward for $username: $workflowResponse]
-$sendMessage[$workflowResponse]
-```
-
-### Conditional workflow
-
-```bdfd
-$workflow[checkBan;$mentioned[1]]
-$if[$workflowResponse!="clean"]
-  $sendMessage[This user is banned: $workflowResponse]
-$else
-  $sendMessage[No ban found.]
-$endif
+$callWorkflow[dailyReward;user=$authorID]
+$log[Daily reward for $username: $workflowResponse[output]]
 ```
 
 ## Notes
 
-- `$workflowResponse` is overwritten with each new call to `$workflow`.
-- Store the value in a temporary variable if you need to reuse it: `$var[rep;$workflowResponse]`.
-- The response depends entirely on what the workflow returns via `$sendMessage` or `$return`.
+- `$workflowResponse` is overwritten with each new call to `$callWorkflow`.
+- Store the value in a temporary variable if you need to reuse it: `$var[rep;$workflowResponse[output]]`.
+- Arguments are passed to `$callWorkflow` as `name=value`.

@@ -1,332 +1,12 @@
 /**
  * BDFD Visual Blocks & Discord Message Simulator Engine
  * Automatically parses BDFD / BDScript code blocks in documentation and generates:
- * 1. Dual-View Tabs (Scratch-like Blocks View vs Syntax-highlighted Script View)
+ * 1. A syntax-highlighted script panel with a Copy button
  * 2. Realistic Discord Simulator Preview (Bot avatar, embeds, buttons, select menus, attachments)
  */
 
 (function (global) {
   'use strict';
-
-  // Category mapping for BDFD functions
-  const CATEGORY_MAP = {
-    // Messages & Embeds
-    title: 'messages',
-    description: 'messages',
-    color: 'messages',
-    addfield: 'messages',
-    footer: 'messages',
-    author: 'messages',
-    thumbnail: 'messages',
-    image: 'messages',
-    sendmessage: 'messages',
-    channelsendmessage: 'messages',
-    editmessage: 'messages',
-    deletemessage: 'messages',
-    pinmessage: 'messages',
-    unpinmessage: 'messages',
-    addfile: 'messages',
-    attachimage: 'messages',
-    sendembedmessage: 'messages',
-    reply: 'messages',
-    dm: 'messages',
-
-    // Reactions
-    addreaction: 'reactions',
-    addmessagereactions: 'reactions',
-    clearreactions: 'reactions',
-
-    // Channels
-    createchannel: 'channels',
-    deletechannels: 'channels',
-    deletechannelsbyname: 'channels',
-    editchannelperms: 'channels',
-    usechannel: 'channels',
-    slowmode: 'channels',
-    channelid: 'channels',
-    channelname: 'channels',
-
-    // Moderation
-    ban: 'moderation',
-    unban: 'moderation',
-    kick: 'moderation',
-    timeout: 'moderation',
-    untimeout: 'moderation',
-    giverole: 'moderation',
-    takerole: 'moderation',
-    clear: 'moderation',
-    checkusersperms: 'moderation',
-    hasrole: 'moderation',
-
-    // Components & Interactions
-    addbutton: 'components',
-    addbuttoncv2: 'components',
-    addactionrow: 'components',
-    addselectmenu: 'components',
-    addselectmenuoption: 'components',
-    addstringselect: 'components',
-    addstringselectoption: 'components',
-    addchannelselect: 'components',
-    addroleselect: 'components',
-    adduserselect: 'components',
-    addmentionableselect: 'components',
-    addseparator: 'components',
-    addtextdisplay: 'components',
-    ephemeral: 'interactions',
-    defer: 'interactions',
-    editbutton: 'components',
-    newmodal: 'components',
-    addtextinput: 'components',
-
-    // Variables & Workflows
-    var: 'workflows',
-    setvar: 'workflows',
-    getvar: 'workflows',
-    setservervar: 'workflows',
-    getservervar: 'workflows',
-    setchannelvar: 'workflows',
-    getchannelvar: 'workflows',
-    setguildvar: 'workflows',
-    getguildvar: 'workflows',
-    setmembervar: 'workflows',
-    getmembervar: 'workflows',
-    setuservar: 'workflows',
-    getuservar: 'workflows',
-    resetvar: 'workflows',
-    resettablevar: 'workflows',
-    callworkflow: 'workflows',
-    varexists: 'workflows',
-    varexisterror: 'workflows',
-
-    // HTTP & JSON
-    httpget: 'http',
-    httppost: 'http',
-    httpaddheader: 'http',
-    httpdelete: 'http',
-    httppatch: 'http',
-    httpput: 'http',
-    httpresult: 'http',
-    httpstatus: 'http',
-    jsonparse: 'http',
-    jsonvalue: 'http',
-    jsonset: 'http',
-    jsonstringify: 'http',
-
-    // Music
-    playmusic: 'music',
-    pausemusic: 'music',
-    stopmusic: 'music',
-    skipmusic: 'music',
-    resumemusic: 'music',
-    joinvoice: 'music',
-    leavevoice: 'music',
-    seekmusic: 'music',
-    setmusicvolume: 'music',
-    setmusicloop: 'music',
-
-    // Canvas
-    canvascreate: 'messages',
-    canvasdrawtext: 'messages',
-    canvasdrawrect: 'messages',
-    canvasdrawcircle: 'messages',
-    canvasdrawline: 'messages',
-    canvasloadimage: 'messages',
-    canvascompositeimage: 'messages',
-
-    // Logic & Math
-    calculate: 'logic',
-    if: 'logic',
-    endif: 'logic',
-    else: 'logic',
-    try: 'logic',
-    catch: 'logic',
-    endtry: 'logic',
-    for: 'logic',
-    endfor: 'logic',
-    loop: 'logic',
-    endloop: 'logic',
-    and: 'logic',
-    or: 'logic',
-    checkcondition: 'logic',
-    checkcontains: 'logic',
-    sum: 'logic',
-    sub: 'logic',
-    multi: 'logic',
-    divide: 'logic',
-    round: 'logic',
-    ceil: 'logic',
-    floor: 'logic',
-    sqrt: 'logic',
-    max: 'logic',
-    min: 'logic',
-    modulo: 'logic',
-    log: 'logic',
-
-    // Entrypoint & Meta
-    cooldown: 'entrypoint',
-    globalcooldown: 'entrypoint',
-    servercooldown: 'entrypoint',
-    nomentionmessage: 'entrypoint',
-    argscheck: 'entrypoint',
-    argcount: 'entrypoint',
-    stop: 'entrypoint'
-  };
-
-  // Icon mapping for actions
-  const ICON_MAP = {
-    title: 'format_size',
-    description: 'description',
-    color: 'palette',
-    addfield: 'view_column',
-    footer: 'vertical_align_bottom',
-    author: 'person',
-    thumbnail: 'image',
-    image: 'panorama',
-    sendmessage: 'send',
-    channelsendmessage: 'forward_to_inbox',
-    editmessage: 'edit_note',
-    deletemessage: 'delete_sweep',
-    pinmessage: 'push_pin',
-    addfile: 'attach_file',
-    attachimage: 'image',
-    addreaction: 'add_reaction',
-    createchannel: 'add_box',
-    deletechannels: 'delete',
-    editchannelperms: 'lock_open',
-    usechannel: 'arrow_forward',
-    slowmode: 'speed',
-    ban: 'gavel',
-    unban: 'lock_open',
-    kick: 'person_remove',
-    timeout: 'timer_off',
-    untimeout: 'timer',
-    giverole: 'shield_person',
-    takerole: 'remove_moderator',
-    clear: 'delete_sweep',
-    addbutton: 'smart_button',
-    addbuttoncv2: 'smart_button',
-    addactionrow: 'table_rows',
-    addselectmenu: 'menu_open',
-    addselectmenuoption: 'checklist',
-    addstringselect: 'menu_open',
-    addchannelselect: 'tag',
-    addroleselect: 'shield',
-    adduserselect: 'account_circle',
-    addmentionableselect: 'alternate_email',
-    ephemeral: 'visibility_off',
-    defer: 'pending',
-    var: 'data_array',
-    setvar: 'database',
-    getvar: 'inventory_2',
-    setservervar: 'dns',
-    getservervar: 'dns',
-    setuservar: 'account_circle',
-    getuservar: 'account_circle',
-    httpget: 'cloud_sync',
-    httppost: 'cloud_upload',
-    jsonparse: 'data_object',
-    jsonvalue: 'key',
-    playmusic: 'play_arrow',
-    pausemusic: 'pause',
-    stopmusic: 'stop',
-    skipmusic: 'skip_next',
-    resumemusic: 'play_arrow',
-    canvascreate: 'brush',
-    canvasdrawtext: 'draw',
-    calculate: 'calculate',
-    sum: 'add',
-    sub: 'remove',
-    multi: 'close',
-    divide: 'percent',
-    round: 'rounded_corner',
-    ceil: 'arrow_upward',
-    floor: 'arrow_downward',
-    sqrt: 'square_foot',
-    cooldown: 'schedule',
-    globalcooldown: 'public',
-    servercooldown: 'domain',
-    nomentionmessage: 'terminal',
-    if: 'alt_route',
-    else: 'alt_route',
-    endif: 'commit',
-    try: 'security',
-    catch: 'warning',
-    for: 'restart_alt',
-    stop: 'cancel'
-  };
-
-  // Human parameter labels
-  const PARAM_LABELS = {
-    title: ['Title text', 'Embed index'],
-    description: ['Description text', 'Embed index'],
-    color: ['Sidebar color (HEX)', 'Embed index'],
-    addfield: ['Field name', 'Field value', 'Inline (yes/no)', 'Embed index'],
-    footer: ['Footer text', 'Footer icon URL', 'Embed index'],
-    author: ['Author name', 'Author icon URL', 'URL', 'Embed index'],
-    thumbnail: ['Thumbnail URL', 'Embed index'],
-    image: ['Image URL', 'Embed index'],
-    sendmessage: ['Message text', 'Target channel ID'],
-    channelsendmessage: ['Target channel ID', 'Message text'],
-    addfile: ['File URL', 'Spoiler (yes/no)'],
-    attachimage: ['Canvas name'],
-    addbutton: ['New row (yes/no)', 'Custom ID', 'Label', 'Style (primary/secondary/success/danger/link)', 'Emoji', 'Disabled'],
-    addbuttoncv2: ['Custom ID', 'Button label', 'Style', 'Emoji', 'Disabled'],
-    addactionrow: ['Row Custom ID'],
-    addselectmenu: ['Row', 'Custom ID', 'Placeholder', 'Min options', 'Max options', 'Disabled'],
-    addstringselect: ['Custom ID', 'Placeholder', 'Min options', 'Max options', 'Disabled'],
-    addchannelselect: ['Custom ID', 'Placeholder', 'Min', 'Max', 'Disabled', 'Channel types'],
-    addroleselect: ['Custom ID', 'Placeholder', 'Min', 'Max', 'Disabled'],
-    adduserselect: ['Custom ID', 'Placeholder', 'Min', 'Max', 'Disabled'],
-    addmentionableselect: ['Custom ID', 'Placeholder', 'Min', 'Max', 'Disabled'],
-    createchannel: ['Channel name', 'Channel type', 'Category ID'],
-    deletechannels: ['Channel ID'],
-    editchannelperms: ['Channel ID', 'Target ID', 'Permissions'],
-    usechannel: ['Channel ID'],
-    ban: ['User ID', 'Reason', 'Delete message days'],
-    unban: ['User ID', 'Reason'],
-    kick: ['User ID', 'Reason'],
-    timeout: ['User ID', 'Duration', 'Reason'],
-    untimeout: ['User ID'],
-    giverole: ['User ID', 'Role ID'],
-    takerole: ['User ID', 'Role ID'],
-    clear: ['Message count', 'Channel ID'],
-    var: ['Variable name', 'Value'],
-    setvar: ['Variable name', 'Value', 'User ID'],
-    getvar: ['Variable name', 'User ID'],
-    setservervar: ['Variable name', 'Value', 'Guild ID'],
-    getservervar: ['Variable name', 'Guild ID'],
-    setuservar: ['Variable name', 'Value', 'User ID'],
-    getuservar: ['Variable name', 'User ID'],
-    setchannelvar: ['Variable name', 'Value', 'Channel ID'],
-    getchannelvar: ['Variable name', 'Channel ID'],
-    setguildvar: ['Variable name', 'Value', 'Guild ID'],
-    getguildvar: ['Variable name', 'Guild ID'],
-    setmembervar: ['Variable name', 'Value', 'User ID', 'Guild ID'],
-    getmembervar: ['Variable name', 'User ID', 'Guild ID'],
-    httpget: ['Request URL'],
-    httppost: ['Request URL', 'JSON Payload'],
-    httpaddheader: ['Header name', 'Header value'],
-    jsonparse: ['JSON string'],
-    jsonvalue: ['Key path'],
-    playmusic: ['Search query or URL', 'Channel ID', 'User ID'],
-    setmusicvolume: ['Volume (1-150)'],
-    seekmusic: ['Position (seconds)'],
-    canvascreate: ['Canvas name', 'Width', 'Height', 'Background color'],
-    canvasdrawtext: ['Canvas name', 'Text', 'X coordinate', 'Y coordinate', 'Font size', 'Color'],
-    calculate: ['Mathematical expression'],
-    sum: ['Numbers or expressions...'],
-    sub: ['Value 1', 'Value 2'],
-    multi: ['Value 1', 'Value 2'],
-    divide: ['Numerator', 'Denominator'],
-    round: ['Decimal number'],
-    ceil: ['Decimal number'],
-    floor: ['Decimal number'],
-    cooldown: ['Duration', 'Error message'],
-    globalcooldown: ['Duration', 'Error message'],
-    servercooldown: ['Duration', 'Error message'],
-    argscheck: ['Condition (e.g. >2)', 'Error message'],
-    wait: ['Duration']
-  };
 
   function escapeHtml(str) {
     if (!str) return '';
@@ -336,14 +16,6 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
-  }
-
-  function formatVariables(text) {
-    if (!text) return '';
-    let escaped = escapeHtml(text);
-    escaped = escaped.replace(/(\$[a-zA-Z0-9_]+(?:\[[^\]]*\])?)/g, '<span class="var-tag">$1</span>');
-    escaped = escaped.replace(/(\(\([a-zA-Z0-9._\-]+\)\))/g, '<span class="var-tag">$1</span>');
-    return escaped;
   }
 
   function formatDiscordMarkdown(text) {
@@ -580,89 +252,6 @@
   }
 
   /**
-   * Renders the Scratch-like Block Canvas matching blocks.md and tickets.md design system.
-   */
-  function renderBlocksCanvas(actions) {
-    if (!actions || actions.length === 0) {
-      return '<div class="p-4 text-xs text-on-surface-variant font-mono">No actions defined.</div>';
-    }
-
-    let html = '<div class="block-flow-canvas">';
-
-    // Entry point block
-    html += `
-      <div class="scratch-block-card block-cat-entrypoint">
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#terminal"></use></svg>
-          <span class="scratch-block-title">DISCORD TRIGGER / COMMAND</span>
-          <span class="scratch-block-badge">Entry</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="text-xs text-on-surface-variant">Triggered when command or event runs in Discord bot engine.</div>
-        </div>
-      </div>
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#arrow_drop_down"></use></svg>
-        <div class="scratch-block-connector-add">+</div>
-      </div>
-    `;
-
-    const filteredActions = actions.filter(a => a.type === 'function');
-    filteredActions.forEach((act, idx) => {
-      const cat = CATEGORY_MAP[act.nameLower] || 'messages';
-      const icon = ICON_MAP[act.nameLower] || 'tune';
-      const catClass = `block-cat-${cat}`;
-      const title = act.name.replace(/([A-Z])/g, ' $1').toUpperCase();
-      const labels = PARAM_LABELS[act.nameLower] || [];
-
-      html += `
-        <div class="scratch-block-card ${catClass}">
-          <div class="scratch-block-header">
-            <div class="scratch-block-strip"></div>
-            <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#${icon}"></use></svg>
-            <span class="scratch-block-title">${escapeHtml(title)}</span>
-            <span class="scratch-block-badge">${cat}</span>
-          </div>
-          <div class="scratch-block-body">
-      `;
-
-      if (act.args.length === 0) {
-        html += `<div class="text-xs text-on-surface-variant font-mono">$${escapeHtml(act.name)}[]</div>`;
-      } else {
-        act.args.forEach((argVal, aIdx) => {
-          const label = labels[aIdx] || `Parameter ${aIdx + 1}`;
-          html += `
-            <div class="scratch-block-field">
-              <span class="scratch-block-label">${escapeHtml(label)}</span>
-              <div class="scratch-block-input">${formatVariables(argVal)}</div>
-            </div>
-          `;
-        });
-      }
-
-      html += `
-          </div>
-        </div>
-      `;
-
-      if (idx < filteredActions.length - 1) {
-        html += `
-          <div class="scratch-block-connector">
-            <div class="scratch-block-connector-line"></div>
-            <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#arrow_drop_down"></use></svg>
-            <div class="scratch-block-connector-add">+</div>
-          </div>
-        `;
-      }
-    });
-
-    html += '</div>';
-    return html;
-  }
-
-  /**
    * Renders the realistic Discord Message Simulator Frame.
    */
   function renderDiscordSimulator(parsed) {
@@ -833,20 +422,18 @@
       const parsed = parseBdfd(rawCode);
       if (!parsed.actions.length && !parsed.messageText) return;
 
+      // A BDFD snippet is not shown as app blocks: the app runs BDFD code as code
+      // (command mode "BDFD Code"), so no block can honestly stand for it.
       const dualView = document.createElement('div');
       dualView.className = 'dual-view-tabs';
 
       const nav = document.createElement('div');
       nav.className = 'dual-view-nav';
       nav.innerHTML = `
-        <button class="dual-tab-btn active" type="button">
-          <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#dashboard"></use></svg>
-          <span>Blocks View (App Mode)</span>
-        </button>
-        <button class="dual-tab-btn" type="button">
+        <span class="dual-tab-btn active">
           <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#code"></use></svg>
-          <span>Script View (BDFD / BDScript)</span>
-        </button>
+          <span>Script (BDFD / BDScript)</span>
+        </span>
         <div class="dual-tab-actions">
           <button class="dual-copy-btn" type="button" title="Copy code snippet">
             <svg class="reicon text-[14px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#content_copy"></use></svg>
@@ -855,32 +442,15 @@
         </div>
       `;
 
-      const panelBlocks = document.createElement('div');
-      panelBlocks.className = 'dual-tab-panel active';
-      panelBlocks.innerHTML = renderBlocksCanvas(parsed.actions);
-
       const panelScript = document.createElement('div');
-      panelScript.className = 'dual-tab-panel';
-      const scriptClone = preContainer.cloneNode(true);
-      panelScript.appendChild(scriptClone);
+      panelScript.className = 'dual-tab-panel active';
+      panelScript.appendChild(preContainer.cloneNode(true));
 
       dualView.appendChild(nav);
-      dualView.appendChild(panelBlocks);
       dualView.appendChild(panelScript);
 
       const discordPreview = document.createElement('div');
       discordPreview.innerHTML = renderDiscordSimulator(parsed);
-
-      const tabBtns = nav.querySelectorAll('.dual-tab-btn');
-      const panels = [panelBlocks, panelScript];
-      tabBtns.forEach((btn, idx) => {
-        btn.addEventListener('click', () => {
-          tabBtns.forEach(b => b.classList.remove('active'));
-          panels.forEach(p => p.classList.remove('active'));
-          btn.classList.add('active');
-          panels[idx].classList.add('active');
-        });
-      });
 
       const copyBtn = nav.querySelector('.dual-copy-btn');
       if (copyBtn) {
@@ -914,12 +484,8 @@
 
   const engine = {
     parseBdfd,
-    renderBlocksCanvas,
     renderDiscordSimulator,
-    initBdfdPreviews,
-    CATEGORY_MAP,
-    ICON_MAP,
-    PARAM_LABELS
+    initBdfdPreviews
   };
 
   if (typeof module !== 'undefined' && module.exports) {

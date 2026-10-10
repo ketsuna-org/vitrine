@@ -11,12 +11,13 @@ $jsonIndex returns the current iteration index (0-based) when used inside a $jso
 
 ## Examples
 
-### Lookup Value by Index
+### Numbered list
 
 ```bdfd
 $jsonParse[{"servers":["Alpha","Beta","Gamma"]}]
 $title[Server Lookup]
-$description[Selected: **$jsonIndex[servers;1]**]
+$jsonForEach[servers]
+$addField[Server #$jsonIndex;$jsonValue;yes]
+$endJsonForEach
 $color[#5865F2]
-$sendMessage[]
 ```

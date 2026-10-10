@@ -51,15 +51,15 @@ $addField[🔤 Trigger;$commandTrigger;yes]
 $description[
 Complete help for the command...
 ]
-$sendMessage[]
 ```
 
 ### Folder-based permissions
 
 ```bdfd
 $if[$commandFolder==Admin]
-  $if[$hasRole[$roleID[Admin]]==false]
-    $sendEphemeral[❌ Commands in the Admin folder are restricted.]
+  $if[$hasRole[$authorID;123456789012345678]==false]
+    $ephemeral
+    $sendMessage[❌ Commands in the Admin folder are restricted.]
     $stop
   $endif
 $endif

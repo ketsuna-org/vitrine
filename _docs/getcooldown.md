@@ -4,38 +4,39 @@ title: $getCooldown[]
 translation_key: docs
 category: "Control Flow"
 function_name: getCooldown
-syntax: $getCooldown or $getCooldown[type]
-description: Returns the remaining cooldown time in seconds for the current command. Can optionally specify the cooldown scope to query.
+syntax: $getCooldown[type]
+description: Returns the remaining cooldown time in whole seconds (rounded up) for the current command, for the given scope (normal, server or global).
 ---
-$getCooldown retrieves the remaining cooldown time so you can display it to users or use it in conditional logic. The return value is always in **seconds** (as a decimal string), regardless of the original duration format.
+$getCooldown retrieves the remaining cooldown time so you can display it to users or use it in conditional logic. The return value is always in **seconds**, as a whole number rounded up, regardless of the original duration format.
 
 ## Return Value
 
-- If a cooldown is active → returns the remaining time in seconds (e.g., `"45"`, `"2.5"`, `"0.1"`).
+- If a cooldown is active → returns the remaining time in whole seconds, rounded up (e.g., `"45"`, `"1"` for 0.1 s left).
 - If no cooldown is active → returns `"0"`.
+- The function only reads the stored cooldown of the current command; it does not start or extend one.
 - The value is always a string but can be used in numeric comparisons.
 
 ## Type Parameter
 
-The optional `type` parameter lets you query a specific cooldown scope:
+The `type` parameter is **required** (a bare `$getCooldown` is refused with "Invalid argument count") and selects the cooldown scope. It must be written exactly in lowercase:
 
 | Type value | Queries |
 |------------|---------|
-| `"user"` | Per-user cooldown (`$cooldown`) |
-| `"server"` | Per-guild cooldown (`$serverCooldown`) |
-| `"global"` | Global cooldown (`$globalCooldown`) |
+| `normal` | Per-user cooldown (`$cooldown`) |
+| `server` | Per-guild cooldown (`$serverCooldown`) |
+| `global` | Global cooldown (`$globalCooldown`) |
 
-If no type is specified, `$getCooldown` returns the remaining time of the **cooldown that was most recently set** in the current command — or `"0"` if none was set.
+Any other value raises "Cooldown type must be normal, server or global.".
 
 ## Usage in Error Messages
 
-The most common use of `$getCooldown` is inside the cooldown error message itself. However, note that **when the cooldown triggers, execution stops before reaching the message**. The value of `$getCooldown` is resolved at the moment `$cooldown` evaluates, so it works:
+The most common use of `$getCooldown` is inside the cooldown error message itself. However, note that **when the cooldown triggers, execution stops before reaching the message**. The error message argument of `$cooldown` is evaluated after the cooldown has been checked, so `$getCooldown[normal]` can be used in it:
 
 ```
-$cooldown[30s;⏳ Try again in $getCooldown seconds.]
+$cooldown[30s;⏳ Try again in $getCooldown[normal] seconds.]
 ```
 
-When the cooldown is active, `$getCooldown` returns the remaining time and embeds it in the error message.
+When the cooldown is active, `$getCooldown[normal]` returns the remaining time and embeds it in the error message. The `%time%` placeholders of `$cooldown` are also available.
 
 ## Conditional Logic
 
@@ -46,9 +47,8 @@ You can use `$getCooldown` in `$if` conditions to adjust behavior based on remai
 ### Displaying Remaining Cooldown Time
 
 ```bdfd
-$cooldown[1h;⏳ Command is on cooldown! Time remaining: **$getCooldown** seconds.]
+$cooldown[1h;⏳ Command is on cooldown! Time remaining: **$getCooldown[normal]** seconds.]
 $title[Daily Work Completed]
 $description[You worked hard and earned **250 coins**! Run this again in 1 hour.]
 $color[#57F287]
-$sendMessage[]
 ```

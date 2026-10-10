@@ -4,61 +4,66 @@ title: $blacklistRoles
 translation_key: docs
 category: "Moderation"
 function_name: blacklistRoles
-syntax: $blacklistRoles[roleID1;roleID2;...;(errorMessage)]
-description: Guard function that blacklists roles. If the user has any of the roles, the command is interrupted.
+syntax: $blacklistRoles[roleName1;roleName2;...;errorMessage]
+description: Guard function that blacklists roles by name. If the user has any of the roles, the command is interrupted.
 ---
 
 # $blacklistRoles
 
-The guard function `$blacklistRoles` blocks the execution of the command if the user has **at least one** of the blacklisted roles.
+The guard function `$blacklistRoles` blocks the execution of the command if the user has **at least one** of the blacklisted roles, identified by their **name**. To compare role IDs, use `$blacklistRolesIDs`.
 
 ## Syntax
 
 ```
-$blacklistRoles[roleID1;roleID2;...;(errorMessage)]
+$blacklistRoles[roleName1;roleName2;...;errorMessage]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `roleID1;roleID2;...` | Snowflake[] | IDs of roles to blacklist, separated by `;`. |
-| `errorMessage` | String (optional) | Message sent if the user has a blacklisted role. |
+| `roleName1;roleName2;...` | String[] | Names of roles to blacklist, separated by `;`. At least one value is required (empty values are ignored). |
+| `errorMessage` | String | **Required**, always the **last** argument. Message returned when the guard stops the command; it replaces the output of the script. Leave it empty (`;` at the end) for a silent stop. |
+
+The function therefore needs at least 2 arguments. With a single argument, the call is rejected ("Invalid argument count").
 
 ## Behavior
 
-- Checks if the user has any of the roles in the list.
-- If **at least one** role matches, the command is interrupted.
-- Checked using an **OR** condition (a single blacklisted role is enough to block).
-- If an error message is provided, it is sent; otherwise, it remains silent.
+- Compares the values with the **name** of each role of the user (case-sensitive, values are trimmed). The `@everyone` role (whose ID is the server ID) counts as a role of the user.
+- The match is an **OR**: a single matching role is enough.
+- If the user has at least one matching role, the script is stopped and the error message is used as output.
+- If the user has none (or all values are empty), the command continues.
+
+## Return Value
+
+Returns an empty string when the command continues. When the guard stops the command, the script is stopped and the error message (last argument) is used as its output.
 
 ## Examples
 
 ### Block muted users
 
 ```bdfd
-$blacklistRoles[123456789012345678;❌ You are currently muted. Contact a moderator.]
+$blacklistRoles[Muted;❌ You are currently muted. Contact a moderator.]
 $sendMessage[Your message has been processed.]
 ```
 
 ### Multiple blacklisted roles
 
 ```bdfd
-$blacklistRoles[111111111111111111;222222222222222222;❌ Access forbidden for your role.]
-$clear[10]
-$sendMessage[10 messages deleted.]
+$blacklistRoles[Muted;Restricted;❌ Access forbidden for your role.]
+$sendMessage[Command executed.]
 ```
 
-### Silent blacklist
+### Silent stop
 
 ```bdfd
-$blacklistRoles[123456789012345678]
+$blacklistRoles[Muted;]
 $sendMessage[Command executed.]
 ```
 
 ## Notes
 
-- `$blacklistRoles` and `$blacklistRoleIDs` are interchangeable.
+- `$blacklistRoles` compares role **names**; `$blacklistRolesIDs` compares role **IDs**. They are not interchangeable.
 - To whitelist roles, use `$onlyForRoles`.
 - Very useful to prevent muted or restricted users from using commands.
-- Combine it with `$blacklistUsers` for complete protection (specific roles + users).
+- Combine it with `$blacklistIDs` for complete protection (specific roles + users).

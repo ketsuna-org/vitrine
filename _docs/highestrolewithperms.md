@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: highestRoleWithPerms
 syntax: $highestRoleWithPerms[permission1;permission2;...]
-description: Returns the ID of the user's highest role that possesses the specified permissions.
+description: Returns the ID of the highest role of the server that possesses all the specified permissions.
 ---
 
 # $highestRoleWithPerms
 
-The `$highestRoleWithPerms` function returns the **ID of the highest role** of the user that has one or more specified permissions.
+The `$highestRoleWithPerms` function returns the **ID of the highest role of the server** (in the role hierarchy) that has all the specified permissions.
 
 ## Syntax
 
@@ -22,19 +22,21 @@ $highestRoleWithPerms[permission1;permission2;...]
 
 | Parameter | Description |
 |---|---|
-| `permissions` | One or more Discord permissions, separated by semicolons. All listed permissions must be present on the role. |
+| `permission1;permission2;...` | One or more permissions (at least one is required), separated by semicolons. All listed permissions must be present on the role. |
 
 ## Return Value
 
 - **Type**: Snowflake (numeric string) or empty string
 - The ID of the highest matching role.
 - An empty string if no role has all the requested permissions.
+- An error is raised if a permission name is empty or unknown.
 
 ## Behavior
 
-- Checks the user's roles from highest to lowest.
+- Checks all the roles of the server, from highest to lowest (`@everyone` last); it does not depend on a user.
 - Returns the **first** (highest) role that has **all** the specified permissions.
-- Permission names must be in English (Discord API terminology).
+- A role with the `Administrator` permission satisfies every permission.
+- Permission names are English, case-insensitive; spaces and symbols are ignored and aliases such as `Admin`, `Ban` and `Kick` are accepted.
 
 ## Examples
 
@@ -43,9 +45,9 @@ $highestRoleWithPerms[permission1;permission2;...]
 ```bdfd
 $var[modRole;$highestRoleWithPerms[ManageMessages]]
 $if[$var[modRole]!=]
-  $sendMessage[Your moderation role: $roleName[$var[modRole]]]
+  $sendMessage[Highest role able to manage messages: $roleName[$var[modRole]]]
 $else
-  $sendMessage[You do not have a moderation role.]
+  $sendMessage[No role can manage messages.]
 $endif
 ```
 
@@ -53,7 +55,7 @@ $endif
 
 ```bdfd
 $if[$highestRoleWithPerms[Administrator]!=]
-  $sendMessage[You have an administrator role.]
+  $sendMessage[The server has a role with the Administrator permission.]
 $endif
 ```
 
@@ -68,7 +70,6 @@ $if[$var[banRole]!=]
   **ID:** $var[banRole]
   ]
   $color[#ED4245]
-  $sendMessage[]
 $endif
 ```
 

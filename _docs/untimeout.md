@@ -4,7 +4,7 @@ title: $unTimeout
 translation_key: docs
 category: "Moderation"
 function_name: unTimeout
-syntax: $unTimeout[userID]
+syntax: $unTimeout[(userID)]
 description: Removes the timeout of a user before its expiration.
 ---
 
@@ -15,18 +15,18 @@ The function `$unTimeout` **removes the timeout** of a user before its expiratio
 ## Syntax
 
 ```
-$unTimeout[userID]
+$unTimeout[(userID)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user to free from timeout. Required. |
+| `userID` | Optional - The ID of the user to free from timeout. If omitted or empty, the users mentioned in the message are used; an error is raised if there is none. |
 
 ## Return Value
 
-None. The user is freed from timeout.
+None (empty string). An error is raised if the user ID is invalid or if the bot cannot remove the timeout.
 
 ## Examples
 
@@ -59,4 +59,3 @@ $sendMessage[🙏 Pardon granted. <@$mentioned[1]> can participate again.]
 
 - The bot must have the `ModerateMembers` permission.
 - Use `$isTimedOut` to check if a user is in timeout before calling `$unTimeout`.
-- Only has effect if the user is currently in timeout.

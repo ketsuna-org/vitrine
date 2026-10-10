@@ -45,7 +45,6 @@ $addField[🤖 Bots;$botCount;yes]
 $addField[👤 Humans;$sub[$memberCount;$botCount];yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ### Custom welcome message

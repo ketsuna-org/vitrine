@@ -4,40 +4,47 @@ title: $addModalRadioGroup[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addModalRadioGroup
-syntax: $addModalRadioGroup[customId;label;(required)]
-description: Creates a group of radio buttons in a modal. The user can only select a single option at a time. The options are added using $addRadioGroupOption().
+syntax: $addModalRadioGroup[label;description;customId;(required)]
+description: Creates a group of radio buttons in the modal being built. Options are added using $addRadioGroupOption[].
 ---
 
 # $addModalRadioGroup[] — Radio Button Group
 
-`$addModalRadioGroup[]` creates a container of radio buttons in a modal. Unlike checkboxes, only a single choice can be selected from the group options.
+`$addModalRadioGroup[]` creates a container of radio buttons in the modal being built with `$newModal[]`. Options are then added with `$addRadioGroupOption[]`.
 
 ## Syntax
 
 ```
-$addModalRadioGroup[customId;label;(required)]
+$addModalRadioGroup[label;description;customId;(required)]
 ```
 
 ## Parameters
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `customId` | Yes | — | Unique identifier of the group. |
 | `label` | Yes | — | Label above the group. |
-| `required` | No | `yes` | `yes` if required. |
+| `description` | Yes | — | Description under the label. May be left empty (`;;`). |
+| `customId` | Yes | — | Identifier of the group. |
+| `required` | No | `yes` | `yes`/`true` or `no`/`false`. |
 
 ## Return value
 
-Initializes a radio group. The value of the selected option is accessible via `$input[customId]`.
+Returns an empty string. An empty radio group is added to the current modal; the value is read with `$input[customId]`.
+
+## Errors
+
+- Without a prior `$newModal[]`, the engine creates a default modal (ID `modal`, title `Modal`) to receive the input.
+- `required`/`disabled` values other than yes/no/true/false and out-of-range numbers are errors.
+- When the modal is sent, it must contain 1 to 5 inputs (text displays count as inputs).
 
 ## Examples
 
 ### Simple radio group
 
 ```bdfd
-$newModal[Registration;signup_modal]
-$addModalTextInput[name;Name;short;;;yes;2;50]
-$addModalRadioGroup[gender;Gender;yes]
+$newModal[signup_modal;Registration]
+$addModalTextInput[Name;;name;short;2;50;yes]
+$addModalRadioGroup[Gender;;gender;yes]
 $addRadioGroupOption[gender;Male;male]
 $addRadioGroupOption[gender;Female;female]
 $addRadioGroupOption[gender;Non-binary;nb]
@@ -46,8 +53,8 @@ $addRadioGroupOption[gender;Non-binary;nb]
 ### Group with option by default
 
 ```bdfd
-$newModal[Preferences;pref_modal]
-$addModalRadioGroup[lang;Preferred language;yes]
+$newModal[pref_modal;Preferences]
+$addModalRadioGroup[Preferred language;;lang;yes]
 $addRadioGroupOption[;French;fr;;yes]
 $addRadioGroupOption[;English;en]
 $addRadioGroupOption[;Spanish;es]
@@ -56,26 +63,20 @@ $addRadioGroupOption[;Spanish;es]
 ### Retrieving the selection
 
 ```bdfd
-$onInteraction[signup_submit]
-$var[gender;$input[gender]]
-$if[$var[gender]==male]
-  $sendMessage[Welcome to the server!]
-$elseif[$var[gender]==female]
-  $sendMessage[Welcome to the server!]
+$if[$customID==signup_modal]
+  $var[gender;$input[gender]]
+  $if[$var[gender]==male]
+    $sendMessage[You chose Male.]
+  $elseif[$var[gender]==female]
+    $sendMessage[You chose Female.]
+  $else
+    $sendMessage[Welcome to the server!]
+  $endif
 $endif
-$endInteraction
 ```
-
-## Differences: Radio vs Checkbox
-
-| Radio Group | Checkbox Group |
-|-------------|---------------|
-| Only a single option selectable | Multiple options selectable |
-| Returns a single value | Returns a list of values |
-| Ideal for mutually exclusive choices | Ideal for multiple selections |
 
 ## Notes
 
 - Options are added using `$addRadioGroupOption[]`.
-- Like with checkbox groups, the `menuId` can be omitted in `$addRadioGroupOption[]` to target the last group created.
-- Maximum of 25 options per radio group.
+- If the first argument of `$addRadioGroupOption[]` is empty, the option goes to the last radio group created in the modal.
+- `$newModal[]` takes the modal ID first, then its title.

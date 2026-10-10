@@ -4,8 +4,8 @@ title: $callWorkflow[]
 translation_key: docs
 category: "Control Flow"
 function_name: callWorkflow
-syntax: $callWorkflow[name;arg1;arg2;...]
-description: Calls another workflow by name, optionally passing arguments. The called workflow executes and can return a value. Execution resumes in the caller after the called workflow completes.
+syntax: $callWorkflow[name;(arg1);(arg2);...]
+description: Calls another workflow by name, optionally passing arguments. The called workflow executes, then execution resumes in the caller. The function itself returns an empty string; read the results with $workflowResponse.
 ---
 $callWorkflow enables modular command design by allowing one workflow to invoke another as a subroutine. This promotes code reuse, separation of concerns, and cleaner organization of complex bot logic.
 
@@ -13,53 +13,46 @@ $callWorkflow enables modular command design by allowing one workflow to invoke 
 
 1. `$callWorkflow[name;args...]` is encountered during execution.
 2. The specified workflow is located in the same bot.
-3. Any arguments are passed to the called workflow (accessible via `$args`, `$argCount`, etc.).
+3. Any arguments are matched against the argument definitions of the called workflow.
 4. The called workflow executes from start to finish.
-5. If the called workflow uses `$return[value]`, that value becomes the return value of `$callWorkflow`.
+5. The results of the called workflow are stored and can be read afterwards with `$workflowResponse`. `$callWorkflow` itself always returns an empty string.
 6. Execution **resumes** in the calling workflow on the next line.
 
 ## Argument Passing
 
-Arguments are passed positionally, separated by semicolons:
+Arguments are separated by semicolons after the workflow name. The first argument is the workflow name (required, must not be empty).
 
 ```
 $callWorkflow[myWorkflow;arg1;arg2;arg3]
 ```
 
-In the called workflow, arguments are accessed exactly like command arguments:
-- `$args[0]` → `arg1`
-- `$args[1]` → `arg2`
-- `$argCount` → `3`
+An argument can be named by writing `name=value` as literal text at the start of the argument; otherwise it is positional and keyed by its position (`1`, `2`, ...):
+
+```
+$callWorkflow[myWorkflow;user=$authorID;reason=spam]
+```
+
+The values are validated against the argument definitions of the called workflow (missing required arguments are an error).
 
 ## Return Values
 
-The called workflow can return a value using `$return`:
+`$callWorkflow` itself returns an empty string. After the call, the outcome of the called workflow is available through `$workflowResponse`:
 
-```
-$return[resultValue]
-```
-
-In the calling workflow, the return value is captured by `$callWorkflow` and can be used directly:
+- `$workflowResponse` (no argument) returns `WORKFLOW_OK:<entryPoint>` once a call has completed.
+- `$workflowResponse[key]` returns one result value of the called workflow (empty string if the key does not exist).
+- For a called BDFD script workflow, the keys include `output` (the text produced by the script) and `script`.
 
 ```
 $callWorkflow[add;5;3]
-Result : $callWorkflow[add;5;3]
-```
-
-Or stored in a variable:
-
-```
-$varSet[total;$callWorkflow[add;5;3]]
-Total : $var[total]
+Result : $workflowResponse[output]
 ```
 
 ## Important Rules
 
 - **Same bot only**: workflows must exist within the same bot. Cross-bot calls are not supported.
-- **Workflow must exist**: calling a non-existent workflow causes a runtime error.
-- **Case-sensitive names**: `myWorkflow` and `myworkflow` are different workflows.
-- **No recursion limit** (implementation-dependent): some versions may impose recursion depth limits. Avoid infinite recursion.
-- **Variable scope**: variables set in the called workflow are **local** to that workflow and do not leak into the caller, unless using global variable functions like `$setVar`.
+- **Workflow must exist**: calling a non-existent workflow raises the error `Workflow not found: <name>.`
+- **No recursion**: a workflow (same name and entry point) that is already running cannot be called again; the engine raises `Workflow recursion detected`. Nesting is also limited by the engine's maximum depth.
+- **Script workflows**: a called BDFD script workflow must use the `native-v1` backend.
 
 ## When to Use
 
@@ -91,6 +84,5 @@ Total : $var[total]
 $title[Workflow Triggered]
 $description[Invoking backend verification workflow for member <@$authorID>...]
 $color[#5865F2]
-$sendMessage[]
 $callWorkflow[verify_user;$authorID]
 ```

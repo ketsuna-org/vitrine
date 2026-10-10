@@ -46,7 +46,6 @@ $description[
 **Link:** [Click here]($messageURL)
 ]
 $color[#ED4245]
-$sendMessage[]
 ```
 
 ### Log with link

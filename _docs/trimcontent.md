@@ -62,7 +62,7 @@ $endif
 ### Cleaning After Extraction
 
 ```bdfd
-$var[extracted;$subString[$message;0;10]]
+$var[extracted;$cropText[$message;10;]]
 $var[clean;$trimContent[$var[extracted]]]
 $sendMessage[$var[clean]]
 ```

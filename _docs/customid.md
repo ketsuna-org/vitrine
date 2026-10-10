@@ -5,7 +5,7 @@ translation_key: docs
 category: "Components & Interactions"
 function_name: customID
 syntax: $customID
-description: Returns the custom ID (customId) of the interaction component that triggered the callback (button, select menu, modal). Used in $onInteraction.
+description: Returns the custom ID (customId) of the interaction component that triggered the callback (button, select menu, modal). Read in the script run for a component or modal interaction.
 ---
 # $customID
 
@@ -28,7 +28,7 @@ None.
 
 ## Behavior
 
-- Must be used in an `$onInteraction` callback.
+- Must be used in a script run by a component (button, select menu) or modal interaction; otherwise the engine raises `Custom ID requires a component or modal interaction callback.`
 - Allows differentiating which button/menu was used.
 
 ## Examples
@@ -36,7 +36,6 @@ None.
 ### Interaction handler
 
 ```bdfd
-$onInteraction
 $if[$customID==accept]
   $sendMessage[Request accepted.]
 $elseIf[$customID==refuse]
@@ -49,23 +48,22 @@ $endif
 ### Log interactions
 
 ```bdfd
-$onInteraction
 $log[Interaction received — customID: $customID — by $username]
 ```
 
-### Dynamic switch
+### Branching on several IDs
 
 ```bdfd
-$onInteraction
-$switch[$customID;
-  confirm;$sendMessage[✅ Confirmed];
-  cancel;$sendMessage[❌ Cancelled];
-  delete;$deleteChannels[$channelID]
-]
+$if[$customID==confirm]
+  $sendMessage[✅ Confirmed]
+$elseif[$customID==cancel]
+  $sendMessage[❌ Cancelled]
+$else
+  $sendMessage[Unknown action: $customID]
+$endif
 ```
 
 ## Notes
 
-- Functional equivalent to `$interactionData[customId]`.
 - Essential for systems of buttons and interactive menus.
 - The customId is set by the developer in `$addButton[]`, `$addSelectMenu[]`, etc.

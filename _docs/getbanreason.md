@@ -50,7 +50,6 @@ $if[$var[reason]!=]
   **Reason:** $var[reason]
   ]
   $color[#ED4245]
-  $sendMessage[]
 $else
   $sendMessage[This user is not banned.]
 $endif
@@ -64,16 +63,15 @@ $title[📋 Ban Details]
 $description[
 **User:** $userName[$userID] ($userID)
 **Ban Reason:** $var[reason]
-**Checked on:** $date[$day]/$date[$month]/$date[$year]
+**Checked on:** $day/$month/$year
 ]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ### Verification command
 
 ```bdfd
-$if[$checkContains[$userPerms;BanMembers]==true]
+$if[$hasPerms[$authorID;BanMembers]==true]
   $var[target;$findUser[$message]]
   $if[$var[target]!=]
     $var[reason;$getBanReason[$var[target]]]

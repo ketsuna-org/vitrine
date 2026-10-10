@@ -4,7 +4,7 @@ title: $onlyForCategories
 translation_key: docs
 category: "Moderation"
 function_name: onlyForCategories
-syntax: $onlyForCategories[categoryID1;categoryID2;...;(errorMessage)]
+syntax: $onlyForCategories[categoryID1;categoryID2;...;errorMessage]
 description: A guard function that stops execution if the current channel does not belong to one of the specified categories.
 ---
 
@@ -15,22 +15,27 @@ The guard function `$onlyForCategories` checks if the channel where the command 
 ## Syntax
 
 ```
-$onlyForCategories[categoryID1;categoryID2;...;(errorMessage)]
+$onlyForCategories[categoryID1;categoryID2;...;errorMessage]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `categoryID1;categoryID2;...` | Snowflake[] | The IDs of the allowed categories. |
-| `errorMessage` | String (optional) | The message sent if the channel does not belong to the allowed categories. |
+| `categoryID1;categoryID2;...` | Snowflake[] | The IDs of the allowed categories (each non-empty value must be a valid Discord ID, otherwise an error "Invalid Discord ID." is raised). At least one value is required (empty values are ignored). |
+| `errorMessage` | String | **Required**, always the **last** argument. Message returned when the guard stops the command; it replaces the output of the script. Leave it empty (`;` at the end) for a silent stop. |
+
+The function therefore needs at least 2 arguments. With a single argument, the call is rejected ("Invalid argument count").
 
 ## Behavior
 
-- Gets the ID of the parent category of the current channel via `$channelCategoryID`.
-- Compares this category ID with the provided list.
-- If the category matches, the command continues; otherwise, execution is halted.
-- If the channel does not have a parent category, the command is always halted.
+- Reads the current channel (`channel.id`) and takes its parent category ID. For a thread, the category of its parent channel is used.
+- If the category ID is one of the values, the command continues.
+- Otherwise the script is stopped and the error message is used as output. This also happens when the channel has no parent category, when the channel cannot be found, or when all values are empty.
+
+## Return Value
+
+Returns an empty string when the command continues. When the guard stops the command, the script is stopped and the error message (last argument) is used as its output.
 
 ## Examples
 
@@ -38,20 +43,20 @@ $onlyForCategories[categoryID1;categoryID2;...;(errorMessage)]
 
 ```bdfd
 $onlyForCategories[123456789012345678;❌ Only available in ticket channels.]
-$closeTicket
+$sendMessage[Ticket command.]
 ```
 
 ### Moderation + Staff Categories
 
 ```bdfd
 $onlyForCategories[111111111111111111;222222222222222222;❌ Out of bounds.]
-$clear[50]
+$sendMessage[Allowed category.]
 ```
 
-### Without error message
+### Silent stop
 
 ```bdfd
-$onlyForCategories[123456789012345678]
+$onlyForCategories[123456789012345678;]
 $sendMessage[Function allowed in this category.]
 ```
 
@@ -59,5 +64,5 @@ $sendMessage[Function allowed in this category.]
 
 - A Discord category is a container of channels. Enable Developer Mode to copy its ID.
 - `$onlyForCategories` is broader than `$onlyForChannels` because it allows all channels inside an entire category.
-- For channels with no parent category, the command will always be blocked.
+- For channels with no parent category, the command is always stopped.
 - Combine with `$onlyForChannels` for more granular rules (category + specific channels).

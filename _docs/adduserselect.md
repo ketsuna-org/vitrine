@@ -26,7 +26,7 @@ $addUserSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
 
 ## Description
 
-A **user select** displays a list of server members. The user can select one or several. The IDs of the selected users are returned in `$onInteraction`.
+A **user select** displays a list of server members. The user can select one or several. The IDs of the selected users are read in the interaction callback with `$getUserSelectUserID[]` (by index) or `$getUserSelectUserIDs[]` (all of them).
 
 ## Examples
 
@@ -54,13 +54,12 @@ $sendMessage[This menu is temporarily unavailable]
 ## Handling the interaction
 
 ```bdfd
-$onInteraction
 $if[$customID==menu_user]
-  $sendMessage[Selected user: <@$message>]
+  $sendMessage[Selected user: <@$getUserSelectUserID[1]>]
 $endif
 
 $if[$customID==menu_mods]
-  $sendMessage[Selected moderators: $message]
+  $sendMessage[Selected moderators: $getUserSelectUserIDs[, ]]
 $endif
 ```
 
@@ -68,5 +67,5 @@ $endif
 
 - The returned values are Discord user IDs.
 - Use `<@ID>` to mention the user in a message.
-- For multiple selection, the IDs are separated by commas (or according to the configuration of the bot).
+- For multiple selection, `$getUserSelectUserIDs[separator]` joins the IDs with the separator you give.
 - A single select menu per action row.
