@@ -4,36 +4,38 @@ title: $workflowResponse
 translation_key: docs
 category: "Control Flow"
 function_name: workflowResponse
-syntax: $workflowResponse
+syntax: $workflowResponse[(property)]
 description: Returns the status or a named result of the last workflow run with $callWorkflow.
 ---
+
 # $workflowResponse
 
 The `$workflowResponse` function returns information about the **last workflow run with `$callWorkflow`**.
 
 ## Syntax
 
-```
-$workflowResponse
-$workflowResponse[property]
+```text
+$workflowResponse[(property)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `property` | Optional - Name of a result of the last workflow. Without it, the status of the last call is returned. |
+| `property` | Optional - Name of a result of the last workflow (trimmed). Without it (or when empty), the status of the last call is returned. |
+
+`$workflowResponse` takes 0 or 1 argument.
 
 ## Return Value
 
 - **Type**: String
 - Without argument: `WORKFLOW_OK:` followed by the entry point of the workflow that was called (for example `WORKFLOW_OK:main`).
-- With `property`: the named result of the last workflow (for a BDFD script workflow, `output` is the text it produced); an empty string if there is none.
-- Empty string if no workflow has been called yet.
+- With `property`: the named result of the last workflow (for a BDFD script workflow, `output` is the text it produced and `script` is `BDFD_OK`); an empty string if there is none.
+- An empty string if no workflow has been called yet.
 
 ## Behavior
 
-- The values are set by each `$callWorkflow[name;...]` call and overwritten by the next one.
+- The values are set by each successful `$callWorkflow[name;...]` call; the results of the previous call are removed first.
 - A workflow that stops the script also stops the calling script.
 
 ## Examples
@@ -42,14 +44,14 @@ $workflowResponse[property]
 
 ```bdfd
 $callWorkflow[dailyReward;user=$authorID]
-$sendMessage[Workflow status: $workflowResponse]
+Workflow status: $workflowResponse
 ```
 
 ### Read the output of a script workflow
 
 ```bdfd
 $callWorkflow[calculSalaire;user=$authorID]
-$sendMessage[Your calculated salary: $workflowResponse[output] €]
+Your calculated salary: $workflowResponse[output]
 ```
 
 ### Chain of workflows
@@ -58,21 +60,15 @@ $sendMessage[Your calculated salary: $workflowResponse[output] €]
 $callWorkflow[verifyUser;user=$authorID]
 $if[$workflowResponse[output]==ok]
   $callWorkflow[processOrder;user=$authorID]
-  $sendMessage[Order processed: $workflowResponse]
+  Order processed: $workflowResponse
 $else
-  $sendMessage[Verification failed.]
+  Verification failed.
 $endif
-```
-
-### Log of workflow
-
-```bdfd
-$callWorkflow[dailyReward;user=$authorID]
-$log[Daily reward for $username: $workflowResponse[output]]
 ```
 
 ## Notes
 
 - `$workflowResponse` is overwritten with each new call to `$callWorkflow`.
 - Store the value in a temporary variable if you need to reuse it: `$var[rep;$workflowResponse[output]]`.
-- Arguments are passed to `$callWorkflow` as `name=value`.
+- Arguments are passed to `$callWorkflow` as `name=value` (or positionally).
+- These examples assume the workflows named in them exist in the bot.

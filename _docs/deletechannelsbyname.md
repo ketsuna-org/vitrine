@@ -6,25 +6,31 @@ category: "Channel"
 
 # $deleteChannelsByName
 
-Deletes channels that match a given name. Supports wildcards (`*`) to target multiple channels at once.
+Deletes the channels of the current server whose name is exactly one of the given names.
 
 ## Syntax
 
-```bdfd
-$deleteChannelsByName[channelName]
+```text
+$deleteChannelsByName[channelName;(channelName2);(...)]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `channelName` | Name of the channel(s) to delete. Supports the wildcard `*` | Yes |
+| `channelName` | Name of the channel(s) to delete. Trimmed; an empty name raises `Channel name is required.` | Yes |
+| `channelName2`, ... | More names (up to 10000 arguments in total). | No |
 
 ## Description
 
-`$deleteChannelsByName` deletes one or multiple channels based on their **name**. Unlike `$deleteChannels` which requires channel IDs, this function allows deletion by name and supports the `*` wildcard to target channels with similar names.
+`$deleteChannelsByName` lists the channels of the current server and deletes **every channel whose name is exactly equal** to one of the given names. Unlike `$deleteChannels`, which takes channel IDs, it works from names.
 
-The bot must have the `MANAGE_CHANNELS` permission to use this function. Deletion is **irreversible** — deleted channels cannot be recovered.
+- The comparison is an exact match (case-sensitive). **There is no wildcard**: `spam-*` only matches a channel literally named `spam-*`.
+- All matching channels are deleted, whatever their type (text, voice, category, ...) and even when several share the same name. Active threads are not part of the list searched.
+- If no channel matches, the function fails with `No matching channels found.`
+- The bot's Manage Channels permission is checked for the channel being deleted. Deletion is **irreversible**.
+- It needs a server: `Channel lookup requires a guild.` otherwise.
+- Deleting a category with this function deletes only the category channel itself (the engine sends one deletion per matched channel; it never deletes children).
 
 ## Examples
 
@@ -32,38 +38,25 @@ The bot must have the `MANAGE_CHANNELS` permission to use this function. Deletio
 
 ```bdfd
 $deleteChannelsByName[general-chat]
-$sendMessage[Channel deleted.]
+Channel deleted.
 ```
 
-### Delete with wildcard
+### Delete several names at once
 
 ```bdfd
-$deleteChannelsByName[spam-*]
-$sendMessage[All spam channels deleted.]
+$deleteChannelsByName[temp-1;temp-2;temp-3]
+Temporary channels deleted.
 ```
 
-### Ticket cleanup
+### Handle the case where nothing matches
 
 ```bdfd
-$deleteChannelsByName[ticket-*]
-$sendMessage[All ticket channels deleted.]
-```
-
-### Conditional deletion
-
-```bdfd
-$if[$checkUserPerms[$authorID;Administrator]==true]
-  $deleteChannelsByName[temp-*]
-  $sendMessage[Temporary channels deleted.]
-$else
-  $sendMessage[Permission denied.]
-$endif
+$suppressErrors[No channel with that name.]
+$deleteChannelsByName[ticket-archive]
+Channel deleted.
 ```
 
 ## Notes
 
 - **Irreversible action**: deleted channels cannot be restored.
-- The wildcard `*` matches any sequence of characters (e.g., `ticket-*` matches `ticket-123`, `ticket-abc`, etc.).
-- The bot must have the `Manage Channels` permission.
-- For categories, deletion also removes all child channels.
 - Use `$deleteChannels` to delete by channel ID instead of name.

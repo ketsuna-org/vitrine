@@ -4,7 +4,7 @@ title: $getRoleSelectRoleID
 translation_key: docs
 category: "Components & Interactions"
 function_name: getRoleSelectRoleID
-syntax: $getRoleSelectRoleID[(index)]
+syntax: $getRoleSelectRoleID[index]
 description: Gets the ID of the role selected by the user via a role select menu.
 ---
 

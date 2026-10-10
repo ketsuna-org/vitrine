@@ -18,7 +18,7 @@ $changeCooldownTime customizes the **unit labels** displayed in the cooldown err
 
 ## Syntax
 
-```
+```text
 $changeCooldownTime[days;hours;minutes;seconds]
 ```
 
@@ -57,7 +57,7 @@ Amounts are rounded to one decimal place (a trailing `.0` is removed).
 
 ```bdfd
 $changeCooldownTime[jours;heures;minutes;secondes]
-$cooldown[10m;⏳ Wait %time% before using this command again.]
+$cooldown[10m;Wait %time% before using this command again.]
 $title[Daily Reward Claimed]
 $description[You received **100 coins**!]
 $color[#57F287]

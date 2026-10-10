@@ -4,8 +4,8 @@ title: $addCheckboxGroupOption[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addCheckboxGroupOption
-syntax: $addCheckboxGroupOption[menuId;label;value;(description);(default)]
-description: Adds an individual option to a checkbox group in a modal. The menuId can be omitted to target the last group created.
+syntax: $addCheckboxGroupOption[menuId;label;(value);(description);(default)]
+description: Adds an option to a checkbox group of the modal being built. An empty menuId targets the last checkbox group created.
 ---
 
 # $addCheckboxGroupOption[] — Checkbox Group Option

@@ -4,7 +4,7 @@ title: $getStringSelectValue
 translation_key: docs
 category: "Components & Interactions"
 function_name: getStringSelectValue
-syntax: $getStringSelectValue[(index)]
+syntax: $getStringSelectValue[index]
 description: Gets the value of the option selected by the user in a string select menu.
 ---
 
@@ -48,7 +48,8 @@ You chose: $getStringSelectValue[1]
 ### Second selection (empty if there is only one)
 
 ```bdfd
-First: $getStringSelectValue[1]\nSecond: $getStringSelectValue[2]
+First: $getStringSelectValue[1]
+Second: $getStringSelectValue[2]
 ```
 
 ### In an interaction handler

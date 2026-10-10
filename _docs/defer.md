@@ -4,50 +4,43 @@ title: $defer
 translation_key: docs
 category: "Control Flow"
 function_name: defer
-syntax: $defer
-description: Defers the interaction response, giving the bot extra time to process a command before Discord's 3-second timeout. Must be called at the very beginning of a command.
+syntax: $defer[(ephemeral)]
+description: Marks the interaction as acknowledged (optionally ephemeral) in the execution state. The engine already acknowledges interactions automatically.
 ---
-$defer is essential for any command that may take longer than 3 seconds to execute. Discord enforces a strict 3-second timeout on interaction responses: if your bot doesn't respond within that window, the interaction fails with "This interaction failed." `$defer` tells Discord "I got your command, I'm working on it" — resetting the timeout and giving you up to 15 minutes to complete processing.
 
-## How It Works
+`$defer` marks the interaction as acknowledged in the execution state. It is not needed to give a script more than 3 seconds: the engine already acknowledges the interaction itself before running the script.
 
-When called, `$defer` sends a deferred response via `BotCreatorActionType.respondWithMessage` with `deferred: true`. This:
+## Syntax
 
-1. Acknowledges the interaction to Discord.
-2. Prevents the "This interaction failed" error.
-3. Gives you time to perform slow operations (API calls, database queries, file processing, etc.).
-4. You can then use `$sendMessage` or embed functions to deliver the actual response.
-
-## Critical Rules
-
-- **Must be the FIRST line** of your command. Any code before `$defer` may cause the 3-second timeout to trigger before the defer is sent.
-- **Only once per command**. Calling `$defer` multiple times has no additional effect.
-- **Use `$sendMessage` after**, not before. The actual response content is sent after your processing completes.
-
-## Common Use Cases
-
-- Commands that make HTTP requests to slow external APIs.
-- Commands that process large datasets or files.
-- Commands with artificial delays (`$wait`).
-- Commands that wait for user input (`$awaitFunc`).
-
-## Example: Without vs With $defer
-
-Without `$defer` (will fail):
-```bdfd
-$wait[5s]
-$sendMessage[Done!]
+```text
+$defer
+$defer[ephemeral]
 ```
-→ Discord shows "This interaction failed" because no response was sent within 3 seconds.
 
-With `$defer` (works):
+| Parameter | Description |
+|---|---|
+| `ephemeral` | Optional. `yes` or `true` records that the deferred response is ephemeral; any other value is ignored (no error). |
+
+`$defer` takes 0 or 1 argument and returns an empty string.
+
+## What the engine does
+
+- `$defer` sets three flags in the execution state: the interaction is acknowledged, a defer was requested, and (with `yes`/`true`) the response is ephemeral. Its position in the script does not matter.
+- Reading the code, the only consumer of the "defer requested" and "ephemeral" flags is the sandbox, which simulates a `deferInteraction` effect. The normal executor does not send anything to Discord for `$defer`.
+- Before running a script for an interaction, the executor acknowledges the interaction automatically, except when the script contains `$newModal`, `$callWorkflow`, `$eval` or `$funcCall` (a modal must be the first response). So a slow script does not hit the 3-second limit because of a missing `$defer`.
+- Because `$defer` marks the interaction as acknowledged, `$newModal` called after it fails with `Modal must be the first interaction response.`
+
+## Example
+
 ```bdfd
 $defer
-$wait[5s]
-$sendMessage[Done!]
+$wait[1s]
+Done!
 ```
-→ The interaction is acknowledged immediately, and the message is sent when ready.
 
-## Note
+The text is sent when the script ends.
 
-`$defer` is specifically for **interaction-based** commands (slash commands, context menu commands, etc.). In message-based (prefix) commands, Discord does not enforce the same interaction timeout, so `$defer` is not needed — though calling it does no harm.
+## Notes
+
+- Calling it several times has no additional effect.
+- To make the response ephemeral, use `$ephemeral`.

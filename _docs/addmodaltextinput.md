@@ -4,8 +4,8 @@ title: $addModalTextInput[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addModalTextInput
-syntax: $addModalTextInput[customId;label;(style);(placeholder);(default);(required);(minLength);(maxLength)]
-description: Adds a text input field to a Discord modal. Supports the "short" (single row) and "paragraph" (multi-line) styles.
+syntax: $addModalTextInput[label;description;customId;(style);(minLength);(maxLength);(required);(default);(placeholder)]
+description: Adds a Components V2 text input (wrapped in a label) to the modal being built. The style defaults to "short".
 ---
 
 # $addModalTextInput[] — Modal Text Input

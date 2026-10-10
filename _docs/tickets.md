@@ -11,8 +11,8 @@ permalink: /docs/tickets/
 
 Building a private support system on Discord requires orchestrating **channel creation**, **explicit permission configuration**, **interactive components** (Discord buttons), and **clean deletion** upon closing.
 
-> [!CAUTION]
-> **Deprecated legacy functions:** Do not use `$newTicket` or `$closeTicket` for production bots. These legacy helpers create public channels without access restrictions and do not reliably clean up text channels. Exclusively use the proven modular pattern documented below.
+> [!NOTE]
+> **Script View (BDFD) limits:** `$createChannel[name;type;(categoryId)]` returns an empty string, so the new channel ID cannot be captured in a script. The BDFD tab below therefore uses `$newTicket[category;noSubject;inTicket;toUser;error;(number);(returnId)]`, which creates a text channel named `ticket-<number or slugified username>` whose permissions deny `@everyone` View Channel and allow the author (and the bot) View Channel, Send Messages and Read Message History. It posts `inTicket` in the new channel (`{subject}` and `{channel}` are replaced) and appends `toUser` to the response. Embeds and buttons in the ticket channel are only available with the Blocks (action) version.
 
 ---
 
@@ -186,23 +186,7 @@ To ensure total confidentiality for conversations between the user and staff:
 
   <div class="dual-tab-panel">
     <p class="text-sm text-on-surface-variant mb-4">BDScript code executed by the engine:</p>
-<pre><code class="language-bdfd">;; 1. Create text channel under the private category
-$var[ticketChan;$createChannel[ticket-$username;text;123456789012345678]]
-
-;; 2. Grant permissions to creator (+viewchannel, +sendmessages, +readmessagehistory)
-$editChannelPerms[$var[ticketChan];$authorID;+viewchannel;+sendmessages;+readmessagehistory]
-
-;; 3. Send welcome embed with close button to the new channel
-$useChannel[$var[ticketChan]]
-$title[Support &amp; Help]
-$description[Hello &lt;@$authorID&gt;! Please describe your issue here.\nA support team member will assist you shortly.\n\nTo close this ticket, click the red button below.]
-$color[#5865F2]
-$addButton[no;close_ticket;Close Ticket;danger]
-
-;; 4. Reset channel and acknowledge the slash command ephemerally (no double $sendMessage!)
-$useChannel[]
-$ephemeral
-✅ Your support ticket has been created: &lt;#$var[ticketChan]&gt;
+<pre><code class="language-bdfd">$newTicket[123456789012345678;No subject given;Hello &lt;@$authorID&gt;! Please describe your issue here. A support team member will assist you shortly.;Your support ticket has been created: {channel};The ticket could not be created.]
 </code></pre>
   </div>
 </div>
@@ -374,14 +358,7 @@ When a member or moderator clicks the **Close Ticket** button (`customId: close_
 
   <div class="dual-tab-panel">
     <p class="text-sm text-on-surface-variant mb-4">BDScript interaction handler:</p>
-<pre><code class="language-bdfd">;; 1. Immediately acknowledge the click to prevent the Discord 3s timeout
-🔒 Close requested by $username. Deleting this channel in 3 seconds...
-
-;; 2. Clean wait timer
-$wait[3s]
-
-;; 3. Permanently delete the ticket channel
-$deleteChannels[$channelID]
+<pre><code class="language-bdfd">$closeTicket[This channel is not a ticket.]
 </code></pre>
   </div>
 </div>

@@ -4,8 +4,8 @@ title: $addRadioGroupOption[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addRadioGroupOption
-syntax: $addRadioGroupOption[menuId;label;value;(description);(default)]
-description: Adds an individual option to a group of radio buttons in a modal. The menuId can be omitted to target the last group created.
+syntax: $addRadioGroupOption[menuId;label;(value);(description);(default)]
+description: Adds an option to a radio button group of the modal being built. An empty menuId targets the last radio group created.
 ---
 
 # $addRadioGroupOption[] — Radio Group Option

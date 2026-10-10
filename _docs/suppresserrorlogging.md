@@ -5,45 +5,37 @@ translation_key: docs
 category: "Control Flow"
 function_name: suppressErrorLogging
 syntax: $suppressErrorLogging
-description: Disables internal error logging for the current command execution. Runtime errors will not be recorded in the bot's error logs.
+description: Sets the "suppress error logging" flag of the script. The engine does not read this flag, so it has no visible effect.
 ---
-$suppressErrorLogging disables the internal logging of runtime errors for the current command. Unlike `$suppressErrors` (which controls what the user sees) or `$embedSuppressErrors` (which controls embed-specific errors), this function acts on the **server-side** — it prevents errors from being recorded in the bot's internal log system.
 
-## How It Works
+`$suppressErrorLogging` sets the "suppress error logging" flag of the script. In the current engine this flag has no visible effect.
 
-- When called, error logging is suppressed for the **current command execution**.
-- If a runtime error occurs after this call, it will **not** be recorded in the bot's error logs.
-- The user may still see the error message (unless `$suppressErrors` is also called).
-- The suppression is scoped to the current command only.
+## Syntax
 
-## When to Use
+```text
+$suppressErrorLogging
+```
 
-- **Sensitive commands**: commands that may generate errors containing private data that should not persist in logs.
-- **High-frequency commands**: commands called very often where logging every error would flood the log system.
-- **Expected failures**: when you're intentionally trying operations that may fail, and you don't want those failures cluttering your error logs.
+`$suppressErrorLogging` takes no argument (`$suppressErrorLogging[x]` is refused: `Invalid argument count`). It returns an empty string.
 
-## When Not to Use
+## What it does
 
-- **During debugging**: error logs are essential for diagnosing problems. Only suppress logging when you're confident the errors are expected and non-actionable.
-- **As a default**: most commands should keep logging enabled so you can monitor the health of your bot.
+- It sets a flag on the execution context for the **current script** (the flag is reset when a new script starts).
+- Reading the code of the engine and of the host packages, **nothing reads this flag**: it does not change what is logged, and it does not change what the user sees. Errors are raised and displayed exactly as without it.
 
 ## Relationship with Other Suppression Functions
 
-| Function | User-visible errors | Embed errors | Internal logging |
-|----------|--------------------|--------------|------------------|
-| `$suppressErrors` | Suppressed | Suppressed | Unchanged |
-| `$embedSuppressErrors` | Unchanged | Suppressed | Unchanged |
-| `$suppressErrorLogging` | Unchanged | Unchanged | Suppressed |
+| Function | User-visible errors |
+|----------|--------------------|
+| `$suppressErrors[(message)]` | Replaced by a text message (or nothing) |
+| `$embedSuppressErrors[...]` | Replaced by a custom embed |
+| `$suppressErrorLogging` | Unchanged (no effect) |
 
-All three can be combined independently to achieve the exact level of error visibility you need.
-
-## Examples
-
-### Silent Error Logging
+## Example
 
 ```bdfd
 $suppressErrorLogging
 $title[Silent Execution]
-$description[Bot internal errors will not clutter the server console.]
+$description[The flag is set, but errors are still reported.]
 $color[#5865F2]
 ```

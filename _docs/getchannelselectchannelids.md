@@ -4,7 +4,7 @@ title: $getChannelSelectChannelIDs
 translation_key: docs
 category: "Components & Interactions"
 function_name: getChannelSelectChannelIDs
-syntax: $getChannelSelectChannelIDs[(separator)]
+syntax: $getChannelSelectChannelIDs[separator;(limit)]
 description: Gets all channel IDs selected by the user via a channel select menu. Returns a list separated by the specified delimiter.
 ---
 

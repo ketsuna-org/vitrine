@@ -4,8 +4,8 @@ title: $addModalRadioGroup[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addModalRadioGroup
-syntax: $addModalRadioGroup[customId;label;(required)]
-description: Creates a group of radio buttons in a modal. The user can only select a single option at a time. The options are added using $addRadioGroupOption().
+syntax: $addModalRadioGroup[label;description;customId;(required)]
+description: Creates a group of radio buttons in the modal being built. Options are added using $addRadioGroupOption[].
 ---
 
 # $addModalRadioGroup[] — Radio Button Group

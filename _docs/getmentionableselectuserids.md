@@ -4,7 +4,7 @@ title: $getMentionableSelectUserIDs
 translation_key: docs
 category: "Components & Interactions"
 function_name: getMentionableSelectUserIDs
-syntax: $getMentionableSelectUserIDs[(separator)]
+syntax: $getMentionableSelectUserIDs[separator;(limit)]
 description: Gets all the IDs selected in a mentionable select menu, joined by a separator. When users are selected, only user IDs are returned.
 ---
 

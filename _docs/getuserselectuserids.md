@@ -4,7 +4,7 @@ title: $getUserSelectUserIDs
 translation_key: docs
 category: "Components & Interactions"
 function_name: getUserSelectUserIDs
-syntax: $getUserSelectUserIDs[(separator)]
+syntax: $getUserSelectUserIDs[separator;(limit)]
 description: Gets all user IDs selected via a multi-select user select menu.
 ---
 

@@ -4,7 +4,7 @@ title: $getStringSelectValues
 translation_key: docs
 category: "Components & Interactions"
 function_name: getStringSelectValues
-syntax: $getStringSelectValues[(separator)]
+syntax: $getStringSelectValues[separator;(limit)]
 description: Gets all option values selected in a multi-select string select menu.
 ---
 
