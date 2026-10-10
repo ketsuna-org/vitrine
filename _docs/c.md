@@ -5,7 +5,7 @@ translation_key: docs
 category: "Math & Text"
 function_name: c
 syntax: $c[expression]
-description: Comment: the text between the brackets is never evaluated and the function returns an empty string. It is not an alias of $calculate.
+description: "Comment: the text between the brackets is never evaluated and the function returns an empty string. It is not an alias of $calculate."
 ---
 # $c — Comment
 

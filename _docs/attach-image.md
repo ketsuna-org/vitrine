@@ -5,7 +5,7 @@ translation_key: docs
 category: Image & Canvas
 function_name: attachImage
 syntax: $attachImage[(canvasName)]
-description: Renders a canvas created with $canvasCreate and attaches the PNG to the response; the canvas name is optional (default: the current canvas).
+description: "Renders a canvas created with $canvasCreate and attaches the PNG to the response; the canvas name is optional (default: the current canvas)."
 ---
 $attachImage renders a canvas built with the `$canvas*` functions and makes the resulting PNG an attachment of the response (named `<canvasName>.png`). It returns an empty string.
 

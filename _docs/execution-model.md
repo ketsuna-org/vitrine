@@ -67,7 +67,7 @@ $sendMessage[Hello $username!]
 ## 2. Variables & State Management (No `$let`!)
 
 > [!CAUTION]
-> **Phantom syntax `$let`:** `$let` is **not a registered function** in the Bot Creator engine. Unknown functions are not rejected: they are left in the output as literal text (probe: `$let[a;b]` returns `$let[a;b]`).
+> **Phantom syntax:** a temporary-variable setter named `$let` does **not exist** in the Bot Creator engine. Unknown functions are not rejected: they are left in the output as literal text. Use `$var[name;value]` instead.
 
 Bot Creator distinguishes two types of variables:
 

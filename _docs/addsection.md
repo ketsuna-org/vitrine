@@ -5,7 +5,7 @@ translation_key: docs
 category: "Components & Interactions"
 function_name: addSection
 syntax: $addSection[(id);(containerId)]
-description: Starts a section: text displays that can have a thumbnail. The text displays and the thumbnail added next belong to it.
+description: "Starts a section: text displays that can have a thumbnail. The text displays and the thumbnail added next belong to it."
 ---
 
 # $addSection[] — Section

@@ -2,6 +2,8 @@
 layout: doc
 translation_key: docs
 category: "Misc"
+function_name: funcCall
+syntax: $funcCall[funcName;(arg1);(arg2);...]
 ---
 
 # $funcCall
@@ -11,7 +13,7 @@ Calls a user-defined function previously declared with `$func[name;...]`. The fu
 ## Syntax
 
 ```bdfd
-$funcCall[funcName;arg1;arg2;...]
+$funcCall[funcName;(arg1);(arg2);...]
 ```
 
 ## Parameters

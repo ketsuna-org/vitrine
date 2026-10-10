@@ -5,7 +5,7 @@ translation_key: docs
 category: "Math & Text"
 function_name: calculate
 syntax: $calculate[expression]
-description: Evaluates an arithmetic expression with + - * / % ^ and parentheses. Not supported: functions (sin, sqrt...), comparisons, variables.
+description: "Evaluates an arithmetic expression with + - * / % ^ and parentheses. Not supported: functions (sin, sqrt...), comparisons, variables."
 ---
 # $calculate[]
 

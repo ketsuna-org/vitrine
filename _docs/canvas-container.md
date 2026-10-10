@@ -5,7 +5,7 @@ translation_key: docs
 category: Image & Canvas
 function_name: canvasContainer
 syntax: $canvasContainer[name;x;y;width;height;(color)]
-description: Defines a named container: later canvas functions that name it in their container argument have their x/y offset by the container's position.
+description: "Defines a named container: later canvas functions that name it in their container argument have their x/y offset by the container's position."
 ---
 $canvasContainer registers a named origin on the current canvas. It draws nothing and returns an empty string.
 
