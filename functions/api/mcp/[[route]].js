@@ -837,7 +837,9 @@ async function toolGetDoc({ slug, full_markdown = false }) {
   if (!/^[a-z0-9_$-]+$/i.test(slug)) throw new Error("Invalid slug");
 
   const docs = await fetchDocsIndex();
-  const doc = docs.find((d) => normalize(d.slug) === normalize(slug) || normalize(d.name) === normalize(slug));
+  // Models pass "$getMessageVar" as often as the slug "getmessagevar".
+  const docKey = (v) => normalize(v).replace(/^\$/, "").replace(/\[.*$/, "");
+  const doc = docs.find((d) => docKey(d.slug) === docKey(slug) || docKey(d.name) === docKey(slug));
 
   if (!full_markdown) {
     let manifest = null;
