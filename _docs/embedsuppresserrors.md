@@ -4,43 +4,49 @@ title: $embedSuppressErrors
 translation_key: docs
 category: "Control Flow"
 function_name: embedSuppressErrors
-syntax: $embedSuppressErrors
-description: Suppresses error messages specifically related to embed rendering, preventing malformed embed errors from being displayed to the user.
+syntax: $embedSuppressErrors[title;description;(color);(author);(footer);(footerIconURL)]
+description: Replaces the error message shown when a function fails with a custom error embed built from its arguments (title, description, color, author, footer).
 ---
-$embedSuppressErrors is a focused suppression toggle that only affects errors related to embed construction and rendering. It prevents malformed or invalid embed configuration from producing visible error messages, while still allowing other types of errors to surface normally.
+`$embedSuppressErrors[]` configures an **error embed**: when a function of the command raises an error, the command stops and the error is displayed as an embed built from the arguments of `$embedSuppressErrors`, instead of the default error message.
+
+## Syntax
+
+```
+$embedSuppressErrors[title;description;(color);(author);(footer);(footerIconURL)]
+```
+
+## Parameters
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `title` | Yes | Embed title (may be empty). |
+| `description` | Yes | Embed description (may be empty). If empty, the original error message is used as the description. |
+| `color` | No | Embed color: `#RRGGBB` or an integer. Invalid values raise "Invalid embed color.". |
+| `author` | No | Author name. |
+| `footer` | No | Footer text. |
+| `footerIconURL` | No | Footer icon; must be an HTTP(S) URL, otherwise "Invalid footer icon URL.". |
+
+Between 2 and 6 arguments are required; a bare `$embedSuppressErrors` is refused ("Invalid argument count"). At least one field must be non-empty ("At least one error embed field is required.").
 
 ## How It Works
 
-- When called, embed error suppression is enabled for the **current command execution**.
-- Only errors originating from embed functions (missing fields, invalid values, formatting issues) are suppressed.
-- All other runtime errors continue to be displayed normally — unless `$suppressErrors` is also active.
-
-## When to Use
-
-- **Dynamic embeds**: when embed content is built from variables or API responses that may sometimes be empty or invalid.
-- **Optional embed fields**: when some embed properties are conditionally set and may fail in certain code paths.
-- **Graceful degradation**: when you prefer embeds to silently fail rather than show error messages, perhaps because you have fallback text responses.
+- When called, the error embed is registered for the **current command execution**; nothing is displayed until an error occurs.
+- When a native error is raised afterwards, the command stops, the previous output is discarded, and the embed is sent as the error response.
+- Calling `$embedSuppressErrors` cancels a previous `$suppressErrors` message, and calling `$suppressErrors` cancels a previous error embed (the last one wins).
+- Errors raised before the function is executed are not intercepted.
 
 ## Comparison with $suppressErrors
 
-| Function | Scope |
-|----------|-------|
-| `$embedSuppressErrors` | Embed errors only |
-| `$suppressErrors` | All runtime errors (including embed errors) |
+| Function | Effect |
+|----------|--------|
+| `$embedSuppressErrors[...]` | Shows errors as a custom embed |
+| `$suppressErrors[(message)]` | Shows errors as a custom text message (empty if no argument) |
 
-If you call `$suppressErrors`, embed errors are already suppressed — you don't need `$embedSuppressErrors` in addition. Use `$embedSuppressErrors` alone when you want to hide embed rendering issues while still seeing other errors (useful during development).
-
-## Example: Graceful Embed Fallback
+## Example: Custom error embed
 
 ```bdfd
-$embedSuppressErrors
-$title[$var[title]]
-$description[$var[body]]
-$footer[$var[footer]]
-
-$if[$var[body]==""]
-$sendMessage[⚠️ No data available for the embed.]
-$endif
+$embedSuppressErrors[Something went wrong;;#E74C3C;;Please retry later]
+$kick[$mentioned[1]]
 ```
 
-If the variables are empty, the embed may fail to render but the fallback text message still appears.
+If `$kick` fails, an embed titled "Something went wrong" is shown, with the original error message as its description and the footer "Please retry later".

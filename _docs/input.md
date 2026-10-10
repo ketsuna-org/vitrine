@@ -4,67 +4,42 @@ title: $input
 translation_key: docs
 category: "Variables"
 function_name: input
-syntax: $input
-description: Gets the full text of the command input by the user, after the prefix and the command name. Equivalent to $message without the command name.
+syntax: $input[inputID]
+description: Returns the value submitted for a modal input, identified by its custom ID.
 ---
 
 # $input
 
-The function `$input` returns the **text entered after the command name**. For a command `!say Hello World`, `$input` evaluates to `Hello World`.
+The function `$input` returns the **value of a modal input** submitted by the user. `inputID` is the custom ID of the field in the modal. It does not return the text typed after a command name.
 
 ## Syntax
 
 ```
-$input
+$input[inputID]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `inputID` | Required. The custom ID of the modal input. |
 
 ## Return Value
 
 - **Type**: String
-- The full text entered after the command name.
-- An empty string if no arguments were provided.
-
-## Difference with $message
-
-| Function | Example with `!say hello` |
-|---|---|
-| `$message` | `!say hello` (complete command) |
-| `$input` | `hello` (arguments only) |
+- The value submitted for this input. For a multi-value input, the values are joined with a comma.
+- An error is raised if `inputID` is empty ("A modal input ID is required.") or if no value exists for this ID ("Modal input is unavailable").
 
 ## Examples
 
-### Echo command
+### Echo a modal field
 
 ```bdfd
-$sendMessage[$input]
-```
-
-### Say command with embed
-
-```bdfd
-$if[$input!=]
-  $title[Message of $username]
-  $description[$input]
-  $color[#5865F2]
-  $sendMessage[]
-$else
-  $sendMessage[Usage: !say <message>]
-$endif
-```
-
-### Extracting the first word
-
-```bdfd
-$var[firstWord;$splitText[1; ;$input]]
-$sendMessage[First word: $var[firstWord]]
+$sendMessage[You wrote: $input[name]]
 ```
 
 ## Notes
 
-- `$input` is affected by `$noMentionMessage` (mentions are converted).
-- To avoid mention conversion, use `$messageSlice[>1]`.
-- `$input` does not contain the prefix or the command name.
+- A bare `$input` (without brackets) is invalid: the argument is required.
+- Values are only available when the command is triggered by a modal submission.
+- To read the arguments of a prefix command, use `$message` (or `$message[n]`).

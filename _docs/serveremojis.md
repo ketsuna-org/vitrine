@@ -4,45 +4,49 @@ title: $serverEmojis[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverEmojis
-syntax: $serverEmojis
-description: Returns a list of custom emojis available on the Discord server.
+syntax: $serverEmojis[guildID;separator]
+description: Returns the list of custom emojis of a Discord server, joined by a separator.
 ---
 
 # $serverEmojis[] — Server Emojis List
 
-`$serverEmojis[]` returns the complete list of custom emojis on the server, formatted to be displayed in Discord.
+`$serverEmojis[]` returns the complete list of custom emojis of a server, formatted to be displayed in Discord.
 
 ## Syntax
 
 ```
-$serverEmojis
+$serverEmojis[guildID;separator]
 ```
+
+The function requires exactly 2 arguments.
 
 ## Parameters
 
-No parameters.
+| Parameter | Description |
+|---|---|
+| `guildID` | Required. ID of the server (an invalid ID raises "Invalid guild ID."). |
+| `separator` | Required. Text placed between emojis (can be empty). |
 
 ## Return Value
 
 - **Type**: `string`
-- A string containing all custom emojis on the server, each in the format `<:name:id>` (or `<a:name:id>` for animated emojis).
+- A string containing all custom emojis of the server joined with the separator, each in the format `<:name:id>` (or `<a:name:id>` for animated emojis).
 
 ## Examples
 
 ### Display all emojis
 
 ```bdfd
-$sendMessage[🎨 Emojis of the server: $serverEmojis]
+$sendMessage[🎨 Emojis of the server: $serverEmojis[$guildID; ]]
 ```
 
 ### Emoji catalog embed
 
 ```bdfd
 $title[Emojis of $serverName]
-$description[$serverEmojis]
+$description[$serverEmojis[$guildID; ]]
 $footer[Total: $emojiCount emojis]
 $color[#F1C40F]
-$sendEmbedMessage
 ```
 
 ### Check emoji count
@@ -64,7 +68,6 @@ $addField[🎨 Emojis;$emojiCount;yes]
 $addField[🚀 Boosts;$serverBoostCount;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
-$sendEmbedMessage
 ```
 
 ## Notes

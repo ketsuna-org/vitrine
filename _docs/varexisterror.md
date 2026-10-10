@@ -4,33 +4,36 @@ title: $varExistError[]
 translation_key: docs
 category: "Variables"
 function_name: varExistError
-syntax: $varExistError[name]
-description: A compatibility stub that always returns an empty string. Provided so that BDFD scripts using the original bot's $varExistError function continue to work without modification.
+syntax: $varExistError[name;message]
+description: Stops the script and displays the message if the variable name is not declared.
 ---
 
-$varExistError is a **no-op stub** included solely for backward compatibility with scripts originally written for the classic BDFD (Bot Designer For Discord) application. In the original BDFD, this function would halt execution with an error if the variable did not exist. In this implementation, it does nothing — it always returns an empty string and never interrupts execution.
+$varExistError checks that a variable is declared. If it is **not**, the script is stopped and the given message is displayed in place of the output; if it exists, nothing happens and an empty string is returned.
 
-## Why This Exists
+## Syntax
 
-When migrating BDFD scripts to Bot Creator, existing code may call `$varExistError` to check that required variables are present before proceeding. Instead of removing these calls manually from every script, this stub silently accepts them, allowing the script to run without modification.
+```
+$varExistError[name;message]
+```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `name` | **Required.** The name of the variable to check. An empty name raises the error `A variable name is required.` |
+| `message` | **Required.** The message displayed when the variable does not exist. It is only evaluated in that case. |
+
+Exactly two arguments are required; any other count is refused ("Invalid argument count").
+
+## Return Value
+
+An empty string.
 
 ## Behavior
 
-- Accepts one parameter (the variable name).
-- Always returns an empty string.
-- Never raises an error, regardless of whether the variable exists.
-- Has no side effects on variables or the execution state.
-
-## Recommendation
-
-Do not use `$varExistsError` in new code. Use `$varExists` combined with your own conditional logic to handle missing variables gracefully:
-
-```
-$if[$varExists[required]==false]
-Error: required variable missing.
-$stop
-$endif
-```
+- Uses the same existence check as `$varExists`.
+- If the variable does not exist, the script stops and the output is replaced by `message`. Webhook messages staged but not yet sent are discarded.
+- If the variable exists, execution continues normally.
 
 ## Examples
 

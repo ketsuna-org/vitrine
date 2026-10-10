@@ -4,65 +4,43 @@ title: $userInfo
 translation_key: docs
 category: "Entity Info"
 function_name: userInfo
-syntax: $userInfo[userID;(property)]
-description: Returns a JSON object containing a user's information, or a specific property if requested.
+syntax: $userInfo[message]
+description: Formats the information of the first mentioned user (or of the author) into the description of the embed, using a template with {username}, {ID}, {BOT} and {discriminator}.
 ---
 
 # $userInfo
 
-The `$userInfo` function returns a **JSON object** containing detailed information about a Discord user, or a specific property extracted from that object.
+The `$userInfo` function **writes a description in the embed** from a template, filled with the information of the **first user mentioned** in the message (the author of the command if the message mentions nobody).
 
 ## Syntax
 
 ```
-$userInfo[userID;(property)]
+$userInfo[message]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | Optional. The ID of the target user. If omitted, uses the triggering user. |
-| `property` | Optional. The name of a property to extract from the JSON object. If omitted, returns the complete object. |
+| `message` | Required - The template text. The placeholders `{username}`, `{ID}`, `{BOT}` and `{discriminator}` (case-insensitive) are replaced by the username, the ID, `true`/`false` (is a bot) and the discriminator of the user. At most 4096 characters. |
 
 ## Return Value
 
-- **Type**: JSON object or string depending on the requested property.
-- Available properties: `id`, `username`, `discriminator`, `avatar`, `bot`, `system`, `banner`, `accent_color`, `global_name`, `display_name`, `public_flags`
+None (empty string). The resulting text is set as the **description of the embed**; an error is raised if it exceeds 4096 characters, if the user is not found, or if no message service is configured.
 
 ## Examples
 
-### Get the complete JSON object
+### Display user information
 
 ```bdfd
-$sendMessage[```json
-$userInfo
-```]
-```
-
-### Extract the global name of a user
-
-```bdfd
-$title[User Search]
-$description[
-**ID:** $mentioned
-**Global Name:** $userInfo[$mentioned;global_name]
-**Is Bot:** $userInfo[$mentioned;bot]
-]
+$userInfo[**Name:** {username}
+**ID:** {ID}
+**Bot:** {BOT}]
 $color[#5865F2]
-$sendMessage[]
-```
-
-### Use with JSON parsing
-
-```bdfd
-$var[info;$userInfo]
-$var[name;$jsonParse[$var[info];username]]
-$sendMessage[Name: $var[name]]
+$sendMessage[User information]
 ```
 
 ## Notes
 
-- `$userInfo` provides unified access to all properties of a user.
-- The available properties are the same as those of the Discord API User Object.
-- Useful for advanced integrations requiring structured data.
+- Used on its own (`$userInfo` with no argument), the function is invalid: the template is required.
+- The placeholders are the only ones replaced; the function does not return a JSON object and has no `property` argument.

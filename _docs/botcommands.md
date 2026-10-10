@@ -4,34 +4,36 @@ title: $botCommands
 translation_key: docs
 category: "Entity Info"
 function_name: botCommands
-syntax: $botCommands
-description: Returns a list of commands available on the bot.
+syntax: $botCommands[separator]
+description: Returns the names of the commands registered on the bot, joined by the separator you provide.
 ---
 
 # $botCommands
 
-The `$botCommands` function **returns the list of names of all commands** registered on the bot, separated by newlines.
+The `$botCommands` function **returns the list of names of all commands** registered on the bot, joined by the separator you provide.
 
 ## Syntax
 
 ```
-$botCommands
+$botCommands[separator]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `separator` | Required. The text inserted between command names. An empty separator raises the error `Separator is required.` |
 
 ## Return value
 
 - **Type**: String
-- A list of commands, one per line (e.g., `help`, `ping`, `ban`...).
+- The command names joined by `separator` (e.g., `help, ping, ban` with `, `).
 
 ## Behavior
 
-- Returns both prefix and slash commands.
-- Each command appears on a new row.
-- The order matches the organization in the BDFD console.
+- The names come from the commands stored for the bot.
+- Prefix and hybrid commands are returned with the bot prefix in front of their trigger (e.g., `!help`); other commands are returned under their plain name.
+- The order is the order of the stored commands.
 
 ## Examples
 
@@ -42,7 +44,7 @@ $title[📚 Commands of $botName]
 $description[
 Here are all my commands:
 ```
-$botCommands
+$botCommands[, ]
 ```
 ]
 $footer[Total: $commandsCount commands]
@@ -53,8 +55,8 @@ $sendMessage[]
 ### Paged help
 
 ```bdfd
-$var[cmds;$botCommands]
-$var[lines;$textSplit[$var[cmds];\n]]
+$var[cmds;$botCommands[,]]
+$var[lines;$textSplit[$var[cmds];,]]
 $var[pages;$math[$arrayLength[$var[lines]]/10]]
 $var[page;$message[1]]
 $if[$isInteger[$var[page]]==false]
@@ -69,28 +71,9 @@ $footer[Total: $commandsCount commands]
 $sendMessage[]
 ```
 
-### Search for a command
-
-```bdfd
-$var[search;$message[1]]
-$if[$var[search]==]
-  $sendMessage[❌ Usage: !search <name>]
-  $stop
-$endif
-
-$var[results;$advancedTextSplit[$botCommands;\n;$var[search]]]
-$if[$arrayLength[$var[results]]==0]
-  $sendMessage[❌ No commands found for "$var[search]".]
-$else
-  $title[🔍 Results for "$var[search]"]
-  $description[$arraySlice[$var[results];0;20]]
-  $sendMessage[]
-$endif
-```
-
 ## Notes
 
-- Commands are returned as plain text (one per line).
+- Commands are returned as plain text, joined by the separator.
 - For the total number of commands, use `$commandsCount`.
 - For the number of slash commands only, use `$slashCommandsCount`.
 - `$botCommands` can be very large on bots with many commands.

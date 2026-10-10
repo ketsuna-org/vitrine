@@ -23,11 +23,11 @@ $takeRoles[userID;role1;role2;...]
 | Parameter | Description |
 |---|---|
 | `userID` | The ID of the target user. Required. |
-| `role1;role2;...` | The IDs of the roles to remove, separated by `;`. Required. |
+| `role1;role2;...` | The IDs of the roles to remove (positive numbers), separated by `;`. At least one is required. |
 
 ## Return Value
 
-None. All specified roles are removed.
+None (empty string). An error is raised if an ID is invalid.
 
 ## Examples
 
@@ -60,5 +60,4 @@ $sendMessage[Roles updated!]
 - The bot must have the `ManageRoles` permission.
 - The role IDs are separated by `;`.
 - To remove a single role, `$takeRole` is simpler.
-- Roles not possessed by the user are silently ignored.
 - To completely redefine a user's roles, use `$setUserRoles`.

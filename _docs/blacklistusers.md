@@ -4,51 +4,58 @@ title: $blacklistUsers
 translation_key: docs
 category: "Moderation"
 function_name: blacklistUsers
-syntax: $blacklistUsers[userID1;userID2;...;(errorMessage)]
-description: Guard function that blacklists users by ID. Alias of $blacklistIDs. The command is interrupted if the user is in the list.
+syntax: $blacklistUsers[username1;username2;...;errorMessage]
+description: Guard function that blacklists users by username. The command is interrupted if the username of the triggering user is in the list.
 ---
 
 # $blacklistUsers
 
-The guard function `$blacklistUsers` blocks the execution of the command for the listed users. This is a direct alias of `$blacklistIDs`.
+The guard function `$blacklistUsers` blocks the execution of the command for the listed users, identified by their **username** (not their ID). To blacklist by ID, use `$blacklistIDs`.
 
 ## Syntax
 
 ```
-$blacklistUsers[userID1;userID2;...;(errorMessage)]
+$blacklistUsers[username1;username2;...;errorMessage]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `userID1;userID2;...` | Snowflake[] | IDs of users to blacklist. |
-| `errorMessage` | String (optional) | Message sent to the blacklisted user. |
+| `username1;username2;...` | String[] | Usernames to blacklist, separated by `;`. The comparison ignores case. At least one value is required (empty values are ignored). |
+| `errorMessage` | String | **Required**, always the **last** argument. Message returned when the guard stops the command; it replaces the output of the script. Leave it empty (`;` at the end) for a silent stop. |
+
+The function therefore needs at least 2 arguments. With a single argument, the call is rejected ("Invalid argument count").
 
 ## Behavior
 
-- If the user is in the list, the command is interrupted.
-- If an error message is provided, it is sent before the interruption.
-- Exact alias of `$blacklistIDs`.
+- Compares the username of the triggering user (`author.username`) with each value, **case-insensitively**. Values are not trimmed.
+- If the username matches one of the values, the script is stopped and the error message is used as output.
+- If it matches none, the command continues.
+- Empty values never match.
+
+## Return Value
+
+Returns an empty string when the command continues. When the guard stops the command, the script is stopped and the error message (last argument) is used as its output.
 
 ## Examples
 
 ### Blacklist with message
 
 ```bdfd
-$blacklistUsers[111111111111111111;222222222222222222;❌ You are blacklisted.]
+$blacklistUsers[baduser;spammer42;❌ You are blacklisted.]
 $sendMessage[Access allowed.]
 ```
 
-### Silent blacklist
+### Silent stop (empty error message)
 
 ```bdfd
-$blacklistUsers[123456789012345678]
+$blacklistUsers[baduser;]
 $sendMessage[OK.]
 ```
 
 ## Notes
 
-- `$blacklistUsers` and `$blacklistIDs` are interchangeable.
-- To blacklist roles, use `$blacklistRoles`.
+- Unlike `$blacklistIDs`, this function compares **usernames**, which users can change. For a reliable blacklist, prefer `$blacklistIDs`.
+- To blacklist roles, use `$blacklistRoles` or `$blacklistRolesIDs`.
 - To whitelist (only allow certain users), use `$onlyForUsers`.

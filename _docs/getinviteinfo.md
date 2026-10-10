@@ -4,70 +4,62 @@ title: $getInviteInfo
 translation_key: docs
 category: "Moderation"
 function_name: getInviteInfo
-syntax: $getInviteInfo[code]
-description: Gets information about a Discord invite from its code. Returns details like the server name, number of members, etc.
+syntax: $getInviteInfo[code;property]
+description: Gets a property of a Discord invite from its code (channel, creation date, inviter, temporary status, number of uses).
 ---
 
 # $getInviteInfo
 
-The function `$getInviteInfo[]` allows **retrieving information** about a Discord invite from its code.
+The function `$getInviteInfo[]` allows **retrieving a property** of a Discord invite from its code.
 
 ## Syntax
 
 ```
-$getInviteInfo[code]
+$getInviteInfo[code;property]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `code` | The invite code (e.g. `abc123` for `discord.gg/abc123`). |
+| `code` | The invite code (e.g. `abc123` for `discord.gg/abc123`). Required, must not be empty. |
+| `property` | The property to read, among: `channel`, `creationDate`, `inviter`, `isTemporary`, `uses`. Required, case-sensitive. |
 
 ## Return Value
 
 - **Type** : String
-- Information about the invite: server name, description, number of members, etc.
-- Empty string if the invite is invalid or expired.
+- The value of the requested property for this invite.
+- An empty string if no information is available for this invite.
+- An error is raised if the code is empty or if the property is unknown.
 
 ## Behavior
 
-- Works with any valid Discord invite code.
-- Does not require the bot to be on the target server.
-- Returns public information only.
+- The engine has no invite lookup service: the values are read from the invite data supplied by the host (context variables `invite[code].property`).
+- If the host did not describe the invite, the function returns an empty string.
 
 ## Examples
 
 ### Check an invite
 
 ```bdfd
-$var[info;$getInviteInfo[$message[1]]]
-$if[$var[info]!=]
-  $sendMessage[Invite information:
->>> $var[info]]
+$var[uses;$getInviteInfo[$message[1];uses]]
+$if[$var[uses]!=]
+  $sendMessage[Number of uses: $var[uses]]
 $else
-  $sendMessage[❌ Invalid or expired invite.]
+  $sendMessage[❌ No information available for this invite.]
 $endif
 ```
 
-### Invite spam detection
+### Find who created an invite
 
 ```bdfd
-$if[$checkContains[$message;discord.gg]==true]
-  $deleteCommand
-  $var[code;$replaceText[$message;https://discord.gg/;]]
-  $var[info;$getInviteInfo[$var[code]]]
-  $if[$var[info]!=]
-    $sendMessage[⚠️ $username, external invites are not allowed. \
-(Invite to: $var[info])]
-  $else
-    $sendMessage[⚠️ $username, invites are not allowed.]
-  $endif
+$var[inviter;$getInviteInfo[$message[1];inviter]]
+$if[$var[inviter]!=]
+  $sendMessage[Invite created by: $var[inviter]]
 $endif
 ```
 
 ## Notes
 
-- The invite must be valid and not expired.
-- Useful for anti-spam invite moderation.
-- The returned information depends on what the server makes public.
+- The properties `channel`, `creationDate`, `inviter`, `isTemporary` and `uses` are the only ones accepted.
+- The returned information depends on what the host supplies for the invite.

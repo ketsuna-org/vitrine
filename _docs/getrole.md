@@ -4,7 +4,7 @@ title: $getRole
 translation_key: docs
 category: "Entity Info"
 function_name: getRole
-syntax: $getRole[userID;index;(guildID)]
+syntax: $getRole[(userID);(index);(guildID)]
 description: Returns the ID of a role of a user according to their index (position) in the member's list of roles.
 ---
 
@@ -15,22 +15,22 @@ The function `$getRole` returns the **ID of a role** of a user depending on thei
 ## Syntax
 
 ```
-$getRole[userID;index;(guildID)]
+$getRole[(userID);(index);(guildID)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the user. Required. |
-| `index` | The position of the role (1 = highest, 2 = second...). Required. |
-| `guildID` | Optional. The ID of the target server. |
+| `userID` | Optional. The ID of the user. Defaults to the author of the command (also when empty). |
+| `index` | Optional. The position of the role (1 = highest, 2 = second...). Defaults to `1`; a non-numeric value is also treated as `1`. |
+| `guildID` | Optional. Accepted but ignored: roles are always read in the current server. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the role at the given position, or `""` if the index is invalid. |
+| `snowflake` (string) | The ID of the role at the given position, or `""` if the index is less than 1 or beyond the number of roles of the user. An error is raised if the user ID is invalid. |
 
 ## Examples
 
@@ -74,6 +74,5 @@ $sendMessage[Main role of <@$mentioned[1]>: $roleName[$getRole[$mentioned[1];1]]
 ## Notes
 
 - The index starts at `1` (not `0`).
-- If the user has no roles (only @everyone), `$getRole` may return an empty string.
-- To get the color of the highest role, use `$colorRole[$userID]` directly.
-- To list all roles of a user, iterate with a loop.
+- The roles are ordered by server hierarchy (not in the order stored by Discord). If the user has no roles (only @everyone), `$getRole` returns an empty string.
+- To list the names of all roles of a user, use `$userRoles[userID]`.

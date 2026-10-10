@@ -4,40 +4,44 @@ title: $onlyNSFW
 translation_key: docs
 category: "Moderation"
 function_name: onlyNSFW
-syntax: $onlyNSFW
-description: Guard function that stops execution if the current channel is not marked as NSFW.
+syntax: $onlyNSFW[errorMessage]
+description: Guard function that stops execution if the current channel is not marked as NSFW, optionally sending an error message.
 ---
 
 # $onlyNSFW
 
-The guard function `$onlyNSFW` checks that the channel where the command is executed is marked as **NSFW** (Not Safe For Work) on Discord. If the channel is not NSFW, the command is silently interrupted.
+The guard function `$onlyNSFW` checks that the channel where the command is executed is marked as **NSFW** (Not Safe For Work) on Discord. If the channel is not NSFW, the command is interrupted and `errorMessage` is output.
 
 ## Syntax
 
 ```
-$onlyNSFW
+$onlyNSFW[errorMessage]
 ```
 
 ## Parameters
 
-No parameters. `$onlyNSFW` is used alone, without arguments.
+| Parameter | Description |
+|---|---|
+| `errorMessage` | Required (may be empty: `$onlyNSFW[]`). Message output when the channel is not NSFW. |
+
+A bare `$onlyNSFW` (no brackets) is invalid: it takes exactly one argument.
 
 ## Behavior
 
 - If the channel is NSFW, the command continues normally.
-- If the channel is **not** NSFW, the command is interrupted (implicit `$stop`), without an error message by default.
-- Equivalent to `$onlyIf[$channelNSFW==true]` but more concise.
+- If the channel is **not** NSFW, the command is interrupted (implicit `$stop`) and `errorMessage` is output in place of the response; with an empty `errorMessage` nothing is displayed.
+- Equivalent to `$onlyIf[$channelNSFW==true;errorMessage]` but more concise.
 
 ## Examples
 
 ### NSFW-only command
 
 ```bdfd
-$onlyNSFW
+$onlyNSFW[This command only works in NSFW channels.]
 $sendMessage[This content is visible only in NSFW channels.]
 ```
 
-### With custom error message
+### Manual check with a custom error message
 
 ```bdfd
 $if[$channelNSFW==false]
@@ -59,7 +63,7 @@ $endif
 
 ## Notes
 
-- `$onlyNSFW` is silent: no error message is sent by default. To inform the user, use the manual condition with `$channelNSFW`.
+- Pass an empty `errorMessage` (`$onlyNSFW[]`) for a silent guard.
 - NSFW marking is configured in the Discord channel settings (Channel Settings → Overview → NSFW Channel).
 - Use `$channelNSFW` for an inline check without interrupting the command.
-- Compatible with text channels only. Threads inherit the NSFW status of their parent channel.
+- For a thread, the NSFW status of its parent channel is used.

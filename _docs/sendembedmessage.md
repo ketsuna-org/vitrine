@@ -4,84 +4,68 @@ title: $sendEmbedMessage[]
 translation_key: docs
 category: "Embed & Message"
 function_name: sendEmbedMessage
-syntax: $sendEmbedMessage[(channelId);(messageId)]
-description: Sends a constructed embed (via $title, $description, $addField, etc.) to a specific channel. Optionally edits an existing message if a messageId is provided.
+syntax: $sendEmbedMessage[channelID;content;(title;titleURL;description;color;author;authorIcon;footer;footerIcon;thumbnail;image;addTimestamp;returnID)]
+description: Sends a message with an embed built from its own arguments to a specific channel. Every field after the content is optional and can be left empty.
 ---
 
 # $sendEmbedMessage[] — Send an Embed
 
-`$sendEmbedMessage[]` sends the previously constructed embed to a Discord channel. This is the primary method for sending rich messages (embeds) to a target channel, distinct from `$sendMessage[]`.
+`$sendEmbedMessage[]` sends a message containing one embed to a Discord channel. The embed is built from the arguments of the function itself, not from `$title[]`, `$description[]` or `$addField[]`. Before sending, the pending response is flushed.
 
 ## Syntax
 
 ```
-$sendEmbedMessage[(channelId);(messageId)]
+$sendEmbedMessage[channelID;content;(title;titleURL;description;color;author;authorIcon;footer;footerIcon;thumbnail;image;addTimestamp;returnID)]
 ```
+
+The function accepts from 2 to 14 arguments.
 
 ## Parameters
 
 | Parameter | Required | Default | Description |
-|-----------|-------------|--------|-------------|
-| `channelId` | No | Current channel | ID of the destination channel. |
-| `messageId` | No | New message | ID of a message to edit. |
+|-----------|----------|---------|-------------|
+| `channelID` | Yes | — | ID of the destination channel (digits only, otherwise the error "Invalid Discord ID." is raised). |
+| `content` | Yes | — | Text of the message (the argument must be present but can be empty). |
+| `title` | No | empty | Embed title (256 characters maximum). |
+| `titleURL` | No | empty | URL of the title; only used when a title is set. |
+| `description` | No | empty | Embed description (4096 characters maximum). |
+| `color` | No | empty | Embed color; a 6-digit hex value is accepted with or without `#`. |
+| `author` | No | empty | Author name (256 characters maximum). |
+| `authorIcon` | No | empty | Author icon URL; only used when an author is set. |
+| `footer` | No | empty | Footer text (2048 characters maximum). |
+| `footerIcon` | No | empty | Footer icon URL; only used when a footer is set. |
+| `thumbnail` | No | empty | Thumbnail URL. |
+| `image` | No | empty | Image URL. |
+| `addTimestamp` | No | `no` | `yes`/`true` adds the current time as embed timestamp. Any value other than `yes`, `no`, `true`, `false` or empty raises an error. |
+| `returnID` | No | `no` | `yes`/`true` returns the ID of the sent message. Same accepted values as `addTimestamp`. |
 
 ## Return Value
 
 - **Type**: `string`
-- Returns the identifier of the message created or edited. Can be used for subsequent operations.
+- Returns the ID of the sent message when `returnID` is `yes`/`true`, otherwise an empty string.
 
 ## Examples
 
-### Simple embed in the current channel
+### Simple embed in a specific channel
 
 ```bdfd
-$title[Server Status]
-$description[All systems functioning normally]
-$color[#2ECC71]
-$addField[Uptime;$uptime;yes]
-$addField[Players;$var[players];yes]
-$sendEmbedMessage
+$sendEmbedMessage[$channelID;;Server Status;;All systems functioning normally;#2ECC71]
 ```
 
-### Embed in a specific channel
+### Embed with text, footer and timestamp
 
 ```bdfd
-$title[New Member]
-$description[$username has joined the server!]
-$addField[ID;$authorID;yes]
-$thumbnail[$authorAvatar]
-$color[#5865F2]
-$sendEmbedMessage[$channelID[welcome]]
-```
-
-### Editing an existing embed
-
-```bdfd
-$title[Leaderboard - Updated]
-$description[Updated leaderboard]
-$addField[1st;$var[top1];yes]
-$addField[2nd;$var[top2];yes]
-$addField[3rd;$var[top3];yes]
-$color[#F1C40F]
-$footer[Updated at $time]
-$sendEmbedMessage[$channelID[leaderboard];$var[leaderboard_msg_id]]
+$sendEmbedMessage[$channelID;New member!;Welcome;;$username has joined the server!;5865F2;;;Member joined;;;;yes]
 ```
 
 ### Capturing the ID for later use
 
 ```bdfd
-$title[Editable Message]
-$description[This message will be updated]
-$var[msgId;$sendEmbedMessage]
-$editEmbedIn[10s]
-$title[Editable Message - Updated]
-$description[The update was successful]
-$color[#27AE60]
+$var[msgId;$sendEmbedMessage[$channelID;;Editable Message;;This message was sent by the bot;27AE60;;;;;;;no;yes]]
 ```
 
 ## Notes
 
-- The embed must be constructed **before** calling `$sendEmbedMessage[]` (using `$title[]`, `$description[]`, `$addField[]`, etc.).
-- If no embed is defined, the message will be empty (which should be avoided).
-- The return value (message ID) is useful for subsequent edits or deletions.
-- To send both text and an embed, use `$sendMessage[]` which can combine both.
+- If every embed field is empty, the message is sent with its content only (no embed).
+- Mentions allowed or restricted with `$allowUserMentions`, `$allowRoleMentions` or `$noMention` apply to the message.
+- To send a plain text message to the current channel, use `$sendMessage[]`.

@@ -4,37 +4,35 @@ title: $getBotInvite
 translation_key: docs
 category: "Moderation"
 function_name: getBotInvite
-syntax: $getBotInvite[(guildID)]
-description: Generates and returns the bot's invite link with the necessary permissions. If a guildID is provided, the link is pre-filled for that server.
+syntax: $getBotInvite
+description: Returns the bot's invite link (scopes bot and applications.commands, with the configured permissions). Takes no argument.
 ---
 
 # $getBotInvite
 
-The `$getBotInvite[]` function allows you to **generate the invite link of the bot** with the permissions necessary for its functioning.
+The `$getBotInvite[]` function allows you to **generate the invite link of the bot**. It takes no argument.
 
 ## Syntax
 
 ```
-$getBotInvite[(guildID)]
+$getBotInvite
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|---|---|
-| `guildID` | Optional - ID of the server to pre-select the server in the invite interface. |
+None. Any argument is refused ("Invalid argument count"); there is no `guildID` parameter. `$getBotInvite` and `$getBotInvite[]` are both valid.
 
 ## Return Value
 
 - **Type**: String (URL)
 - The complete invite URL of the bot.
-- Format: `https://discord.com/oauth2/authorize?client_id=ID&permissions=...&scope=bot`
+- Format: `https://discord.com/api/oauth2/authorize?client_id=ID&scope=bot+applications.commands&permissions=N`
 
 ## Behavior
 
-- The permissions included in the link correspond to those configured for the bot.
-- If a guildID is provided, the server selector is pre-filled.
-- The link includes the `bot` and `applications.commands` scopes automatically.
+- The `permissions` value of the link is the invite permissions configured in the engine.
+- The link always includes the `bot` and `applications.commands` scopes.
+- The function raises an error if the application ID is unavailable or the configured permissions are invalid.
 
 ## Examples
 
@@ -57,15 +55,15 @@ $color[#5865F2]
 $sendMessage[]
 ```
 
-### Link for this server
+### Link in a code block
 
 ```bdfd
 $title[🔗 Invite Link]
 $description[
-Share this link to invite the bot to **$serverName**:
+Share this link to invite the bot:
 
 ```
-$getBotInvite[$guildID]
+$getBotInvite
 ```
 ]
 $sendMessage[]

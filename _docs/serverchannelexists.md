@@ -4,25 +4,24 @@ title: $serverChannelExists
 translation_key: docs
 category: "Entity Info"
 function_name: serverChannelExists
-syntax: $serverChannelExists[name;guildID]
-description: Checks if a channel with a given name exists on a server (guild). Returns true/false.
+syntax: $serverChannelExists[nameOrID]
+description: Checks if a channel (or active thread) with a given name or ID exists on the current server. Returns true/false.
 ---
 # $serverChannelExists
 
-The function `$serverChannelExists[]` checks if a **channel exists on a given server** (by its name).
+The function `$serverChannelExists[]` checks if a **channel exists on the current server**, by its ID or by its name.
 
 ## Syntax
 
 ```
-$serverChannelExists[name;guildID]
+$serverChannelExists[nameOrID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `name` | Name of the channel to search for. Case-sensitive. Wildcards (*) supported. |
-| `guildID` | ID of the server. If omitted, uses the current server. |
+| `nameOrID` | Required. If the value is a positive number, it is matched against channel IDs; otherwise it is matched against channel names (exact, case-sensitive, no wildcards). Active threads are included. An empty value returns `"false"`. |
 
 ## Return Value
 
@@ -38,31 +37,20 @@ $serverChannelExists[name;guildID]
 $if[$serverChannelExists[logs]==true]
   $sendMessage[The #logs channel already exists.]
 $else
-  $createChannel[logs]
-  $sendMessage[#logs channel created.]
+  $sendMessage[The #logs channel does not exist.]
 $endif
 ```
 
-### Check with wildcard
+### Check by ID
 
 ```bdfd
-$if[$serverChannelExists[ticket-*]==true]
-  $sendMessage[Ticket channels already exist.]
-$else
-  $sendMessage[No ticket channels found.]
-$endif
-```
-
-### Check on another server
-
-```bdfd
-$if[$serverChannelExists[welcome;$guildID[Partner Server]]==true]
-  $sendMessage[The welcome channel exists on the partner server.]
+$if[$serverChannelExists[$channelID]==true]
+  $sendMessage[This channel exists.]
 $endif
 ```
 
 ## Notes
 
-- Different from `$channelExists[]` which checks by ID, not by name.
+- Different from `$channelExists[]`, which only checks an ID.
+- A name made only of digits is treated as an ID.
 - Useful to avoid duplicate channels before creating one.
-- The `guildID` parameter is optional (defaults to the current server).

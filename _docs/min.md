@@ -4,7 +4,7 @@ title: $min[]
 translation_key: docs
 category: "Math & Text"
 function_name: min
-syntax: $min[value1;value2;...]
+syntax: $min[value1;value2;(value3;...)]
 description: Returns the smallest value among the provided arguments.
 ---
 
@@ -15,21 +15,24 @@ The function `$min[]` compares all provided values and returns the smallest of t
 ## Syntax
 
 ```
-$min[value1;value2;...]
+$min[value1;value2;(value3;...)]
 ```
 
 ## Parameters
 
 | Parameter | Type   | Required | Description                                              |
 |-----------|--------|-------------|----------------------------------------------------------|
-| `values`  | number | Yes         | List of numerical values separated by `;`. Variadic. |
+| `value1;value2;...` | integer | Yes | At least **2** integers separated by `;` (no upper limit). A non-integer value (decimal, text, empty) raises an error. |
 
 ## Behavior
 
-- Iterates through all values and returns the smallest one.
-- Supports negative and decimal numbers.
-- With a single argument, returns that argument.
-- With zero arguments, the behavior is undefined (returns empty or 0).
+- Compares all values as integers and returns the smallest.
+- Supports negative integers (and arbitrarily large ones). Decimal numbers are **not** accepted: `5.5` raises "Expected an integer in argument N.".
+- Requires at least 2 arguments; with a single argument or none, the call is rejected ("Invalid argument count").
+
+## Return Value
+
+The smallest integer, as text.
 
 ## Examples
 
@@ -45,5 +48,4 @@ $sendMessage[]
 ## Notes
 
 - To find the largest value, use `$max[]`.
-- For more complex comparisons, use `$calculate[min(a, b)]`.
 - The separator is the semicolon `;`.

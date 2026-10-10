@@ -69,7 +69,8 @@ test('Markdown examples use supported temporary-variable syntax', async () => {
       assert.doesNotMatch(text, /\$let\[/, `${folder}/${file} contains an unsupported temporary-variable setter`);
     }
   }
-  for (const slug of ['newticket', 'closeticket', 'isticket']) {
+  // $newTicket is implemented by the engine (5 to 7 arguments), so its page no longer says "incomplete".
+  for (const slug of ['closeticket', 'isticket']) {
     assert.match(await readFile(new URL(`../_docs/${slug}.md`, import.meta.url), 'utf8'), /status: incomplete/);
   }
 });

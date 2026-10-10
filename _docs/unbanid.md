@@ -4,52 +4,44 @@ title: $unBanID
 translation_key: docs
 category: "Moderation"
 function_name: unBanID
-syntax: $unBanID[userID]
-description: Unbans a user from the server using only their ID. Works similarly to $unBan but optimized for raw IDs.
+syntax: $unBanID[(userID)]
+description: Unbans a user from the server using their ID. If no ID is given, the last word of the message is used.
 ---
 
 # $unBanID
 
-The function `$unBanID[]` allows **unbanning a user by their ID**. Similar to `$unBan[]`, it is optimized for cases where only the raw ID is available.
+The function `$unBanID[]` allows **unbanning a user by their ID**. Unlike `$unBan`, which searches by username, it works from the raw ID.
 
 ## Syntax
 
 ```
-$unBanID[userID]
+$unBanID[(userID)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The Discord ID of the user to unban. |
+| `userID` | Optional - The Discord ID of the user to unban. If omitted, the last word of the message is used. An invalid ID raises an error. |
 
 ## Return Value
 
-- **Type** : String (empty on success)
+- **Type** : String (empty)
 - Empty string if the unban succeeds.
-- Error message on failure (user not banned, insufficient permissions, etc.).
+- An error is raised on failure (invalid ID, user not banned, insufficient permissions, etc.).
 
 ## Behavior
 
-- Works identically to `$unBan[]`.
+- Unlike `$unBan`, which searches the ban list by username, it unbans the given ID.
 - The bot must have the `BAN_MEMBERS` permission.
-- Accepts only a raw ID (not a mention).
 
 ## Examples
 
-### Unban from a list
+### Unban from an ID
 
 ```bdfd
-$var[bans;$getBanList[, ]]
-$textSplit[$var[bans];, ]
-  $var[userID;$splitText[$index]]
-  $if[$checkCondition[$var[userID]==$mentioned[1]]==true]
-    $unBanID[$var[userID]]
-    ✅ **$userName[$var[userID]]** was unbanned.
-    $break
-  $endif
-$endTextSplit
+$unBanID[$message[1]]
+$sendMessage[✅ **$message[1]** was unbanned.]
 ```
 
 ### Scheduled unban
@@ -58,17 +50,11 @@ $endTextSplit
 $var[target;$noMentionMessage]
 $if[$isBanned[$var[target]]==true]
   $unBanID[$var[target]]
-  $title[🔓 Automatic unban]
-  $description[
-  User **$var[target]** was unbanned (end of ban duration).
-  ]
-  $color[#57F287]
-  $sendMessage[$channelID[mod-logs]]
+  $channelSendMessage[$channelID[mod-logs];User **$var[target]** was unbanned (end of ban duration).]
 $endif
 ```
 
 ## Notes
 
-- `$unBanID[]` is interchangeable with `$unBan[]` for raw IDs.
-- The difference is minimal; prefer `$unBan[]` which also handles mentions.
+- Use `$unBan` to unban by username.
 - Useful for internal scripts where only the ID is known.

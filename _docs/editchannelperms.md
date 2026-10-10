@@ -4,70 +4,68 @@ title: $editChannelPerms
 translation_key: docs
 category: "Moderation"
 function_name: editChannelPerms
-syntax: $editChannelPerms[channelID;roleOrUserID;allow;deny]
-description: Modifies the permissions of a role or a user on a specific channel using numerical permission values.
+syntax: $editChannelPerms[channelID;roleOrUserID;permission1;(permission2);...]
+description: Modifies the permissions of a role or a user on a specific channel using permission names prefixed with + (allow) or - (deny).
 ---
 
 # $editChannelPerms
 
-The `$editChannelPerms[]` function **modifies the permissions of a role or user** on a channel using numerical values (bitfields).
+The `$editChannelPerms[]` function **modifies the permission overwrites of a role or user** on a channel. Each permission is given by name, prefixed with `+` (allow) or `-` (deny). Numerical bitfields are not accepted.
 
 ## Syntax
 
 ```
-$editChannelPerms[channelID;roleOrUserID;allow;deny]
+$editChannelPerms[channelID;roleOrUserID;permission1;(permission2);...]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the target channel. |
-| `roleOrUserID` | The ID of the role or the user. |
-| `allow` | Bitfield of permissions to allow (integer). |
-| `deny` | Bitfield of permissions to deny (integer). |
+| `channelID` | Required. The ID of the target channel (positive integer). |
+| `roleOrUserID` | Required. The ID of the role or the user (the type is detected automatically). If empty, the target is the @everyone overwrite. |
+| `permission1` | Required. A permission name with a mandatory `+` or `-` prefix, e.g. `+sendMessages`, `-viewChannel`. |
+| `permission2;...` | *(Optional)* Any number of additional prefixed permissions. |
+
+At least 3 arguments are required; there is no upper limit.
 
 ## Return value
 
-This function does not return a value.
+An empty string.
 
 ## Behavior
 
-- The bot must have `MANAGE_ROLES` or `MANAGE_CHANNELS` permission.
-- Permissions are defined by numerical values:
-  - `1024` = View channel
-  - `2048` = Send messages
-  - `4096` = Send TTS messages
-  - `8192` = Manage messages
-  - `16384` = Embed links
-  - etc.
+- Each permission must start with `+` (allow) or `-` (deny), otherwise the error "Permission requires an explicit +, - or supported / prefix." is raised. The `/` (neutral) prefix is not supported by `$editChannelPerms`.
+- Names are case-insensitive and ignore non-alphanumeric characters (e.g. `sendMessages`, `send_messages`). An unknown name raises "Unknown permission: <name>.".
+- Known aliases include `admin`, `ban`, `kick`, `manageServer`, `readMessages` (= `viewChannel`), `slashCommands`, `tts`, `externalEmojis`.
+- If the same permission is listed twice, the last occurrence wins.
 
 ## Examples
 
 ### Locking a channel
 
 ```bdfd
-$editChannelPerms[$channelID;$guildID;0;2048]
+$editChannelPerms[$channelID;;-sendMessages]
 $sendMessage[Channel locked: messages disabled for @everyone.]
 ```
 
 ### Unlocking a channel
 
 ```bdfd
-$editChannelPerms[$channelID;$guildID;2048;0]
+$editChannelPerms[$channelID;;+sendMessages]
 $sendMessage[Channel unlocked.]
 ```
 
 ### Private channel by role
 
 ```bdfd
-$editChannelPerms[$channelID;$guildID;0;1024]
-$editChannelPerms[$channelID;$vipRoleID;1024;0]
+$editChannelPerms[$channelID;;-viewChannel]
+$editChannelPerms[$channelID;$vipRoleID;+viewChannel]
 $sendMessage[Channel made private for the VIP role.]
 ```
 
 ## Notes
 
-- The `allow` and `deny` permissions are sums of flags. Add the values together to combine permissions.
-- `$guildID` represents the @everyone role.
-- For a more readable approach, use `$modifyChannelPerms[]`.
+- Several permissions can be changed in one call: `$editChannelPerms[$channelID;$vipRoleID;+viewChannel;+sendMessages;-manageMessages]`.
+- An empty `roleOrUserID` targets @everyone (a local convention of this engine).
+- `$modifyChannelPerms[]` is a separate function taking a single permission list as its second argument.

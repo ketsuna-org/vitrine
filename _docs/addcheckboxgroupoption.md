@@ -4,41 +4,41 @@ title: $addCheckboxGroupOption[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: addCheckboxGroupOption
-syntax: $addCheckboxGroupOption[menuId;label;value;(description);(default)]
-description: Adds an individual option to a checkbox group in a modal. The menuId can be omitted to target the last group created.
+syntax: $addCheckboxGroupOption[menuId;label;(value);(description);(default)]
+description: Adds an option to a checkbox group of the modal being built. An empty menuId targets the last checkbox group created.
 ---
 
 # $addCheckboxGroupOption[] — Checkbox Group Option
 
-`$addCheckboxGroupOption[]` adds an option to a checkbox group created with `$addModalCheckboxGroup[]`. Each option appears as a distinct checkbox with its own label.
+`$addCheckboxGroupOption[]` adds an option to a checkbox group created with `$addModalCheckboxGroup[]` in the modal being built.
 
 ## Syntax
 
 ```
-$addCheckboxGroupOption[menuId;label;value;(description);(default)]
+$addCheckboxGroupOption[menuId;label;(value);(description);(default)]
 ```
 
 ## Parameters
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `menuId` | No | Last group | Identifier of the parent group. |
-| `label` | Yes | — | Text displayed for this option. |
-| `value` | Yes | — | Value returned when the option is checked. |
-| `description` | No | — | Optional description text. |
-| `default` | No | `no` | `yes` if checked by default. |
+| `menuId` | Yes (may be empty) | — | `customId` of the parent group. If empty, the last checkbox group of the modal is used. |
+| `label` | Yes | — | Text displayed for the option. |
+| `value` | No | the `label` | Value returned if selected. |
+| `description` | No | empty | Optional description (only sent if not empty). |
+| `default` | No | `no` | `yes`/`true` if selected by default, `no`/`false` otherwise. |
 
 ## Return value
 
-Adds the option to the parent group. No direct return value.
+Returns an empty string. The option is added to the group. If no group matches (none created yet, or no group with that `menuId`), nothing happens and no error is raised.
 
 ## Examples
 
 ### With explicit menuId
 
 ```bdfd
-$newModal[Config;config_modal]
-$addModalCheckboxGroup[notifications;Notifications;no]
+$newModal[config_modal;Config]
+$addModalCheckboxGroup[Notifications;;notifications;0;3;no]
 $addCheckboxGroupOption[notifications;Private messages;dm;Receive private message notifications;yes]
 $addCheckboxGroupOption[notifications;Mentions;mentions;Notifications for @mentions;yes]
 $addCheckboxGroupOption[notifications;Announcements;announce;Server announcements;no]
@@ -47,8 +47,8 @@ $addCheckboxGroupOption[notifications;Announcements;announce;Server announcement
 ### Without menuId (last group)
 
 ```bdfd
-$newModal[Preferences;pref_modal]
-$addModalCheckboxGroup[themes;Visual Themes;no]
+$newModal[pref_modal;Preferences]
+$addModalCheckboxGroup[Visual Themes;;themes;0;3;no]
 $addCheckboxGroupOption[;Minimal;minimal;Clean design;no]
 $addCheckboxGroupOption[;Colored;colorful;Vibrant design;yes]
 $addCheckboxGroupOption[;Dark;dark;Dark mode;yes]
@@ -57,20 +57,19 @@ $addCheckboxGroupOption[;Dark;dark;Dark mode;yes]
 ### Multiple distinct groups
 
 ```bdfd
-$newModal[Full Survey;full_survey]
-$addModalCheckboxGroup[platform;Platforms;yes]
+$newModal[full_survey;Full Survey]
+$addModalCheckboxGroup[Platforms;;platform;1;2;yes]
 $addCheckboxGroupOption[platform;Discord;discord;;yes]
 $addCheckboxGroupOption[platform;Twitter;twitter;;no]
 
-$addModalCheckboxGroup[content;Content Type;no]
+$addModalCheckboxGroup[Content Type;;content;0;3;no]
 $addCheckboxGroupOption[content;Articles;articles]
 $addCheckboxGroupOption[content;Videos;videos]
 $addCheckboxGroupOption[content;Podcasts;podcasts]
 ```
 
+
 ## Notes
 
-- If `menuId` is omitted (empty string), the option is added to the last group created.
-- Maximum of 25 options per group.
-- The values of checked options are retrieved via `$input[menuId]`, separated by commas.
-
+- The value is read with `$input[customId]` of the group when the modal is submitted (several values are joined by commas).
+- `$newModal[]` takes the modal ID first, then its title.

@@ -4,33 +4,35 @@ title: $checkCondition
 translation_key: docs
 category: "Control Flow"
 function_name: checkCondition
-syntax: $checkCondition[operator;value1;value2]
-description: Evaluates a comparison between two values and returns "true" or "false".
+syntax: $checkCondition[condition]
+description: Evaluates a condition (a comparison written as a single expression) and returns "true" or "false".
 ---
 # $checkCondition — Inline Condition Evaluation
 
-`$checkCondition` is a compile-time-optimized function that evaluates a comparison between two values and returns the string `"true"` or `"false"`. Unlike the `$if` structural token, `$checkCondition` is a standard function call that can be used anywhere a string value is expected — inside `$if` conditions, combined with `$and`/`$or`, or assigned to variables.
+`$checkCondition[condition]` takes a single argument, a condition, evaluates it and returns the string `"true"` or `"false"`. Unlike the `$if` structural token, `$checkCondition` is a standard function call that can be used anywhere a string value is expected — inside `$if` conditions, combined with `$and`/`$or`, or assigned to variables.
+
+## Syntax
+
+```
+$checkCondition[condition]
+```
+
+The condition is one expression: either the literal `true` / `false`, or `left<operator>right` (for example `$getUserVar[coins]>100`). The call requires exactly one argument.
 
 ## Operators
 
 All six standard comparison operators are supported:
 
-| Operator | Meaning              | Numeric/String |
-|----------|----------------------|-----------------|
-| `==`     | Equal to             | Both            |
-| `!=`     | Not equal to         | Both            |
-| `>`      | Greater than         | Numeric only    |
-| `<`      | Less than            | Numeric only    |
-| `>=`     | Greater or equal     | Numeric only    |
-| `<=`     | Less or equal        | Numeric only    |
+| Operator | Meaning              |
+|----------|----------------------|
+| `==`     | Equal to             |
+| `!=`     | Not equal to         |
+| `>`      | Greater than         |
+| `<`      | Less than            |
+| `>=`     | Greater or equal     |
+| `<=`     | Less or equal        |
 
-For equality (`==`, `!=`), both string and numeric comparisons work. For ordering operators (`>`, `<`, `>=`, `<=`), values are coerced to numbers. If coercion fails, the result is `"false"`.
-
-## Compile-Time Evaluation
-
-When both `value1` and `value2` are literal constants (not referencing variables or functions), `$checkCondition` is evaluated **at compile time**. The result is baked directly into the compiled script, avoiding any runtime overhead.
-
-When values contain placeholders or function calls, evaluation falls back to runtime.
+Both sides are trimmed. If both sides are numbers, they are compared numerically; otherwise they are compared as text (alphabetical order for `>`, `<`, `>=`, `<=`). A condition that is neither `true`, `false` nor a comparison raises the error `Invalid condition`.
 
 ## Return Value
 

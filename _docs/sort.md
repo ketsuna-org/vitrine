@@ -4,91 +4,67 @@ title: $sort[]
 translation_key: docs
 category: "Math & Text"
 function_name: sort
-syntax: $sort[separator;(direction)]
-description: Sorts elements (separated by the given delimiter) and returns them as a single string.
+syntax: $sort[number1;(number2;...);direction;amount;separator]
+description: Sorts the given numbers in ascending or descending order and returns them joined by a separator.
 ---
-# $sort — Sort Elements
+# $sort — Sort Numbers
 
-`$sort` takes a delimited list of values, sorts them, and returns them as a string using the same delimiter. It is primarily designed for numeric sorting but can be used with any comparable values.
+`$sort` takes a list of numbers as separate arguments, sorts them numerically, and returns them joined with the chosen separator.
 
 ## Syntax
 
 ```
-$sort[separator;(direction)]
+$sort[number1;(number2;...);direction;amount;separator]
 ```
 
-Wait — note the unusual syntax: `$sort` takes the **separator** as its first argument, not the data! The data is the **current spreads text** or must be set up beforehand.
-
-> **Common usage pattern**: Use `$textSplit` first to load the data, then `$sort` to sort it.
-
-```
-$textSplit[5;2;8;1;3;]
-$sort[;;(direction)]
-```
-
-Alternatively, `$sort` can operate on a delimited string directly:
-
-```
-$sort[5,2,8,1,3;,;(asc)]
-```
+The function requires at least 4 arguments: one number, then `direction`, `amount` and `separator`. The **last three** arguments are always `direction`, `amount` and `separator`; every argument before them is a number to sort.
 
 ## Parameters
 
-- **separator** *(string, required)* — The delimiter separating the values.
-- **direction** *(string, optional)* — `"asc"` or `"ascending"` for ascending; `"desc"` or `"descending"` for descending. Default: **descending (numerical)**.
+- **number1;(number2;...)** *(required, at least one)* — The numbers to sort. Each one must be a finite number, otherwise the error "Sort requires finite numbers." is raised.
+- **direction** *(required)* — `asc` for ascending or `desc` for descending. Any other value raises the error "Sort direction must be asc or desc.".
+- **amount** *(required)* — How many values to return: `-1` for all of them, or a non-negative integer (a value larger than the number of values returns all of them).
+- **separator** *(required)* — The text placed between the returned values. It cannot be empty.
 
 ## Return Value
 
 - **Type**: `string`
-- Returns the sorted elements joined by the same separator.
+- The sorted numbers (written as they were given), joined by `separator`. Values that are equal keep their original order.
 
 ## Usage
 
 ```
-$sort[3,1,4,1,5;,;asc]   → "1,1,3,4,5"
-$sort[z,y,x;,]            → depends on implementation (default descending)
-$sort[100 10 1000; ;asc]  → "10 100 1000" (numerical sort)
+$sort[3;1;4;1;5;asc;-1;,]   → "1,1,3,4,5"
+$sort[100;10;1000;desc;2;,] → "1000,100"
+$sort[10;2;3;asc;-1;,]      → "2,3,10"
 ```
 
 ## Common Patterns
 
-### Sorting User-Provided Numbers
+### Sorting numbers
 
-```
-$textSplit[$message; ]
-$sendMessage[Sorted: $sort[ ;asc]]
-```
-
-### Ranking Scores
-
-```
-$textSplit[$getUserVar[scores];,]
-$var[topScores;$sort[,;desc]]
+```bdfd
+$sendMessage[Sorted: $sort[5;2;9;1;7;asc;-1; ]]
 ```
 
-### Organizing Data for Display
+### Top three scores
 
-```
-$textSplit[$getUserVar[items];,]
-$sendMessage[Items (A-Z): $sort[,;asc]]
+```bdfd
+$sendMessage[Top 3: $sort[$getUserVar[score1];$getUserVar[score2];$getUserVar[score3];$getUserVar[score4];desc;3;, ]]
 ```
 
 ## Important Notes
 
-- **Default is descending**: Unlike many sorting functions, BDFD's `$sort` defaults to descending order.
-- **Numerical sort**: Numbers are sorted numerically (`2` before `10`), which is the expected behavior. For alphabetical sorting, behavior may differ.
-- **Separator consistency**: The same separator is used for both input parsing and output joining.
-- **Works with spreads context**: Can operate on the current `$textSplit` result, using the separator to join the output.
+- **Numerical sort**: Values are compared as numbers (`2` before `10`). Text values are refused.
+- **Direction is case-sensitive**: only `asc` and `desc` are accepted.
+- **Fixed positions**: the direction, amount and separator are always the last three arguments, so the number of values is variable but the separator comes last.
 
 ## Examples
 
-### Sorting Split Numerical Data
+### Ascending order
 
 ```bdfd
-$textSplit[5,2,9,1,7;,]
-$sort[asc]
 $title[Sorted Numbers]
-$description[Numbers in ascending order: **$joinSplitText[, ]**]
+$description[Numbers in ascending order: **$sort[5;2;9;1;7;asc;-1;, ]**]
 $color[#57F287]
-$sendMessage[]
 ```

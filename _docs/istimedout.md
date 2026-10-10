@@ -4,19 +4,25 @@ title: $isTimedOut
 translation_key: docs
 category: "Entity Info"
 function_name: isTimedOut
-syntax: $isTimedOut
-description: Returns "true" if the user is currently timed out (temporarily muted) on the server, "false" otherwise.
+syntax: $isTimedOut[userID]
+description: Returns "true" if the given user is currently timed out (temporarily muted) on the server, "false" otherwise.
 ---
 
 # $isTimedOut
 
-The variable `$isTimedOut` returns `"true"` if the user is currently **timed out** (temporarily muted) on the server.
+The function `$isTimedOut[userID]` returns `"true"` if the given user is currently **timed out** (temporarily muted) on the server.
 
 ## Syntax
 
 ```
-$isTimedOut
+$isTimedOut[userID]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `userID` | Required. The Discord ID of the member to check. An invalid ID raises an error. |
 
 ## Return Value
 
@@ -26,7 +32,8 @@ $isTimedOut
 
 ## Behavior
 
-- `$isTimedOut` takes **no arguments**.
+- `$isTimedOut` takes **exactly one argument**, the user ID; a bare `$isTimedOut` is invalid.
+- It returns `"true"` only if the member has a timeout end date that is still in the future.
 - The timeout is a Discord feature that temporarily prevents a member from speaking or sending messages.
 - The duration of the timeout is defined by the moderators (up to 28 days).
 
@@ -35,7 +42,7 @@ $isTimedOut
 ### Block commands for timed-out users
 
 ```bdfd
-$if[$isTimedOut==true]
+$if[$isTimedOut[$authorID]==true]
   $sendMessage[⏳ You are currently timed out. Please wait.]
   $stop
 $endif
@@ -47,8 +54,8 @@ $sendMessage[Command executed successfully!]
 ```bdfd
 $title[Timeout Check]
 $description[
-**User:** $userName
-**Timed Out:** $isTimedOut
+**User:** $username
+**Timed Out:** $isTimedOut[$authorID]
 ]
 $color[#ED4245]
 $sendMessage[]

@@ -4,7 +4,7 @@ title: $takeRole
 translation_key: docs
 category: "Moderation"
 function_name: takeRole
-syntax: $takeRole[userID;roleID]
+syntax: $takeRole[userID;roleID] or $takeRole[roleID]
 description: Removes a role from a user on the server.
 ---
 
@@ -16,18 +16,19 @@ The `$takeRole` function **removes a role** from a user on the Discord server. T
 
 ```
 $takeRole[userID;roleID]
+$takeRole[roleID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the target user. Required. |
-| `roleID` | The ID of the role to remove. Required. |
+| `userID` | Optional - The ID of the target user. If only one argument is given, it is read as the role ID and the role is removed from the users mentioned in the message; an error is raised if there is no mention (the author is never used as a fallback). |
+| `roleID` | The ID of the role to remove (a positive number). Required. |
 
 ## Return Value
 
-None. The role is removed.
+None (empty string). An error is raised if the user ID or role ID is invalid.
 
 ## Examples
 
@@ -60,6 +61,4 @@ $sendMessage[✅ Role removed from <@$mentioned[1]>.]
 
 - The bot must have the `ManageRoles` permission.
 - The bot cannot remove a role higher than or equal to its own highest role.
-- If the user does not have the role, nothing happens.
 - To remove multiple roles, use `$takeRoles`.
-- Functionally equivalent to `$roleRemove`.

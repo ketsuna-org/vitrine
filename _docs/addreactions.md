@@ -4,36 +4,38 @@ title: $addReactions
 translation_key: docs
 category: "Moderation"
 function_name: addReactions
-syntax: $addReactions[emoji1;emoji2;...]
+syntax: $addReactions[emoji1;(emoji2);(...)]
 description: Adds one or more reactions to the bot's response message (the message sent by the current command). The emojis are added sequentially.
 ---
 
 # $addReactions
 
-The `$addReactions[]` function **adds reactions** to the response message sent by the bot in the current command.
+The `$addReactions[]` function **queues reactions** that are added to the message sent by the bot for the current command.
 
 ## Syntax
 
 ```
-$addReactions[emoji1;emoji2;...]
+$addReactions[emoji1;(emoji2);(...)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `emoji1;emoji2;...` | List of emojis separated by `;`. Supports Unicode and custom emojis. |
+| `emoji1` | Required. At least one emoji is needed (`$addReactions` without brackets is refused). |
+| `emoji2;...` | Optional. Any number of additional emojis, separated by `;`. |
+
+An emoji can be a Unicode emoji, a custom emoji in the form `<:name:ID>` / `<a:name:ID>`, a numeric emoji ID, or a BDFD alias such as `:name:` (unknown aliases are an error). An empty argument or plain ASCII text is an error.
 
 ## Return value
 
-This function does not return a value. The reactions are added to the bot's response message.
+Returns an empty string. The emojis are only queued: they are added once the response message has been sent, in the specified order. If the response is discarded, the queued reactions are discarded with it.
 
 ## Behavior
 
-- Reactions are added in the specified order.
-- The bot must have the permission `ADD_REACTIONS` in the channel.
-- Custom emojis must be accessible to the bot (present on a shared server).
-- If an emoji is invalid, subsequent reactions may not be added.
+- The reactions target the message that the bot sends as the command response.
+- If the sent response has no usable channel/message ID, the call fails with an error.
+- If no reaction service is configured, the call fails with "No reaction service configured".
 
 ## Examples
 
@@ -43,7 +45,6 @@ This function does not return a value. The reactions are added to the bot's resp
 $title[Poll]
 $description[$message]
 $addReactions[👍;👎;🤷]
-$sendMessage[]
 ```
 
 ### Confirmation reactions
@@ -53,7 +54,6 @@ $if[$checkContains[$message;!delete]==true]
   $title[Confirmation]
   $description[Are you sure you want to delete?]
   $addReactions[✅;❌]
-  $sendMessage[]
 $endif
 ```
 
@@ -63,12 +63,10 @@ $endif
 $title[📢 Announcement]
 $description[$noMentionMessage]
 $addReactions[📢;👀]
-$sendMessage[]
 ```
 
 ## Notes
 
-- `$addReactions[]` applies to the response message of the bot (the one sent by `$sendMessage[]`).
+- `$addReactions[]` applies to the response message of the bot.
 - To add reactions to the user's command message, use `$addCmdReactions[]`.
 - For specific messages, use `$addMessageReactions[]`.
-

@@ -4,7 +4,7 @@ title: $getRoleSelectRoleIDs
 translation_key: docs
 category: "Components & Interactions"
 function_name: getRoleSelectRoleIDs
-syntax: $getRoleSelectRoleIDs[(separator)]
+syntax: $getRoleSelectRoleIDs[separator;(limit)]
 description: Gets all role IDs selected by the user via a multi-select role menu.
 ---
 
@@ -15,62 +15,47 @@ The function `$getRoleSelectRoleIDs[]` retrieves all **role IDs** selected by th
 ## Syntax
 
 ```
-$getRoleSelectRoleIDs[(separator)]
+$getRoleSelectRoleIDs[separator;(limit)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `separator` | Optional - The separator between each ID. Defaults to `, ` (comma + space). |
+| `separator` | The separator inserted between each element. Required (it may be a single space or any text). |
+| `limit` | Optional - The maximum number of elements returned (integer of 1 or more). If empty or omitted, all selected elements are returned. |
 
 ## Return Value
 
 - **Type**: String
 - The list of all selected role IDs.
 - An empty string if no role was selected.
+- An error is raised if the limit is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no role selection.
 
 ## Behavior
 
-- Used with a role select menu configured with `maxValues > 1`.
+- Only usable in the callback of a component interaction carrying a role selection.
 - Returns all IDs in a single string with the specified separator.
 - Compatible with `$textSplit[]` to iterate over each role.
 
 ## Examples
 
-### Assigning multiple roles
+### Listing the selected roles
 
 ```bdfd
-$onInteraction[role_select]
-$var[roles;$getRoleSelectRoleIDs[,]]
-
-$textSplit[$var[roles];,]
-  $giveRole[$authorID;$splitText[$index]]
-  + Role added: $roleName[$splitText[$index]]
-$endTextSplit
-
-$sendMessage[✅ All roles have been assigned!]
+$sendMessage[Roles selected: $getRoleSelectRoleIDs[, ]]
 ```
 
-### Displaying selected roles
+### Limiting the number of roles
 
 ```bdfd
-$onInteraction[role_select]
-$var[list;$getRoleSelectRoleIDs[, ]]
-$var[count;$length[$splitText[$var[list];, ]]]
-
-$title[🎭 $var[count] role(s) selected]
-$description[
-$textSplit[$var[list];, ]
-  $index. $roleName[$splitText[$index]]
-$endTextSplit
-]
+$title[🎭 Selected roles]
+$description[First two: $getRoleSelectRoleIDs[, ;2]]
 $color[#5865F2]
-$sendMessage[]
 ```
 
 ## Notes
 
 - For a single selection, use `$getRoleSelectRoleID[]`.
-- The separator can be any string of characters.
+- The separator can be any string of characters; it is required.
 - Useful for auto-role systems with multiple selections.

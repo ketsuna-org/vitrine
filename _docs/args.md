@@ -4,31 +4,30 @@ title: $args[]
 translation_key: docs
 category: "Variables"
 function_name: args
-syntax: $args / $args[index] / $args[index;option]
-description: Accesses the arguments passed to the current command. Without parameters, returns all arguments. With an index, returns a specific argument (0-indexed). With an option fallback, returns a slash command option if the argument is not provided.
+syntax: $args / $args[(index)]
+description: Accesses the words that follow the command name in the message content. Without parameters, returns all of them joined by spaces. With an index (1-indexed), returns one of them.
 ---
 
 $args is the primary mechanism for accessing user-provided input in text commands. Arguments are the words that follow the command name, separated by whitespace.
 
+## Syntax
+
+```
+$args
+$args[(index)]
+```
+
+The function accepts 0 or 1 argument. `$args` (no brackets) returns all arguments; `$args[]` (empty brackets) counts as one empty argument and behaves like `$args[1]`.
+
 ## Indexing
 
-Arguments are **0-indexed**: the first word after the command name is at index `0`. If the user types `!command hello world`:
+The engine takes `message.content`, splits it on whitespace and drops the first word (the trigger). Arguments are then **1-indexed**: the first word after the command name is at index `1`. If the user types `!command hello world`:
 
-- `$args[0]` → `"hello"`
-- `$args[1]` → `"world"`
+- `$args[1]` → `"hello"`
+- `$args[2]` → `"world"`
 - `$args` (without index) → `"hello world"`
 
-Requesting an index beyond the available arguments returns an empty string — no error is raised.
-
-## Slash Command Fallback
-
-When used in hybrid commands (supporting both text and slash invocation), `$args[index;option]` provides a graceful fallback:
-
-1. If a text argument exists at the given index, it is returned.
-2. If no text argument exists, the slash command option named `option` is returned instead.
-3. If neither exists, an empty string is returned.
-
-This allows the same command code to handthe both invocation methods seamlessly.
+Requesting an index that is 0, negative or beyond the available arguments returns an empty string — no error is raised. An index that is empty or not an integer is treated as `1`.
 
 ## Comparison with Other Functions
 
@@ -44,7 +43,6 @@ This allows the same command code to handthe both invocation methods seamlessly.
 
 ```bdfd
 $title[Command Arguments Inspector]
-$description[Total args: **$argsCount**\nFirst arg: `$args[1]`\nAll args: `$args`]
+$description[Total args: **$argCount**\nFirst arg: `$args[1]`\nAll args: `$args`]
 $color[#5865F2]
-$sendMessage[]
 ```

@@ -4,35 +4,33 @@ title: $unregisterGuildCommands
 translation_key: docs
 category: "Moderation"
 function_name: unregisterGuildCommands
-syntax: $unregisterGuildCommands[guildID]
+syntax: $unregisterGuildCommands[(guildID)]
 description: Deletes all slash commands of the bot on a specific server. Global commands are not affected.
 ---
 
 # $unregisterGuildCommands
 
-The function `$unregisterGuildCommands[]` allows **deleting all slash commands** of the bot on a specific server.
+The function `$unregisterGuildCommands` allows **deleting all slash commands** of the bot on a specific server.
 
 ## Syntax
 
 ```
-$unregisterGuildCommands[guildID]
+$unregisterGuildCommands[(guildID)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `guildID` | The ID of the server from which to delete the slash commands. |
+| `guildID` | Optional - The ID of the server from which to delete the slash commands. By default, the current server. An invalid ID raises an error. |
 
 ## Return Value
 
-This function does not return a value.
+None (empty string). An error is raised if the operation fails.
 
 ## Behavior
 
 - Deletes ONLY guild commands, not global commands.
-- Commands disappear immediately from the slash menu.
-- The bot must have the `applications.commands` permission.
 
 ## Examples
 

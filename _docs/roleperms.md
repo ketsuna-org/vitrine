@@ -4,32 +4,33 @@ title: $rolePerms
 translation_key: docs
 category: "Entity Info"
 function_name: rolePerms
-syntax: $rolePerms[roleID;(guildID)]
-description: Returns the permissions of a Discord role as a text list or a raw value.
+syntax: $rolePerms[guildID;roleID;(separator)]
+description: Returns the permissions of a Discord role as a text list.
 ---
 
 # $rolePerms
 
-The function `$rolePerms` returns the **permissions** of a Discord role, either as a text list or as a raw integer value.
+The function `$rolePerms` returns the **permissions** of a Discord role, as a text list of permission names.
 
 ## Syntax
 
 ```
-$rolePerms[roleID;(guildID)]
+$rolePerms[guildID;roleID;(separator)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
+| `guildID` | The ID of the server containing the role. Required. |
 | `roleID` | The ID of the role. Required. |
-| `guildID` | Optional. The ID of the target server. |
+| `separator` | Optional. Text placed between permission names (a space is always added after it). Default: `,`. |
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `string` | The list of permissions of the role. |
+| `string` | The permission names of the role (for example `SendMessages, ViewChannel`), or `No Permissions` if the role has none. An invalid guild ID, an invalid role ID or an unknown role raises an error. |
 
 ## Common Permissions
 
@@ -44,7 +45,7 @@ $rolePerms[roleID;(guildID)]
 | `ManageMessages` | Manage messages |
 | `MentionEveryone` | Mention @everyone |
 | `SendMessages` | Send messages |
-| `ReadMessages` | View channels |
+| `ViewChannel` | View channels |
 | `Connect` | Connect to voice channels |
 
 ## Examples
@@ -52,13 +53,13 @@ $rolePerms[roleID;(guildID)]
 ### Display permissions
 
 ```bdfd
-$sendMessage[Permissions of the Admin role: $rolePerms[$roleID[Admin]]]
+$sendMessage[Permissions of the Admin role: $rolePerms[$guildID;$roleID[Admin]]]
 ```
 
 ### Check a permission
 
 ```bdfd
-$if[$checkContains[$rolePerms[$roleID[Member]];Administrator]]
+$if[$checkContains[$rolePerms[$guildID;$roleID[Member]];Administrator]==true]
   $sendMessage[⚠️ The Member role has the Administrator permission!]
 $else
   $sendMessage[Standard permissions.]
@@ -68,7 +69,7 @@ $endif
 ### Check if a role can manage messages
 
 ```bdfd
-$if[$checkContains[$rolePerms[$roleID[Mod]];ManageMessages]]
+$if[$checkContains[$rolePerms[$guildID;$roleID[Mod]];ManageMessages]==true]
   $sendMessage[Moderators can manage messages.]
 $endif
 ```
@@ -77,11 +78,10 @@ $endif
 
 ```bdfd
 $sendMessage[**Permissions of $roleName[$roleID[Admin]]:**
-$rolePerms[$roleID[Admin]]]
+$rolePerms[$guildID;$roleID[Admin]]]
 ```
 
 ## Notes
 
-- The exact format may vary depending on the version of BDFD.
-- To obtain the raw integer value, use `$roleInfo[ID;permissions]`.
+- Names are listed in a fixed order (CreateInvite, KickMembers, BanMembers, Administrator, ...); the raw integer value is not available.
 - Use with `$checkContains` to test for specific permissions.

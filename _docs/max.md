@@ -4,7 +4,7 @@ title: $max[]
 translation_key: docs
 category: "Math & Text"
 function_name: max
-syntax: $max[value1;value2;...]
+syntax: $max[value1;value2;(value3;...)]
 description: Returns the largest value among the provided arguments.
 ---
 
@@ -15,21 +15,24 @@ The function `$max[]` compares all provided values and returns the largest among
 ## Syntax
 
 ```
-$max[value1;value2;...]
+$max[value1;value2;(value3;...)]
 ```
 
 ## Parameters
 
 | Parameter | Type   | Required | Description                                              |
 |-----------|--------|-------------|----------------------------------------------------------|
-| `values` | number | Yes         | List of numeric values separated by `;`. Variadic. |
+| `value1;value2;...` | integer | Yes | At least **2** integers separated by `;` (no upper limit). A non-integer value (decimal, text, empty) raises an error. |
 
 ## Behavior
 
-- Scans all values and returns the largest.
-- Supports negative and decimal numbers.
-- With a single argument, returns that argument.
-- With zero arguments, the behavior is undefined (returns empty or 0).
+- Compares all values as integers and returns the largest.
+- Supports negative integers (and arbitrarily large ones). Decimal numbers are **not** accepted: `5.5` raises "Expected an integer in argument N.".
+- Requires at least 2 arguments; with a single argument or none, the call is rejected ("Invalid argument count").
+
+## Return Value
+
+The largest integer, as text.
 
 ## Examples
 
@@ -45,6 +48,5 @@ $sendMessage[]
 ## Notes
 
 - To find the lowest value, use `$min[]`.
-- For more complex comparisons, use `$calculate[max(a, b)]`.
 - The separator is the semicolon `;`.
 

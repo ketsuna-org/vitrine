@@ -4,7 +4,7 @@ title: $clear
 translation_key: docs
 category: "Moderation"
 function_name: clear
-syntax: $clear[amount;(userID);(removePinned)]
+syntax: $clear[(amount);(userID);(removePinned)]
 description: Deletes a specified number of messages in the channel.
 ---
 
@@ -15,20 +15,20 @@ The `$clear` function **deletes a specified number of messages** in the current 
 ## Syntax
 
 ```
-$clear[amount;(userID);(removePinned)]
+$clear[(amount);(userID);(removePinned)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `amount` | Number of messages to delete (1-100). Required. |
-| `userID` | Optional. Filter: only deletes messages from this user. |
-| `removePinned` | Optional. `"yes"` to include pinned messages. Default is `"no"`. |
+| `amount` | Number of messages to delete (1-100). If written without brackets (`$clear`), the first argument of the command is used. An empty `$clear[]` is an error. Any other value raises the error `$clear amount must be between 1 and 100.` |
+| `userID` | Optional. Filter: only deletes messages from this user. Must be a positive ID when not empty. |
+| `removePinned` | Optional. `"no"`, `"false"`, `"0"` or `"n"` to keep pinned messages. Any other value, including an empty one, deletes pinned messages too. Default behavior: pinned messages are deleted. |
 
 ## Return value
 
-None. The messages are deleted.
+None (empty string). The messages are deleted.
 
 ## Examples
 
@@ -62,18 +62,18 @@ $else
 $endif
 ```
 
-### Deletion including pinned messages
+### Keeping pinned messages
 
 ```bdfd
-$clear[10;;yes]
-$sendMessage[10 messages deleted (pinned included).]
+$clear[10;;no]
+$sendMessage[10 messages deleted (pinned messages kept).]
 ```
 
 ## Notes
 
-- The bot must have the `ManageMessages` permission.
+- The bot must have the `ManageMessages` and `ReadMessageHistory` permissions.
 - Maximum 100 messages per call (Discord API limitation).
 - Messages older than 14 days cannot be deleted by the Discord API.
-- `removePinned` defaults to `"no"`: pinned messages are ignored.
-- If `userID` is omitted, leave the semicolon field empty (e.g., `$clear[10;;yes]`).
+- Pinned messages are deleted unless `removePinned` is `"no"`, `"false"`, `"0"` or `"n"`.
+- To set `removePinned` without filtering by user, leave the `userID` field empty (e.g., `$clear[10;;no]`).
 - This `$clear` function is dedicated to moderation. To clear a variable, see `$clear` in the Variables category.

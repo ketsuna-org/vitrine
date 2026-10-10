@@ -4,7 +4,7 @@ title: $randomText[]
 translation_key: docs
 category: "Math & Text"
 function_name: randomText
-syntax: $randomText[option1;option2;...]
+syntax: $randomText[option1;(option2;...)]
 description: Randomly chooses and returns an option from a list of provided text options.
 ---
 
@@ -15,14 +15,14 @@ The `$randomText[]` function randomly chooses an option from a list of provided 
 ## Syntax
 
 ```
-$randomText[option1;option2;...]
+$randomText[option1;(option2;...)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |-----------|-------------|
-| `option1;option2;...` | List of text options separated by semicolons (`;`). |
+| `option1;(option2;...)` | List of text options separated by semicolons (`;`). At least one option is required; `$randomText` without brackets is invalid. |
 
 ## Return Value
 

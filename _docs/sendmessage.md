@@ -3,13 +3,23 @@ layout: doc
 title: $sendMessage
 category: "Embed & Message"
 function_name: sendMessage
+syntax: $sendMessage[content;(returnMessageID)]
 api_type: bdfd
-description: Explicit message send; ordinary slash replies can use text or embed mutations without this function.
+description: Explicit message send of a separate channel message; ordinary slash replies can use text or embed mutations without this function.
 ---
 
 # $sendMessage
 
-`$sendMessage[content]` explicitly sends the supplied content together with the pending response's embeds and components. Content can be empty when an embed or components provide the message body.
+`$sendMessage[content;(returnMessageID)]` explicitly sends the supplied content as a distinct channel message. It does not consume the pending response draft (embeds, components) and does not update an already acknowledged interaction response.
+
+## Parameters
+
+| Parameter | Required | Default | Description |
+|---|---|---|---|
+| `content` | Yes | — | Text of the message. An empty content raises the error "Message text is required." |
+| `returnMessageID` | No | `no` | `yes`/`true` makes the function return the ID of the sent message; `no`/`false` returns an empty string. Any other value raises an error. |
+
+The message is sent to the channel selected with `$useChannel` if any, otherwise to the current channel. A bare `$sendMessage` or `$sendMessage[]` is refused: at least one argument is required, and an empty content is an error.
 
 ## Slash commands do not require an explicit send
 
@@ -35,6 +45,6 @@ The compiler emits the pending response automatically. Do not append an empty se
 $sendMessage[Hello world!]
 ```
 
-For another channel, read [$channelSendMessage](/docs/channelsendmessage/). The current compiler reads the first `$sendMessage` argument as content; do not use a second argument as a channel ID.
+For another channel, read [$channelSendMessage](/docs/channelsendmessage/). The second `$sendMessage` argument is the `returnMessageID` flag (`yes`/`no`), not a channel ID.
 
 Use [Message Blocks](/docs/blocks-messages/) when editing visual actions: `respondWithMessage` handles interaction replies and `sendMessage` sends channel messages. See [Execution model](/docs/execution-model/) for the distinction between authoring modes.

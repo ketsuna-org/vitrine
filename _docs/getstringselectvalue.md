@@ -4,7 +4,7 @@ title: $getStringSelectValue
 translation_key: docs
 category: "Components & Interactions"
 function_name: getStringSelectValue
-syntax: $getStringSelectValue[(index)]
+syntax: $getStringSelectValue[index]
 description: Gets the value of the option selected by the user in a string select menu.
 ---
 
@@ -15,25 +15,26 @@ The function `$getStringSelectValue[]` retrieves the value of the option chosen 
 ## Syntax
 
 ```
-$getStringSelectValue[(index)]
+$getStringSelectValue[index]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `index` | Optional - The index of the selected value (1 = first). Defaults to 1. |
+| `index` | The index of the selected value (1 = first). Required, integer of 1 or more. |
 
 ## Return Value
 
 - **Type**: String
 - The value associated with the selected option.
-- An empty string if no option was chosen.
+- An empty string if the index is beyond the number of selected options.
+- An error is raised if the index is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no string selection.
 
 ## Behavior
 
-- Works with select menus created via `$addStringSelectMenu[]`.
-- The returned value corresponds to the second parameter of each option defined in the menu: `$addStringSelectMenu[menuID;placeholder;label1:value1;label2:value2;...]`.
+- Only usable in the callback of a component interaction carrying a string selection (menu created via `$addStringSelect[]`, options added with `$addStringSelectOption[]`).
+- The returned value is the value of the option chosen by the user, not its label.
 - Very useful for triggering specific actions according to the chosen value.
 
 ## Examples
@@ -41,49 +42,33 @@ $getStringSelectValue[(index)]
 ### Simple navigation menu
 
 ```bdfd
-$nominalTrigger
-$addStringSelectMenu[nav;Choose an action;Home:home;Profile:profile;Help:help]
-$sendMessage[What do you want to do?]
-
-$onInteraction[nav]
-$var[action;$getStringSelectValue]
+$var[action;$getStringSelectValue[1]]
 
 $if[$var[action]==home]
   $title[🏠 Home]
   $description[Welcome to the server!]
-  $sendMessage[]
 $elseif[$var[action]==profile]
   $title[👤 Profile of $userName]
   $description[Joined on $creationDate[$authorID]...]
-  $sendMessage[]
 $elseif[$var[action]==help]
   $title[❓ Help]
   $description[Use /help to view the commands.]
-  $sendMessage[]
 $endif
 ```
 
-### Switch based on the value
+### Display the second choice
 
 ```bdfd
-$onInteraction[menu]
-$var[val;$getStringSelectValue]
-
-$switch[$var[val]]
-  $case[option1]
-    Action 1 executed.
-  $break
-  $case[option2]
-    Action 2 executed.
-  $break
-  $default
-    No action matched.
-  $break
-$endSwitch
+$var[second;$getStringSelectValue[2]]
+$if[$var[second]==]
+  $sendMessage[Only one option selected.]
+$else
+  $sendMessage[Second option: $var[second]]
+$endif
 ```
 
 ## Notes
 
-- The index starts at 1.
+- The index starts at 1 and is required: `$getStringSelectValue` without brackets is refused.
 - For multiple-choice select menus, use `$getStringSelectValues[]`.
 - The value can be any string defined in the menu.

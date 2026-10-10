@@ -4,7 +4,7 @@ title: $getUserSelectUserIDs
 translation_key: docs
 category: "Components & Interactions"
 function_name: getUserSelectUserIDs
-syntax: $getUserSelectUserIDs[(separator)]
+syntax: $getUserSelectUserIDs[separator;(limit)]
 description: Gets all user IDs selected via a multi-select user select menu.
 ---
 
@@ -15,64 +15,47 @@ The function `$getUserSelectUserIDs[]` retrieves all **user IDs** selected in a 
 ## Syntax
 
 ```
-$getUserSelectUserIDs[(separator)]
+$getUserSelectUserIDs[separator;(limit)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `separator` | Optional - The separator between each ID. Defaults to `, ` (comma + space). |
+| `separator` | The separator inserted between each element. Required (it may be a single space or any text). |
+| `limit` | Optional - The maximum number of elements returned (integer of 1 or more). If empty or omitted, all selected elements are returned. |
 
 ## Return Value
 
 - **Type**: String
 - The list of all selected user IDs.
 - An empty string if no user was selected.
+- An error is raised if the limit is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no user selection.
 
 ## Behavior
 
-- Used with a user select menu configured with `maxValues > 1`.
+- Only usable in the callback of a component interaction carrying a user selection.
 - Returns all IDs in a single string.
-- Ideal for bulk actions (group DMs, role assignments, etc.).
 
 ## Examples
 
 ### Group DM
 
 ```bdfd
-$onInteraction[user_select]
-$var[users;$getUserSelectUserIDs[,]]
+$var[users;$getUserSelectUserIDs[, ]]
 
-$textSplit[$var[users];,]
-  $sendDM[$splitText[$index];📢 Important message from **$serverName**!]
-$endTextSplit
-
-$title[✅ Messages Sent]
-$description[All selected users have received a DM.]
+$title[👥 Selected users]
+$description[$var[users]]
 $color[#57F287]
-$sendMessage[]
 ```
 
-### Bulk Role Assignment
+### Limit the number of users
 
 ```bdfd
-$onInteraction[user_select]
-$var[users;$getUserSelectUserIDs[,]]
-$var[count;$length[$splitText[$var[users];,]]]
-
-$textSplit[$var[users];,]
-  $giveRole[$splitText[$index];$roleID[Member]]
-$endTextSplit
-
-$title[🎭 Role Assigned]
-$description[The role **Member** was given to **$var[count]** user(s).]
-$color[#5865F2]
-$sendMessage[]
+$sendMessage[First three users: $getUserSelectUserIDs[, ;3]]
 ```
 
 ## Notes
 
 - For a single selection, use `$getUserSelectUserID[]`.
 - Compatible with `$textSplit[]` to iterate over each user.
-- Useful for bulk moderation or administration commands.

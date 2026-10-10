@@ -4,26 +4,28 @@ title: $editIn[]
 translation_key: docs
 category: "Embed & Message"
 function_name: editIn
-syntax: $editIn[duration;(messageId)]
-description: Schedules the editing of a message after a specified delay. The current message will be replaced by the new content defined after the delay.
+syntax: $editIn[duration;content]
+description: Schedules the editing of the message sent by the current command, after a delay, with the given new content.
 ---
 
 # $editIn[] — Delayed Message Editing
 
-`$editIn[]` schedules the automatic editing of a message after a given delay. This is useful for creating self-updating messages, countdowns, or state transitions.
+`$editIn[]` schedules the editing of the message sent by the command after a given delay, replacing its text with the given content. It does not wait: the edit is applied once the response has been sent.
 
 ## Syntax
 
 ```
-$editIn[duration;(messageId)]
+$editIn[duration;content]
 ```
 
 ## Parameters
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `duration` | Yes | Delay before editing. Format: number + unit (`s`, `m`, `h`). |
-| `messageId` | No | ID of the target message. If omitted, the current message. |
+| `duration` | Yes | Delay before editing. Positive, at most 40 minutes. A plain number is read as seconds; units such as `s`, `m`, `h` are accepted (e.g. `3s`, `1m`). |
+| `content` | Yes | New text of the message. Must not be empty ("Edited message must not be empty."). |
+
+Exactly 2 arguments are required; there is no message ID parameter.
 
 ## Duration Format
 
@@ -31,59 +33,30 @@ $editIn[duration;(messageId)]
 |--------|-------|---------|
 | `Xs` | Seconds | `5s`, `30s` |
 | `Xm` | Minutes | `1m`, `10m` |
-| `Xh` | Hours | `1h`, `2h` |
+| `Xh` | Hours | `1h` (rejected if above 40 minutes) |
 
 ## Return value
 
-Schedules the delayed editing. The new content is defined after the call to `$editIn[]`.
+An empty string. The edit is scheduled and applied to the response message of the command.
 
 ## Examples
 
 ### Loading indicator
 
 ```bdfd
-$sendMessage[⏳ Processing...]
-$editIn[3s]
-$sendMessage[✅ Processing complete!]
+⏳ Processing...
+$editIn[3s;✅ Processing complete!]
 ```
 
-### Countdown
+### Starting message
 
 ```bdfd
-$sendMessage[Starting in 5 seconds...]
-$editIn[1s]
-$sendMessage[Starting in 4 seconds...]
-$editIn[2s]
-$sendMessage[Starting in 3 seconds...]
-$editIn[3s]
-$sendMessage[Starting in 2 seconds...]
-$editIn[4s]
-$sendMessage[Starting in 1 second...]
-$editIn[5s]
-$sendMessage[🚀 Let's go!]
-```
-
-### Update after action
-
-```bdfd
-$sendMessage[Search in progress... 🔍]
-$editIn[2s]
-$title[Search Results]
-$description[3 results found for "$var[query]"]
-$color[#5865F2]
-```
-
-### With specific messageId
-
-```bdfd
-$var[msgId;$sendMessage[Status: Pending...;yes]]
-$editIn[10s;$var[msgId]]
-$sendMessage[Status: Completed ✅]
+Starting in 5 seconds...
+$editIn[5s;🚀 Let's go!]
 ```
 
 ## Notes
 
-- The maximum duration is generally 15 minutes (BDFD/Discord limitation).
-- The content after `$editIn[]` completely replaces the content of the target message.
-- If `messageId` is omitted, the message currently being sent is targeted.
-- To edit only the embed without touching the text, use `$editEmbedIn[]`.
+- The maximum duration is 40 minutes; a zero, negative or unparsable duration raises "Duration must be positive and at most 40 minutes.".
+- The edit targets the message sent as the command's response (the engine requires a scheduled-message output, otherwise "No scheduled message output configured.").
+- To edit only the embed, use `$editEmbedIn[]`.
