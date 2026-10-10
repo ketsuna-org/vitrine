@@ -5,7 +5,7 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorTag
 syntax: $authorTag
-description: Returns the tag of the author: "username#discriminator" when the account has a discriminator, otherwise the username alone.
+description: "Returns the tag of the author: username#discriminator when the account has a discriminator, otherwise the username alone."
 ---
 
 # $authorTag

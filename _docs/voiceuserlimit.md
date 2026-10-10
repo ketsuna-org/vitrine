@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: voiceUserLimit
 syntax: $voiceUserLimit[(channelID)]
-description: Gets the user limit of a voice channel. Returns the maximum number of users that can connect simultaneously.
+description: Returns the user limit recorded for the channel of the current command (0 when there is none). The optional channel ID is only checked, not used to select the channel.
 ---
 
 # $voiceUserLimit
 
-The `$voiceUserLimit` function allows you to **retrieve the user limit** configured on a Discord voice channel.
+The `$voiceUserLimit` function returns the **user limit** value of the channel in which the command runs (the `channel.userLimit` runtime variable).
 
 ## Syntax
 
@@ -22,59 +22,35 @@ $voiceUserLimit[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional - The ID of the voice channel. By default, the current channel. |
+| `channelID` | Optional - The ID of a channel. It must be a valid ID of an existing channel (`Invalid channel ID.` / `Channel not found.` otherwise), but in the current engine it **does not change the returned value**: the limit of the channel of the current command is always returned. If omitted, the current channel is checked. |
 
 ## Return Value
 
 - **Type**: String (number)
-- The maximum number of users allowed in the channel.
-- `0` means unlimited (no limit).
-
-## Behavior
-
-- If no channelID is provided, the current channel is used.
-- The limit is set during creation/modification of the channel.
-- Useful for checking capacity before joining or inviting.
+- The value of `channel.userLimit` for the channel of the current command, as provided by Discord for that channel.
+- `0` if the runtime has no user limit value for the channel (for example a channel type that has no user limit).
 
 ## Examples
 
-### Checking the limit
+### Showing the limit of the current channel
 
 ```bdfd
-$var[limit;$voiceUserLimit[123456789012345678]]
-
-$if[$var[limit]==0]
-  Unlimited channel.
+$if[$voiceUserLimit==0]
+  No user limit value is available for this channel.
 $else
-  Channel limited to **$var[limit]** users.
+  This channel is limited to **$voiceUserLimit** users.
 $endif
 ```
 
-### Voice channel info
+### Embed
 
 ```bdfd
-$title[🔊 Voice channel]
-$description[
-**Limit:** $voiceUserLimit[123456789012345678] (0 = unlimited)
-]
+$title[🔊 Channel info]
+$description[**Limit:** $voiceUserLimit (0 when no limit value is available)]
 $color[#5865F2]
-```
-
-### Checking for a specific channel
-
-```bdfd
-$var[target;$channelID[Gaming Channel]]
-$var[limit;$voiceUserLimit[$var[target]]]
-
-$if[$var[limit]==0]
-  $sendMessage[<#$var[target]> has no user limit.]
-$else
-  $sendMessage[<#$var[target]> is limited to $var[limit] users.]
-$endif
 ```
 
 ## Notes
 
-- `0` = no limit (unlimited), which is the default value for voice channels.
-- The maximum limit is 99 users.
-- Works only with channels of type voice (`$channelType` = 2).
+- To read the limit of a voice channel, run the command from that channel (for example in the text chat of the voice channel): the returned value always comes from the channel of the command, whatever `channelID` is given.
+- The function needs a channel service to check the channel; without it the call fails.

@@ -37,20 +37,20 @@ $discriminator[userID]
 
 ## Examples
 
-### Detecting a legacy account
+### Detecting a bot with a discriminator
 
 ```bdfd
 $if[$discriminator[$authorID]!=0000]
-  $title[Legacy Account]
+  $title[Account with a discriminator]
   $description[
-  **Full Tag:** $userTag
+  **Full Tag:** $userTag[$authorID]
   **Discriminator:** $discriminator[$authorID]
   ]
   $color[#5865F2]
 $else
-  $title[Pomelo Account]
+  $title[Account without a discriminator]
   $description[
-  **Name:** $userName
+  **Name:** $userName[$authorID]
   (No discriminator)
   ]
   $color[#57F287]
@@ -59,6 +59,6 @@ $endif
 
 ## Notes
 
-- The discriminator system is **deprecated** — Discord no longer assigns them to new accounts.
+- The user is read from Discord. An ID that is not a positive number raises `Invalid user ID.`; an unknown user raises `User not found.`
 - `$discriminator[]` returns `"0000"` for non-bot accounts.
 - For reliable identification, always use `$userID`.

@@ -14,15 +14,16 @@ $setVar writes values to the bot's persistent database. This is the counterpart 
 
 The third parameter determines the scope:
 
-- **Omitted**: the variable is stored as **global** — accessible from any command, any user, any server. Use sparingly for configuration or shared data.
-- **User ID provided**: the variable is **user-scoped** — each user gets their own independent copy. Perfect for coins, XP, settings, and any per-user data.
+- **Omitted or empty**: the variable is stored as **global** — accessible from any command, any user, any server. Use sparingly for configuration or shared data.
+- **User ID provided**: the variable is **user-scoped** (one value per user, shared by all servers) — each user gets their own independent copy. Perfect for coins, XP, settings, and any per-user data. Read it back with `$getVar[name;User ID]`.
 
 ## Important Considerations
 
-- **All values are strings**. If you need numeric operations, use `$add`, `$sub`, `$mul`, `$div` to convert and calculate.
+- **All values are text**. If you need numeric operations, use `$sum`, `$sub`, `$multi`, `$divide` to calculate before storing.
 - **Overwrite behavior**: calling `$setVar` on an existing variable replaces its value — there is no append mode.
-- **Case insensitivity**: `$setVar[Score;100]` and `$setVar[score;200]` target the same variable.
-- **No return value**: this function performs a write action and returns void. It cannot be used inline in a string — use it as a standalone statement.
+- **Case sensitivity**: `$setVar[Score;100]` and `$setVar[score;200]` write two different variables. The name is trimmed and cannot be empty.
+- **No return value**: this function returns an empty string; use it as a standalone statement.
+- **Declaration**: with a User ID, if no user variable with this name is declared yet, the first write declares it with the written value as its default value, so other users who have no stored value read that first value. A global write (no User ID) does not declare anything.
 
 ## Examples
 

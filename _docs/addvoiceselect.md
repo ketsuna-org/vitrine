@@ -6,67 +6,67 @@ category: "Components & Interactions"
 
 # $addVoiceSelect
 
-Creates a select menu of voice channels. Allows users to choose one or multiple voice channels on the server.
+Adds a select menu of the server's voice channels to the response message. The user can choose one or several voice channels.
 
 ## Syntax
 
-```bdfd
-$addVoiceSelect[customId;placeholder;(minValues);(maxValues);(disabled)]
+```text
+$addVoiceSelect[customId;(placeholder);(minValues);(maxValues);(disabled);(messageID)]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customId` | Custom identifier for the interaction | Yes |
-| `placeholder` | Text displayed when nothing is selected | Yes |
-| `minValues` | Minimum number of voice channels to select (default: 1) | No |
-| `maxValues` | Maximum number of voice channels to select (default: 1) | No |
-| `disabled` | `true` to disable the menu, `false` by default | No |
+| `customId` | Custom ID that identifies the menu when it is used (1 to 100 characters). | Yes |
+| `placeholder` | Text displayed when nothing is selected. | No |
+| `minValues` | Minimum number of voice channels to select, integer from 0 to 25 (default: 1, also when empty). | No |
+| `maxValues` | Maximum number of voice channels to select, integer from 1 to 25 (default: 1, also when empty). It must not be lower than `minValues` (`Minimum cannot exceed maximum.`). | No |
+| `disabled` | `yes`/`true` to disable the menu, `no`/`false` (default, also when empty) otherwise. Any other value raises `Expected yes or no`. | No |
+| `messageID` | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). The menu is added to that message instead of the response being built. | No |
 
 ## Description
 
-`$addVoiceSelect` adds a **voice channel select menu** to a message. This component is similar to `$addChannelSelect` but is restricted to **voice channels** only. The user can select one or multiple voice channels, and the interaction returns the selected channel IDs.
+This menu is a channel select restricted to **voice channels** (similar to `$addChannelSelect`). The selected IDs are read, in the script run for the interaction, with the channel select functions: `$getChannelSelectChannelID[index]`, `$getChannelSelectChannelIDs[separator;(limit)]` and `$getChannelSelectChannelCount`.
 
-This function must be placed after `$addActionRow` to be organized on a specific row.
+The menu always gets its own action row, and a message holds at most 5 rows (`A message supports at most 5 component rows.`). Do not write `$addActionRow` before a select menu: the empty row it creates stays in the message and the response fails with `Invalid component row size.`
+
+The menu belongs to the **response message** of the script (the text written in the script and the embed functions), not to a message sent with `$sendMessage[]`.
 
 ## Examples
 
 ### Voice channel selection
 
 ```bdfd
-$addActionRow
+Select a voice channel
 $addVoiceSelect[menu_voice;Choose a voice channel]
-$sendMessage[Select a voice channel]
 ```
 
 ### Multiple voice channels
 
 ```bdfd
-$addActionRow
+Select up to 10 voice channels
 $addVoiceSelect[menu_voices;Voice channels;1;10]
-$sendMessage[Select up to 10 voice channels]
 ```
 
 ### Disabled menu
 
 ```bdfd
-$addActionRow
-$addVoiceSelect[menu_voice_disabled;Unavailable;1;1;true]
-$sendMessage[This menu is disabled]
+This menu is disabled
+$addVoiceSelect[menu_voice_disabled;Unavailable;1;1;yes]
 ```
 
 ## Handling the interaction
 
+The script run when the menu is used reads the choice and identifies the menu with `$customID`:
+
 ```bdfd
 $if[$customID==menu_voice]
-  $sendMessage[Selected voice channel: <#$getChannelSelectChannelID[1]>]
+  Selected voice channel: <#$getChannelSelectChannelID[1]>
 $endif
 ```
 
 ## Notes
 
-- The returned values are Discord voice channel IDs.
-- Use `<#ID>` to mention a voice channel.
-- Only **voice channels** appear in the menu (no text channels, categories, etc.).
-- An action row can contain only **one** select menu.
+- The values are Discord channel IDs; use `<#ID>` to mention a voice channel.
+- A single select menu per action row.

@@ -5,15 +5,18 @@ translation_key: docs
 category: "Variables"
 function_name: resetUserVar
 syntax: $resetUserVar[name] or $resetUserVar[name;User ID]
-description: Resets a user-scoped variable to its default value (as defined in the Bot Creator Variables UI), or removes it if no default exists.
+description: Resets the member-scoped value of a variable to its declared default value, for every member or for one user (as defined in the Bot Creator Variables UI). An error is raised if no default is declared.
 ---
-$resetUserVar restores server/member variables to their default value, or removes stored values if no default is defined. Without a User ID it resets every stored member value; with a User ID it resets only that user's member values. Global-user values used by `$getVar[name;User ID]` are preserved.
+$resetUserVar restores the server-member values of a variable (the ones written by `$setUserVar`) to the default value declared for that variable. If no default value is declared, the error `No declared default for guildMember variable "name".` is raised and nothing is removed. Global-user values used by `$getVar[name;User ID]` are preserved.
 
-Existing bots without a completed variable migration retain their legacy reset behavior until migrated.
+The function takes 1 or 2 arguments (`name`, optional `User ID`). The name cannot be empty.
 
-When called with only a `name`, it resets the variable for the current command author. When a User ID is provided, it resets the variable for that specific user.
+- With only a `name`, it resets the variable for **every member of every server** where a value is stored. It does **not** target the command author only.
+- With a User ID, it resets that user's value in **every server** where a value is stored (not only the current server). The User ID must be a positive number made of digits only, otherwise `A valid user ID is required.` (an empty User ID is refused too).
 
-This function is useful for seasonal resets, clearing temporary data, or reverting a user's settings to their defaults. After resetting, subsequent calls to $getUserVar will return the default value (if defined) or an empty string. This function does not return any output.
+Bots that still use the legacy user-variable setting (not yet migrated) reset the user values shared across all servers instead of the server-member values.
+
+A variable that was never declared in the Variables UI but was created by a `$set...Var` write has the first written value as its declared default. This function is useful for seasonal resets or reverting users' settings to their defaults. After resetting, `$getUserVar` returns the default value. This function does not return any output (empty string).
 
 ## Examples
 
@@ -22,6 +25,6 @@ This function is useful for seasonal resets, clearing temporary data, or reverti
 ```bdfd
 $resetUserVar[bio;$authorID]
 $title[Profile Reset]
-$description[Your bio has been cleared.]
+$description[Your bio has been reset to its default value on every server.]
 $color[#5865F2]
 ```

@@ -20,19 +20,19 @@ $executionTime
 
 ## Parameters
 
-No parameters.
+No parameters (passing one is an error).
 
 ## Return value
 
 - **Type**: String (number)
 - The execution time in milliseconds (ms).
-- Includes the processing time of the entire command (parsing + execution).
+- Counted by the execution timer of the command, which starts when the command's execution starts.
 
 ## Behavior
 
-- Measures the elapsed time from the start of the command's processing up to the function call.
+- Returns the elapsed milliseconds of the command's execution timer at the moment the function is evaluated, as an integer.
+- Time spent waiting inside the command (for example in `$wait[]`) is included.
 - Useful for debugging and performance optimization.
-- The value is an integer representing the milliseconds.
 
 ## Examples
 
@@ -68,6 +68,6 @@ $endif
 
 ## Notes
 
-- The measured time depends on the complexity of the command and network latency.
+- The measured time depends on the complexity of the command and on the Discord requests it makes.
 - `$executionTime` measures the time on the bot side, not the user latency.
-- For WebSocket/API latency, use `$ping`.
+- For the gateway latency of the bot, use `$ping`.

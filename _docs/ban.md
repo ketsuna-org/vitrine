@@ -36,4 +36,4 @@ $ban[Spam]
 Member banned for spam.
 ```
 
-The bot must have a highest role above the target's highest role. This function returns no text and does not delete past messages. Message deletion is not an argument of this BDFD function. To specify an ID explicitly, use `$banID[reason;userID]`.
+With no mention in the message, the call fails with "Missing or invalid user ID." (there is no fallback to the author). The reason is limited to 512 characters. The bot must have a highest role above the target's highest role. This function returns no text and does not delete past messages. Message deletion is not an argument of this BDFD function. To specify an ID explicitly, use `$banID[reason;userID]`.

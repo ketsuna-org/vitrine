@@ -57,6 +57,6 @@ $endif
 ## Notes
 
 - The returned ID is that of the channel where the command was **triggered**, even if the bot subsequently interacts with other channels.
-- In direct messages (DMs) (channel type `dm`/`group_dm`, or no server in the context), `$channelID` without argument returns the text `none`, not the DM channel ID.
+- In direct messages (DMs) (channel type `dm`/`group_dm`, or a server ID that is present in the context but empty or `none`), `$channelID` without argument returns the text `none`, not the DM channel ID.
 - With a name argument, only the channels of the current server are searched. `$channelIDFromName[name]` does the same lookup.
 - Useful to combine with `$findChannel` or `$channelSendMessage` for multi-channel operations.

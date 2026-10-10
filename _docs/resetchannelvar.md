@@ -7,7 +7,7 @@ function_name: resetChannelVar
 syntax: $resetChannelVar[name]
 description: Resets a channel-scoped variable to its declared default value (as defined in the Bot Creator Variables UI) in every channel where it is stored.
 ---
-$resetChannelVar restores a channel-scoped variable to its default value defined in the Bot Creator Variables UI. If no default value is declared for the variable, the function raises an error ("No declared default for ...") instead of removing it.
+$resetChannelVar restores a channel-scoped variable to its default value defined in the Bot Creator Variables UI. If no default value is declared for the variable, the function raises an error ("No declared default for ...") instead of removing it. A variable that was never declared in the Variables UI but was created by a `$set...Var` write has the first written value as its declared default.
 
 The function takes exactly one argument, the variable `name` (an empty name raises an error). It resets the variable in every channel where a value is stored, not only the current one; it does not accept a Channel ID.
 
