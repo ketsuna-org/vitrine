@@ -5,25 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: getTimestampMs
 syntax: $getTimestampMs
-description: Returns the current Unix timestamp in milliseconds. Resolved at runtime.
+description: Returns the current Unix timestamp in milliseconds.
 ---
 
 # $getTimestampMs
 
-The function `$getTimestampMs` returns the current Unix timestamp in **milliseconds**. The Unix timestamp represents the number of milliseconds elapsed since January 1, 1970, at 00:00:00 UTC (epoch).
-
-> **Important:** This function uses the special identifier `((getTimestampMs))` which is resolved at **runtime**.
-
-## Difference with $getTimestamp
-
-| Function | Unit | Value Example |
-|----------|-------|-------------------|
-| `$getTimestampMs` | **Milliseconds** (ms) | `1718697600123` |
-| `$getTimestamp` | **Seconds** (s) | `1718697600` |
-
-- `$getTimestampMs` = `$getTimestamp` × 1000 + additional milliseconds.
-- Use `$getTimestampMs` for **high-precision** measurements (benchmarks, fine cooldowns, timeouts).
-- Use `$getTimestamp` for common use cases where precision to the second is sufficient (dates, long durations, storage).
+The function `$getTimestampMs` returns the current Unix timestamp in **milliseconds** (milliseconds since 1970-01-01 00:00:00 UTC).
 
 ## Syntax
 
@@ -31,16 +18,21 @@ The function `$getTimestampMs` returns the current Unix timestamp in **milliseco
 $getTimestampMs
 ```
 
-> **Note:** This function does not take any parameters.
-
-## Parameters
-
-No parameters.
+> **Note:** This function takes no arguments (it is an error to pass any).
 
 ## Return Value
 
-- **Type**: String (integer)
-- The current Unix timestamp in milliseconds (13 digits).
+- **Type**: String (integer), for example `1791666270637`.
+- It reads the clock each time it is evaluated, so two calls in the same script can return different values.
+
+## Difference with $getTimestamp
+
+| Function | Unit | Value Example |
+|----------|------|---------------|
+| `$getTimestampMs` | Milliseconds | `1791666270637` |
+| `$getTimestamp` | Seconds (default) | `1791666270` |
+
+`$getTimestamp[ms]` returns the same unit as `$getTimestampMs`; the first argument of `$getTimestamp` accepts only `s`, `ms` or `ns`.
 
 ## Examples
 
@@ -50,55 +42,14 @@ No parameters.
 Timestamp (ms): $getTimestampMs
 ```
 
-### Performance measurement
+### Elapsed time between two readings
 
 ```bdfd
 $var[start;$getTimestampMs]
-
-$sendMessage[🔍 Calculation in progress...]
-
 $var[end;$getTimestampMs]
-$var[duration;$sub[$var[end];$var[start]]]
-
-$title[📊 Result]
-$description[
-Operation completed in **$var[duration] ms**.
-]
-$color[#5865F2]
-```
-
-### Precise cooldown (anti-spam)
-
-```bdfd
-$var[now;$getTimestampMs]
-$var[last;$getUserVar[lastCmd]]
-$var[diff;$sub[$var[now];$var[last]]]
-
-$if[$var[diff]<2000]
-  $title[⏳ Too Fast!]
-  $description[
-  Please wait another **$calculate[(2000 - $var[diff]) / 1000]** seconds.
-  ]
-  $color[#ED4245]
-  $stop
-$endif
-
-$setUserVar[lastCmd;$var[now]]
-Your command has run successfully!
-```
-
-### Conversion to seconds
-
-```bdfd
-$var[ms;$getTimestampMs]
-$var[seconds;$calculate[$var[ms] / 1000]]
-
-Timestamp (ms): $var[ms]
-Timestamp (seconds): $var[seconds]
+Elapsed: $sub[$var[end];$var[start]] ms
 ```
 
 ## Notes
 
-- The precision is accurate to the millisecond (1 ms = 0.001 seconds).
-- To compare with a timestamp in seconds, do not forget to convert: multiply seconds by 1000 or divide milliseconds by 1000.
-- The returned values are integers, but calculations with `$calculate[]` can produce decimal numbers during conversion.
+- The value is an integer (digits only), so it can be used directly with `$sub`, `$sum` and the other math functions.

@@ -22,7 +22,7 @@ In this guide, we will learn how to attach functional buttons and select menus t
 
 Buttons are interactive attachments that appear at the bottom of any message or embed. A message holds up to 5 rows of 5 buttons (25 buttons at most); a select menu takes a whole row to itself:
 
-```bdfd
+```text
 $addButton[newRow;customIDOrURL;label;style;(disabled);(emoji);(messageID)]
 ```
 * **`newRow`**: (`yes` or `no`, also `true`/`false`). Set to `yes` to put this button on a brand new row. With `no`, the button joins the last row if that row only holds buttons and has fewer than 5 of them; otherwise a new row is started.
@@ -45,7 +45,7 @@ $addButton[newRow;customIDOrURL;label;style;(disabled);(emoji);(messageID)]
 Select menus let users pick one or more options from a list. A single menu can contain up to 25 choices. BDFD does not have an `$addSelectMenu` function: you create the menu with `$newSelectMenu`, then fill it with `$addSelectMenuOption`.
 
 ### Step 1: Initialize the Menu
-```bdfd
+```text
 $newSelectMenu[customID;minValues;maxValues;(placeholder);(messageID)]
 ```
 * **`customID`**: Unique identifier for this menu block (at most 100 characters).
@@ -55,7 +55,7 @@ $newSelectMenu[customID;minValues;maxValues;(placeholder);(messageID)]
 
 ### Step 2: Populate the Choices
 Immediately after initializing the menu, add options using `$addSelectMenuOption`:
-```bdfd
+```text
 $addSelectMenuOption[menuID;label;value;description;(default);(emoji);(messageID)]
 ```
 * **`menuID`**: The `customID` of the menu to fill.

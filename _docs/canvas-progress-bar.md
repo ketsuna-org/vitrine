@@ -15,7 +15,7 @@ $canvasProgressBar[x;y;width;height;percentage;barColor;trackColor;(textColor);(
 
 ## Parameters
 
-The first 7 parameters are required; the 6 following ones are optional (13 at most).
+The bar is drawn on the current canvas (the last one made with `$canvasCreate`). The first 7 parameters are required; the 6 following ones are optional (13 at most).
 
 | Parameter | Description |
 |---|---|
@@ -27,8 +27,8 @@ The first 7 parameters are required; the 6 following ones are optional (13 at mo
 | `textColor` | Optional. Color of the percentage label. White when empty. |
 | `borderWidth` | Optional. Border thickness (0 to 50, default 0). The border is drawn in `barColor`; there is no separate border color. |
 | `orientation` | Optional. `vertical` for a vertical bar; any other value gives a horizontal bar. |
-| `fontSize` | Optional. Font size of the percentage label (default 14). |
-| `container` | Optional. Name of the container to draw into. |
+| `fontSize` | Optional. Font size of the percentage label (default 14). Only three bitmap sizes exist: below 20, 20 to 39, and 40 and above. |
+| `container` | Optional. Name of a container defined earlier with `$canvasContainer`; x/y are offset by the container's position. May be left empty to set `borderRadius`. |
 | `borderRadius` | Optional. Corner radius (0 to 500, default 0). Rounded corners are rendered. |
 
 A label showing the percentage (e.g. `75%`) is drawn at the center of the bar. Horizontal bars fill left-to-right; vertical bars fill bottom-to-top.
@@ -39,8 +39,8 @@ A label showing the percentage (e.g. `75%`) is drawn at the center of the bar. H
 
 ```bdfd
 $canvasCreate[levelCard;600;140;#181818]
-$canvasDrawText[levelCard;Level 15 — 75% XP;30;45;20;#FFFFFF]
-$canvasProgressBar[30;70;540;26;75;#5865F2;#2F3136;#FFFFFF;3;horizontal;14;levelCard;10]
+$canvasDrawText[Level 15 - 75% XP;30;45;20;#FFFFFF]
+$canvasProgressBar[30;70;540;26;75;#5865F2;#2F3136;#FFFFFF;3;horizontal;14;;10]
 $attachImage[levelCard]
 $sendMessage[Rendered dynamic XP progress bar.]
 ```

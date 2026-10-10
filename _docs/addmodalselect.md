@@ -1,11 +1,4 @@
----
-layout: doc
-title: $addModalSelect[]
-translation_key: docs
-category: "Components & Interactions"
-function_name: addModalSelect
-syntax: $addModalSelect[type;label;description;customId;(placeholder);(minValues);(maxValues);(required);(disabled)]
-description: Adds a select menu (Components V2) to the modal being built. Options are added with $addSelectMenuOption[] for the "string" type.
+
 ---
 
 # $addModalSelect[] — Modal Select Menu
@@ -14,7 +7,7 @@ description: Adds a select menu (Components V2) to the modal being built. Option
 
 ## Syntax
 
-```
+```text
 $addModalSelect[type;label;description;customId;(placeholder);(minValues);(maxValues);(required);(disabled)]
 ```
 
@@ -22,25 +15,27 @@ $addModalSelect[type;label;description;customId;(placeholder);(minValues);(maxVa
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `type` | Yes | — | Menu type, as read by the component parser: `string`, `user`, `role`, `mentionable`, `channel`, `category` or `voice`. |
+| `type` | Yes | — | Menu type: `string`, `user`, `role`, `mentionable`, `channel`, `category` or `voice`. Any other value is sent as a `string` menu. |
 | `label` | Yes | — | Text displayed above the menu. |
 | `description` | Yes | — | Description under the label. May be left empty (`;;`). |
 | `customId` | Yes | — | Identifier of the menu; also used as the first argument of `$addSelectMenuOption[]`. |
 | `placeholder` | No | empty | Placeholder text. |
-| `minValues` | No | `1` | Minimum number of selections (integer from 0 to 25). |
-| `maxValues` | No | `1` | Maximum number of selections (integer from 1 to 25). |
-| `required` | No | `yes` | `yes`/`true` or `no`/`false`. |
-| `disabled` | No | `no` | `yes`/`true` or `no`/`false`. |
+| `minValues` | No | `1` | Minimum number of selections (integer from 0 to 25, otherwise `Expected an integer from 0 to 25.`). |
+| `maxValues` | No | `1` | Maximum number of selections (integer from 1 to 25, otherwise `Expected an integer from 1 to 25.`). |
+| `required` | No | `yes` | `yes`/`true` or `no`/`false` (empty gives `yes`). |
+| `disabled` | No | `no` | `yes`/`true` or `no`/`false` (empty gives `no`). |
 
 ## Return value
 
-Returns an empty string. The menu is added to the current modal; its value is read with `$input[customId]`.
+Returns an empty string. The menu is added to the current modal; the selected values are read with `$input[customId]` (several values are joined by commas).
 
-## Errors
+## Behavior
 
-- Without a prior `$newModal[]`, the engine creates a default modal (ID `modal`, title `Modal`) to receive the input.
-- `required`/`disabled` values other than yes/no/true/false and out-of-range numbers are errors.
-- When the modal is sent, it must contain 1 to 5 inputs (text displays count as inputs).
+- The component is added to the modal being built with `$newModal[]`. Without a prior `$newModal[]`, the engine creates a default modal (ID `modal`, title `Modal`), and a `$newModal[]` called after that fails with `A modal is already being built.`: always call `$newModal[]` first.
+- A boolean argument other than `yes`/`true`/`no`/`false` is an error (`Expected yes or no, got "<value>".`). An integer out of range is an error too.
+- The engine does not check the length of the label, description or placeholder when the function runs.
+- The modal is sent when the script ends. It must hold 1 to 5 components (`A modal requires 1 to 5 inputs.`; `$addModalTextDisplay[]` counts too), and the script must not also produce text, embeds or component rows (`A modal cannot be combined with a message response.`). It can only answer a slash-command or component interaction that has not been answered yet.
+- When the modal is submitted, the values are read with `$input[customId]` and the modal ID with `$customID`.
 
 ## Examples
 
@@ -68,6 +63,7 @@ $addSelectMenuOption[os;Linux;linux;]
 ## Notes
 
 - `$addSelectMenuOption[]` needs at least 4 arguments (`menuId;label;value;description`, the description may be empty); the first one is the `customId` of the menu.
-- Only `string` menus accept options (otherwise: "Only string selects take options.").
+- Only menus declared with the type `string` accept options (otherwise `Only string selects take options.`); a menu of another type is a user, role, mentionable, channel, category or voice picker.
+- A `string` menu without any option is sent with a single placeholder option (label `Empty`, value `empty`).
 - A select menu supports at most 25 options.
 - `$newModal[]` takes the modal ID first, then its title.

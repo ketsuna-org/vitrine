@@ -16,7 +16,7 @@ A `ping` command is the classic hello-world of Discord bots. While it seems simp
 
 Most basic bots only display a static connection latency. However, a professional bot should provide deep diagnostic details, separating the internal gateway connection speed from the actual, user-perceived message roundtrip speed.
 
-This guide walks you through building the ultimate, highly informative `/ping` (or `!ping`) command using Bot Designer for Discord (BDFD) / Bot Creator.
+This guide walks you through building the ultimate, highly informative `!ping` command using Bot Designer for Discord (BDFD) / Bot Creator.
 
 ---
 
@@ -27,13 +27,13 @@ When measuring how fast your Discord bot is performing, you must look at two dis
 | Metric Type | What It Measures | Standard Variable / Formula |
 | :--- | :--- | :--- |
 | **Gateway / WebSocket Latency** | The heartbeat connection speed between your bot's runner node and Discord's Gateway server. | `$ping` (or `((bot.ping))`) |
-| **User-Perceived Roundtrip Latency** | The total real-world time it takes for a user's message to reach Discord, trigger the bot, and for the bot's response to be fully sent back. | `$calculate[$getTimestampMs - $messageTimestamp]` |
+| **User-Perceived Roundtrip Latency** | The time elapsed between the creation of the user's message and the moment your script runs (the response itself is not included). | `$calculate[$getTimestampMs - $messageTimestamp]` |
 
 ---
 
 ## 1. Gateway Latency (`$ping`)
 
-The native `$ping` function (also available in Bot Creator templates as `((bot.ping))` or `((ping))`) retrieves the **WebSocket heartbeat latency** in milliseconds. This is calculated automatically by the bot engine.
+The native `$ping` function (also available in Bot Creator templates as `((bot.ping))` or `((ping))`) retrieves the **WebSocket heartbeat latency** in milliseconds. The engine reads it from the bot's gateway connection; it returns `0` when no latency is available.
 
 ### Syntax
 ```bdfd
@@ -48,9 +48,9 @@ $ping
 
 To calculate the absolute roundtrip speed, we can subtract the timestamp of when the command message was sent from the current execution time. 
 
-Bot Creator provides two extremely high-resolution variables to make this math possible:
-1. `$getTimestampMs` (resolves to the current system millisecond epoch).
-2. `$messageTimestamp` (resolves to the message creation millisecond epoch).
+Bot Creator provides two functions to make this math possible:
+1. `$getTimestampMs` (resolves to the current millisecond epoch).
+2. `$messageTimestamp` (with no argument, resolves to the creation time of the message that triggered the command, as a millisecond epoch; it is only filled in for commands triggered by a message).
 
 By nesting these in the `$calculate` function, we obtain a precise, real-time roundtrip delay:
 
@@ -59,7 +59,7 @@ By nesting these in the `$calculate` function, we obtain a precise, real-time ro
 $calculate[$getTimestampMs - $messageTimestamp]
 ```
 
-* **Output**: The exact number of milliseconds elapsed since the message was dispatched by the user and processed by your bot's execution thread.
+* **Output**: The number of milliseconds elapsed between the creation of the message and the moment this part of the script runs.
 
 ---
 
@@ -89,7 +89,7 @@ sequenceDiagram
 Below is a highly polished, aesthetic, copy-pasteable script to create your ping command. It features a modern, clean embed layout with responsive color coding based on response times!
 
 ### Command Structure
-* **Trigger**: `ping` or `!ping` (or set as a Slash Command)
+* **Trigger**: `!ping` (a command triggered by a message)
 * **Code**:
 
 ```bdfd
@@ -105,7 +105,8 @@ Here is a detailed breakdown of current system responsiveness:
 $addField[WebSocket Ping;⚡ `$ping ms` (Gateway Heartbeat);true]
 $addField[API Roundtrip;⌛ `$calculate[$getTimestampMs - $messageTimestamp] ms` (Real-world response);true]
 
-$footer[Requested by $username; $authorAvatar]
+$footer[Requested by $username]
+$footerIcon[$authorAvatar]
 $addTimestamp
 ```
 
@@ -115,30 +116,35 @@ If you want to go a step further and change the embed's color dynamically depend
 ```bdfd
 $var[roundtrip;$calculate[$getTimestampMs - $messageTimestamp]]
 
+$if[$var[roundtrip]<150]
+  $c[Green for excellent speeds]
+  $color[#10b981]
+  $var[verdict;🟢 Connection quality is **excellent**!]
+$else
+  $if[$var[roundtrip]<300]
+    $c[Yellow/Orange for average speed]
+    $color[#f59e0b]
+    $var[verdict;🟡 Connection is stable, but experiencing minor delay.]
+  $else
+    $c[Red for high latency]
+    $color[#ef4444]
+    $var[verdict;🔴 High delay detected. Discord or the bot runner might be under heavy load.]
+  $endif
+$endif
+
 $title[🏓 Pong!]
 $thumbnail[$userAvatar[$botID]]
 
 $description[
 📊 **System Diagnostic Report**
+$var[verdict]
 ]
 
-$addField[WebSocket Latency;⚡ `$ping ms`;true]
-$addField[API Latency;⌛ `$var[roundtrip] ms`;true]
+$addField[WebSocket Latency;⚡ `$ping ms`;yes]
+$addField[API Latency;⌛ `$var[roundtrip] ms`;yes]
 
-$if[$var[roundtrip]<150]
-  $color[#10b981]  // Green for excellent speeds
-  $description[$description[]🟢 Connection quality is **excellent**!]
-$else
-  $if[$var[roundtrip]<300]
-    $color[#f59e0b]  // Yellow/Orange for average speed
-    $description[$description[]🟡 Connection is stable, but experiencing minor delay.]
-  $else
-    $color[#ef4444]  // Red for high latency
-    $description[$description[]🔴 High delay detected. Discord or the bot runner might be under heavy load.]
-  $endif
-$endif
-
-$footer[Diagnostics complete; $authorAvatar]
+$footer[Diagnostics complete]
+$footerIcon[$authorAvatar]
 $addTimestamp
 ```
 
@@ -146,6 +152,6 @@ $addTimestamp
 
 ## 🛠️ Troubleshooting & Best Practices
 
-* **Always use `$getTimestampMs` for calculations**: Avoid standard `$getTimestamp` which only returns seconds, rendering millisecond calculations impossible.
-* **Slash Command compatibility**: When using Slash Commands, `$messageTimestamp` is fully supported as Bot Creator automatically populates the interaction event trigger context.
-* **Negative numbers?**: In rare scenarios, if system clocks are slightly out-of-sync or if message updates occur out of sequence, the calculation might yield a small negative or abnormally high value. Implementing a `$if[$var[roundtrip]<0]` handler to fallback to `0 ms` is a safe production practice.
+* **Keep the units equal**: `$getTimestamp` returns seconds by default, while `$messageTimestamp` is in milliseconds. Use `$getTimestampMs` (or `$getTimestamp[ms]`) so both sides of the subtraction use milliseconds.
+* **Slash commands**: `$messageTimestamp` reads the `message.timestamp` value, which is filled in for commands triggered by a message. Do not rely on it in a slash command.
+* **Negative numbers?**: If system clocks are slightly out-of-sync, the calculation might yield a small negative or abnormally high value. Implementing a `$if[$var[roundtrip]<0]` handler to fallback to `0 ms` is a safe production practice.

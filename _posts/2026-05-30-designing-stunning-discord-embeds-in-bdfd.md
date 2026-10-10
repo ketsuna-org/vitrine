@@ -70,7 +70,7 @@ Welcome to our community! Please follow these guidelines:
 
 Fields are perfect for displaying key-value data (like catalog lists, user stats, or system diagnostics). By setting the third parameter to `yes` (or `true`), fields will align horizontally **in-line**:
 
-```bdfd
+```text
 $addField[name;value;(inline);(index)]
 ```
 * **`name`**: The bold header of the field column (required, at most 256 characters).

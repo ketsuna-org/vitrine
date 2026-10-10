@@ -40,7 +40,10 @@ Before coding your scripts, register the warning variable in your Bot Creator da
 * **Name**: `warns`
 * **Default Value**: `0`
 
-With a default of `0`, a member who was never warned reads `0`. Without a declared default, a value that was never written reads as an empty text.
+With a default of `0`, a member who was never warned reads `0`.
+
+> [!WARNING]
+> Do not skip this step. If `warns` is not declared, a member who was never warned reads an empty text, and the first value written by `$setUserVar` automatically becomes the declared default of the variable: after the first `$setUserVar[warns;1;...]`, every other member would read `1` too.
 
 ---
 

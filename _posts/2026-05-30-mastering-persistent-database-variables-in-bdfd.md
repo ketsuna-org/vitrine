@@ -9,7 +9,7 @@ content_language: en
 layout: post
 category: "Advanced Topics"
 toc: true
-function_syntax: $getUserVar[varName;userID]
+function_syntax: $getUserVar[varName;(userID);(guildID)]
 ---
 
 To build engaging Discord bots, you need a way to store data across restarts. Whether it's tracking coins in an economy system, experience points (XP) for leveling, or custom user descriptions, persistent storage is a core requirement.
@@ -24,14 +24,17 @@ Before writing code, it's vital to choose the correct scope. BDFD variables can 
 
 | Scope | Function Pair | Target Type | Use Case |
 | :--- | :--- | :--- | :--- |
-| **User Scope** | `$getUserVar` / `$setUserVar` | A specific user **globally** or **per server**. | Economy balances, leveling XP, custom titles. |
-| **Server / Guild Scope** | `$getVar` / `$setVar` | The current Discord Server (Guild) context. | Custom server prefixes, logging channels, server settings. |
+| **User Scope** | `$getUserVar` / `$setUserVar` | A specific user, **globally** or **per server** (see section C). | Economy balances, leveling XP, custom titles. |
+| **Server / Guild Scope** | `$getServerVar` / `$setServerVar` | The current Discord Server (Guild). | Server settings, logging channels, welcome messages. |
+| **Global Scope** | `$getVar` / `$setVar` | One value shared by the whole bot (all servers and users). | Bot-wide counters or configuration. |
+
+`$getVar` and `$setVar` also accept a user ID as their last argument, in which case they behave like a user variable. Channel and message scopes exist too (`$getChannelVar` / `$setChannelVar`, `$getMessageVar` / `$setMessageVar`).
 
 ---
 
 ## 1. Setting Up Variables in the Panel
 
-Before calling any database variable in your BDFD scripts, **you must first register the variable in the Bot Creator / BDFD web panel**:
+Before calling any database variable in your BDFD scripts, **register the variable in the Bot Creator / BDFD web panel** (strongly recommended, see the warning below):
 
 1. Open your bot dashboard.
 2. Navigate to **Variables** (often in the sidebar or under Settings).
@@ -41,7 +44,7 @@ Before calling any database variable in your BDFD scripts, **you must first regi
 6. Click **Save**.
 
 > [!WARNING]
-> Calling a variable in your code that hasn't been registered in the panel will cause compilation errors or return an empty string.
+> A variable that hasn't been registered is not a compile error: reading it returns an empty text. But the first value you write with `$setUserVar` / `$setServerVar` is then saved as the variable's default, so every other user or server that has no value of its own would read that first value too. Registering the variable with the right default value first avoids this.
 
 ---
 
@@ -51,20 +54,22 @@ Before calling any database variable in your BDFD scripts, **you must first regi
 Saves a value to the database linked to a specific user.
 
 ```bdfd
-$setUserVar[variableName;newValue;userID]
+$setUserVar[variableName;newValue;(userID);(guildID)]
 ```
-* **`variableName`**: The exact registered name of the variable.
+* **`variableName`**: The registered name of the variable.
 * **`newValue`**: The string or number to store.
 * **`userID`**: (Optional) The target user. Defaults to `$authorID` if omitted.
+* **`guildID`**: (Optional) The server the value belongs to. See section C.
 
 ### Reading Data (`$getUserVar`)
 Retrieves the saved value from the database.
 
 ```bdfd
-$getUserVar[variableName;userID]
+$getUserVar[variableName;(userID);(guildID)]
 ```
-* **`variableName`**: The exact registered name of the variable.
+* **`variableName`**: The registered name of the variable.
 * **`userID`**: (Optional) The target user. Defaults to `$authorID` if omitted.
+* **`guildID`**: (Optional) The server the value belongs to. See section C.
 
 ---
 
@@ -88,19 +93,20 @@ $color[#10b981]
 $description[
 Greetings $username! You have claimed your daily allowance of **500 coins**!
 * **Old Balance**: `$var[currentMoney]` coins
-* **New Balance**: `$$var[newMoney]` coins
+* **New Balance**: `$var[newMoney]` coins
 ]
 $addTimestamp
 ```
 
 ---
 
-## 4. Managing Guild Settings (`$getVar` / `$setVar`)
+## 4. Managing Guild Settings (`$getServerVar` / `$setServerVar`)
 
-To configure server-wide preferences (like custom command prefixes), use server scope:
+To configure server-wide preferences, use server scope. `$setServerVar[name;value;(serverID)]` and `$getServerVar[name;(serverID)]` default to the current server:
 
 ### Command: `!setprefix`
 * **Prerequisite**: A registered variable named `prefix` with a default value of `!`.
+* **Note**: this only stores a value that your own scripts can read back with `$getServerVar[prefix]`. The prefix the bot uses to recognise commands comes from the bot's settings, not from this variable.
 
 ```bdfd
 $nomention
@@ -109,7 +115,7 @@ $onlyPerms[administrator;❌ Only administrators can change the prefix on this s
 $if[$message==]
   ❌ Please specify a prefix. Example: `!setprefix ?`
 $else
-  $setVar[prefix;$message]
+  $setServerVar[prefix;$message]
   $title[⚙️ Prefix Updated!]
   $color[#3b82f6]
   $description[The command prefix for this server has been changed to: **`$message`**]
@@ -121,13 +127,13 @@ $endif
 ## 🛠️ Advanced Best Practices
 
 ### A. Performing Math on Variables
-To add or subtract, always retrieve the variable first, compute it inside `$calculate`, and write it back:
+To add or subtract, retrieve the variable first, compute it inside `$calculate`, and write it back:
 ```bdfd
 $setUserVar[xp;$calculate[$getUserVar[xp] + 25]]
 ```
 
 ### B. Safe String Validation
-If a text variable is blank or has its default value, validate it before displaying:
+If a text variable still has its default value (here `none`, set in the panel), validate it before displaying:
 ```bdfd
 $if[$getUserVar[bio]==none]
   This user has not set a bio yet! Use `!setbio` to update it.
@@ -137,4 +143,8 @@ $endif
 ```
 
 ### C. Server-Scoped User Variables
-By default, `$getUserVar` stores the value globally across all servers. If you want **server-specific** profiles (e.g., leveling system unique to each server), append the `$guildID` to the variable's key internally or configure its settings if your platform features localized scopes.
+Whether `$getUserVar` and `$setUserVar` share one value for a user across all servers or keep one value per server depends on the bot's user variable setting: with the legacy setting a user variable is global unless you pass a guild ID, while with the newer setting it is always stored per server and member. To make it explicit (and safe in both cases), pass the server as the last argument:
+```bdfd
+$setUserVar[xp;$calculate[$getUserVar[xp;$authorID;$guildID] + 25];$authorID;$guildID]
+```
+Here the value is isolated per user and per server. The same `$guildID` must be used for every read and write of that variable.

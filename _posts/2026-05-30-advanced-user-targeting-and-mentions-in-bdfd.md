@@ -34,7 +34,7 @@ BDFD offers several distinct functions to retrieve user IDs from command argumen
 
 If you want a command that *only* triggers when a user is explicitly highlighted using Discord pings, use `$mentioned`:
 
-```bdfd
+```text
 $mentioned[index;(returnAuthorIfEmpty)]
 ```
 * **`index`**: The order of the mention (e.g., `1` for the first ping, `2` for the second). `<` means the first ping and `>` the last one. Anything else (like `0`) is an error. It only works for message commands, not slash commands.
@@ -56,10 +56,10 @@ $endif
 
 The `$findUser` function is the gold standard for commands requiring extreme user flexibility. It parses a string argument and tries to find a matching member of the current server:
 
-```bdfd
+```text
 $findUser[query;(fallbackToAuthor)]
 ```
-* **`query`**: The string input to search. Usually maps to `$message` or an argument like `$noMentionMessage`. It is matched, in this order, as a ping (`<@123...>` or `<@!123...>`), as a user ID, and as an **exact** username (case-sensitive, no partial match). A ping or ID only matches if that user is a member of the server; ping lookups never fall back to a username search.
+* **`query`**: The string input to search. Usually the first word typed after the command, `$message[1]`. The whole `$message` only works when the message contains nothing but the ping, ID or username (extra words make the lookup fail). It is matched, in this order, as a ping (`<@123...>` or `<@!123...>`), as a user ID, and as an **exact** username (case-sensitive, no partial match). A ping or ID only matches if that user is a member of the server; ping lookups never fall back to a username search.
 * **`fallbackToAuthor`**: (Optional, `yes`/`no`; also accepts `true`/`false`, `on`/`off`, `enable`/`disable`). **When omitted it behaves like `yes`**: the function returns the initiator's ID when the query matches nothing or is blank. With `no` it returns an empty text instead.
 
 ### Code Example: Avatar Command
@@ -67,7 +67,7 @@ Let's build a beautiful avatar viewer command that handles mentions, raw Snowfla
 
 ```bdfd
 $nomention
-$var[targetID;$findUser[$message;yes]]
+$var[targetID;$findUser[$message[1];yes]]
 
 $title[🖼️ Avatar of $username[$var[targetID]]]
 $color[#3b82f6]
@@ -88,7 +88,7 @@ For moderation commands, `$findUser` is essential to target a member securely an
 $nomention
 $onlyPerms[kickmembers;❌ You need the `Kick Members` permission to run this!]
 
-$var[targetID;$findUser[$message;no]]
+$var[targetID;$findUser[$message[1];no]]
 
 $if[$var[targetID]==]
   ❌ Member not found! Please provide a valid username, mention, or ID.

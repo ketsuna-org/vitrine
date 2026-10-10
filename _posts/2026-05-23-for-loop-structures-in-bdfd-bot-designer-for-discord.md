@@ -40,13 +40,13 @@ A Simple Loop runs your code a set number of times.
 ### How to Write It
 You can write a simple loop using either `$for` or `$loop`:
 
-```bdfd
+```text
 $for[number]
   ... your text or command here ...
 $endfor
 ```
 *OR*
-```bdfd
+```text
 $loop[number]
   ... your text or command here ...
 $endloop
@@ -100,13 +100,13 @@ Advanced loops give you full control. You can decide where the loop starts, when
 ### How to Write It
 Just like simple loops, you can use either `$for` or `$loop` with the three counting settings separated by semicolons:
 
-```bdfd
+```text
 $for[start; condition; update]
   ... your text or command here ...
 $endfor
 ```
 *OR*
-```bdfd
+```text
 $loop[start; condition; update]
   ... your text or command here ...
 $endloop

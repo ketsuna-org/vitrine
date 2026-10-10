@@ -4,13 +4,13 @@ title: $canvasRotate
 translation_key: docs
 category: "Image & Canvas"
 function_name: canvasRotate
-syntax: $canvasRotate[degrees]
-description: Rotates the canvas by a given angle in degrees.
+syntax: $canvasRotate[degrees;(unused)]
+description: Rotates the current canvas clockwise by an angle in degrees; the canvas grows to hold the result. A second argument is accepted and ignored.
 ---
 
 # $canvasRotate
 
-The `$canvasRotate[degrees]` function **rotates the current canvas** by a specified angle in degrees. The canvas is automatically resized to contain the entire image after rotation.
+The `$canvasRotate[degrees]` function **rotates the current canvas** by an angle in degrees. For angles that are not multiples of 90 the canvas is enlarged to contain the rotated image.
 
 ## Syntax
 
@@ -22,18 +22,19 @@ $canvasRotate[degrees]
 
 | Parameter | Description |
 |---|---|
-| `degrees` | Angle of rotation in degrees. Positive values = clockwise. Negative values = counterclockwise. |
+| `degrees` | Required. Angle in degrees; decimals are accepted. Positive values rotate clockwise, negative values counterclockwise. Text that is not a number, or `0`, leaves the canvas unchanged. |
+
+The engine also accepts a second argument and ignores it.
 
 ## Return value
 
-None. The canvas is rotated and resized if necessary.
+An empty string. The rotation is recorded for the current canvas (the last one made with `$canvasCreate`) and applied, in order, when the canvas is rendered.
 
 ## Behavior
 
-- The rotation is done around the center of the canvas.
-- The canvas is automatically expanded to avoid clipping the image.
-- Pixels outside the original image become transparent.
-- Angle values are normalized modulo 360.
+- Tests: a 6x4 canvas rotated by 90 becomes 4x6 (top-left pixel moves to top-right), -90 and 270 give the same result (top-left moves to bottom-left), 180 keeps the size, 450 behaves like 90, 360 changes nothing, and 45 gives a 7x7 canvas.
+- The canvas has no transparency: the corners left empty by a rotation that is not a multiple of 90 are black.
+- It rotates the whole canvas at the point where it is written: only the operations written before it are rotated.
 
 ## Examples
 
@@ -79,6 +80,4 @@ $sendMessage[The image has been rotated by $message[1]°!]
 
 ## Notes
 
-- The canvas must be created (`$canvasCreate`) before rotation; load an image into it with `$canvasLoadImage`.
-- Rotations of 90°, 180°, or 270° are optimized and do not degrade the quality.
-- Non-orthogonal rotations (e.g., 45°) require resampling.
+- A canvas must have been created with `$canvasCreate[]` first; otherwise the call has no effect.

@@ -29,7 +29,7 @@ An empty string.
 
 ## Behavior
 
-- Without it (default: disabled), the non-integer results of `$calculate[]`, `$sum[]`, `$sub[]`, `$multi[]`, `$divide[]` and `$sqrt[]` are rounded to the nearest integer (halves round up: `2.5` gives `3`, `-2.5` gives `-2`), `$round[value;N]` returns an integer, and `$random` without arguments returns an integer from 0 to 9.
+- Without it (default: disabled), the non-integer results of `$calculate[]`, `$sum[]`, `$sub[]`, `$multi[]`, `$divide[]` and `$sqrt[]` are rounded to the nearest integer (halves round up: `2.5` gives `3`, `-2.5` gives `-2`), and `$random` without arguments returns an integer from 0 to 9.
 - With `$enableDecimals[yes]`, the results keep their decimals (and `$random` without arguments returns a decimal between 0 and 10).
 - `$enableDecimals[no]` turns it off again.
 - The effect is limited to the current command.
@@ -63,5 +63,5 @@ $sendMessage[Without: $var[without] | With: $var[with]]
 ## Notes
 
 - Place before the calculations concerned.
-- To round to N decimals, enable decimals first and then use `$round[$calculate[...];N]`; with decimals disabled `$round` returns an integer.
+- To round a calculation to N decimals, enable decimals first and then use `$round[$calculate[...];N]`: without `$enableDecimals[yes]`, `$calculate` has already rounded its result to an integer (`$round[$calculate[10/3];2]` gives `3`, whereas `$round[2.567;2]` gives `2.57` in any case).
 - The `enable` argument is required: use `$enableDecimals[yes]`.
