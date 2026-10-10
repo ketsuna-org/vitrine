@@ -4,31 +4,36 @@ title: $userTag
 translation_key: docs
 category: "Entity Info"
 function_name: userTag
-syntax: $userTag
-description: Returns the complete tag of the user in the form "username#discriminator" (legacy format). Since the migration to unique usernames, returns the username without discriminator.
+syntax: $userTag[(userID)]
+description: Returns the username of a user (the author by default); for bot accounts, the tag in the form "username#discriminator".
 ---
 
 # $userTag
 
-The `$userTag` function returns the **complete tag** of the user. Historically, Discord used the `username#discriminator` format (e.g., "JeanDupont#1234"). Since the migration to unique usernames (the new system), the tag is simply the username.
+The `$userTag` function returns the **tag** of a user: the username for a regular user, and `username#discriminator` for a bot account.
 
 ## Syntax
 
 ```
-$userTag
+$userTag[(userID)]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `userID` | Optional - The ID of the user (digits only, greater than 0). Default: the author (`author.id`, else `user.id`). An invalid ID raises `Invalid user ID.`; an unknown user raises `User not found.` |
 
 ## Return Value
 
 - **Type**: String
-- Legacy format: `username#discriminator` (e.g., `JeanDupont#1234`)
-- New format (unique usernames): simply the username.
+- For a **bot** account: `username#discriminator`, with the discriminator left-padded with zeros to 4 digits (e.g. `MyBot#0001`).
+- For any other account: the username only, without discriminator.
 
 ## Behavior
 
-- `$userTag` takes **no arguments**.
-- For accounts created before the username migration, the tag may still include the 4-digit discriminator.
-- For new accounts, the returned value is identical to `$userName`.
+- The user is fetched from Discord by ID.
+- Unlike `$authorTag`, which can read a value supplied by the execution context, `$userTag` always queries the user.
 
 ## Examples
 
@@ -44,18 +49,13 @@ $description[
 $color[#5865F2]
 ```
 
-### Check if the user has a legacy discriminator
+### Tag of a given user
 
 ```bdfd
-$if[$discriminator[$authorID]!=0]
-  $sendMessage[You have a legacy account: $userTag]
-$else
-  $sendMessage[You have a new account format: $userTag]
-$endif
+$sendMessage[Tag: $userTag[$authorID]]
 ```
 
 ## Notes
 
-- The legacy `username#discriminator` format is being phased out by Discord.
-- For new users, `$userTag` is equivalent to `$userName`.
-- Prefer `$userName` or `$displayName` for future compatibility.
+- For a non-bot user, `$userTag` returns the same text as `$userName`.
+- To get the discriminator on its own, use `$discriminator[userID]`.

@@ -53,6 +53,5 @@ $sendMessage[Last message: https://discord.com/channels/$guildID/$channelID/$las
 ## Notes
 
 - If the channel has no message, the result is an empty string.
-- Useful for monitoring activity or linking to the last message.
-- The bot must have access to the channel to retrieve this information.
+- The channel is fetched from Discord using the current channel ID; a channel that cannot hold messages raises `Channel does not support messages.`
 

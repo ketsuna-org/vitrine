@@ -4,37 +4,36 @@ title: $removeEmoji
 translation_key: docs
 category: "Moderation"
 function_name: removeEmoji
-syntax: $removeEmoji[name]
-description: Removes a custom emoji from the server by its name. The emoji will no longer be usable after removal.
+syntax: $removeEmoji[emojiID]
+description: Removes a custom emoji from the current server by its ID.
 ---
 
 # $removeEmoji
 
-The `$removeEmoji[]` function allows **removing a custom emoji** from the server using its name.
+The `$removeEmoji[]` function allows **removing a custom emoji** from the current server using its **ID**.
 
 ## Syntax
 
 ```
-$removeEmoji[name]
+$removeEmoji[emojiID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `name` | The name of the emoji to remove (without the colons `:`). |
+| `emojiID` | The numeric ID of the emoji to remove (the digits in `<:name:ID>`). Required; if it is not a positive number the error `Invalid emoji ID.` is raised. A name is not accepted. |
 
 ## Return Value
 
-- **Type**: String (empty on success)
-- Empty string if the removal succeeds.
-- Error message if the emoji doesn't exist or if the bot lacks permissions.
+- **Type**: String (empty)
+- Empty string if the removal succeeds. Failures raise an error.
 
 ## Behavior
 
-- The bot must have the `MANAGE_EMOJIS_AND_STICKERS` permission.
-- The emoji is permanently removed from the server.
-- All messages using this emoji will display the text name instead of the image.
+- The emoji is deleted from the current server (the command needs a server, otherwise an error is raised). If the ID does not belong to an emoji of the current server, the Discord call fails with an error.
+- The bot must have the `Manage Guild Expressions` permission, or have `Create Guild Expressions` and be the creator of that emoji; otherwise an error is raised.
+- The deletion is performed on Discord and cannot be undone by the engine.
 
 ## Examples
 
@@ -42,36 +41,18 @@ $removeEmoji[name]
 
 ```bdfd
 $if[$checkUserPerms[$authorID;ManageEmojis]==true]
-  $if[$emojiExists[$noMentionMessage]==true]
-    $removeEmoji[$noMentionMessage]
-    $sendMessage[✅ Emoji **$noMentionMessage** removed.]
+  $if[$emojiExists[$message[1]]==true]
+    $removeEmoji[$message[1]]
+    $sendMessage[✅ Emoji **$message[1]** removed.]
   $else
-    $sendMessage[❌ The emoji **$noMentionMessage** does not exist.]
+    $sendMessage[❌ No emoji has the ID **$message[1]**.]
   $endif
 $else
   $sendMessage[❌ Permission denied.]
 $endif
 ```
 
-### Secure removal with confirmation
-
-```bdfd
-$var[name;$noMentionMessage]
-$if[$emojiExists[$var[name]]==true]
-  $removeEmoji[$var[name]]
-  $title[🗑️ Emoji removed]
-  $description[
-  **Name:** $var[name]
-  **Removed by:** $userName[$authorID]
-  ]
-  $color[#ED4245]
-$else
-  $sendMessage[❌ No emoji named **$var[name]** found.]
-$endif
-```
-
 ## Notes
 
-- The emoji name is case-sensitive.
 - Removal is irreversible.
-- Always check the emoji's existence with `$emojiExists[]` before removing.
+- Check the emoji with `$emojiExists[emojiID]` before removing it.

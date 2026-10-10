@@ -23,7 +23,7 @@ $attachImage[canvasName]
 
 | Parameter | Description |
 |---|---|
-| `canvasName` | Optional. Name of a canvas created with `$canvasCreate[]`. When omitted, the current canvas (the last one created or selected) is used. |
+| `canvasName` | Optional. Name of a canvas created with `$canvasCreate[]`. When omitted, the current canvas (the last one created with `$canvasCreate[]`) is used. |
 
 Note that `$attachImage[]` (empty brackets) passes an empty name, which does not match a canvas created with a name.
 
@@ -34,7 +34,8 @@ Returns an empty string. The rendered image is stored in the temporary variable 
 ## Behavior
 
 - If the canvas does not exist, the call fails with: `Canvas "<name>" does not exist; use $canvasCreate first`.
-- Canvases that are still pending when the response is sent are rendered automatically, so `$attachImage` is only needed to render a canvas explicitly at a given point.
+- Canvases that are still pending when the response is sent are rendered automatically, so `$attachImage` is only needed to render a canvas explicitly at a given point. A `$sendMessage` placed earlier in the script does not render pending canvases: call `$attachImage` before it if that message must carry the image.
+- Operations written after the call are not part of the rendered image.
 - The operations of the canvas (`$canvasCreate[]`, `$canvasGrayscale`, ...) must be written before the call.
 
 ## Examples

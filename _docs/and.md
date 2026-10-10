@@ -13,11 +13,11 @@ description: Logical AND — returns "true" only if ALL provided conditions eval
 
 ## Syntax
 
-```
-$and[condition1;condition2;...;conditionN]
+```text
+$and[condition1;(condition2);(...)]
 ```
 
-`$and` accepts **1 to 100** arguments. Each argument must resolve to `true`, `false`, or a comparison using `==`, `!=`, `>=`, `<=`, `>` or `<` (e.g. `$getUserVar[coins]>=50`). Any other value is an error ("Invalid condition"). With two operands that are both numbers the comparison is numeric, otherwise it is a text comparison.
+`$and` accepts **1 to 100** arguments. Each argument must resolve to `true`, `false`, or a comparison using `==`, `!=`, `>=`, `<=`, `>` or `<` (e.g. `$getUserVar[coins]>=50`). Any other value is an error (`Invalid condition: <value>.`). In a comparison, if both sides are numbers the comparison is numeric, otherwise it is a text comparison (code-unit order, so uppercase letters sort before lowercase ones). Both sides and the whole condition are trimmed.
 
 ## Evaluation
 
@@ -42,11 +42,7 @@ The same logic extends to 3 or more arguments — all must be `"true"` for a `"t
 - **Inline comparisons**: `$and[$getUserVar[a]>0;$getUserVar[b]>0]`
 - **Nested logical operators**: `$and[$or[...];$or[...]]`
 
-Always wrap the `$and` call in an explicit boolean comparison when using inside `$if`:
-
-```
-$if[$and[cond1;cond2]==true]
-```
+Inside `$if`, both `$if[$and[cond1;cond2]]` and `$if[$and[cond1;cond2]==true]` work, because `$and` returns the text `true` or `false`, which `$if` accepts as a condition.
 
 ## Use Cases
 
@@ -58,9 +54,8 @@ $if[$and[cond1;cond2]==true]
 ## Common Pitfalls
 
 - **Order matters**: conditions are evaluated left to right and evaluation stops at the first false one, so put cheap or guarding checks first.
-- **Non-boolean results**: If a condition is neither `true`, `false` nor a comparison (e.g., a lone number or an empty string), the engine raises an "Invalid condition" error.
+- **Non-boolean results**: If a condition is neither `true`, `false` nor a comparison (e.g., a lone number or an empty string, as in `$and[1]` or `$and[]`), the engine raises an `Invalid condition` error.
 - **No argument**: `$and` requires at least 1 argument (and at most 100); a bare `$and` is refused.
-- **Forgetting `==true` in $if**: Write `$if[$and[...]==true]`, not `$if[$and[...]]`.
 
 ## Examples
 

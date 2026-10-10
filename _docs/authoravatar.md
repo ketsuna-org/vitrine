@@ -21,14 +21,15 @@ $authorAvatar
 ## Return value
 
 - **Type**: Character string (URL)
-- URL of the avatar of the author (Discord CDN)
-- Default avatar if the author does not have a custom avatar
+- URL of the avatar of the author (Discord CDN), read from Discord for the author's user ID
+- The default avatar URL if the author does not have a custom avatar
 
 ## Behavior
 
-- `$authorAvatar` takes **no arguments**.
-- Equivalent to `$userAvatar` for text commands.
-- The URL points to the Discord CDN.
+- `$authorAvatar` takes **no arguments** (passing one is an error).
+- Returns the same value as `$userAvatar[$authorID]` (`$userAvatar` requires a user ID).
+- It is the global avatar, not the server avatar.
+- If the author ID is missing from the context or the user cannot be found, the error `Invalid user ID.` / `User not found.` is raised.
 
 ## Examples
 
@@ -65,5 +66,4 @@ $color[#5865F2]
 ## Notes
 
 - For the server-specific avatar, use `$userServerAvatar`.
-- Parameters like `?size=` can be added to the URL to change the resolution.
 - The avatar can be modified by the user at any time.

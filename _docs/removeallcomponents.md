@@ -4,81 +4,51 @@ title: $removeAllComponents[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: removeAllComponents
-syntax: $removeAllComponents
-description: Removes all interactive components (buttons, menus, text fields, etc.) from a message in a single operation.
+syntax: $removeAllComponents[(messageID)]
+description: Removes all components from the response being built, or from an existing message sent by the bot.
 ---
 
 # $removeAllComponents[] — Remove All Components
 
-`$removeAllComponents[]` removes all interactive components from a message. After this operation, the message becomes purely static — no more buttons, menus, or input fields.
+`$removeAllComponents[]` removes every component (buttons, select menus, action rows, containers, ...) either from the response being built or, with a message ID, from a message the bot already sent.
 
 ## Syntax
 
-```
-$removeAllComponents
+```text
+$removeAllComponents[(messageID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description | Required |
+|-----------|-------------|:--------:|
+| `messageID` | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). Without it (or when empty), the components staged in the current script are cleared. | No |
 
 ## Return Value
 
-Removes all components from the message, making it non-interactive.
+Returns an empty string.
+
+## Behavior
+
+- **Without `messageID`**, only the components added earlier in the same script (`$addButton`, `$addButtonCV2`, `$addStringSelect`, ...) are cleared. Components added after the call are kept.
+- **With `messageID`**, the engine reads the components of that message and stages an edit that empties them; the edit is applied when the response is flushed. This needs the bot's component service: without it the function fails with `No component service configured.`
+- The text of the message is not changed: use `$editMessage` for that.
 
 ## Examples
 
-### Form finalization
+### Clear the components of the response being built
+
+```bdfd
+Panel closed
+$addButtonCV2[yes;Yes;primary]
+$removeAllComponents
+```
+
+### Remove the components of a message after a click
 
 ```bdfd
 $if[$customID==submit_form]
-  $removeAllComponents[$messageID]
-  $var[name;$input[name_input]]
-  $var[email;$input[email_input]]
-  $editMessage[$channelID;$messageID;✅ Form submitted!
-**Name:** $var[name]
-**Email:** $var[email]]
-$endif
-```
-
-### Lock after expiration
-
-```bdfd
-$if[$customID==timeout_event]
-  $removeAllComponents[$messageID]
-  $editMessage[$channelID;$messageID;⏰ This panel has expired. Interaction is no longer possible.]
-$endif
-```
-
-### Complete cleanup
-
-```bdfd
-$addTextInput[query;Search;short;Search...;;yes;2;100]
-$addButton[search;Search;Primary;;search_btn]
-$addButton[cancel;Cancel;Danger;;cancel_btn]
-
-$if[$customID==search_btn]
-  $removeAllComponents[$messageID]
-  $var[query;$input[query]]
-  $editMessage[$channelID;$messageID;Results for **$var[query]**:\nNo results found.]
-$elseif[$customID==cancel_btn]
-  $removeAllComponents[$messageID]
-  $editMessage[$channelID;$messageID;Search cancelled]
-$endif
-```
-
-### Configuration panel
-
-```bdfd
-$title[Configuration]
-$description[Modify your settings]
-$addTextInput[nickname;Nickname;short;$nickname;;no;2;32]
-$addButton[save;Save;Success;;save_config]
-
-$if[$customID==save_config]
-  $removeAllComponents[$messageID]
-  $var[nick;$input[nickname]]
-  $editMessage[$channelID;$messageID;✅ Nickname updated: **$var[nick]**]
+  $removeAllComponents[123456789012345678]
 $endif
 ```
 
@@ -86,13 +56,10 @@ $endif
 
 | Function | Effect |
 |----------|--------|
-| `$removeComponent[id]` | Removes a specific component |
+| `$removeComponent[customId]` | Removes one component (by custom ID or URL) |
 | `$removeButtons` | Removes all buttons only |
 | `$removeAllComponents` | Removes **all** components |
 
 ## Notes
 
-- After `$removeAllComponents[]`, the message can no longer receive user interactions.
-- Used to "consume" an interface after processing.
-- To be used in the script run for an interaction (read the clicked component with `$customID`), with `$editMessage[]` or `$sendMessage[]`.
-- Irreversible: once removed, components cannot be restored without sending a new message.
+- All three functions accept an optional `messageID` as their last argument.

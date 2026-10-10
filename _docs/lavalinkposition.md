@@ -7,7 +7,7 @@ function_name: lavalinkPosition
 syntax: $lavalinkPosition[]
 description: Returns the current playback position in milliseconds
 ---
-Returns the current playback position of the currently playing track in milliseconds. Combined with $lavalinkDuration, you can build progress bars and time displays. Returns 0 if no track is playing.
+Returns the current playback position of the current track in milliseconds, as a plain number. Combined with $lavalinkDuration (also in milliseconds), you can build progress bars and time displays. Takes no argument. Returns `0` if there is no active player.
 
 ## Examples
 

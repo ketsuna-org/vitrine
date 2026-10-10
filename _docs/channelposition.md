@@ -10,7 +10,7 @@ description: Returns the position of a channel in the Discord channel list.
 
 # $channelPosition
 
-The `$channelPosition` function returns the **position** of a channel in the server's channel list. Position `0` corresponds to the topmost channel, and the numbers increase as you go down.
+The `$channelPosition` function returns the **position** value that Discord reports for a server channel.
 
 ## Syntax
 
@@ -22,13 +22,13 @@ $channelPosition[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. An ID that is not a positive number raises `Invalid channel ID.`, an unknown channel raises `Channel not found.` |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `integer` | The position of the channel in the list (0 = at the top). |
+| `integer` | The `position` of the channel as given by Discord. An empty string for a channel that has no position (for example a direct message). |
 
 ## Examples
 
@@ -42,21 +42,13 @@ $sendMessage[This channel is at position $channelPosition]
 
 ```bdfd
 $if[$channelPosition==0]
-  $sendMessage[This channel is at the very top of the server!]
+  $sendMessage[This channel has position 0.]
 $else
   $sendMessage[This channel is at position #$channelPosition]
 $endif
 ```
 
-### Top channel in a category
-
-```bdfd
-$sendMessage[Position in the category: $channelPosition]
-```
-
 ## Notes
 
-- The position is relative to the display order in Discord.
-- Categories have their own positioning system.
+- The value is the raw Discord `position` of the channel; the engine does not renumber it.
 - The position can change if an administrator reorganizes the channels.
-- Channels are sorted by position within their parent category.

@@ -6,7 +6,7 @@ category: "Misc"
 
 # $funcReturn
 
-Returns a value from a user-defined function. The function call resolves to this value instead of the body's text content.
+Sets the value returned by a user-defined function. The function call resolves to this value instead of the body's text.
 
 ## Syntax
 
@@ -18,13 +18,13 @@ $funcReturn[value]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `value` | The value to return (can contain inline functions, variables, etc.) | Yes |
+| `value` | The value to return (can contain inline functions, variables, etc.). Exactly one argument; an empty value is allowed. | Yes |
 
 ## Description
 
-`$funcReturn` sets the return value of a user-defined function. When a function call is expanded, if `$funcReturn` was used anywhere in the body, its value becomes the result. If `$funcReturn` is not used, the accumulated text content of the body is returned instead.
+`$funcReturn` stores the return value of the function call that is currently running. When the body ends, if `$funcReturn` was executed at least once, the stored value is the result of `$funcCall`. If it was never executed, the text produced by the body is returned instead.
 
-Only the **last** `$funcReturn` executed matters — if multiple `$funcReturn` calls appear (e.g., inside conditionals), the last one wins.
+`$funcReturn` does **not** stop the function: the rest of the body still runs. Only the **last** `$funcReturn` executed matters — if several appear (for example inside conditionals), the last one executed wins.
 
 ## Examples
 
@@ -42,9 +42,7 @@ Output: `Hello World!`
 ### Without return — uses body text
 
 ```bdfd
-$func[wave;who]
-Waving at $funcArg[who]...
-$funcEnd
+$func[wave;who]Waving at $funcArg[who]...$funcEnd
 $sendMessage[$funcCall[wave;Alice]]
 ```
 
@@ -78,6 +76,8 @@ Output: `Result: Pass`
 
 ## Notes
 
-- `$funcReturn` is optional — functions work without it
-- Only valid inside a `$func` body — outside, it has no effect
-- The returned value is resolved in the function's scope, then inserted at the call site
+- `$funcReturn` is optional — functions work without it.
+- `$funcReturn` itself outputs nothing.
+- An empty `$funcReturn[]` makes the call return an empty text, even if the body produced text.
+- Outside a function call it has no effect.
+- The value is evaluated when `$funcReturn` runs, inside the function call.

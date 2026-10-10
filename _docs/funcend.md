@@ -17,7 +17,7 @@ $funcEnd
 
 ## Parameters
 
-None.
+None. An argument (`$funcEnd[...]`) is an error ("$funcend does not accept arguments.").
 
 ## Description
 
@@ -38,14 +38,8 @@ $funcEnd
 ### Multiple functions
 
 ```bdfd
-$func[one]
-One
-$funcEnd
-
-$func[two]
-Two
-$funcEnd
-
+$func[one]One$funcEnd
+$func[two]Two$funcEnd
 $sendMessage[$funcCall[one] $funcCall[two]]
 ```
 
@@ -63,10 +57,10 @@ $funcEnd
 $sendMessage[$funcCall[outer]]
 ```
 
-Output: `<nested>`
+Output: `<nested>`, surrounded by the line breaks of the `outer` body (the inner function exists only while `outer` is running).
 
 ## Notes
 
-- Forgetting `$funcEnd` causes a parse error
-- `$funcEnd` outside a function block triggers a diagnostic warning
-- Functions defined without a closing `$funcEnd` are still registered, but may produce unexpected results
+- Forgetting `$funcEnd` is a parse error ("Missing $funcend.").
+- A `$funcEnd` without an open `$func` is an error ("Unexpected $funcEnd.").
+- A function without its closing `$funcEnd` is not registered: the script does not run at all.

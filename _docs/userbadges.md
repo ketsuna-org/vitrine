@@ -4,38 +4,41 @@ title: $userBadges
 translation_key: docs
 category: "Entity Info"
 function_name: userBadges
-syntax: $userBadges
-description: Returns the list of badges (public flags) of the user who triggered the command.
+syntax: $userBadges[(userID)]
+description: Returns the badges text supplied by the execution context in the user.badges variable; empty when the context does not provide it.
 ---
 
 # $userBadges
 
-The variable `$userBadges` returns the **list of public badges** (public flags) of the user. These badges are visible on the Discord profile and indicate various statuses (Nitro, HypeSquad, developer, etc.).
+The function `$userBadges` returns the text stored in the execution context variable `user.badges`. It does **not** query Discord: the engine does not compute any badge list itself.
 
 ## Syntax
 
 ```
-$userBadges
+$userBadges[(userID)]
 ```
+
+## Parameters
+
+The engine accepts one optional argument but **ignores it**: the result is the same with or without it, and it never looks the user up.
 
 ## Return Value
 
-- **Type**: List/array of strings
-- Possible badges: `Discord Employee`, `Partnered Server Owner`, `HypeSquad Events`, `Bug Hunter Level 1`, `House Bravery`, `House Brilliance`, `House Balance`, `Early Supporter`, `Bug Hunter Level 2`, `Early Verified Bot Developer`, `Active Developer`, `Moderator Programs Alumni`
+- **Type**: String
+- The value of the context variable `user.badges` if the entry point supplied one, otherwise an empty string.
+- The standard command and event contexts of the engine do not set `user.badges`, so the result is normally an empty string.
 
 ## Behavior
 
-- `$userBadges` takes **no arguments**.
-- Returns only **public** badges (displayed on the profile).
-- Internal or hidden badges are not included.
+- Never raises an error for a missing value: the fallback is the empty string.
+- The format of the text (separator, badge names) is whatever the entry point put in the variable; the engine applies no formatting.
 
 ## Examples
 
-### Display Badges in an Embed
+### Display the value in an embed
 
 ```bdfd
 $title[Profile of $userName]
-$author[$userName;$userAvatar[$userID]]
 $description[
 **ID:** $userID
 **Badges:** $userBadges
@@ -43,16 +46,16 @@ $description[
 $color[#5865F2]
 ```
 
-### Check a Specific Badge
+### Test whether anything is available
 
 ```bdfd
-$if[$checkContains[$userBadges;Early Supporter]==true]
-  $sendMessage[Thank you for supporting Discord since the beginning! 💎]
+$if[$userBadges==]
+  $sendMessage[No badge information is available.]
+$else
+  $sendMessage[Badges: $userBadges]
 $endif
 ```
 
 ## Notes
 
-- Not all users have badges — the list can be empty.
-- Badges are assigned by Discord and cannot be modified.
-- Use `$checkContains[]` to check for the presence of a specific badge.
+- Do not rely on this function to detect a specific Discord badge.

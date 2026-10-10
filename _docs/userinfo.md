@@ -26,7 +26,7 @@ $userInfo[message]
 
 ## Return Value
 
-None (empty string). The resulting text is set as the **description of the embed**; an error is raised if it exceeds 4096 characters, if the user is not found, or if no message service is configured.
+None (empty string). The resulting text is set as the **description of the first embed** (it replaces any earlier `$description`); an error is raised if it exceeds 4096 characters, if the user is not found, or if no message service is configured.
 
 ## Examples
 

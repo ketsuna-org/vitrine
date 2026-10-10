@@ -4,84 +4,52 @@ title: $jumpToAction[]
 translation_key: docs
 category: "Control Flow"
 function_name: jumpToAction
-syntax: $jumpToAction[targetKey]
-description: Redirects execution flow to another action within the current workflow, identified by its target key. Allows non-linear command flow.
+syntax: $jumpToAction[n]
+description: Continues the current block at a given action number, skipping the actions in between. It only jumps forward.
 ---
-$jumpToAction enables non-linear execution flow within a workflow. Instead of executing actions sequentially from top to bottom, you can jump to any action identified by a target key, creating loops, branches, and reusable action blocks.
+
+# $jumpToAction[] — Jump to an Action Number
+
+`$jumpToAction[n]` continues the current block at the action number `n`, skipping the actions in between.
+
+## Syntax
+
+```text
+$jumpToAction[n]
+```
+
+## What counts as an action
+
+The engine numbers the **function calls** of the current block (the script itself, an `$if` branch, a loop body, ...) starting at 1. `$jumpToAction` is itself an action. A whole `$if ... $endif`, `$for ... $endFor` or `$try ... $endtry` block counts as a single action. Plain text between calls is not an action and is never skipped.
 
 ## How It Works
 
-1. Each action in a workflow can be assigned a **target key** (identifier).
-2. When `$jumpToAction[targetKey]` is called, execution **transfers** to the action with that key.
-3. Actions after the `$jumpToAction` call are **not executed** — execution resumes at the target action.
-4. The jump is one-way: there is no automatic return. To return, you must use another `$jumpToAction` call.
+1. `n` is resolved to an integer (surrounding spaces are ignored).
+2. The actions of the same block with a number lower than `n` are skipped.
+3. Execution continues at the action number `n`.
 
-## Target Keys
+If `n` is greater than the number of actions of the block, all the remaining actions are skipped.
 
-Target keys are defined on actions in the Bot Creator workflow editor. The exact UI for assigning keys depends on the Bot Creator version. Common conventions:
+## Errors
 
-- Use descriptive names: `validationPassed`, `errorHandler`, `mainLoop`.
-- Keys are case-sensitive.
-- Jumping to a non-existent key will cause a runtime error.
+- `n` must be a positive integer, otherwise `Expected a positive action number.`
+- `n` must be greater than the number of the `$jumpToAction` call itself: it only jumps forward. Otherwise: `$jumpToAction can only jump to a later action.` It cannot create a loop.
 
-## Common Patterns
-
-### Conditional Branching
-
-```
-$if[$condition]
-$jumpToAction[branchA]
-$endif
-$jumpToAction[branchB]
-```
-
-### Loops
-
-```
-$varSet[i;0]
-[loop]
-$varSet[i;$math[$var[i]+1]]
-$if[$var[i]<10]
-$jumpToAction[loop]
-$endif
-```
-
-### Error Handling / Early Exit
-
-```
-$onlyIf[$message!=;Error]
-$jumpToAction[processing]
-$stop
-
-[processing]
-Processing: $message
-```
-
-## Important Notes
-
-- **No automatic return**: unlike a function call, `$jumpToAction` does not return to the caller. Use `$callWorkflow` if you need call/return semantics.
-- **Same workflow only**: jumps are limited to actions within the same workflow. For cross-workflow jumps, use `$callWorkflow`.
-- **Action placement**: target actions must be defined in the workflow. The exact placement (before or after the jump) depends on the Bot Creator workflow editor.
-
-## Comparison with $callWorkflow
-
-| Feature | $jumpToAction | $callWorkflow |
-|---------|---------------|---------------|
-| Returns to caller | No | Yes (via `$return`) |
-| Can pass arguments | No | Yes |
-| Cross-workflow | No | Yes |
-| Same-workflow | Yes | Yes |
-| Use case | Branches, loops | Reusable subroutines |
-
-## Examples
-
-### Jumping Past Intermediate Actions
+## Example
 
 ```bdfd
-$if[$message==skip]
-  $jumpToAction[action_finish]
-$endif
-$title[Step 1 In Progress]
-$description[Processing normal execution flow...]
-$color[#5865F2]
+$jumpToAction[3]
+$var[a;1]
+$var[b;1]
+$var[c;1]
+[$var[a]$var[b]$var[c]]
 ```
+
+`$jumpToAction` is action 1, `$var[a;1]` is action 2, so the jump to 3 skips only `$var[a;1]`: the text ends with `[11]`.
+
+## Notes
+
+- There are no named targets or keys: the target is a number.
+- Each block has its own numbering. Inside an `$if` branch or a loop body, the numbers start again at 1 and the jump stays in that block.
+- The numbering depends on the structure of the script (each function call is one action); adding a call before the target changes the numbers. For a robust conditional flow, prefer `$if` blocks.
+- To skip a number of actions instead of targeting one, see `$skipActions`.

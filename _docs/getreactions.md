@@ -39,7 +39,7 @@ $getReactions[channelID;messageID;separator;emoji]
 
 - Returns the users, not a count.
 - Each user appears once.
-- The bot must have access to the channel to read the reactions.
+- The channel must be a message channel (`Reactions require a message channel.`) and the message must exist; a custom emoji given by ID must be known to the bot (`Custom emoji is unavailable to the bot.`).
 
 ## Examples
 

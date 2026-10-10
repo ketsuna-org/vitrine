@@ -10,11 +10,11 @@ description: Gets all channel IDs selected by the user via a channel select menu
 
 # $getChannelSelectChannelIDs
 
-The `$getChannelSelectChannelIDs[]` function allows you to **retrieve all the channel IDs** chosen by the user in a multi-choice channel select menu.
+`$getChannelSelectChannelIDs[]` returns all the channel IDs selected in the channel select menu that triggered the current interaction, joined by a separator.
 
 ## Syntax
 
-```
+```text
 $getChannelSelectChannelIDs[separator;(limit)]
 ```
 
@@ -22,46 +22,46 @@ $getChannelSelectChannelIDs[separator;(limit)]
 
 | Parameter | Description |
 |---|---|
-| `separator` | Required - The string that separates each ID (no default; an empty separator concatenates the IDs). A bare `$getChannelSelectChannelIDs` is refused ("Invalid argument count"). |
-| `limit` | Optional - Maximum number of IDs returned (positive integer, else "Selection limit must be a positive integer."). Empty means no limit. |
+| `separator` | Text inserted between the items. Required, not trimmed; an empty separator concatenates the items without anything between them. |
+| `limit` | Optional. Maximum number of items returned, taken from the first selected. A positive integer, otherwise `Selection limit must be a positive integer.`; empty or omitted means no limit. |
 
 ## Return Value
 
 - **Type**: String
-- The list of all selected channel IDs, separated by the delimiter.
-- An empty string if the selection is empty.
+- The selected channel IDs, in selection order, joined by `separator`.
+- An empty string when nothing was selected.
 
 ## Behavior
 
-- Only usable in a component callback (interaction type 3), otherwise "Select values require a component callback." is raised; "This callback has no channelSelect selection." if the callback carries no channel selection.
-- Used when the channel select menu allows multiple choices (`maxValues > 1`).
-- Returns all IDs in a single string with the specified separator.
-- Compatible with `$textSplit[]` to iterate over each channel.
+- It raises `Select values require a component callback.` outside of a component interaction (interaction type 3), and `This callback has no channelSelect selection.` when the interaction that triggered the script is not a channel select menu.
+- The IDs are those of the channels picked in the menu; `$addCategorySelect` and `$addVoiceSelect` menus are channel menus too and use these functions.
+- The number of selected items is returned by `$getChannelSelectChannelCount`.
+- Without brackets (`$getChannelSelectChannelIDs`) the engine refuses the call (`Invalid argument count`).
 
 ## Examples
 
-### List of selected channels
+### All selections
 
 ```bdfd
-$var[channels;$getChannelSelectChannelIDs[, ]]
-$title[📋 Selected Channels]
-$description[**IDs:** $var[channels]]
-$color[#5865F2]
+Channels: $getChannelSelectChannelIDs[, ]
 ```
 
-### Loop through each channel
+### Limit the number of items
 
 ```bdfd
-$var[list;$getChannelSelectChannelIDs[,]]
-$textSplit[$var[list];,]
-I have registered **$getTextSplitLength** channel(s).
-$for[i=1;i<=$getTextSplitLength;i++]
-  Channel $i: $channelName[$splitText[$i]]
-$endfor
+First two IDs: $getChannelSelectChannelIDs[, ;2]
+```
+
+### In an interaction handler
+
+```bdfd
+$if[$customID==my_menu]
+  Channels: $getChannelSelectChannelIDs[, ]
+$endif
 ```
 
 ## Notes
 
-- If the menu only accepts a single choice, use `$getChannelSelectChannelID[]`.
-- The separator argument is required and allows easy integration with other functions.
-- Ideal for multi-channel configurations (logs, allowed channels, etc.).
+- For a single value, use `$getChannelSelectChannelID[index]`.
+- With a menu that allows one selection only, the list contains at most one item.
+- The menu is created with `$addChannelSelect`.

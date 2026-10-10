@@ -36,6 +36,7 @@ $checkUserPerms[userID;permission1;permission2;...]
 - **Inline** check: Does not interrupt the command.
 - **AND** check: All listed permissions are required.
 - `Administrator` (and server ownership) covers all permissions.
+- Permissions are read at the server level (roles); channel overwrites are not applied. A member currently timed out only keeps `View Channel` and `Read Message History`.
 
 ## Examples
 
@@ -71,7 +72,7 @@ $endif
 
 ## Notes
 
-- `$checkUserPerms` and `$hasPerms` are **interchangeable**. Use whichever syntax is most explicit for your context.
+- `$checkUserPerms` and `$hasPerms` are **interchangeable** (the engine registers identical handlers; `$checkUsersPerms` is a third identical name). Use whichever syntax is most explicit for your context.
 - For the bot itself, pass `$botID` as the `userID`.
 - For a check with automatic interruption (guard), use `$onlyPerms`.
 - Permission names are case-insensitive and ignore non-alphanumeric characters (`BanMembers`, `ManageMessages`, `Administrator`, etc.). Short aliases such as `Admin`, `Ban` or `Kick` are accepted. An unknown name raises the error `Invalid permission.`

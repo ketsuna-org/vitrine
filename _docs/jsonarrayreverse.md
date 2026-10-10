@@ -4,10 +4,18 @@ title: $jsonArrayReverse[]
 translation_key: docs
 category: "HTTP & JSON"
 function_name: jsonArrayReverse
-syntax: $jsonArrayReverse[key]
-description: Reverses the order of items in a JSON array in-place.
+syntax: $jsonArrayReverse[(key);(...)]
+description: Reverses, in place, the JSON array at a path of the current document; a missing or non-array value is replaced by an empty array.
 ---
-$jsonArrayReverse reverses the order of elements in a JSON array. It operates in-place — the original array is modified. This is useful for displaying data in reverse chronological order or changing the sort direction after an ascending sort. Pair with $jsonArraySort for descending sorts. If the value at the path is missing or is not an array, it is replaced by an empty array. Returns an empty string. The path is given as separate arguments (one per level), not with dot notation: `$fn[user;premium]` targets `user` then `premium`. A numeric segment selects an element when the current value is an array. Empty segments are ignored; with no argument, the whole document is targeted.
+$jsonArrayReverse reverses the order of the elements of a JSON array in place. It returns an empty string. Combine it with `$jsonArraySort` to get a descending order.
+
+## Parameters
+
+The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. At most 100 arguments are accepted in total. With no argument, the whole document is targeted.
+
+## Behavior
+
+- If the value at the path is missing or is not an array, it is replaced by an empty array.
 
 ## Examples
 

@@ -23,7 +23,7 @@ $thumbnail[url;(embedIndex)]
 | Parameter | Description |
 |---|---|
 | `url` | URL of the image to use as the thumbnail. Must be a direct URL to an image file. |
-| `embedIndex` | Optional. Index of the targeted embed (default is 0). |
+| `embedIndex` | Optional. Index of the targeted embed, from 1 to 10 (1 by default, also when empty). Any other value is an error. |
 
 ## Return Value
 

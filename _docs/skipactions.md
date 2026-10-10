@@ -7,67 +7,80 @@ function_name: skipActions
 syntax: $skipActions[count]
 description: Skips a specified number of subsequent actions in the current execution block.
 ---
+
 # $skipActions — Skip N Actions
 
-`$skipActions[count]` causes the execution engine to bypass the next `count` actions. Unlike `$stop` which halts everything, `$skipActions` only jumps forward a set number of steps and then resumes normal execution. Think of it as a "fast-forward" button for your action sequence.
+`$skipActions[count]` skips the next `count` actions of the current block, then execution resumes.
+
+## Syntax
+
+```text
+$skipActions[count]
+```
+
+## What counts as an action
+
+The engine numbers the **function calls** of the current block (the statements of the script or of an `$if` branch, a loop body, ...). Each of these counts as one action:
+
+- a function call such as `$sendMessage[...]`, `$var[...]` (and `$skipActions` itself);
+- a whole `$if ... $endif`, `$for ... $endFor` or `$try ... $endtry` block (it counts as a single action, with everything it contains).
+
+Plain text between calls is **not** an action and is never skipped.
 
 ## How It Works
 
-When the runtime encounters `$skipActions[count]`:
+1. `count` is resolved to an integer (surrounding spaces are ignored; it can come from a function such as `$sum[1;1]`).
+2. The next `count` actions of the same block are skipped.
+3. Execution resumes with the following action.
 
-1. The `count` parameter is resolved (it can be a literal, variable, or expression).
-2. The execution pointer advances by `count` positions in the current action list.
-3. Any actions between `$skipActions` and the target are completely bypassed.
-4. Execution resumes normally after the skipped actions.
+Each block has its own numbering: a `$skipActions` inside an `$if` branch or a loop body only affects actions of that branch or body, in that iteration. A `count` larger than the number of remaining actions simply skips them all.
 
-Actions are counted within the **current execution block**. Nested blocks (inside `$if`, `$for`, or `$try`) have their own action indexing, and `$skipActions` only affects the immediate enclosing block.
+## Errors
 
-## Count Resolution
-
-The `count` argument is resolved at runtime as a string and then coerced to an integer:
-
-- `$skipActions[3]` — skips 3 actions.
-- `$skipActions[$getUserVar[n]]` — skips the number of actions stored in variable `n`.
-- `$skipActions[$sum[$getUserVar[a];$getUserVar[b]]]` — skips a computed amount.
-
-If `count` resolves to a non-numeric value or an integer less than 0, behavior is undefined — typically no actions are skipped or an error is raised.
-
-## Use Cases
-
-- **Role-based access control**: Skip admin-only actions for regular users.
-- **Feature flags**: Skip experimental feature blocks when a flag is disabled.
-- **Error recovery**: Skip a block of actions that depend on a failed prerequisite.
-- **Loop control**: Skip processing for certain iterations without breaking the loop.
-
-## $skipActions vs $stop
-
-| $skipActions[n]                                   | $stop                      |
-|---------------------------------------------------|----------------------------|
-| Skips exactly `n` actions, then resumes           | Halts all execution        |
-| Reversible effect (execution continues)           | Permanent halt             |
-| Count can be dynamic                              | No arguments               |
-| Only affects the current block's action list      | Affects the entire pipeline |
-
-## Interaction with Structural Blocks
-
-- Inside `$if`: `$skipActions` only affects actions within the current branch. It does not skip past `$elseIf`, `$else`, or `$endif`.
-- Inside `$for`: Actions skipped count toward the current iteration only. The loop still proceeds to the next iteration.
-- Inside `$try`: Skipping in the `$try` body may cause the `$catch` to be skipped if all remaining actions are bypassed and no error was raised.
-
-## Common Pitfalls
-
-- **Skipping past block terminators**: If you `$skipActions` past an `$endif` or `$endFor`, you may get a parse or runtime error. Always ensure your skip count is within the current block's boundaries.
-- **Over-skipping**: Skipping more actions than remain the block causes execution to move to the next sibling block — behavior that may be unexpected.
-- **Readability**: Heavy use of `$skipActions` can make action sequences hard to follow. Prefer `$if` blocks for conditional execution when possible.
+`count` must be a non-negative integer. Otherwise: `Expected a non-negative action count.` (`$skipActions[0]` is valid and skips nothing).
 
 ## Examples
 
-### Conditional Flow Control
+### Skip the next two calls
 
 ```bdfd
-$var[isAdmin;$hasPerms[$authorID;administrator]]
-$if[$var[isAdmin]==false]
 $skipActions[2]
-$endif
-$sendMessage[👑 Welcome Admin! Special maintenance menu unlocked.]
+$var[a;1]
+$var[b;2]
+$var[c;3]
+[$var[a]|$var[b]|$var[c]]
 ```
+
+Only `$var[c;3]` runs, so the text ends with `[||3]`.
+
+### Skip a whole condition block
+
+```bdfd
+$skipActions[1]
+$if[true]
+This is not shown.
+$endif
+This is shown.
+```
+
+### Dynamic count
+
+```bdfd
+$skipActions[$sum[1;1]]
+$var[a;1]
+$var[b;1]
+$var[c;1]
+[$var[a]$var[b]$var[c]]
+```
+
+## $skipActions vs $stop
+
+| $skipActions[n] | $stop |
+|---|---|
+| Skips exactly `n` actions of the current block, then resumes | Ends the script |
+| `n` can be dynamic | No argument |
+
+## Notes
+
+- To jump to a given action number instead, see `$jumpToAction`.
+- Prefer `$if` blocks for ordinary conditional execution; they are easier to read.

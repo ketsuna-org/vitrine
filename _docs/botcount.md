@@ -4,28 +4,30 @@ title: $botCount[]
 translation_key: docs
 category: "Entity Info"
 function_name: botCount
-syntax: $botCount
-description: Returns the number of bots present on the Discord server.
+syntax: $botCount[(ignored)]
+description: Returns the number of bot accounts among the members of the current Discord server.
 ---
 
 # $botCount[] — Number of Bots
 
-`$botCount[]` returns the number of bot accounts present on the Discord server.
+`$botCount[]` returns the number of bot accounts among the members of the server where the command runs (the bot itself included).
 
 ## Syntax
 
 ```
-$botCount
+$botCount[(ignored)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description | Required |
+|-----------|-------------|:--------:|
+| `ignored` | The engine accepts one optional argument but ignores it: the count is always for the current server. | No |
 
 ## Return value
 
 - **Type**: `integer`
-- The number of bots on the server.
+- The number of members of the current server whose account is a bot. The engine lists all members of the server to compute it.
 
 ## Examples
 
@@ -61,7 +63,6 @@ $title[📊 Statistics for $serverName]
 $addField[👥 Total;$membersCount;yes]
 $addField[👤 Humans;$sub[$membersCount;$botCount];yes]
 $addField[🤖 Bots;$botCount;yes]
-$addField[🟢 Online;$onlineMembers;yes]
 $thumbnail[$serverIcon]
 $color[#5865F2]
 ```

@@ -30,8 +30,10 @@ This function does not return a value.
 
 ## Behavior
 
-- The slash commands (chat input) of the bot that are marked as local-only are registered on the target server.
-- If neither the argument nor the current context gives a server, an error is returned ("No guildId provided").
+- The slash commands (chat input) of the bot that are marked as local-only are registered on the target server, one by one, with their name, description and options (name, type, description, required flag). Commands that are not marked local-only are not touched.
+- If the guild commands cannot be registered because the bot store is not available, the error `Guild command registration is not configured` is raised.
+- If the Discord call fails for one command, the error `Failed to register <name>: ...` is raised and the following commands are not registered.
+- Without a `guildID` argument the command needs a current server; outside a server an error (`Missing guildId`) is raised.
 
 ## Examples
 
@@ -64,4 +66,4 @@ $endif
 
 ## Notes
 
-- To remove the commands of a server, use `$unregisterGuildCommands[(guildID)]`.
+- To remove the commands of a server, use `$unregisterGuildCommands[(guildID)]` (it deletes every slash command registered on that server, not only the local-only ones).

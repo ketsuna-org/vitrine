@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: tts
 syntax: $tts
-description: Enables text-to-speech (TTS) for the sent message.
+description: Sets a tts flag on the command's main response. In the current engine the flag is not read when the message is sent, so it has no visible effect.
 ---
 
 # $tts
 
-Enables text-to-speech (TTS) for the sent message. The message will be read aloud to the users in the channel.
+Sets a `tts` flag on the command's **main response**.
 
 ## Syntax
 
@@ -20,7 +20,11 @@ $tts
 
 ## Description
 
-`$tts` is a **flag** (without arguments) used before `$sendMessage`. It enables Discord's TTS feature: the message content will be read aloud for all users in the channel who have not disabled TTS.
+`$tts` is a **flag** without arguments (passing one is an error). It sets the `tts` option of the main response of the command (the text, embeds and components built by the command itself). It returns an empty string.
+
+> **Current limitation:** the engine only stores the flag in the response payload. No code of the message senders reads it, so the message is sent as a normal message and is not read aloud.
+
+It does **not** affect messages sent with `$sendMessage[]` or `$sendEmbedMessage[]`: those are separate messages and are sent without the flag.
 
 ## Examples
 
@@ -28,31 +32,17 @@ $tts
 
 ```bdfd
 $tts
-$sendMessage[Attention to all members!]
-```
-
-### With Embeds
-
-```bdfd
-$tts
-$title[Voice Announcement]
-$description[This is an important announcement]
-$color[#E74C3C]
-$sendMessage[Important announcement!]
+Attention to all members!
 ```
 
 ### TTS Alert
 
 ```bdfd
 $tts
-$sendMessage[🚨 Alert: maintenance starts in 5 minutes]
+🚨 Alert: maintenance starts in 5 minutes
 ```
 
 ## Notes
 
-- Works only if the bot has the `SEND_TTS_MESSAGES` permission.
-- Users can disable TTS in their Discord settings.
-- `$tts` is a flag, use it before `$sendMessage`.
-- TTS reads the text content, not the embed content.
-- Use sparingly to avoid disturbing users.
-
+- The flag applies to the main response, wherever `$tts` is placed in the code.
+- Do not rely on it to produce a text-to-speech message with this engine.

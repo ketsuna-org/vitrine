@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: getCustomStatus
 syntax: $getCustomStatus[(userID)]
-description: Gets the custom status (text and emoji) of a Discord user. Returns the text of the custom status.
+description: Returns the custom status text supplied in the command context (user.customStatus); an empty string when none is supplied. The user ID argument is ignored.
 ---
 
 # $getCustomStatus
 
-The `$getCustomStatus[]` function allows you to **retrieve the custom status** of a Discord user. The custom status is a custom text (and optionally an emoji) that the user sets in their profile.
+The `$getCustomStatus[]` function returns the custom status text that the host supplies to the command in the context variable `user.customStatus`.
 
 ## Syntax
 
@@ -22,58 +22,33 @@ $getCustomStatus[(userID)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | Optional - The ID of the target user. Default: the command author. |
+| `userID` | Optional. Accepted (0 or 1 argument) but **ignored**: the result does not depend on it. |
 
 ## Return Value
 
 - **Type**: String
-- The custom status text of the user.
-- An empty string if the user has not set a custom status.
+- The value of the context variable `user.customStatus`.
+- An empty string when the context has no such variable.
 
 ## Behavior
 
-- Reads the custom status from the Discord presence of the user.
-- Only returns the text, not the optionally associated emoji.
-- The user must be visible to the bot (shared server, presence accessible).
+- The function does not query Discord and does not read the presence of a user.
+- The engine itself never sets `user.customStatus`, so the result is normally an empty string.
+- `$getUserStatus` works the same way with `user.status` and returns `offline` when the variable is absent; `$hypeSquad` and `$userBadges` also only read context variables.
 
 ## Examples
 
 ### Simple display
 
 ```bdfd
-$title[💬 Custom Status]
-$var[status;$getCustomStatus[$authorID]]
+$var[status;$getCustomStatus]
 $if[$var[status]!=]
-  Your custom status: **$var[status]**
+  Custom status: **$var[status]**
 $else
-  You have not set a custom status.
-$endif
-```
-
-### Rich profile card
-
-```bdfd
-$title[👤 $userName[$mentioned[1]]]
-$description[
-**Status:** $getUserStatus[$mentioned[1]]
-**Custom Status:** $getCustomStatus[$mentioned[1]]
-**HypeSquad:** $hypeSquad[$mentioned[1]]
-]
-$thumbnail[$userAvatar[$mentioned[1]]]
-$color[#5865F2]
-```
-
-### Status change log
-
-```bdfd
-$var[newStatus;$getCustomStatus[$authorID]]
-$if[$var[newStatus]!=]
-  📝 **$userName** changed their custom status: *$var[newStatus]*
+  No custom status available.
 $endif
 ```
 
 ## Notes
 
-- The custom status is distinct from the presence status (online, dnd, etc.) which is retrieved via `$getUserStatus[]`.
-- If the user has set an emoji in their status, only the text is returned.
-- The custom status can contain up to 128 characters.
+- Do not rely on this function to read the status of a Discord user: with the current engine it returns an empty string unless the host provides the value.

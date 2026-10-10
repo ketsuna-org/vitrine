@@ -4,7 +4,7 @@ title: $messageType
 translation_key: docs
 category: "Entity Info"
 function_name: messageType
-syntax: $messageType
+syntax: $messageType[(unused;unused)]
 description: Returns the type of the triggering message as an integer (0 = normal message, 7 = member joined, etc.).
 ---
 
@@ -15,18 +15,18 @@ The function `$messageType` returns the **type** of the triggering message as an
 ## Syntax
 
 ```
-$messageType
+$messageType[(unused;unused)]
 ```
 
 ## Parameters
 
-None.
+Up to two arguments are accepted but ignored: the function never queries another message.
 
 ## Return Value
 
 | Type | Description |
 |---|---|
-| `integer` | The type of the message. |
+| `string` | The text of the `message.type` context variable supplied by the host, or `0` if the host supplied none. For message events the host supplies the numeric Discord message type. |
 
 ## Common Types
 
@@ -72,6 +72,6 @@ $endif
 
 ## Notes
 
-- Useful for filtering system messages to process only user messages.
+- The Discord library used by the bot also defines `12` (channel follow add), `18` (thread created), `19` (reply), `20` (chat input command), `21` (thread starter message), `23` (context menu command) and others. In particular **a reply to a message has type `19`**, so `$messageType!=0` also excludes replies.
 - Returns an integer, not a descriptive string.
 

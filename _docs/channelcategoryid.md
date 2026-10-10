@@ -10,7 +10,7 @@ description: Returns the ID of the parent category of a Discord channel.
 
 # $channelCategoryID
 
-The `$channelCategoryID` function returns the **ID of the parent category** of a Discord channel. If the channel does not belong to any category, the function returns an empty string.
+The `$channelCategoryID` function returns the **ID of the parent category** of a Discord channel. If the channel has no parent, the function returns an empty string. For a thread, the parent is the channel the thread belongs to, not a category.
 
 ## Syntax
 
@@ -22,13 +22,13 @@ $channelCategoryID[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. An ID that is not a positive number raises `Invalid channel ID.`, an unknown channel raises `Channel not found.` |
 
 ## Return value
 
 | Type | Description |
 |---|---|
-| `snowflake` (string) | The ID of the parent category, or `""` if none. |
+| `snowflake` (string) | The ID of the parent (the category for a regular channel), or `""` if none. |
 
 ## Examples
 
@@ -64,6 +64,7 @@ $endif
 
 ## Notes
 
-- `$parentID` and `$categoryID` are aliases of `$channelCategoryID`.
+- `$parentID[(channelID)]` behaves exactly like `$channelCategoryID`.
+- `$categoryID` is **not** an alias: it takes a category *name* and returns its ID.
 - DM channels do not have a parent category.
 - Categories themselves do not have a parent category.

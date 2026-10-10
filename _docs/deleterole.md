@@ -22,11 +22,16 @@ $deleteRole[roleID]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The ID of the role to delete. Required. |
+| `roleID` | The ID of the role to delete. Required; if it is not a positive number the error `Missing or invalid role ID.` is raised. |
 
 ## Return value
 
-None. The role is deleted from the server.
+None (empty string). The role is deleted from the server.
+
+## Behavior
+
+- The bot must have `Manage Roles` and the role must be below the bot's highest role. `@everyone` and managed roles (bot, integration, booster) cannot be deleted. If the role is not found on the server (`Role not found`) or a rule is not met, an error is raised.
+- A role name is not accepted: pass an ID (for example `$roleID[name]`).
 
 ## Examples
 
@@ -67,6 +72,6 @@ $endif
 
 - The bot must have the `ManageRoles` permission.
 - **Irreversible action**: the role is permanently deleted.
-- The bot cannot delete a role higher than its own.
+- The bot cannot delete a role equal to or higher than its own highest role.
 - Use `$roleExists` to check the existence before deletion.
 - To modify a role without deleting it, use `$modifyRole`.

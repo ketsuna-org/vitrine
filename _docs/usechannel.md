@@ -5,11 +5,11 @@ translation_key: docs
 category: "Variables"
 function_name: useChannel
 syntax: $useChannel[channelID]
-description: Changes the channel context for the current command. Subsequent functions (like $sendMessage) will execute in this channel.
+description: Changes the destination channel of the messages sent by the rest of the command ($sendMessage and the final response). It does not change $channelID.
 ---
 # $useChannel
 
-The function `$useChannel[]` **changes the channel context** for the rest of the command execution. All functions that interact with "the current channel" (like `$sendMessage`) will then use the specified channel.
+The function `$useChannel[]` **changes the destination channel** of the messages produced by the rest of the command: `$sendMessage` and the final response of the command (text, embeds, components) are sent to the specified channel.
 
 ## Syntax
 
@@ -21,16 +21,17 @@ $useChannel[channelID]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the target channel. |
+| `channelID` | Required. The ID of the target channel (surrounding spaces are ignored). An empty value raises the error `Channel is required.` The value is not validated by `$useChannel` itself. |
 
 ## Return Value
 
-None. The context is modified.
+None (empty string).
 
 ## Behavior
 
-- Changes the current channel for **the entire remainder** of the command.
-- Affects `$sendMessage`, `$title`, `$description`, etc.
+- Before changing the channel, the response built so far (text, embeds) is sent to the previous destination. Only what comes after goes to the new channel.
+- Affects `$sendMessage` and the final response (`$title`, `$description`, etc.) from this point to the end of the command.
+- Does not change `$channelID`, which still returns the channel of the command.
 - The change is local to the current command execution.
 
 ## Examples
@@ -72,4 +73,4 @@ $endif
 
 - `$channelSendMessage[]` is often safer for one-off sends without changing the entire context.
 - Use `$useChannel[]` when several functions need to execute in the same target channel.
-- The original channel is "forgotten" for the rest of the command.
+- Calling `$useChannel` again replaces the destination.

@@ -10,7 +10,7 @@ description: Returns the unique identifier (Snowflake) of the Discord server whe
 
 # $serverID[] — Server Identifier
 
-`$serverID[]` returns the unique identifier (Snowflake) of the current Discord server. This ID is an 18-19 digit number that permanently identifies the server.
+`$serverID[]` returns the identifier (Snowflake) of the current Discord server.
 
 ## Syntax
 
@@ -25,7 +25,7 @@ No parameters.
 ## Return Value
 
 - **Type**: `string`
-- The ID of the server in the form of a numeric string.
+- The value of the `guild.id` context variable supplied by the host (the ID of the current server), or an empty string if the host supplied none.
 
 ## Examples
 
@@ -54,12 +54,10 @@ $log[Action performed on server $serverID ($serverName)]
 ### Link to a channel of the server
 
 ```bdfd
-$sendMessage[Join the general channel: https://discord.com/channels/$serverID/$channelID[general]]
+$sendMessage[Join the general channel: https://discord.com/channels/$serverID/$channelIDFromName[general]]
 ```
 
 ## Notes
 
-- `$serverID[]` is an alias of `$guildID[]`.
-- The ID is invariant: it never changes, unlike the name of the server.
-- Useful for reliably identifying a server in conditions and logs.
+- `$serverID` and `$guildID` read the same `guild.id` value and both accept no argument.
 - Can be used to construct Discord URLs (channels, messages, etc.).

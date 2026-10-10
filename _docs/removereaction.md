@@ -36,7 +36,7 @@ This function does not return a value.
 ## Behavior
 
 - Removes every reaction using this emoji from the message (all users, not only the bot's).
-- The bot needs the `MANAGE_MESSAGES` permission in the channel.
+- The bot needs the `Manage Messages` permission in the channel (error `Missing channel permissions for reactions.` otherwise).
 - An empty emoji raises the error "An emoji is required.".
 
 ## Examples

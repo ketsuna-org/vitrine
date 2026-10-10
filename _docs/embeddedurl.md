@@ -22,7 +22,7 @@ $embeddedURL[url;(embedIndex)]
 | Parameter | Description |
 |---|---|
 | `url` | The target URL (must start with `http://` or `https://`). |
-| `embedIndex` | *(Optional)* Index of the embed (1, 2, 3...). Default: 1. |
+| `embedIndex` | Optional. Index of the targeted embed, from 1 to 10 (1 by default, also when empty). Any other value is an error. |
 
 ## Return value
 
@@ -31,8 +31,7 @@ None.
 ## Behavior
 
 - The title of the embed (`$title[]`) becomes clickable.
-- Works only if a `$title[]` is defined.
-- The URL must be valid and accessible.
+- The URL is only sent when the same embed also has a non-empty title; the order of the two calls does not matter.
 
 ## Examples
 
@@ -72,5 +71,4 @@ $description[Our Discord server.;2]
 ## Notes
 
 - Without `$embeddedURL[]`, the title of the embed is not clickable.
-- Should be placed after `$title[]` for the URL to be associated.
 - Works with all styles of embed.

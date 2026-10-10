@@ -4,31 +4,37 @@ title: $highestRole
 translation_key: docs
 category: "Entity Info"
 function_name: highestRole
-syntax: $highestRole
-description: Returns the ID of the user's highest role (hierarchically) on the server.
+syntax: $highestRole[(userID)]
+description: Returns the ID of the highest role of the server, or of the highest role of a given member.
 ---
 
 # $highestRole
 
-The `$highestRole` function returns the **ID of the highest role** in the server's role hierarchy for the current user.
+The `$highestRole` function returns the **ID of the highest role** in the server's role hierarchy. Without argument it looks at all the roles of the server; with a user ID it only looks at the roles of that member.
 
 ## Syntax
 
 ```
-$highestRole
+$highestRole[(userID)]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `userID` | *(Optional)* The ID of a member. A value that is not a positive integer raises `Invalid user ID.` If omitted, **all roles of the server** are considered, not the roles of the command author. |
 
 ## Return Value
 
 - **Type**: Snowflake (numeric string)
-- The ID of the user's highest role.
-- Includes `@everyone` if the user has no other roles.
+- Without argument: the ID of the highest role of the server.
+- With a user ID: the ID of the highest role among the roles of that member (`@everyone` is always included in the candidates).
+- An empty string if there is no candidate role.
 
 ## Behavior
 
-- `$highestRole` takes **no arguments**.
-- The hierarchy is determined by the role positions in the Discord server settings.
-- If the user has multiple roles, it returns the one that is highest in the list.
+- Roles are sorted by their Discord position, highest first. At equal positions the role with the smaller (older) ID comes first. `@everyone` is always last.
+- To get the highest role of the author of the command, pass their ID: `$highestRole[$authorID]`.
 
 ## Examples
 
@@ -38,19 +44,19 @@ $highestRole
 $title[Profile of $userName]
 $author[$userName;$userAvatar[$authorID]]
 $description[
-**Highest Role:** <@&$highestRole>
-**Role Name:** $roleName[$highestRole]
+**Highest Role:** <@&$highestRole[$authorID]>
+**Role Name:** $roleName[$highestRole[$authorID]]
 ]
-$color[#$getRoleColor[$highestRole]]
+$color[#$getRoleColor[$highestRole[$authorID]]]
 ```
 
 ### Check hierarchy
 
 ```bdfd
-$if[$highestRole==123456789012345678]
+$if[$highestRole[$authorID]==123456789012345678]
   $sendMessage[You are a staff member!]
 $else
-  $sendMessage[Highest role: $roleName[$highestRole]]
+  $sendMessage[Highest role: $roleName[$highestRole[$authorID]]]
 $endif
 ```
 
@@ -58,14 +64,14 @@ $endif
 
 ```bdfd
 $var[modRole;123456789012345678]
-$if[$rolePosition[$highestRole]>=$rolePosition[$var[modRole]]]
+$if[$rolePosition[$highestRole[$authorID]]<=$rolePosition[$var[modRole]]]
   $sendMessage[You have a role greater than or equal to Moderator.]
 $endif
 ```
 
 ## Notes
 
-- The role order is defined in the server settings (Drag & Drop in the Discord interface).
-- The `@everyone` role is always the lowest, unless other roles are placed below it (manual reordering).
+- `$rolePosition[roleID]` returns the rank in the same ordering, where `1` is the highest role: a smaller number means a higher role.
+- The `@everyone` role is always last in the ordering.
 - For the lowest role, use `$lowestRole`.
-- Use `$roleName[$highestRole]` to get the name of the role.
+- Use `$roleName[roleID]` to get the name of a role.

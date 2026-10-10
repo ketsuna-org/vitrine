@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $deleteMessage
 
-Deletes a specific message. The bot must have permission to manage messages in the channel.
+Deletes a specific message, identified by its channel ID and message ID.
 
 ## Syntax
 
@@ -23,7 +23,12 @@ $deleteMessage[channelId;messageId]
 
 ## Description
 
-`$deleteMessage` permanently deletes a Discord message. The bot must have the `MANAGE_MESSAGES` permission to delete other users' messages. It can always delete its own messages.
+`$deleteMessage` fetches the message and deletes it immediately. It returns an empty string.
+
+- Both IDs must be positive integers, otherwise the error `Invalid Discord ID.` is raised.
+- The channel must be a text channel (`Channel does not support messages.` otherwise).
+- In a server channel the bot needs permission to view the channel; to delete a message written by someone else it also needs `MANAGE_MESSAGES`. Its own messages can be deleted without it. Missing permissions raise `Missing permissions for the message operation.`
+- In a direct message, only the bot's own messages can be deleted (`Cannot delete another user message in a direct message.`).
 
 ## Examples
 
@@ -43,15 +48,6 @@ $deleteMessage[$channelID;$var[sentID]]
 $sendMessage[Processing complete!]
 ```
 
-### Deletion in an interaction
-
-```bdfd
-$if[$customID==btn_delete]
-  $deleteMessage[$channelID;$messageID]
-  $sendMessage[Message deleted][ephemeral]
-$endif
-```
-
 ### Deletion of a specific message
 
 ```bdfd
@@ -60,8 +56,7 @@ $deleteMessage[$channelID;123456789012345678]
 
 ## Notes
 
-- The `channelId` and `messageId` parameters are required.
-- The bot must have `MANAGE_MESSAGES` to delete other users' messages.
+- `channelId` and `messageId` are both required.
 - Deleted messages cannot be recovered.
-- To delete the user's message that triggered the command, use `$deleteMessage[$channelID;$messageID]`.
-- After deletion, it is common to send an ephemeral confirmation.
+- `$sendMessage[text;yes]` returns the ID of the message it sent, which can be passed to `$deleteMessage`.
+- To delete the command's own response after a delay, use `$deleteIn[]`; to delete the triggering message use `$deleteCommand`.

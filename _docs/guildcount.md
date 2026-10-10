@@ -57,6 +57,5 @@ $endif
 
 ## Notes
 
-- `$guildCount[]` and `$serverCount[]` are strictly identical.
-- The count is global (all shards combined).
-- Updates automatically during bot joins/leaves.
+- The number is the length of the list of servers returned by Discord for the bot account at the moment of the call.
+- `$serverCount` counts the same list; they differ only when no guild query service is available: `$guildCount` then falls back to the `bot.guildCount` value supplied by the host (or `1`).

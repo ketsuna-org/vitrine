@@ -28,9 +28,10 @@ This function does not return a value.
 
 ## Behavior
 
-- Immediately deletes the user's message that triggered the command.
-- The bot must have the `MANAGE_MESSAGES` permission in the channel.
-- If the message has already been deleted, nothing happens.
+- Deletes the message that triggered the command (`message.id` in the current channel) at the moment the function runs, before the rest of the script is executed.
+- The message is deleted only if it exists: the engine fetches it first. If the command has no triggering message (for example a slash command), the error `Invalid Discord ID.` is raised.
+- The bot needs `View Channel`, and `Manage Messages` in the channel to delete a message written by someone else; otherwise the error `Missing permissions for the message operation.` is raised.
+- In a direct message, the bot cannot delete another user's message (error).
 
 ## Examples
 
@@ -41,25 +42,15 @@ $deleteCommand
 $sendMessage[Result of your command...]
 ```
 
-### Silent feedback
+### Admin-only command
 
 ```bdfd
 $deleteCommand
-$addReactions[✅]
-$ephemeral
-$sendMessage[Command executed successfully.]
-```
-
-### Anti-spam protection
-
-```bdfd
-$deleteCommand
-$if[$checkContains[$userPerms[$authorID;-1;, ];ADMINISTRATOR]==false]
+$if[$isAdmin[$authorID]==false]
   $sendMessage[This command is reserved for administrators.]
-  $suppressErrors[]
-$else
-  $sendMessage[Admin command executed.]
+  $stop
 $endif
+$sendMessage[Admin command executed.]
 ```
 
 ### ModMail / confession
@@ -68,13 +59,10 @@ $endif
 $deleteCommand
 $channelSendMessage[123456789012345678;Anonymous message:
 >>> $noMentionMessage]
-$ephemeral
 $sendMessage[Your message has been sent to the moderation team.]
 ```
 
 ## Notes
 
-- Only works if the bot has the `MANAGE_MESSAGES` permission.
 - Ideal for moderation commands, confession systems, or modmails.
-- The message is deleted before the bot sends its response.
-- If combined with `$addCmdReactions[]`, place `$deleteCommand` before or after depending on the desired behavior.
+- Only the triggering message is deleted; use `$clear` to delete several messages.

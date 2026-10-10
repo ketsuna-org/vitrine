@@ -29,7 +29,7 @@ $highestRoleWithPerms[permission1;permission2;...]
 - **Type**: Snowflake (numeric string) or empty string
 - The ID of the highest matching role.
 - An empty string if no role has all the requested permissions.
-- An error is raised if a permission name is empty or unknown.
+- The error `Invalid role permissions.` is raised if a permission name is empty or unknown.
 
 ## Behavior
 

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Variables"
 function_name: noMentionMessage
 syntax: $noMentionMessage
-description: Gets the content of the message without mentions. Replaces mentions of users, roles, and channels with their textual names.
+description: Gets the content of the message with user, role and channel mentions removed.
 ---
 # $noMentionMessage
 
-The function `$noMentionMessage` returns the **message content** by replacing all mentions with their plain text equivalents.
+The function `$noMentionMessage` returns the **message content** with all user, role and channel mentions removed.
 
 ## Syntax
 
@@ -24,30 +24,25 @@ None.
 ## Return Value
 
 - **Type** : String
-- The message with mentions converted.
+- The message content (`message.cleanContent`, or `message.content` if it is not set) with the mentions removed. For a prefix command this content is the text after the command name.
 
 ## Behavior
 
-- `<@userID>` → `@username`
-- `<#channelID>` → `#channel-name`
-- `<@&roleID>` → `@role-name`
-- Prevents unwanted pings in logs or relayed messages.
+- `<@userID>`, `<@!userID>` and `<@&roleID>` (user and role mentions) are deleted from the text.
+- `<#channelID>` (channel mentions) are deleted from the text.
+- Nothing is replaced by a name: the mention is simply removed, and the spaces around it are kept.
+- Other text is left untouched (including `@everyone`, `@here` and custom emojis).
+- Takes no argument.
 
 ## Examples
 
-### Logging without pinging
+### Logging a message without its mentions
 
 ```bdfd
-$var[logChannel;123456789]
-$title[📋 New Message]
-$description[
-**Author:** $username
-**Content:** $noMentionMessage
-]
-$channelSendMessage[$var[logChannel];]
+$channelSendMessage[123456789;Message from $username: $noMentionMessage]
 ```
 
-### Secure say command
+### Say command without mentions
 
 ```bdfd
 $sendMessage[$noMentionMessage]
@@ -56,14 +51,13 @@ $sendMessage[$noMentionMessage]
 ### Relaying a message
 
 ```bdfd
+$useChannel[123456789]
 $title[Relayed message from $username]
 $description[$noMentionMessage]
-$footer[From <#$channelID>]
-$channelSendMessage[123456789;]
+$footer[From channel $channelID]
 ```
 
 ## Notes
 
-- `$noMentionMessage` prevents the bot from accidentally pinging users.
-- Unlike `$message`, mentions are resolved to names.
-- To completely disable mentions, combine with `$suppressMentions`.
+- Unlike `$message`, the mentions are removed from the text.
+- If nothing is left after removing the mentions, the result is empty (for example `$sendMessage[$noMentionMessage]` then fails because a message text is required).

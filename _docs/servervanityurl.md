@@ -4,30 +4,29 @@ title: $serverVanityURL[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverVanityURL
-syntax: $serverVanityURL
-description: Returns the custom URL code (vanity URL) of the Discord server. Available only for level 3 boosted servers or partnered/verified servers.
+syntax: $serverVanityURL[(unused)]
+description: Returns the vanity URL code supplied by the host in the guild.vanityUrlCode context variable, or an empty string.
 ---
 
 # $serverVanityURL[] — Custom URL of the Server
 
-`$serverVanityURL[]` returns the custom URL code (vanity URL) of the server. This short URL allows creating an easy-to-remember invite link (e.g., `discord.gg/my-server`).
-
-> **Prerequisite**: Server boost level 3, or Discord partnered/verified server.
+`$serverVanityURL[]` returns the value of the `guild.vanityUrlCode` context variable supplied by the host (the vanity URL code of the current server). The engine does not query Discord itself.
 
 ## Syntax
 
 ```
-$serverVanityURL
+$serverVanityURL[(unused)]
 ```
 
 ## Parameters
 
-None.
+One optional argument is accepted but ignored: the vanity URL of another server cannot be read.
 
 ## Return Value
 
 - **Type**: `string`
-- The code of the custom URL (e.g., `"my-server"`), or an empty string if not available.
+- The code as supplied by the host (for example `"my-server"`), without `discord.gg/`.
+- An empty string if the host supplied none (for example when the server has no vanity URL).
 
 ## Examples
 
@@ -66,8 +65,5 @@ $color[#5865F2]
 
 ## Notes
 
-- The complete URL is `discord.gg/<code>` or `https://discord.gg/<code>`.
-- The code is configured in the server settings (under "Overview" → "Custom Invite Link").
-- Requires boost level 3 or Partnered/Verified status.
-- The code is unique across all of Discord.
-- If the server does not have a custom URL, use `$createInvite[]` to generate a standard invite link.
+- Build the link yourself: `https://discord.gg/<code>`; the function returns only the code.
+- When the code is empty, the examples would produce a broken link, so test it first as in the first example.

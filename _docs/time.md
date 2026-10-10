@@ -46,6 +46,8 @@ $time[America/New_York]
 
 ## Notes
 
-- Used on its own (`$time` with no argument), the function is invalid: the timezone is required.
-- For the individual values, use `$hour`, `$minute` and `$second`.
+- Used on its own (`$time` with no argument) the function is invalid; `$time[]` with an empty value raises `Timezone is required.`
+- Surrounding spaces in the timezone name are ignored; the name is otherwise case-sensitive (`europe/paris` is unknown). Without `$time`, date and time functions use UTC.
+- An unknown name raises `Unknown TZ database timezone: <name>.`
+- For the individual values, use `$hour`, `$minute` and `$second`. `$getTimestamp` is not affected by the timezone.
 - For a Unix timestamp, use `$getTimestamp[]`.

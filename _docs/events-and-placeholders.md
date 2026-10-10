@@ -20,15 +20,17 @@ Commands are not the only entry point. You can attach logic to Discord events su
 | `interactionCreate` | Buttons, select menus, modals, slash commands |
 | `voiceStateUpdate` | Voice channel logging |
 
-Configure events in the Bot Creator app under **Events**. Each event workflow runs in its own context with event-specific placeholders available.
+Each event workflow runs with the variables of its own event (for example the interaction events set `interaction.kind` and `interaction.customId`).
 
 ## Placeholders `((...))`
 
-Placeholders insert runtime values into messages, embeds, and action parameters. They are resolved when the bot executes — not at design time.
+Placeholders insert runtime values into response messages, embeds, components and workflow inputs of Blocks and visual responses. They are resolved when the bot executes — not at design time.
 
-```bdfd
-$sendMessage[Welcome ((user.username))! You joined ((guild.name)).]
+```text
+Welcome ((user.username))! You joined ((guild.name)).
 ```
+
+> **BDScript text is not resolved.** The `((...))` resolver is not applied to the text of a native BDFD script (probe: `Hi ((date))` is returned unchanged). In a BDFD script use the `$functions`, for example `$username` and `$serverName`.
 
 ### Core placeholder families
 
@@ -40,18 +42,16 @@ $sendMessage[Welcome ((user.username))! You joined ((guild.name)).]
 | `((channel.*))` | `((channel.id))`, `((channel.name))` |
 | `((message.*))` | `((message.content))`, `((message.id))` |
 | `((interaction.*))` | `((interaction.customId))`, `((interaction.kind))` |
-| `((opts.*))` | `((opts.reason))`, `((opts.target.id))` (Slash command options) |
+| `((opts.*))` | `((opts.reason))`, `((opts.target.id))` (slash command options: for user, channel, role and mentionable options the ID is `opts.<name>.id`; modal inputs are also stored as `opts.<key>`) |
 
 ## Interaction placeholders
 
 When a user clicks a button or submits a modal, interaction placeholders are populated automatically.
 
-**BDScript (BDFD):**
+**BDScript (BDFD)** reads the custom ID with `$customID` (valid in a component or modal interaction):
 ```bdfd
-$if[((interaction.kind))==button]
-  $ephemeral
-  Clicked: ((interaction.customId))
-$endif
+$ephemeral
+Clicked: $customID
 ```
 
 **Blocks:**
@@ -77,10 +77,10 @@ See [Interactions overview](/docs/interactions-overview/) for component-specific
 
 ## BDScript vs JavaScript
 
-- **BDScript:** placeholders work directly in `$sendMessage`, embed fields, and component payloads.
-- **JavaScript:** use template strings or read resolved values from the `variables` object. See [variables](/docs/javascript/variables/).
+- **BDScript:** use `$functions`; `((...))` text inside a BDFD script is left as typed.
+- **JavaScript:** see [variables](/docs/javascript/variables/) and [placeholders](/docs/javascript/placeholders/).
 
 ## Next steps
 
-1. Register persistent variables in the app panel before using `$getUserVar` — see the [Database variables guide](/advanced-topics/2026/05/30/mastering-persistent-database-variables-in-bdfd/).
+1. Persistent variables (`$getUserVar`, `$setUserVar`) — see the [Database variables guide](/advanced-topics/2026/05/30/mastering-persistent-database-variables-in-bdfd/).
 2. Build your first event workflow with [Create Your First Command](/getting-started/2026/03/12/how-to-create-a-command-in-bot-creator-step-by-step/).

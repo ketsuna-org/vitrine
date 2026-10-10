@@ -27,17 +27,17 @@ https://bot-creator.fr/api/mcp
 
 | Tool / Prompt | Type | Description |
 |---|---|---|
-| `get_schema_manifest` | Tool | Grammaire et dictionnaire de types compacts (`{ desc, params }`). Mode par défaut `'blocks'` (~3k tokens) pour l'exhaustivité des actions natives. Supporte aussi `'bdfd'`, `'javascript'`, `'types'` (types imbriqués : `Embed`, `Component`, `Condition`, `Action`…), `'all'` et filtre `category`. |
-| `plan_solution` | Tool | Point de départ pour une demande de commande : en un appel déterministe (sans LLM), renvoie les meilleures fonctions BDFD/Blocks avec signatures, les pièges applicables, un squelette validé si une recette correspond, et une décision `auto` / `review` / `ask_user` (confiance et marge). Remplace les boucles `search_docs` + `get_doc`. |
-| `list_actions` | Tool | Liste légère des noms d'actions Blocks (nom, catégorie, description), filtrable par `category`. |
-| `validate_actions` | Tool | Valide un tableau `[{ type, payload }]` : actions inconnues (avec suggestion), paramètres requis, types/enums, embeds, composants, conditions et `thenActions` imbriqués. Renvoie `{ valid, errors[{path,message}], warnings }`. |
-| `search_docs` | Tool | Recherche dans la documentation. Inclut directement les signatures de paramètres typés (`params`, `syntax`, `description`), statuts de compatibilité et slugs. |
-| `get_doc` | Tool | Renvoie par défaut la définition de type compacte (`full_markdown: false`) pour économiser les tokens et éviter les hallucinations. Définir `full_markdown: true` pour le guide Markdown complet. |
-| `list_posts` | Tool | Liste les articles de blog, filtrables par langue (`en` / `fr`). |
-| `search_posts` | Tool | Recherche parmi les articles de blog par titre ou description. |
-| `get_post` | Tool | Récupère le Markdown brut d'un article de blog par son slug. |
-| `command_authoring_rules` | Prompt | Règles de cycle d'interaction, séparation des portées de variables, exemples few-shot et pièges LLM. |
-| `production_ticket_workflow` | Prompt | Modèle complet de système de tickets Discord en production (salons privés, permissions et bouton interactif). |
+| `get_schema_manifest` | Tool | Compact typed grammar and schema dictionary (`{ desc, params }`). Default mode `blocks` (about 3k tokens) covers every native Blocks action; `bdfd`, `javascript`, `types` (nested types such as `Embed`, `Component`, `Condition`, `Action`) and `all` are also accepted, plus a `category` filter and a `names` list (up to 20 action names) for full parameter schemas. |
+| `plan_solution` | Tool | Starting point for a command request: in one deterministic call (no LLM) it returns the best-fitting BDFD/Blocks/JavaScript functions with signatures, the gotchas that apply, a validated skeleton when a known recipe matches, and a decision (`auto`, `review` or `ask_user`, with confidence and margin). Replaces `search_docs` + `get_doc` loops. |
+| `list_actions` | Tool | Light list of the Blocks action names (name, category, description), filterable by `category`. |
+| `validate_actions` | Tool | Validates an array of `[{ type, payload }]` actions against the manifest: unknown action names (with suggestions), missing required params, wrong types/enums, unknown params, and nested embeds, components, conditions and `thenActions`. Reports `errors` and `warnings` entries with a `path` and a `message`. |
+| `search_docs` | Tool | Searches the documentation. Results include the compact parameter types (`params`, `syntax`, `description`), compatibility status and slugs. Filter with `api_type` (`blocks`, `bdfd`, `javascript`, `general`). |
+| `get_doc` | Tool | Returns the compact type definition by default (`full_markdown: false`) to save tokens; set `full_markdown: true` for the full Markdown guide. |
+| `list_posts` | Tool | Lists the blog posts, filterable by locale (`en` / `fr`). |
+| `search_posts` | Tool | Searches the blog posts by title or description. |
+| `get_post` | Tool | Returns the raw Markdown of a blog post by its slug. |
+| `command_authoring_rules` | Prompt | Interaction lifecycle rules, variable scope separation (`$var` vs `$setVar`), few-shot examples and LLM gotchas. |
+| `production_ticket_workflow` | Prompt | Production-ready Discord ticket system template (private channel creation, permission overwrites and an interactive close button). |
 
 ---
 
@@ -55,22 +55,19 @@ When a language model (LLM) generates code for Bot Creator, it must strictly adh
   - Member: `$setMemberVar[key;value]` / `$getMemberVar[key]`
 
 ### 2. Discord Interaction Lifecycle & Slash Commands
-- **Automatic Acknowledgment:** The Bot Creator runner automatically handles immediate interaction acknowledgment (`defer`/`acknowledge`).
-- **No `$sendMessage` in Slash Commands:** In BDFD, plain text and embed/button declarations outside functions constitute the native interaction reply (`respondWithMessage`). Calling `$sendMessage` in a slash command causes conflicts or double messages.
+- **Automatic Acknowledgment:** The Bot Creator runner acknowledges the interaction before running a BDFD script, unless the source contains `$newModal`, `$callWorkflow`, `$eval` or `$funcCall`.
+- **No `$sendMessage` to reply in Slash Commands:** In BDFD, plain text and embed/button declarations constitute the native interaction reply. `$sendMessage` sends an additional, separate channel message, so using it to reply makes the text appear twice.
 - **Ephemeral Visibility:** To make a response visible only to the author, add the `$ephemeral` flag in BDFD or `"ephemeral": true` on the `respondWithMessage` block.
-- **Targeting Another Channel:** Use `$channelSendMessage[channelID;content]` in BDFD, or the `sendMessage` action with `channelId` in Blocks.
+- **Targeting Another Channel:** Use `$channelSendMessage[channelID;content;(replyMessageID)]` in BDFD, or the `sendMessage` action with `channelId` in Blocks.
 
-### 3. Robust Private Ticket System
-- **Incomplete Legacy Helpers:** The `$newTicket` and `$closeTicket` functions are marked `status: incomplete`. They create public channels without private permission overrides.
-- **Production Architecture:** Always use the full explicit workflow:
-  1. `createChannel` (attached to a category closed to `@everyone`).
-  2. `editChannelPermissions` (with member permission `allow: 68608`).
-  3. `sendMessage` (welcome embed in the channel with red button `customId: close_ticket`).
-  4. `respondWithMessage` (ephemeral confirmation for the slash command).
-  5. Button click interaction handler to close via `removeChannel` / `$deleteChannels`.
+### 3. Private Ticket System
+- **`$newTicket`** creates a private text channel named `ticket-<number or author name>` for the command author: `@everyone` is denied, the author and the bot are allowed.
+- **`$closeTicket`** deletes the current channel only when its name contains `ticket`. Its page is flagged `status: incomplete`.
+- **Custom flow with Blocks:** `createChannel`, `editChannelPermissions` and `removeChannel` actions exist (`68608` is the bitmask of View Channel + Send Messages + Read Message History). The `production_ticket_workflow` prompt describes a complete flow.
 
 ### 4. Slash Options
-- Options are injected directly via placeholders: `((opts.name))` for the text value, or `((opts.name.id))` for the Snowflake ID (user, channel, role).
+- In BDFD, `$message[name]` returns the value of the slash option `name`.
+- In `((...))` placeholders, options are stored as `((opts.name))` for the text value, and `((opts.name.id))` for the ID of a user, channel, role or mentionable option.
 - Never generate non-existent functions such as `$slashOption` or `$getOption`.
 
 ---
@@ -80,7 +77,8 @@ When a language model (LLM) generates code for Bot Creator, it must strictly adh
 ### Example 1: Information Slash Command (BDFD)
 ```bdfd
 $title[Server Info]
-$description[Welcome to **$serverName**!\nThe server currently has $membersCount members.]
+$description[Welcome to **$serverName**!
+The server currently has $membersCount members.]
 $color[#5865F2]
 $ephemeral
 ```
@@ -107,15 +105,15 @@ $ephemeral
 
 ### Example 3: Temporary vs Persistent Variables (BDFD)
 ```bdfd
-;; 1. Temporary in-memory variable (discarded when script completes)
+$c[1. Temporary variable, discarded when the script completes]
 $var[counter;5]
 
-;; 2. Persistent database variable saved for the user
-$setUserVar[points;$sum[$getUserVar[points];$var[counter]]]
+$c[2. Persistent variable saved for the user]
+$setUserVar[lastCounter;$var[counter]]
 
-;; 3. Ephemeral reply
+$c[3. Ephemeral reply]
 $ephemeral
-You received $var[counter] points! New balance: $getUserVar[points].
+Counter: $var[counter]. Saved value: $getUserVar[lastCounter].
 ```
 
 ---

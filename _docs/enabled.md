@@ -4,70 +4,63 @@ title: $enabled
 translation_key: docs
 category: "Variables"
 function_name: enabled
-syntax: $enabled[yes/no]
-description: Enables or disables a command. When disabled (no), the command is no longer executable by users.
+syntax: $enabled[yes/no;(errorMessage)]
+description: Stops the command when its first argument is no (or false), optionally replacing the output with an error message. It does not disable the command permanently.
 ---
 # $enabled
 
-The `$enabled[]` function **enables or disables** the command in which it is placed.
+The `$enabled[]` function is a **guard**: when its first argument is `no` (or `false`), it stops the rest of the command, and the optional error message becomes the output of the command. When it is `yes` (or `true`), nothing happens and the command continues.
 
 ## Syntax
 
 ```
-$enabled[yes/no]
+$enabled[yes/no;(errorMessage)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `yes/no` | `yes` to enable the command, `no` to disable it. |
+| `yes/no` | Required. `yes` or `true` lets the command continue; `no` or `false` stops it. Case-insensitive, surrounding spaces are ignored. Any other value (including an empty value) raises the error `Enabled must be yes or no.` |
+| `errorMessage` | Optional - Text used as the output of the command when it is stopped. If omitted, the output is empty. |
 
 ## Return value
 
-None.
+None (empty string).
 
 ## Behavior
 
-- `$enabled[no]` makes the command invisible and inexecutable.
-- `$enabled[yes]` reactivates it.
-- Can be combined with conditions for conditional activation.
+- `$enabled[no]` stops the command at this point: the code after it is not executed and any output built before it is discarded. The error message (if any) is the output.
+- `$enabled[yes]` does nothing.
+- The function does not change anything stored for the command: it does not hide, disable or re-enable it, and a later execution runs the command again from the start. It is evaluated each time the command runs, so it can be combined with variables or conditions.
 
 ## Examples
 
-### Disable temporarily
+### Stop with a message
 
 ```bdfd
-$enabled[no]
+$enabled[no;This command is currently disabled.]
+$sendMessage[This line is never reached.]
 ```
 
-### Conditional activation by role
+### Feature switch stored in a variable
 
 ```bdfd
-$if[$hasRole[$authorID;Admin]==true]
-  $enabled[yes]
-$else
-  $enabled[no]
-$endif
+$enabled[$getVar[featureEnabled];❌ This feature is turned off.]
+$sendMessage[The feature is on.]
 ```
 
-### Maintenance mode command
+### Conditional guard
 
 ```bdfd
-$var[maintenance;$getVar[maintenance]]
-$if[$var[maintenance]==true]
-  $if[$hasRole[$authorID;Staff]==true]
-    $enabled[yes]
-  $else
-    $enabled[no]
-  $endif
-$else
-  $enabled[yes]
+$if[$getVar[maintenance]==true]
+  $enabled[no;🔧 Maintenance in progress.]
 $endif
+$sendMessage[Normal behavior.]
 ```
 
 ## Notes
 
-- A disabled command does not appear in command suggestions.
-- Unlike `$onlyIf[]` which keeps the command visible but blocks execution, `$enabled[no]` hides it completely.
-- Useful for commands in maintenance or seasonal commands.
+- A bare `$enabled` without arguments is invalid.
+- For the feature-switch example, the variable must hold `yes`, `no`, `true` or `false`; an unset variable returns an empty string, which raises an error.
+- For a guard based on a condition, `$onlyIf[]` is also available.

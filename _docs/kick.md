@@ -18,7 +18,7 @@ description: Kicks a specific user from the Discord server.
 $kick[userID;(reason)]
 ```
 
-`userID` is the target's Discord ID; `reason` is optional. The argument-free form `$kick` targets the command author. An explicitly empty target does not target the author: it fails with `Missing or invalid user ID.`.
+`userID` is the target's Discord ID; `reason` is optional (an empty reason sends no audit-log reason; a reason longer than 512 characters raises an error). The argument-free form `$kick` targets the command author. An explicitly empty target does not target the author: it fails with `Missing or invalid user ID.`.
 
 ## Examples
 
@@ -50,4 +50,4 @@ $kick[123456789012345678;Rules violation]
 Member kicked successfully.
 ```
 
-The function returns no text. A kicked member can rejoin with an invite.
+The function returns no text. An invalid target ID raises `Missing or invalid user ID.`. The bot is refused (error) when it lacks `Kick Members`, when the target is the server owner, or when the target's highest role is equal to or above the bot's.

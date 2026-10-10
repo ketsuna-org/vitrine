@@ -5,9 +5,15 @@ translation_key: docs
 category: "HTTP & JSON"
 function_name: jsonKey
 syntax: $jsonKey[]
-description: Returns the current key during a $jsonForEach iteration. Must be called inside a $jsonForEach block.
+description: Returns the key of the current element during a $jsonForEach loop (the index for an array); an empty string outside a loop.
 ---
-$jsonKey returns the current key name during $jsonForEach iteration. It is only meaningful inside a $jsonForEach.. $endJsonForEach block. Pair with $jsonValue[] (no arguments) to access the corresponding value. This is the primary way to process key-value pairs in JSON objects.
+$jsonKey returns the key of the element being processed inside a `$jsonForEach` block. It takes no argument. Pair it with `$jsonValue` (no argument), which returns the corresponding value.
+
+## Behavior
+
+- Looping over an object: the key name (`apple`, `banana`).
+- Looping over an array: the element position as text (`0`, `1`, ...).
+- **Outside** a `$jsonForEach` block it returns an empty string.
 
 ## Examples
 

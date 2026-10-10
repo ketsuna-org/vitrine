@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isBoolean
 syntax: $isBoolean[value]
-description: Checks if a value is strictly a boolean (true or false).
+description: Checks if a value is one of the boolean words true, false, yes, no, on, off, enable or disable (lowercase).
 ---
 
 # $isBoolean
 
-The function `$isBoolean[value]` **checks if a value is a boolean** (`true` or `false`). It returns `true` if the value is strictly a boolean, and `false` in all other cases (number, text, etc.).
+The function `$isBoolean[value]` **checks if a value is a boolean word**. It returns `true` if the value is exactly one of `true`, `false`, `yes`, `no`, `on`, `off`, `enable` or `disable`, and `false` in all other cases (number, text, etc.).
 
 ## Syntax
 
@@ -22,18 +22,18 @@ $isBoolean[value]
 
 | Parameter | Description |
 |---|---|
-| `value` | The value to test. |
+| `value` | The value to test. Required, exactly one argument. |
 
 ## Return Value
 
 - **Type**: Boolean
-- `true` if `value` is `true` or `false`.
-- `false` if `value` is a number, a character string, or empty.
+- `true` if `value` is one of `true`, `false`, `yes`, `no`, `on`, `off`, `enable`, `disable`.
+- `false` otherwise (number, any other text, or empty).
 
 ## Behavior
 
-- Only the literals `true` and `false` are recognized as booleans.
-- `"true"` (string) is **not** a boolean.
+- The comparison is exact and case-sensitive: `TRUE`, `No` and ` true` (with a space) return `false`.
+- The eight words above are all accepted, including `yes`/`no` and `on`/`off`.
 - `0` and `1` are **not** booleans (use `$isNumber[]` for those cases).
 
 ## Examples
@@ -76,5 +76,7 @@ $endif
 
 - `$isBoolean[true]` returns `true`.
 - `$isBoolean[false]` returns `true`.
+- `$isBoolean[yes]` returns `true`.
+- `$isBoolean[TRUE]` returns `false` (case-sensitive).
 - `$isBoolean[0]` returns `false` (0 is a number).
 - `$isBoolean[]` (empty) returns `false`.

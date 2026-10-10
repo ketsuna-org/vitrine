@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandType
 syntax: $commandType
-description: Returns the type of the command in progress (prefix or slash).
+description: Returns how the current command was invoked, taken from the execution context (chatInput, user or message for application commands, text otherwise).
 ---
 
 # $commandType
 
-The `$commandType` function **returns the type of the command currently being executed**: `prefix` for classic text commands, or `slash` for Discord slash commands.
+The `$commandType` function **returns the type of invocation** of the command currently being executed.
 
 ## Syntax
 
@@ -20,25 +20,26 @@ $commandType
 
 ## Parameters
 
-None.
+None (passing one is an error).
 
 ## Return value
 
 - **Type**: String
-- `prefix`: Command triggered by a text prefix (`!`, `?`, etc.).
-- `slash`: Command triggered via the Discord slash interface (`/`).
+- For a Discord application command, the type of the command: `chatInput` (a slash command), `user` (user context menu) or `message` (message context menu). It comes from the context variable `commandType` (or `command.type`) set when the interaction is received.
+- `text` when the context has no command type and no interaction (for example a command typed with the bot prefix).
+- `slash` only in the unusual case where the context has an interaction ID but no command type.
 
 ## Behavior
 
-- Allows adapting the behavior based on the invocation type.
-- Functionally equivalent to `$if[$isSlash==true]slash$elseprefix$endif`.
+- A slash command therefore gives `chatInput`, **not** `slash`; a prefix command gives `text`, **not** `prefix`.
+- To test whether the command was started by a slash command, `$isSlash` is the dedicated function.
 
 ## Examples
 
 ### Adaptive response
 
 ```bdfd
-$if[$commandType==slash]
+$if[$commandType==chatInput]
   $ephemeral
   ✅ Operation successful!
 $else
@@ -49,10 +50,10 @@ $endif
 ### Differentiated log
 
 ```bdfd
-$if[$commandType==slash]
+$if[$commandType==chatInput]
   $log[🔹 SLASH /$commandName by $username]
 $else
-  $log[🔸 PREFIX $commandTrigger by $username]
+  $log[🔸 TEXT $commandTrigger by $username]
 $endif
 ```
 
@@ -62,8 +63,8 @@ $endif
 $title[⚙️ Command details]
 $addField[Name;$commandName;yes]
 $addField[Trigger;$commandTrigger;yes]
-$var[kind;🔸 Prefix]
-$if[$commandType==slash]
+$var[kind;🔸 Text]
+$if[$commandType==chatInput]
   $var[kind;🔹 Slash]
 $endif
 $addField[Type;$var[kind];yes]
@@ -74,8 +75,8 @@ $footer[Language: $scriptLanguage]
 ### Hybrid command with arguments
 
 ```bdfd
-;; Retrieve arguments based on the type
-$if[$commandType==slash]
+$c[Retrieve arguments based on the type]
+$if[$commandType==chatInput]
   $var[arg1;((opts.target))]
   $var[arg2;((opts.reason))]
 $else
@@ -93,7 +94,6 @@ $endif
 
 ## Notes
 
-- Possible values: `prefix` or `slash`.
-- For a simple boolean check, use `$isSlash`.
-- Ephemeral responses (`$ephemeral`) only work with `slash` commands.
-- The type is configured in the BDFD console when creating the command.
+- Possible values: `chatInput`, `user`, `message` (application commands), `text` (no interaction), or `slash` (interaction without command type).
+- For a simple boolean check, use `$isSlash`, which reads a different context value (`interaction.isSlash`).
+- The value describes the invocation, not the configuration of the command: a hybrid command gives `chatInput` when used as a slash command and `text` when typed with the prefix.

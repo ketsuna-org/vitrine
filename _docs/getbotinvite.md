@@ -30,7 +30,7 @@ None. Any argument is refused ("Invalid argument count"); there is no `guildID` 
 
 ## Behavior
 
-- The `permissions` value of the link is the invite permissions configured in the engine.
+- The `permissions` value of the link is the invite permissions configured in the engine (default `8`, i.e. Administrator).
 - The link always includes the `bot` and `applications.commands` scopes.
 - The function raises an error if the application ID is unavailable or the configured permissions are invalid.
 
@@ -45,11 +45,7 @@ Click on the link below to invite the bot to your server:
 
 [$getBotInvite]
 
-**Required permissions:**
-- Manage messages
-- Send messages
-- Embed links
-- Read message history
+The link grants the permissions encoded in its `permissions` parameter.
 ]
 $color[#5865F2]
 ```
@@ -82,6 +78,5 @@ $color[#57F287]
 
 ## Notes
 
-- The permissions in the link are defined in the Discord application configuration.
-- The link only works if the bot is public or if the user has access to the server.
+- The permissions in the link come from the engine's invite permission setting (default `8`), not from the Discord application page.
 - For a server invite (not the bot's invite), use `$getServerInvite[]`.

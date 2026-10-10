@@ -22,8 +22,8 @@ $threadAddMember[threadID;userID]
 
 | Parameter | Description |
 |---|---|
-| `threadID` | The ID of the target thread. |
-| `userID` | The ID of the user to add. |
+| `threadID` | The ID of the target thread (a Discord ID of a thread; otherwise an error is raised). |
+| `userID` | The ID of the user to add (a Discord ID, otherwise `Invalid Discord ID.`). |
 
 ## Return Value
 
@@ -31,9 +31,9 @@ This function does not return any value.
 
 ## Behavior
 
-- For public threads, users can join freely; this function is rarely needed.
-- For private threads, only added members can view and participate in the thread.
-- The bot must have the `MANAGE_THREADS` permission or be the creator of the private thread.
+- The thread must not be archived (`Thread is archived.`).
+- The bot must have `View Channel` and `Send Messages in Threads` in the thread; otherwise `Missing permissions for the thread operation.` is raised.
+- Role IDs are not accepted: only users can be added.
 
 ## Examples
 
@@ -52,19 +52,16 @@ $threadAddMember[$channelID;$mentioned[1]]
 $sendMessage[<@$mentioned[1]> has been added to the thread.]
 ```
 
-### Automatic Staff Addition
+### Adding the author and a mentioned moderator
 
 ```bdfd
 $var[thread;$startThread[Ticket #$random[1000;9999];$channelID;;1440;yes]]
 $threadAddMember[$var[thread];$authorID]
-$threadAddMember[$var[thread];MODERATOR_ROLE_ID_1]
-$threadAddMember[$var[thread];MODERATOR_ROLE_ID_2]
+$threadAddMember[$var[thread];$mentioned[1]]
 $channelSendMessage[$var[thread];Welcome! A member of the staff will assist you.]
 ```
 
 ## Notes
 
-- In public threads, members can join without an invitation.
-- `$threadAddMember[]` does not send a notification to the added user.
 - To remove a member, use `$threadRemoveMember[]`.
 

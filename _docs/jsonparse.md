@@ -5,9 +5,21 @@ translation_key: docs
 category: "HTTP & JSON"
 function_name: jsonParse
 syntax: $jsonParse[json]
-description: Parses a JSON string into the internal JSON structure, replacing any existing JSON context.
+description: Parses a JSON string into the current JSON document, replacing it; invalid JSON or a scalar gives an empty object {}.
 ---
-$jsonParse is the primary way to load external JSON data — such as API responses, file contents, or user input — into the BDFD JSON system. It replaces whatever internal JSON structure currently exists. Use $jsonStringify to convert back to a string when done. The input must be strictly valid JSON; malformed input will produce an error.
+$jsonParse loads a JSON text — an API response, user input — into the JSON document of the current command and replaces whatever was stored. It returns an empty string.
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `json` | Required. The JSON text. Exactly one argument is accepted. |
+
+## Behavior
+
+- A JSON **object** or **array** becomes the document.
+- Anything else — malformed JSON, an empty string, a number or a string literal — does **not** raise an error: the document becomes an empty object `{}`.
+- Use `$jsonStringify` to get the document back as text.
 
 ## Examples
 

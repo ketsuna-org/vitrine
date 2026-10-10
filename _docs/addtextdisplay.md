@@ -6,70 +6,58 @@ category: "Components & Interactions"
 
 # $addTextDisplay
 
-Adds a text display component in an action row. Allows displaying static text among interactive components.
+Adds a block of text to a Components V2 message. It is not in an action row and is not interactive.
 
 ## Syntax
 
-```bdfd
-$addTextDisplay[content]
+```text
+$addTextDisplay[content;(containerId)]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `content` | Text to display in the component | Yes |
+| `content` | Text to display. | Yes |
+| `containerId` | Accepted but not used: the text goes into the latest `$addContainer` of the script, if any. | No |
 
 ## Description
 
-`$addTextDisplay` allows inserting non-interactive text in an action row, alongside buttons and menus. This allows creating richer layouts with labels, descriptions, or indicators.
+`$addTextDisplay` adds a text block at the top level of the message, or inside the latest `$addContainer`. When a section was started with `$addSection` and is still open, the text becomes one of the section's texts.
+
+## Components V2 rules
+
+- Layout components (`$addContainer`, `$addSection`, `$addSeparator`, `$addTextDisplay`, `$addMediaGallery`, `$addThumbnail`, `$addFile`) make the response a Components V2 message. Such a message cannot carry content or embeds: the text written in the script and the embed functions are not sent.
+- Buttons and select menus (`$addButtonCV2`, `$addStringSelect`, ...) must be added **before** any text display, separator, thumbnail, file or media gallery of the script: added afterwards, they fail with `type 'Null' is not a subtype of type 'List<dynamic>' in type cast`.
+- A button added right after `$addContainer` or `$addSection` is silently lost: write `$addActionRow` first.
 
 ## Examples
 
-### Label before a button
+### Text blocks
 
 ```bdfd
-$addActionRow
-$addTextDisplay[Status:]
-$addButtonCV2[btn_status;Activate;success]
-$sendMessage[Controls]
+$addTextDisplay[**Controls**]
+$addTextDisplay[Use the panel below.]
 ```
 
-### Label before a select
+### Text in a container
 
 ```bdfd
-$addActionRow
-$addTextDisplay[Role:]
-$addRoleSelect[menu_role;Choose a role]
-$sendMessage[Configuration]
+$addContainer[info;#2ECC71]
+$addTextDisplay[Service status]
+$addSeparator
+$addTextDisplay[Online]
 ```
 
-### Formatted text with multiple components
+### Text next to a thumbnail
 
 ```bdfd
-$addActionRow
-$addTextDisplay[Volume]
-$addSeparator[no;sm]
-$addButtonCV2[vol_down;➖;secondary]
-$addButtonCV2[vol_mute;🔇;secondary]
-$addButtonCV2[vol_up;➕;secondary]
-$sendMessage[Volume control]
-```
-
-### Status indicator
-
-```bdfd
-$addActionRow
-$addTextDisplay[🔴 Offline]
-$addSeparator[no;md]
-$addButtonCV2[btn_refresh;Refresh;primary]
-$sendMessage[Service status]
+$addSection
+$addTextDisplay[Volume: 80%]
+$addThumbnail[https://example.com/speaker.png;Speaker]
 ```
 
 ## Notes
 
-- The text is purely decorative and non-interactive.
-- It does not count towards the limit of 5 interactive components per line (check BDFD version compatibility).
-- Useful to add labels or descriptions next to components.
-- The content can include emojis to enrich the display.
-
+- The text is not interactive.
+- The text is not part of an action row and does not combine with buttons: to place a button, use `$addActionRow` then `$addButtonCV2`, before any text display.

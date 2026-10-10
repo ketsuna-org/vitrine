@@ -4,10 +4,16 @@ title: $jsonExists[]
 translation_key: docs
 category: "HTTP & JSON"
 function_name: jsonExists
-syntax: $jsonExists[key]
-description: Checks whether a path exists in the current JSON document (a key whose value is null still exists).
+syntax: $jsonExists[(key);(...)]
+description: Checks whether a path exists in the current JSON document and returns true or false (a key whose value is null still exists).
 ---
-$jsonExists is essential for safely navigating JSON data, especially when working with external API responses that may have optional fields. It returns 'true' or 'false' as a string (with no argument, the whole document is checked and the result is 'true'), making it directly usable in $if conditions. The path is given as separate arguments (one per level), not with dot notation. Always check for key existence before accessing values with $jsonValue to avoid ambiguity between missing keys and genuinely empty values.
+$jsonExists returns the text `true` if the path exists in the current JSON document and `false` otherwise, so it can be used directly in `$if` conditions. A key whose value is `null` exists.
+
+## Parameters
+
+The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. At most 100 arguments are accepted in total. With no argument, the whole document is checked and the result is `true`, even when no JSON has been loaded.
+
+Dot notation is not supported: `$jsonExists[user.id]` looks for a key literally named `user.id`. An array index outside the array (negative or too large) does not exist.
 
 ## Examples
 

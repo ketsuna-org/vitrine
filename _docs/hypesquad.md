@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: hypeSquad
 syntax: $hypeSquad[(userID)]
-description: Returns the HypeSquad house to which the user belongs (Bravery, Brilliance, Balance) or "None" if they are not part of any.
+description: Returns the HypeSquad value supplied by the host in the user.hypesquad context variable, or an empty string.
 ---
 
 # $hypeSquad
 
-The function `$hypeSquad[]` allows you to **find the HypeSquad house** of a Discord user. Returns `Bravery`, `Brilliance`, `Balance` or `None`.
+The function `$hypeSquad[]` returns the value of the `user.hypesquad` context variable supplied by the host. The engine does not query Discord for the HypeSquad house.
 
 ## Syntax
 
@@ -22,21 +22,18 @@ $hypeSquad[(userID)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | Optional - The ID of the user. By default, the author of the command. |
+| `userID` | Optional - Accepted but ignored: the value returned is always `user.hypesquad`, whatever the ID. |
 
 ## Return Value
 
 - **Type**: String
-- `Bravery` - House of Courage (purple)
-- `Brilliance` - House of Brilliance (orange)
-- `Balance` - House of Balance (green)
-- `None` - The user has not joined a HypeSquad house.
+- The text of the `user.hypesquad` context variable exactly as the host supplied it (for example `Bravery`).
+- An empty string (not `None`) if the host supplied no value.
 
 ## Behavior
 
-- Checks the Discord profile of the user to determine their HypeSquad house.
-- Participation in HypeSquad is a Discord profile option, distinct from the HypeSquad Events program.
-- Returns `None` if the user has not chosen a house.
+- The function can be called with no parameter or with one parameter; the parameter has no effect and the house of another user cannot be queried.
+- The engine does not parse or translate the value.
 
 ## Examples
 
@@ -69,14 +66,12 @@ $endif
 $title[👤 $userName[$mentioned[1]]]
 $description[
 **ID:** $mentioned[1]
-**HypeSquad:** $hypeSquad[$mentioned[1]]
-**Badges:** $userBadges[$mentioned[1]]
+**HypeSquad:** $hypeSquad
+**Badges:** $userBadges
 ]
 $thumbnail[$userAvatar[$mentioned[1]]]
 ```
 
 ## Notes
 
-- Requires that the user has configured their HypeSquad house in their Discord settings.
-- Distinct badges (the HypeSquad badge is managed by `$hasBadge` / `$userBadges`).
-- House names are returned in English (Bravery, Brilliance, Balance).
+- `$userBadges` works the same way with the `user.badges` context variable.

@@ -6,11 +6,11 @@ category: "Embed & Message"
 
 # $reply
 
-Marks the message as a reply to an existing message. Used before `$sendMessage`.
+Sends the command's main response as a reply to an existing message.
 
 ## Syntax
 
-### Reply to the user's message (0 arguments)
+### Reply to the triggering message (0 arguments)
 
 ```bdfd
 $reply
@@ -26,16 +26,19 @@ $reply[channelId;messageId]
 
 | Parameter | Description | Required |
 |-----------|-------------|:--------:|
-| `channelId` | ID of the channel containing the target message | No* |
+| `channelId` | ID of the channel containing the target message (the reply is sent there) | No* |
 | `messageId` | ID of the message to reply to | No* |
 
-*\* Required only to reply to a specific message in a specific channel.*
+*\* Either both arguments or none. Giving a single argument is an error (`Reply expects zero or two arguments.`), and so is an empty channel or message ID (`Reply channel and message are required.`).*
 
 ## Description
 
-`$reply` is a **flag** used before `$sendMessage`. It indicates that the message should be sent as a reply (Discord replies), which displays the original message above the reply.
+`$reply` is a **flag** on the command's **main response** (the text, embeds and components built by the command itself). That response is sent as a Discord reply, which displays the original message above it.
 
-Without arguments, `$reply` replies to the message that triggered the command or interaction.
+- Without arguments, the response replies to the message that triggered the command. If there is no triggering message, sending fails with `No message available to reply to.`
+- With `channelId` and `messageId`, the response is sent in that channel as a reply to that message.
+
+`$reply` does **not** affect messages sent with `$sendMessage[]`: those are separate messages, sent as plain channel messages.
 
 ## Examples
 
@@ -43,23 +46,14 @@ Without arguments, `$reply` replies to the message that triggered the command or
 
 ```bdfd
 $reply
-$sendMessage[Here is your reply!]
+Here is your reply!
 ```
 
 ### Reply to a specific message
 
 ```bdfd
 $reply[$channelID;123456789012345678]
-$sendMessage[Reply to a specific message]
-```
-
-### Reply to a button click
-
-```bdfd
-$if[$customID==btn_help]
-  $reply
-  $sendMessage[Here is the requested help]
-$endif
+Reply to a specific message
 ```
 
 ### Reply with embeds
@@ -71,8 +65,15 @@ $description[Reply details]
 $color[#3498DB]
 ```
 
+### Reply without notification
+
+```bdfd
+$reply
+$noMention
+Here is your reply, without a ping.
+```
+
 ## Notes
 
-- Without arguments, `$reply` automatically uses the triggering message.
-- `$reply` must be placed before `$sendMessage`.
-- The reply pings the user by default. Use `$noMention` before to disable the ping.
+- The flag applies to the main response, wherever `$reply` is placed in the code.
+- Use `$noMention` to restrict the mentions of the response (it sets the allowed mentions to none).

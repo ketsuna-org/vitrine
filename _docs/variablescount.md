@@ -20,13 +20,13 @@ $variablesCount[type]
 
 | Parameter | Description |
 |---|---|
-| `type` | **Required.** The kind of variable to count: `user`, `globaluser`, `server` or `channel` (surrounding spaces are ignored). Any other value raises the error `Unknown variable type.` |
+| `type` | **Required.** The kind of variable to count: `user`, `globaluser`, `server` or `channel` (surrounding spaces are ignored; the value is case-sensitive, so `User` is refused). Any other value, such as `message`, raises the error `Unknown variable type.` |
 
 `$variablesCount` without brackets, or with more than one argument, is refused ("Invalid argument count").
 
 ## Return Value
 
-The count of declared variables of that type, as a string representation of an integer (e.g., `"3"`, `"0"`, `"15"`).
+The count of declared variables of that type (variables of the bot's variable catalogue for this scope, whether declared in the Variables UI or automatically by their first `$set...Var` write), as a string representation of an integer (e.g., `"3"`, `"0"`, `"15"`). Names that only differ by letter case count once.
 
 ## Type Filtering
 

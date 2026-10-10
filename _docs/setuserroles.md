@@ -62,4 +62,5 @@ $sendMessage[<@$mentioned[1]> is now a Moderator!]
 - To simply add roles, use `$giveRoles` instead.
 - To remove specific roles, use `$takeRoles` instead.
 - The role list cannot be empty: `$setUserRoles[userID]` is refused (at least one role ID is required).
-- The @everyone role cannot be removed.
+- The @everyone role cannot be listed (its ID is the server ID): doing so raises an error.
+- Duplicate role IDs are merged. Every role that is added **or** dropped by the replacement must be manageable by the bot (below its highest role, not a managed role); otherwise nothing is changed and an error is raised. An ID that is not a role of the server raises `Role not found`.

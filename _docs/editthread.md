@@ -22,7 +22,7 @@ $editThread[threadID;(name);(archived);(autoArchiveDuration);(locked);(slowmode)
 
 | Parameter | Description |
 |---|---|
-| `threadID` | The ID of the thread to modify. |
+| `threadID` | The ID of the thread to modify. Required; must be a Discord ID (`Invalid Discord ID.`) of a thread (`Channel is not a thread.`). |
 | `name` | Optional - New name of the thread (1 to 100 characters). |
 | `archived` | Optional - `yes` to archive, `no` to unarchive (only `yes`/`no` are accepted). |
 | `autoArchiveDuration` | Optional - New duration: 60, 1440, 4320 or 10080 minutes. |
@@ -37,19 +37,19 @@ An empty string.
 
 ## Behavior
 
-- The bot must have the `MANAGE_THREADS` permission.
+- The bot must have `View Channel` and `Manage Threads` in the thread (effective permissions of the parent channel). Exception: a call that only unarchives (`archived` = `no`, nothing else changed) on a thread that is not locked only needs `Send Messages`. Otherwise the error `Missing permissions for the thread operation.` is raised.
+- An archived thread can only be edited if the same call unarchives it (`archived` = `no`); otherwise the error `An archived thread must be unarchived to edit it.` is raised.
+- A thread cannot be locked while it is (or is being) archived: `locked` = `yes` together with `archived` = `yes`, or on an archived thread, raises `Archived threads cannot be locked.`
 - Invalid values raise errors: "Thread name must contain 1 to 100 characters.", "Invalid thread archive duration.", "Invalid thread slowmode.", "Expected yes or no.", "Expected an integer.".
-- Archiving hides the thread from the active thread list.
-- Locking prevents new messages in the thread.
 
 ## Examples
 
-### Close a support thread
+### Mark a support thread as resolved and lock it
 
 ```bdfd
-$editThread[$channelID;[resolved] Support;yes;!unchanged;yes]
 $channelSendMessage[$channelID;This thread has been marked as resolved and locked.]
-$sendMessage[Thread closed.]
+$editThread[$channelID;[resolved] Support;!unchanged;!unchanged;yes]
+$sendMessage[Thread locked.]
 ```
 
 ### Unarchive a thread
@@ -69,7 +69,6 @@ $sendMessage[Thread renamed to: $var[newName]]
 
 ## Notes
 
-- An archived thread cannot receive new messages until it is unarchived.
 - Locked threads can be unlocked with `locked` set to `no`.
 - Inside a thread, `$channelID` is the ID of that thread.
-- The archive duration is ignored if the thread is already manually archived.
+- `archived` and `locked` accept only `yes` or `no` (`true`/`false` raise `Expected yes or no.`).

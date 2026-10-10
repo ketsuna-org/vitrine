@@ -25,14 +25,14 @@ None.
 ## Return Value
 
 - **Type**: Boolean
-- `true` if the command was invoked via `/command`.
-- `false` if it was invoked via prefix (`!command`, `?command`, etc.).
+- `"true"` if the command context is flagged as a slash (application command) interaction.
+- `"false"` otherwise, including when the flag is absent.
 
 ## Behavior
 
 - Allows adapting behavior based on the invocation mode.
-- Useful for sending ephemeral responses in slash mode (`$ephemeral`).
-- No parameters: current command context only.
+- It reads the `interaction.isSlash` value of the execution context: the result is `true` only when that value is exactly `true`.
+- No parameters: `$isSlash[...]` with an argument is refused ("Invalid argument count").
 
 ## Examples
 
@@ -77,14 +77,14 @@ $color[#5865F2]
 ### Hybrid Command
 
 ```bdfd
-;; This command works in prefix and slash mode
+$c[This command works in prefix and slash mode]
 $if[$isSlash==true]
   $var[args;((opts.input))]
 $else
   $var[args;$message[1]]
 $endif
 
-;; Common processing
+$c[Common processing]
 You provided: $var[args]
 ```
 
@@ -97,5 +97,5 @@ You provided: $var[args]
 
 - `$isSlash` takes no parameters.
 - To get the precise command type, use `$commandType`.
-- Ephemeral responses (`$ephemeral`) only work in slash mode.
 - `$isSlash` is evaluated in the context of the currently executing command.
+- Slash options are available as `((opts.name))` variables; `$message[name]` also reads a slash option by name when the command is a slash command.

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: disableInnerSpaceRemoval
 syntax: $disableInnerSpaceRemoval
-description: Disables the automatic removal of spaces inside BDFD function parameters. By default, BDFD trims leading and trailing spaces.
+description: Accepted for compatibility with BDFD scripts; in this engine it does nothing and returns an empty string.
 ---
 # $disableInnerSpaceRemoval
 
-The `$disableInnerSpaceRemoval` function **disables the automatic removal of spaces** in parameters. By default, BDFD trims spaces at the beginning and end of parameters.
+The `$disableInnerSpaceRemoval` function is accepted so that scripts written for BDFD still run. In this engine its handler does nothing and returns an empty string: it does **not** change how spaces in arguments are handled.
 
 ## Syntax
 
@@ -19,55 +19,29 @@ $disableInnerSpaceRemoval
 
 ## Parameters
 
-None.
+None. Any argument is refused ("Invalid argument count").
 
 ## Return value
 
-None.
+An empty string.
 
 ## Behavior
 
-- Without this function: `$sendMessage[  Hello  ]` becomes `Hello`
-- With this function: leading, trailing, and internal spaces are preserved.
-- Useful for text formatting (ASCII art, indentation, etc.).
+- Spaces in arguments are handled identically with or without this function. For example `$replaceText[  Hello  World  ;x;y]` returns `  Hello  World  ` (leading, inner and trailing spaces kept) both with and without `$disableInnerSpaceRemoval`.
+- It never raises an error for a valid call.
 
 ## Examples
 
-### Preserving indentation
+### Script ported from BDFD
 
 ```bdfd
 $disableInnerSpaceRemoval
-$sendMessage[
-╔══════════════╗
-║   Welcome    ║
-╚══════════════╝
-]
+$replaceText[  Hello  World  ;x;y]
 ```
 
-### Preserving spaces in text
-
-```bdfd
-$disableInnerSpaceRemoval
-$sendMessage[Indented list:
-    - first item
-        - nested item
-    - second item]
-```
-
-### Comparison
-
-```bdfd
-; Without $disableInnerSpaceRemoval
-$sendMessage[  Hello  World  ]
-; Result: Hello World
-
-$disableInnerSpaceRemoval
-$sendMessage[  Hello  World  ]
-; Result:   Hello  World  
-```
+The result is `  Hello  World  `, exactly as without the flag.
 
 ## Notes
 
-- Effect is limited to the current command.
-- Place at the beginning if the entire command requires space preservation.
-- Does not disable the processing of special characters (see `$disableSpecialEscaping`).
+- Do not rely on it to preserve or remove spaces.
+- Related no-op functions: `$alternativeParsing`, `$optOff`, `$disableSpecialEscaping`.

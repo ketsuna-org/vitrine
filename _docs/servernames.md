@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: serverNames
 syntax: $serverNames
-description: Returns the names of all servers in which the bot is present, separated by commas.
+description: Returns the names of the first 10 servers in which the bot is present, separated by a comma and a space.
 ---
 
 # $serverNames[] — Names of All Servers
 
-`$serverNames[]` returns the complete list of names of all Discord servers where the bot is installed.
+`$serverNames[]` returns the names of the Discord servers where the bot is installed, **limited to the first 10** of the list returned by Discord.
 
 ## Syntax
 
@@ -25,14 +25,15 @@ None.
 ## Return Value
 
 - **Type**: `string`
-- A string containing all server names, separated by commas (e.g., `"Server A, Server B, Server C"`).
+- A string containing the names of at most 10 servers, separated by `", "` (e.g., `"Server A, Server B, Server C"`).
+- An empty string if the bot is on no server.
 
 ## Examples
 
 ### Simple display
 
 ```bdfd
-$sendMessage[🌐 My servers: $serverNames]
+$sendMessage[🌐 First servers: $serverNames]
 ```
 
 ### Embed list of servers
@@ -40,11 +41,11 @@ $sendMessage[🌐 My servers: $serverNames]
 ```bdfd
 $title[🌐 Servers of the Bot]
 $description[$serverNames]
-$footer[Total: $serverCount servers]
+$footer[Total: $serverCount servers (10 listed at most)]
 $color[#5865F2]
 ```
 
-### Check presence on a server
+### Check a name in the listed servers
 
 ```bdfd
 $if[$checkContains[$serverNames;Gaming Community]==true]
@@ -59,15 +60,13 @@ $endif
 ```bdfd
 $title[📊 Bot Statistics]
 $addField[🌐 Total servers;$serverCount;yes]
-$addField[📋 List;$serverNames;no]
+$addField[📋 First 10 servers;$serverNames;no]
 $addField[🔢 Shard;$shardID;yes]
 $color[#2ECC71]
 ```
 
 ## Notes
 
-- The list can be very long if the bot is on many servers — watch out for the Discord message limit of 2000 characters.
+- Only the first 10 servers are listed, whatever the real number of servers; use `$serverCount` for the total.
 - The names are separated by `", "` (comma + space).
-- To get the total number of servers without the list, use `$serverCount[]`.
-- Use `$contains[]` to check the presence of a specific name, but be careful with partial matches.
-- The names can contain special characters and emojis.
+- `$checkContains` on this list can only find names that are among the first 10 servers, and it also matches partial names.

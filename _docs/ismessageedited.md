@@ -65,4 +65,6 @@ $endif
 
 - Returns a string `"true"` or `"false"`, not a boolean.
 - To get the edit date, use `$messageEditedTimestamp[channelID;messageID]`.
-- A bare `$isMessageEdited` is invalid: both arguments are required. Invalid IDs raise an error.
+- A bare `$isMessageEdited` is invalid: both arguments are required.
+- An ID that is empty or not a positive integer raises `Invalid Discord ID.`; a channel that cannot hold messages raises `Channel does not support messages.`
+- The result is `"true"` when Discord reports an edit date for the message.

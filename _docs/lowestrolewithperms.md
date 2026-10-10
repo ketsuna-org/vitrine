@@ -22,7 +22,7 @@ $lowestRoleWithPerms[permission1;permission2;...]
 
 | Parameter | Description |
 |---|---|
-| `permission1;permission2;...` | Required, at least one. Discord permissions, separated by semicolons. All listed permissions must be present on the role. A role with the `Administrator` permission counts as having all of them. An unknown permission name raises an error. |
+| `permission1;permission2;...` | Required, at least one. Discord permissions, separated by semicolons. All listed permissions must be present on the role. A role with the `Administrator` permission counts as having all of them. An empty or unknown permission name raises `Invalid role permissions.` |
 
 ## Return Value
 
@@ -32,7 +32,7 @@ $lowestRoleWithPerms[permission1;permission2;...]
 
 ## Behavior
 
-- Scans all the roles of the server (not only the roles of a given user), ordered by the role hierarchy.
+- Scans all the roles of the server (not only the roles of a given user), ordered by the role hierarchy. `@everyone` is part of the scan and is always the last one, so if `@everyone` has all the listed permissions (or `Administrator`), its ID (the server ID) is returned.
 - Returns the **lowest** role that possesses **all** specified permissions.
 - Permission names are in English; case and non-alphanumeric characters are ignored (e.g. `SendMessages`), and some aliases (e.g. `admin`, `ban`, `kick`) are accepted.
 

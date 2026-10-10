@@ -4,47 +4,48 @@ title: $rulesChannelID[]
 translation_key: docs
 category: "Entity Info"
 function_name: rulesChannelID
-syntax: $rulesChannelID
-description: Returns the identifier (ID) of the rules channel configured on the Discord server (Community server).
+syntax: $rulesChannelID[(guildID)]
+description: Returns the ID of the rules channel of the server. Raises an error when the server has no rules channel set.
 ---
 
 # $rulesChannelID[] — Rules Channel
 
-`$rulesChannelID[]` returns the ID of the rules channel configured on a Discord Community server. This channel is shown to new members when they join the server.
-
-> **Prerequisite**: The server must have the "Community" feature enabled in its settings.
+`$rulesChannelID[]` returns the ID of the rules channel that Discord reports for the server.
 
 ## Syntax
 
 ```
-$rulesChannelID
+$rulesChannelID[(guildID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description |
+|---|---|
+| `guildID` | *(Optional)* The ID of a server. If omitted or empty, the current server is used. A non-empty value that is not a positive integer raises `Invalid guild ID.` |
 
 ## Return Value
 
 - **Type**: `string`
-- The ID of the rules channel, or an empty string if not configured.
+- The ID of the rules channel.
+- **No empty string**: if the server has no rules channel, the error `No rules channel set in this server.` is raised. Use `$try` / `$catch` / `$endTry` to handle it.
 
 ## Examples
 
 ### Simple Display
 
 ```bdfd
-$if[$rulesChannelID!=]
+$try
   $sendMessage[📋 Server Rules: <#$rulesChannelID>]
-$else
+$catch
   $sendMessage[ℹ️ This server does not have a dedicated rules channel.]
-$endif
+$endTry
 ```
 
 ### Welcome message with rules link
 
 ```bdfd
-$sendMessage[Welcome $username! 
+$sendMessage[Welcome $username!
 Please read the rules here: <#$rulesChannelID> 📋]
 ```
 
@@ -55,15 +56,18 @@ $title[⚙️ Configuration — $serverName]
 $var[rules;Not configured]
 $var[system;Not configured]
 $var[afk;Not configured]
-$if[$rulesChannelID!=]
+$try
   $var[rules;<#$rulesChannelID>]
-$endif
-$if[$systemChannelID!=]
+$catch
+$endTry
+$try
   $var[system;<#$systemChannelID>]
-$endif
-$if[$afkChannelID!=]
+$catch
+$endTry
+$try
   $var[afk;<#$afkChannelID>]
-$endif
+$catch
+$endTry
 $addField[📋 Rules;$var[rules];yes]
 $addField[📢 System;$var[system];yes]
 $addField[💤 AFK;$var[afk];yes]
@@ -73,14 +77,14 @@ $color[#5865F2]
 ### Redirection to rules
 
 ```bdfd
-$if[$rulesChannelID!=$channelID]
-  $sendMessage[⚠️ Please use commands in an appropriate channel. The rules are available here: <#$rulesChannelID>]
-$endif
+$try
+  $if[$rulesChannelID!=$channelID]
+    $sendMessage[⚠️ Please use commands in an appropriate channel. The rules are available here: <#$rulesChannelID>]
+  $endif
+$catch
+$endTry
 ```
 
 ## Notes
 
-- The rules channel is configured in the Community server settings.
-- If the server is not a Community server, this function returns an empty string.
-- Use `$serverFeatures[]` to check if the server has the `COMMUNITY` feature enabled.
-- The channel is generally read-only for standard members.
+- If Discord reports no rules channel for the server, the function raises an error instead of returning an empty string. The sibling functions `$systemChannelID` and `$afkChannelID` behave the same way (`No system channel set in this server.`, `No AFK channel set in this server.`).

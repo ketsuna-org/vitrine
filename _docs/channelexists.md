@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: channelExists
 syntax: $channelExists[channelID]
-description: Checks if a Discord channel exists on the server. Returns "true" or "false".
+description: Checks if a Discord channel with the given ID exists. Returns "true" or "false".
 ---
 
 # $channelExists
 
-The `$channelExists` function checks if a **Discord channel exists** on the server by its ID. Useful for ensuring a target channel is always valid before interacting with it.
+The `$channelExists` function checks if a **Discord channel exists** by its ID. Useful for ensuring a target channel is always valid before interacting with it.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ $channelExists[channelID]
 
 | Type | Description |
 |---|---|
-| `string` | `"true"` if the channel exists on the server, `"false"` otherwise. |
+| `string` | `"true"` if Discord returns the channel, `"false"` otherwise. |
 
 ## Examples
 
@@ -55,5 +55,6 @@ $endif
 ## Notes
 
 - The returned value is a string `"true"` or `"false"`.
-- Only checks channels on the current server.
+- The check is not limited to the current server: any channel that Discord returns for the ID to the bot counts, including threads and DM channels.
+- An ID that is not a positive number returns `false` (no error). An unknown channel (Discord error 10003) returns `false`; other Discord errors (for example missing access) are raised as errors.
 - Useful in log or configuration systems where IDs are stored.

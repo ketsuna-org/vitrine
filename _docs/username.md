@@ -4,8 +4,8 @@ title: $userName
 translation_key: docs
 category: "Entity Info"
 function_name: userName
-syntax: $userName
-description: Returns the global Discord username of the user who triggered the command.
+syntax: $userName[(userID)]
+description: Returns the global Discord username of the user who triggered the command, or of the user whose ID is given.
 ---
 
 # $userName
@@ -15,8 +15,14 @@ The `$userName` function returns the **global Discord username** of the user who
 ## Syntax
 
 ```
-$userName
+$userName[(userID)]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `userID` | Optional. The numeric ID of the user to look up. Without it, the user who triggered the command is used. A value that is not a valid ID is an error ("Invalid user ID."), and an unknown user is an error ("User not found."). |
 
 ## Return Value
 
@@ -25,9 +31,8 @@ $userName
 
 ## Behavior
 
-- `$userName` takes **no arguments**.
 - Returns the **global** username (the one visible everywhere on Discord, without the discriminator).
-- If the user has a nickname on the server, `$userName` still returns their global username. Use `$nickname` for the server nickname, or `$displayName` for the display name (nickname if set, otherwise global username).
+- If the user has a nickname on the server, `$userName` still returns their global username. Use `$nickname` for the server nickname, or `$displayName` for the display name.
 
 ## Examples
 

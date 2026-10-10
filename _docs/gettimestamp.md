@@ -4,27 +4,29 @@ title: $getTimestamp[]
 translation_key: docs
 category: "Date & Time"
 function_name: getTimestamp
-syntax: $getTimestamp
-description: Returns the current Unix timestamp in seconds. Resolved at runtime.
+syntax: $getTimestamp[(unit)]
+description: Returns the current Unix timestamp in seconds (default), milliseconds or nanoseconds.
 ---
 
 # $getTimestamp[]
 
-The function `$getTimestamp[]` returns the current Unix timestamp in seconds. The Unix timestamp represents the number of seconds elapsed since January 1, 1970, at 00:00:00 UTC (epoch).
-
-> **Important:** This function uses the special identifier `((getTimestamp))` which is resolved at **runtime**.
+The function `$getTimestamp[]` returns the current Unix timestamp. By default it is in seconds: the number of seconds elapsed since January 1, 1970, at 00:00:00 UTC (epoch). An optional unit argument selects milliseconds or nanoseconds.
 
 ## Syntax
 
 ```
-$getTimestamp
+$getTimestamp[(unit)]
 ```
 
-> **Note:** This function does not take any parameters.
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `unit` | Optional - `s` (seconds, default), `ms` (milliseconds) or `ns` (nanoseconds). Any other value is an error: `Timestamp unit must be s, ms or ns.` |
 
 ## Return Value
 
-An integer representing the current Unix timestamp in seconds.
+An integer (as text) representing the current Unix timestamp in the requested unit.
 
 ## Examples
 
@@ -32,6 +34,12 @@ An integer representing the current Unix timestamp in seconds.
 
 ```bdfd
 Current timestamp: $getTimestamp
+```
+
+### Milliseconds
+
+```bdfd
+$getTimestamp[ms]
 ```
 
 ### Duration calculation
@@ -50,5 +58,6 @@ $setUserVar[lastCommand;$getTimestamp]
 
 ## Notes
 
-- The timestamp is in **seconds** (not milliseconds).
+- Without argument the timestamp is in **seconds**. `$getTimestampMs` is also available and returns milliseconds.
+- The timestamp does not depend on the timezone set with `$time[]`.
 - Useful for duration calculations, cooldowns, or storing timestamps.

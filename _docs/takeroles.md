@@ -57,7 +57,8 @@ $sendMessage[Roles updated!]
 
 ## Notes
 
-- The bot must have the `ManageRoles` permission.
+- The bot must have the `ManageRoles` permission; each role must be below the bot's highest role, and `@everyone` and managed roles cannot be removed.
+- The roles are removed one after the other, so an invalid role ID stops the call after the previous roles were removed.
 - The role IDs are separated by `;`.
 - To remove a single role, `$takeRole` is simpler.
 - To completely redefine a user's roles, use `$setUserRoles`.

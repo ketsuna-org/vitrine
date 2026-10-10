@@ -26,11 +26,7 @@ $toUppercase[text]
 - **Type**: `string`
 - Returns the input text with all letters converted to uppercase.
 - Non-alphabetic characters (numbers, symbols, spaces) remain unchanged.
-
-## Evaluation Behavior
-
-- **Static text** (no placeholders): Converted at compile time.
-- **Contains placeholders** (e.g., `$message`, variables): Evaluated at runtime.
+- Exactly one argument is required (`$toUppercase` without brackets or with two arguments is refused: "Invalid argument count"); `$toUppercase[]` returns an empty string.
 
 ## Usage
 
@@ -67,7 +63,7 @@ $endif
 
 ## Important Notes
 
-- **Locale-independent**: Basic ASCII uppercasing is applied. Behavior with non-ASCII characters may vary.
+- **Not limited to ASCII**: accented letters are converted too: `$toUppercase[école]` → `ÉCOLE`.
 - **Only letters**: Digits, punctuation, and whitespace pass through unchanged.
 - **Often paired with $toLowercase**: Choose one convention and stick with it for comparisons.
 
@@ -77,6 +73,6 @@ $endif
 
 ```bdfd
 $title[SHOUTING FORMATTER]
-$description[Uppercase: **$toUpperCase[$message]**]
+$description[Uppercase: **$toUppercase[$message]**]
 $color[#5865F2]
 ```

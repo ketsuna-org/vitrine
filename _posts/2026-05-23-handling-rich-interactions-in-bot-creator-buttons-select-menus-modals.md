@@ -19,11 +19,11 @@ In this guide, we will break down exactly how **Bot Creator** processes the `int
 
 ## 1. The Core Interaction Variables
 
-Whenever a user interacts with a component, the Bot Creator runner dispatches an `interactionCreate` context. The following global variables are always resolved:
+Whenever a user interacts with a component, the Bot Creator runner dispatches an `interactionCreate` context. The following interaction variables are always set (a value is an empty string when it does not apply, e.g. `((interaction.guildId))` in a DM):
 
 | Variable | Type | Description |
 | --- | --- | --- |
-| `((interaction.kind))` | string | The type of interaction: `button`, `select`, `modal`, `command`, or `autocomplete`. |
+| `((interaction.kind))` | string | The type of interaction: `button`, `select` (a component interaction that carries selected values), `modal`, `command`, or `autocomplete`. |
 | `((interaction.customId))` | string | The unique developer-defined identifier bound to the clicked element. |
 | `((interaction.userId))` | string | The Discord ID of the user who triggered the interaction. |
 | `((interaction.channelId))` | string | The ID of the channel where the interaction happened. |
@@ -31,7 +31,7 @@ Whenever a user interacts with a component, the Bot Creator runner dispatches an
 | `((interaction.messageId))` | string | The ID of the message holding the button or dropdown. |
 
 > [!NOTE]
-> Member context variables like `((member.nick))`, `((member.joinedAt))`, and `((member.roles))` are automatically enriched and available whenever the interaction occurs inside a guild server!
+> Member context variables like `((member.nick))`, `((member.joinedAt))`, and `((member.roles))` are added when the interaction carries a guild member, i.e. when it occurs inside a guild server.
 
 ---
 
@@ -50,7 +50,7 @@ $endif
 ```
 
 > [!TIP]
-> Use [$ephemeral](/docs/ephemeral/) to make interaction responses private to the user who clicked the button. In Blocks, use `respondWithMessage` with `ephemeral: true`.
+> Use [$ephemeral](/docs/ephemeral/) to make interaction responses private to the user who clicked the button.
 
 > [!TIP]
 > Always verify that `((interaction.kind))` equals `button` if you have overlapping custom IDs between buttons and dropdowns to prevent execution leakage.
@@ -65,6 +65,7 @@ Select menus allow users to choose one or multiple items from a pre-configured l
 For dropdowns where the choices are custom text values (e.g. choosing a command category).
 *   `((interaction.stringSelect.value))` — Returns the first selected choice.
 *   `((interaction.stringSelect.values))` — Returns a comma-separated list of all chosen options (for multi-select).
+*   `((interaction.stringSelect.value[2]))` — Returns the 2nd chosen option (1-based index; the same pattern works for the other select families, e.g. `((interaction.userSelect.userId[2]))`).
 *   `((interaction.stringSelect.count))` — Returns the total count of chosen options.
 
 ### B. User Selects
@@ -87,9 +88,9 @@ For dropdowns populated dynamically with server text/voice channels.
 
 ### E. Mentionable Selects
 For dropdowns where users can select either users or roles.
-*   `((interaction.mentionableSelect.userId))` — Returns the selected user or role ID.
-*   `((interaction.mentionableSelect.userIds))` — Returns all selected IDs.
-*   `((interaction.mentionableSelect.userCount))` — Returns the total count.
+*   `((interaction.mentionableSelect.userId))` — Returns the first selected user ID (the IDs of the selected users when the selection contains users, otherwise the raw selected values).
+*   `((interaction.mentionableSelect.userIds))` — Returns all of those IDs, comma-separated.
+*   `((interaction.mentionableSelect.userCount))` — Returns how many IDs that list holds.
 
 ---
 
@@ -121,13 +122,9 @@ $endif
 ```
 
 > [!IMPORTANT]
-> Modal inputs are always processed as strings. If you expect a number, use standard parsing tools like `$parseInt` before executing mathematical comparisons inside your conditions.
+> Modal inputs are always processed as strings. If you expect a number, check it first with `$isNumber[...]` (it returns `true` or `false`) before using it in mathematical operations.
 
 ---
-
-## 5. Full Interactive Flow Architecture
-
-Here is how a complete interaction cycle looks in Bot Creator:
 
 ## 5. Autocomplete & Context Menu Interactions
 
@@ -136,7 +133,6 @@ Beyond buttons and modals, Discord supports two other powerful interaction syste
 ### Autocomplete Interactions
 When a user begins typing a slash command, your bot can provide dynamic completion choices. During this phase:
 *   `((interaction.kind))` resolves to `autocomplete`.
-*   You can intercept the partial input and use custom BDFD logic to return instantaneous matching choices.
 
 ### User & Message Context Menus
 Context menus allow users to right-click a user or message and execute an application action (e.g., `Apps > Report Message` or `Apps > User Info`).
@@ -156,15 +152,15 @@ Whenever an interaction occurs, Bot Creator automatically enriches the context w
 ### Guild Member Attributes (`((member.*))`)
 Available inside server environments:
 *   `((member.isBooster))` — Returns `true` or `false` indicating if the user is boosting the current server.
-*   `((member.communicationDisabledUntil))` — Returns the ISO8601 timeout date/time if the member is currently timed out by moderators (empty otherwise).
+*   `((member.communicationDisabledUntil))` — Returns the ISO8601 timeout date/time. It is only set while the member has a timeout (`communicationDisabledUntil`) on record.
 *   `((member.roles))` — Comma-separated list of all role IDs assigned to the member.
 *   `((member.roles.count))` — The number of roles the member holds.
-*   `((member.avatar))` — Resolved webp member-specific avatar URL (supports animated GIFs).
+*   `((member.avatar))` — The member's avatar image URL (`.webp`, size 1024; a default Discord avatar when there is none).
 
 ### Global User Profile Attributes (`((user.*))` / `((author.*))`)
 Global user configurations:
 *   `((user.banner))` — URL of the user's custom profile banner image.
-*   `((user.bannerColor))` — HEX color code of the profile banner (e.g. `#ff00aa`).
+*   `((user.bannerColor))` — The user's accent color as a HEX code (e.g. `#ff00aa`); empty when the user has none.
 *   `((user.createdAt))` — Exact ISO8601 timestamp of when the user account was created, calculated directly from the Snowflake ID.
 
 ---

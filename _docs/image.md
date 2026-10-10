@@ -23,7 +23,7 @@ $image[url;(embedIndex)]
 | Parameter | Description |
 |---|---|
 | `url` | URL of the image to display. Must be a direct URL to an image file (PNG, JPG, GIF, WebP). |
-| `embedIndex` | Optional. Index of the targeted embed (defaults to 0). |
+| `embedIndex` | Optional. Index of the targeted embed, from 1 to 10 (1 by default, also when empty). Any other value is an error. |
 
 ## Return Value
 
@@ -32,7 +32,7 @@ Modifies the response currently being constructed. Returns nothing.
 ## Behavior
 
 - The image occupies the full width of the embed.
-- If the URL is invalid or the image is inaccessible, the embed will display without the image.
+- The URL is handed to Discord as given; an empty URL sets no image.
 - Only one call to `$image[]` per embed: the last call overwrites any previous ones.
 
 ## Difference between $image[] and $thumbnail[]

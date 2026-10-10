@@ -5,11 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: logQuota
 syntax: $logQuota
-description: Displays information on the remaining log quota for the BDFD application. Useful for monitoring consumption.
+description: Returns the log quota value supplied by the execution context (the log.quota variable), or 1000 if none is supplied.
 ---
 # $logQuota
 
-The function `$logQuota` returns the **log quota information** of your BDFD application.
+The function `$logQuota` returns a log quota value. It does not count the logs you emit.
 
 ## Syntax
 
@@ -19,51 +19,36 @@ $logQuota
 
 ## Parameters
 
-None.
+None. Any argument is refused ("Invalid argument count").
 
 ## Return Value
 
-- **Type** : String / Number
-- The number of remaining logs or the percentage of used quota.
+- **Type**: String (a number as text)
+- The value of the context variable `log.quota` if the entry point supplied one, otherwise the constant `1000`.
 
 ## Behavior
 
-- Returns log consumption statistics.
-- Useful for monitoring if you are approaching your plan's limit.
-- The exact value depends on the BDFD plan (free, premium, etc.).
+- The value is **not** decreased by calls to `$log[]`: the engine keeps no counter.
+- No plan or subscription is consulted.
 
 ## Examples
 
 ### Display the quota
 
 ```bdfd
-$sendMessage[Logs remaining: $logQuota]
+$sendMessage[Log quota: $logQuota]
 ```
 
-### Low quota alert
+### Compare with a threshold
 
 ```bdfd
 $if[$logQuota<100]
-  $sendMessage[⚠️ Warning: low log quota ($logQuota remaining).]
+  $sendMessage[Low log quota.]
 $else
-  $sendMessage[Logs remaining: $logQuota]
+  $sendMessage[Log quota: $logQuota]
 $endif
-```
-
-### Admin dashboard
-
-```bdfd
-$title[📊 Bot Status]
-$description[
-**Logs Remaining**: $logQuota
-**Uptime**: $uptime
-]
-$color[#FEE75C]
 ```
 
 ## Notes
 
-- The log quota varies according to your BDFD subscription.
-- Every `$log[]` call consumes a log.
-- Monitor your quota to avoid losing logs in production.
-
+- `$log[text]` forwards its text to the log callback of the execution context and returns an empty string.

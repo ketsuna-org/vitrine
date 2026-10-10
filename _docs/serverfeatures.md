@@ -4,47 +4,29 @@ title: $serverFeatures[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverFeatures
-syntax: $serverFeatures
-description: Returns the list of enabled premium features on the Discord server (partnership features, verification, experiments, etc.).
+syntax: $serverFeatures[(unused)]
+description: Returns the server features list supplied by the host in the guild.features context variable, or an empty string.
 ---
 
 # $serverFeatures[] — Server Features
 
-`$serverFeatures[]` returns the list of special features enabled on the Discord server. These "features" include partnership benefits, community server features, and experimental capabilities.
+`$serverFeatures[]` returns the text of the `guild.features` context variable supplied by the host. The engine does not query Discord for the features and does not know their names.
 
 ## Syntax
 
 ```
-$serverFeatures
+$serverFeatures[(unused)]
 ```
 
 ## Parameters
 
-No parameters.
+One optional argument is accepted but ignored: the features of another server cannot be read.
 
 ## Return Value
 
-- **Type**: `string` (list)
-- A string containing the codes of enabled features, separated by commas.
-
-## Common Features
-
-| Code | Description |
-|------|-------------|
-| `NEWS` | Announcement channel enabled |
-| `VANITY_URL` | Custom invite URL |
-| `ANIMATED_ICON` | Animated icon (boost level 1) |
-| `BANNER` | Server banner (boost level 2) |
-| `INVITE_SPLASH` | Custom invite splash image |
-| `COMMUNITY` | Community server enabled |
-| `DISCOVERABLE` | Server listed in Server Discovery |
-| `MEMBER_VERIFICATION_GATE_ENABLED` | Rules screening screen enabled |
-| `WELCOME_SCREEN_ENABLED` | Welcome screen enabled |
-| `PREVIEW_ENABLED` | Server preview enabled before joining |
-| `TICKETED_EVENTS_ENABLED` | Ticketed events enabled |
-| `MONETIZATION_ENABLED` | Monetization enabled |
-| `PRIVATE_THREADS` | Private threads enabled |
-| `THREADS_ENABLED` | Threads enabled |
+- **Type**: `string`
+- The text of `guild.features` as supplied by the host; when the bot runner builds it, it is the list of feature codes of the current server joined with commas (for example `COMMUNITY,NEWS`).
+- Empty string if the host supplied none.
 
 ## Examples
 
@@ -91,7 +73,6 @@ $endif
 
 ## Notes
 
-- The features list is returned as a single comma-separated string, not an array.
-- Use `$checkContains[]` to check the presence of a specific feature.
-- Available features depend on the boost level and the status of the server (e.g. partnered, verified).
-- Some features can be enabled manually in the server settings (e.g. COMMUNITY).
+- The features list is returned as a single string, not an array.
+- Use `$checkContains[]` to check the presence of a specific feature; the comparison is case-sensitive.
+- The feature codes used in the examples (`COMMUNITY`, `NEWS`, `VANITY_URL`, `ANIMATED_ICON`) are the codes Discord uses; the engine itself does not validate them.

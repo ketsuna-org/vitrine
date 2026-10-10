@@ -4,36 +4,31 @@ title: $afkTimeout[]
 translation_key: docs
 category: "Entity Info"
 function_name: afkTimeout
-syntax: $afkTimeout
-description: Returns the inactivity delay (in seconds) before a member is moved to the AFK channel.
+syntax: $afkTimeout[(serverID)]
+description: Returns the AFK timeout of the server in seconds, for the current server or for the server whose ID is given.
 ---
 
 # $afkTimeout[] — AFK Delay
 
-`$afkTimeout[]` returns the inactivity delay configured on the server, after which an inactive member in a voice channel is automatically moved to the AFK channel.
+`$afkTimeout[]` returns the AFK timeout configured on the server (the inactivity delay of Discord's AFK setting), in seconds.
 
 ## Syntax
 
 ```
-$afkTimeout
+$afkTimeout[(serverID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description | Required |
+|-----------|-------------|:--------:|
+| `serverID` | ID of the server to read. If omitted or empty, the current server is used. A value that is not a positive number raises `Invalid guild ID.`; an unreachable server raises `Guild not found.` | No |
 
 ## Return value
 
 - **Type**: `integer`
-- The delay in seconds. Possible values are: 60, 300, 900, 1800, 3600.
-
-| Seconds | Equivalent |
-|----------|------------|
-| 60 | 1 minute |
-| 300 | 5 minutes |
-| 900 | 15 minutes |
-| 1800 | 30 minutes |
-| 3600 | 1 hour |
+- The delay in seconds, as given by Discord for the server (for example `300` for 5 minutes).
+- If the value is unavailable, the error `Guild AFK timeout is unavailable.` is raised.
 
 ## Examples
 
@@ -55,11 +50,6 @@ $sendMessage[💤 AFK Delay: **$var[timeoutText]**]
 
 ```bdfd
 $title[⚙️ Settings of $serverName]
-$var[afk;None]
-$if[$afkChannelID!=]
-  $var[afk;<#$afkChannelID>]
-$endif
-$addField[💤 AFK Channel;$var[afk];yes]
 $addField[⏱️ AFK Delay;$round[$divide[$afkTimeout;60]] minutes;yes]
 $color[#5865F2]
 ```
@@ -75,6 +65,4 @@ $endif
 ## Notes
 
 - The AFK channel is configured separately; use `$afkChannelID[]` to retrieve it.
-- If no AFK channel is configured, the timeout has no effect.
-- Discord limits the possible values to the list above (no custom values).
-- Members in the AFK channel are automatically muted.
+- The value is returned even if the server has no AFK channel; `$afkChannelID[]` raises an error in that case.

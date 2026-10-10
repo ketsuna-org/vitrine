@@ -6,68 +6,61 @@ category: "Permission"
 
 # $checkUsersPerms
 
-Checks if one or multiple users have all the specified permissions. Returns `true` or `false`.
+Checks if **one user** has all the specified permissions. Returns `true` or `false`.
 
 ## Syntax
 
 ```bdfd
-$checkUsersPerms[userIds;permissions;(separator);(amount)]
+$checkUsersPerms[userID;permission1;(permission2);(...)]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `userIds` | IDs of users to check, separated by the chosen separator | Yes |
-| `permissions` | Permissions to check, separated by `;` | Yes |
-| `separator` | Separator used in `userIds` (default: `;`) | No |
-| `amount` | Minimum number of users who must have the permissions for the result to be `true` (default: 1) | No |
+| `userID` | ID of the user to check (a positive number, otherwise the error `Invalid user ID.` is raised) | Yes |
+| `permission1;(permission2);(...)` | One permission name per argument. At least one is required. | Yes |
 
 ## Description
 
-`$checkUsersPerms` is the **multi-user version** of `$checkUserPerms`. It checks whether one or more users possess all the specified permissions and allows defining a minimum threshold of users who must satisfy the condition.
+In the engine, `$checkUsersPerms` behaves **exactly like `$checkUserPerms`** (and `$hasPerms`): the first argument is a single user ID and every following argument is one permission name. It does **not** accept several user IDs, a separator or a minimum user count.
 
-This function performs an **inline** check — it does not interrupt the command and simply returns `true` or `false`.
+The check uses an **AND** logic: the result is `true` only when all listed permissions are present. The user's permissions are computed from the server roles (no channel overwrites). The server owner and users with the `Administrator` permission always get `true`. The function runs inline: it does not stop the command.
 
-The permissions check is done with an **AND** logic: all listed permissions must be present for a user to be counted as having them.
+## Return value
+
+`true` or `false`. An error is raised if:
+
+- the user ID is not a positive number (`Invalid user ID.`),
+- a permission argument is empty (`Permission is required.`),
+- a permission name is unknown or contains characters other than letters, digits and `_` (`Invalid permission.`),
+- the command is not run in a server (`Permission lookup requires a guild.`).
 
 ## Examples
 
-### Checking multiple users
+### Checking one user
 
 ```bdfd
-$if[$checkUsersPerms[$authorID;$mentioned[1];KickMembers]==true]
-  $kick[$mentioned[2]]
-  $sendMessage[User kicked.]
+$if[$checkUsersPerms[$authorID;KickMembers]==true]
+  $sendMessage[You can kick members.]
 $else
   $sendMessage[❌ Insufficient permissions.]
 $endif
 ```
 
-### At least 2 users must have Administrator
+### Several permissions at once
 
 ```bdfd
-$if[$checkUsersPerms[$authorID;$mentioned[1];$mentioned[2];Administrator;;2]==true]
-  $sendMessage[At least 2 users are administrators.]
+$if[$checkUsersPerms[$mentioned[1];ManageMessages;KickMembers]==true]
+  $sendMessage[This user can manage messages AND kick members.]
 $else
-  $sendMessage[Less than 2 users have Administrator permission.]
-$endif
-```
-
-### Custom separator
-
-```bdfd
-$var[ids;$authorID,$mentioned[1],$mentioned[2]]
-$if[$checkUsersPerms[$var[ids];ManageMessages;,]==true]
-  $clear[50]
-  $sendMessage[Messages cleared.]
+  $sendMessage[This user does not have both permissions.]
 $endif
 ```
 
 ## Notes
 
-- Uses an **AND** logic for permissions: all listed permissions are required for a user.
-- The `amount` parameter lets you define how many users must satisfy the condition.
-- Use `$checkUserPerms` for a single-user check (simpler syntax).
-- Permissions are in **PascalCase**: `KickMembers`, `BanMembers`, `Administrator`, `ManageMessages`, etc.
+- Uses an **AND** logic: all listed permissions are required.
+- Permission names are case-insensitive and non-alphanumeric characters are ignored (`KickMembers`, `kick_members` and `kickmembers` are the same). Some aliases are accepted, for example `Admin` for `Administrator`, `Ban` for `BanMembers`, `Kick` for `KickMembers`, `ManageServer` for `ManageGuild`.
 - `Administrator` covers all permissions.
+- `$checkUserPerms` is the same function under another name.

@@ -10,7 +10,7 @@ description: Returns the description of the Discord server (configured in the se
 
 # $serverDescription[] — Server Description
 
-`$serverDescription[]` returns the text description of the Discord server as configured in the server settings (under the "Overview" section).
+`$serverDescription[]` returns the description of the current Discord server as reported by Discord.
 
 ## Syntax
 
@@ -68,7 +68,6 @@ $endif
 
 ## Notes
 
-- The description is optional; not all servers have one.
-- The maximum length of a server description is 1,000 characters.
-- Useful for displaying contextual information about the server in embeds or help commands.
-- Can be combined with other functions for more complete server information.
+- The description is optional; the function returns an empty string for a server without one.
+- The server is fetched from Discord; if it cannot be fetched the error `Guild not found.` is raised.
+- `$serverDescription` takes no argument.

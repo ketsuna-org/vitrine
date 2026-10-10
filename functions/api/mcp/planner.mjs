@@ -55,22 +55,22 @@ const RECIPES = [
   {
     id: "ping", mode: "bdfd", need: 1, words: ["ping", "latence", "latency", "lag"],
     fns: ["$ping", "$title", "$description", "$color", "$footer", "$addTimestamp", "$userName"],
-    skeleton: "$color[5865F2]\n$title[🏓 Pong!]\n$description[Latence : **$ping ms**]\n$footer[Demandé par $userName]\n$addTimestamp",
+    skeleton: "$color[#5865F2]\n$title[🏓 Pong!]\n$description[Latence : **$ping ms**]\n$footer[Demandé par $userName]\n$addTimestamp",
   },
   {
     id: "embed", mode: "bdfd", need: 1, words: ["embed", "annonce", "announcement", "joli", "polished"],
     fns: ["$title", "$description", "$color", "$footer", "$thumbnail", "$image", "$addField", "$addTimestamp"],
-    skeleton: "$title[Titre]\n$description[Texte]\n$color[5865F2]\n$footer[Pied de page]\n$addTimestamp",
+    skeleton: "$title[Titre]\n$description[Texte]\n$color[#5865F2]\n$footer[Pied de page]\n$addTimestamp",
   },
   {
     id: "userinfo", mode: "bdfd", need: 1, words: ["userinfo", "profil", "profile", "avatar", "pdp"],
     fns: ["$userName", "$userID", "$authorAvatar", "$title", "$description", "$thumbnail", "$color"],
-    skeleton: "$title[$userName]\n$thumbnail[$authorAvatar]\n$description[ID : $userID]\n$color[5865F2]",
+    skeleton: "$title[$userName]\n$thumbnail[$authorAvatar]\n$description[ID : $userID]\n$color[#5865F2]",
   },
   {
     id: "serverinfo", mode: "bdfd", need: 1, words: ["serverinfo", "serveur", "server", "guild"],
     fns: ["$serverName", "$membersCount", "$serverIcon", "$title", "$description", "$thumbnail", "$color"],
-    skeleton: "$title[$serverName]\n$thumbnail[$serverIcon]\n$description[Membres : **$membersCount**]\n$color[5865F2]",
+    skeleton: "$title[$serverName]\n$thumbnail[$serverIcon]\n$description[Membres : **$membersCount**]\n$color[#5865F2]",
   },
   {
     id: "moderation", mode: "bdfd", need: 1, prio: 2, words: ["ban", "bannir", "kick", "expulser", "mute", "timeout", "moderation"],
@@ -105,12 +105,12 @@ const RECIPES = [
     id: "ticket", mode: "bdfd", need: 1, prio: 3, words: ["ticket", "tickets", "support"],
     fns: ["$createChannel", "$editChannelPerms", "$useChannel", "$addButton", "$deleteChannels", "$var", "$wait"],
     skeleton: "$var[chan;$createChannel[ticket-$userName;text]]\n$editChannelPerms[$var[chan];$authorID;68608;0]\n$useChannel[$var[chan]]\nTicket ouvert par <@$authorID>\n$addButton[no;close_ticket;Close Ticket;danger]",
-    gotchas: ["$newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] creates a private channel named ticket-<number or author name> (@everyone denied, author and bot allowed) and posts messageInTicket in it; $closeTicket only deletes a channel whose name starts with ticket-. Add a close button with $addButton and delete the channel from the button handler with $closeTicket (or $deleteChannels[$channelID])."],
+    gotchas: ["$newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] creates a private channel named ticket-<number or author name> (@everyone denied, author and bot allowed) and posts messageInTicket in it; $closeTicket only deletes a channel whose name contains the word ticket. Add a close button with $addButton and delete the channel from the button handler with $closeTicket (or $deleteChannels[$channelID])."],
   },
   {
     id: "welcome", mode: "bdfd", need: 1, words: ["welcome", "bienvenue", "accueil", "join", "rejoint", "arrivee"],
     fns: ["$userName", "$serverName", "$membersCount", "$channelSendMessage", "$title", "$description", "$color"],
-    skeleton: "$title[Bienvenue $userName !]\n$description[Tu es le membre n°$membersCount de **$serverName**.]\n$color[57F287]",
+    skeleton: "$title[Bienvenue $userName !]\n$description[Tu es le membre n°$membersCount de **$serverName**.]\n$color[#57F287]",
   },
   {
     id: "counter-blocks", mode: "blocks", need: 1, prio: 2, words: ["warn", "avertir", "avertissement", "compteur", "counter", "points", "xp", "niveau", "level", "increment"],

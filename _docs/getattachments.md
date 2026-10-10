@@ -4,79 +4,73 @@ title: $getAttachments
 translation_key: docs
 category: "Entity Info"
 function_name: getAttachments
-syntax: $getAttachments[messageID]
-description: Gets the URLs of a specific message's attachments. Returns a list of comma-separated URLs.
+syntax: $getAttachments[index]
+description: Returns the URL of one attachment, selected by a 0-based index, of the message that triggered the command.
 ---
 
 # $getAttachments
 
-The `$getAttachments[]` function allows you to **retrieve the URLs of attachments** (images, files, videos) of a Discord message.
+The `$getAttachments[]` function **retrieves the URL of one attachment** (image, file, video...) of the message that triggered the command. The attachment is selected by its position.
 
 ## Syntax
 
 ```
-$getAttachments[messageID]
+$getAttachments[index]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `messageID` | The ID of the message containing the attachments to retrieve. |
+| `index` | Required. The position of the attachment, **starting at 0** (`0` is the first attachment). Surrounding spaces are removed. A value that is not a whole number, or is negative, raises `Attachment index must be zero or positive.` |
+
+The argument is **not** a message ID: the message is always the current one (the `message.id` and `channel.id` of the command context).
 
 ## Return Value
 
 - **Type**: String
-- The full URLs of the attachments, separated by `, `.
-- An empty string if the message contains no attachments.
+- The URL of the attachment at that position (the URL given by Discord for the attachment).
+- If the message has no attachment at that position (including a message with no attachment at all), the error `Attachment index is out of range.` is raised: the function does not return an empty string.
 
 ## Behavior
 
-- Returns all URLs of files attached to the message.
-- Works with all types of files supported by Discord (images, videos, documents, etc.).
-- Each URL is a direct link to the file on Discord's servers.
+- The message is read from Discord each time the function runs. If the context has no valid channel ID and message ID, the error `Invalid Discord ID.` is raised.
+- The function returns one URL per call, never a list. There is no function in the engine that returns the number of attachments; protect the call with `$try` / `$catch` / `$endTry` if the message may have none.
 
 ## Examples
 
-### Simple retrieval
+### First attachment
 
 ```bdfd
-$var[atts;$getAttachments[$messageID]]
-$if[$var[atts]!=]
-  Attachments: $var[atts]
-$else
-  No attachments in this message.
-$endif
+$try
+$sendMessage[First attachment: $getAttachments[0]]
+$catch
+$sendMessage[No attachment in this message.]
+$endTry
 ```
 
-### Loop through attachments
+### Show an attached image in an embed
 
 ```bdfd
-$var[atts;$getAttachments[$messageID]]
-$if[$var[atts]!=]
-  $textSplit[$var[atts];, ]
-  $for[$getTextSplitLength]
-    📎 Attachment $loopCount: $splitText[$loopCount]
-  $endFor
-$endif
+$try
+$title[Your image]
+$image[$getAttachments[0]]
+$catch
+No image found.
+$endTry
 ```
 
-### Save image
+### Second attachment
 
 ```bdfd
-$var[url;$getAttachments[$noMentionMessage]]
-$if[$var[url]!=]
-  $textSplit[$var[url];, ]
-  $var[first;$splitText[1]]
-  $image[$var[first]]
-  $sendMessage[Image retrieved:]
-$else
-  $sendMessage[No image found.]
-$endif
+$try
+$sendMessage[Second attachment: $getAttachments[1]]
+$catch
+$sendMessage[The message has fewer than two attachments.]
+$endTry
 ```
 
 ## Notes
 
-- Discord attachment URLs expire after some time (a few hours to a few days).
-- For permanent usage, download and host the files elsewhere.
-- Use `$textSplit[]` to process each attachment individually.
+- Discord attachment URLs can expire; do not rely on them for permanent storage.
+- Indexes start at `0`, unlike most other BDFD list functions.

@@ -22,15 +22,16 @@ $unregisterGuildCommands[(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `guildID` | Optional - The ID of the server from which to delete the slash commands. By default, the current server. An invalid ID raises an error. |
+| `guildID` | Optional - The ID of the server from which to delete the slash commands. By default, the current server. A non-numeric or non-positive ID raises the error `Invalid guild ID.` |
 
 ## Return Value
 
-None (empty string). An error is raised if the operation fails.
+None (empty string). An error is raised if the operation fails (for example when guild command registration is not available in the current runtime, or when Discord rejects the request).
 
 ## Behavior
 
-- Deletes ONLY guild commands, not global commands.
+- Deletes ONLY guild commands, not global commands. Every slash command registered on that server for the bot is deleted, not only those created from the bot's command list.
+- With `$registerGuildCommands`, only the bot's slash commands flagged as local-only are registered again, so the two functions are not exact inverses.
 
 ## Examples
 
@@ -67,5 +68,5 @@ $endif
 ## Notes
 
 - Global commands are NOT affected by this function.
-- To re-register, use `$registerGuildCommands[]`.
+- To re-register, use `$registerGuildCommands` (only the bot's local-only slash commands are registered).
 - Useful before leaving a server or to clean up old commands.

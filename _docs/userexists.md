@@ -4,36 +4,36 @@ title: $userExists
 translation_key: docs
 category: "Entity Info"
 function_name: userExists
-syntax: $userExists[userID/mention]
-description: Checks if the specified user (by ID or mention) exists on Discord and returns "true" or "false".
+syntax: $userExists[userID]
+description: Checks if a user ID can be resolved by the bot and returns "true" or "false". Only numeric IDs are accepted.
 ---
 
 # $userExists
 
-The `$userExists` function checks if a Discord user exists, based on an **ID** or a **mention**.
+The `$userExists` function checks if the bot can look up a Discord user from a numeric **ID**.
 
 ## Syntax
 
 ```
-$userExists[userID/mention]
+$userExists[userID]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID/mention` | The numerical ID (snowflake) or the mention (`<@ID>`) of the user to check. |
+| `userID` | The numerical ID (digits only, greater than 0). A mention such as `<@ID>`, text, or `0` raises the error `Invalid user ID.` (it does not return `false`). |
 
 ## Return Value
 
 - **Type**: String `"true"` or `"false"`
-- `"true"` if the user exists and is known to the bot.
-- `"false"` if the ID is invalid or the user is not found.
+- `"true"` if the user lookup returns a user.
+- `"false"` if the lookup finds no user.
+- An invalid ID (not digits only, or zero) is an error, not `"false"`.
 
 ## Behavior
 
-- The verification is based on the users accessible to the bot (shared server cache).
-- A user can exist on Discord without being on the bot's server — in this case, the result depends on the context.
+- The user is fetched from Discord by ID; a "user not found" answer from Discord gives `false`. The server membership of the user is not checked.
 
 ## Examples
 
@@ -47,6 +47,7 @@ $if[$userExists[$mentioned[1]]==true]
   **Name:** $userName[$mentioned[1]]
   ]
   $color[#5865F2]
+  $sendMessage[User found.]
 $else
   $sendMessage[I cannot find this user.]
 $endif
@@ -62,6 +63,5 @@ $endif
 
 ## Notes
 
-- Use `$userExists` to validate user inputs before executing actions that might fail.
-- `$userExists` does not check if the user is a **member of the server**, only if they exist on Discord and are known to the bot.
-- This function is useful for preventing errors in commands that use user-provided IDs.
+- `$userExists` does not check if the user is a **member of the server**.
+- Pass a plain ID: `$mentioned[1]` returns the ID of the first mentioned user (message commands only).

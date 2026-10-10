@@ -4,77 +4,59 @@ title: $removeComponent[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: removeComponent
-syntax: $removeComponent[customId]
-description: Removes a specific component (button, menu, text field, etc.) from a message using its custom identifier (customId).
+syntax: $removeComponent[customId;(messageID)]
+description: Removes a specific component from the response being built or from an existing message, using its custom ID (or URL for a link button).
 ---
 
 # $removeComponent[] — Remove a Component
 
-`$removeComponent[]` removes a specific component from a message based on its `customId`. This allows dynamically disabling or removing buttons, menus, or input fields after an interaction.
+`$removeComponent[]` removes one component, found by its custom ID (or by its URL for a link button), from the response being built or from a message the bot already sent. Action rows left empty are dropped.
 
 ## Syntax
 
-```
-$removeComponent[customId]
+```text
+$removeComponent[customId;(messageID)]
 ```
 
 ## Parameters
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `customId` | Yes | Identifier of the component to remove (defined at its creation). |
+| `customId` | Yes | Custom ID of the component to remove (at most 100 characters, otherwise the engine raises a length error), or the URL of a link button. |
+| `messageID` | No | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). Without it (or when empty), the components staged in the current script are searched. |
 
 ## Return Value
 
-Removes the component from the message. If no component with this `customId` exists, nothing happens.
+Returns an empty string. If no component has this custom ID (or URL), the function fails with `Component <id> not found.`
+
+## Behavior
+
+- **Without `messageID`**, only the components added earlier in the same script are searched. In the script run for a click, the clicked message is not part of the response being built, so give its ID.
+- **With `messageID`**, the engine reads the components of that message and stages an edit without the component; the edit is applied when the response is flushed. This needs the bot's component service: without it the function fails with `No component service configured.`
+- The text of the message is not changed: use `$editMessage` for that.
 
 ## Examples
 
-### Removal after click
+### Remove a button from the response being built
 
 ```bdfd
-$if[$customID==confirm_btn]
-  $removeComponent[confirm_btn]
-  $removeComponent[cancel_btn]
-  $editMessage[$channelID;$messageID;✅ Action confirmed!]
-$endif
+Choose
+$addButtonCV2[confirm_btn;Confirm;success]
+$addButtonCV2[cancel_btn;Cancel;danger]
+$removeComponent[cancel_btn]
 ```
 
-### Disable a button after use
+### Remove a component of an existing message
 
 ```bdfd
 $if[$customID==claim_reward]
-  $removeComponent[claim_reward]
-  $sendMessage[$username has claimed the reward!]
-$endif
-```
-
-### Remove multiple specific components
-
-```bdfd
-$if[$customID==reset_form]
-  $removeComponent[name_input]
-  $removeComponent[email_input]
-  $removeComponent[submit_btn]
-  $editMessage[$channelID;$messageID;Form reset]
-$endif
-```
-
-### Menu that disappears after selection
-
-```bdfd
-$if[$customID==role_menu]
-  $removeComponent[role_menu]
-  $var[role;$getRoleSelectRoleID[1]]
-  $giveRole[$authorID;$var[role]]
-  $editMessage[$channelID;$messageID;Role <@&$var[role]> assigned!]
+  $removeComponent[claim_reward;123456789012345678]
 $endif
 ```
 
 ## Notes
 
-- The `customId` must match exactly the one defined when creating the component (`$addButton[customId;...]`, `$addTextInput[customId;...]`, etc.).
-- If the component doesn't exist, the function fails silently.
-- Used primarily in the script run by a component interaction (read with `$customID`) to modify the message after a user action.
+- The custom ID must match exactly (case-sensitive).
+- A missing component is an error, not a silent no-op.
 - To remove all buttons at once, use `$removeButtons[]`.
 - To remove everything, use `$removeAllComponents[]`.

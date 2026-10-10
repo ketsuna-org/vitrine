@@ -22,11 +22,11 @@ $unTimeout[(userID)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | Optional - The ID of the user to free from timeout. If omitted or empty, the users mentioned in the message are used; an error is raised if there is none. |
+| `userID` | Optional - The ID of the user to free from timeout (must be a positive number, otherwise the error `Missing or invalid user ID.` is raised). If omitted or empty, every user mentioned in the message is used (each distinct mention is processed); if there is no mention either, the error `A user ID or user mention is required.` is raised. |
 
 ## Return Value
 
-None (empty string). An error is raised if the user ID is invalid or if the bot cannot remove the timeout.
+None (empty string). An error is raised if the user ID is invalid, or if the bot cannot remove the timeout: the bot needs the `ModerateMembers` permission, and the operation is refused when the target is the server owner, an administrator, or has a highest role equal to or above the bot's.
 
 ## Examples
 
@@ -57,5 +57,5 @@ $sendMessage[🙏 Pardon granted. <@$mentioned[1]> can participate again.]
 
 ## Notes
 
-- The bot must have the `ModerateMembers` permission.
+- The bot must have the `ModerateMembers` permission (or Administrator). The server owner, administrators and members whose highest role is equal to or above the bot's highest role cannot be targeted.
 - Use `$isTimedOut` to check if a user is in timeout before calling `$unTimeout`.

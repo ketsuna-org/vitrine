@@ -9,11 +9,20 @@ import { readFile, readdir } from 'node:fs/promises';
 
 // Structural tokens the parser handles itself: their page documents a block form, while the registry entry
 // is the inline function form, so their `syntax:` cannot be compared.
-const structural = new Set(['if', 'for', 'try', 'jsonforeach']);
+const structural = new Set(['if', 'for', 'try', 'jsonforeach', 'loop', 'while']);
 const dir = new URL('../_docs/', import.meta.url);
 const snapshot = JSON.parse(await readFile(new URL('../_data/bdfd-engine-signatures.json', import.meta.url), 'utf8'));
 const knownGaps = JSON.parse(await readFile(new URL('./docs_engine_known_gaps.json', import.meta.url), 'utf8'));
 const front = text => Object.fromEntries([...(text.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '').matchAll(/^(\w+):\s*(.*)$/gm)].map(m => [m[1], m[2].replace(/^["']|["']$/g, '').trim()]));
+
+// The function a page documents and the syntax it advertises. Pages without `function_name` / `syntax:` front matter
+// (most component pages) are still compared: the function is the file name and the syntax is the first line of the
+// code block under `## Syntax`.
+function pageFunction(file, f, text) {
+  const name = (f.function_name || file.replace(/\.md$/, '')).toLowerCase();
+  const syntax = f.syntax ?? text.match(/^## Syntax\s*\n```\w*\n([^\n]*)\n/m)?.[1]?.trim() ?? '';
+  return { name, syntax, hasFrontMatterName: Boolean(f.function_name) };
+}
 
 // Argument counts one syntax string advertises. A parameter written `(x)` or `x?` is optional, and every
 // parameter inside a `( ... ; ... )` group is optional. `...` marks a variadic tail.
@@ -71,12 +80,14 @@ test('documented BDFD syntax matches the argument counts the engine accepts', as
   const mismatches = [];
   for (const file of (await readdir(dir)).sort()) {
     if (!file.endsWith('.md')) continue;
-    const f = front(await readFile(new URL(file, dir), 'utf8'));
-    if ((f.api_type || 'bdfd') !== 'bdfd' || !f.function_name) continue;
-    if (structural.has(f.function_name.toLowerCase())) continue;
-    const sig = snapshot[f.function_name.toLowerCase()];
-    if (!sig) continue;
-    const doc = advertisedCounts(f.syntax ?? '');
+    const text = await readFile(new URL(file, dir), 'utf8');
+    const f = front(text);
+    if ((f.api_type || 'bdfd') !== 'bdfd') continue;
+    const page = pageFunction(file, f, text);
+    if (structural.has(page.name)) continue;
+    const sig = snapshot[page.name];
+    if (!sig || !page.syntax) continue;
+    const doc = advertisedCounts(page.syntax);
     const eng = engineCounts(sig);
     const extra = [...doc].filter(n => !eng.has(n) && n < 99);
     // A page may leave out forms the engine also accepts; it must not advertise a count the engine rejects.
@@ -97,7 +108,7 @@ test('every documented BDFD function exists in the engine snapshot', async () =>
     if (!snapshot[f.function_name.toLowerCase()] && !(`exists:${file}` in knownGaps)) unknown.push(file);
   }
   // Control-flow keywords are handled by the parser, not the function registry.
-  assert.deepEqual(unknown.filter(f => !['for-loop.md', 'try-catch.md', 'jsonforeach.md'].includes(f)), []);
+  assert.deepEqual(unknown.filter(f => !['for-loop.md', 'try-catch.md', 'jsonforeach.md', 'loop.md', 'while.md'].includes(f)), []);
 });
 
 // Variadic syntaxes (`a;b;...`): pages differ on whether the repeated parameter right before `...` counts as
@@ -107,12 +118,14 @@ test('variadic syntaxes advertise the engine minimum argument count', async () =
   const wrong = [];
   for (const file of (await readdir(dir)).sort()) {
     if (!file.endsWith('.md')) continue;
-    const f = front(await readFile(new URL(file, dir), 'utf8'));
-    if ((f.api_type || 'bdfd') !== 'bdfd' || !f.function_name || structural.has(f.function_name.toLowerCase())) continue;
-    const sig = snapshot[f.function_name.toLowerCase()];
-    if (!sig) continue;
+    const text = await readFile(new URL(file, dir), 'utf8');
+    const f = front(text);
+    const page = pageFunction(file, f, text);
+    if ((f.api_type || 'bdfd') !== 'bdfd' || structural.has(page.name)) continue;
+    const sig = snapshot[page.name];
+    if (!sig || !page.syntax) continue;
     const mins = [];
-    advertisedCounts(f.syntax ?? '', mins);
+    advertisedCounts(page.syntax, mins);
     for (const m of mins) if (sig.min > m || sig.min < m - 1) wrong.push(`${file} (doc ${m}, engine ${sig.min})`);
   }
   assert.deepEqual(wrong, []);
@@ -172,4 +185,33 @@ test('examples never call $sendMessage with an empty text (the engine refuses it
     }
   }
   assert.deepEqual(bad, []);
+});
+
+// Every engine function that has a page: a page must exist for the functions of the registry that scripts can call,
+// otherwise the function is undocumented. Parser keywords documented elsewhere are listed explicitly.
+test('every engine function has a documentation page', async () => {
+  const pages = new Set();
+  for (const file of await readdir(dir)) {
+    if (!file.endsWith('.md')) continue;
+    const text = await readFile(new URL(file, dir), 'utf8');
+    pages.add(file.replace(/\.md$/, '').toLowerCase());
+    const name = front(text).function_name;
+    if (name) pages.add(name.toLowerCase());
+  }
+  // $loopIndex, $loopCount, $loopIteration are documented on the $for page.
+  const onForPage = new Set(['loopindex', 'loopcount', 'loopiteration']);
+  const missing = Object.keys(snapshot).filter(n => !pages.has(n) && !onForPage.has(n));
+  assert.deepEqual(missing, [], 'Functions of the engine registry without a page in _docs/.');
+});
+
+// A previous pass left `0` as the default embed index on several pages while the engine counts from 1 (0 is an error).
+test('embedIndex is documented as 1 to 10, never as a 0-based index', async () => {
+  const wrong = [];
+  for (const file of (await readdir(dir)).sort()) {
+    if (!file.endsWith('.md')) continue;
+    for (const line of (await readFile(new URL(file, dir), 'utf8')).split('\n')) {
+      if (/embed ?index/i.test(line) && /(default(s| is|:)? ?(to )?`?0\b|\b0 by default|\(0 =|starts at 0|0-based)/i.test(line)) wrong.push(`${file}: ${line.trim().slice(0, 100)}`);
+    }
+  }
+  assert.deepEqual(wrong, []);
 });

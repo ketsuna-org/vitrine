@@ -22,18 +22,19 @@ $addMessageReactions[channelID;messageID;emoji1;emoji2;...]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the channel containing the target message. |
-| `messageID` | The ID of the message to add the reactions to. |
-| `emoji1;emoji2;...` | List of emojis to add, separated by `;`. |
+| `channelID` | Required. The ID of the channel containing the target message (digits only, otherwise the error "Invalid Discord ID."). |
+| `messageID` | Required. The ID of the message to add the reactions to (digits only). |
+| `emoji1;emoji2;...` | Required, at least one. Emojis to add, separated by `;`. A Unicode emoji, a custom emoji `<:name:ID>` / `<a:name:ID>`, a numeric emoji ID, or a BDFD alias such as `:name:`. An empty argument or plain ASCII text is an error. |
 
 ## Return value
 
-This function does not return a value.
+Returns an empty string.
 
 ## Behavior
 
 - Allows reacting to old messages or messages in other channels.
-- The bot must have access to the channel and the `ADD_REACTIONS` permission.
+- The bot needs the Read Message History permission in the channel, and Add Reactions when at least one emoji is not already on the message (otherwise "Missing channel permissions for reactions."). An emoji already present on the message is not added again.
+- All emojis are validated first, then added one by one in the given order.
 - The message must exist and not have been deleted.
 
 ## Examples

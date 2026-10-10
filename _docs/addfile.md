@@ -5,12 +5,12 @@ translation_key: docs
 category: "Embed & Message"
 function_name: addFile
 syntax: $addFile[url;(spoiler)]
-description: Attaches a file (image, document, etc.) to a Discord message as a visual component. The file is displayed directly in the message.
+description: Adds a file component (Components V2) to the message being built.
 ---
 
-# $addFile[] — File Attachment
+# $addFile[] — File Component
 
-`$addFile[]` attaches a file (image, PDF, document, etc.) to a message. The file is downloaded from the provided URL and displayed as an attachment in the Discord message.
+`$addFile[]` adds a **file component** to the message being built. The component points to the given URL; Discord displays it in the message.
 
 ## Syntax
 
@@ -22,64 +22,43 @@ $addFile[url;(spoiler)]
 
 | Parameter | Required | Default | Description |
 |-----------|-------------|--------|-------------|
-| `url` | Yes | — | URL of the file to attach. |
-| `spoiler` | No | `no` | `yes` to spoiler the file. |
+| `url` | Yes | — | URL of the file. The engine does not check or download it, it is passed as is to the component. |
+| `spoiler` | No | `no` | `yes`/`true` to mark the file as a spoiler, `no`/`false` otherwise. An empty value means `no`; any other value is an error (`Expected yes or no, got "..."`). |
 
 ## Return value
 
-Adds the file as an attachment to the message. Discord displays the file according to its type (preview for images, icon + name for documents).
+None (empty string). The file component is added to the components of the pending message.
+
+## Components V2 message
+
+A file is a *rich* (Components V2) component. When the message contains one, it is sent as a Components V2 message, which **cannot carry text content or embeds**: the text of the message and the embeds are not sent. Put any text in a `$addTextDisplay[]` component instead.
 
 ## Examples
 
-### Attaching an image
+### Attaching a file
 
 ```bdfd
+$addTextDisplay[Here is the requested chart]
 $addFile[https://cdn.example.com/chart.png]
-$sendMessage[Here is the requested chart]
-```
-
-### PDF document
-
-```bdfd
-$addFile[https://docs.example.com/rapport-2024.pdf]
-$sendMessage[Annual report attached]
 ```
 
 ### Spoiler file
 
 ```bdfd
+$addTextDisplay[Warning: ending spoiler!]
 $addFile[https://cdn.example.com/spoiler_endgame.png;yes]
-$sendMessage[Warning: ending spoiler!]
 ```
 
 ### Multiple files
 
 ```bdfd
+$addTextDisplay[Configuration files]
 $addFile[https://files.example.com/logs.txt]
 $addFile[https://files.example.com/config.json]
-$sendMessage[Configuration files]
 ```
-
-### With embed and file
-
-```bdfd
-$title[Monthly Report]
-$description[Here is the detailed report of the month]
-$color[#5865F2]
-$addFile[https://reports.example.com/monthly.pdf]
-```
-
-## Supported file types
-
-- Images: PNG, JPEG, GIF, WebP
-- Documents: PDF, TXT, CSV, JSON, XML
-- Archives: ZIP (limited)
-- Max size: ~25 MB (depending on the server's boost level)
 
 ## Notes
 
-- The URL must be publicly accessible.
 - Multiple `$addFile[]` calls can be used in the same message.
 - Do not confuse this with `$addModalFileUpload[]`, which is for interactive modals.
-- The spoiler hides the file until the user clicks to reveal it.
-
+- `$addFile[]` ends the section opened by a previous `$addSection`: following components are not added to it.

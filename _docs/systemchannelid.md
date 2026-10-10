@@ -5,7 +5,7 @@ translation_key: docs
 category: "Entity Info"
 function_name: systemChannelID
 syntax: $systemChannelID
-description: Returns the identifier (ID) of the system messages channel configured on the Discord server (welcome and boost messages).
+description: Returns the identifier (ID) of the system messages channel configured on the Discord server (welcome and boost messages). Raises an error if none is set.
 ---
 
 # $systemChannelID[] — System Messages Channel
@@ -25,49 +25,26 @@ No parameters.
 ## Return Value
 
 - **Type**: `string`
-- The ID of the system channel, or an empty string if not configured.
+- The ID of the system channel of the current server.
+- If the server has no system channel, the function does **not** return an empty string: it raises the error `No system channel set in this server.`
+
+## Behavior
+
+- `$systemChannelID` takes **no arguments** (any argument is refused with "Invalid argument count").
+- The value is read from the server settings through the bot's channel service.
 
 ## Examples
 
 ### Simple Display
 
 ```bdfd
-$if[$systemChannelID!=]
 $sendMessage[📢 System messages are sent in <#$systemChannelID>]
-$else
-$sendMessage[ℹ️ No system channel is configured.]
-$endif
-```
-
-### Embed Configuration
-
-```bdfd
-$if[$systemChannelID!=]
-  $var[sys;<#$systemChannelID>]
-$else
-  $var[sys;Not configured]
-$endif
-$if[$rulesChannelID!=]
-  $var[rules;<#$rulesChannelID>]
-$else
-  $var[rules;Not configured]
-$endif
-$if[$afkChannelID!=]
-  $var[afk;<#$afkChannelID>]
-$else
-  $var[afk;Not configured]
-$endif
-$title[⚙️ Configuration of $serverName]
-$addField[📢 System Channel;$var[sys];yes]
-$addField[📋 Rules Channel;$var[rules];yes]
-$addField[💤 AFK Channel;$var[afk];yes]
-$color[#5865F2]
 ```
 
 ### Configuration Log
 
 ```bdfd
-$log[Configuration $serverName | System: $systemChannelID | Rules: $rulesChannelID | AFK: $afkChannelID]
+$log[Configuration $serverName | System: $systemChannelID]
 ```
 
 ### Contextual Help Message
@@ -80,7 +57,5 @@ $endif
 
 ## Notes
 
-- The system channel is configured in the server settings ("Overview" tab).
-- Messages regarding new members and Nitro boosts are automatically posted in this channel.
-- If the channel is not configured, system messages are not sent.
+- When no system channel is set, the call raises an error; use `$try` / `$catch` if the command must keep running.
 - This channel is distinct from the rules channel (`$rulesChannelID[]`).

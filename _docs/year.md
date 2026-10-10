@@ -5,14 +5,12 @@ translation_key: docs
 category: "Date & Time"
 function_name: year
 syntax: $year
-description: "Returns the current year (e.g., 2026). Resolved at runtime."
+description: "Returns the current year (e.g., 2026), in UTC or in the timezone set with $time."
 ---
 
 # $year[]
 
 The `$year` function returns the current year.
-
-> **Important:** This function uses the special identifier `((year))` which is resolved at **runtime**.
 
 ## Syntax
 
@@ -20,11 +18,11 @@ The `$year` function returns the current year.
 $year
 ```
 
-> **Note:** This function takes no parameters.
+> **Note:** This function takes no parameters (passing one is an error).
 
 ## Return Value
 
-The current year (for example `2026`), in the form of a string.
+The current year as a number (for example `2026`).
 
 ## Examples
 
@@ -48,5 +46,5 @@ $footer[© $year - MyBot]
 
 ## Notes
 
-- The year is based on the system clock of the server running the bot.
+- The year is read in UTC unless a timezone was set earlier with `$time[timezone]`.
 - Useful for dynamic copyright footers.

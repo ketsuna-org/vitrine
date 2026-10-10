@@ -4,7 +4,7 @@ title: $addField[]
 translation_key: docs
 category: "Embed & Message"
 function_name: addField
-syntax: $addField[name;value;(inline);(index)]
+syntax: $addField[name;value;(inline);(embedIndex)]
 description: Adds a field to a Discord embed. The fields help structure information as name/value pairs in the embed.
 ---
 
@@ -15,17 +15,17 @@ The `$addField[]` function adds a **field** to a Discord embed. Fields are displ
 ## Syntax
 
 ```
-$addField[name;value;(inline);(index)]
+$addField[name;value;(inline);(embedIndex)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `name` | Title of the field. Max 256 characters. |
-| `value` | Content of the field. Max 1024 characters. Supports markdown. |
-| `inline` | Optional. `yes` for inline (side-by-side), `no` by default. |
-| `index` | Optional. Insertion position (0 = start). Without an index, it is added to the end. |
+| `name` | Title of the field. Required, not empty, max 256 characters. |
+| `value` | Content of the field. Required, not empty, max 1024 characters. Supports markdown. |
+| `inline` | Optional. `yes` (or `true`) for inline (side-by-side), `no` (or `false`) by default. Any other value is an error ("Field inline flag must be yes or no."). |
+| `embedIndex` | Optional. Index of the embed that receives the field, from 1 to 10 (1 by default, also when empty). Any other value is an error. |
 
 ## Return value
 
@@ -33,10 +33,10 @@ Modifies the response currently being constructed. Returns nothing.
 
 ## Behavior
 
-- An embed can contain up to **25 fields**.
+- An embed can contain up to **25 fields**; a 26th field is an error. Fields are kept in the order of the calls and appended at the end: there is no insertion position.
+- An empty name or an empty value is an error ("Embed field name and value are required.").
 - **Inline** fields are displayed side-by-side: up to **3 per row**.
 - **Non-inline** fields (default) occupy the full width.
-- The index allows inserting a field at a precise position (0 = very beginning).
 
 ## Examples
 
@@ -74,22 +74,19 @@ $addField[Description;A great community server!]
 $color[#5865F2]
 ```
 
-### Insertion at a specific position
+### Fields on the second embed
 
 ```bdfd
-$addField[First;Content 1]
-$addField[Third;Content 3]
-$addField[Second;Content 2;no;1]
-
-$title[Field Order]
-$description[Field 2 has been inserted at position 1.]
-$color[#5865F2]
+$title[First embed;1]
+$addField[Name;Value;no;1]
+$title[Second embed;2]
+$addField[Name;Value;yes;2]
+$color[#5865F2;2]
 ```
 
 ## Notes
 
 - Both the name and value support Discord markdown.
 - Combine inline and non-inline fields for complex layouts.
-- Index 0 corresponds to the beginning (before all other fields).
-- If the index exceeds the number of existing fields, the field is added to the end.
+- The fourth argument selects the embed, not a position inside the embed.
 

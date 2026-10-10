@@ -10,7 +10,7 @@ description: Returns the name of the folder containing the command currently bei
 
 # $commandFolder
 
-The `$commandFolder` function **returns the name of the folder** in which the current command is organized in the BDFD console.
+The `$commandFolder` function **returns the name of the folder** stored with the command that is currently being executed.
 
 ## Syntax
 
@@ -20,18 +20,18 @@ $commandFolder
 
 ## Parameters
 
-None.
+None (passing one is an error).
 
 ## Return value
 
 - **Type**: String
-- The name of the folder (e.g., `Moderation`, `Fun`, `Admin`, `Utils`).
+- The `folder` value of the stored command (e.g., `Moderation`, `Fun`, `Admin`, `Utils`), or an empty string if the command has no folder.
+- If the execution has no command metadata (for example it was not started by a command), the error `Invocation metadata command.folder is unavailable.` is raised.
 
 ## Behavior
 
-- Folders are defined in the BDFD command manager.
+- The value is supplied by the command that starts the execution; no request is made to Discord.
 - Useful for organizing logs, help, or permissions.
-- Returns an empty string if the command is at the root.
 
 ## Examples
 
@@ -64,7 +64,7 @@ $if[$commandFolder==Admin]
   $endif
 $endif
 
-;; Command executed normally
+$c[Command executed normally]
 $sendMessage[✅ Command executed.]
 ```
 
@@ -84,6 +84,4 @@ $endif
 
 ## Notes
 
-- The name of the folder is the one set in the BDFD console.
-- Useful for command structuring and permissions.
 - Empty string if the command is not in a folder.

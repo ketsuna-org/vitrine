@@ -5,68 +5,84 @@ translation_key: docs
 category: "Control Flow"
 function_name: onlyIf
 syntax: $onlyIf[condition] or $onlyIf[condition;errorMessage]
-description: Condition guard that stops command execution if the condition evaluates to false. Optionally sends an error message before stopping.
+description: Condition guard that stops the script if the condition is false. An optional message replaces the response.
 ---
-$onlyIf is the fundamental guard function in BDFD. It acts as a gatekeeper: if the condition passes, the command continues; if it fails, the command stops dead. This is the building block for permissions checks, input validation, and any scenario where you need to abort early.
 
-## How It Works
+# $onlyIf[] — Condition Guard
 
-1. The `condition` is evaluated as a boolean expression.
-2. If the condition is **true** → execution continues to the next line.
-3. If the condition is **false** → the optional `errorMessage` is sent (if provided), then execution **stops immediately** via `BotCreatorActionType.stop`. No further code in the command runs.
+`$onlyIf` is a guard: if the condition is true the script continues; if it is false the script stops. An optional message replaces the response.
 
-## Two-Argument Form
+## Syntax
 
-```
+```text
+$onlyIf[condition]
 $onlyIf[condition;errorMessage]
 ```
 
-When `errorMessage` is provided and the condition fails, the message is sent to the channel before stopping. This is the recommended form — it gives feedback to the user about why the command failed.
+## Parameters
 
-## Single-Argument Form
+| Parameter | Description |
+|---|---|
+| `condition` | `true`, `false`, or a comparison (`==`, `!=`, `>=`, `<=`, `>`, `<`). If both sides are numbers the comparison is numeric, otherwise it is a text comparison. Anything else (for example `1` or an empty condition) is an error: `Invalid condition: <condition>.` |
+| `errorMessage` | Optional. Text that replaces the response when the condition is false. |
 
-```
+`$onlyIf` takes 1 or 2 arguments; a third argument is refused.
+
+## How It Works
+
+1. The `condition` is evaluated.
+2. If it is **true**, nothing happens and the script continues; the function returns an empty string.
+3. If it is **false**, the script stops immediately (the rest of the script does not run, including inside loops and conditions).
+
+## Without a message
+
+```text
 $onlyIf[condition]
 ```
 
-When no error message is provided and the condition fails, execution stops silently. The user receives no response. Use this when you want to silently reject invalid input without cluttering the chat.
+The script stops, but what was already written (text, embeds, components) is still sent as the response. For example `A$onlyIf[false]B` sends `A`. If nothing was written, nothing is sent.
+
+## With a message
+
+```text
+$onlyIf[condition;errorMessage]
+```
+
+The response written so far (text, embeds, components) is **discarded** and replaced by `errorMessage`, which is sent as the response (it is not sent to the channel separately). Messages already sent with `$sendMessage` are not affected. An empty `errorMessage` (`$onlyIf[cond;]`) discards the response and sends nothing.
+
+If `$suppressErrors[text]` was used before, `errorMessage` is replaced by that text.
 
 ## Examples
 
-### Permission Guards
+### Input validation
 
 ```bdfd
-$onlyIf[$hasPerms[$authorID;BanMembers];❌ BanMembers permission required.]
-$onlyIf[$authorID!=$mentioned[1];❌ You cannot ban yourself.]
+$onlyIf[$message>=1;The number must be >= 1.]
+$onlyIf[$message<=100;The number must be <= 100.]
+Valid number: $message
 ```
 
-### Input Validation
+### Channel restriction
 
 ```bdfd
-$onlyIf[$isNumber[$message]==true;❌ Please enter a number.]
-$onlyIf[$message>=1;❌ The number must be >= 1.]
-$onlyIf[$message<=100;❌ The number must be <= 100.]
-```
-
-### Channel/Role Restrictions
-
-```bdfd
-$onlyIf[$channelID==123456789012345678;❌ This command can only be used in <#123456789012345678>.]
+$onlyIf[$channelID==123456789012345678;This command can only be used in <#123456789012345678>.]
 ```
 
 ## Comparison with $if / $stop
 
 Without `$onlyIf`:
-```
-$if[$hasPerms[$authorID;Administrator]==false]
-❌ Permission denied.
+
+```text
+$if[$message<1]
+The number must be >= 1.
 $stop
 $endif
 ```
 
-With `$onlyIf` (equivalent, cleaner):
-```
-$onlyIf[$hasPerms[$authorID;Administrator];❌ Permission denied.]
+With `$onlyIf` (equivalent when nothing else was written before):
+
+```text
+$onlyIf[$message>=1;The number must be >= 1.]
 ```
 
-`$onlyIf` is the idiomatic way to write guards — it is shorter, more readable, and signals intent clearly: "only continue if this condition holds."
+The difference: `$stop` keeps what was already written, while `$onlyIf[condition;message]` discards it.

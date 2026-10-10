@@ -28,9 +28,9 @@ This function does not return a value.
 
 ## Behavior
 
-- The typing indicator lasts about 10 seconds or until a message is sent.
-- Useful to simulate a processing delay or to provide visual feedback.
-- The indicator stops automatically if a message is sent.
+- Each call sends one typing trigger to the current channel immediately (an error `Channel is not a text channel` is raised if the channel is not a text channel).
+- How long the indicator stays visible is decided by Discord.
+- Useful to give visual feedback.
 
 ## Examples
 
@@ -67,6 +67,5 @@ $endif
 
 ## Notes
 
-- The indicator is purely cosmetic and has no effect on actual processing.
+- The indicator is purely cosmetic and has no effect on processing.
 - Particularly useful for commands with `$wait[]` or API calls.
-- Only works in text channels.

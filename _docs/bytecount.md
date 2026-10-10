@@ -31,8 +31,9 @@ $byteCount[text]
 
 ## Behavior
 
-- Counts bytes, not characters (a Unicode character can be multiple bytes).
-- ASCII characters count as 1 byte, while emojis and accented characters count for more.
+- Counts UTF-8 bytes, not characters (a Unicode character can be multiple bytes). Probe: `Hello World` = 11, `Héllö Wörld` = 14, `Hello 👋` = 10.
+- Exactly one argument is required; an empty text returns `0`.
+- ASCII characters count as 1 byte, accented letters as 2, most CJK characters as 3 and emojis as 4.
 - Useful for validating data before storage or sending.
 
 ## Examples

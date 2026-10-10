@@ -68,4 +68,3 @@ $sendMessage[Highest role of the server: $roleName[$highestRole]]
 
 - The position is the rank in the hierarchy (a smaller number means a higher role); `@everyone` always has the largest number.
 - Ranks are unique: if two roles have the same Discord position, the older role (smaller ID) ranks higher.
-- A bot cannot modify roles that are hierarchically higher than its own.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: allMembersCount
 syntax: $allMembersCount
-description: Returns the total number of members on the server (including bots). Unlike $membersCount, this function also counts bots.
+description: Returns the total number of members summed over all the servers the bot is in (bots included). For the current server only, use $membersCount.
 ---
 
 # $allMembersCount
 
-The `$allMembersCount` function **retrieves the total number of members** on the server, including bots.
+The `$allMembersCount` function returns the **sum of the member counts of every server the bot is in**, bots included.
 
 ## Syntax
 
@@ -20,62 +20,47 @@ $allMembersCount
 
 ## Parameters
 
-No parameters.
+No parameters (passing one is an error).
 
 ## Return value
 
 - **Type**: String (number)
-- The total number of members (users + bots) present on the server.
+- The sum, over all the servers the bot belongs to, of the number of members of each server (humans and bots). A person who is in several of these servers is counted once per server.
 
 ## Behavior
 
-- Counts all members of the server, including bots.
-- Differs from `$membersCount` which only counts human users.
-- The value is updated in real time.
+- The engine lists the servers of the bot, then lists the members of each one and adds up the numbers. This makes several requests to Discord and can be slow on a bot in many large servers.
+- It is **not** the member count of the current server: for that, use `$membersCount` (or `$getMembersCount`), which also includes bots.
+- For the bots of the current server only, use `$botCount`.
 
 ## Examples
 
 ### Simple display
 
 ```bdfd
-$title[📊 Server Statistics]
+$title[📊 Statistics]
 $description[
-**Total Members:** $allMembersCount
-**Humans:** $membersCount
-**Bots:** $botCount
+**Members over all servers:** $allMembersCount
+**Members of this server:** $membersCount
+**Bots of this server:** $botCount
 ]
 $color[#5865F2]
 ```
 
-### Comparison of humans vs bots
+### Humans of the current server
 
 ```bdfd
-$var[humans;$membersCount]
+$var[total;$membersCount]
 $var[bots;$botCount]
-$var[total;$allMembersCount]
-
 $title[👥 Server Composition]
 $description[
 **Total:** $var[total] members
-**👤 Humans:** $var[humans] ($calculate[$var[humans]*100/$var[total]]%)
-**🤖 Bots:** $var[bots] ($calculate[$var[bots]*100/$var[total]]%)
+**👤 Humans:** $sub[$var[total];$var[bots]]
+**🤖 Bots:** $var[bots]
 ]
 $color[#57F287]
 ```
 
-### Welcome counter
-
-```bdfd
-$title[🎉 Welcome to $serverName!]
-$description[
-You are member number **$allMembersCount** of the server!
-]
-$thumbnail[$userAvatar[$authorID]]
-$sendMessage[$channelID[welcome]]
-```
-
 ## Notes
 
-- Only includes members currently present on the server.
-- To get only humans, use `$membersCount`.
-- To get only bots, use `$botCount`.
+- To get the number of servers, use `$serverCount`.

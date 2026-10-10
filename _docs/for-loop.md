@@ -17,7 +17,7 @@ The `$for` token opens a loop that must be closed with `$endFor`. Like `$if`, th
 | Counted | `$for[count]` | `count` iterations (a non-negative integer, else "Expected a nonnegative integer loop count."); `$i` holds the 0-based index. |
 | C-style | `$for[i=0;i<5;i++]` | Initialization; condition; update. Integers only. |
 
-A `$for` with no argument is a parse error ("Expected a loop argument.").
+A `$for` with no brackets is a parse error ("Expected a loop argument."); `$for[]` is read as a counted loop whose count is empty, so it fails with "Expected a nonnegative integer loop count.". `$loop[...]` accepts the same three forms (closed with `$endLoop`), see [$loop](/docs/loop/); `$while[condition]` is documented in [$while](/docs/while/).
 
 ## Loop Metadata Variables
 
@@ -30,7 +30,7 @@ Inside a `$for...$endFor` block, these functions (each with no argument) provide
 | `$loopIteration` | same as `$loopIndex` (`0, 1, 2`)   | Alias for the zero-based index       |
 | `$i`             | same as `$loopIndex`               | Alias for the zero-based index (in counted loops, `$i` is also bound as the loop variable) |
 
-Used outside a loop, they raise the error "Loop index outside a loop.".
+They also work inside `$loop`, `$while` and `$jsonForEach` blocks. Used outside a loop, they raise the error "Loop index outside a loop.".
 
 ## Iterator Variable
 
@@ -63,7 +63,8 @@ $endFor
 
 ## Common Pitfalls
 
-- Forgetting `$endFor` causes a parse error.
+- Forgetting `$endFor` causes a parse error ("Missing $endfor."); an `$endFor` without a matching `$for` is also one ("Unexpected $endFor.").
+- With exactly three arguments, the engine reads the call as a C-style header when the first argument looks like an assignment (`i=0`) or when the second one contains a comparison operator (`<`, `>`, `<=`, `>=`, `==`, `!=`). A list loop such as `$for[x;a<b;c]` is therefore refused ("Invalid loop initialization."); give it a fourth value or build the values differently.
 - A C-style loop whose condition never becomes false is not bounded by the list; the engine stops it with its execution limits (budget/timeout).
 - Nested loops are supported; `$loopIndex` / `$loopCount` refer to the innermost loop.
 - Keep iterations reasonable for responsive bot behavior.
