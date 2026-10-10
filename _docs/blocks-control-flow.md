@@ -3,45 +3,57 @@ layout: doc
 title: Blocks — control flow
 category: "Blocks"
 api_type: blocks
-description: ifBlock conditions, nested actions, forLoop, wait, stop and runWorkflow.
+description: IF / ELSE, nested blocks, For Loop, Wait, Stop Execution and Run Workflow, shown with the real blocks of the app.
 ---
 
 # Control flow Blocks
 
-> 💡 **Resource:** Find the full list and schema of all 112+ no-code actions in the **[Complete Blocks Dictionary](/docs/blocks-dictionary/)**, as well as the execution model in **[Execution Model & Best Practices](/docs/execution-model/)**.
+> 💡 **Resource:** Every field of every block is listed in the **[Complete Blocks Dictionary](/docs/blocks-dictionary/)**, and the execution model is in **[Execution Model & Best Practices](/docs/execution-model/)**.
 
-## ifBlock
+## IF / ELSE Block
 
-`condition.variable` is the left operand string, `condition.operator` the comparison, and `condition.value` the right operand string. `thenActions` and `elseActions` are lists of action objects.
+Tests one condition. **Condition.variable** is the left operand, **Condition.operator** the comparison and **Condition.value** the right operand. The **THEN** and **ELSE** tiles open a nested editor holding their own blocks, and **ELSE IF** adds extra conditions checked in order before ELSE.
 
-```json
-{
-  "type":"ifBlock",
-  "payload":{
-    "condition.variable":"((guild.id))",
-    "condition.operator":"isNotEmpty",
-    "condition.value":"",
-    "thenActions":[{"type":"respondWithMessage","payload":{"content":"This command is running in a server."}}],
-    "elseActions":[{"type":"respondWithMessage","payload":{"content":"Use this command in a server."}}]
-  }
-}
-```
+<div class="block-flow-canvas my-6">
+{% app_block example="if_in_server" %}
+</div>
 
-Comparisons include `equals`, `notEquals`, `contains`, `notContains`, `startsWith`, `endsWith`, `greaterThan`, `lessThan`, `greaterOrEqual`, `lessOrEqual`, `isEmpty`, `isNotEmpty` and `matches` (regular expression). Numeric comparisons parse operands as numbers. Groups use `condition.group` (`and`/`or`) and `condition.conditions` (list of condition objects); `condition.negate` negates the result.
+Comparisons are `equals`, `notEquals`, `contains`, `notContains`, `startsWith`, `endsWith`, `greaterThan`, `lessThan`, `greaterOrEqual`, `lessOrEqual`, `isEmpty`, `isNotEmpty` and `matches` (regular expression). Numeric comparisons parse operands as numbers.
 
-## Other flow actions
+The engine also understands condition groups (`condition.group` set to `and` or `or`, with `condition.conditions`) and `condition.negate`. The editor does not show these fields; they matter for blocks created through the API or imported from a script.
 
-| Action | Payload contract |
-|---|---|
-| `forLoop` | `mode: "simple"`, `iterations` string, `maxIterations` integer (default 100), `bodyActions` action list. |
-| `wait` | `duration` duration string, e.g. `"2s"`. For a long slash operation, acknowledge/defer the interaction before waiting. |
-| `stop` | Empty payload; ends the current action sequence. |
-| `runWorkflow` | `workflowName` string, optional `entryPoint` string and `arguments` object. The named workflow must exist. |
-| `skipActions` | `count` string integer; skips subsequent actions. |
-| `jumpToAction` | `targetKey` string identifying an action key. |
+{% app_block type="ifBlock" %}
 
-```json
-{"type":"forLoop","payload":{"mode":"simple","iterations":"3","maxIterations":3,"bodyActions":[{"type":"sendMessage","payload":{"channelId":"123456789012345678","content":"One iteration"}}]}}
-```
+## Other flow blocks
 
-Keep nested actions as JSON objects, never as BDFD source strings. Loops and jumps need bounded termination. Workflow arguments and results are not persistent ticket storage.
+### For Loop
+
+Repeats its nested blocks. In *simple* mode it runs **Iterations** times; in *cstyle* mode it follows an initialiser, a condition and an update. The whole command has a 15 minute execution deadline.
+
+<div class="block-flow-canvas my-6">
+{% app_block example="for_three" %}
+</div>
+
+{% app_block type="forLoop" %}
+
+### Wait
+
+Pauses the sequence. For a long slash operation, acknowledge the interaction (*Defer Interaction*) before waiting.
+
+<div class="block-flow-canvas my-6">
+{% app_block example="wait_two" %}
+</div>
+
+### Stop Execution, Skip Actions, Jump to Action, Run Workflow
+
+{% app_block type="stop" %}
+
+{% app_block type="skipActions" %}
+
+{% app_block type="jumpToAction" %}
+
+{% app_block type="runWorkflow" %}
+
+*Run Workflow* needs an existing workflow. Its arguments and results are not persistent ticket storage.
+
+Keep nested blocks inside the nested editors of a block, never as BDFD source text. Loops and jumps need a bounded termination.

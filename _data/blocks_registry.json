@@ -1,0 +1,5753 @@
+{
+  "_generated": "scripts/extract-blocks-registry.mjs — do not edit by hand",
+  "families": {
+    "http": {
+      "label": "HTTP & Variables",
+      "color": "#38BDF8"
+    },
+    "logic": {
+      "label": "Logic & Flow",
+      "color": "#FB7185"
+    },
+    "messages": {
+      "label": "Messages",
+      "color": "#A78BFA"
+    },
+    "moderation": {
+      "label": "Moderation",
+      "color": "#4ADE80"
+    },
+    "data": {
+      "label": "Data",
+      "color": "#FBBF24"
+    },
+    "events": {
+      "label": "Events",
+      "color": "#FB923C"
+    }
+  },
+  "common": {
+    "title": "Advanced settings",
+    "fields": [
+      {
+        "key": "key",
+        "label": "Action Key"
+      },
+      {
+        "key": "enabled",
+        "label": "Enabled"
+      },
+      {
+        "key": "error.mode",
+        "label": "On Error",
+        "options": [
+          "Stop",
+          "Continue",
+          "Jump to action",
+          "Skip N actions"
+        ]
+      }
+    ]
+  },
+  "entryPoint": {
+    "name": "Command Trigger",
+    "family": "events",
+    "icon": "play_circle_outline",
+    "question": "When does this command run?",
+    "segments": [
+      {
+        "kind": "slash",
+        "label": "Slash command",
+        "badge": "Slash command",
+        "desc": "Triggered by typing / in Discord.",
+        "prefix": "/"
+      },
+      {
+        "kind": "prefix",
+        "label": "Text Message",
+        "badge": "Prefix command",
+        "desc": "Triggered by a text prefix (e.g. !help).",
+        "prefix": "!"
+      },
+      {
+        "kind": "user",
+        "label": "User command",
+        "badge": "User command",
+        "desc": "Triggered from the user context menu.",
+        "prefix": ""
+      },
+      {
+        "kind": "message",
+        "label": "Message command",
+        "badge": "Message command",
+        "desc": "Triggered from the message context menu.",
+        "prefix": ""
+      }
+    ],
+    "event": {
+      "title": "Event trigger",
+      "icon": "flash_on",
+      "color": "#AFB42B",
+      "categoryLabel": "Event category",
+      "nameLabel": "Event name",
+      "customIdLabel": "Custom ID filter (optional)",
+      "variablesLabel": "Event variables"
+    },
+    "executionModeLabel": "How is the command built?",
+    "executionModes": [
+      "Visual (Blocks)",
+      "BDFD Code",
+      "JavaScript"
+    ]
+  },
+  "events": [
+    {
+      "category": "core",
+      "event": "ready",
+      "label": "Ready"
+    },
+    {
+      "category": "core",
+      "event": "resumed",
+      "label": "Resumed"
+    },
+    {
+      "category": "core",
+      "event": "interactionCreate",
+      "label": "Interaction Create"
+    },
+    {
+      "category": "commands",
+      "event": "applicationCommandPermissionsUpdate",
+      "label": "Application Command Permissions Update"
+    },
+    {
+      "category": "automod",
+      "event": "autoModerationRuleCreate",
+      "label": "Auto Moderation Rule Create"
+    },
+    {
+      "category": "automod",
+      "event": "autoModerationRuleUpdate",
+      "label": "Auto Moderation Rule Update"
+    },
+    {
+      "category": "automod",
+      "event": "autoModerationRuleDelete",
+      "label": "Auto Moderation Rule Delete"
+    },
+    {
+      "category": "automod",
+      "event": "autoModerationActionExecution",
+      "label": "Auto Moderation Action Execution"
+    },
+    {
+      "category": "channels",
+      "event": "channelCreate",
+      "label": "Channel Create"
+    },
+    {
+      "category": "channels",
+      "event": "channelUpdate",
+      "label": "Channel Update"
+    },
+    {
+      "category": "channels",
+      "event": "channelDelete",
+      "label": "Channel Delete"
+    },
+    {
+      "category": "channels",
+      "event": "channelPinsUpdate",
+      "label": "Channel Pins Update"
+    },
+    {
+      "category": "threads",
+      "event": "threadCreate",
+      "label": "Thread Create"
+    },
+    {
+      "category": "threads",
+      "event": "threadUpdate",
+      "label": "Thread Update"
+    },
+    {
+      "category": "threads",
+      "event": "threadDelete",
+      "label": "Thread Delete"
+    },
+    {
+      "category": "threads",
+      "event": "threadListSync",
+      "label": "Thread List Sync"
+    },
+    {
+      "category": "threads",
+      "event": "threadMemberUpdate",
+      "label": "Thread Member Update"
+    },
+    {
+      "category": "threads",
+      "event": "threadMembersUpdate",
+      "label": "Thread Members Update"
+    },
+    {
+      "category": "entitlements",
+      "event": "entitlementCreate",
+      "label": "Entitlement Create"
+    },
+    {
+      "category": "entitlements",
+      "event": "entitlementUpdate",
+      "label": "Entitlement Update"
+    },
+    {
+      "category": "entitlements",
+      "event": "entitlementDelete",
+      "label": "Entitlement Delete"
+    },
+    {
+      "category": "guilds",
+      "event": "guildCreate",
+      "label": "Guild Create"
+    },
+    {
+      "category": "guilds",
+      "event": "guildUpdate",
+      "label": "Guild Update"
+    },
+    {
+      "category": "guilds",
+      "event": "guildDelete",
+      "label": "Guild Delete"
+    },
+    {
+      "category": "guilds",
+      "event": "guildAuditLogCreate",
+      "label": "Guild Audit Log Entry Create"
+    },
+    {
+      "category": "guilds",
+      "event": "guildEmojisUpdate",
+      "label": "Guild Emojis Update"
+    },
+    {
+      "category": "guilds",
+      "event": "guildStickersUpdate",
+      "label": "Guild Stickers Update"
+    },
+    {
+      "category": "guilds",
+      "event": "guildIntegrationsUpdate",
+      "label": "Guild Integrations Update"
+    },
+    {
+      "category": "guilds",
+      "event": "guildMembersChunk",
+      "label": "Guild Members Chunk"
+    },
+    {
+      "category": "members",
+      "event": "guildBanAdd",
+      "label": "Guild Ban Add"
+    },
+    {
+      "category": "members",
+      "event": "guildBanRemove",
+      "label": "Guild Ban Remove"
+    },
+    {
+      "category": "members",
+      "event": "guildMemberAdd",
+      "label": "Guild Member Add"
+    },
+    {
+      "category": "members",
+      "event": "guildMemberRemove",
+      "label": "Guild Member Remove"
+    },
+    {
+      "category": "members",
+      "event": "guildMemberUpdate",
+      "label": "Guild Member Update"
+    },
+    {
+      "category": "roles",
+      "event": "guildRoleCreate",
+      "label": "Guild Role Create"
+    },
+    {
+      "category": "roles",
+      "event": "guildRoleUpdate",
+      "label": "Guild Role Update"
+    },
+    {
+      "category": "roles",
+      "event": "guildRoleDelete",
+      "label": "Guild Role Delete"
+    },
+    {
+      "category": "scheduled",
+      "event": "guildScheduledEventCreate",
+      "label": "Guild Scheduled Event Create"
+    },
+    {
+      "category": "scheduled",
+      "event": "guildScheduledEventUpdate",
+      "label": "Guild Scheduled Event Update"
+    },
+    {
+      "category": "scheduled",
+      "event": "guildScheduledEventDelete",
+      "label": "Guild Scheduled Event Delete"
+    },
+    {
+      "category": "scheduled",
+      "event": "guildScheduledEventUserAdd",
+      "label": "Guild Scheduled Event User Add"
+    },
+    {
+      "category": "scheduled",
+      "event": "guildScheduledEventUserRemove",
+      "label": "Guild Scheduled Event User Remove"
+    },
+    {
+      "category": "integrations",
+      "event": "integrationCreate",
+      "label": "Integration Create"
+    },
+    {
+      "category": "integrations",
+      "event": "integrationUpdate",
+      "label": "Integration Update"
+    },
+    {
+      "category": "integrations",
+      "event": "integrationDelete",
+      "label": "Integration Delete"
+    },
+    {
+      "category": "invites",
+      "event": "inviteCreate",
+      "label": "Invite Create"
+    },
+    {
+      "category": "invites",
+      "event": "inviteDelete",
+      "label": "Invite Delete"
+    },
+    {
+      "category": "messages",
+      "event": "messageCreate",
+      "label": "Message Create"
+    },
+    {
+      "category": "messages",
+      "event": "messageUpdate",
+      "label": "Message Update"
+    },
+    {
+      "category": "messages",
+      "event": "messageDelete",
+      "label": "Message Delete"
+    },
+    {
+      "category": "messages",
+      "event": "messageBulkDelete",
+      "label": "Message Delete Bulk"
+    },
+    {
+      "category": "reactions",
+      "event": "messageReactionAdd",
+      "label": "Message Reaction Add"
+    },
+    {
+      "category": "reactions",
+      "event": "messageReactionRemove",
+      "label": "Message Reaction Remove"
+    },
+    {
+      "category": "reactions",
+      "event": "messageReactionRemoveAll",
+      "label": "Message Reaction Remove All"
+    },
+    {
+      "category": "reactions",
+      "event": "messageReactionRemoveEmoji",
+      "label": "Message Reaction Remove Emoji"
+    },
+    {
+      "category": "reactions",
+      "event": "messagePollVoteAdd",
+      "label": "Message Poll Vote Add"
+    },
+    {
+      "category": "reactions",
+      "event": "messagePollVoteRemove",
+      "label": "Message Poll Vote Remove"
+    },
+    {
+      "category": "presence",
+      "event": "presenceUpdate",
+      "label": "Presence Update"
+    },
+    {
+      "category": "presence",
+      "event": "typingStart",
+      "label": "Typing Start"
+    },
+    {
+      "category": "presence",
+      "event": "userUpdate",
+      "label": "User Update"
+    },
+    {
+      "category": "stages",
+      "event": "stageInstanceCreate",
+      "label": "Stage Instance Create"
+    },
+    {
+      "category": "stages",
+      "event": "stageInstanceUpdate",
+      "label": "Stage Instance Update"
+    },
+    {
+      "category": "stages",
+      "event": "stageInstanceDelete",
+      "label": "Stage Instance Delete"
+    },
+    {
+      "category": "voice",
+      "event": "voiceStateUpdate",
+      "label": "Voice State Update"
+    },
+    {
+      "category": "voice",
+      "event": "voiceServerUpdate",
+      "label": "Voice Server Update"
+    },
+    {
+      "category": "voice",
+      "event": "voiceChannelEffectSend",
+      "label": "Voice Channel Effect Send"
+    },
+    {
+      "category": "webhooks",
+      "event": "webhooksUpdate",
+      "label": "Webhooks Update"
+    },
+    {
+      "category": "soundboard",
+      "event": "soundboardSoundCreate",
+      "label": "Guild Soundboard Sound Create"
+    },
+    {
+      "category": "soundboard",
+      "event": "soundboardSoundUpdate",
+      "label": "Guild Soundboard Sound Update"
+    },
+    {
+      "category": "soundboard",
+      "event": "soundboardSoundDelete",
+      "label": "Guild Soundboard Sound Delete"
+    },
+    {
+      "category": "soundboard",
+      "event": "soundboardSoundsUpdate",
+      "label": "Guild Soundboard Sounds Update"
+    }
+  ],
+  "variables": [
+    "actualTime",
+    "actualtime",
+    "auditLog.action",
+    "auditLog.executorId",
+    "auditLog.targetId",
+    "author.accentColor",
+    "author.avatar",
+    "author.avatarDecoration",
+    "author.avatarDecorationData.asset",
+    "author.avatarDecorationData.skuId",
+    "author.avatarDecorationHash",
+    "author.banner",
+    "author.bannerColor",
+    "author.displayName",
+    "author.flags",
+    "author.globalName",
+    "author.id",
+    "author.isBot",
+    "author.isbot",
+    "author.mention",
+    "author.name",
+    "author.primaryGuild.badge",
+    "author.primaryGuild.identityEnabled",
+    "author.primaryGuild.identityGuildId",
+    "author.primaryGuild.tag",
+    "author.publicFlags",
+    "author.tag",
+    "author.username",
+    "author.verified",
+    "autocomplete.optionName",
+    "autocomplete.optionType",
+    "autocomplete.optionname",
+    "autocomplete.query",
+    "bot.guildCount",
+    "bot.guildNames",
+    "bot.guildcount",
+    "bot.guildnames",
+    "bot.id",
+    "bot.invite",
+    "bot.nodeVersion",
+    "bot.nodeversion",
+    "bot.ping",
+    "bot.shardId",
+    "bot.shardid",
+    "bot.uptime",
+    "bot.username",
+    "channel.bitrate",
+    "channel.categoryId",
+    "channel.id",
+    "channel.lastPinTimestamp",
+    "channel.mention",
+    "channel.name",
+    "channel.nsfw",
+    "channel.old.name",
+    "channel.old.type",
+    "channel.parentId",
+    "channel.position",
+    "channel.slowmode",
+    "channel.thread.archived",
+    "channel.thread.autoArchiveDuration",
+    "channel.thread.locked",
+    "channel.thread.ownerId",
+    "channel.topic",
+    "channel.type",
+    "channel.typeValue",
+    "channel.userLimit",
+    "channelId",
+    "channelid",
+    "event.name",
+    "execution.time",
+    "guild.afkChannelId",
+    "guild.afkTimeout",
+    "guild.count",
+    "guild.description",
+    "guild.emojiCount",
+    "guild.emojicount",
+    "guild.features",
+    "guild.features.count",
+    "guild.icon",
+    "guild.id",
+    "guild.memberCount",
+    "guild.membercount",
+    "guild.mfaLevel",
+    "guild.name",
+    "guild.nsfwLevel",
+    "guild.oldGuild.memberCount",
+    "guild.oldGuild.name",
+    "guild.oldGuild.ownerId",
+    "guild.oldGuild.preferredLocale",
+    "guild.oldGuild.systemChannelId",
+    "guild.ownerId",
+    "guild.ownerid",
+    "guild.preferredLocale",
+    "guild.premiumSubscriptionCount",
+    "guild.premiumTier",
+    "guild.roleCount",
+    "guild.roleNames",
+    "guild.rolecount",
+    "guild.rulesChannelId",
+    "guild.stickerCount",
+    "guild.systemChannelId",
+    "guild.unavailable",
+    "guild.vanityUrlCode",
+    "guild.verificationLevel",
+    "guildId",
+    "guildid",
+    "interaction.applicationId",
+    "interaction.channelId",
+    "interaction.channelSelect.channelCount",
+    "interaction.channelSelect.channelId",
+    "interaction.channelSelect.channelIds",
+    "interaction.command.id",
+    "interaction.command.name",
+    "interaction.command.route",
+    "interaction.command.type",
+    "interaction.customId",
+    "interaction.guildId",
+    "interaction.guild_locale",
+    "interaction.id",
+    "interaction.isslash",
+    "interaction.kind",
+    "interaction.locale",
+    "interaction.mentionableSelect.userCount",
+    "interaction.mentionableSelect.userId",
+    "interaction.mentionableSelect.userIds",
+    "interaction.messageId",
+    "interaction.roleSelect.roleCount",
+    "interaction.roleSelect.roleId",
+    "interaction.roleSelect.roleIds",
+    "interaction.stringSelect.count",
+    "interaction.stringSelect.value",
+    "interaction.stringSelect.values",
+    "interaction.token",
+    "interaction.user.avatar",
+    "interaction.user.id",
+    "interaction.user.tag",
+    "interaction.user.username",
+    "interaction.userId",
+    "interaction.userSelect.userCount",
+    "interaction.userSelect.userId",
+    "interaction.userSelect.userIds",
+    "interaction.values",
+    "interaction.values.count",
+    "invite.channelId",
+    "invite.code",
+    "invite.createdAt",
+    "invite.inviterId",
+    "invite.isTemporary",
+    "invite.maxAge",
+    "invite.maxUses",
+    "invite.uses",
+    "member.avatar",
+    "member.communicationDisabledUntil",
+    "member.displayName",
+    "member.displayname",
+    "member.id",
+    "member.isAdmin",
+    "member.isBooster",
+    "member.isadmin",
+    "member.isbooster",
+    "member.joinedAt",
+    "member.joinedat",
+    "member.mention",
+    "member.name",
+    "member.nick",
+    "member.old.displayName",
+    "member.old.nick",
+    "member.old.roles",
+    "member.permissions",
+    "member.premiumSince",
+    "member.roles",
+    "member.roles.count",
+    "member.roles[0]",
+    "member.roles[1]",
+    "member.roles[2]",
+    "member.tag",
+    "member.username",
+    "message.attachments",
+    "message.attachments.count",
+    "message.channelId",
+    "message.content",
+    "message.content[0]",
+    "message.content[1]",
+    "message.content[2]",
+    "message.content[3]",
+    "message.content[4]",
+    "message.content[5]",
+    "message.content[6]",
+    "message.content[7]",
+    "message.content[8]",
+    "message.content[9]",
+    "message.editedTimestamp",
+    "message.embeds.count",
+    "message.id",
+    "message.isBot",
+    "message.isDM",
+    "message.isEdited",
+    "message.isPinned",
+    "message.isSystem",
+    "message.mention.count",
+    "message.mentions",
+    "message.mentionsEveryone",
+    "message.mentions[0]",
+    "message.mentions[1]",
+    "message.mentions[2]",
+    "message.mentions[3]",
+    "message.mentions[4]",
+    "message.mentions[5]",
+    "message.mentions[6]",
+    "message.mentions[7]",
+    "message.mentions[8]",
+    "message.mentions[9]",
+    "message.oldContent",
+    "message.referencedMessage.id",
+    "message.roleMentions",
+    "message.roleMentions.count",
+    "message.roleMentions[0]",
+    "message.roleMentions[1]",
+    "message.roleMentions[2]",
+    "message.timestamp",
+    "message.type",
+    "message.url",
+    "message.word.count",
+    "messageId",
+    "messageid",
+    "modal.customId",
+    "ping",
+    "poll.answer.id",
+    "poll.question",
+    "poll.vote.channelId",
+    "poll.vote.guildId",
+    "poll.vote.userId",
+    "presence.activity.count",
+    "presence.activity[0].details",
+    "presence.activity[0].name",
+    "presence.activity[0].state",
+    "presence.activity[0].type",
+    "presence.activity[0].typeName",
+    "presence.activity[0].url",
+    "presence.client.desktop",
+    "presence.client.mobile",
+    "presence.client.web",
+    "presence.status",
+    "reaction.emoji.animated",
+    "reaction.emoji.id",
+    "reaction.emoji.name",
+    "role.color",
+    "role.hoist",
+    "role.id",
+    "role.mentionable",
+    "role.name",
+    "role.permissions",
+    "role.position",
+    "target.locale",
+    "thread.archived",
+    "thread.autoArchiveDuration",
+    "thread.id",
+    "thread.locked",
+    "thread.members.added.count",
+    "thread.members.removed.count",
+    "thread.name",
+    "thread.owner.id",
+    "thread.parent.id",
+    "timestamp",
+    "typing.member.id",
+    "typing.member.name",
+    "typing.timestamp",
+    "user.accentColor",
+    "user.avatar",
+    "user.avatarDecoration",
+    "user.avatarDecorationData.asset",
+    "user.avatarDecorationData.skuId",
+    "user.avatarDecorationHash",
+    "user.banner",
+    "user.bannerColor",
+    "user.createdAt",
+    "user.displayName",
+    "user.flags",
+    "user.globalName",
+    "user.id",
+    "user.mention",
+    "user.name",
+    "user.primaryGuild.badge",
+    "user.primaryGuild.identityEnabled",
+    "user.primaryGuild.identityGuildId",
+    "user.primaryGuild.tag",
+    "user.publicFlags",
+    "user.tag",
+    "user.username",
+    "user.verified",
+    "userAvatar",
+    "userId",
+    "userName",
+    "userid",
+    "voice.channel.id",
+    "voice.deafen",
+    "voice.effect.emoji",
+    "voice.effect.soundId",
+    "voice.mute",
+    "voice.selfDeafen",
+    "voice.selfMute",
+    "voice.server.endpoint",
+    "voice.server.token",
+    "voice.state.sessionId",
+    "voice.user.id",
+    "workflow.args",
+    "workflow.entryPoint",
+    "workflow.name"
+  ],
+  "embedLabels": {
+    "embed_label_title": "Title",
+    "common_description": "Description",
+    "embed_label_color": "Color (int or #hex)",
+    "embed_label_url": "URL",
+    "embed_label_footer_text": "Footer Text",
+    "embed_label_timestamp": "Timestamp (ISO8601)",
+    "embed_add_field": "Add Field",
+    "common_name": "Name",
+    "common_value": "Value",
+    "embed_label_inline": "Inline"
+  },
+  "blocks": [
+    {
+      "type": "deleteMessages",
+      "name": "Delete Messages",
+      "description": "Delete one or more messages",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "delete_sweep",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Optional: target channel (uses current channel if empty)"
+        },
+        {
+          "label": "Message Count",
+          "key": "messageCount",
+          "type": "number",
+          "default": 10,
+          "hint": "Number of messages to delete",
+          "min": 1
+        },
+        {
+          "label": "Only User Id",
+          "key": "onlyUserId",
+          "type": "userId",
+          "default": "",
+          "hint": "Optional: only delete messages from this user"
+        },
+        {
+          "label": "Before Message Id",
+          "key": "beforeMessageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Optional: delete messages posted before the given message ID"
+        },
+        {
+          "label": "Delete Itself",
+          "key": "deleteItself",
+          "type": "boolean",
+          "default": false,
+          "hint": "If true and beforeMessageId is set, also delete that message"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Reason for deletion"
+        },
+        {
+          "label": "Filter Bots",
+          "key": "filterBots",
+          "type": "boolean",
+          "default": false,
+          "hint": "Only delete bot messages"
+        },
+        {
+          "label": "Filter Users",
+          "key": "filterUsers",
+          "type": "boolean",
+          "default": false,
+          "hint": "Only delete user messages"
+        }
+      ]
+    },
+    {
+      "type": "createChannel",
+      "name": "Create Channel",
+      "description": "Create a new channel",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "add_box",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Name",
+          "key": "name",
+          "type": "string",
+          "default": "",
+          "hint": "Channel name",
+          "required": true
+        },
+        {
+          "label": "Type",
+          "key": "type",
+          "type": "multiSelect",
+          "default": "text",
+          "hint": "Channel type",
+          "options": [
+            "text",
+            "voice",
+            "announcement",
+            "stage",
+            "forum",
+            "category"
+          ]
+        },
+        {
+          "label": "Category Id",
+          "key": "categoryId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Parent category"
+        },
+        {
+          "label": "Topic",
+          "key": "topic",
+          "type": "string",
+          "default": "",
+          "hint": "Channel topic/description"
+        },
+        {
+          "label": "Nsfw",
+          "key": "nsfw",
+          "type": "boolean",
+          "default": false,
+          "hint": "Age-restricted channel"
+        },
+        {
+          "label": "Slowmode",
+          "key": "slowmode",
+          "type": "duration",
+          "default": "0s",
+          "hint": "Slowmode duration"
+        }
+      ]
+    },
+    {
+      "type": "updateChannel",
+      "name": "Update Channel",
+      "description": "Update channel settings",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "edit",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel to update",
+          "required": true
+        },
+        {
+          "label": "Name",
+          "key": "name",
+          "type": "string",
+          "default": "",
+          "hint": "New channel name"
+        },
+        {
+          "label": "Topic",
+          "key": "topic",
+          "type": "string",
+          "default": "",
+          "hint": "New channel topic/description"
+        },
+        {
+          "label": "Nsfw",
+          "key": "nsfw",
+          "type": "boolean",
+          "default": false,
+          "hint": "Toggle NSFW status"
+        },
+        {
+          "label": "Slowmode",
+          "key": "slowmode",
+          "type": "duration",
+          "default": "0s",
+          "hint": "New slowmode duration"
+        }
+      ]
+    },
+    {
+      "type": "removeChannel",
+      "name": "Remove Channel",
+      "description": "Delete a channel",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "remove_circle",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel to remove",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "sendMessage",
+      "name": "Send Message",
+      "description": "Send a message to a specific channel",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "send",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Target Type",
+          "key": "targetType",
+          "type": "multiSelect",
+          "default": "channel",
+          "hint": "Send to a channel, reply to a message, or directly to a user (DM)",
+          "options": [
+            "channel",
+            "user",
+            "reply"
+          ]
+        },
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Target channel (required when targetType=channel or reply; leave empty for current channel)"
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message to reply to (required when targetType=reply)",
+          "visibleWhen": {
+            "targetType": [
+              "reply"
+            ]
+          }
+        },
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User to DM (required when targetType=user)"
+        },
+        {
+          "label": "Message Mode",
+          "key": "messageMode",
+          "type": "multiSelect",
+          "default": "message",
+          "hint": "Normal message (embeds, buttons/selects) or Component V2",
+          "options": [
+            "message",
+            "componentV2"
+          ]
+        },
+        {
+          "label": "Content",
+          "key": "content",
+          "type": "string",
+          "default": "",
+          "hint": "Message content",
+          "visibleWhen": {
+            "messageMode": [
+              "message"
+            ]
+          }
+        },
+        {
+          "label": "Embeds",
+          "key": "embeds",
+          "type": "embeds",
+          "default": [],
+          "hint": "Optional embeds (same format as normal command reply)"
+        },
+        {
+          "label": "Components",
+          "key": "components",
+          "type": "normalComponents",
+          "default": {},
+          "hint": "Optional message components (buttons/select menus only)"
+        },
+        {
+          "label": "Component V2",
+          "key": "componentV2",
+          "type": "componentV2",
+          "default": null,
+          "hint": "Component V2 interactive elements"
+        },
+        {
+          "label": "Mentions",
+          "key": "mentions",
+          "type": "list",
+          "default": [],
+          "hint": "Users/roles to mention"
+        },
+        {
+          "label": "Tts",
+          "key": "tts",
+          "type": "boolean",
+          "default": false,
+          "hint": "Text-to-speech"
+        }
+      ]
+    },
+    {
+      "type": "editMessage",
+      "name": "Edit Message",
+      "description": "Edit an existing message",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "edit_note",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel containing message",
+          "required": true
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message to edit",
+          "required": true
+        },
+        {
+          "label": "Edit Mode",
+          "key": "editMode",
+          "type": "multiSelect",
+          "default": "message",
+          "hint": "Edit standard message or Component V2 layout",
+          "options": [
+            "message",
+            "componentV2"
+          ]
+        },
+        {
+          "label": "Content",
+          "key": "content",
+          "type": "string",
+          "default": "",
+          "hint": "New message content",
+          "visibleWhen": {
+            "editMode": [
+              "message"
+            ]
+          }
+        },
+        {
+          "label": "Embeds",
+          "key": "embeds",
+          "type": "embeds",
+          "default": null,
+          "hint": "Optional embeds to replace the current message embeds",
+          "visibleWhen": {
+            "editMode": [
+              "message"
+            ]
+          }
+        },
+        {
+          "label": "Clear Embeds",
+          "key": "clearEmbeds",
+          "type": "boolean",
+          "default": false,
+          "hint": "Remove all embeds from the message",
+          "visibleWhen": {
+            "editMode": [
+              "message"
+            ]
+          }
+        },
+        {
+          "label": "Components",
+          "key": "components",
+          "type": "normalComponents",
+          "default": {},
+          "hint": "Optional message components (buttons/select menus only)",
+          "visibleWhen": {
+            "editMode": [
+              "message"
+            ]
+          }
+        },
+        {
+          "label": "Component V2",
+          "key": "componentV2",
+          "type": "componentV2",
+          "default": null,
+          "hint": "Edit Component V2 interactive elements (optional)",
+          "visibleWhen": {
+            "editMode": [
+              "componentV2"
+            ]
+          }
+        },
+        {
+          "label": "Clear Components",
+          "key": "clearComponents",
+          "type": "boolean",
+          "default": false,
+          "hint": "Remove all components from the message",
+          "visibleWhen": {
+            "editMode": [
+              "message",
+              "componentV2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "addReaction",
+      "name": "Add Reaction",
+      "description": "Add an emoji reaction to a message",
+      "category": "Reactions",
+      "family": "messages",
+      "icon": "emoji_emotions",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Optional: Channel containing message (uses current channel if empty)"
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message to react to",
+          "required": true
+        },
+        {
+          "label": "Emoji",
+          "key": "emoji",
+          "type": "emoji",
+          "default": "",
+          "hint": "Emoji to add (e.g. 🐶 or <:name:id>)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "removeReaction",
+      "name": "Remove Reaction",
+      "description": "Remove a reaction from a message",
+      "category": "Reactions",
+      "family": "messages",
+      "icon": "emoji_emotions_outlined",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Optional: Channel containing message (uses current channel if empty)"
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message to remove reaction from",
+          "required": true
+        },
+        {
+          "label": "Emoji",
+          "key": "emoji",
+          "type": "emoji",
+          "default": "",
+          "hint": "Emoji to remove (e.g. 🐶 or <:name:id>)",
+          "required": true
+        },
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "Optional: Specific user whose reaction to remove"
+        },
+        {
+          "label": "Remove Own",
+          "key": "removeOwn",
+          "type": "boolean",
+          "default": false,
+          "hint": "Remove bot's own reaction"
+        }
+      ]
+    },
+    {
+      "type": "clearAllReactions",
+      "name": "Clear All Reactions",
+      "description": "Remove all reactions from a message",
+      "category": "Reactions",
+      "family": "messages",
+      "icon": "clear_all",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Optional: Channel containing message (uses current channel if empty)"
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message to clear reactions from",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "banUser",
+      "name": "Ban User",
+      "description": "Permanently ban a user from the server",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "block",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User to ban",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Ban reason"
+        },
+        {
+          "label": "Delete Message Days",
+          "key": "deleteMessageDays",
+          "type": "number",
+          "default": 1,
+          "hint": "Days of messages to delete",
+          "min": 0,
+          "max": 7
+        }
+      ]
+    },
+    {
+      "type": "unbanUser",
+      "name": "Unban User",
+      "description": "Revoke a user's ban",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "person_add",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User to unban",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Unban reason"
+        }
+      ]
+    },
+    {
+      "type": "kickUser",
+      "name": "Kick User",
+      "description": "Kick a member from the server",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "exit_to_app",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User to kick",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Kick reason"
+        }
+      ]
+    },
+    {
+      "type": "muteUser",
+      "name": "Mute User",
+      "description": "Temporarily exclude (timeout) a member",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "volume_off",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User/Member to mute",
+          "required": true
+        },
+        {
+          "label": "Duration",
+          "key": "duration",
+          "type": "duration",
+          "default": "10m",
+          "hint": "Mute duration (e.g. 10m, 1h)"
+        },
+        {
+          "label": "Until",
+          "key": "until",
+          "type": "string",
+          "default": "",
+          "hint": "Or specify explicit until datetime ISO8601"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Mute reason"
+        }
+      ]
+    },
+    {
+      "type": "unmuteUser",
+      "name": "Unmute User",
+      "description": "Remove temporary exclusion from a member",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "volume_up",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User/Member to unmute",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Unmute reason"
+        }
+      ]
+    },
+    {
+      "type": "addRole",
+      "name": "Add Role",
+      "description": "Assign a role to a member",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "person_add_alt_1",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User/Member receiving the role",
+          "required": true
+        },
+        {
+          "label": "Role Id",
+          "key": "roleId",
+          "type": "roleId",
+          "default": "",
+          "hint": "Role to add",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "removeRole",
+      "name": "Remove Role",
+      "description": "Remove a role from a member",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "person_remove_alt_1",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User/Member losing the role",
+          "required": true
+        },
+        {
+          "label": "Role Id",
+          "key": "roleId",
+          "type": "roleId",
+          "default": "",
+          "hint": "Role to remove",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "pinMessage",
+      "name": "Pin Message",
+      "description": "Pin a message in a channel",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "push_pin",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Optional: Channel containing message (uses current channel if empty)"
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message to pin",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Pin reason"
+        }
+      ]
+    },
+    {
+      "type": "updateAutoMod",
+      "name": "Update AutoMod",
+      "description": "Update auto-moderation settings",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "security",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Enabled",
+          "key": "enabled",
+          "type": "boolean",
+          "default": true,
+          "hint": "Enable auto-moderation"
+        },
+        {
+          "label": "Filter Words",
+          "key": "filterWords",
+          "type": "list",
+          "default": [],
+          "hint": "Blocked words"
+        },
+        {
+          "label": "Allowed Roles",
+          "key": "allowedRoles",
+          "type": "list",
+          "default": [],
+          "hint": "Roles exempt from filtering"
+        },
+        {
+          "label": "Max Mentions",
+          "key": "maxMentions",
+          "type": "number",
+          "default": 5,
+          "hint": "Maximum mentions per message",
+          "min": 1,
+          "max": 50
+        }
+      ]
+    },
+    {
+      "type": "updateGuild",
+      "name": "Update Guild",
+      "description": "Update guild settings",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "settings",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Name",
+          "key": "name",
+          "type": "string",
+          "default": "",
+          "hint": "New guild name"
+        },
+        {
+          "label": "Description",
+          "key": "description",
+          "type": "string",
+          "default": "",
+          "hint": "New guild description"
+        },
+        {
+          "label": "Preferred Locale",
+          "key": "preferredLocale",
+          "type": "string",
+          "default": "",
+          "hint": "Preferred locale (e.g. en-US)"
+        },
+        {
+          "label": "Afk Channel Id",
+          "key": "afkChannelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "AFK voice channel"
+        },
+        {
+          "label": "Afk Timeout Seconds",
+          "key": "afkTimeoutSeconds",
+          "type": "number",
+          "default": 300,
+          "hint": "AFK timeout in seconds"
+        },
+        {
+          "label": "System Channel Id",
+          "key": "systemChannelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "System messages channel"
+        },
+        {
+          "label": "Rules Channel Id",
+          "key": "rulesChannelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Rules channel"
+        },
+        {
+          "label": "Public Updates Channel Id",
+          "key": "publicUpdatesChannelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Public updates channel"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Update reason"
+        }
+      ]
+    },
+    {
+      "type": "listMembers",
+      "name": "List Members",
+      "description": "List members in a guild with options",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "group",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Limit",
+          "key": "limit",
+          "type": "number",
+          "default": 100,
+          "hint": "Max members to return (1-1000)",
+          "min": 1,
+          "max": 1000
+        },
+        {
+          "label": "After",
+          "key": "after",
+          "type": "userId",
+          "default": "",
+          "hint": "Fetch members after this ID"
+        },
+        {
+          "label": "Query",
+          "key": "query",
+          "type": "string",
+          "default": "",
+          "hint": "Search members by username/nickname"
+        }
+      ]
+    },
+    {
+      "type": "getMember",
+      "name": "Get Member",
+      "description": "Get member information",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "person",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User/Member to fetch",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "sendComponentV2",
+      "name": "Send Component V2",
+      "description": "Send interactive components",
+      "category": "Components",
+      "family": "messages",
+      "icon": "widgets",
+      "terminal": false,
+      "deprecated": true,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel to send the components in (optional: current channel)"
+        },
+        {
+          "label": "Components",
+          "key": "components",
+          "type": "componentV2",
+          "default": {},
+          "hint": "Component V2 layout to send",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "editComponentV2",
+      "name": "Edit Component V2",
+      "description": "Edit existing components",
+      "category": "Components",
+      "family": "messages",
+      "icon": "build",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel containing the message (optional: current channel)"
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message to edit",
+          "required": true
+        },
+        {
+          "label": "Components",
+          "key": "components",
+          "type": "componentV2",
+          "default": {},
+          "hint": "Updated Component V2 layout",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "sendWebhook",
+      "name": "Send Webhook",
+      "description": "Send message via Webhook",
+      "category": "Webhooks",
+      "family": "http",
+      "icon": "webhook",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Webhook Url",
+          "key": "webhookUrl",
+          "type": "url",
+          "default": "",
+          "hint": "Full webhook URL (or provide ID + token separately)"
+        },
+        {
+          "label": "Webhook Id",
+          "key": "webhookId",
+          "type": "string",
+          "default": "",
+          "hint": "Webhook ID"
+        },
+        {
+          "label": "Token",
+          "key": "token",
+          "type": "string",
+          "default": "",
+          "hint": "Webhook Token"
+        },
+        {
+          "label": "Content",
+          "key": "content",
+          "type": "string",
+          "default": "",
+          "hint": "Message content",
+          "required": true
+        },
+        {
+          "label": "Username",
+          "key": "username",
+          "type": "string",
+          "default": "",
+          "hint": "Override webhook username"
+        },
+        {
+          "label": "Avatar Url",
+          "key": "avatarUrl",
+          "type": "url",
+          "default": "",
+          "hint": "Override webhook avatar URL"
+        },
+        {
+          "label": "Thread Id",
+          "key": "threadId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Send in specific thread"
+        },
+        {
+          "label": "Wait",
+          "key": "wait",
+          "type": "boolean",
+          "default": true,
+          "hint": "Wait for message creation to complete"
+        },
+        {
+          "label": "Component V2",
+          "key": "componentV2",
+          "type": "componentV2",
+          "default": null,
+          "hint": "Attach Component V2 interactive elements (optional)"
+        }
+      ]
+    },
+    {
+      "type": "editWebhook",
+      "name": "Edit Webhook",
+      "description": "Edit an existing Webhook",
+      "category": "Webhooks",
+      "family": "http",
+      "icon": "edit_attributes",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Webhook Url",
+          "key": "webhookUrl",
+          "type": "url",
+          "default": "",
+          "hint": "Full webhook URL (or provide ID + token separately)"
+        },
+        {
+          "label": "Webhook Id",
+          "key": "webhookId",
+          "type": "string",
+          "default": "",
+          "hint": "Webhook ID"
+        },
+        {
+          "label": "Token",
+          "key": "token",
+          "type": "string",
+          "default": "",
+          "hint": "Webhook Token"
+        },
+        {
+          "label": "Name",
+          "key": "name",
+          "type": "string",
+          "default": "",
+          "hint": "New webhook name"
+        },
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Move to new channel"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Edit reason"
+        }
+      ]
+    },
+    {
+      "type": "deleteWebhook",
+      "name": "Delete Webhook",
+      "description": "Delete a webhook",
+      "category": "Webhooks",
+      "family": "http",
+      "icon": "delete_forever",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Webhook Url",
+          "key": "webhookUrl",
+          "type": "url",
+          "default": "",
+          "hint": "Full webhook URL (or provide ID + token separately)"
+        },
+        {
+          "label": "Webhook Id",
+          "key": "webhookId",
+          "type": "string",
+          "default": "",
+          "hint": "Webhook ID"
+        },
+        {
+          "label": "Token",
+          "key": "token",
+          "type": "string",
+          "default": "",
+          "hint": "Webhook Token"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Delete reason"
+        }
+      ]
+    },
+    {
+      "type": "listWebhooks",
+      "name": "List Webhooks",
+      "description": "List all Webhooks in a channel or guild",
+      "category": "Webhooks",
+      "family": "http",
+      "icon": "list",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Fetch webhooks in channel (fallback to current channel)"
+        },
+        {
+          "label": "Guild Id",
+          "key": "guildId",
+          "type": "string",
+          "default": "",
+          "hint": "Or fetch all webhooks in guild"
+        }
+      ]
+    },
+    {
+      "type": "getWebhook",
+      "name": "Get Webhook",
+      "description": "Get Webhook information by ID",
+      "category": "Webhooks",
+      "family": "http",
+      "icon": "search",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Webhook Url",
+          "key": "webhookUrl",
+          "type": "url",
+          "default": "",
+          "hint": "Full webhook URL (or provide ID + token separately)"
+        },
+        {
+          "label": "Webhook Id",
+          "key": "webhookId",
+          "type": "string",
+          "default": "",
+          "hint": "Webhook ID",
+          "required": true
+        },
+        {
+          "label": "Token",
+          "key": "token",
+          "type": "string",
+          "default": "",
+          "hint": "Webhook Token (required to get webhook without auth)"
+        }
+      ]
+    },
+    {
+      "type": "httpRequest",
+      "name": "HTTP Request",
+      "description": "Send HTTP request with dynamic URL, method, headers and body",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "http",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Url",
+          "key": "url",
+          "type": "url",
+          "default": "",
+          "hint": "Request URL (supports placeholders ((...)))",
+          "required": true
+        },
+        {
+          "label": "Method",
+          "key": "method",
+          "type": "multiSelect",
+          "default": "GET",
+          "hint": "HTTP method",
+          "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "HEAD"
+          ]
+        },
+        {
+          "label": "Body Mode",
+          "key": "bodyMode",
+          "type": "multiSelect",
+          "default": "json",
+          "hint": "Body format",
+          "options": [
+            "json",
+            "text"
+          ]
+        },
+        {
+          "label": "Body Json",
+          "key": "bodyJson",
+          "type": "map",
+          "default": {},
+          "hint": "JSON body builder map"
+        },
+        {
+          "label": "Body Text",
+          "key": "bodyText",
+          "type": "string",
+          "default": "",
+          "hint": "Raw text body"
+        },
+        {
+          "label": "Headers",
+          "key": "headers",
+          "type": "map",
+          "default": {},
+          "hint": "Custom headers"
+        },
+        {
+          "label": "Save Body To Global Var",
+          "key": "saveBodyToGlobalVar",
+          "type": "string",
+          "default": "",
+          "hint": "Optional global var key to store response body"
+        },
+        {
+          "label": "Save Status To Global Var",
+          "key": "saveStatusToGlobalVar",
+          "type": "string",
+          "default": "",
+          "hint": "Optional global var key to store status code"
+        },
+        {
+          "label": "Extract Json Path",
+          "key": "extractJsonPath",
+          "type": "string",
+          "default": "",
+          "hint": "JSON path to extract (ex: $.data.access_token)"
+        }
+      ]
+    },
+    {
+      "type": "setGlobalVariable",
+      "name": "Set variable (whole bot)",
+      "description": "Create or update a global variable for this bot",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "save_as",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Global variable key",
+          "required": true
+        },
+        {
+          "label": "Ttl",
+          "key": "ttl",
+          "type": "string",
+          "default": "",
+          "hint": "Optional TTL (ex: 1h, 30m, 1d)"
+        },
+        {
+          "label": "Value Type",
+          "key": "valueType",
+          "type": "multiSelect",
+          "default": "string",
+          "hint": "Value type: string, number, boolean or json",
+          "options": [
+            "string",
+            "number",
+            "boolean",
+            "json"
+          ]
+        },
+        {
+          "label": "Value",
+          "key": "value",
+          "type": "string",
+          "default": "",
+          "hint": "Value (supports placeholders ((...)))",
+          "visibleWhen": {
+            "valueType": [
+              "string"
+            ]
+          }
+        },
+        {
+          "label": "Number Value",
+          "key": "numberValue",
+          "type": "number",
+          "default": 0,
+          "hint": "Numeric value when valueType=number",
+          "visibleWhen": {
+            "valueType": [
+              "number"
+            ]
+          }
+        },
+        {
+          "label": "Bool Value",
+          "key": "boolValue",
+          "type": "boolean",
+          "default": false,
+          "hint": "Boolean value when valueType=boolean",
+          "visibleWhen": {
+            "valueType": [
+              "boolean"
+            ]
+          }
+        },
+        {
+          "label": "Json Value",
+          "key": "jsonValue",
+          "type": "string",
+          "default": "",
+          "hint": "JSON value when valueType=json (array/object)",
+          "visibleWhen": {
+            "valueType": [
+              "json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "getGlobalVariable",
+      "name": "Get variable (whole bot)",
+      "description": "Read a global variable and inject into runtime variables",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "key",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Global variable key",
+          "required": true
+        },
+        {
+          "label": "Store As",
+          "key": "storeAs",
+          "type": "string",
+          "default": "",
+          "hint": "Runtime variable alias (ex: token)"
+        }
+      ]
+    },
+    {
+      "type": "removeGlobalVariable",
+      "name": "Remove variable (whole bot)",
+      "description": "Delete a global variable",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "key_off",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Global variable key",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "setScopedVariable",
+      "name": "Set variable (per server, member…)",
+      "description": "Create or update a scoped variable (guild/user/channel/guildMember/message)",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "inventory_2",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Scope",
+          "key": "scope",
+          "type": "multiSelect",
+          "default": "guild",
+          "hint": "Who is it for: each server, each member (per server), each user (all servers), each channel or each message",
+          "options": [
+            "guild",
+            "user",
+            "channel",
+            "guildMember",
+            "message"
+          ],
+          "required": true
+        },
+        {
+          "label": "Context Id",
+          "key": "contextId",
+          "type": "string",
+          "default": "",
+          "hint": "Advanced: leave empty for the current server / member / channel / message. For someone else: member = serverId:userId, other kinds = their ID"
+        },
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Variable name",
+          "required": true
+        },
+        {
+          "label": "Ttl",
+          "key": "ttl",
+          "type": "string",
+          "default": "",
+          "hint": "Optional TTL (ex: 1h, 30m, 1d)"
+        },
+        {
+          "label": "Value Type",
+          "key": "valueType",
+          "type": "multiSelect",
+          "default": "string",
+          "hint": "Value type: string, number, boolean or json",
+          "options": [
+            "string",
+            "number",
+            "boolean",
+            "json"
+          ]
+        },
+        {
+          "label": "Value",
+          "key": "value",
+          "type": "string",
+          "default": "",
+          "hint": "String value (supports placeholders ((...)))",
+          "visibleWhen": {
+            "valueType": [
+              "string"
+            ]
+          }
+        },
+        {
+          "label": "Number Value",
+          "key": "numberValue",
+          "type": "number",
+          "default": 0,
+          "hint": "Numeric value when valueType=number",
+          "visibleWhen": {
+            "valueType": [
+              "number"
+            ]
+          }
+        },
+        {
+          "label": "Bool Value",
+          "key": "boolValue",
+          "type": "boolean",
+          "default": false,
+          "hint": "Boolean value when valueType=boolean",
+          "visibleWhen": {
+            "valueType": [
+              "boolean"
+            ]
+          }
+        },
+        {
+          "label": "Json Value",
+          "key": "jsonValue",
+          "type": "string",
+          "default": "",
+          "hint": "JSON value when valueType=json (array/object)",
+          "visibleWhen": {
+            "valueType": [
+              "json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "setTemporaryVariable",
+      "name": "Set Temporary Variable",
+      "description": "Create or update a temporary variable in local execution",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "inventory_2",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Temporary variable key",
+          "required": true
+        },
+        {
+          "label": "Value Type",
+          "key": "valueType",
+          "type": "multiSelect",
+          "default": "string",
+          "hint": "Value type: string, number, boolean or json",
+          "options": [
+            "string",
+            "number",
+            "boolean",
+            "json"
+          ]
+        },
+        {
+          "label": "Value",
+          "key": "value",
+          "type": "string",
+          "default": "",
+          "hint": "String value (supports placeholders ((...)))",
+          "visibleWhen": {
+            "valueType": [
+              "string"
+            ]
+          }
+        },
+        {
+          "label": "Number Value",
+          "key": "numberValue",
+          "type": "number",
+          "default": 0,
+          "hint": "Numeric value when valueType=number",
+          "visibleWhen": {
+            "valueType": [
+              "number"
+            ]
+          }
+        },
+        {
+          "label": "Bool Value",
+          "key": "boolValue",
+          "type": "boolean",
+          "default": false,
+          "hint": "Boolean value when valueType=boolean",
+          "visibleWhen": {
+            "valueType": [
+              "boolean"
+            ]
+          }
+        },
+        {
+          "label": "Json Value",
+          "key": "jsonValue",
+          "type": "string",
+          "default": "",
+          "hint": "JSON value when valueType=json (array/object)",
+          "visibleWhen": {
+            "valueType": [
+              "json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "getScopedVariable",
+      "name": "Get variable (per server, member…)",
+      "description": "Read a scoped variable and inject into runtime variables",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "inventory_2",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Scope",
+          "key": "scope",
+          "type": "multiSelect",
+          "default": "guild",
+          "hint": "Who is it for: each server, each member (per server), each user (all servers), each channel or each message",
+          "options": [
+            "guild",
+            "user",
+            "channel",
+            "guildMember",
+            "message"
+          ],
+          "required": true
+        },
+        {
+          "label": "Context Id",
+          "key": "contextId",
+          "type": "string",
+          "default": "",
+          "hint": "Advanced: leave empty for the current server / member / channel / message. For someone else: member = serverId:userId, other kinds = their ID"
+        },
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Variable name",
+          "required": true
+        },
+        {
+          "label": "Store As",
+          "key": "storeAs",
+          "type": "string",
+          "default": "",
+          "hint": "Runtime variable alias (ex: guild.score)"
+        }
+      ]
+    },
+    {
+      "type": "removeScopedVariable",
+      "name": "Remove variable (per server, member…)",
+      "description": "Delete a scoped variable",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "inventory_2",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Scope",
+          "key": "scope",
+          "type": "multiSelect",
+          "default": "guild",
+          "hint": "Who is it for: each server, each member (per server), each user (all servers), each channel or each message",
+          "options": [
+            "guild",
+            "user",
+            "channel",
+            "guildMember",
+            "message"
+          ],
+          "required": true
+        },
+        {
+          "label": "Context Id",
+          "key": "contextId",
+          "type": "string",
+          "default": "",
+          "hint": "Advanced: leave empty for the current server / member / channel / message. For someone else: member = serverId:userId, other kinds = their ID"
+        },
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Variable name",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "renameScopedVariable",
+      "name": "Rename variable (per server, member…)",
+      "description": "Rename a scoped variable key",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "inventory_2",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Scope",
+          "key": "scope",
+          "type": "multiSelect",
+          "default": "guild",
+          "hint": "Who is it for: each server, each member (per server), each user (all servers), each channel or each message",
+          "options": [
+            "guild",
+            "user",
+            "channel",
+            "guildMember",
+            "message"
+          ],
+          "required": true
+        },
+        {
+          "label": "Context Id",
+          "key": "contextId",
+          "type": "string",
+          "default": "",
+          "hint": "Advanced: leave empty for the current server / member / channel / message. For someone else: member = serverId:userId, other kinds = their ID"
+        },
+        {
+          "label": "Old Key",
+          "key": "oldKey",
+          "type": "string",
+          "default": "",
+          "hint": "Current key (bc_ optional)",
+          "required": true
+        },
+        {
+          "label": "New Key",
+          "key": "newKey",
+          "type": "string",
+          "default": "",
+          "hint": "New key (bc_ optional)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "listScopedVariableIndex",
+      "name": "List a variable’s values (per server, member…)",
+      "description": "List indexed scoped values sorted by value with offset and limit",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "inventory_2",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Scope",
+          "key": "scope",
+          "type": "multiSelect",
+          "default": "user",
+          "hint": "Who is it for: each server, each member (per server), each user (all servers), each channel or each message",
+          "options": [
+            "guild",
+            "user",
+            "channel",
+            "guildMember",
+            "message"
+          ],
+          "required": true
+        },
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Scoped variable key to index (bc_ optional)",
+          "required": true
+        },
+        {
+          "label": "Order",
+          "key": "order",
+          "type": "multiSelect",
+          "default": "desc",
+          "hint": "Sort order by value",
+          "options": [
+            "desc",
+            "asc"
+          ]
+        },
+        {
+          "label": "Offset",
+          "key": "offset",
+          "type": "number",
+          "default": 0,
+          "hint": "Pagination offset (>= 0)",
+          "min": 0
+        },
+        {
+          "label": "Limit",
+          "key": "limit",
+          "type": "number",
+          "default": 25,
+          "hint": "Maximum items to return (1..25)",
+          "min": 1,
+          "max": 25,
+          "allowDynamic": false
+        },
+        {
+          "label": "Store As",
+          "key": "storeAs",
+          "type": "string",
+          "default": "",
+          "hint": "Optional runtime alias for the JSON items list"
+        }
+      ]
+    },
+    {
+      "type": "appendArrayElement",
+      "name": "Append Array Element",
+      "description": "Append a new element into a global or scoped JSON array",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "inventory_2",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Target",
+          "key": "target",
+          "type": "multiSelect",
+          "default": "global",
+          "hint": "Target variable container",
+          "options": [
+            "global",
+            "scoped"
+          ]
+        },
+        {
+          "label": "Scope",
+          "key": "scope",
+          "type": "multiSelect",
+          "default": "guild",
+          "hint": "Scope when target=scoped",
+          "options": [
+            "guild",
+            "user",
+            "channel",
+            "guildMember",
+            "message"
+          ]
+        },
+        {
+          "label": "Context Id",
+          "key": "contextId",
+          "type": "string",
+          "default": "",
+          "hint": "Advanced: leave empty for the current server / member / channel / message",
+          "visibleWhen": {
+            "target": [
+              "scoped"
+            ]
+          }
+        },
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Variable key containing the array",
+          "required": true
+        },
+        {
+          "label": "Path",
+          "key": "path",
+          "type": "string",
+          "default": "$",
+          "hint": "JSON path to the target array inside the stored value"
+        },
+        {
+          "label": "Value Type",
+          "key": "valueType",
+          "type": "multiSelect",
+          "default": "string",
+          "hint": "Element type: string, number, boolean or json",
+          "options": [
+            "string",
+            "number",
+            "boolean",
+            "json"
+          ]
+        },
+        {
+          "label": "Element",
+          "key": "element",
+          "type": "string",
+          "default": "",
+          "hint": "String element value",
+          "visibleWhen": {
+            "valueType": [
+              "string"
+            ]
+          }
+        },
+        {
+          "label": "Number Value",
+          "key": "numberValue",
+          "type": "number",
+          "default": 0,
+          "hint": "Numeric element value",
+          "visibleWhen": {
+            "valueType": [
+              "number"
+            ]
+          }
+        },
+        {
+          "label": "Bool Value",
+          "key": "boolValue",
+          "type": "boolean",
+          "default": false,
+          "hint": "Boolean element value",
+          "visibleWhen": {
+            "valueType": [
+              "boolean"
+            ]
+          }
+        },
+        {
+          "label": "Json Value",
+          "key": "jsonValue",
+          "type": "string",
+          "default": "",
+          "hint": "JSON element value (array/object)",
+          "visibleWhen": {
+            "valueType": [
+              "json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "removeArrayElement",
+      "name": "Remove Array Element",
+      "description": "Remove one element from a global or scoped JSON array by index",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "inventory_2",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Target",
+          "key": "target",
+          "type": "multiSelect",
+          "default": "global",
+          "hint": "Target variable container",
+          "options": [
+            "global",
+            "scoped"
+          ]
+        },
+        {
+          "label": "Scope",
+          "key": "scope",
+          "type": "multiSelect",
+          "default": "guild",
+          "hint": "Scope when target=scoped",
+          "options": [
+            "guild",
+            "user",
+            "channel",
+            "guildMember",
+            "message"
+          ]
+        },
+        {
+          "label": "Context Id",
+          "key": "contextId",
+          "type": "string",
+          "default": "",
+          "hint": "Advanced: leave empty for the current server / member / channel / message",
+          "visibleWhen": {
+            "target": [
+              "scoped"
+            ]
+          }
+        },
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Variable key containing the array",
+          "required": true
+        },
+        {
+          "label": "Path",
+          "key": "path",
+          "type": "string",
+          "default": "$",
+          "hint": "JSON path to the target array inside the stored value"
+        },
+        {
+          "label": "Index",
+          "key": "index",
+          "type": "number",
+          "default": 0,
+          "hint": "Array index to remove",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "type": "queryArray",
+      "name": "Query Array",
+      "description": "Filter, sort and page any runtime JSON array",
+      "category": "HTTP & Variables",
+      "family": "http",
+      "icon": "inventory_2",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Input",
+          "key": "input",
+          "type": "string",
+          "default": "",
+          "hint": "Template resolving to a JSON array or JSON object",
+          "required": true
+        },
+        {
+          "label": "Path",
+          "key": "path",
+          "type": "string",
+          "default": "$",
+          "hint": "Optional JSON path to extract the array from input"
+        },
+        {
+          "label": "Filter Template",
+          "key": "filterTemplate",
+          "type": "string",
+          "default": "",
+          "hint": "Item template used for filtering, ex: {name}"
+        },
+        {
+          "label": "Filter Operator",
+          "key": "filterOperator",
+          "type": "multiSelect",
+          "default": "contains",
+          "hint": "Filter operator",
+          "options": [
+            "contains",
+            "equals",
+            "startsWith",
+            "endsWith",
+            "gt",
+            "gte",
+            "lt",
+            "lte"
+          ]
+        },
+        {
+          "label": "Filter Value",
+          "key": "filterValue",
+          "type": "string",
+          "default": "",
+          "hint": "Value compared against filterTemplate"
+        },
+        {
+          "label": "Sort Template",
+          "key": "sortTemplate",
+          "type": "string",
+          "default": "",
+          "hint": "Optional item template used for sorting"
+        },
+        {
+          "label": "Order",
+          "key": "order",
+          "type": "multiSelect",
+          "default": "asc",
+          "hint": "Sort order",
+          "options": [
+            "asc",
+            "desc"
+          ]
+        },
+        {
+          "label": "Offset",
+          "key": "offset",
+          "type": "number",
+          "default": 0,
+          "hint": "Pagination offset",
+          "min": 0
+        },
+        {
+          "label": "Limit",
+          "key": "limit",
+          "type": "number",
+          "default": 25,
+          "hint": "Maximum number of items to return",
+          "min": 1,
+          "max": 100
+        },
+        {
+          "label": "Store As",
+          "key": "storeAs",
+          "type": "string",
+          "default": "",
+          "hint": "Optional alias storing the paged array as JSON"
+        }
+      ]
+    },
+    {
+      "type": "runWorkflow",
+      "name": "Run Workflow",
+      "description": "Execute a saved workflow (supports entry point + arguments)",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "account_tree",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Workflow Name",
+          "key": "workflowName",
+          "type": "string",
+          "default": "",
+          "hint": "Saved workflow name to execute",
+          "required": true
+        },
+        {
+          "label": "Entry Point",
+          "key": "entryPoint",
+          "type": "string",
+          "default": "",
+          "hint": "Optional entry point override (defaults to workflow entry)"
+        },
+        {
+          "label": "Arguments",
+          "key": "arguments",
+          "type": "map",
+          "default": {},
+          "hint": "Optional key/value arguments injected as ((arg.key))"
+        }
+      ]
+    },
+    {
+      "type": "runBdfdScript",
+      "name": "Run BDFD Script",
+      "description": "Compile and run a BDFD script inline as workflow actions",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "code",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Script Content",
+          "key": "scriptContent",
+          "type": "bdfdScript",
+          "default": "",
+          "hint": "BDFD script source code to execute",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "stopUnless",
+      "name": "Stop Unless Condition",
+      "description": "Stop the workflow if a condition is not met (guard/filter)",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "filter_alt",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Condition.variable",
+          "key": "condition.variable",
+          "type": "string",
+          "default": "",
+          "hint": "Value to test — use ((variableName)) to inject a variable. E.g. ((message.content[0]))",
+          "required": true
+        },
+        {
+          "label": "Condition.operator",
+          "key": "condition.operator",
+          "type": "multiSelect",
+          "default": "equals",
+          "hint": "Comparison operator",
+          "options": [
+            "equals",
+            "notEquals",
+            "contains",
+            "notContains",
+            "startsWith",
+            "endsWith",
+            "greaterThan",
+            "lessThan",
+            "greaterOrEqual",
+            "lessOrEqual",
+            "isEmpty",
+            "isNotEmpty",
+            "matches"
+          ]
+        },
+        {
+          "label": "Condition.value",
+          "key": "condition.value",
+          "type": "string",
+          "default": "",
+          "hint": "Value to compare against (can use ((variables)))"
+        }
+      ]
+    },
+    {
+      "type": "ifBlock",
+      "name": "IF / ELSE Block",
+      "description": "Conditional branching: run different actions based on a condition",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "account_tree",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Condition.variable",
+          "key": "condition.variable",
+          "type": "string",
+          "default": "",
+          "hint": "Value to test — use ((variableName)). E.g. ((message.content[0]))",
+          "required": true
+        },
+        {
+          "label": "Condition.operator",
+          "key": "condition.operator",
+          "type": "multiSelect",
+          "default": "equals",
+          "hint": "Comparison operator",
+          "options": [
+            "equals",
+            "notEquals",
+            "contains",
+            "notContains",
+            "startsWith",
+            "endsWith",
+            "greaterThan",
+            "lessThan",
+            "greaterOrEqual",
+            "lessOrEqual",
+            "isEmpty",
+            "isNotEmpty",
+            "matches"
+          ]
+        },
+        {
+          "label": "Condition.value",
+          "key": "condition.value",
+          "type": "string",
+          "default": "",
+          "hint": "Value to compare against (can use ((variables)))"
+        },
+        {
+          "label": "Then Actions",
+          "key": "thenActions",
+          "type": "nestedActions",
+          "default": [],
+          "hint": "THEN — actions to run when condition is TRUE"
+        },
+        {
+          "label": "Else If Conditions",
+          "key": "elseIfConditions",
+          "type": "elseIfBranches",
+          "default": [],
+          "hint": "ELSE IF — conditions checked in order before ELSE"
+        },
+        {
+          "label": "Else Actions",
+          "key": "elseActions",
+          "type": "nestedActions",
+          "default": [],
+          "hint": "ELSE — actions to run when condition is FALSE"
+        }
+      ]
+    },
+    {
+      "type": "forLoop",
+      "name": "For Loop",
+      "description": "Loop through a range of numbers (for loop)",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "loop",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Mode",
+          "key": "mode",
+          "type": "multiSelect",
+          "default": "simple",
+          "hint": "Loop mode: simple or cstyle. The entire command has a 15 minute execution deadline.",
+          "options": [
+            "simple",
+            "cstyle"
+          ],
+          "required": true
+        },
+        {
+          "label": "Iterations",
+          "key": "iterations",
+          "type": "string",
+          "default": "5",
+          "hint": "Number of iterations for simple mode",
+          "visibleWhen": {
+            "mode": [
+              "simple"
+            ]
+          }
+        },
+        {
+          "label": "Init",
+          "key": "init",
+          "type": "string",
+          "default": "i=0",
+          "hint": "Initializer for C-style loop (e.g. i=0, j=10)",
+          "visibleWhen": {
+            "mode": [
+              "cstyle"
+            ]
+          }
+        },
+        {
+          "label": "Condition",
+          "key": "condition",
+          "type": "string",
+          "default": "i < 10",
+          "hint": "Loop continuation condition for C-style loop (e.g. i < 10)",
+          "visibleWhen": {
+            "mode": [
+              "cstyle"
+            ]
+          }
+        },
+        {
+          "label": "Update",
+          "key": "update",
+          "type": "string",
+          "default": "i = i + 1",
+          "hint": "Loop variable update expression (e.g. i = i + 1)",
+          "visibleWhen": {
+            "mode": [
+              "cstyle"
+            ]
+          }
+        },
+        {
+          "label": "Body Actions",
+          "key": "bodyActions",
+          "type": "nestedActions",
+          "default": [],
+          "hint": "Actions to execute inside the loop body"
+        }
+      ]
+    },
+    {
+      "type": "jsonForEachLoop",
+      "name": "JSON For Each Loop",
+      "description": "Loop through each element of a JSON array or object (forEach)",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "loop",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Source",
+          "key": "source",
+          "type": "string",
+          "default": "",
+          "hint": "JSON string source (can be empty if preceding runtimeJsonBlock provides it)"
+        },
+        {
+          "label": "Path",
+          "key": "path",
+          "type": "list",
+          "default": [],
+          "hint": "Optional JSON path navigation segments"
+        },
+        {
+          "label": "Body Actions",
+          "key": "bodyActions",
+          "type": "nestedActions",
+          "default": [],
+          "hint": "Actions to execute on each key-value pair of the JSON object"
+        }
+      ]
+    },
+    {
+      "type": "respondWithMessage",
+      "name": "Respond with Message",
+      "description": "Reply to command with a normal message",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "chat",
+      "terminal": true,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Content",
+          "key": "content",
+          "type": "string",
+          "default": "",
+          "hint": "Response text (supports placeholders ((...)))"
+        },
+        {
+          "label": "Embeds",
+          "key": "embeds",
+          "type": "embeds",
+          "default": [],
+          "hint": "Optional embeds (same format as normal command reply)"
+        },
+        {
+          "label": "Components",
+          "key": "components",
+          "type": "normalComponents",
+          "default": {},
+          "hint": "Optional message components (buttons/select menus only)."
+        },
+        {
+          "label": "Ephemeral",
+          "key": "ephemeral",
+          "type": "boolean",
+          "default": false,
+          "hint": "Only visible to command author (interaction only)"
+        },
+        {
+          "label": "Reply To Message",
+          "key": "replyToMessage",
+          "type": "boolean",
+          "default": false,
+          "hint": "Reply to the triggering message (prefix commands: uses message reference)"
+        }
+      ]
+    },
+    {
+      "type": "respondWithComponentV2",
+      "name": "Respond with Component V2",
+      "description": "Reply to command with buttons/select menus",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "dashboard_customize",
+      "terminal": true,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel (optional: current channel or interaction context)"
+        },
+        {
+          "label": "Components",
+          "key": "components",
+          "type": "componentV2",
+          "default": {},
+          "hint": "Component V2 layout builder"
+        },
+        {
+          "label": "Ephemeral",
+          "key": "ephemeral",
+          "type": "boolean",
+          "default": false,
+          "hint": "Only visible to command author (Interaction ONLY)"
+        }
+      ]
+    },
+    {
+      "type": "respondWithModal",
+      "name": "Respond with Modal",
+      "description": "Show a modal dialog to the user",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "input",
+      "terminal": true,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": true,
+      "fields": [
+        {
+          "label": "Modal",
+          "key": "modal",
+          "type": "modalDefinition",
+          "default": {},
+          "hint": "Modal dialog definition",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "editInteractionMessage",
+      "name": "Edit Interaction Message",
+      "description": "Edit the deferred or original interaction response",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "edit_notifications",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": true,
+      "fields": [
+        {
+          "label": "Edit Mode",
+          "key": "editMode",
+          "type": "multiSelect",
+          "default": "message",
+          "hint": "Edit standard message or Component V2 layout",
+          "options": [
+            "message",
+            "componentV2"
+          ]
+        },
+        {
+          "label": "Content",
+          "key": "content",
+          "type": "string",
+          "default": "",
+          "hint": "New text content (leave empty to keep current)",
+          "visibleWhen": {
+            "editMode": [
+              "message"
+            ]
+          }
+        },
+        {
+          "label": "Embeds",
+          "key": "embeds",
+          "type": "embeds",
+          "default": null,
+          "hint": "Optional embeds to replace the current interaction embeds",
+          "visibleWhen": {
+            "editMode": [
+              "message"
+            ]
+          }
+        },
+        {
+          "label": "Clear Embeds",
+          "key": "clearEmbeds",
+          "type": "boolean",
+          "default": false,
+          "hint": "Remove all embeds from the interaction message",
+          "visibleWhen": {
+            "editMode": [
+              "message"
+            ]
+          }
+        },
+        {
+          "label": "Components",
+          "key": "components",
+          "type": "normalComponents",
+          "default": {},
+          "hint": "Optional message components (buttons/select menus only)",
+          "visibleWhen": {
+            "editMode": [
+              "message"
+            ]
+          }
+        },
+        {
+          "label": "Components",
+          "key": "components",
+          "type": "componentV2",
+          "default": {},
+          "hint": "New component layout (leave empty to keep current)",
+          "visibleWhen": {
+            "editMode": [
+              "componentV2"
+            ]
+          }
+        },
+        {
+          "label": "Clear Components",
+          "key": "clearComponents",
+          "type": "boolean",
+          "default": false,
+          "hint": "Remove all components from the message",
+          "visibleWhen": {
+            "editMode": [
+              "message",
+              "componentV2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "respondWithAutocomplete",
+      "name": "Respond with Autocomplete",
+      "description": "Reply to a Discord autocomplete interaction with up to 25 dynamic choices",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "tune",
+      "terminal": true,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Items",
+          "key": "items",
+          "type": "string",
+          "default": "",
+          "hint": "Template resolving to a JSON array",
+          "required": true
+        },
+        {
+          "label": "Path",
+          "key": "path",
+          "type": "string",
+          "default": "$",
+          "hint": "Optional JSON path to the array inside items"
+        },
+        {
+          "label": "Label Template",
+          "key": "labelTemplate",
+          "type": "string",
+          "default": "{value}",
+          "hint": "Rendered label for each autocomplete choice"
+        },
+        {
+          "label": "Value Template",
+          "key": "valueTemplate",
+          "type": "string",
+          "default": "{value}",
+          "hint": "Rendered value for each autocomplete choice"
+        }
+      ]
+    },
+    {
+      "type": "deferInteraction",
+      "name": "Defer Interaction",
+      "description": "Defer the interaction response to prevent Discord timeout",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "hourglass_top",
+      "terminal": true,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": true,
+      "fields": []
+    },
+    {
+      "type": "listenForButtonClick",
+      "name": "Listen for Button Click",
+      "description": "Register a workflow to run when a button is clicked",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "touch_app",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": true,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Custom Id",
+          "key": "customId",
+          "type": "string",
+          "default": "",
+          "hint": "Button customId to listen for (supports ((variables)))",
+          "required": true
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Optional message scope. Recommended to avoid collisions when the same customId exists on multiple messages."
+        },
+        {
+          "label": "Workflow Name",
+          "key": "workflowName",
+          "type": "string",
+          "default": "",
+          "hint": "Workflow to run when button is clicked.",
+          "required": true
+        },
+        {
+          "label": "Entry Point",
+          "key": "entryPoint",
+          "type": "string",
+          "default": "",
+          "hint": "Optional entry point override"
+        },
+        {
+          "label": "Arguments",
+          "key": "arguments",
+          "type": "map",
+          "default": {},
+          "hint": "Optional key/value arguments for workflow call"
+        },
+        {
+          "label": "Ttl Minutes",
+          "key": "ttlMinutes",
+          "type": "number",
+          "default": 60,
+          "hint": "Listener TTL in minutes (max 60)",
+          "min": 1,
+          "max": 60
+        }
+      ]
+    },
+    {
+      "type": "listenForSelectMenu",
+      "name": "Listen for Select Menu",
+      "description": "Register a workflow to run when a select menu is used",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "list_alt",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": true,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Custom Id",
+          "key": "customId",
+          "type": "string",
+          "default": "",
+          "hint": "Select menu customId to listen for (supports ((variables)))",
+          "required": true
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Optional message scope. Recommended to avoid collisions when the same customId exists on multiple messages."
+        },
+        {
+          "label": "Workflow Name",
+          "key": "workflowName",
+          "type": "string",
+          "default": "",
+          "hint": "Workflow to run when the select menu is used.",
+          "required": true
+        },
+        {
+          "label": "Entry Point",
+          "key": "entryPoint",
+          "type": "string",
+          "default": "",
+          "hint": "Optional entry point override"
+        },
+        {
+          "label": "Arguments",
+          "key": "arguments",
+          "type": "map",
+          "default": {},
+          "hint": "Optional key/value arguments for workflow call"
+        },
+        {
+          "label": "Ttl Minutes",
+          "key": "ttlMinutes",
+          "type": "number",
+          "default": 60,
+          "hint": "Listener TTL in minutes (max 60)",
+          "min": 1,
+          "max": 60
+        }
+      ]
+    },
+    {
+      "type": "listenForModalSubmit",
+      "name": "Listen for Modal Submit",
+      "description": "Register a workflow to run when a modal is submitted",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "dynamic_form",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": true,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Custom Id",
+          "key": "customId",
+          "type": "string",
+          "default": "",
+          "hint": "Modal customId to listen for",
+          "required": true
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Optional originating message scope when the modal is opened from a component interaction."
+        },
+        {
+          "label": "Workflow Name",
+          "key": "workflowName",
+          "type": "string",
+          "default": "",
+          "hint": "Workflow to run when modal is submitted.",
+          "required": true
+        },
+        {
+          "label": "Entry Point",
+          "key": "entryPoint",
+          "type": "string",
+          "default": "",
+          "hint": "Optional entry point override"
+        },
+        {
+          "label": "Arguments",
+          "key": "arguments",
+          "type": "map",
+          "default": {},
+          "hint": "Optional key/value arguments for workflow call"
+        },
+        {
+          "label": "Ttl Minutes",
+          "key": "ttlMinutes",
+          "type": "number",
+          "default": 60,
+          "hint": "Listener TTL in minutes (max 60)",
+          "min": 1,
+          "max": 60
+        }
+      ]
+    },
+    {
+      "type": "listenAndExecute",
+      "name": "Listen and Execute",
+      "description": "Register a workflow to run when a button is clicked, select menu is used, or modal is submitted",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "hearing",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": true,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Custom Id",
+          "key": "customId",
+          "type": "string",
+          "default": "",
+          "hint": "Component custom ID to listen for (supports ((variables)))",
+          "required": true
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Optional message scope. Recommended to avoid collisions when the same customId exists on multiple messages."
+        },
+        {
+          "label": "Actions",
+          "key": "actions",
+          "type": "nestedActions",
+          "default": [],
+          "hint": "Actions to execute when the interaction is triggered"
+        },
+        {
+          "label": "Workflow Name",
+          "key": "workflowName",
+          "type": "string",
+          "default": "",
+          "hint": "Legacy: Workflow to run (only if Actions is empty)"
+        },
+        {
+          "label": "Entry Point",
+          "key": "entryPoint",
+          "type": "string",
+          "default": "",
+          "hint": "Legacy: Optional entry point override"
+        },
+        {
+          "label": "Arguments",
+          "key": "arguments",
+          "type": "map",
+          "default": {},
+          "hint": "Legacy: Optional key/value arguments for workflow call"
+        },
+        {
+          "label": "Ttl Minutes",
+          "key": "ttlMinutes",
+          "type": "number",
+          "default": 60,
+          "hint": "Listener TTL in minutes (max 60)",
+          "min": 1,
+          "max": 60
+        }
+      ]
+    },
+    {
+      "type": "calculate",
+      "name": "Calculate",
+      "description": "Perform math operations and store result",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "calculate",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Expression",
+          "key": "expression",
+          "type": "string",
+          "default": "",
+          "hint": "Expression mathématique libre (ex: 10+5.9-9, ((var))*2).nPrioritaire sur le mode Operation si rempli."
+        },
+        {
+          "label": "Operation",
+          "key": "operation",
+          "type": "multiSelect",
+          "default": "add",
+          "hint": "Math operation to perform (ignored if Expression is set)",
+          "options": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide",
+            "modulo",
+            "power",
+            "sqrt",
+            "abs",
+            "floor",
+            "ceil",
+            "round",
+            "negate",
+            "min",
+            "max",
+            "log",
+            "random",
+            "randomFloat"
+          ],
+          "required": true
+        },
+        {
+          "label": "Operand A",
+          "key": "operandA",
+          "type": "string",
+          "default": "",
+          "hint": "First operand (supports ((variables))). For random/randomFloat: minimum value.",
+          "required": true
+        },
+        {
+          "label": "Operand B",
+          "key": "operandB",
+          "type": "string",
+          "default": "",
+          "hint": "Second operand (required for binary ops). For random/randomFloat: maximum value. For log: base."
+        }
+      ]
+    },
+    {
+      "type": "getMessage",
+      "name": "Get Message",
+      "description": "Fetch a message and expose its fields",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "message",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel containing the message (optional: current channel)"
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message ID to fetch",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "unpinMessage",
+      "name": "Unpin Message",
+      "description": "Unpin a message in a channel",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "push_pin_outlined",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel containing the message (optional: current channel)"
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message to unpin",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "createPoll",
+      "name": "Create Poll",
+      "description": "Create a poll message in a channel",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "poll",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel to send the poll in (optional: current channel)"
+        },
+        {
+          "label": "Question",
+          "key": "question",
+          "type": "string",
+          "default": "",
+          "hint": "Poll question",
+          "required": true
+        },
+        {
+          "label": "Answers",
+          "key": "answers",
+          "type": "list",
+          "default": [
+            "Yes",
+            "No"
+          ],
+          "hint": "Poll answers (max 10)",
+          "required": true
+        },
+        {
+          "label": "Duration Hours",
+          "key": "durationHours",
+          "type": "number",
+          "default": 24,
+          "hint": "Poll duration in hours (1–168)",
+          "min": 1,
+          "max": 168
+        },
+        {
+          "label": "Allow Multiselect",
+          "key": "allowMultiselect",
+          "type": "boolean",
+          "default": false,
+          "hint": "Allow multiple answers to be selected"
+        }
+      ]
+    },
+    {
+      "type": "endPoll",
+      "name": "End Poll",
+      "description": "End an active poll message immediately",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "stop_circle",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel containing the poll (optional: current channel)"
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Message ID of the poll to end",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "createInvite",
+      "name": "Create Invite",
+      "description": "Create a new invite link for a channel",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "link",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel to create invite for (optional: current channel)"
+        },
+        {
+          "label": "Max Age",
+          "key": "maxAge",
+          "type": "number",
+          "default": 86400,
+          "hint": "Expiry in seconds (0 = never)",
+          "min": 0
+        },
+        {
+          "label": "Max Uses",
+          "key": "maxUses",
+          "type": "number",
+          "default": 0,
+          "hint": "Max uses (0 = unlimited)",
+          "min": 0
+        },
+        {
+          "label": "Temporary",
+          "key": "temporary",
+          "type": "boolean",
+          "default": false,
+          "hint": "Kick member if they leave before getting a role"
+        },
+        {
+          "label": "Unique",
+          "key": "unique",
+          "type": "boolean",
+          "default": false,
+          "hint": "Guarantee a unique invite code"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "deleteInvite",
+      "name": "Delete Invite",
+      "description": "Delete an existing invite by code",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "link_off",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Invite Code",
+          "key": "inviteCode",
+          "type": "string",
+          "default": "",
+          "hint": "Invite code to delete (e.g. abc123)",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "getInvite",
+      "name": "Get Invite",
+      "description": "Fetch invite information by code",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "manage_search",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Invite Code",
+          "key": "inviteCode",
+          "type": "string",
+          "default": "",
+          "hint": "Invite code to look up (e.g. abc123)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "moveToVoiceChannel",
+      "name": "Move to Voice Channel",
+      "description": "Move a member to a specific voice channel",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "headset",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "Member to move",
+          "required": true
+        },
+        {
+          "label": "Target Channel Id",
+          "key": "targetChannelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Destination voice channel",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "disconnectFromVoice",
+      "name": "Disconnect from Voice",
+      "description": "Disconnect a member from voice",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "headset_off",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "Member to disconnect from voice",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "serverMuteMember",
+      "name": "Server Mute Member",
+      "description": "Server-mute or unmute a member",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "mic_off",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "Member to server-mute or unmute",
+          "required": true
+        },
+        {
+          "label": "Mute",
+          "key": "mute",
+          "type": "boolean",
+          "default": true,
+          "hint": "true = mute, false = unmute"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "serverDeafenMember",
+      "name": "Server Deafen Member",
+      "description": "Server-deafen or undeafen a member",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "hearing_disabled",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "Member to server-deafen or undeafen",
+          "required": true
+        },
+        {
+          "label": "Deaf",
+          "key": "deaf",
+          "type": "boolean",
+          "default": true,
+          "hint": "true = deafen, false = undeafen"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "playMusic",
+      "name": "Play Music",
+      "description": "Play a track by search query or URL",
+      "category": "Music",
+      "family": "data",
+      "icon": "play_arrow",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Query",
+          "key": "query",
+          "type": "string",
+          "default": "",
+          "hint": "Search query or track URL",
+          "required": true
+        },
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "Optional: user to resolve voice channel from"
+        },
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Optional: explicit voice channel to join"
+        }
+      ]
+    },
+    {
+      "type": "pauseMusic",
+      "name": "Pause Music",
+      "description": "Pause the current track",
+      "category": "Music",
+      "family": "data",
+      "icon": "pause",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "resumeMusic",
+      "name": "Resume Music",
+      "description": "Resume a paused track",
+      "category": "Music",
+      "family": "data",
+      "icon": "play_circle_fill",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "skipMusic",
+      "name": "Skip Music",
+      "description": "Skip to the next track in the queue",
+      "category": "Music",
+      "family": "data",
+      "icon": "skip_next",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "stopMusic",
+      "name": "Stop Music",
+      "description": "Stop playback and clear the queue",
+      "category": "Music",
+      "family": "data",
+      "icon": "stop",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "setMusicVolume",
+      "name": "Set Music Volume",
+      "description": "Set the player volume (0 to 200)",
+      "category": "Music",
+      "family": "data",
+      "icon": "volume_up",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Volume",
+          "key": "volume",
+          "type": "number",
+          "default": 100,
+          "hint": "Volume level (0 to 200)",
+          "min": 0,
+          "max": 200,
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "setMusicLoop",
+      "name": "Set Music Loop",
+      "description": "Enable or disable looping of the queue",
+      "category": "Music",
+      "family": "data",
+      "icon": "loop",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Loop",
+          "key": "loop",
+          "type": "boolean",
+          "default": false,
+          "hint": "Enable or disable looping of current track/queue",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "seekMusic",
+      "name": "Seek Music Position",
+      "description": "Seek to a position in the current track",
+      "category": "Music",
+      "family": "data",
+      "icon": "linear_scale",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Position",
+          "key": "position",
+          "type": "number",
+          "default": 0,
+          "hint": "Seek position in milliseconds",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "getMusicInfo",
+      "name": "Get Music Info",
+      "description": "Retrieve info about the currently playing track",
+      "category": "Music",
+      "family": "data",
+      "icon": "info_outline",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "joinVoice",
+      "name": "Join Voice Channel",
+      "description": "Join a voice channel",
+      "category": "Music",
+      "family": "data",
+      "icon": "settings_voice",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "Optional: user to resolve voice channel from"
+        },
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Optional: explicit voice channel to join"
+        }
+      ]
+    },
+    {
+      "type": "leaveVoice",
+      "name": "Leave Voice Channel",
+      "description": "Leave the voice channel and destroy the player",
+      "category": "Music",
+      "family": "data",
+      "icon": "logout",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "createEmoji",
+      "name": "Create Emoji",
+      "description": "Create a guild emoji from image data",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "add_reaction",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Name",
+          "key": "name",
+          "type": "string",
+          "default": "",
+          "hint": "Emoji name (alphanumeric + underscores)",
+          "required": true
+        },
+        {
+          "label": "Image Url",
+          "key": "imageUrl",
+          "type": "url",
+          "default": "",
+          "hint": "URL of the image to use as emoji (PNG/JPEG/GIF, max 256KB)"
+        },
+        {
+          "label": "Image Base64",
+          "key": "imageBase64",
+          "type": "string",
+          "default": "",
+          "hint": "Base64-encoded image data (alternative to imageUrl)"
+        },
+        {
+          "label": "Roles",
+          "key": "roles",
+          "type": "list",
+          "default": [],
+          "hint": "Role IDs that can use this emoji (empty = everyone)"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "updateEmoji",
+      "name": "Update Emoji",
+      "description": "Update guild emoji name or role access",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "edit_notifications",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Emoji Id",
+          "key": "emojiId",
+          "type": "string",
+          "default": "",
+          "hint": "Emoji ID to update",
+          "required": true
+        },
+        {
+          "label": "Name",
+          "key": "name",
+          "type": "string",
+          "default": "",
+          "hint": "New emoji name"
+        },
+        {
+          "label": "Roles",
+          "key": "roles",
+          "type": "list",
+          "default": [],
+          "hint": "New list of role IDs (empty = no change)"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "deleteEmoji",
+      "name": "Delete Emoji",
+      "description": "Delete a guild emoji",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "no_photography",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Emoji Id",
+          "key": "emojiId",
+          "type": "string",
+          "default": "",
+          "hint": "Emoji ID to delete",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "createAutoModRule",
+      "name": "Create AutoMod Rule",
+      "description": "Create a guild auto-moderation rule",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "security",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Name",
+          "key": "name",
+          "type": "string",
+          "default": "",
+          "hint": "Rule name",
+          "required": true
+        },
+        {
+          "label": "Trigger Type",
+          "key": "triggerType",
+          "type": "multiSelect",
+          "default": "keyword",
+          "hint": "What triggers the rule",
+          "options": [
+            "keyword",
+            "spam",
+            "keywordPreset",
+            "mentionSpam"
+          ],
+          "required": true
+        },
+        {
+          "label": "Keywords",
+          "key": "keywords",
+          "type": "list",
+          "default": [],
+          "hint": "Blocked keywords (for keyword trigger)"
+        },
+        {
+          "label": "Regex Patterns",
+          "key": "regexPatterns",
+          "type": "list",
+          "default": [],
+          "hint": "Regex patterns to match (for keyword trigger)"
+        },
+        {
+          "label": "Allowed Words",
+          "key": "allowedWords",
+          "type": "list",
+          "default": [],
+          "hint": "Words exempt from filtering"
+        },
+        {
+          "label": "Keyword Presets",
+          "key": "keywordPresets",
+          "type": "list",
+          "default": [],
+          "hint": "Presets: profanity, sexualContent, slurs (for keywordPreset trigger)"
+        },
+        {
+          "label": "Mention Total Limit",
+          "key": "mentionTotalLimit",
+          "type": "number",
+          "default": 5,
+          "hint": "Max mentions per message (for mentionSpam trigger)",
+          "min": 1,
+          "max": 50
+        },
+        {
+          "label": "Action Type",
+          "key": "actionType",
+          "type": "multiSelect",
+          "default": "block_message",
+          "hint": "Action to take when rule is triggered",
+          "options": [
+            "block_message",
+            "send_alert_message",
+            "timeout"
+          ]
+        },
+        {
+          "label": "Alert Channel Id",
+          "key": "alertChannelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel for alert messages (for send_alert_message action)"
+        },
+        {
+          "label": "Timeout Duration",
+          "key": "timeoutDuration",
+          "type": "number",
+          "default": 60,
+          "hint": "Timeout duration in seconds (for timeout action)",
+          "min": 1
+        },
+        {
+          "label": "Exempt Roles",
+          "key": "exemptRoles",
+          "type": "list",
+          "default": [],
+          "hint": "Role IDs exempt from this rule"
+        },
+        {
+          "label": "Exempt Channels",
+          "key": "exemptChannels",
+          "type": "list",
+          "default": [],
+          "hint": "Channel IDs exempt from this rule"
+        },
+        {
+          "label": "Enabled",
+          "key": "enabled",
+          "type": "boolean",
+          "default": true,
+          "hint": "Enable the rule immediately"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "deleteAutoModRule",
+      "name": "Delete AutoMod Rule",
+      "description": "Delete an auto-moderation rule",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "gpp_bad",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Rule Id",
+          "key": "ruleId",
+          "type": "string",
+          "default": "",
+          "hint": "AutoMod rule ID to delete",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "listAutoModRules",
+      "name": "List AutoMod Rules",
+      "description": "List all auto-moderation rules in guild",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "verified_user",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "getGuildOnboarding",
+      "name": "Get Guild Onboarding",
+      "description": "Fetch current guild onboarding configuration",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "waving_hand",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "updateGuildOnboarding",
+      "name": "Update Guild Onboarding",
+      "description": "Update guild onboarding configuration",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "manage_accounts",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Enabled",
+          "key": "enabled",
+          "type": "boolean",
+          "default": true,
+          "hint": "Enable or disable guild onboarding"
+        }
+      ]
+    },
+    {
+      "type": "updateSelfUser",
+      "name": "Update Self User (Bot Profile)",
+      "description": "Update current bot user profile (username/avatar)",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "account_circle",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Username",
+          "key": "username",
+          "type": "string",
+          "default": "",
+          "hint": "New bot username (leave empty to keep current)"
+        },
+        {
+          "label": "Avatar Url",
+          "key": "avatarUrl",
+          "type": "url",
+          "default": "",
+          "hint": "URL of new avatar image (PNG/JPEG/GIF)"
+        },
+        {
+          "label": "Avatar Base64",
+          "key": "avatarBase64",
+          "type": "string",
+          "default": "",
+          "hint": "Base64-encoded avatar image (alternative to avatarUrl)"
+        }
+      ]
+    },
+    {
+      "type": "createThread",
+      "name": "Create Thread",
+      "description": "Create a thread in a supported text channel",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "forum",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Parent channel (optional: current channel)"
+        },
+        {
+          "label": "Name",
+          "key": "name",
+          "type": "string",
+          "default": "",
+          "hint": "Thread name",
+          "required": true
+        },
+        {
+          "label": "Type",
+          "key": "type",
+          "type": "multiSelect",
+          "default": "public",
+          "hint": "Thread type (ignored when creating from an existing message)",
+          "options": [
+            "public",
+            "private"
+          ]
+        },
+        {
+          "label": "Message Id",
+          "key": "messageId",
+          "type": "messageId",
+          "default": "",
+          "hint": "Create thread on this message (optional)"
+        },
+        {
+          "label": "Auto Archive Duration",
+          "key": "autoArchiveDuration",
+          "type": "multiSelect",
+          "default": "1440",
+          "hint": "Auto-archive after inactivity (minutes)",
+          "options": [
+            "60",
+            "1440",
+            "4320",
+            "10080"
+          ]
+        },
+        {
+          "label": "Slowmode",
+          "key": "slowmode",
+          "type": "number",
+          "default": 0,
+          "hint": "Slowmode in seconds (0 = off)",
+          "min": 0
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "addThreadMember",
+      "name": "Add Thread Member",
+      "description": "Add a member to a thread",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "person_add",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Thread Id",
+          "key": "threadId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Thread to add the member to",
+          "required": true
+        },
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User to add to the thread",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "removeThreadMember",
+      "name": "Remove Thread Member",
+      "description": "Remove a member from a thread",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "person_remove",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Thread Id",
+          "key": "threadId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Thread to remove the member from",
+          "required": true
+        },
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User to remove from the thread",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "editChannelPermissions",
+      "name": "Edit Channel Permissions",
+      "description": "Create or update channel permission overwrites",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "lock_open",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel to edit permissions for",
+          "required": true
+        },
+        {
+          "label": "Target Id",
+          "key": "targetId",
+          "type": "string",
+          "default": "",
+          "hint": "User or Role ID to set overwrite for",
+          "visibleWhen": {
+            "targetType": [
+              "member",
+              "role"
+            ]
+          },
+          "required": true
+        },
+        {
+          "label": "Target Type",
+          "key": "targetType",
+          "type": "multiSelect",
+          "default": "member",
+          "hint": "Whether targetId is a member, role, or @everyone (for @everyone, targetId is auto-set to the guild ID)",
+          "options": [
+            "member",
+            "role",
+            "everyone"
+          ],
+          "required": true
+        },
+        {
+          "label": "Permissions",
+          "key": "permissions",
+          "type": "permissionFlags",
+          "default": {},
+          "hint": "Permission overwrites — tap each permission to cycle through Allow / Deny / Unset"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "deleteChannelPermission",
+      "name": "Delete Channel Permission",
+      "description": "Delete a channel permission overwrite",
+      "category": "Channels",
+      "family": "moderation",
+      "icon": "lock_reset",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel to delete permission overwrite from",
+          "required": true
+        },
+        {
+          "label": "Target Type",
+          "key": "targetType",
+          "type": "multiSelect",
+          "default": "member",
+          "hint": "Whether targetId is a member, role, or @everyone (for @everyone, targetId is ignored)",
+          "options": [
+            "member",
+            "role",
+            "everyone"
+          ]
+        },
+        {
+          "label": "Target Id",
+          "key": "targetId",
+          "type": "string",
+          "default": "",
+          "hint": "User or Role ID whose overwrite to delete",
+          "visibleWhen": {
+            "targetType": [
+              "member",
+              "role"
+            ]
+          }
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "debugProfile",
+      "name": "Debug Profile",
+      "description": "Generate execution profile and diagnostics info",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "query_stats",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "log",
+      "name": "Log Message",
+      "description": "Print or store diagnostic message to action logs",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "notes",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Message",
+          "key": "message",
+          "type": "string",
+          "default": "",
+          "hint": "Message to log",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "runtimeJsonBlock",
+      "name": "Execute JSON Operations",
+      "description": "Run block of JSON processing actions",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "code",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": false,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "runtimeImageBlock",
+      "name": "Execute Image Canvas",
+      "description": "Run block of image canvas processing actions",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "image",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Image Name",
+          "key": "imageName",
+          "type": "string",
+          "default": "",
+          "hint": "Name to reference this image (used with Attach Image action)"
+        },
+        {
+          "label": "Operations",
+          "key": "operations",
+          "type": "nestedActions",
+          "default": [],
+          "hint": "Canvas operations (Create, Load Image, Draw Text, Shapes...)"
+        }
+      ]
+    },
+    {
+      "type": "canvasCreateBlock",
+      "name": "Create Canvas",
+      "description": "Create a blank image canvas",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "extension",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": false,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "canvasLoadImageBlock",
+      "name": "Load Image",
+      "description": "Load an image from a URL or source into canvas",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "extension",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": false,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "canvasDrawTextBlock",
+      "name": "Draw Text",
+      "description": "Draw text on the image canvas with styling options",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "extension",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": false,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "canvasDrawCircleBlock",
+      "name": "Draw Circle",
+      "description": "Draw a circle on the image canvas",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "extension",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": false,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "canvasDrawRectBlock",
+      "name": "Draw Rectangle",
+      "description": "Draw a rectangle on the image canvas",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "extension",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": false,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "canvasDrawLineBlock",
+      "name": "Draw Line",
+      "description": "Draw a line on the canvas",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "extension",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": false,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "registerGuildCommands",
+      "name": "Register Guild Commands",
+      "description": "Register application commands to a guild",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "playlist_add",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Command Names",
+          "key": "commandNames",
+          "type": "list",
+          "default": [],
+          "hint": "Command names to register",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "unregisterGuildCommands",
+      "name": "Unregister Guild Commands",
+      "description": "Unregister application commands from a guild",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "playlist_remove",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Command Names",
+          "key": "commandNames",
+          "type": "list",
+          "default": [],
+          "hint": "Command names to unregister",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "cooldown",
+      "name": "Cooldown",
+      "description": "Apply a command cooldown for the user or server",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "timer_outlined",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Time",
+          "key": "time",
+          "type": "duration",
+          "default": "10s",
+          "hint": "Duration (e.g. 10s, 1m)",
+          "required": true
+        },
+        {
+          "label": "Error",
+          "key": "error",
+          "type": "string",
+          "default": "You are on cooldown! Please wait %time%.",
+          "hint": "Custom error message (supports %time%)"
+        }
+      ]
+    },
+    {
+      "type": "wait",
+      "name": "Wait",
+      "description": "Pause the workflow execution for a specific duration",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "hourglass_empty",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Duration",
+          "key": "duration",
+          "type": "duration",
+          "default": "5s",
+          "hint": "Duration (e.g. 5s, 1m)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "deleteTrigger",
+      "name": "Delete Trigger Message",
+      "description": "Delete the message that triggered this command",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "delete_forever",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "sendDm",
+      "name": "Send Direct Message",
+      "description": "Send a private message to a specific user",
+      "category": "Interactions",
+      "family": "events",
+      "icon": "maps_ugc",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User to send DM to",
+          "required": true
+        },
+        {
+          "label": "Content",
+          "key": "content",
+          "type": "string",
+          "default": "",
+          "hint": "Message content",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "setNickname",
+      "name": "Set Nickname",
+      "description": "Change a server member's nickname",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "badge",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "User Id",
+          "key": "userId",
+          "type": "userId",
+          "default": "",
+          "hint": "User whose nickname to change",
+          "required": true
+        },
+        {
+          "label": "Nickname",
+          "key": "nickname",
+          "type": "string",
+          "default": "",
+          "hint": "New nickname",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "slowmode",
+      "name": "Slowmode",
+      "description": "Set the slowmode duration for a channel",
+      "category": "Moderation",
+      "family": "moderation",
+      "icon": "speed",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Channel Id",
+          "key": "channelId",
+          "type": "channelId",
+          "default": "",
+          "hint": "Channel to set slowmode for",
+          "required": true
+        },
+        {
+          "label": "Duration",
+          "key": "duration",
+          "type": "duration",
+          "default": "5s",
+          "hint": "Slowmode duration (e.g. 5s, 0 to disable)",
+          "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Audit log reason"
+        }
+      ]
+    },
+    {
+      "type": "stop",
+      "name": "Stop Execution",
+      "description": "Immediately stop the execution of the current workflow",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "stop_circle_outlined",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "randomChoice",
+      "name": "Random Choice",
+      "description": "Pick a random item from a list and store it in a variable",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "shuffle",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Choices",
+          "key": "choices",
+          "type": "string",
+          "default": "",
+          "hint": "List of choices (separated by ;)",
+          "required": true
+        },
+        {
+          "label": "Variable Name",
+          "key": "variableName",
+          "type": "string",
+          "default": "random_choice",
+          "hint": "Variable name to store the result",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "leaveGuild",
+      "name": "Leave Server",
+      "description": "Make the bot leave the guild/server",
+      "category": "Guild & Members",
+      "family": "moderation",
+      "icon": "exit_to_app",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": []
+    },
+    {
+      "type": "attachImage",
+      "name": "Attach Image",
+      "description": "Attach an image file to the message response (URL, data URL, or base64)",
+      "category": "Messages",
+      "family": "messages",
+      "icon": "image_outlined",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Image Name",
+          "key": "imageName",
+          "type": "string",
+          "default": "",
+          "hint": "Attachment name (used with attachment://name.png in embeds)",
+          "required": true
+        },
+        {
+          "label": "Image Source",
+          "key": "imageSource",
+          "type": "url",
+          "default": "",
+          "hint": "Image URL, data URL, or base64 string",
+          "required": true
+        },
+        {
+          "label": "Alt Text",
+          "key": "altText",
+          "type": "string",
+          "default": "",
+          "hint": "Alternative text for the image"
+        }
+      ]
+    },
+    {
+      "type": "skipActions",
+      "name": "Skip Actions",
+      "description": "Skip a specified number of subsequent actions",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "skip_next",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Count",
+          "key": "count",
+          "type": "string",
+          "default": "1",
+          "hint": "Number of actions to skip",
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "jumpToAction",
+      "name": "Jump to Action",
+      "description": "Jump to a specific action by key, ID, or position",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "arrow_forward",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Target Key",
+          "key": "targetKey",
+          "type": "string",
+          "default": "",
+          "hint": "Action key, ID, or 1-indexed position to jump to",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
