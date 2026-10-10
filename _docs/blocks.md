@@ -3,79 +3,66 @@ layout: doc
 title: Blocks — Visual No-Code Programming Reference
 category: "Blocks"
 api_type: blocks
-description: Complete guide to the Bot Creator visual Blocks system. Block anatomy, mobile visual flow, step-by-step beginner projects, and bidirectional equivalence with BDScript.
+description: How the Bot Creator Blocks editor works. What a block looks like, how its fields behave, and three step-by-step projects built with the real blocks of the app.
 permalink: /docs/blocks/
 ---
 
-The **Blocks** system is Bot Creator's visual programming engine. Inspired by modular snap-together card environments (like Scratch), it enables creators on iOS, Android, and Desktop to build complete Discord bots without writing a single line of raw code.
+The **Blocks** system is Bot Creator's visual editor. A command or an event workflow is a vertical sequence of blocks: you add them from a palette, fill their fields, and the native engine runs them in order. Every block you see on this site is drawn from the app's own block registry, so names, fields, hints and options are the ones you will find in the editor.
 
-Blocks run directly on the native Dart engine. Each block compiles into a structured, typed, deterministic `Action` with inputs, outputs, and a unified error lifecycle handler.
+Each block is saved as a typed `Action` with inputs, an optional output key and an error policy (see [how a block is saved](#under-the-hood-how-a-block-is-saved)).
 
 ---
 
-## 1. Block Anatomy
+## 1. Block anatomy
 
-In the mobile app, blocks are represented as rounded cards stacked vertically, connected by flow lines:
+This is a **Send Message** block as it appears in the editor. Tap the header to collapse or expand it, as in the app.
 
 <div class="block-flow-canvas my-6">
-  <div class="scratch-block-card block-cat-messages" data-native-action='{&quot;type&quot;:&quot;sendMessage&quot;,&quot;payload&quot;:{&quot;channelId&quot;:&quot;((channel.id))&quot;,&quot;content&quot;:&quot;Hello ((user.username))! Welcome to ((guild.name)).&quot;,&quot;tts&quot;:false}}'>
-    <div class="scratch-block-header">
-      <div class="scratch-block-strip"></div>
-      <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#send"></use></svg>
-      <span class="scratch-block-title">SEND A MESSAGE</span>
-      <span class="scratch-block-badge">Key: my_message</span>
-    </div>
-    <div class="scratch-block-body">
-      <div class="scratch-block-field">
-        <span class="scratch-block-label">
-          <span>Target channel</span>
-          <span class="text-[10px] font-mono text-[#B19DF7]">string</span>
-        </span>
-        <div class="scratch-block-input"><span class="var-tag">((channel.id))</span></div>
-      </div>
-      <div class="scratch-block-field">
-        <span class="scratch-block-label">
-          <span>Message text content</span>
-          <span class="text-[10px] font-mono text-[#B19DF7]">string</span>
-        </span>
-        <div class="scratch-block-input">Hello <span class="var-tag">((user.username))</span>! Welcome to <span class="var-tag">((guild.name))</span>.</div>
-      </div>
-      <div class="scratch-block-toggle-row">
-        <span class="text-xs font-semibold text-on-surface">Automatically pin message</span>
-        <span class="sim-switch"></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="scratch-block-connector">
-    <div class="scratch-block-connector-line"></div>
-    <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-    <div class="scratch-block-connector-add">+</div>
-  </div>
-
-  <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;payload&quot;:{&quot;content&quot;:&quot;Message sent to the channel!&quot;,&quot;ephemeral&quot;:true}}'>
-    <div class="scratch-block-header">
-      <div class="scratch-block-strip"></div>
-      <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
-      <span class="scratch-block-title">RESPOND TO INTERACTION</span>
-      <span class="scratch-block-badge">Terminal</span>
-    </div>
-    <div class="scratch-block-body">
-      <div class="scratch-block-field">
-        <span class="scratch-block-label">Text content</span>
-        <div class="scratch-block-input">Message sent to the channel!</div>
-      </div>
-      <div class="scratch-block-toggle-row">
-        <span class="text-xs font-semibold text-on-surface">Ephemeral Reply (visible only to you)</span>
-        <span class="sim-switch active"></span>
-      </div>
-    </div>
-  </div>
+{% app_block example="anatomy_send" %}
 </div>
 
-### Underlying JSON Structure
+From left to right and top to bottom:
 
-Each block corresponds to an `Action` object serialized in the bot:
+- **Icon tile and category.** The tile carries the colour of the block's family; the small uppercase line above the name is the category (here *Messages*). The block itself stays neutral, only the tile and that line are coloured.
+- **Name.** The name shown in the palette and in the editor (*Send Message*). The grey line under it is the block's identifier (`sendMessage`), which is what you use with the API and the MCP; the app shows a one-line summary of the values there.
+- **Fields.** One control per parameter, in a fixed order. A text field shows its hint until you type; a switch is an on/off option; a drop-down offers a fixed list; a bordered tile with a pencil opens a sub-editor (embeds, components, nested blocks…). A red `*` marks a required field.
+- **Variables.** Text fields accept `((variables))` such as `((user.username))`; they are highlighted in violet.
+- **Action Key.** An optional name for the block's result, readable later as `((action.<key>))`.
+- **Advanced settings.** Under the fields, every block has **Action Key**, an **Enabled** switch and **On Error**: *Stop*, *Continue*, *Jump to action* or *Skip N actions*.
+- **Menu (⋮).** Move up, Move down, Copy action, Duplicate, Paste above, Paste below, Documentation & guides and Delete.
+
+A few blocks are **final**: they answer the interaction and nothing should come after them ({{ "" | block_final_names }}).
+
+### Families and categories
+
+The palette groups the blocks into {{ site.data.blocks_registry.blocks | map: "category" | uniq | size }} categories. Each category belongs to one of six colour families.
+
+<table>
+<thead><tr><th>Family</th><th>Colour</th><th>Categories</th></tr></thead>
+<tbody>
+{% for fam in site.data.blocks_registry.families %}<tr><td>{{ fam[1].label }}</td><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:{{ fam[1].color }};vertical-align:-1px"></span> <code>{{ fam[1].color }}</code></td><td>{{ fam[0] | block_family_categories }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+
+The complete list, with every field of every block, is in the **[Blocks Dictionary](/docs/blocks-dictionary/)**.
+
+### The first block: the trigger
+
+Every command starts with a fixed, non-removable **Command Trigger** block (for an event workflow it is an **Event trigger** block). It decides when the command runs and how it is built.
+
+<div class="block-flow-canvas my-6">
+{% app_entry kind="slash" name="ping" %}
+</div>
+
+A command is built either with **Visual (Blocks)**, with **BDFD Code**, or with **JavaScript**; the blocks described on this page belong to the first mode.
+
+### Under the hood: how a block is saved
+
+<details class="block-json-ref">
+<summary>Reference for API and MCP users: the saved structure</summary>
+
+Each block is stored as an `Action` object:
 
 ```json
 {
@@ -83,11 +70,7 @@ Each block corresponds to an `Action` object serialized in the bot:
   "key": "welcome_reply",
   "enabled": true,
   "depend_on": [],
-  "error": {
-    "mode": "stop",
-    "jumpToActionId": null,
-    "skipCount": 0
-  },
+  "error": { "mode": "stop" },
   "payload": {
     "content": "Hello ((user.username))! Welcome to ((guild.name)).",
     "ephemeral": true
@@ -95,119 +78,52 @@ Each block corresponds to an `Action` object serialized in the bot:
 }
 ```
 
-### Field Definitions
-
-| Field | Type | Description |
+| Field | Type | Meaning |
 |---|---|---|
-| `type` | String | Exact block identifier corresponding to `BotCreatorActionType` (e.g. `sendMessage`, `createChannel`, `ifBlock`). |
-| `payload` | Object | Dictionary of block parameters (IDs, text, booleans, embeds, options). |
-| `key` | String | Optional unique identifier assigned to the block output for subsequent references (`((action.key))`). |
-| `enabled` | Boolean | Default: `true`. If `false`, the engine skips the action without raising an error. |
-| `depend_on` | Array&lt;String&gt; | Keys of prerequisite actions that must execute before this block runs. |
-| `error` | Object | Error handling behavior: `mode` (`stop`, `continue`, `jump`, `skip`). |
+| `type` | String | The block identifier, one of the types in the [Dictionary](/docs/blocks-dictionary/). |
+| `payload` | Object | The values of the block's fields, keyed by the field identifiers listed in the Dictionary. |
+| `key` | String | The *Action Key*: names the block's output (`((action.key))`). |
+| `enabled` | Boolean | Default `true`. When `false` the block is skipped. |
+| `depend_on` | Array of strings | Keys of blocks this one depends on. |
+| `error` | Object | The *On Error* policy: `mode` is `stop`, `continue`, `jump` or `skip`. |
+
+</details>
 
 ---
 
 ## 2. Inputs, Outputs, and Context Variables
 
-### Discord Context Variables `((...))`
-Input fields accept dynamic placeholders resolved at runtime:
+### Discord context variables `((...))`
+Text fields accept dynamic placeholders resolved at runtime:
 - **User**: `((user.id))`, `((user.username))`, `((user.avatar))`
 - **Guild / Server**: `((guild.id))`, `((guild.name))`, `((guild.memberCount))`
 - **Channel**: `((channel.id))`, `((channel.name))`
-- **Slash Options**: `((opts.option_name))` (or `((opts.option_name.id))` for IDs)
+- **Slash options**: `((opts.option_name))` (or `((opts.option_name.id))` for IDs)
 - **Components**: `((interaction.customId))`, `((interaction.userId))`
 
-### Block Outputs `((action.<key>))`
-When a block produces an identifier or result (for example `createChannel` creates a channel and returns its Snowflake ID, or `httpRequest` returns a JSON object), assign it a **Key** in the editor (e.g. `ticket_chan`).
-Subsequent blocks access it via:
+### Block outputs `((action.<key>))`
+When a block produces an identifier or a result (for example *Create Channel* returns the new channel's ID), give it an **Action Key** in the editor, e.g. `ticket_chan`. Later blocks read it with:
+
 ```text
 ((action.ticket_chan))
 ```
 
 ---
 
-## 3. Step-by-Step Beginner Guide: 3 Core Projects
+## 3. Step-by-Step: 3 Core Projects
 
-Each project includes an interactive dual view: see how it connects in the mobile app or read the equivalent script code, along with a simulated Discord visual preview!
+Each project is built from the real blocks; open a block to see its fields.
 
 ---
 
 ### Project 1: The `/ping` Slash Command
 
-**Goal:** Build a slash command that replies with the bot's latency in a clean embed.
+**Goal:** a slash command that replies with the bot's latency in an embed.
 
-<div class="dual-view-tabs">
-  <div class="dual-view-nav">
-    <button class="dual-tab-btn active" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
-      <span>Blocks View (App Mode)</span>
-    </button>
-    <button class="dual-tab-btn" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
-      <span>Script View (BDFD / BDScript)</span>
-    </button>
-  </div>
-
-  <div class="dual-tab-panel active">
-    <div class="block-flow-canvas">
-      
-      <!-- Trigger -->
-      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;slash&quot;,&quot;name&quot;:&quot;ping&quot;}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#terminal"></use></svg>
-          <span class="scratch-block-title">SLASH COMMAND: /ping</span>
-          <span class="scratch-block-badge">Trigger</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="text-xs text-on-surface-variant">Command name: <code>/ping</code> • Description: Measures bot latency.</div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action -->
-      <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;payload&quot;:{&quot;embeds&quot;:[{&quot;title&quot;:&quot;🏓 Pong!&quot;,&quot;description&quot;:&quot;WebSocket API Latency: ((bot.ping))ms&quot;,&quot;color&quot;:&quot;#5865F2&quot;}],&quot;ephemeral&quot;:false}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
-          <span class="scratch-block-title">RESPOND TO INTERACTION</span>
-          <span class="scratch-block-badge">Terminal</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Embed Title</span>
-            <div class="scratch-block-input">🏓 Pong!</div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Embed Description</span>
-            <div class="scratch-block-input">WebSocket API Latency: <span class="var-tag">((bot.ping))</span>ms</div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Embed Color</span>
-            <div class="scratch-block-input">#5865F2 <span class="text-xs text-on-surface-variant font-sans">(Blurple)</span></div>
-          </div>
-          <div class="scratch-block-toggle-row">
-            <span class="text-xs font-semibold text-on-surface">Ephemeral Reply</span>
-            <span class="sim-switch"></span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="dual-tab-panel">
-<pre><code class="language-bdfd">;; Native slash command reply (no $sendMessage needed)
-$title[🏓 Pong!]
-$description[WebSocket API Latency: **$ping ms**]
-$color[#5865F2]
-</code></pre>
-  </div>
+<div class="block-flow-canvas my-6">
+{% app_entry kind="slash" name="ping" %}
+{% include block_connector.html %}
+{% app_block example="ping_reply" %}
 </div>
 
 #### Realistic Discord Preview
@@ -233,71 +149,12 @@ $color[#5865F2]
 
 ### Project 2: Automatic Welcome Message
 
-**Goal:** When a new member joins the server, send a personalized welcome message to the `#welcome` channel.
+**Goal:** when a new member joins, send a personalised welcome message to your welcome channel. Replace the channel ID with your own.
 
-<div class="dual-view-tabs">
-  <div class="dual-view-nav">
-    <button class="dual-tab-btn active" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
-      <span>Blocks View (App Mode)</span>
-    </button>
-    <button class="dual-tab-btn" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
-      <span>Script View (BDFD / BDScript)</span>
-    </button>
-  </div>
-
-  <div class="dual-tab-panel active">
-    <div class="block-flow-canvas">
-      
-      <!-- Trigger -->
-      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;event&quot;,&quot;event&quot;:&quot;guildMemberAdd&quot;}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#person_add"></use></svg>
-          <span class="scratch-block-title">EVENT: guildMemberAdd</span>
-          <span class="scratch-block-badge">Event</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="text-xs text-on-surface-variant">Triggered automatically whenever a user joins the Discord server.</div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action -->
-      <div class="scratch-block-card block-cat-messages" data-native-action='{&quot;type&quot;:&quot;sendMessage&quot;,&quot;payload&quot;:{&quot;channelId&quot;:&quot;112233445566778899&quot;,&quot;content&quot;:&quot;Welcome &lt;@((user.id))&gt; to **((guild.name))**! 🎉 We are now ((guild.memberCount)) members!&quot;}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#send"></use></svg>
-          <span class="scratch-block-title">SEND A MESSAGE</span>
-          <span class="scratch-block-badge">Action</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Target channel (#welcome channel ID)</span>
-            <div class="scratch-block-input">112233445566778899</div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Text content</span>
-            <div class="scratch-block-input">Welcome &lt;@<span class="var-tag">((user.id))</span>&gt; to **<span class="var-tag">((guild.name))</span>**! 🎉 We are now <span class="var-tag">((guild.memberCount))</span> members!</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="dual-tab-panel">
-<pre><code class="language-bdfd">;; Triggered on guildMemberAdd event
-$useChannel[112233445566778899]
-Welcome &lt;@$authorID&gt; to **$serverName**! 🎉
-We are now $membersCount members!
-</code></pre>
-  </div>
+<div class="block-flow-canvas my-6">
+{% app_entry event="guildMemberAdd" %}
+{% include block_connector.html %}
+{% app_block example="welcome_send" %}
 </div>
 
 #### Realistic Discord Preview
@@ -318,98 +175,16 @@ We are now $membersCount members!
 
 ---
 
-### Project 3: Interactive Role Assignment via Button
+### Project 3: Role Assignment When a Button Is Clicked
 
-**Goal:** Deploy a verification panel with an interactive button. When clicked, the user receives a role without public chat clutter.
+**Goal:** when a member clicks the button whose custom ID is `verify_member`, give them a role and confirm privately. The panel carrying the button is sent separately with a *Send Message* block and its components editor.
 
-<div class="dual-view-tabs">
-  <div class="dual-view-nav">
-    <button class="dual-tab-btn active" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#dashboard"></use></svg>
-      <span>Blocks View (App Mode)</span>
-    </button>
-    <button class="dual-tab-btn" type="button">
-      <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#code"></use></svg>
-      <span>Script View (BDFD / BDScript)</span>
-    </button>
-  </div>
-
-  <div class="dual-tab-panel active">
-    <div class="block-flow-canvas">
-      
-      <!-- Trigger -->
-      <div class="scratch-block-card block-cat-entrypoint" data-native-trigger='{&quot;type&quot;:&quot;event&quot;,&quot;event&quot;:&quot;interactionCreate&quot;,&quot;customId&quot;:&quot;verify_member&quot;}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#touch_app"></use></svg>
-          <span class="scratch-block-title">BUTTON CLICK: verify_member</span>
-          <span class="scratch-block-badge">Trigger</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="text-xs text-on-surface-variant">Triggered when the button with customId <code>verify_member</code> is pressed.</div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action 1: Add Role -->
-      <div class="scratch-block-card block-cat-moderation" data-native-action='{&quot;type&quot;:&quot;addRole&quot;,&quot;payload&quot;:{&quot;userId&quot;:&quot;((user.id))&quot;,&quot;roleId&quot;:&quot;998877665544332211&quot;}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#person_add_alt_1"></use></svg>
-          <span class="scratch-block-title">ADD A ROLE</span>
-          <span class="scratch-block-badge">Moderation</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Target user</span>
-            <div class="scratch-block-input"><span class="var-tag">((user.id))</span></div>
-          </div>
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Role identifier (Member Role ID)</span>
-            <div class="scratch-block-input">998877665544332211</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="scratch-block-connector">
-        <div class="scratch-block-connector-line"></div>
-        <svg class="reicon scratch-block-connector-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_drop_down"></use></svg>
-      </div>
-
-      <!-- Action 2: Ephemeral Reply -->
-      <div class="scratch-block-card block-cat-interactions" data-native-action='{&quot;type&quot;:&quot;respondWithMessage&quot;,&quot;payload&quot;:{&quot;content&quot;:&quot;✅ Congratulations ((user.username))! You have been given the Member role.&quot;,&quot;ephemeral&quot;:true}}'>
-        <div class="scratch-block-header">
-          <div class="scratch-block-strip"></div>
-          <svg class="reicon scratch-block-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#chat"></use></svg>
-          <span class="scratch-block-title">RESPOND TO INTERACTION</span>
-          <span class="scratch-block-badge">Terminal</span>
-        </div>
-        <div class="scratch-block-body">
-          <div class="scratch-block-field">
-            <span class="scratch-block-label">Text content</span>
-            <div class="scratch-block-input">✅ Congratulations <span class="var-tag">((user.username))</span>! You have been given the Member role.</div>
-          </div>
-          <div class="scratch-block-toggle-row">
-            <span class="text-xs font-semibold text-on-surface">Ephemeral Reply</span>
-            <span class="sim-switch active"></span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="dual-tab-panel">
-<pre><code class="language-bdfd">;; Button click event on verify_member
-$giveRole[$authorID;998877665544332211]
-$ephemeral
-✅ Congratulations $username! You have been given the Member role.
-</code></pre>
-  </div>
+<div class="block-flow-canvas my-6">
+{% app_entry event="interactionCreate" custom_id="verify_member" %}
+{% include block_connector.html %}
+{% app_block example="verify_add_role" %}
+{% include block_connector.html %}
+{% app_block example="verify_reply" %}
 </div>
 
 #### Realistic Discord Preview
@@ -436,8 +211,6 @@ $ephemeral
 
 ## 4. Explore All Blocks
 
-To browse all **112 blocks** available in the mobile app with their fields, default values, and script equivalents:
-
-- 📖 **[Complete Blocks Dictionary](/docs/blocks-dictionary/)** — Exhaustive catalog of all 12 categories and 100% of actions.
-- 🎫 **[Support Ticket System Guide](/docs/tickets/)** — Architecture and production deployment of private support channels.
-- ⚙️ **[Execution Model & Best Practices](/docs/execution-model/)** — Acknowledgment rules, state management, and optimization tips.
+- 📖 **[Complete Blocks Dictionary](/docs/blocks-dictionary/)**: all {{ site.data.blocks_registry.blocks | size }} blocks of the app, with their fields, hints and options.
+- 🎫 **[Support Ticket System Guide](/docs/tickets/)**: architecture and production deployment of private support channels.
+- ⚙️ **[Execution Model & Best Practices](/docs/execution-model/)**: acknowledgment rules, state management and optimisation tips.

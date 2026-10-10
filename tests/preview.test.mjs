@@ -5,7 +5,7 @@ import { join } from 'node:path';
 
 // Import preview engine
 import previewEngine from '../assets/js/bdfd-preview.js';
-const { parseBdfd, renderBlocksCanvas, renderDiscordSimulator } = previewEngine;
+const { parseBdfd, renderDiscordSimulator } = previewEngine;
 
 test('parseBdfd handles multi-line arguments without truncation or leakage', () => {
   const code = `$title[Announcement]
@@ -65,19 +65,12 @@ $addStringSelect[menu_select;Choose option]`;
   assert.equal(parsed.selectMenu.placeholder, 'Choose option');
 });
 
-test('renderBlocksCanvas produces Scratch-like flow canvas with connectors', () => {
-  const code = `$title[Test Title]
-$color[#5865F2]
-$sendMessage[]`;
-
-  const parsed = parseBdfd(code);
-  const canvasHtml = renderBlocksCanvas(parsed.actions);
-
-  assert.match(canvasHtml, /block-flow-canvas/);
-  assert.match(canvasHtml, /scratch-block-card/);
-  assert.match(canvasHtml, /scratch-block-connector/);
-  assert.match(canvasHtml, /DISCORD TRIGGER/);
-  assert.match(canvasHtml, /TITLE/);
+test('the preview engine no longer invents app blocks from BDFD functions', async () => {
+  assert.equal(previewEngine.renderBlocksCanvas, undefined);
+  assert.equal(previewEngine.CATEGORY_MAP, undefined);
+  assert.equal(previewEngine.PARAM_LABELS, undefined);
+  const source = await readFile(new URL('../assets/js/bdfd-preview.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(source, /DISCORD TRIGGER|Blocks View|scratch-block-card/);
 });
 
 test('renderDiscordSimulator outputs complete discord frame, embed, and components', () => {

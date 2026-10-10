@@ -2,7 +2,12 @@
 
 require "jekyll"
 require "tmpdir"
+require "json"
 require_relative "../_plugins/generate_indexes"
+require_relative "../_plugins/block_cards"
+
+# Just what the block tags read from a Jekyll site: data files and the config.
+FakeSite = Struct.new(:data, :config)
 
 class NativeDocumentationTest
   def assert(value)
@@ -56,15 +61,34 @@ class NativeDocumentationTest
     assert_includes content, '[Jump](#custom-target)'
   end
 
+  # Resolves the {% app_block %} / {% app_entry %} tags like the real build does.
+  def render_blocks(source)
+    root = File.expand_path("..", __dir__)
+    data = %w[blocks_registry blocks_examples].to_h { |n| [n, JSON.parse(File.read("#{root}/_data/#{n}.json", encoding: "UTF-8"))] }
+    site = FakeSite.new(data, { "baseurl" => "" })
+    source = source.gsub(/\{% include block_connector\.html %\}/, "")
+    Liquid::Template.parse(source).render({}, registers: { site: site })
+  end
+
   def test_real_examples_export_structured_previews_and_switchable_panels
     %w[blocks tickets].each do |name|
-      source = File.read(File.expand_path("../_docs/#{name}.md", __dir__)).sub(/\A---.*?---\s*/m, '')
-      content = markdown(source)
+      source = File.read(File.expand_path("../_docs/#{name}.md", __dir__), encoding: "UTF-8").sub(/\A---.*?---\s*/m, '')
+      content = markdown(render_blocks(source))
       previews = content.scan(/(`{3,})bc-([\w-]+)\n(.*?)\n\1/m).map { |_, kind, json| [kind, JSON.parse(json)] }
       dual = previews.select { |kind, _| kind == 'dual-view' }.map(&:last)
       discord = previews.select { |kind, _| kind == 'discord-preview' }.map(&:last)
-      assert !dual.empty?
+      flows = previews.select { |kind, _| kind == 'block-flow' }.map(&:last)
+      # The Blocks pages show the app's real blocks (no BDFD tab): every page must export block flows.
+      assert !flows.empty?
       assert !discord.empty?
+      flows.each do |flow|
+        assert !flow['blocks'].empty?
+        flow['blocks'].each do |block|
+          assert block['action'] || block['trigger']
+          assert block['action']['type'].is_a?(String) if block['action']
+          assert block['action']['payload'].is_a?(Hash) if block['action']
+        end
+      end
       dual.each do |view|
         assert_equal 1, view['version']
         assert_equal 2, view['panels'].length

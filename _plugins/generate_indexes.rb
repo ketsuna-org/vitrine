@@ -370,7 +370,8 @@ module Vitrine
         body << "- [Getting started](https://bot-creator.fr/docs/getting-started/): Documentation quick start"
         body << "- [JavaScript API](https://bot-creator.fr/docs/javascript/): BDJS script globals (db.*, interaction, message)"
         body << "- [Blocks Guide](https://bot-creator.fr/docs/blocks/): Visual no-code programming reference"
-        body << "- [Blocks Dictionary](https://bot-creator.fr/docs/blocks-dictionary/): Complete catalog of all 112 block actions"
+        block_count = (site.data.dig("blocks_registry", "blocks") || []).size
+        body << "- [Blocks Dictionary](https://bot-creator.fr/docs/blocks-dictionary/): Complete catalog of all #{block_count} blocks of the app"
         body << "- [Support Ticket System](https://bot-creator.fr/docs/tickets/): Complete production-ready ticket system"
         body << "- [Execution model](https://bot-creator.fr/docs/execution-model/): Implicit slash replies, variables, interaction lifecycle and limits"
         body << "- [MCP server](https://bot-creator.fr/docs/mcp/): Connect via Model Context Protocol"

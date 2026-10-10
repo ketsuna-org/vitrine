@@ -1,0 +1,27 @@
+{% assign locale = page.locale | default: site.lang | default: 'en' %}
+{% assign t = site.data.locales[locale] %}
+{% include site_head.html locale=locale markdown=true %}
+<body class="bg-background text-on-surface font-sans antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-surface-container-lowest focus:text-primary focus:rounded-lg" href="#main-content">{{ t.common.skip_to_content }}</a>
+  {% include site_header.html locale=locale t=t %}
+  <main id="main-content" tabindex="-1">
+    <div class="mx-auto w-full max-w-[1360px] px-4 sm:px-6 py-8">
+      <div class="markdown-body article-prose">
+        {{ content }}
+      </div>
+    </div>
+  </main>
+  {% include site_footer.html t=t %}
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/bdfd-preview.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/blocks-playground.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/bdfd-playground.js' | relative_url }}" defer></script>
+  <script>
+    document.querySelectorAll('[data-pg-tab]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('[data-pg-tab]').forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); x.classList.toggle('bp-primary', x === b); });
+        document.querySelectorAll('[data-pg-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-pg-panel') !== b.getAttribute('data-pg-tab'); });
+      });
+    });
+  </script>
+</body>
