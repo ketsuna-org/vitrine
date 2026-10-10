@@ -22,7 +22,7 @@ $ceil[value]
 
 | Parameter | Type   | Required | Description                            |
 |-----------|--------|-------------|----------------------------------------|
-| `value`  | number | Yes         | The number to round up.     |
+| `value`  | number | Yes         | The number to round up. Exactly one argument; surrounding spaces are ignored. Text that is not a finite number (or an empty value) raises `Expected a finite number in argument 1.` |
 
 ## Behavior
 
@@ -52,9 +52,9 @@ $color[#5865F2]
 | `-3.2` | `-4`     | `-3`    | `-3`     |
 | `-3.5` | `-4`     | `-3`    | `-3`*    |
 
-*The exact behavior of `$round[]` for values ending in `.5` may depend on the implementation.
+*`$round[]` rounds halves up (toward positive infinity): `2.5` gives `3`, `-2.5` gives `-2`, `-3.5` gives `-3`. All the values of the table were run against the engine.
 
 ## Notes
 
-- The result is always an integer (in the form of a string).
-- Useful when you need the "next integer," for example, to calculate the number of pages needed.
+- The result is an integer written as text (`$ceil[-0.5]` gives `0`).
+- Useful for the number of pages needed, but the division must keep its decimals: without `$enableDecimals[yes]`, `$divide[]` and `$calculate[]` have already rounded their result to an integer, so `$ceil[$divide[12;5]]` gives `2`, and `3` once `$enableDecimals[yes]` is set before it.

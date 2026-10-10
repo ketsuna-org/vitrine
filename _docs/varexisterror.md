@@ -20,7 +20,7 @@ $varExistError[name;message]
 
 | Parameter | Description |
 |---|---|
-| `name` | **Required.** The name of the variable to check. An empty name raises the error `A variable name is required.` |
+| `name` | **Required.** The name of the variable to check (case-insensitive). An empty name raises the error `A variable name is required.` |
 | `message` | **Required.** The message displayed when the variable does not exist. It is only evaluated in that case. |
 
 Exactly two arguments are required; any other count is refused ("Invalid argument count").
@@ -31,7 +31,7 @@ An empty string.
 
 ## Behavior
 
-- Uses the same existence check as `$varExists`.
+- Uses the same existence check as `$varExists`: the variable must be declared in the bot's variable catalogue (any scope) or be a global variable. Temporary variables created with `$var` are not checked.
 - If the variable does not exist, the script stops and the output is replaced by `message`. Webhook messages staged but not yet sent are discarded.
 - If the variable exists, execution continues normally.
 

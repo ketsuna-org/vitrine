@@ -28,7 +28,7 @@ $guildBanner[guildID]
 
 - **Type** : `string`
 - The URL of the banner, or an empty string if the server has no banner.
-- An error is raised if the ID is invalid or if the server cannot be found.
+- The error `Invalid guild ID.` is raised if the ID is empty or is not a positive integer, and `Guild not found.` if the server cannot be fetched.
 
 ## Examples
 
@@ -58,5 +58,5 @@ $color[#5865F2]
 ## Notes
 
 - `$serverBanner` returns the banner of the current server and accepts an optional server ID.
-- The banner is a horizontal image displayed at the top of the channel list.
 - If the server has no banner, the function returns an empty string.
+- The URL is a `https://cdn.discordapp.com/banners/<guildID>/<hash>` link ending in `.png`, or `.gif` when the banner hash starts with `a_` (animated).

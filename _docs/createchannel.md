@@ -24,7 +24,7 @@ $createChannel[name;type;(categoryID)]
 |---|---|
 | `name` | Required. Name of the channel (1 to 100 characters). |
 | `type` | Required. One of `text`, `voice`, `category`, `stage`, `forum` (case-insensitive). Any other value raises `Invalid BDFD channel type.` |
-| `categoryID` | Optional. ID of the parent category. It must be a category of the current server; a category cannot itself have a parent. |
+| `categoryID` | Optional. ID of the parent category. It must be a category of the current server; a category cannot itself have a parent (`Categories cannot have a parent category.`). If the argument is written, it cannot be empty (`Invalid channel ID.`); omit it for no parent. |
 
 ## Return value
 
@@ -34,7 +34,7 @@ $createChannel[name;type;(categoryID)]
 
 ## Behavior
 
-- The bot must have the `MANAGE_CHANNELS` permission.
+- The bot must have the `Manage Channels` permission.
 - The channel is created in the current server.
 - The ID of the new channel is not returned; to find it afterwards, use `$channelID[name]` or `$findChannel[name]`.
 

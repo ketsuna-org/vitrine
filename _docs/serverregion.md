@@ -4,30 +4,29 @@ title: $serverRegion[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverRegion
-syntax: $serverRegion
-description: Returns the voice region of the Discord server (deprecated — Discord now uses automatic voice regions per channel).
+syntax: $serverRegion[(unused)]
+description: Returns the server region supplied by the host in the guild.region context variable, or an empty string.
 ---
 
 # $serverRegion[] — Server Region
 
-`$serverRegion[]` returns the configured voice region for the Discord server.
-
-> **Note**: Since Discord's 2023 update, the region is no longer configured at the server level but at the individual voice channel level instead. This function may therefore return "automatic" on most modern servers.
+`$serverRegion[]` returns the value of the `guild.region` context variable supplied by the host. The engine does not query Discord for a region.
 
 ## Syntax
 
 ```
-$serverRegion
+$serverRegion[(unused)]
 ```
 
 ## Parameters
 
-None.
+One optional argument is accepted but ignored: the region of another server cannot be read.
 
 ## Return Value
 
 - **Type**: `string`
-- The region of the server (e.g., `"europe"`, `"us-west"`, `"automatic"`, etc.).
+- The text of `guild.region` exactly as the host supplied it.
+- An empty string if the host supplied none.
 
 ## Examples
 
@@ -56,7 +55,5 @@ $log[Server $serverName — Region: $serverRegion]
 
 ## Notes
 
-- The region determines the geographical location of voice servers, which affects latency.
-- **Deprecated**: Discord migrated to a system of automatic regions per voice channel. The returned value may no longer be relevant.
-- Historically possible values: `brazil`, `europe`, `hongkong`, `india`, `japan`, `russia`, `singapore`, `southafrica`, `sydney`, `us-central`, `us-east`, `us-south`, `us-west`.
-- For recent servers, the value will generally be `"automatic"`.
+- The bot runner does not set `guild.region` by itself in the code that was checked, so the result is normally an empty string; do not rely on it.
+- The returned text is not interpreted by the engine.

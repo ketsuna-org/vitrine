@@ -10,7 +10,7 @@ description: Returns the ID of a random server among the servers where the bot i
 
 # $randomGuildID[]
 
-The `$randomGuildID[]` function returns the Discord ID of a random server from all servers where the bot is present.
+The `$randomGuildID[]` function returns the Discord ID of a random server of the bot.
 
 ## Syntax
 
@@ -18,11 +18,16 @@ The `$randomGuildID[]` function returns the Discord ID of a random server from a
 $randomGuildID
 ```
 
-> **Note:** This function takes no parameters.
+> **Note:** This function takes no arguments (it is an error to pass any).
 
 ## Return Value
 
 The Discord ID (snowflake) of a random server, as a string.
+
+## Behavior
+
+- The candidates are the servers returned by Discord for the bot account.
+- If that list is empty (or no guild service is available), the ID of the current server is returned instead (an empty string if there is none).
 
 ## Examples
 
@@ -31,15 +36,3 @@ The Discord ID (snowflake) of a random server, as a string.
 ```bdfd
 Random server ID: $randomGuildID
 ```
-
-### Get information about a random server
-
-```bdfd
-$title[Random server]
-$description[Name: $serverName[$randomGuildID]]
-```
-
-## Notes
-
-- The server is chosen from all servers where the bot is present.
-- Each server has an equal probability of being selected.

@@ -18,29 +18,25 @@ The function `$isNSFW[channelID]` **checks if a Discord channel is marked as NSF
 $isNSFW[channelID]
 ```
 
-Or without parameter for the current channel:
-
-```
-$isNSFW
-```
+The argument is required: `$isNSFW` without brackets is refused ("Invalid argument count"). To test the current channel pass `$channelID`, or use `$channelNSFW`, whose argument is optional.
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional - The ID of the channel. Default: channel where the command is executed. |
+| `channelID` | Required, exactly one argument. A positive integer channel ID, otherwise the error "Invalid channel ID." is raised. |
 
 ## Return Value
 
 - **Type** : Boolean
-- `true` if the channel is marked NSFW.
-- `false` if the channel is not NSFW or is not found.
+- `"true"` if the channel is marked NSFW.
+- `"false"` if the channel is not NSFW, or is not a server channel (a DM channel).
+- If no channel with this ID can be fetched, the command stops with the error "Channel not found."; the function does not return `false` in that case.
 
 ## Behavior
 
-- Checks the `nsfw` attribute of the Discord channel.
-- NSFW channels are restricted to users over 18 years old.
-- Works only in servers (not in DM).
+- Fetches the channel by ID from Discord and reads its `nsfw` attribute.
+- Only server channels can be NSFW; any other channel (for example a DM) gives `false`.
 
 ## Examples
 
@@ -79,6 +75,6 @@ $endif
 
 ## Notes
 
-- Without parameter, checks the channel where the command is executed.
-- In DM, the function always returns `false`.
+- To check the channel where the command is executed, pass `$channelID`.
+- A DM channel gives `false`.
 - To modify the NSFW status of a channel, use `$modifyChannel[]`.

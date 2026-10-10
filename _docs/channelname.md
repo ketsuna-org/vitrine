@@ -56,4 +56,5 @@ $endif
 
 - For text channels, the name is returned without the `#` prefix. Add it manually if needed.
 - The name of voice channels and categories is returned in the same way (e.g., `Voice 1`).
+- For a direct message channel the name is `DM`.
 - To list all channels, use `$channelNames[separator]`.

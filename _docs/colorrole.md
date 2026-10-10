@@ -22,7 +22,7 @@ $colorRole[color]
 
 | Parameter | Description |
 |---|---|
-| `color` | Required. The new color, as hex (`#5865F2`, or hex digits) or as a decimal number between 0 and 16777215. An invalid color raises `Invalid role color.` |
+| `color` | Required. The new color, as hex (`#5865F2`, or hex digits when the value contains a letter `a`-`f`) or as a decimal number between 0 and 16777215. A value made only of digits without `#` is read as decimal (`123456` is the number 123456, not hex). An invalid color raises `Invalid role color.` |
 
 ## Return value
 

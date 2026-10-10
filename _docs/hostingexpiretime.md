@@ -4,34 +4,35 @@ title: $hostingExpireTime
 translation_key: docs
 category: "Entity Info"
 function_name: hostingExpireTime
-syntax: $hostingExpireTime
-description: Returns the expiration date of the bot's hosting.
+syntax: $hostingExpireTime[(unused)]
+description: Returns the hosting expiration value supplied by the host application, or an empty string.
 ---
 
 # $hostingExpireTime
 
-The `$hostingExpireTime` function **returns the expiration date of the bot's hosting** on the BDFD platform. After this date, the bot will stop running if hosting is not renewed.
+The `$hostingExpireTime` function returns the value of the `hosting.expireTime` context variable supplied by the host application. The engine does not compute or look up any hosting date itself.
 
 ## Syntax
 
 ```
-$hostingExpireTime
+$hostingExpireTime[(unused)]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `unused` | Optional - accepted but ignored. |
 
 ## Return Value
 
 - **Type**: String
-- The expiration date in timestamp format (e.g., `2026-12-31T23:59:59.000Z`).
+- The text of the `hosting.expireTime` (or `hosting.expiretime`) context variable exactly as the host supplied it; its format is not defined by the engine.
+- An empty string if the host supplied no such variable.
 
 ## Behavior
 
-- Returns the date until which the paid hosting is active.
-- Free bots may not have an expiration date.
-- Automatically updates after renewal.
+- The value is returned unchanged: the engine does not parse, convert or format it.
 
 ## Examples
 
@@ -51,7 +52,6 @@ $endif
 ```bdfd
 $title[🤖 Status of $botName]
 $addField[🟢 Status;Online;yes]
-$addField[📦 Node;$botNode;yes]
 $var[expire;$hostingExpireTime]
 $if[$var[expire]==]
   $addField[📅 Hosting;✅ Free / Unlimited;yes]
@@ -69,6 +69,5 @@ $color[#5865F2]
 
 ## Notes
 
-- If the hosting is free, the function may return an empty string.
-- For premium status, use `$premiumExpireTime`.
-- Returned values are in UTC.
+- The function returns an empty string when the host supplies no value.
+- For the premium value, use `$premiumExpireTime`, which works the same way with `premium.expireTime`.

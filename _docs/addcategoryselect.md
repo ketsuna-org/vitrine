@@ -6,67 +6,67 @@ category: "Components & Interactions"
 
 # $addCategorySelect
 
-Creates a select menu of server categories. Allows users to choose one or multiple categories.
+Adds a select menu of the server's categories to the response message. The user can choose one or several categories.
 
 ## Syntax
 
-```bdfd
-$addCategorySelect[customId;placeholder;(minValues);(maxValues);(disabled)]
+```text
+$addCategorySelect[customId;(placeholder);(minValues);(maxValues);(disabled);(messageID)]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customId` | Custom identifier for the interaction | Yes |
-| `placeholder` | Text displayed when nothing is selected | Yes |
-| `minValues` | Minimum number of categories to select (default: 1) | No |
-| `maxValues` | Maximum number of categories to select (default: 1) | No |
-| `disabled` | `true` to disable the menu, `false` by default | No |
+| `customId` | Custom ID that identifies the menu when it is used (1 to 100 characters). | Yes |
+| `placeholder` | Text displayed when nothing is selected. | No |
+| `minValues` | Minimum number of categories to select, integer from 0 to 25 (default: 1, also when empty). | No |
+| `maxValues` | Maximum number of categories to select, integer from 1 to 25 (default: 1, also when empty). It must not be lower than `minValues` (`Minimum cannot exceed maximum.`). | No |
+| `disabled` | `yes`/`true` to disable the menu, `no`/`false` (default, also when empty) otherwise. Any other value raises `Expected yes or no`. | No |
+| `messageID` | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). The menu is added to that message instead of the response being built. | No |
 
 ## Description
 
-`$addCategorySelect` adds a **category select menu** to a message. This component is similar to `$addChannelSelect` but is restricted to server **categories** only. The user can select one or multiple categories, and the interaction returns the selected category IDs.
+This menu is a channel select restricted to **categories** (similar to `$addChannelSelect`). The selected IDs are read, in the script run for the interaction, with the channel select functions: `$getChannelSelectChannelID[index]`, `$getChannelSelectChannelIDs[separator;(limit)]` and `$getChannelSelectChannelCount`.
 
-This function must be placed after `$addActionRow` to be organized on a specific row.
+The menu always gets its own action row, and a message holds at most 5 rows (`A message supports at most 5 component rows.`). Do not write `$addActionRow` before a select menu: the empty row it creates stays in the message and the response fails with `Invalid component row size.`
+
+The menu belongs to the **response message** of the script (the text written in the script and the embed functions), not to a message sent with `$sendMessage[]`.
 
 ## Examples
 
 ### Category selection
 
 ```bdfd
-$addActionRow
+Select a category
 $addCategorySelect[menu_cat;Choose a category]
-$sendMessage[Select a category]
 ```
 
 ### Multiple categories
 
 ```bdfd
-$addActionRow
+Select up to 5 categories
 $addCategorySelect[menu_cats;Select categories;1;5]
-$sendMessage[Select up to 5 categories]
 ```
 
 ### Disabled menu
 
 ```bdfd
-$addActionRow
-$addCategorySelect[menu_cat_disabled;Unavailable;1;1;true]
-$sendMessage[This menu is currently disabled]
+This menu is currently disabled
+$addCategorySelect[menu_cat_disabled;Unavailable;1;1;yes]
 ```
 
 ## Handling the interaction
 
+The script run when the menu is used reads the choice and identifies the menu with `$customID`:
+
 ```bdfd
 $if[$customID==menu_cat]
-  $sendMessage[Selected category: <#$getChannelSelectChannelID[1]>]
+  Selected category: <#$getChannelSelectChannelID[1]>
 $endif
 ```
 
 ## Notes
 
-- The returned values are Discord category IDs.
-- Use `<#ID>` to mention a category.
-- Only server **categories** appear in the menu, not individual channels.
-- An action row can contain only **one** select menu.
+- The values are Discord category IDs; use `<#ID>` to mention a category.
+- A single select menu per action row.

@@ -7,23 +7,21 @@ category: "Components & Interactions"
 
 # $ephemeral
 
-Makes the response ephemeral (visible only to the user who triggered the interaction). Used as a flag before `$sendMessage`.
+Makes the response of the script ephemeral (visible only to the user who triggered the interaction).
 
 ## Syntax
 
-```bdfd
+```text
 $ephemeral
 ```
 
 ## Description
 
-`$ephemeral` is a **flag** (without arguments) that, when placed before `$sendMessage`, makes the message visible only to the target user. The message appears with the label "Only you can see this" and disappears after some time or when the user closes Discord.
+`$ephemeral` takes no argument (`$ephemeral[yes]` is an error). It sets the ephemeral flag of the **response message**: the text written in the script, the embed functions and the component rows. Its position in the script does not matter.
 
-This function is particularly useful for:
-- Discrete confirmation messages
-- Errors or warnings
-- Responses to interactions on buttons or select menus
-- Sensitive information
+It does **not** apply to a message sent with `$sendMessage[]`: that function sends a separate channel message, which is never ephemeral. A script that only contains `$ephemeral` and `$sendMessage[...]` therefore sends a normal message.
+
+When the response is sent to an interaction that the engine has already acknowledged (it does this automatically before running the script), the response is sent as an ephemeral follow-up.
 
 ## Examples
 
@@ -31,7 +29,7 @@ This function is particularly useful for:
 
 ```bdfd
 $ephemeral
-$sendMessage[This message is visible only to you.]
+This message is visible only to you.
 ```
 
 ### With embeds
@@ -48,23 +46,11 @@ $color[#9B59B6]
 ```bdfd
 $if[$customID==btn_secret]
   $ephemeral
-  $sendMessage[🔒 Secret action completed!]
-$endif
-```
-
-### Ephemeral error message
-
-```bdfd
-$if[$argCount==0]
-  $ephemeral
-  $sendMessage[❌ You must provide an argument!]
-  $stop
+  Secret action completed!
 $endif
 ```
 
 ## Notes
 
-- Only works in the context of interactions (slash commands, buttons, select menus).
-- Does NOT work for classic prefix commands (message commands).
-- The flag must be placed before `$sendMessage`.
-- Practical for keeping channels clean of system messages.
+- Verified by running the engine: the flag appears on the response payload (`"ephemeral": true`) and not on messages from `$sendMessage[]`.
+- Code reading only: a Components V2 response (container, text display, ...) does not take the flag from `$ephemeral`; its ephemeral state comes from the component definition, which the engine does not set.

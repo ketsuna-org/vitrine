@@ -10,11 +10,11 @@ description: Gets the ID of the role selected by the user via a role select menu
 
 # $getRoleSelectRoleID
 
-The function `$getRoleSelectRoleID[]` retrieves the **ID of the role** chosen by the user in a role select menu.
+`$getRoleSelectRoleID[]` returns one selected role ID of the role select menu that triggered the current interaction.
 
 ## Syntax
 
-```
+```text
 $getRoleSelectRoleID[index]
 ```
 
@@ -22,47 +22,45 @@ $getRoleSelectRoleID[index]
 
 | Parameter | Description |
 |---|---|
-| `index` | The index of the selected role (1 = first). Required, integer of 1 or more. |
+| `index` | Position of the selected role ID, starting at 1. Required: a positive integer, otherwise `Selection index must be a positive integer.` |
 
 ## Return Value
 
-- **Type**: String (Snowflake ID)
-- The Discord ID of the selected role.
-- An empty string if the index is beyond the number of selected roles.
-- An error is raised if the index is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no role selection.
+- **Type**: String
+- The selected role ID at that position.
+- An empty string when `index` is greater than the number of selected items.
 
 ## Behavior
 
-- Only usable in the callback of a component interaction carrying a role selection.
-- The role menu is created using `$addRoleSelect[]`.
-- Works with both single and multiple selections (for multiple, use `$getRoleSelectRoleIDs[]`).
+- It raises `Select values require a component callback.` outside of a component interaction (interaction type 3), and `This callback has no roleSelect selection.` when the interaction that triggered the script is not a role select menu.
+- The IDs are those of the roles picked in the menu.
+- The number of selected items is returned by `$getRoleSelectRoleCount`.
+- Without brackets (`$getRoleSelectRoleID`) the engine refuses the call (`Invalid argument count`).
 
 ## Examples
 
-### Assigning a role via selection
+### First selection
 
 ```bdfd
-$var[roleID;$getRoleSelectRoleID[1]]
-$giveRole[$authorID;$var[roleID]]
-$title[Role Assigned]
-$description[You have received the role **$roleName[$var[roleID]]**!]
-$color[#57F287]
+Selected role: <@&$getRoleSelectRoleID[1]>
 ```
 
-### Retrieval with index
+### Second selection (empty if there is only one)
 
 ```bdfd
-$var[first;$getRoleSelectRoleID[1]]
-$var[second;$getRoleSelectRoleID[2]]
-$title[Selected Roles]
-$description[
-**Role 1:** $roleName[$var[first]]
-**Role 2:** $roleName[$var[second]]
-]
+Second role: <@&$getRoleSelectRoleID[2]>
+```
+
+### In an interaction handler
+
+```bdfd
+$if[$customID==my_menu]
+  Selected role: <@&$getRoleSelectRoleID[1]>
+$endif
 ```
 
 ## Notes
 
-- The index starts at 1 and is required: `$getRoleSelectRoleID` without brackets is refused.
-- To retrieve all roles from a multiple selection, use `$getRoleSelectRoleIDs[]`.
-- The returned ID is compatible with all functions that manipulate roles.
+- The index starts at 1 (0 is an error).
+- For all the selections at once, use `$getRoleSelectRoleIDs[separator;(limit)]`.
+- The menu is created with `$addRoleSelect`.

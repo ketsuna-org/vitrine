@@ -4,36 +4,39 @@ title: $serverVerificationLevel[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverVerificationLevel
-syntax: $serverVerificationLevel
-description: Returns the verification level of the server in the form of an integer (0 to 4).
+syntax: $serverVerificationLevel[(guildID)]
+description: Returns the verification level of the server as a label (None, Low, Medium, High, Very High).
 ---
 
 # $serverVerificationLevel[] — Verification Level
 
-`$serverVerificationLevel[]` returns the verification level of the server, which determines the criteria that a member must meet before being able to send messages.
+`$serverVerificationLevel[]` returns the verification level of the server as a **text label**, not as a number.
 
 ## Syntax
 
 ```
-$serverVerificationLevel
+$serverVerificationLevel[(guildID)]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `guildID` | *(Optional)* The ID of a server. If omitted or empty, the current server is used. A non-empty value that is not a positive integer raises `Invalid guild ID.` |
 
 ## Return Value
 
-- **Type**: `integer`
-- An integer from 0 to 4 representing the verification level:
+- **Type**: `string`
+- One of `None`, `Low`, `Medium`, `High`, `Very High` (Discord levels 0 to 4 in that order).
+- If the server cannot be fetched or its level is not one of 0 to 4, the `guild.verificationLevel` context variable supplied by the host is returned unchanged, or `None` if there is none.
 
-| Value | Level | Description |
-|--------|--------|-------------|
-| 0 | None | No restrictions |
-| 1 | Low | Accounts with a verified email |
-| 2 | Medium | Accounts registered for more than 5 minutes |
-| 3 | High | Members of the server for more than 10 minutes |
-| 4 | Very High | Accounts with a verified phone number |
+| Discord level | Returned text |
+|--------|--------|
+| 0 | `None` |
+| 1 | `Low` |
+| 2 | `Medium` |
+| 3 | `High` |
+| 4 | `Very High` |
 
 ## Examples
 
@@ -47,18 +50,13 @@ $sendMessage[🔒 Verification level: $serverVerificationLevel]
 
 ```bdfd
 $var[verifLevel;$serverVerificationLevel]
-$if[$var[verifLevel]==0]
-$var[verifText;No restrictions]
-$elseIf[$var[verifLevel]==1]
-$var[verifText;Verified email required]
-$elseIf[$var[verifLevel]==2]
-$var[verifText;Account older than 5 minutes]
-$elseIf[$var[verifLevel]==3]
-$var[verifText;Member for over 10 minutes]
+$if[$var[verifLevel]==None]
+$sendMessage[🔓 No verification required.]
+$elseIf[$var[verifLevel]==Very High]
+$sendMessage[🔒 Highest verification level.]
 $else
-$var[verifText;Verified phone number required]
+$sendMessage[🔒 Verification level: **$var[verifLevel]**]
 $endif
-$sendMessage[🔒 Verification level: **$var[verifText]**]
 ```
 
 ### Server info embed
@@ -72,6 +70,5 @@ $color[#5865F2]
 
 ## Notes
 
-- A higher level offers better protection against spam and raids.
-- Level 4 (verified phone number) is the most restrictive and requires that Discord has verified the account's phone number.
-- This information is useful for moderation commands or contextual welcome messages.
+- The comparison with `==` is case-sensitive: write `Very High`, `High`, etc. exactly.
+- When the server was fetched, the engine maps the Discord level to the label. Only when it could not be fetched (or the level is outside 0 to 4) does it fall back to the host-supplied `guild.verificationLevel` text (used unchanged), and finally to `None`.

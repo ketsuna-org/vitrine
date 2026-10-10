@@ -4,17 +4,17 @@ title: $removeButtons[]
 translation_key: docs
 category: "Components & Interactions"
 function_name: removeButtons
-syntax: $removeButtons
-description: Removes all buttons from a message in a single operation. Other components (menus, text fields) are preserved.
+syntax: $removeButtons[(messageID)]
+description: Removes all buttons from the response being built, or from an existing message sent by the bot. Other components (menus) are kept.
 ---
 
 # $removeButtons[] — Remove All Buttons
 
-`$removeButtons[]` removes all button-type components from a message. This is the simplest method to disable an interface after a user has interacted with it.
+`$removeButtons[]` removes the buttons from the components of the response being built or of a message the bot already sent. Action rows left empty are dropped.
 
 ## Syntax
 
-```
+```text
 $removeButtons[(messageID)]
 ```
 
@@ -22,71 +22,41 @@ $removeButtons[(messageID)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:--------:|
-| `messageID` | ID of an existing message whose buttons are removed. Without it, the buttons of the message being built are removed. | No |
+| `messageID` | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). Without it (or when empty), the buttons staged in the current script are removed. | No |
 
 ## Return Value
 
-Removes all buttons from the message. Other components (TextInput, Select Menus) are not affected.
+Returns an empty string.
+
+## Behavior
+
+- **Without `messageID`**, only the buttons added earlier in the same script are removed.
+- **With `messageID`**, the engine reads the components of that message and stages an edit without its buttons; the edit is applied when the response is flushed. This needs the bot's component service: without it the function fails with `No component service configured.`
+- Select menus are kept.
+- The text of the message is not changed: use `$editMessage` for that.
 
 ## Examples
 
-A button click triggers the script; read which component was clicked with `$customID` (see `$customID`).
-
-### Disable after voting
+### Remove the buttons of a message after a vote
 
 ```bdfd
 $if[$customID==vote_yes]
   $removeButtons[123456789012345678]
-  $editMessage[$channelID;123456789012345678;✅ Vote recorded: **Yes**]
 $endif
 ```
 
-### Self-locking interface
+### Remove the buttons staged earlier in the script
 
 ```bdfd
-$if[$customID==poll_a]
-  $removeButtons[123456789012345678]
-  $editMessage[$channelID;123456789012345678;Thank you for your vote: **$customID**]
-$endif
-```
-
-### Confirmation with removal
-
-Sending the buttons:
-
-```bdfd
-$addButton[yes;confirm_action;Confirm;success]
-$addButton[no;cancel_action;Cancel;danger]
-$sendMessage[Do you confirm this action?]
-```
-
-Handling the click:
-
-```bdfd
-$if[$customID==confirm_action]
-  $removeButtons[123456789012345678]
-  $editMessage[$channelID;123456789012345678;✅ Action confirmed and executed!]
-$elseif[$customID==cancel_action]
-  $removeButtons[123456789012345678]
-  $editMessage[$channelID;123456789012345678;❌ Action cancelled]
-$endif
-```
-
-### Temporary admin panel
-
-```bdfd
-$title[Admin Panel]
-$description[Choose an action:]
-$addButton[yes;admin_ban;Ban;danger]
-$addButton[no;admin_kick;Kick;secondary]
-$addButton[no;admin_mute;Mute;primary]
-$footer[Single use — remove the buttons once an action is chosen]
+Select a colour
+$addStringSelect[colour;Colour]
+$addStringSelectOption[Red;red]
+$addButtonCV2[ok;OK;success]
+$removeButtons
 ```
 
 ## Notes
 
-- Removes **all** buttons, regardless of their customId.
-- TextInput, Select Menus, and other non-button components are preserved.
+- Removes **all** buttons, whatever their custom ID.
 - To remove a specific button, use `$removeComponent[customId]`.
-- To remove absolutely all components, use `$removeAllComponents[]`.
-- Used primarily in scripts triggered by a component interaction, after processing.
+- To remove every component, use `$removeAllComponents[]`.

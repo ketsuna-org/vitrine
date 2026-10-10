@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomMention
 syntax: $randomMention
-description: Returns the mention (format <@id>) of a random user present on the server.
+description: Returns the mention (format <@id>) of a random member of the server.
 ---
 
 # $randomMention[]
 
-The `$randomMention[]` function returns the formatted mention of a random user present on the server. The mention is in `<@id>` format, which creates a ping for the targeted user.
+The `$randomMention[]` function returns the mention of a random member of the server, in `<@id>` format.
 
 ## Syntax
 
@@ -18,19 +18,16 @@ The `$randomMention[]` function returns the formatted mention of a random user p
 $randomMention
 ```
 
-> **Note:** This function takes no parameters.
+> **Note:** This function takes no arguments (it is an error to pass any).
 
 ## Return Value
 
-The formatted mention (`<@id>`) of a random user on the server.
+The mention `<@id>` of a random member of the server, or an empty string if the member list is empty.
 
-## Difference with similar functions
+## Behavior
 
-| Function | Returns |
-|----------|---------|
-| `$randomMention` | `<@id>` — clickable mention with ping |
-| `$randomUser` | `id` — raw ID |
-| `$randomUserID` | `id` — raw ID |
+- The candidates are all the members of the server returned by Discord (bots included).
+- The mention uses the member ID.
 
 ## Examples
 
@@ -40,22 +37,6 @@ The formatted mention (`<@id>`) of a random user on the server.
 $randomMention, you have been chosen randomly!
 ```
 
-### Winner announcement
-
-```bdfd
-$title[🎊 Prize draw]
-$description[Congratulations $randomMention! You win the giveaway!]
-$color[#FFD700]
-$footer[Good luck to everyone for the next draw]
-```
-
-### Random tag
-
-```bdfd
-Tag, it's your turn $randomMention!
-```
-
 ## Notes
 
-- The user receives a notification (ping) when mentioned.
-- Use `$randomUserID[]` if you do not want to ping the user.
+- Use `$randomUserID` for the bare ID of a random member.

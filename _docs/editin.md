@@ -31,9 +31,13 @@ Exactly 2 arguments are required; there is no message ID parameter.
 
 | Format | Unit | Example |
 |--------|-------|---------|
+| `X` | Seconds (plain number, decimals allowed) | `5`, `2.5` |
+| `Xms` | Milliseconds | `500ms` |
 | `Xs` | Seconds | `5s`, `30s` |
 | `Xm` | Minutes | `1m`, `10m` |
 | `Xh` | Hours | `1h` (rejected if above 40 minutes) |
+
+Longer spellings (`sec`, `minutes`, ...) and units `d`, `w`, `y` are parsed too, and parts can be combined (`1m30s`), but the total must stay within 40 minutes.
 
 ## Return value
 
@@ -58,5 +62,6 @@ $editIn[5s;🚀 Let's go!]
 ## Notes
 
 - The maximum duration is 40 minutes; a zero, negative or unparsable duration raises "Duration must be positive and at most 40 minutes.".
+- The edit targets the command's main response (text, embeds and components built by the command). Messages sent with `$sendMessage[]` are separate messages and are not edited. If the command has no main response, nothing is edited.
 - The edit targets the message sent as the command's response (the engine requires a scheduled-message output, otherwise "No scheduled message output configured.").
 - To edit only the embed, use `$editEmbedIn[]`.

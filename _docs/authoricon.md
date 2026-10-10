@@ -23,7 +23,7 @@ $authorIcon[url;(embedIndex)]
 | Parameter | Description |
 |---|---|
 | `url` | URL of the image to use as the author's icon. |
-| `embedIndex` | Optional. Index of the targeted embed (0 by default). |
+| `embedIndex` | Optional. Index of the targeted embed, from 1 to 10 (1 by default, also when empty). Any other value is an error. |
 
 ## Return value
 
@@ -68,7 +68,6 @@ $color[#ED4245]
 
 ## Notes
 
-- `$authorIcon[]` must be called **after** `$author[]`, otherwise the icon has no author to apply to.
-- If `$authorIcon[]` is called before `$author[]`, the icon will be ignored.
+- The icon is only sent when the same embed also has an author **name** (`$author[]`). The order of the two calls does not matter, but an icon without a name is dropped.
 - The URL must point to a publicly accessible image (PNG, JPG, GIF, WebP).
 - To change the name or add a link, use `$author[]` (which redefines everything) or `$authorURL[]` respectively.

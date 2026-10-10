@@ -84,4 +84,6 @@ $rolePerms[$guildID;$roleID[Admin]]]
 ## Notes
 
 - Names are listed in a fixed order (CreateInvite, KickMembers, BanMembers, Administrator, ...); the raw integer value is not available.
-- Use with `$checkContains` to test for specific permissions.
+- The flags stored on the role are listed: `Administrator` is shown when it is set, but it is not expanded into every other permission.
+- The role must belong to the server `guildID`, otherwise `Role not found.` is raised.
+- Use with `$checkContains` to test for specific permissions (the comparison is case-sensitive).

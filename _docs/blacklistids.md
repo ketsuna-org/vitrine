@@ -29,7 +29,8 @@ The function therefore needs at least 2 arguments. With a single argument, the c
 
 ## Behavior
 
-- Compares the ID of the triggering user (`author.id`) with each value (trimmed text comparison).
+- Compares the ID of the triggering user (`author.id`, or `user.id` when the former is absent) with each value (trimmed text comparison). No Discord request is made.
+- If the context has no user ID at all, nothing matches and the command continues.
 - If the ID matches one of the values, the script is stopped and the error message is used as output.
 - If it matches none, the command continues.
 - Empty values never match.

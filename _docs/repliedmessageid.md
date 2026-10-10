@@ -25,14 +25,14 @@ No parameters.
 ## Return Value
 
 - **Type**: String (Snowflake ID)
-- The ID of the message the user replied to.
-- Empty string if the command was not triggered via reply.
+- The ID of the message the triggering message replies to.
+- Empty string if the triggering message is not a reply.
+- The triggering message is fetched from Discord using the `channel.id` and `message.id` context variables; if they are not valid IDs the error `Invalid Discord ID.` is raised.
 
 ## Behavior
 
-- Works when the user right-clicks → "Reply" on a message and types the command.
+- Only a message whose Discord type is "reply" gives a value: it is the ID referenced by the reply.
 - Returns the ID of the original message, not the command message.
-- Useful for contextual moderation commands.
 
 ## Examples
 
@@ -63,7 +63,7 @@ $if[$repliedMessageID!=]
   **Reported by:** $userName[$authorID]
   ]
   $color[#ED4245]
-  $sendMessage[$channelID[mod-logs]]
+  $sendMessage[Message reported.]
 $else
   $sendMessage[Reply to a message to report it.]
 $endif
@@ -82,6 +82,5 @@ $endif
 
 ## Notes
 
-- Only works if the command is triggered via Discord reply.
-- Returns an empty string in other cases (normal message, slash command, etc.).
-- Convenient for contextual commands without having to manually provide an ID.
+- Returns an empty string for a normal message that is not a reply.
+- Without a triggering message (for example a slash command, where no `message.id` is supplied by the host) the lookup fails with an error instead of returning an empty string.

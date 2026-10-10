@@ -67,7 +67,5 @@ $endif
 
 ## Notes
 
-- `$serverCount[]` is an alias of `$guildCount[]`.
-- The count includes all servers the bot is present in, regardless of the shard.
-- The number is updated automatically when the bot joins or leaves a server.
-- Useful for statistics commands and "About" pages of the bot.
+- `$serverCount` counts the servers returned by Discord for the bot account at the time of the call (the list is read page by page).
+- `$guildCount` gives the same number, but it is a separate function: when no guild query service is available it falls back to the `bot.guildCount` context variable (or `1`), whereas `$serverCount` has no fallback.

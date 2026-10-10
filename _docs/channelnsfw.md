@@ -22,7 +22,7 @@ $channelNSFW[(channelID)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. |
+| `channelID` | Optional. The ID of the target channel. If omitted, the current channel is used. An ID that is not a positive number raises `Invalid channel ID.`, an unknown channel raises `Channel not found.` |
 
 ## Return value
 
@@ -62,5 +62,5 @@ $endif
 ## Notes
 
 - The returned value is a **string** `"true"` or `"false"`, not a boolean.
-- Voice channels can also be marked as NSFW.
+- The flag is read for any server channel; a channel that is not a server channel (a direct message) always gives `false`.
 - Useful for restricting access to certain commands depending on the channel type.

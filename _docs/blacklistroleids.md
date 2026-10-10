@@ -29,7 +29,7 @@ The function therefore needs at least 2 arguments. With a single argument, the c
 
 ## Behavior
 
-- Compares the values with the **ID** of each role of the user (each value must be a valid Discord ID, otherwise an error "Invalid Discord ID." is raised). The `@everyone` role (whose ID is the server ID) counts as a role of the user.
+- Looks up the roles of the command author (`author.id`, or `user.id`) in the current server and compares the values with the **ID** of each of those roles (each value must be a valid Discord ID, otherwise an error "Invalid Discord ID." is raised). The `@everyone` role (whose ID is the server ID) counts as a role of the user.
 - The match is an **OR**: a single matching role is enough.
 - If the user has at least one matching role, the script is stopped and the error message is used as output.
 - If the user has none (or all values are empty), the command continues.

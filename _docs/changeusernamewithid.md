@@ -5,12 +5,12 @@ translation_key: docs
 category: "Moderation"
 function_name: changeUsernameWithID
 syntax: $changeUsernameWithID[userID;newName]
-description: Changes the username of a specific user (requires elevated permissions).
+description: Changes the server nickname of the user whose ID is given.
 ---
 
 # $changeUsernameWithID
 
-The `$changeUsernameWithID` function **modifies the global username** of a specific Discord user. This function requires elevated permissions (generally reserved for bots with a user token or special permissions).
+In this engine, `$changeUsernameWithID` **sets the server nickname** of the user whose ID is given. It does not change the global username of any account.
 
 ## Syntax
 
@@ -22,12 +22,17 @@ $changeUsernameWithID[userID;newName]
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the target user. Required. |
-| `newName` | The new username. Required. |
+| `userID` | Required. The ID of the target user. Must be a positive number, otherwise the error `Missing or invalid user ID.` is raised. |
+| `newName` | Required. The new nickname. After substitution it must contain 1 to 32 characters, otherwise the error `Nickname must contain 1 to 32 characters.` is raised. The text `%username%` is replaced by the username of the target user. |
 
 ## Return value
 
-None. The username is updated globally.
+None (empty string).
+
+## Behavior
+
+- `%username%` in `newName` is replaced by the target's username (error `User not found: <id>.` if the user cannot be found).
+- The change is applied like `$setNickname` (the bot needs `Manage Nicknames`; if Discord refuses the change, an error is raised).
 
 ## Examples
 
@@ -35,7 +40,7 @@ None. The username is updated globally.
 
 ```bdfd
 $changeUsernameWithID[$mentioned[1];Corrected Name]
-$sendMessage[✅ Username of <@$mentioned[1]> changed to "Corrected Name".]
+$sendMessage[Nickname of <@$mentioned[1]> changed to "Corrected Name".]
 ```
 
 ### Administrative command
@@ -43,7 +48,7 @@ $sendMessage[✅ Username of <@$mentioned[1]> changed to "Corrected Name".]
 ```bdfd
 $if[$isAdmin[$authorID]==true]
   $changeUsernameWithID[$findUser[$message[1]];$message[2]]
-  $sendMessage[Username of user $message[1] changed.]
+  $sendMessage[Nickname of user $message[1] changed.]
 $else
   $sendMessage[Permission denied.]
 $endif
@@ -53,13 +58,11 @@ $endif
 
 ```bdfd
 $changeUsernameWithID[$authorID;$message[1]]
-$sendMessage[$userName, your username has been changed.]
+$sendMessage[$userName, your nickname has been changed.]
 ```
 
 ## Notes
 
-- **Special permissions required**: This function may not work with a standard bot token.
-- **Discord rate limit**: Maximum of 2 name changes per hour per account.
-- To change the name of the bot itself, use `$changeUsername`.
-- To change the nickname on the server only, use `$setNickname` instead.
-- The change is global and visible across all Discord servers.
+- Only the nickname on the current server is changed.
+- Unlike `$setNickname`, an empty nickname is rejected.
+- To target the mentioned user (or the author) without passing an ID, use `$changeUsername`.

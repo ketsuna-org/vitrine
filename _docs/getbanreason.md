@@ -4,25 +4,26 @@ title: $getBanReason
 translation_key: docs
 category: "Moderation"
 function_name: getBanReason
-syntax: $getBanReason[userID]
+syntax: $getBanReason[userID;(guildID)]
 description: Gets the ban reason of a banned user on the server. Returns the reason stored in the server's ban list.
 ---
 
 # $getBanReason
 
-The `$getBanReason[]` function allows you to **retrieve the ban reason** of a banned user on the current server.
+The `$getBanReason[]` function allows you to **retrieve the ban reason** of a banned user on the current server (or on the server given by `guildID`).
 
 ## Syntax
 
 ```
-$getBanReason[userID]
+$getBanReason[userID;(guildID)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | The ID of the banned user. |
+| `userID` | The ID of the banned user. Required; must be a positive number, otherwise the error `Invalid user ID.` is raised. |
+| `guildID` | Optional. The server whose ban list is read. If omitted or empty, the current server is used. A non-numeric or non-positive value raises `Invalid guild ID.` |
 
 ## Return Value
 
@@ -32,7 +33,7 @@ $getBanReason[userID]
 
 ## Behavior
 
-- The bot must have the `BAN_MEMBERS` permission to view ban reasons.
+- The bot must have the `Ban Members` permission in the target server to read its bans; otherwise an error is raised.
 - The reason returned is the one provided during the ban (via `$banID[reason;userID]`).
 - If the user is not banned, it returns an empty string.
 
@@ -90,7 +91,7 @@ $endif
 
 ## Notes
 
-- The reason is stored by Discord and is persistent.
+- The reason is read live from the server's ban list (Discord).
 - Useful for moderation logs and transparency.
-- Only users with `BAN_MEMBERS` can view the reasons.
-- Only works on the current server.
+- The bot needs `Ban Members` in the server whose ban list is read.
+- The result is empty both when the user is not banned and when the ban has no reason.

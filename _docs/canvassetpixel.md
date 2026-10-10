@@ -4,8 +4,8 @@ title: $canvasSetPixel
 translation_key: docs
 category: "Image & Canvas"
 function_name: canvasSetPixel
-syntax: $canvasSetPixel[x;y;color]
-description: Sets the color of a specific pixel on the canvas.
+syntax: $canvasSetPixel[x;y;color;(container)]
+description: Sets the color of one pixel of the current canvas. Coordinates outside the canvas are ignored.
 ---
 
 # $canvasSetPixel
@@ -24,17 +24,20 @@ $canvasSetPixel[x;y;color]
 |---|---|
 | `x` | X coordinate of the pixel. 0 = the left edge of the canvas. |
 | `y` | Y coordinate of the pixel. 0 = the top edge of the canvas. |
-| `color` | Color to apply, in hexadecimal format (`#RRGGBB`) or color name (`red`, `blue`, etc.). |
+| `color` | Required. A 6-digit hexadecimal color with or without `#`, an 8-digit `RRGGBBAA` value, or a color name such as `red`, `blue`, `gold`. An empty or unreadable color becomes white. The 3-digit shorthand `#abc` is not supported. |
+| `container` | Optional. Name of a container defined earlier with `$canvasContainer`: `x`/`y` are then offset by the container's position. |
+
+`x` and `y` must be whole numbers; otherwise they are read as `0`.
 
 ## Return value
 
-None. The pixel is modified directly on the canvas.
+An empty string. The pixel is recorded for the current canvas (the last one made with `$canvasCreate`) and set when the canvas is rendered.
 
 ## Behavior
 
 - Coordinates outside the canvas boundaries are ignored (no error).
-- The alpha channel of the pixel is kept as is.
-- Works on any canvas previously created or loaded.
+- The color is written as is; the transparency of an `RRGGBBAA` color is not applied.
+- A canvas must have been created with `$canvasCreate[]` first; otherwise the call has no effect.
 
 ## Examples
 

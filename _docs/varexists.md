@@ -5,31 +5,35 @@ translation_key: docs
 category: "Variables"
 function_name: varExists
 syntax: $varExists[name]
-description: Checks whether a temporary variable with the given name currently exists in the execution context.
+description: Checks whether a variable with the given name is declared for the bot (the variables defined in the bot settings). It does not look at the temporary variables created with $var.
 ---
 
-$varExists is used to safely check whether a temporary variable has been set before attempting to read it. Since `$var` returns an empty string for missing variables (silent failure), `$varExists` is the only reliable way to distinguish between "variable exists with an empty value" and "variable does not exist."
+`$varExists[name]` tells whether a variable called `name` is **declared** for the bot, that is, defined in the variables of your bot (user, server, channel, member or global variables) and not only used in a script.
 
 ## Return Value
 
-The return value is always the string `"true"` or `"false"` — not a boolean. Use string comparison in conditionals:
+The return value is always the text `true` or `false`. It can be used directly as a condition, or compared:
 
-```
+```text
+$if[$varExists[name]]
 $if[$varExists[name]==true]
-$if[$varExists[name]!=false]
 ```
 
-Both forms work. `$if[$varExists[name]]` alone will always be truthy (non-empty string), so always compare explicitly.
+## Matching Rules
+
+- The name is trimmed and compared **without regard to case** (`Score` finds `score`).
+- A leading `bc_` prefix is ignored on both sides.
+- An empty name is an error ("A variable name is required.").
+- Only the declaration is tested: no value is read and nothing is created.
 
 ## Scope
 
-This function only checks **temporary** variables created with `$var`. It does not check global or user-scoped variables — those would need to be checked by attempting `$getVar` and comparing the result.
+This function does **not** check the temporary variables created with `$var` (there is no function for that: test `$var[name]` against an empty value). It does not read the value of a declared variable either; use `$getUserVar`, `$getServerVar`, ... for that. To stop the script when a variable is not declared, use [$varExistError](/docs/varexisterror/).
 
 ## Use Cases
 
-- **Lazy initialization**: set a variable only if it hasn't been set yet.
-- **Guard clauses**: skip logic that depends on a variable being present.
-- **Debugging**: verify that expected intermediate values are available.
+- **Guard clauses**: skip logic that depends on a variable being declared in the bot settings.
+- **Configuration checks**: tell the user that a feature is not set up yet.
 
 ## Examples
 

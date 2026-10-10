@@ -22,18 +22,18 @@ $randomString[length]
 
 | Parameter | Description |
 |-----------|-------------|
-| `length` | The length of the random string to generate (in number of characters). |
+| `length` | Required. An integer from `1` to `10` (surrounding spaces are ignored). Anything else (`0`, `11`, a decimal, text, empty) raises the error "Random string length must be an integer from 1 to 10.". |
 
 ## Return Value
 
-A string of random alphanumeric characters containing:
+A string of exactly `length` random alphanumeric characters (exactly one argument is accepted), containing:
 - Lowercase letters (a-z)
 - Uppercase letters (A-Z)
 - Digits (0-9)
 
 ## Examples
 
-### Generate a unique identifier
+### Generate a random identifier
 
 ```bdfd
 $title[Your session ID]
@@ -47,14 +47,12 @@ $footer[Keep this identifier]
 Your verification code is: **$randomString[6]**
 ```
 
-### Access token
+### Longest string
 
 ```bdfd
-$randomString[32]
+$randomString[10]
 ```
 
 ## Use cases
 
-- Generating unique identifiers for tickets, sessions, or keys.
-- Creating verification codes or temporary passwords.
-- Generating random tokens.
+- Short random codes or labels (maximum length 10). Two calls can return the same string: uniqueness is not guaranteed.

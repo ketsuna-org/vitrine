@@ -73,6 +73,7 @@ $color[#5865F2]
 
 ## Notes
 
-- Includes bots in the count. For humans only, do `$c[$getMembersCount-$botCount]`.
+- Includes bots in the count. For humans only, use `$sub[$getMembersCount;$botCount]`.
+- It counts the members of the current server only (see `$allMembersCount` for the sum over all servers).
 - Functionally equivalent to `$membersCount`.
 - Updates automatically when members join/leave.

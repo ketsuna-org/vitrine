@@ -9,7 +9,7 @@ description: Counts the number of characters in the given text.
 ---
 # $charCount — Count Characters
 
-`$charCount` returns the number of characters in a string. Every character counts — letters, digits, spaces, punctuation, and newlines. It is useful for validation, truncation decisions, and displaying string length to users.
+`$charCount` returns the length of a string. Every character counts — letters, digits, spaces (also leading and trailing ones), punctuation, and line breaks. It is useful for validation, truncation decisions, and displaying string length to users.
 
 ## Syntax
 
@@ -19,7 +19,7 @@ $charCount[text]
 
 ## Parameters
 
-- **text** *(string, required)* — The text to count.
+- **text** *(string, required)* — The text to count. Exactly one argument (`$charCount[a;b]` and `$charCount` without brackets are refused: "Invalid argument count").
 
 ## Return Value
 
@@ -31,7 +31,7 @@ $charCount[text]
 ```
 $charCount[Hello]           → "5"
 $charCount[Hello World]     → "11" (space counts)
-$charCount[A\nB]            → "3"  (newline counts as 1)
+$charCount[ a ]             → "3"  (spaces are not trimmed)
 $charCount[]                → "0"
 $charCount[$message]        → character count of user's message
 ```
@@ -64,17 +64,17 @@ $endif
 ### Conditional Truncation
 
 ```
-$if[$charCount[$text]>100]
-  $var[text;$cropText[$text;100]]
+$if[$charCount[$message]>100]
+  $var[text;$cropText[$message;100;...]]
 $endif
 ```
 
 ## Important Notes
 
-- **Unicode**: Multi-byte characters like emojis may count as more than 1 character depending on the BDFD runtime.
-- **Newlines**: `\n` counts as 1 character.
+- **Unicode**: the length is counted in UTF-16 code units: `é` counts 1, but an emoji such as 😀 counts 2 (tested). `$cropText` counts such an emoji as one character, so the two functions can disagree.
+- **Line breaks**: a real line break counts as 1 character.
 - **Empty input**: Returns `"0"`, not an error.
-- **Return type**: The return value is a string, but can be used in `$math` or `$checkCondition` for numeric comparisons.
+- **Return type**: the value is text made of digits, usable in numeric comparisons such as `$if[$charCount[$message]>10]`.
 
 ## Examples
 

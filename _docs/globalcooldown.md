@@ -1,5 +1,5 @@
 ---
-description: Sets a cooldown shared across all servers for a command.
+description: Sets a cooldown on the command that is per user and shared by all servers.
 layout: doc
 translation_key: docs
 category: "Cooldown"
@@ -7,87 +7,82 @@ category: "Cooldown"
 
 # $globalCooldown
 
-Enforces a global cooldown on command execution across all servers and all users. When triggered, the entire bot is locked out of the command until the cooldown expires.
+Enforces a cooldown on the command that is **per user and shared by all servers**: when a user triggers it, that user must wait before running the command again, in any server.
 
 ## Syntax
 
-```bdfd
-$globalCooldown[duration;(errorMessage)]
+```text
+$globalCooldown[duration;errorMessage]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `duration` | The cooldown duration | Yes |
-| `errorMessage` | Custom error message shown when the cooldown is active | No |
+| `duration` | The cooldown duration (see below). Zero or unreadable values raise `Invalid cooldown duration.` | Yes |
+| `errorMessage` | Message sent when the cooldown is active. The argument is required; if it is left empty, the error `Command is on cooldown.` is raised instead. | Yes |
 
 ## Duration Format
 
-| Unit | Letter | Example |
-|------|--------|---------|
-| Seconds | `s` | `10s` = 10 seconds |
-| Minutes | `m` | `5m` = 5 minutes |
-| Hours | `h` | `1h` = 1 hour |
-| Days | `d` | `2d` = 2 days |
+A number followed by a unit: `ms`, `s`, `m`, `h`, `d`, `w`, `y` (or the full names `seconds`, `minutes`, ...), for example `10s`, `5m`, `1h`, `2d`. A plain number is read as seconds, and units can be combined (`2m30s`).
 
 ## Description
 
-`$globalCooldown` locks the command for **all users across all servers** when any user triggers it. This is the most restrictive cooldown scope.
+The cooldown key of `$globalCooldown` is the bot, the command and the **user**: the server is not part of it. So the cooldown follows a user from server to server, but it does **not** lock the command for other users.
 
 **Scope comparison:**
 
-| Function | Scope | Behavior |
-|----------|-------|----------|
-| `$cooldown[duration;(msg)]` | **User** | One cooldown per user |
-| `$serverCooldown[duration;(msg)]` | **Guild** | One cooldown per server |
-| `$globalCooldown[duration;(msg)]` | **Global** | One cooldown for the entire bot |
+| Function | Cooldown key (per command) |
+|----------|----------------------------|
+| `$cooldown[duration;msg]` | user + server |
+| `$serverCooldown[duration;msg]` | server |
+| `$globalCooldown[duration;msg]` | user (all servers) |
 
 ## How It Works
 
-1. When the command runs, `$globalCooldown` checks if a global cooldown is active.
-2. If **no cooldown is active** → a new global cooldown is set and execution continues.
-3. If **a cooldown is active** → the optional `errorMessage` is sent, and execution **stops immediately**. No further code runs.
+1. When the command runs, `$globalCooldown` checks whether a cooldown is active for the user and the command.
+2. If **no cooldown is active** → a new cooldown is started and execution continues.
+3. If **a cooldown is active** → the script stops, the response written so far is discarded and `errorMessage` is sent as the response. No further code runs.
+
+The error message accepts the placeholders `%time%`, `%time-d%`, `%time-h%`, `%time-m%` and `%time-s%`; see `$cooldown`. It needs a command ID, but not a server ID.
 
 ## Place at the Top
 
-Always place `$globalCooldown` at the **top** of your command, before any side effects (database writes, API calls, etc.). This ensures the cooldown check happens before any work is done.
+Place `$globalCooldown` at the **top** of your script, before any side effects, so that nothing is done when the cooldown is active.
 
 ## Examples
 
-### Basic Global Cooldown
+### Basic cooldown
 
 ```bdfd
-$globalCooldown[1h;This command is on global cooldown.]
-$sendMessage[This command can only be used once per hour globally.]
+$globalCooldown[1h;This command is on cooldown.]
+This command can only be used once per hour.
 ```
 
-### With Custom Error Message
+### Displaying the remaining time
 
 ```bdfd
-$globalCooldown[30m;⏳ This command is on global cooldown. Please wait.]
-$sendMessage[Command executed!]
+$globalCooldown[10m;Cooldown! Try again in $getCooldown[global] seconds.]
+Processing...
 ```
 
-### Displaying Remaining Time
+### With the time placeholder
 
 ```bdfd
-$globalCooldown[10m;⏳ Global cooldown! Try again in $getCooldown[global] seconds.]
-$sendMessage[Processing...]
+$globalCooldown[30m;Please wait %time%.]
+Command executed!
 ```
 
-### Combined with Other Checks
+### Combined with other checks
 
 ```bdfd
-$globalCooldown[30s;⏳ Global cooldown active!]
-$cooldown[10s;⏳ You're on cooldown!]
-$onlyIf[$message!=;❌ Please provide a message.]
-$sendMessage[Message received: $message]
+$globalCooldown[30s;Cooldown active!]
+$cooldown[10s;You're on cooldown!]
+$onlyIf[$message!=;Please provide a message.]
+Message received: $message
 ```
 
 ## Notes
 
-- The global cooldown applies to **all servers** — use sparingly for commands that affect the entire bot.
-- For per-server restrictions, use `$serverCooldown` instead.
-- For per-user restrictions, use `$cooldown` instead.
-- Use `$getCooldown[global]` to retrieve the remaining global cooldown time in seconds.
+- For per-server restrictions, use `$serverCooldown`; for per-user restrictions in each server, use `$cooldown`.
+- Use `$getCooldown[global]` to retrieve the remaining time in seconds.

@@ -4,30 +4,31 @@ title: $serverBanner[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverBanner
-syntax: $serverBanner
-description: Returns the URL of the Discord server banner (available only for servers with boost level 2 or higher).
+syntax: $serverBanner[(guildID)]
+description: Returns the URL of the banner of the current server, or of the server whose ID is given. Empty string if there is none.
 ---
 
 # $serverBanner[] — Server Banner
 
-`$serverBanner[]` returns the URL of the Discord server banner. The banner is a horizontal image displayed at the top of the channel list on desktop clients.
-
-> **Prerequisite**: The server must be boost level 2 or higher to be able to set a custom banner.
+`$serverBanner[]` returns the URL of the Discord server banner.
 
 ## Syntax
 
 ```
-$serverBanner
+$serverBanner[(guildID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description |
+|---|---|
+| `guildID` | *(Optional)* The ID of a server. If omitted or empty, the current server is used. A non-empty value that is not a positive integer raises `Invalid guild ID.` |
 
 ## Return Value
 
 - **Type**: `string`
-- The URL of the server banner, or an empty string if the server does not have one.
+- The URL of the banner (`https://cdn.discordapp.com/banners/<guildID>/<hash>.png`, or `.gif` when the banner hash starts with `a_`), or an empty string if the server does not have one.
+- If the server cannot be fetched, the value of the `guild.banner` context variable supplied by the host is returned, or an empty string if there is none.
 
 ## Examples
 
@@ -67,7 +68,5 @@ $image[$var[bannerURL]]
 
 ## Notes
 
-- `$serverBanner[]` is an alias of `$guildBanner[]`.
-- Requires a server boost level of 2 or 3.
-- The banner is different from the icon (the icon is square, while the banner is rectangular with a ~16:9 ratio).
+- `$guildBanner[guildID]` is a different function: it requires the server ID and raises `Guild not found.` instead of falling back.
 - If the server does not have a banner, plan a fallback (such as the server icon or a default image).

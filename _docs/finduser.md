@@ -4,45 +4,48 @@ title: $findUser
 translation_key: docs
 category: "Entity Info"
 function_name: findUser
-syntax: $findUser[name/mention/ID]
-description: Searches for a user by name, mention, or ID and returns their Discord ID. Returns an empty string if no user is found.
+syntax: $findUser[query;(returnAuthor)]
+description: Searches the members of the current server for a user by mention, ID or exact username and returns their ID. When nobody is found it returns the ID of the command author, unless the second argument is no.
 ---
 
 # $findUser
 
-The `$findUser[]` function allows you to **search for a user** by their name, mention, or ID. It returns the Discord ID of the user found.
+The `$findUser[]` function **searches the members of the current server** for a user given by a mention, an ID or an exact username. It returns the Discord ID of the user found.
 
 ## Syntax
 
 ```
-$findUser[name/mention/ID]
+$findUser[query;(returnAuthor)]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `query` | The search term: username (partial or full), raw mention (`<@ID>`), or numerical ID. |
+| `query` | The search term: a raw mention (`<@ID>` or `<@!ID>`), a numerical ID, or the exact username. Surrounding spaces are removed. |
+| `returnAuthor` | Optional. What to do when nobody is found: `yes`/`true`/`on`/`enable` (the default when the argument is absent) returns the ID of the command author; `no`/`false`/`off`/`disable` returns an empty string. Any other value raises `Invalid return-author boolean.` |
 
 ## Return Value
 
 - **Type**: Snowflake (numeric string) or empty string
-- The ID of the corresponding user
-- An empty string if no user is found
+- The ID of the member found.
+- When nobody is found: the ID of the command author by default, or an empty string with `returnAuthor` set to `no`. This also applies to an empty `query`.
+- If the author is needed but the context has no valid author ID, the error `Invalid user ID.` is raised.
 
 ## Behavior
 
-- The search by name is **case-insensitive**.
-- The search by name can be **partial** (e.g., `"Jean"` matches `"JeanDupont"`).
-- The search is performed among users known to the bot (shared servers cache).
-- Priority of match: exact mention > exact ID > username > server nickname.
+- A mention or a numerical ID is looked up among the members of the current server (the member must be in the server). A mention that matches nobody is not tried as a name.
+- Otherwise (not a mention), every member of the server is compared with the query: the match is on the **username**, it is **exact** and **case-sensitive**. There is no partial match and the server nickname is not used.
+- A numerical query that is not the ID of a member is also compared as a username.
+- Only the first match is returned.
+- Looking a name up lists the members of the server through Discord, which can be slow on large servers.
 
 ## Examples
 
 ### Search by command argument
 
 ```bdfd
-$var[target;$findUser[$message]]
+$var[target;$findUser[$message;no]]
 $if[$var[target]!=]
   $title[User Found]
   $description[
@@ -59,7 +62,7 @@ $endif
 ### Search and action
 
 ```bdfd
-$var[target;$findUser[$message[1]]]
+$var[target;$findUser[$message[1];no]]
 $if[$var[target]!=]
   $if[$checkUserPerms[$authorID;KickMembers]==true]
     $kick[$var[target]]
@@ -70,21 +73,15 @@ $else
 $endif
 ```
 
-### Search with fallback
+### Default to the author
 
 ```bdfd
 $var[target;$findUser[$message]]
-$if[$var[target]!=]
-  $sendMessage[User: $userName[$var[target]]]
-$else
-  $sendMessage[User not found. Defaulting to the author.]
-  $var[target;$authorID]
-$endif
+$sendMessage[User: $userName[$var[target]]]
 ```
 
 ## Notes
 
-- `$findUser[]` is more flexible than `$mentioned` because it accepts partial names.
-- Always check the result (making sure it is not empty) before using the returned ID.
-- Useful for commands where the user can provide a name, an ID, or a mention.
-- The search is limited to users that the bot "knows" (present in shared servers).
+- Without the second argument the function never returns an empty string (except when the author cannot be determined, which is an error): pass `no` to detect "not found".
+- `$findUser[]` accepts a mention, an ID or a username in one argument, unlike `$mentioned`, which only reads the mentions of the message.
+- The search is limited to the members of the current server.

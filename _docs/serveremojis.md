@@ -72,7 +72,7 @@ $color[#5865F2]
 
 ## Notes
 
-- The list can be very long if the server has many emojis — watch out for the Discord 2,000-character message limit.
+- The list can be very long if the server has many emojis, and the resulting message may be too long to send.
 - Animated emojis are prefixed with `<a:` instead of `<:`.
-- To get only the number of emojis without the list, use `$emojiCount[]`.
-- The emoji limit per server depends on the boost level (50 by default, up to 250 at level 3).
+- To get only the number of emojis without the list, use `$emojiCount[(guildID)]`: with the ID of the same server it counts the same emojis; without argument it counts the emojis of the current server.
+- `guildID` must be a positive integer, otherwise `Invalid guild ID.` is raised; an empty separator joins the emojis without any text between them.

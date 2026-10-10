@@ -22,8 +22,8 @@ $mentionedChannels[index;(returnCurrent)]
 
 | Parameter | Description |
 |---|---|
-| `index` | Required. Position of the mention: a positive integer (1 is the first), `<` for the first, `>` for the last. Any other value raises an error. |
-| `returnCurrent` | Optional (`yes`/`no`, `true`/`false`). If no channel is mentioned at this position, return the ID of the current channel instead. Defaults to `no`. Any other value raises an error. |
+| `index` | Required. Position of the mention: a positive integer (1 is the first), `<` for the first, `>` for the last. Any other value (including `0`, a negative number or text) raises `Mention index must be positive, < or >.` |
+| `returnCurrent` | Optional (`yes`/`no`, `true`/`false`). If no channel is mentioned at this position, return the ID of the current channel instead. Defaults to `no`. Any other value raises `Mention fallback must be yes or no.` The value is trimmed and case-insensitive. The current channel ID is taken from the `channel.id` context variable. |
 
 ## Return Value
 
@@ -34,7 +34,8 @@ $mentionedChannels[index;(returnCurrent)]
 ## Behavior
 
 - `$mentionedChannels` requires at least one argument: a bare `$mentionedChannels` is invalid.
-- Reads the channel mentions of the message; it raises an error in a slash command (use the command options instead).
+- Reads the channel mentions of the message; it raises the error `Use message options for slash commands.` in a slash command (use the command options instead).
+- The mentions are read from the `message.channelMentions` context variable supplied by the host (a comma-separated list of channel IDs).
 - Returns a single ID per call; call it with several indexes to read several channels.
 
 ## Examples
@@ -67,7 +68,5 @@ $endif
 
 ## Notes
 
-- Channel mentions use the `#channel-name` format in Discord.
-- The returned ID is a numeric snowflake.
 - To get the name of a channel from its ID, use `$channelName[ID]`.
 

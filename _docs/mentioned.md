@@ -22,8 +22,8 @@ $mentioned[index;(returnSelf)]
 
 | Parameter | Description |
 |---|---|
-| `index` | Required. Position of the mention: a positive integer (1 is the first), `<` for the first, `>` for the last. Any other value raises an error. |
-| `returnSelf` | Optional (`yes`/`no`, `true`/`false`). If no user is mentioned at this position, return the ID of the command author instead. Defaults to `yes`. Any other value raises an error. |
+| `index` | Required. Position of the mention: a positive integer (1 is the first), `<` for the first, `>` for the last. Any other value (including `0`, a negative number or text) raises `Mention index must be positive, < or >.` |
+| `returnSelf` | Optional (`yes`/`no`, `true`/`false`). If no user is mentioned at this position, return the ID of the command author instead. Defaults to `yes`. Any other value raises `Mention fallback must be yes or no.` The value is trimmed and case-insensitive. |
 
 ## Return Value
 
@@ -34,7 +34,9 @@ $mentioned[index;(returnSelf)]
 ## Behavior
 
 - `$mentioned` requires at least one argument: a bare `$mentioned` is invalid.
-- Reads the user mentions of the message; it raises an error in a slash command (use the command options instead).
+- Reads the user mentions of the message; it raises the error `Use message options for slash commands.` in a slash command (use the command options instead).
+- The mentions are read from the `message.mentions` context variable supplied by the host (a comma-separated list of user IDs).
+- Index `>` with no mention at all, or an index larger than the number of mentions, counts as "no such mention".
 - To retrieve all mentions, use `$mentions`.
 
 ## Examples
@@ -75,5 +77,5 @@ $endif
 - `$mentioned[1]` is convenient for commands that target a single user.
 - Because `returnSelf` defaults to `yes`, use `$mentioned[1;no]` to get an empty string when nobody is mentioned.
 - Use `$userExists[$mentioned[1;no]]` to validate that the mentioned user exists.
-- Does not detect `@everyone` or `@here` mentions.
+
 

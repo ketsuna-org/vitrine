@@ -32,7 +32,8 @@ None. The role is added to each mentioned user.
 
 - The users are taken from the user mentions of the command message. If the message mentions no user, an error is raised (the author is never used as a fallback).
 - The role is looked up by exact name among the roles of the server.
-- The bot must be allowed to manage the role (the engine checks it and returns a permission error otherwise).
+- If no role has this name, the error `Role not found: <name>.` is raised.
+- The bot must have `Manage Roles` and the role must be below the bot's highest role; `@everyone` and managed (bot, integration, booster) roles cannot be granted. Otherwise a permission error is raised.
 - There is no reason parameter: `$mute` accepts exactly one argument.
 
 ## Examples

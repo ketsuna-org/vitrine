@@ -1,75 +1,70 @@
 ---
-description: Throws a custom error and stops command execution.
+description: Reads the error caught by the last $try / $catch block, or one of its details.
 layout: doc
 translation_key: docs
 category: "Misc"
+function_name: error
+syntax: $error / $error[type]
 ---
 
 # $error
 
-Generates a custom error that stops the command execution with the provided message.
+`$error` gives access to the error that the last `$try ... $catch ... $endTry` block caught. It does **not** raise an error: to catch errors and read them, use [$try / $catch / $endTry](/docs/try-catch/).
 
 ## Syntax
 
-```bdfd
-$error[message]
+```text
+$error
+$error[type]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `message` | The error message to display | Yes |
+| `type` | Which detail to return: `message`, `command`, `source`, `row` or `column` (lowercase). Without it, the full error text is returned. Any other value is an error: "Error type must be command, message, source, row or column." | No |
 
-## Description
+## Return values
 
-`$error` stops the execution of the current command immediately and displays a custom error message to the user. This is useful when you want to interrupt a command under certain conditions with a clear, descriptive message.
+| Usage | Returns |
+|-------|---------|
+| `$error` | The full error text, with its location prefix: `BDFD L<line>:<column> $function: message` |
+| `$error[message]` | The error message alone, without the location prefix |
+| `$error[command]` | The function that failed, with its `$` (for example `$sum`) |
+| `$error[source]` | The source line where the error occurred (trimmed) |
+| `$error[row]` | The line number of the error |
+| `$error[column]` | The column of the error |
 
-Unlike `$stop` which silently stops execution, `$error` explicitly signals that something went wrong and provides feedback.
+## Behavior
+
+- `$error` is empty until a `$try` block has caught an error. It is meant to be read inside the `$catch` part.
+- The recorded values are not cleared when the block ends: they stay readable after `$endTry` until another error is caught.
+- Each caught error replaces the previous one.
 
 ## Examples
 
-### Missing parameter
+### Show the reason of a failure
 
 ```bdfd
-$if[$message==]
-  $error[❌ Please provide a message.]
-$endif
-$sendMessage[$message]
+$try
+  $var[result;$calculate[$message]]
+  $sendMessage[Result: $var[result]]
+$catch
+  $sendMessage[Calculation failed: $error[message]]
+$endTry
 ```
 
-### Invalid value
+### Log where an error happened
 
 ```bdfd
-$if[$isNumber[$message]!=true]
-  $error[❌ The provided value must be a number.]
-$endif
-$sendMessage[Valid number: $message]
-```
-
-### Permission check
-
-```bdfd
-$if[$checkUserPerms[$authorID;BanMembers]!=true]
-  $error[❌ You need the Ban Members permission to use this command.]
-$endif
-$ban[Moderation]
-$sendMessage[User banned.]
-```
-
-### Conditional validation
-
-```bdfd
-$var[age;$message]
-$if[$var[age]<18]
-  $error[❌ You must be at least 18 years old.]
-$endif
-$sendMessage[Access granted.]
+$try
+  $httpGet[https://api.example.com/data]
+$catch
+  $log[$error[command] failed on line $error[row], column $error[column]]
+$endTry
 ```
 
 ## Notes
 
-- `$error` immediately stops command execution; no code after it will run.
-- For silent stops without a message, use `$stop`.
-- The error message can contain emojis, mentions, and formatting.
-- Useful for input validation and permission checks.
+- `$error[message]` is not a way to stop a command with a custom message: its argument is the detail to read, not a text to display.
+- To stop the script with a message when a condition fails, use [$onlyIf](/docs/onlyif/) (`$onlyIf[condition;message]`); to stop it silently, use [$stop](/docs/stop/).

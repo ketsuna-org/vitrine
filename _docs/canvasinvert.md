@@ -4,8 +4,8 @@ title: $canvasInvert
 translation_key: docs
 category: "Image & Canvas"
 function_name: canvasInvert
-syntax: $canvasInvert
-description: Inverts the colors of the current canvas (negative). No parameters.
+syntax: $canvasInvert[(unused)]
+description: Inverts the colors of the current canvas (negative). One optional argument is accepted and ignored.
 ---
 
 # $canvasInvert
@@ -20,17 +20,17 @@ $canvasInvert
 
 ## Parameters
 
-None.
+None. The engine accepts one optional argument and ignores it.
 
 ## Return value
 
-None. The canvas is modified directly.
+An empty string. The effect is recorded for the current canvas (the last one made with `$canvasCreate`) and applied, in order, when the canvas is rendered.
 
 ## Behavior
 
 - Each RGB channel is inverted: white becomes black, red becomes cyan, etc.
 - Calling `$canvasInvert` twice in a row restores the original image.
-- Transparent pixels are not affected.
+- It applies to the whole canvas at the point where it is written: only the operations written before it are affected.
 
 ## Examples
 
@@ -57,6 +57,6 @@ $sendMessage[🎞️ Grayscale + Negative!]
 
 ## Notes
 
-- The canvas must be created or loaded beforehand.
+- A canvas must have been created with `$canvasCreate[]` first; otherwise the call has no effect.
+- In the examples, `$getAttachments[0]` raises an error when the message has no attachment.
 - Inversion is reversible (re-call the function).
-- For a partial effect, use `$canvasSetPixel[]` to invert specific pixels.

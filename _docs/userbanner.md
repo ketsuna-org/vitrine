@@ -50,7 +50,7 @@ $else
 $endif
 ```
 
-### Complete profile with banner
+### Profile with avatar
 
 ```bdfd
 $title[Profile of $userName]
@@ -58,13 +58,12 @@ $description[
 **Name:** $userName
 **ID:** $userID
 ]
-$image[$authorBanner]
 $thumbnail[$authorAvatar]
-$color[$userBannerColor[$authorID]]
 $sendMessage[Profile]
 ```
 
 ## Notes
 
-- Always check that the banner is not empty before using it as an image.
-- `$userBannerColor[userID]` returns the banner color of the same user.
+- Check that the banner is not empty before using it as an image.
+- `$userBannerColor[userID]` returns the accent color of the same user (a different value from the banner image).
+- Errors: `Invalid user ID.` (not digits only / zero) and `User not found.`

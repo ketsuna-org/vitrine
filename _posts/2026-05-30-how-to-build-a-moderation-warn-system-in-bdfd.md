@@ -9,14 +9,14 @@ content_language: en
 layout: post
 category: "Advanced Topics"
 toc: true
-function_syntax: $setUserVar[varName;value;userID;guildID]
+function_syntax: $setUserVar[varName;value;(userID);(guildID)]
 ---
 
 A robust **Warning (Warn) System** is a cornerstone of any professional Discord moderation bot. It allows server staff to issue formal warnings to misbehaving members, track their infractions, and take escalating disciplinary actions.
 
-When building a warn system, one massive pitfall is database leakage: if you use `$getUserVar` without specifying a `$guildID`, a user warned on **Server A** will carry those warnings over to **Server B**.
+When building a warn system, one massive pitfall is database leakage: depending on your bot's user variable setting, `$getUserVar` without a `$guildID` may read a value shared by all servers, so a user warned on **Server A** would carry those warnings over to **Server B** (with the legacy setting, user variables are global unless you pass a guild ID; with the newer setting they are always stored per server and member).
 
-To prevent this, `$getUserVar` and `$setUserVar` both accept an optional `Guild ID` parameter that **scopes the value to a specific UserID + GuildID pair**. In this guide, we will build a complete, highly secure, and professional warn suite!
+To stay safe in both cases, `$getUserVar` and `$setUserVar` both accept an optional `Guild ID` parameter that **scopes the value to a specific UserID + GuildID pair**. In this guide, we will build a complete, highly secure, and professional warn suite!
 
 ---
 
@@ -30,7 +30,7 @@ graph TD
     C --> E[✅ Infractions are locked specifically to GuildID + UserID]
 ```
 
-By passing `$guildID` as the third argument, user data remains secure and isolated per server!
+By passing `$guildID` as the last argument (third for `$getUserVar`, fourth for `$setUserVar`), user data remains secure and isolated per server!
 
 ---
 
@@ -40,20 +40,25 @@ Before coding your scripts, register the warning variable in your Bot Creator da
 * **Name**: `warns`
 * **Default Value**: `0`
 
+With a default of `0`, a member who was never warned reads `0`.
+
+> [!WARNING]
+> Do not skip this step. If `warns` is not declared, a member who was never warned reads an empty text, and the first value written by `$setUserVar` automatically becomes the declared default of the variable: after the first `$setUserVar[warns;1;...]`, every other member would read `1` too.
+
 ---
 
 ## 1. The Warn Command (`!warn`)
 
-Issues a warning to a member, increments their infraction counter, logs the reason, and sends a DM notification to the warned user.
+Issues a warning to a member, increments their infraction counter, and sends a DM notification (with the reason) to the warned user, then posts a confirmation in the channel.
 
-* **Trigger**: `!warn` or `warn` (Slash command compatible)
+* **Trigger**: `!warn`
 * **Code**:
 
 ```bdfd
 $nomention
 $onlyPerms[kickmembers;❌ You need the `Kick Members` permission to warn users!]
 
-$var[target;$findUser[$message;no]]
+$var[target;$findUser[$message[1];no]]
 
 $if[$var[target]==]
   ❌ Please specify a valid member to warn! 
@@ -62,17 +67,17 @@ $else
   $if[$var[target]==$authorID]
     ❌ You cannot warn yourself!
   $else
-    $var[reason;$noMentionMessage]
+    $var[reason;$message[>1]]
     $if[$var[reason]==]
       $var[reason;No reason provided by staff.]
     $endif
 
-    // Retrieve, increment, and write back the infractions counter
+    $c[Retrieve, increment, and write back the infractions counter]
     $var[currentWarns;$getUserVar[warns;$var[target];$guildID]]
     $var[newWarns;$calculate[$var[currentWarns] + 1]]
     $setUserVar[warns;$var[newWarns];$var[target];$guildID]
 
-    // Send a DM notification to the warned user
+    $c[Build the DM notification: $dm sends the message being built to that user]
     $dm[$var[target]]
     $title[⚠️ Infraction Notice]
     $color[#ef4444]
@@ -81,20 +86,19 @@ $else
     * **Reason**: $var[reason]
     * **Current Warnings**: `$var[newWarns]`
     ]
-    $sendDM
 
-    // Send a public confirmation log in the server channel
-    $clear
+    $c[$useChannel sends the DM above, then the rest is sent as a normal channel message]
+    $useChannel[$channelID]
     $title[🔨 Member Warned]
     $color[#ef4444]
     $thumbnail[$userAvatar[$var[target]]]
     $description[
     **$username[$var[target]]** has been successfully warned.
     ]
-    $addField[Infraction ID;`#$random[1000;9999]`;true]
-    $addField[Total Warns;`$var[newWarns]` warnings;true]
-    $addField[Reason;$var[reason];false]
-    $footer[Moderator: $username; $authorAvatar]
+    $addField[Total Warns;`$var[newWarns]` warnings;yes]
+    $addField[Reason;$var[reason];no]
+    $footer[Moderator: $username]
+    $footerIcon[$authorAvatar]
     $addTimestamp
   $endif
 $endif
@@ -111,7 +115,7 @@ Checks and displays the current warning count of a server member.
 
 ```bdfd
 $nomention
-$var[target;$findUser[$message;yes]]
+$var[target;$findUser[$message[1];yes]]
 
 $var[infractions;$getUserVar[warns;$var[target];$guildID]]
 
@@ -119,17 +123,21 @@ $title[🗃️ Infraction Record]
 $color[#3b82f6]
 $thumbnail[$userAvatar[$var[target]]]
 
+$var[alert;]
+$if[$var[infractions]>=3]
+  $var[alert;⚠️ **Alert**: This member has 3 or more warnings! Consider escalating disciplinary measures.]
+$endif
+
 $description[
 Showing moderation infractions for **$username[$var[target]]** in this guild:
 
 * **Active Infractions**: `$var[infractions]` formal warnings
+
+$var[alert]
 ]
 
-$if[$var[infractions]>=3]
-  $description[$description[]⚠️ **Alert**: This member has 3 or more warnings! Consider escalating disciplinary measures.]
-$endif
-
-$footer[Queried by $username; $authorAvatar]
+$footer[Queried by $username]
+$footerIcon[$authorAvatar]
 $addTimestamp
 ```
 
@@ -146,7 +154,7 @@ Decrements a member's active warning count by `1`. Useful for resolving accident
 $nomention
 $onlyPerms[kickmembers;❌ You need the `Kick Members` permission to unwarn users!]
 
-$var[target;$findUser[$message;no]]
+$var[target;$findUser[$message[1];no]]
 
 $if[$var[target]==]
   ❌ Please specify a valid member! Usage: `!unwarn @user`
@@ -166,7 +174,8 @@ $else
     * **Previous Warnings**: `$var[currentWarns]`
     * **New Total Warnings**: `$var[newWarns]`
     ]
-    $footer[Actioned by: $username; $authorAvatar]
+    $footer[Actioned by: $username]
+    $footerIcon[$authorAvatar]
     $addTimestamp
   $endif
 $endif
@@ -185,7 +194,7 @@ Completely wipes clean a member's infraction record, resetting their warnings co
 $nomention
 $onlyPerms[banmembers;❌ Only administrators or ban-capable staff can clear infraction histories!]
 
-$var[target;$findUser[$message;no]]
+$var[target;$findUser[$message[1];no]]
 
 $if[$var[target]==]
   ❌ Please specify a member! Usage: `!clearwarns @user`
@@ -204,7 +213,8 @@ $else
     * **Cleared Warnings**: `$var[currentWarns]`
     * **New Status**: `0` warnings (Clean Record)
     ]
-    $footer[Cleared by: $username; $authorAvatar]
+    $footer[Cleared by: $username]
+    $footerIcon[$authorAvatar]
     $addTimestamp
   $endif
 $endif

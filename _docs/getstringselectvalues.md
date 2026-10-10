@@ -10,11 +10,11 @@ description: Gets all option values selected in a multi-select string select men
 
 # $getStringSelectValues
 
-The function `$getStringSelectValues[]` retrieves all option values chosen by the user in a multi-select string select menu.
+`$getStringSelectValues[]` returns all the option values selected in the string select menu that triggered the current interaction, joined by a separator.
 
 ## Syntax
 
-```
+```text
 $getStringSelectValues[separator;(limit)]
 ```
 
@@ -22,39 +22,46 @@ $getStringSelectValues[separator;(limit)]
 
 | Parameter | Description |
 |---|---|
-| `separator` | The separator inserted between each element. Required (it may be a single space or any text). |
-| `limit` | Optional - The maximum number of elements returned (integer of 1 or more). If empty or omitted, all selected elements are returned. |
+| `separator` | Text inserted between the items. Required, not trimmed; an empty separator concatenates the items without anything between them. |
+| `limit` | Optional. Maximum number of items returned, taken from the first selected. A positive integer, otherwise `Selection limit must be a positive integer.`; empty or omitted means no limit. |
 
 ## Return Value
 
 - **Type**: String
-- The list of all selected values, separated by the delimiter.
-- An empty string if no option was selected.
-- An error is raised if the limit is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no string selection.
+- The selected option values, in selection order, joined by `separator`.
+- An empty string when nothing was selected.
 
 ## Behavior
 
-- Only usable in the callback of a component interaction carrying a string selection.
-- Returns the values (not the labels) of the chosen options.
-- Allows processing multiple choices in a single interaction.
+- It raises `Select values require a component callback.` outside of a component interaction (interaction type 3), and `This callback has no stringSelect selection.` when the interaction that triggered the script is not a string select menu.
+- Select values are the `value` of the options (`$addStringSelectOption`), not their labels.
+- The number of selected items is returned by `$getStringSelectCount`.
+- Without brackets (`$getStringSelectValues`) the engine refuses the call (`Invalid argument count`).
 
 ## Examples
 
-### Processing multiple choices
+### All selections
 
 ```bdfd
-$var[vals;$getStringSelectValues[, ]]
-$sendMessage[You selected: $var[vals]]
+Selected: $getStringSelectValues[, ]
 ```
 
-### Limit the number of values
+### Limit the number of items
 
 ```bdfd
-$sendMessage[First two choices: $getStringSelectValues[, ;2]]
+First two: $getStringSelectValues[, ;2]
+```
+
+### In an interaction handler
+
+```bdfd
+$if[$customID==my_menu]
+  Selected: $getStringSelectValues[, ]
+$endif
 ```
 
 ## Notes
 
-- For a single selection, use `$getStringSelectValue[]`.
-- The separator can be customized to make parsing easier.
-- The values are defined with `$addStringSelectOption[]`.
+- For a single value, use `$getStringSelectValue[index]`.
+- With a menu that allows one selection only, the list contains at most one item.
+- The menu is created with `$addStringSelect`.

@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomUser
 syntax: $randomUser
-description: Returns the ID or mention of a random user present on the server.
+description: Returns the username of a random member of the server.
 ---
 
 # $randomUser[]
 
-The `$randomUser[]` function returns the ID of a random user present on the server where the command is executed.
+The `$randomUser[]` function returns the **username** of a random member of the server where the command runs. It does not return the ID: use `$randomUserID` for that.
 
 ## Syntax
 
@@ -18,37 +18,31 @@ The `$randomUser[]` function returns the ID of a random user present on the serv
 $randomUser
 ```
 
-> **Note:** This function takes no parameters.
+> **Note:** This function takes no arguments (it is an error to pass any).
 
 ## Return Value
 
-The Discord ID (snowflake) of a random user on the server, as a string.
+The username of a random member (the `username` field of the member snapshot, not the nickname), or an empty string if the member list is empty.
+
+## Behavior
+
+- The candidates are all the members of the server returned by Discord, bots included.
+- Each member has the same chance of being picked.
 
 ## Examples
 
-### Mention a random user
+### Show a random username
 
 ```bdfd
-Random user: <@$randomUser>
+Random user: $randomUser
 ```
 
 ### Announce a winner
 
 ```bdfd
-$title[🎉 Prize draw]
-$description[Congratulations <@$randomUser>! You won!]
-$color[#FFD700]
-```
-
-### Get the ID only
-
-```bdfd
-Random ID: $randomUser
+Congratulations $randomUser, you won!
 ```
 
 ## Notes
 
-- The selected user is a member of the server.
-- The bot must have access to the member list for this function to work correctly.
-- To get only the ID without formatting, use `$randomUserID[]`.
-- For a direct mention (with the `<@id>` format), use `$randomMention[]`.
+- Do not write `<@$randomUser>`: the value is a name, not an ID. Use `$randomMention` for a mention or `$randomUserID` for the ID.

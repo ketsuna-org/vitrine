@@ -21,13 +21,14 @@ $authorID
 ## Return value
 
 - **Type**: Snowflake (numeric string of 17-19 digits)
-- The unique ID of the message author
+- The unique ID of the author, read from the command context (`author.id`, or `user.id` if absent)
+- An empty string if the context holds neither
 
 ## Behavior
 
-- `$authorID` takes **no arguments**.
-- In the context of a text command, `$authorID` is the ID of the person who sent the message.
-- In most simple cases, `$authorID` and `$userID` are identical.
+- `$authorID` takes **no arguments** (passing one is an error).
+- It is the ID of the person who triggered the command, as supplied by the command context. No request is made to Discord.
+- `$userID` reads the same two context values in the opposite order (`user.id`, then `author.id`), so in most cases they are identical.
 
 ## Examples
 
@@ -53,5 +54,4 @@ $endif
 
 ## Notes
 
-- `$authorID` is the ID of the **author of the message**, whereas `$userID` is the ID of the **triggering user**. In text commands, they are identical.
 - Use `$authorID` for better semantic clarity in message-related code.

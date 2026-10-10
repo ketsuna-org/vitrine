@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomUserID
 syntax: $randomUserID
-description: Returns the ID of a random user present on the server.
+description: Returns the ID of a random member of the server.
 ---
 
 # $randomUserID[]
 
-The `$randomUserID[]` function returns the Discord ID (snowflake) of a random user present on the server.
+The `$randomUserID[]` function returns the Discord ID (snowflake) of a random member of the server.
 
 ## Syntax
 
@@ -18,15 +18,15 @@ The `$randomUserID[]` function returns the Discord ID (snowflake) of a random us
 $randomUserID
 ```
 
-> **Note:** This function takes no parameters.
+> **Note:** This function takes no arguments (it is an error to pass any).
 
 ## Return Value
 
-The Discord ID (snowflake) of a random user on the server, as a string.
+The Discord ID of a random member, as a string, or an empty string if the member list is empty.
 
 ## Difference with `$randomUser[]`
 
-`$randomUser[]` and `$randomUserID[]` return the same value: the user ID. The distinction is purely semantic. Use `$randomUserID[]` when you explicitly want to manipulate the ID.
+`$randomUserID[]` returns the member ID, whereas `$randomUser[]` returns the member username.
 
 ## Examples
 
@@ -45,5 +45,5 @@ The winner is: <@$var[winner]>
 
 ## Notes
 
-- The user is chosen from the server members.
-- To directly mention the user, use `$randomMention[]`.
+- The candidates are all the members of the server returned by Discord, bots included.
+- To directly mention a member, use `$randomMention`.

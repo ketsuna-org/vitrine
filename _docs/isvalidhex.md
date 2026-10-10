@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isValidHex
 syntax: $isValidHex[value]
-description: Checks if a string is a valid hexadecimal color code.
+description: Checks if a string consists only of hexadecimal digits, with an optional leading #. The length is not checked.
 ---
 
 # $isValidHex
 
-The function `$isValidHex[value]` checks if a string is a valid hexadecimal color code in the format `#RRGGBB` (or `RRGGBB` without the hashtag).
+The function `$isValidHex[value]` checks that a string is made only of hexadecimal digits (`0-9`, `a-f`, `A-F`), with an optional single `#` at the start. It does **not** check the length.
 
 ## Syntax
 
@@ -22,20 +22,21 @@ $isValidHex[value]
 
 | Parameter | Description |
 |---|---|
-| `value` | The string to test, with or without the `#` prefix. |
+| `value` | The string to test, with or without the `#` prefix. Required, exactly one argument. |
 
 ## Return Value
 
 - **Type**: Boolean
-- `true` if the string is a valid 6-character hexadecimal code (0-9, A-F).
-- `false` if the string contains invalid characters, is too short/long, or is empty.
+- `true` if the string is one or more hexadecimal digits, optionally preceded by one `#`.
+- `false` if the string contains any other character (including spaces), is empty, or is just `#`.
 
 ## Behavior
 
-- Accepts `#RRGGBB` and `RRGGBB` (6 hexadecimal characters).
+- Accepts `#RRGGBB` and `RRGGBB`, but also any other length: `#FFF` and `12` are `true`.
 - Letters are case-insensitive (A-F or a-f).
-- Does not validate short formats (`#FFF`).
-- Does not validate formats with alpha (`#RRGGBBAA`).
+- Spaces are not trimmed: `$isValidHex[ ff]` is `false`.
+- A `0x` prefix is not accepted (`0xff` is `false`).
+- If a 6-digit color is required, check the length separately, for example with `$charCount`.
 
 ## Examples
 
@@ -82,6 +83,6 @@ $endif
 
 - `$isValidHex[#FF0000]` returns `true`.
 - `$isValidHex[ff0000]` returns `true`.
-- `$isValidHex[#FFF]` returns `false` (short format not supported).
+- `$isValidHex[#FFF]` returns `true` (the length is not checked).
 - `$isValidHex[#GG0000]` returns `false` (G is not hex).
 - `$isValidHex[]` (empty) returns `false`.

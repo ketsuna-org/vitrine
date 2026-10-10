@@ -14,7 +14,7 @@ description: Adds a classic text input to the modal being built with $newModal[]
 
 ## Syntax
 
-```
+```text
 $addTextInput[customId;style;label;(minLength);(maxLength);(required);(default);(placeholder)]
 ```
 
@@ -60,5 +60,7 @@ $addTextInput[message;paragraph;Your message;10;1000;yes;;Write your feedback he
 
 ## Notes
 
+- Unlike the `$addModal*` functions, `$addTextInput` does not create a default modal: it fails without a prior `$newModal[]`.
+- When the modal is sent, it must hold 1 to 5 components (`A modal requires 1 to 5 inputs.`) and the script must not also produce text, embeds or component rows (`A modal cannot be combined with a message response.`).
+- The value of an input is read with `$input[customId]` when the modal is submitted.
 - `$newModal[]` takes the modal ID first, then its title.
-- The submitted value is read with `$input[customId]` when the modal is handled.

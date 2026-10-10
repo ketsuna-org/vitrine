@@ -25,12 +25,12 @@ This function takes no argument: it applies to the current channel, which must b
 ## Return Value
 
 - **Type**: Integer
-- The total number of messages in the thread.
-- Raises an error if the current channel is not a thread.
+- The message count Discord reports for the thread.
+- Raises an error (`Channel is not a thread.`) if the current channel is not a thread.
 
 ## Behavior
 
-- The bot must have access to the thread.
+- The thread is the current channel (`channel.id`); the value is read from Discord at call time.
 
 ## Examples
 

@@ -38,10 +38,10 @@ $roleName[roleID]
 $sendMessage[The role ID 123456789012345678 is: $roleName[123456789012345678]]
 ```
 
-### Display the name of the first role of a user
+### Display the name of the highest role of a user
 
 ```bdfd
-$sendMessage[Your first role: $roleName[$getRole[$authorID;1]]]
+$sendMessage[Your highest role: $roleName[$getRole[$authorID;1]]]
 ```
 
 ### Verify a role name

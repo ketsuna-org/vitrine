@@ -4,47 +4,68 @@ title: $suppressErrors
 translation_key: docs
 category: "Control Flow"
 function_name: suppressErrors
-syntax: $suppressErrors
-description: Suppresses all runtime error messages that would normally be displayed to the user when a command encounters an error.
+syntax: $suppressErrors[(message)]
+description: Replaces the error response of the script with a text message (or with nothing when called without argument).
 ---
-$suppressErrors is a toggle that prevents runtime errors from being sent to the user. When active, if your command encounters an error (invalid function call, missing variable, failed HTTP request, etc.), the error message is silently swallowed instead of being displayed in the channel.
+
+`$suppressErrors` replaces the error response of the script with a text of your choice (or with nothing).
+
+## Syntax
+
+```text
+$suppressErrors[(message)]
+```
+
+| Parameter | Description |
+|---|---|
+| `message` | Optional. Text sent as the response instead of the error. Without an argument (or `$suppressErrors` alone) the replacement is empty, so nothing is sent. |
+
+`$suppressErrors` takes 0 or 1 argument.
 
 ## How It Works
 
-- When called, error suppression is enabled for the **current command execution**.
-- Any errors that occur after `$suppressErrors` is called will not produce visible error output.
-- The suppression applies to **all** types of runtime errors (parsing errors, execution errors, type errors, etc.).
-
-## When to Use
-
-- **Unstable external APIs**: when calling endpoints that may fail intermittently, you may not want to spam the channel with error messages.
-- **User-facing commands**: keep the chat clean by handling errors gracefully with your own fallback logic.
-- **Variable existence checks**: when you access variables that may or may not exist, suppress the default error and use `$varExists` to check manually.
-
-## When Not to Use
-
-- **During development**: error messages are invaluable for debugging. Enable suppression only in production commands.
-- **As a substitute for proper error handling**: prefer `$onlyIf` guards and proper validation. `$suppressErrors` should be a last resort.
+- When called, it registers the replacement for the **current script**. Nothing happens until an error occurs.
+- When a function later raises an error, the script stops, the response written so far (text, embeds, components) is **discarded**, and the replacement text is sent as the response instead of the error message.
+- Messages already sent with `$sendMessage` stay sent.
+- It also replaces the message of `$onlyIf[condition;message]` and `$onlyIfMessageContains[...]`.
+- Calling `$embedSuppressErrors` after it cancels it (the last one wins), and the other way round.
+- Errors detected before the script runs (for example a wrong number of arguments) and errors raised **before** `$suppressErrors` is executed are not intercepted.
 
 ## Scope
 
-The suppression applies to the **current command only**. It does not affect other commands, other workflows, or subsequent command invocations. Each command starts with error suppression off.
+The setting applies to the current script only: each script starts without any suppression.
 
-## Relationship with Other Suppression Functions
+## Relationship with Other Functions
 
-| Function | What it suppresses |
+| Function | Effect |
 |----------|-------------------|
-| `$suppressErrors` | All runtime error messages |
-| `$embedSuppressErrors` | Errors specific to embed rendering |
-| `$suppressErrorLogging` | Error logging (internal only, not user-visible) |
+| `$suppressErrors[(message)]` | Errors are replaced by a text message (empty if no argument) |
+| `$embedSuppressErrors[...]` | Errors are replaced by a custom embed |
+| `$suppressErrorLogging` | Sets a flag that nothing in the engine reads (no visible effect) |
+
+## When Not to Use
+
+- **During development**: error messages are needed for debugging.
+- **As a substitute for validation**: prefer `$onlyIf` guards.
 
 ## Examples
 
-### User-Friendly Fallback Message
+### User-friendly fallback message
 
 ```bdfd
-$suppressErrors[⚠️ An unexpected error occurred while executing this command.]
+$suppressErrors[An unexpected error occurred while executing this command.]
 $title[Safe Execution]
-$description[User command executed with custom error fallback.]
+$description[Result: $sum[1;oops]]
 $color[#5865F2]
 ```
+
+Here `$sum[1;oops]` fails, so the response is the fallback text instead of the embed.
+
+### Silent failure
+
+```bdfd
+$suppressErrors
+Result: $sum[1;oops]
+```
+
+Nothing is sent.

@@ -5,73 +5,50 @@ translation_key: docs
 category: "Math & Text"
 function_name: c
 syntax: $c[expression]
-description: Alias of $calculate. Performs a mathematical calculation and returns the result. Supports basic operations, mathematical functions, and variables.
-aliases:
-  - $calculate
+description: "Comment: the text between the brackets is never evaluated and the function returns an empty string. It is not an alias of $calculate."
 ---
-# $c (alias of $calculate)
+# $c — Comment
 
-The `$c[]` function is a **shortened alias** of `$calculate[]`. It performs mathematical calculations and returns the result.
+`$c[text]` is a **comment**. The text between the brackets is ignored: functions written inside are not run, and `$c[]` returns an empty string. It is **not** a shorter name for `$calculate[]`: `$c[2+3]` returns nothing, not `5`.
 
 ## Syntax
 
 ```
-$c[expression]
+$c[text]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `expression` | Mathematical expression to evaluate. |
+| `text` | Required, exactly one argument. Never evaluated. A `;` inside the text would split it into several arguments, which is refused ("Invalid argument count for $c: 2"), so do not use `;` in a comment. `$c` without brackets is refused as well. |
 
-## Supported Operators
+## Return Value
 
-| Operator | Description | Example |
-|---|---|---|
-| `+` | Addition | `$c[2+3]` → `5` |
-| `-` | Subtraction | `$c[10-4]` → `6` |
-| `*` | Multiplication | `$c[6*7]` → `42` |
-| `/` | Division | `$c[15/3]` → `5` |
-| `%` | Modulo | `$c[10%3]` → `1` |
-| `^` | Exponentiation (Power) | `$c[2^10]` → `1024` |
+An empty string.
+
+## Behavior
+
+- Nothing inside the brackets is executed: `$c[$sendMessage[x]]` sends nothing.
+- Balanced nested brackets are allowed in the text (`$c[note [nested] text]` returns an empty string).
+- It can be written anywhere a function can, including inside an argument of another function: `$replaceText[hello;l;$c[ignored]L]` returns `heLlo`.
 
 ## Examples
 
-### Basic calculations
+### Documenting a command
 
 ```bdfd
-$sendMessage[5 + 3 = $c[5+3]]
-$sendMessage[100 / 4 = $c[100/4]]
-$sendMessage[2^8 = $c[2^8]]
+$c[This command greets the user]
+$sendMessage[Hello!]
 ```
 
-### Calculation with decimals
+### Disabling a call temporarily
 
 ```bdfd
-$enableDecimals[yes]
-$sendMessage[22/7 = $c[22/7]]
-```
-
-### Levels system
-
-```bdfd
-$var[xp;$getVar[xp]]
-$var[level;$c[$var[xp]/100]]
-$sendMessage[Level: $round[$var[level];0]]
-```
-
-### Calculation with variables
-
-```bdfd
-$var[price;49]
-$var[quantity;3]
-$var[total;$c[$var[price]*$var[quantity]]]
-$sendMessage[Total: $var[total]€]
+$c[$sendMessage[This message is never sent]]
+$sendMessage[Only this one is sent]
 ```
 
 ## Notes
 
-- `$c[]` is strictly identical to `$calculate[]` — just shorter.
-- Without `$enableDecimals`, the results are rounded.
-- Supports parentheses for priorities: `$c[(2+3)*4]` → `20`.
+- To compute a value, use `$calculate[]`.

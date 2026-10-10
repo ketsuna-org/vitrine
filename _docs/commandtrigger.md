@@ -10,7 +10,7 @@ description: Returns the trigger of the command currently being executed.
 
 # $commandTrigger
 
-The `$commandTrigger` function **returns the complete trigger** of the current command, including the prefix or the slash. For example, if the command `help` is triggered by `!help`, the returned trigger is `!help`.
+The `$commandTrigger` function **returns the trigger actually used** to start the current command, including the prefix or the slash. For example, if the command `help` is triggered by `!help`, the returned trigger is `!help`.
 
 ## Syntax
 
@@ -20,17 +20,18 @@ $commandTrigger
 
 ## Parameters
 
-None.
+None (passing one is an error).
 
 ## Return value
 
 - **Type**: String
-- The complete trigger of the command (prefix + name, or `/name` for slash).
+- The complete trigger of the command (prefix + the word typed, or `/name` for slash, followed by the sub-command route when there is one, for example `/config set`).
+- If the execution has no command metadata, the error `Invocation metadata command.trigger is unavailable.` is raised.
 
 ## Behavior
 
-- For prefix commands: returns the prefix + name (e.g., `!help`, `?ban`).
-- For slash commands: returns `/name` (e.g., `/help`).
+- For prefix commands: returns the bot prefix followed by the first word typed after it (e.g., `!help`, `?ban`). If the command was reached through an alias, the alias is returned, not the command name.
+- For slash commands: returns `/name`, plus the sub-command route separated by spaces if any (e.g., `/help`).
 - The prefix depends on the configuration of the bot.
 
 ## Examples
@@ -85,4 +86,3 @@ $footer[Executed on $date]
 - `$commandTrigger` includes the prefix (e.g., `!help`), unlike `$commandName` (which returns `help`).
 - For the name without a prefix, use `$commandName`.
 - To determine if it is a slash command, use `$isSlash` or `$commandType`.
-- The prefix can be extracted using `$charAt[$commandTrigger;1]`.

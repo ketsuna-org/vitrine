@@ -22,7 +22,7 @@ $botLeave[(guildID)]
 
 | Parameter | Description |
 |---|---|
-| `guildID` | Optional - The ID of the server to leave. By default, the current server. |
+| `guildID` | Optional - The ID of the server to leave. By default, the current server. If the argument is written it must be a positive number: `$botLeave[]` (empty) or a non-numeric value raises `Invalid guild ID.` |
 
 ## Return value
 
@@ -30,9 +30,9 @@ This function does not return a value.
 
 ## Behavior
 
-- The bot immediately leaves the specified server.
-- **Irreversible action**: All bot data on this server will be lost.
-- If executed without `guildID`, the bot leaves the server where the command was run.
+- The bot leaves the specified server when the function runs (the Discord call is made immediately, before the rest of the script).
+- If executed without `guildID`, the bot leaves the server where the command was run; outside a server, an error is raised (`Leaving a guild requires a guild ID.`).
+- The engine does not check who runs the command: restrict it yourself.
 
 ## Examples
 
@@ -74,7 +74,5 @@ $endif
 
 ## Notes
 
-- **Irreversible action**: Use with extreme caution.
+- **Irreversible action**: the bot must be invited again to rejoin. Use with extreme caution.
 - Protect this command with strict permission checks.
-- All user data linked to this server will become inaccessible.
-- The bot cannot rejoin a server via command (requires an invite link).

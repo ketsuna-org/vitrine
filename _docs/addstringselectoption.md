@@ -6,11 +6,11 @@ category: "Components & Interactions"
 
 # $addStringSelectOption
 
-Adds an option to a select menu of type string, created with `$addStringSelect`.
+Adds an option to a string select menu created with `$addStringSelect` (or `$newSelectMenu`).
 
 ## Syntax
 
-```bdfd
+```text
 $addStringSelectOption[label;value;(description);(emoji);(default);(menuId)]
 ```
 
@@ -18,59 +18,56 @@ $addStringSelectOption[label;value;(description);(emoji);(default);(menuId)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `label` | Text displayed for the option | Yes |
-| `value` | Value sent during selection | Yes |
-| `description` | Description displayed under the label | No |
-| `emoji` | Emoji displayed to the left of the label | No |
-| `default` | `true` to preselect, `false` (default) | No |
-| `menuId` | Identifier of the target menu (if multiple menus) | No |
+| `label` | Text displayed for the option (1 to 100 characters). | Yes |
+| `value` | Value sent when the option is chosen (1 to 100 characters). | Yes |
+| `description` | Description displayed under the label. | No |
+| `emoji` | Emoji displayed to the left of the label. | No |
+| `default` | `yes`/`true` to preselect the option, `no`/`false` (default, also when empty) otherwise. Any other value raises `Expected yes or no`. | No |
+| `menuId` | Custom ID of the target string select menu. | No |
 
 ## Description
 
-`$addStringSelectOption` adds an option to the last string select menu created with `$addStringSelect`. If multiple menus are used, specify the `menuId` to target a specific menu.
+Without `menuId`, the option is added to the **last string select menu** added to the response. With `menuId`, it is added to the string select menu that has this custom ID. If there is no string select menu yet, the error `No string select menu found.` is raised; if `menuId` matches no string select menu, the error is `Component <id> not found.`
+
+A menu holds at most 25 options (`A select menu supports at most 25 options.`). The option is added to the response being built: this function has no message ID argument (use `$addSelectMenuOption` to reach an existing message).
 
 ## Examples
 
 ### Simple options
 
 ```bdfd
-$addStringSelect[menu_boisson;Choose a drink]
+What would you like to drink?
+$addStringSelect[menu_drink;Choose a drink]
 $addStringSelectOption[Coffee;coffee;Hot and strong;☕]
 $addStringSelectOption[Tea;tea;Flavored infusion;🍵]
 $addStringSelectOption[Orange juice;oj;Freshly squeezed;🍊]
 $addStringSelectOption[Water;water;Still or sparkling;💧]
-$sendMessage[What would you like to drink?]
 ```
 
 ### Default option
 
 ```bdfd
+Set the volume
 $addStringSelect[menu_volume;Volume]
 $addStringSelectOption[Low;low;;🔈]
-$addStringSelectOption[Medium;medium;;🔉;true]
+$addStringSelectOption[Medium;medium;;🔉;yes]
 $addStringSelectOption[High;high;;🔊]
-$sendMessage[Set the volume]
 ```
 
-### Multiple menus with menuId
+### Several menus with menuId
 
 ```bdfd
-$addStringSelect[menu_entree;Starter]
-$addStringSelectOption[Salad;salad;;🥗]
-$addStringSelectOption[Soup;soup;;🍜]
-
-$addActionRow
-$addStringSelect[menu_plat;Main course]
-$addStringSelectOption[Meat;meat;;🥩;;menu_plat]
-$addStringSelectOption[Fish;fish;;🐟;;menu_plat]
-$addStringSelectOption[Vegetarian;veggie;;🥬;;menu_plat]
-
-$sendMessage[Compose your menu]
+Compose your menu
+$addStringSelect[menu_starter;Starter]
+$addStringSelect[menu_main;Main course]
+$addStringSelectOption[Salad;salad;;🥗;;menu_starter]
+$addStringSelectOption[Soup;soup;;🍜;;menu_starter]
+$addStringSelectOption[Meat;meat;;🥩;;menu_main]
+$addStringSelectOption[Fish;fish;;🐟;;menu_main]
+$addStringSelectOption[Vegetarian;veggie;;🥬;;menu_main]
 ```
 
 ## Notes
 
-- If `menuId` is not specified, the option is added to the last `$addStringSelect` created.
-- Maximum of 25 options per menu.
-- The `value` fields are accessible via `$message` in `$onInteraction`.
-
+- The chosen value is read with `$getStringSelectValue[index]` in the script run for the interaction.
+- Each menu must end up with at least as many options as its `maxValues`.

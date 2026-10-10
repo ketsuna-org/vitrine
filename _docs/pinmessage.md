@@ -66,4 +66,3 @@ $endif
 ## Notes
 
 - To unpin, use `$unpinMessage[]`.
-- Pinned messages remain visible even after years.

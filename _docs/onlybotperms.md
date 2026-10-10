@@ -31,6 +31,7 @@ The function therefore needs at least 2 arguments. With a single argument, the c
 
 - Checks the permissions of the bot at the **server** level (roles), not in the current channel.
 - The `Administrator` permission (and server ownership) covers all other permissions.
+- A member who is currently timed out only keeps `View Channel` and `Read Message History`.
 - If a permission is missing, the script is stopped and the error message is used as output.
 - Difference from `$onlyPerms`: `$onlyPerms` checks the **user**, while `$onlyBotPerms` checks the **bot**.
 

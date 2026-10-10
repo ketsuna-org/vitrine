@@ -53,12 +53,11 @@ Channels: $channelCount
 
 ```bdfd
 $if[$roleCount>=250]
-  $sendMessage[⚠️ Warning: This server is approaching the Discord limit of 250 roles.]
+  $sendMessage[⚠️ Warning: This server has a lot of roles.]
 $endif
 ```
 
 ## Notes
 
 - Includes the `@everyone` role in the count.
-- The Discord limit is 250 roles per server.
-- Useful for statistics or administrative checks.
+- The roles are listed from Discord for the current server (`guild.id`).

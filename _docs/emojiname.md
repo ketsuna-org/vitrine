@@ -5,7 +5,7 @@ translation_key: docs
 category: "Moderation"
 function_name: emojiName
 syntax: $emojiName[emojiID]
-description: Gets the name of a custom emoji from its ID. Returns the name text of the emoji.
+description: Gets the name of a custom emoji from its ID.
 ---
 
 # $emojiName
@@ -22,40 +22,28 @@ $emojiName[emojiID]
 
 | Parameter | Description |
 |---|---|
-| `emojiID` | The Discord ID of the emoji (the digits in `<:name:ID>`). |
+| `emojiID` | The Discord ID of the emoji (the digits in `<:name:ID>`). Required; must be a positive number. |
 
 ## Return value
 
 - **Type**: String
-- The name of the custom emoji.
-- An empty string if the emoji does not exist or is not accessible.
+- The name of the custom emoji, without colons.
+- Errors (nothing is returned): `Invalid emoji ID.` if `emojiID` is not a positive number, and `Emoji not found.` if no accessible emoji has this ID.
 
 ## Behavior
 
-- Extracts the name from the emoji's ID.
-- Works for emojis from any server that the bot has access to.
-- The ID can be extracted from a message containing the emoji.
+- The emojis of the current server are searched first, then those of the other servers the bot is in.
+- To avoid an error for an unknown ID, test it first with `$emojiExists[emojiID]`.
 
 ## Examples
 
 ### Identification of emoji
 
 ```bdfd
-$var[emojiID;$message[1]]
-$var[name;$emojiName[$var[emojiID]]]
-$if[$var[name]!=]
-  Emoji detected: **$var[name]** (ID: $var[emojiID])
+$if[$emojiExists[$message[1]]==true]
+  Emoji detected: **$emojiName[$message[1]]** (ID: $message[1])
 $else
   Emoji not found.
-$endif
-```
-
-### Log of emojis used
-
-```bdfd
-$var[id;$message[1]]
-$if[$var[id]!=]
-  $sendMessage[$channelID[logs];📊 Emoji **$emojiName[$var[id]]** used by $userName in $channelName[$channelID].]
 $endif
 ```
 
@@ -69,5 +57,4 @@ $description[$serverEmojis[$guildID;, ]]
 ## Notes
 
 - Only works with custom emojis, not Unicode emojis.
-- The emoji must be on a server that the bot has access to.
-- Useful for logs and emoji usage statistics.
+- The emoji must be on a server the bot is in.

@@ -4,31 +4,36 @@ title: $round[]
 translation_key: docs
 category: "Math & Text"
 function_name: round
-syntax: $round[value]
-description: Rounds a number to the nearest integer. Values ending in .5 are rounded up or according to banker's rounding depending on the implementation.
+syntax: $round[value;(decimals)]
+description: Rounds a number to the nearest integer, or to a given number of decimal places. Values ending exactly in .5 are rounded toward positive infinity.
 ---
 
 # $round[]
 
-The function `$round[]` rounds a number to the nearest integer according to standard rounding rules.
+The function `$round[]` rounds a number to the nearest integer, or to the number of decimal places given as second argument.
 
 ## Syntax
 
 ```
-$round[value]
+$round[value;(decimals)]
 ```
 
 ## Parameters
 
-| Parameter | Type   | Required | Description                      |
-|-----------|--------|-------------|----------------------------------|
-| `value`  | number | Yes         | The number to round.            |
+| Parameter | Type    | Required | Description                      |
+|-----------|---------|----------|----------------------------------|
+| `value`   | number  | Yes      | The number to round. Must be a finite number (otherwise: "Round requires a finite number."). |
+| `decimals` | integer | No      | Number of decimal places to keep. Empty or omitted: `0`. A negative integer rounds to tens, hundreds... (`$round[1234.5678;-2]` → `1200`). A non-integer raises "Decimal places must be an integer.". |
 
 ## Behavior
 
-- If the decimal part is **strictly less than .5**: rounds down.
-- If the decimal part is **greater than or equal to .5**: rounds up.
+- The number is rounded as written (as decimal text), not through a floating-point approximation: `$round[2.675;2]` → `2.68`.
+- A value strictly below the midpoint (`.5`) is rounded down, above it rounded up.
+- A value exactly on the midpoint is rounded toward positive infinity: `$round[3.5]` → `4`, `$round[-3.5]` → `-3`, `$round[-2.5]` → `-2`.
 - For an integer: returns the integer itself.
+- Trailing zeros are removed: `$round[3.10;5]` → `3.1`.
+- The result does not depend on `$enableDecimals`.
+- More than two arguments are rejected ("Invalid argument count").
 
 ## Examples
 
@@ -39,7 +44,7 @@ $title[Math: Round Function]
 $description[Rounding `3.5`: **$round[3.5]**
 Rounding `3.4`: **$round[3.4]**]
 $addField[Negative Value;$round[-3.6];yes]
-$addField[Exact Integer;$round[5];yes]
+$addField[Two Decimals;$round[3.14159;2];yes]
 $color[#5865F2]
 ```
 ## Comparison: floor / ceil / round
@@ -50,12 +55,9 @@ $color[#5865F2]
 | `3.5`  | `3`      | `4`     | `4`      |
 | `3.9`  | `3`      | `4`     | `4`      |
 | `-3.2` | `-4`     | `-3`    | `-3`     |
-| `-3.5` | `-4`     | `-3`    | `-3`*    |
-
-*The exact behavior for values ending in `.5` may depend on the underlying Java implementation (`Math.round`).
+| `-3.5` | `-4`     | `-3`    | `-3`     |
 
 ## Notes
 
-- The result is always an integer (in the form of a string).
+- With one argument the result is an integer (in the form of a string).
 - Use `$floor[]` to always round down, and `$ceil[]` to always round up.
-- For finer control (number of decimal places), use `$calculate[]`.

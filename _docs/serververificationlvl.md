@@ -6,7 +6,7 @@ category: "Misc"
 
 # $serverVerificationLvl
 
-Returns the server's verification level as an integer (0 to 4). Alias of `$serverVerificationLevel`.
+Returns the server's verification level as a text label (`None`, `Low`, `Medium`, `High` or `Very High`).
 
 ## Syntax
 
@@ -16,23 +16,23 @@ $serverVerificationLvl
 
 ## Parameters
 
-This function takes no parameters.
+This function takes no parameters (an argument is refused: "Invalid argument count"). To read another server, use `$serverVerificationLevel[(guildID)]`.
 
 ## Description
 
-`$serverVerificationLvl` is a **shorter alias** of `$serverVerificationLevel`. It returns the verification level of the server as an integer, which determines the criteria a member must meet before being able to send messages.
+`$serverVerificationLvl` returns the verification level of the current server as a **text label**, not as a number. It is a separate registration from `$serverVerificationLevel`: it uses the same five labels, but it takes no server ID, and when the level cannot be read it stops the command with the error "Guild verification level is unavailable." (`$serverVerificationLevel` falls back to a context value or `None`). If the server itself is not found, the error is "Guild not found.".
 
 ## Return Value
 
-- **Type**: Integer (0 to 4)
+- **Type**: Text, one of the following (Discord levels 0 to 4, in that order):
 
-| Value | Level | Description |
-|-------|-------|-------------|
-| 0 | None | No restrictions |
-| 1 | Low | Accounts with a verified email |
-| 2 | Medium | Accounts registered for more than 5 minutes |
-| 3 | High | Members of the server for more than 10 minutes |
-| 4 | Very High | Accounts with a verified phone number |
+| Level | Returned text |
+|-------|---------------|
+| 0 | `None` |
+| 1 | `Low` |
+| 2 | `Medium` |
+| 3 | `High` |
+| 4 | `Very High` |
 
 ## Examples
 
@@ -46,16 +46,16 @@ $sendMessage[🔒 Verification level: $serverVerificationLvl]
 
 ```bdfd
 $var[vl;$serverVerificationLvl]
-$if[$var[vl]==0]
+$if[$var[vl]==None]
   $sendMessage[🔒 No restrictions]
-$elseIf[$var[vl]==1]
-  $sendMessage[🔒 Verified email required]
-$elseIf[$var[vl]==2]
-  $sendMessage[🔒 Account older than 5 minutes]
-$elseIf[$var[vl]==3]
-  $sendMessage[🔒 Member for over 10 minutes]
+$elseIf[$var[vl]==Low]
+  $sendMessage[🔒 Low verification level]
+$elseIf[$var[vl]==Medium]
+  $sendMessage[🔒 Medium verification level]
+$elseIf[$var[vl]==High]
+  $sendMessage[🔒 High verification level]
 $else
-  $sendMessage[🔒 Verified phone number required]
+  $sendMessage[🔒 Very High verification level]
 $endif
 ```
 
@@ -70,7 +70,6 @@ $color[#5865F2]
 
 ## Notes
 
-- `$serverVerificationLvl` and `$serverVerificationLevel` are identical and interchangeable.
-- A higher verification level offers better protection against spam and raids.
-- Level 4 (phone verification) is the most restrictive.
-- Use this value in moderation commands or contextual welcome messages.
+- The result is text: compare it with `None`, `Low`, `Medium`, `High` or `Very High`, not with `0` to `4`.
+- Needs a server context (the current server is looked up).
+- See also `$serverVerificationLevel`, which accepts an optional server ID.

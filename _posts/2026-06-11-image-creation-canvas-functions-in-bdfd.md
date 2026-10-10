@@ -1,8 +1,8 @@
 ---
 title: "Image Creation & Canvas Functions in BDFD"
-description: Generate dynamic images, charts, and visual overlays from your Discord bot (Bot-Creator exclusive)
+description: Generate dynamic images and visual overlays from your Discord bot (Bot-Creator exclusive)
 category: "Advanced Topics"
-function_syntax: $canvasCreate[name;width;height;color]
+function_syntax: $canvasCreate[name;width;height;(color)]
 date: 2026-06-11T12:00:00.000+02:00
 author: Garder500
 translation_key: canvas-functions-guide
@@ -12,9 +12,9 @@ layout: post
 toc: true
 ---
 
-BDFD's **Image & Canvas** system lets your Discord bot generate dynamic images on the fly: welcome cards, leaderboards, progress bars, pie charts, bar graphs, line charts, and much more. You can load external images from URLs, overlay them with shape masks and blend modes, draw text, shapes, and even composite multiple images together — all directly from your BDFD command code.
+BDFD's **Image & Canvas** system lets your Discord bot generate dynamic images on the fly: welcome cards, leaderboards, progress bars, and more. You can load external images from URLs, overlay them with shape masks and blend modes, draw text and shapes, and even composite multiple images together — all directly from your BDFD command code.
 
-The canvas system works as a **deferred rendering pipeline**: you start a canvas block with `$canvasCreate`, chain together drawing operations, and finalize the result with `$attachImage`. All 15 functions are exclusive to the **Bot-Creator** platform.
+The canvas system works as a **deferred rendering pipeline**: you start a canvas with `$canvasCreate`, chain together drawing operations, and finalize the result with `$attachImage` (or let it render automatically when the message is sent). All 14 functions are exclusive to the **Bot-Creator** platform.
 
 ---
 
@@ -22,16 +22,16 @@ The canvas system works as a **deferred rendering pipeline**: you start a canvas
 
 Before diving into individual functions, here is the mental model:
 
-1. **Start a canvas** with `$canvasCreate` — this opens a deferred image block.
-2. **Add operations** — draw shapes, load images, write text, render charts. Each call appends to the current block.
-3. **Flush automatically** — the block renders as soon as any non-canvas function is encountered, or when you call `$attachImage`.
-4. **Name it** with `$attachImage` — gives the canvas a filename so it can be sent as a Discord attachment.
+1. **Start a canvas** with `$canvasCreate` — it gives the canvas a name and a size.
+2. **Add operations** — draw shapes, load images, write text. Each call is recorded in order and belongs to the **most recently created canvas**. Drawing functions only make sense after a `$canvasCreate`: with no canvas yet, `$attachImage` fails with the error `Canvas "name" does not exist; use $canvasCreate first`.
+3. **Render** — `$attachImage[name]` renders the canvas immediately. A canvas that was never rendered this way is rendered automatically just before the response is sent.
+4. **Attachment** — the rendered image is a PNG sent with the message as `name.png`.
 
 > [!NOTE]
-> **Multiple canvases in one command.** When you call `$canvasCreate` a second time, the previous block is automatically flushed (rendered) and a brand-new block begins. This lets you generate several independent images in a single command execution.
+> **Multiple canvases in one command.** Calling `$canvasCreate` again starts another independent canvas, and the operations that follow go to that new canvas. Use `$attachImage[name]` with each name to render them.
 
 > [!WARNING]
-> **Memory limits.** The maximum canvas size is **4096 × 4096 pixels** (~67 MB). Images loaded from URLs are cached in an LRU cache capped at **50 MB per block**. Keep your dimensions reasonable to avoid memory issues.
+> **Memory limits.** The maximum canvas size is **4096 × 4096 pixels** (~67 MB): a larger width or height is reduced to 4096, and a width or height below 1 becomes 1. Images loaded from URLs are cached in an LRU cache capped at **50 MB**. Keep your dimensions reasonable to avoid memory issues.
 
 ---
 
@@ -40,20 +40,19 @@ Before diving into individual functions, here is the mental model:
 | # | Function | Purpose |
 |:-:|:---|:---|
 | 1 | `$canvasCreate` | Creates a blank canvas |
-| 2 | `$canvasLoadImage` | Loads an image from a URL or base64 string |
+| 2 | `$canvasLoadImage` | Loads an image from a URL or a base64 string |
 | 3 | `$canvasCompositeImage` | Overlays an image with shape masks and blend modes |
 | 4 | `$canvasDrawText` | Draws text on the canvas |
 | 5 | `$canvasDrawCircle` | Draws a circle (filled or outline) |
-| 6 | `$canvasDrawRect` | Draws a rectangle |
-| 7 | `$canvasDrawRoundedRect` | Draws a rectangle with rounded corners |
-| 8 | `$canvasDrawLine` | Draws a line with configurable thickness |
-| 9 | `$canvasDrawArc` | Draws an arc or pie slice |
-| 10 | `$canvasProgressBar` | Draws a progress bar (horizontal or vertical) |
-| 11 | `$canvasChartPie` | Draws a pie chart |
-| 12 | `$canvasChartBar` | Draws a bar chart |
-| 13 | `$canvasChartLine` | Draws a line chart |
-| 14 | `$canvasContainer` | Defines a positioning frame for relative coordinates |
-| 15 | `$attachImage` | Finalizes the canvas and attaches it to the message |
+| 6 | `$canvasDrawRect` | Draws a rectangle (filled or outline) |
+| 7 | `$canvasDrawLine` | Draws a line with configurable thickness |
+| 8 | `$canvasProgressBar` | Draws a progress bar (horizontal or vertical) |
+| 9 | `$canvasSetPixel` | Sets a single pixel |
+| 10 | `$canvasInvert` | Inverts the colors of the whole canvas |
+| 11 | `$canvasGrayscale` | Converts the whole canvas to grayscale |
+| 12 | `$canvasRotate` | Rotates the whole canvas |
+| 13 | `$canvasContainer` | Defines an offset for relative coordinates |
+| 14 | `$attachImage` | Renders a canvas and attaches it to the message |
 
 ---
 
@@ -67,14 +66,16 @@ Every function that accepts a `color` parameter understands these formats:
 |:---|:---|:---|
 | Hex (no prefix) | `FF5733` | RRGGBB |
 | Hex (with `#`) | `#FF5733` | #RRGGBB |
-| Hex with alpha | `FF573380` | RRGGBBAA (alpha = transparency) |
+| Hex with alpha | `FF573380` | RRGGBBAA (alpha = opacity, `00` is fully transparent) |
 | Named color | `red`, `blue`, `gold` | 21 predefined names |
 
 **Named colors available:** `red`, `green`, `blue`, `white`, `black`, `transparent`, `yellow`, `cyan`, `magenta`, `orange`, `purple`, `pink`, `gray`, `grey`, `lime`, `navy`, `teal`, `aqua`, `maroon`, `silver`, `gold`.
 
+An empty or unreadable color does not raise an error: it silently becomes white.
+
 ### Blend Modes
 
-Several drawing functions (`$canvasDrawCircle`, `$canvasDrawRect`, `$canvasDrawRoundedRect`, `$canvasDrawLine`, `$canvasCompositeImage`) support the optional `blend` parameter. Blend modes change how a new shape or image interacts with what is already on the canvas:
+Several drawing functions (`$canvasDrawCircle`, `$canvasDrawRect`, `$canvasDrawLine`, `$canvasCompositeImage`) support the optional `blend` parameter. Blend modes change how a new shape or image interacts with what is already on the canvas. Names are not case-sensitive, and an empty value, `normal`, or an unknown name draws normally:
 
 | Blend Mode | Effect | Best For |
 |:---|:---|:---|
@@ -91,9 +92,12 @@ Several drawing functions (`$canvasDrawCircle`, `$canvasDrawRect`, `$canvasDrawR
 
 Functions that accept image URLs (`$canvasLoadImage`, `$canvasCompositeImage`) can read from:
 
-1. **HTTP/HTTPS URLs** — fetched with a 15-second timeout, cached per block.
-2. **Data URLs** — `data:image/png;base64,iVBORw0KG...`
-3. **Raw base64 strings** — fallback when the string doesn't match a URL pattern.
+1. **HTTP/HTTPS URLs** — fetched with a 15-second timeout and cached while rendering.
+2. **Raw base64 strings** — the fallback when the text is not a URL.
+
+A `data:image/png;base64,...` URL is also understood by the renderer, but it contains a `;`, which BDFD reads as an argument separator, so it cannot be written directly inside a function call: use a raw base64 string instead.
+
+If an image cannot be fetched or decoded, the operation is silently skipped and the canvas is left unchanged.
 
 ---
 
@@ -104,14 +108,14 @@ Functions that accept image URLs (`$canvasLoadImage`, `$canvasCompositeImage`) c
 Every image starts here. `$canvasCreate` initializes a new canvas with the dimensions and background color you specify.
 
 ```bdfd
-$canvasCreate[name;width;height;color?]
+$canvasCreate[name;width;height;(color)]
 ```
 
 | Parameter | Required | Description |
 |:---|:---|:---|
 | `name` | ✅ | Identifier for this canvas (used later by `$attachImage`) |
-| `width` | ✅ | Canvas width in pixels (max 4096) |
-| `height` | ✅ | Canvas height in pixels (max 4096) |
+| `width` | ✅ | Canvas width in pixels (1 to 4096; a non-number gives 400) |
+| `height` | ✅ | Canvas height in pixels (1 to 4096; a non-number gives 300) |
 | `color` | ❌ | Background color (default: white) |
 
 **Example — A 600×400 canvas with a dark background:**
@@ -130,30 +134,31 @@ $canvasCreate[overlay;800;600;transparent]
 
 ### $canvasLoadImage — Loads an Image from a URL
 
-Loads an external image onto the canvas. If a canvas already exists, the loaded image is composited on top at the specified position. If no canvas exists yet, the loaded image **becomes** the new canvas.
+Loads an external image onto the canvas.
 
 ```bdfd
-$canvasLoadImage[url;x?;y?;width?;height?;container?]
+$canvasLoadImage[url;(x);(y);(width);(height);(container)]
 ```
 
 | Parameter | Required | Description |
 |:---|:---|:---|
-| `url` | ✅ | Image URL (HTTP/HTTPS, data URL, or base64) |
-| `x` | ❌ | Horizontal position on the canvas |
-| `y` | ❌ | Vertical position on the canvas |
+| `url` | ✅ | Image URL (HTTP/HTTPS) or raw base64 string |
+| `x` | ❌ | Horizontal position on the canvas (default 0) |
+| `y` | ❌ | Vertical position on the canvas (default 0) |
 | `width` | ❌ | Resize width (pixels) |
 | `height` | ❌ | Resize height (pixels) |
-| `container` | ❌ | Name of a registered container for relative positioning |
+| `container` | ❌ | Name of a container that offsets `x` and `y` |
 
-**Example — Loading an avatar as the canvas base:**
+> [!TIP]
+> **Positioned vs. unpositioned loading.** The image is only resized when **both** `width` and `height` are given. If you give a position (`x` or `y` other than 0) or a `width`, the image is drawn on top of the existing canvas at that position. If you give none of them, the loaded image **replaces** the current canvas and keeps its own dimensions. The canvas must have been created with `$canvasCreate` first.
+
+**Example — Using an avatar as the canvas base:**
 
 ```bdfd
+$canvasCreate[avatar;256;256]
 $canvasLoadImage[$authorAvatar]
 $attachImage[avatar]
 ```
-
-> [!TIP]
-> **Positioned vs. unpositioned loading.** When you provide `x` and `y` coordinates, the image is overlaid onto the existing canvas. When you omit them and no canvas exists yet, the loaded image itself becomes the canvas at its original dimensions.
 
 **Example — Loading an avatar on top of a background:**
 
@@ -165,50 +170,52 @@ $attachImage[profile]
 
 ---
 
-### $canvasContainer — Defines a Positioning Frame
+### $canvasContainer — Defines a Positioning Offset
 
-Containers let you group drawing operations and position them relative to a frame. Once defined, any subsequent operation that references the container will have its coordinates **offset** by the container's `x` and `y` values.
+A container is a named offset. Once defined, any later operation that references the container by name has its coordinates **shifted** by the container's `x` and `y` values.
 
 ```bdfd
-$canvasContainer[name;x;y;width;height;color?]
+$canvasContainer[name;x;y;width;height;(color)]
 ```
 
 | Parameter | Required | Description |
 |:---|:---|:---|
 | `name` | ✅ | Container identifier |
-| `x` | ✅ | Top-left X position |
-| `y` | ✅ | Top-left Y position |
-| `width` | ✅ | Frame width |
-| `height` | ✅ | Frame height |
-| `color` | ❌ | Background color for the container area |
+| `x` | ✅ | X offset added to the coordinates of the operations that use the container |
+| `y` | ✅ | Y offset added to the coordinates of the operations that use the container |
+| `width` | ✅ | Accepted, but not used when drawing (nothing is clipped) |
+| `height` | ✅ | Accepted, but not used when drawing (nothing is clipped) |
+| `color` | ❌ | Accepted, but nothing is drawn: a container has no visible background |
+
+The offset applies to `x`/`y` (and to both points of `$canvasDrawLine`) of `$canvasLoadImage`, `$canvasCompositeImage`, `$canvasDrawText`, `$canvasDrawCircle`, `$canvasDrawRect`, `$canvasDrawLine`, `$canvasProgressBar` and `$canvasSetPixel`. A container must be defined before it is used; an unknown container name applies no offset.
 
 **Example — Drawing inside a centered box:**
 
 ```bdfd
 $canvasCreate[layout;600;400;#1a1a2e]
-$canvasContainer[header;50;20;500;80;#16213e]
-$canvasDrawText[Welcome!;0;0;32;white;center;500;header]
+$canvasContainer[header;50;20;500;80]
+$canvasDrawRect[0;0;500;80;16213e;true;;header]
+$canvasDrawText[Welcome!;0;20;32;white;center;500;header]
 $attachImage[layout]
 ```
 
-Here, the text is positioned at `(0, 0)` relative to the container, which places it at absolute position `(50, 20)` on the canvas. The `center` alignment with `maxWidth=500` centers the text within the 500px-wide header container.
+Here, the rectangle and the text are positioned relative to the container, which places them at absolute position `(50, 20)` and `(50, 40)` on the canvas. The `center` alignment with `maxWidth=500` centers the text within a 500px-wide area.
 
 ---
 
-### $attachImage — Finalizes and Attaches
+### $attachImage — Renders and Attaches
 
-`$attachImage` signals the end of a canvas block, renders everything, and registers the image as a message attachment.
+`$attachImage` renders a canvas and registers the image as a message attachment.
 
-```bdfd
-$attachImage[name]
+```text
+$attachImage[(name)]
 ```
 
 | Parameter | Required | Description |
 |:---|:---|:---|
-| `name` | ✅ | Filename for the attachment (without extension — becomes `name.png`) |
+| `name` | ❌ | Name of a canvas created with `$canvasCreate`. Without it, the most recently created canvas is used. The attachment is named `name.png` |
 
-> [!NOTE]
-> Once attached, the image is available at runtime via `$getVar[temp._canvasAttachment_name]` or can be used with `$image`.
+If the canvas does not exist, the command fails with the error `Canvas "name" does not exist; use $canvasCreate first`.
 
 ```bdfd
 $canvasCreate[result;400;300;white]
@@ -220,12 +227,14 @@ $attachImage[result]
 
 ## ✏️ Section 2: Drawing Shapes
 
+For the `fill` parameter, `true`, `yes` and `1` mean filled; `false`, `no` and `0` mean outline only. Any other text counts as filled.
+
 ### $canvasDrawRect — Draws a Rectangle
 
 The simplest shape primitive. Draws a rectangle at the specified position.
 
 ```bdfd
-$canvasDrawRect[x;y;width;height;color;fill;blend?;container?]
+$canvasDrawRect[x;y;width;height;color;fill;(blend);(container)]
 ```
 
 | Parameter | Required | Description |
@@ -247,7 +256,7 @@ $canvasDrawRect[50;50;200;100;E53935;true]
 $attachImage[shapes]
 ```
 
-**Example — Outline-only rectangle with a blend mode:**
+**Example — Outline-only rectangle:**
 
 ```bdfd
 $canvasCreate[frame;400;300;white]
@@ -259,10 +268,10 @@ $attachImage[frame]
 
 ### $canvasDrawCircle — Draws a Circle
 
-Draws a circle with anti-aliased edges. Can be filled or just an outline.
+Draws a circle. Can be filled or just an outline.
 
 ```bdfd
-$canvasDrawCircle[x;y;radius;color;fill;blend?;container?]
+$canvasDrawCircle[x;y;radius;color;fill;(blend);(container)]
 ```
 
 | Parameter | Required | Description |
@@ -295,42 +304,12 @@ $attachImage[venn]
 
 ---
 
-### $canvasDrawRoundedRect — Draws a Rounded Rectangle
-
-Like `$canvasDrawRect` but with configurable corner radius. Uses anti-aliased smoothstep edges.
-
-```bdfd
-$canvasDrawRoundedRect[x;y;width;height;radius;color;fill;blend?;container?]
-```
-
-| Parameter | Required | Description |
-|:---|:---|:---|
-| `x` | ✅ | Top-left X |
-| `y` | ✅ | Top-left Y |
-| `width` | ✅ | Rectangle width |
-| `height` | ✅ | Rectangle height |
-| `radius` | ✅ | Corner radius in pixels |
-| `color` | ✅ | Fill or outline color |
-| `fill` | ✅ | `true` for filled, `false` for outline only |
-| `blend` | ❌ | Blend mode |
-| `container` | ❌ | Container name |
-
-**Example — A card with rounded corners:**
-
-```bdfd
-$canvasCreate[card;400;200;#2C2F33]
-$canvasDrawRoundedRect[20;20;360;160;16;#23272A;true]
-$attachImage[card]
-```
-
----
-
 ### $canvasDrawLine — Draws a Line
 
 Draws a straight line between two points using the Bresenham algorithm with configurable thickness.
 
 ```bdfd
-$canvasDrawLine[x1;y1;x2;y2;color;thickness;blend?;container?]
+$canvasDrawLine[x1;y1;x2;y2;color;thickness;(blend);(container)]
 ```
 
 | Parameter | Required | Description |
@@ -340,7 +319,7 @@ $canvasDrawLine[x1;y1;x2;y2;color;thickness;blend?;container?]
 | `x2` | ✅ | End X |
 | `y2` | ✅ | End Y |
 | `color` | ✅ | Line color |
-| `thickness` | ✅ | Line width in pixels (1–100) |
+| `thickness` | ✅ | Line width in pixels (values are kept between 1 and 100) |
 | `blend` | ❌ | Blend mode |
 | `container` | ❌ | Container name |
 
@@ -364,42 +343,19 @@ $attachImage[grid]
 
 ---
 
-### $canvasDrawArc — Draws an Arc or Pie Slice
+### $canvasSetPixel — Sets a Single Pixel
 
-Draws a circular arc. When `fill` is `false`, it draws an outlined arc. When `fill` is `true`, it draws a filled pie slice (from the center to the arc edges).
+Colors exactly one pixel. Coordinates outside the canvas are ignored.
 
 ```bdfd
-$canvasDrawArc[x;y;radius;startAngle;endAngle;color;fill?;thickness?;container?]
+$canvasSetPixel[x;y;color;(container)]
 ```
 
-| Parameter | Required | Description |
-|:---|:---|:---|
-| `x` | ✅ | Center X |
-| `y` | ✅ | Center Y |
-| `radius` | ✅ | Arc radius |
-| `startAngle` | ✅ | Start angle in degrees (0 = right, 90 = down, -90 = up) |
-| `endAngle` | ✅ | End angle in degrees |
-| `color` | ✅ | Arc color |
-| `fill` | ❌ | `true` = pie slice, `false` = outlined arc (default: false) |
-| `thickness` | ❌ | Outline thickness when `fill` is false (default: 1) |
-| `container` | ❌ | Container name |
-
-**Example — A filled pie slice (quarter circle):**
-
 ```bdfd
-$canvasCreate[slice;300;300;white]
-$canvasDrawArc[150;150;100;-90;0;E53935;true]
-$attachImage[slice]
-```
-
-This draws a filled wedge from the top (-90°) to the right (0°).
-
-**Example — An outlined arc (semi-circle):**
-
-```bdfd
-$canvasCreate[semi;300;300;white]
-$canvasDrawArc[150;150;100;0;180;1E88E5;false;4]
-$attachImage[semi]
+$canvasCreate[dots;50;50;white]
+$canvasSetPixel[10;10;red]
+$canvasSetPixel[11;10;red]
+$attachImage[dots]
 ```
 
 ---
@@ -408,40 +364,40 @@ $attachImage[semi]
 
 ### $canvasDrawText — Draws Text on the Canvas
 
-Writes text at a specific position. The font is automatically selected from `arial14`, `arial24`, or `arial48` based on the font size you provide.
+Writes text at a specific position. The font is a bitmap Arial font chosen from the font size: below 20 uses `arial14`, 20 to 39 uses `arial24`, and 40 or more uses `arial48`.
 
 ```bdfd
-$canvasDrawText[text;x;y;fontSize;color;textAlign?;maxWidth?;container?]
+$canvasDrawText[text;x;y;fontSize;color;(textAlign);(maxWidth);(container)]
 ```
 
 | Parameter | Required | Description |
 |:---|:---|:---|
-| `text` | ✅ | The text string to draw |
+| `text` | ✅ | The text string to draw (empty text draws nothing) |
 | `x` | ✅ | Horizontal position |
 | `y` | ✅ | Vertical position |
-| `fontSize` | ✅ | Font size in pixels (auto-selects appropriate Arial variant) |
+| `fontSize` | ✅ | Font size in pixels (selects one of the three fonts above) |
 | `color` | ✅ | Text color |
-| `textAlign` | ❌ | `left`, `center`, or `right` (requires `maxWidth`) |
-| `maxWidth` | ❌ | Constrains text width for alignment and wrapping |
+| `textAlign` | ❌ | `left` (default), `center`, or `right` (only used with `maxWidth`) |
+| `maxWidth` | ❌ | Width of the area used for alignment. It does not wrap or cut the text |
 | `container` | ❌ | Container name |
 
 > [!NOTE]
-> **Text alignment** only works when `maxWidth` is provided. Without it, `textAlign` is ignored. The alignment positions the text within the horizontal space defined by `maxWidth`, anchored at the given `x` coordinate.
+> **Text alignment** only works when `maxWidth` is provided. Without it, `textAlign` is ignored. The text is placed inside the horizontal space of width `maxWidth` that starts at `x`.
 
 **Example — Simple centered title:**
 
 ```bdfd
 $canvasCreate[title;600;200;#2C2F33]
-$canvasDrawText[Welcome to the Server!;300;80;36;white;center;600]
+$canvasDrawText[Welcome to the Server!;0;80;36;white;center;600]
 $attachImage[title]
 ```
 
-**Example — Left and right aligned text:**
+**Example — Left aligned text:**
 
 ```bdfd
 $canvasCreate[score;500;150;#1a1a2e]
 $canvasDrawText[Player: $username;20;30;20;cyan;left;460]
-$canvasDrawText[Score: $userScore;20;70;20;gold;left;460]
+$canvasDrawText[Score: $getUserVar[score];20;70;20;gold;left;460]
 $attachImage[score]
 ```
 
@@ -451,10 +407,10 @@ $attachImage[score]
 
 ### $canvasProgressBar — Draws a Progress Bar
 
-Renders a horizontal or vertical progress bar with customizable colors, border, and value.
+Renders a horizontal or vertical progress bar with a percentage label drawn at its center.
 
 ```bdfd
-$canvasProgressBar[x;y;width;height;value;fillColor;bgColor?;borderColor?;borderWidth?;direction?;borderRadius?;container?]
+$canvasProgressBar[x;y;width;height;percentage;barColor;trackColor;(textColor);(borderWidth);(orientation);(fontSize);(container);(borderRadius)]
 ```
 
 | Parameter | Required | Description |
@@ -463,21 +419,23 @@ $canvasProgressBar[x;y;width;height;value;fillColor;bgColor?;borderColor?;border
 | `y` | ✅ | Top-left Y |
 | `width` | ✅ | Bar width |
 | `height` | ✅ | Bar height |
-| `value` | ✅ | Percentage 0–100 (supports variables like `$getUserVar[xp]`) |
-| `fillColor` | ✅ | Color of the filled portion |
-| `bgColor` | ❌ | Background color (default: transparent) |
-| `borderColor` | ❌ | Border color |
-| `borderWidth` | ❌ | Border thickness in px (default: 0) |
-| `direction` | ❌ | `horizontal` (default) or `vertical` |
-| `borderRadius` | ❌ | **Not yet implemented** — accepted but ignored at runtime |
+| `percentage` | ✅ | Whole number from 0 to 100 (supports variables like `$getUserVar[xp]`); values outside the range are clamped, and a non-integer such as `12.5` counts as 0 |
+| `barColor` | ✅ | Color of the filled portion |
+| `trackColor` | ✅ | Color of the unfilled background |
+| `textColor` | ❌ | Color of the percentage label (default: white) |
+| `borderWidth` | ❌ | Border thickness in pixels (default: 0, maximum 50). The border is drawn in `barColor` |
+| `orientation` | ❌ | `horizontal` (default) or `vertical` (fills from the bottom) |
+| `fontSize` | ❌ | Label font size (default: 14, same fonts as `$canvasDrawText`) |
 | `container` | ❌ | Container name |
+| `borderRadius` | ❌ | Corner rounding radius in pixels (default: 0) |
+
+The label always shows the percentage followed by `%` (for example `50%`).
 
 **Example — Horizontal XP bar:**
 
 ```bdfd
 $canvasCreate[level;500;200;#2C2F33]
 $canvasProgressBar[50;80;400;30;$getUserVar[xp];43A047;#555555;#FFFFFF;2;horizontal]
-$canvasDrawText[XP: $getUserVar[xp]%;250;50;18;white;center;500]
 $attachImage[level]
 ```
 
@@ -486,7 +444,7 @@ $attachImage[level]
 ```bdfd
 $canvasCreate[health;200;300;#1a1a2e]
 $canvasProgressBar[80;30;30;200;$getUserVar[hp];E53935;#333333;#FFFFFF;2;vertical]
-$canvasDrawText[HP;95;250;14;white;center;200]
+$canvasDrawText[HP;85;250;14;white]
 $attachImage[health]
 ```
 
@@ -496,15 +454,15 @@ $attachImage[health]
 
 ### $canvasCompositeImage — Overlay with Shape Masks & Blend Modes
 
-The most powerful image function. It loads an image, resizes it, applies an optional **shape mask** (circle, rounded rectangle, triangle), and blends it onto the canvas using an optional **blend mode**.
+Loads an image, resizes it, applies an optional **shape mask** (circle, rounded rectangle, triangle), and blends it onto the canvas using an optional **blend mode**.
 
 ```bdfd
-$canvasCompositeImage[url;x;y;width;height;shape?;blend?;container?]
+$canvasCompositeImage[url;x;y;width;height;(shape);(blend);(container)]
 ```
 
 | Parameter | Required | Description |
 |:---|:---|:---|
-| `url` | ✅ | Image source (URL, data URL, or base64) |
+| `url` | ✅ | Image source (URL or raw base64) |
 | `x` | ✅ | Horizontal position |
 | `y` | ✅ | Vertical position |
 | `width` | ✅ | Resize width |
@@ -513,13 +471,15 @@ $canvasCompositeImage[url;x;y;width;height;shape?;blend?;container?]
 | `blend` | ❌ | Blend mode |
 | `container` | ❌ | Container name |
 
+The image is resized only when both `width` and `height` are greater than 0. The canvas must have been created with `$canvasCreate` first.
+
 **Shape mask options:**
 
 | Shape Value | Effect |
 |:---|:---|
-| `circle` / `round` / `oval` / `ellipse` | Circular/elliptical crop with anti-aliased edges |
+| `circle` / `round` / `oval` / `ellipse` | Circular crop with anti-aliased edges, sized on the smaller side of the image |
 | `triangle` | Triangular crop |
-| `rounded:15` / `roundrect:15` | Rounded rectangle crop with a 15px radius |
+| `rounded:15` / `roundrect:15` | Rounded rectangle crop with a 15px radius (`rounded` alone uses 20px) |
 
 **Example — Circular avatar on a background:**
 
@@ -535,13 +495,14 @@ $attachImage[profile]
 
 ```bdfd
 $canvasCreate[card;500;400;#1a1a2e]
-$canvasCompositeImage[https://example.com/photo.jpg;25;25;450;350;rounded:20]
+$canvasCompositeImage[https://example.com/photo.jpg;25;25;450;350;rounded:20;multiply]
 $attachImage[card]
 ```
 
 **Example — Overlaying with screen blend for a glow effect:**
 
 ```bdfd
+$canvasCreate[glow;800;600]
 $canvasLoadImage[https://example.com/background.jpg]
 $canvasCompositeImage[https://example.com/light-overlay.png;0;0;800;600;;screen]
 $attachImage[glow]
@@ -549,128 +510,22 @@ $attachImage[glow]
 
 ---
 
-## 📈 Section 6: Charts
+## 🎛️ Section 6: Whole-Canvas Effects
 
-### $canvasChartPie — Draws a Pie Chart
+These functions act on everything drawn so far on the current canvas.
 
-Renders a pie chart from semicolon-separated values. Each slice gets a color from the provided palette (with an automatic 12-color fallback if you don't specify enough colors).
-
-```bdfd
-$canvasChartPie[x;y;radius;data;colors;labels?;startAngle?;container?]
-```
-
-| Parameter | Required | Description |
-|:---|:---|:---|
-| `x` | ✅ | Center X |
-| `y` | ✅ | Center Y |
-| `radius` | ✅ | Chart radius |
-| `data` | ✅ | Semicolon-separated values (e.g. `30;50;20`) |
-| `colors` | ✅ | Semicolon-separated hex colors (e.g. `E53935;1E88E5;43A047`) |
-| `labels` | ❌ | Semicolon-separated labels (accepted but **not rendered** by the runtime) |
-| `startAngle` | ❌ | Starting angle in degrees (default: -90 = top) |
-| `container` | ❌ | Container name |
-
-> [!NOTE]
-> **Labels are not rendered.** The `labels` parameter is accepted by the parser but the current runtime does **not** draw label text on the chart. Use `$canvasDrawText` to manually add a legend below your chart.
-
-**Example — A three-segment pie chart:**
+| Function | Effect |
+|:---|:---|
+| `$canvasInvert` | Inverts the colors (takes no argument) |
+| `$canvasGrayscale` | Converts the canvas to grayscale (takes no argument) |
+| `$canvasRotate[degrees]` | Rotates the canvas by the given angle in degrees. A 90° rotation turns a 20×10 canvas into a 10×20 one; an angle such as 45 enlarges the canvas (100×100 becomes 141×141) and fills the new corners with black. `0` or a non-number leaves it unchanged |
 
 ```bdfd
-$canvasCreate[pieChart;400;400;white]
-$canvasChartPie[200;180;120;40;35;25;E53935;1E88E5;43A047]
-$canvasDrawText[Red: 40%  Blue: 35%  Green: 25%;200;340;14;#333333;center;400]
-$attachImage[pieChart]
-```
-
-**Example — Custom start angle:**
-
-```bdfd
-$canvasCreate[donut;400;400;white]
-$canvasChartPie[200;200;120;25;25;25;25;FF6B6B;4ECDC4;FFE66D;A8E6CF;;45]
-$attachImage[donut]
-```
-
----
-
-### $canvasChartBar — Draws a Bar Chart
-
-Renders a vertical bar chart with customizable spacing and optional max value override.
-
-```bdfd
-$canvasChartBar[x;y;width;height;data;colors;labels?;maxValue?;barSpacing?;container?]
-```
-
-| Parameter | Required | Description |
-|:---|:---|:---|
-| `x` | ✅ | Top-left X of the chart area |
-| `y` | ✅ | Top-left Y of the chart area |
-| `width` | ✅ | Chart width |
-| `height` | ✅ | Chart height |
-| `data` | ✅ | Semicolon-separated bar values |
-| `colors` | ✅ | Semicolon-separated hex colors per bar |
-| `labels` | ❌ | Semicolon-separated labels (accepted but **not rendered**) |
-| `maxValue` | ❌ | Overrides the auto-calculated maximum Y value |
-| `barSpacing` | ❌ | Gap between bars in pixels (default: 4) |
-| `container` | ❌ | Container name |
-
-**Example — Monthly stats bar chart:**
-
-```bdfd
-$canvasCreate[barChart;500;400;white]
-$canvasChartBar[40;30;420;300;120;85;200;60;150;E53935;1E88E5;43A047;FB8C00;8E24AA;;;8]
-$canvasDrawText[Monthly Activity;250;360;16;#333333;center;500]
-$attachImage[barChart]
-```
-
-**Example — With a manual max value (to ensure consistent scale across multiple charts):**
-
-```bdfd
-$canvasCreate[comparison;500;400;white]
-$canvasChartBar[40;30;420;300;$getUserVar[score];$getUserVar[highscore];1E88E5;E53935;;500;10]
-$canvasDrawText[You vs Top Score;250;370;14;#333333;center;500]
-$attachImage[comparison]
-```
-
----
-
-### $canvasChartLine — Draws a Line Chart
-
-Renders a line chart with optional area fill, data point markers, and configurable line thickness.
-
-```bdfd
-$canvasChartLine[x;y;width;height;data;color;lineWidth?;fill?;showPoints?;pointRadius?;container?]
-```
-
-| Parameter | Required | Description |
-|:---|:---|:---|
-| `x` | ✅ | Top-left X of the chart area |
-| `y` | ✅ | Top-left Y of the chart area |
-| `width` | ✅ | Chart width |
-| `height` | ✅ | Chart height |
-| `data` | ✅ | Semicolon-separated Y values |
-| `color` | ✅ | Line color |
-| `lineWidth` | ❌ | Line thickness (default: 2) |
-| `fill` | ❌ | `true` to fill the area under the line with a semi-transparent version of the line color (default: false) |
-| `showPoints` | ❌ | `true` to draw data point dots (default: true) |
-| `pointRadius` | ❌ | Radius of data point dots (default: 3) |
-| `container` | ❌ | Container name |
-
-**Example — A filled line chart showing growth:**
-
-```bdfd
-$canvasCreate[growth;600;400;white]
-$canvasChartLine[40;30;520;300;10;25;45;70;55;90;115;43A047;3;true;true;4]
-$canvasDrawText[Weekly Growth;300;370;16;#333333;center;600]
-$attachImage[growth]
-```
-
-**Example — Thin line chart without markers (clean trend line):**
-
-```bdfd
-$canvasCreate[trend;500;350;white]
-$canvasChartLine[40;30;420;280;100;95;88;72;65;50;42;E53935;2;false;false]
-$canvasDrawText[Error Rate Over Time;250;330;14;#333333;center;500]
-$attachImage[trend]
+$canvasCreate[effects;300;200;E53935]
+$canvasDrawText[Hello;20;20;24;white]
+$canvasGrayscale
+$canvasRotate[90]
+$attachImage[effects]
 ```
 
 ---
@@ -684,39 +539,35 @@ Here is a real-world example that combines canvas creation, image compositing, s
 ```bdfd
 $canvasCreate[profile;700;300;#2C2F33]
 
-$canvasDrawRoundedRect[15;15;670;270;16;#23272A;true]
+$canvasDrawRect[15;15;670;270;23272A;true]
 
 $canvasCompositeImage[$authorAvatar;30;30;100;100;circle]
 
 $canvasDrawText[$username;150;45;28;white]
-$canvasDrawText[#$userDiscriminator;150;78;16;#AAAAAA]
 
 $canvasContainer[stats;150;110;500;80]
 $canvasDrawText[Level $getUserVar[level];0;0;20;gold;left;500;stats]
 $canvasProgressBar[0;30;500;20;$getUserVar[xp];43A047;#555555;#FFFFFF;1;horizontal;;stats]
-$canvasDrawText[$getUserVar[xp] / $getUserVar[xpMax] XP;0;58;12;#AAAAAA;left;500;stats]
+$canvasDrawText[$getUserVar[xp] XP;0;58;14;#AAAAAA;left;500;stats]
 
 $canvasDrawText[Messages: $getUserVar[messages];30;220;14;#CCCCCC]
-$canvasDrawText[Joined: $memberJoinDate;30;250;14;#CCCCCC]
 
 $attachImage[profile]
 ```
 
-### Complete Example — A Dashboard with Pie and Bar Charts
+### Complete Example — A Stats Panel with Progress Bars
 
 ```bdfd
-$canvasCreate[dashboard;900;450;#1a1a2e]
-$canvasDrawText[Server Analytics;450;30;28;white;center;900]
+$canvasCreate[panel;500;250;#1a1a2e]
+$canvasDrawText[Server Stats;0;20;28;white;center;500]
 
-$canvasContainer[leftPanel;20;60;420;370]
-$canvasChartPie[210;180;100;45;30;25;E53935;1E88E5;43A047;;-90;leftPanel]
-$canvasDrawText[Activity Breakdown;210;310;14;#CCCCCC;center;420;leftPanel]
+$canvasContainer[bars;40;70;420;160]
+$canvasDrawText[Activity;0;0;14;#CCCCCC;left;420;bars]
+$canvasProgressBar[0;20;420;24;75;E53935;#333333;#FFFFFF;0;horizontal;;bars]
+$canvasDrawText[Members online;0;60;14;#CCCCCC;left;420;bars]
+$canvasProgressBar[0;80;420;24;40;1E88E5;#333333;#FFFFFF;0;horizontal;;bars;8]
 
-$canvasContainer[rightPanel;460;60;420;370]
-$canvasChartBar[20;30;380;300;120;85;200;60;150;E53935;1E88E5;43A047;FB8C00;8E24AA;;;5;rightPanel]
-$canvasDrawText[Monthly Members;210;350;14;#CCCCCC;center;420;rightPanel]
-
-$attachImage[dashboard]
+$attachImage[panel]
 ```
 
 ---
@@ -724,10 +575,13 @@ $attachImage[dashboard]
 ## ⚠️ Important Rules & Safety Tips
 
 > [!WARNING]
-> **Canvas dimensions limit.** The maximum allowed size is **4096 × 4096 pixels**. Exceeding this will cause the canvas creation to fail. If you need very large images, consider scaling down.
+> **Canvas dimensions limit.** The maximum size is **4096 × 4096 pixels**. A larger value is reduced to 4096. If you need very large images, consider scaling down.
 
 > [!WARNING]
-> **URL timeout.** Images loaded from external URLs have a **15-second timeout**. If the remote server is slow to respond, the load will fail. Host your assets on fast, reliable servers or CDNs.
+> **URL timeout.** Images loaded from external URLs have a **15-second timeout**. If the remote server is slow to respond or the image cannot be decoded, the image is silently skipped. Host your assets on fast, reliable servers or CDNs.
+
+> [!WARNING]
+> **Semicolons.** `;` separates function arguments in BDFD, so it cannot appear inside an argument such as a `data:image/...;base64,...` URL or a text to draw.
 
 > [!TIP]
 > **Use containers for layout.** Instead of hardcoding absolute positions for every element, define containers for logical sections (header, body, footer, sidebar). This makes your code easier to read and modify.
@@ -736,25 +590,25 @@ $attachImage[dashboard]
 > **Layer order matters.** Operations are drawn in the order they appear in your code. The first operation is at the bottom (background), and the last operation is on top (foreground). Think of it like painting: you paint the background first, then add details on top.
 
 > [!NOTE]
-> **Auto-flush behavior.** If you call any non-canvas function (like `$sendMessage`, `$getUserVar`, or even a text string outside of `$canvasDrawText`) between canvas operations, the current canvas block will be **automatically rendered**. Place all your canvas operations together, and keep non-canvas logic before or after the canvas block.
+> **Rendering time.** Canvas functions only record operations; the image is produced when `$attachImage` runs or, for canvases not yet rendered, just before the response is sent.
 
 > [!NOTE]
-> **Font availability.** Text rendering uses Arial at three fixed sizes (14, 24, 48). For custom font sizes, the system automatically picks the closest available variant. If you need precise typography, test with your target size to ensure the output looks as expected.
+> **Font availability.** Text rendering uses a bitmap Arial font at three fixed sizes (14, 24, 48). The font size you give selects one of them (below 20, 20 to 39, 40 and above). If you need precise typography, test with your target size to ensure the output looks as expected.
 
 ---
 
 ## 📚 Summary
 
-BDFD's canvas system gives you a complete 2D rendering engine inside your bot commands. Here is a quick recap of what you can do:
+BDFD's canvas system gives you a simple 2D rendering engine inside your bot commands. Here is a quick recap of what you can do:
 
 | Capability | Functions |
 |:---|:---|
 | **Create & load canvases** | `$canvasCreate`, `$canvasLoadImage`, `$canvasContainer`, `$attachImage` |
-| **Draw shapes** | `$canvasDrawRect`, `$canvasDrawCircle`, `$canvasDrawRoundedRect`, `$canvasDrawLine`, `$canvasDrawArc` |
+| **Draw shapes** | `$canvasDrawRect`, `$canvasDrawCircle`, `$canvasDrawLine`, `$canvasSetPixel` |
 | **Draw text** | `$canvasDrawText` |
 | **Progress bars** | `$canvasProgressBar` |
 | **Image compositing** | `$canvasCompositeImage` |
-| **Charts** | `$canvasChartPie`, `$canvasChartBar`, `$canvasChartLine` |
-| **Effects** | 8 blend modes (`multiply`, `screen`, `overlay`, `darken`, `lighten`, `difference`, `hardLight`, `softLight`) |
+| **Whole-canvas effects** | `$canvasInvert`, `$canvasGrayscale`, `$canvasRotate` |
+| **Blend modes** | 8 modes (`multiply`, `screen`, `overlay`, `darken`, `lighten`, `difference`, `hardLight`, `softLight`) |
 
-With these 15 functions, you can build welcome cards, level-up banners, leaderboard graphics, server dashboards, progress trackers, and virtually any dynamic image your Discord community needs — all without leaving BDFD's scripting environment.
+With these 14 functions, you can build welcome cards, level-up banners, leaderboard graphics, progress trackers, and many other dynamic images your Discord community needs — all without leaving BDFD's scripting environment.

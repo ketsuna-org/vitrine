@@ -31,6 +31,7 @@ The function therefore needs at least 2 arguments. With a single argument, the c
 
 - Checks the permissions of the triggering user (`author.id`) at the **server** level (roles), not in the channel.
 - The server owner and members with the `Administrator` permission pass the check for any permission.
+- A member who is currently timed out only keeps `View Channel` and `Read Message History`.
 - The check is an **AND** type: all listed permissions are required.
 - If a permission is missing, the script is stopped and the error message is used as output.
 

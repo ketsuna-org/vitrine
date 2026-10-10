@@ -22,8 +22,8 @@ $createRole[name;color;(hoist);(mentionable)]
 
 | Parameter | Description |
 |---|---|
-| `name` | The name of the role to create (1 to 100 characters). Required. |
-| `color` | Required. Hex color (e.g., `"#FF0000"`, `"#3498DB"`) or decimal number between 0 and 16777215. An empty or invalid color raises the error `Invalid role color.` |
+| `name` | The name of the role to create (1 to 100 characters, not all blank; otherwise the error `Invalid role name` is raised). Required. |
+| `color` | Required. Hex color (e.g., `"#FF0000"`, `"#3498DB"`; a value without `#` is read as hex only if it contains a letter a-f, otherwise as a decimal number) or decimal number between 0 and 16777215. An empty or invalid color raises the error `Invalid role color.` |
 | `hoist` | Optional. `"yes"` to display separately in the member list, `"no"` otherwise. Default `"no"` (an empty value also means `"no"`). Any other value raises `Role flags must be yes or no.` |
 | `mentionable` | Optional. `"yes"` to make the role mentionable, `"no"` otherwise. Default `"no"`. Same rules as `hoist`. |
 

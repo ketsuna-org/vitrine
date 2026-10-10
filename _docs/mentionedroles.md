@@ -22,7 +22,7 @@ $mentionedRoles[index]
 
 | Parameter | Description |
 |---|---|
-| `index` | Required. Position of the mention: a positive integer (1 is the first), `<` for the first, `>` for the last. Any other value raises an error. |
+| `index` | Required. Position of the mention: a positive integer (1 is the first), `<` for the first, `>` for the last. Any other value (including `0`, a negative number or text) raises `Mention index must be positive, < or >.` |
 
 ## Return Value
 
@@ -33,7 +33,8 @@ $mentionedRoles[index]
 ## Behavior
 
 - `$mentionedRoles` requires exactly one argument: a bare `$mentionedRoles` is invalid. It has no fallback argument.
-- Reads the role mentions of the message; it raises an error in a slash command (use the command options instead).
+- Reads the role mentions of the message; it raises the error `Use message options for slash commands.` in a slash command (use the command options instead).
+- The mentions are read from the `message.roleMentions` context variable supplied by the host (a comma-separated list of role IDs).
 - Returns a single ID per call; call it with several indexes to read several roles.
 
 ## Examples
@@ -70,6 +71,5 @@ $endif
 
 ## Notes
 
-- The returned ID is a numeric snowflake.
 - To get the name of a role from its ID, use `$roleName[ID]`.
 

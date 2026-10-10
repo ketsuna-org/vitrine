@@ -31,7 +31,8 @@ None (empty string). An error is raised if an ID is invalid or if the bot lacks 
 
 ## Behavior
 
-- The bot must have the `VIEW_CHANNEL` and `PIN_MESSAGES` permissions in the channel.
+- The bot must have the `View Channel` and `Pin Messages` permissions in the channel (error `Missing permissions for the message operation.` otherwise).
+- The message is fetched first: an ID that does not exist or a channel that does not support messages raises an error.
 - The message is not deleted, only unpinned.
 
 ## Examples
@@ -43,11 +44,11 @@ $unpinMessage[$channelID;$noMentionMessage]
 $sendMessage[Message unpinned.]
 ```
 
-### Automatic Cleanup
+### Unpin by ID
 
 ```bdfd
-$unpinMessage[$channelID;$messageID]
-$editMessage[$channelID;$messageID;This message is no longer relevant.]
+$unpinMessage[$channelID;$noMentionMessage]
+$sendMessage[Message $noMentionMessage is no longer pinned.]
 ```
 
 ### Announcement Rotation

@@ -28,7 +28,7 @@ $input[inputID]
 
 - **Type**: String
 - The value submitted for this input. For a multi-value input, the values are joined with a comma.
-- An error is raised if `inputID` is empty ("A modal input ID is required.") or if no value exists for this ID ("Modal input is unavailable").
+- An error is raised if `inputID` is empty ("A modal input ID is required.") or if no value exists for this ID (`Modal input is unavailable: <inputID>.`). The ID is matched exactly (case-sensitive).
 
 ## Examples
 

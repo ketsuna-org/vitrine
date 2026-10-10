@@ -10,7 +10,7 @@ description: Returns the Discord ID of the owner of the bot.
 
 # $botOwnerID
 
-The `$botOwnerID` function **returns the Discord ID of the bot owner**, as configured in the BDFD console.
+The `$botOwnerID` function **returns the Discord ID of the owner of the bot application**, as supplied by the running bot session.
 
 ## Syntax
 
@@ -20,17 +20,17 @@ $botOwnerID
 
 ## Parameters
 
-None.
+None (passing one is an error).
 
 ## Return value
 
 - **Type**: String
-- The Discord ID of the bot owner.
+- The Discord ID of the bot owner (the owner of the Discord team that owns the application, or the owner of the application when there is no team), read from the context variable `bot.ownerId`.
+- An empty string if the context holds no owner ID.
 
 ## Behavior
 
-- Returns the ID of the account that registered the bot on BDFD.
-- Fixed ID, only changes if the bot is transferred.
+- No request is made to Discord by the function itself.
 - Can be used for special privileges or notifications.
 
 ## Examples
@@ -44,12 +44,12 @@ $if[$var[motif]==]
   $stop
 $endif
 
-$dm[$botOwnerID]
-$sendMessage[📬 **Contact from $userName** ($authorID)
-Server: $serverName ($guildID)
-Message: $var[motif]]
-
 $sendMessage[✅ Your message has been forwarded to the bot owner.]
+
+$dm[$botOwnerID]
+📬 **Contact from $username** ($authorID)
+Server: $serverName ($guildID)
+Message: $var[motif]
 ```
 
 ### Owner-only access
@@ -61,7 +61,7 @@ $if[$authorID!=$botOwnerID]
   $stop
 $endif
 
-;; Code reserved for the owner
+$c[Code reserved for the owner]
 $sendMessage[✅ Owner command executed.]
 ```
 
@@ -79,7 +79,6 @@ $color[#5865F2]
 
 ## Notes
 
-- Fixed ID, does not change without a transfer of ownership.
 - Mentioning the owner: `<@$botOwnerID>`.
-- To get the name of the owner, use `$userName[$botOwnerID]` (requires a shared server).
-- To send a message to the owner, use `$sendDM[$botOwnerID;message]`.
+- To get the name of the owner, use `$username[$botOwnerID]`.
+- `$dm[$botOwnerID]` sends the command's main response (the text written outside `$sendMessage[]`) to the owner's private messages.

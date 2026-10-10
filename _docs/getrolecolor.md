@@ -22,7 +22,7 @@ $getRoleColor[roleID]
 
 | Parameter | Description |
 |---|---|
-| `roleID` | The Discord ID of the role. |
+| `roleID` | The Discord ID of the role. A value that is not a positive number raises `Invalid role ID.`; an ID that is not a role of the server raises `Role not found.` |
 
 ## Return Value
 

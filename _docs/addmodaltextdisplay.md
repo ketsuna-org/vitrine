@@ -10,11 +10,11 @@ description: Displays a static informational text in a modal. This component is 
 
 # $addModalTextDisplay[] — Modal Text Display
 
-`$addModalTextDisplay[]` inserts a block of non-interactive text in a modal. This is the equivalent of an informational paragraph — useful for providing instructions, separating sections, or displaying contextual information.
+`$addModalTextDisplay[]` adds a block of static text to the modal being built with `$newModal[]`. It is useful for instructions or explanations; it produces no value.
 
 ## Syntax
 
-```
+```text
 $addModalTextDisplay[content]
 ```
 
@@ -22,56 +22,42 @@ $addModalTextDisplay[content]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `content` | Yes | The text to display. Supports basic markdown. |
+| `content` | Yes | The text to display. |
 
 ## Return value
 
-Adds a text display component to the modal. No interactive value is returned — this component does not produce any form data.
+Returns an empty string. The text is added to the current modal; it produces no value for `$input[]`.
+
+## Behavior
+
+- The component is added to the modal being built with `$newModal[]`. Without a prior `$newModal[]`, the engine creates a default modal (ID `modal`, title `Modal`), and a `$newModal[]` called after that fails with `A modal is already being built.`: always call `$newModal[]` first.
+- This function takes exactly one argument and has no boolean or numeric parameter.
+- The engine does not check the length of the label, description or placeholder when the function runs.
+- The modal is sent when the script ends. It must hold 1 to 5 components (`A modal requires 1 to 5 inputs.`; `$addModalTextDisplay[]` counts too), and the script must not also produce text, embeds or component rows (`A modal cannot be combined with a message response.`). It can only answer a slash-command or component interaction that has not been answered yet.
+- When the modal is submitted, the values are read with `$input[customId]` and the modal ID with `$customID`.
 
 ## Examples
 
 ### General instructions
 
 ```bdfd
-$newModal[Form;form_modal]
+$newModal[form_modal;Form]
 $addModalTextDisplay[**Welcome!** Fill out this form to continue.]
-$addModalTextInput[name;Full name;short;;;yes;2;50]
+$addModalTextInput[Full name;;name;short;2;50;yes]
 ```
 
-### Sections with separators
+### Text between inputs
 
 ```bdfd
-$newModal[Full Registration;full_register]
-$addModalTextDisplay[__Section 1: Identity__]
-$addModalTextInput[firstname;First Name;short;;;yes;2;30]
-$addModalTextInput[lastname;Last Name;short;;;yes;2;30]
-
-$addModalTextDisplay[__Section 2: Contact__]
-$addModalTextInput[email;Email;short;;;yes;5;100]
-$addModalTextInput[phone;Phone;short;;;no;10;15]
-```
-
-### Warnings and notes
-
-```bdfd
-$newModal[Deletion;delete_modal]
-$addModalTextDisplay[⚠️ **Warning:** This action is irreversible!]
-$addModalTextDisplay[All of your data will be permanently deleted.]
-$addModalTextInput[confirm;Type CONFIRM to continue;short;;;yes;8;8]
-```
-
-### With dynamic variables
-
-```bdfd
-$newModal[Confirmation;confirm_modal]
-$addModalTextDisplay[You are about to buy **$var[product_name]** for **$var[price]€**.]
-$addModalTextDisplay[Estimated delivery date: $var[delivery_date]]
+$newModal[full_register;Full Registration]
+$addModalTextDisplay[Identity]
+$addModalTextInput[First name;;firstname;short;2;30;yes]
+$addModalTextInput[Last name;;lastname;short;2;30;yes]
+$addModalTextDisplay[Contact]
+$addModalTextInput[Email;;email;short;5;100;yes]
 ```
 
 ## Notes
 
-- The text supports Discord formatting: `**bold**`, `*italic*`, `__underline__`, `~~strikethrough~~`.
-- Emojis are supported.
-- This component does not produce any value in `$input[]`.
-- It does not count towards the limit of 5 interactive components (TextInput, Select) but occupies a placeholder in the component rows of the modal.
-
+- The text display counts towards the limit of 5 components of a modal.
+- It is added in call order, together with the other components.

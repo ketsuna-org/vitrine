@@ -5,14 +5,12 @@ translation_key: docs
 category: "Date & Time"
 function_name: hour
 syntax: $hour
-description: Returns the current hour (0 to 23). Resolved at runtime.
+description: Returns the current hour (0 to 23), in UTC or in the timezone set with $time.
 ---
 
 # $hour[]
 
 The `$hour` function returns the current hour in 24-hour format (from 0 to 23).
-
-> **Important:** This function uses the special identifier `((hour))` which is resolved at **runtime**.
 
 ## Syntax
 
@@ -20,11 +18,11 @@ The `$hour` function returns the current hour in 24-hour format (from 0 to 23).
 $hour
 ```
 
-> **Note:** This function takes no parameters.
+> **Note:** This function takes no parameters (passing one is an error).
 
 ## Return Value
 
-A number between 0 and 23 representing the current hour.
+A number between 0 and 23 representing the current hour, with no leading zero (for example `7`, not `07`).
 
 | Value | Meaning |
 |--------|---------------|
@@ -57,4 +55,4 @@ $endif
 ## Notes
 
 - 24-hour format: `0` = midnight, `12` = noon, `23` = 11 PM.
-- The hour depends on the time zone of the server hosting the bot.
+- The value is read in UTC unless a timezone was set earlier with `$time[timezone]`.

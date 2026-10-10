@@ -5,24 +5,49 @@ category: "Moderation"
 function_name: isTicket
 api_type: bdfd
 status: incomplete
-syntax: $isTicket
-description: Resolves a channel.isTicket placeholder, but the current ticket helper does not establish a persistent ticket marker.
+syntax: $isTicket[(channelID)]
+description: Returns true if the name of a channel (the current one by default) contains "ticket", false otherwise.
 ---
 
 # $isTicket
 
-The compiler maps this function to `((channel.isTicket))`. The current `$newTicket` channel executor does not establish a persistent ticket marker, so this placeholder is not a reliable ticket detector. Do not assume it always returns `true` or `false` or use it as an authorization guard.
+`$isTicket` returns `true` when the name of a channel contains the text `ticket` (case-insensitive, anywhere in the name), `false` otherwise. There is no persistent ticket marker: the name is the only test.
 
-Track created ticket IDs in scoped storage and compare the current channel with that data. Names beginning with `ticket-` are not sufficient to authenticate a ticket.
+## Syntax
 
-Read the [Support Ticket System Guide](/docs/tickets/), the [channel Blocks reference](/docs/blocks-channels/) for explicit creation and closure, and the [execution model](/docs/execution-model/) for compatibility rules.
+```
+$isTicket[(channelID)]
+```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `channelID` | Optional. The channel to test. If omitted or empty, the current channel is used. A value that is not a number raises `Invalid channel ID.` |
+
+## Return value
+
+- **Type**: String `"true"` or `"false"`.
+- `false` also when the channel cannot be found.
+
+## Behavior
+
+- Because only the name is checked, `ticket-john` and `my-ticketing-room` both give `true`, while a ticket channel renamed without the word gives `false`. Do not use it as an authorization guard.
+- Channels created by `$newTicket` are named `ticket-...`.
 
 ## Examples
 
-### Ticket Validation Example
+### Ticket validation
 
 ```bdfd
 $title[Ticket Verification]
 $description[Channel <#$channelID> ticket status: **$isTicket**]
 $color[#5865F2]
+```
+
+### Only inside tickets
+
+```bdfd
+$onlyIf[$isTicket==true;This command only works in ticket channels.]
+$sendMessage[Ticket command executed.]
 ```

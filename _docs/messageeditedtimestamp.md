@@ -25,7 +25,7 @@ $messageEditedTimestamp[channelID;messageID]
 | `channelID` | Required. ID of the channel containing the message. |
 | `messageID` | Required. ID of the message. |
 
-Both arguments must be valid IDs; a bare `$messageEditedTimestamp` is invalid.
+Both arguments must be positive integers, otherwise the error `Invalid Discord ID.` is raised. A channel that cannot hold messages raises `Channel does not support messages.` A bare `$messageEditedTimestamp` is invalid.
 
 ## Return Value
 

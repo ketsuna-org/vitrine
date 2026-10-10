@@ -14,7 +14,7 @@ description: Adds an option to a radio button group of the modal being built. An
 
 ## Syntax
 
-```
+```text
 $addRadioGroupOption[menuId;label;(value);(description);(default)]
 ```
 
@@ -24,13 +24,13 @@ $addRadioGroupOption[menuId;label;(value);(description);(default)]
 |-----------|-------------|--------|-------------|
 | `menuId` | Yes (may be empty) | — | `customId` of the parent group. If empty, the last radio group of the modal is used. |
 | `label` | Yes | — | Text displayed for the option. |
-| `value` | No | the `label` | Value returned if selected. |
+| `value` | No | the `label` | Value returned if selected. An empty value is sent as empty (it does not fall back to the label). |
 | `description` | No | empty | Optional description (only sent if not empty). |
-| `default` | No | `no` | `yes`/`true` if selected by default, `no`/`false` otherwise. |
+| `default` | No | `no` | `yes`/`true` if selected by default, `no`/`false` otherwise. Any other value is an error (`Expected yes or no, got "<value>".`). |
 
 ## Return value
 
-Returns an empty string. The option is added to the group. If no group matches (none created yet, or no group with that `menuId`), nothing happens and no error is raised.
+Returns an empty string. The option is added to the group. If no group matches (no modal yet, no radio group yet, or no group with that `menuId`), nothing happens and no error is raised.
 
 ## Examples
 
@@ -54,17 +54,9 @@ $addRadioGroupOption[;Satisfied;4;Good;no]
 $addRadioGroupOption[;Neutral;3;Average;no]
 ```
 
-### Default option
-
-```bdfd
-$newModal[lang_modal;Language]
-$addModalRadioGroup[Interface language;;local;yes]
-$addRadioGroupOption[;French;fr;;yes]
-$addRadioGroupOption[;English;en;;no]
-```
-
-
 ## Notes
 
-- The value is read with `$input[customId]` of the group when the modal is submitted (several values are joined by commas).
+- The value is read with `$input[customId]` of the group when the modal is submitted.
+- The group must exist before the option is added: the options are matched at the time of the call, searching the latest group first.
+- The engine does not limit the number of options nor check lengths.
 - `$newModal[]` takes the modal ID first, then its title.

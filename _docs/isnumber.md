@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: isNumber
 syntax: $isNumber[value]
-description: Checks if a value is a number (integer or decimal, positive or negative).
+description: Checks if a value is a finite number (decimal, scientific notation, or 0x/0b/0o prefixed integer).
 ---
 
 # $isNumber
 
-The function `$isNumber[value]` **checks if a value is a number**, whether integer, decimal, positive or negative. More permissive than `$isInteger[]`.
+The function `$isNumber[value]` **checks if a value is a finite number**, whether integer or decimal, positive or negative. More permissive than `$isInteger[]`.
 
 ## Syntax
 
@@ -22,20 +22,22 @@ $isNumber[value]
 
 | Parameter | Description |
 |---|---|
-| `value` | The value to test. |
+| `value` | The value to test. Required, exactly one argument. |
 
 ## Return Value
 
 - **Type** : Boolean
 - `true` if `value` is a number (e.g. `42`, `-7`, `3.14`, `0.001`)
-- `false` if `value` is text, a boolean, or empty.
+- `false` if `value` is text, a boolean, empty, or not finite (`NaN`, `Infinity`, `1e999`).
 
 ## Behavior
 
-- Accepts integers and decimals.
-- Accepts negative numbers.
-- Does not accept scientific notation (`1e5`).
-- Does not accept thousands separators (`1,000`).
+- Leading and trailing spaces are ignored: `$isNumber[ 5 ]` → `true`.
+- Accepts integers and decimals, with an optional `+` or `-` sign: `42`, `-7`, `+5`, `3.14`, `.5`, `5.`.
+- Accepts scientific notation: `1e5` → `true` (but `1e` → `false`).
+- Accepts integers with a `0x` (hexadecimal), `0b` (binary) or `0o` (octal) prefix: `0x1F` → `true`. A bare `0x` is `false`.
+- Does not accept thousands separators (`1,000`) or inner spaces (`5 5`).
+- A value that is `NaN`, `Infinity`, or too large to be finite (`1e999`) is `false`.
 
 ## Examples
 

@@ -1,0 +1,530 @@
+[
+ {
+  "page": "for-loop",
+  "src": "$for[color;red;green;blue]$color,$endFor",
+  "out": "red,green,blue,"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[3]$i-$loopIndex-$loopCount-$loopIteration,$endFor",
+  "out": "0-0-1-0,1-1-2-1,2-2-3-2,"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[a]x$endFor",
+  "error": "BDFD L1:1 $for: Expected a nonnegative integer loop count.",
+  "mention": "Expected a nonnegative integer loop count."
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[-1]x$endFor",
+  "error": "BDFD L1:1 $for: Expected a nonnegative integer loop count."
+ },
+ {
+  "page": "for-loop",
+  "src": "$for$endFor",
+  "error": "BDFD L1:1 $for: Expected a loop argument.",
+  "mention": "Expected a loop argument."
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[1x;a]$endFor",
+  "error": "BDFD L1:1 $for: Invalid iterator name.",
+  "mention": "Invalid iterator name."
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[i=0;i<3;i++]$i$endFor",
+  "out": "012"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[i=0,j=1;i<3;i++,j++]$i$j$endFor",
+  "out": "011223"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[i=0;i<3;i+=1]$i$endFor",
+  "out": "012"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[i=0;i<1.5;i++]$i$endFor",
+  "error": "BDFD L1:1 $for: Invalid integer loop condition: 0<1.5.",
+  "mention": "Invalid integer loop condition"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[x;a<b;c]$x$endFor",
+  "error": "BDFD L1:1 $for: Invalid loop initialization.",
+  "mention": "Invalid loop initialization."
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[x;a;b]$loopCount/$loopIndex/$i;$endFor",
+  "out": "1/0/0;2/1/1;"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[2]$for[2]$loopIndex$endFor/$endFor",
+  "out": "01/01/"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[3]$if[$i==1]$continue$endif$i$endFor",
+  "out": "02"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[i=0;i<5;i++]$if[$i==1]$continue$endif$if[$i==3]$break$endif$i$endFor",
+  "out": "02"
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[3]$stop$endFor after",
+  "out": ""
+ },
+ {
+  "page": "for-loop",
+  "src": "$loopIndex",
+  "error": "BDFD L1:1 $loopIndex: Loop index outside a loop.",
+  "mention": "Loop index outside a loop."
+ },
+ {
+  "page": "for-loop",
+  "src": "$for[2]x",
+  "error": "BDFD L1:1 $for: Missing $endfor.",
+  "mention": "Missing $endfor."
+ },
+ {
+  "page": "for-loop",
+  "src": "$endFor",
+  "error": "BDFD L1:1 $endFor: Unexpected $endFor.",
+  "mention": "Unexpected $endFor."
+ },
+ {
+  "page": "loop",
+  "src": "$loop[3]$i,$loopIndex,$loopCount;$endLoop",
+  "out": "0,0,1;1,1,2;2,2,3;"
+ },
+ {
+  "page": "loop",
+  "src": "$loop[x;a;b]$x$endLoop",
+  "out": "ab"
+ },
+ {
+  "page": "loop",
+  "src": "$loop[2]a$endFor",
+  "error": "BDFD L1:10 $endFor: Unexpected $endFor.",
+  "mention": "Unexpected $endFor."
+ },
+ {
+  "page": "loop",
+  "src": "$loop[-1]a$endLoop",
+  "error": "BDFD L1:1 $loop: Expected a nonnegative integer loop count.",
+  "mention": "Expected a nonnegative integer loop count."
+ },
+ {
+  "page": "loop",
+  "src": "$loop[2]a",
+  "error": "BDFD L1:1 $loop: Missing $endloop.",
+  "mention": "Missing $endloop."
+ },
+ {
+  "page": "while",
+  "src": "$var[n;0]$while[$var[n]<3]$var[n;$sum[$var[n];1]]$var[n]$endWhile",
+  "out": "123"
+ },
+ {
+  "page": "while",
+  "src": "$while[false]a$endWhile|",
+  "out": "|"
+ },
+ {
+  "page": "while",
+  "src": "$while[x]a$endWhile",
+  "error": "BDFD L1:1 $while: Invalid condition: x.",
+  "mention": "Invalid condition"
+ },
+ {
+  "page": "while",
+  "src": "$while[1<2;3]a$endWhile",
+  "error": "BDFD L1:1 $while: Expected one while condition.",
+  "mention": "Expected one while condition."
+ },
+ {
+  "page": "while",
+  "src": "$while[true]$if[$i==2]$break$endif Round $loopCount;$endWhile",
+  "out": " Round 1; Round 2;"
+ },
+ {
+  "page": "while",
+  "src": "$while[true]a$endWhile",
+  "error": "BDFD L1:13: Execution step limit exceeded.",
+  "mention": "Execution step limit exceeded."
+ },
+ {
+  "page": "break",
+  "src": "$break",
+  "error": "BDFD L1:1 $break: Break outside a loop.",
+  "mention": "Break outside a loop."
+ },
+ {
+  "page": "break",
+  "src": "$break[1]",
+  "error": "BDFD L1:1 $break: Invalid argument count for $break: 1."
+ },
+ {
+  "page": "break",
+  "src": "$for[3]$if[$i==1]$break$endif$i$endFor",
+  "out": "0"
+ },
+ {
+  "page": "break",
+  "src": "$for[2]$for[2]$break$endFor$loopIndex$endFor",
+  "out": "01"
+ },
+ {
+  "page": "continue",
+  "src": "$continue",
+  "error": "BDFD L1:1 $continue: Continue outside a loop.",
+  "mention": "Continue outside a loop."
+ },
+ {
+  "page": "continue",
+  "src": "$for[5]$if[$i==2]$continue$endif$i$endFor",
+  "out": "0134"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"a\":{\"x\":1,\"y\":[1,2]},\"b\":[10,20,30]}]$jsonForEach[a]$jsonKey=$jsonValue;$endJsonForEach",
+  "out": "x=1;y=[1,2];"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"a\":{\"x\":1,\"y\":[1,2]},\"b\":[10,20,30]}]$jsonForEach[b]$jsonKey/$jsonIndex/$i/$jsonValue;$endJsonForEach",
+  "out": "0/0/0/10;1/1/1/20;2/2/2/30;"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"a\":{\"x\":1,\"y\":[1,2]},\"b\":[10,20,30]}]$jsonForEach[]$jsonKey:$jsonValue;$endJsonForEach",
+  "out": "a:{\"x\":1,\"y\":[1,2]};b:[10,20,30];"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"a\":{\"x\":1,\"y\":[1,2]},\"b\":[10,20,30]}]$jsonForEach$jsonKey:$jsonValue;$endJsonForEach",
+  "out": "a:{\"x\":1,\"y\":[1,2]};b:[10,20,30];"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"a\":{\"x\":1,\"y\":[1,2]},\"b\":[10,20,30]}]$jsonForEach[a;y]$jsonKey:$jsonValue;$endJsonForEach",
+  "out": "0:1;1:2;"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"a\":{\"x\":1,\"y\":[1,2]},\"b\":[10,20,30]}]$jsonForEach[a.y]$jsonKey:$jsonValue;$endJsonForEach",
+  "out": ""
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"a\":{\"x\":1,\"y\":[1,2]},\"b\":[10,20,30]}]$jsonForEach[zzz]$jsonKey$endJsonForEach done",
+  "out": " done"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"a\":\"str\"}]$jsonForEach[a]$jsonKey$endJsonForEach done",
+  "out": " done"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"b\":[1,2,3,4]}]$jsonForEach[b]$if[$jsonValue==2]$continue$endif$if[$jsonValue==4]$break$endif$jsonValue;$endJsonForEach",
+  "out": "1;3;"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"b\":[1,2],\"c\":[7,8]}]$jsonForEach[b]$jsonKey>$jsonForEach[c]$jsonKey=$jsonValue,$endJsonForEach;$endJsonForEach",
+  "out": "0>0=7,1=8,;1>0=7,1=8,;"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"b\":[1,2]}]$jsonForEach[b]$jsonValue$jsonArrayAppend[b;9]$endJsonForEach|$jsonArrayCount[b]",
+  "out": "12|4"
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"b\":[1,2]}]$jsonForEach[b]x",
+  "error": "BDFD L1:24 $jsonForEach: Missing $endjsonforeach.",
+  "mention": "Missing $endjsonforeach."
+ },
+ {
+  "page": "jsonforeach",
+  "src": "$jsonParse[{\"o\":[true,null,1.5,\"s\",[1]]}]$jsonForEach[o]$jsonValue,$endJsonForEach",
+  "out": "true,,1.5,s,[1],"
+ },
+ {
+  "page": "try-catch",
+  "src": "$try ok $catch no $endTry",
+  "out": " ok "
+ },
+ {
+  "page": "try-catch",
+  "src": "$try$sum[a;1]$catch [$error]$endTry",
+  "out": " [BDFD L1:5 $sum: Expected a finite number in argument 1.]",
+  "mention": "BDFD L<line>:<column> $function: ..."
+ },
+ {
+  "page": "try-catch",
+  "src": "$try$sum[a;1]$endTry done",
+  "out": " done"
+ },
+ {
+  "page": "try-catch",
+  "src": "$try $try $sum[a;1] $catch inner $endTry after-inner $sum[b;2] $catch outer $endTry",
+  "out": "   inner  after-inner  outer "
+ },
+ {
+  "page": "try-catch",
+  "src": "$try$sum[a;1] $catch $sum[c;1] $endTry rest",
+  "error": "BDFD L1:22 $sum: Expected a finite number in argument 1."
+ },
+ {
+  "page": "try-catch",
+  "src": "$try $stop $catch caught $endTry",
+  "out": " "
+ },
+ {
+  "page": "try-catch",
+  "src": "$try[x] a $catch b $endTry",
+  "error": "BDFD L1:11 $catch: Unexpected $catch."
+ },
+ {
+  "page": "try-catch",
+  "src": "$try a $catch[x] b $endTry",
+  "error": "BDFD L1:8 $catch: $catch does not accept arguments."
+ },
+ {
+  "page": "try-catch",
+  "src": "$try a $catch b",
+  "error": "BDFD L1:1 $try: Missing $endtry.",
+  "mention": "Missing $endtry."
+ },
+ {
+  "page": "try-catch",
+  "src": "$try a $endTry",
+  "out": " a "
+ },
+ {
+  "page": "try-catch",
+  "src": "$try $sum[a;1] $catch c $endTry $error[message]",
+  "out": "  c  Expected a finite number in argument 1."
+ },
+ {
+  "page": "try-catch",
+  "src": "$try $sum[a;1] $catch c $endTry $error[row]",
+  "out": "  c  1"
+ },
+ {
+  "page": "try-catch",
+  "src": "$try$sum[a;1]$catch [$error[Message]]$endTry",
+  "error": "BDFD L1:22 $error: Error type must be command, message, source, row or column.",
+  "mention": "Error type must be command, message, source, row or column."
+ },
+ {
+  "page": "try-catch",
+  "src": "$for[3]$try$sum[a;1]$catch x$endTry$endFor",
+  "out": " x x x"
+ },
+ {
+  "page": "error",
+  "src": "$error",
+  "out": ""
+ },
+ {
+  "page": "error",
+  "src": "$error[boom]",
+  "error": "BDFD L1:1 $error: Error type must be command, message, source, row or column.",
+  "mention": "Error type must be command, message, source, row or column."
+ },
+ {
+  "page": "error",
+  "src": "$try\n  $sum[a;1]\n$catch\n[$error[command]][$error[source]][$error[row]][$error[column]]\n$endTry",
+  "out": "\n  \n[$sum][$sum[a;1]][2][3]\n"
+ },
+ {
+  "page": "if-else",
+  "src": "$if[1==1;yes;no]",
+  "out": "yes"
+ },
+ {
+  "page": "if-else",
+  "src": "$if[1==2;yes]|",
+  "out": "|"
+ },
+ {
+  "page": "if-else",
+  "src": "$if[1==1;yes;no;extra]",
+  "error": "BDFD L1:1 $if: Invalid argument count for $if: 4."
+ },
+ {
+  "page": "if-else",
+  "src": "$if[true]a$else b$else c$endif",
+  "error": "BDFD L1:18 $else: Unexpected $else."
+ },
+ {
+  "page": "if-else",
+  "src": "$if[false]a$elseif[true]b$elseif[true]c$else d$endif",
+  "out": "b"
+ },
+ {
+  "page": "if-else",
+  "src": "$if[x]a$endif",
+  "error": "BDFD L1:1 $if: Invalid condition: x.",
+  "mention": "Invalid condition"
+ },
+ {
+  "page": "if-else",
+  "src": "$if[10>9abc]t$else f$endif",
+  "out": " f"
+ },
+ {
+  "page": "if-else",
+  "src": "$if[apple<banana]t$else f$endif",
+  "out": "t"
+ },
+ {
+  "page": "if-else",
+  "src": "$if[B<a]t$else f$endif",
+  "out": "t"
+ },
+ {
+  "page": "if-else",
+  "src": "$if[1==1.0]t$else f$endif",
+  "out": "t"
+ },
+ {
+  "page": "if-else",
+  "src": "$if[true]a",
+  "error": "BDFD L1:1 $if: Missing $endif.",
+  "mention": "Missing $endif."
+ },
+ {
+  "page": "if-else",
+  "src": "$and[true]",
+  "out": "true"
+ },
+ {
+  "page": "if-else",
+  "src": "$and[1;2]",
+  "error": "BDFD L1:1 $and: Invalid condition: 1."
+ },
+ {
+  "page": "if-else",
+  "src": "$or[1==2;3==3]",
+  "out": "true"
+ },
+ {
+  "page": "if-else",
+  "src": "$checkCondition[1==1]",
+  "out": "true"
+ },
+ {
+  "page": "if-else",
+  "src": "$checkContains[Hello World;hello]",
+  "out": "false"
+ },
+ {
+  "page": "if-else",
+  "src": "$checkContains[Hello World;xyz;World]",
+  "out": "true"
+ },
+ {
+  "page": "if-else",
+  "src": "$checkContains[a]",
+  "error": "BDFD L1:1 $checkContains: Invalid argument count for $checkContains: 1."
+ },
+ {
+  "page": "if-else",
+  "src": "$if[a=b]t$else f$endif",
+  "error": "BDFD L1:1 $if: Invalid condition: a=b."
+ },
+ {
+  "page": "var",
+  "src": "$var[a;b;c]",
+  "error": "BDFD L1:1 $var: Invalid argument count for $var: 3."
+ },
+ {
+  "page": "var",
+  "src": "$var[Name;x]$var[NAME]|$var[name]",
+  "out": "|"
+ },
+ {
+  "page": "var",
+  "src": "$var[ a ;x]$var[a]|$var[ a ]",
+  "out": "|x"
+ },
+ {
+  "page": "var",
+  "src": "$var[a;x]$var[a]",
+  "out": "x"
+ },
+ {
+  "page": "var",
+  "src": "$var[zzz]|",
+  "out": "|"
+ },
+ {
+  "page": "varexists",
+  "src": "$var[a;x]$varExists[a]|$varExists[b]",
+  "out": "false|false"
+ },
+ {
+  "page": "title",
+  "src": "$title[A;0]",
+  "error": "BDFD L1:1 $title: Embed index must be between 1 and 10."
+ },
+ {
+  "page": "title",
+  "src": "$title[A;11]",
+  "error": "BDFD L1:1 $title: Embed index must be between 1 and 10."
+ },
+ {
+  "page": "addfield",
+  "src": "$addField[n;v;1]",
+  "error": "BDFD L1:1 $addField: Field inline flag must be yes or no."
+ },
+ {
+  "page": "addfield",
+  "src": "$addField[n;;no]",
+  "error": "BDFD L1:1 $addField: Embed field name and value are required."
+ },
+ {
+  "page": "addfield",
+  "src": "$addField[n;v;yes;0]",
+  "error": "BDFD L1:1 $addField: Embed index must be between 1 and 10."
+ },
+ {
+  "page": "addtimestamp",
+  "src": "$addTimestamp[0]",
+  "error": "BDFD L1:1 $addTimestamp: Embed index must be between 1 and 10."
+ },
+ {
+  "page": "divide",
+  "src": "$divide[42;0]",
+  "error": "BDFD L1:1 $divide: Cannot divide by zero."
+ },
+ {
+  "page": "sum",
+  "src": "$sum[a;1]",
+  "error": "BDFD L1:1 $sum: Expected a finite number in argument 1."
+ },
+ {
+  "page": "sum",
+  "src": "$sum[1]",
+  "error": "BDFD L1:1 $sum: Invalid argument count for $sum: 1."
+ },
+ {
+  "page": "min",
+  "src": "$min[5.5;2]",
+  "error": "BDFD L1:1 $min: Expected an integer in argument 1."
+ }
+]

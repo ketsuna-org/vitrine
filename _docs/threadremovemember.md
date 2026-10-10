@@ -22,8 +22,8 @@ $threadRemoveMember[threadID;userID]
 
 | Parameter | Description |
 |---|---|
-| `threadID` | The ID of the target thread. |
-| `userID` | The ID of the user to remove. |
+| `threadID` | The ID of the target thread (a Discord ID of a thread; otherwise an error is raised). |
+| `userID` | The ID of the user to remove (a Discord ID, otherwise `Invalid Discord ID.`). |
 
 ## Return Value
 
@@ -31,9 +31,8 @@ This function does not return any value.
 
 ## Behavior
 
-- Works primarily for private threads.
-- In a public thread, users cannot be removed (they can always view it).
-- The bot must have the `MANAGE_THREADS` permission or be the creator of the private thread.
+- The thread must not be archived (`Thread is archived.`).
+- The bot needs `View Channel` and `Manage Threads` in the thread, unless it is a private thread created by the bot (then only `View Channel`); otherwise `Missing permissions for the thread operation.` is raised.
 
 ## Examples
 
@@ -41,7 +40,7 @@ This function does not return any value.
 
 ```bdfd
 $threadRemoveMember[123456789012345678;$authorID]
-$editThread[123456789012345678;[Closed] Ticket;true;true]
+$editThread[123456789012345678;[Closed] Ticket;yes]
 $sendMessage[Ticket closed and user removed.]
 ```
 
@@ -54,7 +53,5 @@ $channelSendMessage[123456789012345678;<@$mentioned[1]> has been removed from th
 
 ## Notes
 
-- In public threads, `$threadRemoveMember[]` may not have any visible effect.
-- The removed user does not receive a notification.
-- For private threads, this is the appropriate method to manage access.
+- To add a member, use `$threadAddMember[]`.
 

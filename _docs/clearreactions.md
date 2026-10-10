@@ -34,7 +34,9 @@ This function does not return a value (empty string).
 
 - With `!all`, removes ALL reactions from the message.
 - With an emoji, removes all reactions of that emoji from the message.
-- Both IDs must be positive numeric IDs.
+- Both IDs must be positive numeric IDs (`Invalid Discord ID.` otherwise). `!all` must be written exactly like that.
+- The bot needs `Manage Messages` in the channel (error `Missing channel permissions for reactions.` otherwise); the message must exist and be in a message channel.
+- An alias such as `:thumbsup:` is accepted only if the engine knows it (`Unknown BDFD emoji alias.`); a text without any non-ASCII character that is not an ID or custom emoji raises `Invalid Unicode emoji.`
 - Useful for resetting a reaction system (poll, giveaway, etc.).
 
 ## Examples
@@ -52,7 +54,7 @@ $sendMessage[The votes have been reset.]
 ```bdfd
 $clearReactions[$channelID;$messageID;!all]
 $addReactions[✅]
-$editMessage[$channelID;$messageID;Finished!]
+Finished!
 ```
 
 ### Removal after closing

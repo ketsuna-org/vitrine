@@ -5,12 +5,11 @@ translation_key: docs
 category: "Flags & Debug"
 function_name: optOff
 syntax: $optOff
-description: Disables code optimization for the current command. All code is executed linearly without parser optimization.
+description: Accepted for compatibility with BDFD scripts; in this engine it does nothing and returns an empty string.
 ---
-
 # $optOff
 
-The `$optOff` function **disables code optimization** for the current command. BDFD then executes the code in a strictly linear manner.
+The `$optOff` function is accepted so that scripts written for BDFD still run. In this engine its handler does nothing and returns an empty string: it does **not** change how the code is optimised or ordered.
 
 ## Syntax
 
@@ -20,41 +19,28 @@ $optOff
 
 ## Parameters
 
-None.
+None. Any argument is refused ("Invalid argument count").
 
-## Return Value
+## Return value
 
-None.
+An empty string.
 
 ## Behavior
 
-- Without `$optOff`, BDFD may reorganize the code to optimize execution.
-- With `$optOff`, the execution order is exactly that of the source code.
-- Useful when optimization causes execution order bugs.
+- Execution order and results are identical with or without this function.
+- It never raises an error for a valid call.
 
 ## Examples
 
-### Force execution order
+### Script ported from BDFD
 
 ```bdfd
 $optOff
-$var[x;1]
-$sendMessage[x = $var[x]]
-$var[x;2]
-$sendMessage[x = $var[x]]
+$replaceText[a;a;b]
 ```
 
-### Avoid optimization bugs
-
-```bdfd
-$optOff
-$var[a;1]
-$onlyIf[$var[a]!=;Missing value]
-$sendMessage[$var[a]]
-```
+The result is `b`, exactly as without the flag.
 
 ## Notes
 
-- Impacts performance: only use when necessary.
-- Some complex functions may require `$optOff` to work correctly.
-- Should be placed at the beginning of the command.
+- Related no-op functions: `$alternativeParsing`, `$disableInnerSpaceRemoval`, `$disableSpecialEscaping`.

@@ -18,30 +18,28 @@ The function `$hasRole[userID;roleID]` **checks if a user has a specific role** 
 $hasRole[userID;roleID]
 ```
 
-Or with a single parameter (checks the author):
-
-```
-$hasRole[roleID]
-```
+Both arguments are required: `$hasRole[roleID]` with a single argument is refused ("Invalid argument count"). To check the author, pass `$authorID` as the first argument.
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `userID` | Optional - The ID of the user. Default: author of the command. |
-| `roleID` | The ID of the role to check. Required. |
+| `userID` | Required. The ID of the user (a positive integer, otherwise the error "Invalid user ID." is raised). |
+| `roleID` | Required. The ID of the role to check. An empty value returns `false`; any other non-numeric value raises the error "Invalid role ID.". |
 
 ## Return Value
 
 - **Type**: Boolean
 - `true` if the user has the role.
-- `false` if the role is not assigned, does not exist, or if the user is not found.
+- `false` if the role is not assigned to the user, if the role ID is empty (for example `$roleID[Name]` found no unique role), or if the user is not a member of the server (a "member not found" answer is treated as "no roles").
+- The `@everyone` role (whose ID is the server ID) is reported as `true` for any user.
 
 ## Behavior
 
-- Checks in the user's role list on the current server.
-- Works only in a server context.
-- Case-insensitive for the role name (if `$roleID[Name]` is used).
+- Looks in the user's role list on the current server, matching the role by its ID.
+- Works only in a server context (the lookup needs a server).
+- A role that does not exist in the server and is not held by the user gives `false`, not an error, as long as the ID is numeric.
+- `$roleID[Name]` matches the role name exactly (case-sensitive) and returns an empty text when no role, or several roles, have that name; `$hasRole` then returns `false`.
 
 ## Examples
 
@@ -70,7 +68,7 @@ $if[$hasRole[$authorID;$roleID[Staff]]==false]
   $stop
 $endif
 
-;; Command executed
+$c[Command executed]
 $banID[Banned by $userName;$mentioned[1]]
 $sendMessage[🔨 <@$mentioned[1]> was banned.]
 ```
@@ -103,7 +101,7 @@ $sendMessage[$var[badge] $userName]
 
 ## Notes
 
-- `$hasRole[userID;roleID]` requires the bot to be able to see the server's roles.
+- The result is read from Discord: the bot must be able to read the server's roles and members.
 - To assign a role, use `$giveRole[]` or `$giveRoles[]`.
 - To remove a role, use `$takeRole[]` or `$takeRoles[]`.
 - `$hasRole` is often used as a guard at the beginning of commands with `$stop`.

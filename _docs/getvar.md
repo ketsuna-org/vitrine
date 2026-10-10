@@ -14,22 +14,23 @@ $getVar retrieves values from the bot's persistent storage. Unlike temporary var
 
 The second parameter determines the scope:
 
-- **Omitted**: the variable is treated as **global** — accessible from any command, any user, any server.
-- **User ID provided**: the variable is **user-scoped** — each user has their own independent value for the same variable name. Use `$authorID` to reference the current user.
+- **Omitted or empty**: the variable is treated as **global** — accessible from any command, any user, any server.
+- **User ID provided**: the variable is **user-scoped** (the value shared by all servers for this user) — each user has their own independent value for the same variable name. Use `$authorID` to reference the current user. This is a different storage from `$getUserVar` (which reads the value of the member in a server, except in bots that still use the legacy user-variable setting).
 
 ## Storage Details
 
-- All values are stored as strings. When reading back, you receive the exact string that was stored.
-- Variable names are case-insensitive.
-- Returns an empty string if the variable has never been set.
+- Values written by `$setVar` are stored as text. When reading back, you receive the exact string that was stored.
+- The name is trimmed. Names are case-sensitive for stored values: `Score` and `score` are two different variables. An empty name raises an error.
+- A global variable that has never been set returns an empty string, and reading it creates it with an empty value (it then exists for `$varExists`).
+- A user-scoped variable that has no value for that user returns the default value declared for it (see below), or an empty string if none.
+- The default of a user-scoped variable is declared in the Variables catalogue, or automatically by the first `$setVar[name;value;User ID]` write for that name, which uses the written value as the default for every user who has no stored value.
 
 ## Comparison with $var
 
 | Aspect | $var | $getVar |
 |--------|------|---------|
-| Persistence | Execution only | Persistent (DB) |
+| Persistence | Execution only | Persistent (bot storage) |
 | Scope | Local | Global or user |
-| Performance | Fast (in-memory) | DB read |
 | Use case | Temporary calculations | Long-term storage |
 
 ## Examples

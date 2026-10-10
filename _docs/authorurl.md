@@ -23,7 +23,7 @@ $authorUrl[url;(embedIndex)]
 | Parameter | Description |
 |---|---|
 | `url` | Destination URL. The author name will point to this address. |
-| `embedIndex` | Optional. Index of the targeted embed (0 by default). |
+| `embedIndex` | Optional. Index of the targeted embed, from 1 to 10 (1 by default, also when empty). Any other value is an error. |
 
 ## Return value
 
@@ -77,6 +77,5 @@ $color[#5865F2]
 
 ## Notes
 
-- `$authorUrl[]` must be called **after** `$author[]`, otherwise there is no author to apply the URL to.
-- If you call `$authorUrl[]` alone (without `$author[]` beforehand), the URL will be ignored.
+- The URL is only sent when the same embed also has an author **name** (`$author[]`). The order of the two calls does not matter, but a URL without a name is dropped.
 - The URL must be absolute (starting with `http://` or `https://`).

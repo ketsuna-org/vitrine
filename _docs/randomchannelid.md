@@ -5,12 +5,12 @@ translation_key: docs
 category: "Math & Text"
 function_name: randomChannelID
 syntax: $randomChannelID
-description: Returns the ID of a random channel present on the server.
+description: Returns the ID of a random channel of the current server.
 ---
 
 # $randomChannelID[]
 
-The `$randomChannelID[]` function returns the Discord ID of a random channel present on the server where the command is executed.
+The `$randomChannelID[]` function returns the Discord ID of a random channel of the server where the command runs.
 
 ## Syntax
 
@@ -18,11 +18,16 @@ The `$randomChannelID[]` function returns the Discord ID of a random channel pre
 $randomChannelID
 ```
 
-> **Note:** This function takes no parameters.
+> **Note:** This function takes no arguments (it is an error to pass any).
 
 ## Return Value
 
-The Discord ID (snowflake) of a random channel on the server, as a string.
+The Discord ID (snowflake) of a random channel, as a string, or an empty string if no channel is returned.
+
+## Behavior
+
+- The candidates are all the channels returned by Discord for the server, whatever their type: text, voice, categories, and so on. Active threads are not included.
+- It needs the Discord channel service of the running bot and a server context.
 
 ## Examples
 
@@ -38,13 +43,6 @@ Random channel ID: $randomChannelID
 Random channel: <#$randomChannelID>
 ```
 
-### Use as destination channel
-
-```bdfd
-$sendMessage[$randomChannelID;Message sent to a random channel!]
-```
-
 ## Notes
 
-- The channel is chosen from all channels accessible to the bot on the server.
-- For text channels, you can use the ID with message sending functions.
+- Because voice channels and categories can be picked, the result is not always a channel you can send messages to.

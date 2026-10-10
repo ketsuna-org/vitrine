@@ -10,7 +10,7 @@ description: Returns the name of the command currently being executed.
 
 # $commandName
 
-The `$commandName` function **returns the name of the command currently being executed**, as defined in the BDFD editor.
+The `$commandName` function **returns the name of the command currently being executed**, as stored for the bot.
 
 ## Syntax
 
@@ -20,17 +20,17 @@ $commandName
 
 ## Parameters
 
-None.
+None (passing one is an error).
 
 ## Return value
 
 - **Type**: String
-- The name of the command (e.g., `help`, `ban`, `ping`).
+- The name of the command (e.g., `help`, `ban`, `ping`), taken from the invocation metadata (`command.name`, or `commandName`).
+- If the execution has no command metadata, the error `Invocation metadata command.name is unavailable.` is raised.
 
 ## Behavior
 
-- Returns the internal name of the command, not the trigger.
-- The name is the one set in the BDFD console.
+- Returns the stored name of the command, not the trigger actually typed (an alias or a prefix does not change it).
 - Useful for logs, contextual help, and detection.
 
 ## Examples
@@ -88,6 +88,5 @@ $endif
 ## Notes
 
 - `$commandName` returns the internal name, not the trigger (prefix).
-- For slash commands, the name corresponds to the application command name.
-- For the type (prefix/slash), use `$commandType`.
+- For the type of invocation, use `$commandType`.
 - For the folder, use `$commandFolder`.

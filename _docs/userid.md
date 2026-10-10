@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: userID
 syntax: $userID
-description: Returns the Discord ID of the user who triggered the command or interaction.
+description: Returns the Discord ID of the user of the execution context (the user.id variable, falling back to author.id).
 ---
 
 # $userID
 
-The `$userID` function returns the **Discord ID** (snowflake) of the user who triggered the execution of the command or interaction.
+The `$userID` function returns the **Discord ID** of the user of the current execution (the user who ran the command or interaction).
 
 ## Syntax
 
@@ -20,14 +20,13 @@ $userID
 
 ## Return Value
 
-- **Type**: Snowflake (numerical string of 17-19 digits)
-- Returns the unique ID of the user on Discord.
+- **Type**: String (the Discord ID, digits only)
+- The value of the context variable `user.id`; if that variable is not set, the value of `author.id`; if neither is set, an empty string.
 
 ## Behavior
 
 - `$userID` takes **no arguments**.
-- Always returns the ID of the user who **interacted** with the bot (via command, button, menu, modal, etc.).
-- The ID is a permanent numerical string — it never changes, unlike the username.
+- Reads `user.id` first and falls back to `author.id`; it does not call Discord.
 
 ## Examples
 
@@ -51,13 +50,11 @@ $endif
 
 ## Difference with $authorID
 
-- `$userID`: the user who triggered the interaction.
-- `$authorID`: the author of the message (in the case of a message command).
+- `$userID` reads `user.id`, then `author.id`.
+- `$authorID` reads `author.id`, then `user.id`.
 
-In most simple cases, both are identical. In advanced contexts (workflows, interactions), `$userID` is recommended.
+Both return the same value whenever only one of the two variables is set or when both hold the same user.
 
 ## Notes
 
-- The Discord ID is a permanent and unique **snowflake**.
-- It is not possible to modify or delete a Discord ID.
 - Use `$userID` in comparisons with `$if[]` to create commands reserved for specific users.

@@ -78,7 +78,8 @@ $endif
 ## Notes
 
 - The bot must have the `ManageRoles` permission.
-- The bot cannot assign a role higher than its own highest role.
+- The bot must have `Manage Roles`; the role must be below the bot's highest role, and `@everyone` and managed roles (bot, integration, booster) cannot be assigned or removed.
+- With the single-parameter form, the role is given to every user mentioned in the message (duplicates once); all IDs are validated before any role is assigned.
 - To assign multiple roles at once, use `$giveRoles`.
 - To replace all roles of a user, use `$setUserRoles`.
 - To add or remove several roles in one call, use `$roleGrant`.

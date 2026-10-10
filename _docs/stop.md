@@ -5,71 +5,62 @@ translation_key: docs
 category: "Control Flow"
 function_name: stop
 syntax: $stop
-description: Immediately halts all further action processing in the current execution context.
+description: Immediately ends the current script. What was written before it is still sent.
 ---
-# $stop — Hard Stop Execution
 
-`$stop` is the emergency brake of BDFD scripting. It immediately and unconditionally halts all further action processing. No commands after `$stop` are executed — the action sequence terminates at that exact point.
+# $stop — Stop the Script
 
-## Behavior
+`$stop` ends the current script immediately. Nothing after it runs.
 
-When `$stop` is encountered:
+## Syntax
 
-1. The current action completees up to and including `$stop`.
-2. All remaining actions in the current block are **skipped**.
-3. If inside a loop (`$for`), the loop exits immediately — no further iterations.
-4. If inside an `$if`, the enclosing `$endif` is not reached.
-5. If inside a `$try`, execution halts **before** the `$catch` block — `$stop` overrides error handling.
-
-`$stop` is dispatched as a `BotCreatorActionType.stop` action, which tells the BDFD runtime engine to terminate the execution pipeline.
-
-## No Arguments
-
-`$stop` takes no arguments. The syntax is simply:
-
-```
+```text
 $stop
 ```
 
-Any arguments provided are ignored.
+`$stop` takes no argument (`$stop[x]` is refused: `Invalid argument count`).
 
-## Use Cases
+## Behavior
 
-- **Early exit on invalid state**: Stop immediately if required data is missing or corrupted.
-- **Content moderation**: Halt execution when forbidden content is detected.
-- **Guard clauses**: Check preconditions at the start of an action and stop if they fail.
-- **Loop breaking**: Exit a `$for` loop prematurely based on a condition.
-- **Rate limiting**: Stop processing if a user has exceeded their quota.
+- The rest of the script is skipped, even inside `$if` or a loop: in a `$for` loop, the loop ends at once.
+- What was written **before** `$stop` (text, embeds, components) is still sent as the response. `$stop` does not discard it. (To discard it and replace it with a message, use `$onlyIf[condition;message]`.)
+- Messages already sent with `$sendMessage` stay sent.
+- `$stop` is not an error: inside `$try`, the `$catch` block does **not** run, and the script ends.
+- Inside code run by `$eval`, `$stop` only ends the evaluated code; the script that called `$eval` goes on.
 
 ## $stop vs $skipActions
 
-| Feature         | $stop                          | $skipActions[n]              |
-|-----------------|---------------------------------|------------------------------|
-| Scope           | Halts **all** remaining actions | Skips only `n` next actions  |
-| Resumable       | No                              | Yes, after skipping `n`      |
-| In loops        | Exits the loop completeely       | Skips actions within the loop |
-
-Use `$stop` for terminal halts; use `$skipActions` for non-terminal jumps.
-
-## Interaction with $try / $catch
-
-If `$stop` is called inside a `$try` block, the `$catch` block is **not** executed. `$stop` bypasses error handling entirely. This is intentional — if you want to catch errors and then stop, call `$stop` inside the `$catch` block instead.
+| Feature | $stop | $skipActions[n] |
+|---|---|---|
+| Effect | Ends the current script | Skips the next `n` actions of the current block |
+| Resumes afterwards | No | Yes, after the skipped actions |
+| In loops | Ends the loop and the script | Skips actions of the current iteration only |
 
 ## Common Pitfalls
 
-- Placing important cleanup or logging code after `$stop` — it will never execute.
-- Using `$stop` inside a `$try` and expecting the `$catch` to still run.
-- Confusing `$stop` with `$skipActions[1]` — `$stop` kills the entire action sequence, not just the next command.
+- Placing important code after `$stop`: it will never run.
+- Using `$stop` inside `$try` and expecting `$catch` to run.
 
 ## Examples
 
-### Halting Execution for Bots
+### Halting for a condition
 
 ```bdfd
-$if[$isBot==true]
+$if[$message==]
+  Please provide an argument.
   $stop
 $endif
-$title[User Verified]
-$description[Hello <@$authorID>, your command has been processed.]
-$color[#5865F2]
+You wrote: $message
+```
+
+### Leaving a loop and the script
+
+```bdfd
+$for[5]
+  Step $loopCount
+  $if[$i==2]
+    $stop
+  $endif
+$endFor
+Done
 ```

@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: textSplit
 syntax: $textSplit[text;separator]
-description: Splits a text string into an array using the specified separator and stores it for later access with $splitText[].
+description: Splits a text at every occurrence of a separator and stores the pieces for later access with $splitText[]. It returns nothing.
 ---
-# $textSpreads — Spreads Text into Array
+# $textSplit — Split Text into Elements
 
-`$textSplit` splits a text string into multiple elements using a specified separator. The resulting array is stored internally and can be accessed through `$splitText[]`, iterated over, and manipulated with related text-spreads functions.
+`$textSplit` splits a text string into multiple elements using a separator. The resulting list is stored in the command's split-text state and can be read with `$splitText[]`, counted with `$getTextSplitLength`, and manipulated with the related split-text functions.
 
 ## Syntax
 
@@ -17,52 +17,57 @@ description: Splits a text string into an array using the specified separator an
 $textSplit[text;separator]
 ```
 
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `text` | The text to split. |
+| `separator` | The text at which `text` is cut. Exactly two arguments are required: `$textSplit[a;b;c]` (three arguments) is refused ("Invalid argument count"). |
+
 ## Behavior
 
-- **Action-only**: `$textSplit` is not an inline function. It performs an action (splitting) and stores the result. It does not produce output by itself.
-- The spreads result is stored in the **current text-spreads context**. Calling `$textSplit` again overwrites any previous split.
-- Spreads elements are 0-indexed: the first element is at index `0`.
-- The separator is case-sensitive and literal. It is not a regex.
+- **Action-only**: `$textSplit` returns an empty string. It performs the split and stores the result; it does not produce output by itself.
+- The result is stored for the rest of the command run. Calling `$textSplit` again replaces any previous split.
+- Elements are numbered **from 1**: the first element is at index `1`.
+- The separator is compared literally and case-sensitively. It is not a regex.
+- Each element is kept as it is: there is no trimming.
+- Two consecutive separators produce an empty element (`a,,b` split on `,` gives `a`, an empty element, `b`).
+- An empty `text` gives one empty element, so `$getTextSplitLength` is `1`, not `0`.
+- An empty separator splits the text into single characters.
+- A text that does not contain the separator gives a single element.
 
-## How It Works
+## Accessing the Result
 
-1. The `text` parameter is spreads at every occurrence of `separator`.
-2. The resulting elements are stored in an internal array.
-3. Each element preserves its original content — no trimming or modification occurs.
-4. The array persists for the duration of the command execution or until the next `$textSplit` call.
-
-## Accessing Spreads Results
-
-After calling `$textSplit`, use the following functions to work with the spreads data:
+After calling `$textSplit`, use the following functions to work with the stored elements:
 
 | Function | Description |
 |----------|------------|
-| `$splitText[index]` | Get the element at a specific index |
+| `$splitText[index]` | Get the element at a given index (`1`-based, or `<` for the first and `>` for the last) |
 | `$getTextSplitLength` | Get the total number of elements |
-| `$getTextSplitIndex` | Get the current index during iteration |
+| `$getTextSplitIndex[value]` | Get the position of the first element equal to `value`, or `-1` |
 | `$joinSplitText[separator]` | Join all elements with a new separator |
-| `$editSplitText[index;newValue]` | Modify one element |
+| `$editSplitText[index;newValue]` | Replace one element |
 | `$removeSplitTextElement[index]` | Remove one element |
 
 ## Common Use Cases
 
 ### Splitting User Input
 
-```
+```bdfd
 $textSplit[$message; ]
-$sendMessage[First word: $splitText[0]]
+$sendMessage[First word: $splitText[1]]
 ```
 
 ### CSV Parsing
 
-```
+```bdfd
 $textSplit[$getUserVar[data];,]
-$sendMessage[Column 3: $splitText[2]]
+$sendMessage[Column 3: $splitText[3]]
 ```
 
 ### Multi-line Processing
 
-```
+```bdfd
 $textSplit[$message;
 ]
 $sendMessage[You sent $getTextSplitLength lines]
@@ -70,10 +75,10 @@ $sendMessage[You sent $getTextSplitLength lines]
 
 ## Important Notes
 
-- **Overwrite behavior**: Each new `$textSplit` call replaces the previous split. If you need multiple splits, process one completeely before calling the next.
-- **Empty elements**: If the separator appears consecutively (e.g., `a;;b` with separator `;`), empty string elements are created. Plan your logic accordingly.
-- **No auto-trim**: Leading/trailing spaces in elements are preserved. Use `$trimSpace` on individual elements if needed.
-- **Memory**: The spreads array exists only for the current command execution. It is not persisted across commands or sessions.
+- **Overwrite behavior**: Each new `$textSplit` call replaces the previous split. If you need two splits, finish with the first one before calling the next.
+- **Empty elements**: If the separator appears consecutively (for example `a;;b` with separator `;`), an empty element is created between them.
+- **No auto-trim**: Leading and trailing spaces of elements are preserved. Use `$trimSpace[]` on an element if needed.
+- **Scope**: the elements only exist during the current command run.
 
 ## Examples
 
@@ -83,7 +88,7 @@ $sendMessage[You sent $getTextSplitLength lines]
 $textSplit[$message;,]
 $title[CSV Data Split]
 $description[Parsed **$getTextSplitLength** elements from input.]
-$addField[Item 1;$splitText[0];yes]
-$addField[Item 2;$splitText[1];yes]
+$addField[Item 1;$splitText[1];yes]
+$addField[Item 2;$splitText[2];yes]
 $color[#5865F2]
 ```

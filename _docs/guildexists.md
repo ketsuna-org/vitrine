@@ -22,12 +22,12 @@ $guildExists[guildId]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `guildId` | Yes | The ID of the server to check. |
+| `guildId` | Yes | The ID of the server to check (exactly one argument). |
 
 ## Return Value
 
 - **Type**: `string`
-- `"true"` if the bot is present on the server, `"false"` otherwise.
+- `"true"` if Discord lets the bot fetch the server, `"false"` otherwise (also `"false"` when the ID is not a positive integer; no error is raised in that case).
 
 > **Note**: The return value is a **string** (`"true"` / `"false"`), not a boolean. For conditions, compare with `==true` or `==false`.
 
@@ -79,7 +79,6 @@ $endif
 
 ## Notes
 
-- The function only checks if the bot is present on the server, not if the server exists on Discord.
-- A server may exist without the bot being on it — in this case, `$guildExists[]` returns `"false"`.
-- The ID must be a valid numeric string (Snowflake, 18-19 digits).
+- The function answers `"false"` when the server is unknown (HTTP 404) or when the bot has no access to it (HTTP 403, missing access); other Discord errors are not turned into `"false"`.
+- The ID is trimmed and must contain only digits and be greater than zero; anything else returns `"false"`.
 - To get the current server's ID, use `$guildID[]` or `$serverID[]`.

@@ -10,11 +10,11 @@ description: Gets the ID of the user selected via a user select menu.
 
 # $getUserSelectUserID
 
-The function `$getUserSelectUserID[]` retrieves the **ID of the user** chosen via a user select menu.
+`$getUserSelectUserID[]` returns one selected user ID of the user select menu that triggered the current interaction.
 
 ## Syntax
 
-```
+```text
 $getUserSelectUserID[index]
 ```
 
@@ -22,45 +22,45 @@ $getUserSelectUserID[index]
 
 | Parameter | Description |
 |---|---|
-| `index` | The index of the user in the selection (1 = first). Required, integer of 1 or more. |
+| `index` | Position of the selected user ID, starting at 1. Required: a positive integer, otherwise `Selection index must be a positive integer.` |
 
 ## Return Value
 
-- **Type**: String (Snowflake ID)
-- The Discord ID of the selected user.
-- An empty string if the index is beyond the number of selected users.
-- An error is raised if the index is not an integer of 1 or more, if the interaction is not a component callback, or if the callback has no user selection.
+- **Type**: String
+- The selected user ID at that position.
+- An empty string when `index` is greater than the number of selected items.
 
 ## Behavior
 
-- Only usable in the callback of a component interaction carrying a user selection (menu created via `$addUserSelect[]`).
-- For multiple selections, use `$getUserSelectUserIDs[]`.
+- It raises `Select values require a component callback.` outside of a component interaction (interaction type 3), and `This callback has no userSelect selection.` when the interaction that triggered the script is not a user select menu.
+- The IDs are those of the users picked in the menu.
+- The number of selected items is returned by `$getUserSelectUserCount`.
+- Without brackets (`$getUserSelectUserID`) the engine refuses the call (`Invalid argument count`).
 
 ## Examples
 
-### User verification
+### First selection
 
 ```bdfd
-$var[userID;$getUserSelectUserID[1]]
-$title[👤 User Profile]
-$description[
-**Name:** $userName[$var[userID]]
-**ID:** $var[userID]
-**Roles:** $userRoles[$var[userID]]
-]
-$thumbnail[$userAvatar[$var[userID]]]
-$color[#5865F2]
+Selected user: <@$getUserSelectUserID[1]>
 ```
 
-### Warning via selection
+### Second selection (empty if there is only one)
 
 ```bdfd
-$var[target;$getUserSelectUserID[1]]
-$title[⚠️ Warning]
-$description[<@$var[target]>, you have received a warning on **$serverName**.]
+Second user: <@$getUserSelectUserID[2]>
+```
+
+### In an interaction handler
+
+```bdfd
+$if[$customID==my_menu]
+  Selected user: <@$getUserSelectUserID[1]>
+$endif
 ```
 
 ## Notes
 
-- The index starts at 1 and is required: `$getUserSelectUserID` without brackets is refused.
-- To retrieve all users from a multiple selection, use `$getUserSelectUserIDs[]`.
+- The index starts at 1 (0 is an error).
+- For all the selections at once, use `$getUserSelectUserIDs[separator;(limit)]`.
+- The menu is created with `$addUserSelect`.

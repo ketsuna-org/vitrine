@@ -13,11 +13,11 @@ description: Logical OR â€” returns "true" if at least one of the provided condi
 
 ## Syntax
 
-```
-$or[condition1;(condition2;...;conditionN)]
+```text
+$or[condition1;(condition2);(...)]
 ```
 
-`$or` accepts **1 to 100 arguments**; with more than 100 arguments the call is refused. Each argument is a condition: either `"true"` or `"false"`, or a comparison such as `a==b`, `a!=b`, `a>b`, `a>=b`, `a<b`, `a<=b`.
+`$or` accepts **1 to 100 arguments**; with more than 100 arguments the call is refused. Each argument is a condition: either `"true"` or `"false"`, or a comparison such as `a==b`, `a!=b`, `a>b`, `a>=b`, `a<b`, `a<=b`. If both sides are numbers the comparison is numeric, otherwise it is a text comparison (code-unit order, so uppercase letters sort before lowercase ones).
 
 ## Evaluation
 
@@ -49,7 +49,7 @@ $or[$checkContains[$message;ping];$checkContains[$message;pong];$checkContains[$
 Grant access to any user with an authorized role:
 
 ```
-$or[$checkCondition[==;$getUserVar[role];admin];$checkCondition[==;$getUserVar[role];mod]]
+$or[$getUserVar[role]==admin;$getUserVar[role]==mod]
 ```
 
 ### Fallback with Empty Checks
@@ -84,7 +84,7 @@ This evaluates to `"true"` when at least one condition from each group is true â
 - **Short-circuit**: evaluation stops at the first true condition, so later arguments (and their side effects) are skipped in that case.
 - **Invalid conditions**: each condition must be `"true"`, `"false"` or a comparison; anything else raises an "Invalid condition" error.
 - **Single condition**: `$or[condition]` is accepted but is equivalent to the condition itself.
-- **Forgetting `==true` in $if**: Always write `$if[$or[...]==true]`.
+- **In `$if`**: `$if[$or[...]]` and `$if[$or[...]==true]` both work.
 - **Confusing AND/OR logic**: `$or` returns `"true"` when ANY condition is true. For "ALL must be true", use `$and`.
 
 ## Examples

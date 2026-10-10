@@ -31,7 +31,7 @@ A bare `$onlyAdmin` (no brackets) is invalid: it takes exactly one argument.
 - If the user is an administrator, the command continues normally.
 - If the author is **not** an administrator, the command is immediately interrupted (implicit `$stop`) and `errorMessage` is output in place of the response.
 - With an empty `errorMessage` nothing is displayed.
-- The check reads the effective permissions of the author in the server (`Administrator`).
+- The check reads the permissions of the author in the server (`Administrator`); the server owner also passes.
 
 ## Examples
 

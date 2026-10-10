@@ -4,7 +4,7 @@ title: $guildIcon[]
 translation_key: docs
 category: "Entity Info"
 function_name: guildIcon
-syntax: $guildIcon
+syntax: $guildIcon[(guildID)]
 description: Alias of $serverIcon. Returns the URL of the Discord server icon.
 ---
 
@@ -15,17 +15,20 @@ description: Alias of $serverIcon. Returns the URL of the Discord server icon.
 ## Syntax
 
 ```
-$guildIcon
+$guildIcon[(guildID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description |
+|---|---|
+| `guildID` | *(Optional)* The ID of a server. When omitted or empty, the current server is used. A non-empty value that is not a positive integer raises `Invalid guild ID.` |
 
 ## Return Value
 
 - **Type** : `string`
-- The direct URL of the icon (PNG/WEBP format), or an empty string.
+- The URL of the icon (`https://cdn.discordapp.com/icons/<guildID>/<hash>.png`, or `.gif` when the icon hash starts with `a_`, i.e. animated), or an empty string.
+- If the server cannot be fetched, the value of the `guild.icon` context variable supplied by the host is returned, or an empty string if there is none.
 
 ## Examples
 
@@ -58,6 +61,5 @@ $endif
 
 ## Notes
 
-- `$guildIcon[]` and `$serverIcon[]` are strictly identical.
-- The URL comes from the Discord CDN and is publicly accessible.
+- `$serverIcon` is not strictly identical: it takes no argument and raises `Guild not found.` when the server cannot be fetched.
 - Returns an empty string if the server has no icon.

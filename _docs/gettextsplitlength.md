@@ -5,11 +5,11 @@ translation_key: docs
 category: "Math & Text"
 function_name: getTextSplitLength
 syntax: $getTextSplitLength
-description: Returns the total number of elements in the current split text array.
+description: Returns the total number of elements in the current split text, as produced by the last $textSplit.
 ---
 # $getTextSplitLength — Count Split Text Elements
 
-`$getTextSplitLength` returns the number of elements in the current split text array — the total count of pieces produced by the most recent `$textSplit` call.
+`$getTextSplitLength` returns the number of elements currently held by the split text — the pieces produced by the most recent `$textSplit` call, minus any removed with `$removeSplitTextElement`.
 
 ## Syntax
 
@@ -17,18 +17,19 @@ description: Returns the total number of elements in the current split text arra
 $getTextSplitLength
 ```
 
-This function takes **no parameters**.
+This function takes **no parameters**; any argument is refused ("Invalid argument count").
 
 ## Return Value
 
 - **Type**: `string` (representing a number)
-- Returns the total number of elements. For example, splitting `"a;b;c"` by `;` yields `3`.
-- Returns `"0"` if no `$textSplit` has been called yet.
+- Returns the total number of elements. For example, splitting `a,b,c` on `,` yields `3`.
+- Returns `0` if no `$textSplit` has been called yet.
+- Splitting an empty text gives **one** empty element, so the length is `1`, not `0`.
 
 ## Usage
 
 ```
-$textSplit[apple;banana;orange;grape;]
+$textSplit[apple,banana,orange,grape;,]
 $getTextSplitLength  → "4"
 ```
 
@@ -41,41 +42,30 @@ $getTextSplitLength  → "2"
 
 ### Bounds Checking
 
-Prevent out-of-bounds access by validating index first:
+Prevent empty reads by validating the length first (indices start at 1):
 
-```
+```bdfd
 $textSplit[$message; ]
-$if[$getTextSplitLength>2]
-  $sendMessage[Third argument: $splitText[2]]
+$if[$getTextSplitLength>=3]
+  $sendMessage[Third argument: $splitText[3]]
 $else
   $sendMessage[Please provide at least 3 arguments]
 $endif
 ```
 
-### Conditional Empty Check
+### Last Element
 
-```
-$textSplit[$getUserVar[list];,]
-$if[$getTextSplitLength==0]
-  $sendMessage[The list is empty]
-$else
-  $sendMessage[The list contains $getTextSplitLength items]
-$endif
-```
-
-### Iteration Count Display
-
-Display progress inside a split text loop:
-
-```
-Processing element $math[$getTextSplitIndex+1] of $getTextSplitLength...
+```bdfd
+$textSplit[$message; ]
+$sendMessage[Last word: $splitText[$getTextSplitLength]]
 ```
 
 ## Important Notes
 
-- **Read-only**: This function reports the count; it does not modify the split text array.
-- **After each $textSplit**: The length reflects the most recent split. Calling `$textSplit` again resets it.
-- **No parameter**: This function takes no arguments.
+- **Read-only**: This function reports the count; it does not modify the split text.
+- **After each $textSplit**: The length reflects the most recent split. Calling `$textSplit` again replaces it.
+- **Changes with edits**: `$removeSplitTextElement` lowers the length by one.
+- **Empty text**: `$textSplit[;,]` has length `1` (one empty element); do not use a `0` check to detect an empty string, compare the text itself instead.
 
 ## Examples
 
@@ -85,7 +75,7 @@ Processing element $math[$getTextSplitIndex+1] of $getTextSplitLength...
 $textSplit[$message; ]
 $title[Word Count Breakdown]
 $description[Your message contains **$getTextSplitLength** words.]
-$addField[First Word;$splitText[0];yes]
-$addField[Last Word;$splitText[-1];yes]
+$addField[First Word;$splitText[<];yes]
+$addField[Last Word;$splitText[>];yes]
 $color[#5865F2]
 ```

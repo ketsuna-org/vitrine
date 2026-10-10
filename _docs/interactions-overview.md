@@ -30,17 +30,17 @@ Every interaction exposes:
 | `((interaction.channelId))` | Channel ID |
 | `((interaction.guildId))` | Server ID (empty in DMs) |
 | `((interaction.messageId))` | Message holding the component |
-| `((opts.<name>))` | Slash command option value (or `((opts.<name>.id))` for user/channel/role IDs) |
+| `((opts.<name>))` | Slash command option value (for user, channel, role and mentionable options the ID is `((opts.<name>.id))`) |
 
 ## Responding to an interaction
 
 Unlike standard messages, an interaction expects an acknowledgment or response within 3 seconds.
 
 ### In BDScript (BDFD)
-Emitting text or embed content automatically sends the interaction reply. Use `$ephemeral` to make it visible only to the interacting user. Do not append `$sendMessage` in slash commands unless you need a separate message in the channel.
+Emitting text or embed content automatically sends the interaction reply. Use `$ephemeral` to make it visible only to the interacting user. Do not append `$sendMessage` in slash commands unless you need a separate message in the channel. Inside a BDFD script, read the component ID with `$customID` (it is an error outside a component or modal interaction): `((...))` text is not resolved in BDFD scripts.
 
 ```bdfd
-$if[((interaction.customId))==btn_verify]
+$if[$customID==btn_verify]
   $ephemeral
   Verified! Your account has been unlocked.
 $endif
@@ -81,9 +81,9 @@ See [Components](/docs/javascript/components/) and [interaction](/docs/javascrip
 
 ## Slash commands
 
-Slash commands are interactions too. Read options directly with `((opts.<name>))` (or `((opts.<name>.id))`) in BDScript and Blocks, or `interaction.options.getString('name')` in JavaScript.
+Slash commands are interactions too. Read an option with `$message[name]` in BDScript (for a slash command it returns the option value), with `((opts.<name>))` in Blocks placeholders, or `interaction.options.getString('name')` in JavaScript.
 
-For long operations, call [$defer](/docs/defer/) (or use the `deferInteraction` block) first to avoid Discord's 3-second timeout.
+The runner acknowledges a BDFD script before running it, except when the script source contains `$newModal`, `$callWorkflow`, `$eval` or `$funcCall` (see the [execution model](/docs/execution-model/)). See also [$defer](/docs/defer/) and the `deferInteraction` block.
 
 ## Guides
 

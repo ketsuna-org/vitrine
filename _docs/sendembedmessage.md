@@ -29,7 +29,7 @@ The function accepts from 2 to 14 arguments.
 | `title` | No | empty | Embed title (256 characters maximum). |
 | `titleURL` | No | empty | URL of the title; only used when a title is set. |
 | `description` | No | empty | Embed description (4096 characters maximum). |
-| `color` | No | empty | Embed color; a 6-digit hex value is accepted with or without `#`. |
+| `color` | No | empty | Embed color; a 6-digit hex value is accepted with or without `#` (stored as `#RRGGBB`). Other values are passed on as is, without validation. |
 | `author` | No | empty | Author name (256 characters maximum). |
 | `authorIcon` | No | empty | Author icon URL; only used when an author is set. |
 | `footer` | No | empty | Footer text (2048 characters maximum). |
@@ -67,5 +67,7 @@ $var[msgId;$sendEmbedMessage[$channelID;;Editable Message;;This message was sent
 ## Notes
 
 - If every embed field is empty, the message is sent with its content only (no embed).
-- Mentions allowed or restricted with `$allowUserMentions`, `$allowRoleMentions` or `$noMention` apply to the message.
+- Mention settings made with `$allowUserMentions`, `$allowRoleMentions` or `$noMention` do **not** apply to this message: the pending response is sent first (with those settings), then the embed message is sent without any mention restriction.
+- A too long title, description, author or footer raises `Embed text cannot exceed N characters.`
+- A color that is not a 6-digit hex value is passed on unchanged and is not validated by the function.
 - To send a plain text message to the current channel, use `$sendMessage[text]` (the text is required).

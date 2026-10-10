@@ -23,7 +23,7 @@ $description[text;(embedIndex)]
 | Parameter | Description |
 |---|---|
 | `text` | The text of the description. Supports Discord markdown, line breaks, emojis, and interpolation of BDFD functions/variables. |
-| `embedIndex` | Optional. Index of the embed to modify (0 by default). |
+| `embedIndex` | Optional. Index of the targeted embed, from 1 to 10 (1 by default, also when empty). Any other value is an error. |
 
 ## Return value
 
@@ -33,7 +33,7 @@ This function returns nothing; it modifies the response currently being construc
 
 - `$description[]` is a **response mutation**.
 - The description is the core of the embed's content: this is where you place the bulk of your text.
-- Maximum length: **4096 characters**.
+- Maximum length: **4096 characters**; a longer text is an error ("Embed text cannot exceed 4096 characters."). The total text of all the embeds is limited to 6000 characters.
 - If the text is empty, the description will not be displayed.
 
 ## Examples

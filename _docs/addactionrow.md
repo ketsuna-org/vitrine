@@ -1,31 +1,36 @@
 ---
 layout: doc
 translation_key: docs
-description: Starts a new action row for buttons or select menus.
+description: Starts a new action row for buttons.
 category: "Components & Interactions"
 ---
 
 # $addActionRow
 
-Starts a new action row to contain buttons or select menus.
+Starts a new, empty action row. The buttons added afterwards with `$addButtonCV2` are placed in this row.
 
 ## Syntax
 
-```bdfd
-$addActionRow[(id)]
+```text
+$addActionRow[(id);(containerId)]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `id` | Custom identifier for the action row | No |
+| `id` | Identifier of the row. It can be given as the `rowId` argument of `$addButtonCV2` to put a button in this row. | No |
+| `containerId` | Accepted but not used by the engine: it has no effect. | No |
 
 ## Description
 
-An **action row** is a container that groups interactive components (buttons, select menus) on the same horizontal row in a Discord message. Each message can contain up to 5 action rows, and each action row can contain up to 5 buttons or 1 select menu.
+An **action row** groups buttons on one horizontal line of a message. A message holds at most 5 action rows (otherwise the error `A message supports at most 5 component rows.` is raised) and a row holds at most 5 buttons.
 
-`$addActionRow` must be called before adding components (buttons, select menus) to organize them on distinct rows.
+`$addActionRow` only creates the row; the row must receive at least one component, otherwise the response fails with `Invalid component row size.` (for example a trailing `$addActionRow`, or two `$addActionRow` in a row).
+
+Select menus do not go in a row opened by `$addActionRow`: every select menu function (`$addStringSelect`, `$addUserSelect`, ...) creates its own row. A select menu added right after `$addActionRow` leaves the empty row behind and the response fails with `Invalid component row size.`
+
+Components belong to the **response message** of the script (the text written in the script and the embed functions). A message sent with `$sendMessage[]` is a separate message and carries no components.
 
 ## Examples
 
@@ -34,34 +39,31 @@ An **action row** is a container that groups interactive components (buttons, se
 ```bdfd
 $addActionRow
 $addButtonCV2[btn_1;Click me;primary]
-$sendMessage[Here is a button!]
+Here is a button!
 ```
 
-### With custom ID
+### With an identifier
 
 ```bdfd
 $addActionRow[row_buttons]
 $addButtonCV2[btn_ok;OK;success]
 $addButtonCV2[btn_cancel;Cancel;danger]
-$sendMessage[Confirm your choice]
+Confirm your choice
 ```
 
-### Multiple rows
+### Several rows
 
 ```bdfd
 $addActionRow
 $addButtonCV2[btn_1;Button 1;primary]
 $addButtonCV2[btn_2;Button 2;primary]
-
 $addActionRow
 $addButtonCV2[btn_3;Button 3;secondary]
-$sendMessage[Two rows of buttons]
+Two rows of buttons
 ```
 
 ## Notes
 
-- Each `$addActionRow` creates a new row. The components added afterward will be placed on that row.
-- Without `$addActionRow`, components are placed on a row by default.
-- An action row can only contain buttons OR a single select menu, not both.
-- Maximum of 5 action rows per message.
-
+- Without `$addActionRow`, `$addButtonCV2` puts the button in the last row when that row only contains buttons and has fewer than 5 of them, and starts a new row otherwise.
+- Use `$addActionRow` first to place buttons inside a container (`$addContainer`): a button added directly after `$addContainer` or `$addSection` is not kept in the final message.
+- A button or select menu cannot be added after `$addTextDisplay`, `$addSeparator`, `$addThumbnail`, `$addMediaGallery` or `$addFile` in the same response (the call fails with `type 'Null' is not a subtype of type 'List<dynamic>' in type cast`). Add buttons and select menus first.

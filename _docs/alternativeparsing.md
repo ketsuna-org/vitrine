@@ -4,56 +4,42 @@ title: $alternativeParsing
 translation_key: docs
 category: "Flags & Debug"
 function_name: alternativeParsing
-syntax: $alternativeParsing
-description: Enables an alternative parsing mode for the current command. Useful for resolving certain syntax conflicts or unexpected behaviors of the BDFD parser.
+syntax: $alternativeParsing[(value)]
+description: Accepted for compatibility with BDFD scripts; in this engine it does nothing and returns an empty string.
 ---
 # $alternativeParsing
 
-The `$alternativeParsing` function enables an **alternative parsing mode** for the current command. This mode uses a different processing logic that can resolve compatibility issues.
+The `$alternativeParsing` function is accepted so that scripts written for BDFD still run. In this engine its handler ignores any argument and returns an empty string: it does **not** change how the code is parsed.
 
 ## Syntax
 
 ```
-$alternativeParsing
+$alternativeParsing[(value)]
 ```
 
 ## Parameters
 
-None.
+The engine accepts zero or one argument and ignores it.
 
 ## Return value
 
-None.
+An empty string.
 
 ## Behavior
 
-- Changes how BDFD interprets and executes the command code.
-- Can resolve bugs related to nested brackets `[]` or special characters.
-- Effect is limited to the current command.
+- No parsing mode is switched: the code is parsed and executed in the same way with or without this function.
+- It never raises an error for a valid call.
 
 ## Examples
 
-### Resolving a bracket conflict
+### Script ported from BDFD
 
 ```bdfd
 $alternativeParsing
-$sendMessage[$replaceText[Hello [World];[ ];-]]
-```
-
-### Command with complex syntax
-
-```bdfd
-$alternativeParsing
-$if[$checkContains[$message;[test]]==true]
-  $sendMessage[Bracketed text detected.]
-$else
-  $sendMessage[No bracketed text.]
-$endif
+$sendMessage[Hello]
 ```
 
 ## Notes
 
-- Use when standard parsing causes unexplained errors.
-- Can slightly slow down execution.
-- To be placed at the beginning of the command, before any other code.
-- Alternative to `$optOff` for purely syntax-related issues.
+- Do not add it expecting a different handling of brackets or special characters.
+- Related no-op functions: `$optOff`, `$disableInnerSpaceRemoval`, `$disableSpecialEscaping`.

@@ -4,8 +4,8 @@ title: $canvasGrayscale
 translation_key: docs
 category: "Image & Canvas"
 function_name: canvasGrayscale
-syntax: $canvasGrayscale
-description: Converts the current canvas to grayscale. No parameters.
+syntax: $canvasGrayscale[(unused)]
+description: Converts the current canvas to grayscale. One optional argument is accepted and ignored.
 ---
 
 # $canvasGrayscale
@@ -20,17 +20,17 @@ $canvasGrayscale
 
 ## Parameters
 
-None.
+None. The engine accepts one optional argument and ignores it.
 
 ## Return value
 
-None. The canvas is modified directly.
+An empty string. The effect is recorded for the current canvas (the last one made with `$canvasCreate`) and applied, in order, when the canvas is rendered.
 
 ## Behavior
 
-- Each pixel of the canvas is converted to a shade of gray depending on its luminance.
-- The formula typically uses a weighted average of the RGB channels (30% red, 59% green, 11% blue).
-- The operation is irreversible (unless you save the state beforehand).
+- Each pixel of the canvas is converted to a shade of gray from a weighted sum of its channels: in tests `#FF0000` gives gray 76, `#00FF00` gives 149, `#0000FF` gives 29 and white stays white (about 30% red, 59% green, 11% blue).
+- It applies to the whole canvas at the point where it is written: only the operations written before it are affected.
+- It cannot be undone.
 
 ## Examples
 
@@ -70,6 +70,7 @@ $sendMessage[⚫ Original vs Grayscale:]
 
 ## Notes
 
-- The canvas must be created or loaded before calling this function (via `$canvasCreate[]`, then `$canvasLoadImage[]`, etc.).
+- A canvas must have been created with `$canvasCreate[]` first; otherwise the call has no effect.
+- `$canvasLoadImage[url;0;0;width;height]` draws the image over the canvas, so the grayscale then covers it.
 - To invert the colors, use `$canvasInvert` instead.
 - For rotation, use `$canvasRotate[degrees]`.

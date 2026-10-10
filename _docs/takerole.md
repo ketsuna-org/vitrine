@@ -60,5 +60,5 @@ $sendMessage[✅ Role removed from <@$mentioned[1]>.]
 ## Notes
 
 - The bot must have the `ManageRoles` permission.
-- The bot cannot remove a role higher than or equal to its own highest role.
+- The bot must have `Manage Roles`; the role must be below the bot's highest role, and `@everyone` and managed roles (bot, integration, booster) cannot be removed.
 - To remove multiple roles, use `$takeRoles`.

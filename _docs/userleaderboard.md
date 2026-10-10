@@ -5,12 +5,12 @@ translation_key: docs
 category: "Variables"
 function_name: userLeaderboard
 syntax: $userLeaderboard[variable] or $userLeaderboard[variable;sort]
-description: Displays the position of the current user in a leaderboard based on a variable, along with nearby users.
+description: Writes the top 10 of the members of the current server, ranked by a user variable, into the description of the first embed.
 ---
 
 # $userLeaderboard
 
-The `$userLeaderboard` function displays the position of the **current user** in a leaderboard, surrounded by the users who immediately precede and follow them. Unlike `$globalUserLeaderboard` or `$serverLeaderboard` which return the full leaderboard, this function focuses on the user's immediate context.
+The `$userLeaderboard` function ranks the **members of the current server** by the value of a user variable (the values written with `$setUserVar`) and writes the **top 10** into the **description of the first embed** of the response. It returns an empty string. It does **not** single out the user who runs the command or show their neighbors.
 
 ## Syntax
 
@@ -21,65 +21,58 @@ $userLeaderboard[variable;sort]
 
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
-| `variable` | Yes | The name of the variable to rank |
-| `sort` | No | `desc` (descending, default) or `asc` (ascending) |
+| `variable` | Yes | The name of the variable to rank (an empty name raises `A variable name is required.`) |
+| `sort` | No | `desc` (descending, default when omitted or empty) or `asc` (ascending), case-insensitive. Any other value raises `Sort type must be asc or desc.` |
 
 ## How It Works
 
-1. `$userLeaderboard` is a **placeholder** resolved at runtime by the leaderboard action.
-2. The system identifies the position of the current user in the leaderboard.
-3. It returns a neighborhood around that position (the user + a few neighbors above and below).
-4. The current user is identifiable by their username or ID in the returned lines.
+1. The stored values of the variable for the members of the **current server** (server-member scope, the one of `$setUserVar`) are read; values that are not numbers are ignored (at most the first 20000 stored values are read). In a bot that still uses the legacy user-variable behavior, the global user values are ranked instead.
+2. The entries are sorted according to the specified direction and only the first 10 are kept.
+3. The description of the first embed (embed index 1) is **replaced** by one line per entry, in the format `N. username - value` (the username, or the user ID if the user cannot be found; integer values are printed without decimals).
+4. The function itself returns an empty string, so its result cannot be captured with `$textSplit` or inside other text: the ranking only appears in the embed description. A `$description` placed in the same command sets the same field, so only use one of them.
+
+An error `No message service configured.` is raised if the command has no message output.
 
 ## Typical Usage
 
-```
-$textSplit[$userLeaderboard[score;desc];\n]
-```
-
-Then loop through the entries with `$splitText`, `$getLeaderboardPosition`, and `$getLeaderboardValue`.
+Put the function next to the other embed parts (title, color...). To find the rank of the author, use `$getLeaderboardPosition[user;variable;sort]`; to read one entry, use `$getLeaderboardValue[user;variable;sort;position]`.
 
 ## Use Cases
 
-- 📊 **Personal dashboard**: show the user where they stand.
-- 🎯 **Motivation**: display direct neighbors to encourage competition.
-- 🏆 **Congratulation messages**: detect if the user is on the podium.
-- 📈 **Progression tracking**: see the gap with players ahead of you.
+- 🏆 **Server ranking**: XP, levels or coins of the members of the server.
+- 🎯 **Events**: temporary leaderboards for contests.
 
 ## Comparison with other leaderboards
 
-| Function | Scope | Returns |
+| Function | Ranked entries | Returns |
 |----------|-----------|----------|
-| `$userLeaderboard` | Current user | Neighborhood around the user |
-| `$serverLeaderboard` | Current server | Complete leaderboard of the server |
-| `$globalUserLeaderboard` | All users | Complete global leaderboard |
+| `$userLeaderboard` | Members of the current server (user variable) | Top 10 in the embed description |
+| `$serverLeaderboard` | Servers (server variable) | Top 10 in the embed description |
+| `$globalUserLeaderboard` | Users across servers (global user values) | Top 10 in the embed description |
 
 ## Important Notes
 
-- The user must have a value set for the specified variable, otherwise they will not appear in the leaderboard.
-- The number of entries returned around the user depends on the bot's configuration.
-- `$getLeaderboardPosition` and `$getLeaderboardValue` work normally during iteration.
-- For a complete leaderboard, prefer `$globalUserLeaderboard` or `$serverLeaderboard`.
+- Members without a numeric value for the variable do not appear in the leaderboard.
+- At most the first 10 entries are shown.
+- `$getLeaderboardPosition` and `$getLeaderboardValue` rank the same values and give the rank of one user or the entry at a given position.
+- For users across servers, use `$globalUserLeaderboard`.
 
 ## See Also
 
-- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rank in the active leaderboard
-- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Value in the active leaderboard
-- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Complete global leaderboard
-- [`$serverLeaderboard`](/docs/serverleaderboard) — Complete server leaderboard
-- [`$textSplit`](/docs/textsplit) — Parse the result
+- [`$getLeaderboardPosition`](/docs/getleaderboardposition) — Rank of a user
+- [`$getLeaderboardValue`](/docs/getleaderboardvalue) — Entry at a given position
+- [`$globalUserLeaderboard`](/docs/globaluserleaderboard) — Ranking of global user values
+- [`$serverLeaderboard`](/docs/serverleaderboard) — Ranking of servers
 - [`$getUserVar`](/docs/getuservar) — Read a user variable
 - [`$setUserVar`](/docs/setuservar) — Set a user variable
 
 ## Examples
 
-### Personal Leaderboard Neighborhood
+### Member Leaderboard
 
 ```bdfd
-$title[🏆 Personal Rank Standing]
-$description[Your position and direct competitors in **$serverName**:
-
-$userLeaderboard[xp;desc]]
+$title[🏆 XP Leaderboard]
+$userLeaderboard[xp;desc]
 $color[#FEE75C]
-$footer[Keep chatting to reach the top 3!]
+$footer[Top 10 of $serverName]
 ```

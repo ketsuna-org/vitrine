@@ -6,81 +6,71 @@ category: "Components & Interactions"
 
 # $addChannelSelect
 
-Creates a select menu of channels. Allows users to choose one or multiple channels on the server.
+Adds a select menu of the server's channels to the response message. The user can choose one or several channels.
 
 ## Syntax
 
-```bdfd
-$addChannelSelect[customId;placeholder;(minValues);(maxValues);(disabled);(channelTypes)]
+```text
+$addChannelSelect[customId;(placeholder);(minValues);(maxValues);(disabled);(messageID);(channelTypes)]
 ```
 
 ## Parameters
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `customId` | Custom identifier for the interaction | Yes |
-| `placeholder` | Text displayed when nothing is selected | Yes |
-| `minValues` | Minimum number of channels to select (default: 1) | No |
-| `maxValues` | Maximum number of channels to select (default: 1) | No |
-| `disabled` | `true` to disable the menu, `false` (default) | No |
-| `channelTypes` | Types of channels displayed, separated by commas | No |
+| `customId` | Custom ID that identifies the menu when it is used (1 to 100 characters). | Yes |
+| `placeholder` | Text displayed when nothing is selected. | No |
+| `minValues` | Minimum number of channels to select, integer from 0 to 25 (default: 1, also when empty). | No |
+| `maxValues` | Maximum number of channels to select, integer from 1 to 25 (default: 1, also when empty). It must not be lower than `minValues` (`Minimum cannot exceed maximum.`). | No |
+| `disabled` | `yes`/`true` to disable the menu, `no`/`false` (default, also when empty) otherwise. Any other value raises `Expected yes or no`. | No |
+| `messageID` | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). The menu is added to that message instead of the response being built. | No |
+| `channelTypes` | Accepted by the engine but not applied to a menu sent in the response: all channel types are listed. See the note below. | No |
 
-## Channel types (channelTypes)
+## Description
 
-| Type | Description |
-|------|-------------|
-| `text` | Text channels |
-| `voice` | Voice channels |
-| `category` | Categories |
-| `news` | Announcement channels |
-| `stage` | Stage channels |
-| `forum` | Forums |
-| `thread` | Thread channels |
+The selected channel IDs are read, in the script run for the interaction, with `$getChannelSelectChannelID[index]`, `$getChannelSelectChannelIDs[separator;(limit)]` and `$getChannelSelectChannelCount`.
 
-By default, all types are displayed.
+Note the argument order: the 6th argument is `messageID` and the 7th is `channelTypes`.
+
+The menu always gets its own action row, and a message holds at most 5 rows (`A message supports at most 5 component rows.`). Do not write `$addActionRow` before a select menu: the empty row it creates stays in the message and the response fails with `Invalid component row size.`
+
+The menu belongs to the **response message** of the script (the text written in the script and the embed functions), not to a message sent with `$sendMessage[]`.
 
 ## Examples
 
 ### Channel selection
 
 ```bdfd
+Select a channel
 $addChannelSelect[menu_channel;Choose a channel]
-$sendMessage[Select a channel]
 ```
 
-### Text channel only
+### Several channels
 
 ```bdfd
-$addChannelSelect[menu_text;Text channel;1;1;false;text]
-$sendMessage[Choose a text channel]
-```
-
-### Voice and stage channels
-
-```bdfd
-$addChannelSelect[menu_vocal;Voice channel;1;3;false;voice,stage]
-$sendMessage[Select voice channels]
+Select up to 3 channels
+$addChannelSelect[menu_logs;Log channels;1;3]
 ```
 
 ### Disabled menu
 
 ```bdfd
-$addChannelSelect[menu_chan_disabled;Unavailable;1;1;true]
-$sendMessage[This menu is disabled]
+This menu is disabled
+$addChannelSelect[menu_chan_disabled;Unavailable;1;1;yes]
 ```
 
 ## Handling the interaction
 
+The script run when the menu is used reads the choice and identifies the menu with `$customID`:
+
 ```bdfd
 $if[$customID==menu_channel]
-  $sendMessage[Selected channel: <#$getChannelSelectChannelID[1]>]
+  Selected channel: <#$getChannelSelectChannelID[1]>
 $endif
 ```
 
 ## Notes
 
-- The returned values are Discord channel IDs.
-- Use `<#ID>` to mention a channel.
-- The `channelTypes` parameter allows filtering precisely which channels are displayed.
-- Useful for configuration, logs, or redirection commands.
-
+- The values are Discord channel IDs; use `<#ID>` to mention a channel.
+- `channelTypes`: the engine keeps this value, but a menu sent in the response is built without any channel type filter, so every type of channel is offered. When the menu is added to an existing message with `messageID`, only Discord channel type numbers (for example `0,2`) are sent; names such as `text` or `voice` are ignored. To restrict the menu use `$addCategorySelect` or `$addVoiceSelect`.
+- A single select menu per action row.

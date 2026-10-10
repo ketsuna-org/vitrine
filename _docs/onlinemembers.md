@@ -4,28 +4,29 @@ title: $onlineMembers
 translation_key: docs
 category: "Entity Info"
 function_name: onlineMembers
-syntax: $onlineMembers
-description: Returns the number of members currently online on the Discord server (status "online", "idle", or "do not disturb").
+syntax: $onlineMembers[(unused)]
+description: Returns the online member count supplied by the host in guild.onlineMembers or, when there is none, the total number of members of the server.
 ---
 
 # $onlineMembers — Online Members
 
-`$onlineMembers` returns the number of members currently online on the server. Members with the statuses Online, Idle, and Do Not Disturb (dnd) are considered "online".
+`$onlineMembers` returns the `guild.onlineMembers` context variable supplied by the host. The engine does not read member presences itself.
 
 ## Syntax
 
 ```
-$onlineMembers
+$onlineMembers[(unused)]
 ```
 
 ## Parameters
 
-No parameters.
+One optional argument is accepted but ignored.
 
 ## Return Value
 
-- **Type** : `integer`
-- The number of online members.
+- **Type** : `integer` (as text)
+- The text of the `guild.onlineMembers` context variable if the host supplied one.
+- Otherwise the **total** number of members of the server (the same value as `$memberCount`, bots included), obtained by listing the members from Discord. In that case the result is not a count of online members.
 
 ## Examples
 
@@ -70,7 +71,5 @@ $color[#5865F2]
 
 ## Notes
 
-- Includes the statuses "online", "idle", and "do not disturb" (dnd).
-- Does not include invisible members (offline or invisible status), as Discord does not expose this information.
-- Useful for evaluating server activity in real-time.
-- To calculate the ratio, use `$onlineMembers / $membersCount * 100`.
+- Without a host-supplied value, `$onlineMembers` equals `$membersCount`, so the ratio examples above give 100%.
+- To calculate a ratio, use `$divide` and `$multi` as in the examples.

@@ -4,31 +4,36 @@ title: $displayName
 translation_key: docs
 category: "Entity Info"
 function_name: displayName
-syntax: $displayName
-description: Returns the display name of the user — the server nickname if it exists, otherwise the global username.
+syntax: $displayName[(userID)]
+description: Returns the global display name of a user (the author by default), or the username if the user has none. It is not the server nickname.
 ---
 
 # $displayName
 
-The variable `$displayName` returns the **display name** of the user on the server. This is the most relevant name in the server context: the nickname if defined, otherwise the global username.
+The function `$displayName` returns the **global display name** of a user (the "display name" the user set on their Discord account), or the username if there is none. It does **not** use the server nickname; for that, see `$nickname`.
 
 ## Syntax
 
 ```
-$displayName
+$displayName[(userID)]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `userID` | Optional. The ID of the user. If omitted, the author of the command is used. An ID that is not a positive number raises `Invalid user ID.`; an unknown user raises `User not found.` |
 
 ## Return value
 
 - **Type**: String
-- Priority: server nickname (`$nickname`) > global username (`$userName`)
+- Priority: global display name of the account (`globalName`) > username (`$userName`)
 
 ## Behavior
 
-- `$displayName` takes **no arguments**.
-- If the user has a **nickname** on the server, `$displayName` returns it.
-- Otherwise, it returns the **global username**.
-- This is the name that other members see on the server.
+- The user is read from Discord (a user account, not the member of the server), so the server nickname is never used.
+- If the account has a global display name, `$displayName` returns it; otherwise it returns the username.
+- `$nickname` returns the server nickname of the member, falling back to this same display name when there is no nickname.
 
 ## Examples
 
@@ -50,7 +55,7 @@ $author[$displayName;$userAvatar[$authorID]]
 $title[User Profile]
 $description[
 **Display Name:** $displayName
-**Global Name:** $userName
+**Username:** $userName
 **Server Nickname:** $nickname
 **ID:** $userID
 ]
@@ -59,6 +64,4 @@ $color[#5865F2]
 
 ## Notes
 
-- `$displayName` is the recommended choice to display a user's name in bot messages.
-- It reflects what members actually see on the server.
-- Differences: `$userName` (global username only), `$nickname` (server nickname only, can be empty), `$displayName` (the better of the two).
+- Differences: `$userName` (username of the account), `$nickname[(userID)]` (server nickname, or the display name when the member has none; the user must be a member of the server), `$displayName[(userID)]` (global display name or username, never the server nickname).
