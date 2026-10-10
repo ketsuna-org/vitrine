@@ -48,6 +48,7 @@ An empty string. The message is sent to the webhook and the staged data for this
 - The total text of the embed (title, description, author name, footer text) cannot exceed 6000 characters.
 - Values passed as arguments override the corresponding staged values.
 - Staged data is detached before sending: a failed send does not replay it.
+- The webhook message is sent with mentions disabled: user, role and `@everyone` mentions in it do not ping.
 
 ## Examples
 

@@ -22,7 +22,7 @@ $addEmoji[name;url;returnEmoji]
 
 | Parameter | Description |
 |---|---|
-| `name` | Required. The emoji name (must not be empty). |
+| `name` | Required. The emoji name (must not be empty; surrounding spaces are removed). |
 | `url` | Required. An `http` or `https` URL of the image (at most 256 KiB). |
 | `returnEmoji` | Required. `yes` or `no` (any other value, including empty, is an error). |
 
@@ -34,8 +34,9 @@ $addEmoji[name;url;returnEmoji]
 
 ## Behavior
 
-- The emoji is created without any role restriction.
-- Errors are raised (they are not returned as text) if the name is empty, the URL is not http/https, the image exceeds 256 KiB, the download fails, or the bot is not allowed to create the emoji.
+- The emoji is created in the current server without any role restriction. The bot needs the Create Guild Expressions permission (otherwise "Missing Create Guild Expressions permission."), and the command needs a server context.
+- The image is downloaded with a GET request. Accepted formats (detected from the file content): PNG, JPEG, GIF, WebP and AVIF; any other content raises "Unsupported emoji image format.".
+- Errors are raised (they are not returned as text) if the name is empty, the URL is not http/https, the download does not answer with a 2xx status, the image exceeds 256 KiB, the format is not supported, or the bot is not allowed to create the emoji.
 
 ## Examples
 
@@ -56,4 +57,4 @@ $sendMessage[Emoji added.]
 ## Notes
 
 - The URL must point directly to an image.
-- The server has an emoji limit according to its boost level.
+- The `yes` / `no` flag is case-insensitive and surrounding spaces are ignored; use `$removeEmoji[]` to delete an emoji by its ID.

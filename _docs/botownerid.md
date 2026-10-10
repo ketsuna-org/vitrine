@@ -61,7 +61,7 @@ $if[$authorID!=$botOwnerID]
   $stop
 $endif
 
-;; Code reserved for the owner
+$c[Code reserved for the owner]
 $sendMessage[✅ Owner command executed.]
 ```
 

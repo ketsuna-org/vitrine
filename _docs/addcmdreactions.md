@@ -34,7 +34,9 @@ Returns an empty string. The reactions are added immediately to the command mess
 ## Behavior
 
 - Unlike `$addReactions[]`, which waits for the bot's response to be sent, this function targets the **trigger** message (the user's message) at the moment it runs.
-- If the channel or message ID is not available in the execution context, the call fails with an invalid-ID error.
+- If the channel or message ID is not available in the execution context, the call fails with an invalid-ID error ("Invalid Discord ID.").
+- The bot needs the Read Message History permission in the channel, and Add Reactions when at least one of the emojis is not already on the message; otherwise the call fails with "Missing channel permissions for reactions.". An emoji that is already present on the message is not added again.
+- Emojis are validated before anything is added, then added one by one in the given order.
 - Useful for giving quick visual feedback without sending a message.
 
 ## Examples
@@ -43,7 +45,6 @@ Returns an empty string. The reactions are added immediately to the command mess
 
 ```bdfd
 $addCmdReactions[✅]
-$suppressErrors[Action completed.]
 ```
 
 ### Conditional feedback

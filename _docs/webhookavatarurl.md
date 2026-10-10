@@ -33,7 +33,7 @@ An empty string.
 
 ## Behavior
 
-- The image is downloaded by the bot when the function runs, then set as the webhook avatar. The download fails if the response is not HTTP 200 or if the image exceeds 8 MiB.
+- The image is downloaded by the bot when the function runs, then set as the webhook avatar. The download fails if the response is not HTTP 200, if the image exceeds 8 MiB, or if its content type is not PNG, JPEG, GIF or WEBP.
 - The avatar stays until changed again; it is not reset after a send.
 
 ## Examples

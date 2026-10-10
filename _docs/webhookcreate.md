@@ -22,22 +22,22 @@ $webhookCreate[channelID;name;(avatarURL)]
 
 | Parameter | Description |
 |---|---|
-| `channelID` | The ID of the channel where the webhook will be created. |
-| `name` | The name of the webhook (2 to 80 characters). |
-| `avatarURL` | Optional - URL of the avatar image of the webhook. |
+| `channelID` | Required. The ID of the channel where the webhook will be created (digits only, greater than 0, otherwise the error `Invalid channel ID.` is raised). It must be a server channel and not a thread. |
+| `name` | Required. The name of the webhook (2 to 80 characters, otherwise `Webhook name must contain 2–80 characters.` is raised). |
+| `avatarURL` | Optional - `http` or `https` URL of the avatar image of the webhook (otherwise `An HTTP(S) URL is required.`). |
 
 ## Return Value
 
 - **Type**: String (URL)
 - The complete URL of the webhook in the format `https://discord.com/api/webhooks/ID/TOKEN`
-- Empty string or error if the bot does not have the `MANAGE_WEBHOOKS` permission.
+- An error is raised (nothing is returned) if the bot does not have the Manage Webhooks permission in the channel: `Manage Webhooks permission is required.`
 
 ## Behavior
 
-- Requires the `MANAGE_WEBHOOKS` permission in the target channel.
-- The name must be between 2 and 80 characters.
-- The avatar must be a valid URL pointing to an image (PNG, JPG, GIF, WEBP).
-- A channel can have up to 10 webhooks (or 100 for community-enabled servers).
+- Requires the Manage Webhooks permission for the bot in the target channel.
+- The channel must be a server channel and not a thread (`Webhook creation requires a guild channel.`).
+- The avatar is downloaded by the bot when the function runs; it must be an image of type PNG, JPEG, GIF or WEBP, answered with HTTP 200 and at most 8 MiB, otherwise an error is raised.
+- If Discord does not return a usable token for the new webhook, the error `Created webhook has no usable token.` is raised.
 
 ## Examples
 
@@ -45,11 +45,7 @@ $webhookCreate[channelID;name;(avatarURL)]
 
 ```bdfd
 $var[hook;$webhookCreate[$channelID;Server Logger]]
-$if[$var[hook]!=]
-  $webhookSend[$var[hook];Webhook for logs created successfully!]
-$else
-  $sendMessage[Failure: MANAGE_WEBHOOKS permission required.]
-$endif
+$webhookSend[$var[hook];Webhook for logs created successfully!]
 ```
 
 ### Creation with storage
@@ -62,6 +58,6 @@ $sendMessage[Webhook of logs configured!]
 
 ## Notes
 
-- Webhooks created by the bot are linked to the bot.
-- A webhook cannot be moved to another channel after creation.
+- A failure (missing permission, invalid argument, Discord error) stops the script with an error instead of returning an empty value.
 - Delete unused webhooks with `$webhookDelete[]`.
+- The webhook URL contains its token: do not expose it publicly.

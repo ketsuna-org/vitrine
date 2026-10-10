@@ -5,12 +5,12 @@ translation_key: docs
 category: "Entity Info"
 function_name: commandsCount
 syntax: $commandsCount
-description: Returns the total number of commands (prefix + slash) of the bot.
+description: Returns the number of commands stored for the bot (all trigger types).
 ---
 
 # $commandsCount
 
-The `$commandsCount` function **returns the total number of commands** registered for the bot, including both prefix and slash commands.
+The `$commandsCount` function **returns the number of commands stored for the bot**, whatever their trigger type (prefix, slash, hybrid...).
 
 ## Syntax
 
@@ -20,7 +20,7 @@ $commandsCount
 
 ## Parameters
 
-None.
+None (passing one is an error).
 
 ## Return value
 
@@ -29,9 +29,8 @@ None.
 
 ## Behavior
 
-- Counts all commands, whether they are prefix or slash.
-- Updates automatically when commands are added or deleted.
-- Includes commands in all folders.
+- Counts every stored command of the bot, whatever its trigger type, in all folders.
+- The list is read again from the bot's store each time the function runs, so it reflects added or deleted commands.
 
 ## Examples
 
@@ -42,7 +41,6 @@ $title[🤖 $botName]
 $addField[📊 Statistics;;yes]
 $addField[Total commands;$commandsCount;yes]
 $addField[Slash;$slashCommandsCount;yes]
-$addField[Prefix;$calculate[$commandsCount-$slashCommandsCount];yes]
 $thumbnail[$userAvatar[$botID]]
 $color[#5865F2]
 ```
@@ -69,24 +67,8 @@ The bot now has **$commandsCount commands**!
 Type `/help` to discover them.]
 ```
 
-### Command limit (premium)
-
-```bdfd
-$if[$premiumExpireTime==]
-  $if[$commandsCount>=50]
-    $sendMessage[⚠️ Limit of 50 commands reached (free version).
-    Upgrade to premium to unlock more commands.]
-  $else
-    $sendMessage[📊 $commandsCount/50 commands used.]
-  $endif
-$else
-  $sendMessage[💎 $commandsCount commands (Premium - unlimited).]
-$endif
-```
-
 ## Notes
 
-- Includes all commands (prefix AND slash).
-- For slash commands only, use `$slashCommandsCount`.
+- Includes all commands stored for the bot.
+- `$slashCommandsCount` is a different count: it is the number of global chat-input (slash) commands that Discord lists for the application, so the two numbers are not related by a subtraction.
 - To get the list of names, use `$botCommands`.
-- The limit varies depending on the subscription (free/premium).

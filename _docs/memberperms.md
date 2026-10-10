@@ -26,7 +26,7 @@ Up to three arguments are accepted but all are ignored: the result never depends
 
 - **Type** : String
 - The text of the `member.permissions` context variable, or else of `author.permissions`; an empty string if the host supplied neither.
-- When the bot runner builds the variable, it is a list of lowercase permission names separated by commas without spaces (for example `addreactions,administrator`), computed from the roles of the member (including `@everyone`), without channel overrides; an administrator or the server owner gets every name.
+- When the bot runner builds the variable, it is a list of lowercase permission names separated by commas without spaces (for example `addreactions,administrator`), computed by the runner from the roles of the member (including `@everyone`); an administrator or the server owner gets every name. Whether channel-specific overrides are included is not defined by the engine.
 
 ## Behavior
 

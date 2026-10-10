@@ -36,7 +36,7 @@ The text of the `bot.ping` context variable, or `0` when that variable is absent
 
 ```bdfd
 $title[🏓 Pong!]
-$description[WebSocket latency: **$ping ms**]
+$description[Latency: **$ping ms**]
 $color[#5865F2]
 $footer[🤖 $username]
 ```

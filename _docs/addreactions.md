@@ -34,6 +34,7 @@ Returns an empty string. The emojis are only queued: they are added once the res
 ## Behavior
 
 - The reactions target the message that the bot sends as the command response.
+- The bot needs the Read Message History permission in the channel, and Add Reactions when an emoji is not already on the message ("Missing channel permissions for reactions.").
 - If the sent response has no usable channel/message ID, the call fails with an error.
 - If no reaction service is configured, the call fails with "No reaction service configured".
 
