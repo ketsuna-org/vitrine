@@ -5,7 +5,7 @@ translation_key: docs
 category: "Components & Interactions"
 function_name: getMentionableSelectUserID
 syntax: $getMentionableSelectUserID[(index)]
-description: Gets the ID of the mentionable entity (user or role) selected via a mentionable select menu.
+description: Gets one selected ID of the mentionable select menu that triggered the interaction. When users are selected, only user IDs are returned.
 ---
 
 # $getMentionableSelectUserID

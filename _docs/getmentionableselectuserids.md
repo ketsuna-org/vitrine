@@ -5,7 +5,7 @@ translation_key: docs
 category: "Components & Interactions"
 function_name: getMentionableSelectUserIDs
 syntax: $getMentionableSelectUserIDs[(separator)]
-description: Gets all mentionable entity IDs (users and roles) selected via a multi-select mentionable menu.
+description: Gets all the IDs selected in a mentionable select menu, joined by a separator. When users are selected, only user IDs are returned.
 ---
 
 # $getMentionableSelectUserIDs

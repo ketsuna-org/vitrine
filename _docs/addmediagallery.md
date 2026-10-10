@@ -5,7 +5,7 @@ translation_key: docs
 category: "Components & Interactions"
 function_name: addMediaGallery
 syntax: $addMediaGallery[(id);(containerId)]
-description: Creates a media gallery in a message. The gallery groups multiple media elements (images) that can be browsed by the user.
+description: Starts a Components V2 media gallery. Images are added with $addMediaGalleryItem[].
 ---
 
 # $addMediaGallery[] — Media Gallery
