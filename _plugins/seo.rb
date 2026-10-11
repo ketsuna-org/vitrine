@@ -76,7 +76,7 @@ module Vitrine
         category = Vitrine::Seo.slugify(post.data['category'] || post.data['categories']&.first || 'guides')
         slug = Vitrine::Seo.slugify(post.basename_without_ext.sub(/\A\d{4}-\d{2}-\d{2}-/, ''))
         date = post.date
-        post.data['permalink'] = format('/%s/%04d/%02d/%02d/%s.html', category, date.year, date.month, date.day, slug)
+        post.data['permalink'] = format('/%s/%04d/%02d/%02d/%s/', category, date.year, date.month, date.day, slug)
         post.instance_variable_set(:@url, nil)
       end
     end
