@@ -462,6 +462,45 @@ const initSite = () => {
     });
   });
 
+  // Scroll-spy: mark the section currently being read in every "on this page" list.
+  const spyLists = [...document.querySelectorAll('[data-spy-nav], [data-document-toc]')];
+  const spyTargets = [];
+  spyLists.forEach(nav => {
+    nav.querySelectorAll('a[href^="#"]').forEach(link => {
+      const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+      if (target) spyTargets.push({ link, target });
+    });
+  });
+  if (spyTargets.length) {
+    const headerHeight = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 56;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const line = headerHeight() + 32;
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      const ordered = spyTargets.slice().sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+      let current = null;
+      for (const entry of ordered) { if (entry.target.getBoundingClientRect().top <= line) current = entry; }
+      if (atBottom) current = ordered.at(-1);
+      spyTargets.forEach(({ link }) => {
+        const on = !!current && link.hash === current.link.hash;
+        if (on) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+        if (on && link.offsetParent) {
+          const scroller = link.closest('[data-spy-nav], .docs-toc-rail, .toc-sheet-body > [data-cscroll]');
+          if (scroller && scroller.scrollHeight > scroller.clientHeight) {
+            const box = scroller.getBoundingClientRect(), item = link.getBoundingClientRect();
+            if (item.top < box.top + 8 || item.bottom > box.bottom - 8) scroller.scrollTop += item.top - box.top - box.height / 3;
+          }
+        }
+      });
+    };
+    const schedule = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    window.addEventListener('hashchange', schedule);
+    update();
+  }
+
   document.querySelectorAll('[data-copy]').forEach(button => {
     const label = button.querySelector('span') || button;
     const initialLabel = label.textContent.trim();

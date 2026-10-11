@@ -32,31 +32,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setGroup(button, !list.classList.contains('hidden'));
     button.addEventListener('click', () => setGroup(button, list.classList.contains('hidden')));
   });
-  const searchInput = sidebar.querySelector('#sidebar-search-input');
-  if (!searchInput) return;
-  const items = [...sidebar.querySelectorAll('.sidebar-item')];
-  let savedGroups = null;
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
-    if (query && !savedGroups) savedGroups = new Map(buttons.map(button => [button, button.getAttribute('aria-expanded') === 'true']));
-    items.forEach(item => {
-      const term = item.dataset.searchTerm || item.textContent;
-      item.closest('li').style.display = !query || term.toLowerCase().includes(query) ? '' : 'none';
-    });
-    buttons.forEach(button => {
-      const list = document.getElementById(button.dataset.toggleTarget);
-      const group = button.closest('.sidebar-cat-group');
-      if (!list) return;
-      if (query) {
-        const visible = [...list.querySelectorAll('li')].some(item => item.style.display !== 'none');
-        if (group) group.style.display = visible ? '' : 'none';
-        setGroup(button, visible);
-      } else {
-        if (group) group.style.display = '';
-        if (savedGroups) setGroup(button, savedGroups.get(button));
-      }
-    });
-    if (!query) savedGroups = null;
-  });
 });
 </script>

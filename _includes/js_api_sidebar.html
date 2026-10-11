@@ -1,11 +1,7 @@
 {% assign nav = site.data.docs_nav.javascript_api %}
 
 <div class="flex flex-col gap-6">
-  <div class="relative flex items-center bg-surface-container border border-outline-variant rounded-lg p-1.5 focus-within:border-primary transition-all">
-    <svg class="reicon text-on-surface-variant ml-2 mr-1.5 text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#search"></use></svg>
-    <input type="text" id="sidebar-search-input" aria-label="Search JavaScript API navigation" placeholder="Search JavaScript API..."
-      class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-on-surface-variant pr-2 text-sm py-1">
-  </div>
+  {% include docs_search.html %}
 
   <div class="sidebar-group">
     <div class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2 px-2 py-1 flex items-center gap-2">
