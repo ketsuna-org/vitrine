@@ -59,6 +59,29 @@ collections:
     output: true
     permalink: /docs/:path/
 
+defaults:
+  # Default social preview image (1200x630); a page can override it with its own `image:`.
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/og-default.png
+  # Documentation pages are reference articles, not blog posts.
+  - scope:
+      path: ""
+      type: docs
+    values:
+      seo:
+        type: TechArticle
+  # Not for search engines (also disallowed in robots.txt): keep them out of the sitemap.
+  - scope:
+      path: "admin"
+    values:
+      sitemap: false
+  - scope:
+      path: "oauth"
+    values:
+      sitemap: false
+
 include:
   - .well-known
   - _redirects
