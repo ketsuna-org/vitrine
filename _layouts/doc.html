@@ -12,7 +12,7 @@ layout: with-sidebar
   not repeated, and use the first paragraph as the lead instead of repeating the description.
 {% endcomment %}
 {% assign body_html = content %}
-{% assign display_title = page.title %}
+{% assign display_title = page.display_title | default: page.title %}
 {% assign lead_html = '' %}
 {% assign body_lead = body_html | strip | slice: 0, 3 %}
 {% if body_lead == '<h1' %}
