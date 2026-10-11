@@ -67,6 +67,7 @@ With two or three arguments, `$if[condition;then;else]` is a regular function: i
 ## Common Pitfalls
 
 - Forgetting `$endif` causes a parse error ("Missing $endif.").
+- The block form `$if[condition]...$endif` only works at the top level of the script. Written inside the brackets of another function, as in `$description[Total $if[$var[n]>0]...$endif]`, it fails with `Invalid argument count for $if: 1.`. Use the inline form `$if[condition;then;else]` there (no `$endif`), or put the whole function in each branch of a top-level `$if`.
 - Using `=` instead of `==` for equality — BDFD requires double equals.
 - A non-numeric value on either side makes the comparison textual (`10` vs `9abc` is compared as text).
 - A condition without a comparison operator (other than `true` / `false`) is an error.

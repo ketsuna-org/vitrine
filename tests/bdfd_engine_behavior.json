@@ -526,5 +526,37 @@
   "page": "min",
   "src": "$min[5.5;2]",
   "error": "BDFD L1:1 $min: Expected an integer in argument 1."
+ },
+ {
+  "page": "if-else",
+  "src": "$var[n;5]$description[Total $if[$var[n]>0]plus$endif]",
+  "error": "BDFD L1:29 $if: Invalid argument count for $if: 1.",
+  "mention": "Invalid argument count for $if: 1."
+ },
+ {
+  "page": "if-else",
+  "src": "$var[n;5]$description[Total $if[$var[n]>0; ($var[n]);]]",
+  "out": ""
+ },
+ {
+  "page": "sendmessage",
+  "src": "$sendMessage[hello;$channelID]",
+  "error": "BDFD L1:1 $sendMessage: Return message ID must be yes or no.",
+  "mention": "`yes`/`no`"
+ },
+ {
+  "page": "sendmessage",
+  "src": "$sendMessage[hello;yes]",
+  "out": "1"
+ },
+ {
+  "page": "channelsendmessage",
+  "src": "$channelSendMessage[30;;true]",
+  "error": "BDFD L1:1 $channelSendMessage: Channel and content are required."
+ },
+ {
+  "page": "sum",
+  "src": "$sum[5;]",
+  "error": "BDFD L1:1 $sum: Expected a finite number in argument 2."
  }
 ]
