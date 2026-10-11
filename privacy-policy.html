@@ -25,6 +25,14 @@ content_language: en
     </header>
 
     <div class="space-y-12">
+      <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant" id="documentation-plugin">
+        <h2 class="text-2xl font-bold text-on-surface mb-6">ChatGPT and Codex documentation plugin</h2>
+        <p>The public documentation plugin at <code>bot-creator.fr/api/mcp</code> does not require a Bot Creator account and does not access bots, Discord tokens, payments or private account data. It receives the arguments sent in documentation tool calls (for example a search query, command intent or proposed Blocks action list), along with technical request data processed by Cloudflare, including IP address, requested URL and user agent. Do not submit secrets or sensitive personal data.</p>
+        <p>Tool arguments are processed to search, read or validate public documentation. The MCP implementation does not save conversations or tool-call arguments in a Bot Creator application database. Cloudflare processes technical logs under its own hosting policy; no additional fixed retention period for these provider logs is promised here. Public documentation may be cached; this is not a cache of your private account or bot state.</p>
+        <p>These operations provide the requested documentation service; technical security processing protects its availability. ChatGPT and Codex separately process your conversations under OpenAI’s own terms and privacy policies. This plugin does not retrieve your OpenAI account or entire conversation history. Sending a support email shares the information you include with the publisher for handling your request.</p>
+        <p>Jeremy SOLER is the publisher and contact for requests concerning Bot Creator processing: <a href="mailto:contact@bot-creator.fr">contact@bot-creator.fr</a>. The controller details, service providers, international transfer information and available privacy rights are described elsewhere on this page. See also <a href="/plugin-support.html">plugin support</a> and <a href="/plugin-terms.html">plugin terms of use</a>.</p>
+      </article>
+
       <article class="p-8 md:p-12 rounded-[2rem] bg-surface-container border border-outline-variant transition-all hover:border-primary/30" data-reveal id="controller">
         <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Who we are</p>
         <h2 class="text-2xl font-bold text-on-surface mb-6 leading-tight">The data controller is Jeremy SOLER, sole trader in France.</h2>
