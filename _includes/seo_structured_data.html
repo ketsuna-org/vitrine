@@ -1,0 +1,59 @@
+{% comment %}
+  Structured data not produced by jekyll-seo-tag: Organization and SoftwareApplication on the home page,
+  BreadcrumbList on documentation and guide pages. Only facts that exist elsewhere on the site
+  (store links in _data/downloads.yml, site title/description in _config.yml).
+{% endcomment %}
+{% if page.url == '/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ '/#organization' | absolute_url }}",
+      "name": "{{ site.title | escape }}",
+      "url": "{{ '/' | absolute_url }}",
+      "logo": "{{ '/assets/icon.png' | absolute_url }}",
+      "email": "{{ site.email }}",
+      "sameAs": ["https://github.com/{{ site.github_username }}"]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "{{ '/#app' | absolute_url }}",
+      "name": "{{ site.title | escape }}",
+      "description": "{{ site.description | strip_newlines | strip | escape }}",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Android, iOS, Windows",
+      "url": "{{ '/' | absolute_url }}",
+      "downloadUrl": "{{ '/download/' | absolute_url }}",
+      "image": "{{ '/assets/icon.png' | absolute_url }}",
+      "publisher": { "@id": "{{ '/#organization' | absolute_url }}" }
+    }
+  ]
+}
+</script>
+{% elsif page.collection == 'docs' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "{{ site.title | escape }}", "item": "{{ '/' | absolute_url }}" },
+    { "@type": "ListItem", "position": 2, "name": "Documentation", "item": "{{ '/docs/' | absolute_url }}" },
+    { "@type": "ListItem", "position": 3, "name": {{ page.seo_name | default: page.display_title | default: page.title | strip_html | jsonify }} }
+  ]
+}
+</script>
+{% elsif page.layout == 'post' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "{{ site.title | escape }}", "item": "{{ '/' | absolute_url }}" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "{{ '/blog/' | absolute_url }}" },
+    { "@type": "ListItem", "position": 3, "name": {{ page.title | strip_html | jsonify }} }
+  ]
+}
+</script>
+{% endif %}

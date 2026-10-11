@@ -36,5 +36,20 @@
 /advanced-topics/2026/05/30/maitriser-les-variables-de-base-de-donnees-persistantes-en-bdfd.html	/advanced-topics/2026/05/30/mastering-persistent-database-variables-in-bdfd.html	301
 /advanced-topics/2026/05/30/maitriser-les-variables-de-base-de-donnees-persistantes-en-bdfd.html/	/advanced-topics/2026/05/30/mastering-persistent-database-variables-in-bdfd.html	301
 
+# Legacy post URLs (raw category in the path)
+/getting%20started/2025/05/18/how-to-create-a-bot-token-bot-creator.html	/getting-started/2025/05/18/how-to-create-a-bot-token-bot-creator.html	301
+/getting%20started/2026/03/12/how-to-create-a-command-in-bot-creator-step-by-step.html	/getting-started/2026/03/12/how-to-create-a-command-in-bot-creator-step-by-step.html	301
+/reference%20&%20deployment/2026/05/22/available-variables-per-event-exhaustive.html	/reference-deployment/2026/05/22/available-variables-per-event-exhaustive.html	301
+/building%20commands/2026/05/23/for-loop-structures-in-bdfd-bot-designer-for-discord.html	/building-commands/2026/05/23/for-loop-structures-in-bdfd-bot-designer-for-discord.html	301
+/building%20commands/2026/05/23/handling-rich-interactions-in-bot-creator-buttons-select-menus-modals.html	/building-commands/2026/05/23/handling-rich-interactions-in-bot-creator-buttons-select-menus-modals.html	301
+/building%20commands/2026/05/23/modular-commands-callworkflow-workflowresponse-in-bdfd.html	/building-commands/2026/05/23/modular-commands-callworkflow-workflowresponse-in-bdfd.html	301
+/advanced%20topics/2026/05/30/advanced-user-targeting-and-mentions-in-bdfd.html	/advanced-topics/2026/05/30/advanced-user-targeting-and-mentions-in-bdfd.html	301
+/building%20commands/2026/05/30/building-interactive-buttons-and-select-menus-in-bdfd.html	/building-commands/2026/05/30/building-interactive-buttons-and-select-menus-in-bdfd.html	301
+/building%20commands/2026/05/30/designing-stunning-discord-embeds-in-bdfd.html	/building-commands/2026/05/30/designing-stunning-discord-embeds-in-bdfd.html	301
+/advanced%20topics/2026/05/30/how-to-build-a-moderation-warn-system-in-bdfd.html	/advanced-topics/2026/05/30/how-to-build-a-moderation-warn-system-in-bdfd.html	301
+/getting%20started/2026/05/30/how-to-create-a-perfect-ping-command-in-bdfd.html	/getting-started/2026/05/30/how-to-create-a-perfect-ping-command-in-bdfd.html	301
+/advanced%20topics/2026/05/30/mastering-persistent-database-variables-in-bdfd.html	/advanced-topics/2026/05/30/mastering-persistent-database-variables-in-bdfd.html	301
+/advanced%20topics/2026/06/11/image-creation-canvas-functions-in-bdfd.html	/advanced-topics/2026/06/11/image-creation-canvas-functions-in-bdfd.html	301
+
 # Catch-all for any remaining /fr paths
 /fr/*	/	301
