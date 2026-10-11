@@ -85,6 +85,7 @@ defaults:
 include:
   - .well-known
   - _redirects
+  - _headers
 
 # Exclude from processing.
 # The following items will not be processed, by default.
