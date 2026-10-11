@@ -97,19 +97,7 @@
 .markdown-body h2:hover .anchor, .markdown-body h3:hover .anchor, .markdown-body h4:hover .anchor, .markdown-body .anchor:focus { opacity: 1; }
 .markdown-body .anchor:hover { color: var(--accent-500); }
 
-/* Table of contents rendered by jekyll-toc */
-.toc-content ul { list-style: none; margin: 0; padding: 0; }
-.toc-content ul ul { padding-left: .85rem; margin-top: .15rem; }
-.toc-content li { margin: 0; }
-.toc-content a {
-  display: block;
-  padding: .3rem 0;
-  color: var(--text-200);
-  font-size: .875rem;
-  line-height: 1.4;
-  text-decoration: none;
-}
-.toc-content a:hover, .toc-content a:focus { color: var(--accent-500); }
+/* Table of contents rendered by jekyll-toc: styled in main.css (.toc-content). */
 
 @media (max-width: 639px) {
   .markdown-body { font-size: 1rem; line-height: 1.7; }

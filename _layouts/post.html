@@ -48,13 +48,13 @@ layout: with-sidebar
     </footer>
   </article>
 
-  <aside class="hidden w-60 flex-none xl:block" aria-label="{{ t.guides.toc }}">
+  <aside class="hidden w-60 flex-none self-stretch xl:block" aria-label="{{ t.guides.toc }}">
     <div class="docs-toc-rail">
       {% if page.toc %}
       <h2 class="mb-2 text-xs font-medium uppercase tracking-wider text-on-surface-variant">{{ t.guides.toc }}</h2>
-      <div class="toc-content">{{ content | toc_only }}</div>
+      <div class="toc-content" data-spy-nav>{{ content | toc_only }}</div>
       {% endif %}
-      <div class="mt-8 border-t border-outline-variant pt-4">
+      <div class="docs-help-card">
         <p class="m-0 mb-2 text-sm text-on-surface-variant">{{ t.guides.sidebar_help_body }}</p>
         <a href="https://discord.gg/K37nuphaDP" class="text-sm font-medium text-primary" target="_blank" rel="noopener noreferrer">{{ t.guides.sidebar_help_cta }}</a>
       </div>

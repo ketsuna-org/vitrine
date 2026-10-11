@@ -124,11 +124,11 @@ layout: with-sidebar
     {% endif %}
   </article>
 
-  <aside class="hidden w-56 flex-none xl:block" aria-label="On this page">
+  <aside class="hidden w-56 flex-none self-stretch xl:block" aria-label="On this page">
     <div class="docs-toc-rail">
       <h2 class="mb-2 text-xs font-medium uppercase tracking-wider text-on-surface-variant">On this page</h2>
-      <nav data-document-toc aria-label="On this page" class="flex flex-col gap-0.5 text-sm"></nav>
-      <div class="mt-8 border-t border-outline-variant pt-4">
+      <nav data-document-toc data-spy-nav aria-label="On this page" class="docs-toc-list"></nav>
+      <div class="docs-help-card">
         <p class="m-0 mb-2 text-sm text-on-surface-variant">{{ t.guides.sidebar_help_body }}</p>
         <a href="https://discord.gg/K37nuphaDP" class="text-sm font-medium text-primary" target="_blank" rel="noopener noreferrer">{{ t.guides.sidebar_help_cta }}</a>
       </div>
