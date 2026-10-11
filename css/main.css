@@ -476,3 +476,6 @@ html.cs .cs-host > *::-webkit-scrollbar {
   cursor: pointer;
 }
 #zaraz-consent-modal button:hover, dialog.cf_modal button:hover, .cf_modal button:hover { filter: brightness(1.1); }
+
+/* Legal pages: highlight the card an anchor link points to */
+article[id]:target { border-color: var(--primary); }
