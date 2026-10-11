@@ -66,7 +66,7 @@ test('golden intents select the expected functions in a compact answer', () => {
     const got = fnsOf(r);
     for (const fn of expected) assert.ok(got.includes(fn), `"${intent}": expected ${fn} in ${got.join(' ')}`);
     assert.equal(r.decision, decision, `"${intent}" decision (confidence ${r.confidence})`);
-    assert.ok(JSON.stringify(r).length < 2600, `"${intent}": answer too large (${JSON.stringify(r).length} chars)`);
+    assert.ok(JSON.stringify(r).length < 2900, `"${intent}": answer too large (${JSON.stringify(r).length} chars)`);
     assert.ok(r.functions.length <= 10);
   }
 });
@@ -97,7 +97,7 @@ test('plan_solution is exposed over MCP and answers in one small call', async ()
     const answer = JSON.parse(result.content[0].text);
     assert.equal(answer.decision, 'auto');
     assert.ok(answer.skeleton.includes('$ping'));
-    assert.ok(result.content[0].text.length < 1500);
+    assert.ok(result.content[0].text.length < 1800);
     const bad = await onRequestPost({ request: new Request('https://bot-creator.fr/api/mcp', { method: 'POST', body: JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'tools/call', params: { name: 'plan_solution', arguments: { intent: '' } } }) }) });
     assert.equal((await bad.json()).result.isError, true);
   } finally { globalThis.fetch = original; }
@@ -136,4 +136,14 @@ test('search_docs over MCP never answers "No docs matched" when a word has a clo
     assert.ok((near.results ?? near.suggestions).length > 0, 'a query with no full match must still return suggestions');
     assert.ok(JSON.stringify(hit).length < 1500, 'results stay compact');
   } finally { globalThis.fetch = original; }
+});
+
+test('the BDFD plan carries the engine-verified pitfalls models kept running into', () => {
+  const index = buildIndex({ docs: [], manifest: { modes: { bdfd: {}, blocks: {} } } });
+  const bdfd = plan(index, { intent: 'quelque chose', mode: 'bdfd' }).gotchas.join(' ');
+  assert.match(bdfd, /\$if\[cond;then;else\]/);
+  assert.match(bdfd, /top-level only/);
+  assert.match(bdfd, /\$sendMessage\[text;yes\]/);
+  const blocks = plan(index, { intent: 'quelque chose', mode: 'blocks' }).gotchas.join(' ');
+  assert.match(blocks, /numberValue/);
 });

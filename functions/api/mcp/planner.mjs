@@ -249,8 +249,8 @@ function matchRecipes(base, mode) {
 }
 
 const GLOBAL_GOTCHAS = {
-  bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply.",
-  blocks: "Blocks are {type,key?,payload}. To reuse a result, set `key` ON THE ACTION, not in payload ({\"type\":\"calculate\",\"key\":\"total\",\"payload\":{…}} then ((action.total))); without a key it is action_<position>. Validate with docs_validate_actions.",
+  bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply. A condition inside another function's brackets, e.g. $description[...], must be inline $if[cond;then;else]; block $if...$endif is top-level only. $sendMessage[text;yes] returns the message ID (2nd arg is yes/no only).",
+  blocks: "Blocks are {type,key?,payload}. To reuse a result, set `key` ON THE ACTION, not in payload ({\"type\":\"calculate\",\"key\":\"total\",\"payload\":{…}} then ((action.total))); without a key it is action_<position>. Validate with docs_validate_actions. valueType \"number\" needs a numeric numberValue: an empty optional ((opts.x)) fails at run time, so store it as a string or guard it with ifBlock.",
 };
 
 /**
