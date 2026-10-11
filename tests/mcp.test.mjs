@@ -217,3 +217,14 @@ test('get_doc accepts the $name spelling of a function slug', async () => {
     }
   });
 });
+
+test('every tool exposes explicit boolean readOnlyHint, destructiveHint and openWorldHint', async () => {
+  const catalog = (await rpc('tools/list')).result.tools;
+  assert.equal(catalog.length, 9);
+  for (const tool of catalog) {
+    for (const key of ['readOnlyHint', 'destructiveHint', 'openWorldHint']) {
+      assert.equal(typeof tool.annotations?.[key], 'boolean', `${tool.name}.annotations.${key} must be a boolean`);
+    }
+    assert.deepEqual(tool.annotations, { readOnlyHint: true, destructiveHint: false, openWorldHint: false }, `${tool.name} is read-only`);
+  }
+});
