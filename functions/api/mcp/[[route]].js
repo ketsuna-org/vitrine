@@ -245,6 +245,7 @@ const TOOLS_META = [
       properties: {
         query: { type: "string", description: "Search term (matched case-insensitively against name, slug, category)." },
         api_type: { type: "string", enum: ["blocks", "bdfd", "javascript", "general"], description: "Filter documentation by execution mode." },
+        mode: { type: "string", enum: ["blocks", "bdfd", "javascript", "general"], description: "Alias of api_type: pass the mode of the command being written so pages of the other modes are left out." },
         limit: { type: "integer", description: "Max results (default 8).", default: 8, minimum: 1, maximum: 100 },
       },
       required: ["query"],
@@ -254,11 +255,12 @@ const TOOLS_META = [
     name: "get_doc",
     annotations: READ_ONLY_ANNOTATIONS,
     description:
-      "Read documentation or schema by slug/action name. By default (full_markdown=false), returns the ultra-compact JSON type definition { desc, params } to save tokens and prevent hallucinations. Set full_markdown=true only if you explicitly need the full human guide/examples.",
+      "Read documentation or schema by slug/action name. By default (full_markdown=false), returns the ultra-compact JSON type definition { desc, params } to save tokens and prevent hallucinations. Set full_markdown=true only if you explicitly need the full human guide/examples. A few names exist both as a BDFD function and as a Blocks action (sendMessage, wait, stop...): pass mode to choose; without mode, a lowercase slug or a $name gives the BDFD function and a camelCase slug gives the Blocks action, and the other one is listed under also_in.",
     inputSchema: {
       type: "object",
       properties: {
         slug: { type: "string", description: "Doc slug or block action name (e.g. 'sendMessage', 'banUser', 'sendmessage', 'execution-model')." },
+        mode: { type: "string", enum: ["blocks", "bdfd", "javascript"], description: "Which kind of page to read when a name exists in several modes. Use the mode of the command being written." },
         full_markdown: {
           type: "boolean",
           description: "If true, returns the raw Markdown documentation. Default is false (returns compact type schema).",
@@ -830,7 +832,8 @@ function compactDoc(d) {
   };
 }
 
-async function toolSearchDocs({ query, limit, api_type }) {
+async function toolSearchDocs({ query, limit, api_type, mode }) {
+  api_type = api_type || mode;
   const lim = clampLimit(limit, 8);
   if (!normalize(query)) throw new Error("`query` is required");
   if (api_type && !["blocks", "bdfd", "javascript", "general"].includes(api_type)) throw new Error("Invalid api_type");
@@ -849,10 +852,40 @@ async function toolSearchDocs({ query, limit, api_type }) {
   );
 }
 
-async function toolGetDoc({ slug, full_markdown = false }) {
+const DOC_MODES = ["blocks", "bdfd", "javascript"];
+
+// Names that exist as both a BDFD function and a Blocks action (sendMessage, wait, stop...). The manifest is
+// searched mode by mode, so the mode decides which one is read. Without a mode, "$name" and an all-lowercase
+// slug (what search_docs returns) mean the BDFD function; a camelCase slug is the Blocks action's own spelling.
+function docModeOrder(slug, mode) {
+  if (mode) return [mode];
+  const bdfdFirst = slug.startsWith("$") || slug === slug.toLowerCase();
+  return bdfdFirst ? ["bdfd", "blocks", "javascript"] : ["blocks", "bdfd", "javascript"];
+}
+
+function findManifestEntry(manifest, mode, slug, doc) {
+  const entries = Object.entries(manifest.modes?.[mode] || {});
+  if (mode === "blocks") {
+    const hit = entries.find(([key]) => normalize(key) === normalize(slug));
+    return hit && { type: hit[0], ...hit[1] };
+  }
+  if (mode === "bdfd") {
+    const hit = entries.find(([key]) => normalize(key) === normalize(slug) || normalize(key) === normalize(`$${slug}`));
+    return hit && { name: hit[0], ...hit[1] };
+  }
+  // The JavaScript manifest entry is only a 2-line stub ({module, desc, category, slug}); when a documentation page
+  // exists, fall through to its markdown so the model gets the real API instead of a dead end.
+  if (doc && (doc.api_type || "bdfd") === "javascript") return undefined;
+  const hit = entries.find(([key, val]) => normalize(key) === normalize(slug) || normalize(val.slug) === normalize(slug));
+  return hit && { module: hit[0], ...hit[1] };
+}
+
+async function toolGetDoc({ slug, full_markdown = false, mode, api_type }) {
   if (!slug || typeof slug !== "string") throw new Error("`slug` is required");
   // Defensive: only allow simple slugs and identifiers.
   if (!/^[a-z0-9_$-]+$/i.test(slug)) throw new Error("Invalid slug");
+  mode = mode || api_type;
+  if (mode && !DOC_MODES.includes(mode)) throw new Error("Invalid mode");
 
   const docs = await fetchDocsIndex();
   // Models pass "$getMessageVar" as often as the slug "getmessagevar".
@@ -868,28 +901,19 @@ async function toolGetDoc({ slug, full_markdown = false }) {
     }
 
     if (manifest?.modes) {
-      // 1. Match Blocks action
-      for (const [key, val] of Object.entries(manifest.modes.blocks || {})) {
-        if (normalize(key) === normalize(slug)) {
-          return toolText(JSON.stringify({ type: key, ...val }));
-        }
+      const hits = docModeOrder(slug, mode)
+        .map((m) => [m, findManifestEntry(manifest, m, slug, doc)])
+        .filter(([, entry]) => entry);
+      if (hits.length > 0) {
+        const [, primary] = hits[0];
+        // The other modes are named, not described: the model reads the reply on every following turn.
+        const others = hits.slice(1).map(([m]) => m);
+        return toolText(JSON.stringify(mode || others.length === 0 ? primary : { ...primary, also_in: others }));
       }
-      // 2. Match BDFD function
-      for (const [key, val] of Object.entries(manifest.modes.bdfd || {})) {
-        if (normalize(key) === normalize(slug) || normalize(key) === normalize(`$${slug}`)) {
-          return toolText(JSON.stringify({ name: key, ...val }));
-        }
-      }
-      // 3. Match JavaScript module. The manifest entry is only a 2-line stub ({module, desc, category,
-      // slug}); when a documentation page exists, fall through to its markdown so the model gets the
-      // real API instead of a dead end.
-      if (!(doc && (doc.api_type || "bdfd") === "javascript")) {
-        for (const [key, val] of Object.entries(manifest.modes.javascript || {})) {
-          if (normalize(key) === normalize(slug) || normalize(val.slug) === normalize(slug)) {
-            return toolText(JSON.stringify({ module: key, ...val }));
-          }
-        }
-      }
+    }
+
+    if (doc && mode && (doc.api_type || "bdfd") !== mode) {
+      return { ...toolText(`Doc not found in mode ${mode}: ${slug} is a ${doc.api_type || "bdfd"} page. Retry without mode or with mode=${doc.api_type || "bdfd"}.`), isError: true };
     }
 
     if (doc?.params) {

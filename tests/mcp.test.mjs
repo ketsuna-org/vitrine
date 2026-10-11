@@ -228,3 +228,56 @@ test('every tool exposes explicit boolean readOnlyHint, destructiveHint and open
     assert.deepEqual(tool.annotations, { readOnlyHint: true, destructiveHint: false, openWorldHint: false }, `${tool.name} is read-only`);
   }
 });
+
+// "sendMessage", "wait" and "stop" are both a BDFD function and a Blocks action. get_doc used to return the Blocks
+// action for every spelling, so a model writing BDFD read the wrong contract and concluded the function had no
+// "return message ID" argument.
+const collisionManifest = {
+  version: '1.0',
+  modes: {
+    blocks: { sendMessage: { desc: 'Envoie un message dans un salon', category: 'Messages', params: { channelId: 'string?', content: 'string?' } } },
+    bdfd: { $sendMessage: { desc: 'Sends a distinct channel message', category: 'Messages', syntax: '$sendMessage[content;(returnMessageID)]', params: { content: 'string', returnMessageID: 'string?' } } },
+  },
+};
+async function getDoc(args) {
+  let parsed;
+  await withFetch(async url => (url.endsWith('schema-manifest.json') ? Response.json(collisionManifest) : Response.json(docs)), async () => {
+    const reply = await rpc('tools/call', { name: 'get_doc', arguments: args });
+    parsed = JSON.parse(reply.result.content[0].text);
+  });
+  return parsed;
+}
+
+test('get_doc gives the BDFD function for a lowercase slug or a $name and names the Blocks action under also_in', async () => {
+  const lowercase = await getDoc({ slug: 'sendmessage' });
+  assert.equal(lowercase.syntax, '$sendMessage[content;(returnMessageID)]');
+  assert.deepEqual(lowercase.also_in, ['blocks']);
+  const dollar = await getDoc({ slug: '$sendMessage' });
+  assert.equal(dollar.syntax, '$sendMessage[content;(returnMessageID)]');
+  assert.ok(!('also_in' in dollar), 'a $name can only mean the BDFD function');
+});
+
+test('get_doc keeps the Blocks action for its camelCase spelling and lists the BDFD function under also_in', async () => {
+  const doc = await getDoc({ slug: 'sendMessage' });
+  assert.equal(doc.type, 'sendMessage');
+  assert.deepEqual(doc.also_in, ['bdfd']);
+});
+
+test('get_doc mode picks one side and drops also_in', async () => {
+  const bdfd = await getDoc({ slug: 'sendMessage', mode: 'bdfd' });
+  assert.equal(bdfd.params.returnMessageID, 'string?');
+  assert.ok(!('also_in' in bdfd));
+  const blocks = await getDoc({ slug: 'sendmessage', mode: 'blocks' });
+  assert.equal(blocks.type, 'sendMessage');
+  assert.ok(!('also_in' in blocks));
+  await withFetch(async () => Response.json(docs), async () => {
+    assert.equal((await rpc('tools/call', { name: 'get_doc', arguments: { slug: 'sendmessage', mode: 'nope' } })).result.isError, true);
+  });
+});
+
+test('search_docs accepts mode as an alias of api_type', async () => {
+  await withFetch(async () => Response.json(docs), async () => {
+    const reply = await rpc('tools/call', { name: 'search_docs', arguments: { query: 'tickets', mode: 'blocks' } });
+    assert.deepEqual(JSON.parse(reply.result.content[0].text).results.map(r => r.slug), ['blocks-channels']);
+  });
+});
