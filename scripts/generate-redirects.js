@@ -87,7 +87,7 @@ function postUrl(fm, filename) {
   const day = String(date.getUTCDate()).padStart(2, '0');
   const category = slugify(fm.category || 'uncategorized');
   const title = slugify(path.basename(filename, path.extname(filename)).replace(/^\d{4}-\d{2}-\d{2}-/, ''));
-  return `/${category}/${year}/${month}/${day}/${title}.html`;
+  return `/${category}/${year}/${month}/${day}/${title}/`;
 }
 
 function listDocs() {
@@ -150,8 +150,10 @@ function main() {
   // URL. _plugins/seo.rb now slugifies the category; keep the old addresses alive.
   const legacyRedirects = [];
   for (const p of posts.filter((x) => x.fm.locale === 'en' && !x.fm.permalink)) {
-    const oldPath = p.url.replace(/^\/[^/]+\//, `/${encodeURIComponent((p.fm.category || 'uncategorized').toLowerCase()).replace(/%26/g, '&')}/`);
+    const oldPath = p.url.replace(/^\/[^/]+\//, `/${encodeURIComponent((p.fm.category || 'uncategorized').toLowerCase()).replace(/%26/g, '&')}/`).replace(/\/$/, '.html');
     if (oldPath !== p.url) legacyRedirects.push([oldPath, p.url]);
+    // Short-lived intermediate form (slugified category, .html); Cloudflare Pages already strips .html.
+    legacyRedirects.push([p.url.replace(/\/$/, '.html'), p.url]);
   }
 
   const lines = [
