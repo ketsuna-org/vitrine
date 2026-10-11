@@ -155,9 +155,19 @@ function jsonrpcError(id, code, message) {
 
 // --- Tool metadata -------------------------------------------------------
 
+// Every tool only reads Bot Creator's own published content (site JSON indexes,
+// docs markdown, blog posts) or computes on its arguments: nothing is written,
+// and no third-party or user-supplied URL is ever fetched.
+const READ_ONLY_ANNOTATIONS = {
+  readOnlyHint: true,
+  destructiveHint: false,
+  openWorldHint: false,
+};
+
 const TOOLS_META = [
   {
     name: "get_schema_manifest",
+    annotations: READ_ONLY_ANNOTATIONS,
     description:
       "Get the compact typed grammar/schema dictionary for Bot Creator. Returns parameter types and descriptions for compiler validation. Default mode 'blocks' (~3k tokens) contains every native block action (list them with list_actions). Nested params reference named types (e.g. Embed[], ComponentsDef, Action[]) defined by mode='types'. Fast, strict, and zero-hallucination.",
     inputSchema: {
@@ -183,6 +193,7 @@ const TOOLS_META = [
   },
   {
     name: "plan_solution",
+    annotations: READ_ONLY_ANNOTATIONS,
     description:
       "START HERE for any BDFD/Blocks/JavaScript command request. One call, no LLM: returns the best-fitting functions (with signatures), the gotchas that apply, a validated skeleton when a known recipe matches, and a decision (auto = write it now, review = docs_get 1-2 functions, ask_user = clarify). Far cheaper than search_docs + get_doc loops.",
     inputSchema: {
@@ -197,6 +208,7 @@ const TOOLS_META = [
   },
   {
     name: "list_actions",
+    annotations: READ_ONLY_ANNOTATIONS,
     description:
       "List every native Blocks action name with its category and description only (very small). Use it to pick action names, then get_doc / get_schema_manifest(category) for their params.",
     inputSchema: {
@@ -208,6 +220,7 @@ const TOOLS_META = [
   },
   {
     name: "validate_actions",
+    annotations: READ_ONLY_ANNOTATIONS,
     description:
       "Validate a Blocks action list ([{ type, payload }]) against the manifest: unknown action names (with suggestions), missing required params, wrong types/enums, unknown params, and nested embeds/components/conditions/thenActions. Call it on generated JSON and fix every error before delivering it.",
     inputSchema: {
@@ -224,6 +237,7 @@ const TOOLS_META = [
   },
   {
     name: "search_docs",
+    annotations: READ_ONLY_ANNOTATIONS,
     description:
       "Search Bot Creator Blocks, BDFD and JavaScript documentation. Filter api_type for the requested mode; read execution-model first. Results include compact parameter types ({ params, syntax, description }), compatibility status, and slugs.",
     inputSchema: {
@@ -238,6 +252,7 @@ const TOOLS_META = [
   },
   {
     name: "get_doc",
+    annotations: READ_ONLY_ANNOTATIONS,
     description:
       "Read documentation or schema by slug/action name. By default (full_markdown=false), returns the ultra-compact JSON type definition { desc, params } to save tokens and prevent hallucinations. Set full_markdown=true only if you explicitly need the full human guide/examples.",
     inputSchema: {
@@ -255,6 +270,7 @@ const TOOLS_META = [
   },
   {
     name: "list_posts",
+    annotations: READ_ONLY_ANNOTATIONS,
     description:
       "List Bot Creator blog posts, optionally filtered by locale ('en' or 'fr'). Returns metadata only (use get_post for content).",
     inputSchema: {
@@ -267,6 +283,7 @@ const TOOLS_META = [
   },
   {
     name: "search_posts",
+    annotations: READ_ONLY_ANNOTATIONS,
     description:
       "Search Bot Creator blog posts by title or description. Returns matching post metadata (use get_post for content).",
     inputSchema: {
@@ -280,6 +297,7 @@ const TOOLS_META = [
   },
   {
     name: "get_post",
+    annotations: READ_ONLY_ANNOTATIONS,
     description:
       "Fetch the raw markdown of a Bot Creator blog post by slug (the filename without the leading date and .md extension).",
     inputSchema: {
