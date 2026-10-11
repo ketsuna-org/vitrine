@@ -1,0 +1,29 @@
+{% comment %}
+  Documentation search. One field, shared by every sidebar. While a query is typed, assets/js/docs-search.js
+  hides the sibling navigation and shows ranked results here (ARIA 1.2 combobox + listbox).
+{% endcomment %}
+<div class="docs-search" data-docs-search data-index-url="{{ '/assets/search-index.json' | relative_url }}" role="search">
+  <div class="docs-search-field">
+    <svg class="reicon docs-search-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#search"></use></svg>
+    <input type="text" id="sidebar-search-input" class="docs-search-input" role="combobox" aria-label="Search the documentation"
+      aria-autocomplete="list" aria-expanded="false" aria-controls="docs-search-results" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go"
+      placeholder="Search docs…">
+    <button type="button" class="docs-search-clear" aria-label="Clear search" hidden>
+      <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
+    </button>
+    <kbd class="docs-search-kbd" aria-hidden="true">/</kbd>
+  </div>
+  <div class="docs-search-panel" hidden>
+    <p class="docs-search-meta" id="docs-search-status" role="status" aria-live="polite"></p>
+    <ul class="docs-search-list" id="docs-search-results" role="listbox" aria-label="Search results"></ul>
+    <div class="docs-search-empty" hidden>
+      <p class="docs-search-empty-title"></p>
+      <p class="docs-search-empty-hint">Try a function name such as <code>$username</code>, a single keyword, or browse:</p>
+      <p class="docs-search-empty-links">
+        <a href="{{ '/docs/' | relative_url }}">Documentation Hub</a>
+        <a href="{{ '/blog/' | relative_url }}">Guides</a>
+        <a href="{{ '/docs/javascript/' | relative_url }}">JavaScript API</a>
+      </p>
+    </div>
+  </div>
+</div>

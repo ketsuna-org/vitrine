@@ -257,10 +257,41 @@ html.cs .cs-host > *::-webkit-scrollbar {
     padding-right: 12px;
   }
 
+  /* "On this page" rail: stays in view while reading, long lists scroll inside it. */
   .docs-toc-rail {
     position: sticky;
     top: calc(var(--header-h) + 24px);
+    max-height: calc(100vh - var(--header-h) - 48px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 4px;
+    scrollbar-width: thin;
   }
+  .docs-toc-list, .toc-content > ul { display: flex; flex-direction: column; border-left: 1px solid var(--outline-variant); list-style: none; margin: 0; padding: 0; }
+  .docs-toc-list a, .toc-content a {
+    display: block;
+    margin-left: -1px;
+    padding: 6px 12px;
+    border-left: 2px solid transparent;
+    color: var(--on-surface-variant);
+    font-size: 14px;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .docs-toc-list a:hover, .toc-content a:hover { color: var(--on-surface); }
+  .docs-toc-list a[aria-current="location"], .toc-content a[aria-current="location"],
+  .toc-link[aria-current="location"] { color: var(--primary); border-left-color: var(--primary); font-weight: 500; }
+  .toc-link[aria-current="location"] { background: rgba(177, 157, 247, .1); }
+  .toc-content ul ul { padding-left: 12px; margin-top: 0; }
+  .docs-help-card {
+    margin-top: 24px;
+    padding: 16px;
+    border: 1px solid var(--outline-variant);
+    border-radius: 12px;
+    background: var(--surface-container-low);
+  }
+  .toc-sheet-body a[aria-current="location"] { color: var(--primary); }
 
   /* Sidebar items */
   .sidebar-item { border: 0 !important; border-radius: 6px !important; }
@@ -432,6 +463,109 @@ html.cs .cs-host > *::-webkit-scrollbar {
 .reicon.text-5xl, .reicon.text-6xl { font-size: 48px; }
 [hidden] { display: none !important; }
 :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+/* The search field draws a single ring on its wrapper (.docs-search-field:focus-within); no second outline on the input. */
+.docs-search-input:focus-visible { outline: none; }
+
+/* Documentation search (unlayered: the classes are created by assets/js/docs-search.js, so Tailwind must not purge them) ---------------------------------------------------- */
+.docs-search-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 8px 0 12px;
+  background: var(--surface-container);
+  border: 1px solid var(--outline);
+  border-radius: 10px;
+  transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.docs-search-field:hover { border-color: #3b3b45; }
+/* One ring only: the field draws it, the input inside never adds its own outline. */
+.docs-search-field:focus-within {
+  background: var(--surface-container-low);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(177, 157, 247, .28);
+}
+@media (forced-colors: active) { .docs-search-field:focus-within { outline: 2px solid Highlight; } }
+.docs-search-icon { flex: none; color: var(--on-surface-variant); font-size: 20px; }
+.docs-search-field:focus-within .docs-search-icon { color: var(--primary); }
+.docs-search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 42px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--on-surface);
+  font: inherit;
+  font-size: 16px;
+}
+.docs-search-input:focus, .docs-search-input:focus-visible { outline: none; box-shadow: none; }
+.docs-search-input::placeholder { color: var(--on-surface-variant); opacity: 1; }
+@media (min-width: 1024px) { .docs-search-input { font-size: 14px; } }
+.docs-search-clear {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none; width: 32px; height: 32px;
+  border: 0; border-radius: 8px; background: transparent; color: var(--on-surface-variant); cursor: pointer;
+}
+.docs-search-clear:hover { background: var(--surface-container-high); color: var(--on-surface); }
+.docs-search-kbd {
+  display: none;
+  flex: none;
+  min-width: 22px;
+  padding: 1px 6px;
+  border: 1px solid var(--outline);
+  border-radius: 6px;
+  background: var(--surface-container-low);
+  color: var(--on-surface-variant);
+  font: 500 12px/18px var(--font-mono);
+  text-align: center;
+}
+@media (min-width: 1024px) and (hover: hover) {
+  .docs-search-kbd { display: inline-block; }
+  .docs-search-field:focus-within .docs-search-kbd { display: none; }
+}
+.docs-search-panel { margin-top: 12px; }
+.docs-search-meta { margin: 0 4px 8px; color: var(--on-surface-variant); font-size: 12px; line-height: 1.5; }
+.docs-search-list { display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.docs-search-option a {
+  display: block;
+  padding: 10px 12px;
+  border-left: 2px solid transparent;
+  border-radius: 8px;
+  color: var(--on-surface);
+  text-decoration: none;
+}
+.docs-search-option.is-active a, .docs-search-option a:hover { background: rgba(177, 157, 247, .12); border-left-color: var(--primary); }
+.docs-search-head { display: flex; flex-direction: column; gap: 2px; }
+.docs-search-title { overflow-wrap: anywhere; font-size: 14px; font-weight: 600; line-height: 1.35; }
+.docs-search-title.is-code { font-family: var(--font-mono); font-size: 13px; font-weight: 500; }
+.docs-search-kind { color: var(--on-surface-variant); font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.docs-search-snippet {
+  display: -webkit-box;
+  margin-top: 4px;
+  overflow: hidden;
+  color: var(--on-surface-variant);
+  font-size: 13px;
+  line-height: 1.45;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.docs-search mark { padding: 0 1px; border-radius: 3px; background: rgba(177, 157, 247, .3); color: var(--on-surface); }
+.docs-search-empty { padding: 8px 4px; }
+.docs-search-empty-title { margin: 0 0 8px; font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
+.docs-search-empty-hint { margin: 0 0 12px; color: var(--on-surface-variant); font-size: 13px; line-height: 1.5; }
+.docs-search-empty-hint code { font-family: var(--font-mono); color: var(--on-surface); }
+.docs-search-empty-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.docs-search-empty-links a {
+  padding: 6px 12px; border: 1px solid var(--outline); border-radius: 999px;
+  color: var(--on-surface); font-size: 13px; text-decoration: none;
+}
+.docs-search-empty-links a:hover { border-color: var(--primary); color: var(--primary); }
+#search-toggle-btn { display: flex; align-items: center; justify-content: center; gap: 8px; }
+#search-toggle-btn .reicon { font-size: 20px; }
+#search-toggle-btn + button { border-left: 1px solid var(--outline-variant); }
+
 [id] { scroll-margin-top: calc(var(--header-h) + 24px); }
 .guide-syntax { max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
 .copy-feedback { margin: 8px 0 0; font-size: 12px; line-height: 1.5; }

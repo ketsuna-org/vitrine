@@ -1,0 +1,24 @@
+---
+layout: null
+sitemap: false
+---
+{%- comment -%} Client-side search index for the docs sidebar. Fields: t title, u url, k kind, c category, d description, f function name, s syntax. {%- endcomment -%}
+[
+{%- assign first = true -%}
+{%- for doc in site.docs -%}
+{%- if doc.title == nil or doc.title == '' -%}{%- continue -%}{%- endif -%}
+{%- assign kind = 'Reference' -%}
+{%- if doc.api_type == 'javascript' -%}{%- assign kind = 'JavaScript API' -%}{%- elsif doc.function_name -%}{%- assign kind = 'Function' -%}{%- endif -%}
+{%- unless first -%},{%- endunless -%}{%- assign first = false %}
+{"t":{{ doc.title | jsonify }},"u":{{ doc.url | relative_url | jsonify }},"k":{{ kind | jsonify }},"c":{{ doc.category | default: '' | jsonify }},"d":{{ doc.description | default: '' | strip_newlines | jsonify }},"f":{{ doc.function_name | default: '' | jsonify }},"s":{{ doc.syntax | default: '' | strip_newlines | jsonify }}}
+{%- endfor -%}
+{%- assign guides = site.posts | where: "locale", "en" -%}
+{%- for post in guides -%}
+,
+{"t":{{ post.title | jsonify }},"u":{{ post.url | relative_url | jsonify }},"k":"Guide","c":{{ post.category | default: '' | jsonify }},"d":{{ post.description | default: '' | strip_newlines | jsonify }},"f":"","s":""}
+{%- endfor -%}
+,
+{"t":"Documentation Hub","u":{{ '/docs/' | relative_url | jsonify }},"k":"Hub","c":"","d":"Everything you need to build Discord bots — BDFD $functions, JavaScript scripting, and step-by-step guides.","f":"","s":""},
+{"t":"Guides","u":{{ '/blog/' | relative_url | jsonify }},"k":"Hub","c":"","d":"Practical Bot Creator guides for setup, command building, and the Docker runner.","f":"","s":""},
+{"t":"Playground","u":{{ '/playground/' | relative_url | jsonify }},"k":"Hub","c":"","d":"Try Bot Creator blocks and BDFD snippets in your browser and see the Discord message they would draw.","f":"","s":""}
+]

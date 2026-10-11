@@ -45,6 +45,10 @@
 
   <!-- Mobile action bar -->
   <div class="mobile-bar" role="toolbar" aria-label="Page navigation">
+    <button type="button" id="search-toggle-btn" aria-label="Search the documentation">
+      <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#search"></use></svg>
+      <span>Search</span>
+    </button>
     <button type="button" id="sidebar-toggle-btn" aria-expanded="false" aria-controls="docs-sidebar">Menu</button>
     <button type="button" id="toc-toggle-btn" aria-expanded="false" aria-controls="toc-sheet" hidden>On this page</button>
   </div>
@@ -62,5 +66,6 @@
   </div>
 
   <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/docs-search.js' | relative_url }}" defer></script>
 </body>
 </html>
