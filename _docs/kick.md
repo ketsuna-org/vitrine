@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $kick
-translation_key: docs
 category: "Moderation"
 function_name: kick
 syntax: $kick[userID;(reason)]
 description: Kicks a specific user from the Discord server.
+locale: en
+translation_key: doc-kick
 ---
 
 # $kick

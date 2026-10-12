@@ -11,8 +11,8 @@ permalink: /docs/tickets/
 
 Building a private support system on Discord requires orchestrating **channel creation**, **explicit permission configuration**, **interactive components** (Discord buttons), and **clean deletion** upon closing.
 
-> [!CAUTION]
-> **Deprecated legacy functions:** Do not use `$newTicket` or `$closeTicket` for production bots. These legacy helpers create public channels without access restrictions and do not reliably clean up text channels. Exclusively use the proven modular pattern documented below.
+> [!NOTE]
+> **About the BDFD helpers.** `$newTicket` also creates a private channel (`@everyone` cannot view it; the author and the bot can), but it offers no control over the permissions and has no close button. `$closeTicket` is flagged as an incomplete compatibility function: it deletes the current channel whenever its name contains `ticket`, without checking who runs it. This guide builds the same flow explicitly, so you choose the category, the permissions and the close button.
 
 ---
 

@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $webhookAvatarURL
-translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookAvatarURL
 syntax: $webhookAvatarURL[webhookURL;url]
 description: Changes the avatar of the Discord webhook from an image URL.
+locale: en
+translation_key: doc-webhookavatarurl
 ---
 
 # $webhookAvatarURL

@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $channelNSFW
-translation_key: docs
 category: "Entity Info"
 function_name: channelNSFW
 syntax: $channelNSFW[(channelID)]
 description: Returns "true" if the channel is marked as NSFW, "false" otherwise.
+locale: en
+translation_key: doc-channelnsfw
 ---
 
 # $channelNSFW

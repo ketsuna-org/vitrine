@@ -79,6 +79,26 @@ common:
   runtime_label: "Runtime"
   download_label: "Download"
 
+docs_ui:
+  syntax: "Syntax"
+  parameters: "Parameters"
+  required: "Required"
+  optional: "Optional"
+  default: "default"
+  return_value: "Return value"
+  examples: "Examples"
+  related: "Related"
+  reference: "Reference"
+  on_this_page: "On this page"
+  sidebar_label: "Browse documentation and guides"
+  navigation: "Navigation"
+  search_label: "Search the documentation"
+  search: "Search"
+  menu: "Menu"
+  try_title: "Try it"
+  try_body: "Paste an example into the playground to preview its message (functions that act on Discord are not run), or build the same thing with blocks."
+  try_playground: "Open the playground"
+
 use_cases:
   eyebrow: "Use cases"
   index_title: "Discord bots you can build without code"

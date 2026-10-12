@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $getVar[]
-translation_key: docs
 category: "Variables"
 function_name: getVar
 syntax: $getVar[name;(User ID)]
 description: Reads a global variable or a user-scoped variable from the bot's persistent storage.
+locale: en
+translation_key: doc-getvar
 ---
 
 $getVar retrieves values from the bot's persistent storage. Unlike temporary variables (`$var`), global and user-scoped variables survive across command executions and bot restarts. They are stored in the bot's database.

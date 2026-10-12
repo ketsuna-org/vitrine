@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $unBan
-translation_key: docs
 category: "Moderation"
 function_name: unBan
 syntax: $unBan
 description: Unbans the banned user whose username matches the text of the message. The user will be able to rejoin the server with a new invite.
+locale: en
+translation_key: doc-unban
 ---
 
 # $unBan

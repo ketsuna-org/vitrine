@@ -33,8 +33,11 @@ layout: with-sidebar
   {% if is_js %}
   <a href="{{ '/docs/javascript/' | relative_url }}" class="hover:text-on-surface">JavaScript API</a>
   <span aria-hidden="true">/</span>
+  {% elsif page.category and page.locale == 'fr' %}
+  <span>{{ page.category }}</span>
+  <span aria-hidden="true">/</span>
   {% elsif page.category %}
-  <a href="{{ t.paths.docs | relative_url }}#{{ page.category | slugify }}" class="hover:text-on-surface">{{ page.category }}</a>
+  <a href="{{ t.paths.docs | relative_url }}#{{ page.category_key | default: page.category | slugify }}" class="hover:text-on-surface">{{ page.category }}</a>
   <span aria-hidden="true">/</span>
   {% endif %}
   <span class="text-on-surface">{{ display_title }}</span>
@@ -44,7 +47,7 @@ layout: with-sidebar
   <article data-document-article class="doc-article min-w-0 flex-1">
     <header id="content" class="mb-8 flex flex-col gap-4">
       <div class="flex flex-wrap items-center gap-3">
-        <span class="badge">{{ page.category | default: "Reference" }}</span>
+        <span class="badge">{{ page.category | default: t.docs_ui.reference }}</span>
         {% if page.function_name and page.function_name != display_title %}<span class="font-mono text-sm text-on-surface-variant">{{ page.function_name }}</span>{% endif %}
       </div>
       <h1 class="m-0 break-words font-mono text-[1.75rem] font-medium leading-tight tracking-tight sm:text-4xl">{{ display_title }}</h1>
@@ -53,14 +56,14 @@ layout: with-sidebar
       {% elsif page.description %}
       <p class="m-0 max-w-[46rem] text-base leading-relaxed text-on-surface-variant sm:text-lg">{{ page.description }}</p>
       {% endif %}
-      {% include ai_tools_dropdown.html %}
+      {% unless page.locale == 'fr' %}{% include ai_tools_dropdown.html %}{% endunless %}
     </header>
 
     {% comment %} Many pages already carry a Syntax section in their body: do not render it twice. {% endcomment %}
-    {% assign body_has_syntax = false %}{% if body_html contains 'id="syntax"' %}{% assign body_has_syntax = true %}{% endif %}
+    {% assign body_has_syntax = false %}{% if body_html contains 'id="syntax"' or body_html contains 'id="syntaxe"' %}{% assign body_has_syntax = true %}{% endif %}
     {% if page.syntax and body_has_syntax == false %}
     <section id="syntax" class="mb-10">
-      <h2 class="mb-3 text-[1.35rem] font-semibold">Syntax</h2>
+      <h2 class="mb-3 text-[1.35rem] font-semibold">{{ t.docs_ui.syntax }}</h2>
       <div class="overflow-hidden rounded-lg border border-outline bg-surface-container-low">
         <div class="border-b border-outline px-4 py-2 font-mono text-xs text-on-surface-variant">{% if is_js %}javascript{% else %}bdfd{% endif %}</div>
         <pre class="m-0 overflow-x-auto p-4 font-mono text-sm leading-7" data-cscroll-x><code>{{ page.syntax }}</code></pre>
@@ -70,13 +73,13 @@ layout: with-sidebar
 
     {% if page.parameters %}
     <section id="parameters" class="mb-10">
-      <h2 class="mb-3 text-[1.35rem] font-semibold">Parameters</h2>
+      <h2 class="mb-3 text-[1.35rem] font-semibold">{{ t.docs_ui.parameters }}</h2>
       <ul class="m-0 list-none border-t border-outline p-0">
         {% for param in page.parameters %}
         <li class="flex flex-wrap gap-x-6 gap-y-1.5 border-b border-outline py-4">
           <div class="flex basis-full flex-col gap-1 sm:basis-[200px]">
             <code class="break-all font-mono text-sm text-primary">{{ param.name }}</code>
-            <span class="text-xs text-on-surface-variant">{% if param.required %}Required{% else %}Optional{% endif %} · {{ param.type }}{% if param.default %} · default <code>{{ param.default }}</code>{% endif %}</span>
+            <span class="text-xs text-on-surface-variant">{% if param.required %}{{ t.docs_ui.required }}{% else %}{{ t.docs_ui.optional }}{% endif %} · {{ param.type }}{% if param.default %} · {{ t.docs_ui.default }} <code>{{ param.default }}</code>{% endif %}</span>
           </div>
           <div class="min-w-0 flex-1 basis-[240px] text-[15px] leading-relaxed text-on-surface-variant">{{ param.description }}</div>
         </li>
@@ -87,7 +90,7 @@ layout: with-sidebar
 
     {% if page.returns %}
     <section id="returns" class="mb-10">
-      <h2 class="mb-3 text-[1.35rem] font-semibold">Return value</h2>
+      <h2 class="mb-3 text-[1.35rem] font-semibold">{{ t.docs_ui.return_value }}</h2>
       <p class="m-0 text-[15px] leading-relaxed text-on-surface-variant"><code class="font-mono text-primary">{{ page.returns.type }}</code> · {{ page.returns.description }}</p>
     </section>
     {% endif %}
@@ -98,7 +101,7 @@ layout: with-sidebar
 
     {% if page.examples %}
     <section id="examples" class="mt-12">
-      <h2 class="mb-4 text-[1.35rem] font-semibold">Examples</h2>
+      <h2 class="mb-4 text-[1.35rem] font-semibold">{{ t.docs_ui.examples }}</h2>
       {% for example in page.examples %}
       <div class="mb-6">
         {% if example.title %}<h3 class="mb-2 text-base font-semibold">{{ example.title }}</h3>{% endif %}
@@ -111,7 +114,7 @@ layout: with-sidebar
 
     {% if page.related %}
     <section id="related" class="mt-12 border-t border-outline pt-8">
-      <h2 class="mb-3 text-[1.35rem] font-semibold">Related</h2>
+      <h2 class="mb-3 text-[1.35rem] font-semibold">{{ t.docs_ui.related }}</h2>
       <div class="flex flex-wrap gap-2">
         {% for func_name in page.related %}
         {% assign related_doc = site.docs | where: "function_name", func_name | first %}
@@ -122,12 +125,26 @@ layout: with-sidebar
       </div>
     </section>
     {% endif %}
+
+    {% if page.function_name %}
+    {% assign uc_key = 'commands' %}{% if page.category_key == 'Moderation' or page.category == 'Moderation' %}{% assign uc_key = 'moderation' %}{% endif %}
+    {% assign uc_item = site.data.use_cases.items[uc_key] %}
+    <section class="mt-12 flex flex-col gap-3 border-t border-outline pt-8" aria-labelledby="doc-try">
+      <h2 id="doc-try" class="m-0 text-[1.35rem] font-semibold">{{ t.docs_ui.try_title }}</h2>
+      <p class="m-0 text-[15px] leading-relaxed text-on-surface-variant">{{ t.docs_ui.try_body }}</p>
+      <div class="flex flex-wrap gap-x-6 gap-y-2 text-[15px]">
+        <a class="text-primary underline underline-offset-2" href="{{ t.paths.playground | relative_url }}">{{ t.docs_ui.try_playground }}</a>
+        <a class="text-primary underline underline-offset-2" href="{{ t.paths.use_cases | append: uc_item.slug[locale] | append: '/' | relative_url }}">{{ uc_item[locale].nav }}</a>
+        <a class="text-primary underline underline-offset-2" href="{{ t.paths.download | relative_url }}">{{ t.use_cases.download_cta }}</a>
+      </div>
+    </section>
+    {% endif %}
   </article>
 
-  <aside class="hidden w-56 flex-none self-stretch xl:block" aria-label="On this page">
+  <aside class="hidden w-56 flex-none self-stretch xl:block" aria-label="{{ t.docs_ui.on_this_page }}">
     <div class="docs-toc-rail">
-      <h2 class="mb-2 text-xs font-medium uppercase tracking-wider text-on-surface-variant">On this page</h2>
-      <nav data-document-toc data-spy-nav aria-label="On this page" class="docs-toc-list"></nav>
+      <h2 class="mb-2 text-xs font-medium uppercase tracking-wider text-on-surface-variant">{{ t.docs_ui.on_this_page }}</h2>
+      <nav data-document-toc data-spy-nav aria-label="{{ t.docs_ui.on_this_page }}" class="docs-toc-list"></nav>
       <div class="docs-help-card">
         <p class="m-0 mb-2 text-sm text-on-surface-variant">{{ t.guides.sidebar_help_body }}</p>
         <a href="https://discord.gg/K37nuphaDP" class="text-sm font-medium text-primary" target="_blank" rel="noopener noreferrer">{{ t.guides.sidebar_help_cta }}</a>

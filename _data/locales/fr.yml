@@ -9,7 +9,8 @@ paths:
   pricing: "/fr/tarifs/"
   use_cases: "/fr/cas-d-usage/"
   guides: "/blog/"
-  docs: "/docs/"
+  docs: "/fr/docs/"
+  docs_full: "/docs/"
   privacy: "/privacy-policy.html"
   terms: "/terms-of-sale.html"
   legal: "/legal-notice.html"
@@ -64,6 +65,26 @@ common:
   skip_to_content: "Aller au contenu"
   copy: "Copier"
   copied: "Copié"
+
+docs_ui:
+  syntax: "Syntaxe"
+  parameters: "Paramètres"
+  required: "Obligatoire"
+  optional: "Facultatif"
+  default: "par défaut"
+  return_value: "Valeur de retour"
+  examples: "Exemples"
+  related: "Voir aussi"
+  reference: "Référence"
+  on_this_page: "Sur cette page"
+  sidebar_label: "Parcourir la documentation"
+  navigation: "Navigation"
+  search_label: "Rechercher dans la documentation"
+  search: "Rechercher"
+  menu: "Menu"
+  try_title: "Essayer"
+  try_body: "Collez un exemple dans le playground pour prévisualiser son message (les fonctions qui agissent sur Discord ne sont pas exécutées), ou construisez la même chose avec des blocs."
+  try_playground: "Ouvrir le playground"
 
 use_cases:
   eyebrow: "Cas d'usage"
@@ -124,7 +145,7 @@ home:
     body_after: "pages de référence pour les $fonctions BDFD et l'API JavaScript, écrites pour être lues sur un téléphone."
     browse: "Parcourir la référence"
     popular_guides: "Guides populaires"
-    docs_language_note: "La documentation et les guides sont en anglais."
+    docs_language_note: "Une sélection de pages de la documentation est en français ; le reste, et les guides, sont en anglais."
   faq_section:
     title: "Questions fréquentes"
     all: "Toutes les questions"
@@ -194,3 +215,8 @@ pricing:
   per_year: "/an"
   other_currency_note: "En dollars américains, les prix diffèrent entre les stores :"
   stores_cta: "Télécharger l'app"
+
+guides:
+  sidebar_help_title: "Besoin d'aide ?"
+  sidebar_help_body: "Rejoignez notre communauté Discord pour obtenir de l'aide en direct et échanger avec d'autres créateurs."
+  sidebar_help_cta: "Rejoindre le Discord"

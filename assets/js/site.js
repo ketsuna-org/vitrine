@@ -586,6 +586,7 @@ const initSite = () => {
     const nav = container.querySelector('.dual-view-nav');
     if (!nav) return;
     const tabs = [...nav.querySelectorAll('.dual-tab-btn')];
+    if (tabs.length < 2) return;
     const panels = [...container.children].filter(child => child.classList.contains('dual-tab-panel'));
     nav.setAttribute('role', 'tablist');
     nav.setAttribute('aria-label', 'Example view');
