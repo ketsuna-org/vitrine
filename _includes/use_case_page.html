@@ -1,0 +1,64 @@
+{% assign t = site.data.locales[page.locale] %}
+{% assign uc = site.data.use_cases %}
+{% assign item = uc.items[page.use_case] %}
+{% assign c = item[page.locale] %}
+{% assign blocks_all = site.data.blocks_registry.blocks %}
+<div class="mx-auto max-w-[900px] px-4 py-14 sm:px-6 lg:py-20">
+  <nav aria-label="Breadcrumb" class="mb-6 text-sm text-on-surface-variant"><a class="underline underline-offset-2 hover:text-primary" href="{{ t.paths.use_cases | relative_url }}">{{ t.use_cases.eyebrow }}</a></nav>
+  <header class="mb-10 flex flex-col gap-3">
+    <h1 class="m-0 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">{{ c.h1 }}</h1>
+    <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ c.intro }}</p>
+  </header>
+
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.use_cases.steps_title }}</h2>
+    <ol class="m-0 flex list-decimal flex-col gap-3 pl-6 leading-relaxed text-on-surface-variant">
+      {% for s in c.steps %}<li>{{ s | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+    </ol>
+    <div class="flex flex-wrap gap-3 pt-2">
+      <a href="{{ t.paths.playground | relative_url }}" class="btn btn-primary">{{ t.use_cases.try_cta }}</a>
+      <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary">{{ t.use_cases.download_cta }}</a>
+    </div>
+  </section>
+
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.use_cases.blocks_title }}</h2>
+    <p class="m-0 text-sm text-on-surface-variant">{{ t.use_cases.blocks_note }}</p>
+    <ul class="m-0 flex list-none flex-col p-0">
+      {% for b in c.blocks %}
+        {% if page.locale == 'fr' %}{% assign bname = site.data.blocks_i18n_fr.names[b.type] %}{% else %}{% assign reg = blocks_all | where: "type", b.type | first %}{% assign bname = reg.name %}{% endif %}
+        <li class="border-t border-outline-variant py-3 last:border-b">
+          <a class="font-medium text-primary underline underline-offset-2" href="{{ '/docs/blocks-dictionary/' | append: '#' | append: b.type | relative_url }}">{{ bname }}</a>
+          <span class="text-on-surface-variant"> — {{ b.note }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.use_cases.limits_title }}</h2>
+    <ul class="m-0 flex list-disc flex-col gap-2 pl-6 leading-relaxed text-on-surface-variant">
+      {% for l in c.limits %}<li>{{ l | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.use_cases.guides_title }}</h2>
+    <ul class="m-0 flex list-none flex-col p-0">
+      {% for g in c.guides %}
+        <li class="border-t border-outline-variant py-3 last:border-b"><a class="text-primary underline underline-offset-2" href="{{ g.url | relative_url }}">{{ g.label }}</a></li>
+      {% endfor %}
+    </ul>
+    {% if t.use_cases.guides_note != "" %}<p class="m-0 text-sm text-on-surface-variant">{{ t.use_cases.guides_note }}</p>{% endif %}
+  </section>
+
+  <section class="flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.use_cases.others_title }}</h2>
+    <ul class="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
+      {% for key in uc.order %}{% if key != page.use_case %}
+        {% assign other = uc.items[key] %}
+        <li><a class="text-primary underline underline-offset-2" href="{{ t.paths.use_cases | append: other.slug[page.locale] | append: '/' | relative_url }}">{{ other[page.locale].nav }}</a></li>
+      {% endif %}{% endfor %}
+    </ul>
+  </section>
+</div>

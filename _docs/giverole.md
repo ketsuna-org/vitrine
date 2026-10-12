@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $giveRole
-translation_key: docs
 category: "Moderation"
 function_name: giveRole
 syntax: $giveRole[(userID);roleID]
 description: Assigns a role to a user on the server.
+locale: en
+translation_key: doc-giverole
 ---
 
 # $giveRole

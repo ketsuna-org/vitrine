@@ -1,6 +1,6 @@
 ---
-title: "Building Interactive Buttons and Select Menus in BDFD"
-description: Harness the power of Discord's rich UI components. Learn to construct clickable buttons and dropdown select menus inside BDFD commands.
+title: "BDFD Buttons and Select Menus: $addButton and $newSelectMenu"
+description: "Add clickable buttons with $addButton and dropdown menus with $newSelectMenu and $addSelectMenuOption in a BDFD command, with a role self-assign example."
 date: 2026-05-30T15:35:00.000+02:00
 author: Garder500
 translation_key: bdfd-components-guide

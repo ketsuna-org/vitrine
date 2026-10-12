@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $clear
-translation_key: docs
 category: "Moderation"
 function_name: clear
 syntax: $clear[(amount);(userID);(removePinned)]
 description: Deletes a specified number of messages in the channel.
+locale: en
+translation_key: doc-clear
 ---
 
 # $clear

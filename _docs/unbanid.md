@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $unBanID
-translation_key: docs
 category: "Moderation"
 function_name: unBanID
 syntax: $unBanID[(userID)]
 description: Unbans a user from the server using their ID. If no ID is given, the last word of the message is used.
+locale: en
+translation_key: doc-unbanid
 ---
 
 # $unBanID

@@ -10,16 +10,19 @@ screens:
   - id: blocks
     file: blocks
     headline: "Build Without Code"
+    headline_fr: "Construire sans code"
     link: /docs/blocks/
     icon: dashboard
   - id: commands
     file: commands
     headline: "Manage Your Commands"
+    headline_fr: "Gérer vos commandes"
     link: /docs/getting-started/
     icon: terminal
   - id: workflow
     file: workflow
     headline: "Reusable Workflows"
+    headline_fr: "Des workflows réutilisables"
     link: /docs/blocks/
     icon: alt_route
   - id: hosting

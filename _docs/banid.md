@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $banID
-translation_key: docs
 category: "Moderation"
 function_name: banID
 syntax: $banID / $banID[(reason)] / $banID[(reason);(userID)]
 description: Bans a user ID, with the reason as the first argument. All arguments are optional; without an ID, the last argument of the message is used.
+locale: en
+translation_key: doc-banid
 ---
 
 # $banID

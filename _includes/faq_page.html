@@ -1,0 +1,17 @@
+{% assign t = site.data.locales[page.locale] %}
+<div class="mx-auto max-w-[900px] px-4 py-14 sm:px-6 lg:py-20">
+  <header class="mb-10 flex flex-col gap-3">
+    <div class="eyebrow">{{ t.faq.eyebrow }}</div>
+    <h1 class="m-0 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">{{ t.faq.title }}</h1>
+    <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ t.faq.subtitle }}</p>
+  </header>
+  {% include faq_list.html items=t.faq.items limit=100 open_first=true %}
+  <section class="mt-14 flex flex-col gap-3">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.faq.more_title }}</h2>
+    <p class="m-0 text-on-surface-variant">{{ t.faq.more_body }}</p>
+    <div class="flex flex-wrap gap-3 pt-2">
+      <a href="https://discord.gg/K37nuphaDP" rel="noopener noreferrer" class="btn btn-primary">Discord</a>
+      <a href="{{ t.paths.docs | relative_url }}" class="btn btn-secondary">{{ t.nav.docs }}</a>
+    </div>
+  </section>
+</div>

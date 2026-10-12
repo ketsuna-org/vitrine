@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $takeRole
-translation_key: docs
 category: "Moderation"
 function_name: takeRole
 syntax: $takeRole[userID;roleID] or $takeRole[roleID]
 description: Removes a role from a user on the server.
+locale: en
+translation_key: doc-takerole
 ---
 
 # $takeRole

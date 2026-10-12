@@ -30,7 +30,8 @@
     }).replace(/\$([a-zA-Z]+)\[/g, function (m) { return m; });
   }
 
-  var ta = h('textarea', { class: 'bp-json', rows: '12', spellcheck: 'false', 'aria-label': 'BDFD snippet' });
+  var FR = (document.documentElement.lang || 'en').slice(0, 2) === 'fr';
+  var ta = h('textarea', { class: 'bp-json', rows: '12', spellcheck: 'false', 'aria-label': FR ? 'Extrait BDFD' : 'BDFD snippet' });
   var out = h('div', { class: 'bp-preview', 'aria-live': 'polite' });
   var presets = h('div', { class: 'bp-row' }, PRESETS.map(function (p) {
     return h('button', { class: 'bp-btn', type: 'button', onclick: function () { ta.value = p.code; render(); } }, p.name);
@@ -38,7 +39,7 @@
 
   function render() {
     var eng = window.BdfdPreviewEngine;
-    if (!eng) { out.textContent = 'Preview engine not loaded.'; return; }
+    if (!eng) { out.textContent = FR ? 'Le moteur d\u2019aperçu n\u2019est pas chargé.' : 'Preview engine not loaded.'; return; }
     var code = withSamples(ta.value).trim();
     var parsed = eng.parseBdfd(code);
     out.innerHTML = code ? eng.renderDiscordSimulator(parsed) : '';
@@ -47,8 +48,8 @@
   ta.addEventListener('input', render);
   ta.value = PRESETS[1].code;
   root.appendChild(h('div', { class: 'bp-grid' }, [
-    h('div', {}, [h('h2', {}, 'Script'), ta, presets]),
-    h('div', {}, [h('h2', {}, 'Discord preview'), out])
+    h('div', {}, [h('h2', {}, FR ? 'Script' : 'Script'), ta, presets]),
+    h('div', {}, [h('h2', {}, FR ? 'Aperçu Discord' : 'Discord preview'), out])
   ]));
   if (window.BdfdPreviewEngine) render();
   else window.addEventListener('load', render);

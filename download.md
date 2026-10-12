@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Download Bot Creator
-description: Choose the Bot Creator setup that fits your workflow, from mobile and desktop editing to the Docker runner.
+title: Download Bot Creator for Discord
+description: Get Bot Creator on Google Play or the App Store, or run your bots around the clock with the Docker runner.
 locale: en
 translation_key: download
 content_language: en

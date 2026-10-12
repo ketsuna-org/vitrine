@@ -441,7 +441,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   gap: 4px;
   padding: 2px 8px;
   background: rgba(88, 101, 242, 0.15);
-  color: #5865F2;
+  color: #b5bcff;
   border: 1px solid rgba(88, 101, 242, 0.3);
   border-radius: 6px;
 }
@@ -742,6 +742,10 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 }
 
 /* Blocks playground */
+/* Reserve the height of the rendered playground so the page below does not jump when the script fills it in. */
+#blocks-playground { min-height: 1020px; }
+#bdfd-playground { min-height: 360px; }
+@media (max-width: 900px) { #blocks-playground { min-height: 1540px; } #bdfd-playground { min-height: 730px; } }
 .bp-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px; align-items: start; }
 @media (max-width: 900px) { .bp-grid { grid-template-columns: minmax(0, 1fr); } }
 .bp-grid h2 { margin: 0 0 8px; font-size: 1.1rem; }

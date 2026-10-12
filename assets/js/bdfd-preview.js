@@ -8,6 +8,10 @@
 (function (global) {
   'use strict';
 
+  // Texts drawn by the preview itself: English by default, French on pages whose <html lang> is "fr".
+  var FR = typeof document !== 'undefined' && (document.documentElement.lang || 'en').slice(0, 2) === 'fr';
+  function T(en, fr) { return FR ? fr : en; }
+
   function escapeHtml(str) {
     if (!str) return '';
     return String(str)
@@ -193,29 +197,29 @@
             messageText += (messageText ? '\n' : '') + content;
           }
         } else if (fnLower === 'ban') {
-          simulatedFeedback = `🔨 **@User** has been banned from the server. (Reason: ${args[1] || 'No reason provided'})`;
+          simulatedFeedback = T(`🔨 **@User** has been banned from the server. (Reason: ${args[1] || 'No reason provided'})`, `🔨 **@User** a été banni du serveur. (Raison : ${args[1] || 'Aucune raison indiquée'})`);
         } else if (fnLower === 'kick') {
-          simulatedFeedback = `👢 **@User** has been kicked from the server.`;
+          simulatedFeedback = T(`👢 **@User** has been kicked from the server.`, `👢 **@User** a été expulsé du serveur.`);
         } else if (fnLower === 'timeout') {
-          simulatedFeedback = `⏳ **@User** has been timed out for ${args[1] || '10m'}.`;
+          simulatedFeedback = T(`⏳ **@User** has been timed out for ${args[1] || '10m'}.`, `⏳ **@User** est mis en sourdine pour ${args[1] || '10m'}.`);
         } else if (fnLower === 'giverole') {
-          simulatedFeedback = `🛡️ Role granted to **@User**.`;
+          simulatedFeedback = T(`🛡️ Role granted to **@User**.`, `🛡️ Rôle attribué à **@User**.`);
         } else if (fnLower === 'takerole') {
-          simulatedFeedback = `❌ Role removed from **@User**.`;
+          simulatedFeedback = T(`❌ Role removed from **@User**.`, `❌ Rôle retiré à **@User**.`);
         } else if (fnLower === 'clear') {
-          simulatedFeedback = `🧹 Cleared **${args[0] || '10'}** messages.`;
+          simulatedFeedback = T(`🧹 Cleared **${args[0] || '10'}** messages.`, `🧹 **${args[0] || '10'}** messages supprimés.`);
         } else if (fnLower === 'playmusic') {
-          simulatedFeedback = `🎵 Queued and playing: **${args[0] || 'Requested Track'}**`;
+          simulatedFeedback = T(`🎵 Queued and playing: **${args[0] || 'Requested Track'}**`, `🎵 En file d'attente et en lecture : **${args[0] || 'Piste demandée'}**`);
         } else if (fnLower === 'pausemusic') {
-          simulatedFeedback = `⏸️ Playback paused.`;
+          simulatedFeedback = T(`⏸️ Playback paused.`, `⏸️ Lecture en pause.`);
         } else if (fnLower === 'resumemusic') {
-          simulatedFeedback = `▶️ Playback resumed.`;
+          simulatedFeedback = T(`▶️ Playback resumed.`, `▶️ Lecture reprise.`);
         } else if (fnLower === 'stopmusic') {
-          simulatedFeedback = `⏹️ Music stopped and queue cleared.`;
+          simulatedFeedback = T(`⏹️ Music stopped and queue cleared.`, `⏹️ Musique arrêtée et file d'attente vidée.`);
         } else if (fnLower === 'setvar' || fnLower === 'setservervar' || fnLower === 'setuservar') {
-          simulatedFeedback = `💾 Stored variable \`${args[0] || 'data'}\` set to \`${args[1] || 'value'}\`.`;
+          simulatedFeedback = T(`💾 Stored variable \`${args[0] || 'data'}\` set to \`${args[1] || 'value'}\`.`, `💾 Variable \`${args[0] || 'data'}\` enregistrée avec la valeur \`${args[1] || 'value'}\`.`);
         } else if (fnLower === 'calculate' || fnLower === 'ceil' || fnLower === 'floor' || fnLower === 'round' || fnLower === 'sum' || fnLower === 'sub' || fnLower === 'multi' || fnLower === 'divide') {
-          simulatedFeedback = `🔢 Calculation result: \`${args[0] || 'expression'}\``;
+          simulatedFeedback = T(`🔢 Calculation result: \`${args[0] || 'expression'}\``, `🔢 Résultat du calcul : \`${args[0] || 'expression'}\``);
         }
         continue;
       }
@@ -257,14 +261,14 @@
   function renderDiscordSimulator(parsed) {
     const { embed, buttons, selectMenu, messageText, isEphemeral, attachment, simulatedFeedback } = parsed;
 
-    const effectiveText = messageText || simulatedFeedback || (embed ? '' : '✅ Command executed successfully.');
+    const effectiveText = messageText || simulatedFeedback || (embed ? '' : T('✅ Command executed successfully.', '✅ Commande exécutée avec succès.'));
 
     let html = `
       <div class="discord-preview-badge-header">
-        <span>Discord Simulator Live Preview</span>
+        <span>${T('Discord Simulator Live Preview', 'Aperçu Discord en direct')}</span>
         <span class="badge-tag">
           <svg class="reicon text-[13px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#smart_toy"></use></svg>
-          Bot Simulator
+          ${T('Bot Simulator', 'Simulateur')}
         </span>
       </div>
       <div class="discord-simulator-frame">
@@ -272,9 +276,9 @@
           <div class="discord-avatar">🤖</div>
           <div class="discord-msg-content w-full">
             <div class="discord-header">
-              <span class="discord-username">Bot Creator Assistant</span>
+              <span class="discord-username">${T('Bot Creator Assistant', 'Assistant Bot Creator')}</span>
               <span class="discord-bot-tag">BOT ✔</span>
-              <span class="discord-timestamp">Today at 2:32 PM</span>
+              <span class="discord-timestamp">${T('Today at 2:32 PM', 'Aujourd\'hui à 14:32')}</span>
             </div>
     `;
 
@@ -382,7 +386,7 @@
       html += `
         <div class="discord-ephemeral-notice mt-2">
           <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#visibility_off"></use></svg>
-          <span>Only you can see this • <a href="#" class="underline hover:text-white" onclick="return false;">Dismiss message</a></span>
+          <span>${T('Only you can see this', 'Visible uniquement par vous')} • <a href="#" class="underline hover:text-white" onclick="return false;">${T('Dismiss message', 'Ignorer le message')}</a></span>
         </div>
       `;
     }

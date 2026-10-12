@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $slowmode
-translation_key: docs
 category: "Entity Info"
 function_name: slowmode
 syntax: $slowmode[channelID;time]
 description: Sets the slowmode delay of a Discord channel (write function). To read the current value, use $getSlowmode.
+locale: en
+translation_key: doc-slowmode
 ---
 
 # $slowmode
