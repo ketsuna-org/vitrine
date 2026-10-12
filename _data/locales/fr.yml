@@ -7,6 +7,7 @@ paths:
   playground: "/fr/playground/"
   faq: "/fr/faq/"
   pricing: "/fr/tarifs/"
+  use_cases: "/fr/cas-d-usage/"
   guides: "/blog/"
   docs: "/docs/"
   privacy: "/privacy-policy.html"
@@ -24,6 +25,7 @@ nav:
   playground: "Playground"
   faq: "FAQ"
   pricing: "Tarifs"
+  use_cases: "Cas d'usage"
   download_button: "Télécharger"
   main_label: "Principal"
   mobile_label: "Mobile"
@@ -62,6 +64,22 @@ common:
   skip_to_content: "Aller au contenu"
   copy: "Copier"
   copied: "Copié"
+
+use_cases:
+  eyebrow: "Cas d'usage"
+  index_title: "Des bots Discord à créer sans code"
+  index_body: "Six bots courants et les blocs dont chacun a besoin. Chaque bloc cité existe dans l'application, et chaque limite est indiquée."
+  steps_title: "Comment le construire"
+  blocks_title: "Les blocs à utiliser"
+  blocks_note: "Les noms de blocs sont ceux de l'application ; chacun renvoie à sa fiche dans le dictionnaire (en anglais)."
+  limits_title: "À savoir"
+  guides_title: "Aller plus loin"
+  guides_note: "La documentation et les guides liés sont pour l'instant en anglais."
+  others_title: "Autres choses à construire"
+  try_cta: "Essayer dans le playground"
+  download_cta: "Télécharger Bot Creator"
+  home_title: "Ce que vous pouvez construire"
+  home_all: "Tous les cas d'usage"
 
 home:
   hero:
