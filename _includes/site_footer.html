@@ -22,6 +22,9 @@
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.faq | relative_url }}">{{ t.nav.faq }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="https://discord.gg/K37nuphaDP" rel="noopener noreferrer">Discord</a>
+        {% for key in site.data.comparisons.order %}{% assign cm = site.data.comparisons.items[key] %}
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ cm.slug[t.code] | prepend: t.paths.compare | append: '/' | relative_url }}">{{ cm[t.code].nav }}</a>
+        {% endfor %}
       </nav>
       <nav class="flex flex-col" aria-label="Legal">
         <span class="pb-2 text-xs text-on-surface-variant">{{ t.shell.footer_legal }}</span>

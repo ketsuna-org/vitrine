@@ -253,6 +253,7 @@ pricing:
   title: "Pricing"
   eyebrow: "Pricing"
   subtitle: "The app is free to download. Subscriptions are bought in the app stores, so these are the store prices."
+  compare_intro: "Compared with other tools:"
   note: "Reference currency: euro (EUR). The store price may vary by country, currency and taxes. Read from Google Play and the App Store on"
   free_title: "Free"
   free_body: "The free version of the apps shows ads (Google AdMob). Hosting time for a bot started on our servers is earned by watching rewarded ads in the mobile app."
