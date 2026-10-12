@@ -1,0 +1,130 @@
+# Comparison pages (EN + FR). Rules followed:
+# - competitor facts come only from their own public pages, each dated and linked in `sources`;
+# - no third-party reviews, no ratings, no judgement words, no logos;
+# - Bot Creator facts come from the engine/registry/docs or from the site's own pages;
+# - nothing is claimed about what a competitor lacks: only what it publishes.
+# Competitor values must be re-read before each edit; `checked` is the date they were read.
+order: [bdfd, botghost]
+
+items:
+  bdfd:
+    slug: { en: "bdfd-alternative", fr: "alternative-bdfd" }
+    checked: "2026-10-12"
+    sources:
+      - { id: 1, label: "botdesignerdiscord.com (home page)", url: "https://botdesignerdiscord.com/" }
+      - { id: 2, label: "BDFD wiki, Premium introduction", url: "https://wiki.botdesignerdiscord.com/premium/introduction.html" }
+    en:
+      title: "BDFD alternative: Bot Creator compared with Bot Designer For Discord"
+      description: "Bot Creator and Bot Designer For Discord (BDFD) side by side, with what each publishes about itself, dated and linked to its source, and the limits of Bot Creator stated plainly."
+      nav: "Bot Creator and BDFD"
+      h1: "Bot Creator and Bot Designer For Discord (BDFD), side by side"
+      intro: "Both let you build a Discord bot from your phone with `$function` scripts. This page sets what each one publishes about itself next to what Bot Creator does. Everything about BDFD comes from its own pages, read on 2026-10-12 and linked below. Nothing here is a review, and prices and limits change, so check the sources."
+      col_them: "BDFD"
+      col_us: "Bot Creator"
+      rows:
+        - { k: "Where you build", them: "On your phone or in a browser; Google Play and App Store apps are linked [1]", us: "In the Android and iOS apps (see the download page) or the Docker runner for hosting" }
+        - { k: "Scripting", them: "BDScript, documented in its wiki [1]", us: "BDFD-style `$functions` run by a native interpreter, visual blocks, or JavaScript; you choose per command" }
+        - { k: "Visual builder", them: "The wiki lists an embed builder in the app under premium perks [2]", us: "Visual blocks for whole commands and event workflows" }
+        - { k: "Hosting", them: "Hosting is included; the site says it handles hosting [1]", us: "Hosted by us from the app, or self-hosted with the Docker runner" }
+        - { k: "Free limits", them: "230 commands and 100 variables without premium [2]", us: "The free apps show ads; hosting time for a bot started on our servers is earned by watching rewarded ads. See the pricing page" }
+        - { k: "Paid", them: "Premium points bought in the app; 1 point is 7 days of premium hosting; the wiki lists no price [2]", us: "Subscriptions bought in the app stores (store prices on the pricing page)" }
+      prices_title: "Prices"
+      prices_them: "BDFD publishes no price for its premium points on the pages above."
+      prices_us: "Bot Creator Premium, store prices read on"
+      limits_title: "Where Bot Creator is limited"
+      limits:
+        - "The free version of the apps shows ads, and hosting time on our servers is earned by watching rewarded ads in the mobile app."
+        - "You build in an app, not in a browser dashboard. The browser playground only previews the message a command would send; it does not run a bot."
+        - "Bot Creator is not BDFD. Its reference lists the `$functions` the engine supports, one page each; a function with no page there should not be assumed to work, and some pages are marked incomplete."
+      migrate_title: "If you come from BDFD"
+      migrate_body: "Bot Creator runs BDFD-style scripts with its own native interpreter. Check each `$function` you use in the [function reference](/docs/) and read [Execution model and compatibility](/docs/execution-model/) first: for example, a slash command's text is sent as the reply, so an extra `$sendMessage` posts a second message."
+      sources_title: "Sources (read on 2026-10-12)"
+      corrections: "Something out of date or wrong about BDFD? Write to contact@bot-creator.fr and we will fix it."
+      try_cta: "Try it in the playground"
+      pricing_cta: "Bot Creator pricing"
+    fr:
+      title: "Alternative à BDFD : Bot Creator comparé à Bot Designer For Discord"
+      description: "Bot Creator et Bot Designer For Discord (BDFD) côte à côte, avec ce que chacun publie sur lui-même, daté et relié à sa source, et les limites de Bot Creator dites franchement."
+      nav: "Bot Creator et BDFD"
+      h1: "Bot Creator et Bot Designer For Discord (BDFD), côte à côte"
+      intro: "Les deux permettent de créer un bot Discord depuis son téléphone avec des scripts à `$fonctions`. Cette page met ce que chacun publie sur lui-même à côté de ce que fait Bot Creator. Tout ce qui concerne BDFD vient de ses propres pages, lues le 12 octobre 2026 et liées plus bas. Ce n'est pas un test comparatif, et les prix et les limites changent : vérifiez les sources."
+      col_them: "BDFD"
+      col_us: "Bot Creator"
+      rows:
+        - { k: "Où l'on construit", them: "Sur le téléphone ou dans un navigateur ; des applications Google Play et App Store sont liées [1]", us: "Dans les applications Android et iOS (voir la page de téléchargement), le runner Docker servant à l'hébergement" }
+        - { k: "Écriture", them: "BDScript, documenté dans son wiki [1]", us: "`$fonctions` de type BDFD exécutées par un interpréteur natif, blocs visuels, ou JavaScript ; au choix pour chaque commande" }
+        - { k: "Constructeur visuel", them: "Le wiki cite un constructeur d'embeds dans l'application parmi les avantages premium [2]", us: "Des blocs visuels pour des commandes et des workflows d'événements entiers" }
+        - { k: "Hébergement", them: "L'hébergement est inclus ; le site dit s'en occuper [1]", us: "Hébergé par nous depuis l'application, ou auto-hébergé avec le runner Docker" }
+        - { k: "Limites gratuites", them: "230 commandes et 100 variables sans premium [2]", us: "Les applications gratuites affichent des publicités ; le temps d'hébergement d'un bot lancé sur nos serveurs se gagne en regardant des publicités récompensées. Voir la page tarifs" }
+        - { k: "Payant", them: "Points premium achetés dans l'application ; 1 point = 7 jours d'hébergement premium ; le wiki n'indique aucun prix [2]", us: "Abonnements achetés dans les stores (prix des stores sur la page tarifs)" }
+      prices_title: "Prix"
+      prices_them: "BDFD ne publie aucun prix pour ses points premium sur les pages ci-dessus."
+      prices_us: "Bot Creator Premium, prix des stores relevés le"
+      limits_title: "Les limites de Bot Creator"
+      limits:
+        - "La version gratuite des applications affiche des publicités, et le temps d'hébergement sur nos serveurs se gagne en regardant des publicités récompensées dans l'application mobile."
+        - "On construit dans une application, pas dans un tableau de bord web. Le playground du navigateur affiche seulement l'aperçu du message qu'enverrait une commande ; il ne fait pas tourner de bot."
+        - "Bot Creator n'est pas BDFD. Sa référence liste les `$fonctions` prises en charge par le moteur, une page chacune ; une fonction sans page ne doit pas être supposée fonctionner, et certaines pages sont marquées incomplètes."
+      migrate_title: "Si vous venez de BDFD"
+      migrate_body: "Bot Creator exécute des scripts de type BDFD avec son propre interpréteur natif. Vérifiez chaque `$fonction` que vous utilisez dans la [référence des fonctions](/docs/) (en anglais) et lisez d'abord [Modèle d'exécution et compatibilité](/docs/execution-model/) (en anglais) : par exemple, le texte d'une commande slash est envoyé comme réponse, donc un `$sendMessage` en plus publie un second message."
+      sources_title: "Sources (lues le 12 octobre 2026)"
+      corrections: "Une information sur BDFD est périmée ou fausse ? Écrivez à contact@bot-creator.fr et nous la corrigerons."
+      try_cta: "Essayer dans le playground"
+      pricing_cta: "Tarifs de Bot Creator"
+
+  botghost:
+    slug: { en: "botghost-alternative", fr: "alternative-botghost" }
+    checked: "2026-10-12"
+    sources:
+      - { id: 1, label: "botghost.com/llms.txt (the site's own summary)", url: "https://botghost.com/llms.txt" }
+      - { id: 2, label: "BotGhost documentation, Premium and Priority Hosting plans", url: "https://documentation.botghost.com/premium/premium-and-priority-hosting-plans" }
+    en:
+      title: "BotGhost alternative: Bot Creator compared with BotGhost"
+      description: "Bot Creator and BotGhost side by side, with the prices, hosting rules and free limits BotGhost publishes, dated and linked to its source, and the limits of Bot Creator stated plainly."
+      nav: "Bot Creator and BotGhost"
+      h1: "Bot Creator and BotGhost, side by side"
+      intro: "Both let you build Discord bot commands from blocks without writing code. This page sets what BotGhost publishes about itself next to what Bot Creator does. Everything about BotGhost comes from its own pages, read on 2026-10-12 and linked below. Nothing here is a review; BotGhost says its prices may vary, so check its pages."
+      col_them: "BotGhost"
+      col_us: "Bot Creator"
+      rows:
+        - { k: "Where you build", them: "A web dashboard (sign in with Discord); an iOS app is listed [1]", us: "In the Android and iOS apps (see the download page)" }
+        - { k: "Builder", them: "Commands and events are flows of blocks; variables per user, server or globally; buttons, select menus and modals; an API Request block [1]", us: "Visual blocks, with variables per server, member, user, channel or message, buttons, select menus, modals and an HTTP request block; or BDFD-style `$functions`, or JavaScript" }
+        - { k: "Hosting", them: "24/7 hosting on its infrastructure; free bots stay online while they receive at least one interaction every 7 days; premium bots are exempt [1]", us: "Hosted by us from the app (hosting time earned by watching rewarded ads on the free plan), or self-hosted with the Docker runner" }
+        - { k: "Free limits", them: "Up to 5 servers per free bot, 8 custom slash commands and 3 custom events [1]", us: "The free apps show ads; see the pricing page for what is paid" }
+      prices_title: "Prices"
+      prices_them: "BotGhost lists, in US dollars: Free $0; Single Bot $10 per month or $60 per year; Unlimited Bots $20 per month or $120 per year [1]. Its documentation says plans are listed in USD, converted at checkout, and that prices may vary over time [2]. Premium on BotGhost applies to one bot (Single Bot) or to every bot of the account (Unlimited Bots)."
+      prices_us: "Bot Creator Premium, store prices read on"
+      limits_title: "Where Bot Creator is limited"
+      limits:
+        - "The free version of the apps shows ads, and hosting time on our servers is earned by watching rewarded ads in the mobile app."
+        - "You build in an app, not in a browser dashboard. The browser playground only previews the message a command would send; it does not run a bot."
+        - "The two products price different things (BotGhost per bot, Bot Creator through app-store subscriptions), so amounts are not a like-for-like comparison."
+      sources_title: "Sources (read on 2026-10-12)"
+      corrections: "Something out of date or wrong about BotGhost? Write to contact@bot-creator.fr and we will fix it."
+      try_cta: "Try it in the playground"
+      pricing_cta: "Bot Creator pricing"
+    fr:
+      title: "Alternative à BotGhost : Bot Creator comparé à BotGhost"
+      description: "Bot Creator et BotGhost côte à côte, avec les prix, les règles d'hébergement et les limites gratuites que BotGhost publie, datés et reliés à leur source, et les limites de Bot Creator dites franchement."
+      nav: "Bot Creator et BotGhost"
+      h1: "Bot Creator et BotGhost, côte à côte"
+      intro: "Les deux permettent de créer des commandes de bot Discord avec des blocs, sans écrire de code. Cette page met ce que BotGhost publie sur lui-même à côté de ce que fait Bot Creator. Tout ce qui concerne BotGhost vient de ses propres pages, lues le 12 octobre 2026 et liées plus bas. Ce n'est pas un test comparatif ; BotGhost indique que ses prix peuvent varier, vérifiez ses pages."
+      col_them: "BotGhost"
+      col_us: "Bot Creator"
+      rows:
+        - { k: "Où l'on construit", them: "Un tableau de bord web (connexion avec Discord) ; une application iOS est listée [1]", us: "Dans les applications Android et iOS (voir la page de téléchargement)" }
+        - { k: "Constructeur", them: "Commandes et événements sous forme de flux de blocs ; variables par utilisateur, serveur ou globales ; boutons, menus de sélection et modals ; un bloc API Request [1]", us: "Des blocs visuels, avec des variables par serveur, membre, utilisateur, salon ou message, des boutons, menus de sélection, modals et un bloc de requête HTTP ; ou des `$fonctions` de type BDFD, ou du JavaScript" }
+        - { k: "Hébergement", them: "Hébergement 24 h/24 sur son infrastructure ; les bots gratuits restent en ligne tant qu'ils reçoivent au moins une interaction tous les 7 jours ; les bots premium en sont exemptés [1]", us: "Hébergé par nous depuis l'application (temps d'hébergement gagné en regardant des publicités récompensées avec l'offre gratuite), ou auto-hébergé avec le runner Docker" }
+        - { k: "Limites gratuites", them: "Jusqu'à 5 serveurs par bot gratuit, 8 commandes slash personnalisées et 3 événements personnalisés [1]", us: "Les applications gratuites affichent des publicités ; voir la page tarifs pour ce qui est payant" }
+      prices_title: "Prix"
+      prices_them: "BotGhost indique, en dollars américains : Gratuit 0 $ ; Single Bot 10 $ par mois ou 60 $ par an ; Unlimited Bots 20 $ par mois ou 120 $ par an [1]. Sa documentation précise que les offres sont listées en USD, converties au paiement, et que les prix peuvent varier [2]. Le premium de BotGhost s'applique à un bot (Single Bot) ou à tous les bots du compte (Unlimited Bots)."
+      prices_us: "Bot Creator Premium, prix des stores relevés le"
+      limits_title: "Les limites de Bot Creator"
+      limits:
+        - "La version gratuite des applications affiche des publicités, et le temps d'hébergement sur nos serveurs se gagne en regardant des publicités récompensées dans l'application mobile."
+        - "On construit dans une application, pas dans un tableau de bord web. Le playground du navigateur affiche seulement l'aperçu du message qu'enverrait une commande ; il ne fait pas tourner de bot."
+        - "Les deux produits ne facturent pas la même chose (BotGhost par bot, Bot Creator par abonnements dans les stores) : les montants ne se comparent pas à l'identique."
+      sources_title: "Sources (lues le 12 octobre 2026)"
+      corrections: "Une information sur BotGhost est périmée ou fausse ? Écrivez à contact@bot-creator.fr et nous la corrigerons."
+      try_cta: "Essayer dans le playground"
+      pricing_cta: "Tarifs de Bot Creator"

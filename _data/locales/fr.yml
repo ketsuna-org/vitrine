@@ -8,6 +8,7 @@ paths:
   faq: "/fr/faq/"
   pricing: "/fr/tarifs/"
   use_cases: "/fr/cas-d-usage/"
+  compare: "/fr/"
   guides: "/blog/"
   docs: "/fr/docs/"
   docs_full: "/docs/"
@@ -101,6 +102,7 @@ use_cases:
   download_cta: "Télécharger Bot Creator"
   home_title: "Ce que vous pouvez construire"
   home_all: "Tous les cas d'usage"
+  compare_title: "Comparé à d'autres outils"
 
 home:
   hero:

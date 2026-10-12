@@ -8,6 +8,7 @@ paths:
   faq: "/faq/"
   pricing: "/pricing/"
   use_cases: "/use-cases/"
+  compare: "/"
   guides: "/blog/"
   docs: "/docs/"
   privacy: "/privacy-policy.html"
@@ -114,6 +115,7 @@ use_cases:
   download_cta: "Download Bot Creator"
   home_title: "What you can build"
   home_all: "All use cases"
+  compare_title: "Compared with other tools"
 
 home:
   hero:

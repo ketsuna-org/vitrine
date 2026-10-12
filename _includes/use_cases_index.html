@@ -15,6 +15,14 @@
       </li>
     {% endfor %}
   </ul>
+  <section class="mt-10 flex flex-col gap-3">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.use_cases.compare_title }}</h2>
+    <ul class="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
+      {% for key in site.data.comparisons.order %}{% assign cm = site.data.comparisons.items[key] %}
+      <li><a class="text-primary underline underline-offset-2" href="{{ cm.slug[page.locale] | prepend: t.paths.compare | append: '/' | relative_url }}">{{ cm[page.locale].nav }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
   <div class="flex flex-wrap gap-3 pt-8">
     <a href="{{ t.paths.playground | relative_url }}" class="btn btn-primary">{{ t.use_cases.try_cta }}</a>
     <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary">{{ t.use_cases.download_cta }}</a>

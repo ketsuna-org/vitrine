@@ -1,0 +1,56 @@
+{% assign t = site.data.locales[page.locale] %}
+{% assign cmp = site.data.comparisons %}
+{% assign item = cmp.items[page.comparison] %}
+{% assign c = item[page.locale] %}
+{% assign premium = site.data.pricing.plans | where: "id", "premium" | first %}
+<div class="mx-auto max-w-[900px] px-4 py-14 sm:px-6 lg:py-20">
+  <nav aria-label="Breadcrumb" class="mb-6 text-sm text-on-surface-variant"><a class="underline underline-offset-2 hover:text-primary" href="{{ t.paths.use_cases | relative_url }}">{{ t.use_cases.eyebrow }}</a></nav>
+  <header class="mb-10 flex flex-col gap-3">
+    <h1 class="m-0 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">{{ c.h1 }}</h1>
+    <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ c.intro | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+  </header>
+
+  <div class="mb-10 overflow-x-auto">
+    <table class="w-full text-left text-sm">
+      <thead><tr class="border-b border-outline text-on-surface-variant"><th class="py-2 pr-4 font-medium"><span class="sr-only">&nbsp;</span></th><th class="py-2 pr-4 font-medium">{{ c.col_them }}</th><th class="py-2 font-medium">{{ c.col_us }}</th></tr></thead>
+      <tbody>
+        {% for r in c.rows %}
+        <tr class="border-b border-outline-variant align-top"><th scope="row" class="py-3 pr-4 font-medium">{{ r.k }}</th><td class="py-3 pr-4 text-on-surface-variant">{{ r.them | markdownify | remove: '<p>' | remove: '</p>' }}</td><td class="py-3 text-on-surface-variant">{{ r.us | markdownify | remove: '<p>' | remove: '</p>' }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ c.prices_title }}</h2>
+    <p class="m-0 leading-relaxed text-on-surface-variant">{{ c.prices_them | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    <p class="m-0 leading-relaxed text-on-surface-variant">{{ c.prices_us }} {{ site.data.pricing.read_on }}: Google Play {% include price.html v=premium.google_play.eur_month %} €{{ t.pricing.per_month }} / {% include price.html v=premium.google_play.eur_year %} €{{ t.pricing.per_year }}, App Store {% include price.html v=premium.app_store.eur_month %} €{{ t.pricing.per_month }} / {% include price.html v=premium.app_store.eur_year %} €{{ t.pricing.per_year }}. <a class="text-primary underline underline-offset-2" href="{{ t.paths.pricing | relative_url }}">{{ c.pricing_cta }}</a></p>
+  </section>
+
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ c.limits_title }}</h2>
+    <ul class="m-0 flex list-disc flex-col gap-2 pl-6 leading-relaxed text-on-surface-variant">
+      {% for l in c.limits %}<li>{{ l | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+    </ul>
+  </section>
+
+  {% if c.migrate_title %}
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ c.migrate_title }}</h2>
+    <p class="m-0 leading-relaxed text-on-surface-variant">{{ c.migrate_body | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+  </section>
+  {% endif %}
+
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ c.sources_title }}</h2>
+    <ol class="m-0 flex list-none flex-col gap-1 p-0 text-sm text-on-surface-variant">
+      {% for s in item.sources %}<li>[{{ s.id }}] <a class="text-primary underline underline-offset-2" href="{{ s.url }}" rel="noopener noreferrer nofollow">{{ s.label }}</a></li>{% endfor %}
+    </ol>
+    <p class="m-0 text-sm text-on-surface-variant">{{ c.corrections }}</p>
+  </section>
+
+  <div class="flex flex-wrap gap-3">
+    <a href="{{ t.paths.playground | relative_url }}" class="btn btn-primary">{{ c.try_cta }}</a>
+    <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary">{{ t.use_cases.download_cta }}</a>
+  </div>
+</div>
