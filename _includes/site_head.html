@@ -32,6 +32,7 @@
 
   {% if page.layout == 'playground' %}
   <link rel="preload" as="fetch" href="{{ '/assets/js/blocks-registry.json' | relative_url }}" crossorigin="anonymous">
+  {% if locale == 'fr' %}<link rel="preload" as="fetch" href="{{ '/assets/js/blocks-i18n-fr.json' | relative_url }}" crossorigin="anonymous">{% endif %}
   {% endif %}
 
   {% if include.markdown %}

@@ -4,7 +4,7 @@ label: "Français"
 paths:
   home: "/fr/"
   download: "/fr/download/"
-  playground: "/playground/"
+  playground: "/fr/playground/"
   faq: "/fr/faq/"
   pricing: "/fr/tarifs/"
   guides: "/blog/"
@@ -76,7 +76,7 @@ home:
   try:
     eyebrow: "Playground"
     title: "Essayez sans rien installer"
-    body: "Modifiez des blocs Bot Creator ou collez un extrait BDFD et voyez le message Discord qu'il afficherait. Tout se passe dans votre navigateur : rien n'est envoyé et rien n'est exécuté. L'interface du playground est en anglais."
+    body: "Modifiez des blocs Bot Creator ou collez un extrait BDFD et voyez le message Discord qu'il afficherait. Tout se passe dans votre navigateur : rien n'est envoyé et rien n'est exécuté."
     cta: "Ouvrir le playground"
     note: "L'aperçu dessine le message des blocs de réponse et d'envoi. C'est une approximation de Discord, pas le moteur."
   features:
