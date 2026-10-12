@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $ban
-translation_key: docs
 category: "Moderation"
 function_name: ban
 syntax: $ban[(reason)]
 description: Bans the first mentioned user with an optional reason.
+locale: en
+translation_key: doc-ban
 ---
 
 # $ban

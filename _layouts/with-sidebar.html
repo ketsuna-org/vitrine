@@ -10,11 +10,11 @@
     <div class="content-shell mx-auto flex w-full max-w-[1360px] items-start px-4 sm:px-6">
 
       <!-- Navigation: sticky column on desktop, drawer on mobile -->
-      <aside id="docs-sidebar" class="docs-sidebar" aria-label="Browse documentation and guides">
+      <aside id="docs-sidebar" class="docs-sidebar" aria-label="{{ t.docs_ui.sidebar_label | default: 'Browse documentation and guides' }}">
         <div class="docs-sidebar-sticky">
           <div class="docs-sidebar-inner" data-cscroll>
             <div class="mb-2 flex items-center justify-between border-b border-outline-variant pb-3 lg:hidden">
-              <span class="text-base font-semibold text-on-surface">{{ page.sidebar_title | default: "Navigation" }}</span>
+              <span class="text-base font-semibold text-on-surface">{{ page.sidebar_title | default: t.docs_ui.navigation }}</span>
               <button type="button" id="sidebar-close-btn" aria-label="Close navigation"
                 class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container">
                 <svg class="reicon !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
@@ -25,6 +25,8 @@
               {{ page.sidebar }}
             {% elsif page.layout == 'post' or page.sidebar_context == 'guides' %}
               {% include guides_sidebar.html %}
+            {% elsif page.sidebar_context == 'docs_fr' %}
+              {% include docs_sidebar_fr.html %}
             {% elsif page.api_type == 'javascript' or page.sidebar_context == 'javascript' %}
               {% include js_api_sidebar.html %}
             {% else %}
@@ -45,23 +47,23 @@
 
   <!-- Mobile action bar -->
   <div class="mobile-bar" role="toolbar" aria-label="Page navigation">
-    <button type="button" id="search-toggle-btn" aria-label="Search the documentation">
+    <button type="button" id="search-toggle-btn" aria-label="{{ t.docs_ui.search_label }}">
       <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#search"></use></svg>
-      <span>Search</span>
+      <span>{{ t.docs_ui.search }}</span>
     </button>
-    <button type="button" id="sidebar-toggle-btn" aria-expanded="false" aria-controls="docs-sidebar">Menu</button>
-    <button type="button" id="toc-toggle-btn" aria-expanded="false" aria-controls="toc-sheet" hidden>On this page</button>
+    <button type="button" id="sidebar-toggle-btn" aria-expanded="false" aria-controls="docs-sidebar">{{ t.docs_ui.menu }}</button>
+    <button type="button" id="toc-toggle-btn" aria-expanded="false" aria-controls="toc-sheet" hidden>{{ t.docs_ui.on_this_page }}</button>
   </div>
 
-  <div id="toc-sheet" class="toc-sheet" role="dialog" aria-modal="true" aria-label="On this page" hidden>
+  <div id="toc-sheet" class="toc-sheet" role="dialog" aria-modal="true" aria-label="{{ t.docs_ui.on_this_page }}" hidden>
     <div class="toc-sheet-panel">
       <div class="flex items-center justify-between px-4 py-2 sm:px-6">
-        <span class="text-base font-semibold">On this page</span>
+        <span class="text-base font-semibold">{{ t.docs_ui.on_this_page }}</span>
         <button type="button" id="toc-close-btn" aria-label="Close" class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container">
           <svg class="reicon !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
         </button>
       </div>
-      <div class="toc-sheet-body"><nav data-cscroll data-document-toc id="toc-sheet-list" aria-label="On this page"></nav></div>
+      <div class="toc-sheet-body"><nav data-cscroll data-document-toc id="toc-sheet-list" aria-label="{{ t.docs_ui.on_this_page }}"></nav></div>
     </div>
   </div>
 

@@ -5,6 +5,8 @@ category: "Meta"
 api_type: general
 description: How event-driven workflows and ((...)) placeholders work in Bot Creator bots.
 permalink: /docs/events-and-placeholders/
+locale: en
+translation_key: doc-events-and-placeholders
 ---
 
 Bot Creator bots react to Discord events (messages, joins, button clicks) and resolve dynamic values through the `((...))` template system.

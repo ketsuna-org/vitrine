@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $setVar[]
-translation_key: docs
 category: "Variables"
 function_name: setVar
 syntax: $setVar[name;value;(User ID)]
 description: Creates or updates a global variable or a user-scoped variable in the bot's persistent storage.
+locale: en
+translation_key: doc-setvar
 ---
 
 $setVar writes values to the bot's persistent database. This is the counterpart to `$getVar` and is used for any data that needs to survive beyond the current command execution.

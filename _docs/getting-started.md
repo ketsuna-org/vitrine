@@ -4,6 +4,8 @@ title: Getting Started
 category: "Meta"
 description: Start here — set up a bot, write your first command, and find the right documentation section.
 permalink: /docs/getting-started/
+locale: en
+translation_key: doc-getting-started
 ---
 {% assign onboarding_guide_0 = site.posts | where_exp: 'post', "post.url contains 'how-to-create-a-bot-token-bot-creator'" | first %}
 {% assign onboarding_guide_1 = site.posts | where_exp: 'post', "post.url contains 'how-to-create-a-command-in-bot-creator-step-by-step'" | first %}

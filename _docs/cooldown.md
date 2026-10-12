@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $cooldown[] / $globalCooldown[] / $serverCooldown[]
-translation_key: docs
 category: "Control Flow"
 function_name: cooldown
 syntax: $cooldown[duration;errorMessage]
 description: "Enforces a cooldown on command execution. Three variants: $cooldown (per user and server), $serverCooldown (per server) and $globalCooldown (per user, all servers)."
+locale: en
+translation_key: doc-cooldown
 ---
 
 The cooldown family prevents command spam by enforcing a waiting period between successive uses. The engine provides three variants, with different keys. All of them are tracked **per command** (the command ID of the running command).

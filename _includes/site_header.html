@@ -7,7 +7,7 @@
 {% comment %} Language switch: the translation of this page when it exists, else the home page of the other language. {% endcomment %}
 {% assign alt_url = site.data.locales[t.nav.switch_language_code].paths.home %}
 {% if page.translation_key %}
-  {% assign siblings = site.pages | where: "translation_key", page.translation_key | where_exp: "p", "p.locale != page.locale" %}
+  {% assign siblings = site.pages | concat: site.docs | where: "translation_key", page.translation_key | where_exp: "p", "p.locale != page.locale" %}
   {% if siblings.size > 0 %}{% assign alt_url = siblings.first.url %}{% endif %}
 {% endif %}
 <header class="nav-shell sticky top-0 z-50">

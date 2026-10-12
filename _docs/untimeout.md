@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $unTimeout
-translation_key: docs
 category: "Moderation"
 function_name: unTimeout
 syntax: $unTimeout[(userID)]
 description: Removes the timeout of a user before its expiration.
+locale: en
+translation_key: doc-untimeout
 ---
 
 # $unTimeout

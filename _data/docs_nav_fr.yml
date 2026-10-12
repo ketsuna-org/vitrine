@@ -1,0 +1,26 @@
+getting_started: "Démarrer"
+events: "Événements et variables"
+full_docs: "Documentation complète (anglais)"
+groups:
+  - title: "Modération"
+    pages:
+      - { slug: ban, name: ban }
+      - { slug: unban, name: unBan }
+      - { slug: banid, name: banID }
+      - { slug: unbanid, name: unBanID }
+      - { slug: kick, name: kick }
+      - { slug: timeout, name: timeout }
+      - { slug: untimeout, name: unTimeout }
+      - { slug: giverole, name: giveRole }
+      - { slug: takerole, name: takeRole }
+      - { slug: clear, name: clear }
+  - title: "Salons et webhooks"
+    pages:
+      - { slug: slowmode, name: slowmode }
+      - { slug: channelnsfw, name: channelNSFW }
+      - { slug: webhookavatarurl, name: webhookAvatarURL }
+  - title: "Variables et flux"
+    pages:
+      - { slug: getvar, name: getVar }
+      - { slug: setvar, name: setVar }
+      - { slug: cooldown, name: cooldown }

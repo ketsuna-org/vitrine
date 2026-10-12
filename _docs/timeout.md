@@ -1,11 +1,12 @@
 ---
 layout: doc
 title: $timeout
-translation_key: docs
 category: "Moderation"
 function_name: timeout
 syntax: $timeout[duration;(userID)]
 description: Temporarily times out a user (temporary silence).
+locale: en
+translation_key: doc-timeout
 ---
 
 # $timeout

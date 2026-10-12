@@ -1,0 +1,21 @@
+{% assign t = site.data.locales.fr %}
+{% assign nav = site.data.docs_nav_fr %}
+<div class="flex flex-col gap-6">
+  <div class="sidebar-group">
+    <a href="{{ '/fr/docs/getting-started/' | relative_url }}" class="block px-3 py-2 text-sm font-bold text-on-surface-variant hover:text-primary">{{ nav.getting_started }}</a>
+    <a href="{{ '/fr/docs/events-and-placeholders/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">{{ nav.events }}</a>
+    <a href="{{ t.paths.use_cases | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">{{ t.nav.use_cases }}</a>
+    <a href="{{ t.paths.playground | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">{{ t.nav.playground }}</a>
+  </div>
+  {% for group in nav.groups %}
+  <div class="sidebar-group">
+    <div class="mb-2 px-2 py-1 text-xs font-bold uppercase tracking-widest text-on-surface-variant">{{ group.title }}</div>
+    {% for fn in group.pages %}
+    <a href="{{ '/fr/docs/' | append: fn.slug | append: '/' | relative_url }}" class="block px-3 py-1.5 font-mono text-sm text-on-surface-variant hover:text-primary">${{ fn.name }}</a>
+    {% endfor %}
+  </div>
+  {% endfor %}
+  <div class="sidebar-group">
+    <a href="{{ t.paths.docs | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">{{ nav.full_docs }}</a>
+  </div>
+</div>
