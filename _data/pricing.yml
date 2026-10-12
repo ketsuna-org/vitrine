@@ -1,0 +1,18 @@
+# Prices as returned by Google Play and the App Store (production catalog, read-only, 2026-10-12).
+# Reference currency: EUR (identical across France, Germany and the other euro countries read).
+# Update this file, and the date, whenever the store prices change.
+read_on: "2026-10-12"
+reference_currency: "EUR"
+other_currency: "USD"
+plans:
+  - id: premium
+    period_month: true
+    period_year: true
+    google_play: { eur_month: "5.99", eur_year: "59.99", usd_month: "5.99", usd_year: "59.99" }
+    app_store:   { eur_month: "5.99", eur_year: "59.99", usd_month: "4.99", usd_year: "49.99" }
+  - id: host_one
+    google_play: { eur_month: "5.99", usd_month: "5.49" }
+    app_store:   { eur_month: "4.99", usd_month: "3.99" }
+  - id: host_two
+    google_play: { eur_month: "8.99", usd_month: "8.49" }
+    app_store:   { eur_month: "7.99", usd_month: "6.99" }
