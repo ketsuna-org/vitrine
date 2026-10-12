@@ -197,6 +197,7 @@ pricing:
   title: "Tarifs"
   eyebrow: "Tarifs"
   subtitle: "L'app se télécharge gratuitement. Les abonnements s'achètent dans les stores : ce sont donc les prix des stores."
+  compare_intro: "Comparé à d'autres outils :"
   note: "Devise de référence : l'euro (EUR). Le prix du store peut varier selon le pays, la devise et les taxes. Relevé sur Google Play et l'App Store le"
   free_title: "Gratuit"
   free_body: "La version gratuite des apps affiche des publicités (Google AdMob). Le temps d'hébergement d'un bot démarré sur nos serveurs se gagne en regardant des publicités récompensées dans l'app mobile."

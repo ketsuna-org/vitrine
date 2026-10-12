@@ -49,6 +49,8 @@
     <p class="m-0 leading-relaxed text-on-surface-variant">{{ t.pricing.docker_body }} <a class="text-primary underline underline-offset-2" href="{{ t.paths.download | append: '#runner' | relative_url }}">{{ t.pricing.docker_link }}</a></p>
   </section>
 
+  <p class="m-0 mb-8 text-sm text-on-surface-variant">{{ t.pricing.compare_intro }}{% for key in site.data.comparisons.order %}{% assign cm = site.data.comparisons.items[key] %} <a class="text-primary underline underline-offset-2" href="{{ cm.slug[page.locale] | prepend: t.paths.compare | append: '/' | relative_url }}">{{ cm[page.locale].nav }}</a>{% unless forloop.last %},{% endunless %}{% endfor %}.</p>
+
   <p class="m-0 mb-8 text-sm text-on-surface-variant">{{ t.pricing.note }} {{ pr.read_on }}.</p>
   <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary btn-lg">{{ t.pricing.stores_cta }}</a>
 </div>
