@@ -12,6 +12,7 @@
     </a>
 
     <nav class="hidden items-center gap-1 md:flex" aria-label="Main">
+      <a class="nav-link" href="{{ t.paths.playground | relative_url }}" {% if page.layout == 'playground' %}aria-current="page"{% endif %}>Playground</a>
       <a class="nav-link" href="{{ '/#features' | relative_url }}">Features</a>
       <div class="relative" data-docs-dropdown>
         <button type="button" data-docs-trigger aria-expanded="false" aria-controls="documentation-menu" class="nav-link gap-1" {% if is_docs %}aria-current="page"{% endif %}>
@@ -53,6 +54,7 @@
     <div class="nav-mobile-scroll">
       <div data-cscroll>
         <nav aria-label="Mobile">
+          <a class="nav-mobile-link" href="{{ t.paths.playground | relative_url }}">Playground</a>
           <a class="nav-mobile-link" href="{{ '/#features' | relative_url }}">Features</a>
           <a class="nav-mobile-link" href="{{ t.paths.docs | relative_url }}">Docs</a>
           <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/getting-started/' | relative_url }}">Getting started</a>
