@@ -1,0 +1,3 @@
+---
+---
+{{ site.data.blocks_i18n_fr | jsonify }}

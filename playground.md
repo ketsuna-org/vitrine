@@ -2,6 +2,9 @@
 layout: playground
 title: Discord bot playground, try blocks and BDFD in your browser
 description: Edit Bot Creator blocks or paste a BDFD snippet and see the Discord message it would draw. Runs in your browser, nothing is sent and nothing is executed.
+locale: en
+lang: en
+translation_key: playground
 permalink: /playground/
 ---
 
