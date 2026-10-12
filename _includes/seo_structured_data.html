@@ -3,7 +3,7 @@
   BreadcrumbList on documentation and guide pages. Only facts that exist elsewhere on the site
   (store links in _data/downloads.yml, site title/description in _config.yml).
 {% endcomment %}
-{% if page.url == '/' %}
+{% if page.url == '/' or page.url == '/fr/' %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -15,18 +15,21 @@
       "url": "{{ '/' | absolute_url }}",
       "logo": "{{ '/assets/icon.png' | absolute_url }}",
       "email": "{{ site.email }}",
-      "sameAs": ["https://github.com/{{ site.github_username }}"]
+      "sameAs": ["https://github.com/{{ site.github_username }}", "https://discord.gg/K37nuphaDP"]
     },
     {
       "@type": "SoftwareApplication",
       "@id": "{{ '/#app' | absolute_url }}",
-      "name": "{{ site.title | escape }}",
+      "name": "{{ site.title | escape }} for Discord",
+      "alternateName": "{{ site.title | escape }}",
       "description": "{{ site.description | strip_newlines | strip | escape }}",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Android, iOS, Windows",
       "url": "{{ '/' | absolute_url }}",
       "downloadUrl": "{{ '/download/' | absolute_url }}",
       "image": "{{ '/assets/icon.png' | absolute_url }}",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Free to download on Google Play and the App Store; subscriptions are sold in the stores." },
+      "sameAs": ["{{ site.data.downloads.stores.android_play.url }}", "{{ site.data.downloads.stores.ios_appstore.url }}"],
       "publisher": { "@id": "{{ '/#organization' | absolute_url }}" }
     }
   ]

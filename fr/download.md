@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Télécharger Bot Creator pour Discord
-description: Installez Bot Creator depuis Google Play, l'App Store ou Steam, ou faites tourner vos bots en continu avec le runner Docker.
+description: Installez Bot Creator depuis Google Play ou l'App Store, ou faites tourner vos bots en continu avec le runner Docker.
 locale: fr
 lang: fr
 translation_key: download
