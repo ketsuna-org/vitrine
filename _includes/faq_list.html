@@ -1,0 +1,15 @@
+{% comment %}
+  Collapsible question list. Params: items (array of {q, a}), limit (optional).
+  Plain <details>, no script. No FAQPage markup: Google no longer shows FAQ rich results.
+{% endcomment %}
+<div class="flex flex-col">
+  {% for item in include.items limit: include.limit %}
+  <details class="group border-t border-outline last:border-b" {% if forloop.first and include.open_first %}open{% endif %}>
+    <summary class="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 py-4 text-lg font-medium text-on-surface">
+      <span>{{ item.q }}</span>
+      <svg class="reicon text-xl flex-none transition-transform group-open:rotate-180" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#expand_more"></use></svg>
+    </summary>
+    <p class="m-0 pb-5 leading-relaxed text-on-surface-variant">{{ item.a }}</p>
+  </details>
+  {% endfor %}
+</div>
