@@ -7,6 +7,7 @@ paths:
   playground: "/playground/"
   faq: "/faq/"
   pricing: "/pricing/"
+  use_cases: "/use-cases/"
   guides: "/blog/"
   docs: "/docs/"
   privacy: "/privacy-policy.html"
@@ -24,6 +25,7 @@ nav:
   playground: "Playground"
   faq: "FAQ"
   pricing: "Pricing"
+  use_cases: "Use cases"
   download_button: "Download"
   main_label: "Main"
   mobile_label: "Mobile"
@@ -76,6 +78,22 @@ common:
   source_language_fr: "French"
   runtime_label: "Runtime"
   download_label: "Download"
+
+use_cases:
+  eyebrow: "Use cases"
+  index_title: "Discord bots you can build without code"
+  index_body: "Six common bots and the blocks each one needs. Every block named here is in the app, and every limit is stated."
+  steps_title: "How to build it"
+  blocks_title: "Blocks you will use"
+  blocks_note: "Block names are the ones of the app; each links to its entry in the dictionary."
+  limits_title: "What to know"
+  guides_title: "Go further"
+  guides_note: ""
+  others_title: "Other things you can build"
+  try_cta: "Try it in the playground"
+  download_cta: "Download Bot Creator"
+  home_title: "What you can build"
+  home_all: "All use cases"
 
 home:
   hero:

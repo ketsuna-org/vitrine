@@ -137,6 +137,19 @@ $description[$ping ms]</code></pre>
     </div>
   </section>
 
+  <!-- Use cases -->
+  <section class="border-t border-outline-variant">
+    <div class="mx-auto flex max-w-[900px] flex-col gap-6 px-4 py-16 sm:px-6 lg:py-20">
+      <h2 class="m-0 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{{ t.use_cases.home_title }}</h2>
+      <ul class="m-0 flex list-none flex-wrap gap-x-8 gap-y-3 p-0">
+        {% for key in site.data.use_cases.order %}{% assign uc_item = site.data.use_cases.items[key] %}
+        <li><a class="text-lg text-primary underline underline-offset-2" href="{{ t.paths.use_cases | append: uc_item.slug[page.locale] | append: '/' | relative_url }}">{{ uc_item[page.locale].nav }}</a></li>
+        {% endfor %}
+      </ul>
+      <div><a href="{{ t.paths.use_cases | relative_url }}" class="btn btn-secondary">{{ t.use_cases.home_all }}</a></div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="border-t border-outline-variant bg-surface-container-low">
     <div class="mx-auto flex max-w-[900px] flex-col gap-8 px-4 py-16 sm:px-6 lg:py-20">

@@ -1,0 +1,330 @@
+# Use-case pages (EN + FR). Every claim here was checked against the engine:
+# block names/fields in _data/blocks_registry.json, placeholders in the same
+# file (variables) and in _docs/events-and-placeholders.md, event names in
+# the registry (events), step-by-step flows in _docs/tickets.md.
+# Block names are NOT written here: they are looked up from the registry
+# (EN) and _data/blocks_i18n_fr.json (FR) by their `type`.
+order: [welcome, moderation, tickets, levels, roles, commands]
+
+items:
+  welcome:
+    slug: { en: "welcome-bot", fr: "bot-bienvenue" }
+    en:
+      title: "Discord welcome bot without code: greet new members"
+      description: "Greet new members with a message, a starter role or a private message. Build it with Bot Creator blocks on the member-join event, and see exactly which blocks it needs."
+      nav: "Welcome bot"
+      h1: "A Discord welcome bot, built from blocks"
+      intro: "A welcome bot reacts when someone joins your server: it posts a message in a channel, can give a starter role and can send a private message. In Bot Creator you build it on the member-join event, without writing code."
+      steps:
+        - "On Discord, enable the **Server Members Intent** for your bot in the Developer Portal. Discord only sends member joins to bots that have it (the token guide shows where)."
+        - "In Bot Creator, create a command and choose the **Event trigger**, then the event **Guild Member Add**."
+        - "Add a *Send Message* block with the target set to a channel and your channel ID. Write the text with placeholders, for example `Welcome ((member.mention)) to ((guild.name))! You are member number ((guild.memberCount)).`"
+        - "Optional: add an *Add Role* block with the user set to `((member.id))` and the ID of your starter role."
+        - "Optional: add a *Send Direct Message* block to `((member.id))`."
+        - "Check the look of the message in the playground, then run the bot."
+      blocks:
+        - { type: sendMessage, note: "Posts the welcome message in a channel (or replies, or sends a DM). Supports embeds and buttons." }
+        - { type: addRole, note: "Gives a role to the member who joined." }
+        - { type: sendDm, note: "Sends a private message to a user." }
+      limits:
+        - "The bot only sees joins while it is running."
+        - "A private message fails if the member has closed their direct messages (Discord rule)."
+        - "The playground draws the message of a *Send Message* block; it does not simulate the join event."
+      guides:
+        - { label: "Events and placeholders", url: "/docs/events-and-placeholders/" }
+        - { label: "Available variables per event", url: "/reference-deployment/2026/05/22/available-variables-per-event-exhaustive/" }
+        - { label: "How to create a Discord bot token", url: "/getting-started/2025/05/18/how-to-create-a-bot-token-bot-creator/" }
+    fr:
+      title: "Bot de bienvenue Discord sans code : accueillez les nouveaux membres"
+      description: "Accueillez les nouveaux membres avec un message, un rôle de départ ou un message privé. Construisez-le avec les blocs Bot Creator sur l'événement d'arrivée d'un membre, et voyez exactement quels blocs il faut."
+      nav: "Bot de bienvenue"
+      h1: "Un bot de bienvenue Discord, construit avec des blocs"
+      intro: "Un bot de bienvenue réagit quand quelqu'un rejoint votre serveur : il publie un message dans un salon, peut donner un rôle de départ et envoyer un message privé. Dans Bot Creator, vous le construisez sur l'événement d'arrivée d'un membre, sans écrire de code."
+      steps:
+        - "Sur Discord, activez l'**intention Server Members** de votre bot dans le portail développeur. Discord n'envoie les arrivées de membres qu'aux bots qui l'ont (le guide du jeton, en anglais, montre où)."
+        - "Dans Bot Creator, créez une commande et choisissez le **déclencheur d'événement**, puis l'événement **Guild Member Add**."
+        - "Ajoutez un bloc *Envoyer un message* avec comme cible un salon et l'ID de votre salon. Écrivez le texte avec des variables, par exemple `Bienvenue ((member.mention)) sur ((guild.name)) ! Tu es le membre numéro ((guild.memberCount)).`"
+        - "Facultatif : ajoutez un bloc *Ajouter un rôle* avec l'utilisateur `((member.id))` et l'ID de votre rôle de départ."
+        - "Facultatif : ajoutez un bloc *Envoyer un message privé (MP)* à `((member.id))`."
+        - "Vérifiez l'aspect du message dans le playground, puis lancez le bot."
+      blocks:
+        - { type: sendMessage, note: "Publie le message de bienvenue dans un salon (ou répond, ou envoie un MP). Gère les embeds et les boutons." }
+        - { type: addRole, note: "Donne un rôle au membre qui vient d'arriver." }
+        - { type: sendDm, note: "Envoie un message privé à un utilisateur." }
+      limits:
+        - "Le bot ne voit les arrivées que lorsqu'il tourne."
+        - "Un message privé échoue si le membre a fermé ses messages privés (règle de Discord)."
+        - "Le playground dessine le message d'un bloc *Envoyer un message* ; il ne simule pas l'événement d'arrivée."
+      guides:
+        - { label: "Événements et variables (anglais)", url: "/docs/events-and-placeholders/" }
+        - { label: "Variables disponibles par événement (anglais)", url: "/reference-deployment/2026/05/22/available-variables-per-event-exhaustive/" }
+        - { label: "Créer un jeton de bot Discord (anglais)", url: "/getting-started/2025/05/18/how-to-create-a-bot-token-bot-creator/" }
+
+  moderation:
+    slug: { en: "moderation-bot", fr: "bot-moderation" }
+    en:
+      title: "Discord moderation bot without code: ban, kick, timeout, AutoMod"
+      description: "Build moderation commands (ban, kick, timeout, clean-up) and Discord AutoMod rules with Bot Creator blocks. See which blocks exist and what you have to build yourself."
+      nav: "Moderation bot"
+      h1: "A Discord moderation bot, built from blocks"
+      intro: "Moderation is mostly a few slash commands that take a member and a reason, plus rules that act on their own. Bot Creator has one block per action, and a block that creates Discord AutoMod rules."
+      steps:
+        - "Create a **Slash command** with a user option and a reason option. The values are read as `((opts.user.id))` and `((opts.reason))` (use the option names you chose)."
+        - "Add the action block: *Ban User* (with the number of days of messages to delete), *Kick User*, *Mute User* (a timeout, with a duration such as `10m` or `1h`), *Unmute User* or *Unban User*."
+        - "Add *Respond with Message* to confirm, and tick the private reply option so only the moderator sees it."
+        - "For clean-up, use *Delete Messages* (a count, optionally only one user's messages, or only bots or only users) and *Slowmode* (a duration, `0` to disable)."
+        - "For rules that act on their own, use *Create AutoMod Rule*: trigger on keywords, spam, keyword presets or mention spam, and block the message, send an alert to a channel or time the member out."
+      blocks:
+        - { type: banUser, note: "Bans a user, with a reason and the number of days of messages to delete." }
+        - { type: kickUser, note: "Kicks a member." }
+        - { type: muteUser, note: "Times a member out for a duration or until a date." }
+        - { type: unmuteUser, note: "Removes a timeout." }
+        - { type: unbanUser, note: "Lifts a ban." }
+        - { type: deleteMessages, note: "Deletes a number of messages, with filters." }
+        - { type: slowmode, note: "Sets or removes a channel's slowmode." }
+        - { type: createAutoModRule, note: "Creates a Discord AutoMod rule." }
+      limits:
+        - "The bot needs the matching permission on your server, and its role must sit above the role of the member it acts on (Discord rule)."
+        - "There is no ready-made warning or case-log block. You build a warning count with per-member variables; the BDFD warn-system guide shows the idea."
+        - "To limit who can use a slash command, use Discord's own command permissions (Server Settings, Integrations)."
+      guides:
+        - { label: "How to build a moderation warn system in BDFD", url: "/advanced-topics/2026/05/30/how-to-build-a-moderation-warn-system-in-bdfd/" }
+        - { label: "Blocks dictionary", url: "/docs/blocks-dictionary/" }
+    fr:
+      title: "Bot de modération Discord sans code : ban, kick, timeout, AutoMod"
+      description: "Construisez des commandes de modération (ban, kick, timeout, nettoyage) et des règles AutoMod Discord avec les blocs Bot Creator. Voyez quels blocs existent et ce qu'il faut construire soi-même."
+      nav: "Bot de modération"
+      h1: "Un bot de modération Discord, construit avec des blocs"
+      intro: "La modération, c'est surtout quelques commandes slash qui prennent un membre et une raison, plus des règles qui agissent seules. Bot Creator a un bloc par action, et un bloc qui crée des règles AutoMod Discord."
+      steps:
+        - "Créez une **commande slash** avec une option utilisateur et une option raison. Les valeurs se lisent `((opts.user.id))` et `((opts.reason))` (avec les noms d'options que vous avez choisis)."
+        - "Ajoutez le bloc d'action : *Bannir un utilisateur* (avec le nombre de jours de messages à supprimer), *Expulser un utilisateur*, *Rendre muet un utilisateur* (un timeout, avec une durée comme `10m` ou `1h`), *Réactiver la parole d'un utilisateur* ou *Débannir un utilisateur*."
+        - "Ajoutez *Répondre avec un message* pour confirmer, en cochant la réponse privée pour que seul le modérateur la voie."
+        - "Pour nettoyer, utilisez *Supprimer des messages* (un nombre, éventuellement seulement ceux d'un utilisateur, ou seulement les bots ou seulement les utilisateurs) et *Mode lent* (une durée, `0` pour désactiver)."
+        - "Pour des règles qui agissent seules, utilisez *Créer une règle AutoMod* : déclenchement sur des mots-clés, du spam, des listes prédéfinies ou le spam de mentions ; action : bloquer le message, envoyer une alerte dans un salon ou exclure temporairement le membre."
+      blocks:
+        - { type: banUser, note: "Bannit un utilisateur, avec une raison et le nombre de jours de messages à supprimer." }
+        - { type: kickUser, note: "Expulse un membre." }
+        - { type: muteUser, note: "Exclut temporairement un membre, pour une durée ou jusqu'à une date." }
+        - { type: unmuteUser, note: "Retire une exclusion temporaire." }
+        - { type: unbanUser, note: "Lève un bannissement." }
+        - { type: deleteMessages, note: "Supprime un nombre de messages, avec des filtres." }
+        - { type: slowmode, note: "Règle ou retire le mode lent d'un salon." }
+        - { type: createAutoModRule, note: "Crée une règle AutoMod Discord." }
+      limits:
+        - "Le bot a besoin de la permission correspondante sur votre serveur, et son rôle doit être placé au-dessus de celui du membre visé (règle de Discord)."
+        - "Il n'existe pas de bloc d'avertissements ou de journal de cas tout fait. Un compteur d'avertissements se construit avec des variables par membre ; le guide du système d'avertissements BDFD (en anglais) montre le principe."
+        - "Pour limiter qui peut utiliser une commande slash, utilisez les permissions de commandes de Discord (Paramètres du serveur, Intégrations)."
+      guides:
+        - { label: "Construire un système d'avertissements en BDFD (anglais)", url: "/advanced-topics/2026/05/30/how-to-build-a-moderation-warn-system-in-bdfd/" }
+        - { label: "Dictionnaire des blocs (anglais)", url: "/docs/blocks-dictionary/" }
+
+  tickets:
+    slug: { en: "ticket-bot", fr: "bot-tickets" }
+    en:
+      title: "Discord ticket bot without code: private support channels"
+      description: "Build a support ticket system with Bot Creator blocks: a command that opens a private channel, a close button, and the exact blocks and permissions involved."
+      nav: "Ticket bot"
+      h1: "A Discord ticket bot, built from blocks"
+      intro: "A ticket system opens a private channel for each support request and closes it when the case is solved. In Bot Creator it is two small flows: one that opens the ticket, one that closes it."
+      steps:
+        - "Create a private category on your server where `@everyone` cannot view channels, and give your staff and the bot access."
+        - "Flow 1, a **Slash command** `/ticket`: *Create Channel* under that category (give it the Action Key `ticket_chan`), then *Edit Channel Permissions* so the member who ran the command can view the channel, send messages and read history."
+        - "Still in flow 1: *Send Message* to `((action.ticket_chan))` with a welcome embed and a red **Close Ticket** button (custom ID `close_ticket`), then *Respond with Message* with a private reply that links the new channel."
+        - "Flow 2, an **Event trigger** on `interactionCreate` with the custom ID filter `close_ticket`: *Respond with Message* to confirm, *Wait* a few seconds, then *Remove Channel*."
+      blocks:
+        - { type: createChannel, note: "Creates the ticket channel; its Action Key lets later blocks read the new channel's ID." }
+        - { type: editChannelPermissions, note: "Lets the member see the private channel." }
+        - { type: sendMessage, note: "Posts the welcome embed and the close button in the new channel." }
+        - { type: respondWithMessage, note: "Answers the command or the click, privately if you tick the option." }
+        - { type: wait, note: "Pauses the flow before the channel is deleted." }
+        - { type: removeChannel, note: "Deletes the ticket channel." }
+      limits:
+        - "The close flow of the guide does not check who clicked the button; add a condition if only staff should close tickets."
+        - "There is no transcript block."
+        - "The bot needs the Manage Channels permission."
+      guides:
+        - { label: "Complete guide: support ticket system (blocks and BDFD)", url: "/docs/tickets/" }
+        - { label: "Rich interactions: buttons, select menus, modals", url: "/building-commands/2026/05/23/handling-rich-interactions-in-bot-creator-buttons-select-menus-modals/" }
+    fr:
+      title: "Bot de tickets Discord sans code : salons de support privés"
+      description: "Construisez un système de tickets de support avec les blocs Bot Creator : une commande qui ouvre un salon privé, un bouton de fermeture, et les blocs et permissions exacts."
+      nav: "Bot de tickets"
+      h1: "Un bot de tickets Discord, construit avec des blocs"
+      intro: "Un système de tickets ouvre un salon privé pour chaque demande de support et le ferme quand le cas est réglé. Dans Bot Creator, ce sont deux petits flux : un qui ouvre le ticket, un qui le ferme."
+      steps:
+        - "Créez sur votre serveur une catégorie privée où `@everyone` ne peut pas voir les salons, et donnez l'accès à votre équipe et au bot."
+        - "Flux 1, une **commande slash** `/ticket` : *Créer un salon* dans cette catégorie (avec la clé d'action `ticket_chan`), puis *Modifier les permissions du salon* pour que le membre qui a lancé la commande puisse voir le salon, écrire et lire l'historique."
+        - "Toujours dans le flux 1 : *Envoyer un message* vers `((action.ticket_chan))` avec un embed d'accueil et un bouton rouge **Fermer le ticket** (ID personnalisé `close_ticket`), puis *Répondre avec un message* en réponse privée avec un lien vers le nouveau salon."
+        - "Flux 2, un **déclencheur d'événement** `interactionCreate` avec le filtre d'ID personnalisé `close_ticket` : *Répondre avec un message* pour confirmer, *Attendre* quelques secondes, puis *Supprimer un salon*."
+      blocks:
+        - { type: createChannel, note: "Crée le salon du ticket ; sa clé d'action permet aux blocs suivants de lire l'ID du nouveau salon." }
+        - { type: editChannelPermissions, note: "Permet au membre de voir le salon privé." }
+        - { type: sendMessage, note: "Publie l'embed d'accueil et le bouton de fermeture dans le nouveau salon." }
+        - { type: respondWithMessage, note: "Répond à la commande ou au clic, en privé si vous cochez l'option." }
+        - { type: wait, note: "Met le flux en pause avant la suppression du salon." }
+        - { type: removeChannel, note: "Supprime le salon du ticket." }
+      limits:
+        - "Le flux de fermeture du guide ne vérifie pas qui a cliqué sur le bouton ; ajoutez une condition si seule l'équipe doit pouvoir fermer les tickets."
+        - "Il n'y a pas de bloc de transcription."
+        - "Le bot a besoin de la permission Gérer les salons."
+      guides:
+        - { label: "Guide complet : système de tickets de support (anglais)", url: "/docs/tickets/" }
+        - { label: "Interactions riches : boutons, menus, modals (anglais)", url: "/building-commands/2026/05/23/handling-rich-interactions-in-bot-creator-buttons-select-menus-modals/" }
+
+  levels:
+    slug: { en: "leveling-bot", fr: "bot-niveaux" }
+    en:
+      title: "Discord leveling bot without code: XP and leaderboard"
+      description: "Count XP per member with variables and show a leaderboard, using Bot Creator blocks. There is no ready-made leveling block: here is how you assemble one."
+      nav: "Leveling bot"
+      h1: "A Discord leveling bot (XP and leaderboard), built from blocks"
+      intro: "Bot Creator has no ready-made leveling block. What it gives you is the parts: events, per-member variables, a calculator and a block that lists a variable's values sorted, which is all an XP system and a leaderboard need."
+      steps:
+        - "Create a command with an **Event trigger** on **Message Create**. Start with *Stop Unless Condition* (continue only if `((author.isBot))` is false) so bots earn nothing."
+        - "Read the member's XP with *Get variable* (scope: each member, per server; store it as `xp`), then add to it with *Calculate* (for example `((xp))+5`) and save it with *Set variable*."
+        - "Add the level rule you want (for example with an *IF / ELSE Block* comparing the value) and congratulate the member with *Send Message*."
+        - "For the leaderboard, create a **Slash command** `/top` with *List a variable's values* (scope: each member, sorted descending, up to 25 per call) and show the result with *Respond with Message*."
+      blocks:
+        - { type: stopUnless, note: "Stops the flow unless a condition holds, which is how you filter out bots." }
+        - { type: getScopedVariable, note: "Reads a variable stored per server, member, user, channel or message." }
+        - { type: calculate, note: "Does the arithmetic and stores the result." }
+        - { type: setScopedVariable, note: "Writes the variable back, optionally with an expiry." }
+        - { type: listScopedVariableIndex, note: "Lists the values of a variable sorted, 1 to 25 items per call." }
+        - { type: ifBlock, note: "Branches on a condition, for level-up rules." }
+      limits:
+        - "You design the formula and the level thresholds yourself; nothing is preset."
+        - "Every message runs the flow, so keep it short. The *Cooldown* block exists but is described for commands; check that it fits your event before relying on it."
+        - "A leaderboard call returns at most 25 entries."
+      guides:
+        - { label: "Persistent database variables in BDFD", url: "/advanced-topics/2026/05/30/mastering-persistent-database-variables-in-bdfd/" }
+        - { label: "Events and placeholders", url: "/docs/events-and-placeholders/" }
+    fr:
+      title: "Bot de niveaux Discord sans code : XP et classement"
+      description: "Comptez l'XP de chaque membre avec des variables et affichez un classement, avec les blocs Bot Creator. Il n'y a pas de bloc de niveaux tout fait : voici comment l'assembler."
+      nav: "Bot de niveaux"
+      h1: "Un bot de niveaux Discord (XP et classement), construit avec des blocs"
+      intro: "Bot Creator n'a pas de bloc de niveaux tout fait. Il fournit les pièces : des événements, des variables par membre, une calculatrice et un bloc qui liste les valeurs d'une variable triées, ce qui suffit pour un système d'XP et un classement."
+      steps:
+        - "Créez une commande avec un **déclencheur d'événement** sur **Message Create**. Commencez par *Arrêter sauf si condition* (continuer seulement si `((author.isBot))` est faux) pour que les bots ne gagnent rien."
+        - "Lisez l'XP du membre avec *Lire une variable* (portée : chaque membre, par serveur ; stockez-la sous `xp`), ajoutez-y des points avec *Calculer* (par exemple `((xp))+5`) et enregistrez avec *Définir une variable*."
+        - "Ajoutez la règle de niveau voulue (par exemple avec un *Bloc SI / SINON* qui compare la valeur) et félicitez le membre avec *Envoyer un message*."
+        - "Pour le classement, créez une **commande slash** `/top` avec *Lister les valeurs d’une variable* (portée : chaque membre, tri décroissant, jusqu'à 25 par appel) et affichez le résultat avec *Répondre avec un message*."
+      blocks:
+        - { type: stopUnless, note: "Arrête le flux sauf si une condition est vraie, ce qui permet d'écarter les bots." }
+        - { type: getScopedVariable, note: "Lit une variable stockée par serveur, membre, utilisateur, salon ou message." }
+        - { type: calculate, note: "Fait le calcul et stocke le résultat." }
+        - { type: setScopedVariable, note: "Réécrit la variable, avec une expiration en option." }
+        - { type: listScopedVariableIndex, note: "Liste les valeurs d'une variable triées, de 1 à 25 éléments par appel." }
+        - { type: ifBlock, note: "Branche selon une condition, pour les règles de passage de niveau." }
+      limits:
+        - "La formule et les paliers de niveau sont à définir vous-même ; rien n'est préréglé."
+        - "Chaque message déclenche le flux : gardez-le court. Le bloc *Cooldown* existe mais il est décrit pour les commandes ; vérifiez qu'il convient à votre événement avant de vous y fier."
+        - "Un appel de classement renvoie au plus 25 entrées."
+      guides:
+        - { label: "Variables persistantes en BDFD (anglais)", url: "/advanced-topics/2026/05/30/mastering-persistent-database-variables-in-bdfd/" }
+        - { label: "Événements et variables (anglais)", url: "/docs/events-and-placeholders/" }
+
+  roles:
+    slug: { en: "role-bot", fr: "bot-roles" }
+    en:
+      title: "Discord role bot without code: auto roles and role buttons"
+      description: "Give roles automatically when someone joins, or let members pick roles with a button, using Bot Creator blocks. See the blocks and the Discord rules involved."
+      nav: "Role bot"
+      h1: "A Discord role bot (auto roles and role buttons), built from blocks"
+      intro: "Two common jobs: give a role to everyone who joins, and let members choose their own roles with a button. Both use the *Add Role* and *Remove Role* blocks, with a different trigger."
+      steps:
+        - "**Auto role.** Create a command with an **Event trigger** on **Guild Member Add** and add *Add Role* with the user set to `((member.id))` and the ID of the role to give."
+        - "**Role button.** In a command, send a message with *Send Message* (or *Respond with Message*) that carries a button with a custom ID such as `role_news`."
+        - "Create an **Event trigger** on `interactionCreate` with the custom ID filter `role_news`. Add *Add Role* with the user set to `((interaction.userId))` and the role ID, then *Respond with Message* with a private reply to confirm."
+        - "Add a second button and flow with *Remove Role* if members should be able to leave the role."
+      blocks:
+        - { type: addRole, note: "Gives a role to a member." }
+        - { type: removeRole, note: "Takes a role away from a member." }
+        - { type: sendMessage, note: "Posts the message that carries the role buttons." }
+        - { type: respondWithMessage, note: "Confirms to the member who clicked, privately if you tick the option." }
+      limits:
+        - "The bot needs the Manage Roles permission, and its role must sit above every role it gives (Discord rule)."
+        - "A button does one action. For a toggle, make two buttons (add and remove) or build the check yourself with an *IF / ELSE Block*."
+        - "Join events need the Server Members Intent, as in the welcome bot."
+      guides:
+        - { label: "Rich interactions: buttons, select menus, modals", url: "/building-commands/2026/05/23/handling-rich-interactions-in-bot-creator-buttons-select-menus-modals/" }
+        - { label: "Events and placeholders", url: "/docs/events-and-placeholders/" }
+    fr:
+      title: "Bot de rôles Discord sans code : rôles automatiques et boutons de rôle"
+      description: "Donnez des rôles automatiquement à l'arrivée, ou laissez les membres choisir leurs rôles avec un bouton, avec les blocs Bot Creator. Voyez les blocs et les règles de Discord concernées."
+      nav: "Bot de rôles"
+      h1: "Un bot de rôles Discord (rôles automatiques et boutons), construit avec des blocs"
+      intro: "Deux besoins courants : donner un rôle à tous ceux qui arrivent, et laisser les membres choisir leurs rôles avec un bouton. Les deux utilisent les blocs *Ajouter un rôle* et *Retirer un rôle*, avec un déclencheur différent."
+      steps:
+        - "**Rôle automatique.** Créez une commande avec un **déclencheur d'événement** sur **Guild Member Add** et ajoutez *Ajouter un rôle* avec l'utilisateur `((member.id))` et l'ID du rôle à donner."
+        - "**Bouton de rôle.** Dans une commande, envoyez un message avec *Envoyer un message* (ou *Répondre avec un message*) portant un bouton avec un ID personnalisé comme `role_news`."
+        - "Créez un **déclencheur d'événement** `interactionCreate` avec le filtre d'ID personnalisé `role_news`. Ajoutez *Ajouter un rôle* avec l'utilisateur `((interaction.userId))` et l'ID du rôle, puis *Répondre avec un message* en réponse privée pour confirmer."
+        - "Ajoutez un second bouton et un flux avec *Retirer un rôle* si les membres doivent pouvoir quitter le rôle."
+      blocks:
+        - { type: addRole, note: "Donne un rôle à un membre." }
+        - { type: removeRole, note: "Retire un rôle à un membre." }
+        - { type: sendMessage, note: "Publie le message qui porte les boutons de rôle." }
+        - { type: respondWithMessage, note: "Confirme au membre qui a cliqué, en privé si vous cochez l'option." }
+      limits:
+        - "Le bot a besoin de la permission Gérer les rôles, et son rôle doit être placé au-dessus de chaque rôle qu'il donne (règle de Discord)."
+        - "Un bouton fait une seule action. Pour une bascule, faites deux boutons (ajouter et retirer) ou construisez la vérification vous-même avec un *Bloc SI / SINON*."
+        - "Les événements d'arrivée demandent l'intention Server Members, comme pour le bot de bienvenue."
+      guides:
+        - { label: "Interactions riches : boutons, menus, modals (anglais)", url: "/building-commands/2026/05/23/handling-rich-interactions-in-bot-creator-buttons-select-menus-modals/" }
+        - { label: "Événements et variables (anglais)", url: "/docs/events-and-placeholders/" }
+
+  commands:
+    slug: { en: "slash-commands", fr: "commandes-slash" }
+    en:
+      title: "Create Discord slash commands without code"
+      description: "Build custom Discord slash commands with Bot Creator: pick a trigger, reply with a message, an embed or buttons, and keep data in variables. Blocks, BDFD or JavaScript."
+      nav: "Slash commands"
+      h1: "Custom Discord slash commands, without code"
+      intro: "A command is a trigger plus what the bot does. In Bot Creator you pick the trigger, then build the answer with blocks, or write it in BDFD or JavaScript if you prefer."
+      steps:
+        - "Create a command and choose how it starts: **Slash command**, **Text Message** (prefix), **User command** or **Message command**."
+        - "Choose how it is built: **Visual (Blocks)**, **BDFD Code** or **JavaScript**."
+        - "Add *Respond with Message* with text, embeds and buttons. Read the user's input with `((opts.option_name))` and the user's name with `((user.username))`."
+        - "Add logic as needed: *IF / ELSE Block*, *Random Choice*, *Cooldown*, *HTTP Request*, and variables to remember things between runs."
+        - "Check the message in the playground before you deploy."
+      blocks:
+        - { type: respondWithMessage, note: "Replies to the command with text, embeds and buttons." }
+        - { type: ifBlock, note: "Branches on a condition." }
+        - { type: randomChoice, note: "Picks a random item from a list." }
+        - { type: cooldown, note: "Limits how often a command can be used." }
+        - { type: httpRequest, note: "Calls an external API and reads the result." }
+        - { type: setScopedVariable, note: "Stores a value per server, member, channel…" }
+      limits:
+        - "The playground draws only the message of reply and send blocks; other blocks are edited and exported but not run there."
+        - "Which functions BDFD code can use is listed in the reference, function by function."
+      guides:
+        - { label: "How to create a command in Bot Creator, step by step", url: "/getting-started/2026/03/12/how-to-create-a-command-in-bot-creator-step-by-step/" }
+        - { label: "How to create a perfect ping command", url: "/getting-started/2026/05/30/how-to-create-a-perfect-ping-command-in-bdfd/" }
+        - { label: "Designing stunning Discord embeds", url: "/building-commands/2026/05/30/designing-stunning-discord-embeds-in-bdfd/" }
+    fr:
+      title: "Créer des commandes slash Discord sans code"
+      description: "Créez des commandes slash Discord personnalisées avec Bot Creator : choisissez un déclencheur, répondez avec un message, un embed ou des boutons, et gardez des données dans des variables. Blocs, BDFD ou JavaScript."
+      nav: "Commandes slash"
+      h1: "Des commandes slash Discord personnalisées, sans code"
+      intro: "Une commande, c'est un déclencheur plus ce que fait le bot. Dans Bot Creator, vous choisissez le déclencheur, puis vous construisez la réponse avec des blocs, ou vous l'écrivez en BDFD ou en JavaScript si vous préférez."
+      steps:
+        - "Créez une commande et choisissez comment elle démarre : **Commande Slash (/)**, **Message Texte** (préfixe), **Commande utilisateur** ou **Commande message**."
+        - "Choisissez comment elle est construite : **Visuel (Blocs)**, **Code BDFD** ou **JavaScript**."
+        - "Ajoutez *Répondre avec un message* avec du texte, des embeds et des boutons. Lisez la saisie de l'utilisateur avec `((opts.nom_de_l_option))` et son nom avec `((user.username))`."
+        - "Ajoutez de la logique au besoin : *Bloc SI / SINON*, *Choix aléatoire*, *Cooldown*, *Requête HTTP*, et des variables pour se souvenir de choses d'une exécution à l'autre."
+        - "Vérifiez le message dans le playground avant de déployer."
+      blocks:
+        - { type: respondWithMessage, note: "Répond à la commande avec du texte, des embeds et des boutons." }
+        - { type: ifBlock, note: "Branche selon une condition." }
+        - { type: randomChoice, note: "Choisit un élément au hasard dans une liste." }
+        - { type: cooldown, note: "Limite la fréquence d'utilisation d'une commande." }
+        - { type: httpRequest, note: "Appelle une API externe et lit le résultat." }
+        - { type: setScopedVariable, note: "Stocke une valeur par serveur, membre, salon…" }
+      limits:
+        - "Le playground dessine seulement le message des blocs de réponse et d'envoi ; les autres blocs sont modifiables et exportés, mais pas exécutés."
+        - "Les fonctions que le code BDFD peut utiliser sont listées une par une dans la référence."
+      guides:
+        - { label: "Créer une commande dans Bot Creator, pas à pas (anglais)", url: "/getting-started/2026/03/12/how-to-create-a-command-in-bot-creator-step-by-step/" }
+        - { label: "Une commande ping parfaite (anglais)", url: "/getting-started/2026/05/30/how-to-create-a-perfect-ping-command-in-bdfd/" }
+        - { label: "Embeds Discord soignés (anglais)", url: "/building-commands/2026/05/30/designing-stunning-discord-embeds-in-bdfd/" }

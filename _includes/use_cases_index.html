@@ -1,0 +1,22 @@
+{% assign t = site.data.locales[page.locale] %}
+{% assign uc = site.data.use_cases %}
+<div class="mx-auto max-w-[900px] px-4 py-14 sm:px-6 lg:py-20">
+  <header class="mb-10 flex flex-col gap-3">
+    <div class="eyebrow">{{ t.use_cases.eyebrow }}</div>
+    <h1 class="m-0 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">{{ t.use_cases.index_title }}</h1>
+    <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ t.use_cases.index_body }}</p>
+  </header>
+  <ul class="m-0 flex list-none flex-col p-0">
+    {% for key in uc.order %}
+      {% assign item = uc.items[key] %}
+      <li class="border-t border-outline py-5 last:border-b">
+        <a class="text-xl font-semibold text-primary underline underline-offset-2" href="{{ t.paths.use_cases | append: item.slug[page.locale] | append: '/' | relative_url }}">{{ item[page.locale].nav }}</a>
+        <p class="m-0 pt-1 leading-relaxed text-on-surface-variant">{{ item[page.locale].description }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+  <div class="flex flex-wrap gap-3 pt-8">
+    <a href="{{ t.paths.playground | relative_url }}" class="btn btn-primary">{{ t.use_cases.try_cta }}</a>
+    <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary">{{ t.use_cases.download_cta }}</a>
+  </div>
+</div>
