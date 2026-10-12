@@ -10,6 +10,7 @@
     <div class="flex flex-wrap gap-x-16 gap-y-8">
       <nav class="flex flex-col" aria-label="Product">
         <span class="pb-2 text-xs text-on-surface-variant">{{ t.shell.footer_product }}</span>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.playground | relative_url }}">Playground</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ '/#features' | relative_url }}">Features</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.footer_downloads }}</a>
       </nav>
@@ -26,7 +27,6 @@
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.legal | relative_url }}">{{ t.shell.footer_legal_notice }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ '/plugin-terms.html' | relative_url }}">Plugin terms</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ '/plugin-support.html' | relative_url }}">Plugin support</a>
-        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="#" data-consent-open>Ad &amp; cookie settings</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="mailto:contact@bot-creator.fr">Contact</a>
       </nav>
     </div>

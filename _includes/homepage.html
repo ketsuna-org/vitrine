@@ -12,13 +12,26 @@
       <h1 class="m-0 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl lg:text-[3.5rem]">{{ t.home.hero.title }}</h1>
       <p class="m-0 max-w-[34rem] text-lg leading-relaxed text-on-surface-variant sm:text-xl">{{ t.home.hero.body }}</p>
       <div class="flex flex-wrap gap-3">
-        <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary btn-lg">{{ t.home.hero.primary_cta }}</a>
-        <a href="{{ t.paths.docs | relative_url }}" class="btn btn-secondary btn-lg">{{ t.home.hero.secondary_cta }}</a>
+        <a href="{{ t.paths.playground | relative_url }}" class="btn btn-primary btn-lg">{{ t.home.hero.primary_cta }}</a>
+        <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary btn-lg">{{ t.home.hero.secondary_cta }}</a>
       </div>
-      <p class="m-0 text-sm text-on-surface-variant">Mobile, desktop, and Docker.</p>
+      <p class="m-0 text-sm text-on-surface-variant">Mobile, desktop, and Docker. <a class="text-primary underline underline-offset-2" href="{{ t.paths.docs | relative_url }}">{{ t.home.hero.tertiary_cta }}</a></p>
     </div>
     <div class="flex flex-1 basis-[300px] justify-center lg:justify-end">
       {% include responsive_screenshot.html screen_id="home" alt=t.home.hero.screenshot_alt loading="eager" class="mx-auto w-full max-w-[300px]" %}
+    </div>
+  </section>
+
+  <!-- Playground -->
+  <section id="playground" class="border-t border-outline-variant bg-surface-container-low">
+    <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-8 px-4 py-12 sm:px-6 lg:py-16">
+      <div class="flex flex-1 basis-[420px] flex-col gap-3">
+        <div class="eyebrow">{{ t.home.try.eyebrow }}</div>
+        <h2 class="m-0 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{{ t.home.try.title }}</h2>
+        <p class="m-0 max-w-xl text-lg leading-relaxed text-on-surface-variant">{{ t.home.try.body }}</p>
+        <p class="m-0 max-w-xl text-sm text-on-surface-variant">{{ t.home.try.note }}</p>
+      </div>
+      <div><a href="{{ t.paths.playground | relative_url }}" class="btn btn-primary btn-lg">{{ t.home.try.cta }}</a></div>
     </div>
   </section>
 

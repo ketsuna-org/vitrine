@@ -4,6 +4,7 @@ label: "English"
 paths:
   home: "/"
   download: "/download/"
+  playground: "/playground/"
   guides: "/blog/"
   docs: "/docs/"
   privacy: "/privacy-policy.html"
@@ -58,9 +59,16 @@ home:
     eyebrow: "Discord bot workspace"
     title: "Build, run, and control Discord bots from one workspace."
     body: "Design commands with visual blocks, BDFD $functions or JavaScript. Host from the app or on the Docker runner for 24/7 uptime."
-    primary_cta: "Download Bot Creator"
-    secondary_cta: "Read the docs"
+    primary_cta: "Try it in your browser"
+    secondary_cta: "Download Bot Creator"
+    tertiary_cta: "Read the docs"
     screenshot_alt: "Bot Creator Android workspace with an online Discord bot"
+  try:
+    eyebrow: "Playground"
+    title: "Try it without installing anything"
+    body: "Edit Bot Creator blocks or paste a BDFD snippet and see the Discord message it would draw. It runs in your browser: nothing is sent anywhere and nothing is executed."
+    cta: "Open the playground"
+    note: "The preview draws the message of the reply and send blocks. It is an approximation of Discord, not the engine."
   pillars:
     title: "Everything you need to run a bot"
     descriptions:
