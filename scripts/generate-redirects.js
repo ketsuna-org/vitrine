@@ -36,8 +36,6 @@ const JS_PLANNED_SLUGS = [
 const STATIC_REDIRECTS = [
   ['/fr/blog', '/blog/'],
   ['/fr/blog/', '/blog/'],
-  ['/fr/docs', '/docs/'],
-  ['/fr/docs/', '/docs/'],
   ['/fr/privacy', '/privacy-policy.html'],
   ['/fr/privacy/', '/privacy-policy.html'],
   ['/fr/cgv', '/terms-of-sale.html'],
