@@ -1,17 +1,16 @@
 ---
-title: "$resetGlobalUserVar"
-description: "Reset a global-user value to its declared default."
+layout: doc
+title: $resetGlobalUserVar[]
+translation_key: docs
+category: "Variables"
+function_name: resetGlobalUserVar
+syntax: $resetGlobalUserVar[name] or $resetGlobalUserVar[name;User ID]
+description: Resets the value of a global-user variable to its declared default, for every user or for one user. Bot Creator extension, not an official BDFD function.
 api_type: bdfd
 status: extension
 ---
 
-# $resetGlobalUserVar
-
 **Bot Creator extension, not an official BDFD function.**
-
-```text
-$resetGlobalUserVar[Variable name;(User ID)]
-```
 
 Resets the value of a variable in global-user storage (`user`) to its declared default. It never changes server-member storage (`guildMember`).
 
