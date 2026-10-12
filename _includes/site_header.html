@@ -4,6 +4,12 @@
 {% assign is_docs = false %}
 {% if page.layout == 'doc' or active_key == 'docs' or page.url contains '/docs/' %}{% assign is_docs = true %}{% endif %}
 
+{% comment %} Language switch: the translation of this page when it exists, else the home page of the other language. {% endcomment %}
+{% assign alt_url = site.data.locales[t.nav.switch_language_code].paths.home %}
+{% if page.translation_key %}
+  {% assign siblings = site.pages | where: "translation_key", page.translation_key | where_exp: "p", "p.locale != page.locale" %}
+  {% if siblings.size > 0 %}{% assign alt_url = siblings.first.url %}{% endif %}
+{% endif %}
 <header class="nav-shell sticky top-0 z-50">
   <div class="header-inner mx-auto flex h-14 max-w-[1360px] items-center justify-between px-4 sm:px-6">
     <a href="{{ t.paths.home | relative_url }}" class="brand-link flex items-center gap-2.5 text-on-surface">
@@ -11,29 +17,30 @@
       <span class="brand-title text-base font-semibold tracking-tight">{{ t.meta.site_title }}</span>
     </a>
 
-    <nav class="hidden items-center gap-1 md:flex" aria-label="Main">
-      <a class="nav-link" href="{{ t.paths.playground | relative_url }}" {% if page.layout == 'playground' %}aria-current="page"{% endif %}>Playground</a>
-      <a class="nav-link" href="{{ '/#features' | relative_url }}">Features</a>
+    <nav class="hidden items-center gap-1 md:flex" aria-label="{{ t.nav.main_label }}">
+      <a class="nav-link" href="{{ t.paths.playground | relative_url }}" {% if page.layout == 'playground' %}aria-current="page"{% endif %}>{{ t.nav.playground }}</a>
+      <a class="nav-link" href="{{ t.paths.home | append: '#features' | relative_url }}">{{ t.nav.features }}</a>
       <div class="relative" data-docs-dropdown>
         <button type="button" data-docs-trigger aria-expanded="false" aria-controls="documentation-menu" class="nav-link gap-1" {% if is_docs %}aria-current="page"{% endif %}>
-          <span>Docs</span>
+          <span>{{ t.nav.docs }}</span>
           <svg class="reicon text-sm transition-transform" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#expand_more"></use></svg>
         </button>
         <div id="documentation-menu" data-docs-menu hidden class="docs-dropdown-menu absolute left-0 top-full z-50 w-64 rounded-lg border border-outline bg-surface-container-low py-1.5 shadow-neon-strong">
-          <a href="{{ t.paths.docs | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">Documentation home</a>
-          <a href="{{ '/docs/getting-started/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">Getting started</a>
-          <a href="{{ '/docs/blocks/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">Blocks (visual, no code)</a>
-          <a href="{{ '/docs/' | relative_url }}#function-reference" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">BDFD function reference</a>
-          <a href="{{ '/docs/javascript/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">JavaScript API</a>
-          <a href="{{ '/docs/tickets/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">Ticket system guide</a>
+          <a href="{{ t.paths.docs | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_home }}</a>
+          <a href="{{ '/docs/getting-started/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_getting_started }}</a>
+          <a href="{{ '/docs/blocks/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_blocks }}</a>
+          <a href="{{ '/docs/' | relative_url }}#function-reference" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_bdfd }}</a>
+          <a href="{{ '/docs/javascript/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_js }}</a>
+          <a href="{{ '/docs/tickets/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_tickets }}</a>
         </div>
       </div>
-      <a class="nav-link" href="{{ t.paths.guides | relative_url }}" {% if active_key == 'guides' %}aria-current="page"{% endif %}>Guides</a>
+      <a class="nav-link" href="{{ t.paths.guides | relative_url }}" {% if active_key == 'guides' %}aria-current="page"{% endif %}>{{ t.nav.guides }}</a>
     </nav>
 
     <div class="flex items-center gap-1">
-      <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary !h-9 !min-h-[36px] !px-4 !text-sm md:!h-10">Download</a>
-      <button type="button" data-menu-toggle aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation"
+      <a href="{{ alt_url | relative_url }}" hreflang="{{ t.nav.switch_language_code }}" lang="{{ t.nav.switch_language_code }}" title="{{ t.nav.switch_language_label }}" class="nav-link hidden md:inline-flex">{{ t.nav.switch_language }}</a>
+      <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary !h-9 !min-h-[36px] !px-4 !text-sm md:!h-10">{{ t.nav.download_button }}</a>
+      <button type="button" data-menu-toggle aria-controls="mobile-navigation" aria-expanded="false" aria-label="{{ t.nav.open_menu }}"
         class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container md:hidden">
         <svg class="reicon menu-icon-open !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#menu"></use></svg>
         <svg class="reicon menu-icon-close !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
@@ -41,28 +48,29 @@
     </div>
   </div>
 
-  <div id="mobile-navigation" data-menu-panel hidden role="dialog" aria-modal="true" aria-label="Site navigation" class="nav-panel-mobile">
+  <div id="mobile-navigation" data-menu-panel hidden role="dialog" aria-modal="true" aria-label="{{ t.nav.site_navigation }}" class="nav-panel-mobile">
     <div class="nav-mobile-bar">
       <span class="flex items-center gap-2.5 text-base font-semibold">
         <img src="{{ '/assets/favicon-32x32.png' | relative_url }}" alt="" width="28" height="28" class="h-7 w-7 rounded-md">
         {{ t.meta.site_title }}
       </span>
-      <button type="button" data-menu-close-btn aria-label="Close navigation" class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container">
+      <button type="button" data-menu-close-btn aria-label="{{ t.nav.close_menu }}" class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container">
         <svg class="reicon !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
       </button>
     </div>
     <div class="nav-mobile-scroll">
       <div data-cscroll>
-        <nav aria-label="Mobile">
-          <a class="nav-mobile-link" href="{{ t.paths.playground | relative_url }}">Playground</a>
-          <a class="nav-mobile-link" href="{{ '/#features' | relative_url }}">Features</a>
-          <a class="nav-mobile-link" href="{{ t.paths.docs | relative_url }}">Docs</a>
-          <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/getting-started/' | relative_url }}">Getting started</a>
-          <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/blocks/' | relative_url }}">Blocks (visual, no code)</a>
-          <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/' | relative_url }}#function-reference">BDFD function reference</a>
-          <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/javascript/' | relative_url }}">JavaScript API</a>
-          <a class="nav-mobile-link" href="{{ t.paths.guides | relative_url }}">Guides</a>
-          <a class="nav-mobile-link" href="{{ t.paths.download | relative_url }}">Download</a>
+        <nav aria-label="{{ t.nav.mobile_label }}">
+          <a class="nav-mobile-link" href="{{ t.paths.playground | relative_url }}">{{ t.nav.playground }}</a>
+          <a class="nav-mobile-link" href="{{ t.paths.home | append: '#features' | relative_url }}">{{ t.nav.features }}</a>
+          <a class="nav-mobile-link" href="{{ t.paths.docs | relative_url }}">{{ t.nav.docs }}</a>
+          <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/getting-started/' | relative_url }}">{{ t.nav.docs_getting_started }}</a>
+          <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/blocks/' | relative_url }}">{{ t.nav.docs_blocks }}</a>
+          <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/' | relative_url }}#function-reference">{{ t.nav.docs_bdfd }}</a>
+          <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/javascript/' | relative_url }}">{{ t.nav.docs_js }}</a>
+          <a class="nav-mobile-link" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
+          <a class="nav-mobile-link" href="{{ t.paths.download | relative_url }}">{{ t.nav.download_button }}</a>
+          <a class="nav-mobile-link" href="{{ alt_url | relative_url }}" hreflang="{{ t.nav.switch_language_code }}" lang="{{ t.nav.switch_language_code }}">{{ t.nav.switch_language }}</a>
         </nav>
       </div>
     </div>

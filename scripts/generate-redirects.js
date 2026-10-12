@@ -31,11 +31,9 @@ const JS_PLANNED_SLUGS = [
   'getting-started',
 ];
 
+// /fr/, /fr/download/ and /fr/faq/ are real French pages now. The rules below only cover old French
+// addresses of pages that have no French version (docs, guides, legal): they go to the English page.
 const STATIC_REDIRECTS = [
-  ['/fr', '/'],
-  ['/fr/', '/'],
-  ['/fr/download', '/download/'],
-  ['/fr/download/', '/download/'],
   ['/fr/blog', '/blog/'],
   ['/fr/blog/', '/blog/'],
   ['/fr/docs', '/docs/'],
@@ -225,9 +223,7 @@ function main() {
     '',
     '# Blog pagination pages that no longer exist',
     ...BLOG_PAGES_GONE.map((from) => `${from}\t/blog/\t301`),
-    '',
-    '# Catch-all for any remaining /fr paths',
-    '/fr/*\t/\t301',
+    // No "/fr/*" catch-all: it would also catch the French pages, since redirects run before static files.
   ];
 
   fs.writeFileSync(OUTPUT, lines.join('\n'));

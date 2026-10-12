@@ -39,5 +39,18 @@
   <link href="{{ '/css/markdown.css' | relative_url }}" rel="stylesheet">
   {% endif %}
   {% seo %}
+  {% comment %} hreflang: only for pages that exist in both languages. Each page lists all versions, itself included, plus x-default (English). {% endcomment %}
+  {% if page.translation_key and page.locale %}
+    {% assign alternates = site.pages | where: "translation_key", page.translation_key %}
+    {% assign other_language = alternates | where_exp: "p", "p.locale and p.locale != page.locale" %}
+    {% if other_language.size > 0 %}
+      {% for alt in alternates %}
+  <link rel="alternate" hreflang="{{ alt.locale }}" href="{{ alt.url | absolute_url }}">
+        {% if alt.locale == 'en' %}
+  <link rel="alternate" hreflang="x-default" href="{{ alt.url | absolute_url }}">
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endif %}
   {% include seo_structured_data.html %}
 </head>
