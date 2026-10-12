@@ -563,22 +563,29 @@ const initSite = () => {
     window.addEventListener("resize", updateProgress);
   }
 
-  // Trigger drawing on all visible canvas covers on page mount
-  const drawAllCovers = () => {
-    document.querySelectorAll("canvas.js-blog-cover").forEach((canvas) => {
-      if (canvas.style.display !== "none") {
-        window.drawPremiumBlogCover(canvas);
-      }
-    });
-  };
-
-  drawAllCovers();
-
-  // If branding fonts load late, refresh all covers to prevent default system font offsets
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(drawAllCovers).catch(err => {
-      console.error("Delayed font load hook failed", err);
-    });
+  // Covers are drawn only when they come near the viewport (drawing 14 canvases at once blocked the
+  // main thread on the guides list), and redrawn once if the branding fonts load late.
+  const covers = [...document.querySelectorAll("canvas.js-blog-cover")].filter(c => c.style.display !== "none");
+  const drawn = new Set();
+  const drawCover = (canvas) => { drawn.add(canvas); window.drawPremiumBlogCover(canvas); };
+  if (covers.length) {
+    if ("IntersectionObserver" in window) {
+      const coverObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          coverObserver.unobserve(entry.target);
+          drawCover(entry.target);
+        });
+      }, { rootMargin: "200px" });
+      covers.forEach((canvas) => coverObserver.observe(canvas));
+    } else {
+      covers.forEach(drawCover);
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => drawn.forEach((canvas) => window.drawPremiumBlogCover(canvas))).catch(err => {
+        console.error("Delayed font load hook failed", err);
+      });
+    }
   }
 
   // Native buttons provide Enter/Space. Arrow keys select and focus a neighboring tab.
