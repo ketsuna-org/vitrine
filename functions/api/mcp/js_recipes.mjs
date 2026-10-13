@@ -4,7 +4,7 @@
 
 const CORE = {
   globals: "interaction, db, message, client, guild, channel, member, config, variables, console, fetch, require(name). `db` is a GLOBAL (never interaction.client.db).",
-  body: "The script is the BODY of an async function: top-level await and return work; never import/export/module.exports (use require(name) for whitelisted modules).",
+  body: "The script is the BODY of an async function: top-level await and return work; never import/export/module.exports (use require(name) for Node modules; the script runs in the runner process with no isolation).",
   reply: "await interaction.reply('text') or await interaction.reply({ content, ephemeral?, embeds?, components? }); deferReply()/editReply() for slow work. Reply once per interaction.",
   options: "interaction.options.getString(name, required?) / getInteger / getNumber / getBoolean / getUser / getMember / getChannel / getRole. Options MUST be declared on the command (local_create_command `options`), otherwise getString returns null.",
   storage: "await db.user.get(key) / set(key, value) / delete(key) (also db.global, db.guild, db.channel, db.guildMember). In a guild db.user routes to the member scope. Values are JSON; coerce with Number().",
@@ -36,6 +36,12 @@ const RECIPES = [
     options: [],
     skeleton: "await interaction.reply({ embeds: [{ title: '...', description: '...', color: 0x5865f2 }] });",
   },
+  {
+    id: "image-attachment",
+    words: ["image", "images", "photo", "picture", "img", "pic", "meme", "avatar", "gif", "canvas"],
+    options: [{ type: "string", name: "url", description: "Image URL", required: true }],
+    skeleton: "const { AttachmentBuilder } = require('discord.js');\nconst url = interaction.options.getString('url', true);\nawait interaction.deferReply();\ntry {\n  const res = await fetch(url);\n  if (!res.ok) throw new Error('HTTP ' + res.status);\n  const buf = Buffer.from(await res.arrayBuffer());\n  await interaction.editReply({ files: [new AttachmentBuilder(buf, { name: 'image.png' })] });\n} catch (error) {\n  await interaction.editReply('Could not fetch the image: ' + error.message);\n}",
+  },
 ];
 
 function norm(s) {
@@ -54,6 +60,7 @@ export function planJavascript({ intent }) {
       "Write execution_mode javascript only; never BDFD $functions.",
       "Declare every option the script reads in the same local_create_command call.",
       "There is no JS sandbox: local_test_command only runs BDFD/blocks, so do not use it for a JS bot.",
+      "Slow work (fetch, images, AI) must follow await interaction.deferReply() within 3 seconds, then interaction.editReply; wrap it in try/catch and always answer the user. Discord caches are almost empty: use guild.members.fetch(id), not .cache.",
     ],
     next: hits.length
       ? "write the script from the recipe and call local_create_command with options + script; no further docs calls"

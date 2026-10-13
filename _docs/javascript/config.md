@@ -14,7 +14,7 @@ The `config` global exposes the bot's runtime configuration. The bot token is st
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `intents` | `string[]` | Discord gateway intents |
+| `intents` | `Record<string, boolean>` | Discord gateway intents, e.g. `{ "GuildMembers": true }` |
 | `prefix` | `string` | Prefix command trigger |
 | `autoRestart` | `boolean` | Auto-restart on crash |
 | `presence` | `object` | Bot presence settings |
@@ -24,7 +24,7 @@ The `config` global exposes the bot's runtime configuration. The bot token is st
 | `inboundWebhooks` | `array` | Inbound webhook configs |
 | `globalVariables` | `object` | Default global variable values |
 | `scopedVariableDefinitions` | `array` | User/guild/channel variable schemas |
-| `scriptTimeoutMs` | `number` | Script execution timeout (default 30000) |
+| `scriptTimeoutMs` | `number` | Script timeout in ms (default and maximum 900000). It is a race: a script that exceeds it is no longer awaited but not interrupted |
 
 ## Example
 
