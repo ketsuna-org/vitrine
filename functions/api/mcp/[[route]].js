@@ -115,7 +115,7 @@ async function handleSingle(req) {
             protocolVersion: PROTOCOL_VERSION,
             capabilities: CAPABILITIES,
             serverInfo: SERVER_INFO,
-            instructions: "Use get_schema_manifest to retrieve strict compact type signatures ({ desc, params }) for Blocks (~3k tokens), BDFD, or JS before generating code. Read execution-model before generating commands. For Blocks, nested params (embeds, components, conditions, thenActions) use named types: fetch them with get_schema_manifest mode='types', and ALWAYS run generated Blocks JSON through validate_actions and fix every error before delivering it. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) TICKET SYSTEMS: the BDFD engine implements $newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] (private channel ticket-<number or author name>: @everyone denied, author and bot allowed) and $closeTicket[(errorMessage)] (deletes the current channel only if its name contains the word ticket). For Blocks use createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button ($addButton[no;close_ticket;Close Ticket;danger]) and an interaction handler that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. An action is { type, key?, payload }: to reuse a result later, set `key` ON THE ACTION (not in payload), e.g. {\"type\":\"calculate\",\"key\":\"total\",\"payload\":{...}} then read ((action.total)); without a key the result is action_<position>. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
+            instructions: "Use get_schema_manifest to retrieve strict compact type signatures ({ desc, params }) for Blocks (~3k tokens), BDFD, or JS before generating code. Read execution-model before generating commands. For Blocks, nested params (embeds, components, conditions, thenActions) use named types: fetch them with get_schema_manifest mode='types', and ALWAYS run generated Blocks JSON through validate_actions and fix every error before delivering it. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) TICKET SYSTEMS: the BDFD engine implements $newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] (private channel ticket-<number or author name>: @everyone denied, author and bot allowed) and $closeTicket[(errorMessage)] (deletes the current channel only if its name contains the word ticket). For Blocks use createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button (sendMessage with components and channelId ((action.<key>)) of the createChannel action, since BDFD $addButton only attaches to the command's own reply) and an interaction handler filtered by customIdFilter that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. An action is { type, key?, payload }: to reuse a result later, set `key` ON THE ACTION (not in payload), e.g. {\"type\":\"calculate\",\"key\":\"total\",\"payload\":{...}} then read ((action.total)); without a key the result is action_<position>. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
           },
         };
 
@@ -564,7 +564,15 @@ async function toolGetSchemaManifest({ mode = "blocks", category, names } = {}) 
     }
   }
 
+  // A category that matches nothing used to come back as a bare {}: tell the model what exists instead.
+  if (category && targetMode !== "all" && Object.keys(resultData).length === 0) {
+    return toolText(JSON.stringify({ count: 0, note: `No ${targetMode} entry in category "${category}".`, valid_categories: validCategories(manifest.modes?.[targetMode] || {}) }));
+  }
   return toolText(JSON.stringify(resultData));
+}
+
+function validCategories(dict) {
+  return [...new Set(Object.values(dict).map((v) => v.category).filter(Boolean))].sort();
 }
 
 let plannerCache = { at: 0, index: null };
@@ -586,6 +594,9 @@ async function toolListActions({ category } = {}) {
   const actions = Object.entries(manifest.modes?.blocks || {})
     .filter(([, v]) => !catNorm || normalize(v.category).includes(catNorm))
     .map(([name, v]) => ({ name, category: v.category, desc: v.desc }));
+  if (category && actions.length === 0) {
+    return toolText(JSON.stringify({ count: 0, actions, note: `No action in category "${category}".`, valid_categories: validCategories(manifest.modes?.blocks || {}) }));
+  }
   return toolText(JSON.stringify({ count: actions.length, actions }));
 }
 
@@ -826,7 +837,7 @@ function compactDoc(d) {
     slug: d.slug,
     name: d.name,
     ...(d.syntax ? { syntax: d.syntax } : {}),
-    ...(description ? { description: description.length > 90 ? `${description.slice(0, 87)}...` : description } : {}),
+    ...(description ? { description: description.length > 110 ? `${description.slice(0, 107)}...` : description } : {}),
     ...(d.status && d.status !== "documented" ? { status: d.status } : {}),
     ...(d.api_type && d.api_type !== "bdfd" ? { api_type: d.api_type } : {}),
   };
@@ -870,7 +881,7 @@ function findManifestEntry(manifest, mode, slug, doc) {
     return hit && { type: hit[0], ...hit[1] };
   }
   if (mode === "bdfd") {
-    const hit = entries.find(([key]) => normalize(key) === normalize(slug) || normalize(key) === normalize(`$${slug}`));
+    const hit = entries.find(([key]) => normalize(key.replace(/\[\]$/, "")) === normalize(slug) || normalize(key.replace(/\[\]$/, "")) === normalize(`$${slug}`));
     return hit && { name: hit[0], ...hit[1] };
   }
   // The JavaScript manifest entry is only a 2-line stub ({module, desc, category, slug}); when a documentation page

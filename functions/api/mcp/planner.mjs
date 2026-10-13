@@ -105,7 +105,7 @@ const RECIPES = [
     id: "ticket", mode: "bdfd", need: 1, prio: 3, words: ["ticket", "tickets", "support"],
     fns: ["$createChannel", "$editChannelPerms", "$useChannel", "$addButton", "$deleteChannels", "$var", "$wait"],
     skeleton: "$var[chan;$createChannel[ticket-$userName;text]]\n$editChannelPerms[$var[chan];$authorID;68608;0]\n$useChannel[$var[chan]]\nTicket ouvert par <@$authorID>\n$addButton[no;close_ticket;Close Ticket;danger]",
-    gotchas: ["$newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] creates a private channel named ticket-<number or author name> (@everyone denied, author and bot allowed) and posts messageInTicket in it; $closeTicket only deletes a channel whose name contains the word ticket. Add a close button with $addButton and delete the channel from the button handler with $closeTicket (or $deleteChannels[$channelID])."],
+    gotchas: ["$newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] creates a private channel named ticket-<number or author name> (@everyone denied, author and bot allowed) and posts messageInTicket in it; $closeTicket only deletes a channel whose name contains the word ticket. $addButton only attaches to the command's own reply, so for a close button inside the ticket use Blocks (sendMessage with components, channelId ((action.<key>))) or a /close command with $closeTicket."],
   },
   {
     id: "welcome", mode: "bdfd", need: 1, words: ["welcome", "bienvenue", "accueil", "join", "rejoint", "arrivee"],
@@ -249,7 +249,7 @@ function matchRecipes(base, mode) {
 }
 
 const GLOBAL_GOTCHAS = {
-  bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply. A condition inside another function's brackets, e.g. $description[...], must be inline $if[cond;then;else]; block $if...$endif is top-level only. $sendMessage[text;yes] returns the message ID (2nd arg is yes/no only).",
+  bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply. A condition inside another function's brackets, e.g. $description[...], must be inline $if[cond;then;else]; block $if...$endif is top-level only. $sendMessage[text;yes] returns the message ID (2nd arg is yes/no only). Slash options: $message[optionName] ($args is empty).",
   blocks: "Blocks are {type,key?,payload}. To reuse a result, set `key` ON THE ACTION, not in payload ({\"type\":\"calculate\",\"key\":\"total\",\"payload\":{…}} then ((action.total))); without a key it is action_<position>. Validate with docs_validate_actions. valueType \"number\" needs a numeric numberValue: an empty optional ((opts.x)) fails at run time, so store it as a string or guard it with ifBlock.",
 };
 

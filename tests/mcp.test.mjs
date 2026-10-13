@@ -235,8 +235,8 @@ test('every tool exposes explicit boolean readOnlyHint, destructiveHint and open
 const collisionManifest = {
   version: '1.0',
   modes: {
-    blocks: { sendMessage: { desc: 'Envoie un message dans un salon', category: 'Messages', params: { channelId: 'string?', content: 'string?' } } },
-    bdfd: { $sendMessage: { desc: 'Sends a distinct channel message', category: 'Messages', syntax: '$sendMessage[content;(returnMessageID)]', params: { content: 'string', returnMessageID: 'string?' } } },
+    blocks: { wait: { desc: 'Bloc wait', category: 'Logic', params: { seconds: 'number' } }, sendMessage: { desc: 'Envoie un message dans un salon', category: 'Messages', params: { channelId: 'string?', content: 'string?' } } },
+    bdfd: { 'wait[]': { desc: 'Waits', category: 'Control Flow', syntax: '$wait[time]', params: { time: 'string' } }, $sendMessage: { desc: 'Sends a distinct channel message', category: 'Messages', syntax: '$sendMessage[content;(returnMessageID)]', params: { content: 'string', returnMessageID: 'string?' } } },
   },
 };
 async function getDoc(args) {
@@ -279,5 +279,20 @@ test('search_docs accepts mode as an alias of api_type', async () => {
   await withFetch(async () => Response.json(docs), async () => {
     const reply = await rpc('tools/call', { name: 'search_docs', arguments: { query: 'tickets', mode: 'blocks' } });
     assert.deepEqual(JSON.parse(reply.result.content[0].text).results.map(r => r.slug), ['blocks-channels']);
+  });
+});
+
+test('get_doc finds a BDFD function whose manifest key ends with [] when a Blocks action has the same name', async () => {
+  const doc = await getDoc({ slug: 'wait' });
+  assert.equal(doc.syntax, '$wait[time]');
+});
+
+test('an unknown category lists the valid ones instead of answering empty', async () => {
+  await withFetch(async url => (url.endsWith('schema-manifest.json') ? Response.json(collisionManifest) : Response.json(docs)), async () => {
+    const manifest = JSON.parse((await rpc('tools/call', { name: 'get_schema_manifest', arguments: { mode: 'bdfd', category: 'select' } })).result.content[0].text);
+    assert.equal(manifest.count, 0);
+    assert.ok(manifest.valid_categories.includes('Messages'));
+    const actions = JSON.parse((await rpc('tools/call', { name: 'list_actions', arguments: { category: 'roles' } })).result.content[0].text);
+    assert.ok(actions.valid_categories.includes('Messages'));
   });
 });
