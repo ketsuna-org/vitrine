@@ -75,8 +75,8 @@ const RECIPES = [
   {
     id: "moderation", mode: "bdfd", need: 1, prio: 2, words: ["ban", "bannir", "kick", "expulser", "mute", "timeout", "moderation"],
     fns: ["$onlyPerms", "$onlyBotPerms", "$ban", "$kick", "$timeout", "$mentioned", "$onlyIf", "$banID", "$nomention"],
-    skeleton: "$nomention\n$onlyPerms[banmembers;Permission Ban Members requise.]\n$onlyBotPerms[banmembers;Le bot a besoin de Ban Members.]\n$onlyIf[$mentioned[1]!=;Usage : !ban @membre]\n$ban[Banni par $userName]\nMembre banni.",
-    gotchas: ["$ban[(reason)] bans the FIRST MENTIONED user (reason is not a user ID); use $banID[reason;userID] for an explicit ID. Guard with $onlyPerms/$onlyBotPerms."],
+    skeleton: "$nomention\n$onlyPerms[banmembers;Permission Ban Members requise.]\n$onlyBotPerms[banmembers;Le bot a besoin de Ban Members.]\n$banID[Banni par $userName;$message[membre]]\nMembre banni.",
+    gotchas: ["In a SLASH command $ban and $mentioned fail (they only read message mentions): declare a user option (e.g. membre) and use $banID[reason;$message[membre]]. In a prefix command $ban[(reason)] bans the FIRST MENTIONED user (reason is not a user ID). Guard with $onlyPerms/$onlyBotPerms."],
   },
   {
     id: "warn", mode: "bdfd", need: 1, prio: 2, words: ["warn", "avertir", "avertissement", "strike", "sanction"],
@@ -104,8 +104,8 @@ const RECIPES = [
   {
     id: "ticket", mode: "bdfd", need: 1, prio: 3, words: ["ticket", "tickets", "support"],
     fns: ["$createChannel", "$editChannelPerms", "$useChannel", "$addButton", "$deleteChannels", "$var", "$wait"],
-    skeleton: "$var[chan;$createChannel[ticket-$userName;text]]\n$editChannelPerms[$var[chan];$authorID;68608;0]\n$useChannel[$var[chan]]\nTicket ouvert par <@$authorID>\n$addButton[no;close_ticket;Close Ticket;danger]",
-    gotchas: ["$newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] creates a private channel named ticket-<number or author name> (@everyone denied, author and bot allowed) and posts messageInTicket in it; $closeTicket only deletes a channel whose name contains the word ticket. Add a close button with $addButton and delete the channel from the button handler with $closeTicket (or $deleteChannels[$channelID])."],
+    skeleton: "$newTicket[;Support;Ticket de <@$authorID> : {subject}. Utilise /fermer pour le clore.;Ticket cree : {channel};Impossible de creer le ticket.]",
+    gotchas: ["$newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] creates a private channel named ticket-<number or author name> (@everyone denied, author and bot allowed) and posts messageInTicket in it (empty category = no category; noSubject is the subject text used when the user gave none; {subject} and {channel} are replaced in both messages); $closeTicket only deletes a channel whose name contains the word ticket. $addButton only attaches to the command's own reply, so for a close button inside the ticket use Blocks (sendMessage with components, channelId ((action.<key>))) or a /close command with $closeTicket."],
   },
   {
     id: "welcome", mode: "bdfd", need: 1, words: ["welcome", "bienvenue", "accueil", "join", "rejoint", "arrivee"],
@@ -249,7 +249,7 @@ function matchRecipes(base, mode) {
 }
 
 const GLOBAL_GOTCHAS = {
-  bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply. A condition inside another function's brackets, e.g. $description[...], must be inline $if[cond;then;else]; block $if...$endif is top-level only. $sendMessage[text;yes] returns the message ID (2nd arg is yes/no only).",
+  bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply. A condition inside another function's brackets, e.g. $description[...], must be inline $if[cond;then;else]; block $if...$endif is top-level only. $sendMessage[text;yes] returns the message ID (2nd arg is yes/no only). Slash options: $message[optionName] ($args is empty).",
   blocks: "Blocks are {type,key?,payload}. To reuse a result, set `key` ON THE ACTION, not in payload ({\"type\":\"calculate\",\"key\":\"total\",\"payload\":{…}} then ((action.total))); without a key it is action_<position>. Validate with docs_validate_actions. valueType \"number\" needs a numeric numberValue: an empty optional ((opts.x)) fails at run time, so store it as a string or guard it with ifBlock.",
 };
 
