@@ -93,7 +93,7 @@
 .markdown-body td { color: var(--text-200); }
 .markdown-body td code { white-space: nowrap; }
 
-.markdown-body .anchor { margin-left: .4rem; color: var(--text-400); text-decoration: none; opacity: 0; transition: opacity .15s; }
+.markdown-body .anchor { margin-left: .4rem; color: var(--text-400); text-decoration: none; opacity: 0; transition: opacity var(--bc-dur-fast) var(--bc-ease-move); }
 .markdown-body h2:hover .anchor, .markdown-body h3:hover .anchor, .markdown-body h4:hover .anchor, .markdown-body .anchor:focus { opacity: 1; }
 .markdown-body .anchor:hover { color: var(--accent-500); }
 
@@ -137,7 +137,7 @@
 details.scratch-block-card > summary { list-style: none; cursor: pointer; }
 details.scratch-block-card > summary::-webkit-details-marker { display: none; }
 details.scratch-block-card[open] > summary .scratch-block-chevron { transform: rotate(180deg); }
-.scratch-block-chevron { transition: transform .15s ease; color: var(--on-surface-variant); flex-shrink: 0; width: 20px; height: 20px; fill: currentColor; }
+.scratch-block-chevron { transition: transform var(--bc-dur-fast) var(--bc-ease-move); color: var(--on-surface-variant); flex-shrink: 0; width: 20px; height: 20px; fill: currentColor; }
 .scratch-block-label svg, .scratch-block-input svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
 
 .scratch-block-header {
@@ -280,7 +280,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   height: 16px;
   border-radius: 50%;
   background-color: #FFFFFF;
-  transition: transform 0.2s;
+  transition: transform var(--bc-dur-base) var(--bc-ease-move);
 }
 .sim-switch.active::after { transform: translateX(16px); }
 
@@ -366,7 +366,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--bc-dur-base) var(--bc-ease-move);
 }
 
 .dual-tab-btn:hover {
@@ -403,7 +403,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   background: transparent;
   border: 1px solid #333333;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--bc-dur-fast) var(--bc-ease-move);
 }
 
 .dual-copy-btn:hover {
@@ -633,7 +633,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   color: #FFFFFF;
   border: none;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: background-color var(--bc-dur-fast) var(--bc-ease-move);
   line-height: 1.2;
 }
 
