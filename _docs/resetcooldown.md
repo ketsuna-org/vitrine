@@ -33,7 +33,7 @@ $resetCooldown[(normal|server|global)]
 ### Give the cooldown back on failure
 
 ```bdfd
-$cooldown[30s;Wait $cooldownRemaining before retrying.]
+$cooldown[30s;Wait %time% before retrying.]
 $if[$message[1]==]
   $resetCooldown
   Usage: !cmd value

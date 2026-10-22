@@ -21,7 +21,7 @@ When the parser encounters a `$if[condition]` token, it evaluates the condition.
 
 ## Condition Syntax
 
-The condition text is first evaluated (functions are expanded), then interpreted. It must either be exactly `true` or `false`, or contain a comparison `left operator right`; anything else raises the error `Invalid condition`. The text is split at the first operator found. If both sides are numbers they are compared numerically, otherwise they are compared as text (lexicographic order).
+The condition text is first evaluated (functions are expanded), then interpreted. It must either be exactly `true` or `false`, or contain a comparison `left operator right`; anything else raises the error `Invalid condition`. The operator is selected outside Discord tokens, in this order: `==` / `!=`, then `>=` / `<=`, then `>` / `<`, taking the first occurrence within the selected group. If both sides are numbers they are compared numerically, otherwise they are compared as text (lexicographic order).
 
 ### Supported Comparison Operators
 
