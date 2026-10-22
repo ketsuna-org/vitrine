@@ -52,7 +52,7 @@ const GOLDEN = [
   ['pile ou face', 'bdfd', ['$randomtext'], 'auto'],
   ['message de bienvenue avec le nom du serveur', 'bdfd', ['$servername', '$memberscount'], 'auto'],
   ['infos du serveur', 'bdfd', ['$servername', '$memberscount'], 'auto'],
-  ['afficher l\'avatar d\'un utilisateur', 'bdfd', ['$useravatar'], 'auto'],
+  ['afficher l\'avatar d\'un utilisateur', 'bdfd', ['$authoravatar'], 'auto'],
   ['annonce avec embed et couleur', 'bdfd', ['$title', '$description', '$color'], 'auto'],
   ['bouton cliquable', 'bdfd', ['$addbutton'], 'auto'],
   ['commande /warn pour avertir un membre et compter ses avertissements', 'bdfd', ['$setguildmembervar', '$getguildmembervar', '$onlyperms'], 'auto'],

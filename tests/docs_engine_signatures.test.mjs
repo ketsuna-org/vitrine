@@ -9,11 +9,11 @@ import { readFile, readdir } from 'node:fs/promises';
 
 // Structural tokens the parser handles itself: their page documents a block form, while the registry entry
 // is the inline function form, so their `syntax:` cannot be compared.
-const structural = new Set(['if', 'for', 'try', 'jsonforeach', 'loop', 'while']);
+const structural = new Set(['if', 'for', 'try', 'jsonforeach', 'loop', 'while', 'async']);
 const dir = new URL('../_docs/', import.meta.url);
 const snapshot = JSON.parse(await readFile(new URL('../_data/bdfd-engine-signatures.json', import.meta.url), 'utf8'));
 const knownGaps = JSON.parse(await readFile(new URL('./docs_engine_known_gaps.json', import.meta.url), 'utf8'));
-const front = text => Object.fromEntries([...(text.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '').matchAll(/^(\w+):\s*(.*)$/gm)].map(m => [m[1], m[2].replace(/^["']|["']$/g, '').trim()]));
+const front = text => Object.fromEntries([...(text.replace(/\r\n/g, '\n').match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '').matchAll(/^(\w+):\s*(.*)$/gm)].map(m => [m[1], m[2].replace(/^["']|["']$/g, '').trim()]));
 
 // The function a page documents and the syntax it advertises. Pages without `function_name` / `syntax:` front matter
 // (most component pages) are still compared: the function is the file name and the syntax is the first line of the
@@ -105,10 +105,10 @@ test('every documented BDFD function exists in the engine snapshot', async () =>
     if (!file.endsWith('.md')) continue;
     const f = front(await readFile(new URL(file, dir), 'utf8'));
     if ((f.api_type || 'bdfd') !== 'bdfd' || !f.function_name) continue;
-    if (!snapshot[f.function_name.toLowerCase()] && !(`exists:${file}` in knownGaps)) unknown.push(file);
+    if (!knownName(f.function_name) && !(`exists:${file}` in knownGaps)) unknown.push(file);
   }
   // Control-flow keywords are handled by the parser, not the function registry.
-  assert.deepEqual(unknown.filter(f => !['for-loop.md', 'try-catch.md', 'jsonforeach.md', 'loop.md', 'while.md'].includes(f)), []);
+  assert.deepEqual(unknown, []);
 });
 
 // Variadic syntaxes (`a;b;...`): pages differ on whether the repeated parameter right before `...` counts as
@@ -134,7 +134,7 @@ test('variadic syntaxes advertise the engine minimum argument count', async () =
 // Parser-level keywords (bot-creator, engine/bdfd/program.dart `structuralFunctionNames`): they are not in the
 // function registry but are valid in scripts.
 const parserKeywords = new Set(['if', 'elseif', 'else', 'endif', 'for', 'loop', 'while', 'endfor', 'endloop', 'endwhile',
-  'jsonforeach', 'endjsonforeach', 'try', 'catch', 'endtry', 'func', 'funcend']);
+  'jsonforeach', 'endjsonforeach', 'try', 'catch', 'endtry', 'func', 'funcend', 'async', 'endasync']);
 const knownName = name => snapshot[name.toLowerCase()] || parserKeywords.has(name.toLowerCase());
 const callNames = code => [...code.matchAll(/(?<!\\)\$([A-Za-z_]\w*)/g)].map(m => m[1]);
 
