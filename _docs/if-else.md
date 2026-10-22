@@ -67,9 +67,10 @@ With two or three arguments, `$if[condition;then;else]` is a regular function: i
 ## Common Pitfalls
 
 - Forgetting `$endif` causes a parse error ("Missing $endif.").
-- The block form `$if[condition]...$endif` only works at the top level of the script. Written inside the brackets of another function, as in `$description[Total $if[$var[n]>0]...$endif]`, it fails with `Invalid argument count for $if: 1.`. Use the inline form `$if[condition;then;else]` there (no `$endif`), or put the whole function in each branch of a top-level `$if`.
+- The block form `$if[condition]...$endif` **is accepted inside the argument of another function**, for example `$title[$if[$var[x]==1]one$else other$endif]` or `$description[Total $if[$var[n]>0]more$endif]`. The block closes inside its own argument: a `;` ends the argument, so `$description[$if[1==1]a;b$endif]` fails with `Missing $endif.`. Write `\;` for a literal semicolon (`$description[$if[1==1]a\;b$endif]`). Blocks can be nested and mixed with the inline form. Loops (`$for`, `$loop`, `$while`), `$try`, `$jsonForEach` and `$func` are still refused in an argument (`Unsupported native function $for.`). Before 2026-10-22 this form failed with `Invalid argument count for $if: 1.`.
 - Using `=` instead of `==` for equality — BDFD requires double equals.
-- A non-numeric value on either side makes the comparison textual (`10` vs `9abc` is compared as text).
+- Both sides are compared as numbers when they are finite decimals (`1==1.0` is true; the comparison is exact, with no rounding: `12345678901234567890==12345678901234567891` is false), otherwise as text (`10>9abc` is false; `0x10==16` is false because hexadecimal is not a number).
+- The operator is searched **outside Discord tokens** (`<@id>`, `<@&id>`, `<#id>`, `<:name:id>`, `<t:...>`, `</cmd:id>`), so `<@1>!=<@1>` is false. Priority: `==` and `!=`, then `>=` and `<=`, then `>` and `<`, at the first occurrence.
 - A condition without a comparison operator (other than `true` / `false`) is an error.
 
 ## Examples

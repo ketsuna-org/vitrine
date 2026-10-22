@@ -68,3 +68,7 @@ $sendMessage[$removeContains[$removeContains[$message;badword1];badword2]]
 - For a replacement (not removal), use `$replaceText[]`.
 - To remove only links, use `$removeLinks`.
 - To remove surrounding spaces, use `$trimContent[]`.
+
+## Difference with BDFD
+
+In the official BDFD wiki, `$removeContains` is a **message purge** (it deletes recent messages that contain the given words). In Bot Creator it is a plain **text removal**: `$removeContains[text;toRemove]` returns the text without the pattern, and nothing is deleted from the channel. This difference is kept on purpose. The BDFD form `[word;...;amount]` is **refused** rather than taken for a text removal. For a replacement use [`$replaceText`](/docs/replacetext/); to delete messages, use [`$clear`](/docs/clear/). See [Differences with BDFD](/docs/bdfd-differences/).

@@ -4,32 +4,33 @@ title: $sum[]
 translation_key: docs
 category: "Math & Text"
 function_name: sum
-syntax: $sum[value1;value2;(value3;...)]
+syntax: $sum[value1;(value2;...)]
 description: Calculates the sum of all provided values.
 ---
 
 # $sum[]
 
-The function `$sum[]` adds up all numerical values passed to it. It is variadic: it needs at least 2 arguments and accepts an unlimited number of them.
+The function `$sum[]` adds up all numerical values passed to it. It is variadic: it needs at least 1 argument and accepts an unlimited number of them.
 
 ## Syntax
 
 ```
-$sum[value1;value2;(value3;...)]
+$sum[value1;(value2;...)]
 ```
 
 ## Parameters
 
 | Parameter | Type   | Required | Description                                              |
 |-----------|--------|-------------|----------------------------------------------------------|
-| `value1;value2;...` | number | Yes | At least **2** numbers separated by `;` (no upper limit). |
+| `value1` | number | Yes | The first number. |
+| `value2;...` | number | No | Further numbers separated by `;` (no upper limit). |
 
 ## Behavior
 
 - Adds all values in the order they are provided.
 - Integers are added exactly (arbitrary size). If a decimal number is involved, the addition is done on decimals.
 - A value that is not a finite number (text, empty) raises the error "Expected a finite number in argument N.".
-- Requires at least 2 arguments; `$sum[]` and `$sum[42]` are rejected ("Invalid argument count").
+- With a single number the result is that number (rounded to an integer unless `$enableDecimals[yes]`): `$sum[5]` → `5`, `$sum[2.5]` → `3`. The number is still checked and at least one is required (`$sum[]` raises "Expected a finite number in argument 1.").
 - Unless decimals are enabled with `$enableDecimals`, a non-integer result is rounded to the nearest integer.
 
 ## Return Value

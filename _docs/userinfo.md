@@ -5,7 +5,7 @@ translation_key: docs
 category: "Entity Info"
 function_name: userInfo
 syntax: $userInfo[message]
-description: Formats the information of the first mentioned user (or of the author) into the description of the embed, using a template with {username}, {ID}, {BOT} and {discriminator}.
+description: Formats the information of the first mentioned user (or of the author) into the description of the embed and sets their avatar as thumbnail, using a template with {username}, {ID}, {BOT} and {discriminator}.
 ---
 
 # $userInfo
@@ -22,11 +22,11 @@ $userInfo[message]
 
 | Parameter | Description |
 |---|---|
-| `message` | Required - The template text. The placeholders `{username}`, `{ID}`, `{BOT}` and `{discriminator}` (case-insensitive) are replaced by the username, the ID, `true`/`false` (is a bot) and the discriminator of the user. At most 4096 characters. |
+| `message` | Required - The template text. The placeholders `{username}`, `{ID}`, `{BOT}` and `{discriminator}` (case-insensitive) are replaced by the username, the ID, `true`/`false` (is a bot) and the discriminator of the user (`0000` for a regular user, who has none; the four digits for a bot). At most 4096 characters. |
 
 ## Return Value
 
-None (empty string). The resulting text is set as the **description of the first embed** (it replaces any earlier `$description`); an error is raised if it exceeds 4096 characters, if the user is not found, or if no message service is configured.
+None (empty string). The resulting text is set as the **description of the first embed** (it replaces any earlier `$description`) and the avatar of the user becomes the **thumbnail** of that embed (a later `$thumbnail[]` replaces or removes it); an error is raised if it exceeds 4096 characters, if the user is not found, or if no message service is configured.
 
 ## Examples
 

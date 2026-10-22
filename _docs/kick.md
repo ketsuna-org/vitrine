@@ -25,13 +25,13 @@ $kick[userID;(reason)]
 
 ### Prefix command example
 
-Configure a prefix command named `kick`. For `!kick @member`, `$mentioned[1]` selects the first mentioned user. A raw ID typed without a mention is not a mention.
+Configure a prefix command named `kick`. For `!kick @member`, `$mentioned[1;no]` selects the first mentioned user. A raw ID typed without a mention is not a mention.
 
 ```bdfd
 $nomention
 $onlyPerms[kickmembers;You need Kick Members permission.]
 $onlyBotPerms[kickmembers;The bot needs Kick Members permission.]
-$var[target;$mentioned[1]]
+$var[target;$mentioned[1;no]]
 $onlyIf[$var[target]!=;Usage: !kick @member]
 $onlyIf[$var[target]!=$authorID;You cannot kick yourself.]
 $onlyIf[$var[target]!=$serverOwner;The server owner cannot be kicked.]
@@ -39,7 +39,7 @@ $kick[$var[target];Rules violation]
 Member kicked successfully.
 ```
 
-Replace the fixed reason with a value chosen by your command. For a slash command, use its configured user option instead of `$mentioned[1]`.
+Replace the fixed reason with a value chosen by your command. For a slash command, use its configured user option instead of `$mentioned[1;no]`.
 
 ### Explicit ID
 
@@ -52,3 +52,5 @@ Member kicked successfully.
 ```
 
 The function returns no text. An invalid target ID raises `Missing or invalid user ID.`. The bot is refused (error) when it lacks `Kick Members`, when the target is the server owner, or when the target's highest role is equal to or above the bot's.
+
+In a slash command, `$message[member]` (a `user` option) is the member's ID and can be passed directly: `$kick[$message[member];$message[reason]]`. See [`$message`](/docs/message/). An empty ID is never replaced by the author or by another argument; it fails with `Missing or invalid user ID.`.

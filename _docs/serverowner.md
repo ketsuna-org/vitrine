@@ -4,8 +4,8 @@ title: $serverOwner[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverOwner
-syntax: $serverOwner
-description: Returns the identifier (ID) of the owner of the Discord server.
+syntax: $serverOwner[(Guild ID)]
+description: Returns the identifier (ID) of the owner of the current Discord server, or of the server whose ID is given.
 ---
 
 # $serverOwner[] — Owner of the Server
@@ -15,17 +15,19 @@ description: Returns the identifier (ID) of the owner of the Discord server.
 ## Syntax
 
 ```
-$serverOwner
+$serverOwner[(Guild ID)]
 ```
 
 ## Parameters
 
-None.
+| Parameter | Description |
+|---|---|
+| `Guild ID` | Optional. The server to read. If omitted or empty, the current server is used. A non-numeric or non-positive value raises `Invalid guild ID.` |
 
 ## Return Value
 
 - **Type**: `string`
-- The ID (Snowflake) of the owner of the current server, fetched from Discord.
+- The ID (Snowflake) of the owner of the server, fetched from Discord.
 - The error `Guild not found.` is raised if the server cannot be fetched.
 
 ## Examples
@@ -34,6 +36,12 @@ None.
 
 ```bdfd
 $sendMessage[👑 Owner of the server: <@$serverOwner>]
+```
+
+### Owner of another server
+
+```bdfd
+$sendMessage[Owner: <@$serverOwner[123456789012345678]>]
 ```
 
 ### Restrict a command to the owner
@@ -65,5 +73,5 @@ $sendMessage[<@$serverOwner>, a user is requesting your attention.]
 
 ## Notes
 
-- `$serverOwner` takes no argument.
+- `$serverOwner` takes at most one argument, the server ID.
 - Use `$username[$serverOwner]` to get the name of the owner without mentioning them.

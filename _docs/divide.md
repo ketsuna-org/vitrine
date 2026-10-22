@@ -4,7 +4,7 @@ title: $divide[]
 translation_key: docs
 category: "Math & Text"
 function_name: divide
-syntax: $divide[a;b;(...)]
+syntax: $divide[a;(b;...)]
 description: Divides the first value by the following ones, from left to right. A divisor equal to 0 raises an error.
 ---
 # $divide[]
@@ -14,7 +14,7 @@ The `$divide[]` function divides the first value by each of the following values
 ## Syntax
 
 ```
-$divide[a;b;(...)]
+$divide[a;(b;...)]
 ```
 
 ## Parameters
@@ -22,9 +22,9 @@ $divide[a;b;(...)]
 | Parameter | Type   | Required | Description                      |
 |-----------|--------|-------------|----------------------------------|
 | `a`       | number | Yes         | The dividend (numerator).       |
-| `b`       | number | Yes         | The divisor. Further divisors may follow, with no upper limit. |
+| `b`       | number | No          | The divisor. Further divisors may follow, with no upper limit. |
 
-At least two arguments are required. Every argument must be a number: an empty or non-numeric argument raises `Expected a finite number in argument N.` (for example `$divide[10;3;]`).
+At least one argument is required: `$divide[9]` gives `9`, and `$divide[2.5]` gives `3` (`2.5` with `$enableDecimals[yes]`). Every argument must be a number: an empty or non-numeric argument raises `Expected a finite number in argument N.` (for example `$divide[10;3;]`).
 
 ## Behavior
 

@@ -17,7 +17,7 @@ $ephemeral
 
 ## Description
 
-`$ephemeral` takes no argument (`$ephemeral[yes]` is an error). It sets the ephemeral flag of the **response message**: the text written in the script, the embed functions and the component rows. Its position in the script does not matter.
+`$ephemeral` takes no argument (`$ephemeral[yes]` is an error). It sets the ephemeral flag of the **response message**: the text written in the script, the embed functions, the component rows and a **Components V2 layout** (container, text display, ...). Its position in the script does not matter.
 
 It does **not** apply to a message sent with `$sendMessage[]`: that function sends a separate channel message, which is never ephemeral. A script that only contains `$ephemeral` and `$sendMessage[...]` therefore sends a normal message.
 
@@ -41,16 +41,25 @@ $description[Private data]
 $color[#9B59B6]
 ```
 
-### In an interaction
+### Components V2 response
 
 ```bdfd
-$if[$customID==btn_secret]
-  $ephemeral
-  Secret action completed!
-$endif
+$ephemeral
+$addContainer[secret;#9B59B6]
+$addTextDisplay[Only you can see this panel.]
+```
+
+### When a button is clicked
+
+Workflow with the event `interactionCreate` and the custom ID filter (`customIdFilter`) `btn_secret`. `$customID` only exists in the script run for the click, never in the slash command.
+
+```bdfd
+$ephemeral
+Secret action completed!
 ```
 
 ## Notes
 
 - Verified by running the engine: the flag appears on the response payload (`"ephemeral": true`) and not on messages from `$sendMessage[]`.
-- Code reading only: a Components V2 response (container, text display, ...) does not take the flag from `$ephemeral`; its ephemeral state comes from the component definition, which the engine does not set.
+- A Components V2 response is sent with the ephemeral flag and the Components V2 flag together, also when the interaction was not acknowledged beforehand (a script that contains `$newModal`, `$eval`, `$callWorkflow` or `$funcCall`).
+- An ephemeral message cannot be edited by its ID (`$editMessageCV2`, `$editButton`, ...): Discord does not let the bot fetch it.

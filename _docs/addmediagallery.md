@@ -23,7 +23,7 @@ $addMediaGallery[(id);(containerId)]
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
 | `id` | No | Identifier used to target this gallery from the `galleryId` argument of `$addMediaGalleryItem[]`. It is not sent to Discord. |
-| `containerId` | No | Accepted but not used: the gallery goes into the latest `$addContainer` of the script, if any. |
+| `containerId` | No | Name of a container defined earlier: the gallery goes in it. A name that does not exist raises `Container <name> not found.` In a script that names nothing, the gallery goes into the latest `$addContainer`. |
 
 ## Return value
 
@@ -38,8 +38,8 @@ Returns an empty string. The gallery is created empty.
 ## Components V2 rules
 
 - Layout components (`$addContainer`, `$addSection`, `$addSeparator`, `$addTextDisplay`, `$addMediaGallery`, `$addThumbnail`, `$addFile`) make the response a Components V2 message. Such a message cannot carry content or embeds: the text written in the script and the embed functions are not sent.
-- Buttons and select menus (`$addButtonCV2`, `$addStringSelect`, ...) must be added **before** any text display, separator, thumbnail, file or media gallery of the script: added afterwards, they fail with `type 'Null' is not a subtype of type 'List<dynamic>' in type cast`.
-- A button added right after `$addContainer` or `$addSection` is silently lost: write `$addActionRow` first.
+- Buttons and select menus (`$addButtonCV2`, `$addStringSelect`, ...) can be added after any layout component: they go in an action row.
+- A Components V2 message holds at most 40 components and a gallery 1 to 10 items (`A media gallery holds 1 to 10 items.`).
 
 ## Examples
 

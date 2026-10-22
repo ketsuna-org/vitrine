@@ -7,12 +7,12 @@ function_name: jsonStringify
 syntax: $jsonStringify[]
 description: Returns the current JSON document as compact JSON text; empty if no JSON document exists yet.
 ---
-$jsonStringify returns the JSON document of the current command as compact JSON text (no extra whitespace). It takes no argument. For indented output use `$jsonPretty`.
+$jsonStringify returns the JSON document of the current command as compact JSON text (no extra whitespace). Integral decimals are written without `.0`, like `JSON.stringify`: `{"a":1.0}` gives `{"a":1}`. It takes no argument. For indented output use `$jsonPretty`.
 
 ## Behavior
 
 - Returns an empty string if no JSON document exists yet (nothing loaded with `$json` / `$jsonParse` and nothing set).
-- After `$jsonClear` it returns `{}`.
+- After `$jsonClear` (or `$jsonUnset` with no argument) it returns an empty string again, not `{}`.
 
 ## Examples
 

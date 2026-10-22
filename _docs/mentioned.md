@@ -36,6 +36,8 @@ $mentioned[index;(returnSelf)]
 - `$mentioned` requires at least one argument: a bare `$mentioned` is invalid.
 - Reads the user mentions of the message; it raises the error `Use message options for slash commands.` in a slash command (use the command options instead).
 - The mentions are read from the `message.mentions` context variable supplied by the host (a comma-separated list of user IDs).
+- The numbering follows the **order of the text**: with `<@300> <@200>`, `$mentioned[1]` is 300 (not the ID-sorted order returned by the Discord API). A mention that is not in the text, such as the ping of a replied-to message, comes after the others.
+- **Always write `;no` in guards.** The default (`yes`) returns the command author when nobody is mentioned, so `$if[$mentioned[1]!=]` is always true and `$ban`-style scripts end up targeting the author or the server owner (the "cannot ban the owner" failure). Use `$if[$mentioned[1;no]!=]`.
 - Index `>` with no mention at all, or an index larger than the number of mentions, counts as "no such mention".
 - To retrieve all mentions, use `$mentions`.
 
@@ -75,7 +77,7 @@ $endif
 ## Notes
 
 - `$mentioned[1]` is convenient for commands that target a single user.
-- Because `returnSelf` defaults to `yes`, use `$mentioned[1;no]` to get an empty string when nobody is mentioned.
+- Because `returnSelf` defaults to `yes` (BDFD's historical default), use `$mentioned[1;no]` in every guard and every moderation script: it gives an empty string when nobody is mentioned.
 - Use `$userExists[$mentioned[1;no]]` to validate that the mentioned user exists.
 
 

@@ -4,23 +4,25 @@ title: $channelTopic
 translation_key: docs
 category: "Entity Info"
 function_name: channelTopic
-syntax: $channelTopic
-description: Returns the topic of the current Discord channel.
+syntax: $channelTopic[(Channel ID)]
+description: Returns the topic of the current Discord channel, or of the channel whose ID is given.
 ---
 
 # $channelTopic
 
-The `$channelTopic` function returns the **topic** of the channel where the command is executed. The topic is the text displayed at the top of the channel, generally used to describe its purpose.
+The `$channelTopic` function returns the **topic** of the channel where the command is executed, or of another channel when its ID is given. The topic is the text displayed at the top of the channel, generally used to describe its purpose.
 
 ## Syntax
 
 ```
-$channelTopic
+$channelTopic[(Channel ID)]
 ```
 
 ## Parameters
 
-None. The function takes no argument and always reads the current channel (`$channelTopic[...]` with an argument is refused).
+| Parameter | Description |
+|---|---|
+| `Channel ID` | Optional. The channel to read. If omitted or empty (`$channelTopic`, `$channelTopic[]`), the current channel is used. A non-numeric or non-positive value raises `Invalid channel ID.`; an unknown channel raises `Channel not found.` |
 
 ## Return value
 
@@ -46,6 +48,12 @@ $else
 $endif
 ```
 
+### Topic of another channel
+
+```bdfd
+$sendMessage[Rules topic: $channelTopic[123456789012345678]]
+```
+
 ### Topic in an embed
 
 ```bdfd
@@ -58,4 +66,4 @@ $color[#5865F2]
 
 - Topics are returned for text, announcement, forum and media channels.
 - For other channel types (voice, categories, threads, etc.), the function returns an empty string.
-- The function raises an error if the current channel cannot be resolved.
+- The function raises an error if the channel cannot be resolved.

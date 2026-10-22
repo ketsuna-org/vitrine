@@ -62,3 +62,5 @@ $addFile[https://files.example.com/config.json]
 - Multiple `$addFile[]` calls can be used in the same message.
 - Do not confuse this with `$addModalFileUpload[]`, which is for interactive modals.
 - `$addFile[]` ends the section opened by a previous `$addSection`: following components are not added to it.
+- `$addFile[]` has no container name. In a script that uses names, the file attaches to the message itself; in a script that names nothing, it goes inside the latest `$addContainer`.
+- A Components V2 message holds at most 40 components (the file counts as one).

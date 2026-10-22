@@ -4,25 +4,27 @@ title: $registerGuildCommands
 translation_key: docs
 category: "Moderation"
 function_name: registerGuildCommands
-syntax: $registerGuildCommands[(guildID)]
-description: Registers the bot's local-only slash commands on a server (the current server by default).
+syntax: $registerGuildCommands[name]
+description: Registers the bot's local-only slash commands on the current server, all of them or only those named.
 ---
 
 # $registerGuildCommands
 
-The `$registerGuildCommands[]` function allows **registering the bot's slash commands** on a server.
+The `$registerGuildCommands[]` function allows **registering the bot's slash commands** on the current server: all the local-only ones, or only those whose names are given.
 
 ## Syntax
 
 ```
-$registerGuildCommands[(guildID)]
+$registerGuildCommands[name]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
-| `guildID` | Optional. The ID of the server where to register the slash commands. If omitted or empty, the current server is used. A non-numeric or non-positive value raises an error. |
+| `name` | Optional, repeatable (`$registerGuildCommands[ping;help]`). The name of a slash command of the bot to register, matched exactly (case-sensitive). Empty arguments are ignored. Without any name, every local-only command is registered. |
+
+The server is always the current one. For compatibility, a **single argument made only of digits** (`$registerGuildCommands[123456789012345678]`) is read as a server ID instead of a command name; a non-positive value then raises `Invalid guild ID.`.
 
 ## Return Value
 
@@ -30,18 +32,25 @@ This function does not return a value.
 
 ## Behavior
 
-- The slash commands (chat input) of the bot that are marked as local-only are registered on the target server, one by one, with their name, description and options (name, type, description, required flag). Commands that are not marked local-only are not touched.
+- The slash commands (chat input) of the bot that are marked as local-only are registered on the target server, one by one, with their name, description and options (name, type, description, required flag). Commands that are not marked local-only are not touched, **even when named**: `$registerGuildCommands[ping]` does nothing if `ping` is not local-only, and a name that matches no command registers nothing, without an error.
 - If the guild commands cannot be registered because the bot store is not available, the error `Guild command registration is not configured` is raised.
 - If the Discord call fails for one command, the error `Failed to register <name>: ...` is raised and the following commands are not registered.
-- Without a `guildID` argument the command needs a current server; outside a server an error (`Missing guildId`) is raised.
+- Without a server ID argument the command needs a current server; outside a server an error (`Missing guildId`) is raised.
 
 ## Examples
+
+### Register named commands
+
+```bdfd
+$registerGuildCommands[ping;help]
+$sendMessage[The commands ping and help are registered on this server.]
+```
 
 ### Manual registration
 
 ```bdfd
 $if[$isAdmin[$authorID]==true]
-  $registerGuildCommands[$guildID]
+  $registerGuildCommands
   $sendMessage[✅ Slash commands registered on this server!]
 $else
   $sendMessage[❌ Permission denied.]
@@ -55,7 +64,7 @@ $registerGuildCommands
 $sendMessage[Slash commands synced.]
 ```
 
-### Multi-server registration (owner)
+### Registration on another server by ID (owner)
 
 ```bdfd
 $if[$authorID==OWNER_ID]
@@ -64,6 +73,8 @@ $if[$authorID==OWNER_ID]
 $endif
 ```
 
+This works only because `$message[1]` is a lone numeric argument, read as a server ID.
+
 ## Notes
 
-- To remove the commands of a server, use `$unregisterGuildCommands[(guildID)]` (it deletes every slash command registered on that server, not only the local-only ones).
+- To remove the commands of a server, use `$unregisterGuildCommands[name]` (without name it deletes every slash command registered on that server, not only the local-only ones).

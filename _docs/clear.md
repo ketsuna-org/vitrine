@@ -71,7 +71,7 @@ $sendMessage[10 messages deleted (pinned messages kept).]
 
 - The bot must have the `Manage Messages` and `Read Message History` permissions in the server; otherwise an error is raised.
 - Maximum 100 messages per call (values outside 1-100 are rejected).
-- The most recent messages of the channel are examined (and filtered by `userID` / `removePinned`) until `amount` matching messages are found. The message that triggered the command is not excluded, so in a prefix command it counts as one of the messages.
+- The most recent messages of the channel are examined (and filtered by `userID` / `removePinned`) until `amount` matching messages are found. With a filter, the history is read **by pages of 100 messages** (one request per page, not one per message), so `$clear[1;userID]` over 300 messages of which one matches costs 3 requests; without a filter, only the needed number of messages is requested. The message that triggered the command is not excluded, so in a prefix command it counts as one of the messages.
 - Messages younger than 14 days are bulk-deleted; older ones, and a single leftover message, are deleted one at a time. A message that cannot be deleted is skipped without an error.
 - The channel must be a text channel, otherwise an error is raised.
 - Pinned messages are deleted unless `removePinned` is `"no"`, `"false"`, `"0"` or `"n"`.

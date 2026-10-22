@@ -4,11 +4,11 @@ title: $argCount[]
 translation_key: docs
 category: "Variables"
 function_name: argCount
-syntax: $argCount
-description: Returns the number of arguments passed to the current command.
+syntax: $argCount[(Text)]
+description: Returns the number of arguments passed to the current command, or the number of words of a given text.
 ---
 
-$argCount returns the number of arguments of the current command: the runtime variable `args.count` when it is set (prefix commands set it to the number of words after the command name), otherwise the number of whitespace-separated words of `message.content`. It takes no argument (`$argCount[]` with empty brackets is also accepted). It is a simple but essential function for input validation — almost every command that accepts arguments should check `$argCount` before proceeding.
+$argCount returns the number of arguments of the current command: the runtime variable `args.count` when it is set (prefix commands set it to the number of words after the command name), otherwise the number of whitespace-separated words of `message.content`. With a text (`$argCount[Text]`), it instead counts the whitespace-separated words of that text; a blank text (`$argCount[]`) counts the command arguments. It is a simple but essential function for input validation — almost every command that accepts arguments should check `$argCount` before proceeding.
 
 ## Return Value
 
@@ -43,6 +43,14 @@ $endif
 ```
 
 ## Examples
+
+### Counting the words of a text
+
+```bdfd
+$sendMessage[$argCount[one two  three]]
+```
+
+Returns `3`.
 
 ### Validating Command Arguments
 

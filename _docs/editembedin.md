@@ -76,3 +76,4 @@ $editEmbedIn[3s;✅ Search completed;3 results found;Completed;#2ECC71]
 - The edit is built with an empty `content` and a replacement embed.
 - The maximum duration is 40 minutes.
 - To change the text of the message, use `$editIn[]`.
+- A Components V2 message carries neither text nor embed: the call fails with `This message uses Components V2: edit it with $editMessageCV2.` For a delayed edit of a V2 layout, use `$editInCV2`.

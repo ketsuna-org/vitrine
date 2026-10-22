@@ -4,8 +4,8 @@ title: $boostCount
 translation_key: docs
 category: "Entity Info"
 function_name: boostCount
-syntax: $boostCount
-description: Returns the number of boosts (premium subscriptions) of the current server, as reported by Discord.
+syntax: $boostCount[(Guild ID)]
+description: Returns the number of boosts (premium subscriptions) of the current server, or of the server whose ID is given, as reported by Discord.
 ---
 
 # $boostCount
@@ -15,17 +15,19 @@ The `$boostCount` function **retrieves the number of server boosts** of the curr
 ## Syntax
 
 ```
-$boostCount
+$boostCount[(Guild ID)]
 ```
 
 ## Parameters
 
-No parameters (passing one is an error; `$serverBoostCount[(serverID)]` accepts an optional server ID).
+| Parameter | Description |
+|---|---|
+| `Guild ID` | Optional. The server to read. If omitted or empty, the current server is used. A non-numeric or non-positive value raises `Invalid guild ID.` |
 
 ## Return value
 
 - **Type**: String (number)
-- The boost count of the server, read from Discord.
+- The boost count of the server, read from Discord. An unknown server raises `Guild not found.`
 - If Discord does not give a value, the error `Guild boost count is unavailable.` is raised.
 
 ## Behavior
@@ -45,6 +47,12 @@ $description[
 ]
 $thumbnail[$serverIcon]
 $color[#F47FFF]
+```
+
+### Boosts of another server
+
+```bdfd
+$sendMessage[Boosts: $boostCount[123456789012345678]]
 ```
 
 ### Thank-you message
@@ -74,4 +82,4 @@ $color[#F47FFF]
 ## Notes
 
 - For the current level, use `$boostLevel`.
-- `$serverBoostCount` is similar but takes an optional server ID and returns `0` instead of an error when the value is unavailable.
+- `$serverBoostCount` is similar but returns `0` instead of an error when the value is unavailable.

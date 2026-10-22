@@ -3,15 +3,15 @@ layout: doc
 title: $banID
 category: "Moderation"
 function_name: banID
-syntax: $banID / $banID[(reason)] / $banID[(reason);(userID)]
-description: Bans a user ID, with the reason as the first argument. All arguments are optional; without an ID, the last argument of the message is used.
+syntax: $banID[(reason);(userID)]
+description: Bans a user ID, with the reason as the first argument. In a prefix command, an omitted ID falls back to the last word of the message; in a slash command it is an error.
 locale: en
 translation_key: doc-banid
 ---
 
 # $banID
 
-`$banID[reason;userID]` takes the reason first and the target ID second. Both arguments are optional (`$banID`, `$banID[reason]` and `$banID[reason;userID]` are all accepted). When the ID is omitted or empty, the last argument of the command message is used as the ID.
+`$banID[reason;userID]` takes the reason first and the target ID second. Both arguments are optional (`$banID`, `$banID[reason]` and `$banID[reason;userID]` are all accepted). In a **prefix** command, an omitted or empty ID falls back to the last word of the message. In a **slash** command there is no such fallback: an empty ID raises `Missing or invalid user ID.` (the last option would often be a word of the reason, or another member's ID).
 
 ## Syntax
 
@@ -26,7 +26,7 @@ $banID[reason;userID]
 | Parameter | Description |
 |---|---|
 | `reason` | Optional. Reason for the ban, at most 512 characters (empty by default). |
-| `userID` | Optional. ID of the user to ban (positive integer). If empty, the last argument of the message. A missing or invalid ID raises "Missing or invalid user ID.". |
+| `userID` | ID of the user to ban: decimal digits only (`0xDE` or `+222` are refused). Prefix command: if empty, the last word of the message. Slash command: required (use `$message[option]`, which is the ID of a user option). A missing or invalid ID raises "Missing or invalid user ID.". |
 
 ## Return value
 
@@ -65,3 +65,29 @@ $onlyIf[$message[1]!=$serverOwner;The server owner cannot be banned.]
 $banID[Moderation;$message[1]]
 Member banned successfully.
 ```
+
+### Complete ban command (slash and prefix)
+
+The same script serves a slash command with the options `usuário` (user) and `motivo` (string), and the prefix command `!ban @member reason`. In a slash command, `$message[usuário]` is already the user ID. In a prefix command, `$mentioned[1;no]` is the first mentioned user, or empty if nobody is mentioned: always add `;no`, because the default would return the command author when nobody is mentioned (and the guards would then try to ban the author or the owner).
+
+```bdfd
+$onlyPerms[banmembers;You need Ban Members permission.]
+$onlyBotPerms[banmembers;The bot needs Ban Members permission.]
+$if[$isSlash==true]
+  $onlyIf[$message[usuário]!=$authorID;You cannot ban yourself.]
+  $onlyIf[$message[usuário]!=$serverOwner;The server owner cannot be banned.]
+  $banID[$message[motivo];$message[usuário]]
+  Banned <@$message[usuário]>.
+$else
+  $if[$mentioned[1;no]!=]
+    $onlyIf[$mentioned[1;no]!=$authorID;You cannot ban yourself.]
+    $onlyIf[$mentioned[1;no]!=$serverOwner;The server owner cannot be banned.]
+    $banID[$noMentionMessage;$mentioned[1;no]]
+    Banned <@$mentioned[1;no]>.
+  $else
+    Usage: !ban @member reason
+  $endif
+$endif
+```
+
+See [`$message`](/docs/message/) for slash option values and [`$mentioned`](/docs/mentioned/) for the guard.

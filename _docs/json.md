@@ -14,7 +14,7 @@ $json has two forms, depending on its arguments:
 
 The path is given as separate arguments, one per level (no dot notation: `a.b` is a single key named `a.b`). Surrounding spaces are removed and empty arguments are skipped. A whole-number argument selects an element when the current value is an array; otherwise it is used as an object key. At most 100 arguments are accepted in total.
 
-Values are returned as text: strings as they are, numbers and booleans as `1.5` / `true`, objects and arrays as compact JSON, `null` and missing paths as an empty string. The document lives for the current command and is shared by all the JSON functions; `$jsonParse` is the dedicated way to load JSON, and `$jsonClear` resets the document to `{}`.
+Values are returned as text: strings as they are, numbers and booleans as `1.5` / `true` (an integral decimal is written without `.0`: `{"a":1.0}` gives `1`, `1e3` gives `1000`), objects and arrays as compact JSON, `null` and missing paths as an empty string. The document lives for the current command and is shared by all the JSON functions; `$jsonParse` is the dedicated way to load JSON, and `$jsonClear` empties it (reads and `$jsonStringify` then return an empty string).
 
 ## Examples
 

@@ -23,7 +23,7 @@ $onlyIf[condition;errorMessage]
 
 | Parameter | Description |
 |---|---|
-| `condition` | `true`, `false`, or a comparison (`==`, `!=`, `>=`, `<=`, `>`, `<`). If both sides are numbers the comparison is numeric, otherwise it is a text comparison. Anything else (for example `1` or an empty condition) is an error: `Invalid condition: <condition>.` |
+| `condition` | `true`, `false`, or a comparison (`==`, `!=`, `>=`, `<=`, `>`, `<`). If both sides are finite decimal numbers (`12`, `-3.5`, `1e3`) the comparison is numeric and exact, with no rounding (`12345678901234567890==12345678901234567891` is false); otherwise, hexadecimal such as `0x10` included, it is a text comparison. The `<` and `>` of a Discord mention, emoji, timestamp or command link (`<@123>`, `<#123>`, `<a:name:123>`, `<t:123>`) are part of the value, not operators (`$onlyIf[$message[1]!=<@$authorID>]` works). Anything else (for example `1` or an empty condition) is an error: `Invalid condition: <condition>.` |
 | `errorMessage` | Optional. Text that replaces the response when the condition is false. |
 
 `$onlyIf` takes 1 or 2 arguments; a third argument is refused.

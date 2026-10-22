@@ -4,29 +4,29 @@ title: $modifyChannelPerms
 translation_key: docs
 category: "Moderation"
 function_name: modifyChannelPerms
-syntax: $modifyChannelPerms[channelID;permissions;roleOrUserID]
-description: Deprecated variant of $editChannelPerms that takes the permission list as one argument (+ allow, - deny, / reset) and the role or user as the last argument.
+syntax: $modifyChannelPerms[channelID;permission;roleOrUserID]
+description: Deprecated variant of $editChannelPerms that takes one or several permissions (+ allow, - deny, / reset) before the role or user, which is the last argument.
 ---
 
 # $modifyChannelPerms
 
-The function `$modifyChannelPerms` modifies the permission overwrite of a role or user in a channel. The permissions are given in **one** argument, and the role or user ID comes **last**.
+The function `$modifyChannelPerms` modifies the permission overwrite of a role or user in a channel. The permissions are given **before** the target (one argument per permission, or several in one argument), and the role or user ID comes **last**.
 
 ## Syntax
 
 ```
-$modifyChannelPerms[channelID;permissions;roleOrUserID]
+$modifyChannelPerms[channelID;permission;roleOrUserID]
 ```
 
-Exactly 3 arguments are required.
+At least 3 arguments are required: the channel, one or more permissions, then the role or user as the **last** argument (`$modifyChannelPerms[channelID;+sendmessages;-attachfiles;-speak;roleOrUserID]`).
 
 ## Parameters
 
 | Parameter | Description |
 |---|---|
 | `channelID` | Required. The ID of the target channel (positive number). |
-| `permissions` | Required. A list of permission names, each with a mandatory prefix: `+` (allow), `-` (deny) or `/` (reset to neutral). Separate them with spaces or commas, e.g. `+sendmessages -attachfiles`. |
-| `roleOrUserID` | Required. The ID of the role or user whose overwrite is changed. It cannot be empty (`Permission target is required.`). Use `$guildID` for @everyone. |
+| `permission` | Required, repeatable. Every argument between the channel and the last one is a permission name, each with a mandatory prefix: `+` (allow), `-` (deny) or `/` (reset to neutral). An argument can also hold several permissions separated by spaces, commas or semicolons, e.g. `+sendmessages -attachfiles`. |
+| `roleOrUserID` | Required. Always the **last** argument. The ID of the role or user whose overwrite is changed. It cannot be empty (`Permission target is required.`). Use `$guildID` for @everyone. |
 
 ## Return Value
 
@@ -68,9 +68,11 @@ $sendMessage[🔓 Channel unlocked.]
 ### Mixed Permissions
 
 ```bdfd
-$modifyChannelPerms[$channelID;-sendmessages -speak -connect;987654321098765432]
+$modifyChannelPerms[$channelID;-sendmessages;-speak;-connect;987654321098765432]
 $sendMessage[Permissions of the muted role applied.]
 ```
+
+The same permissions can be written in one argument: `$modifyChannelPerms[$channelID;-sendmessages -speak -connect;987654321098765432]`.
 
 ## Notes
 
