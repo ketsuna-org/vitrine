@@ -153,3 +153,25 @@ test('the BDFD plan carries the engine-verified pitfalls models kept running int
   const blocks = plan(index, { intent: 'quelque chose', mode: 'blocks' }).gotchas.join(' ');
   assert.match(blocks, /numberValue/);
 });
+
+// A slash user/channel/role option gives the ID, as in BDFD ($message[membre] and $message[membre.id] are the same
+// ID). In Blocks ((opts.membre)) stays the username, so every Blocks recipe reads ((opts.membre.id)).
+test('slash user options are read as IDs in the moderation recipes', () => {
+  const byId = Object.fromEntries(RECIPES.map(r => [r.id, r]));
+  for (const id of ['moderation', 'warn']) {
+    assert.match(byId[id].skeleton, /\$message\[membre\.id\]/, `${id}: the target is the option's user ID`);
+    assert.doesNotMatch(byId[id].skeleton, /\$findUser\[/, `${id}: no lookup by name`);
+  }
+  const empty = buildIndex({ docs: [], manifest: { modes: { bdfd: {}, blocks: {} } } });
+  const bdfdText = [...plan(empty, { intent: 'quelque chose', mode: 'bdfd' }).gotchas, ...RECIPES.filter(r => r.mode === 'bdfd').flatMap(r => r.gotchas ?? [])].join(' ');
+  assert.match(bdfdText, /Slash options: \$message\[name\] \(\$args is empty\), the ID for a user\/channel\/role option/);
+  assert.doesNotMatch(bdfdText, /USERNAME|is the NAME/);
+  assert.match(byId.moderation.gotchas.join(' '), /the name is \$userName\[\$message\[membre\.id\]\]/);
+  const warn = byId['counter-blocks'];
+  const opts = [...warn.skeleton.matchAll(/\(\(opts\.membre[^)]*\)\)/g)].map(m => m[0]);
+  assert.equal(opts.length, 3);
+  assert.deepEqual([...new Set(opts)], ['((opts.membre.id))']);
+  const blocksText = warn.gotchas.join(' ');
+  assert.match(blocksText, /\(\(opts\.membre\.id\)\) the user id/);
+  assert.doesNotMatch(blocksText, /user id is \(\(opts\.membre\)\)/);
+});

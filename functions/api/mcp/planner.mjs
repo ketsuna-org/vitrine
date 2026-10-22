@@ -75,13 +75,13 @@ const RECIPES = [
   {
     id: "moderation", mode: "bdfd", need: 1, prio: 2, words: ["ban", "bannir", "kick", "expulser", "mute", "timeout", "moderation"],
     fns: ["$onlyPerms", "$onlyBotPerms", "$ban", "$kick", "$timeout", "$mentioned", "$onlyIf", "$banID", "$nomention"],
-    skeleton: "$nomention\n$onlyPerms[banmembers;Permission Ban Members requise.]\n$onlyBotPerms[banmembers;Le bot a besoin de Ban Members.]\n$banID[Banni par $userName;$message[membre]]\nMembre banni.",
-    gotchas: ["In a SLASH command $ban and $mentioned fail (they only read message mentions): declare a user option (e.g. membre) and use $banID[reason;$message[membre]]. In a prefix command $ban[(reason)] bans the FIRST MENTIONED user (reason is not a user ID). Guard with $onlyPerms/$onlyBotPerms."],
+    skeleton: "$nomention\n$onlyPerms[banmembers;Permission Ban Members requise.]\n$onlyBotPerms[banmembers;Le bot a besoin de Ban Members.]\n$banID[Banni par $userName;$message[membre.id]]\nMembre banni.",
+    gotchas: ["In a SLASH command $ban and $mentioned fail (they only read message mentions): declare a user option (e.g. membre) and use $banID[reason;$message[membre.id]] (the user ID, like $message[membre]; the name is $userName[$message[membre.id]]). In a prefix command $ban[(reason)] bans the FIRST MENTIONED user (reason is not a user ID). Guard with $onlyPerms/$onlyBotPerms."],
   },
   {
     id: "warn", mode: "bdfd", need: 1, prio: 2, words: ["warn", "avertir", "avertissement", "strike", "sanction"],
     fns: ["$onlyPerms", "$onlyIf", "$findUser", "$message", "$setGuildMemberVar", "$getGuildMemberVar", "$calculate", "$var"],
-    skeleton: "$onlyPerms[moderatemembers;Permission Modérer les membres requise.]\n$var[cible;$findUser[$message[membre]]]\n$onlyIf[$var[cible]!=;Membre introuvable.]\n$setGuildMemberVar[warns;$calculate[$getGuildMemberVar[warns;$var[cible]]+1];$var[cible]]\n⚠️ <@$var[cible]> a maintenant $getGuildMemberVar[warns;$var[cible]] avertissement(s).",
+    skeleton: "$onlyPerms[moderatemembers;Permission Modérer les membres requise.]\n$var[cible;$message[membre.id]]\n$onlyIf[$var[cible]!=;Membre introuvable.]\n$setGuildMemberVar[warns;$calculate[$getGuildMemberVar[warns;$var[cible]]+1];$var[cible]]\n⚠️ <@$var[cible]> a maintenant $getGuildMemberVar[warns;$var[cible]] avertissement(s).",
     gotchas: ["Slash options are read by name: $message[optionName] ($args is empty in a slash invocation).", "Per-server counters: $setGuildMemberVar/$getGuildMemberVar[key;userID]; an unset value is empty, so declare a default of 0 with local_set_variable."],
   },
   {
@@ -115,8 +115,8 @@ const RECIPES = [
   {
     id: "counter-blocks", mode: "blocks", need: 1, prio: 2, words: ["warn", "avertir", "avertissement", "compteur", "counter", "points", "xp", "niveau", "level", "increment"],
     fns: ["getScopedVariable", "calculate", "setScopedVariable", "respondWithMessage"],
-    skeleton: '[{"type":"getScopedVariable","key":"prev","payload":{"scope":"guildMember","key":"warns","contextId":"((guild.id)):((opts.membre))"}},{"type":"calculate","key":"total","payload":{"expression":"((action.prev)) + 1"}},{"type":"setScopedVariable","payload":{"scope":"guildMember","key":"warns","valueType":"number","numberValue":"((action.total))","contextId":"((guild.id)):((opts.membre))"}},{"type":"respondWithMessage","payload":{"content":"<@((opts.membre))> a maintenant ((action.total)) avertissement(s)."}}]',
-    gotchas: ["Chain results with `key` ON THE ACTION (not in payload): calculate with key \"total\" is read as ((action.total)). The `storeAs` field exists only on getScopedVariable and queryArray.", "An unset scoped value reads empty: declare a number default of 0 with local_set_variable (scope guildMember) so ((action.prev)) + 1 works the first time.", "Slash options are ((opts.<name>)); the member option's user id is ((opts.membre)). A guildMember variable's contextId is \"<guildId>:<userId>\", i.e. ((guild.id)):((opts.membre)) (a bare user id fails at runtime)."],
+    skeleton: '[{"type":"getScopedVariable","key":"prev","payload":{"scope":"guildMember","key":"warns","contextId":"((guild.id)):((opts.membre.id))"}},{"type":"calculate","key":"total","payload":{"expression":"((action.prev)) + 1"}},{"type":"setScopedVariable","payload":{"scope":"guildMember","key":"warns","valueType":"number","numberValue":"((action.total))","contextId":"((guild.id)):((opts.membre.id))"}},{"type":"respondWithMessage","payload":{"content":"<@((opts.membre.id))> a maintenant ((action.total)) avertissement(s)."}}]',
+    gotchas: ["Chain results with `key` ON THE ACTION (not in payload): calculate with key \"total\" is read as ((action.total)). The `storeAs` field exists only on getScopedVariable and queryArray.", "An unset scoped value reads empty: declare a number default of 0 with local_set_variable (scope guildMember) so ((action.prev)) + 1 works the first time.", "Slash options are ((opts.<name>)); for a user option ((opts.membre)) is the username and ((opts.membre.id)) the user id. A guildMember variable's contextId is \"<guildId>:<userId>\", i.e. ((guild.id)):((opts.membre.id)) (a bare user id fails at runtime)."],
   },
   {
     id: "ping-blocks", mode: "blocks", need: 1, words: ["ping", "latence", "latency"],
@@ -249,7 +249,7 @@ function matchRecipes(base, mode) {
 }
 
 const GLOBAL_GOTCHAS = {
-  bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply. In another function's brackets use inline $if[cond;then;else] or a block $if[cond]a$else b$endif closed in that argument (\\; = literal ;); loops, $try and $jsonForEach stay top-level only. $sendMessage[text;yes] returns the message ID (2nd arg is yes/no only). Slash options: $message[optionName] ($args is empty).",
+  bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply. In another function's brackets use inline $if[cond;then;else] or a block $if[cond]a$else b$endif closed in that argument (\\; = literal ;); loops, $try and $jsonForEach stay top-level only. $sendMessage[text;yes] returns the message ID (2nd arg is yes/no only). Slash options: $message[name] ($args is empty), the ID for a user/channel/role option.",
   blocks: "Blocks are {type,key?,payload}. To reuse a result, set `key` ON THE ACTION, not in payload ({\"type\":\"calculate\",\"key\":\"total\",\"payload\":{…}} then ((action.total))); without a key it is action_<position>. Validate with docs_validate_actions. valueType \"number\" needs a numeric numberValue: an empty optional ((opts.x)) fails at run time, so store it as a string or guard it with ifBlock.",
 };
 
