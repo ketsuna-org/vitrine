@@ -109,7 +109,7 @@ const RECIPES = [
     id: "buttons", mode: "bdfd", need: 1, words: ["bouton", "boutons", "button", "buttons"],
     fns: ["$addButton", "$addActionRow", "$ephemeral"],
     skeleton: "Clique ci-dessous\n$addButton[no;mon_bouton;Cliquer;primary]",
-    gotchas: ["Button clicks are handled by an interaction command with the same customId; read the clicked id with $customID. The command reply carries the buttons: never add $sendMessage (it needs non-empty text and posts a separate channel message)."],
+    gotchas: ["A button click is NOT handled by the command: create a workflow (event interactionCreate, customIdFilter=<the button customId>, execution bdfd_script) that answers the click ($customID only exists in that workflow, never in the slash command). The command reply carries the buttons: never add $sendMessage (it needs non-empty text and posts a separate channel message)."],
   },
   {
     id: "ticket", mode: "bdfd", need: 1, prio: 3, words: ["ticket", "tickets", "support"],

@@ -168,6 +168,13 @@ test('a giveaway gets the join button, the click workflow and the draw', () => {
   assert.ok(JSON.stringify(r).length < 2900, `answer too large (${JSON.stringify(r).length} chars)`);
 });
 
+test('a button click is answered by an interactionCreate workflow, not by the command', () => {
+  const text = plan(index, { intent: 'bouton cliquable', mode: 'bdfd' }).gotchas.join(' ');
+  assert.match(text, /interactionCreate/);
+  assert.match(text, /customIdFilter/);
+  assert.doesNotMatch(text, /handled by an interaction command/);
+});
+
 // A slash user/channel/role option gives the ID, as in BDFD ($message[membre] and $message[membre.id] are the same
 // ID). In Blocks ((opts.membre)) stays the username, so every Blocks recipe reads ((opts.membre.id)).
 test('slash user options are read as IDs in the moderation recipes', () => {
