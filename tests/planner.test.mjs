@@ -143,6 +143,12 @@ test('the BDFD plan carries the engine-verified pitfalls models kept running int
   const bdfd = plan(index, { intent: 'quelque chose', mode: 'bdfd' }).gotchas.join(' ');
   assert.match(bdfd, /\$if\[cond;then;else\]/);
   assert.match(bdfd, /top-level only/);
+  // A block $if...$endif is accepted inside another function's brackets (the engine folds it to the inline form);
+  // loops, $try and $jsonForEach are still top-level only.
+  assert.doesNotMatch(bdfd, /block \$if\.\.\.\$endif is top-level only/);
+  assert.match(bdfd, /block \$if\[cond\]a\$else b\$endif closed in that argument/);
+  assert.match(bdfd, /\\; = literal ;/);
+  assert.match(bdfd, /loops, \$try and \$jsonForEach stay top-level only/);
   assert.match(bdfd, /\$sendMessage\[text;yes\]/);
   const blocks = plan(index, { intent: 'quelque chose', mode: 'blocks' }).gotchas.join(' ');
   assert.match(blocks, /numberValue/);
