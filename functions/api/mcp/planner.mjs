@@ -96,6 +96,16 @@ const RECIPES = [
     skeleton: "$randomText[Pile;Face]",
   },
   {
+    id: "giveaway", mode: "bdfd", need: 1, prio: 3, words: ["giveaway", "giveaways", "concours", "tirage", "tombola", "raffle"],
+    fns: ["$addButton", "$setVar", "$getVar", "$checkContains", "$textSplit", "$getTextSplitLength", "$splitText", "$random", "$sum", "$sub", "$onlyIf"],
+    skeleton: "$setVar[giveaway_list;]\nGiveaway : **$message[lot]**\nClique pour participer\n$addButton[no;giveaway_join;Participer;success;no;🎉]",
+    gotchas: [
+      "Scripts only, never Blocks. The click is a workflow (event interactionCreate, customIdFilter=giveaway_join, execution bdfd_script): $onlyIf[$checkContains[,$getVar[giveaway_list],;,$authorID,]==false;Déjà inscrit]\n$setVar[giveaway_list;$getVar[giveaway_list],$authorID]\nInscrit. The comma-led list (,20,21) never matches half an ID; declare giveaway_list as a global variable (empty default) or $setVar is not persisted.",
+      "Draw (staff command, $onlyPerms): $textSplit[$getVar[giveaway_list];,]\n$var[n;$getTextSplitLength]\n$onlyIf[$var[n]>1;Personne n'a participé]\n$var[i;$random[2;$sum[$var[n];1]]]\nGagnant : <@$splitText[$var[i]]>. Element 1 is empty and the max of $random is exclusive, hence $random[2;n+1].",
+      "$addButton style: primary, secondary, success, danger or link, never an emoji (the emoji is the 6th argument).",
+    ],
+  },
+  {
     id: "buttons", mode: "bdfd", need: 1, words: ["bouton", "boutons", "button", "buttons"],
     fns: ["$addButton", "$addActionRow", "$ephemeral"],
     skeleton: "Clique ci-dessous\n$addButton[no;mon_bouton;Cliquer;primary]",

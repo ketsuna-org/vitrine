@@ -56,6 +56,7 @@ const GOLDEN = [
   ['annonce avec embed et couleur', 'bdfd', ['$title', '$description', '$color'], 'auto'],
   ['bouton cliquable', 'bdfd', ['$addbutton'], 'auto'],
   ['commande /warn pour avertir un membre et compter ses avertissements', 'bdfd', ['$setguildmembervar', '$getguildmembervar', '$onlyperms'], 'auto'],
+  ['concours giveaway avec un bouton participer et un tirage au sort', 'bdfd', ['$addbutton', '$setvar', '$getvar', '$checkcontains', '$random'], 'auto'],
   ['ping with latency', 'blocks', ['respondwithmessage'], 'auto'],
   ['slash command warn: store a warnings count per member and reply', 'blocks', ['getscopedvariable', 'calculate', 'setscopedvariable'], 'auto'],
 ];
@@ -152,6 +153,19 @@ test('the BDFD plan carries the engine-verified pitfalls models kept running int
   assert.match(bdfd, /\$sendMessage\[text;yes\]/);
   const blocks = plan(index, { intent: 'quelque chose', mode: 'blocks' }).gotchas.join(' ');
   assert.match(blocks, /numberValue/);
+});
+
+// The manager had edited these recipes in its generated copy (data/planner_rules.json); they live here so that
+// the next knowledgesync run keeps them.
+test('a giveaway gets the join button, the click workflow and the draw', () => {
+  const r = plan(index, { intent: 'Giveaway: /giveaway command with a join button and a random draw', mode: 'bdfd' });
+  assert.equal(r.recipe, 'giveaway');
+  assert.equal(r.decision, 'auto');
+  const text = [r.skeleton, ...r.gotchas].join('\n');
+  for (const want of ['$addButton[no;giveaway_join;Participer;success;no;🎉]', 'customIdFilter=giveaway_join', '$checkContains', '$random[2;$sum[$var[n];1]]', 'never Blocks']) {
+    assert.ok(text.includes(want), `giveaway plan lacks ${want}`);
+  }
+  assert.ok(JSON.stringify(r).length < 2900, `answer too large (${JSON.stringify(r).length} chars)`);
 });
 
 // A slash user/channel/role option gives the ID, as in BDFD ($message[membre] and $message[membre.id] are the same
