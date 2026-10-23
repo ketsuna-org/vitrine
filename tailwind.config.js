@@ -117,6 +117,14 @@ module.exports = {
         'neon':         'none',
         'card':         'none',
       },
+      // Motion: durations and curves come from the BcMotion mirror in css/main.css (CHARTE-MOUVEMENT.md).
+      transitionDuration: {
+        'DEFAULT': 'var(--bc-dur-fast)',
+        '200':     'var(--bc-dur-base)',
+      },
+      transitionTimingFunction: {
+        'DEFAULT': 'var(--bc-ease-move)',
+      },
       spacing: {
         'xs':     '8px',
         'sm':     '16px',

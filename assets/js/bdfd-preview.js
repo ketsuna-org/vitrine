@@ -26,18 +26,18 @@
     if (!text) return '';
     let s = escapeHtml(text);
     // User mentions
-    s = s.replace(/&lt;@!?([0-9]+)&gt;/g, '<span class="bg-[#5865F2]/20 text-[#B19DF7] px-1 rounded font-semibold">@User</span>');
+    s = s.replace(/&lt;@!?([0-9]+)&gt;/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">@User</span>');
     // Channel mentions
-    s = s.replace(/&lt;#([0-9]+)&gt;/g, '<strong class="text-[#B19DF7] font-semibold">#ticket-channel</strong>');
+    s = s.replace(/&lt;#([0-9]+)&gt;/g, '<strong class="text-[#A78BFA] font-semibold">#ticket-channel</strong>');
     // Role mentions
-    s = s.replace(/&lt;@&amp;([0-9]+)&gt;/g, '<span class="bg-[#5865F2]/20 text-[#B19DF7] px-1 rounded font-semibold">@Role</span>');
+    s = s.replace(/&lt;@&amp;([0-9]+)&gt;/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">@Role</span>');
     // BDScript Placeholders
-    s = s.replace(/\$authorID/g, '<span class="bg-[#5865F2]/20 text-[#B19DF7] px-1 rounded font-semibold">@User</span>');
-    s = s.replace(/\$username/g, '<span class="bg-[#5865F2]/20 text-[#B19DF7] px-1 rounded font-semibold">User</span>');
+    s = s.replace(/\$authorID/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">@User</span>');
+    s = s.replace(/\$username/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">User</span>');
     s = s.replace(/\$guildName|\$serverName/g, '<strong>Community Server</strong>');
     s = s.replace(/\$ping|\$botPing/g, '<strong>24 ms</strong>');
     s = s.replace(/\$messageID/g, '<code>1029384756</code>');
-    s = s.replace(/\$channelID/g, '<strong class="text-[#B19DF7] font-semibold">#current-channel</strong>');
+    s = s.replace(/\$channelID/g, '<strong class="text-[#A78BFA] font-semibold">#current-channel</strong>');
     // Discord Markdown
     s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');

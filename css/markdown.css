@@ -47,7 +47,7 @@
   text-decoration-thickness: .08em;
   text-underline-offset: .18em;
 }
-.markdown-body a:hover { color: #D3C7FB; text-decoration-color: currentColor; }
+.markdown-body a:hover { color: var(--on-surface); text-decoration-color: currentColor; }
 .markdown-body strong { color: var(--text-100); font-weight: 600; }
 .markdown-body em { color: var(--text-100); }
 
@@ -307,7 +307,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .scratch-block-connector-line {
   width: 2px;
   height: 100%;
-  background-color: #2D2D2D;
+  background-color: var(--outline);
 }
 
 .scratch-block-connector-arrow {
@@ -339,7 +339,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 /* Dual View Tabs (Blocks mode vs Script mode) */
 .dual-view-tabs {
   margin: 1.5rem 0;
-  border: 1px solid #292929;
+  border: 1px solid var(--outline);
   border-radius: 2px;
   background-color: #121212;
   overflow: hidden;
@@ -349,7 +349,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   display: flex;
   align-items: center;
   background-color: #181818;
-  border-bottom: 1px solid #292929;
+  border-bottom: 1px solid var(--outline);
   padding: 6px 8px;
   gap: 6px;
 }
@@ -468,7 +468,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6A0FA2 0%, #9B30FF 100%);
+  background: #7C5CF0;
   display: flex;
   align-items: center;
   justify-content: center;
