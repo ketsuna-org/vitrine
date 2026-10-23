@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   sidebar.querySelectorAll('a[href]').forEach(link => {
     const path = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '') || '/';
     const active = path === currentPath;
-    link.classList.toggle('bg-primary/10', active);
+    link.classList.toggle('bg-accent-deep', active);
     link.classList.toggle('text-primary', active);
     link.classList.toggle('border-primary/20', active);
     if (active) link.setAttribute('aria-current', 'page');

@@ -101,6 +101,8 @@ module.exports = {
         "md":      "2px",
         "lg":      "2px",
         "xl":      "2px",
+        "2xl":     "2px",
+        "3xl":     "2px",
         "card":    "2px",
         "full":    "999px",
       },

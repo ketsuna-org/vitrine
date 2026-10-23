@@ -12,7 +12,7 @@
       {% for item in nav %}
         <li>
           <a href="{{ item.path | relative_url }}"
-             class="sidebar-item block px-3 py-1.5 rounded-lg text-sm transition-all {% if page.url == item.path %}bg-primary/10 text-primary font-bold border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
+             class="sidebar-item block px-3 py-1.5 rounded-lg text-sm transition-all {% if page.url == item.path %}bg-accent-deep text-primary font-bold border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
              data-search-term="{{ item.title | downcase }}">
             {{ item.title }}
           </a>

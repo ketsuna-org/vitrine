@@ -28,7 +28,7 @@ sidebar_title: Documentation
 <section class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-6 mb-16">
   {% for hub in nav.hub_links %}
   <a href="{{ hub.path | relative_url }}" class="group flex flex-col gap-4 rounded-lg bg-surface-container-low border border-outline-variant p-6 hover:border-primary/30 hover: transition-all">
-    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-accent-deep text-primary">
       <svg class="pxicon text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#{{ hub.icon }}"></use></svg>
     </div>
     <h2 class="font-display text-xl font-bold text-on-surface group-hover:text-primary transition-colors">{{ hub.title }}</h2>
@@ -107,7 +107,7 @@ sidebar_title: Documentation
       JavaScript API
     </h2>
     <p class="text-on-surface-variant mb-4 max-w-2xl">Script globals for BDJS bots — <code class="text-primary">db.*</code>, <code class="text-primary">interaction</code>, <code class="text-primary">message</code>, and more.</p>
-    <a href="{{ '/docs/javascript/' | relative_url }}" class="inline-flex items-center gap-2 rounded-lg bg-primary/10 border border-primary/20 px-4 py-2 text-sm font-bold text-primary hover:bg-primary/20 transition-all">
+    <a href="{{ '/docs/javascript/' | relative_url }}" class="inline-flex items-center gap-2 rounded-lg bg-accent-deep border border-primary/20 px-4 py-2 text-sm font-bold text-primary hover:bg-primary/20 transition-all">
       View JavaScript API reference
       <svg class="pxicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#arrow_forward"></use></svg>
     </a>

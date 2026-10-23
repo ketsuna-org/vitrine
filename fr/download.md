@@ -16,11 +16,11 @@ permalink: /fr/download/
     <!-- Header -->
     <header class="mb-10" data-reveal>
       <div class="flex flex-wrap items-center gap-3 mb-6">
-        <span class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
+        <span class="inline-flex items-center gap-2 rounded bg-accent-deep px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary/20">
           <svg class="pxicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#download"></use></svg>
           Téléchargements
         </span>
-        <span class="inline-flex items-center gap-2 rounded-full bg-surface-container px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60 border border-outline-variant">
+        <span class="inline-flex items-center gap-2 rounded bg-surface-container px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-muted border border-outline-variant">
           L'app d'abord, le runner ensuite
         </span>
       </div>
@@ -36,7 +36,7 @@ permalink: /fr/download/
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mb-24">
       <!-- Mobile -->
       <article class="flex flex-col rounded-lg bg-surface-container-low border border-outline-variant p-6 transition-all hover:border-primary/30 hover:" data-reveal>
-        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-accent-deep text-primary">
           <svg class="pxicon text-3xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#smartphone"></use></svg>
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Mobile</h2>
@@ -57,7 +57,7 @@ permalink: /fr/download/
 
       <!-- Desktop -->
       <article class="flex flex-col rounded-lg bg-surface-container-low border border-outline-variant p-6 transition-all hover:border-primary/30 hover:" data-reveal>
-        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-accent-deep text-primary">
           <svg class="pxicon text-3xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#laptop"></use></svg>
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Ordinateur</h2>
@@ -75,7 +75,7 @@ permalink: /fr/download/
 
       <!-- Docker Runner -->
       <article class="flex flex-col rounded-lg bg-surface-container-low border border-outline-variant p-6 transition-all hover:border-primary/30 hover: border-primary/20" data-reveal>
-        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-accent-deep text-primary">
           <svg class="pxicon text-3xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#deployed_code"></use></svg>
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Docker Runner</h2>
@@ -101,18 +101,18 @@ permalink: /fr/download/
         <p class="text-xs font-bold text-primary uppercase tracking-widest">App mobile et ordinateur</p>
         <h2 class="font-display text-2xl font-bold text-on-surface">Créez et hébergez depuis un seul espace de travail</h2>
         <p class="text-on-surface-variant text-sm leading-relaxed">Concevez vos commandes, gérez vos variables et surveillez vos bots depuis l'app : le point de départ recommandé pour la plupart des équipes.</p>
-        {% include responsive_screenshot.html screen_id="home" alt="Espace de travail Bot Creator sur Android avec un bot Discord en ligne" class="w-full max-w-[280px] mx-auto drop-shadow-xl" %}
+        {% include responsive_screenshot.html screen_id="home" alt="Espace de travail Bot Creator sur Android avec un bot Discord en ligne" class="w-full max-w-[280px] mx-auto drop-" %}
       </div>
       <div class="rounded-lg bg-surface-container-low border border-outline-variant p-6 flex flex-col gap-4">
         <p class="text-xs font-bold text-primary uppercase tracking-widest">Déployer et passer à l'échelle</p>
         <h2 class="font-display text-2xl font-bold text-on-surface">Passez de l'hébergement dans l'app aux runners auto-hébergés</h2>
         <p class="text-on-surface-variant text-sm leading-relaxed">Commencez avec l'hébergement depuis l'app, puis passez au runner Docker quand vous avez besoin d'une disponibilité côté serveur.</p>
-        {% include responsive_screenshot.html screen_id="hosting" alt="Commandes d'hébergement de Bot Creator sur Android pour un bot Discord en ligne" class="w-full max-w-[280px] mx-auto drop-shadow-xl" %}
+        {% include responsive_screenshot.html screen_id="hosting" alt="Commandes d'hébergement de Bot Creator sur Android pour un bot Discord en ligne" class="w-full max-w-[280px] mx-auto drop-" %}
       </div>
     </section>
 
     <!-- Runner Setup -->
-    <section id="runner" class="rounded-lg bg-surface-container-low border border-outline-variant p-8 md:p-16 mb-24 scroll-mt-24 shadow-sm" data-reveal>
+    <section id="runner" class="rounded-lg bg-surface-container-low border border-outline-variant p-8 md:p-16 mb-24 scroll-mt-24" data-reveal>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
         <div>
           <p class="text-xs font-bold text-primary uppercase tracking-widest mb-6">Installation avancée</p>
@@ -142,7 +142,7 @@ permalink: /fr/download/
           <!-- Step 1 -->
           <div class="rounded-lg bg-surface-container p-6 border border-outline-variant flex flex-col justify-between">
             <div>
-              <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-3">1. Récupérer l'image</p>
+              <p class="text-xs font-bold text-muted uppercase tracking-widest mb-3">1. Récupérer l'image</p>
               <div class="bg-surface-container-low rounded-lg p-3 border border-outline-variant overflow-x-auto mb-3">
                 <code class="text-primary text-sm font-mono whitespace-nowrap">{{ downloads.runner.commands.pull }}</code>
               </div>
@@ -156,7 +156,7 @@ permalink: /fr/download/
           <!-- Step 2 -->
           <div class="rounded-lg bg-surface-container p-6 border border-outline-variant flex flex-col justify-between">
             <div>
-              <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-3">2. Créer le volume</p>
+              <p class="text-xs font-bold text-muted uppercase tracking-widest mb-3">2. Créer le volume</p>
               <div class="bg-surface-container-low rounded-lg p-3 border border-outline-variant overflow-x-auto mb-3">
                 <code class="text-primary text-sm font-mono whitespace-nowrap">{{ downloads.runner.commands.volume }}</code>
               </div>
@@ -170,7 +170,7 @@ permalink: /fr/download/
           <!-- Step 3 -->
           <div class="rounded-lg bg-surface-container p-6 border border-outline-variant flex flex-col justify-between">
             <div>
-              <p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-3">3. Démarrer le runner</p>
+              <p class="text-xs font-bold text-muted uppercase tracking-widest mb-3">3. Démarrer le runner</p>
               <div class="bg-surface-container-low rounded-lg p-3 border border-outline-variant overflow-x-auto mb-3">
                 <code class="text-primary text-sm font-mono whitespace-nowrap">{{ downloads.runner.commands.run }}</code>
               </div>

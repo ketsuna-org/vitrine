@@ -25,7 +25,7 @@
           <span>{{ t.nav.docs }}</span>
           <svg class="pxicon text-sm transition-transform" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#expand_more"></use></svg>
         </button>
-        <div id="documentation-menu" data-docs-menu hidden class="docs-dropdown-menu absolute left-0 top-full z-50 w-64 rounded-lg border border-outline bg-surface-container-low py-1.5 shadow-neon-strong">
+        <div id="documentation-menu" data-docs-menu hidden class="docs-dropdown-menu absolute left-0 top-full z-50 w-64 rounded-lg border border-outline bg-surface-container-low py-1.5">
           <a href="{{ t.paths.docs | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_home }}</a>
           <a href="{{ '/docs/getting-started/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_getting_started }}</a>
           <a href="{{ '/docs/blocks/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_blocks }}</a>
@@ -39,7 +39,7 @@
 
     <div class="flex items-center gap-1">
       <a href="{{ alt_url | relative_url }}" hreflang="{{ t.nav.switch_language_code }}" lang="{{ t.nav.switch_language_code }}" title="{{ t.nav.switch_language_label }}" class="nav-link hidden md:inline-flex">{{ t.nav.switch_language }}</a>
-      <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary !h-9 !min-h-[36px] !px-4 !text-sm md:!h-10">{{ t.nav.download_button }}</a>
+      <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary !h-9 !min-h-[36px] !px-4 !text-sm">{{ t.nav.download_button }}</a>
       <button type="button" data-menu-toggle aria-controls="mobile-navigation" aria-expanded="false" aria-label="{{ t.nav.open_menu }}"
         class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container md:hidden">
         <svg class="pxicon menu-icon-open !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#menu"></use></svg>

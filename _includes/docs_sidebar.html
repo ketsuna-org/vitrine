@@ -52,7 +52,7 @@
                   {% comment %} Label = front matter title (short name). Never derive it from the page body. {% endcomment %}
                   {% assign doc_label = doc.title | default: doc.function_name %}
                   <a href="{{ doc.url | relative_url }}"
-                     class="sidebar-item block px-3 py-2 rounded-md text-[13px] font-mono transition-all {% if page.url == doc.url %}bg-primary/10 text-primary{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
+                     class="sidebar-item block px-3 py-2 rounded-md text-[13px] font-mono transition-all {% if page.url == doc.url %}bg-accent-deep text-primary{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
                      data-search-term="{{ doc.title | downcase }} {{ doc_label | downcase }} {{ doc.description | default: '' | downcase }} {{ doc.function_name | default: '' | downcase }}">
                     {{ doc_label }}
                   </a>
