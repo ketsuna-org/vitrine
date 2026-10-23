@@ -13,7 +13,7 @@
 <header class="nav-shell sticky top-0 z-50">
   <div class="header-inner mx-auto flex h-14 max-w-[1360px] items-center justify-between px-4 sm:px-6">
     <a href="{{ t.paths.home | relative_url }}" class="brand-link flex items-center gap-2.5 text-on-surface">
-      <img src="{{ '/assets/favicon-32x32.png' | relative_url }}" alt="" width="28" height="28" class="h-7 w-7 rounded-md">
+      {% include bibi.html size=24 %}
       <span class="brand-title text-base font-semibold tracking-tight">{{ t.meta.site_title }}</span>
     </a>
 
@@ -51,7 +51,7 @@
   <div id="mobile-navigation" data-menu-panel hidden role="dialog" aria-modal="true" aria-label="{{ t.nav.site_navigation }}" class="nav-panel-mobile">
     <div class="nav-mobile-bar">
       <span class="flex items-center gap-2.5 text-base font-semibold">
-        <img src="{{ '/assets/favicon-32x32.png' | relative_url }}" alt="" width="28" height="28" class="h-7 w-7 rounded-md">
+        {% include bibi.html size=24 %}
         {{ t.meta.site_title }}
       </span>
       <button type="button" data-menu-close-btn aria-label="{{ t.nav.close_menu }}" class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container">

@@ -9,6 +9,7 @@ content_language: en
 {% assign t = site.data.locales[page.locale] %}
 
 <section class="not-found">
+  <div class="bibi-hero" style="width:220px;height:200px">{% include bibi_glow.html %}<img src="{{ '/assets/mascotte/bibi.svg' | relative_url }}" alt="" width="96" height="96" class="bibi" aria-hidden="true"></div>
   <div class="eyebrow">404</div>
   <h1 class="m-0 text-3xl font-semibold tracking-tight sm:text-4xl">{{ t.not_found.title }}</h1>
   <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ t.not_found.body }} Try the documentation, or head back to a known place.</p>

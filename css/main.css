@@ -678,3 +678,18 @@ html.cs .cs-host > *::-webkit-scrollbar {
 
 /* Legal pages: highlight the card an anchor link points to */
 article[id]:target { border-color: var(--primary); }
+
+/* Bibi and her halo (CHARTE-GRAPHIQUE §2, CHARTE-MOUVEMENT). Halo: ignite per ring, then breath 100 % -> 45 %. */
+:root { --bc-dur-breath: 4800ms; --bc-stagger: 60ms; }
+.bibi { image-rendering: pixelated; display: inline-block; flex: none; }
+.bibi-hero { position: relative; display: flex; align-items: center; justify-content: center; width: 260px; height: 260px; overflow: hidden; flex: none; }
+.bibi-hero > .bibi-glow { position: absolute; left: 50%; top: 50%; width: 260px; height: 260px; transform: translate(-50%, -50%); pointer-events: none; }
+.bibi-hero > .bibi { position: relative; }
+.bibi-glow-breath { animation: bc-glow-breath var(--bc-dur-breath) var(--bc-ease-move) infinite; }
+.bibi-glow rect { opacity: 0; animation: bc-glow-ignite var(--bc-dur-slow) var(--bc-ease-enter) calc(var(--d) * var(--bc-stagger)) forwards; }
+@keyframes bc-glow-ignite { to { opacity: var(--o); } }
+@keyframes bc-glow-breath { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) {
+  .bibi-glow-breath { animation: none; }
+  .bibi-glow rect { animation: none; opacity: var(--o); }
+}

@@ -3,7 +3,7 @@
 <footer class="border-t border-outline-variant">
   <div class="mx-auto flex max-w-[1360px] flex-wrap justify-between gap-10 px-4 py-12 sm:px-6">
     <div class="flex max-w-xs flex-col gap-2">
-      <div class="text-base font-semibold text-on-surface">{{ t.meta.site_title }}</div>
+      <div class="flex items-center gap-2.5 text-base font-semibold text-on-surface">{% include bibi.html size=24 %}{{ t.meta.site_title }}</div>
       <p class="m-0 text-sm leading-relaxed text-on-surface-variant">{{ t.shell.footer_tagline }}</p>
       <p class="m-0 text-sm text-on-surface-variant">© 2026 {{ t.meta.site_title }}. {{ t.shell.footer_copyright }}</p>
     </div>
