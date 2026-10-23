@@ -113,7 +113,7 @@ home:
     secondary_cta: "Télécharger Bot Creator"
     tertiary_cta: "Lire la documentation (en anglais)"
     platforms: "Mobile, ordinateur et Docker."
-    screenshot_alt: "Espace de travail Bot Creator sur Android avec un bot Discord en ligne"
+    screenshot_alt: "Espace de travail Bot Creator sur Android avec la liste de vos bots Discord"
   try:
     eyebrow: "Playground"
     title: "Essayez sans rien installer"
@@ -152,7 +152,7 @@ home:
     title: "Questions fréquentes"
     all: "Toutes les questions"
   runner_guide: "Guide du runner Docker (en anglais)"
-  hosting_alt: "Commandes d'hébergement de Bot Creator sur Android pour un bot Discord en ligne"
+  hosting_alt: "Carte de bot Bot Creator sur Android avec les commandes de démarrage et de gestion"
   how_it_works:
     title: "Du jeton au bot en ligne en trois étapes"
     subtitle: "De l'installation au bot déployé en trois étapes."

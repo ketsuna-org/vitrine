@@ -1,6 +1,6 @@
-# Captured from the running Flutter app on a Samsung Galaxy S24.
+# Captured from the running Flutter app (debug build) on an Android emulator, Pixel 7 profile, demo status bar.
 width: 1080
-height: 2340
+height: 2400
 screens:
   - id: home
     file: home

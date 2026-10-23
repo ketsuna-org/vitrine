@@ -101,13 +101,13 @@ permalink: /fr/download/
         <p class="text-xs font-bold text-primary uppercase tracking-widest">App mobile et ordinateur</p>
         <h2 class="font-display text-2xl font-bold text-on-surface">Créez et hébergez depuis un seul espace de travail</h2>
         <p class="text-on-surface-variant text-sm leading-relaxed">Concevez vos commandes, gérez vos variables et surveillez vos bots depuis l'app : le point de départ recommandé pour la plupart des équipes.</p>
-        {% include responsive_screenshot.html screen_id="home" alt="Espace de travail Bot Creator sur Android avec un bot Discord en ligne" class="w-full max-w-[280px] mx-auto drop-" %}
+        {% include responsive_screenshot.html screen_id="home" alt="Espace de travail Bot Creator sur Android avec la liste de vos bots Discord" class="w-full max-w-[280px] mx-auto drop-" %}
       </div>
       <div class="rounded-lg bg-surface-container-low border border-outline-variant p-6 flex flex-col gap-4">
         <p class="text-xs font-bold text-primary uppercase tracking-widest">Déployer et passer à l'échelle</p>
         <h2 class="font-display text-2xl font-bold text-on-surface">Passez de l'hébergement dans l'app aux runners auto-hébergés</h2>
         <p class="text-on-surface-variant text-sm leading-relaxed">Commencez avec l'hébergement depuis l'app, puis passez au runner Docker quand vous avez besoin d'une disponibilité côté serveur.</p>
-        {% include responsive_screenshot.html screen_id="hosting" alt="Commandes d'hébergement de Bot Creator sur Android pour un bot Discord en ligne" class="w-full max-w-[280px] mx-auto drop-" %}
+        {% include responsive_screenshot.html screen_id="hosting" alt="Carte de bot Bot Creator sur Android avec les commandes de démarrage et de gestion" class="w-full max-w-[280px] mx-auto drop-" %}
       </div>
     </section>
 

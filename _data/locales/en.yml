@@ -126,7 +126,7 @@ home:
     secondary_cta: "Download Bot Creator"
     tertiary_cta: "Read the docs"
     platforms: "Mobile, desktop, and Docker."
-    screenshot_alt: "Bot Creator Android workspace with an online Discord bot"
+    screenshot_alt: "Bot Creator Android workspace listing your Discord bots"
   try:
     eyebrow: "Playground"
     title: "Try it without installing anything"
@@ -157,7 +157,7 @@ home:
     title: "Questions and answers"
     all: "All questions"
   runner_guide: "Docker runner guide"
-  hosting_alt: "Bot Creator Android hosting controls for an online Discord bot"
+  hosting_alt: "Bot Creator Android bot card with the start and manage controls"
   pillars:
     title: "Everything you need to run a bot"
     descriptions:
