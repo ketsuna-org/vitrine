@@ -34,15 +34,15 @@ None (empty string). An error is raised if the user ID is invalid, or if the bot
 ### Simple removal
 
 ```bdfd
-$unTimeout[$mentioned[1]]
-$sendMessage[✅ <@$mentioned[1]> is no longer in timeout.]
+$unTimeout[$mentioned[1;no]]
+$sendMessage[✅ <@$mentioned[1;no]> is no longer in timeout.]
 ```
 
 ### Conditional removal
 
 ```bdfd
-$if[$isTimedOut[$mentioned[1]]==true]
-  $unTimeout[$mentioned[1]]
+$if[$isTimedOut[$mentioned[1;no]]==true]
+  $unTimeout[$mentioned[1;no]]
   $sendMessage[Timeout removed.]
 $else
   $sendMessage[This user is not in timeout.]
@@ -52,11 +52,12 @@ $endif
 ### Pardon command
 
 ```bdfd
-$unTimeout[$mentioned[1]]
-$sendMessage[🙏 Pardon granted. <@$mentioned[1]> can participate again.]
+$unTimeout[$mentioned[1;no]]
+$sendMessage[🙏 Pardon granted. <@$mentioned[1;no]> can participate again.]
 ```
 
 ## Notes
 
 - The bot must have the `ModerateMembers` permission (or Administrator). The server owner, administrators and members whose highest role is equal to or above the bot's highest role cannot be targeted.
 - Use `$isTimedOut` to check if a user is in timeout before calling `$unTimeout`.
+- In a slash command there are no mentions: pass the ID explicitly, `$unTimeout[$message[member]]` (`$message[member]` is the ID of a `user` option, see [`$message`](/docs/message/)). Without an ID, `A user ID or user mention is required.` is raised. In prefix guards, write `$mentioned[1;no]`.

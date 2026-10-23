@@ -65,3 +65,4 @@ $editIn[5s;🚀 Let's go!]
 - The edit targets the command's main response (text, embeds and components built by the command). Messages sent with `$sendMessage[]` are separate messages and are not edited. If the command has no main response, nothing is edited.
 - The edit targets the message sent as the command's response (the engine requires a scheduled-message output, otherwise "No scheduled message output configured.").
 - To edit only the embed, use `$editEmbedIn[]`.
+- A Components V2 message carries neither text nor embed: the call fails with `This message uses Components V2: edit it with $editMessageCV2.` For a delayed edit of a V2 layout, use `$editInCV2`.

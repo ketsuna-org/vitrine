@@ -73,4 +73,5 @@ $endif
 - Giving the embed arguments (even empty ones) replaces the original embed; omitting them leaves the embed untouched.
 - The combined length of title, description and footer cannot exceed 6000 characters (`Embed text exceeds Discord limits.`).
 - Editing a message written by someone else fails with `Only the bot own messages can be edited.`
+- A Components V2 message carries neither text nor embed: the call fails with `This message uses Components V2: edit it with $editMessageCV2.` (see `$editMessageCV2`).
 - Use `$sendMessage[text;yes]` to retrieve the ID of the message sent.

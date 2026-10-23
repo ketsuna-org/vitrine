@@ -33,7 +33,7 @@ $textSplit[text;separator]
 - Each element is kept as it is: there is no trimming.
 - Two consecutive separators produce an empty element (`a,,b` split on `,` gives `a`, an empty element, `b`).
 - An empty `text` gives one empty element, so `$getTextSplitLength` is `1`, not `0`.
-- An empty separator splits the text into single characters.
+- An empty separator splits the text into single characters, one Unicode code point each: an emoji is never cut in two (`$textSplit[😀a;]` gives 2 elements, `😀` and `a`).
 - A text that does not contain the separator gives a single element.
 
 ## Accessing the Result

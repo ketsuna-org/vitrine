@@ -23,7 +23,7 @@ $removeComponent[customId;(messageID)]
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `customId` | Yes | Custom ID of the component to remove (at most 100 characters, otherwise the engine raises a length error), or the URL of a link button. |
-| `messageID` | No | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). Without it (or when empty), the components staged in the current script are searched. |
+| `messageID` | No | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). Without it (or when empty), the components staged in the current script are searched first and, in the script run for a click, the clicked message after them. |
 
 ## Return Value
 
@@ -31,8 +31,9 @@ Returns an empty string. If no component has this custom ID (or URL), the functi
 
 ## Behavior
 
-- **Without `messageID`**, only the components added earlier in the same script are searched. In the script run for a click, the clicked message is not part of the response being built, so give its ID.
-- **With `messageID`**, the engine reads the components of that message and stages an edit without the component; the edit is applied when the response is flushed. This needs the bot's component service: without it the function fails with `No component service configured.`
+- **Without `messageID`**, the component is searched among the components added earlier in the same script. In the script run for a button or select menu click, if it is not there, **the clicked message is edited**.
+- **With `messageID`** (or on the clicked message), the engine reads the components of that message and stages an edit without the component; the edit is applied when the response is flushed. This needs the bot's component service: without it the function fails with `No component service configured.` Only a message of the bot can be edited (`Only bot-authored message components can be edited.`); an ephemeral message cannot be edited by its ID.
+- Only buttons and select menus are removed, at any depth of a Components V2 message; containers, sections and texts stay. A button used as the accessory of a section cannot be removed (`A button used as a section accessory cannot be removed.`).
 - The text of the message is not changed: use `$editMessage` for that.
 
 ## Examples
@@ -46,12 +47,18 @@ $addButtonCV2[cancel_btn;Cancel;danger]
 $removeComponent[cancel_btn]
 ```
 
-### Remove a component of an existing message
+### Remove the clicked button
+
+Workflow with the event `interactionCreate` and the custom ID filter (`customIdFilter`) `claim_reward`. `$customID` only exists in the script run for the click, never in the slash command.
 
 ```bdfd
-$if[$customID==claim_reward]
-  $removeComponent[claim_reward;123456789012345678]
-$endif
+$removeComponent[$customID]
+```
+
+### Remove a component of a given message
+
+```bdfd
+$removeComponent[claim_reward;123456789012345678]
 ```
 
 ## Notes

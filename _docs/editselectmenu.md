@@ -26,7 +26,7 @@ $editSelectMenu[customId;minValues;maxValues;(placeholder);(messageID)]
 | `minValues` | Required. Minimum number of selections (integer from 0 to 25). |
 | `maxValues` | Required. Maximum number of selections (integer from 1 to 25). |
 | `placeholder` | *(Optional)* Placeholder text (0 to 150 characters); empty by default. |
-| `messageID` | *(Optional)* ID of an existing message sent by the bot (a positive integer, otherwise "Invalid message ID."). If omitted or empty, the response being built is edited. |
+| `messageID` | *(Optional)* ID of an existing message sent by the bot (a positive integer, otherwise "Invalid message ID."). If omitted or empty, the menu is searched in the response being built and, in the script run for a click, in the clicked message. |
 
 ## Return value
 
@@ -35,8 +35,9 @@ An empty string. The select menu is modified.
 ## Behavior
 
 - The targeted menu must be a **string select menu** that exists, otherwise the error "Component <id> not found." is raised. User, role, mentionable and channel select menus cannot be edited with this function.
-- **Without `messageID`, only the menus added earlier in the same script are searched.** In the script run when a menu is used, the message holding it is not part of the response being built, so give its ID in `messageID`.
-- With `messageID`, the engine reads that message's components and applies the edit when the response is flushed. Only messages sent by the bot, in the current channel, can be edited, and messages that contain Components V2 layout components cannot.
+- **Without `messageID`**, the menu is first searched among the components added earlier in the same script. In the script run for a click on a button or a menu, if it is not there, **the clicked message is edited**.
+- With `messageID`, the engine reads that message's components and applies the edit when the response is flushed. Only messages sent by the bot, in the current channel, can be edited (`Only bot-authored message components can be edited.`); an ephemeral message cannot be edited by its ID.
+- **Components V2 messages can be edited**: the menu is found at any depth and the layout of the message is kept.
 - `minValues` must be ≤ `maxValues` ("Minimum cannot exceed maximum."), and `maxValues` cannot be higher than the number of options of the menu (`Select menu option count does not support its selection bounds.`).
 - The placeholder is always replaced (empty if the argument is omitted).
 - The options of the menu are not changed; use `$editSelectMenuOption[]` for that.
@@ -44,6 +45,14 @@ An empty string. The select menu is modified.
 ## Examples
 
 ### Update after selection
+
+Workflow with the event `interactionCreate` and the custom ID filter (`customIdFilter`) `langMenu`. `$customID` only exists in the script run for the click, never in the slash command. Without `messageID`, the clicked message is edited.
+
+```bdfd
+$editSelectMenu[langMenu;0;1;Language chosen!]
+```
+
+With a message ID:
 
 ```bdfd
 $editSelectMenu[langMenu;0;1;Language chosen!;123456789012345678]

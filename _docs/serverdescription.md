@@ -4,23 +4,25 @@ title: $serverDescription[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverDescription
-syntax: $serverDescription
-description: Returns the description of the Discord server (configured in the server settings).
+syntax: $serverDescription[(Guild ID)]
+description: Returns the description of the current Discord server, or of the server whose ID is given.
 ---
 
 # $serverDescription[] — Server Description
 
-`$serverDescription[]` returns the description of the current Discord server as reported by Discord.
+`$serverDescription[]` returns the description of the current Discord server, or of another server when its ID is given, as reported by Discord.
 
 ## Syntax
 
 ```
-$serverDescription
+$serverDescription[(Guild ID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description |
+|---|---|
+| `Guild ID` | Optional. The server to read. If omitted or empty, the current server is used. A non-numeric or non-positive value raises `Invalid guild ID.` |
 
 ## Return Value
 
@@ -33,6 +35,12 @@ No parameters.
 
 ```bdfd
 $sendMessage[📝 Description: $serverDescription]
+```
+
+### Description of another server
+
+```bdfd
+$sendMessage[$serverDescription[123456789012345678]]
 ```
 
 ### Informational Embed
@@ -70,4 +78,4 @@ $endif
 
 - The description is optional; the function returns an empty string for a server without one.
 - The server is fetched from Discord; if it cannot be fetched the error `Guild not found.` is raised.
-- `$serverDescription` takes no argument.
+- `$serverDescription` takes at most one argument, the server ID.

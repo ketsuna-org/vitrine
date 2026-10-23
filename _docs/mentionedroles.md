@@ -35,6 +35,7 @@ $mentionedRoles[index]
 - `$mentionedRoles` requires exactly one argument: a bare `$mentionedRoles` is invalid. It has no fallback argument.
 - Reads the role mentions of the message; it raises the error `Use message options for slash commands.` in a slash command (use the command options instead).
 - The mentions are read from the `message.roleMentions` context variable supplied by the host (a comma-separated list of role IDs).
+- The numbering follows the **order of the text**, not the ID-sorted order of the Discord API. A role mention absent from the text comes after the others.
 - Returns a single ID per call; call it with several indexes to read several roles.
 
 ## Examples
@@ -54,8 +55,8 @@ $endif
 ```bdfd
 $if[$mentionedRoles[1]!=]
   $var[firstRole;$mentionedRoles[1]]
-  $giveRole[$mentioned[1];$var[firstRole]]
-  $sendMessage[Role <@&$var[firstRole]> added to <@$mentioned[1]>!]
+  $giveRole[$mentioned[1;no];$var[firstRole]]
+  $sendMessage[Role <@&$var[firstRole]> added to <@$mentioned[1;no]>!]
 $else
   $sendMessage[Mention a role to assign.]
 $endif

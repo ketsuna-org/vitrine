@@ -25,7 +25,7 @@ $addThumbnail[url;(description);(spoiler);(sectionID)]
 | `url` | Yes | — | URL of the image. It is not checked by the engine. |
 | `description` | No | — | Alternative text. An empty value means no description. |
 | `spoiler` | No | `no` | `yes`/`true` to mark the image as a spoiler, `no`/`false` otherwise. An empty value means `no`; any other value is an error (`Expected yes or no, got "..."`). |
-| `sectionID` | No | — | Accepted, but the engine does not use it to choose the section: the thumbnail goes to the section opened last. |
+| `sectionID` | No | — | Name of a section defined earlier (`$addSection[name]`): the thumbnail becomes its accessory. A name that does not exist raises `Section <name> not found.` Without it, the thumbnail goes to the section opened last. |
 
 ## Return value
 

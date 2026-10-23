@@ -4,38 +4,49 @@ title: $pinMessage
 translation_key: docs
 category: "Moderation"
 function_name: pinMessage
-syntax: $pinMessage
-description: Pins the message sent by the current script's response. The message will appear in the channel's pinned messages list.
+syntax: $pinMessage[Channel ID;Message ID]
+description: Pins a message from its channel and message ID. Without argument, pins the message sent by the current script's response.
 ---
 
 # $pinMessage
 
-The `$pinMessage` function **pins the message sent by the script** (the response of the command) in its channel. Pinned messages appear in the dedicated section of the channel.
+The `$pinMessage[Channel ID;Message ID]` function **pins the given message right away**. Without argument, `$pinMessage` pins **the message sent by the script** (the response of the command). Pinned messages appear in the dedicated section of the channel.
 
 ## Syntax
 
 ```
-$pinMessage
+$pinMessage[Channel ID;Message ID]
 ```
 
 ## Parameters
 
-None. `$pinMessage` takes no arguments (`$pinMessage[messageID]` is refused).
+| Parameter | Description |
+|---|---|
+| `Channel ID` | The channel of the message. |
+| `Message ID` | The message to pin. |
+
+The two arguments go together: giving a single one raises the error "Pin message expects zero or two arguments.". Both IDs must be decimal numbers greater than zero, otherwise "Invalid Discord ID." is raised.
 
 ## Return Value
 
-This function does not return a value.
+This function does not return a value (empty string).
 
 ## Behavior
 
-- The pin is deferred: it is applied to the main response of the script (not to messages sent separately with `$sendMessage`), once that response has been sent.
-- The script output must support deferred pinning, otherwise an error is raised; an error is also raised if the sent message has no usable channel/message ID.
-- The bot needs the `Pin Messages` permission in the channel.
-- To pin or unpin an arbitrary message by ID, use the functions that take `channelID` and `messageID` (for example `$unpinMessage[channelID;messageID]`).
+- **With `Channel ID;Message ID`**: the message is pinned immediately; it can be any message of the channel, not only the bot's own. The channel must hold messages ("Channel does not support messages." otherwise). In a server channel, the bot needs the `View Channel` and `Pin Messages` permissions, otherwise "Missing permissions for the message operation." is raised.
+- **Without argument** (`$pinMessage`): the pin is deferred. It is applied to the main response of the script (not to messages sent separately with `$sendMessage`), once that response has been sent. The script output must support deferred pinning, otherwise an error is raised; an error is also raised if the sent message has no usable channel/message ID. The bot needs the `Pin Messages` permission in the channel.
+- A response left empty (no text, embed or component) sends nothing, but the deferred pin is kept for the main response that follows.
 
 ## Examples
 
-### Pin an announcement
+### Pin a given message
+
+```bdfd
+$pinMessage[$channelID;$message[1]]
+Message pinned.
+```
+
+### Pin an announcement (the response itself)
 
 ```bdfd
 $title[📢 Important announcement]
@@ -65,4 +76,4 @@ $endif
 
 ## Notes
 
-- To unpin, use `$unpinMessage[]`.
+- To unpin, use `$unpinMessage[Channel ID;Message ID]`.
