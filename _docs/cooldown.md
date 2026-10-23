@@ -9,7 +9,7 @@ locale: en
 translation_key: doc-cooldown
 ---
 
-The cooldown family prevents command spam by enforcing a waiting period between successive uses. The engine provides three variants, with different keys. All of them are tracked **per command** (the command ID of the running command).
+The cooldown family prevents command spam by enforcing a waiting period between successive uses. The engine provides three variants, with different keys. All of them are tracked **per command** (the ID of the running command, otherwise its name, or the name of the workflow for an event).
 
 ## Cooldown Variants
 
@@ -19,7 +19,7 @@ The cooldown family prevents command spam by enforcing a waiting period between 
 | `$serverCooldown` | server | One cooldown per server: any user who triggers it makes it wait for everybody in that server. |
 | `$globalCooldown` | user | One cooldown per user, shared by **all servers** (the server is not part of its key). It does **not** lock the whole bot. |
 
-`$cooldown` and `$serverCooldown` need the ID of the server: in a context without a server (a direct message) they fail with `Invalid Discord ID.` `$globalCooldown` does not need one. All three need a command ID (`Cooldown requires a bot and command ID.` otherwise).
+`$cooldown` and `$serverCooldown` need the ID of the server: in a context without a server (a direct message) they fail with `Invalid Discord ID.` `$globalCooldown` does not need one. All three need a command or workflow to identify the cooldown (`Cooldown requires a bot and a command or workflow name.` otherwise).
 
 ## Syntax
 
@@ -62,7 +62,7 @@ The second parameter is required and is only evaluated when the cooldown is acti
 - **With message**: `$cooldown[10s;Please wait 10 seconds.]` — sends the message and stops.
 - **Empty message**: `$cooldown[10s;]` — when the cooldown is active, the function raises the error `Command is on cooldown.` instead of sending a message.
 
-The message can contain the placeholders `%time%` (remaining time in the largest unit that is at least 1, or in seconds), `%time-d%`, `%time-h%`, `%time-m%` and `%time-s%`. Amounts are rounded to one decimal place and followed by a unit label (for example `1.5 Minutes`, `90 Seconds`). The unit labels can be changed with `$changeCooldownTime`. `$getCooldown[type]` (`normal`, `server` or `global`) returns the remaining time in seconds.
+The message can contain the placeholders `%time%` (remaining time in the largest unit that is at least 1, or in seconds), `%time-d%`, `%time-h%`, `%time-m%` and `%time-s%`. Each amount is followed by a unit label. Seconds (`%time-s%`, and `%time%` when it shows seconds) are **whole seconds rounded up**, like `$getCooldown`: 1.4 s left gives `2 Seconds`, 90 s gives `90 Seconds`. Days, hours and minutes are rounded to one decimal place (for example `1.5 Minutes`). The unit labels can be changed with `$changeCooldownTime`. `$getCooldown[type]` (`normal`, `server` or `global`) returns the remaining time in seconds.
 
 ## Placement
 

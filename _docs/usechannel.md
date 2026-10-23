@@ -74,3 +74,7 @@ $endif
 - `$channelSendMessage[]` is often safer for one-off sends without changing the entire context.
 - Use `$useChannel[]` when several functions need to execute in the same target channel.
 - Calling `$useChannel` again replaces the destination.
+
+## Difference with BDFD (slash commands)
+
+In a **slash command**, `$useChannel` also redirects the **main response**: text, embeds and components leave as a message of the chosen channel, the interaction itself receives no reply (the deferred "thinking" message is deleted afterwards). The BDFD wiki says the opposite (`$useChannel[]` does not redirect the response of a slash command). This difference is kept on purpose, because existing bots rely on the redirection. To answer the interaction and write elsewhere, use an explicit channel: `$channelSendMessage[channelID;text]` or `$sendEmbedMessage[channelID;...]`. See [Differences with BDFD](/docs/bdfd-differences/).

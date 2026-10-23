@@ -10,7 +10,7 @@ description: Kicks the first user mentioned in a prefix command.
 
 # $kickMention
 
-`$kickMention` targets the first user mention in the triggering message. It takes a reason argument, which may be empty.
+`$kickMention` targets the first user mention in the triggering message. The reason argument is optional.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ description: Kicks the first user mentioned in a prefix command.
 $kickMention[reason]
 ```
 
-The argument is required: a bare `$kickMention` is invalid. Use `$kickMention[]` for an empty reason.
+The argument is optional: the bare form `$kickMention` kicks the first mentioned user without a reason, like `$kickMention[]`.
 
 ## Examples
 
@@ -37,4 +37,4 @@ $kickMention[Rules violation]
 Member kicked successfully.
 ```
 
-A missing mention fails target validation ("Missing or invalid user ID."). The reason is limited to 512 characters. Before kicking, the engine checks that the **command author** has the `Kick Members` permission; if not, an error is raised. The bot also needs `Kick Members`, and its highest role must be above the target's highest role (the server owner cannot be kicked). To supply a user ID explicitly, use `$kick[userID;reason]`.
+A missing mention fails target validation, with or without a reason ("Missing or invalid user ID."). The reason is limited to 512 characters. Before kicking, the engine checks that the **command author** has the `Kick Members` permission; if not, an error is raised. The bot also needs `Kick Members`, and its highest role must be above the target's highest role (the server owner cannot be kicked). To supply a user ID explicitly, use `$kick[userID;reason]`.

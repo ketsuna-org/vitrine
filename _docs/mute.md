@@ -42,7 +42,7 @@ None. The role is added to each mentioned user.
 
 ```bdfd
 $mute[Muted]
-$sendMessage[<@$mentioned[1]> was muted.]
+$sendMessage[<@$mentioned[1;no]> was muted.]
 ```
 
 ### Verification before mute
@@ -61,3 +61,4 @@ $endif
 - Create beforehand a role (here `Muted`) whose permissions prevent speaking or writing, and keep its name identical to the one passed to `$mute`.
 - To remove the role again, use `$unmute[roleName]`.
 - For a temporary timeout, use `$timeout`.
+- `$mute` has no ID argument: it reads the user mentions of the message, so it does not work in a slash command (no mention). For a slash command, use `$giveRole[$message[member];roleID]` with the ID of a `user` option (see [`$message`](/docs/message/)). In prefix guards, write `$mentioned[1;no]`.

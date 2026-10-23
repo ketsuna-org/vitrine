@@ -52,10 +52,11 @@ const GOLDEN = [
   ['pile ou face', 'bdfd', ['$randomtext'], 'auto'],
   ['message de bienvenue avec le nom du serveur', 'bdfd', ['$servername', '$memberscount'], 'auto'],
   ['infos du serveur', 'bdfd', ['$servername', '$memberscount'], 'auto'],
-  ['afficher l\'avatar d\'un utilisateur', 'bdfd', ['$useravatar'], 'auto'],
+  ['afficher l\'avatar d\'un utilisateur', 'bdfd', ['$authoravatar'], 'auto'],
   ['annonce avec embed et couleur', 'bdfd', ['$title', '$description', '$color'], 'auto'],
   ['bouton cliquable', 'bdfd', ['$addbutton'], 'auto'],
   ['commande /warn pour avertir un membre et compter ses avertissements', 'bdfd', ['$setguildmembervar', '$getguildmembervar', '$onlyperms'], 'auto'],
+  ['concours giveaway avec un bouton participer et un tirage au sort', 'bdfd', ['$addbutton', '$setvar', '$getvar', '$checkcontains', '$random'], 'auto'],
   ['ping with latency', 'blocks', ['respondwithmessage'], 'auto'],
   ['slash command warn: store a warnings count per member and reply', 'blocks', ['getscopedvariable', 'calculate', 'setscopedvariable'], 'auto'],
 ];
@@ -143,7 +144,55 @@ test('the BDFD plan carries the engine-verified pitfalls models kept running int
   const bdfd = plan(index, { intent: 'quelque chose', mode: 'bdfd' }).gotchas.join(' ');
   assert.match(bdfd, /\$if\[cond;then;else\]/);
   assert.match(bdfd, /top-level only/);
+  // A block $if...$endif is accepted inside another function's brackets (the engine folds it to the inline form);
+  // loops, $try and $jsonForEach are still top-level only.
+  assert.doesNotMatch(bdfd, /block \$if\.\.\.\$endif is top-level only/);
+  assert.match(bdfd, /block \$if\[cond\]a\$else b\$endif closed in that argument/);
+  assert.match(bdfd, /\\; = literal ;/);
+  assert.match(bdfd, /loops, \$try and \$jsonForEach stay top-level only/);
   assert.match(bdfd, /\$sendMessage\[text;yes\]/);
   const blocks = plan(index, { intent: 'quelque chose', mode: 'blocks' }).gotchas.join(' ');
   assert.match(blocks, /numberValue/);
+});
+
+// The manager had edited these recipes in its generated copy (data/planner_rules.json); they live here so that
+// the next knowledgesync run keeps them.
+test('a giveaway gets the join button, the click workflow and the draw', () => {
+  const r = plan(index, { intent: 'Giveaway: /giveaway command with a join button and a random draw', mode: 'bdfd' });
+  assert.equal(r.recipe, 'giveaway');
+  assert.equal(r.decision, 'auto');
+  const text = [r.skeleton, ...r.gotchas].join('\n');
+  for (const want of ['$addButton[no;giveaway_join;Participer;success;no;🎉]', 'customIdFilter=giveaway_join', '$checkContains', '$random[2;$sum[$var[n];1]]', 'never Blocks']) {
+    assert.ok(text.includes(want), `giveaway plan lacks ${want}`);
+  }
+  assert.ok(JSON.stringify(r).length < 2900, `answer too large (${JSON.stringify(r).length} chars)`);
+});
+
+test('a button click is answered by an interactionCreate workflow, not by the command', () => {
+  const text = plan(index, { intent: 'bouton cliquable', mode: 'bdfd' }).gotchas.join(' ');
+  assert.match(text, /interactionCreate/);
+  assert.match(text, /customIdFilter/);
+  assert.doesNotMatch(text, /handled by an interaction command/);
+});
+
+// A slash user/channel/role option gives the ID, as in BDFD ($message[membre] and $message[membre.id] are the same
+// ID). In Blocks ((opts.membre)) stays the username, so every Blocks recipe reads ((opts.membre.id)).
+test('slash user options are read as IDs in the moderation recipes', () => {
+  const byId = Object.fromEntries(RECIPES.map(r => [r.id, r]));
+  for (const id of ['moderation', 'warn']) {
+    assert.match(byId[id].skeleton, /\$message\[membre\.id\]/, `${id}: the target is the option's user ID`);
+    assert.doesNotMatch(byId[id].skeleton, /\$findUser\[/, `${id}: no lookup by name`);
+  }
+  const empty = buildIndex({ docs: [], manifest: { modes: { bdfd: {}, blocks: {} } } });
+  const bdfdText = [...plan(empty, { intent: 'quelque chose', mode: 'bdfd' }).gotchas, ...RECIPES.filter(r => r.mode === 'bdfd').flatMap(r => r.gotchas ?? [])].join(' ');
+  assert.match(bdfdText, /Slash options: \$message\[name\] \(\$args is empty\), the ID for a user\/channel\/role option/);
+  assert.doesNotMatch(bdfdText, /USERNAME|is the NAME/);
+  assert.match(byId.moderation.gotchas.join(' '), /the name is \$userName\[\$message\[membre\.id\]\]/);
+  const warn = byId['counter-blocks'];
+  const opts = [...warn.skeleton.matchAll(/\(\(opts\.membre[^)]*\)\)/g)].map(m => m[0]);
+  assert.equal(opts.length, 3);
+  assert.deepEqual([...new Set(opts)], ['((opts.membre.id))']);
+  const blocksText = warn.gotchas.join(' ');
+  assert.match(blocksText, /\(\(opts\.membre\.id\)\) the user id/);
+  assert.doesNotMatch(blocksText, /user id is \(\(opts\.membre\)\)/);
 });

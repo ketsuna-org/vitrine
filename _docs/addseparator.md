@@ -19,18 +19,19 @@ $addSeparator[(divider);(spacing);(containerId)]
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
 | `divider` | `yes`/`true` to display a separation line, `no`/`false` for a space only. Default (omitted or empty): `yes`. Any other value is an error (`Expected yes or no, got "<value>".`). | No |
-| `spacing` | Size of the spacing: `2` gives a large spacing; any other value, or none, gives a small one. Values such as `sm`, `md` or `lg` are not recognized (they give a small spacing). | No |
-| `containerId` | Accepted but not used: the separator goes into the latest `$addContainer` of the script, if any. | No |
+| `spacing` | Size of the spacing: `small` (or `1`) or `large` (or `2`). Empty or omitted gives a small spacing. Any other value raises `Separator spacing must be small or large.` | No |
+| `containerId` | Name of a container defined earlier: the separator goes in it. A name that does not exist raises `Container <name> not found.` | No |
 
 ## Description
 
-`$addSeparator` adds a standalone separator at the top level of the message (or in the latest container). It is not part of an action row, it does not separate buttons from each other, and it ends the section being built with `$addSection`.
+`$addSeparator` adds a standalone separator at the top level of the message, or in the container named by `containerId` (in a script that names nothing, in the latest container). It is not part of an action row, it does not separate buttons from each other, and it ends the section being built with `$addSection`.
 
 ## Components V2 rules
 
 - Layout components (`$addContainer`, `$addSection`, `$addSeparator`, `$addTextDisplay`, `$addMediaGallery`, `$addThumbnail`, `$addFile`) make the response a Components V2 message. Such a message cannot carry content or embeds: the text written in the script and the embed functions are not sent.
-- Buttons and select menus (`$addButtonCV2`, `$addStringSelect`, ...) must be added **before** any text display, separator, thumbnail, file or media gallery of the script: added afterwards, they fail with `type 'Null' is not a subtype of type 'List<dynamic>' in type cast`.
-- A button added right after `$addContainer` or `$addSection` is silently lost: write `$addActionRow` first.
+- Buttons and select menus (`$addButtonCV2`, `$addStringSelect`, ...) can be added after any layout component. They go in an action row; in a script that names no container or section, a row added after a container goes inside that container.
+- A Components V2 message is not limited to 5 rows: it holds at most 40 components (nested ones included) and 4000 characters of text. The limits are checked before the message is sent or edited.
+- Names: as soon as one call of the script names a container or a section, every item is placed by its name, and a call without a name attaches the item to the message itself. A name that was not defined earlier raises `Container <name> not found.`, `Section <name> not found.` or `Container or section <name> not found.`
 
 ## Examples
 
@@ -46,7 +47,7 @@ $addTextDisplay[Second block]
 
 ```bdfd
 $addTextDisplay[Title]
-$addSeparator[no;2]
+$addSeparator[no;large]
 $addTextDisplay[Content with a large space above]
 ```
 

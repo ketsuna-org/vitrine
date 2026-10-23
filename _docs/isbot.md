@@ -4,31 +4,37 @@ title: $isBot
 translation_key: docs
 category: "Entity Info"
 function_name: isBot
-syntax: $isBot
-description: Returns "true" if the user who triggered the command is a bot, and "false" otherwise.
+syntax: $isBot[(User ID)]
+description: Returns "true" if the user (the author by default) is a bot, and "false" otherwise.
 ---
 
 # $isBot
 
-The function `$isBot` allows you to know if the user who triggered the command is a **bot account** or a normal user account.
+The function `$isBot` allows you to know if a user (by default the one who triggered the command) is a **bot account** or a normal user account.
 
 ## Syntax
 
 ```
-$isBot
+$isBot[(User ID)]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `User ID` | Optional. The user to check. If omitted or empty (`$isBot`, `$isBot[]`), the command author is checked. A non-numeric or non-positive value raises `Invalid user ID.`; an unknown user raises `User not found.` |
 
 ## Return Value
 
 - **Type**: String `"true"` or `"false"`
 - `"true"`: The account is a bot.
 - `"false"`: The account is a normal user.
-- An empty string if the host supplied neither the `author.isBot` nor the `user.isBot` context variable.
+- Without an ID, an empty string if the host supplied neither the `author.isBot` nor the `user.isBot` context variable.
 
 ## Behavior
 
-- `$isBot` takes **no arguments**.
-- The engine does not query Discord: it returns the text of the `author.isBot` context variable, or else of `user.isBot`, as supplied by the host. Whether webhooks count as bots depends on the host.
+- Without an ID, the engine does not query Discord: it returns the text of the `author.isBot` context variable, or else of `user.isBot`, as supplied by the host. Whether webhooks count as bots depends on the host.
+- With an ID, the user is looked up through Discord.
 
 ## Examples
 
@@ -39,6 +45,14 @@ $if[$isBot==true]
   $sendMessage[🤖 Detection: you are a bot!]
 $else
   $sendMessage[👤 You are a human user.]
+$endif
+```
+
+### Check another user
+
+```bdfd
+$if[$isBot[$mentioned[1]]==true]
+  $sendMessage[That user is a bot.]
 $endif
 ```
 

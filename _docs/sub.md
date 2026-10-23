@@ -4,18 +4,18 @@ title: $sub[]
 translation_key: docs
 category: "Math & Text"
 function_name: sub
-syntax: $sub[value1;value2;(value3;...)]
+syntax: $sub[value1;(value2;...)]
 description: Subtracts the following values from the first one (a - b - c ...).
 ---
 
 # $sub[]
 
-The function `$sub[]` subtracts every following value from the first one, from left to right. It needs at least 2 arguments and has no upper limit.
+The function `$sub[]` subtracts every following value from the first one, from left to right. It needs at least 1 argument and has no upper limit.
 
 ## Syntax
 
 ```
-$sub[value1;value2;(value3;...)]
+$sub[value1;(value2;...)]
 ```
 
 ## Parameters
@@ -23,7 +23,7 @@ $sub[value1;value2;(value3;...)]
 | Parameter | Type   | Required | Description                        |
 |-----------|--------|-------------|------------------------------------|
 | `value1` | number | Yes | The starting value (minuend). |
-| `value2;(value3;...)` | number | Yes (at least `value2`) | The values to subtract, in order. |
+| `value2;(value3;...)` | number | No | The values to subtract, in order. |
 
 ## Behavior
 
@@ -31,7 +31,7 @@ $sub[value1;value2;(value3;...)]
 - The result can be negative.
 - Integers are subtracted exactly (arbitrary size). If a decimal number is involved, the subtraction is done on decimals.
 - A value that is not a finite number (text, empty) raises the error "Expected a finite number in argument N.".
-- Fewer than 2 arguments is rejected ("Invalid argument count").
+- With a single number the result is that number (rounded to an integer unless `$enableDecimals[yes]`): `$sub[5]` → `5`, `$sub[2.5]` → `3`. The number is still checked and at least one is required (`$sub[]` raises "Expected a finite number in argument 1.").
 - Unless decimals are enabled with `$enableDecimals`, a non-integer result is rounded to the nearest integer (`$sub[10.5;3.2]` → `7`).
 
 ## Examples

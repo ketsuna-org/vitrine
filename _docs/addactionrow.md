@@ -20,7 +20,7 @@ $addActionRow[(id);(containerId)]
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
 | `id` | Identifier of the row. It can be given as the `rowId` argument of `$addButtonCV2` to put a button in this row. | No |
-| `containerId` | Accepted but not used by the engine: it has no effect. | No |
+| `containerId` | Name of a container defined earlier: the row goes in it. A name that does not exist raises `Container <name> not found.` | No |
 
 ## Description
 
@@ -66,4 +66,4 @@ Two rows of buttons
 
 - Without `$addActionRow`, `$addButtonCV2` puts the button in the last row when that row only contains buttons and has fewer than 5 of them, and starts a new row otherwise.
 - Use `$addActionRow` first to place buttons inside a container (`$addContainer`): a button added directly after `$addContainer` or `$addSection` is not kept in the final message.
-- A button or select menu cannot be added after `$addTextDisplay`, `$addSeparator`, `$addThumbnail`, `$addMediaGallery` or `$addFile` in the same response (the call fails with `type 'Null' is not a subtype of type 'List<dynamic>' in type cast`). Add buttons and select menus first.
+- A button or select menu can be added after `$addTextDisplay`, `$addSeparator`, `$addThumbnail`, `$addMediaGallery` or `$addFile`: it goes in an action row.

@@ -32,7 +32,7 @@ All six standard comparison operators are supported:
 | `>=`     | Greater or equal     |
 | `<=`     | Less or equal        |
 
-Both sides are trimmed. If both sides are numbers, they are compared numerically; otherwise they are compared as text, character code by character code (so `B<a` is true: uppercase letters sort before lowercase ones). The operator is the first one found in the text, scanning from the left. A condition that is neither `true`, `false` nor a comparison (including a single `=`, or an empty condition) raises the error `Invalid condition: <condition>.`
+Both sides are trimmed. If both sides are finite decimal numbers (`12`, `-3.5`, `1e3`), they are compared numerically and exactly, with no rounding (`12345678901234567890==12345678901234567891` is false); otherwise, hexadecimal such as `0x10` included, they are compared as text, character code by character code (so `B<a` is true: uppercase letters sort before lowercase ones). The operator is searched by priority: `==` and `!=` first, then `>=` and `<=`, then `>` and `<`; the earliest occurrence of the highest-priority pair splits the text. The `<` and `>` of a Discord mention, emoji, timestamp or command link (`<@123>`, `<#123>`, `<a:name:123>`, `<t:123>`) are part of the value, not operators. A condition that is neither `true`, `false` nor a comparison (including a single `=`, or an empty condition) raises the error `Invalid condition: <condition>.`
 
 ## Return Value
 
