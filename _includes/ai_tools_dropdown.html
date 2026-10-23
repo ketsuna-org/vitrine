@@ -198,7 +198,7 @@
     var defaultLabel = opts.defaultLabel || "Copy";
     reportCopy(btn, successLabel, false);
     if (label) label.textContent = successLabel;
-    if (icon) { icon.querySelector("use").setAttribute("href", "{{ "/assets/icons/reicon.svg" | relative_url }}#check"); icon.style.color = "#B19DF7"; }
+    if (icon) { icon.querySelector("use").setAttribute("href", "{{ "/assets/icons/reicon.svg" | relative_url }}#check"); icon.style.color = "#A78BFA"; }
     if (check) check.style.opacity = "1";
     setTimeout(function () {
       if (label) label.textContent = defaultLabel;

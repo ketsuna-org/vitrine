@@ -53,7 +53,7 @@
 
 .markdown-body code {
   padding: .1rem .38rem;
-  border-radius: 4px;
+  border-radius: 2px;
   background: var(--surface-container-high);
   color: var(--text-100);
   font-family: var(--font-mono);
@@ -63,7 +63,7 @@
   padding: 1rem;
   overflow-x: auto;
   border: 1px solid var(--outline);
-  border-radius: 8px;
+  border-radius: 2px;
   background: var(--surface-container-low);
   font-size: .875rem;
   line-height: 1.7;
@@ -84,7 +84,7 @@
   max-width: 100%;
   height: auto;
   border: 1px solid var(--outline);
-  border-radius: 8px;
+  border-radius: 2px;
 }
 
 .markdown-body table { width: 100%; border-collapse: collapse; font-size: .95rem; }
@@ -115,7 +115,7 @@
 .block-flow-canvas {
   background-color: var(--surface-container-low);
   border: 1px solid var(--outline);
-  border-radius: 12px;
+  border-radius: 2px;
   padding: 20px;
   margin: 1.5rem 0;
   display: flex;
@@ -127,7 +127,7 @@
    lives in the icon tile and the uppercase overline. */
 .scratch-block-card {
   --fam: #FB7185;
-  border-radius: 12px;
+  border-radius: 2px;
   border: 1px solid var(--outline);
   background-color: var(--surface-container);
   overflow: hidden;
@@ -150,7 +150,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .scratch-block-tile {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 2px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -187,7 +187,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   font-size: 10px;
   font-weight: 600;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 2px;
   color: var(--fam);
   background: color-mix(in srgb, var(--fam) 12%, transparent);
   border: 1px solid color-mix(in srgb, var(--fam) 31%, transparent);
@@ -214,7 +214,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .scratch-block-input {
   background-color: var(--surface-container-lowest);
   border: 1px solid var(--outline);
-  border-radius: 8px;
+  border-radius: 2px;
   padding: 8px 12px;
   font-size: 13px;
   color: var(--on-surface);
@@ -230,19 +230,19 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .scratch-block-input.is-editor { border-style: dashed; color: var(--on-surface-variant); }
 .scratch-block-input .var-tag {
   background-color: rgba(177, 157, 247, 0.15);
-  color: #B19DF7;
+  color: #A78BFA;
   padding: 1px 5px;
-  border-radius: 4px;
+  border-radius: 2px;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 12px;
   font-weight: 600;
 }
 .scratch-block-hint { font-size: 11.5px; color: var(--on-surface-variant); opacity: .8; line-height: 1.4; }
 .scratch-block-options { display: flex; flex-wrap: wrap; gap: 4px; }
-.scratch-block-options code { font-size: 11px; padding: 1px 6px; border-radius: 4px; background: var(--surface-container-high); }
+.scratch-block-options code { font-size: 11px; padding: 1px 6px; border-radius: 2px; background: var(--surface-container-high); }
 .scratch-block-seg { display: flex; flex-wrap: wrap; gap: 6px; }
 .scratch-block-seg span {
-  font-size: 12px; padding: 5px 10px; border-radius: 8px;
+  font-size: 12px; padding: 5px 10px; border-radius: 2px;
   border: 1px solid var(--outline); color: var(--on-surface-variant);
 }
 .scratch-block-seg span.on {
@@ -264,7 +264,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .sim-switch {
   width: 36px;
   height: 20px;
-  border-radius: 9999px;
+  border-radius: 2px;
   background-color: var(--surface-container-highest);
   position: relative;
   display: inline-block;
@@ -288,11 +288,11 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .block-entry { margin: 0 0 14px; scroll-margin-top: 90px; }
 .block-entry-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 2px 0; font-size: 12.5px; color: var(--on-surface-variant); }
 .block-entry-meta code { font-size: 12px; }
-.block-chip { font-size: 11px; padding: 1px 8px; border-radius: 9999px; border: 1px solid var(--outline); }
+.block-chip { font-size: 11px; padding: 1px 8px; border-radius: 2px; border: 1px solid var(--outline); }
 .block-json-ref { margin: 8px 2px 0; font-size: 12.5px; color: var(--on-surface-variant); }
 .block-json-ref > summary { cursor: pointer; }
 .block-json-ref pre { margin: 8px 0 0; }
-.block-filter { width: 100%; max-width: 420px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--outline); background: var(--surface-container-low); color: var(--on-surface); font-size: 14px; }
+.block-filter { width: 100%; max-width: 420px; padding: 8px 12px; border-radius: 2px; border: 1px solid var(--outline); background: var(--surface-container-low); color: var(--on-surface); font-size: 14px; }
 
 /* Connectors */
 .scratch-block-connector {
@@ -331,7 +331,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #B19DF7;
+  color: #A78BFA;
   font-size: 11px;
   font-weight: bold;
 }
@@ -340,7 +340,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .dual-view-tabs {
   margin: 1.5rem 0;
   border: 1px solid #292929;
-  border-radius: 16px;
+  border-radius: 2px;
   background-color: #121212;
   overflow: hidden;
 }
@@ -359,7 +359,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  border-radius: 10px;
+  border-radius: 2px;
   font-size: 12.5px;
   font-weight: 700;
   color: #888888;
@@ -382,7 +382,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 }
 
 .dual-tab-btn.active .tab-accent {
-  color: #B19DF7;
+  color: #A78BFA;
 }
 
 .dual-tab-actions {
@@ -396,7 +396,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   align-items: center;
   gap: 4px;
   padding: 4px 10px;
-  border-radius: 6px;
+  border-radius: 2px;
   font-size: 11.5px;
   font-weight: 600;
   color: #888888;
@@ -443,13 +443,13 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   background: rgba(88, 101, 242, 0.15);
   color: #b5bcff;
   border: 1px solid rgba(88, 101, 242, 0.3);
-  border-radius: 6px;
+  border-radius: 2px;
 }
 
 .discord-simulator-frame {
   background-color: #313338;
   border: 1px solid #383a40;
-  border-radius: 12px;
+  border-radius: 2px;
   padding: 16px;
   margin: 1.5rem 0;
   font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -503,7 +503,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   font-size: 10px;
   font-weight: 700;
   padding: 1px 4px;
-  border-radius: 3px;
+  border-radius: 2px;
   letter-spacing: 0.2px;
 }
 
@@ -532,7 +532,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .discord-embed {
   background-color: #2B2D31;
   border-left: 4px solid var(--embed-color, #5865F2);
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 12px 16px;
   margin-top: 8px;
   max-width: 520px;
@@ -601,7 +601,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .discord-embed-thumb {
   max-width: 72px;
   max-height: 72px;
-  border-radius: 4px;
+  border-radius: 2px;
   float: right;
   margin-left: 12px;
   margin-bottom: 8px;
@@ -609,7 +609,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 
 .discord-embed-image {
   max-width: 100%;
-  border-radius: 4px;
+  border-radius: 2px;
   margin-top: 8px;
 }
 
@@ -627,7 +627,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   justify-content: center;
   gap: 6px;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 13.5px;
   font-weight: 600;
   color: #FFFFFF;
@@ -661,7 +661,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   margin-top: 8px;
   background-color: #2B2D31;
   border: 1px solid #1E1F22;
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 8px 12px;
   display: flex;
   align-items: center;
@@ -680,7 +680,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   margin-top: 8px;
   background-color: #2B2D31;
   border: 1px solid #1E1F22;
-  border-radius: 6px;
+  border-radius: 2px;
   padding: 10px 14px;
   display: flex;
   align-items: center;
@@ -688,7 +688,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
   max-width: 360px;
 }
 .discord-attachment-file .file-icon {
-  color: #B19DF7;
+  color: #A78BFA;
   font-size: 24px;
 }
 .discord-attachment-file .file-info {
@@ -728,11 +728,11 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 /* =========================================================================
    Flat framing for the block visualizer (no card inside a card)
    ========================================================================= */
-.dual-view-tabs { background-color: transparent; border-color: var(--outline); border-radius: 12px; }
+.dual-view-tabs { background-color: transparent; border-color: var(--outline); border-radius: 2px; }
 .dual-view-nav { background-color: var(--surface-container-low); border-bottom-color: var(--outline); }
 .dual-tab-btn.active { background: var(--surface-container-high); box-shadow: none; }
 @media (max-width: 639px) {
-  .dual-view-tabs { border-radius: 10px; }
+  .dual-view-tabs { border-radius: 2px; }
   .dual-view-nav { padding: 4px; gap: 4px; }
   .dual-tab-btn { flex: 1 1 0; min-width: 0; justify-content: center; text-align: center; padding: 8px 6px; font-size: 12px; }
   .dual-tab-btn .tab-accent { display: none; }
@@ -751,10 +751,10 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .bp-grid h2 { margin: 0 0 8px; font-size: 1.1rem; }
 .bp-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
 .bp-list { gap: 0; margin-top: 10px; }
-.bp-btn, .bp-select { font-size: 13px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--outline); background: var(--surface-container-low); color: var(--on-surface); min-height: 36px; }
+.bp-btn, .bp-select { font-size: 13px; padding: 6px 12px; border-radius: 2px; border: 1px solid var(--outline); background: var(--surface-container-low); color: var(--on-surface); min-height: 36px; }
 .bp-btn { cursor: pointer; } .bp-btn:hover { background: var(--surface-container-high); }
 .bp-primary { background: var(--primary); color: var(--on-primary); border-color: transparent; }
-.bp-json { width: 100%; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; padding: 10px; border-radius: 8px; border: 1px solid var(--outline); background: var(--surface-container-lowest); color: var(--on-surface); box-sizing: border-box; }
+.bp-json { width: 100%; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; padding: 10px; border-radius: 2px; border: 1px solid var(--outline); background: var(--surface-container-lowest); color: var(--on-surface); box-sizing: border-box; }
 .bp-json.bad { border-color: #FB7185; }
-.bp-mention { background: rgba(88,101,242,.3); color: #C9CDFB; padding: 0 3px; border-radius: 3px; }
+.bp-mention { background: rgba(88,101,242,.3); color: #C9CDFB; padding: 0 3px; border-radius: 2px; }
 input.scratch-block-input, select.scratch-block-input { font: inherit; font-size: 13px; }

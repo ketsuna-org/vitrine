@@ -22,33 +22,38 @@
 
 @layer base {
   :root {
-    --background:                #0D0D0F;
-    --on-background:             #EDEDF0;
-    --primary:                   #B19DF7;
-    --on-primary:                #111111;
-    --surface:                   #0D0D0F;
-    --on-surface:                #EDEDF0;
-    --surface-container:         #17171B;
-    --surface-container-low:     #121215;
-    --surface-container-lowest:  #0A0A0C;
-    --surface-container-high:    #1F1F25;
-    --surface-container-highest: #26262D;
-    --surface-variant:           #1F1F25;
-    --on-surface-variant:        #A1A1AB;
-    --outline:                   #2A2A31;
-    --outline-variant:           #232329;
-    --tertiary:                  #0D0D0F;
-    --on-tertiary:               #EDEDF0;
+    --background:                #0B0B0C;
+    --on-background:             #F4F2EE;
+    --primary:                   #A78BFA;
+    --on-primary:                #FFFFFF;
+    --accent:                    #7C5CF0;
+    --accent-deep:               #1B1730;
+    --accent-line:               #4A3C8C;
+    --hero-shadow:               #3A2E7A;
+    --surface:                   #141415;
+    --on-surface:                #F4F2EE;
+    --surface-container:         #1C1C1E;
+    --surface-container-low:     #141415;
+    --surface-container-lowest:  #0B0B0C;
+    --surface-container-high:    #1C1C1E;
+    --surface-container-highest: #1C1C1E;
+    --surface-variant:           #1C1C1E;
+    --on-surface-variant:        #C9C7C2;
+    --muted:                     #AEACA8;
+    --outline:                   #2A2A2D;
+    --outline-variant:           #2A2A2D;
+    --tertiary:                  #0B0B0C;
+    --on-tertiary:               #F4F2EE;
 
     /* Legacy variable names consumed by markdown.css */
-    --text-100:    #EDEDF0;
-    --text-200:    #A1A1AB;
-    --text-300:    #7C7C87;
-    --text-400:    #55555F;
-    --accent-500:  #B19DF7;
-    --mint-400:    #B19DF7;
+    --text-100:    #F4F2EE;
+    --text-200:    #C9C7C2;
+    --text-300:    #AEACA8;
+    --text-400:    #AEACA8;
+    --accent-500:  #A78BFA;
+    --mint-400:    #A78BFA;
     --font-display: "Geist", system-ui, sans-serif;
-    --font-mono:    "Geist Mono", ui-monospace, monospace;
+    --font-mono:    "JetBrains Mono", ui-monospace, monospace;
 
     --header-h: 56px;
     --gutter: 16px;
@@ -82,7 +87,7 @@
     letter-spacing: -0.02em;
   }
 
-  ::selection { background: rgba(177, 157, 247, .32); }
+  ::selection { background: rgba(167, 139, 250, .32); }
 }
 
 /* ==========================================================================
@@ -125,14 +130,14 @@ html.cs .cs-host > *::-webkit-scrollbar {
 
 .cs-thumb {
   position: absolute;
-  border-radius: 999px;
-  background: rgba(237, 237, 240, .22);
+  border-radius: 2px;
+  background: rgba(244, 242, 238, .22);
   transition: background-color var(--bc-dur-fast) var(--bc-ease-move);
 }
 .cs-v .cs-thumb { left: 2px; right: 2px; min-height: 36px; }
 .cs-h .cs-thumb { top: 2px; bottom: 2px; min-width: 36px; }
 .cs-track:hover .cs-thumb,
-.cs-track.is-dragging .cs-thumb { background: rgba(177, 157, 247, .75); }
+.cs-track.is-dragging .cs-thumb { background: rgba(167, 139, 250, .75); }
 
 /* The page bar floats above everything, outside any host. */
 .cs-page {
@@ -148,9 +153,9 @@ html.cs .cs-host > *::-webkit-scrollbar {
 .cs-page.is-dragging,
 .cs-page:hover { opacity: 1; }
 .cs-page:not(.is-scrollable) { display: none; }
-.cs-page .cs-thumb { left: 3px; right: 3px; min-height: 44px; background: rgba(237, 237, 240, .28); }
+.cs-page .cs-thumb { left: 3px; right: 3px; min-height: 44px; background: rgba(244, 242, 238, .28); }
 .cs-page:hover .cs-thumb,
-.cs-page.is-dragging .cs-thumb { background: rgba(177, 157, 247, .8); }
+.cs-page.is-dragging .cs-thumb { background: rgba(167, 139, 250, .8); }
 
 @media (pointer: coarse) {
   .cs-page { width: 8px; }
@@ -161,18 +166,19 @@ html.cs .cs-host > *::-webkit-scrollbar {
 
   /* Buttons -------------------------------------------------------------- */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 text-[15px] font-semibold no-underline transition-colors;
-    height: 44px;
-    min-height: 44px;
+    @apply inline-flex items-center justify-center gap-2 rounded px-5 text-[15px] font-semibold no-underline transition-colors;
+    height: 48px;
+    min-height: 48px;
     white-space: nowrap;
   }
   .btn-lg { height: 48px; padding-left: 24px; padding-right: 24px; font-size: 16px; }
-  .btn-primary { background: var(--primary); color: var(--on-primary); }
-  .btn-primary:hover { background: #C4B4F9; }
+  .btn-primary { background: var(--accent); color: var(--on-primary); box-shadow: 2px 2px 0 var(--hero-shadow); }
+  .btn-primary:hover { background: #8C70F3; }
+  .btn-primary:active { transform: translate(2px, 2px); box-shadow: none; }
   .btn-secondary { border: 1px solid var(--outline); color: var(--on-surface); font-weight: 500; }
-  .btn-secondary:hover { background: var(--surface-container); border-color: var(--outline-ghost, #33333B); }
+  .btn-secondary:hover { background: var(--surface-container); border-color: var(--muted); }
   .btn-ghost { color: var(--primary); font-weight: 500; padding-left: 8px; padding-right: 8px; }
-  .btn-ghost:hover { color: #D3C7FB; }
+  .btn-ghost:hover { color: var(--on-surface); }
 
   /* Legacy names kept for templates not yet migrated */
   .button-primary { @apply btn btn-primary; }
@@ -180,8 +186,13 @@ html.cs .cs-host > *::-webkit-scrollbar {
 
   /* One neutral badge ---------------------------------------------------- */
   .badge {
-    @apply inline-flex items-center rounded-full border border-outline px-2.5 text-xs font-medium text-on-surface-variant;
+    @apply inline-flex items-center rounded border border-outline px-2.5 text-on-surface-variant;
     height: 22px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
   }
 
   .eyebrow {
@@ -296,20 +307,20 @@ html.cs .cs-host > *::-webkit-scrollbar {
   .docs-toc-list a:hover, .toc-content a:hover { color: var(--on-surface); }
   .docs-toc-list a[aria-current="location"], .toc-content a[aria-current="location"],
   .toc-link[aria-current="location"] { color: var(--primary); border-left-color: var(--primary); font-weight: 500; }
-  .toc-link[aria-current="location"] { background: rgba(177, 157, 247, .1); }
+  .toc-link[aria-current="location"] { background: rgba(167, 139, 250, .1); }
   .toc-content ul ul { padding-left: 12px; margin-top: 0; }
   .docs-help-card {
     margin-top: 24px;
     padding: 16px;
     border: 1px solid var(--outline-variant);
-    border-radius: 12px;
+    border-radius: 2px;
     background: var(--surface-container-low);
   }
   .toc-sheet-body a[aria-current="location"] { color: var(--primary); }
 
   /* Sidebar items */
-  .sidebar-item { border: 0 !important; border-radius: 6px !important; }
-  .sidebar-item.bg-primary\/10 { background: rgba(177, 157, 247, .12) !important; }
+  .sidebar-item { border: 0 !important; border-radius: 2px !important; }
+  .sidebar-item.bg-primary\/10 { background: rgba(167, 139, 250, .12) !important; }
 
   /* Drawer on small screens */
   @media (max-width: 1023px) {
@@ -388,7 +399,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
     flex-direction: column;
     background: var(--surface-container-low);
     border-top: 1px solid var(--outline);
-    border-radius: 16px 16px 0 0;
+    border-radius: 2px 2px 0 0;
     transform: translateY(100%);
     transition: transform var(--bc-dur-base) var(--bc-ease-enter);
   }
@@ -436,7 +447,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     border: 1px solid var(--outline);
-    border-radius: 8px;
+    border-radius: 2px;
   }
   .table-responsive-wrapper table { min-width: 560px; width: 100%; border-collapse: collapse; margin: 0; }
   .table-responsive-wrapper th, .table-responsive-wrapper td { white-space: normal; }
@@ -476,7 +487,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
 .reicon.text-3xl { font-size: 32px; }
 .reicon.text-5xl, .reicon.text-6xl { font-size: 48px; }
 [hidden] { display: none !important; }
-:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 2px; }
 /* The search field draws a single ring on its wrapper (.docs-search-field:focus-within); no second outline on the input. */
 .docs-search-input:focus-visible { outline: none; }
 
@@ -489,7 +500,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
   padding: 0 8px 0 12px;
   background: var(--surface-container);
   border: 1px solid var(--outline);
-  border-radius: 10px;
+  border-radius: 2px;
   transition: border-color var(--bc-dur-fast) var(--bc-ease-move), box-shadow var(--bc-dur-fast) var(--bc-ease-move), background-color var(--bc-dur-fast) var(--bc-ease-move);
 }
 .docs-search-field:hover { border-color: #3b3b45; }
@@ -497,7 +508,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
 .docs-search-field:focus-within {
   background: var(--surface-container-low);
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(177, 157, 247, .28);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, .28);
 }
 @media (forced-colors: active) { .docs-search-field:focus-within { outline: 2px solid Highlight; } }
 .docs-search-icon { flex: none; color: var(--on-surface-variant); font-size: 20px; }
@@ -520,7 +531,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
 .docs-search-clear {
   display: inline-flex; align-items: center; justify-content: center;
   flex: none; width: 32px; height: 32px;
-  border: 0; border-radius: 8px; background: transparent; color: var(--on-surface-variant); cursor: pointer;
+  border: 0; border-radius: 2px; background: transparent; color: var(--on-surface-variant); cursor: pointer;
 }
 .docs-search-clear:hover { background: var(--surface-container-high); color: var(--on-surface); }
 .docs-search-kbd {
@@ -529,7 +540,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
   min-width: 22px;
   padding: 1px 6px;
   border: 1px solid var(--outline);
-  border-radius: 6px;
+  border-radius: 2px;
   background: var(--surface-container-low);
   color: var(--on-surface-variant);
   font: 500 12px/18px var(--font-mono);
@@ -546,11 +557,11 @@ html.cs .cs-host > *::-webkit-scrollbar {
   display: block;
   padding: 10px 12px;
   border-left: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: 2px;
   color: var(--on-surface);
   text-decoration: none;
 }
-.docs-search-option.is-active a, .docs-search-option a:hover { background: rgba(177, 157, 247, .12); border-left-color: var(--primary); }
+.docs-search-option.is-active a, .docs-search-option a:hover { background: rgba(167, 139, 250, .12); border-left-color: var(--primary); }
 .docs-search-head { display: flex; flex-direction: column; gap: 2px; }
 .docs-search-title { overflow-wrap: anywhere; font-size: 14px; font-weight: 600; line-height: 1.35; }
 .docs-search-title.is-code { font-family: var(--font-mono); font-size: 13px; font-weight: 500; }
@@ -565,14 +576,14 @@ html.cs .cs-host > *::-webkit-scrollbar {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-.docs-search mark { padding: 0 1px; border-radius: 3px; background: rgba(177, 157, 247, .3); color: var(--on-surface); }
+.docs-search mark { padding: 0 1px; border-radius: 2px; background: rgba(167, 139, 250, .3); color: var(--on-surface); }
 .docs-search-empty { padding: 8px 4px; }
 .docs-search-empty-title { margin: 0 0 8px; font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
 .docs-search-empty-hint { margin: 0 0 12px; color: var(--on-surface-variant); font-size: 13px; line-height: 1.5; }
 .docs-search-empty-hint code { font-family: var(--font-mono); color: var(--on-surface); }
 .docs-search-empty-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
 .docs-search-empty-links a {
-  padding: 6px 12px; border: 1px solid var(--outline); border-radius: 999px;
+  padding: 6px 12px; border: 1px solid var(--outline); border-radius: 2px;
   color: var(--on-surface); font-size: 13px; text-decoration: none;
 }
 .docs-search-empty-links a:hover { border-color: var(--primary); color: var(--primary); }
@@ -584,7 +595,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
 .guide-syntax { max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
 .copy-feedback { margin: 8px 0 0; font-size: 12px; line-height: 1.5; }
 .app-capture { display: block; width: 100%; }
-.app-capture-image { border: 1px solid var(--outline); border-radius: 20px; background: var(--background); }
+.app-capture-image { border: 1px solid var(--outline); border-radius: 2px; background: var(--background); }
 .scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
 .scrollbar-none::-webkit-scrollbar { display: none; }
 
@@ -615,8 +626,8 @@ html.cs .cs-host > *::-webkit-scrollbar {
   background: var(--surface-container-low) !important;
   color: var(--on-surface) !important;
   border: 1px solid var(--outline) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, .55) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .5) !important;
 }
 #zaraz-consent-modal *, dialog.cf_modal *, .cf_modal * {
   font-family: inherit !important;
@@ -626,7 +637,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
 #zaraz-consent-modal a, dialog.cf_modal a, .cf_modal a { color: var(--primary) !important; text-decoration: underline; }
 #zaraz-consent-modal button, dialog.cf_modal button, .cf_modal button {
   min-height: 44px !important;
-  border-radius: 8px !important;
+  border-radius: 2px !important;
   border: 1px solid var(--outline) !important;
   background: transparent !important;
   color: var(--on-surface) !important;
