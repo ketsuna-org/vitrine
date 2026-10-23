@@ -200,7 +200,7 @@ Each project is built from the real blocks; open a block to see its fields.
       </div>
       <div>✅ Congratulations <strong>Jeremy</strong>! You have been given the Member role.</div>
       <div class="discord-ephemeral-notice">
-        <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#visibility_off"></use></svg>
+        <svg class="pxicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#visibility_off"></use></svg>
         <span>Only you can see this • <a href="#" class="underline hover:text-white" onclick="return false;">Dismiss message</a></span>
       </div>
     </div>

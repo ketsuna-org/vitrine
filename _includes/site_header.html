@@ -23,7 +23,7 @@
       <div class="relative" data-docs-dropdown>
         <button type="button" data-docs-trigger aria-expanded="false" aria-controls="documentation-menu" class="nav-link gap-1" {% if is_docs %}aria-current="page"{% endif %}>
           <span>{{ t.nav.docs }}</span>
-          <svg class="reicon text-sm transition-transform" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#expand_more"></use></svg>
+          <svg class="pxicon text-sm transition-transform" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#expand_more"></use></svg>
         </button>
         <div id="documentation-menu" data-docs-menu hidden class="docs-dropdown-menu absolute left-0 top-full z-50 w-64 rounded-lg border border-outline bg-surface-container-low py-1.5 shadow-neon-strong">
           <a href="{{ t.paths.docs | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_home }}</a>
@@ -42,8 +42,8 @@
       <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary !h-9 !min-h-[36px] !px-4 !text-sm md:!h-10">{{ t.nav.download_button }}</a>
       <button type="button" data-menu-toggle aria-controls="mobile-navigation" aria-expanded="false" aria-label="{{ t.nav.open_menu }}"
         class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container md:hidden">
-        <svg class="reicon menu-icon-open !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#menu"></use></svg>
-        <svg class="reicon menu-icon-close !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
+        <svg class="pxicon menu-icon-open !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#menu"></use></svg>
+        <svg class="pxicon menu-icon-close !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#close"></use></svg>
       </button>
     </div>
   </div>
@@ -55,7 +55,7 @@
         {{ t.meta.site_title }}
       </span>
       <button type="button" data-menu-close-btn aria-label="{{ t.nav.close_menu }}" class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container">
-        <svg class="reicon !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
+        <svg class="pxicon !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#close"></use></svg>
       </button>
     </div>
     <div class="nav-mobile-scroll">

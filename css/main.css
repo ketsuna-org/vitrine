@@ -248,7 +248,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
   .nav-link:hover, .nav-link[aria-current="page"] { color: var(--on-surface); }
 
   .docs-dropdown-menu { margin-top: 0; }
-  [data-docs-trigger][aria-expanded="true"] .reicon { transform: rotate(180deg); }
+  [data-docs-trigger][aria-expanded="true"] .pxicon { transform: rotate(180deg); }
 
   /* Mobile navigation sheet ---------------------------------------------- */
   .nav-panel-mobile {
@@ -465,7 +465,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
     font-weight: 600;
     font-size: .875rem;
   }
-  .gfm-alert-header .reicon { font-size: 1.1rem; }
+  .gfm-alert-header .pxicon { font-size: 24px; }
   .gfm-alert p { margin: 0 !important; font-size: 15px; color: var(--on-surface-variant); line-height: 1.6; }
   .gfm-alert-note, .gfm-alert-tip, .gfm-alert-important { border-color: var(--accent-line); background: var(--accent-deep); }
   .gfm-alert-note .gfm-alert-header, .gfm-alert-tip .gfm-alert-header, .gfm-alert-important .gfm-alert-header { color: var(--primary); }
@@ -504,21 +504,18 @@ html.cs .cs-host > *::-webkit-scrollbar {
 /* ==========================================================================
    Global helpers
    ========================================================================== */
-.reicon {
+.pxicon {
   display: inline-block;
   width: 1em;
   height: 1em;
   flex: 0 0 auto;
-  font-size: 20px;
+  font-size: 24px;
   vertical-align: middle;
   overflow: hidden;
   white-space: nowrap;
 }
-.reicon.text-xs, .reicon.text-sm { font-size: 16px; }
-.reicon.text-base { font-size: 20px; }
-.reicon.text-lg, .reicon.text-2xl { font-size: 24px; }
-.reicon.text-3xl { font-size: 32px; }
-.reicon.text-5xl, .reicon.text-6xl { font-size: 48px; }
+/* Pixelarticons: 24 px and multiples only (charte §5). */
+.pxicon.text-3xl, .pxicon.text-5xl, .pxicon.text-6xl { font-size: 48px; }
 [hidden] { display: none !important; }
 :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 2px; }
 /* The search field draws a single ring on its wrapper (.docs-search-field:focus-within); no second outline on the input. */
@@ -621,7 +618,7 @@ html.cs .cs-host > *::-webkit-scrollbar {
 }
 .docs-search-empty-links a:hover { border-color: var(--primary); color: var(--primary); }
 #search-toggle-btn { display: flex; align-items: center; justify-content: center; gap: 8px; }
-#search-toggle-btn .reicon { font-size: 20px; }
+#search-toggle-btn .pxicon { font-size: 24px; }
 #search-toggle-btn + button { border-left: 1px solid var(--outline-variant); }
 
 [id] { scroll-margin-top: calc(var(--header-h) + 24px); }

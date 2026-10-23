@@ -304,7 +304,7 @@ const initSite = () => {
       // Convert standard blockquote to premium custom glass alert
       bq.className = `gfm-alert gfm-alert-${type.toLowerCase()}`;
       
-      // Map semantic Reicon sprite keys and alert headers
+      // Map semantic icon sprite keys and alert headers
       let icon = "info";
       let titleText = "Note";
       if (type === "TIP") { icon = "lightbulb"; titleText = "Tip"; }
@@ -316,7 +316,7 @@ const initSite = () => {
       const header = document.createElement("div");
       header.className = "gfm-alert-header";
       header.innerHTML = `
-        <svg class="reicon text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#${icon}"></use></svg>
+        <svg class="pxicon text-lg" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/pixelarticons.svg#${icon}"></use></svg>
         <span class="gfm-alert-title">${titleText}</span>
       `;
       bq.insertBefore(header, bq.firstChild);

@@ -29,11 +29,11 @@ sidebar_title: Documentation
   {% for hub in nav.hub_links %}
   <a href="{{ hub.path | relative_url }}" class="group flex flex-col gap-4 rounded-lg bg-surface-container-low border border-outline-variant p-6 hover:border-primary/30 hover: transition-all">
     <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-      <svg class="reicon text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#{{ hub.icon }}"></use></svg>
+      <svg class="pxicon text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#{{ hub.icon }}"></use></svg>
     </div>
     <h2 class="font-display text-xl font-bold text-on-surface group-hover:text-primary transition-colors">{{ hub.title }}</h2>
     <p class="text-sm text-on-surface-variant leading-relaxed">{{ hub.description }}</p>
-    <span class="mt-auto text-sm font-bold text-primary flex items-center gap-1">Browse <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_forward"></use></svg></span>
+    <span class="mt-auto text-sm font-bold text-primary flex items-center gap-1">Browse <svg class="pxicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#arrow_forward"></use></svg></span>
   </a>
   {% endfor %}
 </section>
@@ -41,7 +41,7 @@ sidebar_title: Documentation
 <!-- Getting Started -->
 <section class="mb-16 rounded-lg bg-surface-container-low border border-outline-variant p-8" id="getting-started">
   <h2 class="font-display text-2xl font-bold text-on-surface mb-6 flex items-center gap-2">
-    <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#rocket_launch"></use></svg>
+    <svg class="pxicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#rocket_launch"></use></svg>
     Getting Started
   </h2>
   <div class="space-y-8">
@@ -72,7 +72,7 @@ sidebar_title: Documentation
     {% endif %}
     {% endfor %}
     <a href="{{ '/docs/getting-started/' | relative_url }}" class="inline-flex items-center gap-2 rounded-lg border border-outline-variant bg-surface-container px-4 py-3 hover:border-primary/30 transition-all text-sm font-bold text-primary">
-      <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#rocket_launch"></use></svg>
+      <svg class="pxicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#rocket_launch"></use></svg>
       Documentation quick start
     </a>
   </div>
@@ -82,7 +82,7 @@ sidebar_title: Documentation
 <div class="docs-index-search sticky top-14 z-30 mb-10 -mx-2 px-2 py-3 bg-background/95 backdrop-blur-sm border-b border-outline-variant/50 lg:static lg:bg-transparent lg:border-0 lg:p-0 lg:m-0">
   <div class="flex flex-col sm:flex-row gap-3 max-w-3xl">
     <div class="relative flex-grow flex items-center bg-surface-container-low border border-outline-variant rounded-lg p-1.5 focus-within:border-primary transition-all">
-      <svg class="reicon text-on-surface-variant ml-4 mr-2" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#search"></use></svg>
+      <svg class="pxicon text-on-surface-variant ml-4 mr-2" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#search"></use></svg>
       <input type="text" id="docs-search-input" aria-label="Search function reference" placeholder="Search functions..."
         class="w-full bg-transparent border-0 outline-none text-on-surface placeholder:text-on-surface-variant pr-4 text-base py-2.5 min-h-[44px]">
     </div>
@@ -103,13 +103,13 @@ sidebar_title: Documentation
   <span id="function-reference" aria-hidden="true"></span>
   <section class="mb-8">
     <h2 class="font-display text-2xl font-bold text-on-surface mb-4 flex items-center gap-2">
-      <svg class="reicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#terminal"></use></svg>
+      <svg class="pxicon text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#terminal"></use></svg>
       JavaScript API
     </h2>
     <p class="text-on-surface-variant mb-4 max-w-2xl">Script globals for BDJS bots — <code class="text-primary">db.*</code>, <code class="text-primary">interaction</code>, <code class="text-primary">message</code>, and more.</p>
     <a href="{{ '/docs/javascript/' | relative_url }}" class="inline-flex items-center gap-2 rounded-lg bg-primary/10 border border-primary/20 px-4 py-2 text-sm font-bold text-primary hover:bg-primary/20 transition-all">
       View JavaScript API reference
-      <svg class="reicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#arrow_forward"></use></svg>
+      <svg class="pxicon text-sm" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#arrow_forward"></use></svg>
     </a>
   </section>
 
@@ -141,7 +141,7 @@ sidebar_title: Documentation
 </div>
 
 <div id="docs-no-results" class="hidden rounded-lg bg-surface-container-low border border-outline-variant p-12 text-center">
-  <svg class="reicon text-5xl text-on-surface-variant/20 mb-4" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#search_off"></use></svg>
+  <svg class="pxicon text-5xl text-on-surface-variant/20 mb-4" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#search_off"></use></svg>
   <h3 class="text-xl font-bold text-on-surface mb-2">No functions found</h3>
 </div>
 {% endif %}

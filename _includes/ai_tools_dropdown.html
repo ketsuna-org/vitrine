@@ -14,7 +14,7 @@
           aria-label="Copy page as Markdown"
           title="Copy page as Markdown"
           class="flex items-center gap-1.5 rounded-lg border border-outline-variant bg-surface-container px-3 py-1.5 text-xs font-bold text-on-surface-variant hover:text-primary hover:border-primary/30 transition-all">
-    <svg class="reicon text-base" data-copy-icon aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#content_copy"></use></svg>
+    <svg class="pxicon text-base" data-copy-icon aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#content_copy"></use></svg>
     <span data-copy-label>Copy</span>
   </button>
 
@@ -26,9 +26,9 @@
             aria-expanded="false"
             aria-label="AI tools"
             class="flex items-center gap-1.5 rounded-lg border border-outline-variant bg-surface-container px-3 py-1.5 text-xs font-bold text-on-surface-variant hover:text-primary hover:border-primary/30 transition-all">
-      <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#smart_toy"></use></svg>
+      <svg class="pxicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#smart_toy"></use></svg>
       <span>AI</span>
-      <svg class="reicon text-sm transition-transform duration-200" data-ai-tools-caret aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#expand_more"></use></svg>
+      <svg class="pxicon text-sm transition-transform duration-200" data-ai-tools-caret aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#expand_more"></use></svg>
     </button>
 
     <div data-ai-tools-menu role="group" aria-label="AI tools actions"
@@ -40,13 +40,13 @@
               data-url="{{ '/api/docs/' | append: markdown_slug | relative_url }}"
               class="group relative flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors cursor-pointer">
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-primary">
-          <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#content_copy"></use></svg>
+          <svg class="pxicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#content_copy"></use></svg>
         </span>
         <span class="flex flex-col flex-1 min-w-0">
           <span class="text-sm font-semibold text-on-surface">Copy page</span>
           <span class="text-xs text-on-surface-variant">Copy page as Markdown for LLMs</span>
         </span>
-        <svg class="reicon text-base text-primary opacity-0 transition-opacity" data-check aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#check"></use></svg>
+        <svg class="pxicon text-base text-primary opacity-0 transition-opacity" data-check aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#check"></use></svg>
       </button>
 
       {%- comment %} llms-full.txt link {% endcomment %}
@@ -55,12 +55,12 @@
          rel="noopener noreferrer"
          class="group flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors">
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-primary">
-          <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#description"></use></svg>
+          <svg class="pxicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#description"></use></svg>
         </span>
         <span class="flex flex-col flex-1 min-w-0">
           <span class="text-sm font-semibold text-on-surface flex items-center gap-1">
             llms-full.txt
-            <svg class="reicon text-xs text-on-surface-variant" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#open_in_new"></use></svg>
+            <svg class="pxicon text-xs text-on-surface-variant" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#open_in_new"></use></svg>
           </span>
           <span class="text-xs text-on-surface-variant">View all docs as Markdown for LLMs</span>
         </span>
@@ -72,13 +72,13 @@
               data-command="npx mcp-remote https://bot-creator.fr/api/mcp"
               class="group relative flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors cursor-pointer">
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-primary">
-          <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#terminal"></use></svg>
+          <svg class="pxicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#terminal"></use></svg>
         </span>
         <span class="flex flex-col flex-1 min-w-0">
           <span class="text-sm font-semibold text-on-surface">Copy MCP command</span>
           <span class="text-xs text-on-surface-variant font-mono truncate">npx mcp-remote ...</span>
         </span>
-        <svg class="reicon text-base text-primary opacity-0 transition-opacity" data-check aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#check"></use></svg>
+        <svg class="pxicon text-base text-primary opacity-0 transition-opacity" data-check aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#check"></use></svg>
       </button>
 
       {%- comment %} Separator {% endcomment %}
@@ -88,12 +88,12 @@
       <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=bot-creator&url=https%3A%2F%2Fbot-creator.fr%2Fapi%2Fmcp"
          class="group flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors">
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-on-surface-variant group-hover:text-primary transition-colors">
-          <svg class="reicon text-base" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><use href="{{ "/assets/icons/reicon.svg" | relative_url }}#code"></use></svg>
+          <svg class="pxicon text-base" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><use href="{{ "/assets/icons/pixelarticons.svg" | relative_url }}#code"></use></svg>
         </span>
         <span class="flex flex-col flex-1 min-w-0">
           <span class="text-sm font-semibold text-on-surface flex items-center gap-1">
             Connect to Cursor
-            <svg class="reicon text-xs text-on-surface-variant" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#open_in_new"></use></svg>
+            <svg class="pxicon text-xs text-on-surface-variant" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#open_in_new"></use></svg>
           </span>
           <span class="text-xs text-on-surface-variant">Install MCP Server on Cursor</span>
         </span>
@@ -103,12 +103,12 @@
       <a href="vscode://mcp/install?name=bot-creator&url=https%3A%2F%2Fbot-creator.fr%2Fapi%2Fmcp"
          class="group flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-surface-container transition-colors">
         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-outline-variant text-on-surface-variant group-hover:text-primary transition-colors">
-          <svg class="reicon text-base" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><use href="{{ "/assets/icons/reicon.svg" | relative_url }}#code"></use></svg>
+          <svg class="pxicon text-base" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><use href="{{ "/assets/icons/pixelarticons.svg" | relative_url }}#code"></use></svg>
         </span>
         <span class="flex flex-col flex-1 min-w-0">
           <span class="text-sm font-semibold text-on-surface flex items-center gap-1">
             Connect to VS Code
-            <svg class="reicon text-xs text-on-surface-variant" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#open_in_new"></use></svg>
+            <svg class="pxicon text-xs text-on-surface-variant" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#open_in_new"></use></svg>
           </span>
           <span class="text-xs text-on-surface-variant">Install MCP Server on VS Code</span>
         </span>
@@ -198,11 +198,11 @@
     var defaultLabel = opts.defaultLabel || "Copy";
     reportCopy(btn, successLabel, false);
     if (label) label.textContent = successLabel;
-    if (icon) { icon.querySelector("use").setAttribute("href", "{{ "/assets/icons/reicon.svg" | relative_url }}#check"); icon.style.color = "#A78BFA"; }
+    if (icon) { icon.querySelector("use").setAttribute("href", "{{ "/assets/icons/pixelarticons.svg" | relative_url }}#check"); icon.style.color = "#A78BFA"; }
     if (check) check.style.opacity = "1";
     setTimeout(function () {
       if (label) label.textContent = defaultLabel;
-      if (icon) { icon.querySelector("use").setAttribute("href", "{{ "/assets/icons/reicon.svg" | relative_url }}#content_copy"); icon.style.color = ""; }
+      if (icon) { icon.querySelector("use").setAttribute("href", "{{ "/assets/icons/pixelarticons.svg" | relative_url }}#content_copy"); icon.style.color = ""; }
       if (check) check.style.opacity = "0";
     }, 1800);
   }
