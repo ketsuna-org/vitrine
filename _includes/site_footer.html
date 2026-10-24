@@ -7,7 +7,7 @@
       <p class="m-0 text-sm leading-relaxed text-on-surface-variant">{{ t.shell.footer_tagline }}</p>
       <p class="m-0 text-sm text-on-surface-variant">© 2026 {{ t.meta.site_title }}. {{ t.shell.footer_copyright }}</p>
     </div>
-    <div class="flex flex-wrap gap-x-16 gap-y-8">
+    <div class="grid w-full grid-cols-2 gap-x-6 gap-y-8 sm:flex sm:w-auto sm:flex-wrap sm:gap-x-16">
       <nav class="flex flex-col" aria-label="Product">
         <span class="pb-2 text-xs text-on-surface-variant">{{ t.shell.footer_product }}</span>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.playground | relative_url }}">{{ t.nav.playground }}</a>
@@ -26,7 +26,7 @@
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ cm.slug[t.code] | prepend: t.paths.compare | append: '/' | relative_url }}">{{ cm[t.code].nav }}</a>
         {% endfor %}
       </nav>
-      <nav class="flex flex-col" aria-label="Legal">
+      <nav class="col-span-2 flex flex-col sm:col-span-1" aria-label="Legal">
         <span class="pb-2 text-xs text-on-surface-variant">{{ t.shell.footer_legal }}</span>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.terms | relative_url }}">{{ t.shell.footer_terms }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.privacy | relative_url }}">{{ t.nav.privacy }}</a>
