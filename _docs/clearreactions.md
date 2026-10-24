@@ -10,7 +10,7 @@ description: Removes all reactions, or all reactions of one emoji, from a specif
 
 # $clearReactions
 
-The `$clearReactions[]` function **removes the reactions** of a message: all of them with `!all`, or only those of one emoji.
+The `$clearReactions[]` function **removes the reactions** of a message: all of them with `!all`, or only those of one or several emojis.
 
 ## Syntax
 
@@ -24,7 +24,7 @@ $clearReactions[channelID;messageID;emoji]
 |---|---|
 | `channelID` | Required. The ID of the channel containing the message. |
 | `messageID` | Required. The ID of the message. |
-| `emoji` | Required. `!all` to remove every reaction, or the emoji whose reactions must be removed (Unicode emoji, `<:name:ID>` custom emoji, emoji ID, or a `:alias:`). An empty emoji is an error. |
+| `emoji` | Required. `!all` to remove every reaction, or the emoji whose reactions must be removed (Unicode emoji, `<:name:ID>` custom emoji, emoji ID, or a `:alias:`). An empty emoji is an error. Further emojis can be added as extra arguments (`$clearReactions[channelID;messageID;👍;👎]`). |
 
 ## Return value
 
@@ -34,12 +34,20 @@ This function does not return a value (empty string).
 
 - With `!all`, removes ALL reactions from the message.
 - With an emoji, removes all reactions of that emoji from the message.
+- With several emojis, each emoji is removed once (a repeated emoji is not removed twice). All the emojis are validated **before** the first removal, so an invalid one removes nothing.
+- If `!all` is among the emojis, the whole message is cleared in one go and the other emojis are not processed separately.
 - Both IDs must be positive numeric IDs (`Invalid Discord ID.` otherwise). `!all` must be written exactly like that.
 - The bot needs `Manage Messages` in the channel (error `Missing channel permissions for reactions.` otherwise); the message must exist and be in a message channel.
 - An alias such as `:thumbsup:` is accepted only if the engine knows it (`Unknown BDFD emoji alias.`); a text without any non-ASCII character that is not an ID or custom emoji raises `Invalid Unicode emoji.`
 - Useful for resetting a reaction system (poll, giveaway, etc.).
 
 ## Examples
+
+### Removing several emojis
+
+```bdfd
+$clearReactions[$channelID;$messageID;👎;🤷;<:no:123456789012345678>]
+```
 
 ### Resetting a poll
 
@@ -67,4 +75,4 @@ $sendMessage[This poll is now closed.]
 ## Notes
 
 - `$clearReactions[channelID;messageID;!all]` removes all reactions, not just the bot's.
-- To remove one emoji, pass it as the third argument.
+- To remove one emoji, pass it as the third argument; to remove several, list them after it.

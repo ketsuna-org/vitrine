@@ -4,7 +4,7 @@ title: $unBanID
 category: "Moderation"
 function_name: unBanID
 syntax: $unBanID[(userID)]
-description: Unbans a user from the server using their ID. If no ID is given, the last word of the message is used.
+description: Unbans a user from the server using their ID. If no ID is given, the last word of the message is used in a prefix command; in a slash command it is an error.
 locale: en
 translation_key: doc-unbanid
 ---
@@ -23,7 +23,7 @@ $unBanID[(userID)]
 
 | Parameter | Description |
 |---|---|
-| `userID` | Optional - The Discord ID of the user to unban. If omitted, the last word of the message is used (empty if there is none). If empty or not a positive number, the error `Missing or invalid user ID.` is raised. |
+| `userID` | Optional - The Discord ID of the user to unban: decimal digits only (`0xDE` or `+222` are refused). If omitted in a **prefix** command, the last word of the message is used (empty if there is none). In a **slash** command there is no fallback: an omitted or empty ID raises `Missing or invalid user ID.` (use `$message[option]`, the ID of a user option). An empty or non-numeric ID raises `Missing or invalid user ID.`. |
 
 ## Return Value
 
@@ -60,3 +60,17 @@ $endif
 
 - Use `$unBan` to unban by username.
 - Useful for internal scripts where only the ID is known.
+
+## Slash and prefix example
+
+```bdfd
+$onlyPerms[banmembers;You need Ban Members permission.]
+$if[$isSlash==true]
+  $unBanID[$message[usuário]]
+$else
+  $unBanID[$message[1]]
+$endif
+Unbanned.
+```
+
+In a slash command the `usuário` option (type `user`) returns the user ID through `$message[usuário]`; see [`$message`](/docs/message/).

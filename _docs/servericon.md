@@ -4,23 +4,25 @@ title: $serverIcon[]
 translation_key: docs
 category: "Entity Info"
 function_name: serverIcon
-syntax: $serverIcon
-description: Returns the URL of the Discord server icon.
+syntax: $serverIcon[(Guild ID)]
+description: Returns the URL of the icon of the current Discord server, or of the server whose ID is given.
 ---
 
 # $serverIcon[] — Server Icon
 
-`$serverIcon[]` returns the URL of the icon of the current Discord server. If the server does not have a custom icon, the function returns an empty string.
+`$serverIcon[]` returns the URL of the icon of the current Discord server, or of another server when its ID is given. If the server does not have a custom icon, the function returns an empty string.
 
 ## Syntax
 
 ```
-$serverIcon
+$serverIcon[(Guild ID)]
 ```
 
 ## Parameters
 
-No parameters.
+| Parameter | Description |
+|---|---|
+| `Guild ID` | Optional. The server to read. If omitted or empty, the current server is used. A non-numeric or non-positive value raises `Invalid guild ID.` |
 
 ## Return Value
 
@@ -59,6 +61,12 @@ $else
 $endif
 ```
 
+### Icon of another server
+
+```bdfd
+$image[$serverIcon[123456789012345678]]
+```
+
 ### Footer with icon
 
 ```bdfd
@@ -69,6 +77,6 @@ $color[#F1C40F]
 
 ## Notes
 
-- `$serverIcon` takes no argument. `$guildIcon[(guildID)]` is a different function that accepts a server ID and does not raise an error when the server cannot be fetched.
+- `$serverIcon` takes at most one argument, the server ID. `$guildIcon[(guildID)]` is a different function that does not raise an error when the server cannot be fetched.
 - If the server does not have an icon, the function returns an empty string (`""`).
 - The URL can be used in `$image[]`, `$thumbnail[]` or `$footer[]`.

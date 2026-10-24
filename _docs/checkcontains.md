@@ -4,7 +4,7 @@ title: $checkContains
 translation_key: docs
 category: "Control Flow"
 function_name: checkContains
-syntax: $checkContains[text;search;(search2);(...)]
+syntax: $checkContains[text;search]
 description: Checks whether a string contains a substring and returns "true" or "false".
 ---
 # $checkContains — Inline Substring Check
@@ -13,7 +13,7 @@ description: Checks whether a string contains a substring and returns "true" or 
 
 ## How It Works
 
-`$checkContains[text;search;(search2);(...)]` performs a **case-sensitive** substring search. It takes 2 to 100 arguments: the text, then one or more phrases; the result is `"true"` if the text contains **at least one** of the phrases (all the arguments are evaluated first):
+`$checkContains[text;search;search2]` performs a **case-sensitive** substring search. It takes 1 to 100 arguments: the text, then the phrases to look for (`$checkContains[text;search;search2]`); the result is `"true"` if the text contains **at least one** of the phrases (all the arguments are evaluated first):
 
 - `$checkContains[Hello World;World]` → `"true"`
 - `$checkContains[Hello World;world]` → `"false"` (case mismatch)
@@ -21,6 +21,7 @@ description: Checks whether a string contains a substring and returns "true" or 
 - `$checkContains[Hello;]` → `"true"` (empty string is contained in every string)
 - `$checkContains[Hello World;missing;World]` → `"true"` (one phrase is enough)
 - `$checkContains[Hello World;missing;zzz]` → `"false"`
+- `$checkContains[Hello World]` → `"false"` (text alone: no phrase is searched, so nothing is found)
 
 ## Use in $if Conditions
 

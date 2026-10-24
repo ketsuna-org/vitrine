@@ -4,8 +4,8 @@ title: $userID
 translation_key: docs
 category: "Entity Info"
 function_name: userID
-syntax: $userID
-description: Returns the Discord ID of the user of the execution context (the user.id variable, falling back to author.id).
+syntax: $userID[(Username)]
+description: Returns the Discord ID of the user of the execution context, or of the server member found by username.
 ---
 
 # $userID
@@ -15,18 +15,25 @@ The `$userID` function returns the **Discord ID** of the user of the current exe
 ## Syntax
 
 ```
-$userID
+$userID[(Username)]
 ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `Username` | Optional. A username, or `name#discriminator` (the discriminator is checked; `#0` or `#0000` for an account without one). The match is **case-insensitive** and searches the members of the current server. If omitted or empty (`$userID`, `$userID[]`), the user of the context is used. |
 
 ## Return Value
 
 - **Type**: String (the Discord ID, digits only)
-- The value of the context variable `user.id`; if that variable is not set, the value of `author.id`; if neither is set, an empty string.
+- Without a name: the value of the context variable `user.id`; if that variable is not set, the value of `author.id`; if neither is set, an empty string.
+- With a name: the ID of the first member found, or an empty string if nobody matches (no error).
 
 ## Behavior
 
-- `$userID` takes **no arguments**.
-- Reads `user.id` first and falls back to `author.id`; it does not call Discord.
+- Without a name, reads `user.id` first and falls back to `author.id`; it does not call Discord.
+- With a name, lists the members of the server through Discord, which can be slow on large servers.
 
 ## Examples
 
@@ -46,6 +53,12 @@ $if[$userID==123456789012345678]
 $else
   $sendMessage[Hello user!]
 $endif
+```
+
+### Find a member by name
+
+```bdfd
+$sendMessage[ID: $userID[$message[1]]]
 ```
 
 ## Difference with $authorID

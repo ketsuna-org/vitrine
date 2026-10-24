@@ -22,7 +22,7 @@ $removeButtons[(messageID)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:--------:|
-| `messageID` | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). Without it (or when empty), the buttons staged in the current script are removed. | No |
+| `messageID` | ID of an existing message sent by the bot (a positive integer, otherwise `Invalid message ID.`). Without it (or when empty), the **clicked message** is targeted in the script run for a click; elsewhere the buttons staged in the current script are removed. | No |
 
 ## Return Value
 
@@ -30,19 +30,25 @@ Returns an empty string.
 
 ## Behavior
 
-- **Without `messageID`**, only the buttons added earlier in the same script are removed.
-- **With `messageID`**, the engine reads the components of that message and stages an edit without its buttons; the edit is applied when the response is flushed. This needs the bot's component service: without it the function fails with `No component service configured.`
-- Select menus are kept.
+- **Without `messageID`**, in the script run for a button or select menu click, the **clicked message** is edited. Anywhere else, only the buttons added earlier in the same script are removed.
+- **With `messageID`** (or on the clicked message), the engine reads the components of that message and stages an edit without its buttons; the edit is applied when the response is flushed. This needs the bot's component service: without it the function fails with `No component service configured.` Only a message of the bot can be edited (`Only bot-authored message components can be edited.`); an ephemeral message cannot be edited by its ID.
+- Select menus are kept. In a Components V2 message, containers, sections, texts and separators are kept too (buttons are removed at any depth). A button used as the accessory of a section cannot be removed (`A button used as a section accessory cannot be removed.`).
 - The text of the message is not changed: use `$editMessage` for that.
 
 ## Examples
 
-### Remove the buttons of a message after a vote
+### Remove the buttons of the clicked message after a vote
+
+Workflow with the event `interactionCreate` and the custom ID filter (`customIdFilter`) `vote_yes`. `$customID` only exists in the script run for the click, never in the slash command.
 
 ```bdfd
-$if[$customID==vote_yes]
-  $removeButtons[123456789012345678]
-$endif
+$removeButtons
+```
+
+### Remove the buttons of a given message
+
+```bdfd
+$removeButtons[123456789012345678]
 ```
 
 ### Remove the buttons staged earlier in the script

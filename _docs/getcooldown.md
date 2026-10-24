@@ -26,7 +26,7 @@ The `type` parameter is **required** (a bare `$getCooldown` is refused with "Inv
 | `server` | Per-server cooldown (`$serverCooldown`) |
 | `global` | Per-user cooldown shared by all servers (`$globalCooldown`) |
 
-Any other value (including `Normal` or an empty value) raises `Cooldown type must be normal, server or global.` Like the cooldown functions, `normal` and `server` need the ID of a server (`Invalid Discord ID.` otherwise) and all types need a command ID (`Cooldown requires a bot and command ID.`).
+Any other value (including `Normal` or an empty value) raises `Cooldown type must be normal, server or global.` Like the cooldown functions, `normal` and `server` need the ID of a server (`Invalid Discord ID.` otherwise) and all types need a command or workflow name (`Cooldown requires a bot and a command or workflow name.`).
 
 ## Usage in Error Messages
 

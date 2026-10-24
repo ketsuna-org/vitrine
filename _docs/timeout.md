@@ -35,28 +35,28 @@ None (empty string). The user is timed out for the specified duration. An error 
 ### Timeout of 5 Minutes
 
 ```bdfd
-$timeout[5m;$mentioned[1]]
-$sendMessage[⏳ <@$mentioned[1]> has been timed out for 5 minutes.]
+$timeout[5m;$mentioned[1;no]]
+$sendMessage[⏳ <@$mentioned[1;no]> has been timed out for 5 minutes.]
 ```
 
 ### Timeout of One Hour
 
 ```bdfd
-$timeout[1h;$mentioned[1]]
+$timeout[1h;$mentioned[1;no]]
 $sendMessage[⏳ 1-hour timeout applied.]
 ```
 
 ### Timeout of 7 Days
 
 ```bdfd
-$timeout[7d;$mentioned[1]]
+$timeout[7d;$mentioned[1;no]]
 $sendMessage[⏳ 7-day timeout applied. Next infraction will result in a ban.]
 ```
 
 ### Customizable Timeout Command
 
 ```bdfd
-$timeout[$message[2];$mentioned[1]]
+$timeout[$message[2];$mentioned[1;no]]
 $sendMessage[Timeout applied.]
 ```
 
@@ -68,3 +68,4 @@ $sendMessage[Timeout applied.]
 - The bot cannot time out the server owner, an administrator, or a member whose highest role is not below its own.
 - To remove a timeout early, use `$unTimeout`.
 
+- In a slash command there are no mentions: pass the ID explicitly, `$timeout[$message[duration];$message[member]]` (`$message[member]` is the ID of a `user` option, see [`$message`](/docs/message/)). Without an ID, the call fails because no user is mentioned. In prefix guards, write `$mentioned[1;no]`.
