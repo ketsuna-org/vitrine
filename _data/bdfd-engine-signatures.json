@@ -551,6 +551,10 @@
   "min": 2,
   "max": 2
  },
+ "createautomodrule": {
+  "min": 2,
+  "max": 7
+ },
  "createchannel": {
   "min": 2,
   "max": 3
@@ -597,6 +601,10 @@
  },
  "defer": {
   "min": 0,
+  "max": 1
+ },
+ "deleteautomodrule": {
+  "min": 1,
   "max": 1
  },
  "deletechannels": {
@@ -706,6 +714,10 @@
  "editselectmenuoption": {
   "min": 4,
   "max": 7
+ },
+ "editserver": {
+  "min": 2,
+  "max": 2
  },
  "editsplittext": {
   "min": 2,
@@ -1366,6 +1378,10 @@
  "linescount": {
   "min": 1,
   "max": 1
+ },
+ "listautomodrules": {
+  "min": 0,
+  "max": 0
  },
  "listvar": {
   "min": 0,
