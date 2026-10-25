@@ -555,6 +555,14 @@
   "min": 2,
   "max": 3
  },
+ "createinvite": {
+  "min": 0,
+  "max": 4
+ },
+ "createpoll": {
+  "min": 5,
+  "max": 14
+ },
  "createrole": {
   "min": 2,
   "max": 4
@@ -607,6 +615,10 @@
   "min": 1,
   "max": 1
  },
+ "deleteinvite": {
+  "min": 1,
+  "max": 1
+ },
  "deletemessage": {
   "min": 2,
   "max": 2
@@ -626,6 +638,10 @@
  "disablespecialescaping": {
   "min": 0,
   "max": 0
+ },
+ "disconnectmember": {
+  "min": 1,
+  "max": 1
  },
  "discriminator": {
   "min": 1,
@@ -738,6 +754,10 @@
  "enabledecimals": {
   "min": 1,
   "max": 1
+ },
+ "endpoll": {
+  "min": 2,
+  "max": 2
  },
  "ephemeral": {
   "min": 0,
@@ -1479,6 +1499,10 @@
   "min": 0,
   "max": 0
  },
+ "movemember": {
+  "min": 2,
+  "max": 2
+ },
  "multi": {
   "min": 1,
   "max": null
@@ -1851,6 +1875,10 @@
   "min": 0,
   "max": 0
  },
+ "serverdeafen": {
+  "min": 1,
+  "max": 2
+ },
  "serverdescription": {
   "min": 0,
   "max": 1
@@ -1880,6 +1908,10 @@
   "max": 2
  },
  "serverleaderboard": {
+  "min": 1,
+  "max": 2
+ },
+ "servermute": {
   "min": 1,
   "max": 2
  },
