@@ -2,7 +2,7 @@
 layout: doc
 title: $endPoll
 translation_key: docs
-category: "Messages"
+category: "Polls"
 function_name: endPoll
 syntax: $endPoll[channelID;messageID]
 description: Ends a poll right now.

@@ -2,7 +2,7 @@
 layout: doc
 title: $createPoll
 translation_key: docs
-category: "Messages"
+category: "Polls"
 function_name: createPoll
 syntax: $createPoll[channelID;question;durationHours;allowMultiselect;answer1;answer2;...]
 description: Posts a Discord poll in a channel and returns the message ID.
