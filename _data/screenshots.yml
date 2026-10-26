@@ -19,12 +19,12 @@ screens:
     headline_fr: "Gérer vos commandes"
     link: /docs/getting-started/
     icon: terminal
-  - id: workflow
-    file: workflow
-    headline: "Reusable Workflows"
-    headline_fr: "Des workflows réutilisables"
-    link: /docs/blocks/
-    icon: alt_route
+  - id: copilot
+    file: copilot
+    headline: "AI Copilot"
+    headline_fr: "Copilote IA"
+    link: /download/
+    icon: auto_awesome
   - id: hosting
     file: hosting
     headline: "Manage Your Hosting"

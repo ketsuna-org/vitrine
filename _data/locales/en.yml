@@ -163,7 +163,7 @@ home:
     descriptions:
       - "Visual block builder and BDFD $function reference for every command."
       - "Create, organize, and edit your bot commands from one workspace."
-      - "Keep reusable workflows organized in your bot workspace."
+      - "Ask the AI copilot to check your bot, write a command or explain a feature. You stay in control of every action."
   featured:
     title: "A reference you can actually search"
   how_it_works:

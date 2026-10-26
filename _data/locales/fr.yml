@@ -139,7 +139,7 @@ home:
     descriptions:
       - "Éditeur de blocs visuel et référence des $fonctions BDFD pour chaque commande."
       - "Créez, organisez et modifiez les commandes de votre bot depuis un seul espace."
-      - "Gardez vos workflows réutilisables bien rangés dans l'espace de travail de votre bot."
+      - "Demandez au copilote IA de vérifier votre bot, d'écrire une commande ou d'expliquer une fonction. Vous gardez la main sur chaque action."
   featured:
     title: "Une référence dans laquelle on peut vraiment chercher"
   reference:
