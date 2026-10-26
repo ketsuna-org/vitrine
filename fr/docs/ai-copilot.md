@@ -30,7 +30,7 @@ Le copilote n'est pas disponible dans la version Steam de l'application.
 - **Changer les réglages du bot.** Statut, pseudo, avatar et préfixe des commandes texte.
 - **Démarrer et arrêter un bot**, et restaurer une version précédente d'une commande ou d'un workflow.
 - **Expliquer une fonction.** Il consulte la documentation officielle et la référence des fonctions avant de répondre, donc ses exemples utilisent de vraies fonctions.
-- **Créer des images.** Décrivez une bannière, un en-tête ou une icône de serveur et le copilote la dessine. L'image est rendue sur votre appareil, vous voyez l'aperçu, et vous décidez si elle est utilisée ou publiée.
+- **Créer des images.** Décrivez une bannière, un en-tête, une icône de serveur ou une image personnalisée pour un embed et le copilote la dessine. L'image est rendue sur votre appareil, vous voyez l'aperçu, et vous décidez si elle est utilisée ou publiée. Cela ne fonctionne que dans le copilote de l'application, pas depuis un assistant IA connecté.
 - **Gérer votre serveur Discord.** Organiser les salons, publier règles et annonces, gérer rôles et réglages, et modérer des membres (voir [Gérer votre serveur Discord](#discord-server)).
 - **Travailler depuis votre propre IA.** Connecter Claude, ChatGPT ou Cursor à vos bots (voir [L'utiliser depuis votre propre IA](#user-mcp)).
 
@@ -60,7 +60,7 @@ Règles de sécurité de ces outils :
 
 ## L'utiliser depuis votre propre IA (MCP utilisateur) {#user-mcp}
 
-Vous pouvez aussi piloter vos bots depuis l'assistant IA que vous utilisez déjà, comme Claude, ChatGPT ou Cursor, grâce à une connexion MCP. Elle expose les mêmes outils que le copilote : lire un bot, planifier et valider une commande, enregistrer des commandes et des workflows, changer les réglages et les variables, démarrer et arrêter un bot, et les outils de serveur Discord ci-dessus.
+Vous pouvez aussi piloter vos bots depuis l'assistant IA que vous utilisez déjà, comme Claude, ChatGPT ou Cursor, grâce à une connexion MCP. Elle expose les mêmes outils que le copilote : lire un bot, planifier et valider une commande, enregistrer des commandes et des workflows, changer les réglages et les variables, démarrer et arrêter un bot, et les outils de serveur Discord ci-dessus. La création d'images n'est pas disponible ainsi : elle demande que l'application les dessine.
 
 L'adresse à donner à votre assistant est :
 
