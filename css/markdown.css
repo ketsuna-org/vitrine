@@ -92,6 +92,16 @@
 .markdown-body th { color: var(--text-100); font-weight: 600; background: var(--surface-container-low); border-bottom: 1px solid var(--outline); }
 .markdown-body td { color: var(--text-200); }
 .markdown-body td code { white-space: nowrap; }
+/* Cells wrap at word boundaries only (the body's overflow-wrap: anywhere would split words letter by letter);
+   a table that is too wide scrolls inside its own container instead of squeezing the columns. */
+.markdown-body table { overflow-wrap: normal; word-break: normal; }
+.markdown-body th, .markdown-body td { min-width: 11rem; }
+.markdown-body th:first-child, .markdown-body td:first-child { min-width: 9rem; }
+.markdown-body td code { overflow-wrap: normal; }
+
+/* Documentation pages use the full width of the content column; only running text keeps a readable measure. */
+.doc-article .markdown-body { max-width: none; }
+.doc-article .markdown-body > p, .doc-article .markdown-body > ul, .doc-article .markdown-body > ol, .doc-article .markdown-body > blockquote { max-width: 100ch; }
 
 .markdown-body .anchor { margin-left: .4rem; color: var(--text-400); text-decoration: none; opacity: 0; transition: opacity var(--bc-dur-fast) var(--bc-ease-move); }
 .markdown-body h2:hover .anchor, .markdown-body h3:hover .anchor, .markdown-body h4:hover .anchor, .markdown-body .anchor:focus { opacity: 1; }
