@@ -59,7 +59,24 @@ Règles de sécurité de ces outils :
 
 ## L'utiliser depuis votre propre IA (MCP utilisateur) {#user-mcp}
 
-Vous pouvez aussi piloter vos bots depuis l'assistant IA que vous utilisez déjà, comme Claude, ChatGPT ou Cursor, grâce à une connexion MCP. Elle expose les mêmes outils que le copilote : lire un bot, planifier et valider une commande, enregistrer des commandes et des workflows, changer les réglages et les variables, démarrer et arrêter un bot, et les outils de serveur Discord ci-dessus. Cette connexion est en cours de déploiement et peut ne pas être activée pour votre compte.
+Vous pouvez aussi piloter vos bots depuis l'assistant IA que vous utilisez déjà, comme Claude, ChatGPT ou Cursor, grâce à une connexion MCP. Elle expose les mêmes outils que le copilote : lire un bot, planifier et valider une commande, enregistrer des commandes et des workflows, changer les réglages et les variables, démarrer et arrêter un bot, et les outils de serveur Discord ci-dessus.
+
+L'adresse à donner à votre assistant est :
+
+```
+https://api.bot-creator.fr/mcp/user
+```
+
+- **Claude et ChatGPT :** ajoutez-la comme connecteur personnalisé (dans Claude : Paramètres, Connecteurs, Ajouter un connecteur personnalisé), puis connectez-vous avec Discord quand on vous le demande.
+- **Cursor :** ajoutez-la dans `~/.cursor/mcp.json` :
+
+```json
+{
+  "mcpServers": {
+    "bot-creator": { "url": "https://api.bot-creator.fr/mcp/user" }
+  }
+}
+```
 
 - **Connexion par Discord uniquement.** Aucun mot de passe ne transite par la page de connexion.
 - **Vous choisissez ce qui est autorisé.** Sur l'écran de consentement, vous choisissez les permissions et les bots que l'assistant peut toucher. Les permissions sont : voir vos bots, écrire des commandes, écrire des workflows, modifier les réglages et les variables, démarrer et arrêter le bot, et côté Discord : voir, publier des messages, gérer le serveur, modérer et tester des commandes texte.

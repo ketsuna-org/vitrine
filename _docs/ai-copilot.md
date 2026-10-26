@@ -56,7 +56,24 @@ Safety rules on these tools:
 
 ## Use it from your own AI (user MCP) {#user-mcp}
 
-You can also drive your bots from the AI assistant you already use, such as Claude, ChatGPT or Cursor, through an MCP connection. It exposes the same tools as the Copilot: read a bot, plan and validate a command, save commands and workflows, change settings and variables, start and stop a bot, and the Discord server tools above. This connection is rolling out and may not be enabled for your account yet.
+You can also drive your bots from the AI assistant you already use, such as Claude, ChatGPT or Cursor, through an MCP connection. It exposes the same tools as the Copilot: read a bot, plan and validate a command, save commands and workflows, change settings and variables, start and stop a bot, and the Discord server tools above.
+
+The address to give your assistant is:
+
+```
+https://api.bot-creator.fr/mcp/user
+```
+
+- **Claude and ChatGPT:** add it as a custom connector (in Claude: Settings, Connectors, Add custom connector), then sign in with Discord when asked.
+- **Cursor:** add it to `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "bot-creator": { "url": "https://api.bot-creator.fr/mcp/user" }
+  }
+}
+```
 
 - **Sign in with Discord only.** No password goes through the connection page.
 - **You choose what to allow.** On the consent screen you pick the permissions and the bots the assistant may touch. The permissions are: view your bots, write commands, write workflows, change settings and variables, start and stop the bot, and for Discord: view, post messages, manage the server, moderate and test text commands.
