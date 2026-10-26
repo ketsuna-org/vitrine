@@ -119,6 +119,10 @@
   "min": 2,
   "max": 6
  },
+ "addsuperreaction": {
+  "min": 3,
+  "max": 3
+ },
  "addtextdisplay": {
   "min": 1,
   "max": 2
@@ -547,9 +551,25 @@
   "min": 2,
   "max": 2
  },
+ "createautomodrule": {
+  "min": 2,
+  "max": 7
+ },
  "createchannel": {
   "min": 2,
   "max": 3
+ },
+ "createevent": {
+  "min": 5,
+  "max": 6
+ },
+ "createinvite": {
+  "min": 0,
+  "max": 4
+ },
+ "createpoll": {
+  "min": 5,
+  "max": 14
  },
  "createrole": {
   "min": 2,
@@ -587,6 +607,10 @@
   "min": 0,
   "max": 1
  },
+ "deleteautomodrule": {
+  "min": 1,
+  "max": 1
+ },
  "deletechannels": {
   "min": 1,
   "max": null
@@ -599,7 +623,15 @@
   "min": 0,
   "max": 0
  },
+ "deleteevent": {
+  "min": 1,
+  "max": 1
+ },
  "deletein": {
+  "min": 1,
+  "max": 1
+ },
+ "deleteinvite": {
   "min": 1,
   "max": 1
  },
@@ -608,6 +640,14 @@
   "max": 2
  },
  "deleterole": {
+  "min": 1,
+  "max": 1
+ },
+ "deletesound": {
+  "min": 1,
+  "max": 1
+ },
+ "deletesticker": {
   "min": 1,
   "max": 1
  },
@@ -622,6 +662,10 @@
  "disablespecialescaping": {
   "min": 0,
   "max": 0
+ },
+ "disconnectmember": {
+  "min": 1,
+  "max": 1
  },
  "discriminator": {
   "min": 1,
@@ -659,6 +703,14 @@
   "min": 2,
   "max": 5
  },
+ "editemoji": {
+  "min": 2,
+  "max": 2
+ },
+ "editevent": {
+  "min": 3,
+  "max": 3
+ },
  "editin": {
   "min": 2,
   "max": 2
@@ -687,9 +739,17 @@
   "min": 4,
   "max": 7
  },
+ "editserver": {
+  "min": 2,
+  "max": 2
+ },
  "editsplittext": {
   "min": 2,
   "max": 2
+ },
+ "editsticker": {
+  "min": 2,
+  "max": 4
  },
  "edittextdisplay": {
   "min": 2,
@@ -702,6 +762,10 @@
  "editthumbnail": {
   "min": 2,
   "max": 5
+ },
+ "editwebhook": {
+  "min": 2,
+  "max": 3
  },
  "embeddedurl": {
   "min": 1,
@@ -734,6 +798,10 @@
  "enabledecimals": {
   "min": 1,
   "max": 1
+ },
+ "endpoll": {
+  "min": 2,
+  "max": 2
  },
  "ephemeral": {
   "min": 0,
@@ -926,6 +994,10 @@
  "getstringselectvalues": {
   "min": 1,
   "max": 2
+ },
+ "getsuperreactions": {
+  "min": 4,
+  "max": 4
  },
  "gettextsplitindex": {
   "min": 1,
@@ -1339,7 +1411,27 @@
   "min": 1,
   "max": 1
  },
+ "listautomodrules": {
+  "min": 0,
+  "max": 0
+ },
+ "listevents": {
+  "min": 0,
+  "max": 0
+ },
+ "listsounds": {
+  "min": 0,
+  "max": 0
+ },
+ "liststickers": {
+  "min": 0,
+  "max": 0
+ },
  "listvar": {
+  "min": 0,
+  "max": 1
+ },
+ "listwebhooks": {
   "min": 0,
   "max": 1
  },
@@ -1471,6 +1563,10 @@
   "min": 0,
   "max": 0
  },
+ "movemember": {
+  "min": 2,
+  "max": 2
+ },
  "multi": {
   "min": 1,
   "max": null
@@ -1599,6 +1695,10 @@
   "min": 1,
   "max": 3
  },
+ "playsound": {
+  "min": 2,
+  "max": 2
+ },
  "premiumexpiretime": {
   "min": 0,
   "max": 1
@@ -1690,6 +1790,10 @@
  "removesplittextelement": {
   "min": 1,
   "max": 1
+ },
+ "removesuperreaction": {
+  "min": 3,
+  "max": 3
  },
  "repeatmessage": {
   "min": 2,
@@ -1839,6 +1943,10 @@
   "min": 0,
   "max": 0
  },
+ "serverdeafen": {
+  "min": 1,
+  "max": 2
+ },
  "serverdescription": {
   "min": 0,
   "max": 1
@@ -1868,6 +1976,10 @@
   "max": 2
  },
  "serverleaderboard": {
+  "min": 1,
+  "max": 2
+ },
+ "servermute": {
   "min": 1,
   "max": 2
  },
@@ -1902,6 +2014,10 @@
  "serververificationlvl": {
   "min": 0,
   "max": 0
+ },
+ "setbotavatar": {
+  "min": 1,
+  "max": 1
  },
  "setchannelvar": {
   "min": 2,
@@ -2190,6 +2306,10 @@
  "userserveravatar": {
   "min": 1,
   "max": 1
+ },
+ "usersuperreacted": {
+  "min": 4,
+  "max": 4
  },
  "userswithrole": {
   "min": 1,
