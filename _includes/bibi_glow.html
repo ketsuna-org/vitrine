@@ -1,0 +1,15 @@
+{% comment %} PixelGlow: 15x15 grid, violet ramp by ring, ignite then breath (CHARTE-GRAPHIQUE §2). Always behind Bibi, never behind text or buttons. {% endcomment %}
+{% assign ramp = "#F4F2EE,#D8CCFF,#A78BFA,#A78BFA,#7C5CF0,#7C5CF0,#4A3C8C,#241C47" | split: "," %}
+<svg class="bibi-glow" viewBox="0 0 15 15" aria-hidden="true" focusable="false" shape-rendering="crispEdges">
+  <g class="bibi-glow-breath">
+  {%- for y in (0..14) -%}{%- for x in (0..14) -%}
+    {%- assign dx = x | minus: 7 -%}{%- assign dy = y | minus: 7 -%}
+    {%- if dx < 0 -%}{%- assign dx = dx | times: -1 -%}{%- endif -%}
+    {%- if dy < 0 -%}{%- assign dy = dy | times: -1 -%}{%- endif -%}
+    {%- assign d = dx -%}{%- if dy > dx -%}{%- assign d = dy -%}{%- endif -%}
+    {%- assign k = 0.5 -%}{%- if dx == 0 or dy == 0 or dx == dy -%}{%- assign k = 1 -%}{%- endif -%}
+    {%- assign o = d | times: 0.08 -%}{%- assign o = 1.0 | minus: o | times: k -%}
+    {%- if d < 8 -%}<rect x="{{ x | plus: 0.05 }}" y="{{ y | plus: 0.05 }}" width="0.9" height="0.9" fill="{{ ramp[d] }}" style="--d:{{ d }};--o:{{ o }}"/>{%- endif -%}
+  {%- endfor -%}{%- endfor -%}
+  </g>
+</svg>

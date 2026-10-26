@@ -1,6 +1,6 @@
-# Captured from the running Flutter app on a Samsung Galaxy S24.
+# Real captures from the Flutter app (release build) on an Android phone, system bars removed.
 width: 1080
-height: 2340
+height: 2194
 screens:
   - id: home
     file: home
@@ -19,12 +19,13 @@ screens:
     headline_fr: "Gérer vos commandes"
     link: /docs/getting-started/
     icon: terminal
-  - id: workflow
-    file: workflow
-    headline: "Reusable Workflows"
-    headline_fr: "Des workflows réutilisables"
-    link: /docs/blocks/
-    icon: alt_route
+  - id: copilot
+    file: copilot
+    headline: "AI Copilot"
+    headline_fr: "Copilote IA"
+    link: /docs/ai-copilot/
+    link_fr: /fr/docs/ai-copilot/
+    icon: auto_awesome
   - id: hosting
     file: hosting
     headline: "Manage Your Hosting"

@@ -1,0 +1,1 @@
+{% assign px = include.size | default: 24 %}<img src="{{ '/assets/mascotte/bibi.svg' | relative_url }}" alt="{{ include.alt }}" width="{{ px }}" height="{{ px }}" class="bibi {{ include.class }}"{% unless include.alt %} aria-hidden="true"{% endunless %}>

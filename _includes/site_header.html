@@ -13,7 +13,7 @@
 <header class="nav-shell sticky top-0 z-50">
   <div class="header-inner mx-auto flex h-14 max-w-[1360px] items-center justify-between px-4 sm:px-6">
     <a href="{{ t.paths.home | relative_url }}" class="brand-link flex items-center gap-2.5 text-on-surface">
-      <img src="{{ '/assets/favicon-32x32.png' | relative_url }}" alt="" width="28" height="28" class="h-7 w-7 rounded-md">
+      {% include bibi.html size=24 %}
       <span class="brand-title text-base font-semibold tracking-tight">{{ t.meta.site_title }}</span>
     </a>
 
@@ -23,9 +23,9 @@
       <div class="relative" data-docs-dropdown>
         <button type="button" data-docs-trigger aria-expanded="false" aria-controls="documentation-menu" class="nav-link gap-1" {% if is_docs %}aria-current="page"{% endif %}>
           <span>{{ t.nav.docs }}</span>
-          <svg class="reicon text-sm transition-transform" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#expand_more"></use></svg>
+          <svg class="pxicon text-sm transition-transform" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#expand_more"></use></svg>
         </button>
-        <div id="documentation-menu" data-docs-menu hidden class="docs-dropdown-menu absolute left-0 top-full z-50 w-64 rounded-lg border border-outline bg-surface-container-low py-1.5 shadow-neon-strong">
+        <div id="documentation-menu" data-docs-menu hidden class="docs-dropdown-menu absolute left-0 top-full z-50 w-64 rounded-lg border border-outline bg-surface-container-low py-1.5">
           <a href="{{ t.paths.docs | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_home }}</a>
           <a href="{{ '/docs/getting-started/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_getting_started }}</a>
           <a href="{{ '/docs/blocks/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_blocks }}</a>
@@ -39,11 +39,11 @@
 
     <div class="flex items-center gap-1">
       <a href="{{ alt_url | relative_url }}" hreflang="{{ t.nav.switch_language_code }}" lang="{{ t.nav.switch_language_code }}" title="{{ t.nav.switch_language_label }}" class="nav-link hidden md:inline-flex">{{ t.nav.switch_language }}</a>
-      <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary !h-9 !min-h-[36px] !px-4 !text-sm md:!h-10">{{ t.nav.download_button }}</a>
+      <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary !h-9 !min-h-[36px] !px-4 !text-sm">{{ t.nav.download_button }}</a>
       <button type="button" data-menu-toggle aria-controls="mobile-navigation" aria-expanded="false" aria-label="{{ t.nav.open_menu }}"
         class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container md:hidden">
-        <svg class="reicon menu-icon-open !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#menu"></use></svg>
-        <svg class="reicon menu-icon-close !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
+        <svg class="pxicon menu-icon-open !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#menu"></use></svg>
+        <svg class="pxicon menu-icon-close !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#close"></use></svg>
       </button>
     </div>
   </div>
@@ -51,11 +51,11 @@
   <div id="mobile-navigation" data-menu-panel hidden role="dialog" aria-modal="true" aria-label="{{ t.nav.site_navigation }}" class="nav-panel-mobile">
     <div class="nav-mobile-bar">
       <span class="flex items-center gap-2.5 text-base font-semibold">
-        <img src="{{ '/assets/favicon-32x32.png' | relative_url }}" alt="" width="28" height="28" class="h-7 w-7 rounded-md">
+        {% include bibi.html size=24 %}
         {{ t.meta.site_title }}
       </span>
       <button type="button" data-menu-close-btn aria-label="{{ t.nav.close_menu }}" class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container">
-        <svg class="reicon !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#close"></use></svg>
+        <svg class="pxicon !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#close"></use></svg>
       </button>
     </div>
     <div class="nav-mobile-scroll">

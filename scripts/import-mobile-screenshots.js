@@ -6,7 +6,7 @@ const sharp = require('sharp');
 
 const source = process.argv[2];
 const output = path.join(__dirname, '../assets/images/screenshots/mobile');
-const screens = ['home', 'blocks', 'commands', 'workflow', 'hosting'];
+const screens = ['home', 'blocks', 'commands', 'copilot', 'hosting'];
 
 async function main() {
   if (!source) throw new Error('Provide a directory containing the Flutter PNG captures.');

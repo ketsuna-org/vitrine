@@ -26,18 +26,18 @@
     if (!text) return '';
     let s = escapeHtml(text);
     // User mentions
-    s = s.replace(/&lt;@!?([0-9]+)&gt;/g, '<span class="bg-[#5865F2]/20 text-[#B19DF7] px-1 rounded font-semibold">@User</span>');
+    s = s.replace(/&lt;@!?([0-9]+)&gt;/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">@User</span>');
     // Channel mentions
-    s = s.replace(/&lt;#([0-9]+)&gt;/g, '<strong class="text-[#B19DF7] font-semibold">#ticket-channel</strong>');
+    s = s.replace(/&lt;#([0-9]+)&gt;/g, '<strong class="text-[#A78BFA] font-semibold">#ticket-channel</strong>');
     // Role mentions
-    s = s.replace(/&lt;@&amp;([0-9]+)&gt;/g, '<span class="bg-[#5865F2]/20 text-[#B19DF7] px-1 rounded font-semibold">@Role</span>');
+    s = s.replace(/&lt;@&amp;([0-9]+)&gt;/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">@Role</span>');
     // BDScript Placeholders
-    s = s.replace(/\$authorID/g, '<span class="bg-[#5865F2]/20 text-[#B19DF7] px-1 rounded font-semibold">@User</span>');
-    s = s.replace(/\$username/g, '<span class="bg-[#5865F2]/20 text-[#B19DF7] px-1 rounded font-semibold">User</span>');
+    s = s.replace(/\$authorID/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">@User</span>');
+    s = s.replace(/\$username/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">User</span>');
     s = s.replace(/\$guildName|\$serverName/g, '<strong>Community Server</strong>');
     s = s.replace(/\$ping|\$botPing/g, '<strong>24 ms</strong>');
     s = s.replace(/\$messageID/g, '<code>1029384756</code>');
-    s = s.replace(/\$channelID/g, '<strong class="text-[#B19DF7] font-semibold">#current-channel</strong>');
+    s = s.replace(/\$channelID/g, '<strong class="text-[#A78BFA] font-semibold">#current-channel</strong>');
     // Discord Markdown
     s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
@@ -267,7 +267,7 @@
       <div class="discord-preview-badge-header">
         <span>${T('Discord Simulator Live Preview', 'Aperçu Discord en direct')}</span>
         <span class="badge-tag">
-          <svg class="reicon text-[13px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#smart_toy"></use></svg>
+          <svg class="pxicon text-[13px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/pixelarticons.svg#smart_toy"></use></svg>
           ${T('Bot Simulator', 'Simulateur')}
         </span>
       </div>
@@ -289,7 +289,7 @@
     if (attachment) {
       html += `
         <div class="discord-attachment-file mb-2">
-          <svg class="reicon file-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#attachment"></use></svg>
+          <svg class="pxicon file-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/pixelarticons.svg#attachment"></use></svg>
           <div class="file-info">
             <span class="file-name">${escapeHtml(attachment.name)}</span>
             <span class="file-size">142.5 KB</span>
@@ -366,7 +366,7 @@
           <button class="discord-btn ${styleClass}" type="button" onclick="return false;">
             ${btn.emoji ? `<span>${escapeHtml(btn.emoji)}</span>` : ''}
             <span>${escapeHtml(btn.label)}</span>
-            ${btn.style === 'link' ? '<svg class="reicon text-[13px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#open_in_new"></use></svg>' : ''}
+            ${btn.style === 'link' ? '<svg class="pxicon text-[13px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/pixelarticons.svg#open_in_new"></use></svg>' : ''}
           </button>
         `;
       });
@@ -377,7 +377,7 @@
       html += `
         <div class="discord-select-menu mt-2">
           <span>${escapeHtml(selectMenu.placeholder)}</span>
-          <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#expand_more"></use></svg>
+          <svg class="pxicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/pixelarticons.svg#expand_more"></use></svg>
         </div>
       `;
     }
@@ -385,7 +385,7 @@
     if (isEphemeral) {
       html += `
         <div class="discord-ephemeral-notice mt-2">
-          <svg class="reicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#visibility_off"></use></svg>
+          <svg class="pxicon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/pixelarticons.svg#visibility_off"></use></svg>
           <span>${T('Only you can see this', 'Visible uniquement par vous')} • <a href="#" class="underline hover:text-white" onclick="return false;">${T('Dismiss message', 'Ignorer le message')}</a></span>
         </div>
       `;
@@ -435,12 +435,12 @@
       nav.className = 'dual-view-nav';
       nav.innerHTML = `
         <span class="dual-tab-btn active">
-          <svg class="reicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#code"></use></svg>
+          <svg class="pxicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/pixelarticons.svg#code"></use></svg>
           <span>Script (BDFD / BDScript)</span>
         </span>
         <div class="dual-tab-actions">
           <button class="dual-copy-btn" type="button" title="Copy code snippet">
-            <svg class="reicon text-[14px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/reicon.svg#content_copy"></use></svg>
+            <svg class="pxicon text-[14px]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/pixelarticons.svg#content_copy"></use></svg>
             <span>Copy</span>
           </button>
         </div>

@@ -31,7 +31,7 @@
         <p class="m-0 max-w-xl text-lg leading-relaxed text-on-surface-variant">{{ t.home.try.body }}</p>
         <p class="m-0 max-w-xl text-sm text-on-surface-variant">{{ t.home.try.note }}</p>
       </div>
-      <div><a href="{{ t.paths.playground | relative_url }}" class="btn btn-primary btn-lg">{{ t.home.try.cta }}</a></div>
+      <div><a href="{{ t.paths.playground | relative_url }}" class="btn btn-secondary btn-lg">{{ t.home.try.cta }}</a></div>
     </div>
   </section>
 
@@ -72,7 +72,7 @@ $description[$ping ms]</code></pre>
       <h2 class="m-0 max-w-2xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{{ t.home.pillars.title }}</h2>
       <div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-3">
         {% for screen in screenshots offset:1 limit:3 %}
-        <a href="{{ screen.link | relative_url }}" class="group flex flex-col gap-4">
+        <a href="{% if page.locale == 'fr' and screen.link_fr %}{{ screen.link_fr | relative_url }}{% else %}{{ screen.link | relative_url }}{% endif %}" class="group flex flex-col gap-4">
           <div class="overflow-hidden rounded-xl border border-outline bg-background px-6 pt-6">
             {% include responsive_screenshot.html screen_id=screen.file alt=screen.headline class="mx-auto w-full max-w-[240px]" %}
           </div>

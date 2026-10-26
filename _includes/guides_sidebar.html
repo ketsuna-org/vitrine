@@ -6,7 +6,7 @@
 
   <div class="sidebar-group">
     <a href="{{ t.paths.guides | relative_url }}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-bold text-on-surface-variant hover:text-primary mb-2">
-      <svg class="reicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#library_books"></use></svg>
+      <svg class="pxicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#library_books"></use></svg>
       All Guides
     </a>
 
@@ -18,16 +18,16 @@
         <div class="sidebar-cat-group">
           <button class="sidebar-cat-header flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-toggle-target="guide-cat-list-{{ cat_slug }}">
             <span class="flex items-center gap-2">
-              <svg class="reicon text-base text-primary/70" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#article"></use></svg>
+              <svg class="pxicon text-base text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#article"></use></svg>
               <span>{{ cat }}</span>
             </span>
-            <svg class="reicon text-sm transition-transform duration-200{% if page.category == cat %} rotate-180{% endif %}" id="guide-cat-list-{{ cat_slug }}-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/reicon.svg' | relative_url }}#expand_more"></use></svg>
+            <svg class="pxicon text-sm transition-transform duration-200{% if page.category == cat %} rotate-180{% endif %}" id="guide-cat-list-{{ cat_slug }}-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#expand_more"></use></svg>
           </button>
           <ul id="guide-cat-list-{{ cat_slug }}" class="flex flex-col gap-1 pl-4 mt-1{% unless page.category == cat %} hidden{% endunless %}">
             {% for post in cat_posts %}
               <li>
                 <a href="{{ post.url | relative_url }}"
-                   class="sidebar-item block px-3 py-1.5 rounded-lg text-sm transition-all {% if page.url == post.url %}bg-primary/10 text-primary font-bold border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
+                   class="sidebar-item block px-3 py-1.5 rounded-lg text-sm transition-all {% if page.url == post.url %}bg-accent-deep text-primary font-bold border border-primary/20{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
                    data-search-term="{{ post.title | downcase }} {{ post.description | default: '' | downcase }}">
                   {{ post.title }}
                 </a>
