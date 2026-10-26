@@ -27,6 +27,7 @@ The Copilot is not available in the Steam build of the app.
 - **Change bot settings.** Status, nickname, avatar and text-command prefix.
 - **Start and stop a bot**, and restore an earlier version of a command or workflow.
 - **Explain a feature.** It looks up the official documentation and the function reference before answering, so its examples use real functions.
+- **Create images.** Describe a banner, a header or a server icon and the Copilot draws it. The image is rendered on your device, you see the preview, and you decide whether it is used or posted.
 - **Run your Discord server.** Organize channels, post rules and announcements, manage roles and settings, and moderate members (see [Manage your Discord server](#discord-server)).
 - **Work from your own AI.** Connect Claude, ChatGPT or Cursor to your bots (see [Use it from your own AI](#user-mcp)).
 
