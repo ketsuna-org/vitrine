@@ -3,7 +3,7 @@ layout: doc
 title: Copilote IA
 category: "Général"
 category_key: "Meta"
-description: "Ce que le copilote IA de Bot Creator peut lire et modifier sur votre bot, comment vous gardez la main sur chaque action et comment les crédits IA sont comptés."
+description: "Ce que le copilote IA de Bot Creator peut lire et modifier sur votre bot, ce qu'il peut faire sur votre serveur Discord, comment l'utiliser depuis votre propre IA, comment vous gardez la main sur chaque action et comment les crédits IA sont comptés."
 locale: fr
 lang: fr
 content_language: fr
@@ -30,8 +30,42 @@ Le copilote n'est pas disponible dans la version Steam de l'application.
 - **Changer les réglages du bot.** Statut, pseudo, avatar et préfixe des commandes texte.
 - **Démarrer et arrêter un bot**, et restaurer une version précédente d'une commande ou d'un workflow.
 - **Expliquer une fonction.** Il consulte la documentation officielle et la référence des fonctions avant de répondre, donc ses exemples utilisent de vraies fonctions.
+- **Gérer votre serveur Discord.** Organiser les salons, publier règles et annonces, gérer rôles et réglages, et modérer des membres (voir [Gérer votre serveur Discord](#discord-server)).
+- **Travailler depuis votre propre IA.** Connecter Claude, ChatGPT ou Cursor à vos bots (voir [L'utiliser depuis votre propre IA](#user-mcp)).
 
 Avant d'écrire quoi que ce soit, le copilote planifie la commande, n'utilise que des fonctions qui existent et valide le script. Si la validation échoue, il corrige les erreurs et réessaie.
+
+## Gérer votre serveur Discord {#discord-server}
+
+Au-delà des commandes, le copilote peut vous aider à gérer le serveur Discord lui-même. Ces outils de gestion de serveur sont en cours de déploiement et peuvent ne pas être disponibles dans toutes les versions de l'application. Ils fonctionnent sur les serveurs où votre bot est présent, et uniquement pour les personnes autorisées à gérer le serveur (propriétaire, Administrateur ou Gérer le serveur). Le bot doit aussi avoir les permissions correspondantes dans Discord.
+
+| Quoi | Ce que fait le copilote |
+|------|-------------------------|
+| Salons et catégories | Les créer, les renommer, les déplacer et les organiser. Il peut proposer une structure complète de serveur, vous montre un aperçu et ne l'applique qu'après votre confirmation. À cette étape, il crée et ne supprime jamais. |
+| Annuler une structure | Une structure qu'il a appliquée peut être annulée pendant 14 jours : les salons et catégories qu'il a créés sont supprimés et les sujets, la restriction d'âge et le mode lent qu'il a changés sont remis. Vous tapez le nom exact du serveur pour confirmer. Les messages des salons supprimés sont perdus. |
+| Règles, bienvenue, FAQ, annonces | Rédiger le message ou l'embed et le publier avec le bot, le modifier ou le supprimer. Vous voyez le message avant son envoi. Les mentions sont désactivées sauf si vous nommez les rôles, et mentionner tout le monde demande que vous le tapiez. |
+| Bannières et visuels | Dessiner une bannière ou une icône de serveur. Elle est rendue sur votre appareil et c'est vous qui décidez de la publier. |
+| Réglages du serveur | Nom, icône, salons système, règlement et mises à jour, salon AFK, niveau de vérification, notifications par défaut, filtre de contenu et langue. |
+| Rôles | Créer, modifier et supprimer des rôles et leurs permissions. Administrateur n'est jamais accordé, et les permissions puissantes demandent que vous tapiez le nom exact du rôle. |
+| Modération | Expulser, bannir, débannir, exclure temporairement ou lever une exclusion pour un membre dont vous donnez l'identifiant Discord. Un motif est toujours exigé et il est inscrit dans le journal d'audit du serveur. |
+| Vrai test d'une commande texte | Votre bot envoie la commande dans un salon de test que vous avez choisi, vérifie la réponse, supprime ses propres messages et donne le résultat. |
+
+Règles de sécurité de ces outils :
+
+- Vous voyez un aperçu et vous confirmez avant tout changement.
+- Les actions destructrices demandent de taper le nom exact : supprimer un salon ou un rôle, expulser ou bannir un membre (son identifiant), ou annuler une structure (le nom du serveur). Les salons de règles, de mises à jour et système ne peuvent pas être supprimés.
+- Le copilote ne lit jamais les messages de vos membres et ne peut ni lister ni rechercher les membres. Il ne peut lire que les messages écrits par le bot lui-même.
+- La modération est limitée en fréquence, et chaque action porte un motif.
+
+## L'utiliser depuis votre propre IA (MCP utilisateur) {#user-mcp}
+
+Vous pouvez aussi piloter vos bots depuis l'assistant IA que vous utilisez déjà, comme Claude, ChatGPT ou Cursor, grâce à une connexion MCP. Elle expose les mêmes outils que le copilote : lire un bot, planifier et valider une commande, enregistrer des commandes et des workflows, changer les réglages et les variables, démarrer et arrêter un bot, et les outils de serveur Discord ci-dessus. Cette connexion est en cours de déploiement et peut ne pas être activée pour votre compte.
+
+- **Connexion par Discord uniquement.** Aucun mot de passe ne transite par la page de connexion.
+- **Vous choisissez ce qui est autorisé.** Sur l'écran de consentement, vous choisissez les permissions et les bots que l'assistant peut toucher. Les permissions sont : voir vos bots, écrire des commandes, écrire des workflows, modifier les réglages et les variables, démarrer et arrêter le bot, et côté Discord : voir, publier des messages, gérer le serveur, modérer et tester des commandes texte.
+- **Vous pouvez reprendre la main.** La liste des connexions de votre compte permet d'en retirer une ou de changer les bots qu'elle couvre.
+- **Mêmes règles de sécurité.** Chaque appel est contrôlé selon la permission, le bot autorisé et vos droits réels sur ce bot. Les écritures sont limitées à 60 par minute et les lectures à 600 par minute pour chaque connexion, et chaque écriture est journalisée.
+- **L'accès expire.** Un accès dure une heure et se renouvelle avec un identifiant de rafraîchissement valable 30 jours ; réutiliser un ancien identifiant annule toute la connexion.
 
 ## Vous gardez la main
 
@@ -50,7 +84,7 @@ Avant chaque requête, le serveur réserve un budget prudent, puis libère la pa
 
 ## Confidentialité
 
-Vos messages et le contexte nécessaire pour répondre (configuration du bot, commandes, résultats d'outils) sont envoyés au fournisseur d'IA utilisé par Bot Creator. Les identifiants comme les jetons Discord, les clés d'API et les URL de webhook, ainsi que les adresses e-mail, sont masqués avant l'envoi, mais les autres données personnelles ne sont pas reconnues automatiquement : ne collez pas de jetons ni de données personnelles de tiers dans une discussion. Le copilote demande votre consentement avant sa première utilisation. Le détail complet est dans la [politique de confidentialité]({{ '/privacy-policy/' | relative_url }}).
+Vos messages et le contexte nécessaire pour répondre (configuration du bot, commandes, résultats d'outils) sont envoyés au fournisseur d'IA utilisé par Bot Creator. Les identifiants comme les jetons Discord, les clés d'API et les URL de webhook, ainsi que les adresses e-mail, sont masqués avant l'envoi, mais les autres données personnelles ne sont pas reconnues automatiquement : ne collez pas de jetons ni de données personnelles de tiers dans une discussion. Quand vous modérez un membre, son identifiant Discord et le motif que vous donnez sont aussi envoyés au fournisseur. Le copilote demande votre consentement avant sa première utilisation. Le détail complet est dans la [politique de confidentialité]({{ '/privacy-policy/' | relative_url }}).
 
 ## À savoir
 
