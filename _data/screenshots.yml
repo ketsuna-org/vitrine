@@ -23,7 +23,8 @@ screens:
     file: copilot
     headline: "AI Copilot"
     headline_fr: "Copilote IA"
-    link: /download/
+    link: /docs/ai-copilot/
+    link_fr: /fr/docs/ai-copilot/
     icon: auto_awesome
   - id: hosting
     file: hosting
