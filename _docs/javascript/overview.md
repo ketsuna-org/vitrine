@@ -25,6 +25,7 @@ Check your bot's mode with [$scriptLanguage](/docs/scriptlanguage/) — it retur
 | `variables` | Runtime variables object |
 | `webhook` | Webhook payload context or `null` |
 | `console` | `log`, `info`, `warn`, `error`, `debug` |
+| `voice` | Music in voice channels (Lavalink, Premium) |
 | `fetch` | HTTP requests (proxied) |
 | `require(name)` | Whitelisted Node modules |
 
@@ -48,7 +49,8 @@ Many BDJS features map to BDFD `$functions`. See the [BDFD Variables](/docs/#var
 - [Autocomplete](/docs/javascript/autocomplete/) — dynamic slash suggestions
 - [discord.js builders](/docs/javascript/discordjs-builders/) — embeds and UI components
 - [config](/docs/javascript/config/) and [variables](/docs/javascript/variables/)
-- [canvas](/docs/javascript/canvas/) and [voice](/docs/javascript/voice/)
+- [voice (Music)](/docs/javascript/music/) — play music with `voice.play()`, queue and loop controls
+- [canvas](/docs/javascript/canvas/) and [voice (low level)](/docs/javascript/voice/)
 - [sandbox](/docs/javascript/sandbox/) — limits and restrictions
 - [require()](/docs/javascript/require/)
 - [Placeholders](/docs/javascript/placeholders/)
