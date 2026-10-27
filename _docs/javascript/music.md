@@ -25,9 +25,9 @@ For raw audio streams with `require('@discordjs/voice')`, see [voice (low level)
 | `await voice.play(query \| url, { channelId?, source?, next? })` | Joins the voice channel of the person who ran the script (or `channelId`) and plays, or queues the track. A playlist URL queues every track. Returns `{ track, queued, position, playlist? }` (`position` 0 = playing now). `source`: `youtube` (default), `youtubemusic`, `soundcloud`, `spotify`. `next: true` puts the track at the front of the queue. |
 | `await voice.search(query, { limit?, source? })` | Finds tracks (10 at most) without playing anything. |
 | `await voice.pause()` / `await voice.resume()` | Pause and resume the current track. |
-| `await voice.skip()` | Next track. Returns it, or `null` when the queue is over. Skips even in `track` loop. |
+| `await voice.skip()` | Next track. Returns it, or `null` when the queue is over. A skip never loops: on the last track it stops the queue, even in `queue` loop. |
 | `await voice.stop()` | Stops and empties the queue. The bot stays in the channel. |
-| `await voice.seek(ms)` | Jumps to a position (milliseconds) in the current track. |
+| `await voice.seek(position, unit?)` | Jumps to a position in the current track: milliseconds by default, pass `'seconds'` as second argument. |
 | `await voice.setVolume(0-200)` | Volume, 100 is normal. Returns the applied value. |
 | `voice.getVolume()` | Current volume. |
 | `voice.setLoopMode('off' \| 'track' \| 'queue')` | Repeat nothing, the current track, or the whole queue. |
