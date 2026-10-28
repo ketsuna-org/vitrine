@@ -14,7 +14,7 @@ permalink: /docs/javascript/music/
 
 The global `voice` object plays music through Lavalink. You do not write any event handler: the queue advances by itself, and the bot leaves the channel after 5 minutes without a track (or 2 minutes alone in it).
 
-> **Premium feature.** Music is available to bots whose owner has Premium, like Lavalink in Dart bots. Without Premium, every action throws `Music is not available for this bot…` and `voice.enabled` is `false`. Turn music on in the bot settings (Lavalink).
+> **Premium feature.** Music is available to bots whose owner has Premium, like Lavalink in Dart bots. Without Premium, every action throws `Music is not available for this bot…` and `voice.enabled` is `false`. Turn music on in the bot settings, **Lavalink** tab (app and Studio), then add your own fallback servers there if you want.
 
 For raw audio streams with `require('@discordjs/voice')`, see [voice (low level)](/docs/javascript/voice/).
 
