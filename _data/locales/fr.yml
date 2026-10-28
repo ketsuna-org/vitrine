@@ -14,6 +14,7 @@ paths:
   docs_full: "/docs/"
   privacy: "/privacy-policy.html"
   terms: "/terms-of-sale.html"
+  terms_of_use: "/fr/conditions-d-utilisation/"
   legal: "/legal-notice.html"
 
 meta:
@@ -56,6 +57,7 @@ shell:
   footer_downloads: "Téléchargements"
   footer_legal: "Mentions légales"
   footer_terms: "Conditions de vente (en anglais)"
+  footer_terms_of_use: "Conditions d'utilisation"
   footer_legal_notice: "Mentions légales (en anglais)"
   footer_copyright: "Créé par Aetheric Tech."
   footer_contact: "Contact"

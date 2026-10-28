@@ -6,7 +6,7 @@ category: "Embed & Message"
 
 # $editMessage
 
-Edits an existing message sent by the bot: replaces its text and, optionally, its embed.
+Edits an existing message sent by the bot, or the message of the button or select menu that was just clicked: replaces its text and, optionally, its embed.
 
 ## Syntax
 
@@ -18,8 +18,8 @@ $editMessage[channelId;messageId;newContent;(title;description;color;footer)]
 
 | Parameter | Description | Required |
 |-----------|-------------|:-----------:|
-| `channelId` | ID of the channel containing the message | Yes |
-| `messageId` | ID of the message to modify | Yes |
+| `channelId` | ID of the channel containing the message. Leave it empty (together with `messageId`) to edit the message of the clicked button or select menu | Yes |
+| `messageId` | ID of the message to modify. Leave it empty (together with `channelId`) to edit the message of the clicked button or select menu | Yes |
 | `newContent` | New text content of the message (the argument must be present; it can be empty). Maximum 2000 characters. | Yes |
 | `title` | Embed title, maximum 256 characters (providing the 4th argument, even empty, replaces the embed) | No |
 | `description` | Embed description, maximum 4096 characters | No |
@@ -29,6 +29,8 @@ $editMessage[channelId;messageId;newContent;(title;description;color;footer)]
 ## Description
 
 `$editMessage` updates an existing message of a channel and returns an empty string. The text of the message is always replaced by `newContent`. When at least one of the optional embed arguments is present (3 to 7 arguments are accepted), the embed of the message is replaced by one built from them; if all of them are empty the embed is removed. Components are not changed.
+
+When both `channelId` and `messageId` are empty, the command must have been triggered by a button or a select menu: the function then edits the message that holds that component, with no ID to look up. Outside of such an interaction it fails with `Give a channel and message ID outside a button or select menu interaction.`
 
 The edit is performed immediately, on an existing message, and affects neither the pending response nor `$sendMessage[]`. Both IDs must be positive integers (`Invalid Discord ID.` otherwise).
 
@@ -65,6 +67,12 @@ $editMessage[$channelID;$var[id];;Update;The information has changed;#FFA500]
 $if[$customID==btn_edit]
   $editMessage[$channelID;$messageID;Message edited by interaction]
 $endif
+```
+
+### Edit the message of the clicked button (no IDs)
+
+```bdfd
+$editMessage[;;Vote saved ✅;Poll;You voted "Yes";#57F287;Thank you!]
 ```
 
 ## Notes

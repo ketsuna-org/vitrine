@@ -8,6 +8,8 @@ description: Voice channel audio with require('@discordjs/voice') in BDJS script
 permalink: /docs/javascript/voice/
 ---
 
+> Looking to play music? Use the global [`voice` object](/docs/javascript/music/) (Lavalink, Premium): `voice.play()`, queue, loop and volume without writing any handler.
+
 Play audio in voice channels with `require('@discordjs/voice')`. Remote audio URLs are supported; local file paths are blocked. HTTP URLs require FFmpeg on the runner host.
 
 ## Key exports

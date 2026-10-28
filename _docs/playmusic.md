@@ -21,6 +21,7 @@ Loads a track and plays it, or adds it to the queue if something is already play
 
 - The bot connects to the target voice channel by itself; if it is in another channel, it is moved to the requested one.
 - If the user is not in a voice channel (and no `channelID` is given), the error `You must be in a voice channel` is raised. If nothing is found, the error `No track found for query: <query>` is raised.
+- The queue holds up to 500 tracks per server (extra playlist tracks are ignored). The bot leaves the voice channel by itself after 5 minutes with nothing to play, or 2 minutes alone in the channel.
 - Requires a server and a configured music (Lavalink) service, otherwise an error is raised.
 
 ## Examples
