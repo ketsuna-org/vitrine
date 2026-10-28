@@ -28,6 +28,7 @@
       </nav>
       <nav class="col-span-2 flex flex-col sm:col-span-1" aria-label="Legal">
         <span class="pb-2 text-xs text-on-surface-variant">{{ t.shell.footer_legal }}</span>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.terms_of_use | relative_url }}">{{ t.shell.footer_terms_of_use }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.terms | relative_url }}">{{ t.shell.footer_terms }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.privacy | relative_url }}">{{ t.nav.privacy }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.legal | relative_url }}">{{ t.shell.footer_legal_notice }}</a>

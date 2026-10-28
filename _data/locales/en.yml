@@ -13,6 +13,7 @@ paths:
   docs: "/docs/"
   privacy: "/privacy-policy.html"
   terms: "/terms-of-sale.html"
+  terms_of_use: "/terms-of-use.html"
   legal: "/legal-notice.html"
 
 meta:
@@ -61,6 +62,7 @@ shell:
   footer_release_notes: "Release notes"
   footer_privacy: "Privacy policy"
   footer_terms: "Terms of Sale"
+  footer_terms_of_use: "Terms of Use"
   footer_legal_notice: "Legal notice"
   footer_copyright: "Built by Aetheric Tech."
   footer_contact: "Contact"
