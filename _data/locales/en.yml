@@ -280,7 +280,7 @@ pricing:
   ai_studio: "Studio pack"
   ai_note: "Reference prices in euros; the store price can differ by country and store. AI credits are not sold on the desktop version."
   steam_title: "Desktop on Steam"
-  steam_body: "The desktop version on Steam is a paid app, about 10 euros, not yet released. It runs your bots 100% locally, with the Premium features unlocked, no ads and no in-app purchases. The AI Copilot, AI credits and cloud hosting are not part of it."
+  steam_body: "The desktop version on Steam is a paid app, about 10 euros depending on your country, not yet released. It runs your bots 100% locally, with the Premium features unlocked, no ads and no in-app purchases. The AI Copilot, AI credits and cloud hosting are not part of it."
   docker_title: "Host it yourself"
   docker_body: "The Docker runner lets you host your own bots on your own server."
   docker_link: "Docker runner setup"
