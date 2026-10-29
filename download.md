@@ -40,14 +40,14 @@ permalink: /download/
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Mobile</h2>
         <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
-          Build and review bot logic on the go. Best for creators and moderators who need to act fast.
+          Build and review bot logic on the go, with the AI Copilot, AI credits and Premium. Best for creators and moderators who need to act fast.
         </p>
         <div class="mt-auto flex flex-col justify-end gap-3 h-[6.75rem]">
-          <a class="button-primary w-full" href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">
+          <a class="button-primary w-full" href="{% include store_link.html store='android_play' content='download' %}" target="_blank" rel="noopener noreferrer">
             <svg class="pxicon text-sm mr-2" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#phone_android"></use></svg>
             Google Play
           </a>
-          <a class="button-outline w-full" href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">
+          <a class="button-outline w-full" href="{% include store_link.html store='ios_appstore' content='download' %}" target="_blank" rel="noopener noreferrer">
             <svg class="pxicon text-sm mr-2" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#phone_iphone"></use></svg>
             App Store
           </a>
@@ -61,10 +61,10 @@ permalink: /download/
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Desktop</h2>
         <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
-          A spacious workspace for designing commands and organizing logic on Windows, MacOS, and Linux.
+          A spacious workspace for designing commands and organizing logic on Windows, macOS and Linux. The Steam version is paid (about 10 euros depending on your country, not yet released) and runs your bots 100% locally, without ads, the AI Copilot, AI credits or cloud hosting.
         </p>
         <div class="mt-auto flex flex-col justify-end gap-3 h-[6.75rem]">
-          <a class="button-primary w-full" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">
+          <a class="button-primary w-full" href="{% include store_link.html store='steam' content='download' %}" target="_blank" rel="noopener noreferrer">
             <svg class="pxicon text-sm mr-2" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#sports_esports"></use></svg>
             Steam
           </a>
@@ -105,7 +105,7 @@ permalink: /download/
       <div class="rounded-lg bg-surface-container-low border border-outline-variant p-6 flex flex-col gap-4">
         <p class="text-xs font-bold text-primary uppercase tracking-widest">Deploy & scale</p>
         <h2 class="font-display text-2xl font-bold text-on-surface">Grow from app hosting to self-hosted runners</h2>
-        <p class="text-on-surface-variant text-sm leading-relaxed">Start with managed app hosting, then move to the Docker runner when you need server-side uptime.</p>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Run your bots on our servers with Hosted Apps, or on your own server with the Docker runner when you need server-side uptime.</p>
         {% include responsive_screenshot.html screen_id="hosting" alt="Bot Creator Android bot card with the start and manage controls" class="w-full max-w-[280px] mx-auto drop-" %}
       </div>
     </section>

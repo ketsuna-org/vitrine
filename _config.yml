@@ -30,6 +30,10 @@ github_username:  ketsuna-org
 author: Garder500
 lang: en
 
+# Cloudflare Web Analytics (audience measurement without cookies). The token is public, it is not a secret.
+# Leave empty to load no script at all; set it once the site is enabled in the Cloudflare dashboard.
+cloudflare_web_analytics_token: ""
+
 # Build settings
 ignore_theme_config: true
 # theme: minima

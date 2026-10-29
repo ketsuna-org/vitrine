@@ -55,4 +55,8 @@
     {% endif %}
   {% endif %}
   {% include seo_structured_data.html %}
+  {% comment %} Cloudflare Web Analytics: no cookie, no identifier. Loaded only when a token is configured in _config.yml. If a Content-Security-Policy is added, allow static.cloudflareinsights.com (script-src) and cloudflareinsights.com (connect-src). {% endcomment %}
+  {% if site.cloudflare_web_analytics_token and site.cloudflare_web_analytics_token != '' %}
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.cloudflare_web_analytics_token | strip | escape }}"}'></script>
+  {% endif %}
 </head>
