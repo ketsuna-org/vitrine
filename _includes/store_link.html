@@ -1,0 +1,17 @@
+{% comment %}
+  Store link with the acquisition campaign (UTM). Output: the URL only, to put in an href.
+
+  Parameters:
+    store    : key in _data/downloads.yml (android_play, ios_appstore, steam)
+    content  : placement of the link (header, footer, hero, pricing, docs, download)
+    medium   : optional, defaults to the page (translation_key, otherwise the URL slug, otherwise the layout)
+    campaign : optional, defaults to "vitrine"
+
+  Values are normalised to ^[a-z0-9_-]{1,32}$ by the store_url filter (_plugins/store_links.rb).
+  Usage: href="{% include store_link.html store='android_play' content='download' %}"
+{% endcomment %}
+{%- assign sl_medium = include.medium | default: page.translation_key -%}
+{%- if sl_medium == nil or sl_medium == '' -%}{%- assign sl_medium = page.url | slugify -%}{%- endif -%}
+{%- if sl_medium == nil or sl_medium == '' -%}{%- assign sl_medium = page.layout -%}{%- endif -%}
+{%- assign sl_store = site.data.downloads.stores[include.store] -%}
+{{- sl_store.url | store_url: include.store, sl_medium, include.content, include.campaign -}}

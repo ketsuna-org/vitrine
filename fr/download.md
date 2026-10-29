@@ -44,11 +44,11 @@ permalink: /fr/download/
           Construisez et relisez la logique de votre bot en déplacement. Idéal pour les créateurs et modérateurs qui doivent agir vite.
         </p>
         <div class="mt-auto flex flex-col justify-end gap-3 h-[6.75rem]">
-          <a class="button-primary w-full" href="{{ downloads.stores.android_play.url }}" target="_blank" rel="noopener noreferrer">
+          <a class="button-primary w-full" href="{% include store_link.html store='android_play' content='download' %}" target="_blank" rel="noopener noreferrer">
             <svg class="pxicon text-sm mr-2" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#phone_android"></use></svg>
             Google Play
           </a>
-          <a class="button-outline w-full" href="{{ downloads.stores.ios_appstore.url }}" target="_blank" rel="noopener noreferrer">
+          <a class="button-outline w-full" href="{% include store_link.html store='ios_appstore' content='download' %}" target="_blank" rel="noopener noreferrer">
             <svg class="pxicon text-sm mr-2" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#phone_iphone"></use></svg>
             App Store
           </a>
@@ -65,7 +65,7 @@ permalink: /fr/download/
           Un espace de travail confortable pour concevoir vos commandes et organiser votre logique sur Windows, macOS et Linux.
         </p>
         <div class="mt-auto flex flex-col justify-end gap-3 h-[6.75rem]">
-          <a class="button-primary w-full" href="{{ downloads.stores.steam.url }}" target="_blank" rel="noopener noreferrer">
+          <a class="button-primary w-full" href="{% include store_link.html store='steam' content='download' %}" target="_blank" rel="noopener noreferrer">
             <svg class="pxicon text-sm mr-2" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#sports_esports"></use></svg>
             Steam
           </a>

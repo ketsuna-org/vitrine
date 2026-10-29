@@ -194,6 +194,9 @@ faq:
       a: "Oui, dans le playground. Modifiez des blocs ou collez un extrait BDFD et voyez le message Discord qu'il afficherait. Tout se passe dans votre navigateur : rien n'est envoyé et rien n'est exécuté."
     - q: "La documentation existe-t-elle en français ?"
       a: "La documentation et les guides sont en anglais. L'accueil, la page de téléchargement et cette FAQ existent aussi en français."
+    - q: "Quelles données sont mesurées ?"
+      a: "La vitrine compte les visites sans cookie ni identifiant (Cloudflare Web Analytics) et ne lit que des chiffres agrégés. Sur nos serveurs, chaque compte garde les dates de quelques premiers événements (premier bot enregistré, démarré, première commande, achat) pour améliorer la prise en main, sans contenu de message ni jeton ; elles sont effacées avec le compte. Si vous acceptez l'analytique dans l'app, elle peut aussi envoyer une fois d'où vient l'installation et quelques jalons locaux. La question « Comment nous avez-vous connus ? » est facultative et posée une seule fois. La politique de confidentialité (en anglais) donne le détail."
+
 
 pricing:
   title: "Tarifs"

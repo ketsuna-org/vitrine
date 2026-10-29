@@ -250,6 +250,9 @@ faq:
       a: "Yes, in the playground. Edit blocks or paste a BDFD snippet and see the Discord message it would draw. It runs in your browser: nothing is sent anywhere and nothing is executed."
     - q: "Is the documentation available in French?"
       a: "The documentation and the guides are in English. The home page, the download page and this FAQ are also available in French."
+    - q: "What data is measured?"
+      a: "The website counts visits without any cookie or identifier (Cloudflare Web Analytics), and only reads aggregated figures. On our servers, each account keeps the dates of a few first events (first bot saved, started, command run, purchase) to improve onboarding, with no message content or token; they are deleted with the account. If you accept analytics in the app, it can also send once where the installation came from and a few local milestones. The question \"How did you hear about us?\" is optional and asked once. The privacy policy gives the details."
+
 
 pricing:
   title: "Pricing"
