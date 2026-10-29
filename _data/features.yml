@@ -1,0 +1,57 @@
+# Feature page content (EN and FR). Every claim is checked against the app engine.
+en:
+  h1: "What Bot Creator does"
+  intro: "Build Discord bots with blocks, BDFD or JavaScript, and let an AI copilot, hosting and music do the rest. Everything below is in the apps today."
+  items:
+    - id: copilot
+      title: "AI Copilot"
+      body: "Describe what you want in plain words. The Copilot reads your bot, writes or fixes commands and workflows, and asks for your approval before every change. It spends AI credits, which you can earn with rewarded ads or buy as packs in the mobile apps."
+      link: { url: "/docs/ai-copilot/", label: "Read how the Copilot works" }
+    - id: server
+      title: "Discord server management by AI"
+      body: "The Copilot, or your own AI assistant connected through the Bot Creator MCP, can create channels, categories and roles, manage emojis and moderate a server where your bot is. It never reads other people's messages."
+      link: { url: "/docs/ai-copilot/", label: "What the AI can do on a server" }
+    - id: music
+      title: "Music with Lavalink"
+      body: "Play music in voice channels with BDFD functions or the JavaScript voice object. Music is a Premium feature."
+      link: { url: "/docs/javascript/music/", label: "Music in JavaScript" }
+    - id: status
+      title: "Dynamic bot statuses"
+      body: "Show live values in your bot status, such as its latency with $ping in BDFD or client.ws.ping in JavaScript. Statuses refresh every 30 seconds."
+      link: { url: "/docs/bot-status/", label: "Bot status reference" }
+    - id: hosting
+      title: "Hosted Apps"
+      body: "Run containers hosted for you 24/7. You choose a RAM budget (256 MB or 512 MB), split it across your containers, and get a subdomain, an optional custom domain and a live terminal."
+      link: { url: "/pricing/", label: "See Hosted App prices" }
+    - id: run
+      title: "Run it where you want"
+      body: "Run your bots locally on desktop, on our servers, or on your own server with the Docker runner. The desktop version on Steam is paid and runs 100% locally, without the Copilot, AI credits or cloud hosting."
+      link: { url: "/download/", label: "Download Bot Creator" }
+fr:
+  h1: "Ce que fait Bot Creator"
+  intro: "Créez des bots Discord avec des blocs, du BDFD ou du JavaScript, et laissez un copilote IA, l'hébergement et la musique faire le reste. Tout ce qui suit existe dans les apps aujourd'hui."
+  items:
+    - id: copilot
+      title: "Copilot IA"
+      body: "Décrivez ce que vous voulez avec vos mots. Le Copilot lit votre bot, écrit ou corrige des commandes et des workflows, et demande votre accord avant chaque modification. Il consomme des crédits IA, que l'on gagne avec des publicités récompensées ou que l'on achète en packs dans les apps mobiles."
+      link: { url: "/fr/docs/ai-copilot/", label: "Comprendre le Copilot" }
+    - id: server
+      title: "Gestion du serveur Discord par l'IA"
+      body: "Le Copilot, ou votre propre assistant IA connecté par le MCP de Bot Creator, peut créer des salons, des catégories et des rôles, gérer les emojis et modérer un serveur où se trouve votre bot. Il ne lit jamais les messages des autres."
+      link: { url: "/fr/docs/ai-copilot/", label: "Ce que l'IA peut faire sur un serveur" }
+    - id: music
+      title: "Musique avec Lavalink"
+      body: "Jouez de la musique dans les salons vocaux avec les fonctions BDFD ou l'objet voice de JavaScript. La musique est une fonction Premium."
+      link: { url: "/docs/javascript/music/", label: "La musique en JavaScript (en anglais)" }
+    - id: status
+      title: "Statuts dynamiques"
+      body: "Affichez des valeurs en direct dans le statut de votre bot, comme sa latence avec $ping en BDFD ou client.ws.ping en JavaScript. Les statuts se rafraîchissent toutes les 30 secondes."
+      link: { url: "/fr/docs/bot-status/", label: "Référence des statuts" }
+    - id: hosting
+      title: "Hosted Apps"
+      body: "Faites tourner des conteneurs hébergés pour vous 24 h/24. Vous choisissez un budget de RAM (256 Mo ou 512 Mo), le répartissez entre vos conteneurs, et obtenez un sous-domaine, un domaine personnalisé en option et un terminal en direct."
+      link: { url: "/fr/tarifs/", label: "Voir les prix des Hosted Apps" }
+    - id: run
+      title: "Exécutez-le où vous voulez"
+      body: "Lancez vos bots en local sur desktop, sur nos serveurs, ou sur votre propre serveur avec le runner Docker. La version desktop sur Steam est payante et s'exécute 100 % en local, sans Copilot, crédits IA ni hébergement cloud."
+      link: { url: "/fr/download/", label: "Télécharger Bot Creator" }

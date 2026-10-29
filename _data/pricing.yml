@@ -1,7 +1,7 @@
-# Prices as returned by Google Play and the App Store (production catalog, read-only, 2026-10-12).
+# Prices as returned by Google Play and the App Store (production catalog, read-only, 2026-10-29).
 # Reference currency: EUR (identical across France, Germany and the other euro countries read).
 # Update this file, and the date, whenever the store prices change.
-read_on: "2026-10-12"
+read_on: "2026-10-29"
 reference_currency: "EUR"
 other_currency: "USD"
 plans:
@@ -16,3 +16,8 @@ plans:
   - id: host_two
     google_play: { eur_month: "8.99", usd_month: "8.49" }
     app_store:   { eur_month: "7.99", usd_month: "6.99" }
+ai_packs:
+  - { id: mini, credits: "800", eur: "1" }
+  - { id: discovery, credits: "3,000", eur: "3" }
+  - { id: advanced, credits: "12,000", eur: "10" }
+  - { id: studio, credits: "25,000", eur: "19.99" }

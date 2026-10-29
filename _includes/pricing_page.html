@@ -44,6 +44,27 @@
     </div>
   </section>
 
+  <section class="mb-10 flex flex-col gap-4 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.pricing.ai_title }}</h2>
+    <p class="m-0 leading-relaxed text-on-surface-variant">{{ t.pricing.ai_body }}</p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm">
+        <thead><tr class="border-b border-outline text-on-surface-variant"><th class="py-2 pr-4 font-medium">{{ t.pricing.ai_col_pack }}</th><th class="py-2 pr-4 font-medium">{{ t.pricing.ai_col_credits }}</th><th class="py-2 font-medium">{{ t.pricing.ai_col_price }}</th></tr></thead>
+        <tbody>
+          {% for pack in pr.ai_packs %}{% assign pack_key = "ai_" | append: pack.id %}
+          <tr class="border-b border-outline-variant"><td class="py-3 pr-4">{{ t.pricing[pack_key] }}</td><td class="py-3 pr-4">{{ pack.credits }}</td><td class="py-3">{% include price.html v=pack.eur %} €</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="m-0 text-sm text-on-surface-variant">{{ t.pricing.ai_note }}</p>
+  </section>
+
+  <section class="mb-10 flex flex-col gap-2 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.pricing.steam_title }}</h2>
+    <p class="m-0 leading-relaxed text-on-surface-variant">{{ t.pricing.steam_body }}</p>
+  </section>
+
   <section class="mb-10 flex flex-col gap-2 border-t border-outline pt-6">
     <h2 class="m-0 text-2xl font-semibold">{{ t.pricing.docker_title }}</h2>
     <p class="m-0 leading-relaxed text-on-surface-variant">{{ t.pricing.docker_body }} <a class="text-primary underline underline-offset-2" href="{{ t.paths.download | append: '#runner' | relative_url }}">{{ t.pricing.docker_link }}</a></p>
