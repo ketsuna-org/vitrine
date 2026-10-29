@@ -41,7 +41,7 @@ permalink: /fr/download/
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Mobile</h2>
         <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
-          Construisez et relisez la logique de votre bot en déplacement. Idéal pour les créateurs et modérateurs qui doivent agir vite.
+          Construisez et relisez la logique de votre bot en déplacement, avec le Copilot IA, les crédits IA et Premium. Idéal pour les créateurs et modérateurs qui doivent agir vite.
         </p>
         <div class="mt-auto flex flex-col justify-end gap-3 h-[6.75rem]">
           <a class="button-primary w-full" href="{% include store_link.html store='android_play' content='download' %}" target="_blank" rel="noopener noreferrer">
@@ -62,7 +62,7 @@ permalink: /fr/download/
         </div>
         <h2 class="mb-3 text-2xl font-bold text-on-surface">Ordinateur</h2>
         <p class="mb-8 text-on-surface-variant leading-relaxed text-sm">
-          Un espace de travail confortable pour concevoir vos commandes et organiser votre logique sur Windows, macOS et Linux.
+          Un espace de travail confortable pour concevoir vos commandes et organiser votre logique sur Windows, macOS et Linux. La version Steam est payante (environ 10 euros selon le pays, pas encore publiée) et exécute vos bots 100 % en local, sans publicité, Copilot IA, crédits IA ni hébergement cloud.
         </p>
         <div class="mt-auto flex flex-col justify-end gap-3 h-[6.75rem]">
           <a class="button-primary w-full" href="{% include store_link.html store='steam' content='download' %}" target="_blank" rel="noopener noreferrer">
@@ -106,7 +106,7 @@ permalink: /fr/download/
       <div class="rounded-lg bg-surface-container-low border border-outline-variant p-6 flex flex-col gap-4">
         <p class="text-xs font-bold text-primary uppercase tracking-widest">Déployer et passer à l'échelle</p>
         <h2 class="font-display text-2xl font-bold text-on-surface">Passez de l'hébergement dans l'app aux runners auto-hébergés</h2>
-        <p class="text-on-surface-variant text-sm leading-relaxed">Commencez avec l'hébergement depuis l'app, puis passez au runner Docker quand vous avez besoin d'une disponibilité côté serveur.</p>
+        <p class="text-on-surface-variant text-sm leading-relaxed">Faites tourner vos bots sur nos serveurs avec les Hosted Apps, ou sur votre propre serveur avec le runner Docker quand vous avez besoin d'une disponibilité côté serveur.</p>
         {% include responsive_screenshot.html screen_id="hosting" alt="Carte de bot Bot Creator sur Android avec les commandes de démarrage et de gestion" class="w-full max-w-[280px] mx-auto drop-" %}
       </div>
     </section>
