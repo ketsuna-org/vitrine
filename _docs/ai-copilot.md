@@ -35,6 +35,8 @@ Before it writes anything, the Copilot plans the command, uses only functions th
 
 ## Manage your Discord server {#discord-server}
 
+The **Manage the Discord server** switch of a conversation is remembered: your choice is kept between conversations and synced across your devices through your account.
+
 Beyond commands, the Copilot can help you run the Discord server itself. These server tools are rolling out and may not be available in every version of the app yet. They work on servers where your bot is present, and only for people who are allowed to manage the server (owner, Administrator or Manage Server). The bot must also have the matching permissions in Discord.
 
 | What | What the Copilot does |

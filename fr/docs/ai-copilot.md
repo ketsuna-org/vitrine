@@ -38,6 +38,8 @@ Avant d'écrire quoi que ce soit, le copilote planifie la commande, n'utilise qu
 
 ## Gérer votre serveur Discord {#discord-server}
 
+L'interrupteur **Gérer le serveur Discord** d'une discussion est mémorisé : votre choix est conservé d'une discussion à l'autre et synchronisé entre vos appareils grâce à votre compte.
+
 Au-delà des commandes, le copilote peut vous aider à gérer le serveur Discord lui-même. Ces outils de gestion de serveur sont en cours de déploiement et peuvent ne pas être disponibles dans toutes les versions de l'application. Ils fonctionnent sur les serveurs où votre bot est présent, et uniquement pour les personnes autorisées à gérer le serveur (propriétaire, Administrateur ou Gérer le serveur). Le bot doit aussi avoir les permissions correspondantes dans Discord.
 
 | Quoi | Ce que fait le copilote |
