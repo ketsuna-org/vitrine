@@ -12,6 +12,18 @@
                             "code": "",
                             "state": ""
                         }
+                    },
+                    {
+                        "/": "/download"
+                    },
+                    {
+                        "/": "/download/"
+                    },
+                    {
+                        "/": "/fr/download"
+                    },
+                    {
+                        "/": "/fr/download/"
                     }
                 ]
             }
