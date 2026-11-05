@@ -11,6 +11,24 @@ permalink: /fr/download/
 {% assign downloads = site.data.downloads %}
 {% assign t = site.data.locales[page.locale] %}
 
+<script>
+  // Mobile visitors who reach this page do not have the app installed (if they
+  // had, the Android App Link / iOS Universal Link would have opened it first).
+  // Send them straight to their store. Crawlers stay on the page; ?stay=1 opts out.
+  (function () {
+    try {
+      var ua = navigator.userAgent || '';
+      if (/bot|crawl|spider|slurp|lighthouse|googlebot|bingbot|facebookexternalhit|preview/i.test(ua)) return;
+      if (/[?&]stay=1/.test(location.search)) return;
+      var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+      var android = /Android/.test(ua);
+      var target = android ? '{% include store_link.html store='android_play' content='download_redirect' %}'
+                 : ios ? '{% include store_link.html store='ios_appstore' content='download_redirect' %}' : '';
+      if (target) location.replace(target);
+    } catch (e) {}
+  })();
+</script>
+
 <div class="min-h-screen py-10 lg:py-16 bg-background">
   <div class="mx-auto max-w-7xl px-6">
     <!-- Header -->
