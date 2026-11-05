@@ -1,11 +1,13 @@
 ---
 layout: doc
 title: Journal des bots
-category: "Meta"
-api_type: general
+category: "Général"
+category_key: "Meta"
 description: Où lire ce que votre bot a fait. La vue en direct, l'historique de 30 jours, les traces sur demande, ce qui est enregistré et ce qui ne l'est jamais, la durée de conservation et qui peut le lire.
 permalink: /fr/docs/bot-logs/
 locale: fr
+lang: fr
+content_language: fr
 translation_key: doc-bot-logs
 ---
 
