@@ -122,6 +122,21 @@
       "label": "Application Command Permissions Update"
     },
     {
+      "category": "commands",
+      "event": "commandCreated",
+      "label": "Command Created"
+    },
+    {
+      "category": "commands",
+      "event": "commandUpdated",
+      "label": "Command Updated"
+    },
+    {
+      "category": "commands",
+      "event": "commandDeleted",
+      "label": "Command Deleted"
+    },
+    {
       "category": "automod",
       "event": "autoModerationRuleCreate",
       "label": "Auto Moderation Rule Create"
@@ -526,6 +541,12 @@
     "channel.userLimit",
     "channelId",
     "channelid",
+    "commandEvent.description",
+    "commandEvent.executionMode",
+    "commandEvent.id",
+    "commandEvent.name",
+    "commandEvent.previousName",
+    "commandEvent.type",
     "event.name",
     "execution.time",
     "guild.afkChannelId",
