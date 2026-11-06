@@ -153,3 +153,52 @@ start.io, 168507669, RESELLER
 tredio.io, 357a6fdf7642bf815a88822c447d9dc436891, RESELLER
 openx.com, 565337761, DIRECT, 6a698e2ec38604c6
 openx.com, 565337761, RESELLER, 6a698e2ec38604c6
+
+# Adagio
+adagio.io, 2091, RESELLER
+adagio.io, 2091-OB, RESELLER
+
+# Adagio - Magnite
+rubiconproject.com, 19116, RESELLER, 0bfd66d529a55807
+
+# Adagio - Pubmatic
+pubmatic.com, 159110, RESELLER, 5d62403b186f2ace
+
+# Adagio - Improve Digital
+improvedigital.com, 1790, RESELLER
+
+# Adagio - Onetag
+onetag.com, 6b859b96c564fbe, RESELLER
+appnexus.com, 13099, RESELLER
+rubiconproject.com, 11006, RESELLER, 0bfd66d529a55807
+pubmatic.com, 161593, RESELLER, 5d62403b186f2ace
+
+# Adagio - Equativ
+smartadserver.com, 3554, RESELLER
+sharethrough.com, 3554, RESELLER, d53b998a7bd4ecd2
+
+# Adagio - Sovrn
+lijit.com, 367236, RESELLER, fafdf38b16bf6b2b
+rubiconproject.com, 17960, RESELLER, 0bfd66d529a55807
+pubmatic.com, 156212, RESELLER, 5d62403b186f2ace
+pubmatic.com, 137711, RESELLER, 5d62403b186f2ace
+openx.com, 538959099, RESELLER, 6a698e2ec38604c6
+
+# Adagio - OpenX
+openx.com, 558899373, RESELLER, 6a698e2ec38604c6
+
+# Adagio - Triplelift
+triplelift.com, 13482, RESELLER, 6c33edb13117fd86
+
+# Adagio - Nexxen
+video.unrulymedia.com, 5672421953199218469, RESELLER
+
+# Adagio - RTB House
+rtbhouse.com, XPSLDtnX92XNGGFB6ith, RESELLER, 4f3b94578e85950c
+
+# Adagio - Freewheel
+freewheel.tv, 536359-r-524565, RESELLER
+freewheel.tv, 536359-r-523319, RESELLER
+
+# Adagio - Adform
+adform.com, 3354, RESELLER, 9f5210a2f0999e32
