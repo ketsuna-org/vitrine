@@ -35,23 +35,23 @@ The full OpenAPI 3.1 contract is served without authentication at `https://api.b
 
 API keys are managed in the [Studio]({% include studio_link.html at='public_api_docs' %}), not in the mobile app.
 
-1. Open your bot in the Studio and go to its API keys.
-2. Choose a name, the scopes the key needs and an expiry.
+1. Open your bot in the Studio and choose the **API keys** tab in the Management group, next to Team and Servers.
+2. Choose a name, the permissions (scopes) the key needs and an expiry.
 3. Copy the key. **It is shown once.** Bot Creator only keeps a hash of it, so a lost key cannot be recovered, only replaced.
 
 A key looks like `bcm_k_<8 characters>_<43 characters>`. Treat it like a password: keep it in an environment variable or a secret manager, never in a repository or in client-side code.
 
 **One key belongs to one bot.** Asking for any other bot answers `404 bot_not_found`, exactly as if it did not exist. Each call is also checked against the rights of the account that created the key (owner, or collaborator allowed to edit): if the account loses access to the bot, the key stops working on it.
 
-You can have up to 5 active keys per bot and per account.
+You can have up to 5 active keys per bot and per account. The Studio only lists the keys **you** created: an owner does not see the keys of their collaborators.
 
 ### Expiry
 
-By default a key expires after 90 days. You can choose 1 to 365 days, or "never expires", which we do not recommend. An expired key answers `401 key_expired`.
+In the Studio you choose 30 days, 90 days (recommended), 1 year or never. The API itself accepts 1 to 365 days, and 90 days when none is given. A key that never expires stays valid until you revoke it, which we do not recommend. An expired key answers `401 key_expired`.
 
 ### Rotation and revocation
 
-- **Rotate** creates a new key and keeps the old one working for a grace period (24 hours by default, from immediate up to 168 hours), so you can deploy the new key without downtime.
+- **Rotate** creates a new key and keeps the old one working for a grace period (in the Studio: none, 24 hours, 3 days or 7 days; the API accepts 0 to 168 hours, 24 by default), so you can deploy the new key without downtime.
 - **Revoke** is immediate and cannot be undone. A revoked key is refused within 10 seconds on every server.
 
 Management routes are only available from a Studio account session. A key cannot create, rotate or revoke keys, and it is refused everywhere outside `/v1`.

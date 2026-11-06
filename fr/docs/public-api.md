@@ -38,23 +38,23 @@ Le contrat OpenAPI 3.1 complet est servi sans authentification sur `https://api.
 
 Les clés API se gèrent dans le [Studio]({% include studio_link.html at='public_api_docs_fr' %}), pas dans l'application mobile.
 
-1. Ouvrez votre bot dans le Studio, puis ses clés API.
-2. Choisissez un nom, les permissions nécessaires et une durée de validité.
+1. Ouvrez votre bot dans le Studio et choisissez l'onglet **Clés API** du groupe Gestion, à côté d'Équipe et de Serveurs.
+2. Choisissez un nom, les permissions (scopes) nécessaires et une durée de validité.
 3. Copiez la clé. **Elle n'est affichée qu'une fois.** Bot Creator n'en garde qu'une empreinte : une clé perdue ne peut pas être retrouvée, seulement remplacée.
 
 Une clé ressemble à `bcm_k_<8 caractères>_<43 caractères>`. Traitez-la comme un mot de passe : variable d'environnement ou gestionnaire de secrets, jamais dans un dépôt ni dans du code côté client.
 
 **Une clé appartient à un seul bot.** Demander un autre bot répond `404 bot_not_found`, exactement comme s'il n'existait pas. Chaque appel est aussi comparé aux droits du compte qui a créé la clé (propriétaire, ou collaborateur autorisé à modifier) : si ce compte perd l'accès au bot, la clé ne marche plus dessus.
 
-Vous pouvez avoir jusqu'à 5 clés actives par bot et par compte.
+Vous pouvez avoir jusqu'à 5 clés actives par bot et par compte. Le Studio n'affiche que les clés que **vous** avez créées : un propriétaire ne voit pas les clés de ses collaborateurs.
 
 ### Expiration
 
-Par défaut, une clé expire au bout de 90 jours. Vous pouvez choisir de 1 à 365 jours, ou « n'expire jamais », ce que nous déconseillons. Une clé expirée répond `401 key_expired`.
+Dans le Studio, vous choisissez 30 jours, 90 jours (recommandé), 1 an ou jamais. L'API accepte elle-même de 1 à 365 jours, et 90 jours quand rien n'est précisé. Une clé qui n'expire jamais reste valable jusqu'à sa révocation, ce que nous déconseillons. Une clé expirée répond `401 key_expired`.
 
 ### Rotation et révocation
 
-- **Renouveler** crée une nouvelle clé et laisse l'ancienne fonctionner pendant un délai de grâce (24 heures par défaut, de immédiat jusqu'à 168 heures), pour déployer la nouvelle sans coupure.
+- **Renouveler** crée une nouvelle clé et laisse l'ancienne fonctionner pendant un délai de grâce (dans le Studio : aucun, 24 heures, 3 jours ou 7 jours ; l'API accepte de 0 à 168 heures, 24 par défaut), pour déployer la nouvelle sans coupure.
 - **Révoquer** est immédiat et irréversible. Une clé révoquée est refusée en 10 secondes au plus sur tous les serveurs.
 
 Les routes de gestion ne sont disponibles que depuis une session de compte du Studio. Une clé ne peut ni créer, ni renouveler, ni révoquer de clé, et elle est refusée partout en dehors de `/v1`.
