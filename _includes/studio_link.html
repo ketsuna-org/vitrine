@@ -1,0 +1,2 @@
+{%- comment -%}Link to the web Studio. include.at names the placement (utm_campaign) to measure which spot converts.{%- endcomment -%}
+{{- site.data.downloads.studio.url -}}?utm_source=vitrine&utm_medium=web&utm_campaign={{ include.at | default: 'site' }}

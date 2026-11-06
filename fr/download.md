@@ -39,16 +39,31 @@ permalink: /fr/download/
           Téléchargements
         </span>
         <span class="inline-flex items-center gap-2 rounded bg-surface-container px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-muted border border-outline-variant">
-          L'app d'abord, le runner ensuite
+          Le Studio d'abord, puis l'app et le runner
         </span>
       </div>
       <h1 class="font-display text-4xl font-semibold leading-tight text-on-surface md:text-5xl lg:text-5xl mb-5">
         Choisissez l'installation de Bot Creator qui convient à votre équipe.
       </h1>
       <p class="max-w-3xl text-lg leading-relaxed text-on-surface-variant max-w-3xl mb-0">
-        La plupart des équipes devraient commencer par l'app sur mobile ou ordinateur. Le runner Docker est là quand vous voulez le contrôle d'un poste local ou un environnement distant qui dure plus longtemps.
+        La plupart des équipes devraient commencer par le Studio dans le navigateur, puis ajouter l'app sur mobile ou ordinateur. Le runner Docker est là quand vous voulez le contrôle d'un poste local ou un environnement distant qui dure plus longtemps.
       </p>
     </header>
+
+    <!-- Studio (first choice) -->
+    <article class="mb-8 flex flex-wrap items-center justify-between gap-6 rounded-lg border border-primary/40 bg-accent-deep p-6 md:p-8" data-reveal>
+      <div class="flex max-w-3xl flex-1 basis-[420px] items-start gap-5">
+        <div class="hidden h-14 w-14 flex-none items-center justify-center rounded-lg bg-surface-container text-primary sm:flex">
+          <svg class="pxicon text-3xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#dashboard"></use></svg>
+        </div>
+        <div>
+          <p class="mb-2 text-xs font-bold uppercase tracking-widest text-primary">Rien à installer</p>
+          <h2 class="mb-2 text-2xl font-bold text-on-surface">Bot Creator Studio, dans votre navigateur</h2>
+          <p class="m-0 text-sm leading-relaxed text-on-surface-variant">Ouvrez le Studio depuis n'importe quel ordinateur pour construire vos commandes, utiliser le Copilot IA et gérer vos bots. C'est le même éditeur que l'app, et le plus rapide pour démarrer. Installez l'app ou le runner ci-dessous quand vous en avez besoin.</p>
+        </div>
+      </div>
+      <a class="button-primary" href="{% include studio_link.html at='download_page' %}">Ouvrir le Studio</a>
+    </article>
 
     <!-- Download Grid -->
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mb-24">

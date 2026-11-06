@@ -12,13 +12,38 @@
       <h1 class="m-0 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-5xl lg:text-[3.5rem]">{{ t.home.hero.title }}</h1>
       <p class="m-0 max-w-[34rem] text-lg leading-relaxed text-on-surface-variant sm:text-xl">{{ t.home.hero.body }}</p>
       <div class="flex flex-wrap gap-3">
-        <a href="{{ t.paths.playground | relative_url }}" class="btn btn-primary btn-lg">{{ t.home.hero.primary_cta }}</a>
+        <a href="{% include studio_link.html at='home_hero' %}" class="btn btn-primary btn-lg">{{ t.home.hero.primary_cta }}</a>
         <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary btn-lg">{{ t.home.hero.secondary_cta }}</a>
       </div>
-      <p class="m-0 text-sm text-on-surface-variant">{{ t.home.hero.platforms }} <a class="text-primary underline underline-offset-2" href="{{ t.paths.docs | relative_url }}">{{ t.home.hero.tertiary_cta }}</a></p>
+      <p class="m-0 text-sm text-on-surface-variant">{{ t.home.hero.platforms }} <a class="text-primary underline underline-offset-2" href="{{ t.paths.playground | relative_url }}">{{ t.nav.playground }}</a> · <a class="text-primary underline underline-offset-2" href="{{ t.paths.docs | relative_url }}">{{ t.home.hero.tertiary_cta }}</a></p>
     </div>
     <div class="flex flex-1 basis-[300px] justify-center lg:justify-end">
       {% include responsive_screenshot.html screen_id="home" alt=t.home.hero.screenshot_alt loading="eager" class="mx-auto w-full max-w-[300px]" %}
+    </div>
+  </section>
+
+  <!-- Studio -->
+  <section id="studio" class="border-t border-outline-variant">
+    <div class="mx-auto flex max-w-[1200px] flex-col gap-10 px-4 py-14 sm:px-6 lg:py-20">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="flex max-w-2xl flex-col gap-3">
+          <div class="eyebrow">{{ t.home.studio.eyebrow }}</div>
+          <h2 class="m-0 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{{ t.home.studio.title }}</h2>
+          <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ t.home.studio.body }}</p>
+        </div>
+        <div class="flex flex-col items-start gap-2">
+          <a href="{% include studio_link.html at='home_section' %}" class="btn btn-primary btn-lg">{{ t.home.studio.cta }}</a>
+          <span class="text-sm text-on-surface-variant">{{ t.home.studio.cta_note }}</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 border-t border-outline-variant sm:grid-cols-2 lg:grid-cols-4">
+        {% for point in t.home.studio.points %}
+        <div class="flex flex-col gap-2 border-b border-outline-variant py-6 sm:pr-6 lg:border-b-0 {% unless forloop.first %}lg:border-l lg:pl-6{% endunless %}">
+          <h3 class="m-0 text-lg font-semibold">{{ point.title }}</h3>
+          <p class="m-0 text-[15px] leading-relaxed text-on-surface-variant">{{ point.body }}</p>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </section>
 
@@ -166,7 +191,8 @@ $description[$ping ms]</code></pre>
         <h2 class="m-0 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{{ t.home.cta.title }}</h2>
         <p class="m-0 max-w-xl text-lg leading-relaxed text-on-surface-variant">{{ t.home.cta.body }}</p>
         <div class="flex flex-wrap gap-3 pt-2">
-          <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary btn-lg">{{ t.home.cta.primary }}</a>
+          <a href="{% include studio_link.html at='home_footer_cta' %}" class="btn btn-primary btn-lg">{{ t.home.studio.cta }}</a>
+          <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary btn-lg">{{ t.home.cta.primary }}</a>
           <a href="{{ '/guides/runner-docker-api-only/' | relative_url }}" class="btn btn-secondary btn-lg">{{ t.home.runner_guide | default: "Docker runner guide" }}</a>
         </div>
       </div>

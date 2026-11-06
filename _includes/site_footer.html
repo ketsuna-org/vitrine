@@ -10,6 +10,7 @@
     <div class="grid w-full grid-cols-2 gap-x-6 gap-y-8 sm:flex sm:w-auto sm:flex-wrap sm:gap-x-16">
       <nav class="flex flex-col" aria-label="Product">
         <span class="pb-2 text-xs text-on-surface-variant">{{ t.shell.footer_product }}</span>
+        <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{% include studio_link.html at='footer' %}">{{ t.nav.studio }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.playground | relative_url }}">{{ t.nav.playground }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.features | relative_url }}">{{ t.nav.features }}</a>
         <a class="flex h-10 items-center text-sm text-on-surface hover:text-primary" href="{{ t.paths.download | relative_url }}">{{ t.shell.footer_downloads }}</a>

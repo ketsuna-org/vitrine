@@ -18,6 +18,7 @@
     </a>
 
     <nav class="hidden items-center gap-1 md:flex" aria-label="{{ t.nav.main_label }}">
+      <a class="nav-link" href="{% include studio_link.html at='header_nav' %}">{{ t.nav.studio }}</a>
       <a class="nav-link" href="{{ t.paths.playground | relative_url }}" {% if page.layout == 'playground' %}aria-current="page"{% endif %}>{{ t.nav.playground }}</a>
       <a class="nav-link" href="{{ t.paths.home | append: '#features' | relative_url }}">{{ t.nav.features }}</a>
       <div class="relative" data-docs-dropdown>
@@ -39,7 +40,8 @@
 
     <div class="flex items-center gap-1">
       <a href="{{ alt_url | relative_url }}" hreflang="{{ t.nav.switch_language_code }}" lang="{{ t.nav.switch_language_code }}" title="{{ t.nav.switch_language_label }}" class="nav-link hidden md:inline-flex">{{ t.nav.switch_language }}</a>
-      <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary !h-9 !min-h-[36px] !px-4 !text-sm">{{ t.nav.download_button }}</a>
+      <a href="{{ t.paths.download | relative_url }}" class="nav-link hidden md:inline-flex">{{ t.nav.download_button }}</a>
+      <a href="{% include studio_link.html at='header_button' %}" class="btn btn-primary !h-9 !min-h-[36px] !px-4 !text-sm">{{ t.nav.studio_button }}</a>
       <button type="button" data-menu-toggle aria-controls="mobile-navigation" aria-expanded="false" aria-label="{{ t.nav.open_menu }}"
         class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface hover:bg-surface-container md:hidden">
         <svg class="pxicon menu-icon-open !text-2xl" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#menu"></use></svg>
@@ -61,6 +63,7 @@
     <div class="nav-mobile-scroll">
       <div data-cscroll>
         <nav aria-label="{{ t.nav.mobile_label }}">
+          <a class="nav-mobile-link" href="{% include studio_link.html at='mobile_menu' %}">{{ t.nav.studio_button }}</a>
           <a class="nav-mobile-link" href="{{ t.paths.playground | relative_url }}">{{ t.nav.playground }}</a>
           <a class="nav-mobile-link" href="{{ t.paths.home | append: '#features' | relative_url }}">{{ t.nav.features }}</a>
           <a class="nav-mobile-link" href="{{ t.paths.docs | relative_url }}">{{ t.nav.docs }}</a>

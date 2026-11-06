@@ -1,6 +1,9 @@
 runner_guide_url: "/guides/runner-docker-api-only/"
 docker_image: "ketsuna-org/bot-creator-runner:latest"
 
+studio:
+  url: "https://studio.bot-creator.fr/"
+
 stores:
   android_play:
     label: "Google Play"
