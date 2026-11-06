@@ -209,7 +209,7 @@ faq:
     - q: "Où tourne mon bot ?"
       a: "En local sur votre ordinateur, sur nos serveurs (un bot démarré consomme du temps d'hébergement, illimité avec Premium, ou une Hosted App), ou sur votre propre serveur avec le runner Docker, sur Linux ou un Raspberry Pi. La version Steam exécute les bots en local uniquement. Le guide du runner Docker (en anglais) détaille les étapes."
     - q: "Le jeton de mon bot est-il en sécurité ?"
-      a: "Si vous utilisez seulement l'app avec votre propre bot et les fonctions locales, le jeton reste sur votre appareil, dans le stockage sécurisé du système. Si vous vous connectez avec Discord, utilisez l'hébergement cloud, le Copilot ou la console web et enregistrez votre bot dans le cloud, le jeton est stocké sur nos serveurs, chiffré au repos. Les détails sont dans la politique de confidentialité (en anglais). Ne partagez jamais votre jeton."
+      a: "Si vous utilisez seulement l'app avec votre propre bot et les fonctions locales, le jeton reste sur votre appareil, dans le stockage sécurisé du système. Si vous vous connectez avec Discord, utilisez l'hébergement cloud, le Copilot ou le Studio web et enregistrez votre bot dans le cloud, le jeton est stocké sur nos serveurs, chiffré au repos. Les détails sont dans la politique de confidentialité (en anglais). Ne partagez jamais votre jeton."
     - q: "Puis-je utiliser du code BDFD ?"
       a: "Bot Creator exécute des commandes écrites avec des $fonctions de type BDFD. La référence liste chaque fonction avec sa syntaxe et un exemple ; consultez-la pour savoir ce qui est pris en charge. Le playground affiche seulement un aperçu du message qu'enverrait un extrait, il ne l'exécute pas."
     - q: "Puis-je essayer sans rien installer ?"
