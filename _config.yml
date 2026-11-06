@@ -69,6 +69,11 @@ defaults:
       path: ""
     values:
       image: /assets/images/og-default.png
+  # French pages: same banner, French text.
+  - scope:
+      path: "fr"
+    values:
+      image: /assets/images/og-default-fr.png
   # Documentation pages are reference articles, not blog posts.
   - scope:
       path: ""
