@@ -11,6 +11,10 @@ en:
       title: "Discord server management by AI"
       body: "The Copilot, or your own AI assistant connected through the Bot Creator MCP, can create channels, categories and roles, manage emojis and moderate a server where your bot is. It never reads other people's messages."
       link: { url: "/docs/ai-copilot/", label: "What the AI can do on a server" }
+    - id: api
+      title: "Public API"
+      body: "Manage a bot from your own code: commands, workflows and variables over a REST API with scoped API keys. Commands created through the API are not published on Discord until you decide. Premium only; keys are created in the Studio."
+      link: { url: "/public-api/", label: "Discover the public API" }
     - id: music
       title: "Music with Lavalink"
       body: "Play music in voice channels with BDFD functions or the JavaScript voice object. Music is a Premium feature."
@@ -39,6 +43,10 @@ fr:
       title: "Gestion du serveur Discord par l'IA"
       body: "Le Copilot, ou votre propre assistant IA connecté par le MCP de Bot Creator, peut créer des salons, des catégories et des rôles, gérer les emojis et modérer un serveur où se trouve votre bot. Il ne lit jamais les messages des autres."
       link: { url: "/fr/docs/ai-copilot/", label: "Ce que l'IA peut faire sur un serveur" }
+    - id: api
+      title: "API publique"
+      body: "Pilotez un bot depuis votre propre code : commandes, workflows et variables via une API REST et des clés API à permissions. Une commande créée par l'API n'est publiée sur Discord que quand vous le décidez. Réservé à Premium ; les clés se créent dans le Studio."
+      link: { url: "/fr/api-publique/", label: "Découvrir l'API publique" }
     - id: music
       title: "Musique avec Lavalink"
       body: "Jouez de la musique dans les salons vocaux avec les fonctions BDFD ou l'objet voice de JavaScript. La musique est une fonction Premium."

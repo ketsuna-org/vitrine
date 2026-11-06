@@ -1,0 +1,34 @@
+{% assign c = site.data.public_api[page.locale] %}
+{% if page.locale == 'fr' %}{% assign docs_path = '/fr/docs/public-api/' %}{% assign ref_path = '/fr/docs/public-api-reference/' %}{% assign studio_at = 'public_api_page_fr' %}{% else %}{% assign docs_path = '/docs/public-api/' %}{% assign ref_path = '/docs/public-api-reference/' %}{% assign studio_at = 'public_api_page' %}{% endif %}
+<div class="mx-auto max-w-[900px] px-4 py-14 sm:px-6 lg:py-20">
+  <header class="mb-10 flex flex-col gap-3">
+    <div><span class="badge">{{ c.badge }}</span></div>
+    <h1 class="m-0 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">{{ c.h1 }}</h1>
+    <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ c.intro }}</p>
+    <p class="m-0 leading-relaxed text-on-surface-variant"><strong>{{ c.premium }}</strong></p>
+    <div class="mt-2 flex flex-wrap gap-3">
+      <a class="btn btn-primary" href="{{ docs_path | relative_url }}">{{ c.cta_docs }}</a>
+      <a class="btn" href="{{ ref_path | relative_url }}">{{ c.cta_ref }}</a>
+      <a class="btn" href="{% include studio_link.html at=studio_at %}">{{ c.cta_studio }}</a>
+    </div>
+  </header>
+  <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+    {% for item in c.items %}
+    <section class="flex flex-col gap-2 rounded-lg border border-outline-variant bg-surface-container-low p-5">
+      <h2 class="m-0 text-xl font-semibold">{{ item.title }}</h2>
+      <p class="m-0 leading-relaxed text-on-surface-variant">{{ item.body }}</p>
+    </section>
+    {% endfor %}
+  </div>
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ c.example_title }}</h2>
+    <div class="overflow-hidden rounded-lg border border-outline bg-surface-container-low">
+      <pre class="m-0 overflow-x-auto p-4 font-mono text-sm leading-7" data-cscroll-x><code>curl -H "Authorization: Bearer $BCM_KEY" \
+  https://api.bot-creator.fr/v1/bot</code></pre>
+    </div>
+  </section>
+  <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ c.not_yet_title }}</h2>
+    <p class="m-0 leading-relaxed text-on-surface-variant">{{ c.not_yet }}</p>
+  </section>
+</div>

@@ -20,6 +20,7 @@ permalink: /fr/docs/
     <li><a class="text-primary underline underline-offset-2" href="/fr/docs/events-and-placeholders/">{{ nav.events }}</a></li>
     <li><a class="text-primary underline underline-offset-2" href="{{ site.data.locales.fr.paths.use_cases }}">{{ site.data.locales.fr.nav.use_cases }}</a></li>
     <li><a class="text-primary underline underline-offset-2" href="{{ site.data.locales.fr.paths.playground }}">Playground</a></li>
+    <li><a class="text-primary underline underline-offset-2" href="/fr/docs/public-api/">API publique (Premium)</a></li>
   </ul>
 
   {% for group in nav.groups %}
