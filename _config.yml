@@ -34,6 +34,10 @@ lang: en
 # Leave empty to load no script at all; set it once the site is enabled in the Cloudflare dashboard.
 cloudflare_web_analytics_token: ""
 
+# Google Analytics 4 (measurement ID, public). Loaded only after the visitor accepts the consent banner.
+# Leave empty to show no banner and load no script.
+google_analytics_id: "G-J5BZWMKC9P"
+
 # Build settings
 ignore_theme_config: true
 # theme: minima
