@@ -1,0 +1,63 @@
+{% comment %}Google Analytics 4 under consent. Loads nothing (no script, no cookie) until the visitor accepts; the choice is kept in localStorage. Empty google_analytics_id in _config.yml = no banner, no script.{% endcomment %}
+{% if site.google_analytics_id and site.google_analytics_id != '' %}
+<script>
+(function () {
+  var ID = {{ site.google_analytics_id | strip | jsonify }};
+  var KEY = 'bc_analytics_consent';
+  var fr = (document.documentElement.lang || '').toLowerCase().indexOf('fr') === 0;
+  var T = fr
+    ? { text: "Nous utilisons Google Analytics pour mesurer l'audience du site (pages vues, provenance, statistiques anonymes). Désactivé tant que vous n'acceptez pas.", no: 'Refuser', yes: 'Accepter', more: 'Confidentialité', href: '/privacy-policy.html' }
+    : { text: 'We use Google Analytics to measure the audience of this website (page views, origin, anonymous statistics). It stays off unless you accept.', no: 'Decline', yes: 'Accept', more: 'Privacy', href: '/privacy-policy.html' };
+  function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  var loaded = false;
+  function gt() { window.dataLayer.push(arguments); }
+  function apply(granted) {
+    if (!loaded) {
+      if (!granted) return;
+      loaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = gt;
+      gt('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      gt('js', new Date());
+      gt('config', ID, { anonymize_ip: true, allow_google_signals: false });
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ID);
+      document.head.appendChild(s);
+    }
+    gt('consent', 'update', { analytics_storage: granted ? 'granted' : 'denied' });
+  }
+  function banner() {
+    var b = document.createElement('div');
+    b.setAttribute('role', 'dialog');
+    b.setAttribute('aria-label', 'Analytics consent');
+    b.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:2147483000;max-width:720px;margin:0 auto;padding:14px 16px;border-radius:10px;background:#1c1b1f;color:#e6e1e5;font:14px/1.45 system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.45);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between';
+    var p = document.createElement('span');
+    p.style.cssText = 'flex:1 1 320px';
+    p.textContent = T.text + ' ';
+    var a = document.createElement('a');
+    a.href = T.href; a.textContent = T.more; a.style.cssText = 'color:#a8c7fa';
+    p.appendChild(a);
+    function btn(label, primary, granted) {
+      var x = document.createElement('button');
+      x.type = 'button'; x.textContent = label;
+      x.style.cssText = 'cursor:pointer;border-radius:8px;padding:8px 14px;font:inherit;border:1px solid #938f99;' + (primary ? 'background:#a8c7fa;color:#062e6f;border-color:#a8c7fa' : 'background:transparent;color:#e6e1e5');
+      x.onclick = function () { set(granted ? 'granted' : 'denied'); apply(granted); b.remove(); };
+      return x;
+    }
+    var row = document.createElement('span');
+    row.style.cssText = 'display:flex;gap:8px';
+    row.appendChild(btn(T.no, false, false));
+    row.appendChild(btn(T.yes, true, true));
+    b.appendChild(p); b.appendChild(row);
+    document.body.appendChild(b);
+  }
+  var c = get();
+  if (c === 'granted') apply(true);
+  else if (c !== 'denied') {
+    if (document.body) banner(); else document.addEventListener('DOMContentLoaded', banner);
+  }
+})();
+</script>
+{% endif %}
