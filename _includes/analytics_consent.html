@@ -19,12 +19,14 @@
       window.dataLayer = window.dataLayer || [];
       window.gtag = gt;
       gt('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      gt('consent', 'update', { analytics_storage: 'granted' });
       gt('js', new Date());
       gt('config', ID, { anonymize_ip: true, allow_google_signals: false });
       var s = document.createElement('script');
       s.async = true;
       s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ID);
       document.head.appendChild(s);
+      return;
     }
     gt('consent', 'update', { analytics_storage: granted ? 'granted' : 'denied' });
   }
