@@ -66,6 +66,14 @@ URL de base : `https://api.bot-creator.fr`. Envoyez `Authorization: Bearer bcm_k
 | `PUT /v1/bots/{botId}/variables/{scope}/{key}` | `write:settings` | Corps `{ "value": ..., "scope_id"?, "scope_aux_id"? }`. Crée la définition si elle manque |
 | `DELETE /v1/bots/{botId}/variables/{scope}/{key}` | `write:settings` | Supprimer une valeur, garder la définition |
 
+## Liste des Premium (publique)
+
+| Route | Permission | Description |
+|---|---|---|
+| `GET /premiums-list` | aucune, sans clé | Tableau JSON des identifiants Discord (chaînes) des comptes ayant un Premium actif, et rien d'autre |
+
+Cette route n'a besoin d'aucune clé d'API et est ouverte à tous : un bot peut ainsi vérifier si un membre est Premium. Seuls les comptes connectés avec Discord y figurent. La réponse est mise en cache 5 minutes (`Cache-Control: public, max-age=300`) : un changement peut mettre quelques minutes à apparaître. Limité à 60 requêtes par minute et par adresse IP (`429` au-delà). Exemple : `["123456789012345678","234567890123456789"]`.
+
 ## Contrat
 
 | Route | Permission | Description |

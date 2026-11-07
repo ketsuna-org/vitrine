@@ -63,6 +63,14 @@ Base URL: `https://api.bot-creator.fr`. Send `Authorization: Bearer bcm_k_...` o
 | `PUT /v1/bots/{botId}/variables/{scope}/{key}` | `write:settings` | Body `{ "value": ..., "scope_id"?, "scope_aux_id"? }`. Creates the definition if missing |
 | `DELETE /v1/bots/{botId}/variables/{scope}/{key}` | `write:settings` | Delete a value, keep the definition |
 
+## Premium list (public)
+
+| Route | Scope | Description |
+|---|---|---|
+| `GET /premiums-list` | none, no key | JSON array of the Discord IDs (strings) of accounts with an active Premium plan, and nothing else |
+
+This route needs no API key and is open to everyone, so a bot can check whether a member is Premium. Only accounts signed in with Discord appear. The answer is cached for 5 minutes (`Cache-Control: public, max-age=300`), so a change can take a few minutes to show. Limited to 60 requests per minute per IP address (`429` beyond that). Example: `["123456789012345678","234567890123456789"]`.
+
 ## Contract
 
 | Route | Scope | Description |
