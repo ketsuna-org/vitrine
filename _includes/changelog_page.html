@@ -12,15 +12,14 @@
   <nav class="mb-12 flex flex-col gap-3 border-y border-outline py-4" aria-label="{{ t.changelog.eras_label }}">
     <span class="text-xs text-on-surface-variant">{{ t.changelog.eras_label }}</span>
     <ul class="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
-      {% for era in cl.eras %}
+      {% assign eras_desc = cl.eras | reverse %}{% assign entries_desc = cl.entries | reverse %}
+      {% for era in eras_desc %}
       <li><a class="text-primary underline underline-offset-2" href="#era-{{ era.id }}">{{ era[lc].title }}</a></li>
       {% endfor %}
-      {% assign last = cl.entries | last %}
-      <li><a class="font-semibold text-primary underline underline-offset-2" href="#{{ last.id }}">{{ t.changelog.latest_label }}</a></li>
     </ul>
   </nav>
 
-  {% for era in cl.eras %}
+  {% for era in eras_desc %}
   <section class="mb-14" aria-labelledby="era-{{ era.id }}">
     <header id="era-{{ era.id }}" class="mb-6 flex flex-col gap-2 scroll-mt-20">
       <div class="eyebrow">{{ era[lc].period }}</div>
@@ -28,7 +27,7 @@
       <p class="m-0 leading-relaxed text-on-surface-variant">{{ era[lc].intro }}</p>
     </header>
     <ol class="m-0 flex list-none flex-col p-0">
-      {% for e in cl.entries %}{% if e.era == era.id %}
+      {% for e in entries_desc %}{% if e.era == era.id %}
       <li id="{{ e.id }}" class="scroll-mt-20 border-t border-outline py-6 last:border-b">
         <article class="flex flex-col gap-2">
           <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-on-surface-variant">

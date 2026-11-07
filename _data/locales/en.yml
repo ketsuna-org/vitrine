@@ -318,8 +318,8 @@ pricing:
 
 changelog:
   eyebrow: "Changelog"
-  title: "Every version of Bot Creator, from the first commit"
-  subtitle: "The story of the app, the Studio and the runner, told in the order it happened: from the first push in April 2025 to the latest release."
+  title: "Every version of Bot Creator, newest first"
+  subtitle: "The story of the app, the Studio and the runner, from the latest release back to the first push in April 2025."
   eras_label: "Jump to a period"
   latest_label: "Go to the latest version"
   note: "Each entry gathers the patch releases of one minor version and lists only what you can see or use. Version numbers are the app's; the Studio and the runner have their own."

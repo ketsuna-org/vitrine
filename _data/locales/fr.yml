@@ -267,8 +267,8 @@ guides:
 
 changelog:
   eyebrow: "Changelog"
-  title: "Toutes les versions de Bot Creator, depuis le premier commit"
-  subtitle: "L'histoire de l'application, du Studio et du runner, racontée dans l'ordre où elle s'est passée : du premier push en avril 2025 à la dernière version."
+  title: "Toutes les versions de Bot Creator, la plus récente en premier"
+  subtitle: "L'histoire de l'application, du Studio et du runner, de la dernière version jusqu'au premier push en avril 2025."
   eras_label: "Aller à une période"
   latest_label: "Aller à la dernière version"
   note: "Chaque entrée regroupe les versions correctives d'une version mineure et ne liste que ce que vous pouvez voir ou utiliser. Les numéros sont ceux de l'application ; le Studio et le runner ont les leurs."
