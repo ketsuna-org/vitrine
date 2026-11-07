@@ -1,0 +1,647 @@
+# Changelog (EN + FR), told from the very first commit to today.
+# Source: the tags and the Conventional Commit history of the bot-creator repository
+# (app, Studio, runner), read in chronological order. One entry per minor version
+# (the many patch tags of a minor are folded into it). Only user-visible changes are listed.
+#
+# To add a release: append an entry at the END of `entries` (the page reads oldest to newest),
+# fill both languages, and put it in the right era. `versions` is free text, the same in both languages.
+eras:
+  - id: origins
+    en:
+      title: "The beginnings"
+      period: "April 2025 to February 2026"
+      intro: "Before the first numbered release: a Flutter app that grows commit after commit, then takes the name Bot Creator."
+    fr:
+      title: "Les débuts"
+      period: "Avril 2025 à février 2026"
+      intro: "Avant la première version numérotée : une application Flutter qui grandit commit après commit, puis prend le nom de Bot Creator."
+  - id: v1
+    en:
+      title: "Version 1: the app takes shape"
+      period: "March to June 2026"
+      intro: "Android, iOS, Windows and Linux builds, the action editor, variables, BDFD scripts, the headless runner and the first subscriptions."
+    fr:
+      title: "Version 1 : l'application prend forme"
+      period: "Mars à juin 2026"
+      intro: "Versions Android, iOS, Windows et Linux, éditeur d'actions, variables, scripts BDFD, runner sans interface et premiers abonnements."
+  - id: v2
+    en:
+      title: "Version 2: cloud, teams, Copilot and the Studio"
+      period: "July to October 2026"
+      intro: "Hosted Apps, team work, the AI Copilot, the native engine, the web Studio and the new design."
+    fr:
+      title: "Version 2 : cloud, équipes, Copilot et Studio"
+      period: "Juillet à octobre 2026"
+      intro: "Hosted Apps, travail en équipe, Copilot IA, moteur natif, Studio web et nouveau design."
+  - id: v3
+    en:
+      title: "Version 3: real-time drafts, publishing and the public API"
+      period: "November 2026"
+      intro: "Edit as a draft, publish when you decide, and drive your bots from your own code with API keys."
+    fr:
+      title: "Version 3 : brouillons en temps réel, publication et API publique"
+      period: "Novembre 2026"
+      intro: "Modifier en brouillon, publier quand vous le décidez, et piloter vos bots depuis votre propre code avec des clés API."
+
+entries:
+  # ───────────── The beginnings ─────────────
+  - id: first-push
+    era: origins
+    date: { en: "April to May 2025", fr: "Avril à mai 2025" }
+    versions: ""
+    en:
+      title: "First push: a Discord bot in your pocket"
+      items:
+        - "The project starts on April 4, 2025 as a Flutter app: you register your Discord applications, create commands with their replies and run the bot from your phone."
+        - "The bot keeps running in a foreground service on Android and restarts itself after a time-out; notifications tell you what is happening."
+        - "The editor learns choices, keyboard types and option visibility. The app gets its icon and its first release builds."
+        - "In May: Firebase analytics, a setting for the maximum Java heap size, and the first message actions (create, delete and manage messages in channels)."
+    fr:
+      title: "Premier commit : un bot Discord dans la poche"
+      items:
+        - "Le projet démarre le 4 avril 2025 comme une application Flutter : on enregistre ses applications Discord, on crée des commandes avec leurs réponses et on lance le bot depuis son téléphone."
+        - "Le bot tourne dans un service de premier plan sur Android et redémarre seul après un délai dépassé ; des notifications indiquent ce qui se passe."
+        - "L'éditeur apprend les choix, les types de clavier et la visibilité des options. L'application reçoit son icône et ses premières versions de test."
+        - "En mai : analyse d'audience Firebase, réglage de la taille maximale du tas Java et premières actions sur les messages (créer, supprimer et gérer des messages dans les salons)."
+  - id: workflows-birth
+    era: origins
+    date: { en: "December 2025 to February 2026", fr: "Décembre 2025 à février 2026" }
+    versions: ""
+    en:
+      title: "Workflows, variables and the new name"
+      items:
+        - "After a quiet winter, February 2026 brings global variables and the first workflows, with a log of every executed action."
+        - "Invite your bot to a server from the app, and configure its intents."
+        - "Windows support arrives, then Google Drive to load bot configurations and snapshots."
+        - "On February 28 the project is renamed Bot Creator. The same day, the first test build, alpha 1, is tagged."
+    fr:
+      title: "Workflows, variables et nouveau nom"
+      items:
+        - "Après un hiver calme, février 2026 apporte les variables globales et les premiers workflows, avec un journal de chaque action exécutée."
+        - "Invitez votre bot sur un serveur depuis l'application et réglez ses intents."
+        - "Le support de Windows arrive, puis Google Drive pour charger les configurations et les instantanés des bots."
+        - "Le 28 février, le projet est renommé Bot Creator. Le même jour, la première version de test, alpha 1, est étiquetée."
+
+  # ───────────── Version 1 ─────────────
+  - id: v1-1
+    era: v1
+    date: { en: "March 2 to 15, 2026", fr: "2 au 15 mars 2026" }
+    versions: "App 1.1.0 – 1.1.7"
+    en:
+      title: "1.1: first public builds on every platform"
+      items:
+        - "Android bundles, Linux AppImage, Windows installer and MSIX, plus portable ZIP packages for Linux and Windows, published automatically."
+        - "Backup and recovery of your bots, and loading configurations from Google Drive."
+        - "A guided onboarding, a new navigation menu and a theme setting."
+        - "Status rotation for bots on desktop and mobile, and a component editor that understands workflows."
+    fr:
+      title: "1.1 : premières versions publiques sur toutes les plateformes"
+      items:
+        - "Bundles Android, AppImage Linux, installeur Windows et MSIX, plus des paquets ZIP portables pour Linux et Windows, publiés automatiquement."
+        - "Sauvegarde et récupération de vos bots, et chargement des configurations depuis Google Drive."
+        - "Une intégration guidée, un nouveau menu de navigation et un réglage du thème."
+        - "Rotation des statuts pour les bots sur ordinateur et mobile, et un éditeur de composants qui comprend les workflows."
+  - id: v1-2
+    era: v1
+    date: { en: "March 16, 2026", fr: "16 mars 2026" }
+    versions: "App 1.2.0"
+    en:
+      title: "1.2: the runner in Docker"
+      items:
+        - "The bot can now run in a Docker container: the headless runner keeps your bot configuration and runs it without the app being open."
+        - "Rewarded ads and the ad consent screen make their first appearance in the free version."
+    fr:
+      title: "1.2 : le runner dans Docker"
+      items:
+        - "Le bot peut désormais tourner dans un conteneur Docker : le runner sans interface garde la configuration du bot et l'exécute sans que l'application soit ouverte."
+        - "Les publicités récompensées et l'écran de consentement publicitaire apparaissent pour la première fois dans la version gratuite."
+  - id: v1-3
+    era: v1
+    date: { en: "March 19 to 21, 2026", fr: "19 au 21 mars 2026" }
+    versions: "App 1.3.0 – 1.3.21"
+    en:
+      title: "1.3: events, SQLite variables and 24 new actions"
+      items:
+        - "Variables move to SQLite, with an automatic and safe migration of the old JSON files."
+        - "Event context for many Discord events, so a workflow can read who joined, what was said and where."
+        - "Emoji management, direct messages and 24 new action types."
+        - "Bot presence with activities, and a runner that can be managed remotely."
+    fr:
+      title: "1.3 : événements, variables SQLite et 24 nouvelles actions"
+      items:
+        - "Les variables passent sur SQLite, avec une migration automatique et sûre des anciens fichiers JSON."
+        - "Contexte d'événement pour de nombreux événements Discord : un workflow sait qui a rejoint, ce qui a été dit et où."
+        - "Gestion des emojis, messages privés et 24 nouveaux types d'actions."
+        - "Présence du bot avec activités, et un runner pilotable à distance."
+  - id: v1-4
+    era: v1
+    date: { en: "March 24 to 25, 2026", fr: "24 au 25 mars 2026" }
+    versions: "App 1.4.0 – 1.4.1"
+    en:
+      title: "1.4: simple commands, select menus, autocomplete"
+      items:
+        - "A simple command mode with validation and variable suggestions, for a first command in a minute."
+        - "Select menu interactions and component handling."
+        - "Autocomplete for command options, with a static choices mode."
+        - "Array operations on variables, and runtime variables for interaction events."
+    fr:
+      title: "1.4 : commandes simples, menus de sélection, autocomplétion"
+      items:
+        - "Un mode de commande simple avec validation et suggestions de variables, pour une première commande en une minute."
+        - "Interactions de menus de sélection et gestion des composants."
+        - "Autocomplétion des options de commande, avec un mode de choix statiques."
+        - "Opérations sur les tableaux dans les variables, et variables d'exécution pour les événements d'interaction."
+  - id: v1-5
+    era: v1
+    date: { en: "March 25 to April 6, 2026", fr: "25 mars au 6 avril 2026" }
+    versions: "App 1.5.0 – 1.5.17"
+    en:
+      title: "1.5: BDFD scripts, subscriptions and conditions"
+      items:
+        - "Run BDFD scripts: a script action, an editor with autocomplete and syntax highlighting."
+        - "First in-app purchases and Premium subscription management, with the subscription state refreshed when you come back to the app."
+        - "The if action with else-if branches, thread member actions, richer loops and random generation in templates."
+        - "Command statistics, a multi-runner registry and a template gallery with icons."
+        - "A workflow editor that works on small screens, with a contextual menu and safety confirmations."
+    fr:
+      title: "1.5 : scripts BDFD, abonnements et conditions"
+      items:
+        - "Exécution de scripts BDFD : une action dédiée, un éditeur avec autocomplétion et coloration syntaxique."
+        - "Premiers achats intégrés et gestion de l'abonnement Premium, avec l'état de l'abonnement rafraîchi au retour dans l'application."
+        - "L'action « si » avec branches « sinon si », actions sur les membres de fils, boucles plus riches et génération aléatoire dans les modèles."
+        - "Statistiques de commandes, registre multi-runners et galerie de modèles avec icônes."
+        - "Un éditeur de workflow utilisable sur petit écran, avec menu contextuel et confirmations de sécurité."
+  - id: v1-6
+    era: v1
+    date: { en: "April 8 to 11, 2026", fr: "8 au 11 avril 2026" }
+    versions: "App 1.6.0 – 1.6.3"
+    en:
+      title: "1.6: variables, callbacks and readable logs"
+      items:
+        - "A fuller interface for global and scoped variables."
+        - "Awaited callback presets, to wait for a button click or a reply in a command."
+        - "A raw mode for logs, and pinch to zoom the log font size."
+        - "JSON sources in loops, and clearer subscription errors."
+    fr:
+      title: "1.6 : variables, callbacks et logs lisibles"
+      items:
+        - "Une interface plus complète pour les variables globales et à portée."
+        - "Préréglages de callbacks attendus, pour attendre un clic de bouton ou une réponse dans une commande."
+        - "Un mode brut pour les logs, et le zoom à deux doigts sur la taille de police."
+        - "Sources JSON dans les boucles, et erreurs d'abonnement plus claires."
+  - id: v1-7
+    era: v1
+    date: { en: "April 15 to May 2, 2026", fr: "15 avril au 2 mai 2026" }
+    versions: "App 1.7.0 – 1.7.5"
+    en:
+      title: "1.7: visual blocks and the first link to the cloud"
+      items:
+        - "The first visual block editor, in the Scratch spirit, to build a command by assembling blocks."
+        - "Discord sign-in through the browser, bot synchronization with the manager and subscription status sync."
+        - "Hosting time management and server-side verification of rewarded ads."
+        - "A global variables page, a bot settings page (token, intents, language) and a Discord Rich Presence client on desktop."
+    fr:
+      title: "1.7 : blocs visuels et premier lien avec le cloud"
+      items:
+        - "Le premier éditeur de blocs visuels, dans l'esprit Scratch, pour construire une commande en assemblant des blocs."
+        - "Connexion Discord par le navigateur, synchronisation des bots avec le manager et du statut d'abonnement."
+        - "Gestion du temps d'hébergement et vérification côté serveur des publicités récompensées."
+        - "Une page des variables globales, une page de paramètres du bot (jeton, intents, langue) et un client Discord Rich Presence sur ordinateur."
+  - id: v1-8
+    era: v1
+    date: { en: "May 2 to June 3, 2026", fr: "2 mai au 3 juin 2026" }
+    versions: "App 1.8.0 – 1.8.15 · Runner 1.8.6 – 1.8.12"
+    en:
+      title: "1.8: the runner gets its API, the engine grows up"
+      items:
+        - "The headless runner exposes an HTTP API with OpenAPI documentation and a Swagger interface: the app can sync, start and stop bots remotely."
+        - "A real bot engine: workflow execution, reply actions, cooldown, slowmode, nickname, wait and stop, reactions and moderation actions."
+        - "Scoped variables with explicit context IDs and automatic hydration."
+        - "Languages: a locale manager and a language choice in the settings."
+        - "A more robust connection to the cloud: circuit breaker, retries and automatic session refresh."
+    fr:
+      title: "1.8 : le runner reçoit son API, le moteur mûrit"
+      items:
+        - "Le runner sans interface expose une API HTTP avec documentation OpenAPI et interface Swagger : l'application peut synchroniser, démarrer et arrêter des bots à distance."
+        - "Un vrai moteur de bot : exécution des workflows, actions de réponse, délai de réutilisation, mode lent, pseudo, attente et arrêt, réactions et actions de modération."
+        - "Variables à portée avec identifiants de contexte explicites et hydratation automatique."
+        - "Langues : un gestionnaire de langues et un choix de langue dans les réglages."
+        - "Une connexion au cloud plus robuste : coupe-circuit, nouvelles tentatives et rafraîchissement automatique de la session."
+  - id: v1-9
+    era: v1
+    date: { en: "June 5 to 30, 2026", fr: "5 au 30 juin 2026" }
+    versions: "App 1.9.0 – 1.9.22 · Runner 1.9.0 – 1.9.13"
+    en:
+      title: "1.9: images, servers and the template marketplace"
+      items:
+        - "Image manipulation blocks: draw lines, load and composite images with shape clipping, and attach the result to a message."
+        - "A servers tab to see where your bot is, leave a server or explore it like in Discord, with a message viewer and, for Premium, message sending."
+        - "A template marketplace to browse, publish, rate and apply bot templates (retired in version 3.0)."
+        - "A full-screen HTTP request editor, jump-to-action error handling, and push notifications."
+        - "Japanese joins the supported languages."
+    fr:
+      title: "1.9 : images, serveurs et marketplace de modèles"
+      items:
+        - "Blocs de manipulation d'images : tracer des lignes, charger et composer des images avec découpe en forme, puis joindre le résultat à un message."
+        - "Un onglet Serveurs pour voir où se trouve votre bot, quitter un serveur ou l'explorer comme dans Discord, avec visionneuse de messages et, en Premium, envoi de messages."
+        - "Une marketplace de modèles pour parcourir, publier, noter et appliquer des modèles de bots (retirée en version 3.0)."
+        - "Un éditeur de requêtes HTTP en plein écran, la gestion d'erreur par saut vers une action, et les notifications push."
+        - "Le japonais rejoint les langues prises en charge."
+
+  # ───────────── Version 2 ─────────────
+  - id: v2-0
+    era: v2
+    date: { en: "July 11 to August 22, 2026", fr: "11 juillet au 22 août 2026" }
+    versions: "App 2.0.0 – 2.0.2"
+    en:
+      title: "2.0: the first Hosted Apps"
+      items:
+        - "Hosted Apps appear on mobile: a dashboard to run a container for you, and a runner pool that spreads the load."
+        - "A simple deployment form with fixed resources."
+    fr:
+      title: "2.0 : les premières Hosted Apps"
+      items:
+        - "Les Hosted Apps apparaissent sur mobile : un tableau de bord pour faire tourner un conteneur à votre place, et un pool de runners qui répartit la charge."
+        - "Un formulaire de déploiement simple avec des ressources fixes."
+  - id: v2-1
+    era: v2
+    date: { en: "August 22 to September 17, 2026", fr: "22 août au 17 septembre 2026" }
+    versions: "App 2.1.2 – 2.1.17"
+    en:
+      title: "2.1: a redesigned home and turnkey bots"
+      items:
+        - "A redesigned home screen, a customizable appearance (accent presets for each mode) and your bot's real avatar and Discord server icons."
+        - "Hosted Apps become turnkey bots, with translations in every language."
+        - "An external database for JavaScript bots, trigger aliases for text commands and a code editor with your chosen theme (Rose Pine by default)."
+        - "A total hosting time card that separates active time from paused time."
+    fr:
+      title: "2.1 : un accueil repensé et des bots clé en main"
+      items:
+        - "Un écran d'accueil repensé, une apparence personnalisable (accents prédéfinis pour chaque mode) et le vrai avatar de votre bot ainsi que les icônes de vos serveurs Discord."
+        - "Les Hosted Apps deviennent des bots clé en main, traduits dans toutes les langues."
+        - "Une base de données externe pour les bots JavaScript, des alias de déclencheurs pour les commandes texte et un éditeur de code avec le thème de votre choix (Rose Pine par défaut)."
+        - "Une carte « temps total » d'hébergement qui distingue le temps actif du temps en pause."
+  - id: v2-2
+    era: v2
+    date: { en: "September 19, 2026", fr: "19 septembre 2026" }
+    versions: "App 2.2.0"
+    en:
+      title: "2.2: the server decides your plan"
+      items:
+        - "Your subscription and quotas are now decided by the server, with unlimited quotas and remote grants supported."
+        - "The app gets its status live through a WebSocket instead of polling."
+        - "Turnkey bots appear in the home list, and an ad-funded bot warns you before exceeding its quota."
+        - "The bot picks its Lavalink music server by itself."
+    fr:
+      title: "2.2 : le serveur décide de votre formule"
+      items:
+        - "Votre abonnement et vos quotas sont désormais décidés par le serveur, avec des quotas illimités et des attributions à distance."
+        - "L'application reçoit son statut en direct par WebSocket au lieu de l'interroger."
+        - "Les bots clé en main apparaissent dans la liste d'accueil, et un bot financé par la publicité vous prévient avant de dépasser son quota."
+        - "Le bot choisit lui-même son serveur de musique Lavalink."
+  - id: v2-3
+    era: v2
+    date: { en: "September 21, 2026", fr: "21 septembre 2026" }
+    versions: "App 2.3.0"
+    en:
+      title: "2.3: updates and announcements"
+      items:
+        - "The app detects an available update and offers it on Android and iOS."
+        - "An in-app announcement channel (banner and dialog)."
+        - "Invite a turnkey bot to a Discord server, and recover a bot token from your account."
+    fr:
+      title: "2.3 : mises à jour et annonces"
+      items:
+        - "L'application détecte une mise à jour disponible et la propose sur Android et iOS."
+        - "Un canal d'annonces dans l'application (bandeau et dialogue)."
+        - "Inviter un bot clé en main sur un serveur Discord, et récupérer le jeton d'un bot depuis votre compte."
+  - id: v2-4
+    era: v2
+    date: { en: "September 24, 2026", fr: "24 septembre 2026" }
+    versions: "App 2.4.0"
+    en:
+      title: "2.4: work as a team"
+      items:
+        - "Collaborators and a team chat per bot, with permissions that gate what each member can do."
+        - "Your home separates your own bots from the ones shared with you."
+        - "Folders to organize bots, with bulk moves, and a command history you can restore from."
+        - "An offline queue per command: edits made without a connection are sent later."
+    fr:
+      title: "2.4 : travailler en équipe"
+      items:
+        - "Collaborateurs et chat d'équipe pour chaque bot, avec des droits qui limitent ce que chaque membre peut faire."
+        - "Votre accueil sépare vos propres bots de ceux partagés avec vous."
+        - "Des dossiers pour ranger les bots, avec déplacements groupés, et un historique des commandes depuis lequel restaurer."
+        - "Une file d'attente hors ligne par commande : les modifications faites sans connexion sont envoyées plus tard."
+  - id: v2-5
+    era: v2
+    date: { en: "September 25, 2026", fr: "25 septembre 2026" }
+    versions: "App 2.5.0 – 2.5.1"
+    en:
+      title: "2.5: choose the engine for each bot"
+      items:
+        - "When you import a bot, you choose its execution engine: visual blocks, BDFD or JavaScript."
+    fr:
+      title: "2.5 : choisir le moteur de chaque bot"
+      items:
+        - "À l'import d'un bot, vous choisissez son moteur d'exécution : blocs visuels, BDFD ou JavaScript."
+  - id: v2-6
+    era: v2
+    date: { en: "September 30, 2026", fr: "30 septembre 2026" }
+    versions: "App 2.6.0"
+    en:
+      title: "2.6: the AI Copilot"
+      items:
+        - "The Copilot, an assistant that edits your bot with you. Every change is approved by you before it is applied."
+        - "A credit wallet for AI usage, and a reward roulette on mobile to earn credits."
+        - "A combined MCP so your own AI tools can connect to your bots."
+    fr:
+      title: "2.6 : le Copilot IA"
+      items:
+        - "Le Copilot, un assistant qui modifie votre bot avec vous. Chaque changement est validé par vous avant d'être appliqué."
+        - "Un portefeuille de crédits pour l'usage de l'IA, et une roulette de récompenses sur mobile pour en gagner."
+        - "Un MCP combiné pour connecter vos propres outils d'IA à vos bots."
+  - id: v2-7-8
+    era: v2
+    date: { en: "October 1 to 3, 2026", fr: "1er au 3 octobre 2026" }
+    versions: "App 2.7.0 · 2.8.0"
+    en:
+      title: "2.7 and 2.8: BDFD checks and Discord previews"
+      items:
+        - "A BDFD compilation check before saving, and a command sandbox covering every BDFD function (the sandbox was removed later, in 2.13, once the native engine replaced it)."
+        - "More bot configuration tools for the Copilot, and AI credits displayed."
+        - "Structured Discord messages (blocks, embeds) are previewed natively, in a Discord-like view."
+    fr:
+      title: "2.7 et 2.8 : vérifications BDFD et aperçus Discord"
+      items:
+        - "Une vérification de compilation BDFD avant l'enregistrement, et un bac à sable de commandes couvrant toutes les fonctions BDFD (retiré plus tard, en 2.13, quand le moteur natif l'a remplacé)."
+        - "Plus d'outils de configuration des bots pour le Copilot, et affichage des crédits IA."
+        - "Les messages Discord structurés (blocs, embeds) sont prévisualisés nativement, dans une vue proche de Discord."
+  - id: v2-9
+    era: v2
+    date: { en: "October 6, 2026", fr: "6 octobre 2026" }
+    versions: "App 2.9.0 – 2.9.1"
+    en:
+      title: "2.9: the native engine"
+      items:
+        - "A native engine for BDFD scripts and for visual blocks, written in the shared Dart core: variables, JSON, HTTP, control flow, moderation, roles, channels, reactions, components V2, modals, polls, voice and music, webhooks, emojis, images and more."
+        - "The same engine runs in the app, in the runner and in the Studio, so a command behaves the same everywhere."
+        - "Cloud checkpoints: the cloud state is authoritative and the app follows it."
+    fr:
+      title: "2.9 : le moteur natif"
+      items:
+        - "Un moteur natif pour les scripts BDFD et pour les blocs visuels, écrit dans le cœur Dart partagé : variables, JSON, HTTP, flux de contrôle, modération, rôles, salons, réactions, composants V2, modales, sondages, voix et musique, webhooks, emojis, images et plus encore."
+        - "Le même moteur tourne dans l'application, dans le runner et dans le Studio : une commande se comporte pareil partout."
+        - "Points de contrôle cloud : l'état du cloud fait foi et l'application le suit."
+  - id: v2-10-12
+    era: v2
+    date: { en: "October 7 to 10, 2026", fr: "7 au 10 octobre 2026" }
+    versions: "App 2.10.0 – 2.12.1 · Studio 0.1.0 – 0.2.0"
+    en:
+      title: "2.10 to 2.12: the Studio opens, scripts get warnings"
+      items:
+        - "The first version of the Studio, the web version of the app, is released on October 7."
+        - "Warnings when a slash command script uses $message or $args without options, when a script uses ((opts.x)), or when a BDFD button's yes/no arguments look wrong."
+        - "Dynamic ((name)) variables resolved in command scripts, and a message when a saved JavaScript command has no script."
+    fr:
+      title: "2.10 à 2.12 : le Studio ouvre, les scripts reçoivent des avertissements"
+      items:
+        - "La première version du Studio, la version web de l'application, sort le 7 octobre."
+        - "Avertissements quand un script de commande slash utilise $message ou $args sans option, quand un script utilise ((opts.x)), ou quand les arguments oui/non d'un bouton BDFD semblent faux."
+        - "Les variables dynamiques ((nom)) sont résolues dans les scripts de commande, et un message prévient quand une commande JavaScript enregistrée n'a pas de script."
+  - id: v2-13
+    era: v2
+    date: { en: "October 10 to 16, 2026", fr: "10 au 16 octobre 2026" }
+    versions: "App 2.13.0 – 2.13.3 · Studio 0.4.0 – 0.4.2"
+    en:
+      title: "2.13: privacy and security"
+      items:
+        - "Nothing is measured before you choose: no analytics SDK starts without an explicit choice."
+        - "Server-side consent before any text is sent to an AI provider."
+        - "Discord sign-in uses PKCE, and a setting hides the values of sensitive variables."
+        - "Change a collaborator's permissions after the fact."
+        - "A tabbed Plans screen built from the catalog, and a Backup and data page in the settings."
+    fr:
+      title: "2.13 : confidentialité et sécurité"
+      items:
+        - "Rien n'est mesuré avant votre choix : aucun SDK d'analyse ne démarre sans choix explicite."
+        - "Consentement côté serveur avant tout envoi de texte à un fournisseur d'IA."
+        - "La connexion Discord utilise PKCE, et un réglage masque les valeurs des variables sensibles."
+        - "Modifier les droits d'un collaborateur après coup."
+        - "Un écran Offres à onglets construit depuis le catalogue, et une page Sauvegarde et données dans les réglages."
+  - id: v2-14
+    era: v2
+    date: { en: "October 17 to 20, 2026", fr: "17 au 20 octobre 2026" }
+    versions: "App 2.14.0 – 2.14.4 · Studio 0.5.0 – 0.5.2"
+    en:
+      title: "2.14: a complete bot settings page"
+      items:
+        - "A Status tab to set the presence and the rotation of the bot's activities."
+        - "A bot settings page with name, prefix, intents, status and activities, then avatar, token, database and Lavalink on mobile."
+    fr:
+      title: "2.14 : une page de paramètres du bot complète"
+      items:
+        - "Un onglet Statut pour régler la présence et la rotation des activités du bot."
+        - "Une page de paramètres du bot avec nom, préfixe, intents, statut et activités, puis avatar, jeton, base de données et Lavalink sur mobile."
+  - id: v2-15
+    era: v2
+    date: { en: "October 23 to 24, 2026", fr: "23 au 24 octobre 2026" }
+    versions: "App 2.15.0 – 2.15.1 · Studio 0.6.0 – 0.6.1"
+    en:
+      title: "2.15: meet Bibi, the new design"
+      items:
+        - "Bibi, the mascot, with 20 states, and a new design system (version 1.1 of the charter): pixel icons, Geist and JetBrains Mono fonts, continuous motion and toasts."
+        - "A rebuilt onboarding: create your bot inline, register /hello on Discord and start it with the real Start button, with a Discord preview using your bot's real name and avatar."
+        - "A redesigned home, a left navigation rail on desktop and a bottom bar on mobile."
+    fr:
+      title: "2.15 : voici Bibi, le nouveau design"
+      items:
+        - "Bibi, la mascotte, avec 20 états, et un nouveau système de design (charte 1.1) : icônes pixel, polices Geist et JetBrains Mono, mouvement continu et toasts."
+        - "Une intégration reconstruite : créez votre bot sur place, enregistrez /hello sur Discord et démarrez-le avec le vrai bouton Démarrer, avec un aperçu Discord au vrai nom et au vrai avatar de votre bot."
+        - "Un accueil redessiné, un rail de navigation à gauche sur ordinateur et une barre du bas sur mobile."
+  - id: v2-16-20
+    era: v2
+    date: { en: "October 24 to 25, 2026", fr: "24 au 25 octobre 2026" }
+    versions: "App 2.16.0 – 2.20.0 · Studio 0.7.0 – 0.10.0"
+    en:
+      title: "2.16 to 2.20: the Studio catches up with the app"
+      items:
+        - "The Studio takes the same screens as the app: rail, bot settings, scheduler, webhooks, replay and the commands dashboard."
+        - "The command list, the in-line script editor with highlighting and full screen, and a BDFD problems panel under the editor are now shared between the app and the Studio."
+        - "A command screen in three tabs (Identity, Trigger, Response)."
+        - "More BDFD functions: super reactions, polls, invitations, voice moderation, AutoMod, server settings, emojis, webhooks, scheduled events, stickers, soundboard and bot avatar."
+        - "The Copilot shows a plan card, and the steps of an approved plan run without a second validation."
+    fr:
+      title: "2.16 à 2.20 : le Studio rattrape l'application"
+      items:
+        - "Le Studio reprend les mêmes écrans que l'application : rail, paramètres du bot, planificateur, webhooks, replay et tableau de bord des commandes."
+        - "La liste des commandes, l'éditeur de script en ligne avec coloration et plein écran, et un panneau de problèmes BDFD sous l'éditeur sont désormais partagés entre l'application et le Studio."
+        - "Un écran de commande en trois onglets (Identité, Déclencheur, Réponse)."
+        - "Plus de fonctions BDFD : super réactions, sondages, invitations, modération vocale, AutoMod, réglages du serveur, emojis, webhooks, événements planifiés, stickers, soundboard et avatar du bot."
+        - "Le Copilot affiche une carte du plan, et les étapes d'un plan approuvé s'exécutent sans seconde validation."
+  - id: v2-21
+    era: v2
+    date: { en: "October 26, 2026", fr: "26 octobre 2026" }
+    versions: "App 2.21.0 – 2.21.1 · Studio 0.11.0"
+    en:
+      title: "2.21: the Copilot manages your Discord server"
+      items:
+        - "The Copilot, in the app and in the Studio, can manage your Discord server (with a switch you control): channels, roles, emojis and moderation, always with your approval."
+        - "A readable diff for any command or workflow the Copilot proposes to change, and compact result cards instead of raw JSON."
+        - "Subscribe and manage your plan through Stripe in the Studio."
+        - "A test channel for prefix commands."
+    fr:
+      title: "2.21 : le Copilot gère votre serveur Discord"
+      items:
+        - "Le Copilot, dans l'application et dans le Studio, peut gérer votre serveur Discord (avec un interrupteur que vous contrôlez) : salons, rôles, emojis et modération, toujours avec votre accord."
+        - "Un diff lisible pour toute commande ou tout workflow que le Copilot propose de modifier, et des cartes de résultat compactes à la place du JSON brut."
+        - "S'abonner et gérer sa formule via Stripe dans le Studio."
+        - "Un salon de test pour les commandes à préfixe."
+  - id: v2-22
+    era: v2
+    date: { en: "October 28, 2026", fr: "28 octobre 2026" }
+    versions: "App 2.22.0 · Studio 0.12.0"
+    en:
+      title: "2.22: your data, your export"
+      items:
+        - "Export your data and delete your account from the app and the Studio."
+        - "Export and import a whole bot as a ZIP, identical in the app and the Studio, with safeguards for secrets and risky content."
+        - "A custom Discord status for every bot, and a New command screen (name, trigger, reply mode)."
+        - "Hosted Apps are renamed and gain public address, variables, image updates and private registry credentials."
+        - "Music: the bot leaves the channel after 5 minutes without a track or 2 minutes alone."
+    fr:
+      title: "2.22 : vos données, votre export"
+      items:
+        - "Exportez vos données et supprimez votre compte depuis l'application et le Studio."
+        - "Exportez et importez un bot entier en ZIP, identique dans l'application et le Studio, avec des garde-fous pour les secrets et les contenus risqués."
+        - "Un statut Discord personnalisé pour tous les bots, et un écran Nouvelle commande (nom, déclencheur, mode de réponse)."
+        - "Les bots clé en main s'appellent Hosted Apps et gagnent adresse publique, variables, mise à jour d'image et identifiants de registre privé."
+        - "Musique : le bot quitte le salon après 5 minutes sans piste ou 2 minutes seul."
+  - id: v2-23-27
+    era: v2
+    date: { en: "October 28, 2026", fr: "28 octobre 2026" }
+    versions: "App 2.23.0 – 2.27.0 · Studio 0.13.0 – 0.15.1"
+    en:
+      title: "2.23 to 2.27: editor comfort and Lavalink"
+      items:
+        - "Autocomplete on desktop (popup at the cursor, keyboard, signature) and on mobile (a strip above the keyboard)."
+        - "A reorganized home (summary, search, filter, bots grouped by state), one URL per page in the Studio and Hosted Apps on two columns."
+        - "A Lavalink tab in the settings of JavaScript bots, and bot statuses evaluated by the runner."
+        - "The embedded JavaScript runner follows the latest release, checked by its fingerprint."
+        - "Terms of use and privacy policy are mentioned under the sign-in button."
+    fr:
+      title: "2.23 à 2.27 : confort de l'éditeur et Lavalink"
+      items:
+        - "Autocomplétion sur ordinateur (popup au curseur, clavier, signature) et sur mobile (bandeau au-dessus du clavier)."
+        - "Un accueil réorganisé (synthèse, recherche, filtre, bots groupés par état), une URL par page dans le Studio et les Hosted Apps sur deux colonnes."
+        - "Un onglet Lavalink dans les réglages des bots JavaScript, et des statuts de bot évalués par le runner."
+        - "Le runner JavaScript embarqué suit la dernière version publiée, vérifiée par son empreinte."
+        - "Les conditions d'utilisation et la politique de confidentialité sont mentionnées sous le bouton de connexion."
+  - id: v2-28-29
+    era: v2
+    date: { en: "October 29, 2026", fr: "29 octobre 2026" }
+    versions: "App 2.28.0 – 2.29.0 · Studio 0.16.0 – 0.17.0"
+    en:
+      title: "2.28 and 2.29: referral and AI credit packs"
+      items:
+        - "A shared Referral screen, in the app and in the Studio."
+        - "An optional question, \"How did you hear about us?\", asked once."
+        - "Buy AI credit packs with Stripe Checkout."
+    fr:
+      title: "2.28 et 2.29 : parrainage et packs de crédits IA"
+      items:
+        - "Un écran Parrainage partagé, dans l'application et dans le Studio."
+        - "Une question facultative, « Comment nous avez-vous connus ? », posée une seule fois."
+        - "Achat de packs de crédits IA avec Stripe Checkout."
+
+  # ───────────── Version 3 ─────────────
+  - id: v3-0
+    era: v3
+    date: { en: "November 2, 2026", fr: "2 novembre 2026" }
+    versions: "App 3.0.0 – 3.0.3 · Studio 1.0.0"
+    en:
+      title: "3.0: the Studio 1.0 and a cleaner organization"
+      items:
+        - "The Studio reaches version 1.0."
+        - "Folders for commands and workflows (create, rename, move, delete)."
+        - "A three-tab workflow editor, with a collapsible trigger summary."
+        - "Scheduled tasks on a UTC grid, a start time, the next run and a Run now button."
+        - "A shared Variables screen with tabs, an explorer of stored values with readable server, user and channel names, and detection of variables used without a definition."
+        - "A catalog of official commands, and a Clear logs button."
+        - "The community marketplace is retired from the app and the Studio (breaking change)."
+    fr:
+      title: "3.0 : le Studio 1.0 et une organisation plus nette"
+      items:
+        - "Le Studio atteint la version 1.0."
+        - "Dossiers de commandes et de workflows (créer, renommer, déplacer, supprimer)."
+        - "Un éditeur de workflow à trois onglets, avec un résumé du déclencheur repliable."
+        - "Tâches planifiées sur une grille UTC, heure de départ, prochain tir et bouton Exécuter maintenant."
+        - "Un écran Variables partagé avec onglets, un explorateur des valeurs stockées avec des noms lisibles de serveurs, utilisateurs et salons, et la détection des variables utilisées sans définition."
+        - "Un catalogue de commandes officielles, et un bouton Effacer les logs."
+        - "La marketplace communautaire est retirée de l'application et du Studio (changement incompatible)."
+  - id: v3-1
+    era: v3
+    date: { en: "November 2, 2026", fr: "2 novembre 2026" }
+    versions: "App 3.1.0 – 3.1.1"
+    en:
+      title: "3.1: see where the time goes"
+      items:
+        - "The trace of an event now details where the time goes: preparation, acknowledgement and script execution."
+    fr:
+      title: "3.1 : voir où part le temps"
+      items:
+        - "La trace d'un événement détaille désormais où part le temps : préparation, acquittement et exécution du script."
+  - id: v3-2
+    era: v3
+    date: { en: "November 5, 2026", fr: "5 novembre 2026" }
+    versions: "App 3.2.0 · Studio 1.1.0"
+    en:
+      title: "3.2: real-time drafts and publishing"
+      items:
+        - "Commands and workflows are edited as live drafts and published when you decide, from the app or from the browser."
+        - "Teams share drafts in real time, deleting archives an item until you publish, and an archived item can be restored."
+        - "Publishing to Discord is done by your device, and its result is shown."
+        - "A new personal gateway keeps your account events live, and a banned account sees a clear screen."
+        - "The bot token rule is explained everywhere: members can use it, only the owner can show it again."
+        - "A blocking screen warns you not to leave while a bot is sent to the cloud."
+    fr:
+      title: "3.2 : brouillons en temps réel et publication"
+      items:
+        - "Commandes et workflows s'éditent en brouillons en direct et se publient quand vous le décidez, depuis l'application ou depuis le navigateur."
+        - "Les équipes partagent les brouillons en temps réel, supprimer archive un élément jusqu'à la publication, et un élément archivé peut être restauré."
+        - "La publication sur Discord est faite par votre appareil, et son résultat s'affiche."
+        - "Une nouvelle passerelle personnelle garde les événements de votre compte en direct, et un compte banni voit un écran clair."
+        - "La règle du jeton de bot est expliquée partout : les membres peuvent l'utiliser, seul le propriétaire peut le réafficher."
+        - "Un écran bloquant prévient de ne pas quitter pendant l'envoi d'un bot vers le cloud."
+  - id: v3-3
+    era: v3
+    date: { en: "November 6, 2026", fr: "6 novembre 2026" }
+    versions: "App 3.3.0 · Studio 1.2.0 · Runner 3.3.0"
+    en:
+      title: "3.3: public or private replies, per command"
+      items:
+        - "Choose whether a reply is public or ephemeral for each command, and for each subcommand."
+        - "Each subcommand can have its own code in the editor."
+    fr:
+      title: "3.3 : réponse publique ou privée, par commande"
+      items:
+        - "Choisissez si une réponse est publique ou éphémère pour chaque commande, et pour chaque sous-commande."
+        - "Chaque sous-commande peut avoir son propre code dans l'éditeur."
+  - id: v3-4
+    era: v3
+    date: { en: "November 7, 2026", fr: "7 novembre 2026" }
+    versions: "App 3.4.0 – 3.4.1 · Studio 1.3.0 · Runner 3.4.0"
+    en:
+      title: "3.4: publish on demand and API keys"
+      items:
+        - "Publish your commands on demand, in the app and in the Studio: a Discord tab shows the state, and you decide whether to register globally or on chosen servers."
+        - "API keys: create them with scopes and an expiration, then rotate, revoke and watch their usage. A link leads to the developer guide of the public API."
+        - "Validation reports unknown BDFD functions with a suggestion, and warns when several workflows handle the same custom ID."
+        - "In the free app, an interstitial ad appears after a successful publication (at most once every 7 minutes), and the native ads are removed."
+    fr:
+      title: "3.4 : publication à la demande et clés API"
+      items:
+        - "Publiez vos commandes à la demande, dans l'application et dans le Studio : un onglet Discord affiche l'état, et vous décidez d'enregistrer globalement ou sur des serveurs choisis."
+        - "Clés API : créez-les avec des portées et une expiration, puis faites-les tourner, révoquez-les et suivez leur usage. Un lien mène au guide développeur de l'API publique."
+        - "La validation signale les fonctions BDFD inconnues avec une suggestion, et prévient quand plusieurs workflows gèrent le même identifiant personnalisé."
+        - "Dans l'application gratuite, une publicité interstitielle apparaît après une publication réussie (au plus une fois toutes les 7 minutes), et les publicités natives sont retirées."

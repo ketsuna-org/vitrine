@@ -1,0 +1,54 @@
+{% assign t = site.data.locales[page.locale] %}
+{% assign cl = site.data.changelog %}
+{% assign lc = page.locale %}
+<div class="mx-auto max-w-[900px] px-4 py-14 sm:px-6 lg:py-20">
+  <header class="mb-10 flex flex-col gap-3">
+    <div class="eyebrow">{{ t.changelog.eyebrow }}</div>
+    <h1 class="m-0 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">{{ t.changelog.title }}</h1>
+    <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ t.changelog.subtitle }}</p>
+    <p class="m-0 text-sm leading-relaxed text-on-surface-variant">{{ t.changelog.note }}</p>
+  </header>
+
+  <nav class="mb-12 flex flex-col gap-3 border-y border-outline py-4" aria-label="{{ t.changelog.eras_label }}">
+    <span class="text-xs text-on-surface-variant">{{ t.changelog.eras_label }}</span>
+    <ul class="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
+      {% for era in cl.eras %}
+      <li><a class="text-primary underline underline-offset-2" href="#era-{{ era.id }}">{{ era[lc].title }}</a></li>
+      {% endfor %}
+      {% assign last = cl.entries | last %}
+      <li><a class="font-semibold text-primary underline underline-offset-2" href="#{{ last.id }}">{{ t.changelog.latest_label }}</a></li>
+    </ul>
+  </nav>
+
+  {% for era in cl.eras %}
+  <section class="mb-14" aria-labelledby="era-{{ era.id }}">
+    <header id="era-{{ era.id }}" class="mb-6 flex flex-col gap-2 scroll-mt-20">
+      <div class="eyebrow">{{ era[lc].period }}</div>
+      <h2 id="era-{{ era.id }}-title" class="m-0 text-3xl font-semibold leading-tight tracking-tight">{{ era[lc].title }}</h2>
+      <p class="m-0 leading-relaxed text-on-surface-variant">{{ era[lc].intro }}</p>
+    </header>
+    <ol class="m-0 flex list-none flex-col p-0">
+      {% for e in cl.entries %}{% if e.era == era.id %}
+      <li id="{{ e.id }}" class="scroll-mt-20 border-t border-outline py-6 last:border-b">
+        <article class="flex flex-col gap-2">
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-on-surface-variant">
+            <span>{{ e.date[lc] }}</span>
+            {% if e.versions != "" %}<span class="font-mono">{{ e.versions }}</span>{% endif %}
+          </div>
+          <h3 class="m-0 text-xl font-semibold leading-snug">{{ e[lc].title }}</h3>
+          <ul class="m-0 flex list-disc flex-col gap-1.5 pl-5 leading-relaxed text-on-surface-variant">
+            {% for item in e[lc].items %}<li>{{ item | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+      </li>
+      {% endif %}{% endfor %}
+    </ol>
+  </section>
+  {% endfor %}
+
+  <div class="flex flex-wrap gap-3 pt-4">
+    <a href="{{ t.paths.playground | relative_url }}" class="btn btn-primary">{{ t.changelog.try_cta }}</a>
+    <a href="{{ t.paths.download | relative_url }}" class="btn btn-secondary">{{ t.changelog.download_cta }}</a>
+  </div>
+</div>
