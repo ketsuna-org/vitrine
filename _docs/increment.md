@@ -36,7 +36,7 @@ $increment[count;1;server]
 
 ## Important Notes
 
-- The variable is read then written: two commands at the very same moment can overlap.
+- The read and the write are atomic for one variable inside the bot's process: two simultaneous commands never lose an update. A variable written from several runners at once is not covered.
 - A variable that is not a number raises "Variable x is not a number".
 
 ## Example
