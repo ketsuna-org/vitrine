@@ -1,4 +1,8 @@
 {
+ "accountage": {
+  "min": 1,
+  "max": 2
+ },
  "addactionrow": {
   "min": 0,
   "max": 2
@@ -239,6 +243,10 @@
   "min": 0,
   "max": 0
  },
+ "autocompletefromlist": {
+  "min": 1,
+  "max": 3
+ },
  "autocompleteoptionname": {
   "min": 0,
   "max": 0
@@ -290,6 +298,10 @@
  "boostlevel": {
   "min": 0,
   "max": 0
+ },
+ "botcanmanagerole": {
+  "min": 1,
+  "max": 1
  },
  "botcommands": {
   "min": 1,
@@ -350,6 +362,10 @@
  "callworkflow": {
   "min": 1,
   "max": 100
+ },
+ "canmoderate": {
+  "min": 1,
+  "max": 2
  },
  "canvascompositeimage": {
   "min": 5,
@@ -638,6 +654,10 @@
  "debug": {
   "min": 1,
   "max": 1
+ },
+ "decrement": {
+  "min": 1,
+  "max": 5
  },
  "default": {
   "min": 2,
@@ -1019,6 +1039,14 @@
   "min": 1,
   "max": 2
  },
+ "getroleswithoutperm": {
+  "min": 1,
+  "max": 4
+ },
+ "getroleswithperm": {
+  "min": 1,
+  "max": 4
+ },
  "getserverinvite": {
   "min": 0,
   "max": 1
@@ -1091,6 +1119,10 @@
   "min": 1,
   "max": 2
  },
+ "giverolebyname": {
+  "min": 2,
+  "max": 2
+ },
  "giveroles": {
   "min": 2,
   "max": null
@@ -1127,12 +1159,28 @@
   "min": 0,
   "max": 1
  },
+ "hasallroles": {
+  "min": 2,
+  "max": 3
+ },
+ "hasanyrole": {
+  "min": 2,
+  "max": 3
+ },
  "hasperms": {
   "min": 2,
   "max": null
  },
  "hasrole": {
   "min": 2,
+  "max": 2
+ },
+ "hasrolenamed": {
+  "min": 2,
+  "max": 2
+ },
+ "hidechannel": {
+  "min": 0,
   "max": 2
  },
  "highestrole": {
@@ -1231,6 +1279,10 @@
   "min": 1,
   "max": 2
  },
+ "increment": {
+  "min": 1,
+  "max": 5
+ },
  "input": {
   "min": 1,
   "max": 1
@@ -1283,12 +1335,20 @@
   "min": 2,
   "max": 2
  },
+ "isnewaccount": {
+  "min": 1,
+  "max": 2
+ },
  "isnsfw": {
   "min": 1,
   "max": 1
  },
  "isnumber": {
   "min": 1,
+  "max": 1
+ },
+ "isowner": {
+  "min": 0,
   "max": 1
  },
  "isslash": {
@@ -1366,6 +1426,10 @@
  "jsonexists": {
   "min": 0,
   "max": 100
+ },
+ "jsonfrompairs": {
+  "min": 0,
+  "max": null
  },
  "jsonindex": {
   "min": 0,
@@ -1475,6 +1539,10 @@
   "min": 1,
   "max": 1
  },
+ "linkbutton": {
+  "min": 2,
+  "max": 4
+ },
  "listadd": {
   "min": 2,
   "max": 3
@@ -1554,6 +1622,10 @@
  "listwebhooks": {
   "min": 0,
   "max": 1
+ },
+ "lockchannel": {
+  "min": 0,
+  "max": 2
  },
  "log": {
   "min": 1,
@@ -1795,6 +1867,10 @@
   "min": 3,
   "max": null
  },
+ "onlyifset": {
+  "min": 2,
+  "max": 5
+ },
  "onlynsfw": {
   "min": 1,
   "max": 1
@@ -1959,9 +2035,29 @@
   "min": 0,
   "max": 2
  },
+ "replyembed": {
+  "min": 2,
+  "max": 4
+ },
+ "replyfail": {
+  "min": 1,
+  "max": 2
+ },
  "replyin": {
   "min": 1,
   "max": 1
+ },
+ "replyinfo": {
+  "min": 1,
+  "max": 2
+ },
+ "replysuccess": {
+  "min": 1,
+  "max": 2
+ },
+ "replywarn": {
+  "min": 1,
+  "max": 2
  },
  "resetchannelvar": {
   "min": 1,
@@ -2023,6 +2119,10 @@
   "min": 1,
   "max": 1
  },
+ "rolemembercount": {
+  "min": 1,
+  "max": 1
+ },
  "rolememberslist": {
   "min": 1,
   "max": 3
@@ -2070,6 +2170,10 @@
  "sendmessage": {
   "min": 1,
   "max": 2
+ },
+ "sendtosetting": {
+  "min": 2,
+  "max": 5
  },
  "serverbanner": {
   "min": 0,
@@ -2219,6 +2323,10 @@
   "min": 0,
   "max": 1
  },
+ "showchannel": {
+  "min": 0,
+  "max": 2
+ },
  "skipactions": {
   "min": 1,
   "max": 1
@@ -2291,6 +2399,10 @@
   "min": 1,
   "max": 2
  },
+ "takerolebyname": {
+  "min": 2,
+  "max": 2
+ },
  "takeroles": {
   "min": 2,
   "max": null
@@ -2327,9 +2439,21 @@
   "min": 1,
   "max": 2
  },
+ "timeoutfor": {
+  "min": 2,
+  "max": 3
+ },
  "title": {
   "min": 1,
   "max": 2
+ },
+ "togglerole": {
+  "min": 2,
+  "max": 2
+ },
+ "togglevar": {
+  "min": 1,
+  "max": 4
  },
  "tolowercase": {
   "min": 1,
@@ -2366,6 +2490,10 @@
  "unescape": {
   "min": 1,
   "max": 1
+ },
+ "unlockchannel": {
+  "min": 0,
+  "max": 2
  },
  "unmute": {
   "min": 1,
@@ -2446,6 +2574,14 @@
  "userreacted": {
   "min": 4,
   "max": 4
+ },
+ "userrolementions": {
+  "min": 1,
+  "max": 2
+ },
+ "userrolenames": {
+  "min": 1,
+  "max": 2
  },
  "userroles": {
   "min": 1,
