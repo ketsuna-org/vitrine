@@ -419,6 +419,10 @@
   "min": 1,
   "max": 1
  },
+ "chance": {
+  "min": 1,
+  "max": 1
+ },
  "changecooldowntime": {
   "min": 4,
   "max": 4
@@ -567,6 +571,14 @@
   "min": 0,
   "max": 0
  },
+ "containsall": {
+  "min": 2,
+  "max": 4
+ },
+ "containsany": {
+  "min": 2,
+  "max": 4
+ },
  "continue": {
   "min": 0,
   "max": 0
@@ -626,6 +638,10 @@
  "debug": {
   "min": 1,
   "max": 1
+ },
+ "default": {
+  "min": 2,
+  "max": 2
  },
  "defer": {
   "min": 0,
@@ -691,6 +707,10 @@
   "min": 1,
   "max": 1
  },
+ "discordtime": {
+  "min": 1,
+  "max": 2
+ },
  "discriminator": {
   "min": 1,
   "max": 1
@@ -710,6 +730,10 @@
  "dmchannelid": {
   "min": 0,
   "max": 1
+ },
+ "duration": {
+  "min": 1,
+  "max": 2
  },
  "editbutton": {
   "min": 3,
@@ -1183,6 +1207,14 @@
   "min": 2,
   "max": 3
  },
+ "ifempty": {
+  "min": 2,
+  "max": 2
+ },
+ "ifthen": {
+  "min": 2,
+  "max": 3
+ },
  "ignorechannels": {
   "min": 2,
   "max": null
@@ -1202,6 +1234,10 @@
  "input": {
   "min": 1,
   "max": 1
+ },
+ "inrange": {
+  "min": 3,
+  "max": 3
  },
  "isadmin": {
   "min": 1,
@@ -1431,17 +1467,73 @@
   "min": 0,
   "max": 0
  },
+ "levelfromxp": {
+  "min": 1,
+  "max": 2
+ },
  "linescount": {
   "min": 1,
   "max": 1
+ },
+ "listadd": {
+  "min": 2,
+  "max": 3
  },
  "listautomodrules": {
   "min": 0,
   "max": 0
  },
+ "listcount": {
+  "min": 1,
+  "max": 2
+ },
  "listevents": {
   "min": 0,
   "max": 0
+ },
+ "listfirst": {
+  "min": 1,
+  "max": 2
+ },
+ "listget": {
+  "min": 2,
+  "max": 3
+ },
+ "listhas": {
+  "min": 2,
+  "max": 3
+ },
+ "listjoin": {
+  "min": 3,
+  "max": 3
+ },
+ "listlast": {
+  "min": 1,
+  "max": 2
+ },
+ "listmap": {
+  "min": 2,
+  "max": 4
+ },
+ "listnatural": {
+  "min": 1,
+  "max": 4
+ },
+ "listremove": {
+  "min": 2,
+  "max": 3
+ },
+ "listreverse": {
+  "min": 1,
+  "max": 2
+ },
+ "listslice": {
+  "min": 2,
+  "max": 4
+ },
+ "listsort": {
+  "min": 1,
+  "max": 4
  },
  "listsounds": {
   "min": 0,
@@ -1450,6 +1542,10 @@
  "liststickers": {
   "min": 0,
   "max": 0
+ },
+ "listunique": {
+  "min": 1,
+  "max": 2
  },
  "listvar": {
   "min": 0,
@@ -1515,6 +1611,10 @@
   "min": 0,
   "max": 1
  },
+ "mentionchannel": {
+  "min": 1,
+  "max": 1
+ },
  "mentioned": {
   "min": 1,
   "max": 2
@@ -1527,8 +1627,16 @@
   "min": 1,
   "max": 1
  },
+ "mentionrole": {
+  "min": 1,
+  "max": 1
+ },
  "mentions": {
   "min": 0,
+  "max": 1
+ },
+ "mentionuser": {
+  "min": 1,
   "max": 1
  },
  "message": {
@@ -1631,6 +1739,10 @@
   "min": 1,
   "max": 2
  },
+ "oneof": {
+  "min": 2,
+  "max": null
+ },
  "onlinemembers": {
   "min": 0,
   "max": 1
@@ -1703,6 +1815,10 @@
   "min": 0,
   "max": 1
  },
+ "parseduration": {
+  "min": 1,
+  "max": 2
+ },
  "pausemusic": {
   "min": 0,
   "max": 0
@@ -1723,9 +1839,17 @@
   "min": 2,
   "max": 2
  },
+ "plural": {
+  "min": 3,
+  "max": 4
+ },
  "premiumexpiretime": {
   "min": 0,
   "max": 1
+ },
+ "progressbar": {
+  "min": 2,
+  "max": 5
  },
  "publishmessage": {
   "min": 2,
@@ -2410,6 +2534,10 @@
  "workflowresponse": {
   "min": 0,
   "max": 1
+ },
+ "xpforlevel": {
+  "min": 1,
+  "max": 2
  },
  "year": {
   "min": 0,
