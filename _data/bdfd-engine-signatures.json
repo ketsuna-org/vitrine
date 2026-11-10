@@ -419,6 +419,10 @@
   "min": 3,
   "max": 4
  },
+ "capitalize": {
+  "min": 1,
+  "max": 1
+ },
  "categorychannels": {
   "min": 2,
   "max": 3
@@ -877,6 +881,10 @@
  },
  "error": {
   "min": 0,
+  "max": 1
+ },
+ "escapemarkdown": {
+  "min": 1,
   "max": 1
  },
  "eval": {
@@ -1551,6 +1559,10 @@
   "min": 0,
   "max": 0
  },
+ "listavg": {
+  "min": 1,
+  "max": 2
+ },
  "listcount": {
   "min": 1,
   "max": 2
@@ -1571,6 +1583,10 @@
   "min": 2,
   "max": 3
  },
+ "listindexof": {
+  "min": 2,
+  "max": 3
+ },
  "listjoin": {
   "min": 3,
   "max": 3
@@ -1582,6 +1598,14 @@
  "listmap": {
   "min": 2,
   "max": 4
+ },
+ "listmax": {
+  "min": 1,
+  "max": 2
+ },
+ "listmin": {
+  "min": 1,
+  "max": 2
  },
  "listnatural": {
   "min": 1,
@@ -1610,6 +1634,10 @@
  "liststickers": {
   "min": 0,
   "max": 0
+ },
+ "listsum": {
+  "min": 1,
+  "max": 2
  },
  "listunique": {
   "min": 1,
@@ -1887,6 +1915,10 @@
   "min": 1,
   "max": 100
  },
+ "pad": {
+  "min": 2,
+  "max": 4
+ },
  "parentid": {
   "min": 0,
   "max": 1
@@ -2098,6 +2130,10 @@
  "resumemusic": {
   "min": 0,
   "max": 0
+ },
+ "reversetext": {
+  "min": 1,
+  "max": 1
  },
  "rolecount": {
   "min": 0,
@@ -2347,6 +2383,10 @@
   "min": 2,
   "max": 2
  },
+ "slug": {
+  "min": 1,
+  "max": 1
+ },
  "sort": {
   "min": 4,
   "max": null
@@ -2474,6 +2514,10 @@
  "trimspace": {
   "min": 1,
   "max": 1
+ },
+ "truncate": {
+  "min": 2,
+  "max": 3
  },
  "tts": {
   "min": 0,
@@ -2666,6 +2710,14 @@
  "webhookusername": {
   "min": 2,
   "max": 2
+ },
+ "weightedchoice": {
+  "min": 2,
+  "max": 3
+ },
+ "wordcount": {
+  "min": 1,
+  "max": 1
  },
  "workflowresponse": {
   "min": 0,
