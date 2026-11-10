@@ -159,6 +159,34 @@
   "min": 0,
   "max": 1
  },
+ "ai": {
+  "min": 1,
+  "max": 3
+ },
+ "aiagent": {
+  "min": 1,
+  "max": 4
+ },
+ "aidecide": {
+  "min": 2,
+  "max": 2
+ },
+ "aidecidewithctx": {
+  "min": 1,
+  "max": 1
+ },
+ "aierror": {
+  "min": 0,
+  "max": 0
+ },
+ "aiquota": {
+  "min": 0,
+  "max": 0
+ },
+ "aiwithctx": {
+  "min": 1,
+  "max": 3
+ },
  "allmemberscount": {
   "min": 0,
   "max": 0
