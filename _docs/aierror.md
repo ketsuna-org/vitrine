@@ -21,7 +21,7 @@ None.
 
 ## Return Value
 
-- `ai_unavailable`, `ai_insufficient_tokens`, `ai_spending_blocked`, `ai_rate_limited`, `ai_provider_failure`, `ai_context_limit` or empty.
+- `ai_unavailable`, `ai_insufficient_tokens`, `ai_consent_required`, `ai_spending_blocked`, `ai_rate_limited`, `ai_provider_failure`, `ai_context_limit` or empty.
 
 ## Usage
 
