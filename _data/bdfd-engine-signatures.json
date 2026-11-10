@@ -1,4 +1,8 @@
 {
+ "abs": {
+  "min": 1,
+  "max": 1
+ },
  "accountage": {
   "min": 1,
   "max": 2
@@ -283,6 +287,10 @@
   "min": 0,
   "max": 0
  },
+ "average": {
+  "min": 1,
+  "max": null
+ },
  "await": {
   "min": 1,
   "max": 1
@@ -555,6 +563,10 @@
   "min": 2,
   "max": null
  },
+ "clamp": {
+  "min": 3,
+  "max": 3
+ },
  "clear": {
   "min": 0,
   "max": 3
@@ -642,6 +654,10 @@
  "copyroleperms": {
   "min": 2,
   "max": 2
+ },
+ "cos": {
+  "min": 1,
+  "max": 1
  },
  "createautomodrule": {
   "min": 2,
@@ -966,6 +982,10 @@
  "funcreturn": {
   "min": 1,
   "max": 1
+ },
+ "gcd": {
+  "min": 2,
+  "max": null
  },
  "getattachments": {
   "min": 1,
@@ -1359,6 +1379,10 @@
   "min": 1,
   "max": 1
  },
+ "iseven": {
+  "min": 1,
+  "max": 1
+ },
  "ishoisted": {
   "min": 1,
   "max": 1
@@ -1388,6 +1412,10 @@
   "max": 1
  },
  "isnumber": {
+  "min": 1,
+  "max": 1
+ },
+ "isodd": {
   "min": 1,
   "max": 1
  },
@@ -1571,6 +1599,10 @@
   "min": 0,
   "max": 0
  },
+ "lcm": {
+  "min": 2,
+  "max": null
+ },
  "leavevoice": {
   "min": 0,
   "max": 0
@@ -1692,6 +1724,10 @@
   "max": 2
  },
  "log": {
+  "min": 1,
+  "max": 2
+ },
+ "logarithm": {
   "min": 1,
   "max": 2
  },
@@ -1963,7 +1999,23 @@
   "min": 1,
   "max": 2
  },
+ "parsefloat": {
+  "min": 1,
+  "max": 2
+ },
+ "parseint": {
+  "min": 1,
+  "max": 2
+ },
  "pausemusic": {
+  "min": 0,
+  "max": 0
+ },
+ "percent": {
+  "min": 2,
+  "max": 3
+ },
+ "pi": {
   "min": 0,
   "max": 0
  },
@@ -1986,6 +2038,10 @@
  "plural": {
   "min": 3,
   "max": 4
+ },
+ "pow": {
+  "min": 2,
+  "max": 2
  },
  "premiumexpiretime": {
   "min": 0,
@@ -2399,6 +2455,14 @@
   "min": 0,
   "max": 2
  },
+ "sign": {
+  "min": 1,
+  "max": 1
+ },
+ "sin": {
+  "min": 1,
+  "max": 1
+ },
  "skipactions": {
   "min": 1,
   "max": 1
@@ -2483,6 +2547,10 @@
   "min": 2,
   "max": null
  },
+ "tan": {
+  "min": 1,
+  "max": 1
+ },
  "textsplit": {
   "min": 2,
   "max": 2
@@ -2535,6 +2603,10 @@
   "min": 1,
   "max": 1
  },
+ "tonumber": {
+  "min": 1,
+  "max": 2
+ },
  "totitlecase": {
   "min": 1,
   "max": 1
@@ -2548,6 +2620,10 @@
   "max": 1
  },
  "trimspace": {
+  "min": 1,
+  "max": 1
+ },
+ "trunc": {
   "min": 1,
   "max": 1
  },
