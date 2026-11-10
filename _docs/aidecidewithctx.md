@@ -38,7 +38,7 @@ $aiDecideWithCtx[Does this message contain profanity?]
 ```bdfd
 $nomention
 $if[$aiDecideWithCtx[Does this message contain profanity?]==true]
-$deleteMessage
+$deleteMessage[$channelID;$messageID]
 Please keep it clean!
 $endif
 ```
