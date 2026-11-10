@@ -61,6 +61,8 @@ Safety rules on these tools:
 
 You can also drive your bots from the AI assistant you already use, such as Claude, ChatGPT or Cursor, through an MCP connection. It exposes the same tools as the Copilot: read a bot, plan and validate a command, save commands and workflows, change settings and variables, start and stop a bot, and the Discord server tools above. Creating images is not available this way: it needs the app to draw them.
 
+**This connection is reserved for Premium accounts.** On a free account the connection succeeds but no tool is offered, and every call answers that Premium is required.
+
 The address to give your assistant is:
 
 ```

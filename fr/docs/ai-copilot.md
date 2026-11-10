@@ -64,6 +64,8 @@ Règles de sécurité de ces outils :
 
 Vous pouvez aussi piloter vos bots depuis l'assistant IA que vous utilisez déjà, comme Claude, ChatGPT ou Cursor, grâce à une connexion MCP. Elle expose les mêmes outils que le copilote : lire un bot, planifier et valider une commande, enregistrer des commandes et des workflows, changer les réglages et les variables, démarrer et arrêter un bot, et les outils de serveur Discord ci-dessus. La création d'images n'est pas disponible ainsi : elle demande que l'application les dessine.
 
+**Cette connexion est réservée aux comptes Premium.** Avec un compte gratuit, la connexion réussit mais aucun outil n'est proposé, et chaque appel répond que le Premium est requis.
+
 L'adresse à donner à votre assistant est :
 
 ```
