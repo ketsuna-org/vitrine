@@ -67,6 +67,24 @@ Clicked: $customID
 }
 ```
 
+## Filtering an event workflow by custom ID
+
+A workflow on the `interactionCreate` event runs for **every** interaction of the bot: slash commands, buttons, selects and modals. Set its **custom ID filter** (`customIdFilter`) so it only runs for the components it owns. A workflow whose filter does not match does not run at all, so it cannot acknowledge the interaction before another workflow answers.
+
+The filter accepts:
+
+| Filter | Runs for |
+|--------|----------|
+| `verify_member` | exactly that custom ID |
+| `forge-*` | every custom ID that starts with `forge-` (`forge-cook-7-42`) |
+| `npc-*,npcm-*` | a comma-separated list: any of the patterns |
+
+`*` stands for any sequence of characters. Without `*`, the match is exact.
+
+**Use a stable prefix per feature**, and put the variable data after it (`forge-<action>-<recipe>-<userId>`). This matters most for modals: a modal must be the **first** response to a click (`$newModal`, no `$defer` before it). If another workflow without a filter (or with an overlapping one) acknowledges the click first, the modal fails with *A modal requires an unacknowledged interaction*. With one distinct prefix per workflow, only the right one runs.
+
+The editor warns when two workflows can match the same custom ID, or when one has no filter at all.
+
 See [Interactions overview](/docs/interactions-overview/) for component-specific patterns.
 
 ## Full reference

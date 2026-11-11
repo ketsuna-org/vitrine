@@ -73,6 +73,24 @@ Clicked: $customID
 
 Consultez [Interactions overview](/docs/interactions-overview/) (en anglais) pour les schémas propres à chaque composant.
 
+## Filtrer un workflow d'évènement par custom ID
+
+Un workflow sur l'évènement `interactionCreate` se lance pour **toutes** les interactions du bot : commandes slash, boutons, menus et modales. Renseigne son **filtre de custom ID** (`customIdFilter`) pour qu'il ne tourne que pour les composants dont il s'occupe. Un workflow dont le filtre ne correspond pas ne se lance pas du tout : il ne peut donc pas acquitter l'interaction avant qu'un autre workflow réponde.
+
+Le filtre accepte :
+
+| Filtre | Se lance pour |
+|--------|---------------|
+| `verify_member` | exactement ce custom ID |
+| `forge-*` | tous les custom ID qui commencent par `forge-` (`forge-cook-7-42`) |
+| `npc-*,npcm-*` | une liste séparée par des virgules : l'un des motifs |
+
+`*` remplace n'importe quelle suite de caractères. Sans `*`, la correspondance est exacte.
+
+**Prends un préfixe stable par fonctionnalité** et mets les données variables après (`forge-<action>-<recette>-<idUtilisateur>`). C'est surtout important pour les modales : une modale doit être la **première** réponse à un clic (`$newModal`, sans `$defer` avant). Si un autre workflow sans filtre (ou avec un filtre qui se chevauche) acquitte le clic d'abord, la modale échoue avec *A modal requires an unacknowledged interaction*. Avec un préfixe distinct par workflow, seul le bon se lance.
+
+L'éditeur avertit quand deux workflows peuvent répondre au même custom ID, ou quand l'un n'a aucun filtre.
+
 ## Référence complète
 
 | Ressource | Portée |
