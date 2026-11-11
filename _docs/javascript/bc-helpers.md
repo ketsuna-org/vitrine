@@ -39,3 +39,5 @@ if (bc.lock.tryLock(`chunk:${block}`)) {
 ```
 
 To edit a message with a new image, discord.js already does it: `message.edit({ files: [attachment] })`.
+
+`bc.grid.tiles({ x, y, columns, rows, size, gap, colors })` returns the rectangles of a tile grid (`$canvasTileGrid`) to draw with the canvas library of your choice.

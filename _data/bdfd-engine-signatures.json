@@ -455,6 +455,10 @@
   "min": 3,
   "max": 4
  },
+ "canvastilegrid": {
+  "min": 6,
+  "max": 8
+ },
  "capitalize": {
   "min": 1,
   "max": 1
