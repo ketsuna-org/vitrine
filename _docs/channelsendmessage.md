@@ -4,7 +4,7 @@ title: $channelSendMessage
 translation_key: docs
 category: "Moderation"
 function_name: channelSendMessage
-syntax: $channelSendMessage[channelID;content;(replyMessageID)]
+syntax: $channelSendMessage[channelID;content;(replyMessageID);(returnID)]
 description: Sends a text message in a specific channel. Unlike $sendMessage which responds in the current channel, this function targets any channel.
 ---
 
@@ -69,3 +69,7 @@ $endif
 
 - `$channelSendMessage[]` does not respond to the user: combine it with `$sendMessage[]` to provide feedback.
 - To retrieve a message, use `$getMessage[]`.
+
+## Return ID
+
+A fourth argument `yes` (or `yes` in the third place, as in BDFD) returns the ID of the sent message, so a script can edit it later with `$editMessage`. A message ID in the third place is still the message to reply to.

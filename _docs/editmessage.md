@@ -83,3 +83,7 @@ $editMessage[;;Vote saved ✅;Poll;You voted "Yes";#57F287;Thank you!]
 - Editing a message written by someone else fails with `Only the bot own messages can be edited.`
 - A Components V2 message carries neither text nor embed: the call fails with `This message uses Components V2: edit it with $editMessageCV2.` (see `$editMessageCV2`).
 - Use `$sendMessage[text;yes]` to retrieve the ID of the message sent.
+
+## Canvas
+
+A canvas rendered with `$attachImage` before `$editMessage` replaces the attachments of the edited message (a live map or health bar that updates in place).

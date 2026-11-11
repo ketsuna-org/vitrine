@@ -529,7 +529,7 @@
  },
  "channelsendmessage": {
   "min": 2,
-  "max": 3
+  "max": 4
  },
  "channeltopic": {
   "min": 0,
@@ -673,6 +673,10 @@
  },
  "createevent": {
   "min": 5,
+  "max": 6
+ },
+ "createforumpost": {
+  "min": 3,
   "max": 6
  },
  "createinvite": {
@@ -967,11 +971,19 @@
   "min": 1,
   "max": 1
  },
+ "floordiv": {
+  "min": 2,
+  "max": 2
+ },
  "footer": {
   "min": 1,
   "max": 2
  },
  "footericon": {
+  "min": 1,
+  "max": 2
+ },
+ "forumtags": {
   "min": 1,
   "max": 2
  },
@@ -1233,6 +1245,10 @@
  },
  "hasanyrole": {
   "min": 2,
+  "max": 3
+ },
+ "hash": {
+  "min": 1,
   "max": 3
  },
  "hasperms": {
@@ -1847,6 +1863,10 @@
   "min": 0,
   "max": 0
  },
+ "mod": {
+  "min": 2,
+  "max": 2
+ },
  "modifychannel": {
   "min": 1,
   "max": 6
@@ -2291,6 +2311,10 @@
   "min": 0,
   "max": 0
  },
+ "seededrandom": {
+  "min": 3,
+  "max": 3
+ },
  "seekmusic": {
   "min": 1,
   "max": 1
@@ -2438,6 +2462,10 @@
  "setservervar": {
   "min": 2,
   "max": 3
+ },
+ "setthreadtags": {
+  "min": 2,
+  "max": 2
  },
  "setuserroles": {
   "min": 2,
