@@ -511,6 +511,10 @@
   "min": 1,
   "max": 1
  },
+ "channelmessagecount": {
+  "min": 1,
+  "max": 3
+ },
  "channelname": {
   "min": 1,
   "max": 1
@@ -1734,6 +1738,10 @@
  "listvar": {
   "min": 0,
   "max": 1
+ },
+ "listvars": {
+  "min": 1,
+  "max": 3
  },
  "listwebhooks": {
   "min": 0,
