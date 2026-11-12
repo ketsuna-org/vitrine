@@ -119,7 +119,8 @@
     "leaveGuild": "Faire quitter le serveur",
     "attachImage": "Joindre une image",
     "skipActions": "Sauter N actions",
-    "jumpToAction": "Aller à l'action"
+    "jumpToAction": "Aller à l'action",
+    "callFunction": "Appeler une fonction"
   },
   "descriptions": {
     "deleteMessages": "Supprimer un ou plusieurs messages",
@@ -239,7 +240,8 @@
     "leaveGuild": "Faire quitter le serveur/la guilde au bot",
     "attachImage": "Joindre un fichier image à la réponse (URL, data URL ou base64)",
     "skipActions": "Sauter un nombre spécifié d'actions suivantes",
-    "jumpToAction": "Aller à une action spécifique par clé, ID, ou position"
+    "jumpToAction": "Aller à une action spécifique par clé, ID, ou position",
+    "callFunction": "Appeler n'importe quelle fonction native BDFD avec un formulaire et garder sa valeur"
   },
   "categories": {
     "Messages": "Messages",

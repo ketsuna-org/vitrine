@@ -209,6 +209,18 @@ Each project is built from the real blocks; open a block to see its fields.
 
 ---
 
+## Every BDFD function is available as a block
+
+Blocks and BDFD run on the same native engine, so nothing you can write in BDFD is out of reach of the visual editor. The **Call function** block (`callFunction`, category Workflows) calls any native BDFD function (`$floorDiv`, `$mod`, `$hash`, `$seededRandom`, `$createForumPost`, `$forumTags`, `$setThreadTags`, `$canvasTileGrid`, `$channelMessageCount`, `$listVars`, the atomic variables `$increment`, `$compareAndSetVar`, `$tryLock` and `$unlock`, and every other function of the [BDFD function reference](/docs/)).
+
+1. Add a **Call function** block and tap the **Function** field: a searchable list shows every function of the engine.
+2. Fill one field per argument. Fields are named as in the function's documentation and optional arguments are marked. Variables `((...))` work like in any other block.
+3. The returned value is stored under the block key: read it in the next blocks with `((action.<key>))`.
+
+Arguments use BDFD syntax, so write `\;` for a literal semicolon and `$name[...]` to nest another function. The list is generated from the engine itself: a function added to Bot Creator shows up in the block without an update of the editor.
+
+---
+
 ## 4. Explore All Blocks
 
 - 📖 **[Complete Blocks Dictionary](/docs/blocks-dictionary/)**: all {{ site.data.blocks_registry.blocks | size }} blocks of the app, with their fields, hints and options.

@@ -3165,6 +3165,36 @@
       ]
     },
     {
+      "type": "callFunction",
+      "name": "Call function",
+      "description": "Call any native BDFD function with a form and keep its value",
+      "category": "Workflows",
+      "family": "logic",
+      "icon": "extension",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "fields": [
+        {
+          "label": "Function",
+          "key": "function",
+          "type": "nativeFunction",
+          "default": "",
+          "hint": "Native function to call (any BDFD function)",
+          "required": true
+        },
+        {
+          "label": "Arguments",
+          "key": "arguments",
+          "type": "list",
+          "default": [],
+          "hint": "Arguments of the function (edited with the function)"
+        }
+      ]
+    },
+    {
       "type": "stopUnless",
       "name": "Stop Unless Condition",
       "description": "Stop the workflow if a condition is not met (guard/filter)",
