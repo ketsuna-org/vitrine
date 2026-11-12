@@ -46,6 +46,7 @@ Beyond commands, the Copilot can help you run the Discord server itself. These s
 | Rules, welcome, FAQ, announcements | Write the message or the embed and post it as the bot, edit it or delete it. You can see the message before it is sent. Mentions are off unless you name the roles, and pinging everyone needs you to type it. |
 | Banners and visuals | Draw a banner or a server icon. It is rendered on your device and you decide whether it is posted. |
 | Server settings | Name, icon, system, rules and updates channels, AFK channel, verification level, default notifications, content filter and language. |
+| Emojis | Create, rename and delete the custom emojis of the server, and the emojis of the bot itself: those belong to the bot, not to a server, and work in every server where it is. The image can be drawn by the Copilot, uploaded from your computer or taken from a public address (PNG, JPEG or GIF, 256 KB at most). The image of an emoji cannot change: create a new one and delete the old one. You type the exact name to delete. |
 | Roles | Create, edit and delete roles and their permissions. Administrator is never granted, and powerful permissions need you to type the exact role name. |
 | Moderation | Kick, ban, unban, timeout or remove a timeout for one member whose Discord ID you give. A reason is always required and is written in the server's audit log. |
 | Real test of a text command | Your bot sends the command in a test channel that you chose, checks the answer, deletes its own messages and reports the result. |
