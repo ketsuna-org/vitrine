@@ -89,6 +89,19 @@ https://api.bot-creator.fr/mcp/user
 - **Mêmes règles de sécurité.** Chaque appel est contrôlé selon la permission, le bot autorisé et vos droits réels sur ce bot. Les écritures sont limitées à 60 par minute et les lectures à 600 par minute pour chaque connexion, et chaque écriture est journalisée.
 - **L'accès expire.** Un accès dure une heure et se renouvelle avec un identifiant de rafraîchissement valable 30 jours ; réutiliser un ancien identifiant annule toute la connexion.
 
+## Des outils qui ne limitent jamais ce que vous créez
+
+Votre assistant n'est pas freiné par de petits plafonds, et il dispose d'aides pour les tâches répétitives :
+
+- **Scripts longs.** Le script d'une commande ou d'un workflow peut aller jusqu'à 300 000 caractères (12 000 avant), et un workflow en blocs jusqu'à 500 actions. Une requête est limitée à 1 Mo par la connexion elle-même.
+- **`patch_workflow`.** Modifie un workflow sur place : un chercher/remplacer unique dans son script (jusqu'à 50 d'un coup), ou son évènement, son `customIdFilter`, ses arguments, sa planification ou son webhook. Tout ce qui n'est pas nommé est conservé.
+- **Le `customIdFilter` ne se perd plus.** Enregistrer à nouveau un workflow sans `filters` garde le filtre déjà posé. Envoyez `filters: {customIdFilter: ""}` pour l'effacer volontairement.
+- **Arguments pour `$callWorkflow`.** Un workflow déclare ses `arguments` (des noms, ou `{name, required, defaultValue}`). L'appelant les passe avec `$callWorkflow[nom;cle=valeur]` et le workflow les lit avec `((arg.cle))`.
+- **Lancer une tâche planifiée tout de suite.** `run_trigger` exécute une fois un workflow planifié, immédiatement, sans décaler son minuteur (le bot doit tourner, forfait Premium). Lisez ensuite `logs`.
+- **Un workflow appelé peut lire le `$var` de l'appelant.** Le validateur ne signale plus `E_UNRESOLVED_REF` pour un `$var[nom]` lu dans un workflow (et `validate` accepte `called_workflow: true` pour le même cas).
+
+La connexion à votre propre IA est une fonction Premium.
+
 ## Vous gardez la main
 
 Chaque appel d'outil apparaît sous forme de carte dans la discussion : lecture, attente de validation, exécution, terminé, refusé ou non confirmé. Tout ce qui modifie votre bot (enregistrer, supprimer, démarrer, arrêter) demande votre accord pour cette action précise. Si vous refusez, rien n'est modifié.

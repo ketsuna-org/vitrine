@@ -86,6 +86,19 @@ https://api.bot-creator.fr/mcp/user
 - **It follows the same safety rules.** Each call is checked against the permission, the bot you allowed and your real rights on that bot. Writes are limited to 60 per minute and reads to 600 per minute for each connection, and every write is logged.
 - **Access expires.** An access lasts one hour and is renewed with a refresh credential valid for 30 days; reusing an old credential cancels the whole connection.
 
+## Tools that never limit what you build
+
+Your assistant is not held back by small caps, and it has helpers for the repetitive parts:
+
+- **Long scripts.** A command or workflow script can be up to 300,000 characters (it was 12,000), and a block workflow up to 500 actions. A request is capped at 1 MB by the connection itself.
+- **`patch_workflow`.** Edit a workflow in place: a unique find/replace in its script (up to 50 at once), or change its event, its `customIdFilter`, its arguments, its schedule or its webhook. Everything you do not name is kept.
+- **The `customIdFilter` is never lost.** Saving a workflow again without `filters` keeps the filter it already had. Send `filters: {customIdFilter: ""}` to clear it on purpose.
+- **Arguments for `$callWorkflow`.** A workflow declares its `arguments` (names, or `{name, required, defaultValue}`). The caller passes them with `$callWorkflow[name;key=value]` and the workflow reads them with `((arg.key))`.
+- **Run a scheduled task now.** `run_trigger` runs a scheduled workflow once, right away, without moving its timer (the bot must be running, Premium plan). Read `logs` afterwards.
+- **A called workflow may read the caller's `$var`.** The validator no longer reports `E_UNRESOLVED_REF` for a `$var[name]` read inside a workflow (and `validate` accepts `called_workflow: true` for the same case).
+
+The connection to your own AI is a Premium feature.
+
 ## You stay in control
 
 Every tool call appears as a card in the conversation: reading, waiting for validation, running, done, refused, or not confirmed. Anything that changes your bot (saving, deleting, starting, stopping) needs your approval for that exact action. If you refuse, nothing is changed.
