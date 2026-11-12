@@ -50,6 +50,57 @@ const file = new AttachmentBuilder(buffer, { name: 'banner.png' });
 await interaction.reply({ files: [file] });
 ```
 
+## bc.canvas helpers
+
+Three helpers shorten the common steps, with the same limits as the BDFD functions (a canvas is 1 to 4096 pixels per side):
+
+| JavaScript | BDFD equivalent |
+|------------|-----------------|
+| `bc.canvas.create(width, height, background?)` | `$canvasCreate` (returns a canvas, background is a CSS name or hex) |
+| `bc.canvas.drawTiles(ctx, tiles)` | `$canvasTileGrid` (draws the result of `bc.grid.tiles`) |
+| `bc.canvas.attach(canvas, name?)` | `$attachImage` (returns a PNG attachment for `files`) |
+
+The drawing itself is the full `canvas` 2D API, so the image is not pixel-identical to the BDFD one (fonts and edges are smoother), but anything BDFD draws can be drawn.
+
+### Mini-map from a tile grid
+
+```javascript
+const colors = ['green', 'green', 'blue', 'gray', '', 'green'];
+const tiles = bc.grid.tiles({ x: 10, y: 10, columns: 3, rows: 2, size: 40, gap: 2, colors });
+const canvas = bc.canvas.create(140, 100, '#1e1f22');
+bc.canvas.drawTiles(canvas.getContext('2d'), tiles);
+await interaction.reply({ files: [bc.canvas.attach(canvas, 'map')] });
+```
+
+### Progress bar
+
+```javascript
+const canvas = bc.canvas.create(300, 40, '#1e1f22');
+const ctx = canvas.getContext('2d');
+const percent = 65;
+ctx.fillStyle = '#4f545c';
+ctx.fillRect(10, 10, 280, 20);
+ctx.fillStyle = '#57f287';
+ctx.fillRect(10, 10, Math.round(280 * percent / 100), 20);
+ctx.fillStyle = '#ffffff';
+ctx.font = '14px sans-serif';
+ctx.fillText(`${percent}%`, 135, 25);
+await interaction.reply({ files: [bc.canvas.attach(canvas, 'progress')] });
+```
+
+### Round avatar
+
+```javascript
+const { loadImage } = require('canvas');
+const canvas = bc.canvas.create(256, 256);
+const ctx = canvas.getContext('2d');
+ctx.beginPath();
+ctx.arc(128, 128, 128, 0, Math.PI * 2);
+ctx.clip();
+ctx.drawImage(await loadImage(interaction.user.displayAvatarURL({ extension: 'png', size: 256 })), 0, 0, 256, 256);
+await interaction.reply({ files: [bc.canvas.attach(canvas, 'avatar')] });
+```
+
 ## BDFD equivalent
 
 BDScript uses deferred canvas blocks (`$canvasCreate`, drawing ops, `$attachImage`). See the [Canvas functions guide](/advanced-topics/2026/06/11/image-creation-canvas-functions-in-bdfd/) and [Image & Canvas](/docs/#image-canvas) function reference.
