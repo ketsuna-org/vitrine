@@ -44,6 +44,14 @@ export const isPlainObject = (v) => v !== null && typeof v === "object" && !Arra
 
 const stringKeyed = (raw) => (isPlainObject(raw) ? { ...raw } : {});
 
+/** `{line, col, fn}` valide (entiers >= 1, texte) ou `null` : même lecture que Dart (`GraphSource.tryParse`) et Go. */
+const parseSrc = (raw) => {
+  if (!isPlainObject(raw)) return null;
+  const whole = (v) => typeof v === "number" && Number.isInteger(v) && v >= 1;
+  if (!whole(raw.line) || !whole(raw.col) || typeof raw.fn !== "string") return null;
+  return { line: raw.line, col: raw.col, fn: raw.fn };
+};
+
 const withInvalidFields = (out, invalid) => {
   // Jamais sérialisé : lu par `validateGraph` (`invalid_field`).
   Object.defineProperty(out, "invalidFields", { value: invalid, enumerable: false });
@@ -70,6 +78,10 @@ export function normalizeGraph(raw) {
     const out = { id, type: text(n.type), key: text(n.key), enabled: typeof enabled === "boolean" ? enabled : true, payload: stringKeyed(n.payload) };
     const error = stringKeyed(n.error);
     if (Object.keys(error).length > 0) out.error = error;
+    // `src` : origine `{line, col, fn}` du nœud dans le script BDFD converti (contrat §2), conservée, jamais interprétée ici.
+    const src = parseSrc(n.src);
+    if (src) out.src = src;
+    else if (n.src !== undefined && n.src !== null) invalid.push("src");
     if (isPlainObject(n.pos)) {
       const coord = (v) => {
         if (v === undefined || v === null) return 0;
