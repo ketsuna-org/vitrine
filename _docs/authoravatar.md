@@ -44,7 +44,8 @@ $color[#5865F2]
 ### Author of embed with avatar
 
 ```bdfd
-$author[$authorUsername;$authorAvatar]
+$author[$authorUsername]
+$authorIcon[$authorAvatar]
 $title[Message]
 $description[Message content...]
 $color[#5865F2]
@@ -53,7 +54,8 @@ $color[#5865F2]
 ### Complete profile
 
 ```bdfd
-$author[$authorUsername;$authorAvatar]
+$author[$authorUsername]
+$authorIcon[$authorAvatar]
 $title[Profile of $authorUsername]
 $thumbnail[$authorAvatar]
 $description[

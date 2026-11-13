@@ -11,7 +11,7 @@ Adds an interactive button to the message (legacy style). Allows controlling the
 
 ## Syntax
 
-```bdfd
+```
 $addButton[newRow;customIdOrURL;label;style;(disabled);(emoji);(messageId)]
 ```
 

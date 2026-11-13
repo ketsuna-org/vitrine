@@ -44,7 +44,7 @@ $sendMessage[Role named "Moderator": $findRole[Moderator]]
 
 ```bdfd
 $if[$findRole[VIP]!=]
-  $roleGrant[$authorID;$findRole[VIP]]
+  $roleGrant[$authorID;+$findRole[VIP]]
   $sendMessage[VIP role assigned!]
 $else
   $sendMessage[VIP role not found.]

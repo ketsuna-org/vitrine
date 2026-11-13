@@ -2280,7 +2280,7 @@
     {
       "name": "docs:accountage#22",
       "kind": "script",
-      "script": "$accountAge[userID;(unit)]",
+      "script": "$accountAge[$authorID;d]",
       "graph": {
         "version": 2,
         "nodes": [
@@ -2292,8 +2292,8 @@
             "payload": {
               "function": "accountage",
               "arguments": [
-                "userID",
-                "(unit)"
+                "$authorID",
+                "d"
               ]
             }
           },
@@ -2540,7 +2540,7 @@
     {
       "name": "docs:serververificationlevel#27",
       "kind": "script",
-      "script": "$serverVerificationLevel[(guildID)]",
+      "script": "$serverVerificationLevel[10]",
       "graph": {
         "version": 2,
         "nodes": [
@@ -2552,7 +2552,7 @@
             "payload": {
               "function": "serververificationlevel",
               "arguments": [
-                "(guildID)"
+                "10"
               ]
             }
           },
@@ -2591,7 +2591,7 @@
     {
       "name": "docs:addactionrow#28",
       "kind": "script",
-      "script": "$addActionRow[(id);(containerId)]",
+      "script": "$addActionRow[row1]$addButtonCV2[btn_ok;OK;success]Done",
       "graph": {
         "version": 2,
         "nodes": [
@@ -2603,9 +2603,31 @@
             "payload": {
               "function": "addactionrow",
               "arguments": [
-                "(id)",
-                "(containerId)"
+                "row1"
               ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "addbuttoncv2",
+              "arguments": [
+                "btn_ok",
+                "OK",
+                "success"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "Done"
             }
           }
         ],
@@ -2616,18 +2638,33 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:addactionrow"
+        "bdfd_generic_call:addactionrow",
+        "bdfd_generic_call:addbuttoncv2"
       ]
     },
     {
       "name": "docs:addstringselect#29",
       "kind": "script",
-      "script": "$addStringSelect[customId;(placeholder);(minValues);(maxValues);(disabled);(messageID)]",
+      "script": "$addStringSelect[menu;Pick one;1;1;no]$addStringSelectOption[menu;A;a]",
       "graph": {
         "version": 2,
         "nodes": [
@@ -2639,12 +2676,25 @@
             "payload": {
               "function": "addstringselect",
               "arguments": [
-                "customId",
-                "(placeholder)",
-                "(minValues)",
-                "(maxValues)",
-                "(disabled)",
-                "(messageID)"
+                "menu",
+                "Pick one",
+                "1",
+                "1",
+                "no"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "addstringselectoption",
+              "arguments": [
+                "menu",
+                "A",
+                "a"
               ]
             }
           }
@@ -2656,12 +2706,20 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:addstringselect"
+        "bdfd_generic_call:addstringselect",
+        "bdfd_generic_call:addstringselectoption"
       ]
     },
     {
@@ -3084,7 +3142,7 @@
     {
       "name": "docs:removeallcomponents#34",
       "kind": "script",
-      "script": "$removeAllComponents[(messageID)]",
+      "script": "$removeAllComponents[41]",
       "graph": {
         "version": 2,
         "nodes": [
@@ -3096,7 +3154,7 @@
             "payload": {
               "function": "removeallcomponents",
               "arguments": [
-                "(messageID)"
+                "41"
               ]
             }
           }
@@ -27713,7 +27771,7 @@
     {
       "name": "main:bouton-passthrough",
       "kind": "script",
-      "script": "$addButton[a;b;primary]hello",
+      "script": "$addButton[no;a;b;primary]hello",
       "graph": {
         "version": 2,
         "nodes": [
@@ -27725,6 +27783,7 @@
             "payload": {
               "function": "addbutton",
               "arguments": [
+                "no",
                 "a",
                 "b",
                 "primary"
@@ -28111,7 +28170,7 @@
     {
       "name": "bloc:menu",
       "kind": "script",
-      "script": "$addStringSelect[no;m;Choisir]$addStringSelectOption[m;A;a]x",
+      "script": "$addStringSelect[m;Choisir]$addStringSelectOption[m;A;a]x",
       "graph": {
         "version": 2,
         "nodes": [
@@ -28123,7 +28182,6 @@
             "payload": {
               "function": "addstringselect",
               "arguments": [
-                "no",
                 "m",
                 "Choisir"
               ]

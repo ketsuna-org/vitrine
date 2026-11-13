@@ -36,7 +36,8 @@ $authorTag
 
 ```bdfd
 $title[Profile of $authorTag]
-$author[$authorUsername;$authorAvatar]
+$author[$authorUsername]
+$authorIcon[$authorAvatar]
 $description[
 **Name:** $authorUsername
 **Tag:** $authorTag

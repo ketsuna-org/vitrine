@@ -47,7 +47,8 @@ $sendMessage[Hello $memberNick!]
 
 ```bdfd
 $title[Member Information]
-$author[$memberNick;$authorAvatar]
+$author[$memberNick]
+$authorIcon[$authorAvatar]
 $description[
 **ID:** $memberID
 **Permissions:** $memberPerms

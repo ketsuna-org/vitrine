@@ -38,7 +38,7 @@ None (passing one is an error).
 
 ```bdfd
 $title[🤖 $botName]
-$addField[📊 Statistics;;yes]
+$addField[📊 Statistics;Global numbers;yes]
 $addField[Total commands;$commandsCount;yes]
 $addField[Slash;$slashCommandsCount;yes]
 $thumbnail[$userAvatar[$botID]]

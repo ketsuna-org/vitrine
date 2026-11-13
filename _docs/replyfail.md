@@ -33,5 +33,5 @@ $replyFail[Done!]
 ## Example
 
 ```bdfd
-$sendMessage[$replyFail[Done!]]
+$replyFail[Done!]
 ```

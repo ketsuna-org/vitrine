@@ -36,7 +36,8 @@ $authorUsername
 
 ```bdfd
 $title[Command executed]
-$author[$authorUsername;$authorAvatar]
+$author[$authorUsername]
+$authorIcon[$authorAvatar]
 $description[
 **Author:** $authorUsername#$discriminator[$authorID]
 **ID:** $authorID

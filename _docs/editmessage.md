@@ -10,7 +10,7 @@ Edits an existing message sent by the bot, or the message of the button or selec
 
 ## Syntax
 
-```bdfd
+```
 $editMessage[channelId;messageId;newContent;(title;description;color;footer)]
 ```
 

@@ -46,7 +46,8 @@ $endif
 ### Complete profile
 
 ```bdfd
-$author[$authorUsername;$authorAvatar]
+$author[$authorUsername]
+$authorIcon[$authorAvatar]
 $title[Profile of $authorUsername]
 $description[**ID:** $authorID]
 $image[$authorBanner]

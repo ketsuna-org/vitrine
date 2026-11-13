@@ -35,5 +35,6 @@ $linkButton[Documentation;https://example.com]
 ## Example
 
 ```bdfd
-$sendMessage[$linkButton[Documentation;https://example.com]]
+$linkButton[Documentation;https://example.com]
+$sendMessage[Read the docs]
 ```

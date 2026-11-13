@@ -101,7 +101,7 @@ $channelSendMessage[$channelIDFromName[logs];$username said: $message]
 ### Usage with $argsCheck
 
 ```bdfd
-$argsCheck[>;Text;Your message after the command]
+$argsCheck[>;0;Your message after the command]
 $sendMessage[Argument: $message]
 ```
 

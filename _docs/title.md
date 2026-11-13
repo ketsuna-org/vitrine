@@ -58,13 +58,13 @@ $color[#FF0000]
 ### Multi-embed: Different Titles for Each Embed
 
 ```bdfd
-$title[First embed;0]
-$description[Content of the first embed;0]
-$color[#5865F2;0]
+$title[First embed;1]
+$description[Content of the first embed;1]
+$color[#5865F2;1]
 
-$title[Second embed;1]
-$description[Content of the second embed;1]
-$color[#57F287;1]
+$title[Second embed;2]
+$description[Content of the second embed;2]
+$color[#57F287;2]
 
 ```
 

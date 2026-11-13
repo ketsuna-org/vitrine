@@ -18,5 +18,5 @@ $pauseMusic
 $title[Music Paused ⏸️]
 $description[Audio playback has been paused by <@$authorID>.]
 $color[#FEE75C]
-$addButton[no;music_resume;Resume;success;▶️]
+$addButton[no;music_resume;Resume;success;no;▶️]
 ```

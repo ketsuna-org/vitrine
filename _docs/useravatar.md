@@ -48,7 +48,8 @@ $sendMessage[Avatar]
 ### Display Avatar as Thumbnail in a Profile
 
 ```bdfd
-$author[$userName;$authorAvatar]
+$author[$userName]
+$authorIcon[$authorAvatar]
 $title[User Profile]
 $thumbnail[$authorAvatar]
 $description[

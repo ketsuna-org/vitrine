@@ -51,7 +51,8 @@ $color[#57F287]
 ### User profile
 
 ```bdfd
-$author[$displayName;$userAvatar[$authorID]]
+$author[$displayName]
+$authorIcon[$userAvatar[$authorID]]
 $title[User Profile]
 $description[
 **Display Name:** $displayName

@@ -37,5 +37,5 @@ $webhookQuick[https://discord.com/api/webhooks/ID/TOKEN;Hello]
 ## Example
 
 ```bdfd
-$sendMessage[$webhookQuick[https://discord.com/api/webhooks/ID/TOKEN;Hello]]
+$sendMessage[$webhookQuick[https://discord.com/api/webhooks/123456/abcdef;Hello]]
 ```

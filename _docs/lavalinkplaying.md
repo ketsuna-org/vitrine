@@ -17,6 +17,6 @@ Returns the title of the current track from the Lavalink music player. Takes no 
 $title[Now Playing 🎶]
 $description[Title: **$lavalinkPlaying**\nArtist: **$lavalinkAuthor**\nDuration: `$lavalinkPosition / $lavalinkDuration`]
 $color[#AEEA00]
-$addButton[no;music_pause;Pause;secondary;⏸️]
-$addButton[no;music_skip;Skip;secondary;⏭️]
+$addButton[no;music_pause;Pause;secondary;no;⏸️]
+$addButton[no;music_skip;Skip;secondary;no;⏭️]
 ```

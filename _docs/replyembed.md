@@ -39,5 +39,5 @@ $replyEmbed[Hello;Welcome to the server;#5865F2;Have fun]
 ## Example
 
 ```bdfd
-$sendMessage[$replyEmbed[Hello;Welcome to the server;#5865F2;Have fun]]
+$replyEmbed[Hello;Welcome to the server;#5865F2;Have fun]
 ```
