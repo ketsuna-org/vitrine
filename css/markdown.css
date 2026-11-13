@@ -133,8 +133,8 @@
   align-items: stretch;
 }
 
-/* ScratchBlock / ActionBlock of the app: neutral card, the family colour only
-   lives in the icon tile and the uppercase overline. */
+/* Nœud du graphe de l'éditeur : carte neutre, la couleur de la famille
+   n'apparaît que dans la pastille d'icône et le surtitre en capitales. */
 .scratch-block-card {
   --fam: #FB7185;
   border-radius: 2px;
@@ -298,6 +298,7 @@ details.scratch-block-card[open] > summary .scratch-block-chevron { transform: r
 .block-entry { margin: 0 0 14px; scroll-margin-top: 90px; }
 .block-entry-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 2px 0; font-size: 12.5px; color: var(--on-surface-variant); }
 .block-entry-meta code { font-size: 12px; }
+.block-entry-desc { margin: 8px 2px 0; font-size: 14px; color: var(--on-surface-variant); }
 .block-chip { font-size: 11px; padding: 1px 8px; border-radius: 2px; border: 1px solid var(--outline); }
 .block-json-ref { margin: 8px 2px 0; font-size: 12.5px; color: var(--on-surface-variant); }
 .block-json-ref > summary { cursor: pointer; }

@@ -25,6 +25,7 @@ How to read a card: a red `*` marks a required field; a bordered tile with a pen
 {% for b in site.data.blocks_registry.blocks %}{% if b.category == cat %}
 <div class="block-entry" id="{{ b.type }}" data-search="{{ b.name | downcase }} {{ b.type | downcase }}">
 {{ b.type | app_block_html }}
+{% assign block_desc = site.data.blocks_descriptions.descriptions[b.type] %}{% if block_desc %}<p class="block-entry-desc">{{ block_desc | escape }}</p>{% endif %}
 <div class="block-entry-meta">{% if b.workflowOnly %}<span class="block-chip">Workflows only</span>{% endif %}{% if b.interactionOnly %}<span class="block-chip">Interactions only</span>{% endif %}{% if b.deprecated %}<span class="block-chip">Deprecated</span>{% endif %}{% unless b.inPalette %}<span class="block-chip">Not offered in the palette</span>{% endunless %}</div>
 <details class="block-json-ref"><summary>Reference: default payload (JSON)</summary><pre><code class="language-json">{{ b.type | block_default_json | escape }}</code></pre></details>
 </div>

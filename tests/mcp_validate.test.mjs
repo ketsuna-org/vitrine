@@ -278,14 +278,14 @@ test('result-naming fields the engine ignores are errors; real storeAs params st
 });
 
 test('blocks manifest: compact index by default, exact schemas with names, nothing too large for the app', async () => {
-  const index = (await call('get_schema_manifest', { mode: 'blocks' })).data;
+  const index = (await call('get_schema_manifest', { mode: 'graph' })).data;
   assert.ok(index.categories.Logic.includes('calculate'));
   assert.ok(index.categories.Logic.includes('switch') && index.categories.Logic.includes('tryCatch'));
   assert.ok(JSON.stringify(index).length < 4000, `index is ${JSON.stringify(index).length} bytes`);
-  const some = (await call('get_schema_manifest', { mode: 'blocks', names: ['calculate', 'SetScopedVariable', 'nope'] })).data;
+  const some = (await call('get_schema_manifest', { mode: 'graph', names: ['calculate', 'SetScopedVariable', 'nope'] })).data;
   assert.ok(some.calculate.params.expression && some.setScopedVariable.params.scope);
   assert.deepEqual(some._unknown, ['nope']);
-  const cat = (await call('get_schema_manifest', { mode: 'blocks', category: 'Logic' })).data;
+  const cat = (await call('get_schema_manifest', { mode: 'graph', category: 'Logic' })).data;
   assert.ok(cat.ifBlock);
   assert.deepEqual(cat.ifBlock.pins, ['then', 'elseif:<i>', 'else', 'error']);
 });

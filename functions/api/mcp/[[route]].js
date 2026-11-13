@@ -173,15 +173,15 @@ const TOOLS_META = [
     name: "get_schema_manifest",
     annotations: READ_ONLY_ANNOTATIONS,
     description:
-      "Get the compact typed grammar/schema dictionary for Bot Creator. Returns parameter types and descriptions for compiler validation. Default mode 'blocks' (~3k tokens) contains every native block action (list them with list_actions). Nested params reference named types (e.g. Embed[], ComponentsDef, Graph) defined by mode='types'. Fast, strict, and zero-hallucination.",
+      "Get the compact typed grammar/schema dictionary for Bot Creator. Returns parameter types and descriptions for compiler validation. Default mode 'graph' (~3k tokens) contains every native block action (list them with list_actions). Nested params reference named types (e.g. Embed[], ComponentsDef, Graph) defined by mode='types'. Fast, strict, and zero-hallucination.",
     inputSchema: {
       type: "object",
       properties: {
         mode: {
           type: "string",
-          enum: ["blocks", "bdfd", "javascript", "types", "all"],
-          description: "Authoring mode to retrieve. Default is 'blocks'. Use 'types' for the named nested types (Embed, Component, Condition, Action…) referenced by Blocks params.",
-          default: "blocks",
+          enum: ["graph", "bdfd", "javascript", "types", "all"],
+          description: "Authoring mode to retrieve. Default is 'graph'. Use 'types' for the named nested types (Embed, Component, Condition, Action…) referenced by Blocks params.",
+          default: "graph",
         },
         category: {
           type: "string",
@@ -204,7 +204,7 @@ const TOOLS_META = [
       type: "object",
       properties: {
         intent: { type: "string", description: "What the command must do, in the user's words (FR or EN).", maxLength: 500 },
-        mode: { type: "string", enum: ["bdfd", "blocks", "javascript"], description: "Authoring mode. Default 'bdfd'; use 'javascript' for a JavaScript (BDJS) bot.", default: "bdfd" },
+        mode: { type: "string", enum: ["bdfd", "graph", "javascript"], description: "Authoring mode. Default 'bdfd'; use 'javascript' for a JavaScript (BDJS) bot.", default: "bdfd" },
         budget: { type: "integer", description: "Max functions to return (default 10).", default: 10, minimum: 1, maximum: 20 },
       },
       required: ["intent"],
@@ -236,7 +236,7 @@ const TOOLS_META = [
         },
         actions: {
           type: "array",
-          description: "Legacy: a list of actions [{ type, key?, payload }] (nested thenActions/elseActions/bodyActions allowed). It is converted to a graph.",
+          description: "Ancien format : une liste d'actions [{ type, key?, payload }] (sous-listes imbriquées acceptées). Elle est convertie en graphe.",
           items: { type: "object" },
         },
         entity: {
@@ -255,8 +255,8 @@ const TOOLS_META = [
       type: "object",
       properties: {
         query: { type: "string", description: "Search term (matched case-insensitively against name, slug, category)." },
-        api_type: { type: "string", enum: ["blocks", "bdfd", "javascript", "general"], description: "Filter documentation by execution mode." },
-        mode: { type: "string", enum: ["blocks", "bdfd", "javascript", "general"], description: "Alias of api_type: pass the mode of the command being written so pages of the other modes are left out." },
+        api_type: { type: "string", enum: ["graph", "bdfd", "javascript", "general"], description: "Filter documentation by execution mode." },
+        mode: { type: "string", enum: ["graph", "bdfd", "javascript", "general"], description: "Alias of api_type: pass the mode of the command being written so pages of the other modes are left out." },
         limit: { type: "integer", description: "Max results (default 8).", default: 8, minimum: 1, maximum: 100 },
       },
       required: ["query"],
@@ -271,7 +271,7 @@ const TOOLS_META = [
       type: "object",
       properties: {
         slug: { type: "string", description: "Doc slug or block action name (e.g. 'sendMessage', 'banUser', 'sendmessage', 'execution-model')." },
-        mode: { type: "string", enum: ["blocks", "bdfd", "javascript"], description: "Which kind of page to read when a name exists in several modes. Use the mode of the command being written." },
+        mode: { type: "string", enum: ["graph", "bdfd", "javascript"], description: "Which kind of page to read when a name exists in several modes. Use the mode of the command being written." },
         full_markdown: {
           type: "boolean",
           description: "If true, returns the raw Markdown documentation. Default is false (returns compact type schema).",
@@ -323,6 +323,10 @@ const TOOLS_META = [
   },
 ];
 
+// Le mode utilisateur est "graph" ; la clé interne du manifeste reste "blocks". "blocks" est un alias
+// déprécié accepté en silence (jamais annoncé dans les schémas ni la documentation).
+const canonMode = (mode) => (mode === "graph" ? "blocks" : mode);
+
 // --- Prompt metadata -----------------------------------------------------
 
 const PROMPTS_META = [
@@ -330,7 +334,7 @@ const PROMPTS_META = [
     name: "command_authoring_rules",
     description: "Interaction lifecycle rules, variable scope separation ($var vs $setVar), few-shot examples, and LLM gotchas for Bot Creator.",
     arguments: [
-      { name: "mode", description: "Authoring mode: 'bdfd' or 'blocks'", required: false },
+      { name: "mode", description: "Authoring mode: 'bdfd', 'graph' or 'javascript'", required: false },
     ],
   },
   {
@@ -505,12 +509,12 @@ async function fetchPostsIndex() {
   return res.json();
 }
 
-async function toolGetSchemaManifest({ mode = "blocks", category, names } = {}) {
+async function toolGetSchemaManifest({ mode = "graph", category, names } = {}) {
   const manifest = await fetchSchemaManifest();
-  const targetMode = mode || "blocks";
+  const targetMode = canonMode(mode || "graph");
 
   if (targetMode !== "all" && !["blocks", "bdfd", "javascript", "types"].includes(targetMode)) {
-    throw new Error(`Invalid mode: ${targetMode}. Valid modes are 'blocks', 'bdfd', 'javascript', 'types', 'all'.`);
+    throw new Error(`Invalid mode: ${targetMode}. Valid modes are 'graph', 'bdfd', 'javascript', 'types', 'all'.`);
   }
 
   if (targetMode === "types") {
@@ -589,8 +593,9 @@ function validCategories(dict) {
 let plannerCache = { at: 0, index: null };
 
 async function toolPlanSolution({ intent, mode = "bdfd", budget } = {}) {
+  mode = canonMode(mode);
   if (typeof intent !== "string" || !intent.trim()) throw new Error("`intent` is required");
-  if (!["bdfd", "blocks", "javascript"].includes(mode)) throw new Error("`mode` must be 'bdfd', 'blocks' or 'javascript'");
+  if (!["bdfd", "blocks", "javascript"].includes(mode)) throw new Error("`mode` must be 'bdfd', 'graph' or 'javascript'");
   if (mode === "javascript") return toolText(JSON.stringify(planJavascript({ intent: intent.slice(0, 500) })));
   if (!plannerCache.index || Date.now() - plannerCache.at > 300_000) {
     const [docs, manifest] = await Promise.all([fetchDocsIndex(), fetchSchemaManifest()]);
@@ -929,7 +934,7 @@ function compactDoc(d) {
 }
 
 async function toolSearchDocs({ query, limit, api_type, mode }) {
-  api_type = api_type || mode;
+  api_type = canonMode(api_type || mode);
   const lim = clampLimit(limit, 8);
   if (!normalize(query)) throw new Error("`query` is required");
   if (api_type && !["blocks", "bdfd", "javascript", "general"].includes(api_type)) throw new Error("Invalid api_type");
@@ -980,7 +985,7 @@ async function toolGetDoc({ slug, full_markdown = false, mode, api_type }) {
   if (!slug || typeof slug !== "string") throw new Error("`slug` is required");
   // Defensive: only allow simple slugs and identifiers.
   if (!/^[a-z0-9_$-]+$/i.test(slug)) throw new Error("Invalid slug");
-  mode = mode || api_type;
+  mode = canonMode(mode || api_type);
   if (mode && !DOC_MODES.includes(mode)) throw new Error("Invalid mode");
 
   const docs = await fetchDocsIndex();
@@ -1003,7 +1008,7 @@ async function toolGetDoc({ slug, full_markdown = false, mode, api_type }) {
       if (hits.length > 0) {
         const [, primary] = hits[0];
         // The other modes are named, not described: the model reads the reply on every following turn.
-        const others = hits.slice(1).map(([m]) => m);
+        const others = hits.slice(1).map(([m]) => (m === "blocks" ? "graph" : m));
         return toolText(JSON.stringify(mode || others.length === 0 ? primary : { ...primary, also_in: others }));
       }
     }
