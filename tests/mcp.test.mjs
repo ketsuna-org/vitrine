@@ -22,13 +22,13 @@ async function withFetch(mock, run) {
 test('catalog exposes authoring modes and initialize guidance', async () => {
   const catalog = (await rpc('tools/list')).result.tools;
   assert.ok(catalog.some(t => t.name === 'get_schema_manifest'), 'get_schema_manifest is exposed in tools');
-  assert.deepEqual(catalog.find(t => t.name === 'search_docs').inputSchema.properties.api_type.enum, ['blocks', 'bdfd', 'javascript', 'general']);
+  assert.deepEqual(catalog.find(t => t.name === 'search_docs').inputSchema.properties.api_type.enum, ['graph', 'bdfd', 'javascript', 'general']);
   assert.match((await rpc('initialize')).result.instructions, /get_schema_manifest/);
 });
 
 test('search filters Blocks and searches descriptions, retaining compatibility', async () => {
   await withFetch(async () => Response.json(docs), async () => {
-    const reply = await rpc('tools/call', { name: 'search_docs', arguments: { query: 'tickets', api_type: 'blocks' } });
+    const reply = await rpc('tools/call', { name: 'search_docs', arguments: { query: 'tickets', api_type: 'graph' } });
     const matches = JSON.parse(reply.result.content[0].text).results;
     assert.equal(matches.length, 1);
     assert.equal(matches[0].slug, 'blocks-channels');
@@ -123,7 +123,7 @@ test('get_schema_manifest returns compact typed schemas for blocks', async () =>
     if (url.endsWith('schema-manifest.json')) return Response.json(manifestData);
     return Response.json(docs);
   }, async () => {
-    // 1. Default mode is 'blocks': a compact index (the full dictionary is too large for the app)
+    // 1. Default mode is 'graph': a compact index (the full dictionary is too large for the app)
     const reply = await rpc('tools/call', { name: 'get_schema_manifest', arguments: {} });
     assert.equal(reply.result.isError, undefined);
     const index = JSON.parse(reply.result.content[0].text);
@@ -135,7 +135,7 @@ test('get_schema_manifest returns compact typed schemas for blocks', async () =>
     assert.equal(blocks.banUser.params.userId, 'string');
 
     // 2. Category filtering
-    const filteredReply = await rpc('tools/call', { name: 'get_schema_manifest', arguments: { mode: 'blocks', category: 'Messages' } });
+    const filteredReply = await rpc('tools/call', { name: 'get_schema_manifest', arguments: { mode: 'graph', category: 'Messages' } });
     const filteredBlocks = JSON.parse(filteredReply.result.content[0].text);
     assert.ok(filteredBlocks.sendMessage);
     assert.equal(filteredBlocks.banUser, undefined);
@@ -251,7 +251,7 @@ async function getDoc(args) {
 test('get_doc gives the BDFD function for a lowercase slug or a $name and names the Blocks action under also_in', async () => {
   const lowercase = await getDoc({ slug: 'sendmessage' });
   assert.equal(lowercase.syntax, '$sendMessage[content;(returnMessageID)]');
-  assert.deepEqual(lowercase.also_in, ['blocks']);
+  assert.deepEqual(lowercase.also_in, ['graph']);
   const dollar = await getDoc({ slug: '$sendMessage' });
   assert.equal(dollar.syntax, '$sendMessage[content;(returnMessageID)]');
   assert.ok(!('also_in' in dollar), 'a $name can only mean the BDFD function');
@@ -267,7 +267,7 @@ test('get_doc mode picks one side and drops also_in', async () => {
   const bdfd = await getDoc({ slug: 'sendMessage', mode: 'bdfd' });
   assert.equal(bdfd.params.returnMessageID, 'string?');
   assert.ok(!('also_in' in bdfd));
-  const blocks = await getDoc({ slug: 'sendmessage', mode: 'blocks' });
+  const blocks = await getDoc({ slug: 'sendmessage', mode: 'graph' });
   assert.equal(blocks.type, 'sendMessage');
   assert.ok(!('also_in' in blocks));
   await withFetch(async () => Response.json(docs), async () => {
@@ -277,7 +277,7 @@ test('get_doc mode picks one side and drops also_in', async () => {
 
 test('search_docs accepts mode as an alias of api_type', async () => {
   await withFetch(async () => Response.json(docs), async () => {
-    const reply = await rpc('tools/call', { name: 'search_docs', arguments: { query: 'tickets', mode: 'blocks' } });
+    const reply = await rpc('tools/call', { name: 'search_docs', arguments: { query: 'tickets', mode: 'graph' } });
     assert.deepEqual(JSON.parse(reply.result.content[0].text).results.map(r => r.slug), ['blocks-channels']);
   });
 });
@@ -294,5 +294,17 @@ test('an unknown category lists the valid ones instead of answering empty', asyn
     assert.ok(manifest.valid_categories.includes('Messages'));
     const actions = JSON.parse((await rpc('tools/call', { name: 'list_actions', arguments: { category: 'roles' } })).result.content[0].text);
     assert.ok(actions.valid_categories.includes('Messages'));
+  });
+});
+
+test("le mode 'blocks' reste un alias déprécié accepté en silence, jamais annoncé", async () => {
+  const catalog = (await rpc('tools/list')).result.tools;
+  assert.ok(!JSON.stringify(catalog).includes('"blocks"'), "aucun schéma n'annonce plus 'blocks'");
+  const viaAlias = await getDoc({ slug: 'sendmessage', mode: 'blocks' });
+  const viaGraph = await getDoc({ slug: 'sendmessage', mode: 'graph' });
+  assert.deepEqual(viaAlias, viaGraph);
+  await withFetch(async () => Response.json(docs), async () => {
+    const reply = await rpc('tools/call', { name: 'search_docs', arguments: { query: 'tickets', api_type: 'blocks' } });
+    assert.deepEqual(JSON.parse(reply.result.content[0].text).results.map(r => r.slug), ['blocks-channels']);
   });
 });

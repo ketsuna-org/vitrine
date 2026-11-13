@@ -87,7 +87,7 @@ function buildSingleRespondAction(response, o = {}) {
   const type = str(response.type, "normal");
   const mode = str(response.mode, "message");
   const ephemeral = given(o.ephemeral) ? o.ephemeral : resolveVisibility(response) === "ephemeral";
-  const base = { enabled: true, depend_on: [], error: { mode: "stop" } };
+  const base = { enabled: true, error: { mode: "stop" } };
 
   if (mode === "modal" || type === "modal") {
     return { type: "respondWithModal", ...base, payload: { modal: given(o.modal) ? o.modal : { ...objectOr(response.modal) } } };
@@ -129,10 +129,10 @@ function buildConditionalIfBlock(response, conditional) {
   return {
     type: "ifBlock",
     enabled: true,
-    depend_on: [],
+   
     error: { mode: "stop" },
     payload: { condition: str(conditional.variable), actions: [branch("True")], elseActions: [branch("False")] },
   };
 }
 
-const buildDeferAction = (ephemeral) => ({ type: "deferInteraction", enabled: true, depend_on: [], error: { mode: "stop" }, payload: { ephemeral } });
+const buildDeferAction = (ephemeral) => ({ type: "deferInteraction", enabled: true, error: { mode: "stop" }, payload: { ephemeral } });

@@ -93,7 +93,7 @@
     },
     "executionModeLabel": "How is the command built?",
     "executionModes": [
-      "Visual (Blocks)",
+      "Visual (Graph)",
       "BDFD Code",
       "JavaScript"
     ]

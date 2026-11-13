@@ -209,3 +209,10 @@ test('every Blocks recipe skeleton is a valid graph (version 2, no validation er
     assert.doesNotMatch(r.skeleton, /thenActions|elseActions|bodyActions|depend_on/, r.id);
   }
 });
+
+test("plan accepte 'graph' et garde 'blocks' comme alias silencieux", () => {
+  const viaGraph = plan(index, { intent: 'ping with latency', mode: 'graph' });
+  const viaAlias = plan(index, { intent: 'ping with latency', mode: 'blocks' });
+  assert.deepEqual(viaGraph, viaAlias);
+  assert.throws(() => plan(index, { intent: 'x', mode: 'nope' }), /'graph'/);
+});

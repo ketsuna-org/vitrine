@@ -273,8 +273,9 @@ const GLOBAL_GOTCHAS = {
  * @returns {{decision, confidence, margin, functions, gotchas, skeleton?, next, recipe?}}
  */
 export function plan(index, { intent, mode = "bdfd", budget = 10 }) {
+  if (mode === "graph") mode = "blocks"; // clé interne ; "blocks" reste un alias déprécié silencieux
   const stat = index.stats[mode];
-  if (!stat) throw new Error(`mode must be 'bdfd' or 'blocks'`);
+  if (!stat) throw new Error(`mode must be 'bdfd' or 'graph'`);
   const limit = Math.min(20, Math.max(1, Number.parseInt(budget, 10) || 10));
   const expanded = expandQuery(intent);
   if (expanded.base.length === 0) {

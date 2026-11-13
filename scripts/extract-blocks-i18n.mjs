@@ -7,7 +7,8 @@
  *
  * Source: packages/ui/lib/src/l10n/app_<lang>.arb. Keys come from the English registry
  * (_data/blocks_registry.json): action_name_<type>, action_description_<type>, action_category_*,
- * embed labels and the common fields. A key missing from the language file is left out (the
+ * embed labels and the common fields. Descriptions: the app no longer has action_description_*, the ones already
+ * in the output file are kept. A key missing from the language file is left out (the
  * playground then shows the English text); nothing is invented.
  * Field labels and hints are not translated in the app itself, so they stay English here too.
  */
@@ -32,7 +33,11 @@ const controlTexts = {
   },
 }[lang] ?? {};
 
-const names = {}, descriptions = {}, categories = {};
+// L'app n'a plus de clés action_description_* : les descriptions vivent dans la vitrine (fr : le fichier généré
+// précédent, en : _data/blocks_descriptions.json). On les garde au lieu de les effacer.
+const outPath = path.join(root, `_data/blocks_i18n_${lang}.json`);
+const previous = JSON.parse(await readFile(outPath, 'utf8').catch(() => '{}')).descriptions ?? {};
+const names = {}, descriptions = { ...previous }, categories = {};
 for (const b of reg.blocks) {
   if (controlTexts[b.type]) [names[b.type], descriptions[b.type]] = controlTexts[b.type];
   if (arb[`action_name_${b.type}`]) names[b.type] = arb[`action_name_${b.type}`];
@@ -49,7 +54,7 @@ const out = {
   names, descriptions, categories, embedLabels,
   actionKey: arb.action_key_field ?? null,
 };
-await writeFile(path.join(root, `_data/blocks_i18n_${lang}.json`), JSON.stringify(out, null, 2) + '\n');
+await writeFile(outPath, JSON.stringify(out, null, 2) + '\n');
 const total = reg.blocks.length;
 console.log(`${lang}: ${Object.keys(names).length}/${total} names, ${Object.keys(descriptions).length} descriptions, ${Object.keys(categories).length} categories, ${Object.keys(embedLabels).length} embed labels`);
 const missing = reg.blocks.filter((b) => !names[b.type]).map((b) => b.type);

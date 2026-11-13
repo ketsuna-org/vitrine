@@ -411,7 +411,7 @@ const registry = {
       variablesLabel: arb.scratch_event_variables,
     },
     executionModeLabel: arb.scratch_execution_mode,
-    executionModes: [arb.scratch_mode_blocks, arb.scratch_mode_bdfd, arb.cmd_execution_mode_javascript],
+    executionModes: ['Visual (Graph)', arb.scratch_mode_bdfd, arb.cmd_execution_mode_javascript],
   },
   // Labels of the embed editor (forms/response_embeds_editor.dart), used to render embed values.
   events,

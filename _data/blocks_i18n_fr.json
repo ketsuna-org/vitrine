@@ -241,7 +241,11 @@
     "attachImage": "Joindre un fichier image à la réponse (URL, data URL ou base64)",
     "callFunction": "Une fonction BDFD, présentée comme un bloc : son nom, ses champs et sa catégorie sont ceux de la fonction",
     "tryCatch": "Exécute la région `try` ; si une action échoue, `error.*` est renseigné et la région `catch` s'exécute ; puis `done`.",
-    "switch": "Compare une valeur aux pins `case:<valeur>` et suit celui qui correspond, sinon `default`."
+    "switch": "Compare une valeur aux pins `case:<valeur>` et suit celui qui correspond, sinon `default`.",
+    "whileLoop": "Répète la région `body` tant que la condition est vraie, puis suit `done`.",
+    "asyncBlock": "Exécute la région `body` une fois sans faire attendre la suite du flux, puis suit `done`.",
+    "breakLoop": "Sort tout de suite de la boucle englobante.",
+    "continueLoop": "Passe au tour suivant de la boucle englobante."
   },
   "categories": {
     "Messages": "Messages",
