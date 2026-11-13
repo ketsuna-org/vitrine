@@ -627,7 +627,8 @@
       },
       "warnings": [
         "bdfd_generic_call:checkuserperms",
-        "bdfd_generic_call:mentioned"
+        "bdfd_generic_call:mentioned",
+        "bdfd_audit_reason_default:kick"
       ]
     },
     {
@@ -1230,7 +1231,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:guildcount"
+        "bdfd_generic_call:guildcount",
+        "bdfd_ordering_text:>="
       ]
     },
     {
@@ -1988,11 +1990,41 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$log[Action performed on server $serverID ($serverName)]"
+              "function": "serverid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "setTemporaryVariable",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "key": "__bc_lp",
+              "value": "("
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "servername",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n4",
+            "type": "log",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "message": "Action performed on server ((action.action_0)) ((temp.__bc_lp))((action.action_2)))"
             }
           }
         ],
@@ -2003,12 +2035,34 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:text"
+        "bdfd_generic_call:serverid",
+        "bdfd_generic_call:servername"
       ]
     },
     {
@@ -2020,17 +2074,30 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$textSplit[$message; ]"
+              "function": "textsplit",
+              "arguments": [
+                "$message",
+                " $c[]"
+              ]
             }
           },
           {
             "id": "n2",
-            "type": "callFunction",
+            "type": "respondWithMessage",
             "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
             "enabled": true,
             "payload": {
               "function": "splittext",
@@ -2040,20 +2107,20 @@
             }
           },
           {
-            "id": "n3",
+            "id": "n4",
             "type": "ifBlock",
-            "key": "action_2",
+            "key": "action_3",
             "enabled": true,
             "payload": {
-              "condition.variable": "((action.action_1))",
+              "condition.variable": "((action.action_2))",
               "condition.operator": "equals",
               "condition.value": "!help"
             }
           },
           {
-            "id": "n4",
+            "id": "n5",
             "type": "sendMessage",
-            "key": "action_2.action_0",
+            "key": "action_3.action_0",
             "enabled": true,
             "payload": {
               "content": "Help command detected!"
@@ -2085,15 +2152,22 @@
           {
             "from": {
               "node": "n3",
-              "pin": "then"
+              "pin": "next"
             },
             "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "then"
+            },
+            "to": "n5"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:textsplit",
+        "bdfd_generic_call:textsplit",
         "bdfd_generic_call:splittext"
       ]
     },
@@ -2598,11 +2672,94 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$var[data;$getVar[userData]]\n$var[size;$byteCount[$var[data]]]\n\n$title[📦 User Data]\n$description[\n**Size:** $var[size] bytes ($calculate[$var[size]/1024] KB)\n**Number of characters:** $charCount[$var[data]]\n]"
+              "function": "getvar",
+              "arguments": [
+                "userData"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "setTemporaryVariable",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "key": "data",
+              "value": "((action.action_0))"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "bytecount",
+              "arguments": [
+                "$var[data]"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "setTemporaryVariable",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "key": "size",
+              "value": "((action.action_2))"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "setTemporaryVariable",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "key": "__bc_lp",
+              "value": "("
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_5",
+            "enabled": true,
+            "payload": {
+              "function": "calculate",
+              "arguments": [
+                "$var[size]/1024"
+              ]
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_6",
+            "enabled": true,
+            "payload": {
+              "function": "charcount",
+              "arguments": [
+                "$var[data]"
+              ]
+            }
+          },
+          {
+            "id": "n8",
+            "type": "respondWithMessage",
+            "key": "action_7",
+            "enabled": true,
+            "payload": {
+              "embeds": [
+                {
+                  "title": "📦 User Data",
+                  "description": "\n**Size:** ((temp.size)) bytes ((temp.__bc_lp))((action.action_5)) KB)\n**Number of characters:** ((action.action_6))\n"
+                }
+              ]
             }
           }
         ],
@@ -2613,12 +2770,64 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n7",
+              "pin": "next"
+            },
+            "to": "n8"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:text"
+        "bdfd_generic_call:getvar",
+        "bdfd_generic_call:bytecount",
+        "bdfd_generic_call:calculate",
+        "bdfd_generic_call:charcount"
       ]
     },
     {
@@ -4262,11 +4471,37 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$clearReactions[$channelID;$messageID;!all]\n$addReactions[✅]\nFinished!"
+              "function": "clearreactions",
+              "arguments": [
+                "$channelID",
+                "$messageID",
+                "!all"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "addreactions",
+              "arguments": [
+                "✅"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "Finished!"
             }
           }
         ],
@@ -4277,12 +4512,27 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:addreactions"
+        "bdfd_generic_call:clearreactions",
+        "bdfd_generic_call:addreactions"
       ]
     },
     {
@@ -5210,11 +5460,62 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$func[tag;val]\n$funcReturn[<$funcArg[val]>]\n$funcEnd\n$sendMessage[$funcCall[tag;a] $funcCall[tag;b] $funcCall[tag;c]]"
+              "function": "eval",
+              "arguments": [
+                "\\$func\\[tag\\;val\\]\n\\$funcReturn\\[<\\$funcArg\\[val\\]>\\]\n\\$funcEnd"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "funccall",
+              "arguments": [
+                "tag",
+                "a"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "funccall",
+              "arguments": [
+                "tag",
+                "b"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "function": "funccall",
+              "arguments": [
+                "tag",
+                "c"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "sendMessage",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_1)) ((action.action_2)) ((action.action_3))"
             }
           }
         ],
@@ -5225,12 +5526,42 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:func"
+        "bdfd_generic_call:func",
+        "bdfd_generic_call:funccall",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -5242,11 +5573,48 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$func[wrap;x]\n$funcReturn[($funcArg[x])]\n$funcEnd\n$func[bracket;v]\n$funcReturn[{$funcArg[v]}]\n$funcEnd\n$sendMessage[$funcCall[wrap;$funcCall[bracket;hello]]]"
+              "function": "eval",
+              "arguments": [
+                "\\$func\\[wrap\\;x\\]\n\\$funcReturn\\[(\\$funcArg\\[x\\])\\]\n\\$funcEnd"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "eval",
+              "arguments": [
+                "\\$func\\[bracket\\;v\\]\n\\$funcReturn\\[{\\$funcArg\\[v\\]}\\]\n\\$funcEnd"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "funccall",
+              "arguments": [
+                "wrap",
+                "$funcCall[bracket;hello]"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "sendMessage",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_2))"
             }
           }
         ],
@@ -5257,12 +5625,35 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:func"
+        "bdfd_generic_call:func",
+        "bdfd_generic_call:funccall",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -5274,11 +5665,101 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$var[reason;$getBanReason[$userID]]\n$title[📋 Ban Details]\n$description[\n**User:** $userName[$userID] ($userID)\n**Ban Reason:** $var[reason]\n**Checked on:** $day/$month/$year\n]\n$color[#5865F2]"
+              "function": "getbanreason",
+              "arguments": [
+                "$userID"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "setTemporaryVariable",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "key": "reason",
+              "value": "((action.action_0))"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "username",
+              "arguments": [
+                "$userID"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "setTemporaryVariable",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "key": "__bc_lp",
+              "value": "("
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "function": "userid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_5",
+            "enabled": true,
+            "payload": {
+              "function": "day",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_6",
+            "enabled": true,
+            "payload": {
+              "function": "month",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n8",
+            "type": "callFunction",
+            "key": "action_7",
+            "enabled": true,
+            "payload": {
+              "function": "year",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n9",
+            "type": "respondWithMessage",
+            "key": "action_8",
+            "enabled": true,
+            "payload": {
+              "embeds": [
+                {
+                  "title": "📋 Ban Details",
+                  "description": "\n**User:** ((action.action_2)) ((temp.__bc_lp))((action.action_4)))\n**Ban Reason:** ((temp.reason))\n**Checked on:** ((action.action_5))/((action.action_6))/((action.action_7))\n",
+                  "color": "#5865F2"
+                }
+              ]
             }
           }
         ],
@@ -5289,12 +5770,73 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n7",
+              "pin": "next"
+            },
+            "to": "n8"
+          },
+          {
+            "from": {
+              "node": "n8",
+              "pin": "next"
+            },
+            "to": "n9"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:text"
+        "bdfd_generic_call:getbanreason",
+        "bdfd_generic_call:username",
+        "bdfd_generic_call:userid",
+        "bdfd_generic_call:day",
+        "bdfd_generic_call:month",
+        "bdfd_generic_call:year"
       ]
     },
     {
@@ -6813,10 +7355,19 @@
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "sendmessage",
+              "function": "lockchannel",
               "arguments": [
-                "$lockChannel[]"
+                "$c[]"
               ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "sendMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
             }
           }
         ],
@@ -6827,12 +7378,20 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:sendmessage"
+        "bdfd_generic_call:lockchannel",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -7156,7 +7715,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:membercount"
+        "bdfd_generic_call:membercount",
+        "bdfd_ordering_text:>="
       ]
     },
     {
@@ -8872,7 +9432,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:mentioned"
+        "bdfd_generic_call:mentioned",
+        "bdfd_audit_reason_default:untimeout"
       ]
     },
     {
@@ -9461,152 +10022,11 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "setTemporaryVariable",
+            "type": "runBdfdScript",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "key": "__out",
-              "value": ""
-            }
-          },
-          {
-            "id": "n2",
-            "type": "callFunction",
-            "key": "action_1",
-            "enabled": true,
-            "payload": {
-              "function": "checkcontains",
-              "arguments": [
-                "$message",
-                "error"
-              ]
-            }
-          },
-          {
-            "id": "n3",
-            "type": "ifBlock",
-            "key": "action_2",
-            "enabled": true,
-            "payload": {
-              "condition.variable": "((action.action_1))",
-              "condition.operator": "equals",
-              "condition.value": "true"
-            }
-          },
-          {
-            "id": "n4",
-            "type": "callFunction",
-            "key": "action_2.action_0",
-            "enabled": true,
-            "payload": {
-              "function": "webhookcolor",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "#ED4245"
-              ]
-            }
-          },
-          {
-            "id": "n5",
-            "type": "callFunction",
-            "key": "action_2.action_1",
-            "enabled": true,
-            "payload": {
-              "function": "webhooktitle",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "Error Detected"
-              ]
-            }
-          },
-          {
-            "id": "n6",
-            "type": "setTemporaryVariable",
-            "key": "action_2.action_2",
-            "enabled": true,
-            "payload": {
-              "key": "__out",
-              "value": "((temp.__out))\n  ((action.action_2.action_0))\n  ((action.action_2.action_1))\n"
-            }
-          },
-          {
-            "id": "n7",
-            "type": "callFunction",
-            "key": "action_2.action_0",
-            "enabled": true,
-            "payload": {
-              "function": "webhookcolor",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "#5865F2"
-              ]
-            }
-          },
-          {
-            "id": "n8",
-            "type": "callFunction",
-            "key": "action_2.action_1",
-            "enabled": true,
-            "payload": {
-              "function": "webhooktitle",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "Information"
-              ]
-            }
-          },
-          {
-            "id": "n9",
-            "type": "setTemporaryVariable",
-            "key": "action_2.action_2",
-            "enabled": true,
-            "payload": {
-              "key": "__out",
-              "value": "((temp.__out))\n  ((action.action_2.action_0))\n  ((action.action_2.action_1))\n"
-            }
-          },
-          {
-            "id": "n10",
-            "type": "callFunction",
-            "key": "action_3",
-            "enabled": true,
-            "payload": {
-              "function": "webhookdescription",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "$message"
-              ]
-            }
-          },
-          {
-            "id": "n11",
-            "type": "callFunction",
-            "key": "action_4",
-            "enabled": true,
-            "payload": {
-              "function": "webhooksend",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef"
-              ]
-            }
-          },
-          {
-            "id": "n12",
-            "type": "setTemporaryVariable",
-            "key": "action_5",
-            "enabled": true,
-            "payload": {
-              "key": "__out",
-              "value": "((temp.__out))\n((action.action_3))\n((action.action_4))"
-            }
-          },
-          {
-            "id": "n13",
-            "type": "respondWithMessage",
-            "key": "action_6",
-            "enabled": true,
-            "payload": {
-              "content": "((temp.__out))"
+              "scriptContent": "$if[$checkContains[$message;error]==true]\n  $webhookColor[https://discord.com/api/webhooks/123456/abcdef;#ED4245]\n  $webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Error Detected]\n$else\n  $webhookColor[https://discord.com/api/webhooks/123456/abcdef;#5865F2]\n  $webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Information]\n$endif\n$webhookDescription[https://discord.com/api/webhooks/123456/abcdef;$message]\n$webhookSend[https://discord.com/api/webhooks/123456/abcdef]"
             }
           }
         ],
@@ -9617,108 +10037,12 @@
               "pin": "next"
             },
             "to": "n1"
-          },
-          {
-            "from": {
-              "node": "n1",
-              "pin": "next"
-            },
-            "to": "n2"
-          },
-          {
-            "from": {
-              "node": "n2",
-              "pin": "next"
-            },
-            "to": "n3"
-          },
-          {
-            "from": {
-              "node": "n3",
-              "pin": "then"
-            },
-            "to": "n4"
-          },
-          {
-            "from": {
-              "node": "n4",
-              "pin": "next"
-            },
-            "to": "n5"
-          },
-          {
-            "from": {
-              "node": "n5",
-              "pin": "next"
-            },
-            "to": "n6"
-          },
-          {
-            "from": {
-              "node": "n3",
-              "pin": "else"
-            },
-            "to": "n7"
-          },
-          {
-            "from": {
-              "node": "n7",
-              "pin": "next"
-            },
-            "to": "n8"
-          },
-          {
-            "from": {
-              "node": "n8",
-              "pin": "next"
-            },
-            "to": "n9"
-          },
-          {
-            "from": {
-              "node": "n6",
-              "pin": "next"
-            },
-            "to": "n10"
-          },
-          {
-            "from": {
-              "node": "n9",
-              "pin": "next"
-            },
-            "to": "n10"
-          },
-          {
-            "from": {
-              "node": "n10",
-              "pin": "next"
-            },
-            "to": "n11"
-          },
-          {
-            "from": {
-              "node": "n11",
-              "pin": "next"
-            },
-            "to": "n12"
-          },
-          {
-            "from": {
-              "node": "n12",
-              "pin": "next"
-            },
-            "to": "n13"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:checkcontains",
-        "bdfd_generic_call:webhookcolor",
-        "bdfd_generic_call:webhooktitle",
-        "bdfd_generic_call:webhookdescription",
-        "bdfd_generic_call:webhooksend",
-        "bdfd_output_accumulated"
+        "bdfd_passthrough:webhookcolor"
       ]
     },
     {
@@ -10317,7 +10641,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:afktimeout"
+        "bdfd_generic_call:afktimeout",
+        "bdfd_ordering_text:<="
       ]
     },
     {
@@ -10925,11 +11250,34 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$blacklistServers[111111111111111111;222222222222222222;]\n$sendMessage[OK.]"
+              "function": "blacklistservers",
+              "arguments": [
+                "111111111111111111",
+                "222222222222222222",
+                "$c[]"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "sendMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "OK."
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
             }
           }
         ],
@@ -10940,12 +11288,26 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:blacklistservers"
+        "bdfd_generic_call:blacklistservers"
       ]
     },
     {
@@ -14889,7 +15251,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:getmemberscount"
+        "bdfd_generic_call:getmemberscount",
+        "bdfd_ordering_text:<"
       ]
     },
     {
@@ -15404,6 +15767,7 @@
       },
       "warnings": [
         "bdfd_generic_call:getslowmode",
+        "bdfd_ordering_text:>",
         "bdfd_generic_call:channelid"
       ]
     },
@@ -15966,7 +16330,8 @@
       "warnings": [
         "bdfd_generic_call:roleexists",
         "bdfd_generic_call:mentioned",
-        "bdfd_generic_call:roleid"
+        "bdfd_generic_call:roleid",
+        "bdfd_audit_reason_default:giverole"
       ]
     },
     {
@@ -17907,7 +18272,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:linescount"
+        "bdfd_generic_call:linescount",
+        "bdfd_ordering_text:>"
       ]
     },
     {
@@ -18506,7 +18872,8 @@
       },
       "warnings": [
         "bdfd_generic_call:checkcontains",
-        "bdfd_generic_call:mentioned"
+        "bdfd_generic_call:mentioned",
+        "bdfd_audit_reason_default:kick"
       ]
     },
     {
@@ -20041,7 +20408,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:ping"
+        "bdfd_generic_call:ping",
+        "bdfd_ordering_text:<"
       ]
     },
     {
@@ -20759,7 +21127,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:rolecount"
+        "bdfd_generic_call:rolecount",
+        "bdfd_ordering_text:>="
       ]
     },
     {
@@ -21074,7 +21443,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:roleposition"
+        "bdfd_generic_call:roleposition",
+        "bdfd_ordering_text:<"
       ]
     },
     {
@@ -22449,10 +22819,19 @@
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "sendmessage",
+              "function": "showchannel",
               "arguments": [
-                "$showChannel[]"
+                "$c[]"
               ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "sendMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
             }
           }
         ],
@@ -22463,12 +22842,20 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:sendmessage"
+        "bdfd_generic_call:showchannel",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -23031,7 +23418,8 @@
       "warnings": [
         "bdfd_generic_call:checkcontains",
         "bdfd_generic_call:mentioned",
-        "bdfd_generic_call:roleid"
+        "bdfd_generic_call:roleid",
+        "bdfd_audit_reason_default:takerole"
       ]
     },
     {
@@ -23139,7 +23527,8 @@
       "warnings": [
         "bdfd_generic_call:takeroles",
         "bdfd_generic_call:authorid",
-        "bdfd_generic_call:roleid"
+        "bdfd_generic_call:roleid",
+        "bdfd_audit_reason_default:giverole"
       ]
     },
     {
@@ -24414,75 +24803,11 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "callFunction",
+            "type": "runBdfdScript",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "webhookcontent",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "Here are the details below:"
-              ]
-            }
-          },
-          {
-            "id": "n2",
-            "type": "callFunction",
-            "key": "action_1",
-            "enabled": true,
-            "payload": {
-              "function": "webhooktitle",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "Important Details"
-              ]
-            }
-          },
-          {
-            "id": "n3",
-            "type": "callFunction",
-            "key": "action_2",
-            "enabled": true,
-            "payload": {
-              "function": "webhookdescription",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "The detailed information can be found here."
-              ]
-            }
-          },
-          {
-            "id": "n4",
-            "type": "callFunction",
-            "key": "action_3",
-            "enabled": true,
-            "payload": {
-              "function": "webhookcolor",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "#FEE75C"
-              ]
-            }
-          },
-          {
-            "id": "n5",
-            "type": "callFunction",
-            "key": "action_4",
-            "enabled": true,
-            "payload": {
-              "function": "webhooksend",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef"
-              ]
-            }
-          },
-          {
-            "id": "n6",
-            "type": "respondWithMessage",
-            "key": "action_5",
-            "enabled": true,
-            "payload": {
-              "content": "((action.action_0))\n((action.action_1))\n((action.action_2))\n((action.action_3))\n((action.action_4))"
+              "scriptContent": "$webhookContent[https://discord.com/api/webhooks/123456/abcdef;Here are the details below:]\n$webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Important Details]\n$webhookDescription[https://discord.com/api/webhooks/123456/abcdef;The detailed information can be found here.]\n$webhookColor[https://discord.com/api/webhooks/123456/abcdef;#FEE75C]\n$webhookSend[https://discord.com/api/webhooks/123456/abcdef]"
             }
           }
         ],
@@ -24493,51 +24818,12 @@
               "pin": "next"
             },
             "to": "n1"
-          },
-          {
-            "from": {
-              "node": "n1",
-              "pin": "next"
-            },
-            "to": "n2"
-          },
-          {
-            "from": {
-              "node": "n2",
-              "pin": "next"
-            },
-            "to": "n3"
-          },
-          {
-            "from": {
-              "node": "n3",
-              "pin": "next"
-            },
-            "to": "n4"
-          },
-          {
-            "from": {
-              "node": "n4",
-              "pin": "next"
-            },
-            "to": "n5"
-          },
-          {
-            "from": {
-              "node": "n5",
-              "pin": "next"
-            },
-            "to": "n6"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:webhookcontent",
-        "bdfd_generic_call:webhooktitle",
-        "bdfd_generic_call:webhookdescription",
-        "bdfd_generic_call:webhookcolor",
-        "bdfd_generic_call:webhooksend"
+        "bdfd_passthrough:webhookcontent"
       ]
     },
     {
@@ -26317,7 +26603,9 @@
         ],
         "data": []
       },
-      "warnings": []
+      "warnings": [
+        "bdfd_ordering_text:>"
+      ]
     },
     {
       "name": "main:var-valeur-appel",
@@ -26690,7 +26978,9 @@
         ],
         "data": []
       },
-      "warnings": []
+      "warnings": [
+        "bdfd_audit_reason_default:giverole"
+      ]
     },
     {
       "name": "main:only-if",
@@ -27733,6 +28023,7 @@
         "data": []
       },
       "warnings": [
+        "bdfd_ordering_text:<",
         "bdfd_generic_call:sum",
         "bdfd_output_accumulated"
       ]
@@ -28252,6 +28543,7 @@
         "data": []
       },
       "warnings": [
+        "bdfd_ordering_text:<",
         "bdfd_generic_call:sum",
         "bdfd_output_accumulated"
       ]
@@ -28683,11 +28975,24 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$onlyPerms[KickMembers;]\n$sendMessage[You can kick]"
+              "function": "onlyperms",
+              "arguments": [
+                "KickMembers",
+                "$c[]"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "sendMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "You can kick"
             }
           }
         ],
@@ -28698,12 +29003,19 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:onlyperms"
+        "bdfd_generic_call:onlyperms"
       ]
     },
     {
@@ -28715,11 +29027,34 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$cropText[abcdef;3;]\n$sendMessage[after]"
+              "function": "croptext",
+              "arguments": [
+                "abcdef",
+                "3",
+                "$c[]"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "sendMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "after"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
             }
           }
         ],
@@ -28730,12 +29065,26 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:croptext"
+        "bdfd_generic_call:croptext"
       ]
     },
     {
@@ -28747,11 +29096,24 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$blacklistUsers[baduser;]"
+              "function": "blacklistusers",
+              "arguments": [
+                "baduser",
+                "$c[]"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
             }
           }
         ],
@@ -28762,12 +29124,19 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:blacklistusers"
+        "bdfd_generic_call:blacklistusers"
       ]
     },
     {
@@ -29557,11 +29926,29 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$title[Poll]\n$description[Vote]\n$addReactions[👍;👎]"
+              "function": "addreactions",
+              "arguments": [
+                "👍",
+                "👎"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "embeds": [
+                {
+                  "title": "Poll",
+                  "description": "Vote"
+                }
+              ]
             }
           }
         ],
@@ -29572,12 +29959,19 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:addreactions"
+        "bdfd_generic_call:addreactions"
       ]
     },
     {
