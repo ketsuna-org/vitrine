@@ -1200,11 +1200,12 @@
     "output": "((action.<key>)) = BDFD_OK (BDFD_EMPTY si vide) ; ((action.<key>.<résultat interne>))"
   },
   "callFunction": {
-    "desc": "Le bloc d'une fonction BDFD qui n'a pas de type d'action dédié : `function` = le nom de la fonction (sans $), `arguments` = ses arguments. Forme de stockage interne ; l'éditeur l'affiche comme la fonction elle-même.",
+    "desc": "Le bloc d'une fonction BDFD qui n'a pas de type d'action dédié : `function` = le nom de la fonction (sans $), `arguments` = ses arguments (les arguments finaux blancs sont retirés sauf si `keepTrailingEmpty` vaut true : la liste est alors l'arité exacte). Forme de stockage interne ; l'éditeur l'affiche comme la fonction elle-même.",
     "category": "Workflows",
     "params": {
       "function": "string",
-      "arguments": "string[]?"
+      "arguments": "string[]?",
+      "keepTrailingEmpty": "boolean?"
     },
     "output": "((action.<key>)) = valeur renvoyée par la fonction"
   },

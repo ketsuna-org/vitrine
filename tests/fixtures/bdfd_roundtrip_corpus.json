@@ -2081,8 +2081,9 @@
               "function": "textsplit",
               "arguments": [
                 "$message",
-                " $c[]"
-              ]
+                " "
+              ],
+              "keepTrailingEmpty": true
             }
           },
           {
@@ -7357,8 +7358,9 @@
             "payload": {
               "function": "lockchannel",
               "arguments": [
-                "$c[]"
-              ]
+                ""
+              ],
+              "keepTrailingEmpty": true
             }
           },
           {
@@ -10022,11 +10024,152 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "setTemporaryVariable",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$if[$checkContains[$message;error]==true]\n  $webhookColor[https://discord.com/api/webhooks/123456/abcdef;#ED4245]\n  $webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Error Detected]\n$else\n  $webhookColor[https://discord.com/api/webhooks/123456/abcdef;#5865F2]\n  $webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Information]\n$endif\n$webhookDescription[https://discord.com/api/webhooks/123456/abcdef;$message]\n$webhookSend[https://discord.com/api/webhooks/123456/abcdef]"
+              "key": "__out",
+              "value": ""
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "checkcontains",
+              "arguments": [
+                "$message",
+                "error"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_1))",
+              "condition.operator": "equals",
+              "condition.value": "true"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "webhookcolor",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "#ED4245"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "webhooktitle",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "Error Detected"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "setTemporaryVariable",
+            "key": "action_2.action_2",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": "((temp.__out))\n  \n  \n"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "webhookcolor",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "#5865F2"
+              ]
+            }
+          },
+          {
+            "id": "n8",
+            "type": "callFunction",
+            "key": "action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "webhooktitle",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "Information"
+              ]
+            }
+          },
+          {
+            "id": "n9",
+            "type": "setTemporaryVariable",
+            "key": "action_2.action_2",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": "((temp.__out))\n  \n  \n"
+            }
+          },
+          {
+            "id": "n10",
+            "type": "callFunction",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "function": "webhookdescription",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "$message"
+              ]
+            }
+          },
+          {
+            "id": "n11",
+            "type": "callFunction",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "function": "webhooksend",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef"
+              ]
+            }
+          },
+          {
+            "id": "n12",
+            "type": "setTemporaryVariable",
+            "key": "action_5",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": "((temp.__out))\n\n((action.action_4))"
+            }
+          },
+          {
+            "id": "n13",
+            "type": "respondWithMessage",
+            "key": "action_6",
+            "enabled": true,
+            "payload": {
+              "content": "((temp.__out))"
             }
           }
         ],
@@ -10037,12 +10180,108 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "then"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "else"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n7",
+              "pin": "next"
+            },
+            "to": "n8"
+          },
+          {
+            "from": {
+              "node": "n8",
+              "pin": "next"
+            },
+            "to": "n9"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n10"
+          },
+          {
+            "from": {
+              "node": "n9",
+              "pin": "next"
+            },
+            "to": "n10"
+          },
+          {
+            "from": {
+              "node": "n10",
+              "pin": "next"
+            },
+            "to": "n11"
+          },
+          {
+            "from": {
+              "node": "n11",
+              "pin": "next"
+            },
+            "to": "n12"
+          },
+          {
+            "from": {
+              "node": "n12",
+              "pin": "next"
+            },
+            "to": "n13"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:webhookcolor"
+        "bdfd_generic_call:checkcontains",
+        "bdfd_generic_call:webhookcolor",
+        "bdfd_generic_call:webhooktitle",
+        "bdfd_generic_call:webhookdescription",
+        "bdfd_generic_call:webhooksend",
+        "bdfd_output_accumulated"
       ]
     },
     {
@@ -11258,8 +11497,9 @@
               "arguments": [
                 "111111111111111111",
                 "222222222222222222",
-                "$c[]"
-              ]
+                ""
+              ],
+              "keepTrailingEmpty": true
             }
           },
           {
@@ -22821,8 +23061,9 @@
             "payload": {
               "function": "showchannel",
               "arguments": [
-                "$c[]"
-              ]
+                ""
+              ],
+              "keepTrailingEmpty": true
             }
           },
           {
@@ -24803,11 +25044,75 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$webhookContent[https://discord.com/api/webhooks/123456/abcdef;Here are the details below:]\n$webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Important Details]\n$webhookDescription[https://discord.com/api/webhooks/123456/abcdef;The detailed information can be found here.]\n$webhookColor[https://discord.com/api/webhooks/123456/abcdef;#FEE75C]\n$webhookSend[https://discord.com/api/webhooks/123456/abcdef]"
+              "function": "webhookcontent",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "Here are the details below:"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "webhooktitle",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "Important Details"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "webhookdescription",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "The detailed information can be found here."
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "function": "webhookcolor",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "#FEE75C"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "function": "webhooksend",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "respondWithMessage",
+            "key": "action_5",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_4))"
             }
           }
         ],
@@ -24818,12 +25123,51 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:webhookcontent"
+        "bdfd_generic_call:webhookcontent",
+        "bdfd_generic_call:webhooktitle",
+        "bdfd_generic_call:webhookdescription",
+        "bdfd_generic_call:webhookcolor",
+        "bdfd_generic_call:webhooksend"
       ]
     },
     {
@@ -28982,8 +29326,9 @@
               "function": "onlyperms",
               "arguments": [
                 "KickMembers",
-                "$c[]"
-              ]
+                ""
+              ],
+              "keepTrailingEmpty": true
             }
           },
           {
@@ -29035,8 +29380,9 @@
               "arguments": [
                 "abcdef",
                 "3",
-                "$c[]"
-              ]
+                ""
+              ],
+              "keepTrailingEmpty": true
             }
           },
           {
@@ -29103,8 +29449,9 @@
               "function": "blacklistusers",
               "arguments": [
                 "baduser",
-                "$c[]"
-              ]
+                ""
+              ],
+              "keepTrailingEmpty": true
             }
           },
           {
@@ -29334,6 +29681,479 @@
       },
       "warnings": [
         "bdfd_output_accumulated"
+      ]
+    },
+    {
+      "name": "review:suppress-brouillon-jete",
+      "kind": "script",
+      "script": "$suppressErrors[Une erreur]\n$title[T]$description[d]\n$sendMessage[a]\n$channelName[abc]\n$sendMessage[b]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "suppresserrors",
+              "arguments": [
+                "Une erreur"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "sendMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "a"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "channelname",
+              "arguments": [
+                "abc"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "sendMessage",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "content": "b"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "respondWithMessage",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_2))",
+              "embeds": [
+                {
+                  "title": "T",
+                  "description": "d"
+                }
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:suppresserrors",
+        "bdfd_generic_call:channelname"
+      ]
+    },
+    {
+      "name": "review:suppress-natif",
+      "kind": "script",
+      "script": "$suppressErrors[E]\n$title[T]\n$kick[abc]\n$sendMessage[apres]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "suppresserrors",
+              "arguments": [
+                "E"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "kickUser",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "userId": "abc"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "sendMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "apres"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "embeds": [
+                {
+                  "title": "T"
+                }
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:suppresserrors",
+        "bdfd_audit_reason_default:kick"
+      ]
+    },
+    {
+      "name": "review:suppress-embed",
+      "kind": "script",
+      "script": "$embedSuppressErrors[Oups;Détail]\n$title[X]\n$channelName[abc]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "embedsuppresserrors",
+              "arguments": [
+                "Oups",
+                "Détail"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "channelname",
+              "arguments": [
+                "abc"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_1))",
+              "embeds": [
+                {
+                  "title": "X"
+                }
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:embedsuppresserrors",
+        "bdfd_generic_call:channelname"
+      ]
+    },
+    {
+      "name": "review:webhook-session",
+      "kind": "script",
+      "script": "$webhookContent[https://discord.com/api/webhooks/123456/abcdef;Texte]\n$webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Titre]\n$webhookSend[https://discord.com/api/webhooks/123456/abcdef]\n$sendMessage[ok]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "webhookcontent",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "Texte"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "webhooktitle",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef",
+                "Titre"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "webhooksend",
+              "arguments": [
+                "https://discord.com/api/webhooks/123456/abcdef"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "sendMessage",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "content": "ok"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "respondWithMessage",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_2))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:webhookcontent",
+        "bdfd_generic_call:webhooktitle",
+        "bdfd_generic_call:webhooksend"
+      ]
+    },
+    {
+      "name": "review:arg-final-vide-textsplit",
+      "kind": "script",
+      "script": "$textSplit[a b; ]$sendMessage[$splitText[1]]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "textsplit",
+              "arguments": [
+                "a b",
+                " "
+              ],
+              "keepTrailingEmpty": true
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "splittext",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "sendMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_1))"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:textsplit",
+        "bdfd_generic_call:splittext",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {

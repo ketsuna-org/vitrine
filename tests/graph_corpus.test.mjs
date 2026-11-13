@@ -89,6 +89,13 @@ test("les graphes du corpus d'aller-retour BDFD sont valides", () => {
   }
 });
 
+// Contrat §12 : `callFunction.keepTrailingEmpty` (arité exacte). Les ports ne l'exécutent pas, ils doivent le laisser passer.
+test("le corpus d'aller-retour porte callFunction.keepTrailingEmpty, et le validateur l'accepte", () => {
+  const keep = roundtrip.cases.flatMap((c) => c.graph.nodes.filter((n) => n.type === "callFunction" && n.payload.keepTrailingEmpty === true));
+  assert.ok(keep.length >= 2, `callFunction avec keepTrailingEmpty : ${keep.length}`);
+  for (const n of keep) assert.ok(Array.isArray(n.payload.arguments) && String(n.payload.arguments.at(-1)).trim() === "");
+});
+
 // `dart_int_parse.json` : sortie réelle de `int.tryParse` (Dart VM) ; le port JS doit lire les entiers pareil.
 test("dartIntParse lit les entiers comme int.tryParse de Dart", async () => {
   const table = await fixture("dart_int_parse.json");
