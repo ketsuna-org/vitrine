@@ -627,8 +627,7 @@
       },
       "warnings": [
         "bdfd_generic_call:checkuserperms",
-        "bdfd_generic_call:mentioned",
-        "bdfd_audit_reason_default:kick"
+        "bdfd_generic_call:mentioned"
       ]
     },
     {
@@ -1231,8 +1230,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:guildcount",
-        "bdfd_ordering_text:>="
+        "bdfd_generic_call:guildcount"
       ]
     },
     {
@@ -2458,7 +2456,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -2481,8 +2480,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:listindexof",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:listindexof"
       ]
     },
     {
@@ -4120,27 +4118,32 @@
                     {
                       "name": "🤖 Bot",
                       "value": "((action.action_0))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "🆔 ID",
                       "value": "((action.action_1))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "📦 Node",
                       "value": "((action.action_2))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "⚡ Runtime",
                       "value": "((action.action_3))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "📝 Language",
                       "value": "((action.action_4))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     }
                   ]
                 }
@@ -4202,7 +4205,6 @@
         "data": []
       },
       "warnings": [
-        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:botname",
         "bdfd_generic_call:botid",
         "bdfd_generic_call:botnode",
@@ -5574,7 +5576,8 @@
             "key": "action_4",
             "enabled": true,
             "payload": {
-              "content": "((action.action_1)) ((action.action_2)) ((action.action_3))"
+              "content": "((action.action_1)) ((action.action_2)) ((action.action_3))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -5619,8 +5622,7 @@
       },
       "warnings": [
         "bdfd_generic_call:func",
-        "bdfd_generic_call:funccall",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:funccall"
       ]
     },
     {
@@ -5673,7 +5675,8 @@
             "key": "action_3",
             "enabled": true,
             "payload": {
-              "content": "((action.action_2))"
+              "content": "((action.action_2))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -5711,8 +5714,7 @@
       },
       "warnings": [
         "bdfd_generic_call:func",
-        "bdfd_generic_call:funccall",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:funccall"
       ]
     },
     {
@@ -6085,7 +6087,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -6108,8 +6111,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:giverolebyname",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:giverolebyname"
       ]
     },
     {
@@ -6315,12 +6317,14 @@
                     {
                       "name": "ID",
                       "value": "((action.action_2))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "Members",
                       "value": "((action.action_3))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     }
                   ]
                 }
@@ -6376,7 +6380,6 @@
       },
       "warnings": [
         "bdfd_generic_call:guildname",
-        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:guildid",
         "bdfd_generic_call:memberscount",
         "bdfd_generic_call:guildicon"
@@ -6408,7 +6411,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -6431,8 +6435,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:hasanyrole",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:hasanyrole"
       ]
     },
     {
@@ -7003,7 +7006,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -7026,8 +7030,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:onlyif",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:onlyif"
       ]
     },
     {
@@ -7303,7 +7306,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -7326,8 +7330,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:lcm",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:lcm"
       ]
     },
     {
@@ -7427,7 +7430,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -7450,8 +7454,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:lockchannel",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:lockchannel"
       ]
     },
     {
@@ -7775,8 +7778,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:membercount",
-        "bdfd_ordering_text:>="
+        "bdfd_generic_call:membercount"
       ]
     },
     {
@@ -9274,7 +9276,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -9297,8 +9300,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:timeoutfor",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:timeoutfor"
       ]
     },
     {
@@ -9492,8 +9494,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:mentioned",
-        "bdfd_audit_reason_default:untimeout"
+        "bdfd_generic_call:mentioned"
       ]
     },
     {
@@ -10492,7 +10493,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -10515,8 +10517,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:abs",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:abs"
       ]
     },
     {
@@ -10674,22 +10675,26 @@
                     {
                       "name": "Name",
                       "value": "((action.action_0))",
-                      "inline": false
+                      "inline": false,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "Members",
                       "value": "((action.action_1))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "Channels",
                       "value": "((action.action_2))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "Server ID",
                       "value": "((action.action_3))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "Description",
@@ -10742,7 +10747,6 @@
         "data": []
       },
       "warnings": [
-        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:servername",
         "bdfd_generic_call:memberscount",
         "bdfd_generic_call:channelcount",
@@ -10938,8 +10942,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:afktimeout",
-        "bdfd_ordering_text:<="
+        "bdfd_generic_call:afktimeout"
       ]
     },
     {
@@ -10989,7 +10992,8 @@
                     {
                       "name": "Received",
                       "value": "((action.action_1))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     }
                   ]
                 }
@@ -11023,8 +11027,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:argcount",
-        "bdfd_empty_value_unchecked:addfield"
+        "bdfd_generic_call:argcount"
       ]
     },
     {
@@ -11776,17 +11779,20 @@
                     {
                       "name": "👥 Total",
                       "value": "((action.action_1))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "👤 Humans",
                       "value": "((action.action_2))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "🤖 Bots",
                       "value": "((action.action_3))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     }
                   ]
                 }
@@ -11842,7 +11848,6 @@
       },
       "warnings": [
         "bdfd_generic_call:servername",
-        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:memberscount",
         "bdfd_generic_call:sub",
         "bdfd_generic_call:botcount",
@@ -14798,7 +14803,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -14821,8 +14827,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:escapemarkdown",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:escapemarkdown"
       ]
     },
     {
@@ -15549,8 +15554,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:getmemberscount",
-        "bdfd_ordering_text:<"
+        "bdfd_generic_call:getmemberscount"
       ]
     },
     {
@@ -15933,7 +15937,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -15956,8 +15961,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:getroleswithperm",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:getroleswithperm"
       ]
     },
     {
@@ -16065,7 +16069,6 @@
       },
       "warnings": [
         "bdfd_generic_call:getslowmode",
-        "bdfd_ordering_text:>",
         "bdfd_generic_call:channelid"
       ]
     },
@@ -16628,8 +16631,7 @@
       "warnings": [
         "bdfd_generic_call:roleexists",
         "bdfd_generic_call:mentioned",
-        "bdfd_generic_call:roleid",
-        "bdfd_audit_reason_default:giverole"
+        "bdfd_generic_call:roleid"
       ]
     },
     {
@@ -18570,8 +18572,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:linescount",
-        "bdfd_ordering_text:>"
+        "bdfd_generic_call:linescount"
       ]
     },
     {
@@ -18599,7 +18600,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -18622,8 +18624,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:listcount",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:listcount"
       ]
     },
     {
@@ -18653,7 +18654,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -18676,8 +18678,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:listjoin",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:listjoin"
       ]
     },
     {
@@ -18706,7 +18707,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -18729,8 +18731,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:listremove",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:listremove"
       ]
     },
     {
@@ -19170,8 +19171,7 @@
       },
       "warnings": [
         "bdfd_generic_call:checkcontains",
-        "bdfd_generic_call:mentioned",
-        "bdfd_audit_reason_default:kick"
+        "bdfd_generic_call:mentioned"
       ]
     },
     {
@@ -19199,7 +19199,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -19222,8 +19223,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:mentionchannel",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:mentionchannel"
       ]
     },
     {
@@ -20445,7 +20445,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -20468,8 +20469,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:pad",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:pad"
       ]
     },
     {
@@ -20497,7 +20497,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -20520,8 +20521,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:parseint",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:parseint"
       ]
     },
     {
@@ -20706,8 +20706,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:ping",
-        "bdfd_ordering_text:<"
+        "bdfd_generic_call:ping"
       ]
     },
     {
@@ -21425,8 +21424,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:rolecount",
-        "bdfd_ordering_text:>="
+        "bdfd_generic_call:rolecount"
       ]
     },
     {
@@ -21741,8 +21739,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:roleposition",
-        "bdfd_ordering_text:<"
+        "bdfd_generic_call:roleposition"
       ]
     },
     {
@@ -21989,7 +21986,8 @@
                     {
                       "name": "Servers",
                       "value": "((action.action_0))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "Latency",
@@ -22028,7 +22026,6 @@
         "data": []
       },
       "warnings": [
-        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:servercount",
         "bdfd_generic_call:ping"
       ]
@@ -22449,12 +22446,14 @@
                     {
                       "name": "Server ID",
                       "value": "((action.action_2))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "Owner",
                       "value": "((action.action_3))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     }
                   ]
                 }
@@ -22511,7 +22510,6 @@
       "warnings": [
         "bdfd_generic_call:servername",
         "bdfd_generic_call:serverowner",
-        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:serverid",
         "bdfd_generic_call:servericon"
       ]
@@ -23130,7 +23128,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -23153,8 +23152,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:showchannel",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:showchannel"
       ]
     },
     {
@@ -23332,7 +23330,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -23355,8 +23354,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:slug",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:slug"
       ]
     },
     {
@@ -23527,12 +23525,14 @@
                     {
                       "name": "Negative Difference",
                       "value": "((action.action_1))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     },
                     {
                       "name": "Decimal Difference",
                       "value": "((action.action_2))",
-                      "inline": true
+                      "inline": true,
+                      "bdfdRequired": true
                     }
                   ]
                 }
@@ -23573,8 +23573,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:sub",
-        "bdfd_empty_value_unchecked:addfield"
+        "bdfd_generic_call:sub"
       ]
     },
     {
@@ -23717,8 +23716,7 @@
       "warnings": [
         "bdfd_generic_call:checkcontains",
         "bdfd_generic_call:mentioned",
-        "bdfd_generic_call:roleid",
-        "bdfd_audit_reason_default:takerole"
+        "bdfd_generic_call:roleid"
       ]
     },
     {
@@ -23826,8 +23824,7 @@
       "warnings": [
         "bdfd_generic_call:takeroles",
         "bdfd_generic_call:authorid",
-        "bdfd_generic_call:roleid",
-        "bdfd_audit_reason_default:giverole"
+        "bdfd_generic_call:roleid"
       ]
     },
     {
@@ -24194,7 +24191,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -24217,8 +24215,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:togglerole",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:togglerole"
       ]
     },
     {
@@ -24303,7 +24300,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -24326,8 +24324,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:trunc",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:trunc"
       ]
     },
     {
@@ -27005,9 +27002,7 @@
         ],
         "data": []
       },
-      "warnings": [
-        "bdfd_ordering_text:>"
-      ]
+      "warnings": []
     },
     {
       "name": "main:var-valeur-appel",
@@ -27201,7 +27196,8 @@
             "enabled": true,
             "payload": {
               "channelId": "30",
-              "content": "((_loop.var.w))"
+              "content": "((_loop.var.w))",
+              "bdfdRequireText": true
             }
           }
         ],
@@ -27223,9 +27219,7 @@
         ],
         "data": []
       },
-      "warnings": [
-        "bdfd_empty_value_unchecked:channelsendmessage"
-      ]
+      "warnings": []
     },
     {
       "name": "main:envoi",
@@ -27380,9 +27374,7 @@
         ],
         "data": []
       },
-      "warnings": [
-        "bdfd_audit_reason_default:giverole"
-      ]
+      "warnings": []
     },
     {
       "name": "main:only-if",
@@ -28425,7 +28417,6 @@
         "data": []
       },
       "warnings": [
-        "bdfd_ordering_text:<",
         "bdfd_generic_call:sum",
         "bdfd_output_accumulated"
       ]
@@ -28945,7 +28936,6 @@
         "data": []
       },
       "warnings": [
-        "bdfd_ordering_text:<",
         "bdfd_generic_call:sum",
         "bdfd_output_accumulated"
       ]
@@ -29934,8 +29924,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:suppresserrors",
-        "bdfd_audit_reason_default:kick"
+        "bdfd_generic_call:suppresserrors"
       ]
     },
     {
@@ -30163,7 +30152,8 @@
             "key": "action_2",
             "enabled": true,
             "payload": {
-              "content": "((action.action_1))"
+              "content": "((action.action_1))",
+              "bdfdRequireText": true
             }
           },
           {
@@ -30210,8 +30200,7 @@
       },
       "warnings": [
         "bdfd_generic_call:textsplit",
-        "bdfd_generic_call:splittext",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:splittext"
       ]
     },
     {
@@ -30929,7 +30918,8 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))"
+              "content": "((action.action_0))",
+              "bdfdRequireText": true
             }
           },
           {
@@ -30968,8 +30958,7 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:finduser",
-        "bdfd_empty_value_unchecked:sendmessage"
+        "bdfd_generic_call:finduser"
       ]
     },
     {
