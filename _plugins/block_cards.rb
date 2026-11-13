@@ -360,11 +360,6 @@ module Vitrine
         Vitrine::BlockCards.registry(site)["blocks"].select { |b| b["family"] == family }.map { |b| b["category"] }.uniq.join(", ")
       end
 
-      def block_final_names(_ignored = nil)
-        site = @context.registers[:site]
-        Vitrine::BlockCards.registry(site)["blocks"].select { |b| b["terminal"] }.map { |b| "*#{b["name"]}*" }.join(", ")
-      end
-
       def block_slug(category)
         Vitrine::BlockCards.slug(category)
       end

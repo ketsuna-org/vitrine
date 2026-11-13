@@ -7,13 +7,18 @@
  *
  * Sources read from the app checkout (packages/ui/lib/src/…):
  *   - shared/lib/types/action.dart            enum BotCreatorActionType (the node types)
- *   - shared/lib/graph/workflow_graph.dart    graph constants: control node types, GraphPins, data types, start id
+ *   - shared/lib/graph/workflow_graph.dart    graph constants: control node types, loop types, region owners,
+ *                                             GraphPins, data types, start id
  *   - shared/lib/graph/graph_validation.dart  node types left out of the closed list (legacy navigation types)
  *   - shared/lib/graph/graph_conversion.dart  types whose inline action list became a `graph` sub-graph
  *   - editor/catalog/action_type_extension.dart  icon + parameterDefinitions (fields, hints, options)
- *   - editor/blocks/scratch_block_palette.dart   category, terminal blocks, palette visibility
+ *   - editor/catalog/action_categories.dart   category, listener / interaction-only / legacy canvas blocks
+ *   - editor/graph/graph_palette.dart         what the graph palette never offers (see `paletteExcluded`)
  *   - theme/block_family.dart                    family colour + family of each category
- *   - l10n/app_en.arb                            displayed name + description
+ *   - l10n/app_en.arb                            displayed name (the app has no per-block description any more)
+ *
+ * There is no "final block" notion any more: in the graph a node simply has no `next` link, so
+ * the registry carries no `terminal` field.
  *
  * `--check` regenerates in memory and exits 1 when the committed JSON differs
  * (used by tests/blocks_registry.test.mjs when an app checkout is available).
@@ -37,7 +42,8 @@ const files = {
   validation: path.join(appDir, 'packages/shared/lib/graph/graph_validation.dart'),
   conversion: path.join(appDir, 'packages/shared/lib/graph/graph_conversion.dart'),
   ext: path.join(appDir, 'packages/ui/lib/src/editor/catalog/action_type_extension.dart'),
-  palette: path.join(appDir, 'packages/ui/lib/src/editor/blocks/scratch_block_palette.dart'),
+  palette: path.join(appDir, 'packages/ui/lib/src/editor/catalog/action_categories.dart'),
+  graphPalette: path.join(appDir, 'packages/ui/lib/src/editor/graph/graph_palette.dart'),
   family: path.join(appDir, 'packages/ui/lib/src/theme/block_family.dart'),
   arb: path.join(appDir, 'packages/ui/lib/src/l10n/app_en.arb'),
   events: path.join(appDir, 'packages/shared/lib/utils/event_catalog.dart'),
@@ -145,7 +151,7 @@ function methodBody(src, signature) {
 
 // ───────────────────────── extraction ─────────────────────────
 
-const [actionSrc, graphSrc, validationSrc, conversionSrc, extSrc, paletteSrc, familySrc, arbRaw, eventsSrc, variablesSrc] = await Promise.all(
+const [actionSrc, graphSrc, validationSrc, conversionSrc, extSrc, paletteSrc, graphPaletteSrc, familySrc, arbRaw, eventsSrc, variablesSrc] = await Promise.all(
   Object.values(files).map((f) => readFile(f, 'utf8')),
 );
 const arb = JSON.parse(arbRaw);
@@ -170,11 +176,20 @@ const dartConst = (src, name) => {
 };
 const graphFormat = dartConst(graphSrc, 'graphFormatVersion');
 const controlTypes = ['If', 'ForLoop', 'JsonForEachLoop', 'TryCatch', 'Switch'].map((n) => dartConst(graphSrc, `graph${n}Type`));
+// Loop types: a Set literal in workflow_graph.dart; the ones that are not in the enum are
+// the `$while` / `$async` / `$break` / `$continue` function blocks.
+const dartIdentSet = (src, name) => {
+  const body = balanced(src, src.indexOf('{', src.indexOf(`Set<String> ${name} =`)));
+  return splitTop(body).map((x) => x.trim()).filter(Boolean).flatMap((x) => (x.startsWith('...')
+    ? dartIdentSet(src, x.slice(3)) : [dartConst(src, x)]));
+};
+const loopTypes = dartIdentSet(graphSrc, 'graphLoopTypes');
+const [whileType, asyncType, breakType, continueType] = ['WhileLoop', 'AsyncBlock', 'Break', 'Continue']
+  .map((n) => dartConst(graphSrc, `graph${n}Type`));
 const pinsBody = methodBody(graphSrc, 'abstract final class GraphPins');
 const pins = Object.fromEntries([...pinsBody.matchAll(/static const String (\w+)\s*=\s*('[^']*')\s*;/g)].map((m) => [m[1], dartString(m[2])]));
 const dataTypes = [...methodBody(graphSrc, 'abstract final class GraphDataTypes').matchAll(/static const String (\w+)\s*=\s*'(\w+)'/g)].map((m) => m[2]);
-const regionOwners = [...graphSrc.slice(graphSrc.indexOf('graphRegionOwnerTypes')).match(/\{([^}]*)\}/)[1].matchAll(/graph(\w+)Type/g)]
-  .map((m) => dartConst(graphSrc, `graph${m[1]}Type`));
+const regionOwners = dartIdentSet(graphSrc, 'graphRegionOwnerTypes');
 // Types left out of the closed list of node types (they became `switch` nodes): `t != BotCreatorActionType.X`.
 const legacyTypes = [...validationSrc.matchAll(/t\s*!=\s*BotCreatorActionType\.(\w+)/g)].map((m) => m[1]);
 const inlineGraphTypes = [...methodBody(conversionSrc, 'const Set<String> graphInlineHandlerTypes = ').matchAll(/'(\w+)'/g)].map((m) => m[1]);
@@ -237,8 +252,14 @@ const caseSet = (sig) => {
   for (const m of body.matchAll(/case BotCreatorActionType\.(\w+):/g)) set.add(m[1]);
   return set;
 };
-const finals = caseSet('bool isFinalAction');
 const hidden = caseSet('bool _isCanvasAction');
+const autocompleteOnly = new Set([...methodBody(paletteSrc, 'bool isAutocompleteOnlyAction').matchAll(/BotCreatorActionType\.(\w+)/g)].map((m) => m[1]));
+// graph_palette.dart skips these types whatever the context (`type == …` / `t == …` tests, then the
+// `continue` that follows): composed from the same source so the docs say "not offered" like the app.
+const paletteExcluded = new Set([
+  ...[...graphPaletteSrc.slice(graphPaletteSrc.indexOf('List<GraphPaletteEntry> graphPaletteEntries('), graphPaletteSrc.indexOf('filterGraphPalette(')).matchAll(/(?:type|t)\s*==\s*BotCreatorActionType\.(\w+)(?:\.name)?/g)].map((m) => m[1]),
+  'callFunction', // `type == graphFunctionNodeType` (functions are offered as `fn:<name>` entries)
+]);
 const listeners = caseSet('bool isListenerAction');
 const interactionOnly = caseSet('bool isInteractionOnlyAction');
 
@@ -266,12 +287,14 @@ const fieldLabel = (key) => key
 // 8. Graph node types: every action type except the legacy navigation ones (now `switch` nodes),
 // plus the control types that are not in the enum (`tryCatch`, `switch`).
 const [ifType, forType, jsonForType, tryType, switchType] = controlTypes;
-const nodeTypes = [...types.filter((t) => !legacyTypes.includes(t)), ...controlTypes.filter((t) => !types.includes(t))];
+const extraTypes = [whileType, asyncType, breakType, continueType];
+const nodeTypes = [...types.filter((t) => !legacyTypes.includes(t)), ...controlTypes.filter((t) => !types.includes(t)), ...extraTypes];
 
 // Output pins of a node type (contract §2; same rule as `_allowedPins` in graph_validation.dart).
 const pinsOf = (t) => {
   if (t === ifType) return [pins.then, 'elseif:<i>', pins.elseBranch, pins.error];
-  if (t === forType || t === jsonForType) return [pins.body, pins.done, pins.error];
+  if (t === forType || t === jsonForType || loopTypes.includes(t)) return [pins.body, pins.done, pins.error];
+  if (t === breakType || t === continueType) return [pins.error]; // they leave the loop: nothing follows
   if (t === tryType) return [pins.tryBody, pins.catchBody, pins.done, pins.error];
   if (t === switchType) return ['case:<value>', pins.defaultCase, pins.error];
   return [pins.next, pins.error];
@@ -281,13 +304,11 @@ const pinsOf = (t) => {
 const controlNodes = {
   [tryType]: {
     name: 'Try / Catch',
-    description: 'Runs the `try` region; when an action fails, `error.*` is set and the `catch` region runs; then `done`.',
     icon: 'security',
     fields: [],
   },
   [switchType]: {
     name: 'Switch',
-    description: 'Compares a value with the `case:<value>` pins and follows the matching one, otherwise `default`.',
     icon: 'shuffle',
     fields: [
       { key: 'value', type: 'string', default: '', hint: 'Value to compare, resolved at run time', required: true },
@@ -296,6 +317,23 @@ const controlNodes = {
     ],
   },
 };
+
+// Loop-function blocks (`$while`, `$async`, `$break`, `$continue`): not enum values, no l10n entry.
+// `whileLoop` evaluates the same condition as `ifBlock` (native_node_executor.dart `_while`).
+Object.assign(controlNodes, {
+  [whileType]: {
+    name: 'While',
+    icon: 'loop',
+    fields: (params[ifType] ?? []).filter((d) => d.key.startsWith('condition.')),
+  },
+  [asyncType]: {
+    name: 'Async',
+    icon: 'play_arrow',
+    fields: [],
+  },
+  [breakType]: { name: 'Break', icon: 'stop_circle', fields: [] },
+  [continueType]: { name: 'Continue', icon: 'skip_next', fields: [] },
+});
 
 // Fields that exist only for the old nested-list model: the graph has pins and sub-graphs instead.
 const droppedFields = { [ifType]: ['tryCatch', 'suppressErrors'] };
@@ -313,13 +351,11 @@ const blocks = nodeTypes.map((t) => {
   return {
     type: t,
     name: arb[`action_name_${t}`] ?? control?.name ?? null,
-    description: arb[`action_description_${t}`] ?? control?.description ?? null,
     category: cat,
     family: fam,
     icon: control ? control.icon : (icons[t] ?? 'Icons.extension').replace('Icons.', ''),
-    terminal: finals.has(t),
     deprecated: deprecated.has(t),
-    inPalette: !hidden.has(t),
+    inPalette: !(hidden.has(t) || autocompleteOnly.has(t) || paletteExcluded.has(t)),
     workflowOnly: listeners.has(t),
     interactionOnly: interactionOnly.has(t),
     pins: pinsOf(t),
@@ -367,7 +403,7 @@ const registry = {
     event: {
       title: arb.scratch_entry_event_trigger,
       icon: 'flash_on',
-      // getCategoryColor('EntryPoint') = Colors.lime.shade700 (scratch_block_palette.dart)
+      // getCategoryColor('EntryPoint') = Colors.lime.shade700 (action_categories.dart)
       color: '#AFB42B',
       categoryLabel: arb.scratch_event_category,
       nameLabel: arb.scratch_event_name,
@@ -390,6 +426,7 @@ const registry = {
     version: graphFormat,
     startId: dartConst(graphSrc, 'graphStartId'),
     controlTypes,
+    loopTypes,
     regionOwners,
     inlineGraphTypes,
     legacyTypes,

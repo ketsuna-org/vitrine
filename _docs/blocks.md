@@ -31,8 +31,6 @@ From left to right and top to bottom:
 - **Advanced settings.** Under the fields, every block has **Action Key**, an **Enabled** switch and **On Error**: *Stop* or *Continue*. To react to a failure, link the node's `error` pin to the blocks that should run instead.
 - **Menu (⋮).** Copy, Duplicate, Paste, Documentation & guides and Delete.
 
-A few blocks are **final**: they answer the interaction and nothing should come after them ({{ "" | block_final_names }}).
-
 ### Families and categories
 
 The palette groups the blocks into {{ site.data.blocks_registry.blocks | map: "category" | uniq | size }} categories. Each category belongs to one of six colour families.

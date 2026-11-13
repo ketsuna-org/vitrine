@@ -18,7 +18,7 @@ test('registry blocks are complete and consistent with the app palette data', ()
   assert.equal(byType.size, registry.blocks.length, 'block types are unique');
   for (const b of registry.blocks) {
     assert.ok(b.name, `${b.type} has a displayed name`);
-    assert.ok(b.description, `${b.type} has a description`);
+    assert.ok(!('description' in b), `${b.type}: the app has no per-block description any more`);
     assert.ok(registry.families[b.family], `${b.type}: family ${b.family} exists`);
     assert.match(registry.families[b.family].color, /^#[0-9A-F]{6}$/);
     assert.ok(sprite.includes(`id="${b.icon}"`), `${b.type}: icon ${b.icon} is in assets/icons/app-blocks.svg`);
@@ -77,6 +77,12 @@ test('the registry describes the graph model from the app sources', () => {
   assert.equal(registry.graph.version, 2);
   assert.equal(registry.graph.startId, 'start');
   assert.deepEqual(registry.graph.controlTypes, ['ifBlock', 'forLoop', 'jsonForEachLoop', 'tryCatch', 'switch']);
+  assert.deepEqual(registry.graph.loopTypes, ['forLoop', 'jsonForEachLoop', 'whileLoop', 'asyncBlock']);
+  assert.deepEqual(registry.graph.regionOwners, ['forLoop', 'jsonForEachLoop', 'whileLoop', 'asyncBlock', 'tryCatch']);
+  for (const t of ['whileLoop', 'asyncBlock', 'breakLoop', 'continueLoop']) assert.ok(byType.has(t), `${t} is a node type`);
+  assert.deepEqual(byType.get('whileLoop').pins, ['body', 'done', 'error']);
+  assert.deepEqual(byType.get('breakLoop').pins, ['error']);
+  assert.ok(registry.blocks.every((b) => !('terminal' in b)), 'no final-block notion in the app any more');
   assert.deepEqual(registry.graph.legacyTypes, ['skipActions', 'jumpToAction']);
   for (const t of registry.graph.legacyTypes) assert.ok(!byType.has(t), `${t} is not a node type any more`);
   for (const t of registry.graph.controlTypes) assert.ok(byType.has(t), `${t} is a node type`);
