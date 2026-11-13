@@ -63,4 +63,4 @@ Par défaut le script est compact : en BDFD, un saut de ligne est du texte de so
 
 ## La garantie
 
-Pour tout graphe de référence G, convertir G en script puis le script en graphe s'exécute comme G ; et pour tout script de référence S, convertir S en graphe puis en script s'exécute comme S. Ces corpus de référence sont partagés entre l'application, le Manager et la vitrine et vérifiés par des tests.
+Propriété visée : pour tout graphe de référence G, convertir G en script puis le script en graphe s'exécute comme G ; et pour tout script de référence S, convertir S en graphe puis en script s'exécute comme S. Ces corpus de référence sont partagés entre l'application, le Manager et la vitrine ; le test de conformité d'exécution est celui de l'application, la vitrine vérifie seulement que les graphes du corpus sont valides.
