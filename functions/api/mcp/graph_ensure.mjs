@@ -28,6 +28,14 @@ const hasText = (level, keys) => keys.some((k) => text(level[k]).trim() !== "");
 /** La racine et `data` s'il existe (commande, ou workflow événementiel). */
 const holders = (entity) => [entity, ...(isPlainObject(entity.data) ? [entity.data] : [])];
 
+/**
+ * Un `workflow` ou une route de sous-commande porte une liste `actions` à convertir. Déjà en mode `graph` avec son graphe,
+ * une liste VIDE n'est pas une ancienne version qui a écrit par-dessus : le graphe gagne, rendu tel quel (la convertir en
+ * graphe vide le détruirait). Même règle que pour la racine et les composants (contrat §3).
+ */
+const isLegacySub = (level) =>
+  Array.isArray(level.actions) && (level.actions.length > 0 || level.graph == null || mode(level) !== "graph");
+
 /** Niveaux à convertir dans [entity] (vide : rien à faire). Lit seulement. */
 function pendingLevels(entity) {
   const hasData = isPlainObject(entity.data);
@@ -48,10 +56,10 @@ function pendingLevels(entity) {
     } else legacy = true; // mode inconnu (`blueprint`…) : l'ancien moteur le lisait comme un workflow
     if (legacy) levels.push({ map: holder, isHolder: true });
 
-    if (isPlainObject(holder.workflow) && Array.isArray(holder.workflow.actions)) levels.push({ map: holder.workflow, isHolder: false });
+    if (isPlainObject(holder.workflow) && isLegacySub(holder.workflow)) levels.push({ map: holder.workflow, isHolder: false });
     if (isPlainObject(holder.subcommandWorkflows)) {
       for (const route of Object.values(holder.subcommandWorkflows)) {
-        if (isPlainObject(route) && Array.isArray(route.actions) && mode(route) !== "bdfd_script" && mode(route) !== "javascript") {
+        if (isPlainObject(route) && isLegacySub(route) && mode(route) !== "bdfd_script" && mode(route) !== "javascript") {
           levels.push({ map: route, isHolder: false });
         }
       }
