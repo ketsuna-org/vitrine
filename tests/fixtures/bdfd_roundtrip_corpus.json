@@ -44578,7 +44578,7 @@
     {
       "name": "conv:legacy_welcome_canvas",
       "kind": "graph",
-      "script": "$c[sans équivalent BDFD : getGlobalVariable cfg]$if[false==true]$var[greet;Compte tout neuf, bienvenue ((user.username)) !]$else$var[greet;Bon retour parmi nous, ((user.username)).]$endif$for[role;64;65]$log[role $role]$try$giverole[((user.id));$role]$catch$endtry$endfor$if[1==1]$try$takerole[((user.id));]$catch$endtry$endif$if[img==img]$c[sans équivalent BDFD : runtimeImageBlock img]$c[sans équivalent BDFD : attachImage badge]$c[sans équivalent BDFD : sendDm dm]$giverole[((user.id));65]$log[saute par le mode d'erreur skip]$if[1==1]$channelsendmessage[((action.cfg));$var[greet]]$endif$endif",
+      "script": "$var[n1;$getvar[welcome_channel]]$if[false==true]$var[greet;Compte tout neuf, bienvenue ((user.username)) !]$else$var[greet;Bon retour parmi nous, ((user.username)).]$endif$for[role;64;65]$log[role $role]$try$giverole[((user.id));$role]$catch$endtry$endfor$if[1==1]$try$takerole[((user.id));]$catch$endtry$endif$if[img==img]$c[sans équivalent BDFD : runtimeImageBlock img]$c[sans équivalent BDFD : attachImage badge]$c[sans équivalent BDFD : sendDm dm]$giverole[((user.id));65]$log[saute par le mode d'erreur skip]$if[1==1]$channelsendmessage[$var[n1];$var[greet]]$endif$endif",
       "graph": {
         "version": 2,
         "nodes": [
@@ -45018,7 +45018,6 @@
         "data": []
       },
       "warnings": [
-        "graph_no_bdfd_equivalent:getGlobalVariable",
         "graph_unmapped_operator:startswith",
         "graph_switch_result_prefix:n11",
         "graph_no_bdfd_equivalent:runtimeImageBlock",
@@ -45028,7 +45027,6 @@
         "graph_switch_result_prefix:n18",
         "graph_unmapped_field:sendMessage.embeds",
         "graph_unmapped_field:sendMessage.components",
-        "graph_reference:cfg",
         "graph_orphan:n12",
         "graph_orphan:n19"
       ]
