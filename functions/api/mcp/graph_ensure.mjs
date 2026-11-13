@@ -128,7 +128,7 @@ function convertEntity(out, name, warnings) {
     if (mode(holder) === "workflow") holder.executionMode = "graph";
   }
 
-  convertComponents(out, addAll);
+  convertComponents(out, add, addAll);
 }
 
 /** Lieu lisible d'un niveau pour les avertissements (`""` pour la racine ou `data`). */
@@ -156,8 +156,12 @@ function namedWorkflow(holder) {
  * `actions`, soit une ancienne référence de workflow (comme `ButtonNode.fromJson`).
  */
 function isHandlerHolder(m) {
-  if (typeof m.customId !== "string" || (m.graph !== undefined && m.graph !== null)) return false;
-  if (Array.isArray(m.actions)) return true;
+  if (typeof m.customId !== "string") return false;
+  const hasGraph = m.graph !== undefined && m.graph !== null;
+  // Comme au niveau racine, des actions NON VIDES l'emportent sur un graphe déjà présent (ancienne app
+  // qui a écrit par-dessus) ; une liste vide à côté d'un graphe n'est pas un gestionnaire.
+  if (Array.isArray(m.actions)) return !hasGraph || m.actions.length > 0;
+  if (hasGraph) return false;
   return legacyWorkflowKey(m) !== null;
 }
 
@@ -177,7 +181,7 @@ function hasComponentActions(value) {
   return false;
 }
 
-function convertComponents(value, addAll) {
+function convertComponents(value, add, addAll) {
   if (isPlainObject(value)) {
     if (isHandlerHolder(value)) {
       const holderSite = `component:${value.customId}`;
@@ -197,13 +201,16 @@ function convertComponents(value, addAll) {
       delete value.actions;
       // Liste vide : pas de gestionnaire, donc pas de graphe (le moteur teste la présence de `graph`).
       if (actions.length > 0) {
+        if (value.graph !== undefined && value.graph !== null) {
+          add("legacy_actions_overwrite", "des actions et un graphe coexistent sur le composant : les actions (écrites par une ancienne version) l'emportent", holderSite);
+        }
         const conversion = convertActionsToGraph(actions);
         addAll(holderSite, conversion.warnings);
         value.graph = conversion.graph;
       }
     }
-    for (const v of Object.values(value)) convertComponents(v, addAll);
+    for (const v of Object.values(value)) convertComponents(v, add, addAll);
   } else if (Array.isArray(value)) {
-    for (const v of value) convertComponents(v, addAll);
+    for (const v of value) convertComponents(v, add, addAll);
   }
 }

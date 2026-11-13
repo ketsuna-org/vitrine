@@ -20223,6 +20223,183 @@
     "warnings": []
   },
   {
+    "name": "raw: empty key is reported, not thrown",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "log",
+          "key": "",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        }
+      ],
+      "data": []
+    },
+    "errors": [
+      "empty_key"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "raw: enabled that is not a boolean",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "log",
+          "key": "a",
+          "enabled": "false",
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        }
+      ],
+      "data": []
+    },
+    "errors": [
+      "invalid_field"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "raw: pos with non numeric coordinates",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "log",
+          "key": "a",
+          "enabled": true,
+          "payload": {},
+          "pos": {
+            "x": "10",
+            "y": "20"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        }
+      ],
+      "data": []
+    },
+    "errors": [
+      "invalid_field"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "raw: valid numeric pos",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "log",
+          "key": "a",
+          "enabled": true,
+          "payload": {},
+          "pos": {
+            "x": 10,
+            "y": 20.5
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "name": "raw: data link type that is not a string",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "log",
+          "key": "a",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "b",
+          "type": "log",
+          "key": "b",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        },
+        {
+          "from": {
+            "node": "a",
+            "pin": "next"
+          },
+          "to": "b"
+        }
+      ],
+      "data": [
+        {
+          "from": {
+            "node": "a",
+            "out": "result"
+          },
+          "to": {
+            "node": "b",
+            "field": "message"
+          },
+          "type": 5
+        }
+      ]
+    },
+    "errors": [
+      "invalid_field"
+    ],
+    "warnings": []
+  },
+  {
     "name": "region_leak: two loops share a body node",
     "graph": {
       "version": 2,

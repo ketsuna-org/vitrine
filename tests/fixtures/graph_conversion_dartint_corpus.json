@@ -663,6 +663,13 @@
           "payload": {
             "message": "C"
           }
+        },
+        {
+          "id": "n4",
+          "type": "log",
+          "key": "A.end",
+          "enabled": false,
+          "payload": {}
         }
       ],
       "links": [
@@ -682,6 +689,13 @@
         },
         {
           "from": {
+            "node": "n1",
+            "pin": "error"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
             "node": "n2",
             "pin": "next"
           },
@@ -690,9 +704,7 @@
       ],
       "data": []
     },
-    "warnings": [
-      "error_skip_beyond_end"
-    ]
+    "warnings": []
   },
   {
     "name": "dartint: error skip count hex",

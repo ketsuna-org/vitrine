@@ -2406,7 +2406,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:listindexof"
+        "bdfd_generic_call:listindexof",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -3933,6 +3934,7 @@
         "data": []
       },
       "warnings": [
+        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:botname",
         "bdfd_generic_call:botid",
         "bdfd_generic_call:botnode",
@@ -4260,37 +4262,11 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "callFunction",
+            "type": "runBdfdScript",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "clearreactions",
-              "arguments": [
-                "$channelID",
-                "$messageID",
-                "!all"
-              ]
-            }
-          },
-          {
-            "id": "n2",
-            "type": "callFunction",
-            "key": "action_1",
-            "enabled": true,
-            "payload": {
-              "function": "addreactions",
-              "arguments": [
-                "✅"
-              ]
-            }
-          },
-          {
-            "id": "n3",
-            "type": "respondWithMessage",
-            "key": "action_2",
-            "enabled": true,
-            "payload": {
-              "content": "Finished!"
+              "scriptContent": "$clearReactions[$channelID;$messageID;!all]\n$addReactions[✅]\nFinished!"
             }
           }
         ],
@@ -4301,27 +4277,12 @@
               "pin": "next"
             },
             "to": "n1"
-          },
-          {
-            "from": {
-              "node": "n1",
-              "pin": "next"
-            },
-            "to": "n2"
-          },
-          {
-            "from": {
-              "node": "n2",
-              "pin": "next"
-            },
-            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:clearreactions",
-        "bdfd_generic_call:addreactions"
+        "bdfd_passthrough:addreactions"
       ]
     },
     {
@@ -5413,7 +5374,6 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))",
               "embeds": [
                 {
                   "title": "Daily Work Completed",
@@ -5547,7 +5507,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:giverolebyname"
+        "bdfd_generic_call:giverolebyname",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -5814,6 +5775,7 @@
       },
       "warnings": [
         "bdfd_generic_call:guildname",
+        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:guildid",
         "bdfd_generic_call:memberscount",
         "bdfd_generic_call:guildicon"
@@ -5868,7 +5830,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:hasanyrole"
+        "bdfd_generic_call:hasanyrole",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -6462,7 +6425,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:onlyif"
+        "bdfd_generic_call:onlyif",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -6761,7 +6725,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:lcm"
+        "bdfd_generic_call:lcm",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -6848,17 +6813,10 @@
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "lockchannel",
-              "arguments": []
-            }
-          },
-          {
-            "id": "n2",
-            "type": "sendMessage",
-            "key": "action_1",
-            "enabled": true,
-            "payload": {
-              "content": "((action.action_0))"
+              "function": "sendmessage",
+              "arguments": [
+                "$lockChannel[]"
+              ]
             }
           }
         ],
@@ -6869,19 +6827,12 @@
               "pin": "next"
             },
             "to": "n1"
-          },
-          {
-            "from": {
-              "node": "n1",
-              "pin": "next"
-            },
-            "to": "n2"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:lockchannel"
+        "bdfd_generic_call:sendmessage"
       ]
     },
     {
@@ -8726,7 +8677,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:timeoutfor"
+        "bdfd_generic_call:timeoutfor",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -8774,11 +8726,34 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$unpinMessage[$channelID;$noMentionMessage]\n$sendMessage[Message $noMentionMessage is no longer pinned.]"
+              "function": "unpinmessage",
+              "arguments": [
+                "$channelID",
+                "$noMentionMessage"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "nomentionmessage",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n3",
+            "type": "sendMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "Message ((action.action_1)) is no longer pinned."
             }
           }
         ],
@@ -8789,12 +8764,27 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:unpinmessage"
+        "bdfd_generic_call:unpinmessage",
+        "bdfd_generic_call:nomentionmessage"
       ]
     },
     {
@@ -9904,7 +9894,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:abs"
+        "bdfd_generic_call:abs",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -10130,6 +10121,7 @@
         "data": []
       },
       "warnings": [
+        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:servername",
         "bdfd_generic_call:memberscount",
         "bdfd_generic_call:channelcount",
@@ -10409,7 +10401,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:argcount"
+        "bdfd_generic_call:argcount",
+        "bdfd_empty_value_unchecked:addfield"
       ]
     },
     {
@@ -10932,33 +10925,11 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "callFunction",
+            "type": "runBdfdScript",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "blacklistservers",
-              "arguments": [
-                "111111111111111111",
-                "222222222222222222"
-              ]
-            }
-          },
-          {
-            "id": "n2",
-            "type": "sendMessage",
-            "key": "action_1",
-            "enabled": true,
-            "payload": {
-              "content": "OK."
-            }
-          },
-          {
-            "id": "n3",
-            "type": "respondWithMessage",
-            "key": "action_2",
-            "enabled": true,
-            "payload": {
-              "content": "((action.action_0))"
+              "scriptContent": "$blacklistServers[111111111111111111;222222222222222222;]\n$sendMessage[OK.]"
             }
           }
         ],
@@ -10969,26 +10940,12 @@
               "pin": "next"
             },
             "to": "n1"
-          },
-          {
-            "from": {
-              "node": "n1",
-              "pin": "next"
-            },
-            "to": "n2"
-          },
-          {
-            "from": {
-              "node": "n2",
-              "pin": "next"
-            },
-            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:blacklistservers"
+        "bdfd_passthrough:blacklistservers"
       ]
     },
     {
@@ -11225,6 +11182,7 @@
       },
       "warnings": [
         "bdfd_generic_call:servername",
+        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:memberscount",
         "bdfd_generic_call:sub",
         "bdfd_generic_call:botcount",
@@ -12849,7 +12807,7 @@
             "key": "action_3",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))\n\nProcessing your message: ((action.action_2))"
+              "content": "Processing your message: ((action.action_2))"
             }
           }
         ],
@@ -14203,7 +14161,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:escapemarkdown"
+        "bdfd_generic_call:escapemarkdown",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -15336,7 +15295,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:getroleswithperm"
+        "bdfd_generic_call:getroleswithperm",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -16035,7 +15995,7 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))\nProcessing..."
+              "content": "Processing..."
             }
           }
         ],
@@ -17998,7 +17958,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:listcount"
+        "bdfd_generic_call:listcount",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -18051,7 +18012,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:listjoin"
+        "bdfd_generic_call:listjoin",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -18103,7 +18065,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:listremove"
+        "bdfd_generic_call:listremove",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -18594,7 +18557,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:mentionchannel"
+        "bdfd_generic_call:mentionchannel",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -19839,7 +19803,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:pad"
+        "bdfd_generic_call:pad",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -19890,7 +19855,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:parseint"
+        "bdfd_generic_call:parseint",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -21284,7 +21250,7 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))\nDone!"
+              "content": "Done!"
             }
           }
         ],
@@ -21394,6 +21360,7 @@
         "data": []
       },
       "warnings": [
+        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:servercount",
         "bdfd_generic_call:ping"
       ]
@@ -21876,6 +21843,7 @@
       "warnings": [
         "bdfd_generic_call:servername",
         "bdfd_generic_call:serverowner",
+        "bdfd_empty_value_unchecked:addfield",
         "bdfd_generic_call:serverid",
         "bdfd_generic_call:servericon"
       ]
@@ -22481,17 +22449,10 @@
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "showchannel",
-              "arguments": []
-            }
-          },
-          {
-            "id": "n2",
-            "type": "sendMessage",
-            "key": "action_1",
-            "enabled": true,
-            "payload": {
-              "content": "((action.action_0))"
+              "function": "sendmessage",
+              "arguments": [
+                "$showChannel[]"
+              ]
             }
           }
         ],
@@ -22502,19 +22463,12 @@
               "pin": "next"
             },
             "to": "n1"
-          },
-          {
-            "from": {
-              "node": "n1",
-              "pin": "next"
-            },
-            "to": "n2"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:showchannel"
+        "bdfd_generic_call:sendmessage"
       ]
     },
     {
@@ -22715,7 +22669,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:slug"
+        "bdfd_generic_call:slug",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -22932,7 +22887,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:sub"
+        "bdfd_generic_call:sub",
+        "bdfd_empty_value_unchecked:addfield"
       ]
     },
     {
@@ -23573,7 +23529,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:togglerole"
+        "bdfd_generic_call:togglerole",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -23681,7 +23638,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:trunc"
+        "bdfd_generic_call:trunc",
+        "bdfd_empty_value_unchecked:sendmessage"
       ]
     },
     {
@@ -26575,7 +26533,9 @@
         ],
         "data": []
       },
-      "warnings": []
+      "warnings": [
+        "bdfd_empty_value_unchecked:channelsendmessage"
+      ]
     },
     {
       "name": "main:envoi",
@@ -27598,32 +27558,11 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "callFunction",
+            "type": "runBdfdScript",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "allowmention",
-              "arguments": []
-            }
-          },
-          {
-            "id": "n2",
-            "type": "callFunction",
-            "key": "action_1",
-            "enabled": true,
-            "payload": {
-              "function": "reply",
-              "arguments": []
-            }
-          },
-          {
-            "id": "n3",
-            "type": "respondWithMessage",
-            "key": "action_2",
-            "enabled": true,
-            "payload": {
-              "content": "hi",
-              "ephemeral": true
+              "scriptContent": "$ephemeral$allowMention$reply hi"
             }
           }
         ],
@@ -27634,27 +27573,12 @@
               "pin": "next"
             },
             "to": "n1"
-          },
-          {
-            "from": {
-              "node": "n1",
-              "pin": "next"
-            },
-            "to": "n2"
-          },
-          {
-            "from": {
-              "node": "n2",
-              "pin": "next"
-            },
-            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:allowmention",
-        "bdfd_generic_call:reply"
+        "bdfd_passthrough:reply"
       ]
     },
     {
@@ -28687,6 +28611,1198 @@
       ]
     },
     {
+      "name": "review:dm-public",
+      "kind": "script",
+      "script": "Public $dm[$authorID]secret code 123",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "Public $dm[$authorID]secret code 123"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:dm"
+      ]
+    },
+    {
+      "name": "review:canvas-attach",
+      "kind": "script",
+      "script": "$canvasCreate[c;100;100;#222222]\n$attachImage[c]\n$sendMessage[done]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$canvasCreate[c;100;100;#222222]\n$attachImage[c]\n$sendMessage[done]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:canvascreate"
+      ]
+    },
+    {
+      "name": "review:arg-final-vide-onlyperms",
+      "kind": "script",
+      "script": "$onlyPerms[KickMembers;]\n$sendMessage[You can kick]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$onlyPerms[KickMembers;]\n$sendMessage[You can kick]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:onlyperms"
+      ]
+    },
+    {
+      "name": "review:arg-final-vide-croptext",
+      "kind": "script",
+      "script": "$cropText[abcdef;3;]\n$sendMessage[after]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$cropText[abcdef;3;]\n$sendMessage[after]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:croptext"
+      ]
+    },
+    {
+      "name": "review:arg-final-vide-blacklist",
+      "kind": "script",
+      "script": "$blacklistUsers[baduser;]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$blacklistUsers[baduser;]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:blacklistusers"
+      ]
+    },
+    {
+      "name": "review:mentions-role",
+      "kind": "script",
+      "script": "$allowRoleMentions[123456789012345678]\n$sendMessage[<@&123456789012345678> ping]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$allowRoleMentions[123456789012345678]\n$sendMessage[<@&123456789012345678> ping]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:allowrolementions"
+      ]
+    },
+    {
+      "name": "review:mentions-nomention",
+      "kind": "script",
+      "script": "$nomention\n$sendMessage[<@$authorID> hi]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$nomention\n$sendMessage[<@$authorID> hi]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:nomention"
+      ]
+    },
+    {
+      "name": "review:if-freres-texte",
+      "kind": "script",
+      "script": "$if[1==1]Hi $endif$if[1==1]there$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "setTemporaryVariable",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": ""
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "setTemporaryVariable",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": "((temp.__out))Hi "
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "setTemporaryVariable",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": "((temp.__out))there"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "respondWithMessage",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "content": "((temp.__out))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "then"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "else"
+            },
+            "to": "n6"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_output_accumulated"
+      ]
+    },
+    {
+      "name": "review:if-freres-court",
+      "kind": "script",
+      "script": "$if[1==1]one$endif$if[1==1]two$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "setTemporaryVariable",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": ""
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "setTemporaryVariable",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": "((temp.__out))one"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "setTemporaryVariable",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": "((temp.__out))two"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "respondWithMessage",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "content": "((temp.__out))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "then"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "else"
+            },
+            "to": "n6"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_output_accumulated"
+      ]
+    },
+    {
+      "name": "review:if-freres-var",
+      "kind": "script",
+      "script": "$var[a;1]$if[$var[a]==1]one$endif$var[a;2]$if[$var[a]==2]two$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "setTemporaryVariable",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": ""
+            }
+          },
+          {
+            "id": "n2",
+            "type": "setTemporaryVariable",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "key": "a",
+              "value": "1"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((temp.a))",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "setTemporaryVariable",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": "((temp.__out))one"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "setTemporaryVariable",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "key": "a",
+              "value": "2"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "ifBlock",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((temp.a))",
+              "condition.operator": "equals",
+              "condition.value": "2"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "setTemporaryVariable",
+            "key": "action_4.action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__out",
+              "value": "((temp.__out))two"
+            }
+          },
+          {
+            "id": "n8",
+            "type": "respondWithMessage",
+            "key": "action_5",
+            "enabled": true,
+            "payload": {
+              "content": "((temp.__out))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "then"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "else"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "then"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n7",
+              "pin": "next"
+            },
+            "to": "n8"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "else"
+            },
+            "to": "n8"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_output_accumulated"
+      ]
+    },
+    {
+      "name": "review:onlyif-apres-texte",
+      "kind": "script",
+      "script": "Hello $onlyIf[1==2]X",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "Hello $onlyIf[1==2]X"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:onlyif"
+      ]
+    },
+    {
+      "name": "review:closeticket",
+      "kind": "script",
+      "script": "$closeTicket[not a ticket]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "closeticket",
+              "arguments": [
+                "not a ticket"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:closeticket"
+      ]
+    },
+    {
+      "name": "review:closeticket-milieu",
+      "kind": "script",
+      "script": "Before $closeTicket[not a ticket] after",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "closeticket",
+              "arguments": [
+                "not a ticket"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "Before ((action.action_0)) after"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:closeticket"
+      ]
+    },
+    {
+      "name": "review:removelinks-valeur",
+      "kind": "script",
+      "script": "Your text: $removeLinks[Visit https://spam.com now]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "removelinks",
+              "arguments": [
+                "Visit https://spam.com now"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "Your text: ((action.action_0))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:removelinks"
+      ]
+    },
+    {
+      "name": "review:embed-reparti-if",
+      "kind": "script",
+      "script": "$title[T]$if[1==1]$description[D]$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$title[T]$if[1==1]$description[D]$endif"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:output_split"
+      ]
+    },
+    {
+      "name": "review:embed-reparti-for",
+      "kind": "script",
+      "script": "$title[T]$for[2]$addField[a;$i]$endfor",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$title[T]$for[2]$addField[a;$i]$endfor"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:output_split"
+      ]
+    },
+    {
+      "name": "review:epingle-reponse",
+      "kind": "script",
+      "script": "This message will be pinned.\n$pinMessage",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "This message will be pinned.\n$pinMessage"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:pinmessage"
+      ]
+    },
+    {
+      "name": "review:reactions-reponse",
+      "kind": "script",
+      "script": "$title[Poll]\n$description[Vote]\n$addReactions[👍;👎]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$title[Poll]\n$description[Vote]\n$addReactions[👍;👎]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:addreactions"
+      ]
+    },
+    {
+      "name": "review:wait-zero",
+      "kind": "script",
+      "script": "$wait[0s]Hi",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "wait",
+              "arguments": [
+                "0s"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "Hi"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:wait"
+      ]
+    },
+    {
+      "name": "review:message-vide",
+      "kind": "script",
+      "script": "$sendMessage[$findUser[nobody;no]]\nafter",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "finduser",
+              "arguments": [
+                "nobody",
+                "no"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "sendMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "after"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:finduser",
+        "bdfd_empty_value_unchecked:sendmessage"
+      ]
+    },
+    {
+      "name": "review:reply-imbrique",
+      "kind": "script",
+      "script": "$sendMessage[$replyInfo[Done!]]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$sendMessage[$replyInfo[Done!]]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:sendmessage"
+      ]
+    },
+    {
+      "name": "review:nomentionmessage-lecture",
+      "kind": "script",
+      "script": "$noMentionMessage[1] / $noMentionMessage[>]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "nomentionmessage",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "nomentionmessage",
+              "arguments": [
+                ">"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0)) / ((action.action_1))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:nomentionmessage"
+      ]
+    },
+    {
       "name": "graphe:jonction",
       "kind": "graph",
       "script": "$if[1==1]yes$else no$endif end",
@@ -28941,7 +30057,7 @@
     {
       "name": "graphe:try",
       "kind": "graph",
-      "script": "$try$c[note]$catch oups$endtry$wait[0s]",
+      "script": "$try$c[note]$catch oups$endtry$wait[1s]",
       "graph": {
         "version": 2,
         "nodes": [
@@ -28979,7 +30095,7 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "duration": "0s"
+              "duration": "1s"
             }
           }
         ],
@@ -29371,6 +30487,68 @@
       "warnings": [
         "graph_no_bdfd_equivalent:createPoll"
       ]
+    },
+    {
+      "name": "libre:lien-de-donnees",
+      "kind": "graph",
+      "script": "$sum[1;2]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "function": "sum",
+              "arguments": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "x"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
+      },
+      "warnings": []
     },
     {
       "name": "libre:orphelin-et-desactive",
@@ -32380,7 +33558,7 @@
     {
       "name": "conv:skip_computed",
       "kind": "graph",
-      "script": "$if[((variable.n))==0]$elseif[((variable.n))==1]c$stop$endif b",
+      "script": "$if[((variable.n))==0]$elseif[((variable.n))==1]c$stop$else$if[false==true]$endif$endif b",
       "graph": {
         "version": 2,
         "nodes": [
@@ -32412,6 +33590,34 @@
             "payload": {
               "content": "c"
             }
+          },
+          {
+            "id": "n4",
+            "type": "ifBlock",
+            "key": "s.overflow",
+            "enabled": true,
+            "payload": {
+              "condition.group": "and",
+              "condition.conditions": [
+                {
+                  "variable": "((variable.n))",
+                  "operator": "matches",
+                  "value": "^\\s*\\+?\\d+\\s*$"
+                },
+                {
+                  "variable": "((variable.n))",
+                  "operator": "greaterOrEqual",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "log",
+            "key": "s.end",
+            "enabled": false,
+            "payload": {}
           }
         ],
         "links": [
@@ -32441,6 +33647,20 @@
               "node": "n1",
               "pin": "default"
             },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "then"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "else"
+            },
             "to": "n2"
           },
           {
@@ -32456,6 +33676,8 @@
       "warnings": [
         "graph_template:variable.n",
         "graph_switch_result_prefix:n1",
+        "graph_unmapped_operator:matches",
+        "graph_disabled:n5",
         "graph_unstructured:n3",
         "graph_multiple_messages"
       ]
@@ -32692,7 +33914,7 @@
     {
       "name": "conv:skip_computed_in_if_branch",
       "kind": "graph",
-      "script": "$if[x==1]$if[((variable.n))==0]$elseif[((variable.n))==1]$stop$endif b$endif after",
+      "script": "$if[x==1]$if[((variable.n))==0]$else$if[false==true]$endif$endif b$endif after",
       "graph": {
         "version": 2,
         "nodes": [
@@ -32735,6 +33957,27 @@
             "payload": {
               "content": "after"
             }
+          },
+          {
+            "id": "n5",
+            "type": "ifBlock",
+            "key": "if.s.overflow",
+            "enabled": true,
+            "payload": {
+              "condition.group": "and",
+              "condition.conditions": [
+                {
+                  "variable": "((variable.n))",
+                  "operator": "matches",
+                  "value": "^\\s*\\+?\\d+\\s*$"
+                },
+                {
+                  "variable": "((variable.n))",
+                  "operator": "greaterOrEqual",
+                  "value": "1"
+                }
+              ]
+            }
           }
         ],
         "links": [
@@ -32769,14 +34012,21 @@
           {
             "from": {
               "node": "n2",
-              "pin": "case:1"
+              "pin": "default"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "then"
             },
             "to": "n4"
           },
           {
             "from": {
-              "node": "n2",
-              "pin": "default"
+              "node": "n5",
+              "pin": "else"
             },
             "to": "n3"
           },
@@ -32793,6 +34043,7 @@
       "warnings": [
         "graph_template:variable.n",
         "graph_switch_result_prefix:n2",
+        "graph_unmapped_operator:matches",
         "graph_multiple_messages"
       ]
     },
@@ -33313,6 +34564,13 @@
             "payload": {
               "content": "after"
             }
+          },
+          {
+            "id": "n5",
+            "type": "log",
+            "key": "loop.a.end",
+            "enabled": false,
+            "payload": {}
           }
         ],
         "links": [
@@ -33343,11 +34601,20 @@
               "pin": "next"
             },
             "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "error"
+            },
+            "to": "n5"
           }
         ],
         "data": []
       },
       "warnings": [
+        "graph_error_pin:n2",
+        "graph_orphan:n5",
         "graph_multiple_messages"
       ]
     },
@@ -34287,7 +35554,7 @@
     {
       "name": "conv:disabled_if_block",
       "kind": "graph",
-      "script": "",
+      "script": "after",
       "graph": {
         "version": 2,
         "nodes": [
@@ -34341,7 +35608,7 @@
           {
             "from": {
               "node": "n1",
-              "pin": "then"
+              "pin": "else"
             },
             "to": "n4"
           },
@@ -34365,8 +35632,7 @@
       "warnings": [
         "graph_disabled:n1",
         "graph_orphan:n2",
-        "graph_orphan:n3",
-        "graph_orphan:n4"
+        "graph_orphan:n3"
       ]
     },
     {
@@ -35069,6 +36335,962 @@
       },
       "warnings": [
         "graph_no_bdfd_equivalent:listenForButtonClick"
+      ]
+    },
+    {
+      "name": "conv:disabled_if_block_then_actions",
+      "kind": "graph",
+      "script": "after1after2",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "if",
+            "enabled": false,
+            "payload": {
+              "variable": "x",
+              "operator": "equals",
+              "value": "1"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "if.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "a"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "after1"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "after2"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "else"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_disabled:n1",
+        "graph_orphan:n2",
+        "graph_multiple_messages"
+      ]
+    },
+    {
+      "name": "conv:block_error_continue_catches_child",
+      "kind": "graph",
+      "script": "$if[x==1]okbad$endif after",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "gate",
+            "enabled": true,
+            "payload": {
+              "variable": "x",
+              "operator": "equals",
+              "value": "1"
+            },
+            "error": {
+              "mode": "continue"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "gate.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "ok"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "gate.action_1",
+            "enabled": true,
+            "payload": {
+              "content": "bad"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "after"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "else"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "error"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "error"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_error_pin:n2",
+        "graph_error_pin:n3",
+        "graph_multiple_messages"
+      ]
+    },
+    {
+      "name": "conv:block_error_skip_catches_child",
+      "kind": "graph",
+      "script": "$if[x==1]okbad$endif skippedkept",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "gate",
+            "enabled": true,
+            "payload": {
+              "variable": "x",
+              "operator": "equals",
+              "value": "1"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "gate.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "ok"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "gate.action_1",
+            "enabled": true,
+            "payload": {
+              "content": "bad"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "skipped"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "kept"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "else"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "error"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "error"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "error"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_error_pin:n1",
+        "graph_error_pin:n2",
+        "graph_error_pin:n3",
+        "graph_multiple_messages"
+      ]
+    },
+    {
+      "name": "conv:block_error_jump_catches_child",
+      "kind": "graph",
+      "script": "$if[x==1]bad$endif skippedend",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "gate",
+            "enabled": true,
+            "payload": {
+              "variable": "x",
+              "operator": "equals",
+              "value": "1"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "gate.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "bad"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "skipped"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "end",
+            "enabled": true,
+            "payload": {
+              "content": "end"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "else"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "error"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "error"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_error_pin:n1",
+        "graph_error_pin:n2",
+        "graph_multiple_messages"
+      ]
+    },
+    {
+      "name": "conv:block_error_continue_at_end_of_flow",
+      "kind": "graph",
+      "script": "$if[x==1]bad$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "gate",
+            "enabled": true,
+            "payload": {
+              "variable": "x",
+              "operator": "equals",
+              "value": "1"
+            },
+            "error": {
+              "mode": "continue"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "gate.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "bad"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "log",
+            "key": "gate.action_0.end",
+            "enabled": false,
+            "payload": {}
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "error"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_error_pin:n2",
+        "graph_orphan:n3"
+      ]
+    },
+    {
+      "name": "conv:block_error_child_keeps_its_own_mode",
+      "kind": "graph",
+      "script": "$if[x==1]$try own$catch$endtry plain$endif after",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "gate",
+            "enabled": true,
+            "payload": {
+              "variable": "x",
+              "operator": "equals",
+              "value": "1"
+            },
+            "error": {
+              "mode": "continue"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "gate.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "own"
+            },
+            "error": {
+              "mode": "continue"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "gate.action_1",
+            "enabled": true,
+            "payload": {
+              "content": "plain"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "after"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "else"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "error"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_error_pin:n3",
+        "graph_multiple_messages"
+      ]
+    },
+    {
+      "name": "conv:block_error_in_protected_branch_ignored",
+      "kind": "graph",
+      "script": "$try$if[x==1]bad$endif$catch$endtry",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "tryCatch",
+            "key": "try",
+            "enabled": true,
+            "payload": {}
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "try.gate",
+            "enabled": true,
+            "payload": {
+              "variable": "x",
+              "operator": "equals",
+              "value": "1"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "try.gate.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "bad"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "try"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "conv:skip_computed_in_loop_body",
+      "kind": "graph",
+      "script": "$for[3]$if[((variable.n))==0]$elseif[((variable.n))==1]b$stop$else$if[false==true]$endif$endif a$endfor after",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "forLoop",
+            "key": "loop",
+            "enabled": true,
+            "payload": {
+              "mode": "simple",
+              "iterations": "3"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "switch",
+            "key": "loop.s",
+            "enabled": true,
+            "payload": {
+              "value": "((variable.n))",
+              "mode": "int",
+              "resultPrefix": "SKIPPED_"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "loop.action_1",
+            "enabled": true,
+            "payload": {
+              "content": "a"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "loop.action_2",
+            "enabled": true,
+            "payload": {
+              "content": "b"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "after"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "ifBlock",
+            "key": "loop.s.overflow",
+            "enabled": true,
+            "payload": {
+              "condition.group": "and",
+              "condition.conditions": [
+                {
+                  "variable": "((variable.n))",
+                  "operator": "matches",
+                  "value": "^\\s*\\+?\\d+\\s*$"
+                },
+                {
+                  "variable": "((variable.n))",
+                  "operator": "greaterOrEqual",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          {
+            "id": "n7",
+            "type": "log",
+            "key": "loop.s.end",
+            "enabled": false,
+            "payload": {}
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "body"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "done"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "case:0"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "case:1"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "default"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "then"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "else"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_template:variable.n",
+        "graph_switch_result_prefix:n2",
+        "graph_unmapped_operator:matches",
+        "graph_disabled:n7",
+        "graph_unstructured:n4",
+        "graph_multiple_messages"
+      ]
+    },
+    {
+      "name": "conv:listener_empty_actions_keeps_workflow_name",
+      "kind": "graph",
+      "script": "$c[sans équivalent BDFD : listenForButtonClick listen]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "listenForButtonClick",
+            "key": "listen",
+            "enabled": true,
+            "payload": {
+              "customId": "btn",
+              "workflowName": "handler"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_no_bdfd_equivalent:listenForButtonClick"
+      ]
+    },
+    {
+      "name": "conv:listener_actions_override_stale_graph",
+      "kind": "graph",
+      "script": "$c[sans équivalent BDFD : listenForButtonClick listen]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "listenForButtonClick",
+            "key": "listen",
+            "enabled": true,
+            "payload": {
+              "customId": "btn",
+              "graph": {
+                "version": 2,
+                "nodes": [
+                  {
+                    "id": "n1",
+                    "type": "respondWithMessage",
+                    "key": "action_0",
+                    "enabled": true,
+                    "payload": {
+                      "content": "fresh"
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "from": {
+                      "node": "start",
+                      "pin": "next"
+                    },
+                    "to": "n1"
+                  }
+                ],
+                "data": []
+              }
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_no_bdfd_equivalent:listenForButtonClick"
+      ]
+    },
+    {
+      "name": "conv:empty_string_key_becomes_action_index",
+      "kind": "graph",
+      "script": "ab",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "respondWithMessage",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "content": "a"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "b"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_multiple_messages"
       ]
     },
     {

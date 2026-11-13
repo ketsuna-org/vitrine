@@ -118,7 +118,11 @@ class Item {
   }
 }
 
-const newBranch = (pin, items, region) => ({ pin, items, region, wrapper: null });
+/** [protectedBranch] : enfants protégés (`tryCatch`, `suppressErrors`) : aucun mode d'erreur ne s'y applique. */
+const newBranch = (pin, items, region, protectedBranch = false) => ({ pin, items, region, wrapper: null, protected: protectedBranch });
+
+/** Plafond de liens `case:` des sauts calculés d'une conversion (un lien ≈ 60 octets de JSON). */
+const MAX_JUMP_TABLE_LINKS = 4000;
 
 class Converter {
   constructor() {
@@ -126,6 +130,7 @@ class Converter {
     this.nodes = [];
     this.links = [];
     this.warnings = [];
+    this.jumpTableLinks = 0;
   }
 
   run(actions, keyPrefix) {
@@ -212,11 +217,25 @@ class Converter {
 
     // Écouteurs et modals : la liste en ligne devient un sous-graphe.
     let subWarnings = [];
-    if (INLINE_HANDLER_TYPES.has(legacyType) && Array.isArray(payload.actions) && !("graph" in payload)) {
-      const sub = convertActionsToGraph(payload.actions);
+    // Les actions (plus récentes) l'emportent sur un graphe déjà présent ; une liste vide n'est PAS un
+    // gestionnaire : pas de `graph` (le moteur teste sa présence, et `workflowName` doit alors s'exécuter).
+    if (INLINE_HANDLER_TYPES.has(legacyType) && Array.isArray(payload.actions)) {
+      const inline = payload.actions;
       delete payload.actions;
-      payload.graph = sub.graph;
-      subWarnings = sub.warnings.map((w) => ({ code: w.code, message: w.message, key: `${key}#${w.key}` }));
+      if (inline.length > 0) {
+        const sub = convertActionsToGraph(inline);
+        if ("graph" in payload) {
+          subWarnings = [
+            {
+              code: "legacy_actions_overwrite",
+              message: "Des actions et un graphe coexistent sur ce gestionnaire : les actions (écrites par une ancienne version) l'emportent.",
+              key,
+            },
+          ];
+        }
+        payload.graph = sub.graph;
+        subWarnings = [...subWarnings, ...sub.warnings.map((w) => ({ code: w.code, message: w.message, key: `${key}#${w.key}` }))];
+      }
     }
 
     const enabled = typeof raw.enabled === "boolean" ? raw.enabled : true;
@@ -263,7 +282,7 @@ class Converter {
     const branch = (pin, raws, { region, wrap = false, childProtected = false }) => {
       // L'enveloppe d'un `suppressErrors` reçoit son id avant les actions de la branche (ordre des ids).
       const wrapper = wrap && raws.length > 0 ? this.makeWrapper(key, pin, payload) : null;
-      const b = newBranch(pin, this.build(raws, childPrefix, childProtected), region);
+      const b = newBranch(pin, this.build(raws, childPrefix, childProtected), region, childProtected);
       b.wrapper = wrapper;
       item.branches.push(b);
     };
@@ -301,12 +320,15 @@ class Converter {
     this.warnings.push({ code, message, key });
   }
 
-  /** [cont] : le nœud qui suit la liste (celui de la liste englobante), ou null. */
-  emitList(items, cont) {
-    for (let i = 0; i < items.length; i++) this.emitItem(items, i, cont);
+  /**
+   * [cont] : le nœud qui suit la liste (celui de la liste englobante), ou null. [handler] : où mène l'échec
+   * non rattrapé d'un enfant, quand le mode d'erreur d'un `ifBlock` englobant doit le rattraper (`{ target }`).
+   */
+  emitList(items, cont, handler = null) {
+    for (let i = 0; i < items.length; i++) this.emitItem(items, i, cont, handler);
   }
 
-  emitItem(items, i, cont) {
+  emitItem(items, i, cont, handler) {
     const item = items[i];
     const next = i + 1 < items.length ? items[i + 1].id : cont;
     const node = item.node;
@@ -325,22 +347,52 @@ class Converter {
     else if (item.legacyType === SKIP_TYPE) this.emitSkip(items, i, cont);
     else if (item.isBlock) this.emitBlock(item, next);
     else this.link(item.id, PINS.next, next);
-    if (node.enabled) this.emitErrorLink(items, i, cont);
+    if (node.enabled) this.emitErrorLink(items, i, cont, handler);
 
+    // Le mode d'erreur d'un `ifBlock` rattrape l'échec de ses descendants libres (ancien moteur).
+    const own = item.isIf && node.enabled ? this.handlerOf(items, i, cont) : null;
     for (const branch of item.branches) {
       const wrapper = branch.wrapper;
       if (wrapper !== null) {
         this.link(wrapper.id, PINS.try, branch.items[0].id);
         this.link(wrapper.id, PINS.done, next);
       }
-      this.emitList(branch.items, branch.region || wrapper !== null ? null : next);
+      const free = !branch.region && wrapper === null && !branch.protected;
+      this.emitList(branch.items, branch.region || wrapper !== null ? null : next, free ? (own ?? handler) : null);
     }
+  }
+
+  /**
+   * Le rattrapage que pose le mode d'erreur (`continue`, `skip`, `jump`) de l'`ifBlock` [i], ou null
+   * (mode `stop`, ou cible de saut introuvable : l'erreur continue de remonter).
+   */
+  handlerOf(items, i, cont) {
+    const item = items[i];
+    if (item.errorSkip > 0) return { target: this.afterSkipping(items, i, item.errorSkip, cont) };
+    const jump = item.errorJump;
+    if (jump !== null) {
+      const target = jump === "" ? undefined : this.names(items).get(jump);
+      return target !== undefined && target > i ? { target: items[target].id } : null;
+    }
+    if (item.node.error.mode === "continue") return { target: i + 1 < items.length ? items[i + 1].id : cont };
+    return null;
+  }
+
+  /**
+   * Un nœud sans action qui termine silencieusement la région où il est lié : cible d'un lien `error`
+   * qui doit « sortir par la fin » de la liste. Désactivé (aucun résultat, aucune trame).
+   */
+  endNode(ownerKey) {
+    const node = { id: `n${++this.counter}`, type: "log", key: `${ownerKey}.end`, enabled: false, payload: {}, error: {} };
+    this.nodes.push(node);
+    return node.id;
   }
 
   emitBlock(item, next) {
     if (!item.node.enabled) {
       // Bloc désactivé : le flux passe sans entrer dans les branches (elles restent des orphelins).
-      this.link(item.id, item.isIf ? PINS.then : PINS.done, next);
+      // Le runner garde vivants `else` (ifBlock) et `done` (boucles) d'un nœud désactivé.
+      this.link(item.id, item.isIf ? PINS.else : PINS.done, next);
       return;
     }
     for (const branch of item.branches) {
@@ -368,13 +420,33 @@ class Converter {
     const value = dartString(item.node.payload.value);
     if (isComputed(value)) {
       const last = items.length - i - 1; // actions qui suivent
-      for (let k = 0; k <= last; k++) this.link(item.id, caseOfPin(`${k}`), this.afterSkipping(items, i, k, cont));
-      this.link(item.id, PINS.default, next);
-      this.warn(
-        "computed_skip_overflow",
-        item.key,
-        `Le nombre d'actions à sauter est calculé : au-delà de ${last}, le graphe passe à l'action suivante (l'ancien moteur terminait la liste).`,
-      );
+      this.link(item.id, caseOfPin("0"), next);
+      for (let k = 1; k < last; k++) this.link(item.id, caseOfPin(`${k}`), this.afterSkipping(items, i, k, cont));
+      if (last < 1) {
+        this.link(item.id, PINS.default, next);
+        return;
+      }
+      // Un nombre calculé peut dépasser la fin : un garde (`ifBlock`) sur `default` envoie un entier
+      // >= au nombre d'actions restantes à la continuation (fin de la région si elle n'en a pas),
+      // tout autre texte (négatif, non entier) passe à l'action suivante, comme l'ancien moteur.
+      const guard = {
+        id: `n${++this.counter}`,
+        type: IF_TYPE,
+        key: `${item.key}.overflow`,
+        enabled: true,
+        payload: {
+          "condition.group": "and",
+          "condition.conditions": [
+            { variable: value, operator: "matches", value: "^\\s*\\+?\\d+\\s*$" },
+            { variable: value, operator: "greaterOrEqual", value: `${last}` },
+          ],
+        },
+        error: {},
+      };
+      this.nodes.push(guard);
+      this.link(item.id, PINS.default, guard.id);
+      this.link(guard.id, PINS.then, cont ?? this.endNode(item.key));
+      this.link(guard.id, PINS.else, next);
       return;
     }
     const count = dartIntParse(value);
@@ -425,21 +497,31 @@ class Converter {
 
     if (isComputed(value)) {
       // Table complète : clé, `_actionId`, puis position de chaque action située APRÈS le saut.
+      const table = [];
       const seen = new Set();
       for (let j = i + 1; j < items.length; j++) {
         for (const name of [items[j].rawKey, items[j].actionId, `${j + 1}`]) {
           if (name === null || name.trim() === "" || seen.has(name.trim())) continue;
           if (this.resolveJump(items, names, i, name, () => {}) === j) {
             seen.add(name.trim());
-            this.link(item.id, caseOfPin(name.trim()), items[j].id);
+            table.push([name.trim(), items[j].id]);
           }
         }
       }
+      // Une table par saut calculé est quadratique : au-delà du plafond (graphe qui ne tiendrait plus
+      // dans `GRAPH_MAX_JSON_BYTES`), le saut n'a que sa suite normale, avec un avertissement.
+      const truncated = this.jumpTableLinks + table.length > MAX_JUMP_TABLE_LINKS;
+      if (!truncated) {
+        this.jumpTableLinks += table.length;
+        for (const [name, target] of table) this.link(item.id, caseOfPin(name), target);
+      }
       this.link(item.id, PINS.default, next);
       this.warn(
-        "computed_jump",
+        truncated ? "computed_jump_table_truncated" : "computed_jump",
         item.key,
-        "La cible du saut est calculée : un saut en arrière (redémarrage de l'ancien moteur) ne peut pas être détecté et ne sera pas suivi.",
+        truncated
+          ? "La table des cibles de ce saut calculé est trop grosse pour le graphe (trop de sauts calculés dans la liste) : le saut passe à l'action suivante."
+          : "La cible du saut est calculée : un saut en arrière (redémarrage de l'ancien moteur) ne peut pas être détecté et ne sera pas suivi.",
       );
       return;
     }
@@ -464,9 +546,13 @@ class Converter {
     }
   }
 
-  /** Modes d'erreur `skip` / `jump` : un lien sur le pin `error`. */
-  emitErrorLink(items, i, cont) {
+  /**
+   * Modes d'erreur `skip` / `jump` : un lien sur le pin `error`. À défaut, l'échec non rattrapé d'un
+   * enfant libre d'un `ifBlock` en mode `continue` / `skip` / `jump` mène à son [handler].
+   */
+  emitErrorLink(items, i, cont, handler) {
     const item = items[i];
+    let linked = false;
     if (item.errorSkip > 0) {
       const target = this.afterSkipping(items, i, item.errorSkip, cont);
       if (target !== null && target !== undefined) {
@@ -475,18 +561,17 @@ class Converter {
         // Dernière action d'une liste sans suite : « continuer » finit la liste de la même façon.
         item.node.error.mode = "continue";
       } else {
-        this.warn(
-          "error_skip_beyond_end",
-          item.key,
-          `Le mode d'erreur « sauter ${item.errorSkip} » dépasse la fin de la région : le graphe ne peut pas la terminer, l'erreur remonte.`,
-        );
+        // Au-delà de la fin de la région : la région se termine sans erreur (ancien `i += count`).
+        this.link(item.id, PINS.error, this.endNode(item.key));
       }
+      linked = true;
     }
     const jump = item.errorJump;
     if (jump !== null) {
       const target = jump === "" ? undefined : this.names(items).get(jump);
       if (target !== undefined && target > i) {
         this.link(item.id, PINS.error, items[target].id);
+        linked = true;
       } else {
         this.warn(
           "unresolved_jump",
@@ -494,6 +579,10 @@ class Converter {
           `Le mode d'erreur « aller à » vise « ${jump} » qui n'est pas une action située après : l'erreur remonte, comme avant.`,
         );
       }
+    }
+    // Un `switch` (saut, skip) ne peut pas échouer : pas de lien d'erreur à poser.
+    if (!linked && item.node.type !== SWITCH_TYPE && handler !== null && item.node.error.mode !== "continue") {
+      this.link(item.id, PINS.error, handler.target ?? this.endNode(item.key));
     }
   }
 }

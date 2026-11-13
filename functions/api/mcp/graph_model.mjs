@@ -44,40 +44,59 @@ export const isPlainObject = (v) => v !== null && typeof v === "object" && !Arra
 
 const stringKeyed = (raw) => (isPlainObject(raw) ? { ...raw } : {});
 
+const withInvalidFields = (out, invalid) => {
+  // Jamais sérialisé : lu par `validateGraph` (`invalid_field`).
+  Object.defineProperty(out, "invalidFields", { value: invalid, enumerable: false });
+  return out;
+};
+
 /**
  * Normalise un graphe JSON comme `WorkflowGraph.fromJson(...).toJson()` : ordre des clés, valeurs par
- * défaut, éléments mal formés ignorés. Lève `GraphFormatError` si la version n'est pas 2 ou si un
- * nœud (sans id ni type) ou un lien est incomplet.
+ * défaut, éléments mal formés ignorés. Tolérant, comme Dart : seule une version autre que 2 lève
+ * `GraphFormatError` ; un champ de mauvais type, une clé, un id ou un type vide sont signalés par
+ * `validateGraph` (`empty_key`, `unknown_node_type`, `invalid_field`, nœud ou pin introuvable).
  */
 export function normalizeGraph(raw) {
   if (!isPlainObject(raw)) throw new GraphFormatError("The graph must be an object { version, nodes, links, data }.");
   if (raw.version !== GRAPH_FORMAT_VERSION) throw new GraphFormatError(`Unsupported graph version: ${raw.version}`);
   const maps = (list) => (Array.isArray(list) ? list.filter(isPlainObject) : []);
+  const text = (v) => (typeof v === "string" ? v : "");
   const nodes = maps(raw.nodes).map((n) => {
-    const { id, type, key } = n;
-    if (typeof id !== "string" || !id) throw new GraphFormatError("Graph node without an id.");
-    if (typeof type !== "string" || !type) throw new GraphFormatError(`Graph node ${id} without a type.`);
-    // Une clé absente ou vide n'est pas une erreur de forme : le validateur la signale (`empty_key`).
-    const out = { id, type, key: typeof key === "string" ? key : "", enabled: typeof n.enabled === "boolean" ? n.enabled : true, payload: stringKeyed(n.payload) };
+    const invalid = [];
+    const id = text(n.id);
+    if (id === "") invalid.push("id");
+    const enabled = n.enabled;
+    if (enabled !== undefined && enabled !== null && typeof enabled !== "boolean") invalid.push("enabled");
+    const out = { id, type: text(n.type), key: text(n.key), enabled: typeof enabled === "boolean" ? enabled : true, payload: stringKeyed(n.payload) };
     const error = stringKeyed(n.error);
     if (Object.keys(error).length > 0) out.error = error;
-    if (isPlainObject(n.pos)) out.pos = { x: Number(n.pos.x) || 0, y: Number(n.pos.y) || 0 };
-    return out;
+    if (isPlainObject(n.pos)) {
+      const coord = (v) => {
+        if (v === undefined || v === null) return 0;
+        if (typeof v !== "number") {
+          if (!invalid.includes("pos")) invalid.push("pos");
+          return 0;
+        }
+        return v;
+      };
+      out.pos = { x: coord(n.pos.x), y: coord(n.pos.y) };
+    } else if (n.pos !== undefined && n.pos !== null) invalid.push("pos");
+    return withInvalidFields(out, invalid);
   });
   const links = maps(raw.links).map((l) => {
     const from = stringKeyed(l.from);
-    if (typeof from.node !== "string" || typeof from.pin !== "string" || typeof l.to !== "string") {
-      throw new GraphFormatError("Malformed graph link.");
-    }
-    return { from: { node: from.node, pin: from.pin }, to: l.to };
+    return { from: { node: text(from.node), pin: text(from.pin) }, to: text(l.to) };
   });
   const data = maps(raw.data).map((d) => {
     const from = stringKeyed(d.from);
     const to = stringKeyed(d.to);
-    if (typeof from.node !== "string" || typeof from.out !== "string" || typeof to.node !== "string" || typeof to.field !== "string") {
-      throw new GraphFormatError("Malformed graph data link.");
-    }
-    return { from: { node: from.node, out: from.out }, to: { node: to.node, field: to.field }, type: typeof d.type === "string" ? d.type : "any" };
+    const hasType = d.type !== undefined && d.type !== null;
+    const out = {
+      from: { node: text(from.node), out: text(from.out) },
+      to: { node: text(to.node), field: text(to.field) },
+      type: typeof d.type === "string" ? d.type : "any",
+    };
+    return withInvalidFields(out, hasType && typeof d.type !== "string" ? ["type"] : []);
   });
   return { version: GRAPH_FORMAT_VERSION, nodes, links, data };
 }

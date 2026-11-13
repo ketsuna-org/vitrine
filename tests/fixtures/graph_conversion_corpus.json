@@ -3769,6 +3769,34 @@
           "payload": {
             "content": "c"
           }
+        },
+        {
+          "id": "n4",
+          "type": "ifBlock",
+          "key": "s.overflow",
+          "enabled": true,
+          "payload": {
+            "condition.group": "and",
+            "condition.conditions": [
+              {
+                "variable": "((variable.n))",
+                "operator": "matches",
+                "value": "^\\s*\\+?\\d+\\s*$"
+              },
+              {
+                "variable": "((variable.n))",
+                "operator": "greaterOrEqual",
+                "value": "2"
+              }
+            ]
+          }
+        },
+        {
+          "id": "n5",
+          "type": "log",
+          "key": "s.end",
+          "enabled": false,
+          "payload": {}
         }
       ],
       "links": [
@@ -3798,6 +3826,20 @@
             "node": "n1",
             "pin": "default"
           },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "then"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "else"
+          },
           "to": "n2"
         },
         {
@@ -3810,9 +3852,7 @@
       ],
       "data": []
     },
-    "warnings": [
-      "computed_skip_overflow"
-    ]
+    "warnings": []
   },
   {
     "name": "skip_beyond_end_root",
@@ -4188,6 +4228,27 @@
           "payload": {
             "content": "after"
           }
+        },
+        {
+          "id": "n5",
+          "type": "ifBlock",
+          "key": "if.s.overflow",
+          "enabled": true,
+          "payload": {
+            "condition.group": "and",
+            "condition.conditions": [
+              {
+                "variable": "((variable.n))",
+                "operator": "matches",
+                "value": "^\\s*\\+?\\d+\\s*$"
+              },
+              {
+                "variable": "((variable.n))",
+                "operator": "greaterOrEqual",
+                "value": "1"
+              }
+            ]
+          }
         }
       ],
       "links": [
@@ -4222,14 +4283,21 @@
         {
           "from": {
             "node": "n2",
-            "pin": "case:1"
+            "pin": "default"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n5",
+            "pin": "then"
           },
           "to": "n4"
         },
         {
           "from": {
-            "node": "n2",
-            "pin": "default"
+            "node": "n5",
+            "pin": "else"
           },
           "to": "n3"
         },
@@ -4243,9 +4311,7 @@
       ],
       "data": []
     },
-    "warnings": [
-      "computed_skip_overflow"
-    ]
+    "warnings": []
   },
   {
     "name": "skip_zero_and_negative",
@@ -4937,6 +5003,13 @@
           "payload": {
             "content": "after"
           }
+        },
+        {
+          "id": "n5",
+          "type": "log",
+          "key": "loop.a.end",
+          "enabled": false,
+          "payload": {}
         }
       ],
       "links": [
@@ -4967,13 +5040,18 @@
             "pin": "next"
           },
           "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "error"
+          },
+          "to": "n5"
         }
       ],
       "data": []
     },
-    "warnings": [
-      "error_skip_beyond_end"
-    ]
+    "warnings": []
   },
   {
     "name": "error_jump_forward",
@@ -6318,7 +6396,7 @@
         {
           "from": {
             "node": "n1",
-            "pin": "then"
+            "pin": "else"
           },
           "to": "n4"
         },
@@ -7257,6 +7335,1244 @@
     "warnings": [
       "backward_jump"
     ]
+  },
+  {
+    "name": "disabled_if_block_then_actions",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "enabled": false,
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after1"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after2"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": false,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after1"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "after2"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "block_error_continue_catches_child",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "gate",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "ok"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "bad"
+              }
+            }
+          ]
+        },
+        "error": {
+          "mode": "continue"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "gate",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          },
+          "error": {
+            "mode": "continue"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "gate.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "ok"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "gate.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "bad"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "error"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "error"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "block_error_skip_catches_child",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "gate",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "ok"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "bad"
+              }
+            }
+          ]
+        },
+        "error": {
+          "mode": "skip",
+          "skipCount": "1"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "skipped"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "kept"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "gate",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "gate.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "ok"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "gate.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "bad"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "skipped"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "kept"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "error"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "error"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "error"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "next"
+          },
+          "to": "n5"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "block_error_jump_catches_child",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "gate",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "bad"
+              }
+            }
+          ]
+        },
+        "error": {
+          "mode": "jump",
+          "jumpToActionId": "end"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "skipped"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "end",
+        "payload": {
+          "content": "end"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "gate",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "gate.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "bad"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "skipped"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "end",
+          "enabled": true,
+          "payload": {
+            "content": "end"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "error"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "error"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "block_error_continue_at_end_of_flow",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "gate",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "bad"
+              }
+            }
+          ]
+        },
+        "error": {
+          "mode": "continue"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "gate",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          },
+          "error": {
+            "mode": "continue"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "gate.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "bad"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "log",
+          "key": "gate.action_0.end",
+          "enabled": false,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "error"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "block_error_child_keeps_its_own_mode",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "gate",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "own"
+              },
+              "error": {
+                "mode": "continue"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "plain"
+              }
+            }
+          ]
+        },
+        "error": {
+          "mode": "continue"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "gate",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          },
+          "error": {
+            "mode": "continue"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "gate.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "own"
+          },
+          "error": {
+            "mode": "continue"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "gate.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "plain"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "error"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "block_error_in_protected_branch_ignored",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "try",
+        "payload": {
+          "tryCatch": true,
+          "thenActions": [
+            {
+              "type": "ifBlock",
+              "key": "gate",
+              "payload": {
+                "variable": "x",
+                "operator": "equals",
+                "value": "1",
+                "thenActions": [
+                  {
+                    "type": "respondWithMessage",
+                    "payload": {
+                      "content": "bad"
+                    }
+                  }
+                ]
+              },
+              "error": {
+                "mode": "continue"
+              }
+            }
+          ],
+          "elseActions": []
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "tryCatch",
+          "key": "try",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "n2",
+          "type": "ifBlock",
+          "key": "try.gate",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "try.gate.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "bad"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "try"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "then"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "skip_computed_in_loop_body",
+    "input": [
+      {
+        "type": "forLoop",
+        "key": "loop",
+        "payload": {
+          "mode": "simple",
+          "iterations": "3",
+          "bodyActions": [
+            {
+              "type": "skipActions",
+              "key": "s",
+              "payload": {
+                "count": "((variable.n))"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "forLoop",
+          "key": "loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "loop.s",
+          "enabled": true,
+          "payload": {
+            "value": "((variable.n))",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "loop.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "loop.action_2",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        },
+        {
+          "id": "n6",
+          "type": "ifBlock",
+          "key": "loop.s.overflow",
+          "enabled": true,
+          "payload": {
+            "condition.group": "and",
+            "condition.conditions": [
+              {
+                "variable": "((variable.n))",
+                "operator": "matches",
+                "value": "^\\s*\\+?\\d+\\s*$"
+              },
+              {
+                "variable": "((variable.n))",
+                "operator": "greaterOrEqual",
+                "value": "2"
+              }
+            ]
+          }
+        },
+        {
+          "id": "n7",
+          "type": "log",
+          "key": "loop.s.end",
+          "enabled": false,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "body"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:0"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:1"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "default"
+          },
+          "to": "n6"
+        },
+        {
+          "from": {
+            "node": "n6",
+            "pin": "then"
+          },
+          "to": "n7"
+        },
+        {
+          "from": {
+            "node": "n6",
+            "pin": "else"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "listener_empty_actions_keeps_workflow_name",
+    "input": [
+      {
+        "type": "listenForButtonClick",
+        "key": "listen",
+        "payload": {
+          "customId": "btn",
+          "workflowName": "handler",
+          "actions": []
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "listenForButtonClick",
+          "key": "listen",
+          "enabled": true,
+          "payload": {
+            "customId": "btn",
+            "workflowName": "handler"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "listener_actions_override_stale_graph",
+    "input": [
+      {
+        "type": "listenForButtonClick",
+        "key": "listen",
+        "payload": {
+          "customId": "btn",
+          "actions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "fresh"
+              }
+            }
+          ],
+          "graph": {
+            "version": 2,
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "respondWithMessage",
+                "key": "stale",
+                "payload": {
+                  "content": "stale"
+                }
+              }
+            ],
+            "links": [
+              {
+                "from": {
+                  "node": "start",
+                  "pin": "next"
+                },
+                "to": "n1"
+              }
+            ],
+            "data": []
+          }
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "listenForButtonClick",
+          "key": "listen",
+          "enabled": true,
+          "payload": {
+            "customId": "btn",
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "respondWithMessage",
+                  "key": "action_0",
+                  "enabled": true,
+                  "payload": {
+                    "content": "fresh"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                }
+              ],
+              "data": []
+            }
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "legacy_actions_overwrite"
+    ]
+  },
+  {
+    "name": "empty_string_key_becomes_action_index",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "b",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
   },
   {
     "name": "non_object_items_are_ignored",

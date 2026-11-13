@@ -1233,5 +1233,158 @@
     },
     "converted": true,
     "warnings": []
+  },
+  {
+    "name": "composant avec un graphe ET des actions : les actions gagnent",
+    "input": {
+      "name": "stale",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [],
+          "links": []
+        },
+        "components": {
+          "components": [
+            {
+              "type": "actionRow",
+              "components": [
+                {
+                  "type": "button",
+                  "customId": "ok",
+                  "label": "Go",
+                  "actions": [
+                    {
+                      "type": "sendMessage",
+                      "key": "neuf",
+                      "enabled": true,
+                      "payload": {
+                        "content": "salut"
+                      }
+                    }
+                  ],
+                  "graph": {
+                    "version": 2,
+                    "nodes": [],
+                    "links": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "output": {
+      "name": "stale",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [],
+          "links": []
+        },
+        "components": {
+          "components": [
+            {
+              "type": "actionRow",
+              "components": [
+                {
+                  "type": "button",
+                  "customId": "ok",
+                  "label": "Go",
+                  "graph": {
+                    "version": 2,
+                    "nodes": [
+                      {
+                        "id": "n1",
+                        "type": "sendMessage",
+                        "key": "neuf",
+                        "enabled": true,
+                        "payload": {
+                          "content": "salut"
+                        }
+                      }
+                    ],
+                    "links": [
+                      {
+                        "from": {
+                          "node": "start",
+                          "pin": "next"
+                        },
+                        "to": "n1"
+                      }
+                    ],
+                    "data": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "converted": true,
+    "warnings": [
+      "legacy_actions_overwrite"
+    ]
+  },
+  {
+    "name": "composant avec un graphe et une liste d'actions vide : intact",
+    "input": {
+      "name": "stale-empty",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [],
+          "links": []
+        },
+        "components": {
+          "components": [
+            {
+              "type": "button",
+              "customId": "ok",
+              "label": "Go",
+              "actions": [],
+              "graph": {
+                "version": 2,
+                "nodes": [],
+                "links": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    "output": {
+      "name": "stale-empty",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [],
+          "links": []
+        },
+        "components": {
+          "components": [
+            {
+              "type": "button",
+              "customId": "ok",
+              "label": "Go",
+              "actions": [],
+              "graph": {
+                "version": 2,
+                "nodes": [],
+                "links": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    "converted": false,
+    "warnings": []
   }
 ]

@@ -85,7 +85,7 @@ test('grammar node types match the Dart node types when the app repo is next to 
   try { dart = await readFile(new URL('../../bot-creator/packages/shared/lib/types/action.dart', import.meta.url), 'utf8'); } catch { return; }
   const body = dart.slice(dart.indexOf('enum BotCreatorActionType'), dart.indexOf('}', dart.indexOf('enum BotCreatorActionType')));
   const enumNames = new Set([...body.matchAll(/^\s+([a-zA-Z0-9_]+)\s*[,;(]/gm)].map(m => m[1]));
-  const known = new Set([...enumNames, 'tryCatch', 'switch']);
+  const known = new Set([...enumNames, 'tryCatch', 'switch', 'whileLoop', 'asyncBlock', 'breakLoop', 'continueLoop']);
   const unknown = Object.keys(blocks).filter(k => !known.has(k));
   assert.deepEqual(unknown, [], `grammar node types missing from the app: ${unknown.join(', ')}`);
   // The grammar IS the closed list of node types: every enum type except the legacy navigation ones.

@@ -36,7 +36,7 @@ const utf8Length = (text) => new TextEncoder().encode(text).length;
 /**
  * Valide [rawGraph] (JSON d'un graphe v2). [knownTypes] : l'ensemble fermé des types de nœud
  * (`Set<string>`). Rend `{ valid, errors, warnings }` ; chaque problème est `{ code, message, nodeId? }`.
- * Lève `GraphFormatError` si la forme est irrécupérable (version, nœud sans id, lien incomplet).
+ * Lève `GraphFormatError` si la version n'est pas 2 ; le reste (champ de mauvais type, id vide…) est signalé.
  */
 export function validateGraph(rawGraph, knownTypes) {
   const graph = normalizeGraph(rawGraph);
@@ -72,6 +72,7 @@ export function validateGraph(rawGraph, knownTypes) {
   const seenKeys = new Set();
   for (const node of graph.nodes) {
     if (!knownTypes.has(node.type)) err("unknown_node_type", `The node type "${node.type}" is unknown.`, node.id);
+    for (const field of node.invalidFields ?? []) err("invalid_field", `The field "${field}" of the node "${node.id}" has the wrong type.`, node.id);
     if (node.key === "") err("empty_key", `The node "${node.id}" has no result key.`, node.id);
     else if (seenKeys.has(node.key)) {
       // Les clés ne sont pas uniques par conception (dernier écrivain gagnant) : avertissement seulement.
@@ -173,6 +174,7 @@ export function validateGraph(rawGraph, knownTypes) {
   // Liens de données.
   const dataEdges = new Map();
   for (const d of graph.data) {
+    for (const field of d.invalidFields ?? []) err("invalid_field", `The field "${field}" of a data link to "${d.to.node}" has the wrong type.`, d.to.node);
     if (!DATA_TYPES.has(d.type)) err("unknown_data_type", `Unknown data type "${d.type}".`, d.to.node);
     const fromOk = exists(d.from.node);
     const toOk = exists(d.to.node);
