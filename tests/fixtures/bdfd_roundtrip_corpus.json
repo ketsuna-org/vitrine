@@ -91,7 +91,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:customid",
@@ -360,7 +372,19 @@
             "to": "n7"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:autocompleteoptionname",
@@ -510,7 +534,19 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:isadmin",
@@ -603,7 +639,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:channelnsfw"
@@ -728,7 +776,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkuserperms",
@@ -915,7 +975,19 @@
             "to": "n8"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:commandtype",
@@ -1090,7 +1162,19 @@
             "to": "n7"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:emojiexists",
@@ -1300,7 +1384,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:getslowmode"
@@ -1442,7 +1538,19 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:guildcount"
@@ -1566,7 +1674,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:highestrole",
@@ -1645,7 +1765,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:isbooster"
@@ -1745,7 +1877,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:ismentioned"
@@ -1946,7 +2090,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:messageeditedtimestamp"
@@ -2322,7 +2478,30 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "condition.value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:ruleschannelid",
@@ -2527,7 +2706,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:textsplit",
@@ -2652,7 +2843,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:isadmin",
@@ -2710,7 +2913,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:accountage"
@@ -2891,7 +3106,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:listindexof"
@@ -3009,7 +3236,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:serververificationlevel"
@@ -3357,7 +3596,30 @@
             "to": "n8"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:getvar",
@@ -3773,7 +4035,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "contextId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:guildid"
@@ -4015,7 +4289,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:customid",
@@ -5175,7 +5461,19 @@
             "to": "n9"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:mentionedchannels",
@@ -5270,7 +5568,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:channeltype"
@@ -5430,7 +5740,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:colorrole"
@@ -5583,7 +5905,30 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "categoryId"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "out": "result"
+            },
+            "to": {
+              "node": "n5",
+              "field": "categoryId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:categoryid"
@@ -5762,7 +6107,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:sendmessage",
@@ -6382,7 +6739,19 @@
             "to": "n8"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:finduser",
@@ -6707,7 +7076,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n3",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:func",
@@ -6921,7 +7302,19 @@
             "to": "n9"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:getbanreason",
@@ -7315,7 +7708,19 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:isadmin",
@@ -7548,7 +7953,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:hasanyrole"
@@ -7785,7 +8202,19 @@
             "to": "n10"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:hasrole",
@@ -8013,7 +8442,19 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:isadmin",
@@ -8192,7 +8633,30 @@
             "to": "n7"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "out": "result"
+            },
+            "to": {
+              "node": "n6",
+              "field": "channelId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:ismessageedited",
@@ -8258,7 +8722,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:onlyif"
@@ -8453,7 +8929,19 @@
             "to": "n8"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:c",
@@ -8639,7 +9127,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:lastpintimestamp"
@@ -8762,7 +9262,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:lcm"
@@ -9119,7 +9631,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:lowestrolewithperms",
@@ -9279,7 +9803,19 @@
             "to": "n7"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:membercount"
@@ -9393,7 +9929,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:memberexists",
@@ -9521,7 +10069,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:mentionedroles"
@@ -9879,7 +10439,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:newticket"
@@ -10070,7 +10642,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:randomcategoryid"
@@ -10306,7 +10890,19 @@
             "to": "n10"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkuserperms",
@@ -10490,7 +11086,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:seededrandom"
@@ -10684,7 +11292,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkcontains"
@@ -10884,7 +11504,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:slashcommandscount"
@@ -11056,7 +11688,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "userId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:mentioned"
@@ -11285,7 +11929,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "userId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:mentioned"
@@ -11713,7 +12369,19 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkcontains",
@@ -11841,7 +12509,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:varexists",
@@ -11952,7 +12632,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:voiceuserlimit"
@@ -12183,7 +12875,30 @@
             "to": "n9"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n8",
+              "out": "result"
+            },
+            "to": {
+              "node": "n9",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkcontains",
@@ -12389,7 +13104,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:abs"
@@ -12496,7 +13223,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkcontains",
@@ -12753,7 +13492,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:customid",
@@ -12869,7 +13620,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:afktimeout"
@@ -13155,7 +13918,19 @@
             "to": "n8"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:authorbanner",
@@ -13258,7 +14033,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkcontains"
@@ -13396,7 +14183,19 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:autocompleteoptionvalue",
@@ -13476,7 +14275,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:blacklistids"
@@ -13555,7 +14366,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:blacklistroles"
@@ -13635,7 +14458,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:blacklistservers"
@@ -14041,7 +14876,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkuserperms",
@@ -14722,7 +15569,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:channelidfromname"
@@ -14903,7 +15762,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:channelposition"
@@ -15117,7 +15988,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkcontains",
@@ -15221,7 +16104,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkusersperms"
@@ -15625,7 +16520,19 @@
             "to": "n9"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:commandname",
@@ -16043,7 +16950,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:createrole"
@@ -16388,7 +17307,30 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n5",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:debug",
@@ -16581,7 +17523,19 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:deletecommand",
@@ -16809,7 +17763,19 @@
             "to": "n8"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:isadmin",
@@ -17158,7 +18124,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "channelId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:editthread",
@@ -17419,7 +18397,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:escapemarkdown"
@@ -17517,7 +18507,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:memberscount"
@@ -17579,7 +18581,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "channelId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:findchannel"
@@ -17703,7 +18717,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:findrole",
@@ -17971,7 +18997,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:getembeddata"
@@ -18261,7 +19299,19 @@
             "to": "n9"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:getmemberscount"
@@ -18357,7 +19407,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:customid",
@@ -18488,7 +19550,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:getreactions"
@@ -18670,7 +19744,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:customid",
@@ -18733,7 +19819,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:getroleswithperm"
@@ -18855,7 +19953,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:getslowmode",
@@ -18952,7 +20062,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:customid",
@@ -19330,7 +20452,19 @@
             "to": "n11"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:getuserstatus",
@@ -19501,7 +20635,30 @@
             "to": "n7"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "out": "result"
+            },
+            "to": {
+              "node": "n5",
+              "field": "roleId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:roleexists",
@@ -19755,7 +20912,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:guildname"
@@ -19852,7 +21021,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:hasrole"
@@ -19931,7 +21112,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:highestrolewithperms"
@@ -20142,7 +21335,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n5",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:httpget",
@@ -20382,7 +21587,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:ignorechannels"
@@ -20547,7 +21764,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:isadmin",
@@ -20647,7 +21876,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:isbot"
@@ -20747,7 +21988,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:ishoisted"
@@ -20848,7 +22101,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:ismentioned",
@@ -21265,7 +22530,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:jsonparse",
@@ -21374,7 +22651,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:jsonparse",
@@ -21487,7 +22776,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:jsonparse",
@@ -21588,7 +22889,30 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "condition.value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:lastmessageid",
@@ -21742,7 +23066,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:linescount"
@@ -21804,7 +23140,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:listcount"
@@ -21868,7 +23216,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:listjoin"
@@ -21931,7 +23291,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:listremove"
@@ -22009,7 +23381,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:jsonparse",
@@ -22088,7 +23472,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:jsonparse",
@@ -22450,7 +23846,19 @@
             "to": "n7"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkcontains",
@@ -22513,7 +23921,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:mentionchannel"
@@ -22613,7 +24033,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:mentionedroles"
@@ -22898,7 +24330,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "channelId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:channelidfromname",
@@ -23003,7 +24447,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "channelId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:channelid",
@@ -23193,7 +24649,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:isadmin",
@@ -23282,7 +24750,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:month"
@@ -23378,7 +24858,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:customid",
@@ -23915,7 +25407,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:channelnsfw"
@@ -23979,7 +25483,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:pad"
@@ -24041,7 +25557,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:parseint"
@@ -24251,7 +25779,19 @@
             "to": "n10"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:ping"
@@ -24371,7 +25911,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:premiumexpiretime"
@@ -24599,7 +26151,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:randomuserid"
@@ -24683,7 +26247,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:removecontains"
@@ -24740,7 +26316,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:repeatmessage"
@@ -24933,7 +26521,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "contextId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:authorid",
@@ -25074,7 +26674,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:rolecount"
@@ -25199,7 +26811,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:roleexists",
@@ -25444,7 +27068,30 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "condition.value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:roleposition"
@@ -25914,7 +27561,19 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:serverdescription",
@@ -26466,7 +28125,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:serversplash"
@@ -26762,7 +28433,19 @@
             "to": "n11"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:serververificationlvl"
@@ -26846,7 +28529,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "contextId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:messageid"
@@ -26951,7 +28646,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "userId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:username",
@@ -27343,7 +29050,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:slug"
@@ -27474,7 +29193,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:startthread",
@@ -27773,7 +29504,30 @@
             "to": "n7"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "out": "result"
+            },
+            "to": {
+              "node": "n5",
+              "field": "roleId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkcontains",
@@ -27906,7 +29660,30 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "userId"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "roleId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:takeroles",
@@ -28086,7 +29863,41 @@
             "to": "n7"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "out": "result"
+            },
+            "to": {
+              "node": "n4",
+              "field": "userId"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "out": "result"
+            },
+            "to": {
+              "node": "n6",
+              "field": "userId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:startthread",
@@ -28196,7 +30007,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "userId"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:mentioned"
@@ -28384,7 +30207,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:togglerole"
@@ -28508,7 +30343,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:trunc"
@@ -28691,7 +30538,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:unlock"
@@ -29068,7 +30927,19 @@
             "to": "n9"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:authorbanner",
@@ -29273,7 +31144,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:usersuperreacted"
@@ -29567,7 +31450,19 @@
             "to": "n6"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n5",
+              "out": "result"
+            },
+            "to": {
+              "node": "n6",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:webhookcontent",
@@ -29628,7 +31523,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:webhooksend"
@@ -30023,7 +31930,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:sum"
@@ -30173,7 +32092,19 @@
             "to": "n7"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:sum"
@@ -30981,7 +32912,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:checkcondition"
@@ -31488,7 +33431,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:touppercase"
@@ -32982,7 +34937,19 @@
             "to": "n8"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n5",
+              "out": "result"
+            },
+            "to": {
+              "node": "n6",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:sum",
@@ -33516,7 +35483,19 @@
             "to": "n10"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n7",
+              "out": "result"
+            },
+            "to": {
+              "node": "n8",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:sum",
@@ -33869,7 +35848,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:eval"
@@ -35234,7 +37225,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:sum"
@@ -35405,7 +37408,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:enabledecimals",
@@ -35645,7 +37660,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:removelinks"
@@ -35917,7 +37944,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:authorid",
@@ -36600,7 +38639,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:authorid",
@@ -38407,7 +40458,30 @@
             "to": "n10"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "out": "result"
+            },
+            "to": {
+              "node": "n7",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:canvascreate",
@@ -38526,7 +40600,19 @@
             "to": "n4"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "condition.variable"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:authorid",
@@ -38838,7 +40924,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:croptext"
@@ -38896,7 +40994,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:blacklistusers"
@@ -39285,7 +41395,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n3",
+              "out": "result"
+            },
+            "to": {
+              "node": "n5",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:suppresserrors",
@@ -39474,7 +41596,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:embedsuppresserrors",
@@ -39602,7 +41736,19 @@
             "to": "n5"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n3",
+              "out": "result"
+            },
+            "to": {
+              "node": "n5",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:webhookcontent",
@@ -39692,7 +41838,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:textsplit",
@@ -40091,7 +42249,19 @@
             "to": "n2"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:closeticket"
@@ -41529,7 +43699,19 @@
             "to": "n3"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n1",
+              "out": "result"
+            },
+            "to": {
+              "node": "n2",
+              "field": "content"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:finduser"
@@ -49691,7 +51873,536 @@
             "to": "n330"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n2",
+              "out": "result"
+            },
+            "to": {
+              "node": "n3",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "out": "result"
+            },
+            "to": {
+              "node": "n5",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n17",
+              "out": "result"
+            },
+            "to": {
+              "node": "n18",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n19",
+              "out": "result"
+            },
+            "to": {
+              "node": "n20",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n21",
+              "out": "result"
+            },
+            "to": {
+              "node": "n22",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n23",
+              "out": "result"
+            },
+            "to": {
+              "node": "n24",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n25",
+              "out": "result"
+            },
+            "to": {
+              "node": "n26",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n27",
+              "out": "result"
+            },
+            "to": {
+              "node": "n28",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n29",
+              "out": "result"
+            },
+            "to": {
+              "node": "n30",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n31",
+              "out": "result"
+            },
+            "to": {
+              "node": "n32",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n33",
+              "out": "result"
+            },
+            "to": {
+              "node": "n34",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n44",
+              "out": "result"
+            },
+            "to": {
+              "node": "n45",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n46",
+              "out": "result"
+            },
+            "to": {
+              "node": "n47",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n53",
+              "out": "result"
+            },
+            "to": {
+              "node": "n54",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n63",
+              "out": "result"
+            },
+            "to": {
+              "node": "n64",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n65",
+              "out": "result"
+            },
+            "to": {
+              "node": "n66",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n72",
+              "out": "result"
+            },
+            "to": {
+              "node": "n73",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n82",
+              "out": "result"
+            },
+            "to": {
+              "node": "n83",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n84",
+              "out": "result"
+            },
+            "to": {
+              "node": "n85",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n91",
+              "out": "result"
+            },
+            "to": {
+              "node": "n92",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n101",
+              "out": "result"
+            },
+            "to": {
+              "node": "n102",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n103",
+              "out": "result"
+            },
+            "to": {
+              "node": "n104",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n110",
+              "out": "result"
+            },
+            "to": {
+              "node": "n111",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n120",
+              "out": "result"
+            },
+            "to": {
+              "node": "n121",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n122",
+              "out": "result"
+            },
+            "to": {
+              "node": "n123",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n129",
+              "out": "result"
+            },
+            "to": {
+              "node": "n130",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n139",
+              "out": "result"
+            },
+            "to": {
+              "node": "n140",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n141",
+              "out": "result"
+            },
+            "to": {
+              "node": "n142",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n148",
+              "out": "result"
+            },
+            "to": {
+              "node": "n149",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n158",
+              "out": "result"
+            },
+            "to": {
+              "node": "n159",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n160",
+              "out": "result"
+            },
+            "to": {
+              "node": "n161",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n167",
+              "out": "result"
+            },
+            "to": {
+              "node": "n168",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n177",
+              "out": "result"
+            },
+            "to": {
+              "node": "n178",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n179",
+              "out": "result"
+            },
+            "to": {
+              "node": "n180",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n186",
+              "out": "result"
+            },
+            "to": {
+              "node": "n187",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n190",
+              "out": "result"
+            },
+            "to": {
+              "node": "n191",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n208",
+              "out": "result"
+            },
+            "to": {
+              "node": "n209",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n212",
+              "out": "result"
+            },
+            "to": {
+              "node": "n213",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n216",
+              "out": "result"
+            },
+            "to": {
+              "node": "n217",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n218",
+              "out": "result"
+            },
+            "to": {
+              "node": "n219",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n220",
+              "out": "result"
+            },
+            "to": {
+              "node": "n221",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n223",
+              "out": "result"
+            },
+            "to": {
+              "node": "n224",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n241",
+              "out": "result"
+            },
+            "to": {
+              "node": "n242",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n245",
+              "out": "result"
+            },
+            "to": {
+              "node": "n246",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n249",
+              "out": "result"
+            },
+            "to": {
+              "node": "n250",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n251",
+              "out": "result"
+            },
+            "to": {
+              "node": "n252",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n253",
+              "out": "result"
+            },
+            "to": {
+              "node": "n254",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n256",
+              "out": "result"
+            },
+            "to": {
+              "node": "n257",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:jsonparse",
@@ -57997,7 +60708,536 @@
             "to": "n340"
           }
         ],
-        "data": []
+        "data": [
+          {
+            "from": {
+              "node": "n12",
+              "out": "result"
+            },
+            "to": {
+              "node": "n13",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n14",
+              "out": "result"
+            },
+            "to": {
+              "node": "n15",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n27",
+              "out": "result"
+            },
+            "to": {
+              "node": "n28",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n29",
+              "out": "result"
+            },
+            "to": {
+              "node": "n30",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n31",
+              "out": "result"
+            },
+            "to": {
+              "node": "n32",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n33",
+              "out": "result"
+            },
+            "to": {
+              "node": "n34",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n35",
+              "out": "result"
+            },
+            "to": {
+              "node": "n36",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n37",
+              "out": "result"
+            },
+            "to": {
+              "node": "n38",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n39",
+              "out": "result"
+            },
+            "to": {
+              "node": "n40",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n41",
+              "out": "result"
+            },
+            "to": {
+              "node": "n42",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n43",
+              "out": "result"
+            },
+            "to": {
+              "node": "n44",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n54",
+              "out": "result"
+            },
+            "to": {
+              "node": "n55",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n56",
+              "out": "result"
+            },
+            "to": {
+              "node": "n57",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n63",
+              "out": "result"
+            },
+            "to": {
+              "node": "n64",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n73",
+              "out": "result"
+            },
+            "to": {
+              "node": "n74",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n75",
+              "out": "result"
+            },
+            "to": {
+              "node": "n76",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n82",
+              "out": "result"
+            },
+            "to": {
+              "node": "n83",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n92",
+              "out": "result"
+            },
+            "to": {
+              "node": "n93",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n94",
+              "out": "result"
+            },
+            "to": {
+              "node": "n95",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n101",
+              "out": "result"
+            },
+            "to": {
+              "node": "n102",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n111",
+              "out": "result"
+            },
+            "to": {
+              "node": "n112",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n113",
+              "out": "result"
+            },
+            "to": {
+              "node": "n114",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n120",
+              "out": "result"
+            },
+            "to": {
+              "node": "n121",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n130",
+              "out": "result"
+            },
+            "to": {
+              "node": "n131",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n132",
+              "out": "result"
+            },
+            "to": {
+              "node": "n133",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n139",
+              "out": "result"
+            },
+            "to": {
+              "node": "n140",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n149",
+              "out": "result"
+            },
+            "to": {
+              "node": "n150",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n151",
+              "out": "result"
+            },
+            "to": {
+              "node": "n152",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n158",
+              "out": "result"
+            },
+            "to": {
+              "node": "n159",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n168",
+              "out": "result"
+            },
+            "to": {
+              "node": "n169",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n170",
+              "out": "result"
+            },
+            "to": {
+              "node": "n171",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n177",
+              "out": "result"
+            },
+            "to": {
+              "node": "n178",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n187",
+              "out": "result"
+            },
+            "to": {
+              "node": "n188",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n189",
+              "out": "result"
+            },
+            "to": {
+              "node": "n190",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n196",
+              "out": "result"
+            },
+            "to": {
+              "node": "n197",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n200",
+              "out": "result"
+            },
+            "to": {
+              "node": "n201",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n218",
+              "out": "result"
+            },
+            "to": {
+              "node": "n219",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n222",
+              "out": "result"
+            },
+            "to": {
+              "node": "n223",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n226",
+              "out": "result"
+            },
+            "to": {
+              "node": "n227",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n228",
+              "out": "result"
+            },
+            "to": {
+              "node": "n229",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n230",
+              "out": "result"
+            },
+            "to": {
+              "node": "n231",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n233",
+              "out": "result"
+            },
+            "to": {
+              "node": "n234",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n251",
+              "out": "result"
+            },
+            "to": {
+              "node": "n252",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n255",
+              "out": "result"
+            },
+            "to": {
+              "node": "n256",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n259",
+              "out": "result"
+            },
+            "to": {
+              "node": "n260",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n261",
+              "out": "result"
+            },
+            "to": {
+              "node": "n262",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n263",
+              "out": "result"
+            },
+            "to": {
+              "node": "n264",
+              "field": "value"
+            },
+            "type": "any"
+          },
+          {
+            "from": {
+              "node": "n266",
+              "out": "result"
+            },
+            "to": {
+              "node": "n267",
+              "field": "value"
+            },
+            "type": "any"
+          }
+        ]
       },
       "warnings": [
         "bdfd_generic_call:setuservar",
