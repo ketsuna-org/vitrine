@@ -42,7 +42,8 @@ $highestRole[(userID)]
 
 ```bdfd
 $title[Profile of $userName]
-$author[$userName;$userAvatar[$authorID]]
+$author[$userName]
+$authorIcon[$userAvatar[$authorID]]
 $description[
 **Highest Role:** <@&$highestRole[$authorID]>
 **Role Name:** $roleName[$highestRole[$authorID]]

@@ -36,7 +36,7 @@ None (passing one is an error).
 ## Examples
 
 ```bdfd
-$sendMessage[Command updated: $commandEventName ($commandEventID);123456789012345678]
+$channelSendMessage[123456789012345678;Command updated: $commandEventName ($commandEventID)]
 ```
 
 ## Notes

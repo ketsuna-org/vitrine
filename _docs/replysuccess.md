@@ -33,5 +33,5 @@ $replySuccess[Done!]
 ## Example
 
 ```bdfd
-$sendMessage[$replySuccess[Done!]]
+$replySuccess[Done!]
 ```

@@ -43,7 +43,8 @@ $userJoined[userID;(format)]
 
 ```bdfd
 $title[New member!]
-$author[$userName;$authorAvatar]
+$author[$userName]
+$authorIcon[$authorAvatar]
 $description[
 Welcome to the server **$serverName**!
 You joined on **$userJoined[$authorID]**.

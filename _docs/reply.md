@@ -18,7 +18,7 @@ $reply
 
 ### Reply to a specific message
 
-```bdfd
+```
 $reply[channelId;messageId]
 ```
 

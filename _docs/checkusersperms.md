@@ -10,7 +10,7 @@ Checks if **one user** has all the specified permissions. Returns `true` or `fal
 
 ## Syntax
 
-```bdfd
+```
 $checkUsersPerms[userID;permission1;(permission2);(...)]
 ```
 

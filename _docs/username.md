@@ -47,7 +47,8 @@ $color[#57F287]
 ### Create a custom embed
 
 ```bdfd
-$author[$userName;$authorAvatar]
+$author[$userName]
+$authorIcon[$authorAvatar]
 $title[User Profile]
 $description[
 **Name:** $userName

@@ -46,7 +46,7 @@ $endif
 
 ```bdfd
 $if[$roleExists[$roleID[Member]]==true]
-  $roleGrant[$authorID;$roleID[Member]]
+  $roleGrant[$authorID;+$roleID[Member]]
   $sendMessage[Member role granted!]
 $else
   $sendMessage[The Member role does not exist. Please contact an administrator.]

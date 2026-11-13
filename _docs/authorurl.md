@@ -40,7 +40,8 @@ Modifies the response in progress. Returns nothing.
 ### Link to the Discord profile of the user
 
 ```bdfd
-$author[$username;$authorAvatar]
+$author[$username]
+$authorIcon[$authorAvatar]
 $authorUrl[https://discord.com/users/$authorID]
 $title[User Profile]
 $description[
@@ -52,7 +53,8 @@ $color[#5865F2]
 ### Conditional link
 
 ```bdfd
-$author[Website;$serverIcon]
+$author[Website]
+$authorIcon[$serverIcon]
 $if[$var[page]!=]
 $authorUrl[https://mysite.com/$var[page]]
 $else

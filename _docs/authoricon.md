@@ -54,9 +54,9 @@ $color[#5865F2]
 
 ```bdfd
 $author[Moderation Message]
-$if[$hasRole[$authorID;admin]]
+$if[$hasRole[$authorID;$roleID[Admin]]]
 $authorIcon[https://cdn.example.com/admin-badge.png]
-$elseif[$hasRole[$authorID;modo]]
+$elseif[$hasRole[$authorID;$roleID[Modo]]]
 $authorIcon[https://cdn.example.com/modo-badge.png]
 $else
 $authorIcon[$authorAvatar]

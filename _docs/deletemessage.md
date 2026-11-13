@@ -10,7 +10,7 @@ Deletes a specific message, identified by its channel ID and message ID.
 
 ## Syntax
 
-```bdfd
+```
 $deleteMessage[channelId;messageId]
 ```
 
