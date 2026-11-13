@@ -91,7 +91,6 @@
       "customIdLabel": "Custom ID filter (optional)",
       "variablesLabel": "Event variables"
     },
-    "executionModeLabel": "How is the command built?",
     "executionModes": [
       "Visual (Graph)",
       "BDFD Code",
