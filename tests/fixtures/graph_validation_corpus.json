@@ -43708,6 +43708,534 @@
     "warnings": []
   },
   {
+    "name": "valid: data link to an argument of a function block",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "callFunction",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "function": "servername",
+            "arguments": []
+          }
+        },
+        {
+          "id": "b",
+          "type": "callFunction",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "function": "numberseparator",
+            "arguments": [
+              "((action.a))"
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        },
+        {
+          "from": {
+            "node": "a",
+            "pin": "next"
+          },
+          "to": "b"
+        }
+      ],
+      "data": [
+        {
+          "from": {
+            "node": "a",
+            "out": "result"
+          },
+          "to": {
+            "node": "b",
+            "field": "arguments.0"
+          },
+          "type": "any"
+        }
+      ]
+    },
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "name": "valid: data links to two arguments, producers before the consumer",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "callFunction",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "function": "servername",
+            "arguments": []
+          }
+        },
+        {
+          "id": "b",
+          "type": "callFunction",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "function": "servername",
+            "arguments": []
+          }
+        },
+        {
+          "id": "c",
+          "type": "callFunction",
+          "key": "c",
+          "enabled": true,
+          "payload": {
+            "function": "replacetext",
+            "arguments": [
+              "((action.a))",
+              "((action.b))",
+              "x"
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        },
+        {
+          "from": {
+            "node": "a",
+            "pin": "next"
+          },
+          "to": "b"
+        },
+        {
+          "from": {
+            "node": "b",
+            "pin": "next"
+          },
+          "to": "c"
+        }
+      ],
+      "data": [
+        {
+          "from": {
+            "node": "a",
+            "out": "result"
+          },
+          "to": {
+            "node": "c",
+            "field": "arguments.0"
+          },
+          "type": "any"
+        },
+        {
+          "from": {
+            "node": "b",
+            "out": "result"
+          },
+          "to": {
+            "node": "c",
+            "field": "arguments.1"
+          },
+          "type": "any"
+        }
+      ]
+    },
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "name": "invalid_data_field: argument index out of the list",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "callFunction",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "function": "servername",
+            "arguments": []
+          }
+        },
+        {
+          "id": "b",
+          "type": "callFunction",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "function": "numberseparator",
+            "arguments": [
+              "x"
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        },
+        {
+          "from": {
+            "node": "a",
+            "pin": "next"
+          },
+          "to": "b"
+        }
+      ],
+      "data": [
+        {
+          "from": {
+            "node": "a",
+            "out": "result"
+          },
+          "to": {
+            "node": "b",
+            "field": "arguments.1"
+          },
+          "type": "any"
+        }
+      ]
+    },
+    "errors": [
+      "invalid_data_field"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "invalid_data_field: argument index that is not canonical",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "callFunction",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "function": "servername",
+            "arguments": []
+          }
+        },
+        {
+          "id": "b",
+          "type": "callFunction",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "function": "numberseparator",
+            "arguments": [
+              "x"
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        },
+        {
+          "from": {
+            "node": "a",
+            "pin": "next"
+          },
+          "to": "b"
+        }
+      ],
+      "data": [
+        {
+          "from": {
+            "node": "a",
+            "out": "result"
+          },
+          "to": {
+            "node": "b",
+            "field": "arguments.00"
+          },
+          "type": "any"
+        }
+      ]
+    },
+    "errors": [
+      "invalid_data_field"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "invalid_data_field: argument name that is not a number",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "callFunction",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "function": "servername",
+            "arguments": []
+          }
+        },
+        {
+          "id": "b",
+          "type": "callFunction",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "function": "numberseparator",
+            "arguments": [
+              "x"
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        },
+        {
+          "from": {
+            "node": "a",
+            "pin": "next"
+          },
+          "to": "b"
+        }
+      ],
+      "data": [
+        {
+          "from": {
+            "node": "a",
+            "out": "result"
+          },
+          "to": {
+            "node": "b",
+            "field": "arguments.number"
+          },
+          "type": "any"
+        }
+      ]
+    },
+    "errors": [
+      "invalid_data_field"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "invalid_data_field: arguments.<i> on a node that is not a function block",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "callFunction",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "function": "servername",
+            "arguments": []
+          }
+        },
+        {
+          "id": "b",
+          "type": "sendMessage",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "content": "x",
+            "arguments": [
+              "x"
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        },
+        {
+          "from": {
+            "node": "a",
+            "pin": "next"
+          },
+          "to": "b"
+        }
+      ],
+      "data": [
+        {
+          "from": {
+            "node": "a",
+            "out": "result"
+          },
+          "to": {
+            "node": "b",
+            "field": "arguments.0"
+          },
+          "type": "any"
+        }
+      ]
+    },
+    "errors": [
+      "invalid_data_field"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "invalid_data_field: payload.arguments is not a list",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "callFunction",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "function": "servername",
+            "arguments": []
+          }
+        },
+        {
+          "id": "b",
+          "type": "callFunction",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "function": "numberseparator",
+            "arguments": "x"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "a"
+        },
+        {
+          "from": {
+            "node": "a",
+            "pin": "next"
+          },
+          "to": "b"
+        }
+      ],
+      "data": [
+        {
+          "from": {
+            "node": "a",
+            "out": "result"
+          },
+          "to": {
+            "node": "b",
+            "field": "arguments.0"
+          },
+          "type": "any"
+        }
+      ]
+    },
+    "errors": [
+      "invalid_data_field"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "data_order: argument link whose producer does not run first",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "a",
+          "type": "callFunction",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "function": "servername",
+            "arguments": []
+          }
+        },
+        {
+          "id": "b",
+          "type": "callFunction",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "function": "numberseparator",
+            "arguments": [
+              "x"
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "b"
+        },
+        {
+          "from": {
+            "node": "b",
+            "pin": "next"
+          },
+          "to": "a"
+        }
+      ],
+      "data": [
+        {
+          "from": {
+            "node": "a",
+            "out": "result"
+          },
+          "to": {
+            "node": "b",
+            "field": "arguments.0"
+          },
+          "type": "any"
+        }
+      ]
+    },
+    "errors": [
+      "data_order"
+    ],
+    "warnings": []
+  },
+  {
     "name": "concurrent_response: message and defer in parallel",
     "graph": {
       "version": 2,

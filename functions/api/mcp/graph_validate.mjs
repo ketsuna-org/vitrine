@@ -175,6 +175,12 @@ export function validateGraph(rawGraph, knownTypes) {
   const dataEdges = new Map();
   for (const d of graph.data) {
     for (const field of d.invalidFields ?? []) err("invalid_field", `The field "${field}" of a data link to "${d.to.node}" has the wrong type.`, d.to.node);
+    if (typeof d.to.field === "string" && d.to.field.startsWith("arguments.")) {
+      const target = byId.get(d.to.node);
+      if (target && !callArgumentFieldOk(target, d.to.field)) {
+        err("invalid_data_field", `The field "${d.to.field}" of "${d.to.node}" cannot receive a data link.`, d.to.node);
+      }
+    }
     if (!DATA_TYPES.has(d.type)) err("unknown_data_type", `Unknown data type "${d.type}".`, d.to.node);
     const fromOk = exists(d.from.node);
     const toOk = exists(d.to.node);
@@ -286,4 +292,15 @@ function findCycle(edges) {
     }
   }
   return null;
+}
+
+// `arguments.<i>` (écriture canonique) sur un nœud `callFunction` dont `payload.arguments` a au moins i+1 éléments :
+// même règle que `invalid_data_field` côté Dart (validateGraph) et Go.
+const CALL_ARGUMENT_FIELD = /^arguments\.(0|[1-9][0-9]*)$/;
+function callArgumentFieldOk(node, field) {
+  if (node.type !== "callFunction") return false;
+  const m = CALL_ARGUMENT_FIELD.exec(field);
+  if (!m) return false;
+  const args = node.payload?.arguments;
+  return Array.isArray(args) && Number(m[1]) < args.length;
 }
