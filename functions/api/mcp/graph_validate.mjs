@@ -19,8 +19,8 @@ import {
   normalizeGraph,
 } from "./graph_model.mjs";
 
-export const GRAPH_MAX_NODES = 500;
-export const GRAPH_MAX_JSON_BYTES = 600000;
+export const GRAPH_MAX_NODES = 2000;
+export const GRAPH_MAX_JSON_BYTES = 2000000;
 
 /** Types d'action qui répondent à l'interaction (réponse initiale, modal, `defer`). */
 export const INITIAL_RESPONSE_TYPES = new Set([

@@ -114,3 +114,24 @@ const appCheckout = [process.env.BOT_CREATOR_APP_DIR, new URL("../../bot-creator
 test("les corpus sont identiques aux fixtures Dart", { skip: !appCheckout && "dépôt bot-creator absent" }, () => {
   execFileSync("node", [fileURLToPath(new URL("../scripts/sync-graph-corpora.mjs", import.meta.url)), "--app", appCheckout, "--check"], { stdio: "pipe" });
 });
+
+// Limites de taille : 2000 nœuds / 2 000 000 octets (contrat §5), liste intacte au-delà.
+const logCmd = (n, text) => ({
+  name: 'c',
+  data: { executionMode: 'workflow', actions: Array.from({ length: n }, (_, i) => ({ type: 'log', key: `a${i}`, payload: { text } })) },
+});
+
+test('ensureGraph: 2000 actions converties, 2001 refusées avec graph_too_large et liste intacte', () => {
+  assert.equal(ensureGraph(logCmd(2000, 'x')).converted, true);
+  const src = logCmd(2001, 'x');
+  const r = ensureGraph(src);
+  assert.equal(r.converted, false);
+  assert.equal(r.entity, src);
+  assert.deepEqual(r.warnings.map((w) => w.code), ['graph_too_large']);
+});
+
+test('ensureGraph: plus de 2 000 000 octets de JSON : graph_too_large', () => {
+  const r = ensureGraph(logCmd(3, 'x'.repeat(700000)));
+  assert.equal(r.converted, false);
+  assert.deepEqual(r.warnings.map((w) => w.code), ['graph_too_large']);
+});

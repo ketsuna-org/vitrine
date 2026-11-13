@@ -7,6 +7,7 @@
 import { convertActionsToGraph } from "./graph_convert.mjs";
 import { migrateCommandDataResponse } from "./graph_command_migration.mjs";
 import { isPlainObject, GraphFormatError } from "./graph_model.mjs";
+import { GRAPH_MAX_NODES, GRAPH_MAX_JSON_BYTES } from "./graph_validate.mjs";
 
 const BDFD_SCRIPT_KEYS = ["bdfdScriptContent", "scriptContent", "bdfdScript"];
 const JS_SCRIPT_KEYS = ["jsScriptContent", "script"];
@@ -73,6 +74,10 @@ export function ensureGraph(entity) {
   try {
     convertEntity(out, name, warnings);
   } catch (e) {
+    if (e instanceof GraphTooLargeError) {
+      // Le graphe converti dépasse les limites : l'entité est rendue INCHANGÉE, avec un avertissement.
+      return { entity, converted: false, warnings: [{ code: "graph_too_large", message: `${name} : graphe converti trop gros, ancien format conservé (${e.message})`, key: "" }] };
+    }
     if (!(e instanceof GraphFormatError)) throw e;
     // Une action sans `type` : l'entité est rendue INCHANGÉE (l'ancien format reste lisible, rien n'est perdu).
     return {
@@ -82,6 +87,15 @@ export function ensureGraph(entity) {
     };
   }
   return { entity: out, converted: true, warnings };
+}
+
+class GraphTooLargeError extends Error {}
+
+/** Refuse (GraphTooLargeError) un graphe converti qui dépasse GRAPH_MAX_NODES nœuds ou GRAPH_MAX_JSON_BYTES octets. */
+function checkLimits(graph) {
+  if (graph.nodes.length > GRAPH_MAX_NODES) throw new GraphTooLargeError(`${graph.nodes.length} nœuds, maximum ${GRAPH_MAX_NODES}`);
+  const bytes = new TextEncoder().encode(JSON.stringify(graph)).length;
+  if (bytes > GRAPH_MAX_JSON_BYTES) throw new GraphTooLargeError(`${bytes} octets de JSON, maximum ${GRAPH_MAX_JSON_BYTES}`);
 }
 
 function entityName(entity) {
@@ -116,6 +130,7 @@ function convertEntity(out, name, warnings) {
       }
     }
     const conversion = convertActionsToGraph(actions);
+    checkLimits(conversion.graph);
     addAll(site, conversion.warnings);
     map.graph = conversion.graph;
     delete map.actions;
@@ -205,6 +220,7 @@ function convertComponents(value, add, addAll) {
           add("legacy_actions_overwrite", "des actions et un graphe coexistent sur le composant : les actions (écrites par une ancienne version) l'emportent", holderSite);
         }
         const conversion = convertActionsToGraph(actions);
+        checkLimits(conversion.graph);
         addAll(holderSite, conversion.warnings);
         value.graph = conversion.graph;
       }
