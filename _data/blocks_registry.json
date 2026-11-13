@@ -3355,8 +3355,8 @@
     },
     {
       "type": "runBdfdScript",
-      "name": "Run BDFD Script",
-      "description": "Compile and run a BDFD script inline as workflow actions",
+      "name": "BDFD script (not convertible)",
+      "description": "Internal fallback for BDFD source that cannot be converted into blocks",
       "category": "Workflows",
       "family": "logic",
       "icon": "code",
@@ -6203,8 +6203,8 @@
     },
     {
       "type": "callFunction",
-      "name": "Call function",
-      "description": "Call any native BDFD function with a form and keep its value",
+      "name": "Function",
+      "description": "A BDFD function, shown as a block: its name, fields and category are the function's own",
       "category": "Workflows",
       "family": "logic",
       "icon": "extension",

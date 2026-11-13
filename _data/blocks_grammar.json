@@ -1145,7 +1145,7 @@
     "output": "((action.<key>)) = WORKFLOW_OK:<entryPoint> ; ((action.<key>.<résultat interne>)) ((workflow.response.<résultat>))"
   },
   "runBdfdScript": {
-    "desc": "Exécute un script BDScript intégré dans le flux de blocs.",
+    "desc": "Repli interne pour une source BDFD qui ne se convertit pas en blocs : l'éditeur la montre comme « Script BDFD (non convertible) » avec un avertissement et ne la propose jamais dans la palette.",
     "category": "Workflows",
     "params": {
       "scriptContent": "string",
@@ -1154,7 +1154,7 @@
     "output": "((action.<key>)) = BDFD_OK (BDFD_EMPTY si vide) ; ((action.<key>.<résultat interne>))"
   },
   "callFunction": {
-    "desc": "Appelle n'importe quelle fonction BDFD native ($nom) : `function` (sans $) et ses `arguments`. Produit par la conversion BDFD -> Graphe pour les fonctions sans type d'action dédié.",
+    "desc": "Le bloc d'une fonction BDFD qui n'a pas de type d'action dédié : `function` = le nom de la fonction (sans $), `arguments` = ses arguments. Forme de stockage interne ; l'éditeur l'affiche comme la fonction elle-même.",
     "category": "Workflows",
     "params": {
       "function": "string",

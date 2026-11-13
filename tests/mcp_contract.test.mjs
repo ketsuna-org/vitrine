@@ -1,7 +1,8 @@
 // Contract between the three repositories that share the documentation MCP:
 //   vitrine      -> serves /api/mcp (tools, schemas, Blocks manifest)
 //   manager      -> relays the Copilot docs_* tools to it (internal/services/ai_documentation.go)
-//   bot-creator  -> declares the same Copilot tools for the app (assets/copilot/tools.json)
+//   bot-creator  -> mirrors ONLY the remote_* subset of the manager tools (assets/copilot/tools.json,
+//                   scripts/sync-copilot-tools.mjs of the manager); the docs_* tools live in the manager
 // Sibling repositories are optional: every check is skipped when its checkout is missing.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -46,19 +47,23 @@ test('the manager relay maps every docs_* Copilot tool to an existing MCP tool',
   for (const [copilot, mcp] of Object.entries(map)) assert.ok(mcpTools[mcp], `${copilot} -> ${mcp}: tool missing from /api/mcp`);
 });
 
-for (const [label, raw] of [['manager copilot_tools.json', managerTools], ['bot-creator tools.json', appTools]]) {
-  test(`${label}: docs_* tools match the MCP schemas`, { skip: !raw || !relay }, () => {
-    const map = relayMap();
-    const docs = JSON.parse(raw).filter(t => t.name.startsWith('docs_'));
-    assert.deepEqual(docs.map(t => t.name).sort(), Object.keys(map).sort(), 'every relayed tool is declared, and nothing else');
-    for (const tool of docs) {
-      assert.equal(tool.mutating, false, `${tool.name} must be read-only`);
-      subsetOf(tool.inputSchema, mcpTools[map[tool.name]].inputSchema, `${label}:${tool.name}`);
-    }
-  });
-}
+test('manager copilot_tools.json: docs_* tools match the MCP schemas', { skip: !managerTools || !relay }, () => {
+  const map = relayMap();
+  const docs = JSON.parse(managerTools).filter(t => t.name.startsWith('docs_'));
+  assert.deepEqual(docs.map(t => t.name).sort(), Object.keys(map).sort(), 'every relayed tool is declared, and nothing else');
+  for (const tool of docs) {
+    assert.equal(tool.mutating, false, `${tool.name} must be read-only`);
+    subsetOf(tool.inputSchema, mcpTools[map[tool.name]].inputSchema, `manager:${tool.name}`);
+  }
+});
 
-test('manager and bot-creator declare identical Copilot tools', { skip: !managerTools || !appTools }, () => {
+test('bot-creator tools.json declares no docs_* tool (remote_* subset only)', { skip: !appTools }, () => {
+  const names = JSON.parse(appTools).map(t => t.name);
+  assert.ok(names.length > 0 && names.every(n => n.startsWith('remote_')), `unexpected tools: ${names.filter(n => !n.startsWith('remote_'))}`);
+});
+
+test('bot-creator mirrors the remote_* tools of the manager', { skip: !managerTools || !appTools }, () => {
   const byName = raw => Object.fromEntries(JSON.parse(raw).map(t => [t.name, t]));
-  assert.deepEqual(byName(managerTools), byName(appTools));
+  const remote = Object.fromEntries(Object.entries(byName(managerTools)).filter(([n]) => n.startsWith('remote_')));
+  assert.deepEqual(byName(appTools), remote);
 });

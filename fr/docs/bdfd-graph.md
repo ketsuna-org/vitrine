@@ -33,15 +33,15 @@ BDFD (script `$fonction[...]`) et le [mode Graphe](/fr/docs/graph/) tournent sur
 | `$try` / `$catch` | un nœud `tryCatch` (pins `try`, `catch`, `done`) |
 | une fonction qui a un type de bloc (`$stop`, `$wait`, `$log`, messages…) | le nœud de ce type |
 | texte hors fonction | un nœud `respondWithMessage` |
-| toute autre fonction | un nœud `callFunction` : `function` (sans `$`) et `arguments`, exécuté par l'interpréteur natif |
-| un fragment qui ne se découpe pas en appels simples | un nœud `runBdfdScript` qui contient le fragment **exact** |
+| toute autre fonction | le bloc de cette fonction (son nom, un champ par argument), exécuté par l'interpréteur natif |
+| un fragment qui ne se découpe pas en appels simples | un bloc « Script BDFD (non convertible) » qui contient le fragment **exact** |
 
 Un appel imbriqué dans un argument est remonté dans son propre nœud, et référencé par `((action.<clé>))`.
 
 Rien n'est perdu ni silencieux. Chaque cas hors des nœuds dédiés laisse un avertissement :
 
-- `bdfd_generic_call:<fonction>` : la fonction n'a pas encore de type de bloc ; elle passe par `callFunction`.
-- `bdfd_passthrough:<fonction>` : le fragment est conservé tel quel dans `runBdfdScript`.
+- `bdfd_generic_call:<fonction>` : la fonction n'a pas encore de type de bloc dédié ; elle devient le bloc de cette fonction.
+- `bdfd_passthrough:<fonction>` : le fragment est conservé tel quel dans un bloc « Script BDFD (non convertible) ».
 
 L'objectif est de rendre ces deux cas inutiles : toute fonction BDFD fréquente doit avoir son type de bloc.
 
