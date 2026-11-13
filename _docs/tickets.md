@@ -187,7 +187,7 @@ $deleteChannels[$channelID]
 
 ## 4. Saved Structure (reference for API and MCP users)
 
-The blocks above are stored as the following `Action` objects and run in order by the native engine. You never write this by hand in the app; it is the format to use through the API or the MCP.
+The blocks above are stored as a **graph**: one node per block, and `links` that say what runs next (`start` is the entry point, its pin is `next`). A block reads the result of an earlier one with `((action.<key>))`, here `((action.ticket_chan))`. You never write this by hand in the app; it is the format to use through the API or the MCP (`validate_graph` checks it).
 
 <details class="block-json-ref">
 <summary>Show the JSON of the two flows</summary>
@@ -195,101 +195,172 @@ The blocks above are stored as the following `Action` objects and run in order b
 
 ### Ticket Creation
 ```json
-[
-  {
-    "type": "createChannel",
-    "key": "ticket_chan",
-    "enabled": true,
-    "payload": {
-      "name": "ticket-((user.username))",
-      "type": "text",
-      "categoryId": "123456789012345678"
-    }
-  },
-  {
-    "type": "editChannelPermissions",
-    "depend_on": ["ticket_chan"],
-    "enabled": true,
-    "payload": {
-      "channelId": "((action.ticket_chan))",
-      "targetType": "member",
-      "targetId": "((user.id))",
-      "permissions": {
-        "viewChannel": "allow",
-        "sendMessages": "allow",
-        "readMessageHistory": "allow"
+{
+  "version": 2,
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "createChannel",
+      "key": "ticket_chan",
+      "enabled": true,
+      "payload": {
+        "name": "ticket-((user.username))",
+        "type": "text",
+        "categoryId": "123456789012345678"
       }
-    }
-  },
-  {
-    "type": "sendMessage",
-    "depend_on": ["ticket_chan"],
-    "enabled": true,
-    "payload": {
-      "channelId": "((action.ticket_chan))",
-      "content": "Hello <@((user.id))>!",
-      "embeds": [
-        {
-          "title": "🎫 Support & Help",
-          "description": "Welcome to your private support channel. Please describe your issue below.",
-          "color": "#5865F2"
+    },
+    {
+      "id": "n2",
+      "type": "editChannelPermissions",
+      "key": "action_1",
+      "enabled": true,
+      "payload": {
+        "channelId": "((action.ticket_chan))",
+        "targetType": "member",
+        "targetId": "((user.id))",
+        "permissions": {
+          "viewChannel": "allow",
+          "sendMessages": "allow",
+          "readMessageHistory": "allow"
         }
-      ],
-      "components": {
-        "items": [
+      }
+    },
+    {
+      "id": "n3",
+      "type": "sendMessage",
+      "key": "action_2",
+      "enabled": true,
+      "payload": {
+        "channelId": "((action.ticket_chan))",
+        "content": "Hello <@((user.id))>!",
+        "embeds": [
           {
-            "type": "actionRow",
-            "components": [
-              {
-                "type": "button",
-                "customId": "close_ticket",
-                "label": "Close Ticket",
-                "style": "danger"
-              }
-            ]
+            "title": "🎫 Support & Help",
+            "description": "Welcome to your private support channel. Please describe your issue below.",
+            "color": "#5865F2"
           }
-        ]
+        ],
+        "components": {
+          "components": [
+            {
+              "type": "actionRow",
+              "components": [
+                {
+                  "type": "button",
+                  "customId": "close_ticket",
+                  "label": "Close Ticket",
+                  "style": "danger"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "n4",
+      "type": "respondWithMessage",
+      "key": "action_3",
+      "enabled": true,
+      "payload": {
+        "content": "✅ Your support ticket has been created: <#((action.ticket_chan))>",
+        "ephemeral": true
       }
     }
-  },
-  {
-    "type": "respondWithMessage",
-    "depend_on": ["ticket_chan"],
-    "enabled": true,
-    "payload": {
-      "content": "✅ Your support ticket has been created: <#((action.ticket_chan))>",
-      "ephemeral": true
+  ],
+  "links": [
+    {
+      "from": {
+        "node": "start",
+        "pin": "next"
+      },
+      "to": "n1"
+    },
+    {
+      "from": {
+        "node": "n1",
+        "pin": "next"
+      },
+      "to": "n2"
+    },
+    {
+      "from": {
+        "node": "n2",
+        "pin": "next"
+      },
+      "to": "n3"
+    },
+    {
+      "from": {
+        "node": "n3",
+        "pin": "next"
+      },
+      "to": "n4"
     }
-  }
-]
+  ],
+  "data": []
+}
 ```
 
 ### Ticket Closing
 ```json
-[
-  {
-    "type": "respondWithMessage",
-    "enabled": true,
-    "payload": {
-      "content": "🔒 Close requested. Deleting this channel in 3 seconds...",
-      "ephemeral": false
+{
+  "version": 2,
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "respondWithMessage",
+      "key": "action_0",
+      "enabled": true,
+      "payload": {
+        "content": "🔒 Close requested. Deleting this channel in 3 seconds...",
+        "ephemeral": false
+      }
+    },
+    {
+      "id": "n2",
+      "type": "wait",
+      "key": "action_1",
+      "enabled": true,
+      "payload": {
+        "duration": "3s"
+      }
+    },
+    {
+      "id": "n3",
+      "type": "removeChannel",
+      "key": "action_2",
+      "enabled": true,
+      "payload": {
+        "channelId": "((channel.id))"
+      }
     }
-  },
-  {
-    "type": "wait",
-    "enabled": true,
-    "payload": {
-      "duration": "3s"
+  ],
+  "links": [
+    {
+      "from": {
+        "node": "start",
+        "pin": "next"
+      },
+      "to": "n1"
+    },
+    {
+      "from": {
+        "node": "n1",
+        "pin": "next"
+      },
+      "to": "n2"
+    },
+    {
+      "from": {
+        "node": "n2",
+        "pin": "next"
+      },
+      "to": "n3"
     }
-  },
-  {
-    "type": "removeChannel",
-    "enabled": true,
-    "payload": {
-      "channelId": "((channel.id))"
-    }
-  }
-]
+  ],
+  "data": []
+}
 ```
 
 </details>
