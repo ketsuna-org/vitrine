@@ -48,53 +48,34 @@
     ]
   },
   "entryPoint": {
-    "name": "Command Trigger",
     "family": "events",
     "icon": "play_circle_outline",
-    "question": "When does this command run?",
     "segments": [
       {
         "kind": "slash",
-        "label": "Slash command",
-        "badge": "Slash command",
-        "desc": "Triggered by typing / in Discord.",
         "prefix": "/"
       },
       {
         "kind": "prefix",
-        "label": "Text Message",
-        "badge": "Prefix command",
-        "desc": "Triggered by a text prefix (e.g. !help).",
         "prefix": "!"
       },
       {
         "kind": "user",
-        "label": "User command",
-        "badge": "User command",
-        "desc": "Triggered from the user context menu.",
         "prefix": ""
       },
       {
         "kind": "message",
-        "label": "Message command",
-        "badge": "Message command",
-        "desc": "Triggered from the message context menu.",
         "prefix": ""
       }
     ],
     "event": {
-      "title": "Event trigger",
       "icon": "flash_on",
-      "color": "#AFB42B",
-      "categoryLabel": "Event category",
-      "nameLabel": "Event name",
-      "customIdLabel": "Custom ID filter (optional)",
-      "variablesLabel": "Event variables"
+      "color": "#AFB42B"
     },
     "executionModeLabel": "How is the command built?",
     "executionModes": [
       "Visual (Graph)",
-      "BDFD Code",
+      null,
       "JavaScript"
     ]
   },
