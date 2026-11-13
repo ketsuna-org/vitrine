@@ -7042,11 +7042,88 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$c[This command works in prefix and slash mode]\n$if[$isSlash==true]\n  $var[args;((opts.input))]\n$else\n  $var[args;$message[1]]\n$endif\n\n$c[Common processing]\nYou provided: $var[args]"
+              "function": "c",
+              "arguments": [
+                "This command works in prefix and slash mode"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "isslash",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_1))",
+              "condition.operator": "equals",
+              "condition.value": "true"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "setTemporaryVariable",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "key": "args",
+              "value": "((opts.input))"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "message",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "setTemporaryVariable",
+            "key": "action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "key": "args",
+              "value": "((action.action_2.action_0))"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "function": "c",
+              "arguments": [
+                "Common processing"
+              ]
+            }
+          },
+          {
+            "id": "n8",
+            "type": "respondWithMessage",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "content": "You provided: ((temp.args))"
             }
           }
         ],
@@ -7057,12 +7134,70 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "then"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "else"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n7",
+              "pin": "next"
+            },
+            "to": "n8"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:var"
+        "bdfd_generic_call:c",
+        "bdfd_generic_call:isslash",
+        "bdfd_generic_call:message"
       ]
     },
     {
@@ -29293,6 +29428,118 @@
       "warnings": [
         "bdfd_generic_call:eval"
       ]
+    },
+    {
+      "name": "review:literal-template-send",
+      "kind": "script",
+      "script": "$var[a;((x)) (((y)))]$sendMessage[$var[a]]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "setTemporaryVariable",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "key": "__bc_lp",
+              "value": "("
+            }
+          },
+          {
+            "id": "n2",
+            "type": "setTemporaryVariable",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "key": "a",
+              "value": "((x)) ((temp.__bc_lp))((y)))"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "sendMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "((temp.a))",
+              "bdfdRequireText": true
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "review:literal-template-slash",
+      "kind": "script",
+      "script": "$var[args;((opts.input))]You provided: $var[args]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "setTemporaryVariable",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "key": "args",
+              "value": "((opts.input))"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "You provided: ((temp.args))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
     },
     {
       "name": "review:dm-public",
