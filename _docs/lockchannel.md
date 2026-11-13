@@ -39,5 +39,6 @@ $lockChannel[123456;789]
 ## Example
 
 ```bdfd
-$sendMessage[$lockChannel[]]
+$lockChannel[]
+$sendMessage[Channel locked.]
 ```

@@ -34,5 +34,6 @@ $timeoutFor[$mentioned[1];10m;Spam]
 ## Example
 
 ```bdfd
-$sendMessage[$timeoutFor[$mentioned[1];10m;Spam]]
+$timeoutFor[$mentioned[1];10m;Spam]
+$sendMessage[Member timed out.]
 ```

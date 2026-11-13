@@ -38,5 +38,5 @@ $autocompleteFromList[red,green,blue]
 ## Example
 
 ```bdfd
-$sendMessage[$autocompleteFromList[red,green,blue]]
+$autocompleteFromList[red,green,blue]
 ```

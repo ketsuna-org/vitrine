@@ -39,5 +39,6 @@ $hideChannel[123456;789]
 ## Example
 
 ```bdfd
-$sendMessage[$hideChannel[]]
+$hideChannel[]
+$sendMessage[Channel hidden.]
 ```

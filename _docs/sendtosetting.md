@@ -36,5 +36,5 @@ $sendToSetting[logChannel;Member banned]
 ## Example
 
 ```bdfd
-$sendMessage[$sendToSetting[logChannel;Member banned]]
+$sendToSetting[logChannel;Member banned]
 ```

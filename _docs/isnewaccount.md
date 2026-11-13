@@ -33,5 +33,6 @@ $onlyIf[$isNewAccount[$authorID;3]==false;Your account is too new.]
 ## Example
 
 ```bdfd
-$sendMessage[$onlyIf[$isNewAccount[$authorID;3]==false;Your account is too new.]]
+$onlyIf[$isNewAccount[$authorID;3]==false;Your account is too new.]
+$sendMessage[Welcome!]
 ```

@@ -33,5 +33,6 @@ $takeRoleByName[$authorID;Member]
 ## Example
 
 ```bdfd
-$sendMessage[$takeRoleByName[$authorID;Member]]
+$takeRoleByName[$authorID;Member]
+$sendMessage[Role removed.]
 ```

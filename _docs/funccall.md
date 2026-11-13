@@ -68,7 +68,7 @@ Output: `({hello})`
 ### Calling an undefined function
 
 ```bdfd
-$sendMessage[$funcCall[notfound;test]]
+$sendMessage[Result: "$funcCall[notfound;test]"]
 ```
 
 Returns an empty string (and records a warning in the execution trace).
