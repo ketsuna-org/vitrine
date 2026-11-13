@@ -627,7 +627,8 @@
       },
       "warnings": [
         "bdfd_generic_call:checkuserperms",
-        "bdfd_generic_call:mentioned"
+        "bdfd_generic_call:mentioned",
+        "bdfd_audit_reason_default:kick"
       ]
     },
     {
@@ -8872,7 +8873,8 @@
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:mentioned"
+        "bdfd_generic_call:mentioned",
+        "bdfd_audit_reason_default:untimeout"
       ]
     },
     {
@@ -9461,152 +9463,11 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "setTemporaryVariable",
+            "type": "runBdfdScript",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "key": "__out",
-              "value": ""
-            }
-          },
-          {
-            "id": "n2",
-            "type": "callFunction",
-            "key": "action_1",
-            "enabled": true,
-            "payload": {
-              "function": "checkcontains",
-              "arguments": [
-                "$message",
-                "error"
-              ]
-            }
-          },
-          {
-            "id": "n3",
-            "type": "ifBlock",
-            "key": "action_2",
-            "enabled": true,
-            "payload": {
-              "condition.variable": "((action.action_1))",
-              "condition.operator": "equals",
-              "condition.value": "true"
-            }
-          },
-          {
-            "id": "n4",
-            "type": "callFunction",
-            "key": "action_2.action_0",
-            "enabled": true,
-            "payload": {
-              "function": "webhookcolor",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "#ED4245"
-              ]
-            }
-          },
-          {
-            "id": "n5",
-            "type": "callFunction",
-            "key": "action_2.action_1",
-            "enabled": true,
-            "payload": {
-              "function": "webhooktitle",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "Error Detected"
-              ]
-            }
-          },
-          {
-            "id": "n6",
-            "type": "setTemporaryVariable",
-            "key": "action_2.action_2",
-            "enabled": true,
-            "payload": {
-              "key": "__out",
-              "value": "((temp.__out))\n  ((action.action_2.action_0))\n  ((action.action_2.action_1))\n"
-            }
-          },
-          {
-            "id": "n7",
-            "type": "callFunction",
-            "key": "action_2.action_0",
-            "enabled": true,
-            "payload": {
-              "function": "webhookcolor",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "#5865F2"
-              ]
-            }
-          },
-          {
-            "id": "n8",
-            "type": "callFunction",
-            "key": "action_2.action_1",
-            "enabled": true,
-            "payload": {
-              "function": "webhooktitle",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "Information"
-              ]
-            }
-          },
-          {
-            "id": "n9",
-            "type": "setTemporaryVariable",
-            "key": "action_2.action_2",
-            "enabled": true,
-            "payload": {
-              "key": "__out",
-              "value": "((temp.__out))\n  ((action.action_2.action_0))\n  ((action.action_2.action_1))\n"
-            }
-          },
-          {
-            "id": "n10",
-            "type": "callFunction",
-            "key": "action_3",
-            "enabled": true,
-            "payload": {
-              "function": "webhookdescription",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "$message"
-              ]
-            }
-          },
-          {
-            "id": "n11",
-            "type": "callFunction",
-            "key": "action_4",
-            "enabled": true,
-            "payload": {
-              "function": "webhooksend",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef"
-              ]
-            }
-          },
-          {
-            "id": "n12",
-            "type": "setTemporaryVariable",
-            "key": "action_5",
-            "enabled": true,
-            "payload": {
-              "key": "__out",
-              "value": "((temp.__out))\n((action.action_3))\n((action.action_4))"
-            }
-          },
-          {
-            "id": "n13",
-            "type": "respondWithMessage",
-            "key": "action_6",
-            "enabled": true,
-            "payload": {
-              "content": "((temp.__out))"
+              "scriptContent": "$if[$checkContains[$message;error]==true]\n  $webhookColor[https://discord.com/api/webhooks/123456/abcdef;#ED4245]\n  $webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Error Detected]\n$else\n  $webhookColor[https://discord.com/api/webhooks/123456/abcdef;#5865F2]\n  $webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Information]\n$endif\n$webhookDescription[https://discord.com/api/webhooks/123456/abcdef;$message]\n$webhookSend[https://discord.com/api/webhooks/123456/abcdef]"
             }
           }
         ],
@@ -9617,108 +9478,12 @@
               "pin": "next"
             },
             "to": "n1"
-          },
-          {
-            "from": {
-              "node": "n1",
-              "pin": "next"
-            },
-            "to": "n2"
-          },
-          {
-            "from": {
-              "node": "n2",
-              "pin": "next"
-            },
-            "to": "n3"
-          },
-          {
-            "from": {
-              "node": "n3",
-              "pin": "then"
-            },
-            "to": "n4"
-          },
-          {
-            "from": {
-              "node": "n4",
-              "pin": "next"
-            },
-            "to": "n5"
-          },
-          {
-            "from": {
-              "node": "n5",
-              "pin": "next"
-            },
-            "to": "n6"
-          },
-          {
-            "from": {
-              "node": "n3",
-              "pin": "else"
-            },
-            "to": "n7"
-          },
-          {
-            "from": {
-              "node": "n7",
-              "pin": "next"
-            },
-            "to": "n8"
-          },
-          {
-            "from": {
-              "node": "n8",
-              "pin": "next"
-            },
-            "to": "n9"
-          },
-          {
-            "from": {
-              "node": "n6",
-              "pin": "next"
-            },
-            "to": "n10"
-          },
-          {
-            "from": {
-              "node": "n9",
-              "pin": "next"
-            },
-            "to": "n10"
-          },
-          {
-            "from": {
-              "node": "n10",
-              "pin": "next"
-            },
-            "to": "n11"
-          },
-          {
-            "from": {
-              "node": "n11",
-              "pin": "next"
-            },
-            "to": "n12"
-          },
-          {
-            "from": {
-              "node": "n12",
-              "pin": "next"
-            },
-            "to": "n13"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:checkcontains",
-        "bdfd_generic_call:webhookcolor",
-        "bdfd_generic_call:webhooktitle",
-        "bdfd_generic_call:webhookdescription",
-        "bdfd_generic_call:webhooksend",
-        "bdfd_output_accumulated"
+        "bdfd_passthrough:webhookcolor"
       ]
     },
     {
@@ -15966,7 +15731,8 @@
       "warnings": [
         "bdfd_generic_call:roleexists",
         "bdfd_generic_call:mentioned",
-        "bdfd_generic_call:roleid"
+        "bdfd_generic_call:roleid",
+        "bdfd_audit_reason_default:giverole"
       ]
     },
     {
@@ -18506,7 +18272,8 @@
       },
       "warnings": [
         "bdfd_generic_call:checkcontains",
-        "bdfd_generic_call:mentioned"
+        "bdfd_generic_call:mentioned",
+        "bdfd_audit_reason_default:kick"
       ]
     },
     {
@@ -23031,7 +22798,8 @@
       "warnings": [
         "bdfd_generic_call:checkcontains",
         "bdfd_generic_call:mentioned",
-        "bdfd_generic_call:roleid"
+        "bdfd_generic_call:roleid",
+        "bdfd_audit_reason_default:takerole"
       ]
     },
     {
@@ -23139,7 +22907,8 @@
       "warnings": [
         "bdfd_generic_call:takeroles",
         "bdfd_generic_call:authorid",
-        "bdfd_generic_call:roleid"
+        "bdfd_generic_call:roleid",
+        "bdfd_audit_reason_default:giverole"
       ]
     },
     {
@@ -24414,75 +24183,11 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "callFunction",
+            "type": "runBdfdScript",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "webhookcontent",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "Here are the details below:"
-              ]
-            }
-          },
-          {
-            "id": "n2",
-            "type": "callFunction",
-            "key": "action_1",
-            "enabled": true,
-            "payload": {
-              "function": "webhooktitle",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "Important Details"
-              ]
-            }
-          },
-          {
-            "id": "n3",
-            "type": "callFunction",
-            "key": "action_2",
-            "enabled": true,
-            "payload": {
-              "function": "webhookdescription",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "The detailed information can be found here."
-              ]
-            }
-          },
-          {
-            "id": "n4",
-            "type": "callFunction",
-            "key": "action_3",
-            "enabled": true,
-            "payload": {
-              "function": "webhookcolor",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef",
-                "#FEE75C"
-              ]
-            }
-          },
-          {
-            "id": "n5",
-            "type": "callFunction",
-            "key": "action_4",
-            "enabled": true,
-            "payload": {
-              "function": "webhooksend",
-              "arguments": [
-                "https://discord.com/api/webhooks/123456/abcdef"
-              ]
-            }
-          },
-          {
-            "id": "n6",
-            "type": "respondWithMessage",
-            "key": "action_5",
-            "enabled": true,
-            "payload": {
-              "content": "((action.action_0))\n((action.action_1))\n((action.action_2))\n((action.action_3))\n((action.action_4))"
+              "scriptContent": "$webhookContent[https://discord.com/api/webhooks/123456/abcdef;Here are the details below:]\n$webhookTitle[https://discord.com/api/webhooks/123456/abcdef;Important Details]\n$webhookDescription[https://discord.com/api/webhooks/123456/abcdef;The detailed information can be found here.]\n$webhookColor[https://discord.com/api/webhooks/123456/abcdef;#FEE75C]\n$webhookSend[https://discord.com/api/webhooks/123456/abcdef]"
             }
           }
         ],
@@ -24493,51 +24198,12 @@
               "pin": "next"
             },
             "to": "n1"
-          },
-          {
-            "from": {
-              "node": "n1",
-              "pin": "next"
-            },
-            "to": "n2"
-          },
-          {
-            "from": {
-              "node": "n2",
-              "pin": "next"
-            },
-            "to": "n3"
-          },
-          {
-            "from": {
-              "node": "n3",
-              "pin": "next"
-            },
-            "to": "n4"
-          },
-          {
-            "from": {
-              "node": "n4",
-              "pin": "next"
-            },
-            "to": "n5"
-          },
-          {
-            "from": {
-              "node": "n5",
-              "pin": "next"
-            },
-            "to": "n6"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:webhookcontent",
-        "bdfd_generic_call:webhooktitle",
-        "bdfd_generic_call:webhookdescription",
-        "bdfd_generic_call:webhookcolor",
-        "bdfd_generic_call:webhooksend"
+        "bdfd_passthrough:webhookcontent"
       ]
     },
     {
@@ -26690,7 +26356,9 @@
         ],
         "data": []
       },
-      "warnings": []
+      "warnings": [
+        "bdfd_audit_reason_default:giverole"
+      ]
     },
     {
       "name": "main:only-if",

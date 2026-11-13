@@ -420,6 +420,17 @@ class Converter {
     const value = dartString(item.node.payload.value);
     if (isComputed(value)) {
       const last = items.length - i - 1; // actions qui suivent
+      // Une table `case:` par saut calculé est quadratique : même plafond que le saut calculé (jumpToAction).
+      if (last >= 1 && this.jumpTableLinks + last > MAX_JUMP_TABLE_LINKS) {
+        this.link(item.id, PINS.default, next);
+        this.warn(
+          "computed_jump_table_truncated",
+          item.key,
+          "La table des nombres de ce saut d'actions calculé est trop grosse pour le graphe (trop de sauts calculés dans la liste) : aucune action n'est sautée.",
+        );
+        return;
+      }
+      if (last >= 1) this.jumpTableLinks += last;
       this.link(item.id, caseOfPin("0"), next);
       for (let k = 1; k < last; k++) this.link(item.id, caseOfPin(`${k}`), this.afterSkipping(items, i, k, cont));
       if (last < 1) {
