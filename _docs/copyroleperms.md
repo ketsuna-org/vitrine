@@ -37,5 +37,6 @@ $copyRolePerms[111;222]
 ## Example
 
 ```bdfd
-$sendMessage[$copyRolePerms[111;222]]
+$copyRolePerms[111;222]
+$sendMessage[Permissions copied.]
 ```

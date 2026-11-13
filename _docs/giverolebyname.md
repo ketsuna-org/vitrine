@@ -33,5 +33,6 @@ $giveRoleByName[$authorID;Member]
 ## Example
 
 ```bdfd
-$sendMessage[$giveRoleByName[$authorID;Member]]
+$giveRoleByName[$authorID;Member]
+$sendMessage[Role given.]
 ```

@@ -32,5 +32,9 @@ $if[$chance[10]==true]Rare drop!$endif
 ## Example
 
 ```bdfd
-$sendMessage[$if[$chance[10]==true]Rare drop!$endif]
+$if[$chance[10]==true]
+  $sendMessage[Rare drop!]
+$else
+  $sendMessage[Common drop.]
+$endif
 ```

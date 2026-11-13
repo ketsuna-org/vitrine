@@ -6064,7 +6064,7 @@
     {
       "name": "docs:giverolebyname#0",
       "kind": "script",
-      "script": "$sendMessage[$giveRoleByName[$authorID;Member]]",
+      "script": "$giveRoleByName[$authorID;Member]\n$sendMessage[Role given.]",
       "graph": {
         "version": 2,
         "nodes": [
@@ -6087,8 +6087,7 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))",
-              "bdfdRequireText": true
+              "content": "Role given."
             }
           }
         ],
@@ -7542,7 +7541,7 @@
     {
       "name": "docs:lockchannel#0",
       "kind": "script",
-      "script": "$sendMessage[$lockChannel[]]",
+      "script": "$lockChannel[]\n$sendMessage[Channel locked.]",
       "graph": {
         "version": 2,
         "nodes": [
@@ -7565,8 +7564,7 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))",
-              "bdfdRequireText": true
+              "content": "Channel locked."
             }
           }
         ],
@@ -9387,7 +9385,7 @@
     {
       "name": "docs:timeoutfor#0",
       "kind": "script",
-      "script": "$sendMessage[$timeoutFor[$mentioned[1];10m;Spam]]",
+      "script": "$timeoutFor[$mentioned[1];10m;Spam]\n$sendMessage[Member timed out.]",
       "graph": {
         "version": 2,
         "nodes": [
@@ -9397,22 +9395,30 @@
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "function": "timeoutfor",
+              "function": "mentioned",
               "arguments": [
-                "$mentioned[1]",
-                "10m",
-                "Spam"
+                "1"
               ]
             }
           },
           {
             "id": "n2",
-            "type": "sendMessage",
+            "type": "muteUser",
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))",
-              "bdfdRequireText": true
+              "userId": "((action.action_0))",
+              "duration": "10m",
+              "reason": "Spam"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "sendMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "Member timed out."
             }
           }
         ],
@@ -9430,12 +9436,19 @@
               "pin": "next"
             },
             "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_generic_call:timeoutfor"
+        "bdfd_generic_call:mentioned"
       ]
     },
     {
@@ -23240,7 +23253,7 @@
     {
       "name": "docs:showchannel#x1",
       "kind": "script",
-      "script": "$sendMessage[$showChannel[]]",
+      "script": "$showChannel[]\n$sendMessage[Channel shown.]",
       "graph": {
         "version": 2,
         "nodes": [
@@ -23263,8 +23276,7 @@
             "key": "action_1",
             "enabled": true,
             "payload": {
-              "content": "((action.action_0))",
-              "bdfdRequireText": true
+              "content": "Channel shown."
             }
           }
         ],
