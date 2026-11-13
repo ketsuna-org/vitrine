@@ -410,7 +410,7 @@ const registry = {
       customIdLabel: arb.scratch_custom_id_filter_label,
       variablesLabel: arb.scratch_event_variables,
     },
-    executionModeLabel: arb.scratch_execution_mode,
+    executionModeLabel: arb.scratch_execution_mode ?? 'How is the command built?',
     executionModes: ['Visual (Graph)', arb.scratch_mode_bdfd, arb.cmd_execution_mode_javascript],
   },
   // Labels of the embed editor (forms/response_embeds_editor.dart), used to render embed values.
