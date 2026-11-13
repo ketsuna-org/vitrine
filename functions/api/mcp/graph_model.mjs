@@ -10,7 +10,15 @@ export const FOR_LOOP_TYPE = "forLoop";
 export const JSON_FOR_EACH_TYPE = "jsonForEachLoop";
 export const TRY_CATCH_TYPE = "tryCatch";
 export const SWITCH_TYPE = "switch";
-export const REGION_OWNER_TYPES = new Set([FOR_LOOP_TYPE, JSON_FOR_EACH_TYPE, TRY_CATCH_TYPE]);
+// Types ajoutés par « fonction = bloc » (`$while`, `$async`, `$break`, `$continue`) : pas des types d'action.
+export const WHILE_LOOP_TYPE = "whileLoop";
+export const ASYNC_BLOCK_TYPE = "asyncBlock";
+export const BREAK_LOOP_TYPE = "breakLoop";
+export const CONTINUE_LOOP_TYPE = "continueLoop";
+/** Boucles : région fermée `body`, sortie `done`. */
+export const LOOP_TYPES = new Set([FOR_LOOP_TYPE, JSON_FOR_EACH_TYPE, WHILE_LOOP_TYPE, ASYNC_BLOCK_TYPE]);
+/** Types dont les pins `body` / `try` / `catch` ouvrent une RÉGION FERMÉE. */
+export const REGION_OWNER_TYPES = new Set([...LOOP_TYPES, TRY_CATCH_TYPE]);
 
 export const PINS = Object.freeze({
   next: "next",

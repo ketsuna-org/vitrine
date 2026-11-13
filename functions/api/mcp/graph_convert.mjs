@@ -39,12 +39,23 @@ const JUMP_PREFIX = "JUMP_TO_";
 const SKIP_PREFIX = "SKIPPED_";
 const ITER_REFERENCE = /action\.[^()]*?\.iter\d+/;
 
-/** Équivalent de `int.tryParse` de Dart (entier décimal ou hexadécimal, sans espaces). */
+// Espaces ignorés autour du nombre par `int.tryParse` (VM Dart) : \s de JS moins U+180E, plus U+0085 (pas dans \s).
+const DART_SPACE = /^[\t-\r \u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+|[\t-\r \u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+$/g;
+
+/**
+ * Équivalent de `int.tryParse` de Dart (entier 64 bits) : espaces autour ignorés, signe `+`/`-`, décimal ou
+ * hexadécimal `0x`. Rend un BigInt ou `null`. Un hexadécimal positif tient sur 64 bits et se replie comme en Dart
+ * (`0xFFFFFFFFFFFFFFFF` = -1). Pas de `_`, pas d'espace entre le signe et les chiffres.
+ */
 export function dartIntParse(text) {
-  const s = String(text);
-  if (/^[+-]?\d+$/.test(s)) return Number.parseInt(s, 10);
-  const hex = s.match(/^([+-]?)0x([0-9a-f]+)$/i);
-  return hex ? Number.parseInt(hex[2], 16) * (hex[1] === "-" ? -1 : 1) : null;
+  const m = String(text).replace(DART_SPACE, "").match(/^([+-]?)(?:(0[xX])([0-9a-fA-F]+)|([0-9]+))$/);
+  if (m === null) return null;
+  const negative = m[1] === "-";
+  const magnitude = BigInt(m[2] ? `0x${m[3]}` : m[4]);
+  if (negative) return magnitude > 1n << 63n ? null : -magnitude;
+  if (magnitude >= 1n << 64n) return null;
+  if (m[2]) return BigInt.asIntN(64, magnitude);
+  return magnitude >= 1n << 63n ? null : magnitude;
 }
 
 const dartString = (v) => (v !== null && typeof v === "object" ? JSON.stringify(v) : String(v));
@@ -219,7 +230,7 @@ class Converter {
           error.mode = "continue";
           break;
         case "skip":
-          errorSkip = dartIntParse(errorMap.skipCount === undefined || errorMap.skipCount === null ? "" : dartString(errorMap.skipCount)) ?? 0;
+          errorSkip = Number(dartIntParse(errorMap.skipCount === undefined || errorMap.skipCount === null ? "" : dartString(errorMap.skipCount)) ?? 0n);
           if (errorSkip <= 0) {
             errorSkip = 0;
             error.mode = "continue";
@@ -366,9 +377,9 @@ class Converter {
       );
       return;
     }
-    const count = dartIntParse(value.trim());
-    if (count !== null && count > 0) {
-      this.link(item.id, caseOfPin(`${count}`), this.afterSkipping(items, i, count, cont));
+    const count = dartIntParse(value);
+    if (count !== null && count > 0n) {
+      this.link(item.id, caseOfPin(`${count}`), this.afterSkipping(items, i, Number(count), cont));
       return;
     }
     if (count === null && value.trim() !== "") {
@@ -395,8 +406,8 @@ class Converter {
     const named = names.get(target);
     if (named !== undefined) return named > own ? named : null;
     const position = dartIntParse(target);
-    if (position !== null && position >= 1 && position <= items.length) {
-      if (position - 1 > own) return position - 1;
+    if (position !== null && position >= 1n && position <= BigInt(items.length)) {
+      if (Number(position) - 1 > own) return Number(position) - 1;
       backwardPosition();
     }
     return null;

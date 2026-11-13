@@ -4,9 +4,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { validateGraph } from "../functions/api/mcp/graph_validate.mjs";
 import { convertActionsToGraph } from "../functions/api/mcp/graph_convert.mjs";
 import { ensureGraph } from "../functions/api/mcp/graph_ensure.mjs";
+import { dartIntParse } from "../functions/api/mcp/graph_convert.mjs";
+import { LOOP_TYPES, REGION_OWNER_TYPES } from "../functions/api/mcp/graph_model.mjs";
 
 const fixture = async (name) => JSON.parse(await readFile(new URL(`./fixtures/${name}`, import.meta.url), "utf8"));
 const grammar = JSON.parse(await readFile(new URL("../_data/blocks_grammar.json", import.meta.url), "utf8"));
@@ -14,8 +19,10 @@ const grammar = JSON.parse(await readFile(new URL("../_data/blocks_grammar.json"
 const knownTypes = new Set(Object.keys(grammar));
 const codes = (issues) => [...new Set(issues.map((i) => i.code))].sort();
 
-const validation = await fixture("graph_validation_corpus.json");
-const conversion = await fixture("graph_conversion_corpus.json");
+// Les deux fichiers « loops » et « dartint » sont calculés par le Dart réel et complètent les corpus principaux
+// (types de boucle, `int.tryParse`) : à fusionner dans packages/shared/test/fixtures côté bot-creator.
+const validation = [...(await fixture("graph_validation_corpus.json")), ...(await fixture("graph_validation_loops_corpus.json"))];
+const conversion = [...(await fixture("graph_conversion_corpus.json")), ...(await fixture("graph_conversion_dartint_corpus.json"))];
 const ensure = await fixture("ensure_graph_corpus.json");
 const roundtrip = await fixture("bdfd_roundtrip_corpus.json");
 
@@ -80,4 +87,30 @@ test("les graphes du corpus d'aller-retour BDFD sont valides", () => {
     // `libre:parallele` lance exprès deux branches parallèles qui répondent : seul cas attendu en erreur.
     assert.deepEqual(codes, c.name === "libre:parallele" ? ["concurrent_response"] : [], c.name);
   }
+});
+
+// `dart_int_parse.json` : sortie réelle de `int.tryParse` (Dart VM) ; le port JS doit lire les entiers pareil.
+test("dartIntParse lit les entiers comme int.tryParse de Dart", async () => {
+  const table = await fixture("dart_int_parse.json");
+  assert.ok(Object.keys(table).length >= 80);
+  for (const [input, want] of Object.entries(table)) {
+    const got = dartIntParse(input);
+    assert.equal(got === null ? null : got.toString(), want, JSON.stringify(input));
+  }
+});
+
+// Les types de boucle sont dans la grammaire (le validateur n'accepte que ses types) ET suivent le registre extrait de l'app.
+test("les types de boucle du validateur suivent le registre de l'app", async () => {
+  const registry = JSON.parse(await readFile(new URL("../_data/blocks_registry.json", import.meta.url), "utf8"));
+  assert.deepEqual([...LOOP_TYPES].sort(), [...registry.graph.loopTypes].sort());
+  assert.deepEqual([...REGION_OWNER_TYPES].sort(), [...registry.graph.regionOwners].sort());
+  for (const type of [...registry.graph.regionOwners, "breakLoop", "continueLoop"]) assert.ok(knownTypes.has(type), `grammaire : ${type}`);
+});
+
+// Les quatre corpus sont des COPIES exactes des fixtures Dart (scripts/sync-graph-corpora.mjs les recopie).
+const appCheckout = [process.env.BOT_CREATOR_APP_DIR, new URL("../../bot-creator", import.meta.url).pathname]
+  .filter(Boolean)
+  .find((dir) => existsSync(`${dir}/packages/shared/test/fixtures`));
+test("les corpus sont identiques aux fixtures Dart", { skip: !appCheckout && "dépôt bot-creator absent" }, () => {
+  execFileSync("node", [fileURLToPath(new URL("../scripts/sync-graph-corpora.mjs", import.meta.url)), "--app", appCheckout, "--check"], { stdio: "pipe" });
 });

@@ -1058,6 +1058,52 @@
       "error"
     ]
   },
+  "whileLoop": {
+    "desc": "Boucle `$while` : le corps (pin `body`) tourne tant que la condition est vraie, `done` mène à la suite. Région fermée.",
+    "category": "Logic",
+    "params": {
+      "condition.variable": "string",
+      "condition.operator": "string?",
+      "condition.value": "string|number?"
+    },
+    "output": "((action.<key>)) = WHILE_<n> ; variables ((_loop.index))",
+    "pins": [
+      "body",
+      "done",
+      "error"
+    ]
+  },
+  "asyncBlock": {
+    "desc": "Bloc `$async` : le corps (pin `body`) s'exécute une fois, `done` mène à la suite. Région fermée.",
+    "category": "Logic",
+    "params": {
+      "name": "string"
+    },
+    "output": "((action.<key>)) = ASYNC_<n>",
+    "pins": [
+      "body",
+      "done",
+      "error"
+    ]
+  },
+  "breakLoop": {
+    "desc": "Sort de la boucle englobante (`$break`). Aucun pin `next` : seul `error` est permis.",
+    "category": "Logic",
+    "params": {},
+    "output": "",
+    "pins": [
+      "error"
+    ]
+  },
+  "continueLoop": {
+    "desc": "Passe au tour suivant de la boucle englobante (`$continue`). Aucun pin `next` : seul `error` est permis.",
+    "category": "Logic",
+    "params": {},
+    "output": "",
+    "pins": [
+      "error"
+    ]
+  },
   "tryCatch": {
     "desc": "Essayer / attraper (régions fermées) : le pin `try` s'exécute d'abord ; si une action échoue, error.* est renseigné et le pin `catch` s'exécute ; puis `done`. `error` : l'erreur non attrapée.",
     "category": "Logic",

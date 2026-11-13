@@ -6,8 +6,9 @@
 import {
   GRAPH_START_ID,
   IF_TYPE,
-  FOR_LOOP_TYPE,
-  JSON_FOR_EACH_TYPE,
+  LOOP_TYPES,
+  BREAK_LOOP_TYPE,
+  CONTINUE_LOOP_TYPE,
   TRY_CATCH_TYPE,
   SWITCH_TYPE,
   REGION_OWNER_TYPES,
@@ -132,7 +133,7 @@ export function validateGraph(rawGraph, knownTypes) {
     const out = linksBySource.get(node.id) ?? [];
     const linked = (pin) => out.some((l) => l.from.pin === pin);
 
-    if (node.type === FOR_LOOP_TYPE || node.type === JSON_FOR_EACH_TYPE) {
+    if (LOOP_TYPES.has(node.type)) {
       if (!linked(PINS.body)) warn("empty_body", `The loop "${node.id}" has an empty body.`, node.id);
     } else if (node.type === TRY_CATCH_TYPE) {
       if (!linked(PINS.try) || !linked(PINS.catch)) warn("empty_try", `The try/catch "${node.id}" needs both a try and a catch branch.`, node.id);
@@ -225,15 +226,17 @@ export function validateGraph(rawGraph, knownTypes) {
 }
 
 function allowedPins(node) {
+  if (LOOP_TYPES.has(node.type)) return new Set([PINS.body, PINS.done, PINS.error]);
   switch (node.type) {
     case IF_TYPE: {
       const conditions = node.payload.elseIfConditions;
       const count = Array.isArray(conditions) ? conditions.length : 0;
       return new Set([PINS.then, ...Array.from({ length: count }, (_, j) => elseIfPin(j)), PINS.else, PINS.error]);
     }
-    case FOR_LOOP_TYPE:
-    case JSON_FOR_EACH_TYPE:
-      return new Set([PINS.body, PINS.done, PINS.error]);
+    case BREAK_LOOP_TYPE:
+    case CONTINUE_LOOP_TYPE:
+      // Sortent de la boucle : aucune suite.
+      return new Set([PINS.error]);
     case TRY_CATCH_TYPE:
       return new Set([PINS.try, PINS.catch, PINS.done, PINS.error]);
     case SWITCH_TYPE:

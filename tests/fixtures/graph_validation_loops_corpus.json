@@ -1,0 +1,777 @@
+[
+  {
+    "name": "loops: whileLoop with body and done is valid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "w",
+          "type": "whileLoop",
+          "key": "w",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "b",
+          "type": "log",
+          "key": "b",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "d",
+          "type": "wait",
+          "key": "d",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "w"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "body"
+          },
+          "to": "b"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "done"
+          },
+          "to": "d"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "name": "loops: whileLoop next pin is invalid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "w",
+          "type": "whileLoop",
+          "key": "w",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "d",
+          "type": "wait",
+          "key": "d",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "w"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "next"
+          },
+          "to": "d"
+        }
+      ],
+      "data": []
+    },
+    "errors": [
+      "invalid_pin"
+    ],
+    "warnings": [
+      "empty_body"
+    ]
+  },
+  {
+    "name": "loops: whileLoop empty body warns",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "w",
+          "type": "whileLoop",
+          "key": "w",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "d",
+          "type": "wait",
+          "key": "d",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "w"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "done"
+          },
+          "to": "d"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": [
+      "empty_body"
+    ]
+  },
+  {
+    "name": "loops: whileLoop region leak",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "w",
+          "type": "whileLoop",
+          "key": "w",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "b",
+          "type": "log",
+          "key": "b",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "d",
+          "type": "wait",
+          "key": "d",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "w"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "body"
+          },
+          "to": "b"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "done"
+          },
+          "to": "d"
+        },
+        {
+          "from": {
+            "node": "b",
+            "pin": "next"
+          },
+          "to": "d"
+        }
+      ],
+      "data": []
+    },
+    "errors": [
+      "region_leak"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "loops: asyncBlock with body and done is valid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "w",
+          "type": "asyncBlock",
+          "key": "w",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "b",
+          "type": "log",
+          "key": "b",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "d",
+          "type": "wait",
+          "key": "d",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "w"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "body"
+          },
+          "to": "b"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "done"
+          },
+          "to": "d"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "name": "loops: asyncBlock next pin is invalid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "w",
+          "type": "asyncBlock",
+          "key": "w",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "d",
+          "type": "wait",
+          "key": "d",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "w"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "next"
+          },
+          "to": "d"
+        }
+      ],
+      "data": []
+    },
+    "errors": [
+      "invalid_pin"
+    ],
+    "warnings": [
+      "empty_body"
+    ]
+  },
+  {
+    "name": "loops: asyncBlock empty body warns",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "w",
+          "type": "asyncBlock",
+          "key": "w",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "d",
+          "type": "wait",
+          "key": "d",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "w"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "done"
+          },
+          "to": "d"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": [
+      "empty_body"
+    ]
+  },
+  {
+    "name": "loops: asyncBlock region leak",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "w",
+          "type": "asyncBlock",
+          "key": "w",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "b",
+          "type": "log",
+          "key": "b",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "d",
+          "type": "wait",
+          "key": "d",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "w"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "body"
+          },
+          "to": "b"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "done"
+          },
+          "to": "d"
+        },
+        {
+          "from": {
+            "node": "b",
+            "pin": "next"
+          },
+          "to": "d"
+        }
+      ],
+      "data": []
+    },
+    "errors": [
+      "region_leak"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "loops: breakLoop in a loop body is valid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "f",
+          "type": "forLoop",
+          "key": "f",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "x",
+          "type": "breakLoop",
+          "key": "x",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "f"
+        },
+        {
+          "from": {
+            "node": "f",
+            "pin": "body"
+          },
+          "to": "x"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "name": "loops: breakLoop next pin is invalid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "f",
+          "type": "forLoop",
+          "key": "f",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "x",
+          "type": "breakLoop",
+          "key": "x",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "y",
+          "type": "log",
+          "key": "y",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "f"
+        },
+        {
+          "from": {
+            "node": "f",
+            "pin": "body"
+          },
+          "to": "x"
+        },
+        {
+          "from": {
+            "node": "x",
+            "pin": "next"
+          },
+          "to": "y"
+        }
+      ],
+      "data": []
+    },
+    "errors": [
+      "invalid_pin"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "loops: breakLoop error pin is valid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "f",
+          "type": "forLoop",
+          "key": "f",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "x",
+          "type": "breakLoop",
+          "key": "x",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "y",
+          "type": "log",
+          "key": "y",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "f"
+        },
+        {
+          "from": {
+            "node": "f",
+            "pin": "body"
+          },
+          "to": "x"
+        },
+        {
+          "from": {
+            "node": "x",
+            "pin": "error"
+          },
+          "to": "y"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "name": "loops: continueLoop in a loop body is valid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "f",
+          "type": "forLoop",
+          "key": "f",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "x",
+          "type": "continueLoop",
+          "key": "x",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "f"
+        },
+        {
+          "from": {
+            "node": "f",
+            "pin": "body"
+          },
+          "to": "x"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "name": "loops: continueLoop next pin is invalid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "f",
+          "type": "forLoop",
+          "key": "f",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "x",
+          "type": "continueLoop",
+          "key": "x",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "y",
+          "type": "log",
+          "key": "y",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "f"
+        },
+        {
+          "from": {
+            "node": "f",
+            "pin": "body"
+          },
+          "to": "x"
+        },
+        {
+          "from": {
+            "node": "x",
+            "pin": "next"
+          },
+          "to": "y"
+        }
+      ],
+      "data": []
+    },
+    "errors": [
+      "invalid_pin"
+    ],
+    "warnings": []
+  },
+  {
+    "name": "loops: continueLoop error pin is valid",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "f",
+          "type": "forLoop",
+          "key": "f",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "x",
+          "type": "continueLoop",
+          "key": "x",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "y",
+          "type": "log",
+          "key": "y",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "f"
+        },
+        {
+          "from": {
+            "node": "f",
+            "pin": "body"
+          },
+          "to": "x"
+        },
+        {
+          "from": {
+            "node": "x",
+            "pin": "error"
+          },
+          "to": "y"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": []
+  },
+  {
+    "name": "loops: while nested in for",
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "f",
+          "type": "forLoop",
+          "key": "f",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "w",
+          "type": "whileLoop",
+          "key": "w",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "x",
+          "type": "breakLoop",
+          "key": "x",
+          "enabled": true,
+          "payload": {}
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "f"
+        },
+        {
+          "from": {
+            "node": "f",
+            "pin": "body"
+          },
+          "to": "w"
+        },
+        {
+          "from": {
+            "node": "w",
+            "pin": "body"
+          },
+          "to": "x"
+        }
+      ],
+      "data": []
+    },
+    "errors": [],
+    "warnings": []
+  }
+]

@@ -302,3 +302,38 @@ test('a guildMember contextId must be guildId:userId', async () => {
   const user = await one({ scope: 'user', key: 'k', contextId: '123' });
   assert.equal(user.data.valid, true, 'other scopes keep a bare id');
 });
+
+test('validate_graph accepts the loop nodes a $while script converts to (whileLoop, asyncBlock, breakLoop, continueLoop)', async () => {
+  const node = (id, type, payload = {}) => ({ id, type, key: id, enabled: true, payload });
+  const link = (from, pin, to) => ({ from: { node: from, pin }, to });
+  const graph = {
+    version: 2,
+    nodes: [
+      node('w', 'whileLoop', { 'condition.variable': '((variable.n))', 'condition.operator': 'lessThan', 'condition.value': '3' }),
+      node('b', 'breakLoop'),
+      node('a', 'asyncBlock', { name: 'work' }),
+      node('c', 'continueLoop'),
+    ],
+    links: [link('start', 'next', 'w'), link('w', 'body', 'b'), link('w', 'done', 'a'), link('a', 'body', 'c')],
+    data: [],
+  };
+  const { data } = await call('validate_graph', { graph });
+  assert.deepEqual(data.errors, []);
+  assert.equal(data.valid, true);
+  // break/continue n'ont pas de pin next : il est refusé, comme en Dart et en Go.
+  graph.links.push(link('b', 'next', 'a'));
+  const refused = (await call('validate_graph', { graph })).data;
+  assert.ok(refused.errors.some((e) => e.code === 'invalid_pin'), JSON.stringify(refused.errors));
+});
+
+test('the saved-structure recipe of the tickets doc is a valid graph (no legacy depend_on list)', async () => {
+  const md = await readFile(new URL('../_docs/tickets.md', import.meta.url), 'utf8');
+  assert.ok(!md.includes('depend_on'));
+  const graphs = [...md.matchAll(/```json\n([\s\S]*?)\n```/g)].map((m) => JSON.parse(m[1]));
+  assert.equal(graphs.length, 2);
+  for (const graph of graphs) {
+    const { data } = await call('validate_graph', { graph });
+    assert.deepEqual(data.errors, []);
+    assert.equal(data.valid, true);
+  }
+});

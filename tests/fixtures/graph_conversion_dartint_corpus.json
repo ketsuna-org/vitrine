@@ -1,0 +1,791 @@
+[
+  {
+    "name": "dartint: jump target with trailing space",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "payload": {
+          "targetKey": "2 "
+        },
+        "key": "j"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "C"
+        },
+        "key": "C"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "2 ",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "log",
+          "key": "C",
+          "enabled": true,
+          "payload": {
+            "message": "C"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:2"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "dartint: jump position with plus sign",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "payload": {
+          "targetKey": "+3"
+        },
+        "key": "j"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "C"
+        },
+        "key": "C"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "+3",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "log",
+          "key": "C",
+          "enabled": true,
+          "payload": {
+            "message": "C"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:+3"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "dartint: skip count hex",
+    "input": [
+      {
+        "type": "skipActions",
+        "payload": {
+          "count": "0x1"
+        },
+        "key": "s"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "C"
+        },
+        "key": "C"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": "0x1",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "log",
+          "key": "C",
+          "enabled": true,
+          "payload": {
+            "message": "C"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:1"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "dartint: skip count padded and plus",
+    "input": [
+      {
+        "type": "skipActions",
+        "payload": {
+          "count": " +1 "
+        },
+        "key": "s"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "C"
+        },
+        "key": "C"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": " +1 ",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "log",
+          "key": "C",
+          "enabled": true,
+          "payload": {
+            "message": "C"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:1"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "dartint: skip count hex beyond end",
+    "input": [
+      {
+        "type": "skipActions",
+        "payload": {
+          "count": "0x10"
+        },
+        "key": "s"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": "0x10",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "dartint: skip count underscore refused",
+    "input": [
+      {
+        "type": "skipActions",
+        "payload": {
+          "count": "1_0"
+        },
+        "key": "s"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": "1_0",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "default"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "invalid_skip_count"
+    ]
+  },
+  {
+    "name": "dartint: skip count non-breaking space",
+    "input": [
+      {
+        "type": "skipActions",
+        "payload": {
+          "count": " 1"
+        },
+        "key": "s"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "C"
+        },
+        "key": "C"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": " 1",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "log",
+          "key": "C",
+          "enabled": true,
+          "payload": {
+            "message": "C"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:1"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "dartint: huge hex wraps negative, no skip",
+    "input": [
+      {
+        "type": "skipActions",
+        "payload": {
+          "count": "0xFFFFFFFFFFFFFFFF"
+        },
+        "key": "s"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": "0xFFFFFFFFFFFFFFFF",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "default"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "dartint: error skip count padded",
+    "input": [
+      {
+        "type": "log",
+        "payload": {
+          "message": "A"
+        },
+        "key": "A",
+        "error": {
+          "mode": "skip",
+          "skipCount": " 2 "
+        }
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "C"
+        },
+        "key": "C"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "log",
+          "key": "A",
+          "enabled": true,
+          "payload": {
+            "message": "A"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "log",
+          "key": "C",
+          "enabled": true,
+          "payload": {
+            "message": "C"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "error_skip_beyond_end"
+    ]
+  },
+  {
+    "name": "dartint: error skip count hex",
+    "input": [
+      {
+        "type": "log",
+        "payload": {
+          "message": "A"
+        },
+        "key": "A",
+        "error": {
+          "mode": "skip",
+          "skipCount": "0x1"
+        }
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "B"
+        },
+        "key": "B"
+      },
+      {
+        "type": "log",
+        "payload": {
+          "message": "C"
+        },
+        "key": "C"
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "log",
+          "key": "A",
+          "enabled": true,
+          "payload": {
+            "message": "A"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "log",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "message": "B"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "log",
+          "key": "C",
+          "enabled": true,
+          "payload": {
+            "message": "C"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "error"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  }
+]
