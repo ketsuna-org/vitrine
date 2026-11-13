@@ -67,7 +67,7 @@ test('golden intents select the expected functions in a compact answer', () => {
     const got = fnsOf(r);
     for (const fn of expected) assert.ok(got.includes(fn), `"${intent}": expected ${fn} in ${got.join(' ')}`);
     assert.equal(r.decision, decision, `"${intent}" decision (confidence ${r.confidence})`);
-    assert.ok(JSON.stringify(r).length < 2900, `"${intent}": answer too large (${JSON.stringify(r).length} chars)`);
+    assert.ok(JSON.stringify(r).length < 3600, `"${intent}": answer too large (${JSON.stringify(r).length} chars)`);
     assert.ok(r.functions.length <= 10);
   }
 });
@@ -195,4 +195,17 @@ test('slash user options are read as IDs in the moderation recipes', () => {
   const blocksText = warn.gotchas.join(' ');
   assert.match(blocksText, /\(\(opts\.membre\.id\)\) the user id/);
   assert.doesNotMatch(blocksText, /user id is \(\(opts\.membre\)\)/);
+});
+
+test('every Blocks recipe skeleton is a valid graph (version 2, no validation error)', async () => {
+  const { validateGraph } = await import('../functions/api/mcp/graph_validate.mjs');
+  const known = new Set(Object.keys(blocks));
+  const recipes = RECIPES.filter(r => r.mode === 'blocks');
+  assert.ok(recipes.length > 0);
+  for (const r of recipes) {
+    const graph = JSON.parse(r.skeleton);
+    assert.equal(graph.version, 2, r.id);
+    assert.deepEqual(validateGraph(graph, known).errors, [], r.id);
+    assert.doesNotMatch(r.skeleton, /thenActions|elseActions|bodyActions|depend_on/, r.id);
+  }
 });

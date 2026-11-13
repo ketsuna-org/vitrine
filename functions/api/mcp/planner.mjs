@@ -8,6 +8,8 @@
 // functions and supply a skeleton -> greedy selection with a category-diversity penalty ->
 // confidence / margin -> Jev-like decision: auto | review | ask_user.
 
+import { convertActionsToGraph } from "./graph_convert.mjs";
+
 const STOP = new Set(
   ("a an the to of for and or in on at by with my me i is are be it this that do does make create add want need " +
     "un une le la les des du de d l et ou en sur pour avec mon ma mes je tu il elle est sont ce cette ca fais fait faire " +
@@ -48,6 +50,10 @@ const SYNONYMS = {
   prive: "ephemeral", private: "ephemeral", ephemere: "ephemeral", slash: "slash option args", argument: "args", arguments: "args", option: "args",
   mention: "mentioned", mentionne: "mentioned", message: "message", reaction: "addcmdreactions reactions", reactions: "addcmdreactions",
 };
+
+// Squelette Blocks : une liste d'actions écrite à la main, convertie en graphe (format v2) par le même
+// code que l'outil validate_graph.
+const graphSkeleton = (actions) => JSON.stringify(convertActionsToGraph(actions).graph);
 
 // Curated intents. `words` are normalized query stems; `need` = how many must match.
 // Every function / skeleton token here is validated against _docs by tests/planner.test.mjs.
@@ -125,13 +131,13 @@ const RECIPES = [
   {
     id: "counter-blocks", mode: "blocks", need: 1, prio: 2, words: ["warn", "avertir", "avertissement", "compteur", "counter", "points", "xp", "niveau", "level", "increment"],
     fns: ["getScopedVariable", "calculate", "setScopedVariable", "respondWithMessage"],
-    skeleton: '[{"type":"getScopedVariable","key":"prev","payload":{"scope":"guildMember","key":"warns","contextId":"((guild.id)):((opts.membre.id))"}},{"type":"calculate","key":"total","payload":{"expression":"((action.prev)) + 1"}},{"type":"setScopedVariable","payload":{"scope":"guildMember","key":"warns","valueType":"number","numberValue":"((action.total))","contextId":"((guild.id)):((opts.membre.id))"}},{"type":"respondWithMessage","payload":{"content":"<@((opts.membre.id))> a maintenant ((action.total)) avertissement(s)."}}]',
-    gotchas: ["Chain results with `key` ON THE ACTION (not in payload): calculate with key \"total\" is read as ((action.total)). The `storeAs` field exists only on getScopedVariable and queryArray.", "An unset scoped value reads empty: declare a number default of 0 with local_set_variable (scope guildMember) so ((action.prev)) + 1 works the first time.", "Slash options are ((opts.<name>)); for a user option ((opts.membre)) is the username and ((opts.membre.id)) the user id. A guildMember variable's contextId is \"<guildId>:<userId>\", i.e. ((guild.id)):((opts.membre.id)) (a bare user id fails at runtime)."],
+    skeleton: graphSkeleton([{"type":"getScopedVariable","key":"prev","payload":{"scope":"guildMember","key":"warns","contextId":"((guild.id)):((opts.membre.id))"}},{"type":"calculate","key":"total","payload":{"expression":"((action.prev)) + 1"}},{"type":"setScopedVariable","payload":{"scope":"guildMember","key":"warns","valueType":"number","numberValue":"((action.total))","contextId":"((guild.id)):((opts.membre.id))"}},{"type":"respondWithMessage","payload":{"content":"<@((opts.membre.id))> a maintenant ((action.total)) avertissement(s)."}}]),
+    gotchas: ["Chain results with `key` ON THE NODE (not in payload): calculate with key \"total\" is read as ((action.total)). The `storeAs` field exists only on getScopedVariable and queryArray.", "An unset scoped value reads empty: declare a number default of 0 with local_set_variable (scope guildMember) so ((action.prev)) + 1 works the first time.", "Slash options are ((opts.<name>)); for a user option ((opts.membre)) is the username and ((opts.membre.id)) the user id. A guildMember variable's contextId is \"<guildId>:<userId>\", i.e. ((guild.id)):((opts.membre.id)) (a bare user id fails at runtime)."],
   },
   {
     id: "ping-blocks", mode: "blocks", need: 1, words: ["ping", "latence", "latency"],
     fns: ["respondWithMessage"],
-    skeleton: '[{"type":"respondWithMessage","payload":{"embeds":[{"title":"🏓 Pong!","description":"Latence : **((bot.ping)) ms**","color":"#5865F2"}]}}]',
+    skeleton: graphSkeleton([{"type":"respondWithMessage","payload":{"embeds":[{"title":"🏓 Pong!","description":"Latence : **((bot.ping)) ms**","color":"#5865F2"}]}}]),
   },
 ];
 
@@ -260,7 +266,7 @@ function matchRecipes(base, mode) {
 
 const GLOBAL_GOTCHAS = {
   bdfd: "Slash/button replies are automatic: write text/embed functions, never $sendMessage to reply; $ephemeral = private reply. In another function's brackets use inline $if[cond;then;else] or a block $if[cond]a$else b$endif closed in that argument (\\; = literal ;); loops, $try and $jsonForEach stay top-level only. $sendMessage[text;yes] returns the message ID (2nd arg is yes/no only). Slash options: $message[name] ($args is empty), the ID for a user/channel/role option.",
-  blocks: "Blocks are {type,key?,payload}. To reuse a result, set `key` ON THE ACTION, not in payload ({\"type\":\"calculate\",\"key\":\"total\",\"payload\":{…}} then ((action.total))); without a key it is action_<position>. Validate with docs_validate_actions. valueType \"number\" needs a numeric numberValue: an empty optional ((opts.x)) fails at run time, so store it as a string or guard it with ifBlock.",
+  blocks: "A Blocks command is a graph { version: 2, nodes, links }: a node is {id,type,key,payload} and key (required) names its result. To reuse a result, set `key` ON THE NODE, not in payload ({\"id\":\"n2\",\"type\":\"calculate\",\"key\":\"total\",\"payload\":{…}} then ((action.total))). Branches are links from the pins then / else / body / try / catch, not nested lists. Validate with docs_validate_graph. valueType \"number\" needs a numeric numberValue: an empty optional ((opts.x)) fails at run time, so store it as a string or guard it with ifBlock.",
 };
 
 /**
@@ -346,7 +352,7 @@ export function plan(index, { intent, mode = "bdfd", budget = 10 }) {
     margin,
     functions: chosen.map(({ e }) => ({ n: e.name, sig: e.sig || e.name, d: short(e.desc) })),
     gotchas,
-    next: decision === "auto" ? (mode === "bdfd" ? "write the script, then local_validate_bdfd" : "write the actions, then docs_validate_actions") : decision === "review" ? "docs_get on the 1-2 uncertain functions, then write" : "ask the user to clarify the intent",
+    next: decision === "auto" ? (mode === "bdfd" ? "write the script, then local_validate_bdfd" : "write the graph, then docs_validate_graph") : decision === "review" ? "docs_get on the 1-2 uncertain functions, then write" : "ask the user to clarify the intent",
   };
   if (recipe) {
     out.recipe = recipe.r.id;

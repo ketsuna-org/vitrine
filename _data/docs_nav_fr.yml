@@ -1,5 +1,7 @@
 getting_started: "Démarrer"
 events: "Événements et variables"
+graph: "Le mode Graphe"
+bridge: "BDFD et Graphe"
 full_docs: "Documentation complète (anglais)"
 groups:
   - title: "Modération"

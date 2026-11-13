@@ -3,11 +3,11 @@
   "families": {
     "http": {
       "label": "HTTP & Variables",
-      "color": "#38BDF8"
+      "color": "#C9C7C2"
     },
     "logic": {
       "label": "Logic & Flow",
-      "color": "#FB7185"
+      "color": "#C9C7C2"
     },
     "messages": {
       "label": "Messages",
@@ -15,15 +15,15 @@
     },
     "moderation": {
       "label": "Moderation",
-      "color": "#4ADE80"
+      "color": "#FF8A8A"
     },
     "data": {
       "label": "Data",
-      "color": "#FBBF24"
+      "color": "#C9C7C2"
     },
     "events": {
       "label": "Events",
-      "color": "#FB923C"
+      "color": "#C9C7C2"
     }
   },
   "common": {
@@ -42,9 +42,7 @@
         "label": "On Error",
         "options": [
           "Stop",
-          "Continue",
-          "Jump to action",
-          "Skip N actions"
+          "Continue"
         ]
       }
     ]
@@ -800,6 +798,52 @@
     "common_value": "Value",
     "embed_label_inline": "Inline"
   },
+  "graph": {
+    "version": 2,
+    "startId": "start",
+    "controlTypes": [
+      "ifBlock",
+      "forLoop",
+      "jsonForEachLoop",
+      "tryCatch",
+      "switch"
+    ],
+    "regionOwners": [
+      "forLoop",
+      "jsonForEachLoop",
+      "tryCatch"
+    ],
+    "inlineGraphTypes": [
+      "listenForButtonClick",
+      "listenForSelectMenu",
+      "listenForModalSubmit",
+      "listenAndExecute",
+      "respondWithModal"
+    ],
+    "legacyTypes": [
+      "skipActions",
+      "jumpToAction"
+    ],
+    "pins": {
+      "next": "next",
+      "then": "then",
+      "elseBranch": "else",
+      "body": "body",
+      "tryBody": "try",
+      "catchBody": "catch",
+      "done": "done",
+      "defaultCase": "default",
+      "error": "error"
+    },
+    "dataTypes": [
+      "any",
+      "text",
+      "number",
+      "list",
+      "object",
+      "boolean"
+    ]
+  },
   "blocks": [
     {
       "type": "deleteMessages",
@@ -808,11 +852,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "delete_sweep",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -880,11 +928,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "add_box",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Name",
@@ -946,11 +998,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "edit",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -997,11 +1053,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "remove_circle",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -1020,11 +1080,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "send",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Target Type",
@@ -1131,11 +1195,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "edit_note",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -1246,11 +1314,15 @@
       "category": "Reactions",
       "family": "messages",
       "icon": "emoji_emotions",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -1284,11 +1356,15 @@
       "category": "Reactions",
       "family": "messages",
       "icon": "emoji_emotions_outlined",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -1336,11 +1412,15 @@
       "category": "Reactions",
       "family": "messages",
       "icon": "clear_all",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -1366,11 +1446,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "block",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -1405,11 +1489,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "person_add",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -1435,11 +1523,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "exit_to_app",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -1465,11 +1557,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "volume_off",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -1509,11 +1605,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "volume_up",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -1539,11 +1639,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "person_add_alt_1",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -1577,11 +1681,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "person_remove_alt_1",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -1615,11 +1723,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "push_pin",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -1652,11 +1764,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "security",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Enabled",
@@ -1697,11 +1813,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "settings",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Name",
@@ -1775,11 +1895,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "group",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Limit",
@@ -1813,11 +1937,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "person",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -1836,11 +1964,15 @@
       "category": "Components",
       "family": "messages",
       "icon": "widgets",
-      "terminal": false,
+      "terminal": true,
       "deprecated": true,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -1866,11 +1998,15 @@
       "category": "Components",
       "family": "messages",
       "icon": "build",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -1904,11 +2040,15 @@
       "category": "Webhooks",
       "family": "http",
       "icon": "webhook",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Webhook Url",
@@ -1983,11 +2123,15 @@
       "category": "Webhooks",
       "family": "http",
       "icon": "edit_attributes",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Webhook Url",
@@ -2040,11 +2184,15 @@
       "category": "Webhooks",
       "family": "http",
       "icon": "delete_forever",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Webhook Url",
@@ -2083,11 +2231,15 @@
       "category": "Webhooks",
       "family": "http",
       "icon": "list",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -2112,11 +2264,15 @@
       "category": "Webhooks",
       "family": "http",
       "icon": "search",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Webhook Url",
@@ -2149,11 +2305,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "http",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Url",
@@ -2240,11 +2400,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "save_as",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Key",
@@ -2331,11 +2495,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "key",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Key",
@@ -2361,11 +2529,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "key_off",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Key",
@@ -2384,11 +2556,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "inventory_2",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Scope",
@@ -2497,11 +2673,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "inventory_2",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Key",
@@ -2581,11 +2761,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "inventory_2",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Scope",
@@ -2633,11 +2817,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "inventory_2",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Scope",
@@ -2678,11 +2866,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "inventory_2",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Scope",
@@ -2731,11 +2923,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "inventory_2",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Scope",
@@ -2805,11 +3001,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "inventory_2",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Target",
@@ -2933,11 +3133,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "inventory_2",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Target",
@@ -3008,11 +3212,15 @@
       "category": "HTTP & Variables",
       "family": "http",
       "icon": "inventory_2",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Input",
@@ -3111,11 +3319,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "account_tree",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Workflow Name",
@@ -3148,11 +3360,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "code",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Script Content",
@@ -3165,47 +3381,21 @@
       ]
     },
     {
-      "type": "callFunction",
-      "name": "Call function",
-      "description": "Call any native BDFD function with a form and keep its value",
-      "category": "Workflows",
-      "family": "logic",
-      "icon": "extension",
-      "terminal": false,
-      "deprecated": false,
-      "inPalette": true,
-      "workflowOnly": false,
-      "interactionOnly": false,
-      "fields": [
-        {
-          "label": "Function",
-          "key": "function",
-          "type": "nativeFunction",
-          "default": "",
-          "hint": "Native function to call (any BDFD function)",
-          "required": true
-        },
-        {
-          "label": "Arguments",
-          "key": "arguments",
-          "type": "list",
-          "default": [],
-          "hint": "Arguments of the function (edited with the function)"
-        }
-      ]
-    },
-    {
       "type": "stopUnless",
       "name": "Stop Unless Condition",
       "description": "Stop the workflow if a condition is not met (guard/filter)",
       "category": "Logic & Flow",
       "family": "logic",
       "icon": "filter_alt",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Condition.variable",
@@ -3253,11 +3443,17 @@
       "category": "Logic & Flow",
       "family": "logic",
       "icon": "account_tree",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "then",
+        "elseif:<i>",
+        "else",
+        "error"
+      ],
       "fields": [
         {
           "label": "Condition.variable",
@@ -3297,25 +3493,11 @@
           "hint": "Value to compare against (can use ((variables)))"
         },
         {
-          "label": "Then Actions",
-          "key": "thenActions",
-          "type": "nestedActions",
-          "default": [],
-          "hint": "THEN — actions to run when condition is TRUE"
-        },
-        {
           "label": "Else If Conditions",
           "key": "elseIfConditions",
           "type": "elseIfBranches",
           "default": [],
           "hint": "ELSE IF — conditions checked in order before ELSE"
-        },
-        {
-          "label": "Else Actions",
-          "key": "elseActions",
-          "type": "nestedActions",
-          "default": [],
-          "hint": "ELSE — actions to run when condition is FALSE"
         }
       ]
     },
@@ -3326,11 +3508,16 @@
       "category": "Logic & Flow",
       "family": "logic",
       "icon": "loop",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "body",
+        "done",
+        "error"
+      ],
       "fields": [
         {
           "label": "Mode",
@@ -3391,13 +3578,6 @@
               "cstyle"
             ]
           }
-        },
-        {
-          "label": "Body Actions",
-          "key": "bodyActions",
-          "type": "nestedActions",
-          "default": [],
-          "hint": "Actions to execute inside the loop body"
         }
       ]
     },
@@ -3408,11 +3588,16 @@
       "category": "Logic & Flow",
       "family": "logic",
       "icon": "loop",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "body",
+        "done",
+        "error"
+      ],
       "fields": [
         {
           "label": "Source",
@@ -3427,13 +3612,6 @@
           "type": "list",
           "default": [],
           "hint": "Optional JSON path navigation segments"
-        },
-        {
-          "label": "Body Actions",
-          "key": "bodyActions",
-          "type": "nestedActions",
-          "default": [],
-          "hint": "Actions to execute on each key-value pair of the JSON object"
         }
       ]
     },
@@ -3449,6 +3627,10 @@
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Content",
@@ -3499,6 +3681,10 @@
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -3535,6 +3721,10 @@
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": true,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Modal",
@@ -3553,11 +3743,15 @@
       "category": "Interactions",
       "family": "events",
       "icon": "edit_notifications",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": true,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Edit Mode",
@@ -3657,6 +3851,10 @@
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Items",
@@ -3701,6 +3899,10 @@
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": true,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -3710,11 +3912,15 @@
       "category": "Interactions",
       "family": "events",
       "icon": "touch_app",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": true,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Custom Id",
@@ -3771,11 +3977,15 @@
       "category": "Interactions",
       "family": "events",
       "icon": "list_alt",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": true,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Custom Id",
@@ -3832,11 +4042,15 @@
       "category": "Interactions",
       "family": "events",
       "icon": "dynamic_form",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": true,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Custom Id",
@@ -3893,11 +4107,15 @@
       "category": "Interactions",
       "family": "events",
       "icon": "hearing",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": true,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Custom Id",
@@ -3915,11 +4133,11 @@
           "hint": "Optional message scope. Recommended to avoid collisions when the same customId exists on multiple messages."
         },
         {
-          "label": "Actions",
-          "key": "actions",
-          "type": "nestedActions",
-          "default": [],
-          "hint": "Actions to execute when the interaction is triggered"
+          "label": "Graph",
+          "key": "graph",
+          "type": "graph",
+          "default": null,
+          "hint": "Sub-graph run later (opens the graph editor)"
         },
         {
           "label": "Workflow Name",
@@ -3960,11 +4178,15 @@
       "category": "Logic & Flow",
       "family": "logic",
       "icon": "calculate",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Expression",
@@ -4024,11 +4246,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "message",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -4054,11 +4280,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "push_pin_outlined",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -4091,11 +4321,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "poll",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -4148,11 +4382,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "stop_circle",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -4178,11 +4416,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "link",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -4237,11 +4479,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "link_off",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Invite Code",
@@ -4267,11 +4513,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "manage_search",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Invite Code",
@@ -4290,11 +4540,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "headset",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -4328,11 +4582,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "headset_off",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -4358,11 +4616,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "mic_off",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -4395,11 +4657,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "hearing_disabled",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -4432,11 +4698,15 @@
       "category": "Music",
       "family": "data",
       "icon": "play_arrow",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Query",
@@ -4469,11 +4739,15 @@
       "category": "Music",
       "family": "data",
       "icon": "pause",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -4483,11 +4757,15 @@
       "category": "Music",
       "family": "data",
       "icon": "play_circle_fill",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -4497,11 +4775,15 @@
       "category": "Music",
       "family": "data",
       "icon": "skip_next",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -4511,11 +4793,15 @@
       "category": "Music",
       "family": "data",
       "icon": "stop",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -4525,11 +4811,15 @@
       "category": "Music",
       "family": "data",
       "icon": "volume_up",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Volume",
@@ -4550,11 +4840,15 @@
       "category": "Music",
       "family": "data",
       "icon": "loop",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Loop",
@@ -4573,11 +4867,15 @@
       "category": "Music",
       "family": "data",
       "icon": "linear_scale",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Position",
@@ -4596,11 +4894,15 @@
       "category": "Music",
       "family": "data",
       "icon": "info_outline",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -4610,11 +4912,15 @@
       "category": "Music",
       "family": "data",
       "icon": "settings_voice",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -4639,11 +4945,15 @@
       "category": "Music",
       "family": "data",
       "icon": "logout",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -4653,11 +4963,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "add_reaction",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Name",
@@ -4704,11 +5018,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "edit_notifications",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Emoji Id",
@@ -4748,11 +5066,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "no_photography",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Emoji Id",
@@ -4778,11 +5100,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "security",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Name",
@@ -4907,11 +5233,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "gpp_bad",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Rule Id",
@@ -4937,11 +5267,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "verified_user",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -4951,11 +5285,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "waving_hand",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -4965,11 +5303,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "manage_accounts",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Enabled",
@@ -4987,11 +5329,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "account_circle",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Username",
@@ -5023,11 +5369,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "forum",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -5099,11 +5449,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "person_add",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Thread Id",
@@ -5130,11 +5484,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "person_remove",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Thread Id",
@@ -5161,11 +5519,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "lock_open",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -5225,11 +5587,15 @@
       "category": "Channels",
       "family": "moderation",
       "icon": "lock_reset",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -5280,11 +5646,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "query_stats",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5294,11 +5664,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "notes",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Message",
@@ -5317,11 +5691,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "code",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": false,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5331,11 +5709,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "image",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Image Name",
@@ -5343,13 +5725,6 @@
           "type": "string",
           "default": "",
           "hint": "Name to reference this image (used with Attach Image action)"
-        },
-        {
-          "label": "Operations",
-          "key": "operations",
-          "type": "nestedActions",
-          "default": [],
-          "hint": "Canvas operations (Create, Load Image, Draw Text, Shapes...)"
         }
       ]
     },
@@ -5360,11 +5735,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "extension",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": false,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5374,11 +5753,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "extension",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": false,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5388,11 +5771,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "extension",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": false,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5402,11 +5789,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "extension",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": false,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5416,11 +5807,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "extension",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": false,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5430,11 +5825,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "extension",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": false,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5444,11 +5843,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "playlist_add",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Command Names",
@@ -5467,11 +5870,15 @@
       "category": "Workflows",
       "family": "logic",
       "icon": "playlist_remove",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Command Names",
@@ -5490,11 +5897,15 @@
       "category": "Logic & Flow",
       "family": "logic",
       "icon": "timer_outlined",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Time",
@@ -5520,11 +5931,15 @@
       "category": "Logic & Flow",
       "family": "logic",
       "icon": "hourglass_empty",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Duration",
@@ -5543,11 +5958,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "delete_forever",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5557,11 +5976,15 @@
       "category": "Interactions",
       "family": "events",
       "icon": "maps_ugc",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -5588,11 +6011,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "badge",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "User Id",
@@ -5626,11 +6053,15 @@
       "category": "Moderation",
       "family": "moderation",
       "icon": "speed",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Channel Id",
@@ -5664,11 +6095,15 @@
       "category": "Logic & Flow",
       "family": "logic",
       "icon": "stop_circle_outlined",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5678,11 +6113,15 @@
       "category": "Logic & Flow",
       "family": "logic",
       "icon": "shuffle",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Choices",
@@ -5709,11 +6148,15 @@
       "category": "Guild & Members",
       "family": "moderation",
       "icon": "exit_to_app",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": []
     },
     {
@@ -5723,11 +6166,15 @@
       "category": "Messages",
       "family": "messages",
       "icon": "image_outlined",
-      "terminal": false,
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
           "label": "Image Name",
@@ -5755,48 +6202,101 @@
       ]
     },
     {
-      "type": "skipActions",
-      "name": "Skip Actions",
-      "description": "Skip a specified number of subsequent actions",
-      "category": "Logic & Flow",
+      "type": "callFunction",
+      "name": "Call function",
+      "description": "Call any native BDFD function with a form and keep its value",
+      "category": "Workflows",
       "family": "logic",
-      "icon": "skip_next",
-      "terminal": false,
+      "icon": "extension",
+      "terminal": true,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
       "fields": [
         {
-          "label": "Count",
-          "key": "count",
-          "type": "string",
-          "default": "1",
-          "hint": "Number of actions to skip",
+          "label": "Function",
+          "key": "function",
+          "type": "nativeFunction",
+          "default": "",
+          "hint": "Native function to call (any BDFD function)",
           "required": true
+        },
+        {
+          "label": "Arguments",
+          "key": "arguments",
+          "type": "list",
+          "default": [],
+          "hint": "Arguments of the function (edited with the function)"
         }
       ]
     },
     {
-      "type": "jumpToAction",
-      "name": "Jump to Action",
-      "description": "Jump to a specific action by key, ID, or position",
+      "type": "tryCatch",
+      "name": "Try / Catch",
+      "description": "Runs the `try` region; when an action fails, `error.*` is set and the `catch` region runs; then `done`.",
       "category": "Logic & Flow",
       "family": "logic",
-      "icon": "arrow_forward",
+      "icon": "security",
       "terminal": false,
       "deprecated": false,
       "inPalette": true,
       "workflowOnly": false,
       "interactionOnly": false,
+      "pins": [
+        "try",
+        "catch",
+        "done",
+        "error"
+      ],
+      "fields": []
+    },
+    {
+      "type": "switch",
+      "name": "Switch",
+      "description": "Compares a value with the `case:<value>` pins and follows the matching one, otherwise `default`.",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "shuffle",
+      "terminal": false,
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "pins": [
+        "case:<value>",
+        "default",
+        "error"
+      ],
       "fields": [
         {
-          "label": "Target Key",
-          "key": "targetKey",
+          "label": "Value",
+          "key": "value",
           "type": "string",
           "default": "",
-          "hint": "Action key, ID, or 1-indexed position to jump to",
+          "hint": "Value to compare, resolved at run time",
           "required": true
+        },
+        {
+          "label": "Mode",
+          "key": "mode",
+          "type": "multiSelect",
+          "default": "text",
+          "options": [
+            "text",
+            "int"
+          ]
+        },
+        {
+          "label": "Result Prefix",
+          "key": "resultPrefix",
+          "type": "string",
+          "default": "",
+          "hint": "Prefix of the result written as <prefix><value>"
         }
       ]
     }

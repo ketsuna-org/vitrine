@@ -7,9 +7,9 @@ description: How the Bot Creator Blocks editor works. What a block looks like, h
 permalink: /docs/blocks/
 ---
 
-The **Blocks** system is Bot Creator's visual editor. A command or an event workflow is a vertical sequence of blocks: you add them from a palette, fill their fields, and the native engine runs them in order. Every block you see on this site is drawn from the app's own block registry, so names, fields, hints and options are the ones you will find in the editor.
+The **Blocks** system is Bot Creator's visual editor. A command or an event workflow is a **graph**: each block is a node, and links join the output pins of a node (*next*, *then*, *else*, *body*…) to the nodes that follow. You add blocks in the editor, fill their fields, and the native engine runs the graph in a deterministic order. Every block you see on this site is drawn from the app's own registry of node types, so names, fields, hints and options are the ones you will find in the editor. The graph format itself is described in the [Graph mode guide](/fr/docs/graph/) (French).
 
-Each block is saved as a typed `Action` with inputs, an optional output key and an error policy (see [how a block is saved](#under-the-hood-how-a-block-is-saved)).
+Each block is saved as a graph node with a type, a result key and an error policy (see [how a block is saved](#under-the-hood-how-a-block-is-saved)). Older commands written as a list of actions keep working: they are converted to a graph when they are loaded.
 
 ---
 
@@ -25,11 +25,11 @@ From left to right and top to bottom:
 
 - **Icon tile and category.** The tile carries the colour of the block's family; the small uppercase line above the name is the category (here *Messages*). The block itself stays neutral, only the tile and that line are coloured.
 - **Name.** The name shown in the palette and in the editor (*Send Message*). The grey line under it is the block's identifier (`sendMessage`), which is what you use with the API and the MCP; the app shows a one-line summary of the values there.
-- **Fields.** One control per parameter, in a fixed order. A text field shows its hint until you type; a switch is an on/off option; a drop-down offers a fixed list; a bordered tile with a pencil opens a sub-editor (embeds, components, nested blocks…). A red `*` marks a required field.
+- **Fields.** One control per parameter, in a fixed order. A text field shows its hint until you type; a switch is an on/off option; a drop-down offers a fixed list; a bordered tile with a pencil opens a sub-editor (embeds, components, inline sub-graph…). A red `*` marks a required field.
 - **Variables.** Text fields accept `((variables))` such as `((user.username))`; they are highlighted in violet.
-- **Action Key.** An optional name for the block's result, readable later as `((action.<key>))`.
-- **Advanced settings.** Under the fields, every block has **Action Key**, an **Enabled** switch and **On Error**: *Stop*, *Continue*, *Jump to action* or *Skip N actions*.
-- **Menu (⋮).** Move up, Move down, Copy action, Duplicate, Paste above, Paste below, Documentation & guides and Delete.
+- **Action Key.** The name of the block's result, readable later as `((action.<key>))`. Every node has one; the editor gives each new block a free `action_<n>` key.
+- **Advanced settings.** Under the fields, every block has **Action Key**, an **Enabled** switch and **On Error**: *Stop* or *Continue*. To react to a failure, link the node's `error` pin to the blocks that should run instead.
+- **Menu (⋮).** Copy, Duplicate, Paste, Documentation & guides and Delete.
 
 A few blocks are **final**: they answer the interaction and nothing should come after them ({{ "" | block_final_names }}).
 
@@ -55,37 +55,45 @@ Every command starts with a fixed, non-removable **Command Trigger** block (for 
 {% app_entry kind="slash" name="ping" %}
 </div>
 
-A command is built either with **Visual (Blocks)**, with **BDFD Code**, or with **JavaScript**; the blocks described on this page belong to the first mode.
+A command is built either with **Visual (Graph)**, with **BDFD Code**, or with **JavaScript**; the blocks described on this page belong to the first mode. A BDFD script can be converted to a graph and back: see [BDFD and Graph](/fr/docs/bdfd-graph/) (French).
 
 ### Under the hood: how a block is saved
 
 <details class="block-json-ref">
 <summary>Reference for API and MCP users: the saved structure</summary>
 
-Each block is stored as an `Action` object:
+Each block is stored as a graph node, and a command or workflow stores its graph in `graph` (`executionMode: "graph"`):
 
 ```json
 {
-  "type": "respondWithMessage",
-  "key": "welcome_reply",
-  "enabled": true,
-  "depend_on": [],
-  "error": { "mode": "stop" },
-  "payload": {
-    "content": "Hello ((user.username))! Welcome to ((guild.name)).",
-    "ephemeral": true
-  }
+  "version": 2,
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "respondWithMessage",
+      "key": "welcome_reply",
+      "enabled": true,
+      "payload": {
+        "content": "Hello ((user.username))! Welcome to ((guild.name)).",
+        "ephemeral": true
+      }
+    }
+  ],
+  "links": [{ "from": { "node": "start", "pin": "next" }, "to": "n1" }],
+  "data": []
 }
 ```
 
 | Field | Type | Meaning |
 |---|---|---|
+| `id` | String | Internal, stable identifier (`n1`, `n2`…). Links refer to it. `start` is reserved for the entry. |
 | `type` | String | The block identifier, one of the types in the [Dictionary](/docs/blocks-dictionary/). |
-| `payload` | Object | The values of the block's fields, keyed by the field identifiers listed in the Dictionary. |
-| `key` | String | The *Action Key*: names the block's output (`((action.key))`). |
-| `enabled` | Boolean | Default `true`. When `false` the block is skipped. |
-| `depend_on` | Array of strings | Keys of blocks this one depends on. |
-| `error` | Object | The *On Error* policy: `mode` is `stop`, `continue`, `jump` or `skip`. |
+| `key` | String | The *Action Key*: names the block's result (`((action.key))`). Required, not empty, not necessarily unique (the last writer wins). |
+| `payload` | Object | The values of the block's fields, keyed by the field identifiers listed in the Dictionary. It never contains a nested list of actions. |
+| `enabled` | Boolean | Default `true`. When `false` the block produces no result and the flow goes on. |
+| `error` | Object | The *On Error* policy: `mode` is `stop` (default) or `continue`. |
+
+Links `{ "from": { "node", "pin" }, "to" }` carry the flow. Pins are `next` (every ordinary block), `then`, `elseif:<i>` and `else` (*IF / ELSE*), `body` and `done` (loops), `try`, `catch` and `done` (*Try / Catch*), `case:<value>` and `default` (*Switch*), and `error` (failure). Several links on one pin start parallel branches, run in the order of the links. Validate a graph with the `validate_graph` tool of the [MCP server](/docs/mcp/).
 
 </details>
 

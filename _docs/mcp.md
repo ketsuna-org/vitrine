@@ -27,10 +27,10 @@ https://bot-creator.fr/api/mcp
 
 | Tool / Prompt | Type | Description |
 |---|---|---|
-| `get_schema_manifest` | Tool | Compact typed grammar and schema dictionary (`{ desc, params }`). Default mode `blocks` (about 3k tokens) covers every native Blocks action; `bdfd`, `javascript`, `types` (nested types such as `Embed`, `Component`, `Condition`, `Action`) and `all` are also accepted, plus a `category` filter and a `names` list (up to 20 action names) for full parameter schemas. |
+| `get_schema_manifest` | Tool | Compact typed grammar and schema dictionary (`{ desc, params }`). Default mode `blocks` (about 3k tokens) covers every native Blocks node type, with its output `pins`; `bdfd`, `javascript`, `types` (nested types such as `Embed`, `Component`, `Condition`, `Graph`) and `all` are also accepted, plus a `category` filter and a `names` list (up to 20 action names) for full parameter schemas. |
 | `plan_solution` | Tool | Starting point for a command request: in one deterministic call (no LLM) it returns the best-fitting BDFD/Blocks/JavaScript functions with signatures, the gotchas that apply, a validated skeleton when a known recipe matches, and a decision (`auto`, `review` or `ask_user`, with confidence and margin). Replaces `search_docs` + `get_doc` loops. |
-| `list_actions` | Tool | Light list of the Blocks action names (name, category, description), filterable by `category`. |
-| `validate_actions` | Tool | Validates an array of `[{ type, payload }]` actions against the manifest: unknown action names (with suggestions), missing required params, wrong types/enums, unknown params, and nested embeds, components, conditions and `thenActions`. Reports `errors` and `warnings` entries with a `path` and a `message`. |
+| `list_actions` | Tool | Light list of the Blocks node types (actions, `tryCatch`, `switch`) (name, category, description), filterable by `category`. |
+| `validate_graph` | Tool | Validates a Blocks graph `{ version: 2, nodes, links }` against the manifest: structure (unknown nodes and pins, flow cycles, closed regions, parallel responses, 500 nodes / 600 000 bytes limits) and, for every node, unknown types (with suggestions), missing required params, wrong types/enums, unknown params, and nested embeds, components, conditions and inline `graph`s. Legacy input is accepted and converted: pass `actions` (a former list of actions) or `entity` (a whole command or workflow) and the answer carries the converted `graph` (or `entity`) and the conversion `conversionWarnings`. Reports `errors` and `warnings` entries with a `path`, a `code` for structural problems and a `message`. Replaces `validate_actions`. |
 | `search_docs` | Tool | Searches the documentation. Results include the compact parameter types (`params`, `syntax`, `description`), compatibility status and slugs. Filter with `api_type` (`blocks`, `bdfd`, `javascript`, `general`). |
 | `get_doc` | Tool | Returns the compact type definition by default (`full_markdown: false`) to save tokens; set `full_markdown: true` for the full Markdown guide. |
 | `list_posts` | Tool | Lists the blog posts, filterable by locale (`en` / `fr`). |
@@ -83,24 +83,32 @@ $color[#5865F2]
 $ephemeral
 ```
 
-### Example 2: Information Slash Command (Blocks JSON)
+### Example 2: Information Slash Command (Blocks graph JSON)
 ```json
-[
-  {
-    "type": "respondWithMessage",
-    "payload": {
-      "content": "",
-      "ephemeral": true,
-      "embeds": [
-        {
-          "title": "Server Info",
-          "description": "Welcome to ((guild.name))!\nThe server currently has ((guild.memberCount)) members.",
-          "color": "#5865F2"
-        }
-      ]
+{
+  "version": 2,
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "respondWithMessage",
+      "key": "action_0",
+      "enabled": true,
+      "payload": {
+        "content": "",
+        "ephemeral": true,
+        "embeds": [
+          {
+            "title": "Server Info",
+            "description": "Welcome to ((guild.name))!\nThe server currently has ((guild.memberCount)) members.",
+            "color": "#5865F2"
+          }
+        ]
+      }
     }
-  }
-]
+  ],
+  "links": [{ "from": { "node": "start", "pin": "next" }, "to": "n1" }],
+  "data": []
+}
 ```
 
 ### Example 3: Temporary vs Persistent Variables (BDFD)

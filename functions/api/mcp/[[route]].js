@@ -17,6 +17,10 @@
 
 import { buildIndex, plan, rankDocs, suggestDocs } from "./planner.mjs";
 import { planJavascript } from "./js_recipes.mjs";
+import { validateGraph } from "./graph_validate.mjs";
+import { ensureGraph } from "./graph_ensure.mjs";
+import { convertActionsToGraph } from "./graph_convert.mjs";
+import { GraphFormatError } from "./graph_model.mjs";
 
 const SITE_ORIGIN = "https://bot-creator.fr";
 const GITHUB_RAW = "https://raw.githubusercontent.com/ketsuna-org/vitrine/master";
@@ -115,7 +119,7 @@ async function handleSingle(req) {
             protocolVersion: PROTOCOL_VERSION,
             capabilities: CAPABILITIES,
             serverInfo: SERVER_INFO,
-            instructions: "Use get_schema_manifest to retrieve strict compact type signatures ({ desc, params }) for Blocks (~3k tokens), BDFD, or JS before generating code. Read execution-model before generating commands. For Blocks, nested params (embeds, components, conditions, thenActions) use named types: fetch them with get_schema_manifest mode='types', and ALWAYS run generated Blocks JSON through validate_actions and fix every error before delivering it. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) TICKET SYSTEMS: the BDFD engine implements $newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] (private channel ticket-<number or author name>: @everyone denied, author and bot allowed) and $closeTicket[(errorMessage)] (deletes the current channel only if its name contains the word ticket). For Blocks use createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button (sendMessage with components and channelId ((action.<key>)) of the createChannel action, since BDFD $addButton only attaches to the command's own reply) and an interaction handler filtered by customIdFilter that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: Blocks actions map strictly to native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage). Do not invent action names or infer JSON payloads from BDFD function signatures. An action is { type, key?, payload }: to reuse a result later, set `key` ON THE ACTION (not in payload), e.g. {\"type\":\"calculate\",\"key\":\"total\",\"payload\":{...}} then read ((action.total)); without a key the result is action_<position>. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
+            instructions: "Use get_schema_manifest to retrieve strict compact type signatures ({ desc, params }) for Blocks (~3k tokens), BDFD, or JS before generating code. Read execution-model before generating commands. For Blocks, nested params (embeds, components, conditions, graph) use named types: fetch them with get_schema_manifest mode='types', and ALWAYS run generated Blocks JSON (a GRAPH) through validate_graph and fix every error before delivering it. Bot Creator unifies Blocks (visual/JSON), BDFD (BDScript), and BDJS (JavaScript). GROUND TRUTH RULES & GOTCHAS: (1) ZERO SYNTAX HALLUCINATIONS: Never output the phantom syntax $let. BDFD temporary variables use $var[name;value] and $var[name]. Persistent database storage uses $setVar/$getVar (global), $setUserVar/$getUserVar (user), $setServerVar/$getServerVar (guild). (2) DISCORD INTERACTION LIFECYCLE: Slash commands, buttons, and modals acknowledge automatically. Never write $sendMessage to reply to an interaction! In BDFD, raw text and embeds reply natively (respondWithMessage); add $ephemeral for private responses. Only use $channelSendMessage[channelID;content] or sendMessage with channelId to target an explicit different channel. (3) TICKET SYSTEMS: the BDFD engine implements $newTicket[category;noSubject;messageInTicket;messageToUser;errorMessage;(number);(returnMessageID)] (private channel ticket-<number or author name>: @everyone denied, author and bot allowed) and $closeTicket[(errorMessage)] (deletes the current channel only if its name contains the word ticket). For Blocks use createChannel with categoryId, editChannelPermissions with targetId and member allow bitmask 68608, a welcome message with a close button (sendMessage with components and channelId ((action.<key>)) of the createChannel action, since BDFD $addButton only attaches to the command's own reply) and an interaction handler filtered by customIdFilter that removes the channel with removeChannel / $deleteChannels[$channelID]. (4) BLOCKS CONTRACT: a Blocks command is a GRAPH { version: 2, nodes, links, data? }. A node is { id, type, key, enabled?, payload } where type maps strictly to a native BotCreatorActionType (e.g. sendMessage, createChannel, editChannelPermissions, respondWithMessage) or to tryCatch / switch; do not invent node types or infer JSON payloads from BDFD function signatures. `key` is the REQUIRED non-empty result key, set ON THE NODE (not in payload): {\"id\":\"n2\",\"type\":\"calculate\",\"key\":\"total\",\"payload\":{...}} then read ((action.total)). Flow links { from: { node, pin }, to } start at the reserved node \"start\" (pin \"next\"); ifBlock has the pins then / elseif:<i> / else, loops body / done, tryCatch try / catch / done, switch case:<value> / default; every other node has next. Sub-lists of actions no longer exist: a branch is the nodes linked to its pin. validate_graph also accepts the legacy action list and answers with the converted graph. (5) SLASH OPTIONS: Access options directly via ((opts.name)) or ((opts.name.id)). Do not call non-existent functions like $slashOption.",
           },
         };
 
@@ -169,7 +173,7 @@ const TOOLS_META = [
     name: "get_schema_manifest",
     annotations: READ_ONLY_ANNOTATIONS,
     description:
-      "Get the compact typed grammar/schema dictionary for Bot Creator. Returns parameter types and descriptions for compiler validation. Default mode 'blocks' (~3k tokens) contains every native block action (list them with list_actions). Nested params reference named types (e.g. Embed[], ComponentsDef, Action[]) defined by mode='types'. Fast, strict, and zero-hallucination.",
+      "Get the compact typed grammar/schema dictionary for Bot Creator. Returns parameter types and descriptions for compiler validation. Default mode 'blocks' (~3k tokens) contains every native block action (list them with list_actions). Nested params reference named types (e.g. Embed[], ComponentsDef, Graph) defined by mode='types'. Fast, strict, and zero-hallucination.",
     inputSchema: {
       type: "object",
       properties: {
@@ -210,7 +214,7 @@ const TOOLS_META = [
     name: "list_actions",
     annotations: READ_ONLY_ANNOTATIONS,
     description:
-      "List every native Blocks action name with its category and description only (very small). Use it to pick action names, then get_doc / get_schema_manifest(category) for their params.",
+      "List every native Blocks node type (actions plus tryCatch and switch) with its category and description only (very small). Use it to pick node types, then get_doc / get_schema_manifest(category) for their params.",
     inputSchema: {
       type: "object",
       properties: {
@@ -219,20 +223,27 @@ const TOOLS_META = [
     },
   },
   {
-    name: "validate_actions",
+    name: "validate_graph",
     annotations: READ_ONLY_ANNOTATIONS,
     description:
-      "Validate a Blocks action list ([{ type, payload }]) against the manifest: unknown action names (with suggestions), missing required params, wrong types/enums, unknown params, and nested embeds/components/conditions/thenActions. Call it on generated JSON and fix every error before delivering it.",
+      "Validate a Blocks GRAPH ({ version: 2, nodes: [{ id, type, key, payload }], links: [{ from: { node, pin }, to }] }) against the manifest: structure (unknown nodes and pins, cycles, closed regions, parallel responses, size limits) and, for each node, unknown types (with suggestions), missing required params, wrong types/enums, unknown params and nested embeds/components/conditions/inline graphs. Legacy input is accepted and converted: pass a legacy action list in `actions` ([{ type, key?, payload }]) or a whole command/workflow in `entity`; the answer then carries the converted `graph` and the conversion `warnings`. Call it on generated JSON and fix every error before delivering it.",
     inputSchema: {
       type: "object",
       properties: {
+        graph: {
+          type: "object",
+          description: "A graph { version: 2, nodes, links, data? }. The reserved node id \"start\" is the entry (pin \"next\") and is not listed in nodes.",
+        },
         actions: {
           type: "array",
-          description: "Array of Blocks actions, each { type: string, payload: object }.",
+          description: "Legacy: a list of actions [{ type, key?, payload }] (nested thenActions/elseActions/bodyActions allowed). It is converted to a graph.",
           items: { type: "object" },
         },
+        entity: {
+          type: "object",
+          description: "Legacy or graph command/workflow ({ name, data: { executionMode, actions | graph, subcommandWorkflows } }). It is converted when needed and every graph it carries is validated.",
+        },
       },
-      required: ["actions"],
     },
   },
   {
@@ -353,7 +364,7 @@ async function handlePromptGet(req) {
             role: "assistant",
             content: {
               type: "text",
-              text: "### Golden Rules for Bot Creator LLM Generation:\n1. NO $let: Use $var[name;val] for temporary command variables. Use $setVar[key;val] for persistent global DB storage, $setUserVar for user-scoped DB variables, $setServerVar for guild-scoped DB variables.\n2. NO $sendMessage IN SLASH COMMANDS: Discord interactions acknowledge automatically. Plain text and embeds outside functions constitute the native slash reply (respondWithMessage). Add $ephemeral for private replies. Use $channelSendMessage[channelID;content] ONLY when deliberately posting into another channel.\n3. NO FAKE FUNCTIONS: $slashOption, $respondWithMessage, $sendResponse do not exist in BDScript. Access slash options via ((opts.name)) or ((opts.name.id)).\n4. BLOCKS CONTRACT: Blocks actions map strictly to BotCreatorActionType (e.g. sendMessage, respondWithMessage, createChannel, editChannelPermissions, ifBlock, forLoop).\n\n### Minimal Few-Shot (BDFD Slash Command):\n```bdfd\n$title[Server Info]\n$description[Welcome to **$serverName**! We have $membersCount members.]\n$color[#5865F2]\n$ephemeral\n```\n\n### Minimal Few-Shot (Blocks Mode JSON):\n```json\n[\n  {\n    \"type\": \"respondWithMessage\",\n    \"payload\": {\n      \"content\": \"Hello ((user.username))!\",\n      \"ephemeral\": true\n    }\n  }\n]\n```",
+              text: "### Golden Rules for Bot Creator LLM Generation:\n1. NO $let: Use $var[name;val] for temporary command variables. Use $setVar[key;val] for persistent global DB storage, $setUserVar for user-scoped DB variables, $setServerVar for guild-scoped DB variables.\n2. NO $sendMessage IN SLASH COMMANDS: Discord interactions acknowledge automatically. Plain text and embeds outside functions constitute the native slash reply (respondWithMessage). Add $ephemeral for private replies. Use $channelSendMessage[channelID;content] ONLY when deliberately posting into another channel.\n3. NO FAKE FUNCTIONS: $slashOption, $respondWithMessage, $sendResponse do not exist in BDScript. Access slash options via ((opts.name)) or ((opts.name.id)).\n4. BLOCKS CONTRACT: a Blocks command is a GRAPH. Its nodes map strictly to BotCreatorActionType (e.g. sendMessage, respondWithMessage, createChannel, editChannelPermissions, ifBlock, forLoop) or tryCatch / switch; branches are links from pins (then, else, body…), never nested lists. Validate with validate_graph.\n\n### Minimal Few-Shot (BDFD Slash Command):\n```bdfd\n$title[Server Info]\n$description[Welcome to **$serverName**! We have $membersCount members.]\n$color[#5865F2]\n$ephemeral\n```\n\n### Minimal Few-Shot (Blocks Mode, graph JSON):\n```json\n{\n  \"version\": 2,\n  \"nodes\": [\n    {\n      \"id\": \"n1\",\n      \"type\": \"respondWithMessage\",\n      \"key\": \"action_0\",\n      \"payload\": { \"content\": \"Hello ((user.username))!\", \"ephemeral\": true }\n    }\n  ],\n  \"links\": [{ \"from\": { \"node\": \"start\", \"pin\": \"next\" }, \"to\": \"n1\" }]\n}\n```",
             },
           },
         ],
@@ -412,8 +423,8 @@ async function handleToolCall(req) {
       case "list_actions":
         result = await toolListActions(args);
         break;
-      case "validate_actions":
-        result = await toolValidateActions(args);
+      case "validate_graph":
+        result = await toolValidateGraph(args);
         break;
       case "search_docs":
         result = await toolSearchDocs(args);
@@ -708,7 +719,7 @@ function checkFields(obj, fields, path, ctx, issues, ignore = []) {
       // The engine silently ignores these, so the action "works" but its result stays unreadable.
       issues.errors.push({
         path: `${path}.${key}`,
-        message: `"${key}" does not exist: the engine ignores it. Name the result with \`key\` on the ACTION itself ({"type":…,"key":"total","payload":{…}}) and read it as ((action.total)). Accepted payload fields: ${accepted || "none"}.`,
+        message: `"${key}" does not exist: the engine ignores it. Name the result with \`key\` on the NODE itself ({"id":…,"type":…,"key":"total","payload":{…}}) and read it as ((action.total)). Accepted payload fields: ${accepted || "none"}.`,
       });
       continue;
     }
@@ -717,8 +728,8 @@ function checkFields(obj, fields, path, ctx, issues, ignore = []) {
 }
 
 function checkNamedType(value, name, path, ctx, issues) {
-  if (name === "Action") {
-    checkAction(value, path, ctx, issues);
+  if (name === "Graph") {
+    checkGraph(value, path, ctx, issues);
     return;
   }
   const def = ctx.types[name];
@@ -759,7 +770,7 @@ function checkNamedType(value, name, path, ctx, issues) {
 
 function checkAction(action, path, ctx, issues) {
   if (!isPlainObject(action)) {
-    issues.errors.push({ path, message: `expected action object { type, payload }, got ${describeValue(action)}` });
+    issues.errors.push({ path, message: `expected node object { id, type, key, payload }, got ${describeValue(action)}` });
     return;
   }
   const type = action.type;
@@ -792,8 +803,8 @@ function checkAction(action, path, ctx, issues) {
       message: `a guildMember contextId must be "<guildId>:<userId>", got "${payload.contextId}" (a bare user id is refused at runtime). Use "((guild.id)):${payload.contextId.startsWith("((") ? payload.contextId : "<userId>"}" or omit contextId for the current member.`,
     });
   }
-  // The action's own fields (key, enabled, depend_on, error) live next to `type`, not in the payload.
-  const own = ctx.types.Action?.fields || {};
+  // The node's own fields (id, key, enabled, error, pos) live next to `type`, not in the payload.
+  const own = ctx.types.GraphNode?.fields || {};
   for (const field of Object.keys(action)) {
     if (field === "type" || field === "payload") continue;
     if (!own[field]) issues.warnings.push({ path: `${path}.${field}`, message: `unknown action field (known: ${Object.keys(own).join(", ")})` });
@@ -805,29 +816,103 @@ function checkAction(action, path, ctx, issues) {
       message: `"key" is ignored inside payload for ${type}: put it on the action itself ({"type":"${type}","key":"${String(payload.key)}","payload":{…}}) so the result is readable as ((action.${String(payload.key)}))`,
     });
   }
-  checkFields(payload, def.params || {}, `${path}.payload`, ctx, issues, ["tryCatch"]);
+  checkFields(payload, def.params || {}, `${path}.payload`, ctx, issues);
   ctx.count += 1;
 }
 
-async function toolValidateActions({ actions } = {}) {
-  if (typeof actions === "string") {
-    try {
-      actions = JSON.parse(actions);
-    } catch {
-      throw new Error("`actions` must be an array of { type, payload } (got an unparsable string)");
-    }
+/**
+ * Valide un graphe : structure (graph_validate.mjs, même corpus que Dart et Go) puis, pour chaque nœud,
+ * le type et le payload d'après la grammaire. `unknown_node_type` est laissé à la grammaire, qui propose
+ * une correction.
+ */
+function checkGraph(raw, path, ctx, issues) {
+  let report;
+  try {
+    report = validateGraph(raw, ctx.knownTypes);
+  } catch (err) {
+    if (!(err instanceof GraphFormatError)) throw err;
+    issues.errors.push({ path, message: err.message });
+    return;
   }
+  const where = (i) => (i.nodeId === undefined ? path : `${path}.nodes[${nodeIndex(raw, i.nodeId)}]`);
+  for (const i of report.errors) if (i.code !== "unknown_node_type") issues.errors.push({ path: where(i), code: i.code, message: i.message });
+  for (const i of report.warnings) issues.warnings.push({ path: where(i), code: i.code, message: i.message });
+  raw.nodes.filter(isPlainObject).forEach((node, i) => checkAction(node, `${path}.nodes[${i}]`, ctx, issues));
+}
+
+const nodeIndex = (raw, id) => Math.max(0, raw.nodes.filter(isPlainObject).findIndex((n) => n.id === id));
+
+function parseJsonArg(value, name, shape) {
+  if (typeof value !== "string") return value;
+  try {
+    return JSON.parse(value);
+  } catch {
+    throw new Error(`\`${name}\` must be ${shape} (got an unparsable string)`);
+  }
+}
+
+/** Les graphes que porte une commande ou un workflow déjà en mode graph, avec leur libellé. */
+function graphsOf(entity) {
+  const found = [];
+  const level = (label, holder) => {
+    if (!isPlainObject(holder)) return;
+    if (isPlainObject(holder.graph)) found.push([`${label}graph`, holder.graph]);
+    if (isPlainObject(holder.workflow) && isPlainObject(holder.workflow.graph)) found.push([`${label}workflow.graph`, holder.workflow.graph]);
+    if (isPlainObject(holder.subcommandWorkflows)) {
+      for (const [route, wf] of Object.entries(holder.subcommandWorkflows)) {
+        if (isPlainObject(wf?.graph)) found.push([`${label}subcommandWorkflows.${route}.graph`, wf.graph]);
+      }
+    }
+  };
+  level("", entity);
+  if (isPlainObject(entity.data)) level("data.", entity.data);
+  return found;
+}
+
+async function toolValidateGraph({ graph, actions, entity } = {}) {
+  graph = parseJsonArg(graph, "graph", "a graph object { version: 2, nodes, links }");
+  actions = parseJsonArg(actions, "actions", "an array of { type, payload }");
+  entity = parseJsonArg(entity, "entity", "a command or workflow object");
   if (isPlainObject(actions)) actions = [actions];
-  if (!Array.isArray(actions)) throw new Error("`actions` must be an array of { type, payload }");
+
+  const given = [graph !== undefined, actions !== undefined, entity !== undefined].filter(Boolean).length;
+  if (given !== 1) throw new Error("Pass exactly one of `graph` (a graph), `actions` (a legacy action list) or `entity` (a command/workflow).");
 
   const manifest = await fetchSchemaManifest();
-  const ctx = { blocks: manifest.modes?.blocks || {}, types: manifest.types || {}, count: 0 };
+  const blocks = manifest.modes?.blocks || {};
+  const ctx = { blocks, types: manifest.types || {}, knownTypes: new Set(Object.keys(blocks)), count: 0 };
   const issues = { errors: [], warnings: [] };
-  actions.forEach((a, i) => checkAction(a, `actions[${i}]`, ctx, issues));
+  const answer = {};
 
-  return toolText(
-    JSON.stringify({ valid: issues.errors.length === 0, checked: ctx.count, errors: issues.errors, warnings: issues.warnings })
-  );
+  if (graph !== undefined) {
+    if (!isPlainObject(graph)) throw new Error("`graph` must be an object { version: 2, nodes, links }");
+    checkGraph(graph, "graph", ctx, issues);
+  } else if (actions !== undefined) {
+    if (!Array.isArray(actions)) throw new Error("`actions` must be an array of { type, payload }");
+    let converted;
+    try {
+      converted = convertActionsToGraph(actions);
+    } catch (err) {
+      if (!(err instanceof GraphFormatError)) throw err;
+      throw new Error(err.message);
+    }
+    checkGraph(converted.graph, "graph", ctx, issues);
+    answer.converted = true;
+    answer.graph = converted.graph;
+    answer.conversionWarnings = converted.warnings;
+  } else {
+    if (!isPlainObject(entity)) throw new Error("`entity` must be a command or workflow object");
+    const ensured = ensureGraph(entity);
+    for (const w of ensured.warnings.filter((w) => w.code === "conversion_failed")) issues.errors.push({ path: "entity", code: w.code, message: w.message });
+    const graphs = graphsOf(ensured.entity);
+    graphs.forEach(([label, g]) => checkGraph(g, label, ctx, issues));
+    answer.converted = ensured.converted;
+    answer.conversionWarnings = ensured.warnings;
+    if (ensured.converted) answer.entity = ensured.entity;
+    if (graphs.length === 0 && issues.errors.length === 0) issues.warnings.push({ path: "entity", message: "no graph to validate (a bdfd_script or javascript command has none)." });
+  }
+
+  return toolText(JSON.stringify({ valid: issues.errors.length === 0, checked: ctx.count, errors: issues.errors, warnings: issues.warnings, ...answer }));
 }
 
 // Search rows stay small: the model reads them on every following turn.

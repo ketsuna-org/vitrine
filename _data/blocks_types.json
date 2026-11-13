@@ -1,13 +1,38 @@
 {
-  "Action": {
-    "desc": "Une action Blocks, à la racine : { type, key?, payload }. `key` (à la racine, PAS dans payload) nomme le résultat : avec key=\"total\", le résultat se lit ((action.total)) (et ((action.total.result)) si l'action le prévoit) dans les actions suivantes ; sans key il s'appelle action_<position> (action_0 pour la première). enabled=false désactive l'action ; depend_on liste des clés d'actions requises ; error = messages d'erreur.",
+  "Graph": {
+    "desc": "Graphe d'une commande, d'un workflow ou d'un gestionnaire en ligne (format v2) : { version: 2, nodes, links, data }. Le départ est le pseudo-nœud réservé `start` (pin `next`), absent de `nodes`. Un nœud = une action ; les liens de flux relient un pin de sortie à un nœud ; plusieurs liens sur un pin = branches parallèles lancées dans l'ordre des liens.",
     "fields": {
+      "version": "number",
+      "nodes": "GraphNode[]",
+      "links": "GraphLink[]",
+      "data": "GraphDataLink[]?"
+    }
+  },
+  "GraphNode": {
+    "desc": "Un nœud : { id, type, key, enabled?, payload?, error?, pos? }. `id` (n1, n2…) est interne et stable : les liens s'y réfèrent. `key` est la clé de résultat, REQUISE et non vide (le résultat se lit ((action.<key>)) ; non unique, le dernier écrivain gagne ; l'éditeur donne action_<n>). error.mode = stop (défaut) ou continue. Le payload ne contient AUCUNE sous-liste d'actions.",
+    "fields": {
+      "id": "string",
       "type": "string",
-      "key": "string?",
+      "key": "string",
       "enabled": "boolean?",
-      "depend_on": "string[]?",
+      "payload": "object?",
       "error": "object?",
-      "payload": "object?"
+      "pos": "object?"
+    }
+  },
+  "GraphLink": {
+    "desc": "Lien de flux : { from: { node, pin }, to }. node = id d'un nœud ou `start` ; pins : next, then, elseif:<i>, else, body, try, catch, done, error, case:<valeur>, default (voir le nœud). `to` = id du nœud cible.",
+    "fields": {
+      "from": "object",
+      "to": "string"
+    }
+  },
+  "GraphDataLink": {
+    "desc": "Lien de données optionnel : { from: { node, out }, to: { node, field }, type } avec type any|text|number|list|object|boolean. Le chaînage principal reste ((action.<key>)).",
+    "fields": {
+      "from": "object",
+      "to": "object",
+      "type": "string?"
     }
   },
   "Embed": {
@@ -78,7 +103,7 @@
     }
   },
   "Component": {
-    "desc": "Nœud de composant, discriminé par type. Les boutons et menus peuvent porter des actions inline (Action[]) exécutées au clic.",
+    "desc": "Nœud de composant, discriminé par type. Les boutons et menus peuvent porter un sous-graphe en ligne (`graph`, de type Graph) exécuté au clic.",
     "discriminator": "type",
     "variants": {
       "actionRow": {
@@ -92,7 +117,7 @@
         "emoji": "string?",
         "disabled": "string?",
         "skuId": "string?",
-        "actions": "Action[]?"
+        "graph": "Graph?"
       },
       "stringSelect": {
         "customId": "string?",
@@ -101,7 +126,7 @@
         "minValues": "number?",
         "maxValues": "number?",
         "disabled": "string?",
-        "actions": "Action[]?"
+        "graph": "Graph?"
       },
       "userSelect": {
         "customId": "string?",
@@ -109,7 +134,7 @@
         "minValues": "number?",
         "maxValues": "number?",
         "disabled": "string?",
-        "actions": "Action[]?"
+        "graph": "Graph?"
       },
       "roleSelect": {
         "customId": "string?",
@@ -117,7 +142,7 @@
         "minValues": "number?",
         "maxValues": "number?",
         "disabled": "string?",
-        "actions": "Action[]?"
+        "graph": "Graph?"
       },
       "mentionableSelect": {
         "customId": "string?",
@@ -125,7 +150,7 @@
         "minValues": "number?",
         "maxValues": "number?",
         "disabled": "string?",
-        "actions": "Action[]?"
+        "graph": "Graph?"
       },
       "channelSelect": {
         "customId": "string?",
@@ -133,7 +158,7 @@
         "minValues": "number?",
         "maxValues": "number?",
         "disabled": "string?",
-        "actions": "Action[]?"
+        "graph": "Graph?"
       },
       "textInput": {
         "customId": "string?",
@@ -236,7 +261,7 @@
     }
   },
   "ElseIfBranch": {
-    "desc": "Branche else-if d'un ifBlock : une condition (feuille ou groupe) et ses actions.",
+    "desc": "Branche else-if d'un ifBlock : une condition (feuille ou groupe). Le nœud a un pin `elseif:<i>` par entrée ; les actions de la branche sont les nœuds reliés à ce pin.",
     "fields": {
       "variable": "string?",
       "operator": "string?",
@@ -244,7 +269,7 @@
       "group": "and|or?",
       "conditions": "Condition[]?",
       "negate": "boolean?",
-      "actions": "Action[]"
+      "graph": "Graph?"
     }
   },
   "RuntimeJsonOperation": {

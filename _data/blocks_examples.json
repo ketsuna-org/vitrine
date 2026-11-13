@@ -52,8 +52,10 @@
     "type": "ifBlock",
     "values": {
       "condition.variable": "((guild.id))",
-      "condition.operator": "isNotEmpty",
-      "thenActions": [
+      "condition.operator": "isNotEmpty"
+    },
+    "branches": {
+      "then": [
         {
           "type": "respondWithMessage",
           "values": {
@@ -61,7 +63,7 @@
           }
         }
       ],
-      "elseActions": [
+      "else": [
         {
           "type": "respondWithMessage",
           "values": {
@@ -75,8 +77,10 @@
     "type": "forLoop",
     "values": {
       "mode": "simple",
-      "iterations": "3",
-      "bodyActions": [
+      "iterations": "3"
+    },
+    "branches": {
+      "body": [
         {
           "type": "sendMessage",
           "values": {

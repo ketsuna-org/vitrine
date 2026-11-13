@@ -1,0 +1,5229 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "docs:addcategoryselect#0",
+      "kind": "script",
+      "script": "$if[$customID==menu_cat]\n  Selected category: <#$getChannelSelectChannelID[1]>\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "customid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "menu_cat"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "getchannelselectchannelid",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {
+              "content": "Selected category: <#((action.action_1.action_0))>"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:customid",
+        "bdfd_generic_call:getchannelselectchannelid"
+      ]
+    },
+    {
+      "name": "docs:afkchannelid#1",
+      "kind": "script",
+      "script": "$log[Server configuration $serverName | AFK: $afkChannelID | Timeout: $afkTimeout]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "servername",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "afkchannelid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "afktimeout",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n4",
+            "type": "log",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "message": "Server configuration ((action.action_0)) | AFK: ((action.action_1)) | Timeout: ((action.action_2))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:servername",
+        "bdfd_generic_call:afkchannelid",
+        "bdfd_generic_call:afktimeout"
+      ]
+    },
+    {
+      "name": "docs:autocompleteoptionname#2",
+      "kind": "script",
+      "script": "$if[$autoCompleteOptionName==color]\n  $appendOptionSuggestion[Red;red]\n$else\n  $appendOptionSuggestion[Small;s]\n  $appendOptionSuggestion[Large;l]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "autocompleteoptionname",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "color"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "appendoptionsuggestion",
+              "arguments": [
+                "Red",
+                "red"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_1.action_0))"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "appendoptionsuggestion",
+              "arguments": [
+                "Small",
+                "s"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "appendoptionsuggestion",
+              "arguments": [
+                "Large",
+                "l"
+              ]
+            }
+          },
+          {
+            "id": "n7",
+            "type": "respondWithMessage",
+            "key": "action_1.action_2",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_1.action_0))\n  ((action.action_1.action_1))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:autocompleteoptionname",
+        "bdfd_generic_call:appendoptionsuggestion"
+      ]
+    },
+    {
+      "name": "docs:changeusernamewithid#3",
+      "kind": "script",
+      "script": "$if[$isAdmin[$authorID]==true]\n  $changeUsernameWithID[$findUser[$message[1]];$message[2]]\n  $sendMessage[Nickname of user $message[1] changed.]\n$else\n  $sendMessage[Permission denied.]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "authorid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "isadmin",
+              "arguments": [
+                "((action.action_0))"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_1))",
+              "condition.operator": "equals",
+              "condition.value": "true"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "message",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "finduser",
+              "arguments": [
+                "((action.action_2.action_0))"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_2.action_2",
+            "enabled": true,
+            "payload": {
+              "function": "message",
+              "arguments": [
+                "2"
+              ]
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_2.action_3",
+            "enabled": true,
+            "payload": {
+              "function": "changeusernamewithid",
+              "arguments": [
+                "((action.action_2.action_1))",
+                "((action.action_2.action_2))"
+              ]
+            }
+          },
+          {
+            "id": "n8",
+            "type": "callFunction",
+            "key": "action_2.action_4",
+            "enabled": true,
+            "payload": {
+              "function": "message",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n9",
+            "type": "callFunction",
+            "key": "action_2.action_5",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Nickname of user ((action.action_2.action_4)) changed."
+              ]
+            }
+          },
+          {
+            "id": "n10",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Permission denied."
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "then"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n7",
+              "pin": "next"
+            },
+            "to": "n8"
+          },
+          {
+            "from": {
+              "node": "n8",
+              "pin": "next"
+            },
+            "to": "n9"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "else"
+            },
+            "to": "n10"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:authorid",
+        "bdfd_generic_call:isadmin",
+        "bdfd_generic_call:message",
+        "bdfd_generic_call:finduser",
+        "bdfd_generic_call:changeusernamewithid",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:channelnsfw#4",
+      "kind": "script",
+      "script": "$if[$channelNSFW==true]\n  $sendMessage[This command cannot be used in NSFW channels.]\n  $stop\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "channelnsfw",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "true"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "This command cannot be used in NSFW channels."
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "stop",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {}
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:channelnsfw",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:checkuserperms#5",
+      "kind": "script",
+      "script": "$if[$checkUserPerms[$authorID;KickMembers]==true]\n  $kick[$mentioned[1]]\n$else\n  $sendMessage[❌ KickMembers permission required.]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "authorid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "checkuserperms",
+              "arguments": [
+                "((action.action_0))",
+                "KickMembers"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_1))",
+              "condition.operator": "equals",
+              "condition.value": "true"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "mentioned",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "kick",
+              "arguments": [
+                "((action.action_2.action_0))"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "❌ KickMembers permission required."
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "then"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "else"
+            },
+            "to": "n6"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:authorid",
+        "bdfd_generic_call:checkuserperms",
+        "bdfd_generic_call:mentioned",
+        "bdfd_generic_call:kick",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:commandtype#6",
+      "kind": "script",
+      "script": "$if[$commandType==chatInput]\n  $log[🔹 SLASH /$commandName by $username]\n$else\n  $log[🔸 TEXT $commandTrigger by $username]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "commandtype",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "chatInput"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "commandname",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "username",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n5",
+            "type": "log",
+            "key": "action_1.action_2",
+            "enabled": true,
+            "payload": {
+              "message": "🔹 SLASH /((action.action_1.action_0)) by ((action.action_1.action_1))"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "commandtrigger",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "username",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n8",
+            "type": "log",
+            "key": "action_1.action_2",
+            "enabled": true,
+            "payload": {
+              "message": "🔸 TEXT ((action.action_1.action_0)) by ((action.action_1.action_1))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n7",
+              "pin": "next"
+            },
+            "to": "n8"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:commandtype",
+        "bdfd_generic_call:commandname",
+        "bdfd_generic_call:username",
+        "bdfd_generic_call:commandtrigger"
+      ]
+    },
+    {
+      "name": "docs:emojiexists#7",
+      "kind": "script",
+      "script": "$if[$emojiExists[$message[1]]==true]\n  $removeEmoji[$message[1]]\n  $sendMessage[✅ Emoji **$message[1]** deleted.]\n$else\n  $sendMessage[❌ No emoji has the ID **$message[1]**.]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "message",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "emojiexists",
+              "arguments": [
+                "((action.action_0))"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_1))",
+              "condition.operator": "equals",
+              "condition.value": "true"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "message",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "removeemoji",
+              "arguments": [
+                "((action.action_2.action_0))"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_2.action_2",
+            "enabled": true,
+            "payload": {
+              "function": "message",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_2.action_3",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "✅ Emoji **((action.action_2.action_2))** deleted."
+              ]
+            }
+          },
+          {
+            "id": "n8",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "message",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n9",
+            "type": "callFunction",
+            "key": "action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "❌ No emoji has the ID **((action.action_2.action_0))**."
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "then"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "else"
+            },
+            "to": "n8"
+          },
+          {
+            "from": {
+              "node": "n8",
+              "pin": "next"
+            },
+            "to": "n9"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:message",
+        "bdfd_generic_call:emojiexists",
+        "bdfd_generic_call:removeemoji",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:for-loop#8",
+      "kind": "script",
+      "script": "$for[color;red;green;blue]\n  Current color: $color\n$endFor",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "forLoop",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "mode": "list",
+              "varName": "color",
+              "values": [
+                "red",
+                "green",
+                "blue"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "runBdfdScript",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "\n  Current color: $color"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "body"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:color"
+      ]
+    },
+    {
+      "name": "docs:getslowmode#9",
+      "kind": "script",
+      "script": "$if[$getSlowmode==0]\n  $sendMessage[This channel does not have slowmode enabled.]\n$else\n  $sendMessage[This channel has a slowmode of $getSlowmode seconds.]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "getslowmode",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "0"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "This channel does not have slowmode enabled."
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "getslowmode",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "This channel has a slowmode of ((action.action_1.action_0)) seconds."
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:getslowmode",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:guildcount#10",
+      "kind": "script",
+      "script": "$if[$guildCount>=50]\n$sendMessage[🎉 +$guildCount servers! Thank you all!]\n$else\n$sendMessage[Bot present on $guildCount servers.]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "guildcount",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "greaterOrEqual",
+              "condition.value": "50"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "guildcount",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "🎉 +((action.action_1.action_0)) servers! Thank you all!"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "guildcount",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Bot present on ((action.action_1.action_0)) servers."
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:guildcount",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:highestrole#11",
+      "kind": "script",
+      "script": "$if[$highestRole[$authorID]==123456789012345678]\n  $sendMessage[You are a staff member!]\n$else\n  $sendMessage[Highest role: $roleName[$highestRole[$authorID]]]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "authorid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "highestrole",
+              "arguments": [
+                "((action.action_0))"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_1))",
+              "condition.operator": "equals",
+              "condition.value": "123456789012345678"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "You are a staff member!"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "authorid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "highestrole",
+              "arguments": [
+                "((action.action_2.action_0))"
+              ]
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_2.action_2",
+            "enabled": true,
+            "payload": {
+              "function": "rolename",
+              "arguments": [
+                "((action.action_2.action_1))"
+              ]
+            }
+          },
+          {
+            "id": "n8",
+            "type": "callFunction",
+            "key": "action_2.action_3",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Highest role: ((action.action_2.action_2))"
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "then"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "else"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n7",
+              "pin": "next"
+            },
+            "to": "n8"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:authorid",
+        "bdfd_generic_call:highestrole",
+        "bdfd_generic_call:sendmessage",
+        "bdfd_generic_call:rolename"
+      ]
+    },
+    {
+      "name": "docs:isbooster#12",
+      "kind": "script",
+      "script": "$if[$isBooster==true]\n  $title[Thanks for the boost! 🚀]\n  $description[\n  Thanks to you, the server benefits from:\n  - More emojis\n  - Better audio quality\n  - Server banner\n  - And much more!\n  ]\n  $color[#F47FFF]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "isbooster",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "true"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "runBdfdScript",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$title[Thanks for the boost! 🚀]\n  $description[\n  Thanks to you, the server benefits from:\n  - More emojis\n  - Better audio quality\n  - Server banner\n  - And much more!\n  ]\n  $color[#F47FFF]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:isbooster",
+        "bdfd_passthrough:title",
+        "bdfd_passthrough:description",
+        "bdfd_passthrough:color"
+      ]
+    },
+    {
+      "name": "docs:ismentioned#13",
+      "kind": "script",
+      "script": "$if[$isMentioned[123456789012345678]==true]\n  $sendMessage[That user was mentioned.]\n$else\n  $sendMessage[That user was not mentioned.]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "ismentioned",
+              "arguments": [
+                "123456789012345678"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "true"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "That user was mentioned."
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "That user was not mentioned."
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:ismentioned",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:log#14",
+      "kind": "script",
+      "script": "$log[Command run by $username]\nDone!",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "username",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "log",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "message": "Command run by ((action.action_0))"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "Done!"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:username"
+      ]
+    },
+    {
+      "name": "docs:messageeditedtimestamp#15",
+      "kind": "script",
+      "script": "$if[$messageEditedTimestamp[$channelID;$messageID]!=]\n  $sendMessage[Message edited at Unix timestamp $messageEditedTimestamp[$channelID;$messageID]]\n$else\n  $sendMessage[Original message (not edited).]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "channelid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "messageid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "messageeditedtimestamp",
+              "arguments": [
+                "((action.action_0))",
+                "((action.action_1))"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ifBlock",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_2))",
+              "condition.operator": "notEquals",
+              "condition.value": ""
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_3.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "channelid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_3.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "messageid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_3.action_2",
+            "enabled": true,
+            "payload": {
+              "function": "messageeditedtimestamp",
+              "arguments": [
+                "((action.action_3.action_0))",
+                "((action.action_3.action_1))"
+              ]
+            }
+          },
+          {
+            "id": "n8",
+            "type": "callFunction",
+            "key": "action_3.action_3",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Message edited at Unix timestamp ((action.action_3.action_2))"
+              ]
+            }
+          },
+          {
+            "id": "n9",
+            "type": "callFunction",
+            "key": "action_3.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Original message (not edited)."
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "then"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n7",
+              "pin": "next"
+            },
+            "to": "n8"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "else"
+            },
+            "to": "n9"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:channelid",
+        "bdfd_generic_call:messageid",
+        "bdfd_generic_call:messageeditedtimestamp",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:nodeversion#16",
+      "kind": "script",
+      "script": "$log[🚀 $botName started | Node: $botNode | Runtime: $nodeVersion | Lang: $scriptLanguage]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "botname",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "botnode",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "nodeversion",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "function": "scriptlanguage",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n5",
+            "type": "log",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "message": "🚀 ((action.action_0)) started | Node: ((action.action_1)) | Runtime: ((action.action_2)) | Lang: ((action.action_3))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:botname",
+        "bdfd_generic_call:botnode",
+        "bdfd_generic_call:nodeversion",
+        "bdfd_generic_call:scriptlanguage"
+      ]
+    },
+    {
+      "name": "docs:removereaction#17",
+      "kind": "script",
+      "script": "$addCmdReactions[⏳]\n$wait[3]\n$removeReaction[$channelID;$messageID;$authorID;⏳]\n$addCmdReactions[✅]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "addcmdreactions",
+              "arguments": [
+                "⏳"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "wait",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "duration": "3"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "channelid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "function": "messageid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_4",
+            "enabled": true,
+            "payload": {
+              "function": "authorid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_5",
+            "enabled": true,
+            "payload": {
+              "function": "removereaction",
+              "arguments": [
+                "((action.action_2))",
+                "((action.action_3))",
+                "((action.action_4))",
+                "⏳"
+              ]
+            }
+          },
+          {
+            "id": "n7",
+            "type": "callFunction",
+            "key": "action_6",
+            "enabled": true,
+            "payload": {
+              "function": "addcmdreactions",
+              "arguments": [
+                "✅"
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:addcmdreactions",
+        "bdfd_generic_call:channelid",
+        "bdfd_generic_call:messageid",
+        "bdfd_generic_call:authorid",
+        "bdfd_generic_call:removereaction"
+      ]
+    },
+    {
+      "name": "docs:ruleschannelid#18",
+      "kind": "script",
+      "script": "$try\n  $if[$rulesChannelID!=$channelID]\n    $sendMessage[⚠️ Please use commands in an appropriate channel. The rules are available here: <#$rulesChannelID>]\n  $endif\n$catch\n$endTry",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "tryCatch",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {}
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "ruleschannelid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_0.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "channelid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n4",
+            "type": "ifBlock",
+            "key": "action_0.action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0.action_0))",
+              "condition.operator": "notEquals",
+              "condition.value": "((action.action_0.action_1))"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_0.action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "ruleschannelid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_0.action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "⚠️ Please use commands in an appropriate channel. The rules are available here: <#((action.action_0.action_2.action_0))>"
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "try"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "then"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "next"
+            },
+            "to": "n6"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:ruleschannelid",
+        "bdfd_generic_call:channelid",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:serverid#19",
+      "kind": "script",
+      "script": "$log[Action performed on server $serverID ($serverName)]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$log[Action performed on server $serverID ($serverName)]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:text"
+      ]
+    },
+    {
+      "name": "docs:splittext#20",
+      "kind": "script",
+      "script": "$textSplit[$message; ]\n$if[$splitText[1]==!help]\n  $sendMessage[Help command detected!]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$textSplit[$message; ]"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "splittext",
+              "arguments": [
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_1))",
+              "condition.operator": "equals",
+              "condition.value": "!help"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Help command detected!"
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "then"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:textsplit",
+        "bdfd_generic_call:splittext",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:unmute#21",
+      "kind": "script",
+      "script": "$if[$isAdmin[$authorID]==true]\n  $unmute[Muted]\n  $sendMessage[Member unmuted.]\n$else\n  $sendMessage[Permission denied.]\n$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "authorid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "isadmin",
+              "arguments": [
+                "((action.action_0))"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "ifBlock",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_1))",
+              "condition.operator": "equals",
+              "condition.value": "true"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "unmute",
+              "arguments": [
+                "Muted"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "callFunction",
+            "key": "action_2.action_1",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Member unmuted."
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "callFunction",
+            "key": "action_2.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Permission denied."
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "then"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "else"
+            },
+            "to": "n6"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:authorid",
+        "bdfd_generic_call:isadmin",
+        "bdfd_generic_call:unmute",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:accountage#22",
+      "kind": "script",
+      "script": "$accountAge[userID;(unit)]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "accountage",
+              "arguments": [
+                "userID",
+                "(unit)"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:accountage"
+      ]
+    },
+    {
+      "name": "docs:containsany#23",
+      "kind": "script",
+      "script": "$containsAny[Hello World;foo,world] → \"true\"",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "containsany",
+              "arguments": [
+                "Hello World",
+                "foo,world"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0)) → \"true\""
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:containsany"
+      ]
+    },
+    {
+      "name": "docs:getrole#24",
+      "kind": "script",
+      "script": "$sendMessage[Your highest role: $roleName[$getRole[$authorID;1]]]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "authorid",
+              "arguments": []
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "getrole",
+              "arguments": [
+                "((action.action_0))",
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "function": "rolename",
+              "arguments": [
+                "((action.action_1))"
+              ]
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_3",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "Your highest role: ((action.action_2))"
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:authorid",
+        "bdfd_generic_call:getrole",
+        "bdfd_generic_call:rolename",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:listindexof#25",
+      "kind": "script",
+      "script": "$sendMessage[$listIndexOf[a,b,c;b]]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "listindexof",
+              "arguments": [
+                "a,b,c",
+                "b"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "((action.action_0))"
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:listindexof",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:onlyperms#26",
+      "kind": "script",
+      "script": "$onlyPerms[BanMembers;❌ Ban permission required.]\n$sendMessage[You can ban members.]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "onlyperms",
+              "arguments": [
+                "BanMembers",
+                "❌ Ban permission required."
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "sendmessage",
+              "arguments": [
+                "You can ban members."
+              ]
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:onlyperms",
+        "bdfd_generic_call:sendmessage"
+      ]
+    },
+    {
+      "name": "docs:serververificationlevel#27",
+      "kind": "script",
+      "script": "$serverVerificationLevel[(guildID)]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "serververificationlevel",
+              "arguments": [
+                "(guildID)"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:serververificationlevel"
+      ]
+    },
+    {
+      "name": "docs:addactionrow#28",
+      "kind": "script",
+      "script": "$addActionRow[(id);(containerId)]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$addActionRow[(id);(containerId)]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:addactionrow"
+      ]
+    },
+    {
+      "name": "docs:addstringselect#29",
+      "kind": "script",
+      "script": "$addStringSelect[customId;(placeholder);(minValues);(maxValues);(disabled);(messageID)]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$addStringSelect[customId;(placeholder);(minValues);(maxValues);(disabled);(messageID)]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:addstringselect"
+      ]
+    },
+    {
+      "name": "docs:bytecount#30",
+      "kind": "script",
+      "script": "$var[data;$getVar[userData]]\n$var[size;$byteCount[$var[data]]]\n\n$title[📦 User Data]\n$description[\n**Size:** $var[size] bytes ($calculate[$var[size]/1024] KB)\n**Number of characters:** $charCount[$var[data]]\n]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$var[data;$getVar[userData]]\n$var[size;$byteCount[$var[data]]]\n\n$title[📦 User Data]\n$description[\n**Size:** $var[size] bytes ($calculate[$var[size]/1024] KB)\n**Number of characters:** $charCount[$var[data]]\n]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:var"
+      ]
+    },
+    {
+      "name": "docs:editmessagecv2#31",
+      "kind": "script",
+      "script": "$addContainer[done;#2ECC71]\n$addTextDisplay[Order confirmed by $username]\n$addSeparator\n$addTextDisplay[Thank you!]\n$editMessageCV2",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$addContainer[done;#2ECC71]\n$addTextDisplay[Order confirmed by $username]\n$addSeparator\n$addTextDisplay[Thank you!]\n$editMessageCV2"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:addcontainer",
+        "bdfd_passthrough:addtextdisplay",
+        "bdfd_passthrough:addseparator"
+      ]
+    },
+    {
+      "name": "docs:getleaderboardvalue#32",
+      "kind": "script",
+      "script": "$title[Leaderboard Score]\n$description[First place: **$getLeaderboardValue[user;coins;desc;1]**]\n$color[#57F287]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$title[Leaderboard Score]\n$description[First place: **$getLeaderboardValue[user;coins;desc;1]**]\n$color[#57F287]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:title",
+        "bdfd_passthrough:description",
+        "bdfd_passthrough:color"
+      ]
+    },
+    {
+      "name": "docs:jsonexists#33",
+      "kind": "script",
+      "script": "$jsonParse[{\"user\":{\"id\":\"123\",\"premium\":true}}]\n$title[JSON Key Verification]\n$description[Does user, premium exist? **$jsonExists[user;premium]**]\n$color[#57F287]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$jsonParse[{\"user\":{\"id\":\"123\",\"premium\":true}}]\n$title[JSON Key Verification]\n$description[Does user, premium exist? **$jsonExists[user;premium]**]\n$color[#57F287]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:title",
+        "bdfd_passthrough:description",
+        "bdfd_passthrough:color"
+      ]
+    },
+    {
+      "name": "docs:removeallcomponents#34",
+      "kind": "script",
+      "script": "$removeAllComponents[(messageID)]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$removeAllComponents[(messageID)]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:removeallcomponents"
+      ]
+    },
+    {
+      "name": "docs:setservervar#35",
+      "kind": "script",
+      "script": "$setServerVar[ticketCategory;987654321098765432;$guildID]\n$title[Server Config Saved]\n$description[Support tickets category set to ID `987654321098765432`.]\n$color[#5865F2]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$setServerVar[ticketCategory;987654321098765432;$guildID]\n$title[Server Config Saved]\n$description[Support tickets category set to ID `987654321098765432`.]\n$color[#5865F2]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:title",
+        "bdfd_passthrough:description",
+        "bdfd_passthrough:color"
+      ]
+    },
+    {
+      "name": "pure:texte",
+      "kind": "script",
+      "script": "Hello world",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "respondWithMessage",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "content": "Hello world"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "pure:appel",
+      "kind": "script",
+      "script": "Total: $sum[1;2;3]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sum",
+              "arguments": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "Total: ((action.action_0))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:sum"
+      ]
+    },
+    {
+      "name": "pure:deux-appels",
+      "kind": "script",
+      "script": "$toUpperCase[abc]-$toLowerCase[DEF]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "touppercase",
+              "arguments": [
+                "abc"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "function": "tolowercase",
+              "arguments": [
+                "DEF"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_2",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))-((action.action_1))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:touppercase",
+        "bdfd_generic_call:tolowercase"
+      ]
+    },
+    {
+      "name": "pure:if-else",
+      "kind": "script",
+      "script": "$if[1==1]yes$else no$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "yes"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "no"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "else"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "pure:if-faux",
+      "kind": "script",
+      "script": "$if[1==2]no$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "2"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "no"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "pure:if-calcule",
+      "kind": "script",
+      "script": "$if[$sum[1;1]==2]two$elseif[1==2]no$else other$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sum",
+              "arguments": [
+                "1",
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "2",
+              "elseIfConditions": [
+                {
+                  "condition.variable": "1",
+                  "condition.operator": "equals",
+                  "condition.value": "2"
+                }
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "two"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "no"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "respondWithMessage",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "other"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "elseif:0"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n5"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:sum"
+      ]
+    },
+    {
+      "name": "pure:elseif-appel",
+      "kind": "script",
+      "script": "$if[$sum[1;1]==3]a$elseif[$sum[2;2]==4]b$else c$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sum",
+              "arguments": [
+                "1",
+                "1"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "3"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "a"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sum",
+              "arguments": [
+                "2",
+                "2"
+              ]
+            }
+          },
+          {
+            "id": "n5",
+            "type": "ifBlock",
+            "key": "action_1.action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "((action.action_1.action_0))",
+              "condition.operator": "equals",
+              "condition.value": "4"
+            }
+          },
+          {
+            "id": "n6",
+            "type": "respondWithMessage",
+            "key": "action_1.action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "b"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "respondWithMessage",
+            "key": "action_1.action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "c"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "then"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "else"
+            },
+            "to": "n7"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:sum"
+      ]
+    },
+    {
+      "name": "pure:if-imbrique",
+      "kind": "script",
+      "script": "$if[1==1]$if[2==2]deep$endif$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "2",
+              "condition.operator": "equals",
+              "condition.value": "2"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "deep"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "pure:if-different",
+      "kind": "script",
+      "script": "$if[a!=b]diff$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "a",
+              "condition.operator": "notEquals",
+              "condition.value": "b"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "diff"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "pure:if-superieur",
+      "kind": "script",
+      "script": "$if[3>=2]big$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "3",
+              "condition.operator": "greaterOrEqual",
+              "condition.value": "2"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "big"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "pure:boucle-comptee",
+      "kind": "script",
+      "script": "$for[3]x$endfor",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "forLoop",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "mode": "simple",
+              "iterations": "3"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "x"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "body"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_output_split"
+      ]
+    },
+    {
+      "name": "pure:boucle-loop",
+      "kind": "script",
+      "script": "$loop[2]z$endloop",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "forLoop",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "mode": "simple",
+              "iterations": "2"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "z"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "body"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_output_split"
+      ]
+    },
+    {
+      "name": "pure:boucle-cstyle",
+      "kind": "script",
+      "script": "$for[x=0;x<3;x++]n$endfor",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "forLoop",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "mode": "cstyle",
+              "init": "x=0",
+              "condition": "x<3",
+              "update": "x++",
+              "varNames": [
+                "x"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "n"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "body"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_output_split"
+      ]
+    },
+    {
+      "name": "pure:boucle-liste",
+      "kind": "script",
+      "script": "$for[item;a;b;c]-$endfor",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "forLoop",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "mode": "list",
+              "varName": "item",
+              "values": [
+                "a",
+                "b",
+                "c"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "-"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "body"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_output_split"
+      ]
+    },
+    {
+      "name": "pure:try",
+      "kind": "script",
+      "script": "$try$sum[1;2]$catch bad$endtry",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "tryCatch",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {}
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sum",
+              "arguments": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_0.action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0.action_0))"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "bad"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "try"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "catch"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:sum"
+      ]
+    },
+    {
+      "name": "pure:stop-conditionnel",
+      "kind": "script",
+      "script": "$if[1==1]early$stop$endif late",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "early"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "stop",
+            "key": "action_0.action_1",
+            "enabled": true,
+            "payload": {}
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "late"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "else"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_output_split"
+      ]
+    },
+    {
+      "name": "pure:echappements",
+      "kind": "script",
+      "script": "cost \\$5 \\; end",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "respondWithMessage",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "content": "cost $5 ; end"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "pure:check",
+      "kind": "script",
+      "script": "$checkCondition[1==1]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "checkcondition",
+              "arguments": [
+                "1==1"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "((action.action_0))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_generic_call:checkcondition"
+      ]
+    },
+    {
+      "name": "pure:var-passthrough",
+      "kind": "script",
+      "script": "$var[x;5]value=$var[x]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$var[x;5]value=$var[x]"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:var"
+      ]
+    },
+    {
+      "name": "pure:while-passthrough",
+      "kind": "script",
+      "script": "$while[false]$endwhile after",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "runBdfdScript",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$while[false]$endwhile after"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:while"
+      ]
+    },
+    {
+      "name": "graphe:jonction",
+      "kind": "graph",
+      "script": "$if[1==1]yes$else no$endif end",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "yes"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "no"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "end"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "else"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "graphe:sans-else",
+      "kind": "graph",
+      "script": "$if[a!=b]diff$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "a",
+              "condition.operator": "notEquals",
+              "condition.value": "b"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "diff"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "graphe:appel-reference",
+      "kind": "graph",
+      "script": "Total $sum[1;2]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "function": "sum",
+              "arguments": [
+                "1",
+                "2"
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "Total ((action.action_0))"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "graphe:boucle",
+      "kind": "graph",
+      "script": "$for[2]x$endfor fin",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "forLoop",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "mode": "simple",
+              "iterations": "2"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "x"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "content": "fin"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "body"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "done"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "graphe:try",
+      "kind": "graph",
+      "script": "$try$c[note]$catch oups$endtry$wait[0s]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "tryCatch",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {}
+          },
+          {
+            "id": "n2",
+            "type": "callFunction",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "c",
+              "arguments": [
+                "note"
+              ]
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "oups"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "wait",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "duration": "0s"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "try"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "catch"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "done"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "graphe:stop-log",
+      "kind": "graph",
+      "script": "$log[trace]$stop",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "log",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {
+              "message": "trace"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "stop",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {}
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "libre:branche-morte",
+      "kind": "graph",
+      "script": "$if[1==1]x$elseif[2==2]y$else w$stop$endif z",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1",
+              "elseIfConditions": [
+                {
+                  "condition.variable": "2",
+                  "condition.operator": "equals",
+                  "condition.value": "2"
+                }
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "x"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "c",
+            "enabled": true,
+            "payload": {
+              "content": "y"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "d",
+            "enabled": true,
+            "payload": {
+              "content": "z"
+            }
+          },
+          {
+            "id": "n5",
+            "type": "respondWithMessage",
+            "key": "e",
+            "enabled": true,
+            "payload": {
+              "content": "w"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "elseif:0"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "else"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "libre:parallele",
+      "kind": "graph",
+      "script": "abcd",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "respondWithMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "a"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "b"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "c",
+            "enabled": true,
+            "payload": {
+              "content": "c"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "respondWithMessage",
+            "key": "d",
+            "enabled": true,
+            "payload": {
+              "content": "d"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "next"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n4"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_parallel:n1"
+      ]
+    },
+    {
+      "name": "libre:switch",
+      "kind": "graph",
+      "script": "$if[k==1]one$else other$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "switch",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "value": "k",
+              "mode": "text"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "one"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "c",
+            "enabled": true,
+            "payload": {
+              "content": "other"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "case:1"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "default"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "libre:noeud-sans-bdfd",
+      "kind": "graph",
+      "script": "$c[unmapped createPoll a]after",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "createPoll",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "question": "q"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "after"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_unmapped_node:createPoll"
+      ]
+    },
+    {
+      "name": "libre:orphelin-et-desactive",
+      "kind": "graph",
+      "script": "a",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "respondWithMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "a"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "b"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "respondWithMessage",
+            "key": "c",
+            "enabled": true,
+            "payload": {
+              "content": "c"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "graph_orphan:n2",
+        "graph_orphan:n3"
+      ]
+    },
+    {
+      "name": "libre:continue",
+      "kind": "graph",
+      "script": "$try$var[n1;$sum[1;2]]$catch$endtry ok",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "callFunction",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "function": "sum",
+              "arguments": [
+                "1",
+                "2"
+              ]
+            },
+            "error": {
+              "mode": "continue"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "ok"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
+      "name": "libre:condition-groupe",
+      "kind": "graph",
+      "script": "$if[$and[$checkCondition[1==1];$checkCondition[2>1]]==true]both$endif",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "ifBlock",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "condition.group": "and",
+              "condition.conditions": [
+                {
+                  "condition.variable": "1",
+                  "condition.operator": "equals",
+                  "condition.value": "1"
+                },
+                {
+                  "condition.variable": "2",
+                  "condition.operator": "greaterThan",
+                  "condition.value": "1"
+                }
+              ]
+            }
+          },
+          {
+            "id": "n2",
+            "type": "respondWithMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "both"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "then"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    }
+  ]
+}

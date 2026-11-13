@@ -24,8 +24,17 @@ const lang = opt('--lang') ?? 'fr';
 const arb = JSON.parse(await readFile(path.join(appDir, `packages/ui/lib/src/l10n/app_${lang}.arb`), 'utf8'));
 const reg = JSON.parse(await readFile(path.join(root, '_data/blocks_registry.json'), 'utf8'));
 
+// Nœuds de contrôle absents de l'enum de l'app (donc des fichiers ARB) : textes français écrits ici.
+const controlTexts = {
+  fr: {
+    tryCatch: ['Essayer / Attraper', "Exécute la région `try` ; si une action échoue, `error.*` est renseigné et la région `catch` s'exécute ; puis `done`."],
+    switch: ['Aiguillage', 'Compare une valeur aux pins `case:<valeur>` et suit celui qui correspond, sinon `default`.'],
+  },
+}[lang] ?? {};
+
 const names = {}, descriptions = {}, categories = {};
 for (const b of reg.blocks) {
+  if (controlTexts[b.type]) [names[b.type], descriptions[b.type]] = controlTexts[b.type];
   if (arb[`action_name_${b.type}`]) names[b.type] = arb[`action_name_${b.type}`];
   if (arb[`action_description_${b.type}`]) descriptions[b.type] = arb[`action_description_${b.type}`];
   const catKey = 'action_category_' + b.category.toLowerCase().replace(/&/g, '').trim().replace(/\s+/g, '_');

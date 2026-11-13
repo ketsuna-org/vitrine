@@ -11,11 +11,28 @@ permalink: /docs/execution-model/
 
 Bot Creator offers three authoring modes. Understanding how the runtime handles Discord interactions, variables, and action boundaries prevents broken commands.
 
+> A Blocks command is a **graph**. How it runs (order, joins, errors, `stop`) is described in [section 0](#0-how-a-graph-runs) below; the format is in the [Graph mode guide](/fr/docs/graph/) (French).
+
 | Mode | Format | Execution Engine | Primary Reference |
 |---|---|---|---|
-| **Blocks** | Visual cards / JSON actions | Native Dart Engine | [Blocks Guide](/docs/blocks/) & [Dictionary](/docs/blocks-dictionary/) |
+| **Blocks (Graph)** | Visual graph / JSON graph | Native Dart Engine (graph runner) | [Blocks Guide](/docs/blocks/) & [Dictionary](/docs/blocks-dictionary/) |
 | **BDScript (BDFD)** | Text & `$functions` | Native AST interpreter (Dart) | [Function Reference](/docs/) |
 | **BDJS (JavaScript)** | JavaScript ES6+ | QuickJS / Node Sandbox | [JavaScript API](/docs/javascript/) |
+
+---
+
+## 0. How a graph runs
+
+1. **Order.** Execution is sequential and deterministic, depth first in the order of the links: after a node, its live links are followed in order. Several links on one pin start parallel branches, but they never run at the same time. The mobile list view shows this same order.
+2. **Joins.** A node with several incoming links runs **once**, when all of them are resolved (arrived or dead). A path that is not taken is dead; a node whose inputs are all dead is dead too. A link that starts from a node unreachable from the entry is dead from the start.
+3. **Branches.** *IF / ELSE* follows the first matching pin (`then`, `elseif:<i>`, `else`); *Switch* follows `case:<value>` or `default`. The other pins are dead.
+4. **Regions.** Loop bodies and *Try / Catch* regions are closed: they run again with a fresh state at each turn, and their result keys are overwritten each time (there are no `iter<N>` keys any more).
+5. **Errors.** A failing node follows its `error` links if it has any; otherwise `error.mode = continue` notes the error and goes on through `next`; otherwise the error goes up and the run fails.
+6. **Stop.** `stop`, `stopUnless` and `cooldown` end the whole running graph. Inside a workflow called by `runWorkflow`, they only end that workflow.
+7. **Acknowledgement.** The interaction is deferred before the first node, unless an enabled node `deferInteraction` or `respondWithModal` exists in the root graph or `autoDeferIfActions` is `false`.
+8. **Guards.** A command has a 15 minute budget and a maximum number of steps per run.
+
+Commands saved in the former list-of-actions format are converted to a graph when they are loaded, so they keep working.
 
 ---
 
@@ -56,7 +73,7 @@ $sendMessage[Hello $username!]
    $ephemeral
    This message is only visible to you.
    ```
-   - In Blocks, set `"ephemeral": true` on the `respondWithMessage` action.
+   - In Blocks, set `"ephemeral": true` on the `respondWithMessage` node.
 
 4. **Interaction Reply vs Channel Send:**
    - **Replying to the interaction**: Use raw text / `$ephemeral` in BDFD, or `respondWithMessage` in Blocks.
@@ -131,7 +148,7 @@ Read the full walkthrough: **[Complete Ticket System Guide](/docs/tickets/)**.
 
 ## 5. Golden Rules for Language Models (LLMs / MCP)
 
-1. **Strict Separation:** Never mix Blocks JSON with BDFD syntax. A `sendMessage` block takes a JSON payload `{ "content": "..." }`, not a string `$sendMessage[...]`.
+1. **Strict Separation:** Never mix Blocks JSON with BDFD syntax (use the explicit BDFD <-> Graph conversion instead, see [BDFD and Graph](/fr/docs/bdfd-graph/)). A `sendMessage` block takes a JSON payload `{ "content": "..." }`, not a string `$sendMessage[...]`.
 2. **Zero Invented Functions:** Never document or suggest non-existent functions such as `$let`, `$sendResponse`, `$respondWithMessage`, or `$slashOption`. The engine does not report them; it prints them back as text.
 3. **Respect `incomplete` Status:** Alert users to the limitations of functions whose page is marked incomplete (for example `$closeTicket`).
 4. **Clean Acknowledgment:** In slash commands, prefer the implicit reply (or `$ephemeral`) without doubling up with a `$sendMessage`.

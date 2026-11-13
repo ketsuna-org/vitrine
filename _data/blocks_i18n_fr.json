@@ -118,9 +118,9 @@
     "randomChoice": "Choix aléatoire",
     "leaveGuild": "Faire quitter le serveur",
     "attachImage": "Joindre une image",
-    "skipActions": "Sauter N actions",
-    "jumpToAction": "Aller à l'action",
-    "callFunction": "Appeler une fonction"
+    "callFunction": "Appeler une fonction",
+    "tryCatch": "Essayer / Attraper",
+    "switch": "Aiguillage"
   },
   "descriptions": {
     "deleteMessages": "Supprimer un ou plusieurs messages",
@@ -239,9 +239,9 @@
     "randomChoice": "Choisit un élément aléatoire dans une liste et le stocke dans une variable",
     "leaveGuild": "Faire quitter le serveur/la guilde au bot",
     "attachImage": "Joindre un fichier image à la réponse (URL, data URL ou base64)",
-    "skipActions": "Sauter un nombre spécifié d'actions suivantes",
-    "jumpToAction": "Aller à une action spécifique par clé, ID, ou position",
-    "callFunction": "Appeler n'importe quelle fonction native BDFD avec un formulaire et garder sa valeur"
+    "callFunction": "Appeler n'importe quelle fonction native BDFD avec un formulaire et garder sa valeur",
+    "tryCatch": "Exécute la région `try` ; si une action échoue, `error.*` est renseigné et la région `catch` s'exécute ; puis `done`.",
+    "switch": "Compare une valeur aux pins `case:<valeur>` et suit celui qui correspond, sinon `default`."
   },
   "categories": {
     "Messages": "Messages",
@@ -251,7 +251,7 @@
     "Guild & Members": "Serveur & Membres",
     "Components": "Composants",
     "Webhooks": "Webhooks",
-    "HTTP & Variables": "HTTP & Variables",
+    "HTTP & Variables": "HTTP et variables",
     "Workflows": "Workflows",
     "Logic & Flow": "Logique & Flux",
     "Interactions": "Interactions",

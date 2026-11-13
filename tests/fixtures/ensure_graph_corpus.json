@@ -1,0 +1,1237 @@
+[
+  {
+    "name": "commande en mode workflow",
+    "input": {
+      "name": "ping",
+      "data": {
+        "executionMode": "workflow",
+        "editorMode": "advanced",
+        "actions": [
+          {
+            "type": "sendMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          },
+          {
+            "type": "sendMessage",
+            "key": "b",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "name": "ping",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "sendMessage",
+              "key": "a",
+              "enabled": true,
+              "payload": {
+                "content": "salut"
+              }
+            },
+            {
+              "id": "n2",
+              "type": "sendMessage",
+              "key": "b",
+              "enabled": true,
+              "payload": {
+                "content": "salut"
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            },
+            {
+              "from": {
+                "node": "n1",
+                "pin": "next"
+              },
+              "to": "n2"
+            }
+          ],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "commande sans mode mais avec actions",
+    "input": {
+      "name": "ping2",
+      "data": {
+        "actions": [
+          {
+            "type": "sendMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          }
+        ],
+        "response": {
+          "workflow": {
+            "autoDeferIfActions": false
+          }
+        }
+      }
+    },
+    "output": {
+      "name": "ping2",
+      "data": {
+        "response": {
+          "workflow": {
+            "autoDeferIfActions": false
+          },
+          "_migrated": true
+        },
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "sendMessage",
+              "key": "a",
+              "enabled": true,
+              "payload": {
+                "content": "salut"
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        },
+        "executionMode": "graph"
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "ancienne reponse (avant les actions), ephemere et sans defer",
+    "input": {
+      "name": "old",
+      "data": {
+        "executionMode": "workflow",
+        "response": {
+          "mode": "message",
+          "type": "normal",
+          "text": "bonjour",
+          "workflow": {
+            "autoDeferIfActions": false,
+            "visibility": "ephemeral",
+            "conditional": {
+              "enabled": false
+            }
+          }
+        },
+        "actions": []
+      }
+    },
+    "output": {
+      "name": "old",
+      "data": {
+        "executionMode": "graph",
+        "response": {
+          "mode": "message",
+          "type": "normal",
+          "text": "bonjour",
+          "workflow": {
+            "autoDeferIfActions": false,
+            "visibility": "ephemeral",
+            "conditional": {
+              "enabled": false
+            }
+          },
+          "_migrated": true
+        },
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "respondWithMessage",
+              "key": "action_0",
+              "enabled": true,
+              "payload": {
+                "content": "bonjour",
+                "ephemeral": true
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "workflow nomme (liste racine)",
+    "input": {
+      "name": "wf",
+      "workflowType": "general",
+      "entryPoint": "main",
+      "arguments": [],
+      "actions": [
+        {
+          "type": "sendMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "salut"
+          }
+        }
+      ]
+    },
+    "output": {
+      "name": "wf",
+      "workflowType": "general",
+      "entryPoint": "main",
+      "arguments": [],
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "sendMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "executionMode": "graph"
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "workflow evenementiel",
+    "input": {
+      "name": "welcome",
+      "workflowType": "event",
+      "eventTrigger": {
+        "event": "guildMemberAdd"
+      },
+      "executionMode": "workflow",
+      "actions": [
+        {
+          "type": "sendMessage",
+          "key": "hello",
+          "enabled": true,
+          "payload": {
+            "content": "salut"
+          }
+        },
+        {
+          "type": "sendMessage",
+          "key": "bye",
+          "enabled": true,
+          "payload": {
+            "content": "salut"
+          }
+        }
+      ]
+    },
+    "output": {
+      "name": "welcome",
+      "workflowType": "event",
+      "eventTrigger": {
+        "event": "guildMemberAdd"
+      },
+      "executionMode": "graph",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "sendMessage",
+            "key": "hello",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "sendMessage",
+            "key": "bye",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "workflow evenementiel enveloppe dans data",
+    "input": {
+      "name": "wrapped",
+      "data": {
+        "workflowType": "event",
+        "actions": [
+          {
+            "type": "sendMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "name": "wrapped",
+      "data": {
+        "workflowType": "event",
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "sendMessage",
+              "key": "a",
+              "enabled": true,
+              "payload": {
+                "content": "salut"
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        },
+        "executionMode": "graph"
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "sous-commandes (une route sans actions garde celles de la commande)",
+    "input": {
+      "name": "cfg",
+      "data": {
+        "executionMode": "workflow",
+        "actions": [
+          {
+            "type": "sendMessage",
+            "key": "root",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          }
+        ],
+        "subcommandWorkflows": {
+          "set": {
+            "actions": [
+              {
+                "type": "sendMessage",
+                "key": "set",
+                "enabled": true,
+                "payload": {
+                  "content": "salut"
+                }
+              }
+            ]
+          },
+          "show": {
+            "visibility": "ephemeral"
+          }
+        }
+      }
+    },
+    "output": {
+      "name": "cfg",
+      "data": {
+        "executionMode": "graph",
+        "subcommandWorkflows": {
+          "set": {
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "sendMessage",
+                  "key": "set",
+                  "enabled": true,
+                  "payload": {
+                    "content": "salut"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                }
+              ],
+              "data": []
+            }
+          },
+          "show": {
+            "visibility": "ephemeral"
+          }
+        },
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "sendMessage",
+              "key": "root",
+              "enabled": true,
+              "payload": {
+                "content": "salut"
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "data.workflow.actions",
+    "input": {
+      "name": "nested",
+      "data": {
+        "executionMode": "workflow",
+        "workflow": {
+          "visibility": "public",
+          "actions": [
+            {
+              "type": "sendMessage",
+              "key": "w",
+              "enabled": true,
+              "payload": {
+                "content": "salut"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "output": {
+      "name": "nested",
+      "data": {
+        "executionMode": "graph",
+        "workflow": {
+          "visibility": "public",
+          "graph": {
+            "version": 2,
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "sendMessage",
+                "key": "w",
+                "enabled": true,
+                "payload": {
+                  "content": "salut"
+                }
+              }
+            ],
+            "links": [
+              {
+                "from": {
+                  "node": "start",
+                  "pin": "next"
+                },
+                "to": "n1"
+              }
+            ],
+            "data": []
+          }
+        },
+        "graph": {
+          "version": 2,
+          "nodes": [],
+          "links": [],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "composants V2 : actions de boutons imbriquees",
+    "input": {
+      "name": "menu",
+      "data": {
+        "executionMode": "workflow",
+        "actions": [
+          {
+            "type": "respondWithComponentV2",
+            "key": "menu",
+            "payload": {
+              "components": {
+                "components": [
+                  {
+                    "type": "actionRow",
+                    "components": [
+                      {
+                        "type": "button",
+                        "customId": "ok",
+                        "label": "Go",
+                        "actions": [
+                          {
+                            "type": "sendMessage",
+                            "key": "clic",
+                            "enabled": true,
+                            "payload": {
+                              "content": "salut"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "button",
+                        "customId": "vide",
+                        "label": "Go",
+                        "actions": []
+                      },
+                      {
+                        "type": "button",
+                        "customId": "rien",
+                        "label": "Go"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "name": "menu",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "respondWithComponentV2",
+              "key": "menu",
+              "enabled": true,
+              "payload": {
+                "components": {
+                  "components": [
+                    {
+                      "type": "actionRow",
+                      "components": [
+                        {
+                          "type": "button",
+                          "customId": "ok",
+                          "label": "Go",
+                          "graph": {
+                            "version": 2,
+                            "nodes": [
+                              {
+                                "id": "n1",
+                                "type": "sendMessage",
+                                "key": "clic",
+                                "enabled": true,
+                                "payload": {
+                                  "content": "salut"
+                                }
+                              }
+                            ],
+                            "links": [
+                              {
+                                "from": {
+                                  "node": "start",
+                                  "pin": "next"
+                                },
+                                "to": "n1"
+                              }
+                            ],
+                            "data": []
+                          }
+                        },
+                        {
+                          "type": "button",
+                          "customId": "vide",
+                          "label": "Go"
+                        },
+                        {
+                          "type": "button",
+                          "customId": "rien",
+                          "label": "Go"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "ecouteur en ligne contenant des composants",
+    "input": {
+      "name": "listener",
+      "actions": [
+        {
+          "type": "listenForButtonClick",
+          "key": "wait",
+          "payload": {
+            "customId": "go",
+            "actions": [
+              {
+                "type": "respondWithComponentV2",
+                "key": "again",
+                "payload": {
+                  "components": {
+                    "components": [
+                      {
+                        "type": "button",
+                        "customId": "deep",
+                        "label": "Go",
+                        "actions": [
+                          {
+                            "type": "sendMessage",
+                            "key": "deep",
+                            "enabled": true,
+                            "payload": {
+                              "content": "salut"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "output": {
+      "name": "listener",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "listenForButtonClick",
+            "key": "wait",
+            "enabled": true,
+            "payload": {
+              "customId": "go",
+              "graph": {
+                "version": 2,
+                "nodes": [
+                  {
+                    "id": "n1",
+                    "type": "respondWithComponentV2",
+                    "key": "again",
+                    "enabled": true,
+                    "payload": {
+                      "components": {
+                        "components": [
+                          {
+                            "type": "button",
+                            "customId": "deep",
+                            "label": "Go",
+                            "graph": {
+                              "version": 2,
+                              "nodes": [
+                                {
+                                  "id": "n1",
+                                  "type": "sendMessage",
+                                  "key": "deep",
+                                  "enabled": true,
+                                  "payload": {
+                                    "content": "salut"
+                                  }
+                                }
+                              ],
+                              "links": [
+                                {
+                                  "from": {
+                                    "node": "start",
+                                    "pin": "next"
+                                  },
+                                  "to": "n1"
+                                }
+                              ],
+                              "data": []
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "links": [
+                  {
+                    "from": {
+                      "node": "start",
+                      "pin": "next"
+                    },
+                    "to": "n1"
+                  }
+                ],
+                "data": []
+              }
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "executionMode": "graph"
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "ancienne reference de workflow sur un bouton",
+    "input": {
+      "name": "legacybtn",
+      "actions": [
+        {
+          "type": "sendMessage",
+          "key": "m",
+          "payload": {
+            "components": {
+              "components": [
+                {
+                  "type": "button",
+                  "customId": "b1",
+                  "onClickWorkflow": "cible",
+                  "onClickEntryPoint": "start"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "output": {
+      "name": "legacybtn",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "sendMessage",
+            "key": "m",
+            "enabled": true,
+            "payload": {
+              "components": {
+                "components": [
+                  {
+                    "type": "button",
+                    "customId": "b1",
+                    "graph": {
+                      "version": 2,
+                      "nodes": [
+                        {
+                          "id": "n1",
+                          "type": "runWorkflow",
+                          "key": "action_0",
+                          "enabled": true,
+                          "payload": {
+                            "workflowName": "cible",
+                            "entryPoint": "start",
+                            "arguments": {}
+                          }
+                        }
+                      ],
+                      "links": [
+                        {
+                          "from": {
+                            "node": "start",
+                            "pin": "next"
+                          },
+                          "to": "n1"
+                        }
+                      ],
+                      "data": []
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "executionMode": "graph"
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "deja en graphe : rendu tel quel",
+    "input": {
+      "name": "done",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [],
+          "links": []
+        }
+      }
+    },
+    "output": {
+      "name": "done",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [],
+          "links": []
+        }
+      }
+    },
+    "converted": false,
+    "warnings": []
+  },
+  {
+    "name": "bdfd_script : intact",
+    "input": {
+      "name": "bd",
+      "data": {
+        "executionMode": "bdfd_script",
+        "bdfdScriptContent": "$sendMessage[hi]",
+        "actions": [
+          {
+            "type": "sendMessage",
+            "key": "stale",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "name": "bd",
+      "data": {
+        "executionMode": "bdfd_script",
+        "bdfdScriptContent": "$sendMessage[hi]",
+        "actions": [
+          {
+            "type": "sendMessage",
+            "key": "stale",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          }
+        ]
+      }
+    },
+    "converted": false,
+    "warnings": []
+  },
+  {
+    "name": "javascript : intact",
+    "input": {
+      "name": "js",
+      "data": {
+        "executionMode": "javascript",
+        "jsScriptContent": "message.reply(\"x\")"
+      }
+    },
+    "output": {
+      "name": "js",
+      "data": {
+        "executionMode": "javascript",
+        "jsScriptContent": "message.reply(\"x\")"
+      }
+    },
+    "converted": false,
+    "warnings": []
+  },
+  {
+    "name": "script sans mode ni actions : intact",
+    "input": {
+      "name": "noMode",
+      "data": {
+        "bdfdScriptContent": "$sendMessage[hi]"
+      }
+    },
+    "output": {
+      "name": "noMode",
+      "data": {
+        "bdfdScriptContent": "$sendMessage[hi]"
+      }
+    },
+    "converted": false,
+    "warnings": []
+  },
+  {
+    "name": "graphe et actions perimees (ancienne app) : les actions gagnent",
+    "input": {
+      "name": "overwrite",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [],
+          "links": []
+        },
+        "actions": [
+          {
+            "type": "sendMessage",
+            "key": "neuf",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "name": "overwrite",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "sendMessage",
+              "key": "neuf",
+              "enabled": true,
+              "payload": {
+                "content": "salut"
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": [
+      "legacy_actions_overwrite"
+    ]
+  },
+  {
+    "name": "repli de workflow nomme quand les actions sont vides",
+    "input": {
+      "name": "fallback",
+      "data": {
+        "executionMode": "workflow",
+        "response": {
+          "workflow": {
+            "name": "partage"
+          }
+        },
+        "actions": []
+      }
+    },
+    "output": {
+      "name": "fallback",
+      "data": {
+        "executionMode": "graph",
+        "response": {
+          "workflow": {
+            "name": "partage"
+          },
+          "_migrated": true
+        },
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "runWorkflow",
+              "key": "action_0",
+              "enabled": true,
+              "payload": {
+                "workflowName": "partage"
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": [
+      "named_workflow_fallback"
+    ]
+  },
+  {
+    "name": "action sans type : ancien format conserve",
+    "input": {
+      "name": "broken",
+      "data": {
+        "executionMode": "workflow",
+        "actions": [
+          {
+            "key": "x",
+            "payload": {}
+          }
+        ]
+      }
+    },
+    "output": {
+      "name": "broken",
+      "data": {
+        "executionMode": "workflow",
+        "actions": [
+          {
+            "key": "x",
+            "payload": {}
+          }
+        ]
+      }
+    },
+    "converted": false,
+    "warnings": [
+      "conversion_failed"
+    ]
+  },
+  {
+    "name": "saut vers une cible située avant : avertissement de la conversion",
+    "input": {
+      "name": "loop",
+      "actions": [
+        {
+          "type": "sendMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "salut"
+          }
+        },
+        {
+          "type": "jumpToAction",
+          "key": "j",
+          "payload": {
+            "targetKey": "a"
+          }
+        }
+      ]
+    },
+    "output": {
+      "name": "loop",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "sendMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "salut"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "switch",
+            "key": "j",
+            "enabled": true,
+            "payload": {
+              "value": "a",
+              "mode": "text",
+              "resultPrefix": "JUMP_TO_"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          }
+        ],
+        "data": []
+      },
+      "executionMode": "graph"
+    },
+    "converted": true,
+    "warnings": [
+      "unresolved_jump"
+    ]
+  },
+  {
+    "name": "workflow vide",
+    "input": {
+      "name": "empty",
+      "executionMode": "workflow",
+      "actions": []
+    },
+    "output": {
+      "name": "empty",
+      "executionMode": "graph",
+      "graph": {
+        "version": 2,
+        "nodes": [],
+        "links": [],
+        "data": []
+      }
+    },
+    "converted": true,
+    "warnings": []
+  }
+]

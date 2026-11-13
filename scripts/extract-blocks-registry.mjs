@@ -6,7 +6,10 @@
  *   node scripts/extract-blocks-registry.mjs --app ../bot-creator [--check] [--icons <dir>]
  *
  * Sources read from the app checkout (packages/ui/lib/src/…):
- *   - shared/lib/types/action.dart            enum BotCreatorActionType (the block types)
+ *   - shared/lib/types/action.dart            enum BotCreatorActionType (the node types)
+ *   - shared/lib/graph/workflow_graph.dart    graph constants: control node types, GraphPins, data types, start id
+ *   - shared/lib/graph/graph_validation.dart  node types left out of the closed list (legacy navigation types)
+ *   - shared/lib/graph/graph_conversion.dart  types whose inline action list became a `graph` sub-graph
  *   - editor/catalog/action_type_extension.dart  icon + parameterDefinitions (fields, hints, options)
  *   - editor/blocks/scratch_block_palette.dart   category, terminal blocks, palette visibility
  *   - theme/block_family.dart                    family colour + family of each category
@@ -30,6 +33,9 @@ const iconsDir = opt('--icons');
 
 const files = {
   action: path.join(appDir, 'packages/shared/lib/types/action.dart'),
+  graph: path.join(appDir, 'packages/shared/lib/graph/workflow_graph.dart'),
+  validation: path.join(appDir, 'packages/shared/lib/graph/graph_validation.dart'),
+  conversion: path.join(appDir, 'packages/shared/lib/graph/graph_conversion.dart'),
   ext: path.join(appDir, 'packages/ui/lib/src/editor/catalog/action_type_extension.dart'),
   palette: path.join(appDir, 'packages/ui/lib/src/editor/blocks/scratch_block_palette.dart'),
   family: path.join(appDir, 'packages/ui/lib/src/theme/block_family.dart'),
@@ -139,7 +145,7 @@ function methodBody(src, signature) {
 
 // ───────────────────────── extraction ─────────────────────────
 
-const [actionSrc, extSrc, paletteSrc, familySrc, arbRaw, eventsSrc, variablesSrc] = await Promise.all(
+const [actionSrc, graphSrc, validationSrc, conversionSrc, extSrc, paletteSrc, familySrc, arbRaw, eventsSrc, variablesSrc] = await Promise.all(
   Object.values(files).map((f) => readFile(f, 'utf8')),
 );
 const arb = JSON.parse(arbRaw);
@@ -155,6 +161,23 @@ for (const line of enumBody.split('\n')) {
   const m = t.match(/^(\w+),$/);
   if (m) { types.push(m[1]); if (sawDeprecated) deprecated.add(m[1]); sawDeprecated = false; }
 }
+
+// 1b. Graph model (workflow_graph.dart): constants only, so the docs never restate them by hand.
+const dartConst = (src, name) => {
+  const m = src.match(new RegExp(`const\\s+(?:String|int)\\s+${name}\\s*=\\s*('(?:\\\\.|[^'\\\\])*'|\\d+)\\s*;`));
+  if (!m) throw new Error(`workflow_graph.dart: constant ${name} not found`);
+  return m[1].startsWith("'") ? dartString(m[1]) : Number(m[1]);
+};
+const graphFormat = dartConst(graphSrc, 'graphFormatVersion');
+const controlTypes = ['If', 'ForLoop', 'JsonForEachLoop', 'TryCatch', 'Switch'].map((n) => dartConst(graphSrc, `graph${n}Type`));
+const pinsBody = methodBody(graphSrc, 'abstract final class GraphPins');
+const pins = Object.fromEntries([...pinsBody.matchAll(/static const String (\w+)\s*=\s*('[^']*')\s*;/g)].map((m) => [m[1], dartString(m[2])]));
+const dataTypes = [...methodBody(graphSrc, 'abstract final class GraphDataTypes').matchAll(/static const String (\w+)\s*=\s*'(\w+)'/g)].map((m) => m[2]);
+const regionOwners = [...graphSrc.slice(graphSrc.indexOf('graphRegionOwnerTypes')).match(/\{([^}]*)\}/)[1].matchAll(/graph(\w+)Type/g)]
+  .map((m) => dartConst(graphSrc, `graph${m[1]}Type`));
+// Types left out of the closed list of node types (they became `switch` nodes): `t != BotCreatorActionType.X`.
+const legacyTypes = [...validationSrc.matchAll(/t\s*!=\s*BotCreatorActionType\.(\w+)/g)].map((m) => m[1]);
+const inlineGraphTypes = [...methodBody(conversionSrc, 'const Set<String> graphInlineHandlerTypes = ').matchAll(/'(\w+)'/g)].map((m) => m[1]);
 
 // 2. Icons (Material icon names).
 const iconBody = methodBody(extSrc, 'IconData get icon');
@@ -240,24 +263,68 @@ const fieldLabel = (key) => key
   .replace(/([A-Z])/g, ' $1').split(' ')
   .map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
 
-const blocks = types.map((t) => {
-  const cat = category[t]?.replace(/^'|'$/g, '');
+// 8. Graph node types: every action type except the legacy navigation ones (now `switch` nodes),
+// plus the control types that are not in the enum (`tryCatch`, `switch`).
+const [ifType, forType, jsonForType, tryType, switchType] = controlTypes;
+const nodeTypes = [...types.filter((t) => !legacyTypes.includes(t)), ...controlTypes.filter((t) => !types.includes(t))];
+
+// Output pins of a node type (contract §2; same rule as `_allowedPins` in graph_validation.dart).
+const pinsOf = (t) => {
+  if (t === ifType) return [pins.then, 'elseif:<i>', pins.elseBranch, pins.error];
+  if (t === forType || t === jsonForType) return [pins.body, pins.done, pins.error];
+  if (t === tryType) return [pins.tryBody, pins.catchBody, pins.done, pins.error];
+  if (t === switchType) return ['case:<value>', pins.defaultCase, pins.error];
+  return [pins.next, pins.error];
+};
+
+// Control nodes that do not exist in the app's enum: described here, from the contract (§2).
+const controlNodes = {
+  [tryType]: {
+    name: 'Try / Catch',
+    description: 'Runs the `try` region; when an action fails, `error.*` is set and the `catch` region runs; then `done`.',
+    icon: 'security',
+    fields: [],
+  },
+  [switchType]: {
+    name: 'Switch',
+    description: 'Compares a value with the `case:<value>` pins and follows the matching one, otherwise `default`.',
+    icon: 'shuffle',
+    fields: [
+      { key: 'value', type: 'string', default: '', hint: 'Value to compare, resolved at run time', required: true },
+      { key: 'mode', type: 'multiSelect', default: 'text', options: ['text', 'int'] },
+      { key: 'resultPrefix', type: 'string', default: '', hint: 'Prefix of the result written as <prefix><value>' },
+    ],
+  },
+};
+
+// Fields that exist only for the old nested-list model: the graph has pins and sub-graphs instead.
+const droppedFields = { [ifType]: ['tryCatch', 'suppressErrors'] };
+const graphField = { key: 'graph', type: 'graph', default: null, hint: 'Sub-graph run later (opens the graph editor)' };
+const graphFields = (t, defs) => defs.flatMap((d) => {
+  if (droppedFields[t]?.includes(d.key)) return [];
+  if (d.type !== 'nestedActions') return [d];
+  return inlineGraphTypes.includes(t) && d.key === 'actions' ? [graphField] : [];
+});
+
+const blocks = nodeTypes.map((t) => {
+  const control = controlNodes[t];
+  const cat = control ? 'Logic & Flow' : category[t]?.replace(/^'|'$/g, '');
   const fam = familyOfCategory[cat.toLowerCase()] ?? 'logic';
-  const block = {
+  return {
     type: t,
-    name: arb[`action_name_${t}`] ?? null,
-    description: arb[`action_description_${t}`] ?? null,
+    name: arb[`action_name_${t}`] ?? control?.name ?? null,
+    description: arb[`action_description_${t}`] ?? control?.description ?? null,
     category: cat,
     family: fam,
-    icon: (icons[t] ?? 'Icons.extension').replace('Icons.', ''),
+    icon: control ? control.icon : (icons[t] ?? 'Icons.extension').replace('Icons.', ''),
     terminal: finals.has(t),
     deprecated: deprecated.has(t),
     inPalette: !hidden.has(t),
     workflowOnly: listeners.has(t),
     interactionOnly: interactionOnly.has(t),
-    fields: (params[t] ?? []).map((p) => ({ label: fieldLabel(p.key), ...p })),
+    pins: pinsOf(t),
+    fields: graphFields(t, control ? control.fields : (params[t] ?? [])).map((p) => ({ label: fieldLabel(p.key), ...p })),
   };
-  return block;
 });
 
 const missingName = blocks.filter((b) => !b.name).map((b) => b.type);
@@ -282,7 +349,7 @@ const registry = {
     fields: [
       { key: 'key', label: arb.action_key_field },
       { key: 'enabled', label: arb.common_enabled },
-      { key: 'error.mode', label: arb.action_on_error, options: [arb.action_error_stop, arb.action_error_continue, arb.action_error_jump, arb.action_error_skip] },
+      { key: 'error.mode', label: arb.action_on_error, options: [arb.action_error_stop, arb.action_error_continue] },
     ],
   },
   entryPoint: {
@@ -318,6 +385,17 @@ const registry = {
       'embed_label_timestamp', 'embed_add_field', 'common_name', 'common_value', 'embed_label_inline']
       .map((k) => [k, arb[k] ?? null]),
   ),
+  // The graph model (contract §2), read from packages/shared/lib/graph/*.dart.
+  graph: {
+    version: graphFormat,
+    startId: dartConst(graphSrc, 'graphStartId'),
+    controlTypes,
+    regionOwners,
+    inlineGraphTypes,
+    legacyTypes,
+    pins,
+    dataTypes,
+  },
   blocks,
 };
 
@@ -330,7 +408,7 @@ if (check) {
   console.log('blocks_registry.json matches the app sources');
 } else {
   await writeFile(outPath, out);
-  console.log(`wrote ${blocks.length} blocks, ${blocks.reduce((n, b) => n + b.fields.length, 0)} fields`);
+  console.log(`wrote ${blocks.length} node types, ${blocks.reduce((n, b) => n + b.fields.length, 0)} fields`);
 }
 
 // 8. Icon sprite (Material filled icons, the set Flutter's `Icons.*` uses).

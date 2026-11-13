@@ -11,6 +11,7 @@ require "json"
 #
 #   {% app_block type="sendMessage" %}                    full spec card (all fields, defaults)
 #   {% app_block example="ping_reply" %}                  card filled with _data/blocks_examples.json
+#                                                         (an example may list the nodes of each output pin under `branches`)
 #   {% app_entry kind="slash" name="ping" %}              "Command Trigger" block
 #   {% app_entry event="guildMemberAdd" %}                "Event trigger" block
 module Vitrine
@@ -18,7 +19,7 @@ module Vitrine
     # Parameter types the app edits in a dedicated sub-editor (no plain text field).
     EDITOR_TYPES = %w[
       embeds normalComponents componentV2 modalDefinition bdfdScript
-      permissionFlags list map elseIfBranches
+      permissionFlags list map elseIfBranches graph
     ].freeze
     TEXT_TYPES = %w[
       string number duration url color userId channelId messageId roleId emoji
@@ -94,8 +95,6 @@ module Vitrine
           extra << %(<span class="scratch-block-options">#{field["options"].map { |o| "<code>#{esc(o)}</code>" }.join}</span>)
         end
         %(<div class="scratch-block-field"><span class="scratch-block-label"><span>#{label}#{req}</span></span>#{input}#{extra}#{when_note(field, block_fields)}</div>)
-      when "nestedActions"
-        nested_html(site, field, value, spec: spec)
       when "embeds"
         embeds_html(site, field, value, spec: spec)
       when *EDITOR_TYPES
@@ -165,7 +164,7 @@ module Vitrine
       end
 
       cards = list.map do |item|
-        card(site, block_for(site, item["type"]), values: item["values"], key: item["key"], open: true, nested: true)
+        card(site, block_for(site, item["type"]), values: item["values"], key: item["key"], branches: item["branches"], open: true, nested: true)
       end
       %(<div class="scratch-block-field">#{head}<div class="block-flow-canvas" style="padding:10px;margin:0;gap:8px">#{cards.join}</div></div>)
     end
@@ -199,7 +198,7 @@ module Vitrine
 
     # ── cards ───────────────────────────────────────────────────────────
 
-    def card(site, block, values: nil, key: nil, open: false, nested: false)
+    def card(site, block, values: nil, key: nil, branches: nil, open: false, nested: false)
       reg = registry(site)
       fam = reg["families"][block["family"]]
       spec = values.nil?
@@ -217,12 +216,21 @@ module Vitrine
       body << %(<span class="scratch-block-more">#{hidden} other field#{hidden == 1 ? " keeps its" : "s keep their"} default value.</span>) if values && hidden.positive?
       body << %(<span class="scratch-block-more">This block has no field.</span>) if shown.empty? && !values
 
+      # Graph nodes have no nested lists: each output pin leads to the nodes linked to it. An example lists
+      # them under `branches` ({ pin => [{ type, values }] }); the pin must exist on the node type.
+      (branches || {}).each do |pin, items|
+        valid = block["pins"].any? { |p| p == pin || (p.include?("<") && pin.start_with?(p[0...p.index("<")])) }
+        raise "Blocks docs: #{block["type"]} has no pin #{pin.inspect} (pins: #{block["pins"].join(", ")})" unless valid
+
+        body << nested_html(site, { "label" => "Pin #{pin}" }, items, spec: false)
+      end
+
       if key
         key_label = reg["common"]["fields"].find { |f| f["key"] == "key" }["label"]
         body << %(<div class="scratch-block-field"><span class="scratch-block-label"><span>#{esc(key_label)}</span></span><div class="scratch-block-input"><span>#{value_html(key)}</span></div></div>)
       end
       summary = %(<span class="scratch-block-summary">#{esc(block["type"])}</span>)
-      native = values ? %( data-native-action="#{esc({ "type" => block["type"], "key" => key, "enabled" => true, "payload" => values_payload(values) }.compact.to_json)}") : ""
+      native = values ? %( data-native-action="#{esc({ "type" => block["type"], "key" => key, "enabled" => true, "payload" => values_payload(values), "branches" => branches&.transform_values { |items| values_payload({ "items" => items })["items"] } }.compact.to_json)}") : ""
 
       <<~HTML.gsub(/^\s+/, "")
         <details class="scratch-block-card block-cat-#{slug(block["category"])}" style="--fam:#{fam["color"]}"#{open ? " open" : ""}#{native}>
@@ -236,7 +244,7 @@ module Vitrine
       HTML
     end
 
-    # Payload shape the engine stores (nested block lists keep their own envelope).
+    # Payload shape the engine stores (a list of nodes keeps its own envelope).
     def values_payload(values)
       values.transform_values do |v|
         if v.is_a?(Array) && v.all? { |i| i.is_a?(Hash) && i["type"] }
@@ -319,7 +327,7 @@ module Vitrine
         if attrs["example"]
           ex = Vitrine::BlockCards.examples(site)[attrs["example"]] || raise("Blocks docs: unknown example #{attrs["example"].inspect} in _data/blocks_examples.json")
           block = Vitrine::BlockCards.block_for(site, ex["type"])
-          Vitrine::BlockCards.card(site, block, values: ex["values"] || {}, key: ex["key"], open: attrs["open"] != "false")
+          Vitrine::BlockCards.card(site, block, values: ex["values"] || {}, key: ex["key"], branches: ex["branches"], open: attrs["open"] != "false")
         else
           block = Vitrine::BlockCards.block_for(site, attrs["type"])
           Vitrine::BlockCards.card(site, block, open: attrs["open"] == "true")

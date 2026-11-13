@@ -563,13 +563,13 @@
       "customId": "string",
       "components": "Component[]?",
       "inputs": "ModalTextInput[]?",
-      "actions": "Action[]?",
+      "graph": "Graph?",
       "onSubmitWorkflow": "string?",
       "onSubmitEntryPoint": "string?",
       "onSubmitArguments": "object?",
       "modal": "object?"
     },
-    "output": "((action.<key>)) = customId du modal (les actions inline s'exécutent à la soumission)"
+    "output": "((action.<key>)) = customId du modal (le sous-graphe `graph` s'exécute à la soumission)"
   },
   "editInteractionMessage": {
     "desc": "Modifie la réponse initiale (ou le message du composant cliqué) de l'interaction.",
@@ -634,11 +634,11 @@
     "output": "((action.<key>)) = 'listening:<customId>'"
   },
   "listenAndExecute": {
-    "desc": "Écoute un customId (bouton, menu et modal) et exécute des actions inline ou un workflow.",
+    "desc": "Écoute un customId (bouton, menu et modal) et exécute un sous-graphe en ligne (`graph`) ou un workflow.",
     "category": "Interactions",
     "params": {
       "customId": "string",
-      "actions": "Action[]?",
+      "graph": "Graph?",
       "workflowName": "string?",
       "entryPoint": "string?",
       "arguments": "object?",
@@ -990,7 +990,7 @@
     "output": "((action.<key>)) = corps (ou valeur extractJsonPath) ; ((action.<key>.status)) ((action.<key>.body)) ((action.<key>.jsonPath))"
   },
   "ifBlock": {
-    "desc": "Branchement conditionnel (then / else-if / else) ou try/catch si tryCatch=true.",
+    "desc": "Branchement conditionnel. Pins de sortie : then, elseif:<i> (un par entrée de elseIfConditions), else. Chaque branche se relie à la suite par des liens du graphe (pas de liste imbriquée) ; une branche non reliée va à rien.",
     "category": "Logic",
     "params": {
       "variable": "string?",
@@ -999,15 +999,17 @@
       "group": "and|or?",
       "conditions": "Condition[]?",
       "negate": "boolean?",
-      "thenActions": "Action[]?",
       "elseIfConditions": "ElseIfBranch[]?",
-      "elseActions": "Action[]?",
-      "tryCatch": "boolean?",
-      "suppressErrors": "boolean?",
       "suppressErrorsMessage": "string?",
       "suppressErrorsEmbed": "Embed?"
     },
-    "output": "((action.<key>)) = IF_TRUE|IF_FALSE|ELSE_IF_<n>|TRY_OK|TRY_CAUGHT"
+    "output": "((action.<key>)) = IF_TRUE|IF_FALSE|ELSE_IF_<n>",
+    "pins": [
+      "then",
+      "elseif:<i>",
+      "else",
+      "error"
+    ]
   },
   "stopUnless": {
     "desc": "Interrompt la commande si la condition est fausse.",
@@ -1023,7 +1025,7 @@
     "output": "((action.<key>)) = PASSED|STOPPED"
   },
   "forLoop": {
-    "desc": "Boucle : mode simple (iterations), list (varName+values) ou cstyle (init/condition/update).",
+    "desc": "Boucle (région fermée) : mode simple (iterations), list (varName+values) ou cstyle (init/condition/update). Le pin `body` mène au corps, le pin `done` à la suite.",
     "category": "Logic",
     "params": {
       "mode": "simple|list|cstyle?",
@@ -1033,20 +1035,58 @@
       "init": "string?",
       "condition": "string?",
       "update": "string?",
-      "varNames": "string[]?",
-      "bodyActions": "Action[]"
+      "varNames": "string[]?"
     },
-    "output": "((action.<key>)) = LOOP_<n> ; variables ((_loop.index)) ((_loop.count)) ((_loop.var.<nom>))"
+    "output": "((action.<key>)) = LOOP_<n> ; variables ((_loop.index)) ((_loop.count)) ((_loop.var.<nom>))",
+    "pins": [
+      "body",
+      "done",
+      "error"
+    ]
   },
   "jsonForEachLoop": {
-    "desc": "Itère sur les entrées d'un JSON (objet ou tableau) résolu à l'exécution.",
+    "desc": "Itère sur les entrées d'un JSON (objet ou tableau) résolu à l'exécution. Région fermée : pin `body` pour le corps, `done` pour la suite.",
     "category": "Logic",
     "params": {
       "source": "string?",
-      "path": "string[]?",
-      "bodyActions": "Action[]"
+      "path": "string[]?"
     },
-    "output": "((action.<key>)) = JSONFE_<n> ; variables ((_loop.var.jsonkey)) ((_loop.var.jsonvalue)) ((_loop.var.jsonindex)) ((_loop.index))"
+    "output": "((action.<key>)) = JSONFE_<n> ; variables ((_loop.var.jsonkey)) ((_loop.var.jsonvalue)) ((_loop.var.jsonindex)) ((_loop.index))",
+    "pins": [
+      "body",
+      "done",
+      "error"
+    ]
+  },
+  "tryCatch": {
+    "desc": "Essayer / attraper (régions fermées) : le pin `try` s'exécute d'abord ; si une action échoue, error.* est renseigné et le pin `catch` s'exécute ; puis `done`. `error` : l'erreur non attrapée.",
+    "category": "Logic",
+    "params": {
+      "suppressErrorsMessage": "string?",
+      "suppressErrorsEmbed": "Embed?"
+    },
+    "pins": [
+      "try",
+      "catch",
+      "done",
+      "error"
+    ],
+    "output": "((action.<key>)) = TRY_OK|TRY_CAUGHT ; ((error.message)) dans la région catch"
+  },
+  "switch": {
+    "desc": "Aiguillage : compare `value` (modèle résolu à l'exécution) aux pins `case:<valeur>` ; sinon `default`. `mode` text (défaut, comparaison après trim) ou int. Plusieurs pins peuvent mener au même nœud.",
+    "category": "Logic",
+    "params": {
+      "value": "string|number",
+      "mode": "text|int?",
+      "resultPrefix": "string?"
+    },
+    "pins": [
+      "case:<valeur>",
+      "default",
+      "error"
+    ],
+    "output": "((action.<key>)) = <resultPrefix><valeur>"
   },
   "calculate": {
     "desc": "Calcule une expression mathématique ou une opération (add, sqrt, random...).",
@@ -1085,22 +1125,6 @@
     "params": {},
     "output": "((action.<key>)) = STOPPED"
   },
-  "skipActions": {
-    "desc": "Saute un nombre d'actions suivantes dans la séquence.",
-    "category": "Logic",
-    "params": {
-      "count": "string|number"
-    },
-    "output": "((action.<key>)) = SKIPPED_<n>"
-  },
-  "jumpToAction": {
-    "desc": "Saute (vers l'avant) à l'action identifiée par sa clé ou sa position.",
-    "category": "Logic",
-    "params": {
-      "targetKey": "string"
-    },
-    "output": "((action.<key>)) = JUMP_TO_<targetKey>"
-  },
   "randomChoice": {
     "desc": "Sélectionne une valeur au hasard parmi une liste (séparée par ; ou tableau JSON).",
     "category": "Logic",
@@ -1128,6 +1152,15 @@
       "bdfdBackend": "string?"
     },
     "output": "((action.<key>)) = BDFD_OK (BDFD_EMPTY si vide) ; ((action.<key>.<résultat interne>))"
+  },
+  "callFunction": {
+    "desc": "Appelle n'importe quelle fonction BDFD native ($nom) : `function` (sans $) et ses `arguments`. Produit par la conversion BDFD -> Graphe pour les fonctions sans type d'action dédié.",
+    "category": "Workflows",
+    "params": {
+      "function": "string",
+      "arguments": "string[]?"
+    },
+    "output": "((action.<key>)) = valeur renvoyée par la fonction"
   },
   "runtimeJsonBlock": {
     "desc": "Parse un JSON puis applique une liste d'opérations ($json, $jsonSet...) à l'exécution.",

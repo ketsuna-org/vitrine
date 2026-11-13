@@ -46,6 +46,8 @@ const KNOWN_PREFIXES = ['action.', 'opts.', 'arg.', 'interaction.'];
 const knownVariable = (name) =>
   registry.variables.some((v) => v.toLowerCase() === name.toLowerCase()) || KNOWN_PREFIXES.some((p) => name.startsWith(p));
 
+const pinExists = (block, pin) => block.pins.some((p) => p === pin || (p.includes('<') && pin.startsWith(p.slice(0, p.indexOf('<')))));
+
 function checkValues(where, type, values) {
   const block = byType.get(type);
   assert.ok(block, `${where}: unknown block type ${type}`);
@@ -55,17 +57,40 @@ function checkValues(where, type, values) {
     if (field.type === 'multiSelect' && field.options) {
       assert.ok(field.options.includes(String(value)), `${where}: ${type}.${key}="${value}" is not one of ${field.options.join(', ')}`);
     }
-    if (field.type === 'nestedActions') {
-      for (const nested of value) checkValues(`${where} > ${key}`, nested.type, nested.values);
-    }
     for (const m of JSON.stringify(value).matchAll(/\(\(([^()]+)\)\)/g)) {
       assert.ok(knownVariable(m[1]), `${where}: ((${m[1]})) is not a variable of the app`);
     }
   }
 }
 
+// An example is one node plus, per output pin, the nodes linked to that pin (`branches`).
+function checkExample(where, ex) {
+  checkValues(where, ex.type, ex.values);
+  const block = byType.get(ex.type);
+  for (const [pin, items] of Object.entries(ex.branches ?? {})) {
+    assert.ok(pinExists(block, pin), `${where}: ${ex.type} has no pin "${pin}" (pins: ${block.pins.join(', ')})`);
+    for (const item of items) checkExample(`${where} > ${pin}`, item);
+  }
+}
+
+test('the registry describes the graph model from the app sources', () => {
+  assert.equal(registry.graph.version, 2);
+  assert.equal(registry.graph.startId, 'start');
+  assert.deepEqual(registry.graph.controlTypes, ['ifBlock', 'forLoop', 'jsonForEachLoop', 'tryCatch', 'switch']);
+  assert.deepEqual(registry.graph.legacyTypes, ['skipActions', 'jumpToAction']);
+  for (const t of registry.graph.legacyTypes) assert.ok(!byType.has(t), `${t} is not a node type any more`);
+  for (const t of registry.graph.controlTypes) assert.ok(byType.has(t), `${t} is a node type`);
+  for (const t of registry.graph.inlineGraphTypes) assert.ok(byType.has(t), `${t} is a node type`);
+  assert.deepEqual(byType.get('ifBlock').pins, ['then', 'elseif:<i>', 'else', 'error']);
+  assert.deepEqual(byType.get('forLoop').pins, ['body', 'done', 'error']);
+  assert.deepEqual(byType.get('tryCatch').pins, ['try', 'catch', 'done', 'error']);
+  assert.deepEqual(byType.get('switch').pins, ['case:<value>', 'default', 'error']);
+  assert.deepEqual(byType.get('wait').pins, ['next', 'error']);
+  for (const b of registry.blocks) assert.ok(!b.fields.some((f) => f.type === 'nestedActions'), `${b.type}: nested action lists are gone`);
+});
+
 test('every example of the docs only uses blocks, fields and options that exist in the app', () => {
-  for (const [id, ex] of Object.entries(examples)) checkValues(`example ${id}`, ex.type, ex.values);
+  for (const [id, ex] of Object.entries(examples)) checkExample(`example ${id}`, ex);
 });
 
 const docs = (await readdir(path.join(root, '_docs'))).filter((f) => /^(blocks|tickets)/.test(f));

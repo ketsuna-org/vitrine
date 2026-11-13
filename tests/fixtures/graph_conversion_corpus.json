@@ -1,0 +1,7321 @@
+[
+  {
+    "name": "empty_list",
+    "input": [],
+    "graph": {
+      "version": 2,
+      "nodes": [],
+      "links": [],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "single_action",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "a"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "sequence_keys",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "x",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "y",
+        "payload": {
+          "content": "c"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "x",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "y",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "if_without_else",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "if_else_join",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "if_else_duplicate_child_keys",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "outer",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a2"
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "outer",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "outer.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "outer.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "a2"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "outer.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "next"
+          },
+          "to": "n5"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "if_elseif_else",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ],
+          "elseIfConditions": [
+            {
+              "variable": "x",
+              "operator": "equals",
+              "value": "2",
+              "actions": [
+                {
+                  "type": "respondWithMessage",
+                  "payload": {
+                    "content": "b"
+                  }
+                }
+              ]
+            },
+            {
+              "variable": "x",
+              "operator": "equals",
+              "value": "2",
+              "actions": [
+                {
+                  "type": "respondWithMessage",
+                  "payload": {
+                    "content": "c"
+                  }
+                }
+              ]
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "d"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1",
+            "elseIfConditions": [
+              {
+                "variable": "x",
+                "operator": "equals",
+                "value": "2"
+              },
+              {
+                "variable": "x",
+                "operator": "equals",
+                "value": "2"
+              }
+            ]
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "d"
+          }
+        },
+        {
+          "id": "n6",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "elseif:0"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "elseif:1"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n6"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n6"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "next"
+          },
+          "to": "n6"
+        },
+        {
+          "from": {
+            "node": "n5",
+            "pin": "next"
+          },
+          "to": "n6"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "if_empty_branches",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [],
+          "elseIfConditions": [
+            {
+              "variable": "x",
+              "operator": "equals",
+              "value": "2",
+              "actions": []
+            }
+          ],
+          "elseActions": []
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1",
+            "elseIfConditions": [
+              {
+                "variable": "x",
+                "operator": "equals",
+                "value": "2"
+              }
+            ]
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "elseif:0"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "if_only_else_filled",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "elseif_non_map_entry",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ],
+          "elseIfConditions": [
+            "oops",
+            {
+              "variable": "x",
+              "value": "2",
+              "actions": [
+                {
+                  "type": "respondWithMessage",
+                  "payload": {
+                    "content": "b"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "elseIfConditions": [
+              "oops",
+              {
+                "variable": "x",
+                "value": "2"
+              }
+            ]
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "elseif:0"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "elseif:1"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "if_last_in_list",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "before"
+        }
+      },
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "action_0",
+          "enabled": true,
+          "payload": {
+            "content": "before"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "then"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "else"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "nested_if_as_last_element",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "outer",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            },
+            {
+              "type": "ifBlock",
+              "key": "inner",
+              "payload": {
+                "variable": "x",
+                "operator": "equals",
+                "value": "1",
+                "thenActions": [
+                  {
+                    "type": "respondWithMessage",
+                    "payload": {
+                      "content": "b"
+                    }
+                  }
+                ],
+                "elseActions": [
+                  {
+                    "type": "respondWithMessage",
+                    "payload": {
+                      "content": "c"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "d"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "outer",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "outer.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "ifBlock",
+          "key": "outer.inner",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "outer.inner.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "outer.inner.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        },
+        {
+          "id": "n6",
+          "type": "respondWithMessage",
+          "key": "outer.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "d"
+          }
+        },
+        {
+          "id": "n7",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n6"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "then"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "else"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "next"
+          },
+          "to": "n7"
+        },
+        {
+          "from": {
+            "node": "n5",
+            "pin": "next"
+          },
+          "to": "n7"
+        },
+        {
+          "from": {
+            "node": "n6",
+            "pin": "next"
+          },
+          "to": "n7"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "nested_if_last_of_root",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "outer",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "ifBlock",
+              "key": "inner",
+              "payload": {
+                "variable": "x",
+                "operator": "equals",
+                "value": "1",
+                "thenActions": [
+                  {
+                    "type": "respondWithMessage",
+                    "payload": {
+                      "content": "b"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "outer",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "ifBlock",
+          "key": "outer.inner",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "outer.inner.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "then"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "for_loop_with_body",
+    "input": [
+      {
+        "type": "forLoop",
+        "key": "loop",
+        "payload": {
+          "mode": "simple",
+          "iterations": "3",
+          "bodyActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "forLoop",
+          "key": "loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "loop.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "loop.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "body"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "for_loop_empty_body",
+    "input": [
+      {
+        "type": "forLoop",
+        "key": "loop",
+        "payload": {
+          "mode": "simple",
+          "iterations": "3",
+          "bodyActions": []
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "forLoop",
+          "key": "loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "json_for_each_loop",
+    "input": [
+      {
+        "type": "jsonForEachLoop",
+        "key": "each",
+        "payload": {
+          "path": [
+            "items"
+          ],
+          "bodyActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "jsonForEachLoop",
+          "key": "each",
+          "enabled": true,
+          "payload": {
+            "path": [
+              "items"
+            ]
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "each.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "body"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "loop_ending_with_if",
+    "input": [
+      {
+        "type": "forLoop",
+        "key": "loop",
+        "payload": {
+          "mode": "simple",
+          "iterations": "3",
+          "bodyActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            },
+            {
+              "type": "ifBlock",
+              "key": "if",
+              "payload": {
+                "variable": "x",
+                "operator": "equals",
+                "value": "1",
+                "thenActions": [
+                  {
+                    "type": "respondWithMessage",
+                    "payload": {
+                      "content": "b"
+                    }
+                  }
+                ],
+                "elseActions": [
+                  {
+                    "type": "respondWithMessage",
+                    "payload": {
+                      "content": "c"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "forLoop",
+          "key": "loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "loop.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "ifBlock",
+          "key": "loop.if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "loop.if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "loop.if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        },
+        {
+          "id": "n6",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "body"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n6"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "then"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "else"
+          },
+          "to": "n5"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "if_inside_loop_with_loop_after",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "forLoop",
+              "key": "loop",
+              "payload": {
+                "mode": "simple",
+                "iterations": "3",
+                "bodyActions": [
+                  {
+                    "type": "respondWithMessage",
+                    "payload": {
+                      "content": "a"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "forLoop",
+          "key": "if.loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.loop.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "body"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "done"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "jump_literal_key",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "a",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "jumpToAction",
+        "payload": {
+          "targetKey": "d"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "b",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "d",
+        "payload": {
+          "content": "d"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "value": "d",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "d",
+          "enabled": true,
+          "payload": {
+            "content": "d"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:d"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "jump_literal_action_id",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "target-1"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "t",
+          "_actionId": "target-1"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "target-1",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "t",
+            "_actionId": "target-1"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:target-1"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "jump_literal_position",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "3"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "3",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:3"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "jump_dead_links",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "A",
+        "payload": {
+          "content": "A"
+        }
+      },
+      {
+        "type": "jumpToAction",
+        "key": "J",
+        "payload": {
+          "targetKey": "D"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "B",
+        "payload": {
+          "content": "B"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "C",
+        "payload": {
+          "content": "C"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "D",
+        "payload": {
+          "content": "D"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "A",
+          "enabled": true,
+          "payload": {
+            "content": "A"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "J",
+          "enabled": true,
+          "payload": {
+            "value": "D",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "B",
+          "enabled": true,
+          "payload": {
+            "content": "B"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "C",
+          "enabled": true,
+          "payload": {
+            "content": "C"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "D",
+          "enabled": true,
+          "payload": {
+            "content": "D"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:D"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "next"
+          },
+          "to": "n5"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "jump_to_last_action",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "z"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "z",
+        "payload": {
+          "content": "z"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "z",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "z",
+          "enabled": true,
+          "payload": {
+            "content": "z"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:z"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "jump_computed",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "a",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "((variable.next))"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "b",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c",
+          "_actionId": "id-c"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "d",
+        "payload": {
+          "content": "d"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "((variable.next))",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_3",
+          "enabled": true,
+          "payload": {
+            "content": "c",
+            "_actionId": "id-c"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "d",
+          "enabled": true,
+          "payload": {
+            "content": "d"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:b"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:3"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:id-c"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:4"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:d"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:5"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "default"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "next"
+          },
+          "to": "n5"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "computed_jump"
+    ]
+  },
+  {
+    "name": "jump_computed_name_shadows_position",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "3",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "((variable.next))"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "3",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "((variable.next))",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_3",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:4"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "default"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "computed_jump"
+    ]
+  },
+  {
+    "name": "jump_computed_last_action",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "((variable.next))"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "((variable.next))",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "computed_jump"
+    ]
+  },
+  {
+    "name": "jump_position_beyond_end",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "9"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "9",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "default"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "unresolved_jump"
+    ]
+  },
+  {
+    "name": "jump_unknown_key",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "nowhere"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "nowhere",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "default"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "unresolved_jump"
+    ]
+  },
+  {
+    "name": "jump_empty_target",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": ""
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "default"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "jump_key_before_is_no_jump",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "a",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "a"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "a",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "default"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "unresolved_jump"
+    ]
+  },
+  {
+    "name": "jump_backward_position",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "1"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "1",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "backward_jump"
+    ]
+  },
+  {
+    "name": "jump_to_own_position",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "2"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "2",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "backward_jump"
+    ]
+  },
+  {
+    "name": "jump_in_if_branch",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "jumpToAction",
+              "key": "j",
+              "payload": {
+                "targetKey": "t"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "x"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "key": "t",
+              "payload": {
+                "content": "t"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "if.j",
+          "enabled": true,
+          "payload": {
+            "value": "t",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "x"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "if.t",
+          "enabled": true,
+          "payload": {
+            "content": "t"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:t"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "next"
+          },
+          "to": "n5"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "jump_in_loop_body",
+    "input": [
+      {
+        "type": "forLoop",
+        "key": "loop",
+        "payload": {
+          "mode": "simple",
+          "iterations": "3",
+          "bodyActions": [
+            {
+              "type": "jumpToAction",
+              "key": "j",
+              "payload": {
+                "targetKey": "z"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "x"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "key": "z",
+              "payload": {
+                "content": "z"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "forLoop",
+          "key": "loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "loop.j",
+          "enabled": true,
+          "payload": {
+            "value": "z",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "loop.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "x"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "loop.z",
+          "enabled": true,
+          "payload": {
+            "content": "z"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "body"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:z"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "skip_literal",
+    "input": [
+      {
+        "type": "skipActions",
+        "key": "s",
+        "payload": {
+          "count": 1
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "d"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": "1",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_3",
+          "enabled": true,
+          "payload": {
+            "content": "d"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:1"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "skip_literal_two",
+    "input": [
+      {
+        "type": "skipActions",
+        "key": "s",
+        "payload": {
+          "count": "2"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "d"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": "2",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_3",
+          "enabled": true,
+          "payload": {
+            "content": "d"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:2"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "skip_computed",
+    "input": [
+      {
+        "type": "skipActions",
+        "key": "s",
+        "payload": {
+          "count": "((variable.n))"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": "((variable.n))",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:0"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:1"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "default"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "computed_skip_overflow"
+    ]
+  },
+  {
+    "name": "skip_beyond_end_root",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "skipActions",
+        "key": "s",
+        "payload": {
+          "count": 5
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": "5",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "skip_beyond_end_continues_in_enclosing_list",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "skipActions",
+              "key": "s",
+              "payload": {
+                "count": 5
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "skipped"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "if.s",
+          "enabled": true,
+          "payload": {
+            "value": "5",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "skipped"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:5"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "skip_beyond_end_in_loop_body",
+    "input": [
+      {
+        "type": "forLoop",
+        "key": "loop",
+        "payload": {
+          "mode": "simple",
+          "iterations": "3",
+          "bodyActions": [
+            {
+              "type": "skipActions",
+              "key": "s",
+              "payload": {
+                "count": 5
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "skipped"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "forLoop",
+          "key": "loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "loop.s",
+          "enabled": true,
+          "payload": {
+            "value": "5",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "loop.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "skipped"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "body"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "skip_computed_in_if_branch",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "skipActions",
+              "key": "s",
+              "payload": {
+                "count": "((variable.n))"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "if.s",
+          "enabled": true,
+          "payload": {
+            "value": "((variable.n))",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:0"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "case:1"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "default"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "computed_skip_overflow"
+    ]
+  },
+  {
+    "name": "skip_zero_and_negative",
+    "input": [
+      {
+        "type": "skipActions",
+        "key": "s0",
+        "payload": {
+          "count": 0
+        }
+      },
+      {
+        "type": "skipActions",
+        "key": "s1",
+        "payload": {
+          "count": "-3"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s0",
+          "enabled": true,
+          "payload": {
+            "value": "0",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "s1",
+          "enabled": true,
+          "payload": {
+            "value": "-3",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "default"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "default"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "skip_not_a_number",
+    "input": [
+      {
+        "type": "skipActions",
+        "key": "s",
+        "payload": {
+          "count": "abc"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "s",
+          "enabled": true,
+          "payload": {
+            "value": "abc",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "default"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "invalid_skip_count"
+    ]
+  },
+  {
+    "name": "error_continue",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "a",
+        "payload": {
+          "content": "a"
+        },
+        "error": {
+          "mode": "continue"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          },
+          "error": {
+            "mode": "continue"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "error_skip_literal",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "a",
+        "payload": {
+          "content": "a"
+        },
+        "error": {
+          "mode": "skip",
+          "skipCount": "2"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "d"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_3",
+          "enabled": true,
+          "payload": {
+            "content": "d"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "error"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "error_skip_zero_is_continue",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "a",
+        "payload": {
+          "content": "a"
+        },
+        "error": {
+          "mode": "skip",
+          "skipCount": "0"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          },
+          "error": {
+            "mode": "continue"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "error_skip_beyond_end_with_continuation",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "key": "a",
+              "payload": {
+                "content": "a"
+              },
+              "error": {
+                "mode": "skip",
+                "skipCount": "4"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "if.a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "error"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "error_skip_beyond_end_last_in_region",
+    "input": [
+      {
+        "type": "forLoop",
+        "key": "loop",
+        "payload": {
+          "mode": "simple",
+          "iterations": "3",
+          "bodyActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              },
+              "error": {
+                "mode": "skip",
+                "skipCount": "1"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "forLoop",
+          "key": "loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "loop.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          },
+          "error": {
+            "mode": "continue"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "body"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "error_skip_beyond_end_unrepresentable",
+    "input": [
+      {
+        "type": "forLoop",
+        "key": "loop",
+        "payload": {
+          "mode": "simple",
+          "iterations": "3",
+          "bodyActions": [
+            {
+              "type": "respondWithMessage",
+              "key": "a",
+              "payload": {
+                "content": "a"
+              },
+              "error": {
+                "mode": "skip",
+                "skipCount": "5"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "forLoop",
+          "key": "loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "loop.a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "loop.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "body"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "error_skip_beyond_end"
+    ]
+  },
+  {
+    "name": "error_jump_forward",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "a",
+        "payload": {
+          "content": "a"
+        },
+        "error": {
+          "mode": "jump",
+          "jumpToActionId": "c"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "c",
+        "payload": {
+          "content": "c"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "c",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "error"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "error_jump_action_id",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "a",
+        "payload": {
+          "content": "a"
+        },
+        "error": {
+          "mode": "jump",
+          "jumpToActionId": "id-c"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c",
+          "_actionId": "id-c"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "c",
+            "_actionId": "id-c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "error"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "error_jump_backward_or_unknown",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "a",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "b",
+        "payload": {
+          "content": "b"
+        },
+        "error": {
+          "mode": "jump",
+          "jumpToActionId": "a"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "c",
+        "payload": {
+          "content": "c"
+        },
+        "error": {
+          "mode": "jump",
+          "jumpToActionId": "nowhere"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "b",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "c",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "unresolved_jump",
+      "unresolved_jump"
+    ]
+  },
+  {
+    "name": "error_modes_ignored_in_try_catch",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "try",
+        "payload": {
+          "tryCatch": true,
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              },
+              "error": {
+                "mode": "continue"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              },
+              "error": {
+                "mode": "skip",
+                "skipCount": "1"
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "c"
+              },
+              "error": {
+                "mode": "continue"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "tryCatch",
+          "key": "try",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "try.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "try.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "try.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "try"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "catch"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "suppress_errors",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "sup",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "c"
+              }
+            }
+          ],
+          "suppressErrors": true,
+          "suppressErrorsMessage": "Oups",
+          "suppressErrorsEmbed": {
+            "title": "Erreur"
+          }
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "sup",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1",
+            "suppressErrorsMessage": "Oups",
+            "suppressErrorsEmbed": {
+              "title": "Erreur"
+            }
+          }
+        },
+        {
+          "id": "n2",
+          "type": "tryCatch",
+          "key": "sup.suppress_then",
+          "enabled": true,
+          "payload": {
+            "suppressErrorsMessage": "Oups",
+            "suppressErrorsEmbed": {
+              "title": "Erreur"
+            }
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "sup.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "sup.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "tryCatch",
+          "key": "sup.suppress_else",
+          "enabled": true,
+          "payload": {
+            "suppressErrorsMessage": "Oups",
+            "suppressErrorsEmbed": {
+              "title": "Erreur"
+            }
+          }
+        },
+        {
+          "id": "n6",
+          "type": "respondWithMessage",
+          "key": "sup.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        },
+        {
+          "id": "n7",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "try"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "done"
+          },
+          "to": "n7"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n5",
+            "pin": "try"
+          },
+          "to": "n6"
+        },
+        {
+          "from": {
+            "node": "n5",
+            "pin": "done"
+          },
+          "to": "n7"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "suppress_errors_with_elseif_and_empty_else",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "sup",
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              },
+              "error": {
+                "mode": "continue"
+              }
+            }
+          ],
+          "elseIfConditions": [
+            {
+              "variable": "x",
+              "operator": "equals",
+              "value": "2",
+              "actions": [
+                {
+                  "type": "respondWithMessage",
+                  "payload": {
+                    "content": "b"
+                  }
+                }
+              ]
+            }
+          ],
+          "suppressErrors": "true"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "sup",
+          "enabled": true,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1",
+            "elseIfConditions": [
+              {
+                "variable": "x",
+                "operator": "equals",
+                "value": "2"
+              }
+            ]
+          }
+        },
+        {
+          "id": "n2",
+          "type": "tryCatch",
+          "key": "sup.suppress_then",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "sup.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "tryCatch",
+          "key": "sup.suppress_elseif_0",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "sup.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n6",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "elseif:0"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "else"
+          },
+          "to": "n6"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "try"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "done"
+          },
+          "to": "n6"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "try"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n4",
+            "pin": "done"
+          },
+          "to": "n6"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "try_catch",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "try",
+        "payload": {
+          "tryCatch": true,
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "c"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "tryCatch",
+          "key": "try",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "try.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "try.action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "try.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        },
+        {
+          "id": "n5",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "try"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "catch"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n5"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "try_catch_empty_catch",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "try",
+        "payload": {
+          "tryCatch": true,
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ],
+          "elseActions": []
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "tryCatch",
+          "key": "try",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "try.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "try"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "try_catch_ignores_elseif",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "try",
+        "payload": {
+          "tryCatch": true,
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "c"
+              }
+            }
+          ],
+          "elseIfConditions": [
+            {
+              "variable": "x",
+              "actions": [
+                {
+                  "type": "respondWithMessage",
+                  "payload": {
+                    "content": "never"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "tryCatch",
+          "key": "try",
+          "enabled": true,
+          "payload": {}
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "try.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "try.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "try"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "catch"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "try_catch_elseif_ignored"
+    ]
+  },
+  {
+    "name": "disabled_action_keeps_flow",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "a"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "off",
+        "enabled": false,
+        "payload": {
+          "content": "x"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "off",
+          "enabled": false,
+          "payload": {
+            "content": "x"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "disabled_jump_and_skip",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "enabled": false,
+        "payload": {
+          "targetKey": "c"
+        }
+      },
+      {
+        "type": "skipActions",
+        "key": "s",
+        "enabled": false,
+        "payload": {
+          "count": 1
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "c",
+        "payload": {
+          "content": "c"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": false,
+          "payload": {
+            "value": "c",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "switch",
+          "key": "s",
+          "enabled": false,
+          "payload": {
+            "value": "1",
+            "mode": "int",
+            "resultPrefix": "SKIPPED_"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "c",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "default"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "default"
+          },
+          "to": "n3"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "disabled_if_block",
+    "input": [
+      {
+        "type": "ifBlock",
+        "key": "if",
+        "enabled": false,
+        "payload": {
+          "variable": "x",
+          "operator": "equals",
+          "value": "1",
+          "thenActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "b"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "ifBlock",
+          "key": "if",
+          "enabled": false,
+          "payload": {
+            "variable": "x",
+            "operator": "equals",
+            "value": "1"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "if.action_0",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        },
+        {
+          "id": "n4",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "then"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n4"
+        },
+        {
+          "from": {
+            "node": "n3",
+            "pin": "next"
+          },
+          "to": "n4"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "disabled_jump_target_keeps_ordinal",
+    "input": [
+      {
+        "type": "jumpToAction",
+        "key": "j",
+        "payload": {
+          "targetKey": "2"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "off",
+        "enabled": false,
+        "payload": {
+          "content": "x"
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "c"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "switch",
+          "key": "j",
+          "enabled": true,
+          "payload": {
+            "value": "2",
+            "mode": "text",
+            "resultPrefix": "JUMP_TO_"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "off",
+          "enabled": false,
+          "payload": {
+            "content": "x"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "action_2",
+          "enabled": true,
+          "payload": {
+            "content": "c"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "case:2"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n2",
+            "pin": "next"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "iter_reference",
+    "input": [
+      {
+        "type": "forLoop",
+        "key": "loop",
+        "payload": {
+          "mode": "simple",
+          "iterations": "3",
+          "bodyActions": [
+            {
+              "type": "respondWithMessage",
+              "key": "a",
+              "payload": {
+                "content": "a"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "key": "use",
+        "payload": {
+          "content": "((action.loop.iter0.a)) et ((action.loop.iter2.a))"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "forLoop",
+          "key": "loop",
+          "enabled": true,
+          "payload": {
+            "mode": "simple",
+            "iterations": "3"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "loop.a",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n3",
+          "type": "respondWithMessage",
+          "key": "use",
+          "enabled": true,
+          "payload": {
+            "content": "((action.loop.iter0.a)) et ((action.loop.iter2.a))"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "body"
+          },
+          "to": "n2"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "done"
+          },
+          "to": "n3"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "iter_reference"
+    ]
+  },
+  {
+    "name": "iter_reference_nested_payload",
+    "input": [
+      {
+        "type": "respondWithMessage",
+        "key": "e",
+        "payload": {
+          "embed": {
+            "fields": [
+              {
+                "value": "((action.l.iter1.x))"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "e",
+          "enabled": true,
+          "payload": {
+            "embed": {
+              "fields": [
+                {
+                  "value": "((action.l.iter1.x))"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "iter_reference"
+    ]
+  },
+  {
+    "name": "listener_inline_actions",
+    "input": [
+      {
+        "type": "listenForButtonClick",
+        "key": "listen",
+        "payload": {
+          "customId": "btn",
+          "workflowName": "",
+          "ttlMinutes": 30,
+          "actions": [
+            {
+              "type": "respondWithMessage",
+              "key": "r",
+              "payload": {
+                "content": "clicked"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "done"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "after"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "listenForButtonClick",
+          "key": "listen",
+          "enabled": true,
+          "payload": {
+            "customId": "btn",
+            "workflowName": "",
+            "ttlMinutes": 30,
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "respondWithMessage",
+                  "key": "r",
+                  "enabled": true,
+                  "payload": {
+                    "content": "clicked"
+                  }
+                },
+                {
+                  "id": "n2",
+                  "type": "respondWithMessage",
+                  "key": "action_1",
+                  "enabled": true,
+                  "payload": {
+                    "content": "done"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                },
+                {
+                  "from": {
+                    "node": "n1",
+                    "pin": "next"
+                  },
+                  "to": "n2"
+                }
+              ],
+              "data": []
+            }
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "after"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "listener_select_menu_and_modal_submit",
+    "input": [
+      {
+        "type": "listenForSelectMenu",
+        "key": "menu",
+        "payload": {
+          "customId": "m",
+          "actions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "picked"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "listenForModalSubmit",
+        "key": "modal",
+        "payload": {
+          "customId": "f",
+          "actions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "submitted"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "listenForSelectMenu",
+          "key": "menu",
+          "enabled": true,
+          "payload": {
+            "customId": "m",
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "respondWithMessage",
+                  "key": "action_0",
+                  "enabled": true,
+                  "payload": {
+                    "content": "picked"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                }
+              ],
+              "data": []
+            }
+          }
+        },
+        {
+          "id": "n2",
+          "type": "listenForModalSubmit",
+          "key": "modal",
+          "enabled": true,
+          "payload": {
+            "customId": "f",
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "respondWithMessage",
+                  "key": "action_0",
+                  "enabled": true,
+                  "payload": {
+                    "content": "submitted"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                }
+              ],
+              "data": []
+            }
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "listen_and_execute",
+    "input": [
+      {
+        "type": "listenAndExecute",
+        "key": "le",
+        "payload": {
+          "entryPoint": "main",
+          "actions": [
+            {
+              "type": "ifBlock",
+              "key": "if",
+              "payload": {
+                "variable": "x",
+                "operator": "equals",
+                "value": "1",
+                "thenActions": [
+                  {
+                    "type": "respondWithMessage",
+                    "payload": {
+                      "content": "a"
+                    }
+                  }
+                ],
+                "elseActions": [
+                  {
+                    "type": "respondWithMessage",
+                    "payload": {
+                      "content": "b"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "jumpToAction",
+              "key": "j",
+              "payload": {
+                "targetKey": "z"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "x"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "key": "z",
+              "payload": {
+                "content": "z"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "listenAndExecute",
+          "key": "le",
+          "enabled": true,
+          "payload": {
+            "entryPoint": "main",
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "ifBlock",
+                  "key": "if",
+                  "enabled": true,
+                  "payload": {
+                    "variable": "x",
+                    "operator": "equals",
+                    "value": "1"
+                  }
+                },
+                {
+                  "id": "n2",
+                  "type": "respondWithMessage",
+                  "key": "if.action_0",
+                  "enabled": true,
+                  "payload": {
+                    "content": "a"
+                  }
+                },
+                {
+                  "id": "n3",
+                  "type": "respondWithMessage",
+                  "key": "if.action_0",
+                  "enabled": true,
+                  "payload": {
+                    "content": "b"
+                  }
+                },
+                {
+                  "id": "n4",
+                  "type": "switch",
+                  "key": "j",
+                  "enabled": true,
+                  "payload": {
+                    "value": "z",
+                    "mode": "text",
+                    "resultPrefix": "JUMP_TO_"
+                  }
+                },
+                {
+                  "id": "n5",
+                  "type": "respondWithMessage",
+                  "key": "action_2",
+                  "enabled": true,
+                  "payload": {
+                    "content": "x"
+                  }
+                },
+                {
+                  "id": "n6",
+                  "type": "respondWithMessage",
+                  "key": "z",
+                  "enabled": true,
+                  "payload": {
+                    "content": "z"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                },
+                {
+                  "from": {
+                    "node": "n1",
+                    "pin": "then"
+                  },
+                  "to": "n2"
+                },
+                {
+                  "from": {
+                    "node": "n1",
+                    "pin": "else"
+                  },
+                  "to": "n3"
+                },
+                {
+                  "from": {
+                    "node": "n2",
+                    "pin": "next"
+                  },
+                  "to": "n4"
+                },
+                {
+                  "from": {
+                    "node": "n3",
+                    "pin": "next"
+                  },
+                  "to": "n4"
+                },
+                {
+                  "from": {
+                    "node": "n4",
+                    "pin": "case:z"
+                  },
+                  "to": "n6"
+                },
+                {
+                  "from": {
+                    "node": "n5",
+                    "pin": "next"
+                  },
+                  "to": "n6"
+                }
+              ],
+              "data": []
+            }
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "respond_with_modal_inline_actions",
+    "input": [
+      {
+        "type": "respondWithModal",
+        "key": "modal",
+        "payload": {
+          "title": "Formulaire",
+          "actions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "thanks"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithModal",
+          "key": "modal",
+          "enabled": true,
+          "payload": {
+            "title": "Formulaire",
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "respondWithMessage",
+                  "key": "action_0",
+                  "enabled": true,
+                  "payload": {
+                    "content": "thanks"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                }
+              ],
+              "data": []
+            }
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "inline_handler_without_actions_untouched",
+    "input": [
+      {
+        "type": "listenForButtonClick",
+        "key": "listen",
+        "payload": {
+          "customId": "btn",
+          "workflowName": "handler"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "listenForButtonClick",
+          "key": "listen",
+          "enabled": true,
+          "payload": {
+            "customId": "btn",
+            "workflowName": "handler"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "actions_field_of_other_types_untouched",
+    "input": [
+      {
+        "type": "runWorkflow",
+        "key": "rw",
+        "payload": {
+          "workflowName": "w",
+          "actions": [
+            {
+              "type": "respondWithMessage",
+              "payload": {
+                "content": "kept as data"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "runWorkflow",
+          "key": "rw",
+          "enabled": true,
+          "payload": {
+            "workflowName": "w",
+            "actions": [
+              {
+                "type": "respondWithMessage",
+                "payload": {
+                  "content": "kept as data"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  },
+  {
+    "name": "inline_warning_keys_are_prefixed",
+    "input": [
+      {
+        "type": "listenForButtonClick",
+        "key": "listen",
+        "payload": {
+          "customId": "btn",
+          "actions": [
+            {
+              "type": "jumpToAction",
+              "key": "back_target",
+              "payload": {
+                "targetKey": "1"
+              }
+            },
+            {
+              "type": "respondWithMessage",
+              "key": "x",
+              "payload": {
+                "content": "x"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "listenForButtonClick",
+          "key": "listen",
+          "enabled": true,
+          "payload": {
+            "customId": "btn",
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "switch",
+                  "key": "back_target",
+                  "enabled": true,
+                  "payload": {
+                    "value": "1",
+                    "mode": "text",
+                    "resultPrefix": "JUMP_TO_"
+                  }
+                },
+                {
+                  "id": "n2",
+                  "type": "respondWithMessage",
+                  "key": "x",
+                  "enabled": true,
+                  "payload": {
+                    "content": "x"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                }
+              ],
+              "data": []
+            }
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        }
+      ],
+      "data": []
+    },
+    "warnings": [
+      "backward_jump"
+    ]
+  },
+  {
+    "name": "non_object_items_are_ignored",
+    "input": [
+      "junk",
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "a"
+        }
+      },
+      null,
+      {
+        "type": "respondWithMessage",
+        "payload": {
+          "content": "b"
+        }
+      }
+    ],
+    "graph": {
+      "version": 2,
+      "nodes": [
+        {
+          "id": "n1",
+          "type": "respondWithMessage",
+          "key": "action_0",
+          "enabled": true,
+          "payload": {
+            "content": "a"
+          }
+        },
+        {
+          "id": "n2",
+          "type": "respondWithMessage",
+          "key": "action_1",
+          "enabled": true,
+          "payload": {
+            "content": "b"
+          }
+        }
+      ],
+      "links": [
+        {
+          "from": {
+            "node": "start",
+            "pin": "next"
+          },
+          "to": "n1"
+        },
+        {
+          "from": {
+            "node": "n1",
+            "pin": "next"
+          },
+          "to": "n2"
+        }
+      ],
+      "data": []
+    },
+    "warnings": []
+  }
+]
