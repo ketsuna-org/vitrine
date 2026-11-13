@@ -17417,5 +17417,2274 @@
     "warnings": [
       "graph_too_large"
     ]
+  },
+  {
+    "name": "ancien bot : welcome_canvas.workflow",
+    "input": {
+      "name": "welcome_canvas",
+      "workflowType": "event",
+      "eventTrigger": {
+        "category": "members",
+        "event": "guildMemberAdd"
+      },
+      "entryPoint": "main",
+      "arguments": [],
+      "executionMode": "workflow",
+      "editorMode": "blocks",
+      "actions": [
+        {
+          "type": "getGlobalVariable",
+          "key": "cfg",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "key": "welcome_channel"
+          }
+        },
+        {
+          "type": "ifBlock",
+          "key": "age",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "variable": "((user.createdAt))",
+            "operator": "startsWith",
+            "value": "2026-11",
+            "thenActions": [
+              {
+                "type": "setTemporaryVariable",
+                "key": "greet",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "stop"
+                },
+                "payload": {
+                  "key": "greet",
+                  "value": "Compte tout neuf, bienvenue ((user.username)) !"
+                }
+              }
+            ],
+            "elseActions": [
+              {
+                "type": "setTemporaryVariable",
+                "key": "greet",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "stop"
+                },
+                "payload": {
+                  "key": "greet",
+                  "value": "Bon retour parmi nous, ((user.username))."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "forLoop",
+          "key": "roles",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "mode": "list",
+            "varName": "role",
+            "values": [
+              "64",
+              "65"
+            ],
+            "bodyActions": [
+              {
+                "type": "log",
+                "key": "note",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "stop"
+                },
+                "payload": {
+                  "message": "role ((_loop.var.role))"
+                }
+              },
+              {
+                "type": "addRole",
+                "key": "give",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "continue"
+                },
+                "payload": {
+                  "userId": "((user.id))",
+                  "roleId": "((_loop.var.role))"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "ifBlock",
+          "key": "quiet",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "variable": "1",
+            "operator": "equals",
+            "value": "1",
+            "suppressErrors": true,
+            "thenActions": [
+              {
+                "type": "removeRole",
+                "key": "drop",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "stop"
+                },
+                "payload": {
+                  "userId": "((user.id))",
+                  "roleId": ""
+                }
+              }
+            ],
+            "elseActions": []
+          }
+        },
+        {
+          "type": "jumpToAction",
+          "key": "go",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "targetKey": "img"
+          }
+        },
+        {
+          "type": "log",
+          "key": "never",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "message": "ne doit jamais s'ecrire"
+          }
+        },
+        {
+          "type": "runtimeImageBlock",
+          "key": "img",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "imageName": "welcome",
+            "operations": [
+              {
+                "op": "create",
+                "width": "64",
+                "height": "32",
+                "color": "black"
+              },
+              {
+                "op": "drawText",
+                "text": "Salut ((user.username))",
+                "x": "2",
+                "y": "2",
+                "color": "white",
+                "fontSize": "12"
+              },
+              {
+                "op": "drawCircle",
+                "x": "52",
+                "y": "16",
+                "radius": "8",
+                "color": "red"
+              }
+            ]
+          }
+        },
+        {
+          "type": "attachImage",
+          "key": "badge",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "imageName": "badge",
+            "imageSource": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z8DwHwAFAAH/q842iQAAAABJRU5ErkJggg=="
+          }
+        },
+        {
+          "type": "sendDm",
+          "key": "dm",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "userId": "((user.id))",
+            "content": "Regarde les regles du serveur"
+          }
+        },
+        {
+          "type": "addRole",
+          "key": "probe",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "skip",
+            "skipCount": "1"
+          },
+          "payload": {
+            "userId": "((user.id))",
+            "roleId": "65"
+          }
+        },
+        {
+          "type": "log",
+          "key": "afterprobe",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "message": "saute par le mode d'erreur skip"
+          }
+        },
+        {
+          "type": "skipActions",
+          "key": "hop",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "count": "1"
+          }
+        },
+        {
+          "type": "log",
+          "key": "skipped",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "message": "saute par skipActions"
+          }
+        },
+        {
+          "type": "sendMessage",
+          "key": "msg",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "channelId": "((action.cfg))",
+            "content": "((temp.greet))",
+            "embeds": [
+              {
+                "title": "Bienvenue ((user.username))",
+                "description": "Tu es le membre de ((guild.id))",
+                "color": "#5865F2"
+              }
+            ],
+            "components": {
+              "components": [
+                {
+                  "type": "actionRow",
+                  "components": [
+                    {
+                      "type": "button",
+                      "label": "Regles",
+                      "style": "primary",
+                      "customId": "wc_rules",
+                      "actions": [
+                        {
+                          "type": "log",
+                          "key": "clic",
+                          "enabled": true,
+                          "depend_on": [],
+                          "error": {
+                            "mode": "stop"
+                          },
+                          "payload": {
+                            "message": "regles ((user.username))"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "button",
+                      "label": "Aide",
+                      "style": "secondary",
+                      "customId": "wc_help",
+                      "workflowName": "welcome_help",
+                      "workflowEntryPoint": "main"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "output": {
+      "name": "welcome_canvas",
+      "workflowType": "event",
+      "eventTrigger": {
+        "category": "members",
+        "event": "guildMemberAdd"
+      },
+      "entryPoint": "main",
+      "arguments": [],
+      "executionMode": "graph",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "getGlobalVariable",
+            "key": "cfg",
+            "enabled": true,
+            "payload": {
+              "key": "welcome_channel"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "age",
+            "enabled": true,
+            "payload": {
+              "variable": "((user.createdAt))",
+              "operator": "startsWith",
+              "value": "2026-11"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "setTemporaryVariable",
+            "key": "age.greet",
+            "enabled": true,
+            "payload": {
+              "key": "greet",
+              "value": "Compte tout neuf, bienvenue ((user.username)) !"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "setTemporaryVariable",
+            "key": "age.greet",
+            "enabled": true,
+            "payload": {
+              "key": "greet",
+              "value": "Bon retour parmi nous, ((user.username))."
+            }
+          },
+          {
+            "id": "n5",
+            "type": "forLoop",
+            "key": "roles",
+            "enabled": true,
+            "payload": {
+              "mode": "list",
+              "varName": "role",
+              "values": [
+                "64",
+                "65"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "log",
+            "key": "roles.note",
+            "enabled": true,
+            "payload": {
+              "message": "role ((_loop.var.role))"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "addRole",
+            "key": "roles.give",
+            "enabled": true,
+            "payload": {
+              "userId": "((user.id))",
+              "roleId": "((_loop.var.role))"
+            },
+            "error": {
+              "mode": "continue"
+            }
+          },
+          {
+            "id": "n8",
+            "type": "ifBlock",
+            "key": "quiet",
+            "enabled": true,
+            "payload": {
+              "variable": "1",
+              "operator": "equals",
+              "value": "1"
+            }
+          },
+          {
+            "id": "n9",
+            "type": "tryCatch",
+            "key": "quiet.suppress_then",
+            "enabled": true,
+            "payload": {}
+          },
+          {
+            "id": "n10",
+            "type": "removeRole",
+            "key": "quiet.drop",
+            "enabled": true,
+            "payload": {
+              "userId": "((user.id))",
+              "roleId": ""
+            }
+          },
+          {
+            "id": "n11",
+            "type": "switch",
+            "key": "go",
+            "enabled": true,
+            "payload": {
+              "value": "img",
+              "mode": "text",
+              "resultPrefix": "JUMP_TO_"
+            }
+          },
+          {
+            "id": "n12",
+            "type": "log",
+            "key": "never",
+            "enabled": true,
+            "payload": {
+              "message": "ne doit jamais s'ecrire"
+            }
+          },
+          {
+            "id": "n13",
+            "type": "runtimeImageBlock",
+            "key": "img",
+            "enabled": true,
+            "payload": {
+              "imageName": "welcome",
+              "operations": [
+                {
+                  "op": "create",
+                  "width": "64",
+                  "height": "32",
+                  "color": "black"
+                },
+                {
+                  "op": "drawText",
+                  "text": "Salut ((user.username))",
+                  "x": "2",
+                  "y": "2",
+                  "color": "white",
+                  "fontSize": "12"
+                },
+                {
+                  "op": "drawCircle",
+                  "x": "52",
+                  "y": "16",
+                  "radius": "8",
+                  "color": "red"
+                }
+              ]
+            }
+          },
+          {
+            "id": "n14",
+            "type": "attachImage",
+            "key": "badge",
+            "enabled": true,
+            "payload": {
+              "imageName": "badge",
+              "imageSource": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z8DwHwAFAAH/q842iQAAAABJRU5ErkJggg=="
+            }
+          },
+          {
+            "id": "n15",
+            "type": "sendDm",
+            "key": "dm",
+            "enabled": true,
+            "payload": {
+              "userId": "((user.id))",
+              "content": "Regarde les regles du serveur"
+            }
+          },
+          {
+            "id": "n16",
+            "type": "addRole",
+            "key": "probe",
+            "enabled": true,
+            "payload": {
+              "userId": "((user.id))",
+              "roleId": "65"
+            }
+          },
+          {
+            "id": "n17",
+            "type": "log",
+            "key": "afterprobe",
+            "enabled": true,
+            "payload": {
+              "message": "saute par le mode d'erreur skip"
+            }
+          },
+          {
+            "id": "n18",
+            "type": "switch",
+            "key": "hop",
+            "enabled": true,
+            "payload": {
+              "value": "1",
+              "mode": "int",
+              "resultPrefix": "SKIPPED_"
+            }
+          },
+          {
+            "id": "n19",
+            "type": "log",
+            "key": "skipped",
+            "enabled": true,
+            "payload": {
+              "message": "saute par skipActions"
+            }
+          },
+          {
+            "id": "n20",
+            "type": "sendMessage",
+            "key": "msg",
+            "enabled": true,
+            "payload": {
+              "channelId": "((action.cfg))",
+              "content": "((temp.greet))",
+              "embeds": [
+                {
+                  "title": "Bienvenue ((user.username))",
+                  "description": "Tu es le membre de ((guild.id))",
+                  "color": "#5865F2"
+                }
+              ],
+              "components": {
+                "components": [
+                  {
+                    "type": "actionRow",
+                    "components": [
+                      {
+                        "type": "button",
+                        "label": "Regles",
+                        "style": "primary",
+                        "customId": "wc_rules",
+                        "graph": {
+                          "version": 2,
+                          "nodes": [
+                            {
+                              "id": "n1",
+                              "type": "log",
+                              "key": "clic",
+                              "enabled": true,
+                              "payload": {
+                                "message": "regles ((user.username))"
+                              }
+                            }
+                          ],
+                          "links": [
+                            {
+                              "from": {
+                                "node": "start",
+                                "pin": "next"
+                              },
+                              "to": "n1"
+                            }
+                          ],
+                          "data": []
+                        }
+                      },
+                      {
+                        "type": "button",
+                        "label": "Aide",
+                        "style": "secondary",
+                        "customId": "wc_help",
+                        "graph": {
+                          "version": 2,
+                          "nodes": [
+                            {
+                              "id": "n1",
+                              "type": "runWorkflow",
+                              "key": "action_0",
+                              "enabled": true,
+                              "payload": {
+                                "workflowName": "welcome_help",
+                                "entryPoint": "main",
+                                "arguments": {}
+                              }
+                            }
+                          ],
+                          "links": [
+                            {
+                              "from": {
+                                "node": "start",
+                                "pin": "next"
+                              },
+                              "to": "n1"
+                            }
+                          ],
+                          "data": []
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "body"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "done"
+            },
+            "to": "n8"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n8",
+              "pin": "then"
+            },
+            "to": "n9"
+          },
+          {
+            "from": {
+              "node": "n8",
+              "pin": "else"
+            },
+            "to": "n11"
+          },
+          {
+            "from": {
+              "node": "n9",
+              "pin": "try"
+            },
+            "to": "n10"
+          },
+          {
+            "from": {
+              "node": "n9",
+              "pin": "done"
+            },
+            "to": "n11"
+          },
+          {
+            "from": {
+              "node": "n11",
+              "pin": "case:img"
+            },
+            "to": "n13"
+          },
+          {
+            "from": {
+              "node": "n12",
+              "pin": "next"
+            },
+            "to": "n13"
+          },
+          {
+            "from": {
+              "node": "n13",
+              "pin": "next"
+            },
+            "to": "n14"
+          },
+          {
+            "from": {
+              "node": "n14",
+              "pin": "next"
+            },
+            "to": "n15"
+          },
+          {
+            "from": {
+              "node": "n15",
+              "pin": "next"
+            },
+            "to": "n16"
+          },
+          {
+            "from": {
+              "node": "n16",
+              "pin": "next"
+            },
+            "to": "n17"
+          },
+          {
+            "from": {
+              "node": "n16",
+              "pin": "error"
+            },
+            "to": "n18"
+          },
+          {
+            "from": {
+              "node": "n17",
+              "pin": "next"
+            },
+            "to": "n18"
+          },
+          {
+            "from": {
+              "node": "n18",
+              "pin": "case:1"
+            },
+            "to": "n20"
+          },
+          {
+            "from": {
+              "node": "n19",
+              "pin": "next"
+            },
+            "to": "n20"
+          }
+        ],
+        "data": []
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "ancien bot : welcome_canvas_blueprint.workflow",
+    "input": {
+      "name": "welcome_canvas",
+      "workflowType": "event",
+      "eventTrigger": {
+        "category": "members",
+        "event": "guildMemberAdd"
+      },
+      "entryPoint": "main",
+      "arguments": [],
+      "executionMode": "workflow",
+      "editorMode": "blueprint",
+      "actions": [
+        {
+          "type": "getGlobalVariable",
+          "key": "cfg",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "key": "welcome_channel"
+          }
+        },
+        {
+          "type": "ifBlock",
+          "key": "age",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "variable": "((user.createdAt))",
+            "operator": "startsWith",
+            "value": "2026-11",
+            "thenActions": [
+              {
+                "type": "setTemporaryVariable",
+                "key": "greet",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "stop"
+                },
+                "payload": {
+                  "key": "greet",
+                  "value": "Compte tout neuf, bienvenue ((user.username)) !"
+                }
+              }
+            ],
+            "elseActions": [
+              {
+                "type": "setTemporaryVariable",
+                "key": "greet",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "stop"
+                },
+                "payload": {
+                  "key": "greet",
+                  "value": "Bon retour parmi nous, ((user.username))."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "forLoop",
+          "key": "roles",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "mode": "list",
+            "varName": "role",
+            "values": [
+              "64",
+              "65"
+            ],
+            "bodyActions": [
+              {
+                "type": "log",
+                "key": "note",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "stop"
+                },
+                "payload": {
+                  "message": "role ((_loop.var.role))"
+                }
+              },
+              {
+                "type": "addRole",
+                "key": "give",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "continue"
+                },
+                "payload": {
+                  "userId": "((user.id))",
+                  "roleId": "((_loop.var.role))"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "ifBlock",
+          "key": "quiet",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "variable": "1",
+            "operator": "equals",
+            "value": "1",
+            "suppressErrors": true,
+            "thenActions": [
+              {
+                "type": "removeRole",
+                "key": "drop",
+                "enabled": true,
+                "depend_on": [],
+                "error": {
+                  "mode": "stop"
+                },
+                "payload": {
+                  "userId": "((user.id))",
+                  "roleId": ""
+                }
+              }
+            ],
+            "elseActions": []
+          }
+        },
+        {
+          "type": "jumpToAction",
+          "key": "go",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "targetKey": "img"
+          }
+        },
+        {
+          "type": "log",
+          "key": "never",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "message": "ne doit jamais s'ecrire"
+          }
+        },
+        {
+          "type": "runtimeImageBlock",
+          "key": "img",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "imageName": "welcome",
+            "operations": [
+              {
+                "op": "create",
+                "width": "64",
+                "height": "32",
+                "color": "black"
+              },
+              {
+                "op": "drawText",
+                "text": "Salut ((user.username))",
+                "x": "2",
+                "y": "2",
+                "color": "white",
+                "fontSize": "12"
+              },
+              {
+                "op": "drawCircle",
+                "x": "52",
+                "y": "16",
+                "radius": "8",
+                "color": "red"
+              }
+            ]
+          }
+        },
+        {
+          "type": "attachImage",
+          "key": "badge",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "imageName": "badge",
+            "imageSource": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z8DwHwAFAAH/q842iQAAAABJRU5ErkJggg=="
+          }
+        },
+        {
+          "type": "sendDm",
+          "key": "dm",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "userId": "((user.id))",
+            "content": "Regarde les regles du serveur"
+          }
+        },
+        {
+          "type": "addRole",
+          "key": "probe",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "skip",
+            "skipCount": "1"
+          },
+          "payload": {
+            "userId": "((user.id))",
+            "roleId": "65"
+          }
+        },
+        {
+          "type": "log",
+          "key": "afterprobe",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "message": "saute par le mode d'erreur skip"
+          }
+        },
+        {
+          "type": "skipActions",
+          "key": "hop",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "count": "1"
+          }
+        },
+        {
+          "type": "log",
+          "key": "skipped",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "message": "saute par skipActions"
+          }
+        },
+        {
+          "type": "sendMessage",
+          "key": "msg",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "channelId": "((action.cfg))",
+            "content": "((temp.greet))",
+            "embeds": [
+              {
+                "title": "Bienvenue ((user.username))",
+                "description": "Tu es le membre de ((guild.id))",
+                "color": "#5865F2"
+              }
+            ],
+            "components": {
+              "components": [
+                {
+                  "type": "actionRow",
+                  "components": [
+                    {
+                      "type": "button",
+                      "label": "Regles",
+                      "style": "primary",
+                      "customId": "wc_rules",
+                      "actions": [
+                        {
+                          "type": "log",
+                          "key": "clic",
+                          "enabled": true,
+                          "depend_on": [],
+                          "error": {
+                            "mode": "stop"
+                          },
+                          "payload": {
+                            "message": "regles ((user.username))"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "button",
+                      "label": "Aide",
+                      "style": "secondary",
+                      "customId": "wc_help",
+                      "workflowName": "welcome_help",
+                      "workflowEntryPoint": "main"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "blueprintPositions": {
+        "cfg": {
+          "x": 80,
+          "y": 120
+        },
+        "age": {
+          "x": 340,
+          "y": 260
+        },
+        "roles": {
+          "x": 600,
+          "y": 120
+        },
+        "quiet": {
+          "x": 860,
+          "y": 260
+        },
+        "go": {
+          "x": 1120,
+          "y": 120
+        },
+        "never": {
+          "x": 1380,
+          "y": 260
+        },
+        "img": {
+          "x": 1640,
+          "y": 120
+        },
+        "badge": {
+          "x": 1900,
+          "y": 260
+        },
+        "dm": {
+          "x": 2160,
+          "y": 120
+        },
+        "probe": {
+          "x": 2420,
+          "y": 260
+        },
+        "afterprobe": {
+          "x": 2680,
+          "y": 120
+        },
+        "hop": {
+          "x": 2940,
+          "y": 260
+        },
+        "skipped": {
+          "x": 3200,
+          "y": 120
+        },
+        "msg": {
+          "x": 3460,
+          "y": 260
+        }
+      }
+    },
+    "output": {
+      "name": "welcome_canvas",
+      "workflowType": "event",
+      "eventTrigger": {
+        "category": "members",
+        "event": "guildMemberAdd"
+      },
+      "entryPoint": "main",
+      "arguments": [],
+      "executionMode": "graph",
+      "blueprintPositions": {
+        "cfg": {
+          "x": 80,
+          "y": 120
+        },
+        "age": {
+          "x": 340,
+          "y": 260
+        },
+        "roles": {
+          "x": 600,
+          "y": 120
+        },
+        "quiet": {
+          "x": 860,
+          "y": 260
+        },
+        "go": {
+          "x": 1120,
+          "y": 120
+        },
+        "never": {
+          "x": 1380,
+          "y": 260
+        },
+        "img": {
+          "x": 1640,
+          "y": 120
+        },
+        "badge": {
+          "x": 1900,
+          "y": 260
+        },
+        "dm": {
+          "x": 2160,
+          "y": 120
+        },
+        "probe": {
+          "x": 2420,
+          "y": 260
+        },
+        "afterprobe": {
+          "x": 2680,
+          "y": 120
+        },
+        "hop": {
+          "x": 2940,
+          "y": 260
+        },
+        "skipped": {
+          "x": 3200,
+          "y": 120
+        },
+        "msg": {
+          "x": 3460,
+          "y": 260
+        }
+      },
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "getGlobalVariable",
+            "key": "cfg",
+            "enabled": true,
+            "payload": {
+              "key": "welcome_channel"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "age",
+            "enabled": true,
+            "payload": {
+              "variable": "((user.createdAt))",
+              "operator": "startsWith",
+              "value": "2026-11"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "setTemporaryVariable",
+            "key": "age.greet",
+            "enabled": true,
+            "payload": {
+              "key": "greet",
+              "value": "Compte tout neuf, bienvenue ((user.username)) !"
+            }
+          },
+          {
+            "id": "n4",
+            "type": "setTemporaryVariable",
+            "key": "age.greet",
+            "enabled": true,
+            "payload": {
+              "key": "greet",
+              "value": "Bon retour parmi nous, ((user.username))."
+            }
+          },
+          {
+            "id": "n5",
+            "type": "forLoop",
+            "key": "roles",
+            "enabled": true,
+            "payload": {
+              "mode": "list",
+              "varName": "role",
+              "values": [
+                "64",
+                "65"
+              ]
+            }
+          },
+          {
+            "id": "n6",
+            "type": "log",
+            "key": "roles.note",
+            "enabled": true,
+            "payload": {
+              "message": "role ((_loop.var.role))"
+            }
+          },
+          {
+            "id": "n7",
+            "type": "addRole",
+            "key": "roles.give",
+            "enabled": true,
+            "payload": {
+              "userId": "((user.id))",
+              "roleId": "((_loop.var.role))"
+            },
+            "error": {
+              "mode": "continue"
+            }
+          },
+          {
+            "id": "n8",
+            "type": "ifBlock",
+            "key": "quiet",
+            "enabled": true,
+            "payload": {
+              "variable": "1",
+              "operator": "equals",
+              "value": "1"
+            }
+          },
+          {
+            "id": "n9",
+            "type": "tryCatch",
+            "key": "quiet.suppress_then",
+            "enabled": true,
+            "payload": {}
+          },
+          {
+            "id": "n10",
+            "type": "removeRole",
+            "key": "quiet.drop",
+            "enabled": true,
+            "payload": {
+              "userId": "((user.id))",
+              "roleId": ""
+            }
+          },
+          {
+            "id": "n11",
+            "type": "switch",
+            "key": "go",
+            "enabled": true,
+            "payload": {
+              "value": "img",
+              "mode": "text",
+              "resultPrefix": "JUMP_TO_"
+            }
+          },
+          {
+            "id": "n12",
+            "type": "log",
+            "key": "never",
+            "enabled": true,
+            "payload": {
+              "message": "ne doit jamais s'ecrire"
+            }
+          },
+          {
+            "id": "n13",
+            "type": "runtimeImageBlock",
+            "key": "img",
+            "enabled": true,
+            "payload": {
+              "imageName": "welcome",
+              "operations": [
+                {
+                  "op": "create",
+                  "width": "64",
+                  "height": "32",
+                  "color": "black"
+                },
+                {
+                  "op": "drawText",
+                  "text": "Salut ((user.username))",
+                  "x": "2",
+                  "y": "2",
+                  "color": "white",
+                  "fontSize": "12"
+                },
+                {
+                  "op": "drawCircle",
+                  "x": "52",
+                  "y": "16",
+                  "radius": "8",
+                  "color": "red"
+                }
+              ]
+            }
+          },
+          {
+            "id": "n14",
+            "type": "attachImage",
+            "key": "badge",
+            "enabled": true,
+            "payload": {
+              "imageName": "badge",
+              "imageSource": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z8DwHwAFAAH/q842iQAAAABJRU5ErkJggg=="
+            }
+          },
+          {
+            "id": "n15",
+            "type": "sendDm",
+            "key": "dm",
+            "enabled": true,
+            "payload": {
+              "userId": "((user.id))",
+              "content": "Regarde les regles du serveur"
+            }
+          },
+          {
+            "id": "n16",
+            "type": "addRole",
+            "key": "probe",
+            "enabled": true,
+            "payload": {
+              "userId": "((user.id))",
+              "roleId": "65"
+            }
+          },
+          {
+            "id": "n17",
+            "type": "log",
+            "key": "afterprobe",
+            "enabled": true,
+            "payload": {
+              "message": "saute par le mode d'erreur skip"
+            }
+          },
+          {
+            "id": "n18",
+            "type": "switch",
+            "key": "hop",
+            "enabled": true,
+            "payload": {
+              "value": "1",
+              "mode": "int",
+              "resultPrefix": "SKIPPED_"
+            }
+          },
+          {
+            "id": "n19",
+            "type": "log",
+            "key": "skipped",
+            "enabled": true,
+            "payload": {
+              "message": "saute par skipActions"
+            }
+          },
+          {
+            "id": "n20",
+            "type": "sendMessage",
+            "key": "msg",
+            "enabled": true,
+            "payload": {
+              "channelId": "((action.cfg))",
+              "content": "((temp.greet))",
+              "embeds": [
+                {
+                  "title": "Bienvenue ((user.username))",
+                  "description": "Tu es le membre de ((guild.id))",
+                  "color": "#5865F2"
+                }
+              ],
+              "components": {
+                "components": [
+                  {
+                    "type": "actionRow",
+                    "components": [
+                      {
+                        "type": "button",
+                        "label": "Regles",
+                        "style": "primary",
+                        "customId": "wc_rules",
+                        "graph": {
+                          "version": 2,
+                          "nodes": [
+                            {
+                              "id": "n1",
+                              "type": "log",
+                              "key": "clic",
+                              "enabled": true,
+                              "payload": {
+                                "message": "regles ((user.username))"
+                              }
+                            }
+                          ],
+                          "links": [
+                            {
+                              "from": {
+                                "node": "start",
+                                "pin": "next"
+                              },
+                              "to": "n1"
+                            }
+                          ],
+                          "data": []
+                        }
+                      },
+                      {
+                        "type": "button",
+                        "label": "Aide",
+                        "style": "secondary",
+                        "customId": "wc_help",
+                        "graph": {
+                          "version": 2,
+                          "nodes": [
+                            {
+                              "id": "n1",
+                              "type": "runWorkflow",
+                              "key": "action_0",
+                              "enabled": true,
+                              "payload": {
+                                "workflowName": "welcome_help",
+                                "entryPoint": "main",
+                                "arguments": {}
+                              }
+                            }
+                          ],
+                          "links": [
+                            {
+                              "from": {
+                                "node": "start",
+                                "pin": "next"
+                              },
+                              "to": "n1"
+                            }
+                          ],
+                          "data": []
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "else"
+            },
+            "to": "n4"
+          },
+          {
+            "from": {
+              "node": "n3",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n4",
+              "pin": "next"
+            },
+            "to": "n5"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "body"
+            },
+            "to": "n6"
+          },
+          {
+            "from": {
+              "node": "n5",
+              "pin": "done"
+            },
+            "to": "n8"
+          },
+          {
+            "from": {
+              "node": "n6",
+              "pin": "next"
+            },
+            "to": "n7"
+          },
+          {
+            "from": {
+              "node": "n8",
+              "pin": "then"
+            },
+            "to": "n9"
+          },
+          {
+            "from": {
+              "node": "n8",
+              "pin": "else"
+            },
+            "to": "n11"
+          },
+          {
+            "from": {
+              "node": "n9",
+              "pin": "try"
+            },
+            "to": "n10"
+          },
+          {
+            "from": {
+              "node": "n9",
+              "pin": "done"
+            },
+            "to": "n11"
+          },
+          {
+            "from": {
+              "node": "n11",
+              "pin": "case:img"
+            },
+            "to": "n13"
+          },
+          {
+            "from": {
+              "node": "n12",
+              "pin": "next"
+            },
+            "to": "n13"
+          },
+          {
+            "from": {
+              "node": "n13",
+              "pin": "next"
+            },
+            "to": "n14"
+          },
+          {
+            "from": {
+              "node": "n14",
+              "pin": "next"
+            },
+            "to": "n15"
+          },
+          {
+            "from": {
+              "node": "n15",
+              "pin": "next"
+            },
+            "to": "n16"
+          },
+          {
+            "from": {
+              "node": "n16",
+              "pin": "next"
+            },
+            "to": "n17"
+          },
+          {
+            "from": {
+              "node": "n16",
+              "pin": "error"
+            },
+            "to": "n18"
+          },
+          {
+            "from": {
+              "node": "n17",
+              "pin": "next"
+            },
+            "to": "n18"
+          },
+          {
+            "from": {
+              "node": "n18",
+              "pin": "case:1"
+            },
+            "to": "n20"
+          },
+          {
+            "from": {
+              "node": "n19",
+              "pin": "next"
+            },
+            "to": "n20"
+          }
+        ],
+        "data": []
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "ancien bot : welcome_help.workflow",
+    "input": {
+      "name": "welcome_help",
+      "workflowType": "general",
+      "entryPoint": "main",
+      "arguments": [],
+      "executionMode": "workflow",
+      "editorMode": "blocks",
+      "actions": [
+        {
+          "type": "log",
+          "key": "aide",
+          "enabled": true,
+          "depend_on": [],
+          "error": {
+            "mode": "stop"
+          },
+          "payload": {
+            "message": "aide demandee"
+          }
+        }
+      ]
+    },
+    "output": {
+      "name": "welcome_help",
+      "workflowType": "general",
+      "entryPoint": "main",
+      "arguments": [],
+      "executionMode": "graph",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "log",
+            "key": "aide",
+            "enabled": true,
+            "payload": {
+              "message": "aide demandee"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "ancien bot : ping_response.command",
+    "input": {
+      "name": "bonjour",
+      "description": "Dit salut a quelqu'un",
+      "type": "chatInput",
+      "data": {
+        "version": 1,
+        "executionMode": "workflow",
+        "editorMode": "simple",
+        "options": [
+          {
+            "type": "string",
+            "name": "cible",
+            "description": "Qui saluer",
+            "required": false
+          }
+        ],
+        "response": {
+          "mode": "message",
+          "type": "normal",
+          "text": "Salut ((opts.cible)) !",
+          "embeds": [
+            {
+              "title": "Salutation",
+              "description": "Par ((user.username))",
+              "color": "#57F287"
+            }
+          ],
+          "workflow": {
+            "autoDeferIfActions": true,
+            "visibility": "public",
+            "conditional": {
+              "enabled": false
+            }
+          }
+        },
+        "actions": []
+      }
+    },
+    "output": {
+      "name": "bonjour",
+      "description": "Dit salut a quelqu'un",
+      "type": "chatInput",
+      "data": {
+        "version": 1,
+        "executionMode": "graph",
+        "options": [
+          {
+            "type": "string",
+            "name": "cible",
+            "description": "Qui saluer",
+            "required": false
+          }
+        ],
+        "response": {
+          "mode": "message",
+          "type": "normal",
+          "text": "Salut ((opts.cible)) !",
+          "embeds": [
+            {
+              "title": "Salutation",
+              "description": "Par ((user.username))",
+              "color": "#57F287"
+            }
+          ],
+          "workflow": {
+            "autoDeferIfActions": true,
+            "visibility": "public",
+            "conditional": {
+              "enabled": false
+            }
+          },
+          "_migrated": true
+        },
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "respondWithMessage",
+              "key": "action_0",
+              "enabled": true,
+              "payload": {
+                "content": "Salut ((opts.cible)) !",
+                "embeds": [
+                  {
+                    "title": "Salutation",
+                    "description": "Par ((user.username))",
+                    "color": "#57F287"
+                  }
+                ],
+                "ephemeral": false
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "ancien bot : ping_actions.command",
+    "input": {
+      "name": "salut",
+      "description": "Dit salut a quelqu'un",
+      "type": "chatInput",
+      "data": {
+        "version": 1,
+        "executionMode": "workflow",
+        "editorMode": "advanced",
+        "prefixEnabled": true,
+        "options": [
+          {
+            "type": "string",
+            "name": "cible",
+            "description": "Qui saluer",
+            "required": false
+          }
+        ],
+        "actions": [
+          {
+            "type": "ifBlock",
+            "key": "has",
+            "enabled": true,
+            "depend_on": [],
+            "error": {
+              "mode": "stop"
+            },
+            "payload": {
+              "variable": "((opts.cible))",
+              "operator": "isEmpty",
+              "value": "",
+              "thenActions": [
+                {
+                  "type": "respondWithMessage",
+                  "key": "solo",
+                  "enabled": true,
+                  "depend_on": [],
+                  "error": {
+                    "mode": "stop"
+                  },
+                  "payload": {
+                    "content": "Salut tout seul !",
+                    "ephemeral": true
+                  }
+                }
+              ],
+              "elseActions": [
+                {
+                  "type": "respondWithMessage",
+                  "key": "duo",
+                  "enabled": true,
+                  "depend_on": [],
+                  "error": {
+                    "mode": "stop"
+                  },
+                  "payload": {
+                    "content": "Salut ((opts.cible)) !",
+                    "embeds": [
+                      {
+                        "title": "Salutation",
+                        "description": "Par ((user.username))",
+                        "color": "#57F287"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "output": {
+      "name": "salut",
+      "description": "Dit salut a quelqu'un",
+      "type": "chatInput",
+      "data": {
+        "version": 1,
+        "executionMode": "graph",
+        "prefixEnabled": true,
+        "options": [
+          {
+            "type": "string",
+            "name": "cible",
+            "description": "Qui saluer",
+            "required": false
+          }
+        ],
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "ifBlock",
+              "key": "has",
+              "enabled": true,
+              "payload": {
+                "variable": "((opts.cible))",
+                "operator": "isEmpty",
+                "value": ""
+              }
+            },
+            {
+              "id": "n2",
+              "type": "respondWithMessage",
+              "key": "has.solo",
+              "enabled": true,
+              "payload": {
+                "content": "Salut tout seul !",
+                "ephemeral": true
+              }
+            },
+            {
+              "id": "n3",
+              "type": "respondWithMessage",
+              "key": "has.duo",
+              "enabled": true,
+              "payload": {
+                "content": "Salut ((opts.cible)) !",
+                "embeds": [
+                  {
+                    "title": "Salutation",
+                    "description": "Par ((user.username))",
+                    "color": "#57F287"
+                  }
+                ]
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            },
+            {
+              "from": {
+                "node": "n1",
+                "pin": "then"
+              },
+              "to": "n2"
+            },
+            {
+              "from": {
+                "node": "n1",
+                "pin": "else"
+              },
+              "to": "n3"
+            }
+          ],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": []
+  },
+  {
+    "name": "ancien bot : ping_actions_blueprint.command",
+    "input": {
+      "name": "salut",
+      "description": "Dit salut a quelqu'un",
+      "type": "chatInput",
+      "data": {
+        "version": 1,
+        "executionMode": "workflow",
+        "editorMode": "blueprint",
+        "prefixEnabled": true,
+        "options": [
+          {
+            "type": "string",
+            "name": "cible",
+            "description": "Qui saluer",
+            "required": false
+          }
+        ],
+        "actions": [
+          {
+            "type": "ifBlock",
+            "key": "has",
+            "enabled": true,
+            "depend_on": [],
+            "error": {
+              "mode": "stop"
+            },
+            "payload": {
+              "variable": "((opts.cible))",
+              "operator": "isEmpty",
+              "value": "",
+              "thenActions": [
+                {
+                  "type": "respondWithMessage",
+                  "key": "solo",
+                  "enabled": true,
+                  "depend_on": [],
+                  "error": {
+                    "mode": "stop"
+                  },
+                  "payload": {
+                    "content": "Salut tout seul !",
+                    "ephemeral": true
+                  }
+                }
+              ],
+              "elseActions": [
+                {
+                  "type": "respondWithMessage",
+                  "key": "duo",
+                  "enabled": true,
+                  "depend_on": [],
+                  "error": {
+                    "mode": "stop"
+                  },
+                  "payload": {
+                    "content": "Salut ((opts.cible)) !",
+                    "embeds": [
+                      {
+                        "title": "Salutation",
+                        "description": "Par ((user.username))",
+                        "color": "#57F287"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "blueprintPositions": {
+          "has": {
+            "x": 80,
+            "y": 120
+          }
+        }
+      },
+      "editorMode": "blueprint"
+    },
+    "output": {
+      "name": "salut",
+      "description": "Dit salut a quelqu'un",
+      "type": "chatInput",
+      "data": {
+        "version": 1,
+        "executionMode": "graph",
+        "prefixEnabled": true,
+        "options": [
+          {
+            "type": "string",
+            "name": "cible",
+            "description": "Qui saluer",
+            "required": false
+          }
+        ],
+        "blueprintPositions": {
+          "has": {
+            "x": 80,
+            "y": 120
+          }
+        },
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "ifBlock",
+              "key": "has",
+              "enabled": true,
+              "payload": {
+                "variable": "((opts.cible))",
+                "operator": "isEmpty",
+                "value": ""
+              }
+            },
+            {
+              "id": "n2",
+              "type": "respondWithMessage",
+              "key": "has.solo",
+              "enabled": true,
+              "payload": {
+                "content": "Salut tout seul !",
+                "ephemeral": true
+              }
+            },
+            {
+              "id": "n3",
+              "type": "respondWithMessage",
+              "key": "has.duo",
+              "enabled": true,
+              "payload": {
+                "content": "Salut ((opts.cible)) !",
+                "embeds": [
+                  {
+                    "title": "Salutation",
+                    "description": "Par ((user.username))",
+                    "color": "#57F287"
+                  }
+                ]
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            },
+            {
+              "from": {
+                "node": "n1",
+                "pin": "then"
+              },
+              "to": "n2"
+            },
+            {
+              "from": {
+                "node": "n1",
+                "pin": "else"
+              },
+              "to": "n3"
+            }
+          ],
+          "data": []
+        }
+      }
+    },
+    "converted": true,
+    "warnings": []
   }
 ]
