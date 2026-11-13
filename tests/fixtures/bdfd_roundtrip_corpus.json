@@ -33951,7 +33951,6 @@
         "data": []
       },
       "warnings": [
-        "graph_template:variable.next",
         "graph_switch_result_prefix:n2",
         "graph_unmapped_field:respondWithMessage._actionId",
         "graph_unstructured:n4",
@@ -34045,7 +34044,6 @@
         "data": []
       },
       "warnings": [
-        "graph_template:variable.next",
         "graph_switch_result_prefix:n2",
         "graph_multiple_messages"
       ]
@@ -34097,7 +34095,6 @@
         "data": []
       },
       "warnings": [
-        "graph_template:variable.next",
         "graph_switch_result_prefix:n2"
       ]
     },
@@ -34935,7 +34932,6 @@
         "data": []
       },
       "warnings": [
-        "graph_template:variable.n",
         "graph_switch_result_prefix:n1",
         "graph_unmapped_operator:matches",
         "graph_disabled:n5",
@@ -35302,7 +35298,6 @@
         "data": []
       },
       "warnings": [
-        "graph_template:variable.n",
         "graph_switch_result_prefix:n2",
         "graph_unmapped_operator:matches",
         "graph_multiple_messages"
@@ -38409,7 +38404,6 @@
         "data": []
       },
       "warnings": [
-        "graph_template:variable.n",
         "graph_switch_result_prefix:n2",
         "graph_unmapped_operator:matches",
         "graph_disabled:n7",
@@ -39046,10 +39040,7 @@
       },
       "warnings": [
         "graph_no_bdfd_equivalent:getGlobalVariable",
-        "graph_template:user.createdAt",
         "graph_unmapped_operator:startswith",
-        "graph_template:user.username",
-        "graph_template:user.id",
         "graph_switch_result_prefix:n11",
         "graph_no_bdfd_equivalent:runtimeImageBlock",
         "graph_no_bdfd_equivalent:attachImage",
@@ -39163,10 +39154,7 @@
         ],
         "data": []
       },
-      "warnings": [
-        "graph_template:opts.cible",
-        "graph_template:user.username"
-      ]
+      "warnings": []
     },
     {
       "name": "ensure:commande en mode workflow",
@@ -39475,6 +39463,36 @@
       "warnings": []
     },
     {
+      "name": "ensure:route et workflow en graphe avec une liste d'actions vide : intacts",
+      "kind": "graph",
+      "script": "$sendmessage[x]",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "sendMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "x"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "warnings": []
+    },
+    {
       "name": "ensure:ancien bot : ping_response.command",
       "kind": "graph",
       "script": "Salut ((opts.cible)) !$title[Salutation]$description[Par ((user.username))]$color[#57F287]",
@@ -39510,10 +39528,7 @@
         ],
         "data": []
       },
-      "warnings": [
-        "graph_template:opts.cible",
-        "graph_template:user.username"
-      ]
+      "warnings": []
     },
     {
       "name": "ensure:ancien bot : ping_actions.command",
@@ -39585,10 +39600,7 @@
         ],
         "data": []
       },
-      "warnings": [
-        "graph_template:opts.cible",
-        "graph_template:user.username"
-      ]
+      "warnings": []
     },
     {
       "name": "ensure:ancien bot : ping_actions_blueprint.command",
@@ -39660,10 +39672,7 @@
         ],
         "data": []
       },
-      "warnings": [
-        "graph_template:opts.cible",
-        "graph_template:user.username"
-      ]
+      "warnings": []
     }
   ]
 }

@@ -1388,6 +1388,250 @@
     "warnings": []
   },
   {
+    "name": "racine en graphe avec une liste d'actions vide : intacte",
+    "input": {
+      "name": "root-empty",
+      "executionMode": "graph",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "sendMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "x"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "actions": []
+    },
+    "output": {
+      "name": "root-empty",
+      "executionMode": "graph",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "sendMessage",
+            "key": "a",
+            "enabled": true,
+            "payload": {
+              "content": "x"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          }
+        ],
+        "data": []
+      },
+      "actions": []
+    },
+    "converted": false,
+    "warnings": []
+  },
+  {
+    "name": "route et workflow en graphe avec une liste d'actions vide : intacts",
+    "input": {
+      "name": "sub-empty",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "sendMessage",
+              "key": "a",
+              "enabled": true,
+              "payload": {
+                "content": "x"
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        },
+        "workflow": {
+          "executionMode": "graph",
+          "graph": {
+            "version": 2,
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "sendMessage",
+                "key": "a",
+                "enabled": true,
+                "payload": {
+                  "content": "x"
+                }
+              }
+            ],
+            "links": [
+              {
+                "from": {
+                  "node": "start",
+                  "pin": "next"
+                },
+                "to": "n1"
+              }
+            ],
+            "data": []
+          },
+          "actions": []
+        },
+        "subcommandWorkflows": {
+          "a": {
+            "executionMode": "graph",
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "sendMessage",
+                  "key": "a",
+                  "enabled": true,
+                  "payload": {
+                    "content": "x"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                }
+              ],
+              "data": []
+            },
+            "actions": []
+          }
+        }
+      }
+    },
+    "output": {
+      "name": "sub-empty",
+      "data": {
+        "executionMode": "graph",
+        "graph": {
+          "version": 2,
+          "nodes": [
+            {
+              "id": "n1",
+              "type": "sendMessage",
+              "key": "a",
+              "enabled": true,
+              "payload": {
+                "content": "x"
+              }
+            }
+          ],
+          "links": [
+            {
+              "from": {
+                "node": "start",
+                "pin": "next"
+              },
+              "to": "n1"
+            }
+          ],
+          "data": []
+        },
+        "workflow": {
+          "executionMode": "graph",
+          "graph": {
+            "version": 2,
+            "nodes": [
+              {
+                "id": "n1",
+                "type": "sendMessage",
+                "key": "a",
+                "enabled": true,
+                "payload": {
+                  "content": "x"
+                }
+              }
+            ],
+            "links": [
+              {
+                "from": {
+                  "node": "start",
+                  "pin": "next"
+                },
+                "to": "n1"
+              }
+            ],
+            "data": []
+          },
+          "actions": []
+        },
+        "subcommandWorkflows": {
+          "a": {
+            "executionMode": "graph",
+            "graph": {
+              "version": 2,
+              "nodes": [
+                {
+                  "id": "n1",
+                  "type": "sendMessage",
+                  "key": "a",
+                  "enabled": true,
+                  "payload": {
+                    "content": "x"
+                  }
+                }
+              ],
+              "links": [
+                {
+                  "from": {
+                    "node": "start",
+                    "pin": "next"
+                  },
+                  "to": "n1"
+                }
+              ],
+              "data": []
+            },
+            "actions": []
+          }
+        }
+      }
+    },
+    "converted": false,
+    "warnings": []
+  },
+  {
     "name": "liste de 2001 actions : graphe trop gros, liste conservée",
     "input": {
       "name": "huge",
