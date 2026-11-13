@@ -9,7 +9,7 @@
     }
   },
   "GraphNode": {
-    "desc": "Un nœud : { id, type, key, enabled?, payload?, error?, pos? }. `id` (n1, n2…) est interne et stable : les liens s'y réfèrent. `key` est la clé de résultat, REQUISE et non vide (le résultat se lit ((action.<key>)) ; non unique, le dernier écrivain gagne ; l'éditeur donne action_<n>). error.mode = stop (défaut) ou continue. Le payload ne contient AUCUNE sous-liste d'actions.",
+    "desc": "Un nœud : { id, type, key, enabled?, payload?, error?, src?, pos? }. `id` (n1, n2…) est interne et stable : les liens s'y réfèrent. `key` est la clé de résultat, REQUISE et non vide (le résultat se lit ((action.<key>)) ; non unique, le dernier écrivain gagne ; l'éditeur donne action_<n>). error.mode = stop (défaut) ou continue. src = { line, col, fn } : origine du nœud dans le script BDFD converti, posée par la conversion, conservée telle quelle (ne pas l'écrire à la main). Le payload ne contient AUCUNE sous-liste d'actions.",
     "fields": {
       "id": "string",
       "type": "string",
@@ -17,6 +17,7 @@
       "enabled": "boolean?",
       "payload": "object?",
       "error": "object?",
+      "src": "object?",
       "pos": "object?"
     }
   },

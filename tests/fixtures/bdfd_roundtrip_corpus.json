@@ -36647,6 +36647,78 @@
       ]
     },
     {
+      "name": "review:error-fragment",
+      "kind": "script",
+      "script": "$try\n  $channelName[abc] ((x\n$catch\n  $sendMessage[$error[command]|$error[row]|$error[column]]\n$endtry",
+      "graph": {
+        "version": 2,
+        "nodes": [
+          {
+            "id": "n1",
+            "type": "tryCatch",
+            "key": "action_0",
+            "enabled": true,
+            "payload": {}
+          },
+          {
+            "id": "n2",
+            "type": "runBdfdScript",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "scriptContent": "$channelName[abc] ((x\n"
+            },
+            "src": {
+              "line": 2,
+              "col": 3,
+              "fn": ""
+            }
+          },
+          {
+            "id": "n3",
+            "type": "sendMessage",
+            "key": "action_0.action_0",
+            "enabled": true,
+            "payload": {
+              "content": "((error.command))|((error.row))|((error.column))"
+            },
+            "src": {
+              "line": 4,
+              "col": 3,
+              "fn": "$sendMessage"
+            }
+          }
+        ],
+        "links": [
+          {
+            "from": {
+              "node": "start",
+              "pin": "next"
+            },
+            "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "try"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "catch"
+            },
+            "to": "n3"
+          }
+        ],
+        "data": []
+      },
+      "warnings": [
+        "bdfd_passthrough:text"
+      ]
+    },
+    {
       "name": "review:error-constructeurs-try",
       "kind": "script",
       "script": "$try\n  $title[x]\n  $addField[a;$findUser[nobody;no];yes]\n$catch\n  $sendMessage[$error[command]|$error[row]|$error[column]|$error[message]]\n$endtry",
