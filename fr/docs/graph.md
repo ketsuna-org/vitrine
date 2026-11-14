@@ -128,7 +128,7 @@ Le détail du moteur est dans le [modèle d'exécution](/docs/execution-model/) 
 
 Un graphe est validé avant d'être enregistré. Les **erreurs** bloquent : lien vers un nœud ou un pin inconnu, nœud ou type inconnu, identifiant dupliqué ou réservé, cycle de flux (une boucle se fait avec un nœud de boucle), région non fermée, réponses initiales parallèles (Discord n'en accepte qu'une), taille (2000 nœuds, 2 000 000 octets de JSON au maximum), clé vide. Les **avertissements** ne bloquent pas : nœud orphelin (relié à rien, il ne s'exécute jamais), clé de résultat partagée par plusieurs nœuds, aiguillage sans valeur, boucle ou `try` sans corps.
 
-Le serveur [MCP](/docs/mcp/) expose l'outil `validate_graph`, qui applique ces règles et vérifie aussi les paramètres de chaque nœud. Il accepte aussi une ancienne liste d'actions (`actions`) ou une commande entière (`entity`) : il la convertit et répond avec le graphe obtenu et les avertissements de conversion.
+Le [MCP utilisateur](/docs/ai-copilot/#user-mcp) expose l'outil `validate` (mode `graph`), qui applique ces règles et vérifie aussi les paramètres de chaque nœud.
 
 ## Convertir un script BDFD
 

@@ -150,19 +150,6 @@ test('every function called in a ```bdfd example of _docs exists in the engine',
   assert.deepEqual(unknown, [], 'Examples must only call functions the engine has (use `scripts/check-bdfd-examples.dart` against the engine for full validation).');
 });
 
-test('MCP planner recipes only name functions the engine has', async () => {
-  const { RECIPES } = await import('../functions/api/mcp/planner.mjs');
-  const unknown = [];
-  for (const [i, r] of Object.entries(RECIPES)) {
-    const recipe = r.r ?? r;
-    for (const fn of recipe.fns ?? []) if (fn.startsWith('$') && !knownName(fn.slice(1))) unknown.push(`recipe ${i} fns: ${fn}`);
-    if (recipe.skeleton && !recipe.skeleton.trim().startsWith('[')) {
-      for (const name of callNames(recipe.skeleton)) if (!knownName(name)) unknown.push(`recipe ${i} skeleton: $${name}`);
-    }
-  }
-  assert.deepEqual(unknown, []);
-});
-
 test('control-flow pages document their closing token', async () => {
   const closers = { if: '$endif', for: '$endfor', while: '$endwhile', loop: '$endloop', jsonforeach: '$endjsonforeach', try: '$endtry', func: '$funcend' };
   const missing = [];

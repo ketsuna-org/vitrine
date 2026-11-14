@@ -91,7 +91,7 @@ Each block is stored as a graph node, and a command or workflow stores its graph
 | `enabled` | Boolean | Default `true`. When `false` the block produces no result and the flow goes on. |
 | `error` | Object | The *On Error* policy: `mode` is `stop` (default) or `continue`. |
 
-Links `{ "from": { "node", "pin" }, "to" }` carry the flow. Pins are `next` (every ordinary block), `then`, `elseif:<i>` and `else` (*IF / ELSE*), `body` and `done` (loops), `try`, `catch` and `done` (*Try / Catch*), `case:<value>` and `default` (*Switch*), and `error` (failure). Several links on one pin start parallel branches, run in the order of the links. Validate a graph with the `validate_graph` tool of the [MCP server](/docs/mcp/).
+Links `{ "from": { "node", "pin" }, "to" }` carry the flow. Pins are `next` (every ordinary block), `then`, `elseif:<i>` and `else` (*IF / ELSE*), `body` and `done` (loops), `try`, `catch` and `done` (*Try / Catch*), `case:<value>` and `default` (*Switch*), and `error` (failure). Several links on one pin start parallel branches, run in the order of the links. Validate a graph with the `validate` tool of the [user MCP](/docs/ai-copilot/#user-mcp).
 
 </details>
 

@@ -50,4 +50,3 @@ Host your bot from the app dashboard. For self-hosted runners, see [Deployment &
 - [Events & placeholders](/docs/events-and-placeholders/) — event-driven bots and `((...))` variables
 - [Interactions overview](/docs/interactions-overview/) — buttons, select menus, modals
 - [Handling rich interactions]({{ onboarding_guide_4.url | relative_url }}) — full walkthrough
-- [MCP server](/docs/mcp/) — AI tool integration for this documentation

@@ -31,7 +31,6 @@ const descriptions = {
   func: 'Defines a reusable function block in BDScript.',
   funcend: 'Ends a function block started with $func.',
   error: 'Reads the error caught by the last $try / $catch block, or one of its details.',
-  mcp: 'Model Context Protocol server for AI-assisted documentation lookup.',
   ephemeral: 'Makes the response visible only to the user who triggered the interaction.',
 };
 

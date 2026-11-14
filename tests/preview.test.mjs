@@ -110,7 +110,6 @@ test('every BDFD function documentation file in _docs/ has a working ```bdfd cod
     'execution-model.md',
     'getting-started.md',
     'interactions-overview.md',
-    'mcp.md',
     'template-system.md',
     'tickets.md'
   ]);

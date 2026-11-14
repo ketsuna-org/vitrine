@@ -3,14 +3,13 @@
 require "nokogiri"
 require "digest"
 
-# Generates JSON indexes consumed by the MCP server at /api/mcp.
+# Generates JSON indexes consumed by the site and LLM tools.
 # Outputs:
 #   /api/docs-index.json   -> [{ slug, name, category, url }, ...]
 #   /api/posts-index.json  -> [{ slug, title, description, date, category,
 #                                locale, author, url }, ...]
 #
-# These indexes are static (generated at Jekyll build time) so the MCP
-# Function has nothing to query at runtime except two small JSON files.
+# These indexes are static (generated at Jekyll build time).
 #
 # Files are registered as Jekyll::StaticFile entries so the build's cleanup
 # phase does not remove them from _site/. Writing directly to _site/ via
@@ -374,7 +373,6 @@ module Vitrine
         body << "- [Blocks Dictionary](https://bot-creator.fr/docs/blocks-dictionary/): Complete catalog of all #{block_count} blocks of the app"
         body << "- [Support Ticket System](https://bot-creator.fr/docs/tickets/): Complete production-ready ticket system"
         body << "- [Execution model](https://bot-creator.fr/docs/execution-model/): Implicit slash replies, variables, interaction lifecycle and limits"
-        body << "- [MCP server](https://bot-creator.fr/docs/mcp/): Connect via Model Context Protocol"
         body << ""
         body << "## Function reference by category"
         body << ""
@@ -399,7 +397,7 @@ module Vitrine
         parts = []
         parts << "# Bot Creator — Full Documentation"
         parts << ""
-        parts << "> Bot Creator reference for Blocks, BDFD and JavaScript. Generated from the same docs collection as the MCP index. Read execution-model first and respect each page's compatibility status."
+        parts << "> Bot Creator reference for Blocks, BDFD and JavaScript. Read execution-model first and respect each page's compatibility status."
         parts << ""
         parts << "---"
         parts << ""

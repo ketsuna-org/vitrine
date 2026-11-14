@@ -54,4 +54,3 @@ Hébergez votre bot depuis le tableau de bord de l'application. Pour les runners
 - [Événements et variables](/fr/docs/events-and-placeholders/) : bots pilotés par les événements et variables `((...))`
 - [Interactions overview](/docs/interactions-overview/) (en anglais) : boutons, menus de sélection, modals
 - [Handling rich interactions]({{ onboarding_guide_4.url | relative_url }}) : présentation complète pas à pas
-- [MCP server](/docs/mcp/) (en anglais) : intégration d'outils d'IA pour cette documentation
