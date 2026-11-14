@@ -44502,11 +44502,49 @@
         "nodes": [
           {
             "id": "n1",
-            "type": "runBdfdScript",
+            "type": "callFunction",
             "key": "action_0",
             "enabled": true,
             "payload": {
-              "scriptContent": "$title[T]$if[1==1]$description[D]$endif"
+              "function": "title",
+              "arguments": [
+                "T"
+              ],
+              "session": true
+            },
+            "src": {
+              "line": 1,
+              "col": 1,
+              "fn": "$title"
+            }
+          },
+          {
+            "id": "n2",
+            "type": "ifBlock",
+            "key": "action_1",
+            "enabled": true,
+            "payload": {
+              "condition.variable": "1",
+              "condition.operator": "equals",
+              "condition.value": "1"
+            }
+          },
+          {
+            "id": "n3",
+            "type": "callFunction",
+            "key": "action_1.action_0",
+            "enabled": true,
+            "payload": {
+              "function": "description",
+              "arguments": [
+                "D"
+              ],
+              "session": true
+            },
+            "src": {
+              "line": 1,
+              "col": 19,
+              "fn": "$description"
             }
           }
         ],
@@ -44517,12 +44555,27 @@
               "pin": "next"
             },
             "to": "n1"
+          },
+          {
+            "from": {
+              "node": "n1",
+              "pin": "next"
+            },
+            "to": "n2"
+          },
+          {
+            "from": {
+              "node": "n2",
+              "pin": "then"
+            },
+            "to": "n3"
           }
         ],
         "data": []
       },
       "warnings": [
-        "bdfd_passthrough:output_split"
+        "bdfd_generic_call:title",
+        "bdfd_generic_call:description"
       ]
     },
     {
