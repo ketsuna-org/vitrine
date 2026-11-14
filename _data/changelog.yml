@@ -35,13 +35,13 @@ eras:
       intro: "Hosted Apps, travail en équipe, Copilot IA, moteur natif, Studio web et nouveau design."
   - id: v3
     en:
-      title: "Version 3: real-time drafts, publishing and the public API"
+      title: "Version 3: drafts, publishing, API keys and the graph"
       period: "November 2026"
-      intro: "Edit as a draft, publish when you decide, and drive your bots from your own code with API keys."
+      intro: "Edit as a draft, publish when you decide, drive your bots with API keys, call AI and dozens of new functions, and build everything on a graph canvas."
     fr:
-      title: "Version 3 : brouillons en temps réel, publication et API publique"
+      title: "Version 3 : brouillons, publication, clés API et graphe"
       period: "Novembre 2026"
-      intro: "Modifier en brouillon, publier quand vous le décidez, et piloter vos bots depuis votre propre code avec des clés API."
+      intro: "Modifier en brouillon, publier quand vous le décidez, piloter vos bots avec des clés API, appeler l'IA et des dizaines de nouvelles fonctions, et tout construire sur un canvas en graphe."
 
 entries:
   # ───────────── The beginnings ─────────────
@@ -645,3 +645,113 @@ entries:
         - "Clés API : créez-les avec des portées et une expiration, puis faites-les tourner, révoquez-les et suivez leur usage. Un lien mène au guide développeur de l'API publique."
         - "La validation signale les fonctions BDFD inconnues avec une suggestion, et prévient quand plusieurs workflows gèrent le même identifiant personnalisé."
         - "Dans l'application gratuite, une publicité interstitielle apparaît après une publication réussie (au plus une fois toutes les 7 minutes), et les publicités natives sont retirées."
+  - id: v3-5
+    era: v3
+    date: { en: "November 7, 2026", fr: "7 novembre 2026" }
+    versions: "App 3.5.0 · Studio 1.4.0"
+    en:
+      title: "3.5: deleted commands stay deleted"
+      items:
+        - "Deleting a Cloud command removes it from Discord first, and keeps it if Discord refuses."
+        - "A deletion is only complete once the Cloud no longer knows the command, so deleted commands no longer come back."
+        - "The Publish button is visible in the draft banner, and a new command keeps the same identifier for its draft and its save."
+        - "Studio: select several commands at once to move, delete or archive, publish or remove them from Discord."
+    fr:
+      title: "3.5 : une commande supprimée le reste"
+      items:
+        - "Supprimer une commande Cloud la retire d'abord de Discord, et la garde si Discord refuse."
+        - "Une suppression n'est terminée que lorsque le Cloud ne connaît plus la commande : les commandes supprimées ne reviennent plus."
+        - "Le bouton Publier est visible dans le bandeau du brouillon, et une commande neuve garde le même identifiant pour son brouillon et son enregistrement."
+        - "Studio : sélectionnez plusieurs commandes d'un coup pour les déplacer, les supprimer ou archiver, les publier ou les retirer de Discord."
+  - id: v3-6
+    era: v3
+    date: { en: "November 7 to 9, 2026", fr: "7 au 9 novembre 2026" }
+    versions: "App 3.6.0 – 3.6.3"
+    en:
+      title: "3.6: faster startup and sturdier bots"
+      items:
+        - "The local cache is now recognised as up to date, so the app no longer resynchronises everything each time you open it."
+        - "Components V2 replies sent after a deferral no longer crash with a null check."
+        - "The Studio asks for your analytics consent before anything is measured."
+    fr:
+      title: "3.6 : démarrage plus rapide et bots plus solides"
+      items:
+        - "Le cache local est enfin reconnu comme à jour : l'application ne resynchronise plus tout à chaque ouverture."
+        - "Les réponses Components V2 envoyées après un différé ne plantent plus avec une erreur « Null check »."
+        - "Le Studio demande votre consentement aux mesures d'audience avant de mesurer quoi que ce soit."
+  - id: v3-7
+    era: v3
+    date: { en: "November 10, 2026", fr: "10 novembre 2026" }
+    versions: "App 3.7.0 · Runner 3.7.0"
+    en:
+      title: "3.7: AI functions and dozens of new BDFD functions"
+      items:
+        - "AI functions in the language: $ai, $aiWithCtx, $aiDecide, $aiDecideWithCtx, $aiAgent, $aiQuota and $aiError, with a per-player limit and documented syntax for autocomplete. Bots running inside the app reach them through a gateway."
+        - "Around 80 new composite BDFD functions: lists, durations, mentions, inline conditions, XP, roles, channels, variables, embeds and moderation, plus about twenty maths functions (toNumber, parseInt, pow, clamp, gcd, percent, trigonometry…)."
+        - "$copyRolePerms, $cloneChannel and $webhookQuick."
+        - "Atomic variables: $increment, $compareAndSetVar, $tryLock and $unlock. The bot defers automatically before $ai."
+        - "A channel of a type the library does not know can no longer cut a bot off from Discord events: the bot stays connected and keeps answering."
+        - "Clearer errors when a Cloud-first send fails before start, and a loader on bot settings while the real state is checked."
+    fr:
+      title: "3.7 : fonctions IA et dizaines de nouvelles fonctions BDFD"
+      items:
+        - "Fonctions IA dans le langage : $ai, $aiWithCtx, $aiDecide, $aiDecideWithCtx, $aiAgent, $aiQuota et $aiError, avec une limite par joueur et une syntaxe documentée pour l'autocomplétion. Les bots qui tournent dans l'application y accèdent par une passerelle."
+        - "Environ 80 nouvelles fonctions BDFD composites : listes, durées, mentions, conditions en ligne, XP, rôles, salons, variables, embeds et modération, plus une vingtaine de fonctions mathématiques (toNumber, parseInt, pow, clamp, gcd, percent, trigonométrie…)."
+        - "$copyRolePerms, $cloneChannel et $webhookQuick."
+        - "Variables atomiques : $increment, $compareAndSetVar, $tryLock et $unlock. Le bot différé automatiquement avant $ai."
+        - "Un salon d'un type inconnu de la bibliothèque ne coupe plus un bot des évènements Discord : le bot reste connecté et continue de répondre."
+        - "Messages plus clairs quand un envoi Cloud avant démarrage échoue, et un chargement sur les réglages du bot tant que l'état réel n'est pas connu."
+  - id: v3-8
+    era: v3
+    date: { en: "November 10 to 12, 2026", fr: "10 au 12 novembre 2026" }
+    versions: "App 3.8.0 · Runner 3.8.0"
+    en:
+      title: "3.8: the \"Call a function\" block and canvas upgrades"
+      items:
+        - "New \"Call a function\" block: any native BDFD function is now available in the blocks editor."
+        - "New functions: $floorDiv, $mod, $hash, $seededRandom, $createForumPost, $forumTags, $setThreadTags, $canvasTileGrid (a tile grid in one call), $channelMessageCount, $listVars, $startsWith and $endsWith."
+        - "Scheduled tasks on the Dart runner follow their cron expression and time zone."
+        - "Emojis are drawn in colour in canvas images."
+        - "A button click now edits its own message, including an ephemeral one, and $editMessageCV2 keeps canvas images."
+        - "A script with $defer[update] is acknowledged immediately, even with $callWorkflow."
+        - "Autocomplete reads user variables like the command does."
+    fr:
+      title: "3.8 : le bloc « Appeler une fonction » et un canvas enrichi"
+      items:
+        - "Nouveau bloc « Appeler une fonction » : toute fonction native BDFD est désormais disponible dans l'éditeur de blocs."
+        - "Nouvelles fonctions : $floorDiv, $mod, $hash, $seededRandom, $createForumPost, $forumTags, $setThreadTags, $canvasTileGrid (une grille de tuiles en un appel), $channelMessageCount, $listVars, $startsWith et $endsWith."
+        - "Les tâches planifiées du runner Dart respectent leur expression cron et leur fuseau horaire."
+        - "Les emojis s'affichent en couleur dans les images canvas."
+        - "Un clic de bouton édite désormais son propre message, y compris un message éphémère, et $editMessageCV2 conserve les images canvas."
+        - "Un script avec $defer[update] est acquitté tout de suite, même avec $callWorkflow."
+        - "L'autocomplétion lit les variables utilisateur comme la commande."
+  - id: v3-9
+    era: v3
+    date: { en: "November 13 to 14, 2026", fr: "13 au 14 novembre 2026" }
+    versions: "App 3.9.0 – 3.9.1 · Runner 3.9.0"
+    en:
+      title: "3.9: Blueprint becomes a graph"
+      items:
+        - "Blueprint is now a graph canvas: blocks wired together, with parallel branches and data links. The graph is the single editor and engine for commands and workflows."
+        - "Collapsible regions, fold or unfold everything, search for a block, wrapped layout for big graphs, and only the blocks in view are built, so large graphs stay smooth."
+        - "Nested calls become separate, readable blocks, and \"Call a function\" covers every native function."
+        - "Built-in image editor (canvas) inside the graph editor, at parity with BDFD."
+        - "BDFD ↔ graph bridge: switch between the script and the graph for commands and workflows, with an equivalence that is exact or flagged. Errors can be read from the graph ($error line, column and function)."
+        - "Migration calendar: older commands and workflows are converted to a graph automatically from November 18, 2026; the app and the Studio show the date."
+        - "Desktop and mobile apps: loading screens with Bibi, skeletons, a lighter startup, a roomier command editor on mobile, Ctrl+F in the script editor, multi-select for workflows, and a command catalogue with preview before adding."
+        - "Studio 1.5.2: email sign-in (and email + password), an Advanced tab in bot settings (owner token, Dart / JavaScript engine switch, force the Discord sync), Manager announcements in the app, unified page headers, and the same Graph / BDFD switch as the desktop app."
+        - "Copy an emoji, its ID, shortcode or link from the emoji page. An embed built in the branches of an $if converts to blocks."
+        - "Fixes: $ephemeral inside an $if no longer makes the whole command ephemeral; slash command names no longer accept the ASCII apostrophe; saving an unchanged command no longer bumps its update date; clear messages for an archived bot or a protected config."
+    fr:
+      title: "3.9 : Blueprint devient un graphe"
+      items:
+        - "Blueprint est désormais un canvas en graphe : des blocs reliés entre eux, avec des branches parallèles et des liens de données. Le graphe est l'éditeur et le moteur uniques des commandes et des workflows."
+        - "Régions repliables, tout replier ou déplier, recherche d'un bloc, mise en page en bandes pour les gros graphes, et seuls les blocs visibles sont construits : les gros graphes restent fluides."
+        - "Les appels imbriqués deviennent des blocs séparés et lisibles, et « Appeler une fonction » couvre toutes les fonctions natives."
+        - "Éditeur d'images (canvas) intégré à l'éditeur de graphe, à parité avec BDFD."
+        - "Pont BDFD ↔ graphe : basculez entre le script et le graphe pour les commandes et les workflows, avec une équivalence exacte ou signalée. Les erreurs se lisent depuis le graphe ($error ligne, colonne et fonction)."
+        - "Calendrier de migration : les anciennes commandes et workflows sont convertis en graphe automatiquement à partir du 18 novembre 2026 ; l'application et le Studio affichent la date."
+        - "Applications bureau et mobile : écrans de chargement avec Bibi, squelettes, démarrage allégé, éditeur de commande plus spacieux sur mobile, Ctrl+F dans l'éditeur de script, sélection multiple des workflows et catalogue de commandes avec aperçu avant ajout."
+        - "Studio 1.5.2 : connexion par e-mail (et e-mail + mot de passe), onglet Avancé dans les réglages d'un bot (jeton propriétaire, bascule du moteur Dart / JavaScript, forcer la synchronisation Discord), annonces du Manager dans l'application, en-têtes de page unifiés et le même sélecteur Graphe / BDFD que l'application bureau."
+        - "Copier l'emoji, son ID, son raccourci ou son lien depuis la page des emojis. Un embed construit dans les branches d'un $if se convertit en blocs."
+        - "Correctifs : $ephemeral dans un $if ne rend plus toute la commande éphémère ; les noms de commandes slash n'acceptent plus l'apostrophe ASCII ; enregistrer une commande inchangée ne modifie plus sa date de mise à jour ; messages clairs pour un bot archivé ou une configuration protégée."
