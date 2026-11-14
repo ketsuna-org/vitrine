@@ -173,3 +173,11 @@ This project use TailwindCSS v3 for styling and Jekyll for static site generatio
 ## Support
 
 For any inquiries, reach out to me at [contact@jeremysoler.com](mailto:contact@jeremysoler.com)
+
+
+## Documentation pages (`_docs/`)
+
+`_docs/*.md` is GENERATED from the Bot Creator API (source of truth: the Manager repo, `docs/site/en/`).
+Do not edit these files by hand: `npm run docs:sync` (or `node scripts/sync-docs-from-api.mjs --api <url>`)
+overwrites them, and the Manager CI pushes them here on every change. The French pages in `fr/docs/`
+stay hand-written.
