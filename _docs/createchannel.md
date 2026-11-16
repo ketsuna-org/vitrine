@@ -24,7 +24,7 @@ $createChannel[name;type;(categoryID);(reason)]
 |---|---|
 | `name` | Required. Name of the channel (1 to 100 characters). |
 | `type` | Required. One of `text`, `voice`, `category`, `stage`, `forum` (case-insensitive). Any other value raises `Invalid BDFD channel type.` |
-| `categoryID` | Optional. ID of the parent category. It must be a category of the current server; a category cannot itself have a parent (`Categories cannot have a parent category.`). If the argument is written, it cannot be empty (`Invalid channel ID.`); omit it for no parent. |
+| `categoryID` | Optional. ID of the parent category. It must be a category of the current server; a category cannot itself have a parent (`Categories cannot have a parent category.`). If the argument is written, it cannot be empty (`Invalid channel ID.`), except when a `reason` follows: `$createChannel[name;text;;reason]` creates the channel with no parent. Omit it for no parent. |
 | `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return value
