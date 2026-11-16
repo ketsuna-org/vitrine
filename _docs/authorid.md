@@ -40,7 +40,7 @@ $author[$authorUsername]
 $authorIcon[$authorAvatar]
 $description[
 **ID:** $authorID
-**Tag:** $authorTag
+**Server tag:** $authorTag
 ]
 $color[#5865F2]
 ```

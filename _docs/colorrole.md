@@ -31,6 +31,8 @@ $colorRole[color;(reason)]
 |---|---|
 | `string` | An empty string. The color of the role is modified. |
 
+The new color replaces all the colors of the role: a gradient or holographic role becomes single-color. Use `$setRoleColors` for several colors.
+
 ## Examples
 
 ### Change the color of a role

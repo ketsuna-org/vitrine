@@ -43,7 +43,7 @@ $discriminator[userID]
 $if[$discriminator[$authorID]!=0000]
   $title[Account with a discriminator]
   $description[
-  **Full Tag:** $userTag[$authorID]
+  **Name:** $username[$authorID]
   **Discriminator:** $discriminator[$authorID]
   ]
   $color[#5865F2]

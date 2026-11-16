@@ -5,12 +5,14 @@ translation_key: docs
 category: "Entity Info"
 function_name: userTag
 syntax: $userTag[(userID)]
-description: Returns the username of a user (the author by default); for bot accounts, the tag in the form "username#discriminator".
+description: Returns the server tag a user displays next to their name (for example "BCS"), or an empty string when they display none. Bot Creator function, not in BDFD.
 ---
 
 # $userTag
 
-The `$userTag` function returns the **tag** of a user: the username for a regular user, and `username#discriminator` for a bot account.
+The `$userTag` function returns the **server tag** of a user: the short tag (up to 4 characters) that Discord shows next to the name of members who have chosen to display a server's tag, for example `BCS` in "Garder500 [BCS]".
+
+This function does not exist in BDFD: it is specific to Bot Creator. To get the username, use `$username`.
 
 ## Syntax
 
@@ -27,35 +29,29 @@ $userTag[(userID)]
 ## Return Value
 
 - **Type**: String
-- For a **bot** account: `username#discriminator`, with the discriminator left-padded with zeros to 4 digits (e.g. `MyBot#0001`).
-- For any other account: the username only, without discriminator.
+- The server tag the user displays (`primary_guild.tag`), for example `BCS`.
+- An empty string when the user displays no server tag.
 
 ## Behavior
 
-- The user is fetched from Discord by ID.
-- Unlike `$authorTag`, which can read a value supplied by the execution context, `$userTag` always queries the user.
+- For the author, the value supplied by the execution context is used; for another user, the user is fetched from Discord by ID.
+- Since this function changed meaning, bots that used `$userTag` to get a username or `username#discriminator` must use `$username[userID]` (and `$discriminator[userID]`) instead.
 
 ## Examples
 
-### Display the tag
+### Display the name with the server tag
 
 ```bdfd
-$title[Profile of $userTag]
-$description[
-**Name:** $userName
-**Tag:** $userTag
-**ID:** $userID
-]
-$color[#5865F2]
+$sendMessage[$username[$authorID]$if[$userTag!=] [$userTag]$endif]
 ```
 
-### Tag of a given user
+### Server tag of a given user
 
 ```bdfd
-$sendMessage[Tag: $userTag[$authorID]]
+$sendMessage[Tag: $userTag[$mentioned[1]]]
 ```
 
 ## Notes
 
-- For a non-bot user, `$userTag` returns the same text as `$userName`.
-- To get the discriminator on its own, use `$discriminator[userID]`.
+- A user can only display the tag of one server at a time, and can turn it off.
+- Use `$authorTag` for the author of the command without an argument.

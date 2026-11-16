@@ -24,7 +24,7 @@ $modifyRole[roleID;(name);(color);(hoist);(mentionable);(position);(reason)]
 |---|---|
 | `roleID` | The ID of the role to modify. Required (a positive integer, otherwise an error is raised). |
 | `name` | Optional. The new name of the role (1 to 100 characters, not all blank; otherwise `Invalid role name`). Empty or `!unchanged` keeps the current name. |
-| `color` | Optional. New color, as a hex code (`#RRGGBB`) or a decimal number between 0 and 16777215. Empty or `!unchanged` keeps the current color; an invalid value raises `Invalid role color.` |
+| `color` | Optional. New color, as a hex code (`#RRGGBB`) or a decimal number between 0 and 16777215. Empty or `!unchanged` keeps the current color; a new color replaces all the colors of the role (a gradient or holographic role becomes single-color, use `$setRoleColors` to keep several colors); an invalid value raises `Invalid role color.` |
 | `hoist` | Optional. `"yes"` or `"no"` to display role members separately from online members. Empty or `!unchanged` keeps the current value; any other value raises `Role flags must be yes or no.` |
 | `mentionable` | Optional. `"yes"` or `"no"` to make the role mentionable. Empty or `!unchanged` keeps the current value; any other value raises an error. |
 | `position` | Optional. New position of the role (integer, 0 or more, otherwise `Invalid role position.`). It must be lower than the position of the bot's highest role (`Invalid role position: must be below the bot`), and the @everyone role cannot be moved. Empty or `!unchanged` keeps the current position. |

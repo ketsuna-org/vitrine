@@ -85,5 +85,6 @@ $color[$var[color]]
 ## Notes
 
 - If the role has a default color (no color), `$getRoleColor` returns `000000`.
+- `$getRoleColor` returns the **primary** color only. Roles on servers with at least 3 boosts can have a gradient (two colors) or a holographic style (three colors): read the other colors with `$getRoleSecondaryColor` and `$getRoleTertiaryColor`.
 - Tip: use `$if[$getRoleColor[$roleID]==000000]` to detect roles without a color.
 - Once prefixed with `#`, the color can be passed to the embed `$color[]` function.

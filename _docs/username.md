@@ -53,7 +53,7 @@ $title[User Profile]
 $description[
 **Name:** $userName
 **ID:** $userID
-**Tag:** $userTag
+**Server tag:** $userTag
 ]
 $color[#5865F2]
 ```

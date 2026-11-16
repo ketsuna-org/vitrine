@@ -1123,6 +1123,10 @@
   "min": 1,
   "max": 1
  },
+ "getrolesecondarycolor": {
+  "min": 1,
+  "max": 1
+ },
  "getroleselectrolecount": {
   "min": 0,
   "max": 0
@@ -1142,6 +1146,10 @@
  "getroleswithperm": {
   "min": 1,
   "max": 4
+ },
+ "getroletertiarycolor": {
+  "min": 1,
+  "max": 1
  },
  "getserverinvite": {
   "min": 0,
@@ -2478,6 +2486,10 @@
  "setnickname": {
   "min": 1,
   "max": 3
+ },
+ "setrolecolors": {
+  "min": 2,
+  "max": 5
  },
  "setservervar": {
   "min": 2,

@@ -5,12 +5,14 @@ translation_key: docs
 category: "Entity Info"
 function_name: authorTag
 syntax: $authorTag
-description: "Returns the tag of the author: username#discriminator when the account has a discriminator, otherwise the username alone."
+description: Returns the server tag the author displays next to their name (for example "BCS"), or an empty string when they display none. Bot Creator function, not in BDFD.
 ---
 
 # $authorTag
 
-The variable `$authorTag` returns the **complete tag** of the author of the message. It is the equivalent of `$userTag[$authorID]` but explicitly linked to the author of the command.
+The variable `$authorTag` returns the **server tag** of the author of the message: the short tag (up to 4 characters) that Discord shows next to the name of members who have chosen to display a server's tag, for example `BCS` in "Garder500 [BCS]". It is the equivalent of `$userTag[$authorID]`.
+
+This function does not exist in BDFD: it is specific to Bot Creator. To get the username, use `$authorUsername`.
 
 ## Syntax
 
@@ -21,26 +23,24 @@ $authorTag
 ## Return value
 
 - **Type**: Character string
-- `username#discriminator` when the discriminator supplied by the command context is not `0` / `0000`
-- The username alone for accounts without a discriminator (new accounts)
-- If the context has no username or tag, the author is read from Discord: bots then give `username#NNNN` (4 digits, zero padded) and other users give the username alone
+- The server tag the author displays (`primary_guild.tag`), for example `BCS`.
+- An empty string when the author displays no server tag.
 
 ## Behavior
 
 - `$authorTag` takes **no arguments** (passing one is an error).
-- For new accounts, the tag is identical to the username.
+- When the command context does not carry the tag, the author is read from Discord.
+- Bots that used `$authorTag` to get a username or `username#discriminator` must use `$authorUsername` (and `$discriminator[$authorID]`) instead.
 
 ## Examples
 
-### Profile of the author
+### Author with the server tag
 
 ```bdfd
-$title[Profile of $authorTag]
-$author[$authorUsername]
-$authorIcon[$authorAvatar]
+$title[Profile of $authorUsername]
 $description[
 **Name:** $authorUsername
-**Tag:** $authorTag
+**Server tag:** $if[$authorTag==]none$else$authorTag$endif
 **ID:** $authorID
 ]
 $color[#5865F2]
@@ -48,6 +48,5 @@ $color[#5865F2]
 
 ## Notes
 
-- The `username#discriminator` format is obsolete for new Discord accounts.
-- For reliable identification, use `$authorID`.
-- `$userTag` takes an optional user ID and always reads the user from Discord (bots give `username#NNNN`, other users the username alone).
+- A user can only display the tag of one server at a time, and can turn it off.
+- `$userTag` does the same for any user, given their ID.
