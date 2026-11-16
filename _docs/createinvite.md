@@ -4,7 +4,7 @@ title: $createInvite
 translation_key: docs
 category: "Moderation"
 function_name: createInvite
-syntax: $createInvite[channelID;maxAgeSeconds;maxUses;temporary]
+syntax: $createInvite[channelID;maxAgeSeconds;maxUses;temporary;(reason)]
 description: Creates an invite to a channel and returns its code.
 ---
 
@@ -15,7 +15,7 @@ Creates an invite to a channel and returns its code. This function is a Bot Crea
 ## Syntax
 
 ```
-$createInvite[channelID;maxAgeSeconds;maxUses;temporary]
+$createInvite[channelID;maxAgeSeconds;maxUses;temporary;(reason)]
 ```
 
 ## Parameters
@@ -26,6 +26,7 @@ $createInvite[channelID;maxAgeSeconds;maxUses;temporary]
 | `maxAgeSeconds` | Lifetime in seconds. Empty means 86400 (one day), `0` never expires. |
 | `maxUses` | Number of uses. Empty or `0` means unlimited. |
 | `temporary` | `true` to kick members who were not given a role when they leave. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -42,3 +43,7 @@ $createInvite[channelID;maxAgeSeconds;maxUses;temporary]
 ```bdfd
 $sendMessage[https://discord.gg/$createInvite[$channelID;3600;1]]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

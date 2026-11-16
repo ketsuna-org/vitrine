@@ -4,7 +4,7 @@ title: $startThread
 translation_key: docs
 category: "Moderation"
 function_name: startThread
-syntax: $startThread[name;channelID;messageID;(autoArchiveDuration);(returnID)]
+syntax: $startThread[name;channelID;messageID;(autoArchiveDuration);(returnID);(reason)]
 description: Creates a discussion thread from the current message or a specified message. Threads allow organized conversations in sub-channels.
 ---
 
@@ -15,7 +15,7 @@ The function `$startThread[]` allows **creating a discussion thread** in a chann
 ## Syntax
 
 ```
-$startThread[name;channelID;messageID;(autoArchiveDuration);(returnID)]
+$startThread[name;channelID;messageID;(autoArchiveDuration);(returnID);(reason)]
 ```
 
 ## Parameters
@@ -27,6 +27,7 @@ $startThread[name;channelID;messageID;(autoArchiveDuration);(returnID)]
 | `messageID` | ID of the source message. Can be left empty to create a thread without a source message (required for an announcement channel). |
 | `autoArchiveDuration` | Optional - Duration of inactivity before archiving, in minutes: 60, 1440 (24h), 4320 (3d), 10080 (7d). Default: 60. Empty means 60. Any other value raises `Invalid thread archive duration.` (or `Expected an integer.`). |
 | `returnID` | Optional - `yes` to return the ID of the created thread, `no` otherwise. Default: `no`. Any other value raises an error. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -66,3 +67,7 @@ $endif
 
 - The name of the thread can be modified later with `$editThread[]`.
 - Adding members to the new thread is done with `$threadAddMember[]`.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

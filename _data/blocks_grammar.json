@@ -212,7 +212,8 @@
       "channelIds": "string[]?",
       "channelNames": "string[]?",
       "ticketClose": "boolean?",
-      "errorMessage": "string?"
+      "errorMessage": "string?",
+      "reason": "string?"
     },
     "output": "((action.<key>)) = id du dernier salon supprime"
   },

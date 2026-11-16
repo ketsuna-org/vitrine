@@ -4,7 +4,7 @@ title: $deleteRole
 translation_key: docs
 category: "Moderation"
 function_name: deleteRole
-syntax: $deleteRole[roleID]
+syntax: $deleteRole[roleID;(reason)]
 description: Deletes a role from the Discord server.
 ---
 
@@ -15,7 +15,7 @@ The `$deleteRole` function **permanently deletes a role** from the Discord serve
 ## Syntax
 
 ```
-$deleteRole[roleID]
+$deleteRole[roleID;(reason)]
 ```
 
 ## Parameters
@@ -23,6 +23,7 @@ $deleteRole[roleID]
 | Parameter | Description |
 |---|---|
 | `roleID` | The ID of the role to delete. Required; if it is not a positive number the error `Missing or invalid role ID.` is raised. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return value
 
@@ -75,3 +76,7 @@ $endif
 - The bot cannot delete a role equal to or higher than its own highest role.
 - Use `$roleExists` to check the existence before deletion.
 - To modify a role without deleting it, use `$modifyRole`.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

@@ -60,3 +60,7 @@ Channel deleted.
 
 - **Irreversible action**: deleted channels cannot be restored.
 - Use `$deleteChannels` to delete by channel ID instead of name.
+
+## Audit log reason
+
+This function takes any number of trailing arguments, so it has no `reason` argument of its own. Set the reason shown in the server's audit log (Discord's `X-Audit-Log-Reason`) with `$auditLogReason[text]` earlier in the script.

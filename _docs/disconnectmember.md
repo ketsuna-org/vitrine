@@ -4,7 +4,7 @@ title: $disconnectMember
 translation_key: docs
 category: "Moderation"
 function_name: disconnectMember
-syntax: $disconnectMember[userID]
+syntax: $disconnectMember[userID;(reason)]
 description: Disconnects a member from their voice channel.
 ---
 
@@ -15,7 +15,7 @@ Disconnects a member from their voice channel. This function is a Bot Creator ex
 ## Syntax
 
 ```
-$disconnectMember[userID]
+$disconnectMember[userID;(reason)]
 ```
 
 ## Parameters
@@ -23,6 +23,7 @@ $disconnectMember[userID]
 | Parameter | Description |
 |---|---|
 | `userID` | **Required.** The member's ID (digits only). |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -39,3 +40,7 @@ $disconnectMember[userID]
 ```bdfd
 $disconnectMember[$mentioned[1]]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

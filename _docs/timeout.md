@@ -3,7 +3,7 @@ layout: doc
 title: $timeout
 category: "Moderation"
 function_name: timeout
-syntax: $timeout[duration;(userID)]
+syntax: $timeout[duration;(userID);(reason)]
 description: Temporarily times out a user (temporary silence).
 locale: en
 translation_key: doc-timeout
@@ -16,7 +16,7 @@ The function `$timeout` times out a user on Discord. It sets Discord's communica
 ## Syntax
 
 ```
-$timeout[duration;(userID)]
+$timeout[duration;(userID);(reason)]
 ```
 
 ## Parameters
@@ -25,6 +25,7 @@ $timeout[duration;(userID)]
 |---|---|
 | `duration` | Duration of the timeout. Required. Units accepted: `ms`, `s`, `m`, `h`, `d`, `w`, `y` (also `millisecond`, `sec`, `second`, `min`, `minute`, `hour`, `day`, `week`, `year`, and their plural forms), which can be combined (e.g. `1h30m`); decimals are accepted. A bare number is read as seconds. Examples: `60s`, `5m`, `1h`, `7d`. Must be positive and at most 28 days, otherwise an error is raised. |
 | `userID` | Optional - The ID of the user. If omitted or empty, the timeout is applied to every user mentioned in the message; an error is raised if there is none. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -69,3 +70,7 @@ $sendMessage[Timeout applied.]
 - To remove a timeout early, use `$unTimeout`.
 
 - In a slash command there are no mentions: pass the ID explicitly, `$timeout[$message[duration];$message[member]]` (`$message[member]` is the ID of a `user` option, see [`$message`](/docs/message/)). Without an ID, the call fails because no user is mentioned. In prefix guards, write `$mentioned[1;no]`.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

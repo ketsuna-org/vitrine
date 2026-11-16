@@ -4,7 +4,7 @@ title: $serverDeafen
 translation_key: docs
 category: "Moderation"
 function_name: serverDeafen
-syntax: $serverDeafen[userID;deaf]
+syntax: $serverDeafen[userID;deaf;(reason)]
 description: Server-deafens or undeafens a member in voice.
 ---
 
@@ -15,7 +15,7 @@ Server-deafens or undeafens a member in voice. This function is a Bot Creator ex
 ## Syntax
 
 ```
-$serverDeafen[userID;deaf]
+$serverDeafen[userID;deaf;(reason)]
 ```
 
 ## Parameters
@@ -24,6 +24,7 @@ $serverDeafen[userID;deaf]
 |---|---|
 | `userID` | **Required.** The member's ID (digits only). |
 | `deaf` | `true` (default) to deafen, `false` to undeafen. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -39,3 +40,7 @@ $serverDeafen[userID;deaf]
 ```bdfd
 $serverDeafen[$mentioned[1];false]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

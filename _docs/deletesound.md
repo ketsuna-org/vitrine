@@ -4,7 +4,7 @@ title: $deleteSound
 translation_key: docs
 category: "Soundboard"
 function_name: deleteSound
-syntax: $deleteSound[soundID]
+syntax: $deleteSound[soundID;(reason)]
 description: Deletes a soundboard sound of the server.
 ---
 
@@ -15,7 +15,7 @@ Deletes a soundboard sound of the server. This function is a Bot Creator extensi
 ## Syntax
 
 ```
-$deleteSound[soundID]
+$deleteSound[soundID;(reason)]
 ```
 
 ## Parameters
@@ -23,6 +23,7 @@ $deleteSound[soundID]
 | Parameter | Description |
 |---|---|
 | `soundID` | **Required.** The sound ID. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -37,3 +38,7 @@ $deleteSound[soundID]
 ```bdfd
 $deleteSound[$message[1]]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

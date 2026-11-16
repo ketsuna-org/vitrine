@@ -4,7 +4,7 @@ title: $modifyChannel
 translation_key: docs
 category: "Moderation"
 function_name: modifyChannel
-syntax: $modifyChannel[channelID;(name);(topic);(nsfw);(position);(categoryID)]
+syntax: $modifyChannel[channelID;(name);(topic);(nsfw);(position);(categoryID);(reason)]
 description: Modifies the properties of an existing channel, such as its name, topic, NSFW status, position, and category.
 ---
 
@@ -15,7 +15,7 @@ The function `$modifyChannel` allows you to modify the properties of an existing
 ## Syntax
 
 ```
-$modifyChannel[channelID;(name);(topic);(nsfw);(position);(categoryID)]
+$modifyChannel[channelID;(name);(topic);(nsfw);(position);(categoryID);(reason)]
 ```
 
 ## Parameters
@@ -28,6 +28,7 @@ $modifyChannel[channelID;(name);(topic);(nsfw);(position);(categoryID)]
 | `nsfw` | Optional - `yes`/`no` (or `true`/`false`, case-insensitive) for NSFW status. Empty keeps the current value; any other value raises `NSFW must be yes or no.` |
 | `position` | Optional - The new position of the channel, as a positive integer starting at 1 (`Channel position must be a positive integer.` otherwise). Empty keeps the current position. |
 | `categoryID` | Optional - The ID of the new parent category (must be a category of the same server). Empty keeps the current category. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -84,3 +85,7 @@ $sendMessage[Channel updated successfully.]
 - Use empty parameters (`;`) to skip options you do not want to modify.
 - Channel names must follow the same rules as in `$createChannel[]`.
 - To modify channel permissions, use `$modifyChannelPerms[]`.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

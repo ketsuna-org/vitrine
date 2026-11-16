@@ -4,7 +4,7 @@ title: $deleteInvite
 translation_key: docs
 category: "Moderation"
 function_name: deleteInvite
-syntax: $deleteInvite[inviteCode]
+syntax: $deleteInvite[inviteCode;(reason)]
 description: Revokes an invite.
 ---
 
@@ -15,7 +15,7 @@ Revokes an invite. This function is a Bot Creator extension: it does not exist i
 ## Syntax
 
 ```
-$deleteInvite[inviteCode]
+$deleteInvite[inviteCode;(reason)]
 ```
 
 ## Parameters
@@ -23,6 +23,7 @@ $deleteInvite[inviteCode]
 | Parameter | Description |
 |---|---|
 | `inviteCode` | **Required.** The invite code, without the `discord.gg/` part. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -38,3 +39,7 @@ $deleteInvite[inviteCode]
 ```bdfd
 $deleteInvite[abc123]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

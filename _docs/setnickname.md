@@ -4,7 +4,7 @@ title: $setNickname
 translation_key: docs
 category: "Moderation"
 function_name: setNickname
-syntax: $setNickname[nickname;(userID)]
+syntax: $setNickname[nickname;(userID);(reason)]
 description: Modifies the nickname of a user on the server.
 ---
 
@@ -15,7 +15,7 @@ The function `$setNickname` **modifies the nickname** of a user on the Discord s
 ## Syntax
 
 ```
-$setNickname[nickname;(userID)]
+$setNickname[nickname;(userID);(reason)]
 ```
 
 ## Parameters
@@ -24,6 +24,7 @@ $setNickname[nickname;(userID)]
 |---|---|
 | `nickname` | The new nickname to apply. Required; at most 32 characters (a longer value raises an error). An empty value is sent as an empty nickname (the Discord nickname is cleared). |
 | `userID` | Optional. The ID of the target user. If omitted, the command author is targeted (not a mentioned user). An empty or non-numeric ID raises `Missing or invalid user ID.` |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -67,3 +68,7 @@ $sendMessage[Formatted nickname applied.]
 - The bot needs `Manage Nicknames`; if Discord refuses the change (for example a target above the bot's highest role), an error is raised.
 - To change the global username of the bot, use `$changeUsername`.
 - An empty `nickname` clears the member's nickname.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

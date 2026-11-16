@@ -11,7 +11,7 @@ Deletes a specific message, identified by its channel ID and message ID.
 ## Syntax
 
 ```
-$deleteMessage[channelId;messageId]
+$deleteMessage[channelId;messageId;(reason)]
 ```
 
 ## Parameters
@@ -20,6 +20,7 @@ $deleteMessage[channelId;messageId]
 |-----------|-------------|:-----------:|
 | `channelId` | ID of the channel containing the message | Yes |
 | `messageId` | ID of the message to delete | Yes |
+| `reason` | The reason recorded in the audit log (up to 512 characters; empty uses `$auditLogReason`) | No |
 
 ## Description
 
@@ -60,3 +61,7 @@ $deleteMessage[$channelID;123456789012345678]
 - Deleted messages cannot be recovered.
 - `$sendMessage[text;yes]` returns the ID of the message it sent, which can be passed to `$deleteMessage`.
 - To delete the command's own response after a delay, use `$deleteIn[]`; to delete the triggering message use `$deleteCommand`.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

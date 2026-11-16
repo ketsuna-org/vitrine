@@ -4,7 +4,7 @@ title: $newTicket
 category: "Moderation"
 function_name: newTicket
 api_type: bdfd
-syntax: $newTicket[categoryIDorName;noSubjectMessage;inTicketMessage;messageToUser;errorMessage;(ticketNumber);(returnMessageID)]
+syntax: $newTicket[categoryIDorName;noSubjectMessage;inTicketMessage;messageToUser;errorMessage;(ticketNumber);(returnMessageID);(reason)]
 description: Creates a private ticket channel for the command author, sends an optional message in it, and answers the user.
 ---
 
@@ -15,7 +15,7 @@ The function `$newTicket[]` creates a **private text channel** named `ticket-...
 ## Syntax
 
 ```
-$newTicket[categoryIDorName;noSubjectMessage;inTicketMessage;messageToUser;errorMessage;(ticketNumber);(returnMessageID)]
+$newTicket[categoryIDorName;noSubjectMessage;inTicketMessage;messageToUser;errorMessage;(ticketNumber);(returnMessageID);(reason)]
 ```
 
 At least the first 5 arguments are required (they may be empty); a call with fewer than 5 or more than 7 arguments is refused.
@@ -31,6 +31,7 @@ At least the first 5 arguments are required (they may be empty); a call with few
 | `errorMessage` | Required (may be empty). Text added to the response if the ticket could not be created. If it is empty, a failure raises an error instead. |
 | `ticketNumber` | Optional. Integer used as the channel name suffix. Empty means no number; any other non-integer value raises `Ticket number must be an integer.` |
 | `returnMessageID` | Optional. `yes`/`true` to return the ID of the message sent in the ticket channel, `no`/`false` (default when the argument is absent) to return nothing. Any other value, including an empty one, raises `Return message ID must be yes or no.` |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 In `inTicketMessage` and in `messageToUser`, `{subject}` is replaced by the ticket subject and `{channel}` by the mention of the new channel (`<#id>`).
 
@@ -60,3 +61,7 @@ $newTicket[Support;No subject given;Hello <@$authorID>, a staff member will help
 ```bdfd
 $newTicket[;General request;Welcome to your ticket!;Ticket created: {channel};Ticket creation failed.;42]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

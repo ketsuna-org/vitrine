@@ -4,7 +4,7 @@ title: $removeEmoji
 translation_key: docs
 category: "Moderation"
 function_name: removeEmoji
-syntax: $removeEmoji[emojiID]
+syntax: $removeEmoji[emojiID;(reason)]
 description: Removes a custom emoji from the current server by its ID.
 ---
 
@@ -15,7 +15,7 @@ The `$removeEmoji[]` function allows **removing a custom emoji** from the curren
 ## Syntax
 
 ```
-$removeEmoji[emojiID]
+$removeEmoji[emojiID;(reason)]
 ```
 
 ## Parameters
@@ -23,6 +23,7 @@ $removeEmoji[emojiID]
 | Parameter | Description |
 |---|---|
 | `emojiID` | The numeric ID of the emoji to remove (the digits in `<:name:ID>`). Required; if it is not a positive number the error `Invalid emoji ID.` is raised. A name is not accepted. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -56,3 +57,7 @@ $endif
 
 - Removal is irreversible.
 - Check the emoji with `$emojiExists[emojiID]` before removing it.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

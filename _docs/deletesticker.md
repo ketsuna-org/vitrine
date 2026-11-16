@@ -4,7 +4,7 @@ title: $deleteSticker
 translation_key: docs
 category: "Stickers"
 function_name: deleteSticker
-syntax: $deleteSticker[stickerID]
+syntax: $deleteSticker[stickerID;(reason)]
 description: Deletes a custom sticker of the server.
 ---
 
@@ -15,7 +15,7 @@ Deletes a custom sticker of the server. This function is a Bot Creator extension
 ## Syntax
 
 ```
-$deleteSticker[stickerID]
+$deleteSticker[stickerID;(reason)]
 ```
 
 ## Parameters
@@ -23,6 +23,7 @@ $deleteSticker[stickerID]
 | Parameter | Description |
 |---|---|
 | `stickerID` | **Required.** The sticker ID. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -37,3 +38,7 @@ $deleteSticker[stickerID]
 ```bdfd
 $deleteSticker[$message[1]]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

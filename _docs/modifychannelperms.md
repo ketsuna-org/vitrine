@@ -78,3 +78,7 @@ The same permissions can be written in one argument: `$modifyChannelPerms[$chann
 
 - `$editChannelPerms` is the current form: one permission per argument, the target before the permissions, and an empty target meaning @everyone. `$modifyChannelPerms` is kept for BDFD compatibility.
 - `$guildID` identifies the @everyone role.
+
+## Audit log reason
+
+This function takes any number of trailing arguments, so it has no `reason` argument of its own. Set the reason shown in the server's audit log (Discord's `X-Audit-Log-Reason`) with `$auditLogReason[text]` earlier in the script.

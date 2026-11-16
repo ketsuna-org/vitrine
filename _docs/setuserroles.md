@@ -64,3 +64,7 @@ $sendMessage[<@$mentioned[1]> is now a Moderator!]
 - The role list cannot be empty: `$setUserRoles[userID]` is refused (at least one role ID is required).
 - The @everyone role cannot be listed (its ID is the server ID): doing so raises an error.
 - Duplicate role IDs are merged. Every role that is added **or** dropped by the replacement must be manageable by the bot (below its highest role, not a managed role); otherwise nothing is changed and an error is raised. An ID that is not a role of the server raises `Role not found`.
+
+## Audit log reason
+
+This function takes any number of trailing arguments, so it has no `reason` argument of its own. Set the reason shown in the server's audit log (Discord's `X-Audit-Log-Reason`) with `$auditLogReason[text]` earlier in the script.

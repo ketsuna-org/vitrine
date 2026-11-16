@@ -4,7 +4,7 @@ title: $addEmoji
 translation_key: docs
 category: "Moderation"
 function_name: addEmoji
-syntax: $addEmoji[name;url;returnEmoji]
+syntax: $addEmoji[name;url;returnEmoji;(reason)]
 description: Adds a new custom emoji to the server from an image URL. The third argument (yes/no) chooses whether the emoji markup is returned.
 ---
 
@@ -15,7 +15,7 @@ The `$addEmoji[]` function **adds a new custom emoji** to the server from an ima
 ## Syntax
 
 ```
-$addEmoji[name;url;returnEmoji]
+$addEmoji[name;url;returnEmoji;(reason)]
 ```
 
 ## Parameters
@@ -25,6 +25,7 @@ $addEmoji[name;url;returnEmoji]
 | `name` | Required. The emoji name (must not be empty; surrounding spaces are removed). |
 | `url` | Required. An `http` or `https` URL of the image (at most 256 KiB). |
 | `returnEmoji` | Required. `yes` or `no` (any other value, including empty, is an error). |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return value
 
@@ -58,3 +59,7 @@ $sendMessage[Emoji added.]
 
 - The URL must point directly to an image.
 - The `yes` / `no` flag is case-insensitive and surrounding spaces are ignored; use `$removeEmoji[]` to delete an emoji by its ID.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

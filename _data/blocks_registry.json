@@ -973,6 +973,13 @@
           "type": "duration",
           "default": "0s",
           "hint": "Slowmode duration"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Reason shown in the audit log"
         }
       ]
     },
@@ -1026,6 +1033,13 @@
           "type": "duration",
           "default": "0s",
           "hint": "New slowmode duration"
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Reason shown in the audit log"
         }
       ]
     },
@@ -1051,6 +1065,13 @@
           "default": "",
           "hint": "Channel to remove",
           "required": true
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Reason shown in the audit log"
         }
       ]
     },
@@ -1756,6 +1777,13 @@
           "hint": "Maximum mentions per message",
           "min": 1,
           "max": 50
+        },
+        {
+          "label": "Reason",
+          "key": "reason",
+          "type": "string",
+          "default": "",
+          "hint": "Reason shown in the audit log"
         }
       ]
     },

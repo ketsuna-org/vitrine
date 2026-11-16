@@ -3,7 +3,7 @@ layout: doc
 title: $slowmode
 category: "Entity Info"
 function_name: slowmode
-syntax: $slowmode[channelID;time]
+syntax: $slowmode[channelID;time;(reason)]
 description: Sets the slowmode delay of a Discord channel (write function). To read the current value, use $getSlowmode.
 locale: en
 translation_key: doc-slowmode
@@ -16,7 +16,7 @@ The function `$slowmode` **sets the slowmode delay** of a Discord channel. It is
 ## Syntax
 
 ```
-$slowmode[channelID;time]
+$slowmode[channelID;time;(reason)]
 ```
 
 The function requires exactly 2 arguments.
@@ -27,6 +27,7 @@ The function requires exactly 2 arguments.
 |---|---|
 | `channelID` | The ID of the target channel. Required; an invalid ID raises "Invalid channel ID.". |
 | `time` | The new delay. Required. A plain number is read as seconds; a BDFD duration (`10s`, `5m`, `1h`, `1m30s`...) is also accepted. `0` disables slowmode. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -62,3 +63,7 @@ $slowmode[123456789012345678;5m]
 
 - `$slowmode` is a **setter**: use `$getSlowmode` to read the current slowmode.
 - The delay is stored in whole seconds.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

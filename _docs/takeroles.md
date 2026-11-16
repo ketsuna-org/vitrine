@@ -62,3 +62,7 @@ $sendMessage[Roles updated!]
 - The role IDs are separated by `;`.
 - To remove a single role, `$takeRole` is simpler.
 - To completely redefine a user's roles, use `$setUserRoles`.
+
+## Audit log reason
+
+This function takes any number of trailing arguments, so it has no `reason` argument of its own. Set the reason shown in the server's audit log (Discord's `X-Audit-Log-Reason`) with `$auditLogReason[text]` earlier in the script.

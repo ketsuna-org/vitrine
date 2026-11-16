@@ -4,7 +4,7 @@ title: $editThread
 translation_key: docs
 category: "Moderation"
 function_name: editThread
-syntax: $editThread[threadID;(name);(archived);(autoArchiveDuration);(locked);(slowmode)]
+syntax: $editThread[threadID;(name);(archived);(autoArchiveDuration);(locked);(slowmode);(reason)]
 description: "Modifies the properties of an existing thread: name, archive status, auto-archive duration, lock, and slowmode."
 ---
 
@@ -15,7 +15,7 @@ The `$editThread[]` function **modifies the properties of an existing thread**: 
 ## Syntax
 
 ```
-$editThread[threadID;(name);(archived);(autoArchiveDuration);(locked);(slowmode)]
+$editThread[threadID;(name);(archived);(autoArchiveDuration);(locked);(slowmode);(reason)]
 ```
 
 ## Parameters
@@ -28,6 +28,7 @@ $editThread[threadID;(name);(archived);(autoArchiveDuration);(locked);(slowmode)
 | `autoArchiveDuration` | Optional - New duration: 60, 1440, 4320 or 10080 minutes. |
 | `locked` | Optional - `yes` to lock, `no` to unlock. |
 | `slowmode` | Optional - Slowmode in seconds (0 to 21600). |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 From `name` onwards, any argument can be set to `!unchanged` to leave that property as is. An empty value is not treated as unchanged and is rejected for `name` and for the numeric parameters.
 
@@ -72,3 +73,7 @@ $sendMessage[Thread renamed to: $var[newName]]
 - Locked threads can be unlocked with `locked` set to `no`.
 - Inside a thread, `$channelID` is the ID of that thread.
 - `archived` and `locked` accept only `yes` or `no` (`true`/`false` raise `Expected yes or no.`).
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

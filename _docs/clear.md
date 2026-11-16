@@ -3,7 +3,7 @@ layout: doc
 title: $clear
 category: "Moderation"
 function_name: clear
-syntax: $clear[(amount);(userID);(removePinned)]
+syntax: $clear[(amount);(userID);(removePinned);(reason)]
 description: Deletes a specified number of messages in the channel.
 locale: en
 translation_key: doc-clear
@@ -16,7 +16,7 @@ The `$clear` function **deletes a specified number of messages** in the current 
 ## Syntax
 
 ```
-$clear[(amount);(userID);(removePinned)]
+$clear[(amount);(userID);(removePinned);(reason)]
 ```
 
 ## Parameters
@@ -26,6 +26,7 @@ $clear[(amount);(userID);(removePinned)]
 | `amount` | Number of messages to delete (1-100). If written without brackets (`$clear`), the first argument of the command is used. An empty `$clear[]`, a non-number or a value outside 1-100 raises the error `$clear amount must be between 1 and 100.` |
 | `userID` | Optional. Filter: only deletes messages from this user. Must be a positive ID when not empty, otherwise `Invalid user ID.` is raised. |
 | `removePinned` | Optional. `"no"`, `"false"`, `"0"` or `"n"` to keep pinned messages. Any other value, including an empty one, deletes pinned messages too. Default behavior: pinned messages are deleted. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return value
 
@@ -76,3 +77,7 @@ $sendMessage[10 messages deleted (pinned messages kept).]
 - The channel must be a text channel, otherwise an error is raised.
 - Pinned messages are deleted unless `removePinned` is `"no"`, `"false"`, `"0"` or `"n"`.
 - To set `removePinned` without filtering by user, leave the `userID` field empty (e.g., `$clear[10;;no]`).
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

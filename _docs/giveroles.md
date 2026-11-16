@@ -63,3 +63,7 @@ $sendMessage[Welcome $userName! Default roles assigned.]
 - To assign a single role, `$giveRole` is simpler.
 - To replace all existing roles, use `$setUserRoles`.
 - The user and each role must be valid IDs; the roles are assigned one after the other, so an invalid role stops the call after the previous roles were assigned.
+
+## Audit log reason
+
+This function takes any number of trailing arguments, so it has no `reason` argument of its own. Set the reason shown in the server's audit log (Discord's `X-Audit-Log-Reason`) with `$auditLogReason[text]` earlier in the script.

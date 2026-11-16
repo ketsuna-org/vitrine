@@ -69,3 +69,7 @@ $endif
 - Without the `+` / `-` sign the call is rejected: `$roleGrant[$authorID;$roleID[Member]]` is an error.
 - To give one role without signs, use `$giveRole`; to remove one, use `$takeRole`.
 - To replace all roles of a user, use `$setUserRoles`.
+
+## Audit log reason
+
+This function takes any number of trailing arguments, so it has no `reason` argument of its own. Set the reason shown in the server's audit log (Discord's `X-Audit-Log-Reason`) with `$auditLogReason[text]` earlier in the script.

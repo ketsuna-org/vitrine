@@ -4,7 +4,7 @@ title: $pinMessage
 translation_key: docs
 category: "Moderation"
 function_name: pinMessage
-syntax: $pinMessage[Channel ID;Message ID]
+syntax: $pinMessage[Channel ID;Message ID;(reason)]
 description: Pins a message from its channel and message ID. Without argument, pins the message sent by the current script's response.
 ---
 
@@ -15,7 +15,7 @@ The `$pinMessage[Channel ID;Message ID]` function **pins the given message right
 ## Syntax
 
 ```
-$pinMessage[Channel ID;Message ID]
+$pinMessage[Channel ID;Message ID;(reason)]
 ```
 
 ## Parameters
@@ -24,6 +24,7 @@ $pinMessage[Channel ID;Message ID]
 |---|---|
 | `Channel ID` | The channel of the message. |
 | `Message ID` | The message to pin. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 The two arguments go together: giving a single one raises the error "Pin message expects zero or two arguments.". Both IDs must be decimal numbers greater than zero, otherwise "Invalid Discord ID." is raised.
 
@@ -77,3 +78,7 @@ $endif
 ## Notes
 
 - To unpin, use `$unpinMessage[Channel ID;Message ID]`.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

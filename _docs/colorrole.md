@@ -4,7 +4,7 @@ title: $colorRole
 translation_key: docs
 category: "Entity Info"
 function_name: colorRole
-syntax: $colorRole[color]
+syntax: $colorRole[color;(reason)]
 description: Sets the color of the first role mentioned in the message.
 ---
 
@@ -15,7 +15,7 @@ The `$colorRole` function **changes the color** of the first role mentioned in t
 ## Syntax
 
 ```
-$colorRole[color]
+$colorRole[color;(reason)]
 ```
 
 ## Parameters
@@ -23,6 +23,7 @@ $colorRole[color]
 | Parameter | Description |
 |---|---|
 | `color` | Required. The new color, as hex (`#5865F2`, or hex digits when the value contains a letter `a`-`f`) or as a decimal number between 0 and 16777215. A value made only of digits without `#` is read as decimal (`123456` is the number 123456, not hex). An invalid color raises `Invalid role color.` |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return value
 
@@ -51,3 +52,7 @@ Usage: `!color @Role #3498DB`
 
 - The role to modify is the first role mentioned in the message. If no role is mentioned, the function raises `Missing or invalid role ID.`
 - To read the color of a role, use `$getRoleColor`; to change several properties at once, use `$modifyRole`.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

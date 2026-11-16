@@ -4,7 +4,7 @@ title: $lockChannel[]
 translation_key: docs
 category: "Server Helpers"
 function_name: lockChannel
-syntax: $lockChannel[(channelID);(roleOrUserID)]
+syntax: $lockChannel[(channelID);(roleOrUserID);(reason)]
 description: "Denies sending messages (and messages in threads) for a role, a member or `@everyone`."
 ---
 # $lockChannel — Denies sending messages (and messages in threads) for a role, a member or `@everyone`
@@ -12,13 +12,14 @@ description: "Denies sending messages (and messages in threads) for a role, a me
 ## Syntax
 
 ```
-$lockChannel[(channelID);(roleOrUserID)]
+$lockChannel[(channelID);(roleOrUserID);(reason)]
 ```
 
 ## Parameters
 
 - **channelID** *(ID, optional)* — Default: the current channel.
 - **roleOrUserID** *(ID, optional)* — Default: `@everyone`.
+- **reason** *(text, optional)* — The reason recorded in the server's audit log (up to 512 characters). Empty or absent: the reason set with `$auditLogReason`, if any.
 
 ## Return Value
 
@@ -42,3 +43,7 @@ $lockChannel[123456;789]
 $lockChannel[]
 $sendMessage[Channel locked.]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

@@ -68,3 +68,7 @@ $endif
 
 - Because the permissions are toggled, running the same call twice restores the original permissions. Use `$rolePerms` to check the role first.
 - To modify role properties (name, color), use `$modifyRole`.
+
+## Audit log reason
+
+This function takes any number of trailing arguments, so it has no `reason` argument of its own. Set the reason shown in the server's audit log (Discord's `X-Audit-Log-Reason`) with `$auditLogReason[text]` earlier in the script.

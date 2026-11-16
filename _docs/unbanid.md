@@ -3,7 +3,7 @@ layout: doc
 title: $unBanID
 category: "Moderation"
 function_name: unBanID
-syntax: $unBanID[(userID)]
+syntax: $unBanID[(userID);(reason)]
 description: Unbans a user from the server using their ID. If no ID is given, the last word of the message is used in a prefix command; in a slash command it is an error.
 locale: en
 translation_key: doc-unbanid
@@ -16,7 +16,7 @@ The function `$unBanID[]` allows **unbanning a user by their ID**. Unlike `$unBa
 ## Syntax
 
 ```
-$unBanID[(userID)]
+$unBanID[(userID);(reason)]
 ```
 
 ## Parameters
@@ -24,6 +24,7 @@ $unBanID[(userID)]
 | Parameter | Description |
 |---|---|
 | `userID` | Optional - The Discord ID of the user to unban: decimal digits only (`0xDE` or `+222` are refused). If omitted in a **prefix** command, the last word of the message is used (empty if there is none). In a **slash** command there is no fallback: an omitted or empty ID raises `Missing or invalid user ID.` (use `$message[option]`, the ID of a user option). An empty or non-numeric ID raises `Missing or invalid user ID.`. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -74,3 +75,7 @@ Unbanned.
 ```
 
 In a slash command the `usuário` option (type `user`) returns the user ID through `$message[usuário]`; see [`$message`](/docs/message/).
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

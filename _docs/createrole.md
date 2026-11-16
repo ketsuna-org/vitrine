@@ -4,7 +4,7 @@ title: $createRole
 translation_key: docs
 category: "Moderation"
 function_name: createRole
-syntax: $createRole[name;color;(hoist);(mentionable)]
+syntax: $createRole[name;color;(hoist);(mentionable);(reason)]
 description: Creates a new role on the Discord server.
 ---
 
@@ -15,7 +15,7 @@ The `$createRole` function **creates a new role** on the Discord server. It does
 ## Syntax
 
 ```
-$createRole[name;color;(hoist);(mentionable)]
+$createRole[name;color;(hoist);(mentionable);(reason)]
 ```
 
 ## Parameters
@@ -26,6 +26,7 @@ $createRole[name;color;(hoist);(mentionable)]
 | `color` | Required. Hex color (e.g., `"#FF0000"`, `"#3498DB"`; a value without `#` is read as hex only if it contains a letter a-f, otherwise as a decimal number) or decimal number between 0 and 16777215. An empty or invalid color raises the error `Invalid role color.` |
 | `hoist` | Optional. `"yes"` to display separately in the member list, `"no"` otherwise. Default `"no"` (an empty value also means `"no"`). Any other value raises `Role flags must be yes or no.` |
 | `mentionable` | Optional. `"yes"` to make the role mentionable, `"no"` otherwise. Default `"no"`. Same rules as `hoist`. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return value
 
@@ -74,3 +75,7 @@ $sendMessage[Colored role created!]
 - `hoist`: displays the members of the role in a separate section of the member list.
 - `mentionable`: allows mentioning the role with `@role`.
 - The ID of the new role is not returned: look it up afterwards (for example with `$roleID[name]`) to assign it with `$giveRole`.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

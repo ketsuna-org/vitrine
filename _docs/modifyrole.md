@@ -4,7 +4,7 @@ title: $modifyRole
 translation_key: docs
 category: "Moderation"
 function_name: modifyRole
-syntax: $modifyRole[roleID;(name);(color);(hoist);(mentionable);(position)]
+syntax: $modifyRole[roleID;(name);(color);(hoist);(mentionable);(position);(reason)]
 description: Modifies the properties of an existing role.
 ---
 
@@ -15,7 +15,7 @@ The function `$modifyRole` **modifies the properties of an existing role** (name
 ## Syntax
 
 ```
-$modifyRole[roleID;(name);(color);(hoist);(mentionable);(position)]
+$modifyRole[roleID;(name);(color);(hoist);(mentionable);(position);(reason)]
 ```
 
 ## Parameters
@@ -28,6 +28,7 @@ $modifyRole[roleID;(name);(color);(hoist);(mentionable);(position)]
 | `hoist` | Optional. `"yes"` or `"no"` to display role members separately from online members. Empty or `!unchanged` keeps the current value; any other value raises `Role flags must be yes or no.` |
 | `mentionable` | Optional. `"yes"` or `"no"` to make the role mentionable. Empty or `!unchanged` keeps the current value; any other value raises an error. |
 | `position` | Optional. New position of the role (integer, 0 or more, otherwise `Invalid role position.`). It must be lower than the position of the bot's highest role (`Invalid role position: must be below the bot`), and the @everyone role cannot be moved. Empty or `!unchanged` keeps the current position. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -75,3 +76,7 @@ $endif
 - To modify only the permissions, use `$modifyRolePerms`.
 - To create a new role, use `$createRole`.
 - To delete a role, use `$deleteRole`.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

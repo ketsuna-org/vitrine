@@ -4,7 +4,7 @@ title: $deleteIn[]
 translation_key: docs
 category: "Embed & Message"
 function_name: deleteIn
-syntax: $deleteIn[duration]
+syntax: $deleteIn[duration;(reason)]
 description: Schedules the deletion of the command's main response after a delay (at most 40 minutes).
 ---
 
@@ -15,7 +15,7 @@ description: Schedules the deletion of the command's main response after a delay
 ## Syntax
 
 ```
-$deleteIn[duration]
+$deleteIn[duration;(reason)]
 ```
 
 ## Parameters
@@ -23,6 +23,7 @@ $deleteIn[duration]
 | Parameter | Required | Description |
 |-----------|-------------|-------------|
 | `duration` | Yes | Delay before deletion. A plain number is a number of seconds (decimals allowed); otherwise one or more `number + unit` parts, such as `5s`, `1m30s`, `2h`. |
+| `reason` | The reason recorded in the audit log (up to 512 characters; empty uses `$auditLogReason`) | No |
 
 ## Duration Format
 
@@ -75,3 +76,7 @@ $deleteIn[10s]
 - `$deleteIn[]` takes exactly one argument.
 - To delete an existing message at once, use `$deleteMessage[channelID;messageID]`; to delete the triggering message use `$deleteCommand`.
 - If the deletion fails when the timer fires (for example the message no longer exists), the script is not affected: the error is not raised in the command.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

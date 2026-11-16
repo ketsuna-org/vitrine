@@ -4,7 +4,7 @@ title: $moveMember
 translation_key: docs
 category: "Moderation"
 function_name: moveMember
-syntax: $moveMember[userID;channelID]
+syntax: $moveMember[userID;channelID;(reason)]
 description: Moves a member who is in a voice channel to another voice channel.
 ---
 
@@ -15,7 +15,7 @@ Moves a member who is in a voice channel to another voice channel. This function
 ## Syntax
 
 ```
-$moveMember[userID;channelID]
+$moveMember[userID;channelID;(reason)]
 ```
 
 ## Parameters
@@ -24,6 +24,7 @@ $moveMember[userID;channelID]
 |---|---|
 | `userID` | **Required.** The member's ID (digits only). |
 | `channelID` | **Required.** The destination voice channel ID. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -40,3 +41,7 @@ $moveMember[userID;channelID]
 ```bdfd
 $moveMember[$authorID;123456789012345678]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

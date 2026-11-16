@@ -5,7 +5,7 @@ category: "Moderation"
 function_name: closeTicket
 api_type: bdfd
 status: incomplete
-syntax: $closeTicket[(errorMessage)]
+syntax: $closeTicket[(errorMessage);(reason)]
 description: Deletes the current channel if its name contains "ticket"; otherwise returns the error message and deletes nothing.
 ---
 
@@ -16,10 +16,10 @@ description: Deletes the current channel if its name contains "ticket"; otherwis
 ## Syntax
 
 ```
-$closeTicket[(errorMessage)]
+$closeTicket[(errorMessage);(reason)]
 ```
 
-The argument is optional (`$closeTicket` and `$closeTicket[]` are both accepted).
+Both arguments are optional (`$closeTicket` and `$closeTicket[]` are both accepted). `reason` is the audit log reason of the channel deletion.
 
 ## Behavior
 
@@ -45,3 +45,7 @@ $closeTicket[This channel is not a ticket.]
 ```bdfd
 $closeTicket[This channel is not a ticket.]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

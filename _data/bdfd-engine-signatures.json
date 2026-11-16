@@ -41,7 +41,7 @@
  },
  "addemoji": {
   "min": 3,
-  "max": 3
+  "max": 4
  },
  "addfield": {
   "min": 2,
@@ -232,6 +232,10 @@
   "max": 3
  },
  "attachimage": {
+  "min": 0,
+  "max": 1
+ },
+ "auditlogreason": {
   "min": 0,
   "max": 1
  },
@@ -577,7 +581,7 @@
  },
  "clear": {
   "min": 0,
-  "max": 3
+  "max": 4
  },
  "clearreactions": {
   "min": 3,
@@ -585,11 +589,11 @@
  },
  "clonechannel": {
   "min": 1,
-  "max": 2
+  "max": 3
  },
  "closeticket": {
   "min": 0,
-  "max": 1
+  "max": 2
  },
  "color": {
   "min": 1,
@@ -597,7 +601,7 @@
  },
  "colorrole": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "commandeventdescription": {
   "min": 0,
@@ -665,7 +669,7 @@
  },
  "copyroleperms": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "cos": {
   "min": 1,
@@ -673,23 +677,23 @@
  },
  "createautomodrule": {
   "min": 2,
-  "max": 7
+  "max": 8
  },
  "createchannel": {
   "min": 2,
-  "max": 3
+  "max": 4
  },
  "createevent": {
   "min": 5,
-  "max": 6
+  "max": 7
  },
  "createforumpost": {
   "min": 3,
-  "max": 6
+  "max": 7
  },
  "createinvite": {
   "min": 0,
-  "max": 4
+  "max": 5
  },
  "createpoll": {
   "min": 5,
@@ -697,7 +701,7 @@
  },
  "createrole": {
   "min": 2,
-  "max": 4
+  "max": 5
  },
  "creationdate": {
   "min": 1,
@@ -741,7 +745,7 @@
  },
  "deleteautomodrule": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "deletechannels": {
   "min": 1,
@@ -761,27 +765,27 @@
  },
  "deletein": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "deleteinvite": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "deletemessage": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "deleterole": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "deletesound": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "deletesticker": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "description": {
   "min": 1,
@@ -797,7 +801,7 @@
  },
  "disconnectmember": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "discordtime": {
   "min": 1,
@@ -845,11 +849,11 @@
  },
  "editemoji": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "editevent": {
   "min": 3,
-  "max": 3
+  "max": 4
  },
  "editin": {
   "min": 2,
@@ -881,7 +885,7 @@
  },
  "editserver": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "editsplittext": {
   "min": 2,
@@ -889,7 +893,7 @@
  },
  "editsticker": {
   "min": 2,
-  "max": 4
+  "max": 5
  },
  "edittextdisplay": {
   "min": 2,
@@ -897,7 +901,7 @@
  },
  "editthread": {
   "min": 1,
-  "max": 6
+  "max": 7
  },
  "editthumbnail": {
   "min": 2,
@@ -905,7 +909,7 @@
  },
  "editwebhook": {
   "min": 2,
-  "max": 3
+  "max": 4
  },
  "embeddedurl": {
   "min": 1,
@@ -1209,11 +1213,11 @@
  },
  "giverole": {
   "min": 1,
-  "max": 2
+  "max": 3
  },
  "giverolebyname": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "giveroles": {
   "min": 2,
@@ -1277,7 +1281,7 @@
  },
  "hidechannel": {
   "min": 0,
-  "max": 2
+  "max": 3
  },
  "highestrole": {
   "min": 0,
@@ -1757,7 +1761,7 @@
  },
  "lockchannel": {
   "min": 0,
-  "max": 2
+  "max": 3
  },
  "log": {
   "min": 1,
@@ -1885,7 +1889,7 @@
  },
  "modifychannel": {
   "min": 1,
-  "max": 6
+  "max": 7
  },
  "modifychannelperms": {
   "min": 3,
@@ -1893,7 +1897,7 @@
  },
  "modifyrole": {
   "min": 1,
-  "max": 6
+  "max": 7
  },
  "modifyroleperms": {
   "min": 2,
@@ -1909,7 +1913,7 @@
  },
  "movemember": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "multi": {
   "min": 1,
@@ -1929,7 +1933,7 @@
  },
  "newticket": {
   "min": 5,
-  "max": 7
+  "max": 8
  },
  "nickname": {
   "min": 0,
@@ -2065,7 +2069,7 @@
  },
  "pinmessage": {
   "min": 0,
-  "max": 2
+  "max": 3
  },
  "playmusic": {
   "min": 1,
@@ -2161,7 +2165,7 @@
  },
  "removeemoji": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "removelinks": {
   "min": 0,
@@ -2369,7 +2373,7 @@
  },
  "serverdeafen": {
   "min": 1,
-  "max": 2
+  "max": 3
  },
  "serverdescription": {
   "min": 0,
@@ -2405,7 +2409,7 @@
  },
  "servermute": {
   "min": 1,
-  "max": 2
+  "max": 3
  },
  "servername": {
   "min": 0,
@@ -2473,7 +2477,7 @@
  },
  "setnickname": {
   "min": 1,
-  "max": 2
+  "max": 3
  },
  "setservervar": {
   "min": 2,
@@ -2481,7 +2485,7 @@
  },
  "setthreadtags": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "setuserroles": {
   "min": 2,
@@ -2501,7 +2505,7 @@
  },
  "showchannel": {
   "min": 0,
-  "max": 2
+  "max": 3
  },
  "sign": {
   "min": 1,
@@ -2529,7 +2533,7 @@
  },
  "slowmode": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "slug": {
   "min": 1,
@@ -2553,7 +2557,7 @@
  },
  "startthread": {
   "min": 3,
-  "max": 5
+  "max": 6
  },
  "stickercount": {
   "min": 0,
@@ -2589,11 +2593,11 @@
  },
  "takerole": {
   "min": 1,
-  "max": 2
+  "max": 3
  },
  "takerolebyname": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "takeroles": {
   "min": 2,
@@ -2633,7 +2637,7 @@
  },
  "timeout": {
   "min": 1,
-  "max": 2
+  "max": 3
  },
  "timeoutfor": {
   "min": 2,
@@ -2645,7 +2649,7 @@
  },
  "togglerole": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "togglevar": {
   "min": 1,
@@ -2693,11 +2697,11 @@
  },
  "unban": {
   "min": 0,
-  "max": 0
+  "max": 1
  },
  "unbanid": {
   "min": 0,
-  "max": 1
+  "max": 2
  },
  "unescape": {
   "min": 1,
@@ -2709,7 +2713,7 @@
  },
  "unlockchannel": {
   "min": 0,
-  "max": 2
+  "max": 3
  },
  "unmute": {
   "min": 1,
@@ -2717,7 +2721,7 @@
  },
  "unpinmessage": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "unregisterguildcommands": {
   "min": 0,
@@ -2725,7 +2729,7 @@
  },
  "untimeout": {
   "min": 0,
-  "max": 1
+  "max": 2
  },
  "uptime": {
   "min": 0,
@@ -2857,7 +2861,7 @@
  },
  "webhookcreate": {
   "min": 2,
-  "max": 3
+  "max": 4
  },
  "webhookdelete": {
   "min": 1,

@@ -4,7 +4,7 @@ title: $unpinMessage
 translation_key: docs
 category: "Moderation"
 function_name: unpinMessage
-syntax: $unpinMessage[channelID;messageID]
+syntax: $unpinMessage[channelID;messageID;(reason)]
 description: Removes a pinned message from the pinned messages list of the channel.
 ---
 
@@ -15,7 +15,7 @@ The function `$unpinMessage[]` allows **removing a message from the pinned messa
 ## Syntax
 
 ```
-$unpinMessage[channelID;messageID]
+$unpinMessage[channelID;messageID;(reason)]
 ```
 
 ## Parameters
@@ -24,6 +24,7 @@ $unpinMessage[channelID;messageID]
 |---|---|
 | `channelID` | The ID of the channel containing the message. |
 | `messageID` | The ID of the message to unpin. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -65,3 +66,7 @@ $pinMessage
 
 - A message can be re-pinned after having been unpinned.
 - Combine with `$pinMessage[]` to manage rotating announcements.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

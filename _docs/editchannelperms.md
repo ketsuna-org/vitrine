@@ -72,3 +72,7 @@ $sendMessage[Channel made private for the VIP role.]
 - Several permissions can be changed in one call: `$editChannelPerms[$channelID;123456789012345678;+viewChannel;+sendMessages;-manageMessages]`.
 - An empty `roleOrUserID` targets @everyone (a local convention of this engine).
 - `$modifyChannelPerms[]` is a separate (deprecated) function with a different argument order (`channelID;permissions;roleOrUserID`).
+
+## Audit log reason
+
+This function takes any number of trailing arguments, so it has no `reason` argument of its own. Set the reason shown in the server's audit log (Discord's `X-Audit-Log-Reason`) with `$auditLogReason[text]` earlier in the script.

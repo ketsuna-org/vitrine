@@ -4,7 +4,7 @@ title: $createAutoModRule
 translation_key: docs
 category: "AutoMod"
 function_name: createAutoModRule
-syntax: $createAutoModRule[name;triggerType;value;actionType;extra;exemptRoles;exemptChannels]
+syntax: $createAutoModRule[name;triggerType;value;actionType;extra;exemptRoles;exemptChannels;(reason)]
 description: Creates a Discord AutoMod rule and returns its ID.
 ---
 
@@ -15,7 +15,7 @@ Creates a Discord AutoMod rule and returns its ID. This function is a Bot Creato
 ## Syntax
 
 ```
-$createAutoModRule[name;triggerType;value;actionType;extra;exemptRoles;exemptChannels]
+$createAutoModRule[name;triggerType;value;actionType;extra;exemptRoles;exemptChannels;(reason)]
 ```
 
 ## Parameters
@@ -29,6 +29,7 @@ $createAutoModRule[name;triggerType;value;actionType;extra;exemptRoles;exemptCha
 | `extra` | With `send_alert_message`: the alert channel ID. With `timeout`: the duration in seconds (60 by default). |
 | `exemptRoles` | Role IDs exempt from the rule, separated by commas. |
 | `exemptChannels` | Channel IDs exempt from the rule, separated by commas. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -46,3 +47,7 @@ $createAutoModRule[name;triggerType;value;actionType;extra;exemptRoles;exemptCha
 ```bdfd
 $createAutoModRule[No invites;keyword;discord.gg,discord.com/invite;block_message]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

@@ -74,3 +74,7 @@ $sendMessage[Channels deleted.]
 
 - **Irreversible action**: use with caution.
 - `$deleteChannelsByName[name1;name2;...]` matches channel names exactly (names are trimmed, no wildcards; an empty name raises "Channel name is required.") and raises "No matching channels found." if none match.
+
+## Audit log reason
+
+This function takes any number of trailing arguments, so it has no `reason` argument of its own. Set the reason shown in the server's audit log (Discord's `X-Audit-Log-Reason`) with `$auditLogReason[text]` earlier in the script.

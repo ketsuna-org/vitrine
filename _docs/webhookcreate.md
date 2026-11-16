@@ -4,7 +4,7 @@ title: $webhookCreate
 translation_key: docs
 category: "Webhooks & Integrations"
 function_name: webhookCreate
-syntax: $webhookCreate[channelID;name;(avatarURL)]
+syntax: $webhookCreate[channelID;name;(avatarURL);(reason)]
 description: Creates a new webhook in a specified channel and returns its URL. The created webhook can then be used with $webhookSend to send messages.
 ---
 
@@ -15,7 +15,7 @@ The `$webhookCreate` function allows you to **create a new webhook** in a Discor
 ## Syntax
 
 ```
-$webhookCreate[channelID;name;(avatarURL)]
+$webhookCreate[channelID;name;(avatarURL);(reason)]
 ```
 
 ## Parameters
@@ -25,6 +25,7 @@ $webhookCreate[channelID;name;(avatarURL)]
 | `channelID` | Required. The ID of the channel where the webhook will be created (digits only, greater than 0, otherwise the error `Invalid channel ID.` is raised). It must be a server channel and not a thread. |
 | `name` | Required. The name of the webhook (2 to 80 characters, otherwise `Webhook name must contain 2–80 characters.` is raised). |
 | `avatarURL` | Optional - `http` or `https` URL of the avatar image of the webhook (otherwise `An HTTP(S) URL is required.`). |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -61,3 +62,7 @@ $sendMessage[Webhook of logs configured!]
 - A failure (missing permission, invalid argument, Discord error) stops the script with an error instead of returning an empty value.
 - Delete unused webhooks with `$webhookDelete[]`.
 - The webhook URL contains its token: do not expose it publicly.
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

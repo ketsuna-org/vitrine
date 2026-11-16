@@ -3,7 +3,7 @@ layout: doc
 title: $unBan
 category: "Moderation"
 function_name: unBan
-syntax: $unBan
+syntax: $unBan[(reason)]
 description: Unbans the banned user whose username matches the text of the message. The user will be able to rejoin the server with a new invite.
 locale: en
 translation_key: doc-unban
@@ -16,12 +16,12 @@ The function `$unBan` allows you to **unban a user** from the server, found by *
 ## Syntax
 
 ```
-$unBan
+$unBan[(reason)]
 ```
 
 ## Parameters
 
-This function takes no argument (a bracket form `$unBan[...]` is rejected). It reads the text of the message that triggered the command (`message.content`; for a prefix command, the arguments after the command name joined by spaces, i.e. what `$message` returns) and looks for a banned user whose username equals it (case-insensitive, full ban list searched). To unban by ID, use `$unBanID[]`.
+This function takes one optional argument, the audit log `reason`. It reads the text of the message that triggered the command (`message.content`; for a prefix command, the arguments after the command name joined by spaces, i.e. what `$message` returns) and looks for a banned user whose username equals it (case-insensitive, full ban list searched). To unban by ID, use `$unBanID[]`.
 
 ## Return Value
 
@@ -74,3 +74,6 @@ $endif
 - Works only if the user is in the ban list.
 - To unban by ID, use `$unBanID[]`.
 
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

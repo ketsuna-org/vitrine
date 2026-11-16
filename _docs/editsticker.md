@@ -4,7 +4,7 @@ title: $editSticker
 translation_key: docs
 category: "Stickers"
 function_name: editSticker
-syntax: $editSticker[stickerID;name;description;tags]
+syntax: $editSticker[stickerID;name;description;tags;(reason)]
 description: Edits a custom sticker of the server.
 ---
 
@@ -15,7 +15,7 @@ Edits a custom sticker of the server. This function is a Bot Creator extension: 
 ## Syntax
 
 ```
-$editSticker[stickerID;name;description;tags]
+$editSticker[stickerID;name;description;tags;(reason)]
 ```
 
 ## Parameters
@@ -26,6 +26,7 @@ $editSticker[stickerID;name;description;tags]
 | `name` | **Required.** The new name. Empty keeps the current one. |
 | `description` | Optional. Empty keeps the current one. |
 | `tags` | Optional. Comma separated tags. Empty keeps the current ones. |
+| `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 
 ## Return Value
 
@@ -40,3 +41,7 @@ $editSticker[stickerID;name;description;tags]
 ```bdfd
 $editSticker[$message[1];cool]
 ```
+
+## Audit log reason
+
+The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.
