@@ -31,7 +31,7 @@ $addModalFileUpload[label;description;customId;(minFiles);(maxFiles);(required)]
 
 ## Return value
 
-Returns an empty string. The component is added to the current modal. After submission, `$input[customId]` returns the IDs of the uploaded files joined by commas (the SDK exposes them as a list of IDs).
+Returns an empty string. The component is added to the current modal. After submission, `$input[customId]` returns the URL of each uploaded file, joined by commas. More detail is available with `$input[customId.url]` (first file), `$input[customId.urls]`, `$input[customId.name]`, `$input[customId.names]`, `$input[customId.ids]`, `$input[customId.contentTypes]`, `$input[customId.sizes]` and `$input[customId.count]`.
 
 ## Behavior
 
