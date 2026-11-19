@@ -20,6 +20,8 @@ These helpers give a JavaScript bot the same tools as the BDFD functions of the 
 | `await bc.vars.listAddUnique(scope, key, item, id?)` | adds to a `,a,b,` list without duplicates, atomically |
 | `await bc.vars.list(prefix, limit?)` | `$listVars` |
 | `bc.lock.tryLock(name, seconds?)` and `bc.lock.unlock(name)` | `$tryLock`, `$unlock` |
+| `await bc.oneTime.run(type, fn)` | `$onlyOneTime`: runs `fn` once per `'user'` (all servers), `'server'` or `'global'`, for the running command. Returns `{ ran: true, value }`, or `{ ran: false }` when it was already taken (you send the message). The claim is taken before `fn`; if `fn` throws, it is given back. |
+| `await bc.oneTime.reset(type?, {userId?, command?})` | `$resetOneTime`: re-arms. Without `type`, the types claimed earlier in the run (`user` otherwise). `command` is the name of the command to target. |
 | `await bc.forum.createPost(forumId, title, message, {tags, archiveMinutes, files})` | `$createForumPost` |
 | `await bc.forum.tags(forumId)` and `await bc.forum.setTags(threadId, tags)` | `$forumTags`, `$setThreadTags` |
 | `bc.activity.messageCount(channelId, minutes?, humansOnly?)` | `$channelMessageCount` |
