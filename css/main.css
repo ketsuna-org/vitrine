@@ -300,11 +300,18 @@ html.cs .cs-host > *::-webkit-scrollbar {
   [data-menu-toggle] .menu-icon-close { display: none; }
 
   /* Docs shell ----------------------------------------------------------- */
+  /* Section tabs (desktop), as on the Discord developer docs. */
+  @media (min-width: 1024px) { body:has(.docs-tabs) { --tabs-h: 46px; } }
+  .docs-tabs { position: sticky; top: var(--header-h); z-index: 40; background: var(--background); border-bottom: 1px solid var(--outline-variant); }
+  .docs-tab { color: var(--on-surface-variant); border-bottom: 2px solid transparent; text-decoration: none; }
+  .docs-tab:hover { color: var(--on-surface); }
+  .docs-tab.is-active { color: var(--on-surface); border-bottom-color: var(--primary); font-weight: 600; }
+
   .docs-sidebar { @apply flex-shrink-0 self-stretch; width: 272px; }
   .docs-sidebar-sticky {
     position: sticky;
-    top: calc(var(--header-h) + 16px);
-    height: calc(100vh - var(--header-h) - 32px);
+    top: calc(var(--header-h) + var(--tabs-h, 0px) + 16px);
+    height: calc(100vh - var(--header-h) - var(--tabs-h, 0px) - 32px);
     position: sticky;
   }
   .docs-sidebar-sticky > .docs-sidebar-inner {
@@ -313,12 +320,13 @@ html.cs .cs-host > *::-webkit-scrollbar {
     overscroll-behavior: contain;
     padding-right: 12px;
   }
+  @media (min-width: 1024px) { .docs-sidebar-sticky > .docs-sidebar-inner { padding-left: 24px; } }
 
   /* "On this page" rail: stays in view while reading, long lists scroll inside it. */
   .docs-toc-rail {
     position: sticky;
-    top: calc(var(--header-h) + 24px);
-    max-height: calc(100vh - var(--header-h) - 48px);
+    top: calc(var(--header-h) + var(--tabs-h, 0px) + 24px);
+    max-height: calc(100vh - var(--header-h) - var(--tabs-h, 0px) - 48px);
     overflow-y: auto;
     overscroll-behavior: contain;
     padding-right: 4px;

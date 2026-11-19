@@ -1,0 +1,9 @@
+{% include docs_section_current.html %}
+<div class="docs-tabs hidden lg:block" role="navigation" aria-label="Documentation sections">
+  <div class="mx-auto flex w-full items-center gap-1 overflow-x-auto px-4 sm:px-6 lg:px-8">
+    {% for s in site.data.docs_sections %}
+    <a href="{{ s.url | relative_url }}" {% if s.key == docs_section %}aria-current="page"{% endif %}
+       class="docs-tab whitespace-nowrap px-3 py-3 text-sm {% if s.key == docs_section %}is-active{% endif %}">{{ s.en }}</a>
+    {% endfor %}
+  </div>
+</div>

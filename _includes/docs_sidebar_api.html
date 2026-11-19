@@ -2,18 +2,6 @@
 <div class="flex flex-col gap-5">
   {% include docs_search.html %}
 
-  <details class="group rounded-xl border border-outline-variant bg-surface-container-lowest">
-    <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-on-surface">
-      <span>API &amp; Database</span>
-      <svg class="pxicon text-base transition-transform group-open:rotate-180" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#expand_more"></use></svg>
-    </summary>
-    <ul class="m-0 flex list-none flex-col gap-1 border-t border-outline-variant p-2">
-      {% for s in nav.sections %}
-      <li><a href="{{ s.url | relative_url }}" class="block rounded-md px-3 py-2 text-sm {% if s.current %}bg-accent-deep font-semibold text-primary{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}">{{ s.title }}</a></li>
-      {% endfor %}
-    </ul>
-  </details>
-
   {% for g in nav.groups %}
   <div class="sidebar-group">
     <div class="mb-1 px-3 text-sm font-bold text-on-surface">{{ g.title }}</div>
