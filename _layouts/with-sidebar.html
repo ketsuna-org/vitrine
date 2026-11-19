@@ -27,6 +27,8 @@
               {% include guides_sidebar.html %}
             {% elsif page.sidebar_context == 'docs_fr' %}
               {% include docs_sidebar_fr.html %}
+            {% elsif page.category == 'API' or page.url == '/docs/public-api/' or page.url == '/docs/public-api-reference/' %}
+              {% include docs_sidebar_api.html %}
             {% elsif page.api_type == 'javascript' or page.sidebar_context == 'javascript' %}
               {% include js_api_sidebar.html %}
             {% else %}
