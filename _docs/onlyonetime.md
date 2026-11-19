@@ -28,7 +28,7 @@ $onlyOneTime[script;type;(errorMessage)]
 | `type` | Required. Who shares the claim: `user` (once per user, in all servers), `server` (once per server, for all its users) or `global` (once for everybody). Any other value raises "One-time type must be user, server or global.". |
 | `errorMessage` | Optional. Sent as the response when the claim is already taken. Empty or missing: the function raises the error "Already used once.", which `$try` can catch. |
 
-Each claim is kept **per command** (the command ID, otherwise its name, or the workflow name), so two commands never share one. `user` needs the ID of the user, `server` the ID of the server (it fails in a direct message).
+Each claim is kept **per command** (the command name, or the workflow name; renaming a command re-arms its claims), so two commands never share one. `user` needs the ID of the user, `server` the ID of the server (it fails in a direct message).
 
 ## How it works
 

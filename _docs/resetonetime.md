@@ -24,7 +24,7 @@ $resetOneTime[(type);(userID);(command)]
 |---|---|
 | `type` | Optional. `user`, `server` or `global`. Without it, the types claimed by `$onlyOneTime` earlier in the **same run** are re-armed (`user` when there was none). Any other value raises "One-time type must be user, server or global.". |
 | `userID` | Optional. Re-arms this user's claim instead of the current user's (for `user`). |
-| `command` | Optional. ID (or name, for the running command) of the command whose claim is re-armed, to reset it from another command, for example an admin command. Default: the running command. |
+| `command` | Optional. Name of the command whose claim is re-armed, to reset it from another command, for example an admin command. Default: the running command. |
 
 ## Return value
 
