@@ -14,7 +14,6 @@
     <a href="{{ '/docs/blocks/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Blocks Guide</a>
     <a href="{{ '/docs/blocks-dictionary/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Blocks Dictionary</a>
     <a href="{{ '/playground/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Playground</a>
-    <a href="{{ '/docs/tickets/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Ticket System Guide</a>
     <a href="{{ '/docs/execution-model/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Execution &amp; compatibility</a>
     <a href="{{ '/docs/javascript/' | relative_url }}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all mt-1">
       <svg class="pxicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#terminal"></use></svg>
@@ -34,7 +33,7 @@
 
     <div class="flex flex-col gap-3">
       {% for cat in ordered_cats %}
-        {% assign cat_docs = all_docs | where: "category", cat %}
+        {% assign cat_docs = all_docs | where_exp: "d", "d.category == cat and d.function_name" %}
         {% if cat_docs.size > 0 %}
           {% assign is_active_cat = false %}
           {% for doc in cat_docs %}
@@ -65,7 +64,7 @@
 
       {% for cat in raw_categories %}
         {% unless ordered_cats contains cat %}
-          {% assign cat_docs = all_docs | where: "category", cat %}
+          {% assign cat_docs = all_docs | where_exp: "d", "d.category == cat and d.function_name" %}
           {% if cat_docs.size > 0 %}
             {% assign cat_slug = cat | slugify %}
             <div class="sidebar-cat-group">

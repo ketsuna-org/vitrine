@@ -10,6 +10,8 @@
       All Guides
     </a>
 
+    <a href="{{ '/docs/tickets/' | relative_url }}" class="block px-3 py-2 text-sm font-semibold {% if page.url == '/docs/tickets/' %}text-primary{% else %}text-on-surface-variant hover:text-primary{% endif %}">Support ticket system</a>
+
     {% assign post_categories = post_list | map: "category" | uniq | sort %}
     {% for cat in post_categories %}
       {% assign cat_posts = post_list | where: "category", cat %}

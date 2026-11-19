@@ -4,5 +4,4 @@
 - { key: blocks,     en: "Blocks (visual, no code)",     url: "/docs/blocks/" }
 - { key: functions,  en: "BDFD function reference",      url: "/docs/#function-reference" }
 - { key: javascript, en: "JavaScript API",               url: "/docs/javascript/" }
-- { key: tickets,    en: "Ticket system guide",          url: "/docs/tickets/" }
 - { key: api,        en: "API & Database",               url: "/docs/public-api/" }
