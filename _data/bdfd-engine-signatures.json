@@ -2027,6 +2027,10 @@
   "min": 1,
   "max": 1
  },
+ "onlyonetime": {
+  "min": 2,
+  "max": 3
+ },
  "onlyperms": {
   "min": 2,
   "max": null
@@ -2262,6 +2266,10 @@
  "resetmessagevar": {
   "min": 1,
   "max": 2
+ },
+ "resetonetime": {
+  "min": 0,
+  "max": 3
  },
  "resetservervar": {
   "min": 1,
@@ -2913,6 +2921,22 @@
  },
  "workflowresponse": {
   "min": 0,
+  "max": 1
+ },
+ "wsclose": {
+  "min": 1,
+  "max": 1
+ },
+ "wsjoin": {
+  "min": 1,
+  "max": 2
+ },
+ "wssend": {
+  "min": 2,
+  "max": 2
+ },
+ "wsstatus": {
+  "min": 1,
   "max": 1
  },
  "xpforlevel": {
