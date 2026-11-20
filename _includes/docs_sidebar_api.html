@@ -5,6 +5,9 @@
   {% include docs_search.html %}
 
   {% for g in nav.groups %}
+  {% assign shown = 0 %}
+  {% for i in g.items %}{% if i.external or built_urls contains i.url %}{% assign shown = shown | plus: 1 %}{% endif %}{% endfor %}
+  {% if shown == 0 %}{% continue %}{% endif %}
   <div class="sidebar-group">
     <div class="mb-1 px-3 text-sm font-bold text-on-surface">{{ g.title }}</div>
     <ul class="m-0 flex list-none flex-col gap-0.5 p-0">
