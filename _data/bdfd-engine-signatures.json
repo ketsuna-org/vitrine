@@ -733,7 +733,7 @@
  },
  "decrement": {
   "min": 1,
-  "max": 5
+  "max": 6
  },
  "default": {
   "min": 2,
@@ -1417,7 +1417,7 @@
  },
  "increment": {
   "min": 1,
-  "max": 5
+  "max": 6
  },
  "input": {
   "min": 1,
