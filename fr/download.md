@@ -39,7 +39,7 @@ permalink: /fr/download/
           Téléchargements
         </span>
         <span class="inline-flex items-center gap-2 rounded bg-surface-container px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-muted border border-outline-variant">
-          Le Studio d'abord, puis l'app et le runner
+          Bureau, mobile et runner auto-hébergé
         </span>
       </div>
       <h1 class="font-display text-4xl font-semibold leading-tight text-on-surface md:text-5xl lg:text-5xl mb-5">
