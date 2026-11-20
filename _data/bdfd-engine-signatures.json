@@ -971,6 +971,10 @@
   "min": 0,
   "max": 0
  },
+ "fileattach": {
+  "min": 1,
+  "max": 2
+ },
  "filedelete": {
   "min": 1,
   "max": 1
