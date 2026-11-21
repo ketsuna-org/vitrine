@@ -727,6 +727,82 @@
   "min": 0,
   "max": 0
  },
+ "dbaddtoset": {
+  "min": 4,
+  "max": 5
+ },
+ "dbbatch": {
+  "min": 1,
+  "max": 1
+ },
+ "dbcooldown": {
+  "min": 3,
+  "max": 3
+ },
+ "dbcount": {
+  "min": 1,
+  "max": 4
+ },
+ "dbcreate": {
+  "min": 3,
+  "max": 3
+ },
+ "dbdelete": {
+  "min": 2,
+  "max": 2
+ },
+ "dbexists": {
+  "min": 2,
+  "max": 2
+ },
+ "dbfind": {
+  "min": 4,
+  "max": 7
+ },
+ "dbget": {
+  "min": 2,
+  "max": 4
+ },
+ "dbincrement": {
+  "min": 4,
+  "max": 6
+ },
+ "dblasterror": {
+  "min": 0,
+  "max": 0
+ },
+ "dbpull": {
+  "min": 4,
+  "max": 4
+ },
+ "dbpush": {
+  "min": 4,
+  "max": 5
+ },
+ "dbrank": {
+  "min": 3,
+  "max": 4
+ },
+ "dbset": {
+  "min": 3,
+  "max": 3
+ },
+ "dbspace": {
+  "min": 1,
+  "max": 1
+ },
+ "dbtop": {
+  "min": 3,
+  "max": 4
+ },
+ "dbtransfer": {
+  "min": 5,
+  "max": 5
+ },
+ "dbupdate": {
+  "min": 4,
+  "max": 4
+ },
  "debug": {
   "min": 1,
   "max": 1
