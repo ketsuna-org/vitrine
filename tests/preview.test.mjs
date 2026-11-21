@@ -85,7 +85,7 @@ $ephemeral`;
   const simHtml = renderDiscordSimulator(parsed);
 
   assert.match(simHtml, /discord-simulator-frame/);
-  assert.match(simHtml, /Bot Creator Assistant/);
+  assert.match(simHtml, /Bot-Creator/);
   assert.match(simHtml, /BOT ✔/);
   assert.match(simHtml, /--embed-color:\s*#ED4245/);
   assert.match(simHtml, /Embed Title/);

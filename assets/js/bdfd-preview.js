@@ -273,11 +273,11 @@
       </div>
       <div class="discord-simulator-frame">
         <div class="discord-msg-row">
-          <div class="discord-avatar">🤖</div>
+          <div class="discord-avatar"><img src="/assets/mascotte/bibi.svg" alt="" width="24" height="24" style="image-rendering:pixelated"></div>
           <div class="discord-msg-content w-full">
             <div class="discord-header">
-              <span class="discord-username">${T('Bot Creator Assistant', 'Assistant Bot Creator')}</span>
-              <span class="discord-bot-tag">BOT ✔</span>
+              <span class="discord-username">Bot-Creator</span>
+              <span class="discord-bot-tag">APP</span>
               <span class="discord-timestamp">${T('Today at 2:32 PM', 'Aujourd\'hui à 14:32')}</span>
             </div>
     `;
