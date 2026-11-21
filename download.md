@@ -38,7 +38,7 @@ permalink: /download/
           Downloads
         </span>
         <span class="inline-flex items-center gap-2 rounded bg-surface-container px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-muted border border-outline-variant">
-          Studio first, then app and runner
+          Desktop, mobile &amp; self-hosted runner
         </span>
       </div>
       <h1 class="font-display text-4xl font-semibold leading-tight text-on-surface md:text-5xl lg:text-5xl mb-5">

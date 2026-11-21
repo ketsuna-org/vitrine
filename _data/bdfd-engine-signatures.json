@@ -733,7 +733,7 @@
  },
  "decrement": {
   "min": 1,
-  "max": 5
+  "max": 6
  },
  "default": {
   "min": 2,
@@ -970,6 +970,34 @@
  "executiontime": {
   "min": 0,
   "max": 0
+ },
+ "fileattach": {
+  "min": 1,
+  "max": 2
+ },
+ "filedelete": {
+  "min": 1,
+  "max": 1
+ },
+ "fileexists": {
+  "min": 1,
+  "max": 1
+ },
+ "filelist": {
+  "min": 0,
+  "max": 3
+ },
+ "fileread": {
+  "min": 1,
+  "max": 2
+ },
+ "fileupload": {
+  "min": 2,
+  "max": 4
+ },
+ "fileurl": {
+  "min": 1,
+  "max": 2
  },
  "findchannel": {
   "min": 1,
@@ -1389,7 +1417,7 @@
  },
  "increment": {
   "min": 1,
-  "max": 5
+  "max": 6
  },
  "input": {
   "min": 1,

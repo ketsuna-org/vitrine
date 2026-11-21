@@ -15,6 +15,7 @@ groups:
       - { title: "Discord publication", url: "/docs/api-publication/" }
       - { title: "Workflows", url: "/docs/api-workflows/" }
       - { title: "Variables", url: "/docs/api-variables/" }
+      - { title: "Files", url: "/docs/api-files/" }
   - title: "Database"
     items:
       - { title: "Overview", url: "/docs/api-database/" }

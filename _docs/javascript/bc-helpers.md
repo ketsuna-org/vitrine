@@ -15,7 +15,7 @@ These helpers give a JavaScript bot the same tools as the BDFD functions of the 
 | `bc.math.floorDiv(a, b)` and `bc.math.mod(a, b)` | `$floorDiv`, `$mod` (rounded down, the remainder is never negative: `mod(-3, 8)` is `5`) |
 | `bc.math.hash(text, 'fnv1a' \| 'crc32' \| 'sha256', modulo?)` | `$hash` |
 | `bc.math.seededRandom(seed, min, max)` | `$seededRandom` (same seed, same number) |
-| `await bc.vars.increment(scope, key, n?, id?)` and `decrement` | `$increment`, `$decrement` (atomic: two clicks at the same time never lose a write) |
+| `await bc.vars.increment(scope, key, n?, id?, { returnValue: false }?)` and `decrement` (the new value is returned unless `returnValue` is `false`) | `$increment`, `$decrement` (atomic: two clicks at the same time never lose a write) |
 | `await bc.vars.compareAndSet(scope, key, expected, next, id?)` | `$compareAndSetVar` |
 | `await bc.vars.listAddUnique(scope, key, item, id?)` | adds to a `,a,b,` list without duplicates, atomically |
 | `await bc.vars.list(prefix, limit?)` | `$listVars` |
