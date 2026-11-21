@@ -261,7 +261,7 @@
   function renderDiscordSimulator(parsed) {
     const { embed, buttons, selectMenu, messageText, isEphemeral, attachment, simulatedFeedback } = parsed;
 
-    const effectiveText = messageText || simulatedFeedback || (embed ? '' : T('✅ Command executed successfully.', '✅ Commande exécutée avec succès.'));
+    const effectiveText = messageText || simulatedFeedback || ((embed || (buttons && buttons.length) || selectMenu) ? '' : T('✅ Command executed successfully.', '✅ Commande exécutée avec succès.'));
 
     let html = `
       <div class="discord-preview-badge-header">
@@ -463,6 +463,16 @@
     };
   }
 
+  /** Every message the engine produced, in order (a script can send several): the header is drawn once. */
+  function renderMessages(messages) {
+    const list = (messages || []).slice(0, 6);
+    if (!list.length) return null;
+    return list.map((m, i) => {
+      const html = renderDiscordSimulator(apiMessageToParsed(m));
+      return i === 0 ? html : html.replace(/<div class="discord-preview-badge-header">[\s\S]*?<\/div>\s*(?=<div class="discord-simulator-frame">)/, '');
+    }).join('');
+  }
+
   /** Asks the engine. Resolves with { ok, parsed, errors } or rejects when the engine cannot be reached. */
   async function fetchApiPreview(script) {
     const res = await fetch(apiBase() + '/v1/preview', {
@@ -476,7 +486,7 @@
     const errors = [];
     if (doc.error) errors.push(String(doc.error));
     (doc.diagnostics || []).forEach((d) => errors.push(textOf(d.message ? d.message : d)));
-    return { ok: !!doc.ok, parsed: first ? apiMessageToParsed(first) : null, errors };
+    return { ok: !!doc.ok, parsed: first ? apiMessageToParsed(first) : null, html: renderMessages(doc.messages), errors };
   }
 
   function renderApiErrors(errors) {
@@ -494,7 +504,7 @@
       const result = await fetchApiPreview(script);
       if (isCurrent && !isCurrent()) return false;
       const parsed = result.parsed || { actions: [], embed: null, buttons: [], selectMenu: null, messageText: '', isEphemeral: false, attachment: null, simulatedFeedback: '' };
-      target.innerHTML = renderDiscordSimulator(parsed) + renderApiErrors(result.errors);
+      target.innerHTML = (result.html || renderDiscordSimulator(parsed)) + renderApiErrors(result.errors);
       target.setAttribute('data-preview-source', 'engine');
       return true;
     } catch (_) {
@@ -556,7 +566,7 @@
         return true;
       }
       const parsed = first ? apiMessageToParsed(first) : { actions: [], embed: null, buttons: [], selectMenu: null, messageText: '', isEphemeral: false, attachment: null, simulatedFeedback: '' };
-      target.innerHTML = renderDiscordSimulator(parsed) + renderApiErrors(errors);
+      target.innerHTML = (renderMessages(hit.messages) || renderDiscordSimulator(parsed)) + renderApiErrors(errors);
       target.setAttribute('data-preview-source', 'stored');
       return true;
     }
@@ -655,6 +665,7 @@
     renderDiscordSimulator,
     initBdfdPreviews,
     apiMessageToParsed,
+    renderMessages,
     renderFromApi,
     renderStoredOrApi,
     previewKey

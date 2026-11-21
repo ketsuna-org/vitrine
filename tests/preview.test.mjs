@@ -201,3 +201,17 @@ test('every bdfd example of the documentation has a stored engine result (run sc
   }
   assert.deepEqual([...new Set(missing)].slice(0, 20), [], 'Examples without a stored result: run the render script and commit assets/previews.');
 });
+
+test('renderMessages draws every message the engine sent, with one header and the buttons', () => {
+  const html = previewEngine.renderMessages([
+    { payload: { content: 'Choose an option' } },
+    { payload: { content: '\n', components: { components: [{ type: 'actionRow', components: [
+      { type: 'button', label: 'Validate', style: 'success' },
+      { type: 'button', label: 'Decline', style: 'danger' }] }] } } }
+  ]);
+  assert.equal((html.match(/discord-preview-badge-header/g) || []).length, 1);
+  assert.equal((html.match(/discord-msg-row/g) || []).length, 2);
+  assert.match(html, /Validate/);
+  assert.match(html, /Decline/);
+  assert.doesNotMatch(html, /Command executed/);
+});
