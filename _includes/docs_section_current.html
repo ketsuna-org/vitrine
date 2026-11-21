@@ -1,0 +1,8 @@
+{% comment %} Calcule `docs_section` (clé de la section courante) à partir de la page. {% endcomment %}
+{% assign docs_section = 'home' %}
+{% if page.category == 'API' or page.url == '/docs/public-api/' or page.url == '/docs/public-api-reference/' %}{% assign docs_section = 'api' %}
+{% elsif page.api_type == 'javascript' or page.url contains '/docs/javascript' %}{% assign docs_section = 'javascript' %}
+{% elsif page.url contains '/docs/blocks' %}{% assign docs_section = 'blocks' %}
+{% elsif page.url == '/docs/getting-started/' %}{% assign docs_section = 'start' %}
+{% elsif page.function_name %}{% assign docs_section = 'functions' %}
+{% endif %}

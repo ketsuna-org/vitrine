@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"4875f0d7-129":{"ok":false,"error":"BDFD L1:1 $resetGuildVar: No declared default for guild variable \"customPrefix\".","diagnostics":[{"message":"No declared default for guild variable \"customPrefix\".","severity":"error","line":1,"column":1,"function":"$resetGuildVar"}],"messages":[]}}}

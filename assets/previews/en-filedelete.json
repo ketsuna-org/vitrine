@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"107ab30e-32":{"ok":false,"error":"BDFD L1:1 $fileDelete: files_unavailable","diagnostics":[{"message":"files_unavailable","severity":"error","line":1,"column":1,"function":"$fileDelete"}],"messages":[]}}}

@@ -261,7 +261,7 @@
   function renderDiscordSimulator(parsed) {
     const { embed, buttons, selectMenu, messageText, isEphemeral, attachment, simulatedFeedback } = parsed;
 
-    const effectiveText = messageText || simulatedFeedback || (embed ? '' : T('✅ Command executed successfully.', '✅ Commande exécutée avec succès.'));
+    const effectiveText = messageText || simulatedFeedback || ((embed || (buttons && buttons.length) || selectMenu) ? '' : T('✅ Command executed successfully.', '✅ Commande exécutée avec succès.'));
 
     let html = `
       <div class="discord-preview-badge-header">
@@ -273,11 +273,11 @@
       </div>
       <div class="discord-simulator-frame">
         <div class="discord-msg-row">
-          <div class="discord-avatar">🤖</div>
+          <div class="discord-avatar"><img src="/assets/mascotte/bibi.svg" alt="" width="24" height="24" style="image-rendering:pixelated"></div>
           <div class="discord-msg-content w-full">
             <div class="discord-header">
-              <span class="discord-username">${T('Bot Creator Assistant', 'Assistant Bot Creator')}</span>
-              <span class="discord-bot-tag">BOT ✔</span>
+              <span class="discord-username">Bot-Creator</span>
+              <span class="discord-bot-tag">APP</span>
               <span class="discord-timestamp">${T('Today at 2:32 PM', 'Aujourd\'hui à 14:32')}</span>
             </div>
     `;
@@ -401,6 +401,179 @@
   }
 
   /**
+   * The result of the real engine (POST /v1/preview on the Manager: the runner computes the message).
+   * The local parser above only sketches a script; this is what Discord would actually receive.
+   */
+  function apiBase() {
+    if (typeof window !== 'undefined' && window.BC_PREVIEW_API) return String(window.BC_PREVIEW_API).replace(/\/$/, '');
+    if (typeof document !== 'undefined') {
+      const meta = document.querySelector('meta[name="bc-preview-api"]');
+      if (meta && meta.content) return meta.content.replace(/\/$/, '');
+    }
+    return 'https://api.bot-creator.fr';
+  }
+
+  function textOf(v) {
+    if (v == null) return '';
+    if (typeof v === 'string') return v;
+    return v.text || v.name || v.url || '';
+  }
+
+  function colorOf(c) {
+    if (typeof c === 'number') return '#' + (c & 0xffffff).toString(16).padStart(6, '0');
+    return c || '';
+  }
+
+  /** Maps the engine's message (payload + components) onto what renderDiscordSimulator draws. */
+  function apiMessageToParsed(message) {
+    const payload = (message && message.payload) || {};
+    const e = (payload.embeds || [])[0];
+    const embed = e ? {
+      title: e.title || '',
+      description: e.description || '',
+      color: colorOf(e.color) || '#5865F2',
+      fields: (e.fields || []).map((f) => ({ name: f.name || '', value: f.value || '', inline: !!f.inline })),
+      footer: textOf(e.footer),
+      author: textOf(e.author),
+      image: textOf(e.image),
+      thumbnail: textOf(e.thumbnail)
+    } : null;
+    const buttons = [];
+    let selectMenu = null;
+    const rows = payload.components && Array.isArray(payload.components.components) ? payload.components.components : [];
+    rows.forEach((row) => {
+      (row.components || []).forEach((c) => {
+        const type = String(c.type || '').toLowerCase();
+        if (type === 'button') {
+          buttons.push({ label: c.label || '', style: String(c.style || 'primary').toLowerCase(), emoji: c.emoji || '' });
+        } else if (type.indexOf('select') !== -1 && !selectMenu) {
+          selectMenu = { placeholder: c.placeholder || T('Make a selection', 'Faites un choix') };
+        }
+      });
+    });
+    return {
+      actions: [],
+      embed,
+      buttons,
+      selectMenu,
+      messageText: String(payload.content || '').trim(),
+      isEphemeral: !!payload.ephemeral,
+      attachment: null,
+      simulatedFeedback: ''
+    };
+  }
+
+  /** Every message the engine produced, in order (a script can send several): the header is drawn once. */
+  function renderMessages(messages) {
+    const list = (messages || []).slice(0, 6);
+    if (!list.length) return null;
+    return list.map((m, i) => {
+      const html = renderDiscordSimulator(apiMessageToParsed(m));
+      return i === 0 ? html : html.replace(/<div class="discord-preview-badge-header">[\s\S]*?<\/div>\s*(?=<div class="discord-simulator-frame">)/, '');
+    }).join('');
+  }
+
+  /** Asks the engine. Resolves with { ok, parsed, errors } or rejects when the engine cannot be reached. */
+  async function fetchApiPreview(script) {
+    const res = await fetch(apiBase() + '/v1/preview', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ script })
+    });
+    if (!res.ok) throw new Error('preview ' + res.status);
+    const doc = await res.json();
+    const first = (doc.messages || [])[0];
+    const errors = [];
+    if (doc.error) errors.push(String(doc.error));
+    (doc.diagnostics || []).forEach((d) => errors.push(textOf(d.message ? d.message : d)));
+    return { ok: !!doc.ok, parsed: first ? apiMessageToParsed(first) : null, html: renderMessages(doc.messages), errors };
+  }
+
+  function renderApiErrors(errors) {
+    if (!errors.length) return '';
+    return '<div class="discord-ephemeral-notice mt-2" role="status"><span>' +
+      errors.map(escapeHtml).join(' · ') + '</span></div>';
+  }
+
+  /**
+   * Fills `target` with the engine's result for `script`; keeps what is already drawn (the local sketch)
+   * when the engine cannot be reached. `isCurrent` lets a caller drop a stale answer.
+   */
+  async function renderFromApi(target, script, isCurrent) {
+    try {
+      const result = await fetchApiPreview(script);
+      if (isCurrent && !isCurrent()) return false;
+      const parsed = result.parsed || { actions: [], embed: null, buttons: [], selectMenu: null, messageText: '', isEphemeral: false, attachment: null, simulatedFeedback: '' };
+      target.innerHTML = (result.html || renderDiscordSimulator(parsed)) + renderApiErrors(result.errors);
+      target.setAttribute('data-preview-source', 'engine');
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /**
+   * Documentation examples are pre-rendered by the real engine (scripts/render-bdfd-previews.dart) and stored
+   * in assets/previews/<locale>-<page>.json, keyed by previewKey(script). The key must match the Dart one:
+   * FNV-1a 32 over the UTF-16 code units, then the length.
+   */
+  function previewKey(script) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < script.length; i++) {
+      h ^= script.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return h.toString(16).padStart(8, '0') + '-' + script.length;
+  }
+
+  let storedPromise = null;
+  function loadStoredPreviews() {
+    if (storedPromise) return storedPromise;
+    storedPromise = (async () => {
+      try {
+        const m = /^\/(fr\/)?docs\/([^/]+)\/?$/.exec(window.location.pathname);
+        if (!m) return null;
+        const res = await fetch('/assets/previews/' + (m[1] ? 'fr' : 'en') + '-' + m[2] + '.json');
+        if (!res.ok) return null;
+        const doc = await res.json();
+        return doc && doc.v === 1 ? doc.blocks || {} : null;
+      } catch (_) {
+        return null;
+      }
+    })();
+    return storedPromise;
+  }
+
+  /** Stored result when the page has one for this exact script, else the live engine. */
+  async function renderStoredOrApi(target, script) {
+    const stored = await loadStoredPreviews();
+    const hit = stored && stored[previewKey(script)];
+    if (hit) {
+      const first = (hit.messages || [])[0];
+      const errors = [];
+      if (hit.error) errors.push(String(hit.error));
+      (hit.diagnostics || []).forEach((d) => errors.push(textOf(d.message ? d.message : d)));
+      if (!hit.ok) {
+        // The engine could not run this example with sample values (it needs a real message, role, channel,
+        // an HTTP answer or an interaction). Say so: never draw a message Discord would not send.
+        target.innerHTML = '<div class="discord-preview-badge-header"><span>' +
+          T('Discord preview unavailable', 'Aperçu Discord indisponible') + '</span></div>' +
+          '<div class="discord-simulator-frame"><p class="text-sm">' +
+          T('This example needs real Discord data (a message, a role, a channel, a button click or a web answer), so it cannot be previewed with sample values.',
+            'Cet exemple a besoin de données Discord réelles (un message, un rôle, un salon, un clic de bouton ou une réponse web) : il ne peut pas être prévisualisé avec des valeurs d\u2019exemple.') +
+          '</p>' + renderApiErrors(errors.slice(0, 1)) + '</div>';
+        target.setAttribute('data-preview-source', 'stored-unavailable');
+        return true;
+      }
+      const parsed = first ? apiMessageToParsed(first) : { actions: [], embed: null, buttons: [], selectMenu: null, messageText: '', isEphemeral: false, attachment: null, simulatedFeedback: '' };
+      target.innerHTML = (renderMessages(hit.messages) || renderDiscordSimulator(parsed)) + renderApiErrors(errors);
+      target.setAttribute('data-preview-source', 'stored');
+      return true;
+    }
+    return renderFromApi(target, script);
+  }
+
+  /**
    * Initializes the auto-transformation of BDFD code snippets into Dual-View Tabs + Discord Preview.
    */
   function initBdfdPreviews() {
@@ -483,13 +656,19 @@
       parent.insertBefore(dualView, preContainer);
       parent.insertBefore(discordPreview, preContainer);
       parent.removeChild(preContainer);
+      renderStoredOrApi(discordPreview, rawCode);
     });
   }
 
   const engine = {
     parseBdfd,
     renderDiscordSimulator,
-    initBdfdPreviews
+    initBdfdPreviews,
+    apiMessageToParsed,
+    renderMessages,
+    renderFromApi,
+    renderStoredOrApi,
+    previewKey
   };
 
   if (typeof module !== 'undefined' && module.exports) {

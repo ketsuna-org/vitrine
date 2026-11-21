@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"7c58bb16-186":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n\n","embeds":[{"title":"Math: Floor Function","description":"Original value: `3.9`\nRounded down: **3**","fields":[{"name":"Negative Value","value":"-4","inline":true},{"name":"Integer","value":"5","inline":true}],"color":"#5865F2"}],"ephemeral":false}}]}}}

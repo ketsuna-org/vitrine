@@ -1,0 +1,29 @@
+sections:
+  - { title: "Home", url: "/docs/" }
+  - { title: "Functions (BDFD)", url: "/docs/getting-started/" }
+  - { title: "JavaScript API", url: "/docs/javascript/" }
+  - { title: "API & Database", url: "/docs/public-api/", current: true }
+groups:
+  - title: "Getting started"
+    items:
+      - { title: "Overview and keys", url: "/docs/public-api/" }
+      - { title: "Errors, pagination and limits", url: "/docs/api-errors/" }
+  - title: "Resources"
+    items:
+      - { title: "Bot", url: "/docs/api-bot/" }
+      - { title: "Commands", url: "/docs/api-commands/" }
+      - { title: "Discord publication", url: "/docs/api-publication/" }
+      - { title: "Workflows", url: "/docs/api-workflows/" }
+      - { title: "Variables", url: "/docs/api-variables/" }
+      - { title: "Files", url: "/docs/api-files/" }
+  - title: "Database"
+    items:
+      - { title: "Overview", url: "/docs/api-database/" }
+      - { title: "Documents", url: "/docs/api-data-documents/" }
+      - { title: "Queries and aggregates", url: "/docs/api-data-queries/" }
+      - { title: "Atomic operations and batches", url: "/docs/api-data-operations/" }
+      - { title: "Collections, usage and erasure", url: "/docs/api-data-admin/" }
+  - title: "Reference"
+    items:
+      - { title: "All endpoints", url: "/docs/public-api-reference/" }
+      - { title: "OpenAPI contract", url: "https://api.bot-creator.fr/v1/openapi.json", external: true }

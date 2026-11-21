@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"b70db158-260":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n\n\n","embeds":[{"title":"API Request with Custom Headers","description":"Status: **200**\nResult: `{\"ok\":true,\"message\":\"sample\",\"data\":{\"id\":1,\"name\":\"Sample\"}}`","color":"#00BCD4"}],"ephemeral":false}}]}}}

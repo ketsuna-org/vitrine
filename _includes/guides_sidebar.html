@@ -6,9 +6,10 @@
 
   <div class="sidebar-group">
     <a href="{{ t.paths.guides | relative_url }}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-bold text-on-surface-variant hover:text-primary mb-2">
-      <svg class="pxicon text-base" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#library_books"></use></svg>
       All Guides
     </a>
+
+    <a href="{{ '/docs/tickets/' | relative_url }}" class="block px-3 py-2 text-sm font-semibold {% if page.url == '/docs/tickets/' %}text-primary{% else %}text-on-surface-variant hover:text-primary{% endif %}">Support ticket system</a>
 
     {% assign post_categories = post_list | map: "category" | uniq | sort %}
     {% for cat in post_categories %}
@@ -18,7 +19,6 @@
         <div class="sidebar-cat-group">
           <button class="sidebar-cat-header flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-toggle-target="guide-cat-list-{{ cat_slug }}">
             <span class="flex items-center gap-2">
-              <svg class="pxicon text-base text-primary" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#article"></use></svg>
               <span>{{ cat }}</span>
             </span>
             <svg class="pxicon text-sm transition-transform duration-200{% if page.category == cat %} rotate-180{% endif %}" id="guide-cat-list-{{ cat_slug }}-arrow" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#expand_more"></use></svg>

@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"fe95578b-53":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"Hello!","targetType":"channel"}}]},"4999eedb-80":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"Only this one is sent","targetType":"channel"}}]}}}

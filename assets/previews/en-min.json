@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"a2646822-181":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"Math: Minimum Value","description":"The lowest number among `5, 12, 3, 8, 1` is: **1**","fields":[{"name":"Comparison with Negatives","value":"-5","inline":true}],"color":"#5865F2"}],"ephemeral":false}}]}}}

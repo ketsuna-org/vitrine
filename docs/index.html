@@ -89,7 +89,7 @@ sidebar_title: Documentation
     <select id="docs-category-jump" aria-label="Jump to documentation category" class="min-h-[44px] rounded-lg border border-outline-variant bg-surface-container-low px-4 text-sm font-medium text-on-surface">
       <option value="">Jump to category</option>
       {% for cat in ordered_cats %}
-        {% assign cat_docs = all_docs | where: "category", cat %}
+        {% assign cat_docs = all_docs | where_exp: "d", "d.category == cat and d.function_name" %}
         {% if cat_docs.size > 0 %}
         <option value="#{{ cat | slugify }}">{{ cat }} ({{ cat_docs.size }})</option>
         {% endif %}
@@ -113,8 +113,26 @@ sidebar_title: Documentation
     </a>
   </section>
 
+  {% assign guide_docs = all_docs | where_exp: "d", "d.category == 'Blocks' and d.function_name == nil and d.url != '/docs/tickets/'" %}
+  {% if guide_docs.size > 0 %}
+  <section id="guides" class="docs-category-section">
+    <div class="mb-6 flex items-center gap-3">
+      <h2 class="font-display text-2xl font-bold text-on-surface">Guides</h2>
+      <span class="text-sm font-bold text-on-surface-variant">({{ guide_docs.size }})</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      {% for doc in guide_docs %}
+      <a href="{{ doc.url | relative_url }}" class="docs-function-card group flex flex-col gap-2 rounded-lg bg-surface-container-low border border-outline-variant p-5 hover:border-primary/30 hover:bg-surface-container transition-all" data-doc-name="" data-doc-title="{{ doc.title | downcase }}" data-doc-desc="{{ doc.description | default: '' | downcase }}">
+        <div class="text-base font-semibold text-on-surface">{{ doc.title }}</div>
+        <p class="text-sm text-on-surface-variant line-clamp-2">{{ doc.description | default: "" | truncate: 120 }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
   {% for cat in ordered_cats %}
-  {% assign cat_docs = all_docs | where: "category", cat %}
+  {% assign cat_docs = all_docs | where_exp: "d", "d.category == cat and d.function_name" %}
   {% if cat_docs.size > 0 %}
   <section id="{{ cat | slugify }}" class="docs-category-section">
     <div class="mb-6 flex items-center gap-3">

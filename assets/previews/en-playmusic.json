@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"c5b150cd-278":{"ok":false,"error":"BDFD L1:1 $playMusic: Music simulation requires a track fixture for Hello, this is a sample message","diagnostics":[{"message":"Music simulation requires a track fixture for Hello, this is a sample message","severity":"error","line":1,"column":1,"function":"$playMusic"}],"messages":[]}}}

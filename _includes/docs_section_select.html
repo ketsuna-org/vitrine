@@ -1,0 +1,12 @@
+{% include docs_section_current.html %}
+<details class="docs-section-select group mb-4 rounded-xl border border-outline-variant bg-surface-container-lowest lg:hidden">
+  <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-on-surface">
+    <span>{% for s in site.data.docs_sections %}{% if s.key == docs_section %}{{ s.en }}{% endif %}{% endfor %}</span>
+    <svg class="pxicon text-base transition-transform group-open:rotate-180" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#expand_more"></use></svg>
+  </summary>
+  <ul class="m-0 flex list-none flex-col gap-1 border-t border-outline-variant p-2">
+    {% for s in site.data.docs_sections %}
+    <li><a href="{{ s.url | relative_url }}" class="block rounded-md px-3 py-2 text-sm {% if s.key == docs_section %}bg-accent-deep font-semibold text-primary{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}">{{ s.en }}</a></li>
+    {% endfor %}
+  </ul>
+</details>

@@ -27,12 +27,18 @@
           <svg class="pxicon text-sm transition-transform" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="{{ '/assets/icons/pixelarticons.svg' | relative_url }}#expand_more"></use></svg>
         </button>
         <div id="documentation-menu" data-docs-menu hidden class="docs-dropdown-menu absolute left-0 top-full z-50 w-64 rounded-lg border border-outline bg-surface-container-low py-1.5">
+          {% if page.locale == 'fr' %}
           <a href="{{ t.paths.docs | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_home }}</a>
           <a href="{{ '/docs/getting-started/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_getting_started }}</a>
           <a href="{{ '/docs/blocks/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_blocks }}</a>
           <a href="{{ '/docs/' | relative_url }}#function-reference" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_bdfd }}</a>
           <a href="{{ '/docs/javascript/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_js }}</a>
           <a href="{{ '/docs/tickets/' | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ t.nav.docs_tickets }}</a>
+          {% else %}
+          {% for sec in site.data.docs_sections %}
+          <a href="{{ sec.url | relative_url }}" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface">{{ sec.en }}</a>
+          {% endfor %}
+          {% endif %}
         </div>
       </div>
       <a class="nav-link" href="{{ t.paths.guides | relative_url }}" {% if active_key == 'guides' %}aria-current="page"{% endif %}>{{ t.nav.guides }}</a>
@@ -67,10 +73,16 @@
           <a class="nav-mobile-link" href="{{ t.paths.playground | relative_url }}">{{ t.nav.playground }}</a>
           <a class="nav-mobile-link" href="{{ t.paths.home | append: '#features' | relative_url }}">{{ t.nav.features }}</a>
           <a class="nav-mobile-link" href="{{ t.paths.docs | relative_url }}">{{ t.nav.docs }}</a>
+          {% if page.locale == 'fr' %}
           <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/getting-started/' | relative_url }}">{{ t.nav.docs_getting_started }}</a>
           <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/blocks/' | relative_url }}">{{ t.nav.docs_blocks }}</a>
           <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/' | relative_url }}#function-reference">{{ t.nav.docs_bdfd }}</a>
           <a class="nav-mobile-link nav-mobile-sub" href="{{ '/docs/javascript/' | relative_url }}">{{ t.nav.docs_js }}</a>
+          {% else %}
+          {% for sec in site.data.docs_sections %}{% unless sec.key == 'home' %}
+          <a class="nav-mobile-link nav-mobile-sub" href="{{ sec.url | relative_url }}">{{ sec.en }}</a>
+          {% endunless %}{% endfor %}
+          {% endif %}
           <a class="nav-mobile-link" href="{{ t.paths.guides | relative_url }}">{{ t.nav.guides }}</a>
           <a class="nav-mobile-link" href="{{ t.paths.download | relative_url }}">{{ t.nav.download_button }}</a>
           <a class="nav-mobile-link" href="{{ alt_url | relative_url }}" hreflang="{{ t.nav.switch_language_code }}" lang="{{ t.nav.switch_language_code }}">{{ t.nav.switch_language }}</a>

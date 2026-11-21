@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"88f5fa15-34":{"ok":false,"error":"BDFD L1:1 $sendMessage: Message text is required.","diagnostics":[{"message":"Message text is required.","severity":"error","line":1,"column":1,"function":"$sendMessage"}],"messages":[]}}}

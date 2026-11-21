@@ -15,7 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const activeItem = sidebar.querySelector('[aria-current="page"]');
   if (activeItem && window.innerWidth >= 1024) {
     const scroller = sidebar.querySelector('.docs-sidebar-inner');
-    if (scroller) scroller.scrollTop = Math.max(0, activeItem.offsetTop - scroller.clientHeight / 2);
+    if (scroller) {
+      // Only scroll when the active entry is out of view, using real geometry (offsetTop is relative to
+      // the offset parent, not the scroller, and used to push the search box and top sections out of view).
+      const box = scroller.getBoundingClientRect();
+      const item = activeItem.getBoundingClientRect();
+      if (item.top < box.top || item.bottom > box.bottom) {
+        const target = scroller.scrollTop + (item.top - box.top) - scroller.clientHeight / 2;
+        scroller.scrollTop = Math.max(0, target);
+      }
+    }
   }
   const buttons = [...sidebar.querySelectorAll('[data-toggle-target]')];
   const setGroup = (button, expanded) => {

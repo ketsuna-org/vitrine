@@ -61,7 +61,7 @@ $sendMessage[Connecting to the voice channel...]
 ```bdfd
 $onlyBotChannelPerms[$channelID;AttachFiles;❌ I cannot send files here.]
 $addFile[https://example.com/report.pdf]
-$sendMessage[Here is the report.]
+Here is the report.
 ```
 
 ## Notes

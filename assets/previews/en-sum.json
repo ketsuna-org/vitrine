@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"5e667c0c-142":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"Math: Sum Calculation","description":"Sum of `5 + 10 + 15`: **30**","fields":[{"name":"Negative Values","value":"40","inline":true}],"color":"#5865F2"}],"ephemeral":false}}]}}}

@@ -1,0 +1,7 @@
+# Une seule liste pour : le menu « Docs » du header, les onglets desktop et le sélecteur mobile.
+- { key: home,       en: "Documentation home",          url: "/docs/" }
+- { key: start,      en: "Getting started",              url: "/docs/getting-started/" }
+- { key: blocks,     en: "Blocks (visual, no code)",     url: "/docs/blocks/" }
+- { key: functions,  en: "BDFD function reference",      url: "/docs/#function-reference" }
+- { key: javascript, en: "JavaScript API",               url: "/docs/javascript/" }
+- { key: api,        en: "API & Database",               url: "/docs/public-api/" }

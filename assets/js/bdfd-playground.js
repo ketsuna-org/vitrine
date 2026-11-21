@@ -43,7 +43,15 @@
     var code = withSamples(ta.value).trim();
     var parsed = eng.parseBdfd(code);
     out.innerHTML = code ? eng.renderDiscordSimulator(parsed) : '';
+    if (!code || !eng.renderFromApi) return;
+    // The engine's answer replaces the local sketch; a newer keystroke makes an older answer stale.
+    var ticket = ++seq;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      eng.renderFromApi(out, ta.value.trim(), function () { return ticket === seq; });
+    }, 350);
   }
+  var seq = 0, timer = null;
 
   ta.addEventListener('input', render);
   ta.value = PRESETS[1].code;

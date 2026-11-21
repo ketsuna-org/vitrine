@@ -15,11 +15,13 @@ These helpers give a JavaScript bot the same tools as the BDFD functions of the 
 | `bc.math.floorDiv(a, b)` and `bc.math.mod(a, b)` | `$floorDiv`, `$mod` (rounded down, the remainder is never negative: `mod(-3, 8)` is `5`) |
 | `bc.math.hash(text, 'fnv1a' \| 'crc32' \| 'sha256', modulo?)` | `$hash` |
 | `bc.math.seededRandom(seed, min, max)` | `$seededRandom` (same seed, same number) |
-| `await bc.vars.increment(scope, key, n?, id?)` and `decrement` | `$increment`, `$decrement` (atomic: two clicks at the same time never lose a write) |
+| `await bc.vars.increment(scope, key, n?, id?, { returnValue: false }?)` and `decrement` (the new value is returned unless `returnValue` is `false`) | `$increment`, `$decrement` (atomic: two clicks at the same time never lose a write) |
 | `await bc.vars.compareAndSet(scope, key, expected, next, id?)` | `$compareAndSetVar` |
 | `await bc.vars.listAddUnique(scope, key, item, id?)` | adds to a `,a,b,` list without duplicates, atomically |
 | `await bc.vars.list(prefix, limit?)` | `$listVars` |
 | `bc.lock.tryLock(name, seconds?)` and `bc.lock.unlock(name)` | `$tryLock`, `$unlock` |
+| `await bc.oneTime.run(type, fn)` | `$onlyOneTime`: runs `fn` once per `'user'` (all servers), `'server'` or `'global'`, for the running command. Returns `{ ran: true, value }`, or `{ ran: false }` when it was already taken (you send the message). The claim is taken before `fn`; if `fn` throws, it is given back. |
+| `await bc.oneTime.reset(type?, {userId?, command?})` | `$resetOneTime`: re-arms. Without `type`, the types claimed earlier in the run (`user` otherwise). `command` is the name of the command to target. |
 | `await bc.forum.createPost(forumId, title, message, {tags, archiveMinutes, files})` | `$createForumPost` |
 | `await bc.forum.tags(forumId)` and `await bc.forum.setTags(threadId, tags)` | `$forumTags`, `$setThreadTags` |
 | `bc.activity.messageCount(channelId, minutes?, humansOnly?)` | `$channelMessageCount` |

@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"659ebfa6-112":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n","embeds":[{"title":"Leaderboard Score","description":"First place: ****","color":"#57F287"}],"ephemeral":false}}]},"cef200c3-77":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"Score of the 3rd: ","targetType":"channel"}}]}}}

@@ -85,8 +85,8 @@ $ephemeral`;
   const simHtml = renderDiscordSimulator(parsed);
 
   assert.match(simHtml, /discord-simulator-frame/);
-  assert.match(simHtml, /Bot Creator Assistant/);
-  assert.match(simHtml, /BOT ✔/);
+  assert.match(simHtml, /Bot-Creator/);
+  assert.match(simHtml, /APP/);
   assert.match(simHtml, /--embed-color:\s*#ED4245/);
   assert.match(simHtml, /Embed Title/);
   assert.match(simHtml, /Embed description text/);
@@ -143,4 +143,75 @@ test('every BDFD function documentation file in _docs/ has a working ```bdfd cod
   }
 
   assert.ok(testedFunctions > 0, 'Expected function documentation to be verified');
+});
+
+test('apiMessageToParsed turns the engine message into what the simulator draws', () => {
+  const parsed = previewEngine.apiMessageToParsed({
+    payload: {
+      content: '\n\n',
+      embeds: [{ title: 'Bibi Bank', description: 'Hello **you**', color: '#1f9d6b', fields: [{ name: 'Wallet', value: '0', inline: true }], footer: { text: 'Use /deposit' } }],
+      components: { components: [{ type: 'actionRow', components: [{ type: 'button', label: 'Deposit', style: 'primary', emoji: '' }] }] },
+      ephemeral: false
+    }
+  });
+  assert.equal(parsed.messageText, '');
+  assert.equal(parsed.embed.title, 'Bibi Bank');
+  assert.equal(parsed.embed.color, '#1f9d6b');
+  assert.equal(parsed.embed.fields[0].value, '0');
+  assert.equal(parsed.embed.footer, 'Use /deposit');
+  assert.equal(parsed.buttons.length, 1);
+  assert.equal(parsed.buttons[0].label, 'Deposit');
+  const html = renderDiscordSimulator(parsed);
+  assert.match(html, /Bibi Bank/);
+  assert.match(html, /Deposit/);
+});
+
+test('apiMessageToParsed keeps the default value of a plain message', () => {
+  const parsed = previewEngine.apiMessageToParsed({ payload: { content: 'You have 0 XP.', embeds: [] } });
+  assert.equal(parsed.messageText, 'You have 0 XP.');
+  assert.equal(parsed.embed, null);
+});
+
+test('previewKey matches the Dart key of scripts/render-bdfd-previews.dart', () => {
+  // Computed with the Dart function on the same string.
+  assert.equal(previewEngine.previewKey(''), '811c9dc5-0');
+  assert.equal(previewEngine.previewKey('You have $dbGet[players;$authorID;xp;0] XP.'), 'afee8f63-43');
+  assert.equal(previewEngine.previewKey('é😀x'), '269e8c9b-4');
+  assert.match(previewEngine.previewKey('You have $dbGet[players;$authorID;xp;0] XP.'), /^[0-9a-f]{8}-43$/);
+});
+
+test('every bdfd example of the documentation has a stored engine result (run scripts/render-bdfd-previews.dart)', async () => {
+  const fence = /^```bdfd[^\n]*\n([\s\S]*?)^```\s*$/gm;
+  const missing = [];
+  for (const [locale, dir] of [['en', '_docs'], ['fr', 'fr/docs']]) {
+    let files = [];
+    try { files = (await readdir(join(process.cwd(), dir))).filter((f) => f.endsWith('.md')); } catch { continue; }
+    for (const f of files) {
+      const text = await readFile(join(process.cwd(), dir, f), 'utf8');
+      const scripts = [...text.matchAll(fence)].map((m) => m[1].trim()).filter(Boolean);
+      if (!scripts.length) continue;
+      let stored = {};
+      try {
+        stored = JSON.parse(await readFile(join(process.cwd(), 'assets/previews', `${locale}-${f.replace(/\.md$/, '')}.json`), 'utf8')).blocks;
+      } catch { /* missing file: reported below */ }
+      for (const script of scripts) {
+        if (!stored[previewEngine.previewKey(script)]) missing.push(`${locale}/${f}`);
+      }
+    }
+  }
+  assert.deepEqual([...new Set(missing)].slice(0, 20), [], 'Examples without a stored result: run the render script and commit assets/previews.');
+});
+
+test('renderMessages draws every message the engine sent, with one header and the buttons', () => {
+  const html = previewEngine.renderMessages([
+    { payload: { content: 'Choose an option' } },
+    { payload: { content: '\n', components: { components: [{ type: 'actionRow', components: [
+      { type: 'button', label: 'Validate', style: 'success' },
+      { type: 'button', label: 'Decline', style: 'danger' }] }] } } }
+  ]);
+  assert.equal((html.match(/discord-preview-badge-header/g) || []).length, 1);
+  assert.equal((html.match(/discord-msg-row/g) || []).length, 2);
+  assert.match(html, /Validate/);
+  assert.match(html, /Decline/);
+  assert.doesNotMatch(html, /Command executed/);
 });

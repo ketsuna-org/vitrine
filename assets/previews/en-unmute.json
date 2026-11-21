@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"1644f2bd-62":{"ok":false,"error":"BDFD L1:1 $unmute: Role not found: Muted.","diagnostics":[{"message":"Role not found: Muted.","severity":"error","line":1,"column":1,"function":"$unmute"}],"messages":[]},"c69caff1-127":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"Permission denied.","targetType":"channel"}}]}}}

@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"47e389a2-182":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"Math: Maximum Value","description":"The highest number among `5, 12, 3, 8, 1` is: **12**","fields":[{"name":"Comparison with Negatives","value":"10","inline":true}],"color":"#5865F2"}],"ephemeral":false}}]}}}

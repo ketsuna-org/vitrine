@@ -6,8 +6,9 @@
   <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-lg focus:bg-surface-container-lowest focus:px-5 focus:py-3 focus:text-primary" href="#main-content">{{ t.common.skip_to_content }}</a>
   {% include site_header.html locale=locale t=t %}
 
+  {% if page.locale != 'fr' and page.layout != 'post' and page.sidebar_context != 'guides' %}{% include docs_section_tabs.html %}{% endif %}
   <main id="main-content" class="has-mobile-bar" tabindex="-1">
-    <div class="content-shell mx-auto flex w-full max-w-[1360px] items-start px-4 sm:px-6">
+    <div class="content-shell mx-auto flex w-full max-w-none items-start px-4 sm:px-6 lg:px-0">
 
       <!-- Navigation: sticky column on desktop, drawer on mobile -->
       <aside id="docs-sidebar" class="docs-sidebar" aria-label="{{ t.docs_ui.sidebar_label | default: 'Browse documentation and guides' }}">
@@ -21,12 +22,15 @@
               </button>
             </div>
 
+            {% if page.locale != 'fr' and page.layout != 'post' and page.sidebar_context != 'guides' %}{% include docs_section_select.html %}{% endif %}
             {% if page.sidebar %}
               {{ page.sidebar }}
             {% elsif page.layout == 'post' or page.sidebar_context == 'guides' %}
               {% include guides_sidebar.html %}
             {% elsif page.sidebar_context == 'docs_fr' %}
               {% include docs_sidebar_fr.html %}
+            {% elsif page.category == 'API' or page.url == '/docs/public-api/' or page.url == '/docs/public-api-reference/' %}
+              {% include docs_sidebar_api.html %}
             {% elsif page.api_type == 'javascript' or page.sidebar_context == 'javascript' %}
               {% include js_api_sidebar.html %}
             {% else %}
@@ -37,7 +41,7 @@
       </aside>
 
       <!-- Content -->
-      <div class="min-w-0 flex-1 py-6 sm:py-8 lg:border-l lg:border-outline-variant lg:py-10 lg:pl-12">
+      <div class="min-w-0 flex-1 py-6 sm:py-8 lg:border-l lg:border-outline-variant lg:py-10 lg:pl-12 lg:pr-8">
         {{ content }}
       </div>
     </div>

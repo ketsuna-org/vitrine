@@ -4,7 +4,7 @@ title: $increment[]
 translation_key: docs
 category: "Variables"
 function_name: increment
-syntax: $increment[variable;(amount);(scope);(target);(guildID)]
+syntax: $increment[variable;(amount);(scope);(target);(guildID);(returnValue)]
 description: "Adds to a number variable and returns the new value. An empty variable counts as 0."
 ---
 # $increment — Adds to a number variable and returns the new value
@@ -12,7 +12,7 @@ description: "Adds to a number variable and returns the new value. An empty vari
 ## Syntax
 
 ```
-$increment[variable;(amount);(scope);(target);(guildID)]
+$increment[variable;(amount);(scope);(target);(guildID);(returnValue)]
 ```
 
 ## Parameters
@@ -22,6 +22,7 @@ $increment[variable;(amount);(scope);(target);(guildID)]
 - **scope** *(text, optional)* — `user` (default, per member of the server), `member`, `server`, `channel`, `message` or `global`.
 - **target** *(ID, optional)* — The user, server, channel or message. Default: the current one.
 - **guildID** *(ID, optional)* — For `user`/`member`: another server.
+- **returnValue** *(true/false, optional)* — Default: `true`. With `false`, the variable is still updated but the function returns nothing (empty text).
 
 ## Return Value
 

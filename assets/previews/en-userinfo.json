@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"6ff80d63-106":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"User information","targetType":"channel"}},{"payload":{"content":"\n\n","embeds":[{"description":"**Name:** alice\n**ID:** 20\n**Bot:** false","thumbnail":{"url":"https://cdn.discordapp.com/embed/avatars/0.png"},"color":"#5865F2"}],"ephemeral":false}}]}}}

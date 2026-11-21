@@ -755,3 +755,73 @@ entries:
         - "Studio 1.5.2 : connexion par e-mail (et e-mail + mot de passe), onglet Avancé dans les réglages d'un bot (jeton propriétaire, bascule du moteur Dart / JavaScript, forcer la synchronisation Discord), annonces du Manager dans l'application, en-têtes de page unifiés et le même sélecteur Graphe / BDFD que l'application bureau."
         - "Copier l'emoji, son ID, son raccourci ou son lien depuis la page des emojis. Un embed construit dans les branches d'un $if se convertit en blocs."
         - "Correctifs : $ephemeral dans un $if ne rend plus toute la commande éphémère ; les noms de commandes slash n'acceptent plus l'apostrophe ASCII ; enregistrer une commande inchangée ne modifie plus sa date de mise à jour ; messages clairs pour un bot archivé ou une configuration protégée."
+  - id: v3-10
+    era: v3
+    date: { en: "November 14 to 18, 2026", fr: "14 au 18 novembre 2026" }
+    versions: "App 3.10.0 – 3.10.2 · Runner 3.10.0"
+    en:
+      title: "3.10: WebSocket sources, automations and AI credits"
+      items:
+        - "Outgoing WebSocket sources: connect a bot to an external service, keep the connection alive, and react to incoming messages with an event workflow. New functions $wsJoin, $wsSend, $wsClose and $wsStatus (and bc.ws in JavaScript), with the live state of each connection."
+        - "Automations: follow an RSS feed, a YouTube channel, a Twitch streamer or a Bluesky account and post new items to a Discord webhook, with no code. Free accounts get 3 automations, Premium gets 20."
+        - "AI credits: your subscription now includes monthly AI credits, shown as a gauge, plus credits you buy or earn. The usage statistics show your consumption per day, bot and AI function."
+        - "Copilot: no more cap on what it can read, search and list in your bots."
+        - "Command statistics: failures and slow commands per hour, with the latest errors of each command."
+        - "Public documentation: the docs are now served from the same source as the app, and a read-only documentation MCP lets your AI tools look up every function."
+        - "Behind the scenes: better ad mediation on Android and a faster Studio, now hosted on Cloudflare."
+    fr:
+      title: "3.10 : sources WebSocket, automatisations et crédits IA"
+      items:
+        - "Sources WebSocket sortantes : connectez un bot à un service externe, gardez la connexion ouverte et réagissez aux messages reçus avec un workflow d'événement. Nouvelles fonctions $wsJoin, $wsSend, $wsClose et $wsStatus (et bc.ws en JavaScript), avec l'état en direct de chaque connexion."
+        - "Automatisations : suivez un flux RSS, une chaîne YouTube, un streamer Twitch ou un compte Bluesky et publiez les nouveautés dans un webhook Discord, sans code. Les comptes gratuits ont 3 automatisations, Premium en a 20."
+        - "Crédits IA : votre abonnement inclut désormais des crédits IA mensuels, affichés avec une jauge, en plus des crédits achetés ou gagnés. Les statistiques d'usage montrent votre consommation par jour, par bot et par fonction IA."
+        - "Copilot : plus de plafond sur ce qu'il peut lire, rechercher et lister dans vos bots."
+        - "Statistiques des commandes : échecs et commandes lentes par heure, avec les dernières erreurs de chaque commande."
+        - "Documentation publique : les docs viennent désormais de la même source que l'application, et un MCP de documentation en lecture seule permet à vos outils IA de consulter chaque fonction."
+        - "En coulisses : meilleure médiation publicitaire sur Android et Studio plus rapide, désormais hébergé sur Cloudflare."
+  - id: v3-11
+    era: v3
+    date: { en: "November 19 to 21, 2026", fr: "19 au 21 novembre 2026" }
+    versions: "App 3.11.0 · Runner 3.11.0"
+    en:
+      title: "3.11: Database, Files, plans and a Manager outage-proof runner"
+      items:
+        - "Database: a real database for your bots. Create tables, edit their schema (types, defaults, indexes, validation), add and edit rows with a guided form, and see how many rows will be converted before a schema change. Deleted tables stay restorable for 30 days. Available in the app and the Studio, as its own module."
+        - "New $db functions: $dbSpace (server, user or bot space), $dbGet, $dbSet, $dbUpdate, $dbCreate, $dbDelete, $dbExists, $dbIncrement, $dbPush, $dbAddToSet, $dbPull, $dbFind, $dbCount, $dbTop, $dbRank, $dbTransfer, $dbCooldown, $dbBatch and $dbLastError. In JavaScript, the same features are in bc.db."
+        - "Files: upload, read, list and delete the files of a bot. New functions $fileUpload, $fileRead, $fileList, $fileDelete, $fileExists, $fileURL (temporary link) and $fileAttach (send a file as an attachment, up to 10 MB). In JavaScript: bc.files, including bc.files.attach. A Files tab in each bot, in the app and the Studio, and a local folder for desktop bots."
+        - "Storage: one Files module with a single gauge, a file manager (download, delete), capacity alerts, and Storage packs S, M and L that stack on your account. Included storage depends on your plan: 500 MB for Free, then 2 GB, 5 GB, 10 GB and 50 GB."
+        - "Plans: bot plans with 1 bot, 4 bots or unlimited bots, and Premium with 2 bots and 1,500 AI credits. The Subscriptions screen is redesigned (plan, usage gauges, one purchase bar), and you can switch plan: upgrades apply immediately pro rata, downgrades at renewal. The bot limit counts running hosted bots. Annual plans and storage packs can be paid in 12 instalments on Android."
+        - "Rewarded ads: the wheel is gone. Each ad now credits you a number of AI credits, with a short pause between two ads."
+        - "Resilient bots: when the Manager is unavailable, your bots keep answering from cached variables, retry and queue their writes, and never post an error in your channels."
+        - "Trash: deleted commands and bots stay in the trash for 30 days and can be restored (select several, empty the trash in one go). The wording says Archive wherever the action archives."
+        - "Discord sync shows what will be published and removed, globally and per server, before acting, and removes leftover commands."
+        - "Emoji import in bulk: several images or a ZIP, any image format converted to PNG, with renaming and resizing."
+        - "Prefix commands: subcommands now work with a prefix (!cmd sub arg), and named options are available after the prefix, like with the slash form."
+        - "New $onlyOneTime and $resetOneTime: run something only once per user, server or globally (bc.oneTime in JavaScript)."
+        - "$increment and $decrement can skip returning the value (new 6th argument returnValue, true by default; { returnValue: false } in bc.vars)."
+        - "Faithful Discord preview and playground: preview a BDFD script on a sample world (users, mentions, buttons and menus) with nothing sent to Discord, and see the docs examples with their real, pre-computed results. Preview is also in the public API."
+        - "Public API: list, read, upload, delete a bot's files and get a public link, and a return=none option on Database operations to skip returning the document."
+        - "Navigation: a module drawer replaces the top tabs (burger on mobile), a Data group, a New badge on recent modules, variables tabs by scope (Bot, Server, Member, User, Channel, Message), and event workflows organised in folders."
+        - "Copilot: redesigned input with attached images (usable for icons, avatars, emojis and stickers), and an offer to get more credits when you run out."
+        - "Faster home screen on app launch, less memory use on small phones, and an explicit message when a block function like $try or $for is placed inside an argument."
+    fr:
+      title: "3.11 : Database, Fichiers, offres et runner qui tient sans le Manager"
+      items:
+        - "Database : une vraie base de données pour vos bots. Créez des tables, modifiez leur schéma (types, valeurs par défaut, index, validation), ajoutez et modifiez des lignes avec un formulaire guidé, et voyez combien de lignes seront converties avant un changement de schéma. Une table supprimée reste restaurable 30 jours. Disponible dans l'application et le Studio, comme module à part."
+        - "Nouvelles fonctions $db : $dbSpace (espace serveur, utilisateur ou bot), $dbGet, $dbSet, $dbUpdate, $dbCreate, $dbDelete, $dbExists, $dbIncrement, $dbPush, $dbAddToSet, $dbPull, $dbFind, $dbCount, $dbTop, $dbRank, $dbTransfer, $dbCooldown, $dbBatch et $dbLastError. En JavaScript, les mêmes possibilités sont dans bc.db."
+        - "Fichiers : envoyez, lisez, listez et supprimez les fichiers d'un bot. Nouvelles fonctions $fileUpload, $fileRead, $fileList, $fileDelete, $fileExists, $fileURL (lien temporaire) et $fileAttach (envoyer un fichier en pièce jointe, jusqu'à 10 Mo). En JavaScript : bc.files, dont bc.files.attach. Un onglet Fichiers dans chaque bot, dans l'application et le Studio, et un dossier local pour les bots desktop."
+        - "Stockage : un seul module Fichiers avec une jauge unique, un gestionnaire de fichiers (téléchargement, suppression), des alertes de capacité et des packs Stockage S, M et L qui se cumulent sur votre compte. Le stockage inclus dépend de l'offre : 500 Mo en Gratuit, puis 2 Go, 5 Go, 10 Go et 50 Go."
+        - "Offres : offres de bots avec 1 bot, 4 bots ou bots illimités, et Premium avec 2 bots et 1 500 crédits IA. L'écran Abonnements est refait (offre, jauges d'usage, une seule barre d'achat) et vous pouvez changer d'offre : la montée s'applique tout de suite au prorata, la baisse au renouvellement. La limite de bots compte les bots hébergés en marche. Les offres annuelles et les packs de stockage peuvent se payer en 12 mensualités sur Android."
+        - "Pubs de récompense : la roulette disparaît. Chaque pub vous crédite désormais un nombre de crédits IA, avec une courte pause entre deux pubs."
+        - "Bots résilients : quand le Manager est indisponible, vos bots continuent de répondre avec les variables en cache, rejouent et mettent en file leurs écritures, et ne postent jamais d'erreur dans vos salons."
+        - "Corbeille : les commandes et les bots supprimés restent 30 jours dans la corbeille et peuvent être restaurés (sélection multiple, vider la corbeille en une fois). Le libellé dit Archiver partout où l'action archive."
+        - "La synchro Discord montre ce qui sera publié et retiré, en global et par serveur, avant d'agir, et retire les commandes en trop."
+        - "Import d'emojis en lot : plusieurs images ou un ZIP, tout format d'image converti en PNG, avec renommage et redimensionnement."
+        - "Commandes à préfixe : les sous-commandes fonctionnent désormais avec un préfixe (!cmd sous arg), et les options nommées sont disponibles après le préfixe, comme avec la forme slash."
+        - "Nouveaux $onlyOneTime et $resetOneTime : n'exécutez quelque chose qu'une seule fois par utilisateur, par serveur ou globalement (bc.oneTime en JavaScript)."
+        - "$increment et $decrement peuvent ne pas renvoyer la valeur (nouveau 6e argument returnValue, true par défaut ; { returnValue: false } dans bc.vars)."
+        - "Aperçu Discord fidèle et playground : prévisualisez un script BDFD sur un monde d'exemple (utilisateurs, mentions, boutons et menus) sans rien envoyer à Discord, et voyez les exemples de la doc avec leur vrai résultat pré-calculé. L'aperçu est aussi dans l'API publique."
+        - "API publique : lister, lire, envoyer, supprimer les fichiers d'un bot et obtenir un lien public, et une option return=none sur les opérations Database pour ne pas renvoyer le document."
+        - "Navigation : un tiroir de modules remplace les onglets du haut (burger sur mobile), un groupe Données, une pastille Nouveau sur les modules récents, des onglets de variables par portée (Bot, Serveur, Membre, Utilisateur, Salon, Message) et les workflows d'événement rangés en dossiers."
+        - "Copilot : saisie repensée avec images jointes (utilisables pour icônes, avatars, emojis et stickers), et une proposition d'obtenir des crédits quand il n'y en a plus."
+        - "Accueil plus rapide au lancement de l'application, moins de mémoire utilisée sur les petits téléphones, et un message explicite quand une fonction à bloc comme $try ou $for est placée dans un argument."

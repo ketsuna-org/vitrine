@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"59f134ab-145":{"ok":false,"error":"BDFD L1:1 $resetServerVar: No declared default for guild variable \"welcomeMessage\".","diagnostics":[{"message":"No declared default for guild variable \"welcomeMessage\".","severity":"error","line":1,"column":1,"function":"$resetServerVar"}],"messages":[]}}}
