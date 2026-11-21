@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"ef4d70b8-144":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"Text Cropping","description":"Preview: ****","footer":{"text":"Original length: 0 chars"},"color":"#5865F2"}],"ephemeral":false}}]}}}
+{"v":1,"blocks":{"ef4d70b8-144":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"Text Cropping","description":"Preview: **Hello, this is a sample message**","footer":{"text":"Original length: 31 chars"},"color":"#5865F2"}],"ephemeral":false}}]}}}

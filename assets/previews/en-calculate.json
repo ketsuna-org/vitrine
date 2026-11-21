@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"c1096055-171":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"Math Calculator 🧮","description":"Formula: `( + 10) * 2 / 4`\nResult: **5**","color":"#5865F2"}],"ephemeral":false}}]}}}
+{"v":1,"blocks":{"c1096055-171":{"ok":false,"error":"BDFD L1:13 $calculate: Invalid arithmetic expression.","diagnostics":[{"message":"Invalid arithmetic expression.","severity":"error","line":1,"column":13,"function":"$calculate"}],"messages":[]}}}

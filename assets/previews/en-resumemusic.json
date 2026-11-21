@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"d845c7c0-109":{"ok":false,"error":"BDFD L1:1 $resumeMusic: Music simulation requires a music fixture","diagnostics":[{"message":"Music simulation requires a music fixture","severity":"error","line":1,"column":1,"function":"$resumeMusic"}],"messages":[]}}}
+{"v":1,"blocks":{"d845c7c0-109":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"Music Resumed ▶️","description":"Audio playback continued by <@20>.","color":"#57F287"}],"ephemeral":false}}]}}}

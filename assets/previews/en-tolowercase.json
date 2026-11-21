@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"b69b5752-117":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n","embeds":[{"title":"Lowercase Conversion","description":"Original: ``\nLowercase: ****","color":"#5865F2"}],"ephemeral":false}}]}}}
+{"v":1,"blocks":{"b69b5752-117":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n","embeds":[{"title":"Lowercase Conversion","description":"Original: `Hello, this is a sample message`\nLowercase: **hello, this is a sample message**","color":"#5865F2"}],"ephemeral":false}}]}}}

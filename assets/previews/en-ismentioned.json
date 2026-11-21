@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"faf053de-99":{"ok":true,"error":null,"diagnostics":[],"messages":[]},"978ab75c-142":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"That user was not mentioned.","targetType":"channel"}}]}}}
+{"v":1,"blocks":{"faf053de-99":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"Hey <@20>, you mentioned yourself!","targetType":"channel"}}]},"978ab75c-142":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"That user was not mentioned.","targetType":"channel"}}]}}}

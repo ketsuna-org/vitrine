@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"0e78e09a-66":{"ok":false,"error":"BDFD L1:27 $getChannelSelectChannelCount: Select values require a component callback.","diagnostics":[{"message":"Select values require a component callback.","severity":"error","line":1,"column":27,"function":"$getChannelSelectChannelCount"}],"messages":[]}}}
+{"v":1,"blocks":{"0e78e09a-66":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"You selected 2 value(s).","targetType":"channel"}}]}}}

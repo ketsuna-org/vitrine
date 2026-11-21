@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"8ab80812-43":{"ok":false,"error":"BDFD L1:1 $addSuperReaction: Invalid argument(s): Invalid Discord ID.","diagnostics":[{"message":"Invalid argument(s): Invalid Discord ID.","severity":"error","line":1,"column":1,"function":"$addSuperReaction"}],"messages":[]}}}
+{"v":1,"blocks":{"8ab80812-43":{"ok":true,"error":null,"diagnostics":[],"messages":[]}}}

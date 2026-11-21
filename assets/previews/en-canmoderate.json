@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"3a4904c8-89":{"ok":false,"error":"BDFD L1:35 $mentioned: Use message options for slash commands.","diagnostics":[{"message":"Use message options for slash commands.","severity":"error","line":1,"column":35,"function":"$mentioned"}],"messages":[]}}}
+{"v":1,"blocks":{"3a4904c8-89":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"You cannot sanction this member.","embeds":[],"ephemeral":false}}]}}}

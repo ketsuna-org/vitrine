@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"9fb4e871-46":{"ok":false,"error":"BDFD L1:1 $removeSuperReaction: Invalid argument(s): Invalid Discord ID.","diagnostics":[{"message":"Invalid argument(s): Invalid Discord ID.","severity":"error","line":1,"column":1,"function":"$removeSuperReaction"}],"messages":[]}}}
+{"v":1,"blocks":{"9fb4e871-46":{"ok":true,"error":null,"diagnostics":[],"messages":[]}}}

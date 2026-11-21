@@ -548,10 +548,10 @@
         // an HTTP answer or an interaction). Say so: never draw a message Discord would not send.
         target.innerHTML = '<div class="discord-preview-badge-header"><span>' +
           T('Discord preview unavailable', 'Aperçu Discord indisponible') + '</span></div>' +
-          '<p class="text-sm text-on-surface-variant mt-2">' +
+          '<div class="discord-simulator-frame"><p class="text-sm">' +
           T('This example needs real Discord data (a message, a role, a channel, a button click or a web answer), so it cannot be previewed with sample values.',
             'Cet exemple a besoin de données Discord réelles (un message, un rôle, un salon, un clic de bouton ou une réponse web) : il ne peut pas être prévisualisé avec des valeurs d\u2019exemple.') +
-          '</p>' + renderApiErrors(errors.slice(0, 1));
+          '</p>' + renderApiErrors(errors.slice(0, 1)) + '</div>';
         target.setAttribute('data-preview-source', 'stored-unavailable');
         return true;
       }

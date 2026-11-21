@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"f9cd48ff-156":{"ok":false,"error":"BDFD L2:10 $getRoleColor: Invalid role ID.","diagnostics":[{"message":"Invalid role ID.","severity":"error","line":2,"column":10,"function":"$getRoleColor"}],"messages":[]}}}
+{"v":1,"blocks":{"f9cd48ff-156":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\nPrimary: 000000\nSecondary: \nTertiary: ","embeds":[],"ephemeral":false}}]}}}

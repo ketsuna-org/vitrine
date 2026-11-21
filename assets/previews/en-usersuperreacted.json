@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"f0776f2a-118":{"ok":false,"error":"BDFD L1:5 $userSuperReacted: Invalid argument(s): Invalid Discord ID.","diagnostics":[{"message":"Invalid argument(s): Invalid Discord ID.","severity":"error","line":1,"column":5,"function":"$userSuperReacted"}],"messages":[]}}}
+{"v":1,"blocks":{"f0776f2a-118":{"ok":true,"error":null,"diagnostics":[],"messages":[]}}}

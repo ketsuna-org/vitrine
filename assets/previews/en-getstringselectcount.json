@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"22d99a11-58":{"ok":false,"error":"BDFD L1:27 $getStringSelectCount: Select values require a component callback.","diagnostics":[{"message":"Select values require a component callback.","severity":"error","line":1,"column":27,"function":"$getStringSelectCount"}],"messages":[]}}}
+{"v":1,"blocks":{"22d99a11-58":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"You selected 2 value(s).","targetType":"channel"}}]}}}

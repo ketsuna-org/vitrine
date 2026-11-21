@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"b88b5265-331":{"ok":false,"error":"BDFD L4:1 $webhookSend: Bad state: Webhook fixture is absent or token does not match.","diagnostics":[{"message":"Bad state: Webhook fixture is absent or token does not match.","severity":"error","line":4,"column":1,"function":"$webhookSend"}],"messages":[]}}}
+{"v":1,"blocks":{"b88b5265-331":{"ok":true,"error":null,"diagnostics":[],"messages":[]}}}

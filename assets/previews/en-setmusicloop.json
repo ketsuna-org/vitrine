@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"d6a03a83-122":{"ok":false,"error":"BDFD L1:1 $setMusicLoop: Music simulation requires a music fixture","diagnostics":[{"message":"Music simulation requires a music fixture","severity":"error","line":1,"column":1,"function":"$setMusicLoop"}],"messages":[]}}}
+{"v":1,"blocks":{"d6a03a83-122":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"Loop Enabled 🔂","description":"Now looping current track: **Sample song**","color":"#AEEA00"}],"ephemeral":false}}]}}}

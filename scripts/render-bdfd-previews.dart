@@ -38,9 +38,9 @@ Future<void> main(List<String> args) async {
         if (script.isEmpty) continue;
         total++;
         final r = await testCommandInSandbox({
+          'sampleWorld': true,
           'script': script,
           'optionTypes': <String, dynamic>{},
-          'defaultEntities': true,
           'variables': {'interaction.isSlash': 'true', 'command.id': 'sandbox-command'},
         });
         final messages = [

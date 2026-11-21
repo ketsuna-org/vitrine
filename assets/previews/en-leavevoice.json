@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"76a42374-126":{"ok":false,"error":"BDFD L1:1 $leaveVoice: Music simulation requires a music fixture","diagnostics":[{"message":"Music simulation requires a music fixture","severity":"error","line":1,"column":1,"function":"$leaveVoice"}],"messages":[]}}}
+{"v":1,"blocks":{"76a42374-126":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"Voice Disconnected 🔇","description":"Bot left the voice channel and cleared audio playback.","color":"#DA373C"}],"ephemeral":false}}]}}}

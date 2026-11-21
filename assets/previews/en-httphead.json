@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"8c824139-50":{"ok":false,"error":"BDFD L1:1 $httpHead: Bad state: HTTP HEAD https://example.com requires an explicit simulation fixture","diagnostics":[{"message":"Bad state: HTTP HEAD https://example.com requires an explicit simulation fixture","severity":"error","line":1,"column":1,"function":"$httpHead"}],"messages":[]}}}
+{"v":1,"blocks":{"8c824139-50":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\nStatus: 200","embeds":[],"ephemeral":false}}]}}}

@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"26b0c07f-90":{"ok":false,"error":"BDFD L1:5 $customID: Custom ID requires a component or modal interaction callback.","diagnostics":[{"message":"Custom ID requires a component or modal interaction callback.","severity":"error","line":1,"column":5,"function":"$customID"}],"messages":[]}}}
+{"v":1,"blocks":{"26b0c07f-90":{"ok":true,"error":null,"diagnostics":[],"messages":[]}}}

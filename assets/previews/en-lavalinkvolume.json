@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"0e66353b-105":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n","embeds":[{"title":"Volume Level 🔊","description":"Current audio playback volume: **100%**","color":"#AEEA00"}],"ephemeral":false}}]}}}
+{"v":1,"blocks":{"0e66353b-105":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n","embeds":[{"title":"Volume Level 🔊","description":"Current audio playback volume: **80%**","color":"#AEEA00"}],"ephemeral":false}}]}}}

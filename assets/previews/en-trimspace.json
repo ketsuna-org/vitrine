@@ -1,1 +1,1 @@
-{"v":1,"blocks":{"3d20bc63-94":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n","embeds":[{"title":"Trimmed String","description":"Cleaned input: `****`","color":"#5865F2"}],"ephemeral":false}}]}}}
+{"v":1,"blocks":{"3d20bc63-94":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n","embeds":[{"title":"Trimmed String","description":"Cleaned input: `**Hello, this is a sample message**`","color":"#5865F2"}],"ephemeral":false}}]}}}
