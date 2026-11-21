@@ -43,7 +43,7 @@ $addButton[newRow;customIdOrURL;label;style;(disabled);(emoji);(messageId)]
 
 ```bdfd
 $addButton[no;my_button;Click here;primary;false;😊]
-$sendMessage[Press the button]
+Press the button
 ```
 
 ### Two buttons on the same row
@@ -51,14 +51,14 @@ $sendMessage[Press the button]
 ```bdfd
 $addButton[no;btn_ok;✅ Validate;success]
 $addButton[no;btn_no;❌ Decline;danger]
-$sendMessage[Choose an option]
+Choose an option
 ```
 
 ### Disabled button with emoji
 
 ```bdfd
 $addButton[no;btn_lock;🔒 Locked;secondary;true]
-$sendMessage[Action not available]
+Action not available
 ```
 
 ## Notes
