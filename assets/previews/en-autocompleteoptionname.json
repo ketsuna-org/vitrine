@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"fcef181f-153":{"ok":false,"error":"BDFD L1:5 $autoCompleteOptionName: Autocomplete functions can only be used in an autocomplete script.","diagnostics":[{"message":"Autocomplete functions can only be used in an autocomplete script.","severity":"error","line":1,"column":5,"function":"$autoCompleteOptionName"}],"messages":[]}}}

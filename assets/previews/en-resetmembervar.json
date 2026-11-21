@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"6a2f59c9-159":{"ok":false,"error":"BDFD L1:1 $resetMemberVar: No declared default for guildMember variable \"dailyStreak\".","diagnostics":[{"message":"No declared default for guildMember variable \"dailyStreak\".","severity":"error","line":1,"column":1,"function":"$resetMemberVar"}],"messages":[]}}}

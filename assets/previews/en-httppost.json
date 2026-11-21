@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"0e263c89-237":{"ok":false,"error":"BDFD L2:1 $httpPost: Bad state: HTTP POST https://api.example.com/webhooks requires an explicit simulation fixture","diagnostics":[{"message":"Bad state: HTTP POST https://api.example.com/webhooks requires an explicit simulation fixture","severity":"error","line":2,"column":1,"function":"$httpPost"}],"messages":[]}}}

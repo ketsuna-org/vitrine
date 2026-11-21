@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"a69cfd50-93":{"ok":false,"error":"BDFD L1:1 $webhookDelete: Bad state: Webhook fixture is absent or token does not match.","diagnostics":[{"message":"Bad state: Webhook fixture is absent or token does not match.","severity":"error","line":1,"column":1,"function":"$webhookDelete"}],"messages":[]}}}

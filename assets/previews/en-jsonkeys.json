@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"4af75843-129":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n","embeds":[{"title":"JSON Object Keys","description":"Keys list: `id,name,status`","color":"#00BCD4"}],"ephemeral":false}}]},"79733296-76":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"id | name","targetType":"channel"}}]}}}

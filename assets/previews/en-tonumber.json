@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"47364d80-47":{"ok":false,"error":"BDFD L1:12 $toNumber: The value is not a number. Give a fallback as second argument.","diagnostics":[{"message":"The value is not a number. Give a fallback as second argument.","severity":"error","line":1,"column":12,"function":"$toNumber"}],"messages":[]}}}

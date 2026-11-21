@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"3d3b1113-162":{"ok":false,"error":"BDFD L1:1 $pauseMusic: Music simulation requires a music fixture","diagnostics":[{"message":"Music simulation requires a music fixture","severity":"error","line":1,"column":1,"function":"$pauseMusic"}],"messages":[]}}}

@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"8e4bb3c5-307":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n  \n  \n  \n","embeds":[{"title":"Transaction Denied","description":"You must provide an item name and have at least 50 coins.","color":"#ED4245"}],"ephemeral":false}}]}}}

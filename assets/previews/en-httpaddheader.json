@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"b70db158-260":{"ok":false,"error":"BDFD L3:1 $httpGet: Bad state: HTTP GET https://api.example.com/v1/profile requires an explicit simulation fixture","diagnostics":[{"message":"Bad state: HTTP GET https://api.example.com/v1/profile requires an explicit simulation fixture","severity":"error","line":3,"column":1,"function":"$httpGet"}],"messages":[]}}}

@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"945e08dd-185":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n\n","embeds":[{"title":"Math: Multiplication","description":"Result of `6 * 7`: **42**","fields":[{"name":"Decimal Multiply","value":"10","inline":true},{"name":"Negative Multiply","value":"-15","inline":true}],"color":"#5865F2"}],"ephemeral":false}}]}}}

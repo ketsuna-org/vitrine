@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"403b3cb7-183":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n\n","embeds":[{"title":"Math: Ceiling Function","description":"Original value: `3.1`\nRounded up: **4**","fields":[{"name":"Negative Value","value":"-3","inline":true},{"name":"Integer","value":"5","inline":true}],"color":"#5865F2"}],"ephemeral":false}}]}}}

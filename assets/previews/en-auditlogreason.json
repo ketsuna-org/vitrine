@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"80a36f8e-167":{"ok":false,"error":"BDFD L2:12 $mentioned: Use message options for slash commands.","diagnostics":[{"message":"Use message options for slash commands.","severity":"error","line":2,"column":12,"function":"$mentioned"}],"messages":[]}}}

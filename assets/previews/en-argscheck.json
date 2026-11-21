@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"7dbccd70-171":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"❌ You must provide at least 2 arguments! Syntax: `!poll <question> <options...>`","embeds":[],"ephemeral":false}}]}}}

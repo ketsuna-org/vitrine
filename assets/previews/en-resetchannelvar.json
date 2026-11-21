@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"25829396-129":{"ok":false,"error":"BDFD L1:1 $resetChannelVar: No declared default for channel variable \"topicLock\".","diagnostics":[{"message":"No declared default for channel variable \"topicLock\".","severity":"error","line":1,"column":1,"function":"$resetChannelVar"}],"messages":[]}}}

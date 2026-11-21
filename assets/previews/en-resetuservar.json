@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"a41a23a3-142":{"ok":false,"error":"BDFD L1:1 $resetUserVar: No declared default for guildMember variable \"bio\".","diagnostics":[{"message":"No declared default for guildMember variable \"bio\".","severity":"error","line":1,"column":1,"function":"$resetUserVar"}],"messages":[]}}}

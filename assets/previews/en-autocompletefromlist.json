@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"f69f773f-37":{"ok":false,"error":"BDFD L1:1 $autocompleteFromList: Autocomplete functions can only be used in an autocomplete script.","diagnostics":[{"message":"Autocomplete functions can only be used in an autocomplete script.","severity":"error","line":1,"column":1,"function":"$autocompleteFromList"}],"messages":[]}}}

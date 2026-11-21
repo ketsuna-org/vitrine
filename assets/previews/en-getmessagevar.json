@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"a1ad66d0-114":{"ok":false,"error":"BDFD L2:36 $getMessageVar: Missing context for message variables.","diagnostics":[{"message":"Missing context for message variables.","severity":"error","line":2,"column":36,"function":"$getMessageVar"}],"messages":[]}}}

@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"7dafb806-45":{"ok":false,"error":"BDFD L1:14 $percent: The part must be a number.","diagnostics":[{"message":"The part must be a number.","severity":"error","line":1,"column":14,"function":"$percent"}],"messages":[]}}}

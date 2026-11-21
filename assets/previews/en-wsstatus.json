@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"3dc5a9f3-62":{"ok":false,"error":"BDFD L2:1 $wsJoin: ws_unavailable: WebSocket sources only work when the bot runs on a runner.","diagnostics":[{"message":"ws_unavailable: WebSocket sources only work when the bot runs on a runner.","severity":"error","line":2,"column":1,"function":"$wsJoin"}],"messages":[]}}}

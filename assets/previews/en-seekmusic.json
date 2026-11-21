@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"0326054a-112":{"ok":false,"error":"BDFD L1:1 $seekMusic: Music simulation requires a music fixture","diagnostics":[{"message":"Music simulation requires a music fixture","severity":"error","line":1,"column":1,"function":"$seekMusic"}],"messages":[]}}}

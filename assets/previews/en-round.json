@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"3e10ef85-211":{"ok":true,"error":null,"diagnostics":[],"messages":[{"payload":{"content":"\n\n\n\n","embeds":[{"title":"Math: Round Function","description":"Rounding `3.5`: **4**\nRounding `3.4`: **3**","fields":[{"name":"Negative Value","value":"-4","inline":true},{"name":"Two Decimals","value":"3.14","inline":true}],"color":"#5865F2"}],"ephemeral":false}}]}}}

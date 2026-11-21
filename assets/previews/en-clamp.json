@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"77808485-39":{"ok":false,"error":"BDFD L1:14 $clamp: The value must be a number.","diagnostics":[{"message":"The value must be a number.","severity":"error","line":1,"column":14,"function":"$clamp"}],"messages":[]}}}

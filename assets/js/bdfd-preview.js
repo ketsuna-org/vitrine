@@ -503,6 +503,67 @@
   }
 
   /**
+   * Documentation examples are pre-rendered by the real engine (scripts/render-bdfd-previews.dart) and stored
+   * in assets/previews/<locale>-<page>.json, keyed by previewKey(script). The key must match the Dart one:
+   * FNV-1a 32 over the UTF-16 code units, then the length.
+   */
+  function previewKey(script) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < script.length; i++) {
+      h ^= script.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return h.toString(16).padStart(8, '0') + '-' + script.length;
+  }
+
+  let storedPromise = null;
+  function loadStoredPreviews() {
+    if (storedPromise) return storedPromise;
+    storedPromise = (async () => {
+      try {
+        const m = /^\/(fr\/)?docs\/([^/]+)\/?$/.exec(window.location.pathname);
+        if (!m) return null;
+        const res = await fetch('/assets/previews/' + (m[1] ? 'fr' : 'en') + '-' + m[2] + '.json');
+        if (!res.ok) return null;
+        const doc = await res.json();
+        return doc && doc.v === 1 ? doc.blocks || {} : null;
+      } catch (_) {
+        return null;
+      }
+    })();
+    return storedPromise;
+  }
+
+  /** Stored result when the page has one for this exact script, else the live engine. */
+  async function renderStoredOrApi(target, script) {
+    const stored = await loadStoredPreviews();
+    const hit = stored && stored[previewKey(script)];
+    if (hit) {
+      const first = (hit.messages || [])[0];
+      const errors = [];
+      if (hit.error) errors.push(String(hit.error));
+      (hit.diagnostics || []).forEach((d) => errors.push(textOf(d.message ? d.message : d)));
+      if (!hit.ok) {
+        // The engine could not run this example with sample values (it needs a real message, role, channel,
+        // an HTTP answer or an interaction). Say so: never draw a message Discord would not send.
+        target.innerHTML = '<div class="discord-preview-badge-header"><span>' +
+          T('Discord preview unavailable', 'Aperçu Discord indisponible') + '</span></div>' +
+          '<p class="text-sm text-on-surface-variant mt-2">' +
+          T('This example needs real Discord data (a message, a role, a channel, a button click or a web answer), so it cannot be previewed with sample values.',
+            'Cet exemple a besoin de données Discord réelles (un message, un rôle, un salon, un clic de bouton ou une réponse web) : il ne peut pas être prévisualisé avec des valeurs d\u2019exemple.') +
+          '</p>' + renderApiErrors(errors.slice(0, 1));
+        target.setAttribute('data-preview-source', 'stored-unavailable');
+        return true;
+      }
+      const parsed = first ? apiMessageToParsed(first) : { actions: [], embed: null, buttons: [], selectMenu: null, messageText: '', isEphemeral: false, attachment: null, simulatedFeedback: '' };
+      target.innerHTML = renderDiscordSimulator(parsed) + renderApiErrors(errors);
+      target.setAttribute('data-preview-source', 'stored');
+      return true;
+    }
+    return renderFromApi(target, script);
+  }
+
+  /**
    * Initializes the auto-transformation of BDFD code snippets into Dual-View Tabs + Discord Preview.
    */
   function initBdfdPreviews() {
@@ -585,7 +646,7 @@
       parent.insertBefore(dualView, preContainer);
       parent.insertBefore(discordPreview, preContainer);
       parent.removeChild(preContainer);
-      renderFromApi(discordPreview, rawCode);
+      renderStoredOrApi(discordPreview, rawCode);
     });
   }
 
@@ -594,7 +655,9 @@
     renderDiscordSimulator,
     initBdfdPreviews,
     apiMessageToParsed,
-    renderFromApi
+    renderFromApi,
+    renderStoredOrApi,
+    previewKey
   };
 
   if (typeof module !== 'undefined' && module.exports) {

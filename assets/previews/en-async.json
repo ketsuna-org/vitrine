@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"81c70339-202":{"ok":false,"error":"BDFD L2:3 $httpGet: Bad state: HTTP GET https://example.com/stats.json requires an explicit simulation fixture","diagnostics":[{"message":"Bad state: HTTP GET https://example.com/stats.json requires an explicit simulation fixture","severity":"error","line":2,"column":3,"function":"$httpGet"}],"messages":[]}}}

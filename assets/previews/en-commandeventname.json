@@ -1,0 +1,1 @@
+{"v":1,"blocks":{"7468fd42-92":{"ok":false,"error":"BDFD L1:57 $commandEventName: Invocation metadata commandEvent.name is unavailable.","diagnostics":[{"message":"Invocation metadata commandEvent.name is unavailable.","severity":"error","line":1,"column":57,"function":"$commandEventName"}],"messages":[]}}}

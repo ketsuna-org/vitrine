@@ -171,3 +171,33 @@ test('apiMessageToParsed keeps the default value of a plain message', () => {
   assert.equal(parsed.messageText, 'You have 0 XP.');
   assert.equal(parsed.embed, null);
 });
+
+test('previewKey matches the Dart key of scripts/render-bdfd-previews.dart', () => {
+  // Computed with the Dart function on the same string.
+  assert.equal(previewEngine.previewKey(''), '811c9dc5-0');
+  assert.equal(previewEngine.previewKey('You have $dbGet[players;$authorID;xp;0] XP.'), 'afee8f63-43');
+  assert.equal(previewEngine.previewKey('é😀x'), '269e8c9b-4');
+  assert.match(previewEngine.previewKey('You have $dbGet[players;$authorID;xp;0] XP.'), /^[0-9a-f]{8}-43$/);
+});
+
+test('every bdfd example of the documentation has a stored engine result (run scripts/render-bdfd-previews.dart)', async () => {
+  const fence = /^```bdfd[^\n]*\n([\s\S]*?)^```\s*$/gm;
+  const missing = [];
+  for (const [locale, dir] of [['en', '_docs'], ['fr', 'fr/docs']]) {
+    let files = [];
+    try { files = (await readdir(join(process.cwd(), dir))).filter((f) => f.endsWith('.md')); } catch { continue; }
+    for (const f of files) {
+      const text = await readFile(join(process.cwd(), dir, f), 'utf8');
+      const scripts = [...text.matchAll(fence)].map((m) => m[1].trim()).filter(Boolean);
+      if (!scripts.length) continue;
+      let stored = {};
+      try {
+        stored = JSON.parse(await readFile(join(process.cwd(), 'assets/previews', `${locale}-${f.replace(/\.md$/, '')}.json`), 'utf8')).blocks;
+      } catch { /* missing file: reported below */ }
+      for (const script of scripts) {
+        if (!stored[previewEngine.previewKey(script)]) missing.push(`${locale}/${f}`);
+      }
+    }
+  }
+  assert.deepEqual([...new Set(missing)].slice(0, 20), [], 'Examples without a stored result: run the render script and commit assets/previews.');
+});
