@@ -36,3 +36,18 @@ $dbSet[collection;id;json]
 ```bdfd
 $dbSet[players;$authorID;{"xp":0,"name":"$username"}]
 ```
+
+### Build the document with the JSON functions
+
+Writing the JSON by hand breaks as soon as a value contains a `"`. Build it with the JSON functions instead: they escape for you.
+
+```bdfd
+$jsonClear
+$jsonSet[xp;0]
+$jsonSetString[name;$username]
+$dbSet[players;$authorID;$jsonStringify]
+```
+
+### Where the data goes
+
+The collection is created by its first write, in the current space (the server by default). Put `$dbSpace[user]` or `$dbSpace[bot]` before `$dbSet` to write in the user's or the bot's space instead; see `$dbSpace`.
