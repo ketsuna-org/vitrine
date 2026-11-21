@@ -86,7 +86,7 @@ $ephemeral`;
 
   assert.match(simHtml, /discord-simulator-frame/);
   assert.match(simHtml, /Bot-Creator/);
-  assert.match(simHtml, /BOT ✔/);
+  assert.match(simHtml, /APP/);
   assert.match(simHtml, /--embed-color:\s*#ED4245/);
   assert.match(simHtml, /Embed Title/);
   assert.match(simHtml, /Embed description text/);
