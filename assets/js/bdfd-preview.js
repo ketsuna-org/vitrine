@@ -401,6 +401,108 @@
   }
 
   /**
+   * The result of the real engine (POST /v1/preview on the Manager: the runner computes the message).
+   * The local parser above only sketches a script; this is what Discord would actually receive.
+   */
+  function apiBase() {
+    if (typeof window !== 'undefined' && window.BC_PREVIEW_API) return String(window.BC_PREVIEW_API).replace(/\/$/, '');
+    if (typeof document !== 'undefined') {
+      const meta = document.querySelector('meta[name="bc-preview-api"]');
+      if (meta && meta.content) return meta.content.replace(/\/$/, '');
+    }
+    return 'https://api.bot-creator.fr';
+  }
+
+  function textOf(v) {
+    if (v == null) return '';
+    if (typeof v === 'string') return v;
+    return v.text || v.name || v.url || '';
+  }
+
+  function colorOf(c) {
+    if (typeof c === 'number') return '#' + (c & 0xffffff).toString(16).padStart(6, '0');
+    return c || '';
+  }
+
+  /** Maps the engine's message (payload + components) onto what renderDiscordSimulator draws. */
+  function apiMessageToParsed(message) {
+    const payload = (message && message.payload) || {};
+    const e = (payload.embeds || [])[0];
+    const embed = e ? {
+      title: e.title || '',
+      description: e.description || '',
+      color: colorOf(e.color) || '#5865F2',
+      fields: (e.fields || []).map((f) => ({ name: f.name || '', value: f.value || '', inline: !!f.inline })),
+      footer: textOf(e.footer),
+      author: textOf(e.author),
+      image: textOf(e.image),
+      thumbnail: textOf(e.thumbnail)
+    } : null;
+    const buttons = [];
+    let selectMenu = null;
+    const rows = payload.components && Array.isArray(payload.components.components) ? payload.components.components : [];
+    rows.forEach((row) => {
+      (row.components || []).forEach((c) => {
+        const type = String(c.type || '').toLowerCase();
+        if (type === 'button') {
+          buttons.push({ label: c.label || '', style: String(c.style || 'primary').toLowerCase(), emoji: c.emoji || '' });
+        } else if (type.indexOf('select') !== -1 && !selectMenu) {
+          selectMenu = { placeholder: c.placeholder || T('Make a selection', 'Faites un choix') };
+        }
+      });
+    });
+    return {
+      actions: [],
+      embed,
+      buttons,
+      selectMenu,
+      messageText: String(payload.content || '').trim(),
+      isEphemeral: !!payload.ephemeral,
+      attachment: null,
+      simulatedFeedback: ''
+    };
+  }
+
+  /** Asks the engine. Resolves with { ok, parsed, errors } or rejects when the engine cannot be reached. */
+  async function fetchApiPreview(script) {
+    const res = await fetch(apiBase() + '/v1/preview', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ script })
+    });
+    if (!res.ok) throw new Error('preview ' + res.status);
+    const doc = await res.json();
+    const first = (doc.messages || [])[0];
+    const errors = [];
+    if (doc.error) errors.push(String(doc.error));
+    (doc.diagnostics || []).forEach((d) => errors.push(textOf(d.message ? d.message : d)));
+    return { ok: !!doc.ok, parsed: first ? apiMessageToParsed(first) : null, errors };
+  }
+
+  function renderApiErrors(errors) {
+    if (!errors.length) return '';
+    return '<div class="discord-ephemeral-notice mt-2" role="status"><span>' +
+      errors.map(escapeHtml).join(' · ') + '</span></div>';
+  }
+
+  /**
+   * Fills `target` with the engine's result for `script`; keeps what is already drawn (the local sketch)
+   * when the engine cannot be reached. `isCurrent` lets a caller drop a stale answer.
+   */
+  async function renderFromApi(target, script, isCurrent) {
+    try {
+      const result = await fetchApiPreview(script);
+      if (isCurrent && !isCurrent()) return false;
+      const parsed = result.parsed || { actions: [], embed: null, buttons: [], selectMenu: null, messageText: '', isEphemeral: false, attachment: null, simulatedFeedback: '' };
+      target.innerHTML = renderDiscordSimulator(parsed) + renderApiErrors(result.errors);
+      target.setAttribute('data-preview-source', 'engine');
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /**
    * Initializes the auto-transformation of BDFD code snippets into Dual-View Tabs + Discord Preview.
    */
   function initBdfdPreviews() {
@@ -483,13 +585,16 @@
       parent.insertBefore(dualView, preContainer);
       parent.insertBefore(discordPreview, preContainer);
       parent.removeChild(preContainer);
+      renderFromApi(discordPreview, rawCode);
     });
   }
 
   const engine = {
     parseBdfd,
     renderDiscordSimulator,
-    initBdfdPreviews
+    initBdfdPreviews,
+    apiMessageToParsed,
+    renderFromApi
   };
 
   if (typeof module !== 'undefined' && module.exports) {

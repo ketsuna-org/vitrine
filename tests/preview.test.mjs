@@ -144,3 +144,30 @@ test('every BDFD function documentation file in _docs/ has a working ```bdfd cod
 
   assert.ok(testedFunctions > 0, 'Expected function documentation to be verified');
 });
+
+test('apiMessageToParsed turns the engine message into what the simulator draws', () => {
+  const parsed = previewEngine.apiMessageToParsed({
+    payload: {
+      content: '\n\n',
+      embeds: [{ title: 'Bibi Bank', description: 'Hello **you**', color: '#1f9d6b', fields: [{ name: 'Wallet', value: '0', inline: true }], footer: { text: 'Use /deposit' } }],
+      components: { components: [{ type: 'actionRow', components: [{ type: 'button', label: 'Deposit', style: 'primary', emoji: '' }] }] },
+      ephemeral: false
+    }
+  });
+  assert.equal(parsed.messageText, '');
+  assert.equal(parsed.embed.title, 'Bibi Bank');
+  assert.equal(parsed.embed.color, '#1f9d6b');
+  assert.equal(parsed.embed.fields[0].value, '0');
+  assert.equal(parsed.embed.footer, 'Use /deposit');
+  assert.equal(parsed.buttons.length, 1);
+  assert.equal(parsed.buttons[0].label, 'Deposit');
+  const html = renderDiscordSimulator(parsed);
+  assert.match(html, /Bibi Bank/);
+  assert.match(html, /Deposit/);
+});
+
+test('apiMessageToParsed keeps the default value of a plain message', () => {
+  const parsed = previewEngine.apiMessageToParsed({ payload: { content: 'You have 0 XP.', embeds: [] } });
+  assert.equal(parsed.messageText, 'You have 0 XP.');
+  assert.equal(parsed.embed, null);
+});
