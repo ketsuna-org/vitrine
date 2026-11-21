@@ -82,6 +82,8 @@ Give each key only what it needs.
 | `write:settings` | Write and delete variable values | Medium |
 | `read:files` | List and download stored files, create temporary public links | Low |
 | `write:files` | Upload, replace and delete stored files | Medium |
+| `read:data` | Read, list, query, aggregate, export and measure the [Database]({{ '/docs/api-database/' | relative_url }}) | Low |
+| `write:data` | Write documents, run operations and batches, erase a person's data | Medium |
 
 A missing scope answers `403 missing_scope` and `details.required_scope` names the scope to add. Two things to know:
 

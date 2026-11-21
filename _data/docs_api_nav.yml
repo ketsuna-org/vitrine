@@ -23,6 +23,10 @@ groups:
       - { title: "Queries and aggregates", url: "/docs/api-data-queries/" }
       - { title: "Atomic operations and batches", url: "/docs/api-data-operations/" }
       - { title: "Collections, usage and erasure", url: "/docs/api-data-admin/" }
+  - title: "Open endpoints and MCP"
+    items:
+      - { title: "Open endpoints (no key)", url: "/docs/public-endpoints/" }
+      - { title: "MCP servers", url: "/docs/mcp/" }
   - title: "Reference"
     items:
       - { title: "All endpoints", url: "/docs/public-api-reference/" }

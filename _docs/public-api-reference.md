@@ -11,7 +11,7 @@ translation_key: doc-public-api-reference
 
 Every route of the public API. Read the [Public API guide]({{ '/docs/public-api/' | relative_url }}) first for authentication, scopes, limits and errors. The machine-readable contract is `https://api.bot-creator.fr/v1/openapi.json` (OpenAPI 3.1).
 
-Base URL: `https://api.bot-creator.fr`. Send `Authorization: Bearer bcm_k_...` on every route except the contract. `{botId}` must be the bot the key belongs to; `GET /v1/bot` is a shortcut that needs no id.
+Base URL: `https://api.bot-creator.fr`. Send `Authorization: Bearer bcm_k_...` on every `/v1` route except the open ones. `{botId}` must be the bot the key belongs to; `GET /v1/bot` is a shortcut that needs no id.
 
 ## Bot
 
@@ -111,13 +111,62 @@ The files the bot keeps with `$fileUpload` and `bc.files`. The path of a file go
 | `DELETE /v1/bots/{botId}/files?path=` | `write:files` | Delete, idempotent |
 | `POST /v1/bots/{botId}/files/link` | `read:files` | Temporary public link. Body `{ "path", "ttl_seconds"? }` |
 
-## Premium list (public)
+## Database
+
+Collections and documents in three kinds of space: Discord servers (`/guilds/{spaceId}`), Discord users (`/users/{spaceId}`) and the bot itself (`/bot-space/{spaceId}`). Every `.../{space}` prefix below stands for `/v1/bots/{botId}/guilds/{spaceId}`, `/v1/bots/{botId}/users/{spaceId}` or `/v1/bots/{botId}/bot-space/{spaceId}`. Details on [Database overview]({{ '/docs/api-database/' | relative_url }}).
 
 | Route | Scope | Description |
 |---|---|---|
-| `GET /premiums-list` | none, no key | JSON array of the Discord IDs (strings) of accounts with an active Premium plan, and nothing else |
+| `GET /v1/bots/{botId}/collections` | `read:data` | List collections |
+| `GET .../{space}/collections/{collection}/docs` | `read:data` | List documents |
+| `GET .../{space}/collections/{collection}/docs/{docId}` | `read:data` | Read a document |
+| `PUT .../{space}/collections/{collection}/docs/{docId}` | `write:data` | Create or replace a document |
+| `PATCH .../{space}/collections/{collection}/docs/{docId}` | `write:data` | Merge fields into a document |
+| `DELETE .../{space}/collections/{collection}/docs/{docId}` | `write:data` | Delete a document |
+| `POST .../{space}/collections/{collection}/docs/{docId}/ops` | `write:data` | Atomic operations (`incr`, `push`, `pull`, `addToSet`, compare-and-set) |
+| `POST .../{space}/collections/{collection}/query` | `read:data` | Query with `where`, `sort` and paging |
+| `POST .../{space}/collections/{collection}/aggregate` | `read:data` | Aggregates |
+| `PUT .../{space}/collections/{collection}` | `write:data` | Collection settings (indexes, time to live) |
+| `POST .../{space}/batch` | `write:data` | Up to 20 operations, all or nothing |
+| `GET /v1/bots/{botId}/data/usage` | `read:data` | Space used and limits |
+| `GET /v1/bots/{botId}/data/export` | `read:data` | Export everything as gzipped NDJSON |
+| `DELETE /v1/bots/{botId}/subjects/{userId}` | `write:data` | Erase the data of one person |
 
-This route needs no API key and is open to everyone, so a bot can check whether a member is Premium. Only accounts signed in with Discord appear. The answer is cached for 5 minutes (`Cache-Control: public, max-age=300`), so a change can take a few minutes to show. Limited to 60 requests per minute per IP address (`429` beyond that). Example: `["123456789012345678","234567890123456789"]`.
+## Open routes (no key)
+
+These routes need no API key. They are described on [Open endpoints]({{ '/docs/public-endpoints/' | relative_url }}).
+
+| Route | Description |
+|---|---|
+| `GET /v1/openapi.json` | OpenAPI 3.1 contract |
+| `POST /v1/preview` | Public preview with an example context. See [Preview](#preview) |
+| `GET /v1/examples/{page}` | Documentation examples with their results. See [Preview](#preview) |
+| `GET /docs/index.json` | Index of the documentation pages |
+| `GET /docs/{slug}.json` | One documentation page as JSON |
+| `GET`, `POST /mcp/docs` | Read-only documentation MCP server, see [MCP servers]({{ '/docs/mcp/' | relative_url }}) |
+| `GET /premiums-list` | Discord IDs of Premium accounts |
+| `GET /public/bots/{botId}` | Public status page of a bot |
+| `GET /public/bot-files/{token}` | A temporary shared file link |
+| `GET /healthz` | Health check |
+
+### Premium list
+
+`GET /premiums-list` returns a JSON array of the Discord IDs (strings) of accounts with an active Premium plan, and nothing else. Only accounts signed in with Discord appear. The answer is cached for 5 minutes (`Cache-Control: public, max-age=300`), so a change can take a few minutes to show. Limited to 60 requests per minute per IP address (`429` beyond that). Example: `["123456789012345678","234567890123456789"]`.
+
+## MCP and OAuth
+
+Not part of `/v1`, so an API key does not work here. See [MCP servers]({{ '/docs/mcp/' | relative_url }}).
+
+| Route | Description |
+|---|---|
+| `POST /mcp/user` | MCP server for your bots (OAuth token, Premium) |
+| `GET /.well-known/oauth-protected-resource`, `GET /.well-known/oauth-authorization-server` | OAuth discovery |
+| `POST /oauth/register`, `GET /oauth/authorize`, `POST /oauth/token`, `POST /oauth/revoke` | OAuth 2.1 with PKCE `S256` |
+| `GET /account/connections` | Assistants connected to your account (account session) |
+
+## Routes for the Bot Creator apps
+
+The apps and the Studio talk to the Manager with an account session under `/auth`, `/gateway`, `/api/v2`, `/storage`, `/containers` and `/billing`. They follow the needs of the apps, they are not a stable contract and they are not meant for third-party code: use `/v1` instead.
 
 ## Contract
 
