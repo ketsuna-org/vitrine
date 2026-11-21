@@ -33,6 +33,41 @@ Base URL: `https://api.bot-creator.fr`. Send `Authorization: Bearer bcm_k_...` o
 | `GET /v1/bots/{botId}/commands/{commandId}/history` | `read:bots` | Last 5 versions |
 | `POST /v1/bots/{botId}/commands/{commandId}/rollback/{historyId}` | `write:commands` | Restore a version |
 
+## Preview
+
+| Route | Scope | Description |
+|---|---|---|
+| `POST /v1/bots/{botId}/preview` | `read:bots` | Run a BDFD script in the sandbox with sample values and get the messages it would send (content, embeds, components). Body `{ "script" or "command_id", "scenario"? }`. Nothing is sent to Discord or written. `429 sandbox_busy`, `503 sandbox_unavailable` |
+| `POST /v1/preview` | none (no key) | Same preview with an example context only: empty database, sample author, channel and server. Body `{ "script", "scenario"? }`. Limited to 20 per minute per IP address, script up to 20,000 characters. Meant for documentation and playgrounds |
+| `GET /v1/examples/{page}` | none (no key) | The BDFD examples of a documentation page (slug as in `/docs/{slug}.json`) with the message each one produces, computed in advance by the real engine. Nothing is executed; cached for one hour |
+
+### Preview scenario
+
+`scenario` is optional and every field in it is optional. Anything the scenario does not give is filled with sample data (members, roles, channels and web answers that do not exist on Discord).
+
+| Field | Type | Description |
+|---|---|---|
+| `options` | object | Option name to value |
+| `optionTypes` | object | Option name to `string`, `integer`, `number`, `boolean`, `user`, `channel`, `role` or `mentionable`, so the value is converted like on Discord |
+| `variables` | object | A name with a dot (`member.isAdmin`) is a runtime variable; a plain name (`balance`) is a stored member variable |
+| `permissions` | any | Permissions of the member running the command, passed to the engine as given |
+| `memberRoles` | array of strings | Role IDs of the member |
+| `channelParentId` | string | ID of the category of the channel |
+
+```json
+{
+  "script": "$title[Profile]\n$description[$getUserVar[balance] coins]",
+  "scenario": {
+    "options": { "member": "123456789012345678" },
+    "optionTypes": { "member": "user" },
+    "variables": { "balance": "250", "member.isAdmin": "true" },
+    "memberRoles": ["70", "71"]
+  }
+}
+```
+
+The answer is `{ ok, error, diagnostics, messages, effects, simulated }`; each message has a `payload` with `content`, `embeds` and `components`. Errors: `429 rate_limited` (public route, 20 per minute per IP address), `429 sandbox_busy`, `503 sandbox_unavailable`, `502 sandbox_failed`.
+
 ## Discord publication
 
 | Route | Scope | Description |
@@ -62,6 +97,19 @@ Base URL: `https://api.bot-creator.fr`. Send `Authorization: Bearer bcm_k_...` o
 | `GET /v1/bots/{botId}/variables/{scope}/{key}` | `read:bots` | With `scope_id` (and `scope_aux_id`): one value, `{ scope, key, found, value }`. Without: the stored values, paginated |
 | `PUT /v1/bots/{botId}/variables/{scope}/{key}` | `write:settings` | Body `{ "value": ..., "scope_id"?, "scope_aux_id"? }`. Creates the definition if missing |
 | `DELETE /v1/bots/{botId}/variables/{scope}/{key}` | `write:settings` | Delete a value, keep the definition |
+
+## Stored files
+
+The files the bot keeps with `$fileUpload` and `bc.files`. The path of a file goes in the `path` query parameter. Details on [Stored files]({{ '/docs/api-files/' | relative_url }}).
+
+| Route | Scope | Description |
+|---|---|---|
+| `GET /v1/bots/{botId}/files` | `read:files` | List files. Query: `prefix`, `limit` (1 to 100), `cursor` |
+| `GET /v1/bots/{botId}/files/info?path=` | `read:files` | Size, type and last update of one file |
+| `GET /v1/bots/{botId}/files/content?path=` | `read:files` | Download the raw content |
+| `PUT /v1/bots/{botId}/files/content?path=` | `write:files` | Upload or replace. The body is the raw content (25 MiB at most) |
+| `DELETE /v1/bots/{botId}/files?path=` | `write:files` | Delete, idempotent |
+| `POST /v1/bots/{botId}/files/link` | `read:files` | Temporary public link. Body `{ "path", "ttl_seconds"? }` |
 
 ## Premium list (public)
 

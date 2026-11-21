@@ -16,10 +16,12 @@ The Bot Creator public API lets your own code manage a bot: read and edit its co
 ## What you can do
 
 - Read a bot, its commands, workflows and variables.
-- Create, replace, edit, delete and restore commands.
+- Create, replace, edit, archive and restore commands.
 - Publish a command to Discord (globally or on chosen servers) and take it back off Discord without deleting it in Bot Creator.
-- Create, replace and delete workflows.
+- Create, replace and archive workflows.
 - Read, write and delete variable values.
+- Preview a BDFD script: get the message it would send, with sample values, without sending anything (`POST /v1/bots/{botId}/preview`).
+- List, download, upload and delete the files your bot stores, and create temporary public links to them, see [Stored files]({{ '/docs/api-files/' | relative_url }}).
 
 Starting and stopping the bot, execution logs, statistics, triggers and webhooks are **not** in the API yet.
 
@@ -74,10 +76,12 @@ Give each key only what it needs.
 | Scope | Allows | Risk |
 |---|---|---|
 | `read:bots` | Read the bot, commands, workflows, variables, history and publication state | Low |
-| `write:commands` | Create, replace, edit, delete and restore commands | Medium |
+| `write:commands` | Create, replace, edit, archive and restore commands | Medium |
 | `publish:commands` | Publish commands to Discord and remove them from Discord | High |
-| `write:workflows` | Create, replace and delete workflows | Medium |
+| `write:workflows` | Create, replace and archive workflows | Medium |
 | `write:settings` | Write and delete variable values | Medium |
+| `read:files` | List and download stored files, create temporary public links | Low |
+| `write:files` | Upload, replace and delete stored files | Medium |
 
 A missing scope answers `403 missing_scope` and `details.required_scope` names the scope to add. Two things to know:
 
