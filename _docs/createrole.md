@@ -4,18 +4,18 @@ title: $createRole
 translation_key: docs
 category: "Moderation"
 function_name: createRole
-syntax: $createRole[name;color;(hoist);(mentionable);(reason)]
+syntax: $createRole[name;color;(hoist);(mentionable);(reason);(returnID)]
 description: Creates a new role on the Discord server.
 ---
 
 # $createRole
 
-The `$createRole` function **creates a new role** on the Discord server. It does not return the ID of the role. The bot must have the `ManageRoles` permission.
+The `$createRole` function **creates a new role** on the Discord server. It returns the ID of the role only when `returnID` is `yes`. The bot must have the `ManageRoles` permission.
 
 ## Syntax
 
 ```
-$createRole[name;color;(hoist);(mentionable);(reason)]
+$createRole[name;color;(hoist);(mentionable);(reason);(returnID)]
 ```
 
 ## Parameters
@@ -27,11 +27,12 @@ $createRole[name;color;(hoist);(mentionable);(reason)]
 | `hoist` | Optional. `"yes"` to display separately in the member list, `"no"` otherwise. Default `"no"` (an empty value also means `"no"`). Any other value raises `Role flags must be yes or no.` |
 | `mentionable` | Optional. `"yes"` to make the role mentionable, `"no"` otherwise. Default `"no"`. Same rules as `hoist`. |
 | `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
+| `returnID` | Optional. `yes`/`true`/`y` returns the ID of the created role; `no`/`false`/`n` or empty (default) returns nothing. Any other value raises `returnID must be yes or no.` |
 
 ## Return value
 
 - **Type**: String
-- An empty string. The function does not return the ID of the created role.
+- By default an empty string. With `returnID` set to `yes`, the ID of the created role.
 
 ## Examples
 
@@ -74,8 +75,8 @@ $sendMessage[Colored role created!]
 - The color is usually given in the hexadecimal format `#RRGGBB`.
 - `hoist`: displays the members of the role in a separate section of the member list.
 - `mentionable`: allows mentioning the role with `@role`.
-- The ID of the new role is not returned: look it up afterwards (for example with `$roleID[name]`) to assign it with `$giveRole`.
+- The ID is returned only with `returnID` set to `yes` (for example `$giveRole[$authorID;$createRole[VIP;#fff;;;;yes]]`); otherwise look it up afterwards with `$roleID[name]`.
 
 ## Audit log reason
 
-The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.
+The optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.
