@@ -1,6 +1,5 @@
 {% assign t = site.data.locales[page.locale] %}
 {% assign pr = site.data.pricing %}
-{% assign premium = pr.plans | where: "id", "premium" | first %}
 {% assign host_one = pr.plans | where: "id", "host_one" | first %}
 {% assign host_two = pr.plans | where: "id", "host_two" | first %}
 <div class="mx-auto max-w-[1000px] px-4 py-14 sm:px-6 lg:py-20">
@@ -10,24 +9,28 @@
     <p class="m-0 text-lg leading-relaxed text-on-surface-variant">{{ t.pricing.subtitle }}</p>
   </header>
 
-  <section class="mb-10 flex flex-col gap-2 border-t border-outline pt-6">
-    <h2 class="m-0 text-2xl font-semibold">{{ t.pricing.free_title }}</h2>
-    <p class="m-0 leading-relaxed text-on-surface-variant">{{ t.pricing.free_body }}</p>
+  <section class="mb-10 flex flex-col gap-4">
+    <p class="m-0 leading-relaxed text-on-surface-variant">{{ t.pricing.plans_intro }}</p>
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      {% for plan in pr.bot_plans %}{% assign pk = "plan_" | append: plan.id %}
+      <div class="flex flex-col gap-1.5 rounded-sm border p-4 {% if plan.highlight %}border-accent-line bg-accent-deep{% else %}border-outline bg-surface{% endif %}">
+        <div class="flex flex-wrap items-center justify-between gap-1.5 font-semibold">{{ t.pricing[pk] }}{% if plan.highlight %}<span class="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">{{ t.pricing.plan_premium_tag }}</span>{% endif %}</div>
+        <div class="text-3xl font-semibold">{% if plan.eur_month %}{% include price.html v=plan.eur_month %} €<small class="text-[13px] font-normal text-on-surface-variant"> {{ t.pricing.per_month }}</small>{% else %}0 €{% endif %}</div>
+        <div class="min-h-[1.25rem] text-[13px] text-on-surface-variant">{% if plan.eur_year %}{% include price.html v=plan.eur_year %} €{{ t.pricing.per_year }}{% endif %}</div>
+        <ul class="m-0 mt-2 flex list-none flex-col gap-1.5 p-0 text-[13.5px] text-on-surface-variant">
+          <li>{% if plan.bots == 0 %}{{ t.pricing.bots_unlimited }}{% elsif plan.id == 'free' %}{{ t.pricing.bots_free }}{% elsif plan.bots == 1 %}{{ t.pricing.bots_one }}{% else %}{{ t.pricing.bots_running | replace: '%n', plan.bots }}{% endif %}</li>
+          <li>{% if plan.credits %}{{ t.pricing.credits_month | replace: '%n', plan.credits }}{% else %}{{ t.pricing.credits_packs }}{% endif %}</li>
+          <li>{% if plan.id == 'free' %}{{ t.pricing.free_ads }}{% else %}{{ t.pricing.paid_noads }}{% endif %}</li>
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="m-0 text-sm text-on-surface-variant">{{ t.pricing.plans_note }} {{ pr.catalog_read_on }}.</p>
   </section>
 
-  <section class="mb-10 flex flex-col gap-4 border-t border-outline pt-6">
-    <h2 class="m-0 text-2xl font-semibold">{{ t.pricing.premium_title }}</h2>
-    <p class="m-0 leading-relaxed text-on-surface-variant">{{ t.pricing.premium_body }}</p>
-    <div class="overflow-x-auto">
-      <table class="w-full text-left text-sm">
-        <thead><tr class="border-b border-outline text-on-surface-variant"><th class="py-2 pr-4 font-medium">{{ t.pricing.col_store }}</th><th class="py-2 pr-4 font-medium">{{ t.pricing.col_month }}</th><th class="py-2 font-medium">{{ t.pricing.col_year }}</th></tr></thead>
-        <tbody>
-          <tr class="border-b border-outline-variant"><td class="py-3 pr-4">Google Play</td><td class="py-3 pr-4">{% include price.html v=premium.google_play.eur_month %} €</td><td class="py-3">{% include price.html v=premium.google_play.eur_year %} €</td></tr>
-          <tr class="border-b border-outline-variant"><td class="py-3 pr-4">App Store</td><td class="py-3 pr-4">{% include price.html v=premium.app_store.eur_month %} €</td><td class="py-3">{% include price.html v=premium.app_store.eur_year %} €</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="m-0 text-sm text-on-surface-variant">{{ t.pricing.other_currency_note }} Google Play ${% include price.html v=premium.google_play.usd_month %}{{ t.pricing.per_month }} / ${% include price.html v=premium.google_play.usd_year %}{{ t.pricing.per_year }}, App Store ${% include price.html v=premium.app_store.usd_month %}{{ t.pricing.per_month }} / ${% include price.html v=premium.app_store.usd_year %}{{ t.pricing.per_year }}.</p>
+  <section class="mb-10 flex flex-col gap-2 border-t border-outline pt-6">
+    <h2 class="m-0 text-2xl font-semibold">{{ t.pricing.included_title }}</h2>
+    <p class="m-0 leading-relaxed text-on-surface-variant">{{ t.pricing.included_body }}</p>
   </section>
 
   <section class="mb-10 flex flex-col gap-4 border-t border-outline pt-6">

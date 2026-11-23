@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Tarifs de Bot Creator, Premium et bots hébergés
-description: "Bot Creator se télécharge gratuitement. Premium, les Hosted Apps et les packs de crédits IA se vendent sur Google Play et l'App Store : prix des stores en euros, relevés le 29 octobre 2026."
+title: Tarifs de Bot Creator, offres de 1 bot à illimité
+description: "Bot Creator se télécharge gratuitement. Offres de 1 bot à bots illimités, Premium, Hosted Apps et packs de crédits IA : prix en euros du catalogue Bot Creator, relevés le 23 novembre 2026."
 locale: fr
 lang: fr
 translation_key: pricing

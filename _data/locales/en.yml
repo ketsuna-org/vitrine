@@ -282,9 +282,9 @@ faq:
 
 
 pricing:
-  title: "Pricing"
+  title: "Pick how many bots you want to run"
   eyebrow: "Pricing"
-  subtitle: "The app is free to download. Subscriptions are bought in the app stores, so these are the store prices."
+  subtitle: "Bot Creator is free to download. The plan sets how many bots run at the same time on our servers."
   compare_intro: "Compared with other tools:"
   note: "Reference currency: euro (EUR). The store price may vary by country, currency and taxes. Read from Google Play and the App Store on"
   free_title: "Free"
@@ -318,6 +318,24 @@ pricing:
   per_year: "/year"
   other_currency_note: "In US dollars the prices differ between the stores:"
   stores_cta: "Get the app"
+  plans_intro: "Every paid plan removes the ads and unlocks every Premium feature. Bots you run on your own computer with the desktop app are never limited."
+  plan_free: "Free"
+  plan_one: "1 bot"
+  plan_premium: "Premium"
+  plan_four: "4 bots"
+  plan_unlimited: "Unlimited"
+  plan_premium_tag: "Premium plan"
+  bots_one: "1 bot running"
+  bots_free: "1 bot hosted"
+  bots_running: "%n bots running at the same time"
+  bots_unlimited: "Unlimited bots"
+  credits_month: "%n AI credits every month"
+  credits_packs: "AI credit packs on demand"
+  free_ads: "Ads and start-up popup"
+  paid_noads: "No ads, all Premium features"
+  plans_note: "Prices in euros, monthly or yearly, as published in the Bot Creator catalog on"
+  included_title: "Included in every paid plan"
+  included_body: "No ads and no start-up popup, unlimited hosting minutes, premium analytics (error rate, latency percentiles), visual debugger replay, Lavalink music, scheduled tasks (up to 10 per bot), inbound webhooks (up to 5 per bot), MCP access, and larger variable storage (up to 100,000 variables and 100 MB per bot). Future Premium features are included. Cancel anytime."
 
 changelog:
   eyebrow: "Changelog"
