@@ -10,6 +10,7 @@ content_language: fr
 translation_key: doc-public-api-reference
 permalink: /fr/docs/public-api-reference/
 sidebar_context: docs_fr
+premium: true
 ---
 
 Toutes les routes de l'API publique. Lisez d'abord le [guide de l'API publique]({{ '/fr/docs/public-api/' | relative_url }}) pour l'authentification, les permissions, les limites et les erreurs. Le contrat lisible par machine est `https://api.bot-creator.fr/v1/openapi.json` (OpenAPI 3.1).

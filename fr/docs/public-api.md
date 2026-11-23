@@ -10,6 +10,7 @@ content_language: fr
 translation_key: doc-public-api
 permalink: /fr/docs/public-api/
 sidebar_context: docs_fr
+premium: true
 ---
 
 L'API publique de Bot Creator permet à votre propre code de piloter un bot : lire et modifier ses commandes, ses workflows et ses variables, et publier une commande sur Discord quand vous le décidez. C'est une API REST JSON classique sous `/v1`, authentifiée par une clé API que vous créez dans le Studio.

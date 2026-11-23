@@ -10,6 +10,7 @@ content_language: fr
 translation_key: doc-scheduled-tasks
 permalink: /fr/docs/scheduled-tasks/
 sidebar_context: docs_fr
+premium: true
 ---
 
 Une tâche planifiée lance un workflow toute seule, à intervalles réguliers, sans que personne n'envoie de commande. Les tâches planifiées font partie de l'offre Premium.
