@@ -88,6 +88,9 @@ common:
   download_label: "Download"
 
 docs_ui:
+  premium: "Premium"
+  premium_note: "Reserved for Premium accounts."
+  premium_plans: "See plans"
   syntax: "Syntax"
   parameters: "Parameters"
   required: "Required"

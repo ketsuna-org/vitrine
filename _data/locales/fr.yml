@@ -75,6 +75,9 @@ common:
   copied: "Copié"
 
 docs_ui:
+  premium: "Premium"
+  premium_note: "Réservé aux comptes Premium."
+  premium_plans: "Voir les offres"
   syntax: "Syntaxe"
   parameters: "Paramètres"
   required: "Obligatoire"

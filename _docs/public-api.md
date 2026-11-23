@@ -7,6 +7,7 @@ description: Manage your bot from your own code with the Bot Creator public API.
 permalink: /docs/public-api/
 locale: en
 translation_key: doc-public-api
+premium: true
 ---
 
 The Bot Creator public API lets your own code manage a bot: read and edit its commands, workflows and variables, and publish commands to Discord when you decide to. It is a plain JSON REST API under `/v1`, authenticated with an API key you create in the Studio.

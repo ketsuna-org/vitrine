@@ -16,7 +16,7 @@
       {% if i.external %}{% assign href = i.url %}{% else %}{% assign href = i.url | relative_url %}{% endif %}
       <li><a href="{{ href }}" {% if i.external %}rel="noopener" target="_blank"{% endif %}
         class="sidebar-item block rounded-md border-l-2 px-3 py-1.5 text-[13px] {% if page.url == i.url %}border-accent bg-accent-deep text-primary{% else %}border-transparent text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
-        data-search-term="{{ i.title | downcase }}">{{ i.title }}{% if i.external %} ↗{% endif %}</a></li>
+        data-search-term="{{ i.title | downcase }}"><span class="flex items-center justify-between gap-2">{{ i.title }}{% if i.external %} ↗{% endif %}{% assign i_doc = site.docs | where: "url", i.url | first %}{% if i_doc.premium %}{% include premium_badge.html mini=true %}{% endif %}</span></a></li>
       {% endfor %}
     </ul>
   </div>

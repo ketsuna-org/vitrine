@@ -7,6 +7,7 @@ description: Every route of the Bot Creator public API /v1 with its method, requ
 permalink: /docs/public-api-reference/
 locale: en
 translation_key: doc-public-api-reference
+premium: true
 ---
 
 Every route of the public API. Read the [Public API guide]({{ '/docs/public-api/' | relative_url }}) first for authentication, scopes, limits and errors. The machine-readable contract is `https://api.bot-creator.fr/v1/openapi.json` (OpenAPI 3.1).

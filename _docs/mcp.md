@@ -7,6 +7,7 @@ description: "Connect Claude, ChatGPT, Cursor or any MCP client to Bot Creator: 
 permalink: /docs/mcp/
 locale: en
 translation_key: doc-mcp
+premium: true
 ---
 
 Bot Creator runs two [Model Context Protocol](https://modelcontextprotocol.io) servers over HTTP. Both take JSON-RPC messages with `POST`.

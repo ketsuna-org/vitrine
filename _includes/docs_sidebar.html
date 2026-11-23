@@ -49,7 +49,7 @@
                   <a href="{{ doc.url | relative_url }}"
                      class="sidebar-item block px-3 py-2 rounded-md text-[13px] font-mono transition-all {% if page.url == doc.url %}bg-accent-deep text-primary{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
                      data-search-term="{{ doc.title | downcase }} {{ doc_label | downcase }} {{ doc.description | default: '' | downcase }} {{ doc.function_name | default: '' | downcase }}">
-                    {{ doc_label }}
+                    <span class="flex items-center justify-between gap-2">{{ doc_label }}{% if doc.premium %}{% include premium_badge.html mini=true %}{% endif %}</span>
                   </a>
                 </li>
               {% endfor %}

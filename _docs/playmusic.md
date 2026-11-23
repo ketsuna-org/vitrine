@@ -6,6 +6,7 @@ category: Music
 function_name: playMusic
 syntax: $playMusic[query;channelID?;userId?]
 description: Plays a track from a search query or URL, auto-joining a voice channel if needed
+premium: true
 ---
 Loads a track and plays it, or adds it to the queue if something is already playing. A query that starts with `http://` or `https://` is sent to the Lavalink server as a URL (a playlist URL adds all its tracks); any other text is searched on YouTube (`ytsearch:`) and the first result is used. Returns an empty string.
 
