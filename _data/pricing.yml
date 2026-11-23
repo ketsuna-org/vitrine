@@ -1,21 +1,10 @@
-# Prices as returned by Google Play and the App Store (production catalog, read-only, 2026-10-29).
-# Reference currency: EUR (identical across France, Germany and the other euro countries read).
-# Update this file, and the date, whenever the store prices change.
-read_on: "2026-10-29"
+# Single source of truth: the production catalog (published offers), EUR, read 2026-11-23.
+# Update this file, and catalog_read_on, whenever the catalog prices change.
 reference_currency: "EUR"
-other_currency: "USD"
 plans:
-  - id: premium
-    period_month: true
-    period_year: true
-    google_play: { eur_month: "5.99", eur_year: "59.99", usd_month: "5.99", usd_year: "59.99" }
-    app_store:   { eur_month: "5.99", eur_year: "59.99", usd_month: "4.99", usd_year: "49.99" }
-  - id: host_one
-    google_play: { eur_month: "5.99", usd_month: "5.49" }
-    app_store:   { eur_month: "4.99", usd_month: "3.99" }
-  - id: host_two
-    google_play: { eur_month: "8.99", usd_month: "8.49" }
-    app_store:   { eur_month: "7.99", usd_month: "6.99" }
+  - { id: premium, eur_month: "5.99", eur_year: "59.99" }
+  - { id: host_one, eur_month: "4.99" }
+  - { id: host_two, eur_month: "7.99" }
 ai_packs:
   - { id: mini, credits: "800", eur: "1" }
   - { id: discovery, credits: "3,000", eur: "3" }

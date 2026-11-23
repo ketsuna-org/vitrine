@@ -38,10 +38,10 @@
     <p class="m-0 leading-relaxed text-on-surface-variant">{{ t.pricing.host_body }}</p>
     <div class="overflow-x-auto">
       <table class="w-full text-left text-sm">
-        <thead><tr class="border-b border-outline text-on-surface-variant"><th class="py-2 pr-4 font-medium">{{ t.pricing.col_plan }}</th><th class="py-2 pr-4 font-medium">Google Play</th><th class="py-2 font-medium">App Store</th></tr></thead>
+        <thead><tr class="border-b border-outline text-on-surface-variant"><th class="py-2 pr-4 font-medium">{{ t.pricing.col_plan }}</th><th class="py-2 font-medium">{{ t.pricing.col_month }}</th></tr></thead>
         <tbody>
-          <tr class="border-b border-outline-variant"><td class="py-3 pr-4">{{ t.pricing.host_one }}</td><td class="py-3 pr-4">{% include price.html v=host_one.google_play.eur_month %} €{{ t.pricing.per_month }} (${% include price.html v=host_one.google_play.usd_month %})</td><td class="py-3">{% include price.html v=host_one.app_store.eur_month %} €{{ t.pricing.per_month }} (${% include price.html v=host_one.app_store.usd_month %})</td></tr>
-          <tr class="border-b border-outline-variant"><td class="py-3 pr-4">{{ t.pricing.host_two }}</td><td class="py-3 pr-4">{% include price.html v=host_two.google_play.eur_month %} €{{ t.pricing.per_month }} (${% include price.html v=host_two.google_play.usd_month %})</td><td class="py-3">{% include price.html v=host_two.app_store.eur_month %} €{{ t.pricing.per_month }} (${% include price.html v=host_two.app_store.usd_month %})</td></tr>
+          <tr class="border-b border-outline-variant"><td class="py-3 pr-4">{{ t.pricing.host_one }}</td><td class="py-3">{% include price.html v=host_one.eur_month %} €{{ t.pricing.per_month }}</td></tr>
+          <tr class="border-b border-outline-variant"><td class="py-3 pr-4">{{ t.pricing.host_two }}</td><td class="py-3">{% include price.html v=host_two.eur_month %} €{{ t.pricing.per_month }}</td></tr>
         </tbody>
       </table>
     </div>
@@ -75,6 +75,5 @@
 
   <p class="m-0 mb-8 text-sm text-on-surface-variant">{{ t.pricing.compare_intro }}{% for key in site.data.comparisons.order %}{% assign cm = site.data.comparisons.items[key] %} <a class="text-primary underline underline-offset-2" href="{{ cm.slug[page.locale] | prepend: t.paths.compare | append: '/' | relative_url }}">{{ cm[page.locale].nav }}</a>{% unless forloop.last %},{% endunless %}{% endfor %}.</p>
 
-  <p class="m-0 mb-8 text-sm text-on-surface-variant">{{ t.pricing.note }} {{ pr.read_on }}.</p>
-  <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary btn-lg">{{ t.pricing.stores_cta }}</a>
+    <a href="{{ t.paths.download | relative_url }}" class="btn btn-primary btn-lg">{{ t.pricing.stores_cta }}</a>
 </div>
