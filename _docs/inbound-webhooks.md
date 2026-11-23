@@ -6,6 +6,7 @@ api_type: general
 description: Let another service run a workflow of your bot with an HTTP request. Create the webhook, find its URL, keep the secret, read the payload in BDFD and JavaScript, test with curl and fix the common errors.
 permalink: /docs/inbound-webhooks/
 locale: en
+premium: true
 translation_key: doc-inbound-webhooks
 ---
 

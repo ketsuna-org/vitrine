@@ -5,6 +5,7 @@ category: "Général"
 category_key: "Meta"
 description: "Laisser un autre service lancer un workflow de votre bot par une requête HTTP. Créer le webhook, trouver son URL, garder le secret, lire la payload en BDFD et en JavaScript, tester avec curl et corriger les erreurs courantes."
 locale: fr
+premium: true
 lang: fr
 content_language: fr
 translation_key: doc-inbound-webhooks
