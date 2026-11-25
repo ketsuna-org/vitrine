@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: bc.math, bc.vars, bc.lock, bc.forum, bc.activity, bc.entitlements
+title: bc.math, bc.vars, bc.lock, bc.forum, bc.activity
 category: "JavaScript API"
 api_type: javascript
 sidebar_context: javascript
