@@ -4,7 +4,7 @@ title: $createRole
 translation_key: docs
 category: "Moderation"
 function_name: createRole
-syntax: $createRole[name;color;(hoist);(mentionable);(reason);(returnID)]
+syntax: $createRole[name;color;(hoist);(mentionable);(reason);(returnID);(icon)]
 description: Creates a new role on the Discord server.
 ---
 
@@ -15,7 +15,7 @@ The `$createRole` function **creates a new role** on the Discord server. It retu
 ## Syntax
 
 ```
-$createRole[name;color;(hoist);(mentionable);(reason);(returnID)]
+$createRole[name;color;(hoist);(mentionable);(reason);(returnID);(icon)]
 ```
 
 ## Parameters
@@ -28,6 +28,7 @@ $createRole[name;color;(hoist);(mentionable);(reason);(returnID)]
 | `mentionable` | Optional. `"yes"` to make the role mentionable, `"no"` otherwise. Default `"no"`. Same rules as `hoist`. |
 | `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 | `returnID` | Optional. `yes`/`true`/`y` returns the ID of the created role; `no`/`false`/`n` or empty (default) returns nothing. Any other value raises `returnID must be yes or no.` |
+| `icon` | Optional. The icon of the role: an image URL (`http://` or `https://`, PNG, JPEG, GIF or WebP, up to 8 MiB downloaded; Discord limits role icons to 256 KB) or a Unicode emoji (`🔥`). Empty, absent or `!remove`: no icon. Anything else raises `A role icon must be an image URL or a Unicode emoji.` Role icons need a server with at least boost level 2: otherwise the function fails with `Role icons need a server with boost level 2 (ROLE_ICONS)` **before** creating the role. |
 
 ## Return value
 
@@ -60,6 +61,14 @@ $else
   $sendMessage[Permission denied.]
 $endif
 ```
+
+### Creation with an icon
+
+```bdfd
+$createRole[Staff;#E74C3C;yes;no;;yes;https://example.com/staff.png]
+```
+
+The icon is the last argument, after `returnID`: skip the arguments in between with empty semicolons.
 
 ### Create a colored role
 
