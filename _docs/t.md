@@ -13,9 +13,9 @@ description: Returns a translated text of the bot, in the language of the person
 `$t` looks `key` up in the bot's **Translations** (Tools tab) and returns the text in the best available language:
 
 1. the language of the person who ran the command (slash commands, buttons, menus, forms),
-2. then the language of the server, when Discord provides one (Community servers),
+2. then the language of the server, when the interaction carries one (Community servers only; never on a prefixed command, event, schedule or webhook),
 3. then the **default language** of the bot (chosen in Translations; `en-US` unless you change it),
-4. then English.
+4. then an invisible English safety net (`en-US`, `en-GB`), for the texts of ready-made modules.
 
 With the option **Use similar languages** (on by default), each step also tries the close variants of its language first (`en-GB` for `en-US`, `es-419` for `es-ES`). `zh-CN` and `zh-TW` are not variants of each other.
 

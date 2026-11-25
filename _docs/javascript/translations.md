@@ -16,7 +16,7 @@ related:
 
 `bc.t` returns a text from the bot's **Translations** (Tools tab). It is the JavaScript twin of [`$t`](/docs/t/): same keys, same text syntax, same result.
 
-The language is, in order: the language of the person who ran the interaction, the language of the server (when Discord provides one), then English. A language that has no text for the key is skipped. If no language has it, `bc.t` returns the key and writes a warning in the bot's logs.
+The language is, in order: the language of the person who ran the interaction, the language of the server (only from the interaction, Community servers), then the bot's default language, then an invisible English safety net (`en-US`, `en-GB`). Without an interaction (prefixed command, event, schedule, webhook) the bot's default language is used. A language that has no text for the key is skipped. If no language has it, `bc.t` returns the key and writes a warning in the bot's logs.
 
 > The function lives on `bc` (not as a global `t`) so that it never collides with a variable of your own named `t`.
 
