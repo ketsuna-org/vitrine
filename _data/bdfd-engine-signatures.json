@@ -423,6 +423,10 @@
   "min": 5,
   "max": 7
  },
+ "canvasdrawgradient": {
+  "min": 5,
+  "max": 8
+ },
  "canvasdrawline": {
   "min": 6,
   "max": 8
@@ -433,7 +437,7 @@
  },
  "canvasdrawtext": {
   "min": 5,
-  "max": 8
+  "max": 9
  },
  "canvasgrayscale": {
   "min": 0,
@@ -729,11 +733,11 @@
  },
  "dbaddtoset": {
   "min": 4,
-  "max": 5
+  "max": 6
  },
  "dbbatch": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "dbcooldown": {
   "min": 3,
@@ -745,11 +749,11 @@
  },
  "dbcreate": {
   "min": 3,
-  "max": 3
+  "max": 4
  },
  "dbdelete": {
   "min": 2,
-  "max": 2
+  "max": 3
  },
  "dbexists": {
   "min": 2,
@@ -765,7 +769,7 @@
  },
  "dbincrement": {
   "min": 4,
-  "max": 6
+  "max": 7
  },
  "dblasterror": {
   "min": 0,
@@ -773,11 +777,11 @@
  },
  "dbpull": {
   "min": 4,
-  "max": 4
+  "max": 5
  },
  "dbpush": {
   "min": 4,
-  "max": 5
+  "max": 6
  },
  "dbrank": {
   "min": 3,
@@ -785,11 +789,11 @@
  },
  "dbset": {
   "min": 3,
-  "max": 3
+  "max": 4
  },
  "dbspace": {
   "min": 1,
-  "max": 1
+  "max": 2
  },
  "dbtop": {
   "min": 3,
@@ -797,11 +801,11 @@
  },
  "dbtransfer": {
   "min": 5,
-  "max": 5
+  "max": 6
  },
  "dbupdate": {
   "min": 4,
-  "max": 4
+  "max": 5
  },
  "debug": {
   "min": 1,
@@ -1026,6 +1030,18 @@
  "endswith": {
   "min": 3,
   "max": null
+ },
+ "entitlementcount": {
+  "min": 0,
+  "max": 2
+ },
+ "entitlementendsat": {
+  "min": 1,
+  "max": 3
+ },
+ "entitlementskus": {
+  "min": 0,
+  "max": 3
  },
  "ephemeral": {
   "min": 0,
@@ -1379,6 +1395,10 @@
   "min": 0,
   "max": 1
  },
+ "guildids": {
+  "min": 0,
+  "max": 3
+ },
  "guildlocale": {
   "min": 0,
   "max": 0
@@ -1393,6 +1413,10 @@
  },
  "hasanyrole": {
   "min": 2,
+  "max": 3
+ },
+ "hasentitlement": {
+  "min": 1,
   "max": 3
  },
  "hash": {
@@ -2551,6 +2575,10 @@
   "min": 0,
   "max": 0
  },
+ "serverids": {
+  "min": 0,
+  "max": 3
+ },
  "serverinfo": {
   "min": 0,
   "max": 2
@@ -2682,6 +2710,14 @@
  "skipmusic": {
   "min": 0,
   "max": 0
+ },
+ "skuids": {
+  "min": 0,
+  "max": 1
+ },
+ "skuname": {
+  "min": 1,
+  "max": 1
  },
  "slashcommandscount": {
   "min": 0,

@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: bc.math, bc.vars, bc.lock, bc.forum, bc.activity
+title: bc.math, bc.vars, bc.lock, bc.forum, bc.activity, bc.entitlements
 category: "JavaScript API"
 api_type: javascript
 sidebar_context: javascript
@@ -25,6 +25,11 @@ These helpers give a JavaScript bot the same tools as the BDFD functions of the 
 | `await bc.forum.createPost(forumId, title, message, {tags, archiveMinutes, files})` | `$createForumPost` |
 | `await bc.forum.tags(forumId)` and `await bc.forum.setTags(threadId, tags)` | `$forumTags`, `$setThreadTags` |
 | `bc.activity.messageCount(channelId, minutes?, humansOnly?)` | `$channelMessageCount` |
+| `await bc.entitlements.has(skuId, { userId?, guildId? })` | `$hasEntitlement`: an active Discord entitlement (subscription or purchase) exists for the user and/or the server. Without a target, the author of the call. |
+| `await bc.entitlements.count(target?)`, `await bc.entitlements.skuIds(target?)` | `$entitlementCount`, `$entitlementSKUs` |
+| `await bc.entitlements.endsAt(skuId, target?)` | `$entitlementEndsAt`: Unix seconds, `'never'` with no end date, `null` with no active right |
+| `await bc.entitlements.list({ userId?, guildId?, skuId?, includeEnded? })` | the rights (`id`, `skuId`, `userId`, `guildId`, `type`, `startsAt`, `endsAt`, `deleted`, `consumed`, `active`) |
+| `await bc.entitlements.skus()`, `await bc.entitlements.skuName(skuId)` | `$skuIDs`, `$skuName` |
 
 Scopes are `user`, `guild`, `channel`, `message`, `guildMember` and `global`. Atomic operations are atomic inside one runner process.
 
@@ -39,6 +44,8 @@ if (bc.lock.tryLock(`chunk:${block}`)) {
   }
 }
 ```
+
+Discord monetization: purchases happen at Discord (create the SKU in the developer portal). The `entitlementCreate`, `entitlementUpdate` and `entitlementDelete` events run your script with the right in `webhook.payload` (same fields as `list`) and the event name in `webhook.path`; in BDFD the same values are the `entitlement.*` variables.
 
 To edit a message with a new image, discord.js already does it: `message.edit({ files: [attachment] })`.
 
