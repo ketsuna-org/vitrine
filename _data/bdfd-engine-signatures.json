@@ -1363,6 +1363,10 @@
   "min": 0,
   "max": 1
  },
+ "guildlocale": {
+  "min": 0,
+  "max": 0
+ },
  "guildname": {
   "min": 0,
   "max": 1
@@ -1878,6 +1882,10 @@
  "listwebhooks": {
   "min": 0,
   "max": 1
+ },
+ "locale": {
+  "min": 0,
+  "max": 0
  },
  "lockchannel": {
   "min": 0,
@@ -2727,6 +2735,10 @@
   "min": 0,
   "max": 0
  },
+ "t": {
+  "min": 1,
+  "max": null
+ },
  "takerole": {
   "min": 1,
   "max": 3
@@ -2746,6 +2758,10 @@
  "textsplit": {
   "min": 2,
   "max": 2
+ },
+ "thas": {
+  "min": 1,
+  "max": 1
  },
  "threadaddmember": {
   "min": 2,
@@ -2778,6 +2794,10 @@
  "timeoutfor": {
   "min": 2,
   "max": 3
+ },
+ "tin": {
+  "min": 2,
+  "max": null
  },
  "title": {
   "min": 1,
