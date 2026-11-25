@@ -1381,7 +1381,7 @@
  },
  "giverole": {
   "min": 1,
-  "max": 3
+  "max": 4
  },
  "giverolebyname": {
   "min": 2,
@@ -2821,7 +2821,7 @@
  },
  "takerole": {
   "min": 1,
-  "max": 3
+  "max": 4
  },
  "takerolebyname": {
   "min": 2,
