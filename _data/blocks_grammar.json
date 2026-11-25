@@ -1146,6 +1146,16 @@
     },
     "output": "((action.<key>)) = résultat ; ((action.<key>.result))"
   },
+  "translate": {
+    "desc": "Rend un texte de la table de traductions du bot, dans la langue de la personne (comme $t / $tIn) : langue de la personne, puis du serveur, puis en-US. Une clé introuvable rend la clé elle-même et écrit un avertissement dans les journaux.",
+    "category": "Logic",
+    "params": {
+      "key": "string",
+      "args": "object?",
+      "locale": "string?"
+    },
+    "output": "((action.<key>)) = texte traduit ; ((action.<key>.result))"
+  },
   "cooldown": {
     "desc": "Pose (ou modifie) un délai d'attente ; si actif, arrête l'exécution et envoie errorMessage.",
     "category": "Logic",

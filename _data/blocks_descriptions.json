@@ -59,6 +59,7 @@
     "listenForModalSubmit": "Register a workflow to run when a modal is submitted",
     "listenAndExecute": "Register a workflow to run when a button is clicked, select menu is used, or modal is submitted",
     "calculate": "Perform math operations and store result",
+    "translate": "Get a text from the bot's translations in the language of the person (like $t)",
     "getMessage": "Fetch a message and expose its fields",
     "unpinMessage": "Unpin a message in a channel",
     "createPoll": "Create a poll message in a channel",

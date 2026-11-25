@@ -4141,6 +4141,45 @@
       ]
     },
     {
+      "type": "translate",
+      "name": "Translate",
+      "category": "Logic & Flow",
+      "family": "logic",
+      "icon": "translate",
+      "deprecated": false,
+      "inPalette": true,
+      "workflowOnly": false,
+      "interactionOnly": false,
+      "pins": [
+        "next",
+        "error"
+      ],
+      "fields": [
+        {
+          "label": "Key",
+          "key": "key",
+          "type": "string",
+          "default": "",
+          "hint": "Translation key (pick one of the bot or type it)",
+          "required": true
+        },
+        {
+          "label": "Args",
+          "key": "args",
+          "type": "map",
+          "default": {},
+          "hint": "Arguments: name -> value ({name} in the text); use 1, 2... as names for positional arguments {1}, {2}; count drives plurals"
+        },
+        {
+          "label": "Locale",
+          "key": "locale",
+          "type": "string",
+          "default": "",
+          "hint": "Optional forced language (fr, en-US, pt-BR...), like $tIn. Empty: language of the person, then of the server, then en-US"
+        }
+      ]
+    },
+    {
       "type": "getMessage",
       "name": "Get Message",
       "category": "Messages",
