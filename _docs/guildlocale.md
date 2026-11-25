@@ -22,4 +22,12 @@ $guildLocale
 
 - A Discord locale code, or an empty text.
 
+## Examples
+
+```bdfd
+$if[$guildLocale==fr]
+  Ce serveur est en français.
+$endif
+```
+
 See also [`$locale`](/docs/locale/) and [`$t`](/docs/t/).
