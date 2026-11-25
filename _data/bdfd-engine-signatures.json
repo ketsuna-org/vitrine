@@ -119,6 +119,10 @@
   "min": 0,
   "max": 3
  },
+ "addsticker": {
+  "min": 3,
+  "max": 6
+ },
  "addstringselect": {
   "min": 1,
   "max": 6
@@ -304,6 +308,10 @@
   "max": 3
  },
  "ban": {
+  "min": 0,
+  "max": 1
+ },
+ "bancount": {
   "min": 0,
   "max": 1
  },
@@ -539,6 +547,10 @@
   "min": 0,
   "max": 1
  },
+ "channelpermissions": {
+  "min": 1,
+  "max": 3
+ },
  "channelposition": {
   "min": 0,
   "max": 1
@@ -705,6 +717,10 @@
  },
  "createrole": {
   "min": 2,
+  "max": 10
+ },
+ "createsticker": {
+  "min": 3,
   "max": 7
  },
  "creationdate": {
@@ -2073,7 +2089,7 @@
  },
  "modifyrole": {
   "min": 1,
-  "max": 8
+  "max": 10
  },
  "modifyroleperms": {
   "min": 2,
@@ -2322,6 +2338,10 @@
  "randomuserid": {
   "min": 0,
   "max": 0
+ },
+ "reactioncount": {
+  "min": 3,
+  "max": 4
  },
  "registerguildcommands": {
   "min": 0,

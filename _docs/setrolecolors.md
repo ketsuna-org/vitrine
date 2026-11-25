@@ -66,4 +66,4 @@ $setRoleColors[$roleID[VIP];#A9C9FF;#FFBBEC;#FFC3A0]
 ## Notes
 
 - Read the colors of a role with `$getRoleColor`, `$getRoleSecondaryColor` and `$getRoleTertiaryColor`.
-- `$modifyRole`, `$colorRole` and `$createRole` set the primary color only (a gradient role becomes single-color).
+- `$createRole` and `$modifyRole` also take the second and third colors, to create or edit a gradient role in one call. `$colorRole` sets the primary color only (a gradient role becomes single-color).

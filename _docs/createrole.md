@@ -4,7 +4,7 @@ title: $createRole
 translation_key: docs
 category: "Moderation"
 function_name: createRole
-syntax: $createRole[name;color;(hoist);(mentionable);(reason);(returnID);(icon)]
+syntax: $createRole[name;color;(hoist);(mentionable);(reason);(returnID);(icon);(permissions);(secondaryColor);(tertiaryColor)]
 description: Creates a new role on the Discord server.
 ---
 
@@ -15,7 +15,7 @@ The `$createRole` function **creates a new role** on the Discord server. It retu
 ## Syntax
 
 ```
-$createRole[name;color;(hoist);(mentionable);(reason);(returnID);(icon)]
+$createRole[name;color;(hoist);(mentionable);(reason);(returnID);(icon);(permissions);(secondaryColor);(tertiaryColor)]
 ```
 
 ## Parameters
@@ -29,6 +29,9 @@ $createRole[name;color;(hoist);(mentionable);(reason);(returnID);(icon)]
 | `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
 | `returnID` | Optional. `yes`/`true`/`y` returns the ID of the created role; `no`/`false`/`n` or empty (default) returns nothing. Any other value raises `returnID must be yes or no.` |
 | `icon` | Optional. The icon of the role: an image URL (`http://` or `https://`, PNG, JPEG, GIF or WebP, up to 8 MiB downloaded; Discord limits role icons to 256 KB) or a Unicode emoji (`🔥`). Empty, absent or `!remove`: no icon. Anything else raises `A role icon must be an image URL or a Unicode emoji.` Role icons need a server with at least boost level 2: otherwise the function fails with `Role icons need a server with boost level 2 (ROLE_ICONS)` **before** creating the role. |
+| `permissions` | Optional. The permissions the role starts with, so you no longer need `$modifyRolePerms` right after: permission names separated by `,` or `\|` (the same names as `$modifyRolePerms`, for example `SendMessages, ManageMessages`) or a decimal permission bitfield. Empty or absent: the default permissions of Discord. An unknown name raises `Invalid role permissions.` Discord refuses permissions the bot does not have itself. |
+| `secondaryColor` | Optional. The second color (hex or decimal, like `color`). Makes the role a **gradient** (server with 3 boosts). Empty or absent: a single color. An invalid value raises `Invalid role color.` |
+| `tertiaryColor` | Optional. The third color. Makes the gradient **holographic**; needs a `secondaryColor` (`A tertiary color needs a secondary color`). Discord only accepts its fixed holographic colors for this style (`#A9C9FF`, `#FFBBEC`, `#FFC3A0`). |
 
 ## Return value
 
@@ -68,7 +71,22 @@ $endif
 $createRole[Staff;#E74C3C;yes;no;;yes;https://example.com/staff.png]
 ```
 
-The icon is the last argument, after `returnID`: skip the arguments in between with empty semicolons.
+The icon comes after `returnID`: skip the arguments in between with empty semicolons.
+
+### Creation with permissions
+
+```bdfd
+$createRole[Moderator;#E74C3C;yes;yes;;yes;;ManageMessages, KickMembers, MuteMembers]
+```
+
+### Gradient and holographic roles
+
+```bdfd
+$createRole[Sunset;#FF7A00;no;no;;;;;#FF0080]
+$createRole[Holo;#A9C9FF;no;no;;;;;#FFBBEC;#FFC3A0]
+```
+
+One call creates the role with its gradient: no `$setRoleColors` needed afterwards.
 
 ### Create a colored role
 
@@ -85,6 +103,7 @@ $sendMessage[Colored role created!]
 - `hoist`: displays the members of the role in a separate section of the member list.
 - `mentionable`: allows mentioning the role with `@role`.
 - The ID is returned only with `returnID` set to `yes` (for example `$giveRole[$authorID;$createRole[VIP;#fff;;;;yes]]`); otherwise look it up afterwards with `$roleID[name]`.
+- JavaScript: `guild.roles.create({ name, permissions, colors: { primaryColor, secondaryColor, tertiaryColor } })`.
 
 ## Audit log reason
 
