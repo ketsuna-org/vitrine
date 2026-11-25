@@ -10,7 +10,7 @@ description: Returns a translated text of the bot in a chosen language. Not in B
 
 # $tIn
 
-`$tIn` works like [`$t`](/docs/t/) but starts from the language you give instead of the person's. If that language has no text, it falls back to the same variants of the language, then English. The server's language is not used.
+`$tIn` works like [`$t`](/docs/t/) but starts from the language you give instead of the person's. If that language has no text, it falls back to the variants of that language (when **Use similar languages** is on), then the bot's default language, then English. The server's language is not used.
 
 ## Syntax
 
