@@ -28,6 +28,7 @@ These helpers give a JavaScript bot the same tools as the BDFD functions of the 
 | `await bc.entitlements.has(skuId, { userId?, guildId? })` | `$hasEntitlement`: an active Discord entitlement (subscription or purchase) exists for the user and/or the server. Without a target, the author of the call. |
 | `await bc.entitlements.count(target?)`, `await bc.entitlements.skuIds(target?)` | `$entitlementCount`, `$entitlementSKUs` |
 | `await bc.entitlements.endsAt(skuId, target?)` | `$entitlementEndsAt`: Unix seconds, `'never'` with no end date, `null` with no active right |
+| `await bc.entitlements.startsAt(skuId, target?)`, `await bc.entitlements.type(skuId, target?)` | `$entitlementStartsAt` (Unix seconds, `null` without start date or right), `$entitlementType` (Discord type number, `null` without right) |
 | `await bc.entitlements.list({ userId?, guildId?, skuId?, includeEnded? })` | the rights (`id`, `skuId`, `userId`, `guildId`, `type`, `startsAt`, `endsAt`, `deleted`, `consumed`, `active`) |
 | `await bc.entitlements.skus()`, `await bc.entitlements.skuName(skuId)` | `$skuIDs`, `$skuName` |
 
