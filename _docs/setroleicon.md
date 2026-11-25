@@ -63,5 +63,6 @@ $setRoleIcon[$roleID[VIP]]
 
 ## Notes
 
-- `$modifyRole`, `$colorRole` and `$setRoleColors` leave the icon unchanged.
+- `$colorRole` and `$setRoleColors` leave the icon unchanged. `$createRole` and `$modifyRole` take the icon as their last argument.
+- `$getRoleIcon` reads the icon of a role.
 - In a JavaScript bot (discord.js): `await role.setIcon('https://example.com/vip.png')` or `await role.setUnicodeEmoji('🔥')`; `role.setIcon(null)` removes it.
