@@ -3,7 +3,7 @@ layout: doc
 title: $giveRole
 category: "Moderation"
 function_name: giveRole
-syntax: $giveRole[(userID);roleID;(reason)]
+syntax: $giveRole[(userID);roleID;(reason);(serverID)]
 description: Assigns a role to a user on the server.
 locale: en
 translation_key: doc-giverole
@@ -16,7 +16,7 @@ The function `$giveRole` assigns a role to a user on the Discord server. The bot
 ## Syntax
 
 ```
-$giveRole[userID;roleID;(reason)]
+$giveRole[userID;roleID;(reason);(serverID)]
 ```
 
 Or with a single parameter (targeting the users mentioned in the message):
@@ -32,6 +32,7 @@ $giveRole[roleID]
 | `userID` | Optional. The ID of the target user. With a single parameter, the role is given to the users mentioned in the message (never to the author). |
 | `roleID` | The ID of the role to assign. Required, must be a valid ID. |
 | `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
+| `serverID` | Optional. The server where the role changes, when it is not the current one (an event without a server, such as a Discord purchase). The bot must be in that server. |
 
 ## Return Value
 

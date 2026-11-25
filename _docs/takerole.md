@@ -3,7 +3,7 @@ layout: doc
 title: $takeRole
 category: "Moderation"
 function_name: takeRole
-syntax: $takeRole[userID;roleID;(reason)] or $takeRole[roleID]
+syntax: $takeRole[userID;roleID;(reason);(serverID)] or $takeRole[roleID]
 description: Removes a role from a user on the server.
 locale: en
 translation_key: doc-takerole
@@ -16,7 +16,7 @@ The `$takeRole` function **removes a role** from a user on the Discord server. T
 ## Syntax
 
 ```
-$takeRole[userID;roleID;(reason)]
+$takeRole[userID;roleID;(reason);(serverID)]
 $takeRole[roleID]
 ```
 
@@ -27,6 +27,7 @@ $takeRole[roleID]
 | `userID` | Optional - The ID of the target user. If only one argument is given, it is read as the role ID and the role is removed from the users mentioned in the message; an error is raised if there is no mention (the author is never used as a fallback). |
 | `roleID` | The ID of the role to remove (a positive number). Required. |
 | `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
+| `serverID` | Optional. The server where the role changes, when it is not the current one (an event without a server, such as a Discord purchase). The bot must be in that server. |
 
 ## Return Value
 
