@@ -1327,6 +1327,10 @@
   "min": 0,
   "max": 1
  },
+ "deflate": {
+  "min": 1,
+  "max": 2
+ },
  "delete": {
   "min": 1,
   "max": 1
@@ -1375,6 +1379,10 @@
   "min": 3,
   "max": 3
  },
+ "deleteemojimessagereactions": {
+  "min": 3,
+  "max": 40
+ },
  "deleteemojis": {
   "min": 2,
   "max": 40
@@ -1382,6 +1390,10 @@
  "deleteevent": {
   "min": 1,
   "max": 1
+ },
+ "deletefield": {
+  "min": 1,
+  "max": 2
  },
  "deleteforumtags": {
   "min": 2,
@@ -1554,6 +1566,10 @@
  "editevent": {
   "min": 3,
   "max": 4
+ },
+ "editfield": {
+  "min": 1,
+  "max": 5
  },
  "editforumtag": {
   "min": 2,
@@ -1906,6 +1922,10 @@
  "findemoji": {
   "min": 1,
   "max": 1
+ },
+ "findguild": {
+  "min": 1,
+  "max": 2
  },
  "findguildchannel": {
   "min": 2,
@@ -2479,6 +2499,10 @@
   "min": 0,
   "max": 1
  },
+ "guildshardid": {
+  "min": 0,
+  "max": 1
+ },
  "guildsoundboardlimit": {
   "min": 0,
   "max": 1
@@ -2698,6 +2722,10 @@
  "increment": {
   "min": 1,
   "max": 6
+ },
+ "inflate": {
+  "min": 1,
+  "max": 2
  },
  "inlinecode": {
   "min": 1,
@@ -4687,6 +4715,10 @@
   "min": 2,
   "max": 3
  },
+ "timestamp": {
+  "min": 0,
+  "max": 2
+ },
  "tin": {
   "min": 2,
   "max": null
@@ -4910,6 +4942,10 @@
  "userreacted": {
   "min": 4,
   "max": 4
+ },
+ "userreferenceid": {
+  "min": 2,
+  "max": 2
  },
  "userrolementions": {
   "min": 1,
