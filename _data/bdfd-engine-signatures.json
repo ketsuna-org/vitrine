@@ -239,6 +239,154 @@
   "min": 2,
   "max": 3
  },
+ "arrayadvancedsort": {
+  "min": 4,
+  "max": 5
+ },
+ "arrayat": {
+  "min": 2,
+  "max": 2
+ },
+ "arrayclear": {
+  "min": 1,
+  "max": 1
+ },
+ "arrayconcat": {
+  "min": 2,
+  "max": null
+ },
+ "arraycreate": {
+  "min": 1,
+  "max": 2
+ },
+ "arrayevery": {
+  "min": 3,
+  "max": 3
+ },
+ "arrayfill": {
+  "min": 2,
+  "max": 2
+ },
+ "arrayfilter": {
+  "min": 3,
+  "max": 4
+ },
+ "arrayfind": {
+  "min": 3,
+  "max": 3
+ },
+ "arrayfindindex": {
+  "min": 3,
+  "max": 3
+ },
+ "arrayfindlast": {
+  "min": 3,
+  "max": 3
+ },
+ "arrayfindlastindex": {
+  "min": 3,
+  "max": 3
+ },
+ "arrayforeach": {
+  "min": 3,
+  "max": 3
+ },
+ "arrayincludes": {
+  "min": 2,
+  "max": 2
+ },
+ "arrayindexof": {
+  "min": 2,
+  "max": 2
+ },
+ "arrayjoin": {
+  "min": 1,
+  "max": 2
+ },
+ "arraylastindexof": {
+  "min": 2,
+  "max": 2
+ },
+ "arraylength": {
+  "min": 1,
+  "max": 1
+ },
+ "arrayload": {
+  "min": 1,
+  "max": null
+ },
+ "arraymap": {
+  "min": 3,
+  "max": 4
+ },
+ "arraypop": {
+  "min": 1,
+  "max": 1
+ },
+ "arraypush": {
+  "min": 2,
+  "max": null
+ },
+ "arraypushjson": {
+  "min": 2,
+  "max": null
+ },
+ "arrayrandomindex": {
+  "min": 1,
+  "max": 1
+ },
+ "arrayrandomvalue": {
+  "min": 1,
+  "max": 1
+ },
+ "arrayreduce": {
+  "min": 4,
+  "max": 5
+ },
+ "arrayreverse": {
+  "min": 1,
+  "max": 2
+ },
+ "arrayshift": {
+  "min": 1,
+  "max": 1
+ },
+ "arrayshuffle": {
+  "min": 1,
+  "max": 1
+ },
+ "arrayslice": {
+  "min": 3,
+  "max": 4
+ },
+ "arraysome": {
+  "min": 3,
+  "max": 3
+ },
+ "arraysort": {
+  "min": 1,
+  "max": 3
+ },
+ "arraysplice": {
+  "min": 3,
+  "max": null
+ },
+ "arrayunique": {
+  "min": 1,
+  "max": 2
+ },
+ "arrayunload": {
+  "min": 1,
+  "max": 1
+ },
+ "arrayunshift": {
+  "min": 2,
+  "max": null
+ },
+ "arrayunshiftjson": {
+  "min": 2,
+  "max": null
+ },
  "attachimage": {
   "min": 0,
   "max": 1
@@ -891,6 +1039,10 @@
   "min": 0,
   "max": 1
  },
+ "delete": {
+  "min": 1,
+  "max": 1
+ },
  "deleteautomodrule": {
   "min": 1,
   "max": 2
@@ -1127,6 +1279,10 @@
   "min": 1,
   "max": 3
  },
+ "env": {
+  "min": 1,
+  "max": 32
+ },
  "ephemeral": {
   "min": 0,
   "max": 0
@@ -1242,6 +1398,10 @@
  "gcd": {
   "min": 2,
   "max": null
+ },
+ "get": {
+  "min": 1,
+  "max": 1
  },
  "getattachments": {
   "min": 1,
@@ -1499,6 +1659,10 @@
   "min": 0,
   "max": 1
  },
+ "has": {
+  "min": 1,
+  "max": 1
+ },
  "hasallroles": {
   "min": 2,
   "max": 3
@@ -1664,6 +1828,10 @@
   "max": 1
  },
  "isadmin": {
+  "min": 1,
+  "max": 1
+ },
+ "isarray": {
   "min": 1,
   "max": 1
  },
@@ -1922,6 +2090,26 @@
  "leavevoice": {
   "min": 0,
   "max": 0
+ },
+ "let": {
+  "min": 2,
+  "max": 2
+ },
+ "letdivide": {
+  "min": 2,
+  "max": 2
+ },
+ "letmulti": {
+  "min": 2,
+  "max": 2
+ },
+ "letsub": {
+  "min": 2,
+  "max": 2
+ },
+ "letsum": {
+  "min": 2,
+  "max": 2
  },
  "levelfromxp": {
   "min": 1,
