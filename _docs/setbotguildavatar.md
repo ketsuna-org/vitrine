@@ -32,6 +32,8 @@ $setBotGuildAvatar[guildID;(url)] → result
 
 ## Example
 
-```bdfd
-$sendMessage[$setBotGuildAvatar[10;data:image/png;base64,iVBORw0KGgo=]]
+```text
+$setBotGuildAvatar[10;$message[value]]
 ```
+
+The value passed (`$message[value]`) must be a data URI such as `data:image/png;base64,...`: the function does not download web addresses.

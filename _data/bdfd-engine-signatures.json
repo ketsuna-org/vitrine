@@ -11,6 +11,10 @@
   "min": 0,
   "max": 2
  },
+ "addapplicationemoji": {
+  "min": 2,
+  "max": 3
+ },
  "addbutton": {
   "min": 4,
   "max": 7
@@ -1083,6 +1087,10 @@
   "min": 2,
   "max": 10
  },
+ "createsoundboardsound": {
+  "min": 3,
+  "max": 6
+ },
  "createstageinstance": {
   "min": 2,
   "max": 5
@@ -1219,6 +1227,10 @@
   "min": 1,
   "max": 1
  },
+ "deleteapplicationemojis": {
+  "min": 1,
+  "max": 50
+ },
  "deleteautomodrule": {
   "min": 1,
   "max": 2
@@ -1274,6 +1286,10 @@
  "deletesound": {
   "min": 1,
   "max": 2
+ },
+ "deletesoundboardsounds": {
+  "min": 2,
+  "max": 40
  },
  "deletestageinstance": {
   "min": 1,
@@ -1349,6 +1365,10 @@
  },
  "duration": {
   "min": 1,
+  "max": 2
+ },
+ "editapplicationemoji": {
+  "min": 2,
   "max": 2
  },
  "editautomodrule": {
@@ -1430,6 +1450,10 @@
  "editserver": {
   "min": 2,
   "max": 3
+ },
+ "editsoundboardsound": {
+  "min": 2,
+  "max": 6
  },
  "editsplittext": {
   "min": 2,
@@ -1771,6 +1795,10 @@
   "min": 1,
   "max": 1
  },
+ "getapplicationemojis": {
+  "min": 0,
+  "max": 2
+ },
  "getattachments": {
   "min": 1,
   "max": 1
@@ -1934,6 +1962,10 @@
  "getslowmode": {
   "min": 0,
   "max": 1
+ },
+ "getsoundboardsound": {
+  "min": 2,
+  "max": 3
  },
  "getstageinstance": {
   "min": 1,
@@ -3363,6 +3395,10 @@
    2
   ]
  },
+ "randomapplicationemojiid": {
+  "min": 0,
+  "max": 0
+ },
  "randombytes": {
   "min": 1,
   "max": 1
@@ -4110,6 +4146,38 @@
  "sort": {
   "min": 4,
   "max": null
+ },
+ "soundavailable": {
+  "min": 2,
+  "max": 2
+ },
+ "soundcreatedat": {
+  "min": 2,
+  "max": 2
+ },
+ "soundemoji": {
+  "min": 2,
+  "max": 2
+ },
+ "soundid": {
+  "min": 2,
+  "max": 20
+ },
+ "soundname": {
+  "min": 2,
+  "max": 2
+ },
+ "soundurl": {
+  "min": 2,
+  "max": 2
+ },
+ "sounduserid": {
+  "min": 2,
+  "max": 2
+ },
+ "soundvolume": {
+  "min": 2,
+  "max": 2
  },
  "splittext": {
   "min": 1,
