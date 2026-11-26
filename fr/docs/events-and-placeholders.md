@@ -36,7 +36,7 @@ Les variables insèrent des valeurs d'exécution dans les messages de réponse, 
 Welcome ((user.username))! You joined ((guild.name)).
 ```
 
-> **Le texte BDScript n'est pas résolu.** Le résolveur `((...))` n'est pas appliqué au texte d'un script BDFD natif (vérification : `Hi ((date))` est renvoyé inchangé). Dans un script BDFD, utilisez les `$functions`, par exemple `$username` et `$serverName`.
+> **Le texte BibiScript n'est pas résolu.** Le résolveur `((...))` n'est pas appliqué au texte d'un script BDFD natif (vérification : `Hi ((date))` est renvoyé inchangé). Dans un script BDFD, utilisez les `$functions`, par exemple `$username` et `$serverName`.
 
 ### Principales familles de variables
 
@@ -54,7 +54,7 @@ Welcome ((user.username))! You joined ((guild.name)).
 
 Lorsqu'un utilisateur clique sur un bouton ou envoie un modal, les variables d'interaction sont renseignées automatiquement.
 
-**BDScript (BDFD)** lit l'ID personnalisé avec `$customID` (valide dans une interaction de composant ou de modal) :
+**BibiScript (BDFD)** lit l'ID personnalisé avec `$customID` (valide dans une interaction de composant ou de modal) :
 ```bdfd
 $ephemeral
 Clicked: $customID
@@ -99,9 +99,9 @@ L'éditeur avertit quand deux workflows peuvent répondre au même custom ID, ou
 | [Exhaustive event variables guide](/reference-deployment/2026/05/22/available-variables-per-event-exhaustive/) | Toutes les variables pour chaque type d'événement |
 | [JavaScript placeholders](/docs/javascript/placeholders/) | Utilisation des schémas `((...))` en BDJS |
 
-## BDScript et JavaScript
+## BibiScript et JavaScript
 
-- **BDScript :** utilisez les `$functions` ; le texte `((...))` à l'intérieur d'un script BDFD est laissé tel qu'il a été saisi.
+- **BibiScript :** utilisez les `$functions` ; le texte `((...))` à l'intérieur d'un script BDFD est laissé tel qu'il a été saisi.
 - **JavaScript :** consultez [variables](/docs/javascript/variables/) et [placeholders](/docs/javascript/placeholders/).
 
 ## Étapes suivantes

@@ -30,7 +30,7 @@ Ajoutez des blocs, remplissez leurs champs et voyez le message qu'ils enverraien
 
 <section data-pg-panel="bdfd" hidden markdown="1">
 
-Tapez ou collez un extrait BDFD / BDScript.
+Tapez ou collez un extrait BDFD / BibiScript.
 
 <div id="bdfd-playground" class="bp-root"><noscript>Le playground a besoin de JavaScript.</noscript></div>
 

@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "$kick — fonction BDScript"
+title: "$kick — fonction BibiScript"
 category: "Modération"
 category_key: "Moderation"
 function_name: kick

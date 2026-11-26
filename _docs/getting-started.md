@@ -24,21 +24,21 @@ Download the app for [mobile or desktop](/download/). Create a Discord applicati
 | Mode | When to use | Documentation |
 |------|-------------|---------------|
 | **Blocks** | Visual actions and workflows | [Blocks reference](/docs/blocks/) |
-| **BDScript** | Text and `$functions`, run by the native BDFD interpreter | [BDFD Function Reference](/docs/) |
+| **BibiScript** | Text and `$functions`, run by the native BDFD interpreter | [BDFD Function Reference](/docs/) |
 | **BDJS (JavaScript)** | Full scripting power | [JavaScript API](/docs/javascript/) |
 
-In BDScript, [$scriptLanguage](/docs/scriptlanguage/) returns the language of the native interpreter (`BDScript 2`).
+In BibiScript, [$scriptLanguage](/docs/scriptlanguage/) returns the language of the native interpreter (`BDScript 2`).
 
 Read [Execution model and compatibility](/docs/execution-model/) before copying examples: slash replies are implicit, and `$closeTicket` is flagged as an incomplete compatibility function.
 
 ## 3. Build your first command
 
-- **BDScript:** [Create a Command step-by-step]({{ onboarding_guide_1.url | relative_url }}) → [Perfect ping command]({{ onboarding_guide_2.url | relative_url }})
+- **BibiScript:** [Create a Command step-by-step]({{ onboarding_guide_1.url | relative_url }}) → [Perfect ping command]({{ onboarding_guide_2.url | relative_url }})
 - **JavaScript:** Add a JavaScript block and use `await interaction.reply("pong")` or `await message.reply("pong")`
 
 ## 4. Persistent data
 
-- **BDScript:** `$getUserVar` / `$setUserVar` — see [Variables](/docs/#variables) and the [Database variables guide]({{ onboarding_guide_3.url | relative_url }})
+- **BibiScript:** `$getUserVar` / `$setUserVar` — see [Variables](/docs/#variables) and the [Database variables guide]({{ onboarding_guide_3.url | relative_url }})
 - **JavaScript:** `await db.user.get('key')` / `await db.user.set('key', value)` — see [db.user](/docs/javascript/db-user/)
 
 ## 5. Deploy and monitor

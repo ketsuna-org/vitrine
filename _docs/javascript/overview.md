@@ -8,7 +8,7 @@ description: Script globals available in BDJS (JavaScript) bots — db, interact
 permalink: /docs/javascript/
 ---
 
-Bot Creator supports two scripting modes: **BDScript** (`$functions`) and **BDJS** (JavaScript). When your bot uses BDJS, command handlers run as async JavaScript with a sandboxed set of globals.
+Bot Creator supports two scripting modes: **BibiScript** (`$functions`) and **BDJS** (JavaScript). When your bot uses BDJS, command handlers run as async JavaScript with a sandboxed set of globals.
 
 Check your bot's mode with [$scriptLanguage](/docs/scriptlanguage/) — it returns `bdjs` or `bdscript`.
 
@@ -54,4 +54,4 @@ Many BDJS features map to BDFD `$functions`. See the [BDFD Variables](/docs/#var
 - [sandbox](/docs/javascript/sandbox/) — limits and restrictions
 - [require()](/docs/javascript/require/)
 - [Placeholders](/docs/javascript/placeholders/)
-- [Events & placeholders](/docs/events-and-placeholders/) — `((...))` in BDScript
+- [Events & placeholders](/docs/events-and-placeholders/) — `((...))` in BibiScript

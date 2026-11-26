@@ -91,4 +91,4 @@ The bot tests the public Lavalink v4 servers and keeps the fastest ones. Your ow
 
 ## BDFD equivalent
 
-BDScript music functions (`$playMusic`, `$joinVoice`, `$skipMusic`…) use the same Lavalink service. See the [Music](/docs/#music) function category.
+BibiScript music functions (`$playMusic`, `$joinVoice`, `$skipMusic`…) use the same Lavalink service. See the [Music](/docs/#music) function category.

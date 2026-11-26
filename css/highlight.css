@@ -69,7 +69,7 @@
 .highlight .vi { color: #40ffff } /* Name.Variable.Instance */
 .highlight .il { color: #3677a9 } /* Literal.Number.Integer.Long */
 
-/* BDFD (BDScript) Custom Highlight Styles */
+/* BDFD (BibiScript) Custom Highlight Styles */
 .bdfd-comment {
   color: #6b7280 !important;
   font-style: italic !important;

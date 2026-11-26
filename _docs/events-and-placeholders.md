@@ -32,7 +32,7 @@ Placeholders insert runtime values into response messages, embeds, components an
 Welcome ((user.username))! You joined ((guild.name)).
 ```
 
-> **BDScript text is not resolved.** The `((...))` resolver is not applied to the text of a native BDFD script (probe: `Hi ((date))` is returned unchanged). In a BDFD script use the `$functions`, for example `$username` and `$serverName`.
+> **BibiScript text is not resolved.** The `((...))` resolver is not applied to the text of a native BDFD script (probe: `Hi ((date))` is returned unchanged). In a BDFD script use the `$functions`, for example `$username` and `$serverName`.
 
 ### Core placeholder families
 
@@ -50,7 +50,7 @@ Welcome ((user.username))! You joined ((guild.name)).
 
 When a user clicks a button or submits a modal, interaction placeholders are populated automatically.
 
-**BDScript (BDFD)** reads the custom ID with `$customID` (valid in a component or modal interaction):
+**BibiScript (BDFD)** reads the custom ID with `$customID` (valid in a component or modal interaction):
 ```bdfd
 $ephemeral
 Clicked: $customID
@@ -95,9 +95,9 @@ See [Interactions overview](/docs/interactions-overview/) for component-specific
 | [Exhaustive event variables guide](/reference-deployment/2026/05/22/available-variables-per-event-exhaustive/) | Every variable per event type |
 | [JavaScript placeholders](/docs/javascript/placeholders/) | BDJS usage of `((...))` patterns |
 
-## BDScript vs JavaScript
+## BibiScript vs JavaScript
 
-- **BDScript:** use `$functions`; `((...))` text inside a BDFD script is left as typed.
+- **BibiScript:** use `$functions`; `((...))` text inside a BDFD script is left as typed.
 - **JavaScript:** see [variables](/docs/javascript/variables/) and [placeholders](/docs/javascript/placeholders/).
 
 ## Next steps

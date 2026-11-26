@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "$clear — fonction BDScript"
+title: "$clear — fonction BibiScript"
 category: "Modération"
 function_name: clear
 syntax: $clear[(amount);(userID);(removePinned)]

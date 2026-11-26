@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "$unBanID — fonction BDScript"
+title: "$unBanID — fonction BibiScript"
 category: "Modération"
 category_key: "Moderation"
 function_name: unBanID

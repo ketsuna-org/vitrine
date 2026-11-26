@@ -28,21 +28,21 @@ Téléchargez l'application pour [mobile ou ordinateur](/download/). Créez une 
 | Mode | Quand l'utiliser | Documentation |
 |------|-------------|---------------|
 | **Blocs** | Actions visuelles et workflows | [Référence des blocs](/docs/blocks/) |
-| **BDScript** | Texte et `$functions`, exécutés par l'interpréteur BDFD natif | [Référence des fonctions BDFD](/docs/) |
+| **BibiScript** | Texte et `$functions`, exécutés par l'interpréteur BDFD natif | [Référence des fonctions BDFD](/docs/) |
 | **BDJS (JavaScript)** | Toute la puissance du script | [API JavaScript](/docs/javascript/) |
 
-En BDScript, [$scriptLanguage](/docs/scriptlanguage/) (en anglais) renvoie le langage de l'interpréteur natif (`BDScript 2`).
+En BibiScript, [$scriptLanguage](/docs/scriptlanguage/) (en anglais) renvoie le langage de l'interpréteur natif (`BDScript 2`).
 
 Lisez [Execution model and compatibility](/docs/execution-model/) (en anglais) avant de copier des exemples : les réponses aux commandes slash sont implicites, et `$closeTicket` est signalée comme une fonction de compatibilité incomplète.
 
 ## 3. Créer votre première commande
 
-- **BDScript :** [Create a Command step-by-step]({{ onboarding_guide_1.url | relative_url }}) → [Perfect ping command]({{ onboarding_guide_2.url | relative_url }})
+- **BibiScript :** [Create a Command step-by-step]({{ onboarding_guide_1.url | relative_url }}) → [Perfect ping command]({{ onboarding_guide_2.url | relative_url }})
 - **JavaScript :** ajoutez un bloc JavaScript et utilisez `await interaction.reply("pong")` ou `await message.reply("pong")`
 
 ## 4. Données persistantes
 
-- **BDScript :** `$getUserVar` / `$setUserVar` : consultez [Variables](/docs/#variables) (en anglais) et le [guide des variables de base de données]({{ onboarding_guide_3.url | relative_url }})
+- **BibiScript :** `$getUserVar` / `$setUserVar` : consultez [Variables](/docs/#variables) (en anglais) et le [guide des variables de base de données]({{ onboarding_guide_3.url | relative_url }})
 - **JavaScript :** `await db.user.get('key')` / `await db.user.set('key', value)` : consultez [db.user](/docs/javascript/db-user/) (en anglais)
 
 ## 5. Déployer et surveiller

@@ -46,7 +46,7 @@ Variables must be registered in the Bot Creator app panel before scoped `db.*.ge
 
 ## BDFD equivalent
 
-BDScript uses `$getUserVar`, `$getVar`, etc. See [Variables](/docs/#variables) function category.
+BibiScript uses `$getUserVar`, `$getVar`, etc. See [Variables](/docs/#variables) function category.
 
 ## Related
 

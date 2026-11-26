@@ -28,7 +28,7 @@ const descriptions = {
   globalcooldown: 'Sets a cooldown shared across all servers for a command.',
   servercooldown: 'Sets a per-server cooldown for a command.',
   loop: 'Repeats a block of actions a given number of times. Legacy alias of $for.',
-  func: 'Defines a reusable function block in BDScript.',
+  func: 'Defines a reusable function block in BibiScript.',
   funcend: 'Ends a function block started with $func.',
   error: 'Reads the error caught by the last $try / $catch block, or one of its details.',
   ephemeral: 'Makes the response visible only to the user who triggered the interaction.',

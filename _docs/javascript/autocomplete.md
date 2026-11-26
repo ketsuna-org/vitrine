@@ -51,4 +51,4 @@ const query = interaction.options.getFocused(true);
 ## Related
 
 - [interaction](/docs/javascript/interaction/) — slash command replies
-- [Interactions overview](/docs/interactions-overview/) — BDScript autocomplete with `((interaction.kind))`
+- [Interactions overview](/docs/interactions-overview/) — BibiScript autocomplete with `((interaction.kind))`

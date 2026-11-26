@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "$takeRole — fonction BDScript"
+title: "$takeRole — fonction BibiScript"
 category: "Modération"
 function_name: takeRole
 syntax: $takeRole[userID;roleID] or $takeRole[roleID]

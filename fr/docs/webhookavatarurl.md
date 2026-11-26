@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "$webhookAvatarURL — fonction BDScript"
+title: "$webhookAvatarURL — fonction BibiScript"
 category: "Webhooks et intégrations"
 function_name: webhookAvatarURL
 syntax: $webhookAvatarURL[webhookURL;url]
