@@ -1059,6 +1059,10 @@
   "min": 0,
   "max": 2
  },
+ "channelfull": {
+  "min": 0,
+  "max": 1
+ },
  "channelguildid": {
   "min": 0,
   "max": 1
@@ -1090,6 +1094,14 @@
  "channelleaderboard": {
   "min": 1,
   "max": 9
+ },
+ "channelmembercount": {
+  "min": 0,
+  "max": 1
+ },
+ "channelmemberids": {
+  "min": 0,
+  "max": 2
  },
  "channelmessagecount": {
   "min": 1,
@@ -1151,6 +1163,14 @@
   "min": 0,
   "max": 1
  },
+ "channelvoicemembercount": {
+  "min": 0,
+  "max": 1
+ },
+ "channelvoicememberids": {
+  "min": 0,
+  "max": 2
+ },
  "channelvoiceregion": {
   "min": 0,
   "max": 1
@@ -1211,6 +1231,10 @@
   "min": 1,
   "max": 2
  },
+ "clearmessages": {
+  "min": 2,
+  "max": 4
+ },
  "clearqueue": {
   "min": 0,
   "max": 0
@@ -1218,6 +1242,10 @@
  "clearreactions": {
   "min": 3,
   "max": null
+ },
+ "clearusermessages": {
+  "min": 3,
+  "max": 4
  },
  "clip": {
   "min": 0,
