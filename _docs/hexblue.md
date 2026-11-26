@@ -2,7 +2,7 @@
 layout: doc
 title: $hexBlue[]
 translation_key: docs
-category: "Math & Text"
+category: "Image & Canvas"
 function_name: hexBlue
 syntax: $hexBlue[hex]
 description: "Returns the blue component (0 to 255) of a six-digit hexadecimal color."

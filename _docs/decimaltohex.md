@@ -2,7 +2,7 @@
 layout: doc
 title: $decimalToHex[]
 translation_key: docs
-category: "Math & Text"
+category: "Image & Canvas"
 function_name: decimalToHex
 syntax: $decimalToHex[decimal]
 description: "Converts a decimal color (0 to 16777215) into a six-digit uppercase hexadecimal code, without #."

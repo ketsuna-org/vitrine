@@ -2,7 +2,7 @@
 layout: doc
 title: $hexRed[]
 translation_key: docs
-category: "Math & Text"
+category: "Image & Canvas"
 function_name: hexRed
 syntax: $hexRed[hex]
 description: "Returns the red component (0 to 255) of a six-digit hexadecimal color."

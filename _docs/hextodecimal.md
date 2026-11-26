@@ -2,7 +2,7 @@
 layout: doc
 title: $hexToDecimal[]
 translation_key: docs
-category: "Math & Text"
+category: "Image & Canvas"
 function_name: hexToDecimal
 syntax: $hexToDecimal[hex]
 description: "Converts a six-digit hexadecimal color, with or without #, into a decimal integer."

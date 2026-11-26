@@ -2,7 +2,7 @@
 layout: doc
 title: $hexGreen[]
 translation_key: docs
-category: "Math & Text"
+category: "Image & Canvas"
 function_name: hexGreen
 syntax: $hexGreen[hex]
 description: "Returns the green component (0 to 255) of a six-digit hexadecimal color."
