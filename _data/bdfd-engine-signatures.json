@@ -95,6 +95,10 @@
   "min": 3,
   "max": 9
  },
+ "addposttags": {
+  "min": 2,
+  "max": 12
+ },
  "addradiogroupoption": {
   "min": 2,
   "max": 5
@@ -687,16 +691,40 @@
   "min": 2,
   "max": 2
  },
+ "channelbitrate": {
+  "min": 0,
+  "max": 1
+ },
  "channelcategoryid": {
   "min": 0,
   "max": 1
+ },
+ "channelchildrencount": {
+  "min": 0,
+  "max": 1
+ },
+ "channelchildrenids": {
+  "min": 0,
+  "max": 2
  },
  "channelcount": {
   "min": 0,
   "max": 0
  },
+ "channelcreatedat": {
+  "min": 0,
+  "max": 1
+ },
  "channelexists": {
   "min": 1,
+  "max": 1
+ },
+ "channelflags": {
+  "min": 0,
+  "max": 2
+ },
+ "channelguildid": {
+  "min": 0,
   "max": 1
  },
  "channelid": {
@@ -706,6 +734,14 @@
  "channelidfromname": {
   "min": 1,
   "max": 1
+ },
+ "channelids": {
+  "min": 0,
+  "max": 1
+ },
+ "channelischildrenof": {
+  "min": 2,
+  "max": 2
  },
  "channelmessagecount": {
   "min": 1,
@@ -727,6 +763,10 @@
   "min": 1,
   "max": 3
  },
+ "channelpinnedmessages": {
+  "min": 0,
+  "max": 2
+ },
  "channelposition": {
   "min": 0,
   "max": 1
@@ -735,12 +775,32 @@
   "min": 2,
   "max": 4
  },
+ "channeltags": {
+  "min": 0,
+  "max": 2
+ },
+ "channelthreadids": {
+  "min": 0,
+  "max": 2
+ },
  "channeltopic": {
   "min": 0,
   "max": 1
  },
  "channeltype": {
   "min": 1,
+  "max": 1
+ },
+ "channelurl": {
+  "min": 0,
+  "max": 1
+ },
+ "channeluserlimit": {
+  "min": 0,
+  "max": 1
+ },
+ "channelvoiceregion": {
+  "min": 0,
   "max": 1
  },
  "charcodeat": {
@@ -789,6 +849,10 @@
  },
  "clonechannel": {
   "min": 1,
+  "max": 3
+ },
+ "clonerole": {
+  "min": 2,
   "max": 3
  },
  "closeticket": {
@@ -910,6 +974,10 @@
  "createrole": {
   "min": 2,
   "max": 10
+ },
+ "createstageinstance": {
+  "min": 2,
+  "max": 5
  },
  "createsticker": {
   "min": 3,
@@ -1059,6 +1127,10 @@
   "min": 0,
   "max": 0
  },
+ "deleteemojis": {
+  "min": 2,
+  "max": 40
+ },
  "deleteevent": {
   "min": 1,
   "max": 1
@@ -1083,13 +1155,25 @@
   "min": 1,
   "max": 2
  },
+ "deletestageinstance": {
+  "min": 1,
+  "max": 1
+ },
  "deletesticker": {
   "min": 1,
   "max": 2
  },
+ "deletestickers": {
+  "min": 2,
+  "max": 40
+ },
  "description": {
   "min": 1,
   "max": 2
+ },
+ "disableallmentions": {
+  "min": 0,
+  "max": 0
  },
  "disableinnerspaceremoval": {
   "min": 0,
@@ -1175,6 +1259,18 @@
    2
   ]
  },
+ "editrolename": {
+  "min": 3,
+  "max": 3
+ },
+ "editroleposition": {
+  "min": 3,
+  "max": 3
+ },
+ "editroleunicodeemoji": {
+  "min": 2,
+  "max": 3
+ },
  "editselectmenu": {
   "min": 3,
   "max": 5
@@ -1190,6 +1286,10 @@
  "editsplittext": {
   "min": 2,
   "max": 2
+ },
+ "editstageinstance": {
+  "min": 1,
+  "max": 3
  },
  "editsticker": {
   "min": 2,
@@ -1219,11 +1319,39 @@
   "min": 2,
   "max": 6
  },
+ "emoji": {
+  "min": 1,
+  "max": 1
+ },
+ "emojianimated": {
+  "min": 1,
+  "max": 1
+ },
+ "emojiauthorid": {
+  "min": 1,
+  "max": 1
+ },
  "emojicount": {
   "min": 0,
   "max": 1
  },
+ "emojicreatedat": {
+  "min": 1,
+  "max": 1
+ },
  "emojiexists": {
+  "min": 1,
+  "max": 1
+ },
+ "emojiguildid": {
+  "min": 1,
+  "max": 1
+ },
+ "emojiid": {
+  "min": 1,
+  "max": 1
+ },
+ "emojiidentifier": {
   "min": 1,
   "max": 1
  },
@@ -1231,7 +1359,23 @@
   "min": 1,
   "max": 1
  },
+ "emojirequirescolons": {
+  "min": 1,
+  "max": 1
+ },
+ "emojiroles": {
+  "min": 1,
+  "max": 2
+ },
+ "emojiurl": {
+  "min": 1,
+  "max": 1
+ },
  "emotecount": {
+  "min": 0,
+  "max": 0
+ },
+ "enableallmentions": {
   "min": 0,
   "max": 0
  },
@@ -1303,6 +1447,14 @@
   "min": 0,
   "max": 0
  },
+ "fetchapplication": {
+  "min": 0,
+  "max": 3
+ },
+ "fetchapplicationemojis": {
+  "min": 0,
+  "max": 3
+ },
  "fetchauditlog": {
   "min": 3,
   "max": 6
@@ -1310,6 +1462,18 @@
  "fetchauditlogcount": {
   "min": 2,
   "max": 4
+ },
+ "fetchchannels": {
+  "min": 0,
+  "max": 3
+ },
+ "fetchmembers": {
+  "min": 0,
+  "max": 3
+ },
+ "fetchroles": {
+  "min": 0,
+  "max": 3
  },
  "fetchuserauditlog": {
   "min": 3,
@@ -1355,6 +1519,10 @@
   "min": 1,
   "max": 2
  },
+ "firstmessageid": {
+  "min": 0,
+  "max": 1
+ },
  "floor": {
   "min": 1,
   "max": 1
@@ -1373,6 +1541,26 @@
  },
  "formatemoji": {
   "min": 1,
+  "max": 1
+ },
+ "forumdefaultlayout": {
+  "min": 0,
+  "max": 1
+ },
+ "forumdefaultreactionemoji": {
+  "min": 0,
+  "max": 1
+ },
+ "forumdefaultsortorder": {
+  "min": 0,
+  "max": 1
+ },
+ "forumdefaultthreadarchiveduration": {
+  "min": 0,
+  "max": 1
+ },
+ "forumdefaultthreadslowmode": {
+  "min": 0,
   "max": 1
  },
  "forumtags": {
@@ -1450,6 +1638,14 @@
  "getguildmembervar": {
   "min": 1,
   "max": 3
+ },
+ "getguildpreview": {
+  "min": 1,
+  "max": 3
+ },
+ "getguildtemplate": {
+  "min": 1,
+  "max": 2
  },
  "getguildvar": {
   "min": 1,
@@ -1551,6 +1747,10 @@
   "min": 0,
   "max": 1
  },
+ "getstageinstance": {
+  "min": 1,
+  "max": 2
+ },
  "getstringselectcount": {
   "min": 0,
   "max": 0
@@ -1574,6 +1774,10 @@
  "gettextsplitlength": {
   "min": 0,
   "max": 0
+ },
+ "getthreadmembers": {
+  "min": 0,
+  "max": 2
  },
  "gettimestamp": {
   "min": 0,
@@ -1627,16 +1831,100 @@
   "min": 1,
   "max": 2
  },
+ "guildapproximatemembercount": {
+  "min": 0,
+  "max": 1
+ },
+ "guildapproximatepresencecount": {
+  "min": 0,
+  "max": 1
+ },
+ "guildautomodrules": {
+  "min": 0,
+  "max": 3
+ },
+ "guildavailable": {
+  "min": 0,
+  "max": 1
+ },
+ "guildbannedmembers": {
+  "min": 0,
+  "max": 2
+ },
  "guildbanner": {
   "min": 1,
   "max": 1
+ },
+ "guildboosterids": {
+  "min": 0,
+  "max": 2
+ },
+ "guildboostprogressbarenabled": {
+  "min": 0,
+  "max": 1
+ },
+ "guildboostroleid": {
+  "min": 0,
+  "max": 1
+ },
+ "guildchannelids": {
+  "min": 0,
+  "max": 2
  },
  "guildcount": {
   "min": 0,
   "max": 0
  },
+ "guilddefaultmessagenotifications": {
+  "min": 0,
+  "max": 1
+ },
+ "guilddiscoverysplash": {
+  "min": 0,
+  "max": 3
+ },
+ "guilddmsdisableduntil": {
+  "min": 0,
+  "max": 1
+ },
+ "guilddmspamdetectedat": {
+  "min": 0,
+  "max": 1
+ },
+ "guildemojiexists": {
+  "min": 2,
+  "max": 2
+ },
+ "guildemojiids": {
+  "min": 0,
+  "max": 2
+ },
+ "guildemojilimit": {
+  "min": 0,
+  "max": 1
+ },
  "guildexists": {
   "min": 1,
+  "max": 1
+ },
+ "guildexplicitcontentfilter": {
+  "min": 0,
+  "max": 1
+ },
+ "guildhasanyfeatures": {
+  "min": 2,
+  "max": 64
+ },
+ "guildhasfeatures": {
+  "min": 2,
+  "max": 64
+ },
+ "guildhastemplate": {
+  "min": 0,
+  "max": 1
+ },
+ "guildhighestroleid": {
+  "min": 0,
   "max": 1
  },
  "guildicon": {
@@ -1651,11 +1939,139 @@
   "min": 0,
   "max": 3
  },
+ "guildinviteexists": {
+  "min": 2,
+  "max": 2
+ },
+ "guildinvitesdisableduntil": {
+  "min": 0,
+  "max": 1
+ },
+ "guildlarge": {
+  "min": 0,
+  "max": 1
+ },
  "guildlocale": {
   "min": 0,
   "max": 0
  },
+ "guildlowestroleid": {
+  "min": 0,
+  "max": 1
+ },
+ "guildmaximumbitrate": {
+  "min": 0,
+  "max": 1
+ },
+ "guildmaximummembers": {
+  "min": 0,
+  "max": 1
+ },
+ "guildmaximumpresences": {
+  "min": 0,
+  "max": 1
+ },
+ "guildmaximumstagebitrate": {
+  "min": 0,
+  "max": 1
+ },
+ "guildmaxstagevideochannelusers": {
+  "min": 0,
+  "max": 1
+ },
+ "guildmaxvideochannelusers": {
+  "min": 0,
+  "max": 1
+ },
+ "guildmemberids": {
+  "min": 0,
+  "max": 2
+ },
+ "guildmfalevel": {
+  "min": 0,
+  "max": 1
+ },
  "guildname": {
+  "min": 0,
+  "max": 1
+ },
+ "guildnameacronym": {
+  "min": 0,
+  "max": 1
+ },
+ "guildnsfwlevel": {
+  "min": 0,
+  "max": 1
+ },
+ "guildpartnered": {
+  "min": 0,
+  "max": 1
+ },
+ "guildpublicupdateschannelid": {
+  "min": 0,
+  "max": 1
+ },
+ "guildraiddetectedat": {
+  "min": 0,
+  "max": 1
+ },
+ "guildroleids": {
+  "min": 0,
+  "max": 3
+ },
+ "guildsafetyalertschannelid": {
+  "min": 0,
+  "max": 1
+ },
+ "guildsoundboardlimit": {
+  "min": 0,
+  "max": 1
+ },
+ "guildsoundboardsounds": {
+  "min": 0,
+  "max": 3
+ },
+ "guildsplashurl": {
+  "min": 0,
+  "max": 3
+ },
+ "guildstickerexists": {
+  "min": 2,
+  "max": 2
+ },
+ "guildstickerids": {
+  "min": 0,
+  "max": 2
+ },
+ "guildstickerlimit": {
+  "min": 0,
+  "max": 1
+ },
+ "guildsystemchannelflags": {
+  "min": 0,
+  "max": 1
+ },
+ "guildtemplatecode": {
+  "min": 0,
+  "max": 1
+ },
+ "guildtimedoutmembers": {
+  "min": 0,
+  "max": 2
+ },
+ "guildvanityuses": {
+  "min": 0,
+  "max": 1
+ },
+ "guildverified": {
+  "min": 0,
+  "max": 1
+ },
+ "guildwidgetchannelenabled": {
+  "min": 0,
+  "max": 1
+ },
+ "guildwidgetchannelid": {
   "min": 0,
   "max": 1
  },
@@ -1851,6 +2267,14 @@
   "min": 0,
   "max": 1
  },
+ "isbotverified": {
+  "min": 0,
+  "max": 1
+ },
+ "isdeaf": {
+  "min": 0,
+  "max": 2
+ },
  "isemojianimated": {
   "min": 1,
   "max": 1
@@ -1862,6 +2286,14 @@
  "isfloat": {
   "min": 1,
   "max": 1
+ },
+ "isguilddeaf": {
+  "min": 0,
+  "max": 2
+ },
+ "isguildmuted": {
+  "min": 0,
+  "max": 2
  },
  "ishoisted": {
   "min": 1,
@@ -1881,6 +2313,10 @@
  },
  "ismessageedited": {
   "min": 2,
+  "max": 2
+ },
+ "ismuted": {
+  "min": 0,
   "max": 2
  },
  "isnewaccount": {
@@ -1903,9 +2339,25 @@
   "min": 0,
   "max": 1
  },
+ "isselfdeaf": {
+  "min": 0,
+  "max": 2
+ },
+ "isselfmuted": {
+  "min": 0,
+  "max": 2
+ },
  "isslash": {
   "min": 0,
   "max": 0
+ },
+ "isthread": {
+  "min": 0,
+  "max": 1
+ },
+ "isthreadonly": {
+  "min": 0,
+  "max": 1
  },
  "isticket": {
   "min": 0,
@@ -1922,6 +2374,10 @@
  "isvalidhex": {
   "min": 1,
   "max": 1
+ },
+ "isverified": {
+  "min": 0,
+  "max": 2
  },
  "italic": {
   "min": 1,
@@ -2271,6 +2727,10 @@
   "min": 1,
   "max": null
  },
+ "math": {
+  "min": 1,
+  "max": 1
+ },
  "max": {
   "min": 2,
   "max": null
@@ -2283,17 +2743,45 @@
   "min": 1,
   "max": 2
  },
+ "memberavatardecoration": {
+  "min": 0,
+  "max": 2
+ },
+ "memberboostingsince": {
+  "min": 0,
+  "max": 2
+ },
+ "memberbotroleid": {
+  "min": 0,
+  "max": 2
+ },
  "membercount": {
   "min": 0,
   "max": 0
+ },
+ "memberdisplaycolor": {
+  "min": 0,
+  "max": 2
  },
  "memberexists": {
   "min": 1,
   "max": 2
  },
+ "memberflags": {
+  "min": 0,
+  "max": 3
+ },
+ "memberhighestroleid": {
+  "min": 0,
+  "max": 2
+ },
  "memberid": {
   "min": 0,
   "max": 0
+ },
+ "memberlowestroleid": {
+  "min": 0,
+  "max": 2
  },
  "membernick": {
   "min": 0,
@@ -2382,6 +2870,10 @@
  "modifychannelperms": {
   "min": 3,
   "max": null
+ },
+ "modifyposttags": {
+  "min": 2,
+  "max": 12
  },
  "modifyrole": {
   "min": 1,
@@ -2615,6 +3107,14 @@
   "min": 0,
   "max": 0
  },
+ "randomemojiid": {
+  "min": 0,
+  "max": 0
+ },
+ "randomguildemojiid": {
+  "min": 0,
+  "max": 1
+ },
  "randomguildid": {
   "min": 0,
   "max": 0
@@ -2791,13 +3291,29 @@
   "min": 0,
   "max": 0
  },
+ "rolecreatedat": {
+  "min": 2,
+  "max": 2
+ },
  "roleexists": {
   "min": 1,
   "max": 1
  },
+ "roleflags": {
+  "min": 2,
+  "max": 3
+ },
  "rolegrant": {
   "min": 2,
   "max": null
+ },
+ "rolehasanyperms": {
+  "min": 3,
+  "max": 40
+ },
+ "rolehasperms": {
+  "min": 3,
+  "max": 40
  },
  "roleid": {
   "min": 1,
@@ -2806,6 +3322,10 @@
  "roleinfo": {
   "min": 1,
   "max": 1
+ },
+ "roleintcolor": {
+  "min": 2,
+  "max": 3
  },
  "rolemembercount": {
   "min": 1,
@@ -2830,6 +3350,18 @@
  "roleposition": {
   "min": 1,
   "max": 1
+ },
+ "rolerawposition": {
+  "min": 2,
+  "max": 2
+ },
+ "roletags": {
+  "min": 2,
+  "max": 3
+ },
+ "roleunicodeemoji": {
+  "min": 2,
+  "max": 2
  },
  "round": {
   "min": 1,
@@ -2979,20 +3511,116 @@
   "min": 0,
   "max": 0
  },
+ "setauditlogreason": {
+  "min": 0,
+  "max": 1
+ },
  "setbotavatar": {
   "min": 1,
   "max": 1
  },
+ "setbotname": {
+  "min": 1,
+  "max": 1
+ },
+ "setchannelarchiveduration": {
+  "min": 2,
+  "max": 3
+ },
  "setchannelvar": {
   "min": 2,
+  "max": 3
+ },
+ "setdefaultforumlayout": {
+  "min": 2,
+  "max": 3
+ },
+ "setdefaultreactionemoji": {
+  "min": 1,
+  "max": 3
+ },
+ "setdefaultsortorder": {
+  "min": 1,
+  "max": 3
+ },
+ "setdefaultthreadarchiveduration": {
+  "min": 2,
+  "max": 3
+ },
+ "setdefaultthreadslowmode": {
+  "min": 2,
+  "max": 3
+ },
+ "setguildafkchannel": {
+  "min": 1,
+  "max": 3
+ },
+ "setguildafktimeout": {
+  "min": 2,
+  "max": 3
+ },
+ "setguildbanner": {
+  "min": 1,
+  "max": 3
+ },
+ "setguildboostprogressbar": {
+  "min": 2,
+  "max": 3
+ },
+ "setguilddefaultmessagenotifications": {
+  "min": 1,
+  "max": 3
+ },
+ "setguilddiscoverysplash": {
+  "min": 1,
+  "max": 3
+ },
+ "setguildexplicitcontentfilter": {
+  "min": 1,
+  "max": 3
+ },
+ "setguildicon": {
+  "min": 1,
   "max": 3
  },
  "setguildmembervar": {
   "min": 2,
   "max": 4
  },
+ "setguildname": {
+  "min": 2,
+  "max": 3
+ },
+ "setguildpreferredlocale": {
+  "min": 1,
+  "max": 3
+ },
+ "setguildpublicupdateschannel": {
+  "min": 1,
+  "max": 3
+ },
+ "setguildruleschannel": {
+  "min": 1,
+  "max": 3
+ },
+ "setguildsafetyalertschannel": {
+  "min": 1,
+  "max": 3
+ },
+ "setguildsplash": {
+  "min": 1,
+  "max": 3
+ },
+ "setguildsystemchannel": {
+  "min": 1,
+  "max": 3
+ },
  "setguildvar": {
   "min": 2,
+  "max": 3
+ },
+ "setguildverificationlevel": {
+  "min": 1,
   "max": 3
  },
  "setmembervar": {
@@ -3015,6 +3643,10 @@
   "min": 1,
   "max": 3
  },
+ "setposttags": {
+  "min": 1,
+  "max": 12
+ },
  "setrolecolors": {
   "min": 2,
   "max": 5
@@ -3024,6 +3656,22 @@
   "max": 3
  },
  "setservervar": {
+  "min": 2,
+  "max": 3
+ },
+ "setstickerdescription": {
+  "min": 2,
+  "max": 2
+ },
+ "setstickername": {
+  "min": 2,
+  "max": 2
+ },
+ "setstickertags": {
+  "min": 2,
+  "max": 2
+ },
+ "setthreadarchiveduration": {
   "min": 2,
   "max": 3
  },
@@ -3040,6 +3688,34 @@
   "max": 4
  },
  "setvar": {
+  "min": 2,
+  "max": 3
+ },
+ "setvoicebitrate": {
+  "min": 2,
+  "max": 3
+ },
+ "setvoicedeaf": {
+  "min": 2,
+  "max": 3
+ },
+ "setvoicemute": {
+  "min": 2,
+  "max": 3
+ },
+ "setvoiceregion": {
+  "min": 1,
+  "max": 3
+ },
+ "setvoiceundeaf": {
+  "min": 2,
+  "max": 3
+ },
+ "setvoiceunmute": {
+  "min": 2,
+  "max": 3
+ },
+ "setvoicevideoquality": {
   "min": 2,
   "max": 3
  },
@@ -3131,8 +3807,60 @@
   "min": 3,
   "max": 6
  },
+ "starttyping": {
+  "min": 0,
+  "max": 1
+ },
+ "stickeravailable": {
+  "min": 1,
+  "max": 1
+ },
  "stickercount": {
   "min": 0,
+  "max": 1
+ },
+ "stickercreatedat": {
+  "min": 1,
+  "max": 1
+ },
+ "stickerdescription": {
+  "min": 1,
+  "max": 1
+ },
+ "stickerformat": {
+  "min": 1,
+  "max": 1
+ },
+ "stickerguildid": {
+  "min": 1,
+  "max": 1
+ },
+ "stickername": {
+  "min": 1,
+  "max": 1
+ },
+ "stickerownerid": {
+  "min": 1,
+  "max": 1
+ },
+ "stickerpackid": {
+  "min": 1,
+  "max": 1
+ },
+ "stickersortvalue": {
+  "min": 1,
+  "max": 1
+ },
+ "stickertags": {
+  "min": 1,
+  "max": 1
+ },
+ "stickertype": {
+  "min": 1,
+  "max": 1
+ },
+ "stickerurl": {
+  "min": 1,
   "max": 1
  },
  "stop": {
@@ -3203,13 +3931,29 @@
   "min": 2,
   "max": 2
  },
+ "threadisarchived": {
+  "min": 0,
+  "max": 1
+ },
+ "threadislocked": {
+  "min": 0,
+  "max": 1
+ },
  "threadmessagecount": {
   "min": 0,
   "max": 0
  },
+ "threadownerid": {
+  "min": 0,
+  "max": 1
+ },
  "threadremovemember": {
   "min": 2,
   "max": 2
+ },
+ "threadstartermessageid": {
+  "min": 0,
+  "max": 1
  },
  "threadusercount": {
   "min": 0,
@@ -3359,6 +4103,10 @@
   "min": 1,
   "max": 1
  },
+ "useraccentcolor": {
+  "min": 0,
+  "max": 1
+ },
  "useravatar": {
   "min": 1,
   "max": 3
@@ -3379,8 +4127,28 @@
   "min": 1,
   "max": 1
  },
+ "userdefaultavatar": {
+  "min": 0,
+  "max": 1
+ },
  "userexists": {
   "min": 1,
+  "max": 1
+ },
+ "userguildbadge": {
+  "min": 0,
+  "max": 3
+ },
+ "userguildenabled": {
+  "min": 0,
+  "max": 1
+ },
+ "userguildid": {
+  "min": 0,
+  "max": 1
+ },
+ "userguildtag": {
+  "min": 0,
   "max": 1
  },
  "userid": {
@@ -3466,6 +4234,18 @@
  "variablescount": {
   "min": 1,
   "max": 1
+ },
+ "voiceid": {
+  "min": 0,
+  "max": 2
+ },
+ "voicekick": {
+  "min": 2,
+  "max": 3
+ },
+ "voicemove": {
+  "min": 2,
+  "max": 4
  },
  "voiceuserlimit": {
   "min": 0,
