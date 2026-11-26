@@ -3051,9 +3051,17 @@
   "min": 1,
   "max": 1
  },
+ "hasallentitlements": {
+  "min": 1,
+  "max": 25
+ },
  "hasallroles": {
   "min": 2,
   "max": 3
+ },
+ "hasanyentitlement": {
+  "min": 1,
+  "max": 25
  },
  "hasanyrole": {
   "min": 2,
@@ -3282,6 +3290,14 @@
  "inrange": {
   "min": 3,
   "max": 3
+ },
+ "interactionhasallentitlements": {
+  "min": 1,
+  "max": 25
+ },
+ "interactionhasanyentitlement": {
+  "min": 1,
+  "max": 25
  },
  "inttohex": {
   "min": 1,
@@ -5007,6 +5023,10 @@
   "min": 1,
   "max": 2
  },
+ "searchtrack": {
+  "min": 1,
+  "max": 2
+ },
  "second": {
   "min": 0,
   "max": 0
@@ -5530,6 +5550,10 @@
  "skipmusic": {
   "min": 0,
   "max": 0
+ },
+ "skipto": {
+  "min": 1,
+  "max": 1
  },
  "skiptrack": {
   "min": 0,
