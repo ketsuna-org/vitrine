@@ -323,6 +323,14 @@
   "min": 1,
   "max": 3
  },
+ "alignimage": {
+  "min": 0,
+  "max": 2
+ },
+ "alignrect": {
+  "min": 0,
+  "max": 2
+ },
  "allmemberscount": {
   "min": 0,
   "max": 0
@@ -654,6 +662,14 @@
  "bar": {
   "min": 2,
   "max": 10
+ },
+ "bardata": {
+  "min": 2,
+  "max": 2
+ },
+ "baroptions": {
+  "min": 1,
+  "max": 16
  },
  "base": {
   "min": 2,
@@ -1667,6 +1683,10 @@
   "min": 8,
   "max": 15
  },
+ "drawprogressbar": {
+  "min": 5,
+  "max": 6
+ },
  "drawrect": {
   "min": 7,
   "max": 8
@@ -2111,6 +2131,10 @@
   "min": 2,
   "max": 3
  },
+ "filter": {
+  "min": 2,
+  "max": 4
+ },
  "findapplicationemoji": {
   "min": 1,
   "max": 1
@@ -2343,6 +2367,10 @@
   "min": 1,
   "max": 2
  },
+ "getimagedata": {
+  "min": 5,
+  "max": 6
+ },
  "getinviteinfo": {
   "min": 2,
   "max": 2
@@ -2402,6 +2430,10 @@
  "getmessagevar": {
   "min": 1,
   "max": 2
+ },
+ "getpixels": {
+  "min": 5,
+  "max": 6
  },
  "getpoll": {
   "min": 3,
@@ -2991,6 +3023,14 @@
   "min": 1,
   "max": 2
  },
+ "imagealign": {
+  "min": 0,
+  "max": 2
+ },
+ "imagebaseline": {
+  "min": 0,
+  "max": 2
+ },
  "imagebuffer": {
   "min": 2,
   "max": 2
@@ -3026,6 +3066,14 @@
  "increment": {
   "min": 1,
   "max": 6
+ },
+ "indexedtohex": {
+  "min": 5,
+  "max": 64
+ },
+ "indexedtorgba": {
+  "min": 3,
+  "max": 64
  },
  "inflate": {
   "min": 1,
@@ -4267,6 +4315,14 @@
   "min": 2,
   "max": 2
  },
+ "putimagedata": {
+  "min": 6,
+  "max": 7
+ },
+ "putpixels": {
+  "min": 6,
+  "max": 7
+ },
  "quadraticcurveto": {
   "min": 4,
   "max": 5
@@ -4358,6 +4414,14 @@
  "reactionmessageid": {
   "min": 0,
   "max": 0
+ },
+ "rectalign": {
+  "min": 0,
+  "max": 2
+ },
+ "rectbaseline": {
+  "min": 0,
+  "max": 2
  },
  "registerguildcommands": {
   "min": 0,
@@ -4995,6 +5059,10 @@
   "min": 1,
   "max": 3
  },
+ "setpixels": {
+  "min": 6,
+  "max": 7
+ },
  "setposttags": {
   "min": 1,
   "max": 12
@@ -5084,6 +5152,14 @@
   "max": 2
  },
  "sha512": {
+  "min": 1,
+  "max": 2
+ },
+ "shadowconfig": {
+  "min": 1,
+  "max": 2
+ },
+ "shadowoptions": {
   "min": 1,
   "max": 2
  },
