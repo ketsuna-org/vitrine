@@ -2,7 +2,7 @@
 layout: doc
 title: $pollAnswerVoteCount[]
 translation_key: docs
-category: "Messages"
+category: "Polls"
 function_name: pollAnswerVoteCount
 syntax: $pollAnswerVoteCount
 description: "In a poll vote event, how many votes the answer has."

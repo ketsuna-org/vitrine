@@ -2,7 +2,7 @@
 layout: doc
 title: $poll[]
 translation_key: docs
-category: "Messages"
+category: "Polls"
 function_name: poll
 syntax: $poll[question;duration;(multiselect);(layout)]
 description: "Starts a poll sent as a message of its own in the current channel when the script ends. Add 2 to 10 answers with $pollAnswer / $pollAnswers."

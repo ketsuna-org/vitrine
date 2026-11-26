@@ -2,7 +2,7 @@
 layout: doc
 title: $pollAnswerEmoji[]
 translation_key: docs
-category: "Messages"
+category: "Polls"
 function_name: pollAnswerEmoji
 syntax: $pollAnswerEmoji
 description: "In a poll vote event, the emoji of the answer voted."

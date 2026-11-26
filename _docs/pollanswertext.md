@@ -2,7 +2,7 @@
 layout: doc
 title: $pollAnswerText[]
 translation_key: docs
-category: "Messages"
+category: "Polls"
 function_name: pollAnswerText
 syntax: $pollAnswerText
 description: "In a poll vote event, the text of the answer voted."

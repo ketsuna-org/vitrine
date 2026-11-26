@@ -2,7 +2,7 @@
 layout: doc
 title: $pollAnswerVoterIDs[]
 translation_key: docs
-category: "Messages"
+category: "Polls"
 function_name: pollAnswerVoterIDs
 syntax: $pollAnswerVoterIDs[(separator)]
 description: "In a poll vote event, the IDs of the users who voted for the answer."

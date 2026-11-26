@@ -2,7 +2,7 @@
 layout: doc
 title: $pollAnswerID[]
 translation_key: docs
-category: "Messages"
+category: "Polls"
 function_name: pollAnswerID
 syntax: $pollAnswerID
 description: "In a poll vote event, the ID of the answer voted."

@@ -2,7 +2,7 @@
 layout: doc
 title: $pollAnswer[]
 translation_key: docs
-category: "Messages"
+category: "Polls"
 function_name: pollAnswer
 syntax: $pollAnswer[text;(emoji)]
 description: "Adds an answer to the poll started with $poll."
