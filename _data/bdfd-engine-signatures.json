@@ -1823,6 +1823,34 @@
   "min": 1,
   "max": 3
  },
+ "entitlementendtimestamp": {
+  "min": 0,
+  "max": 0
+ },
+ "entitlementguildid": {
+  "min": 0,
+  "max": 0
+ },
+ "entitlementid": {
+  "min": 0,
+  "max": 0
+ },
+ "entitlementisconsumed": {
+  "min": 0,
+  "max": 0
+ },
+ "entitlementisdeleted": {
+  "min": 0,
+  "max": 0
+ },
+ "entitlementisguildsubscription": {
+  "min": 0,
+  "max": 0
+ },
+ "entitlementisusersubscription": {
+  "min": 0,
+  "max": 0
+ },
  "entitlementskus": {
   "min": 0,
   "max": 3
@@ -1831,9 +1859,17 @@
   "min": 1,
   "max": 3
  },
+ "entitlementstarttimestamp": {
+  "min": 0,
+  "max": 0
+ },
  "entitlementtype": {
   "min": 1,
   "max": 3
+ },
+ "entitlementuserid": {
+  "min": 0,
+  "max": 0
  },
  "env": {
   "min": 1,
@@ -3999,9 +4035,25 @@
   "min": 0,
   "max": 0
  },
+ "reactionauthorid": {
+  "min": 0,
+  "max": 0
+ },
  "reactioncount": {
   "min": 3,
   "max": 4
+ },
+ "reactionemoji": {
+  "min": 0,
+  "max": 0
+ },
+ "reactionemojiid": {
+  "min": 0,
+  "max": 0
+ },
+ "reactionmessageid": {
+  "min": 0,
+  "max": 0
  },
  "registerguildcommands": {
   "min": 0,
