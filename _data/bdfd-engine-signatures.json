@@ -235,6 +235,10 @@
   "min": 1,
   "max": 100
  },
+ "api": {
+  "min": 2,
+  "max": 12
+ },
  "appendoptionsuggestion": {
   "min": 2,
   "max": 2
@@ -1314,6 +1318,10 @@
  "disconnectmember": {
   "min": 1,
   "max": 2
+ },
+ "discordapi": {
+  "min": 2,
+  "max": 12
  },
  "discordtime": {
   "min": 1,
@@ -3263,6 +3271,10 @@
   "min": 1,
   "max": 100
  },
+ "os": {
+  "min": 0,
+  "max": 0
+ },
  "pad": {
   "min": 2,
   "max": 4
@@ -3338,6 +3350,10 @@
  "publishmessage": {
   "min": 2,
   "max": 2
+ },
+ "ram": {
+  "min": 0,
+  "max": 0
  },
  "random": {
   "min": 0,
