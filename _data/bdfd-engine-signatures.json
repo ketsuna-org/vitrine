@@ -1583,6 +1583,10 @@
   "min": 1,
   "max": 1
  },
+ "decimaltohex": {
+  "min": 1,
+  "max": 1
+ },
  "decodeoptions": {
   "min": 1,
   "max": 2
@@ -3223,6 +3227,22 @@
   "min": 2,
   "max": 2
  },
+ "hexblue": {
+  "min": 1,
+  "max": 1
+ },
+ "hexgreen": {
+  "min": 1,
+  "max": 1
+ },
+ "hexred": {
+  "min": 1,
+  "max": 1
+ },
+ "hextodecimal": {
+  "min": 1,
+  "max": 1
+ },
  "hextoint": {
   "min": 1,
   "max": 1
@@ -3234,6 +3254,10 @@
  "hextorgba": {
   "min": 1,
   "max": 32
+ },
+ "hextorgbtext": {
+  "min": 1,
+  "max": 2
  },
  "hidechannel": {
   "min": 0,
@@ -5158,6 +5182,10 @@
  "rgbtohex": {
   "min": 1,
   "max": 97
+ },
+ "rgbtohexcolor": {
+  "min": 3,
+  "max": 3
  },
  "rolecount": {
   "min": 0,
