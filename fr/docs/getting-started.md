@@ -31,7 +31,7 @@ Téléchargez l'application pour [mobile ou ordinateur](/download/). Créez une 
 | **BibiScript** | Texte et `$functions`, exécutés par l'interpréteur BDFD natif | [Référence des fonctions BDFD](/docs/) |
 | **BDJS (JavaScript)** | Toute la puissance du script | [API JavaScript](/docs/javascript/) |
 
-En BibiScript, [$scriptLanguage](/docs/scriptlanguage/) (en anglais) renvoie le langage de l'interpréteur natif (`BDScript 2`).
+En BibiScript, [$scriptLanguage](/docs/scriptlanguage/) (en anglais) renvoie le langage de l'interpréteur natif (`BibiScript`).
 
 Lisez [Execution model and compatibility](/docs/execution-model/) (en anglais) avant de copier des exemples : les réponses aux commandes slash sont implicites, et `$closeTicket` est signalée comme une fonction de compatibilité incomplète.
 

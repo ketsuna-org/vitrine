@@ -77,9 +77,11 @@ The filter accepts:
 |--------|----------|
 | `verify_member` | exactly that custom ID |
 | `forge-*` | every custom ID that starts with `forge-` (`forge-cook-7-42`) |
+| `page-*` | `page-1`, `page-1-2`, `page-èf5g4dfg5fdsg`: anything after the prefix, any length |
 | `npc-*,npcm-*` | a comma-separated list: any of the patterns |
+| `*` | every button, select and modal (never a slash command) |
 
-`*` stands for any sequence of characters. Without `*`, the match is exact.
+`*` stands for any sequence of characters (it can appear anywhere in the pattern, e.g. `*-confirm`). Without `*`, the match is exact. The match is case-sensitive. A slash command has no custom ID, so a workflow with a filter never runs for it.
 
 **Use a stable prefix per feature**, and put the variable data after it (`forge-<action>-<recipe>-<userId>`). This matters most for modals: a modal must be the **first** response to a click (`$newModal`, no `$defer` before it). If another workflow without a filter (or with an overlapping one) acknowledges the click first, the modal fails with *A modal requires an unacknowledged interaction*. With one distinct prefix per workflow, only the right one runs.
 

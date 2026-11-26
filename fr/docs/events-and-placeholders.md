@@ -83,9 +83,11 @@ Le filtre accepte :
 |--------|---------------|
 | `verify_member` | exactement ce custom ID |
 | `forge-*` | tous les custom ID qui commencent par `forge-` (`forge-cook-7-42`) |
+| `page-*` | `page-1`, `page-1-2`, `page-èf5g4dfg5fdsg` : tout ce qui suit le préfixe, quelle que soit la longueur |
 | `npc-*,npcm-*` | une liste séparée par des virgules : l'un des motifs |
+| `*` | tous les boutons, menus et modales (jamais une commande slash) |
 
-`*` remplace n'importe quelle suite de caractères. Sans `*`, la correspondance est exacte.
+`*` remplace n'importe quelle suite de caractères (il peut être n'importe où dans le motif, par exemple `*-confirm`). Sans `*`, la correspondance est exacte. Les majuscules comptent. Une commande slash n'a pas de custom ID : un workflow qui a un filtre ne se lance jamais pour elle.
 
 **Prends un préfixe stable par fonctionnalité** et mets les données variables après (`forge-<action>-<recette>-<idUtilisateur>`). C'est surtout important pour les modales : une modale doit être la **première** réponse à un clic (`$newModal`, sans `$defer` avant). Si un autre workflow sans filtre (ou avec un filtre qui se chevauche) acquitte le clic d'abord, la modale échoue avec *A modal requires an unacknowledged interaction*. Avec un préfixe distinct par workflow, seul le bon se lance.
 

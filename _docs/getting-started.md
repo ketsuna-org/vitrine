@@ -24,10 +24,10 @@ Download the app for [mobile or desktop](/download/). Create a Discord applicati
 | Mode | When to use | Documentation |
 |------|-------------|---------------|
 | **Blocks** | Visual actions and workflows | [Blocks reference](/docs/blocks/) |
-| **BibiScript** | Text and `$functions`, run by the native BDFD interpreter | [BDFD Function Reference](/docs/) |
+| **BibiScript** | Text and `$functions`, run by the native interpreter | [What is BibiScript?](/docs/bibiscript/) · [Function reference](/docs/) |
 | **BDJS (JavaScript)** | Full scripting power | [JavaScript API](/docs/javascript/) |
 
-In BibiScript, [$scriptLanguage](/docs/scriptlanguage/) returns the language of the native interpreter (`BDScript 2`).
+In BibiScript, [$scriptLanguage](/docs/scriptlanguage/) returns the language of the native interpreter (`BibiScript`).
 
 Read [Execution model and compatibility](/docs/execution-model/) before copying examples: slash replies are implicit, and `$closeTicket` is flagged as an incomplete compatibility function.
 
