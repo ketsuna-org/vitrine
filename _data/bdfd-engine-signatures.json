@@ -1323,6 +1323,10 @@
   "min": 2,
   "max": 4
  },
+ "context": {
+  "min": 0,
+  "max": 0
+ },
  "continue": {
   "min": 0,
   "max": 0
@@ -3319,6 +3323,14 @@
   "min": 3,
   "max": 3
  },
+ "interactioncontext": {
+  "min": 0,
+  "max": 0
+ },
+ "interactionfollowup": {
+  "min": 1,
+  "max": 2
+ },
  "interactionhasallentitlements": {
   "min": 1,
   "max": 25
@@ -3326,6 +3338,10 @@
  "interactionhasanyentitlement": {
   "min": 1,
   "max": 25
+ },
+ "interactionreply": {
+  "min": 1,
+  "max": 2
  },
  "inttohex": {
   "min": 1,
@@ -5610,6 +5626,10 @@
  "showchannel": {
   "min": 0,
   "max": 3
+ },
+ "showmodal": {
+  "min": 0,
+  "max": 0
  },
  "shufflequeue": {
   "min": 0,
