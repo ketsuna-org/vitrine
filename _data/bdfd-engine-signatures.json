@@ -351,6 +351,14 @@
   "min": 2,
   "max": 2
  },
+ "arc": {
+  "min": 5,
+  "max": 7
+ },
+ "arcto": {
+  "min": 5,
+  "max": 6
+ },
  "argcount": {
   "min": 0,
   "max": 1
@@ -646,6 +654,14 @@
  "base": {
   "min": 2,
   "max": 3
+ },
+ "beginpath": {
+  "min": 0,
+  "max": 1
+ },
+ "beziercurveto": {
+  "min": 6,
+  "max": 7
  },
  "bigintdivide": {
   "min": 1,
@@ -1126,6 +1142,10 @@
  "clonerole": {
   "min": 2,
   "max": 3
+ },
+ "closepath": {
+  "min": 0,
+  "max": 1
  },
  "closeticket": {
   "min": 0,
@@ -1783,6 +1803,10 @@
   "min": 2,
   "max": 4
  },
+ "ellipse": {
+  "min": 7,
+  "max": 9
+ },
  "embeddedurl": {
   "min": 1,
   "max": 2
@@ -2038,6 +2062,10 @@
  "fileurl": {
   "min": 1,
   "max": 2
+ },
+ "fill": {
+  "min": 2,
+  "max": 3
  },
  "findapplicationemoji": {
   "min": 1,
@@ -2430,6 +2458,10 @@
  "gettimestampms": {
   "min": 0,
   "max": 0
+ },
+ "gettransform": {
+  "min": 0,
+  "max": 1
  },
  "getuserleaderboardid": {
   "min": 3,
@@ -3379,9 +3411,29 @@
   "min": 1,
   "max": 2
  },
+ "linedash": {
+  "min": 0,
+  "max": 2
+ },
+ "linedashoffset": {
+  "min": 0,
+  "max": 2
+ },
+ "linejoin": {
+  "min": 0,
+  "max": 2
+ },
  "linescount": {
   "min": 1,
   "max": 1
+ },
+ "lineto": {
+  "min": 2,
+  "max": 3
+ },
+ "linewidth": {
+  "min": 0,
+  "max": 2
  },
  "linkbutton": {
   "min": 2,
@@ -3787,6 +3839,10 @@
   "min": 2,
   "max": 3
  },
+ "moveto": {
+  "min": 2,
+  "max": 3
+ },
  "multi": {
   "min": 1,
   "max": null
@@ -4063,6 +4119,10 @@
   "min": 2,
   "max": 2
  },
+ "quadraticcurveto": {
+  "min": 4,
+  "max": 5
+ },
  "queuelength": {
   "min": 0,
   "max": 0
@@ -4283,9 +4343,17 @@
   "min": 1,
   "max": 1
  },
+ "resettransform": {
+  "min": 0,
+  "max": 1
+ },
  "resetuservar": {
   "min": 1,
   "max": 2
+ },
+ "restore": {
+  "min": 0,
+  "max": 1
  },
  "resumemusic": {
   "min": 0,
@@ -4395,6 +4463,10 @@
   "min": 2,
   "max": 2
  },
+ "rotate": {
+  "min": 1,
+  "max": 2
+ },
  "round": {
   "min": 1,
   "max": 2
@@ -4402,6 +4474,14 @@
  "ruleschannelid": {
   "min": 0,
   "max": 1
+ },
+ "save": {
+  "min": 0,
+  "max": 1
+ },
+ "scale": {
+  "min": 2,
+  "max": 3
  },
  "scope": {
   "min": 1,
@@ -4799,6 +4879,10 @@
   "min": 1,
   "max": 1
  },
+ "settransform": {
+  "min": 6,
+  "max": 7
+ },
  "setuserroles": {
   "min": 2,
   "max": null
@@ -5043,6 +5127,10 @@
   "min": 1,
   "max": 1
  },
+ "stroke": {
+  "min": 2,
+  "max": 2
+ },
  "sub": {
   "min": 1,
   "max": null
@@ -5210,6 +5298,10 @@
  "touppercase": {
   "min": 1,
   "max": 1
+ },
+ "transform": {
+  "min": 6,
+  "max": 7
  },
  "translate": {
   "min": 2,
