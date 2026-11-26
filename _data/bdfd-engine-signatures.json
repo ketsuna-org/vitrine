@@ -4299,9 +4299,21 @@
   "min": 1,
   "max": 2
  },
+ "newscheduledevent": {
+  "min": 1,
+  "max": 2
+ },
  "newselectmenu": {
   "min": 3,
   "max": 5
+ },
+ "newsound": {
+  "min": 1,
+  "max": 2
+ },
+ "newstage": {
+  "min": 1,
+  "max": 2
  },
  "newstate": {
   "min": 1,
@@ -4396,6 +4408,18 @@
   "max": 2
  },
  "oldrole": {
+  "min": 1,
+  "max": 2
+ },
+ "oldscheduledevent": {
+  "min": 1,
+  "max": 2
+ },
+ "oldsound": {
+  "min": 1,
+  "max": 2
+ },
+ "oldstage": {
   "min": 1,
   "max": 2
  },
