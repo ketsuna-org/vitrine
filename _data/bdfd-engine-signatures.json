@@ -159,6 +159,10 @@
   "min": 1,
   "max": 6
  },
+ "advancedreplace": {
+  "min": 3,
+  "max": null
+ },
  "afkchannelid": {
   "min": 0,
   "max": 0
@@ -319,6 +323,26 @@
   "min": 0,
   "max": 2
  },
+ "base": {
+  "min": 2,
+  "max": 3
+ },
+ "bigintdivide": {
+  "min": 1,
+  "max": null
+ },
+ "bigintmulti": {
+  "min": 1,
+  "max": null
+ },
+ "bigintsub": {
+  "min": 1,
+  "max": null
+ },
+ "bigintsum": {
+  "min": 1,
+  "max": null
+ },
  "blacklistids": {
   "min": 2,
   "max": null
@@ -338,6 +362,10 @@
  "blacklistusers": {
   "min": 2,
   "max": null
+ },
+ "bold": {
+  "min": 1,
+  "max": 1
  },
  "boostcount": {
   "min": 0,
@@ -567,6 +595,10 @@
   "min": 1,
   "max": 1
  },
+ "charcodeat": {
+  "min": 2,
+  "max": 2
+ },
  "charcount": {
   "min": 1,
   "max": 1
@@ -609,6 +641,10 @@
  },
  "closeticket": {
   "min": 0,
+  "max": 2
+ },
+ "codeblock": {
+  "min": 1,
   "max": 2
  },
  "color": {
@@ -714,6 +750,10 @@
  "createpoll": {
   "min": 5,
   "max": 14
+ },
+ "createqueryparams": {
+  "min": 2,
+  "max": null
  },
  "createrole": {
   "min": 2,
@@ -824,6 +864,14 @@
   "max": 5
  },
  "debug": {
+  "min": 1,
+  "max": 1
+ },
+ "decodeuri": {
+  "min": 1,
+  "max": 1
+ },
+ "decodeuricomponent": {
   "min": 1,
   "max": 1
  },
@@ -1039,6 +1087,14 @@
   "min": 1,
   "max": 1
  },
+ "encodeuri": {
+  "min": 1,
+  "max": 1
+ },
+ "encodeuricomponent": {
+  "min": 1,
+  "max": 1
+ },
  "endpoll": {
   "min": 2,
   "max": 2
@@ -1155,9 +1211,17 @@
   "min": 1,
   "max": 2
  },
+ "formatemoji": {
+  "min": 1,
+  "max": 1
+ },
  "forumtags": {
   "min": 1,
   "max": 2
+ },
+ "fromcharcode": {
+  "min": 1,
+  "max": null
  },
  "funcarg": {
   "min": 1,
@@ -1459,6 +1523,10 @@
   "min": 2,
   "max": 2
  },
+ "hextoint": {
+  "min": 1,
+  "max": 1
+ },
  "hidechannel": {
   "min": 0,
   "max": 3
@@ -1523,6 +1591,10 @@
   "min": 0,
   "max": 0
  },
+ "hyperlink": {
+  "min": 2,
+  "max": 2
+ },
  "hypesquad": {
   "min": 0,
   "max": 1
@@ -1571,6 +1643,10 @@
   "min": 1,
   "max": 6
  },
+ "inlinecode": {
+  "min": 1,
+  "max": 1
+ },
  "input": {
   "min": 1,
   "max": 1
@@ -1578,6 +1654,10 @@
  "inrange": {
   "min": 3,
   "max": 3
+ },
+ "inttohex": {
+  "min": 1,
+  "max": 1
  },
  "isadmin": {
   "min": 1,
@@ -1604,6 +1684,10 @@
   "max": 1
  },
  "iseven": {
+  "min": 1,
+  "max": 1
+ },
+ "isfloat": {
   "min": 1,
   "max": 1
  },
@@ -1664,6 +1748,10 @@
   "max": 1
  },
  "isvalidhex": {
+  "min": 1,
+  "max": 1
+ },
+ "italic": {
   "min": 1,
   "max": 1
  },
@@ -1951,6 +2039,10 @@
   "min": 0,
   "max": 0
  },
+ "localecompare": {
+  "min": 2,
+  "max": 2
+ },
  "lockchannel": {
   "min": 0,
   "max": 3
@@ -1990,6 +2082,14 @@
  "max": {
   "min": 2,
   "max": null
+ },
+ "maxsafeinteger": {
+  "min": 0,
+  "max": 0
+ },
+ "md5": {
+  "min": 1,
+  "max": 2
  },
  "membercount": {
   "min": 0,
@@ -2070,6 +2170,10 @@
  "min": {
   "min": 2,
   "max": null
+ },
+ "minsafeinteger": {
+  "min": 0,
+  "max": 0
  },
  "minute": {
   "min": 0,
@@ -2303,6 +2407,10 @@
    2
   ]
  },
+ "randombytes": {
+  "min": 1,
+  "max": 1
+ },
  "randomcategoryid": {
   "min": 0,
   "max": 1
@@ -2390,6 +2498,10 @@
  "repeatmessage": {
   "min": 2,
   "max": 2
+ },
+ "replaceregex": {
+  "min": 4,
+  "max": 5
  },
  "replacetext": {
   "min": 3,
@@ -2555,6 +2667,10 @@
   "min": 2,
   "max": 5
  },
+ "separatebigint": {
+  "min": 1,
+  "max": 2
+ },
  "serverbanner": {
   "min": 0,
   "max": 1
@@ -2715,6 +2831,14 @@
   "min": 2,
   "max": 3
  },
+ "sha256": {
+  "min": 1,
+  "max": 2
+ },
+ "sha512": {
+  "min": 1,
+  "max": 2
+ },
  "shardid": {
   "min": 0,
   "max": 1
@@ -2763,11 +2887,19 @@
   "min": 1,
   "max": 1
  },
+ "snowflake": {
+  "min": 0,
+  "max": 0
+ },
  "sort": {
   "min": 4,
   "max": null
  },
  "splittext": {
+  "min": 1,
+  "max": 1
+ },
+ "spoiler": {
   "min": 1,
   "max": 1
  },
@@ -2795,9 +2927,17 @@
   "min": 0,
   "max": 0
  },
+ "strikethrough": {
+  "min": 1,
+  "max": 1
+ },
  "sub": {
   "min": 1,
   "max": null
+ },
+ "subtext": {
+  "min": 1,
+  "max": 1
  },
  "sum": {
   "min": 1,
@@ -2883,6 +3023,10 @@
   "min": 1,
   "max": 2
  },
+ "tocamelcase": {
+  "min": 1,
+  "max": 1
+ },
  "togglerole": {
   "min": 2,
   "max": 3
@@ -2891,6 +3035,10 @@
   "min": 1,
   "max": 4
  },
+ "tokebabcase": {
+  "min": 1,
+  "max": 1
+ },
  "tolowercase": {
   "min": 1,
   "max": 1
@@ -2898,6 +3046,10 @@
  "tonumber": {
   "min": 1,
   "max": 2
+ },
+ "tosnakecase": {
+  "min": 1,
+  "max": 1
  },
  "totitlecase": {
   "min": 1,
@@ -2931,6 +3083,10 @@
   "min": 0,
   "max": 0
  },
+ "typeof": {
+  "min": 1,
+  "max": 1
+ },
  "unban": {
   "min": 0,
   "max": 1
@@ -2938,6 +3094,10 @@
  "unbanid": {
   "min": 0,
   "max": 2
+ },
+ "underline": {
+  "min": 1,
+  "max": 1
  },
  "unescape": {
   "min": 1,
@@ -2976,6 +3136,10 @@
   "max": 2
  },
  "usechannel": {
+  "min": 1,
+  "max": 1
+ },
+ "useguild": {
   "min": 1,
   "max": 1
  },
