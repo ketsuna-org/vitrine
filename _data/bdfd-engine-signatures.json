@@ -1959,6 +1959,14 @@
   "min": 2,
   "max": 2
  },
+ "focusedoptionname": {
+  "min": 0,
+  "max": 0
+ },
+ "focusedoptionvalue": {
+  "min": 0,
+  "max": 0
+ },
  "followchannel": {
   "min": 2,
   "max": 3
@@ -2743,13 +2751,25 @@
   "min": 1,
   "max": 1
  },
+ "isactivitycommand": {
+  "min": 0,
+  "max": 0
+ },
  "isadmin": {
   "min": 1,
   "max": 1
  },
+ "isanyselectmenu": {
+  "min": 0,
+  "max": 0
+ },
  "isarray": {
   "min": 1,
   "max": 1
+ },
+ "isautocomplete": {
+  "min": 0,
+  "max": 0
  },
  "isbannable": {
   "min": 2,
@@ -2775,9 +2795,25 @@
   "min": 0,
   "max": 1
  },
+ "isbutton": {
+  "min": 0,
+  "max": 0
+ },
  "ischannelmentioned": {
   "min": 3,
   "max": 3
+ },
+ "ischannelselectmenu": {
+  "min": 0,
+  "max": 0
+ },
+ "iscommand": {
+  "min": 0,
+  "max": 0
+ },
+ "iscontextmenu": {
+  "min": 0,
+  "max": 0
  },
  "isdeaf": {
   "min": 0,
@@ -2823,13 +2859,29 @@
   "min": 1,
   "max": 1
  },
+ "ismentionableselectmenu": {
+  "min": 0,
+  "max": 0
+ },
  "ismentioned": {
   "min": 1,
   "max": 1
  },
+ "ismessagecomponent": {
+  "min": 0,
+  "max": 0
+ },
+ "ismessagecontextmenu": {
+  "min": 0,
+  "max": 0
+ },
  "ismessageedited": {
   "min": 2,
   "max": 2
+ },
+ "ismodal": {
+  "min": 0,
+  "max": 0
  },
  "ismoderatable": {
   "min": 2,
@@ -2859,9 +2911,17 @@
   "min": 0,
   "max": 1
  },
+ "isrepliable": {
+  "min": 0,
+  "max": 0
+ },
  "isrolementioned": {
   "min": 3,
   "max": 3
+ },
+ "isroleselectmenu": {
+  "min": 0,
+  "max": 0
  },
  "isselfdeaf": {
   "min": 0,
@@ -2872,6 +2932,14 @@
   "max": 2
  },
  "isslash": {
+  "min": 0,
+  "max": 0
+ },
+ "isslashcommand": {
+  "min": 0,
+  "max": 0
+ },
+ "isstringselectmenu": {
   "min": 0,
   "max": 0
  },
@@ -2891,6 +2959,10 @@
   "min": 1,
   "max": 1
  },
+ "isusercontextmenu": {
+  "min": 0,
+  "max": 0
+ },
  "isuserdmenabled": {
   "min": 0,
   "max": 1
@@ -2898,6 +2970,10 @@
  "isusermentioned": {
   "min": 3,
   "max": 3
+ },
+ "isuserselectmenu": {
+  "min": 0,
+  "max": 0
  },
  "isvalidhex": {
   "min": 1,
@@ -3467,6 +3543,10 @@
   "min": 2,
   "max": 2
  },
+ "modal": {
+  "min": 2,
+  "max": 2
+ },
  "modifychannel": {
   "min": 1,
   "max": 7
@@ -3618,6 +3698,10 @@
  "onlyperms": {
   "min": 2,
   "max": null
+ },
+ "option": {
+  "min": 0,
+  "max": 2
  },
  "optoff": {
   "min": 0,
@@ -4042,6 +4126,10 @@
  "segmenttextsplit": {
   "min": 1,
   "max": 1
+ },
+ "selectmenuvalues": {
+  "min": 0,
+  "max": 2
  },
  "sendembedmessage": {
   "min": 2,
