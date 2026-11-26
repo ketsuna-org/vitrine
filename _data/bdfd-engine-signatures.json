@@ -75,6 +75,10 @@
   "min": 1,
   "max": null
  },
+ "addcolorstop": {
+  "min": 3,
+  "max": 3
+ },
  "addcontainer": {
   "min": 0,
   "max": 3
@@ -1131,6 +1135,10 @@
   "min": 3,
   "max": null
  },
+ "clip": {
+  "min": 0,
+  "max": 2
+ },
  "clonechannel": {
   "min": 1,
   "max": 3
@@ -1210,6 +1218,10 @@
  "compareandsetvar": {
   "min": 3,
   "max": 6
+ },
+ "compositeoperation": {
+  "min": 0,
+  "max": 2
  },
  "containsall": {
   "min": 2,
@@ -3859,9 +3871,17 @@
   "min": 1,
   "max": 2
  },
+ "newconicgradient": {
+  "min": 4,
+  "max": 32
+ },
  "newguild": {
   "min": 1,
   "max": 2
+ },
+ "newlineargradient": {
+  "min": 5,
+  "max": 32
  },
  "newmember": {
   "min": 1,
@@ -3874,6 +3894,10 @@
  "newmodal": {
   "min": 2,
   "max": 2
+ },
+ "newradialgradient": {
+  "min": 7,
+  "max": 32
  },
  "newrole": {
   "min": 1,
@@ -4022,6 +4046,10 @@
  "onlyperms": {
   "min": 2,
   "max": null
+ },
+ "opacity": {
+  "min": 0,
+  "max": 2
  },
  "option": {
   "min": 0,
