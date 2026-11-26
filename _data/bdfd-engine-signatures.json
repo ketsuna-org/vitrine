@@ -367,6 +367,34 @@
   "min": 2,
   "max": 2
  },
+ "applicationcommanddescription": {
+  "min": 0,
+  "max": 1
+ },
+ "applicationcommandid": {
+  "min": 0,
+  "max": 1
+ },
+ "applicationcommandname": {
+  "min": 0,
+  "max": 1
+ },
+ "applicationcommandoptions": {
+  "min": 0,
+  "max": 1
+ },
+ "applicationcommands": {
+  "min": 0,
+  "max": 1
+ },
+ "applicationsubcommandgroupname": {
+  "min": 0,
+  "max": 0
+ },
+ "applicationsubcommandname": {
+  "min": 0,
+  "max": 0
+ },
  "arc": {
   "min": 5,
   "max": 7
@@ -546,6 +574,10 @@
  "attachimage": {
   "min": 0,
   "max": 1
+ },
+ "attachment": {
+  "min": 2,
+  "max": 4
  },
  "auditlogreason": {
   "min": 0,
@@ -1391,6 +1423,10 @@
   "min": 3,
   "max": 3
  },
+ "currenttracktotalduration": {
+  "min": 0,
+  "max": 0
+ },
  "customemoji": {
   "min": 1,
   "max": 1
@@ -1642,6 +1678,10 @@
  "deletemessage": {
   "min": 2,
   "max": 3
+ },
+ "deletequeue": {
+  "min": 0,
+  "max": 0
  },
  "deleterole": {
   "min": 1,
@@ -2171,6 +2211,10 @@
   "min": 0,
   "max": 3
  },
+ "fetchembeds": {
+  "min": 0,
+  "max": 3
+ },
  "fetchmembers": {
   "min": 0,
   "max": 3
@@ -2526,6 +2570,10 @@
  "getmessage": {
   "min": 2,
   "max": 3
+ },
+ "getmessageclienttheme": {
+  "min": 3,
+  "max": 4
  },
  "getmessagereactioncount": {
   "min": 3,
@@ -3027,6 +3075,10 @@
   "min": 1,
   "max": 3
  },
+ "hasmusicnode": {
+  "min": 0,
+  "max": 0
+ },
  "hasperms": {
   "min": 2,
   "max": null
@@ -3396,6 +3448,10 @@
   "max": 1
  },
  "ispaused": {
+  "min": 0,
+  "max": 0
+ },
+ "isplaying": {
   "min": 0,
   "max": 0
  },
@@ -3811,6 +3867,10 @@
   "min": 0,
   "max": 1
  },
+ "loadembeds": {
+  "min": 1,
+  "max": 1
+ },
  "loadimage": {
   "min": 2,
   "max": 2
@@ -4122,6 +4182,10 @@
  "moveto": {
   "min": 2,
   "max": 3
+ },
+ "movetrack": {
+  "min": 2,
+  "max": 2
  },
  "multi": {
   "min": 1,
@@ -4443,13 +4507,25 @@
   "min": 8,
   "max": 15
  },
+ "playerelapsedtime": {
+  "min": 0,
+  "max": 0
+ },
  "playmusic": {
   "min": 1,
   "max": 3
  },
+ "playnext": {
+  "min": 0,
+  "max": 0
+ },
  "playsound": {
   "min": 2,
   "max": 2
+ },
+ "playtrack": {
+  "min": 2,
+  "max": 5
  },
  "plural": {
   "min": 3,
@@ -4690,6 +4766,10 @@
  "removesuperreaction": {
   "min": 3,
   "max": 3
+ },
+ "removetrack": {
+  "min": 1,
+  "max": 1
  },
  "repeatmessage": {
   "min": 2,
@@ -4936,6 +5016,10 @@
   "max": 3
  },
  "seekmusic": {
+  "min": 1,
+  "max": 1
+ },
+ "seektrack": {
   "min": 1,
   "max": 1
  },
@@ -5259,6 +5343,10 @@
   "min": 1,
   "max": 4
  },
+ "setloopmode": {
+  "min": 1,
+  "max": 1
+ },
  "setmembervar": {
   "min": 2,
   "max": 4
@@ -5379,6 +5467,10 @@
   "min": 2,
   "max": 3
  },
+ "setvolume": {
+  "min": 1,
+  "max": 1
+ },
  "sha256": {
   "min": 1,
   "max": 2
@@ -5414,6 +5506,10 @@
  "sign": {
   "min": 1,
   "max": 1
+ },
+ "silent": {
+  "min": 0,
+  "max": 0
  },
  "sin": {
   "min": 1,
@@ -5770,6 +5866,10 @@
  "touppercase": {
   "min": 1,
   "max": 1
+ },
+ "trackinfo": {
+  "min": 0,
+  "max": 4
  },
  "transform": {
   "min": 6,
