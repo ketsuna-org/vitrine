@@ -847,6 +847,10 @@
   "min": 1,
   "max": 2
  },
+ "canvasbuffer": {
+  "min": 1,
+  "max": 3
+ },
  "canvascompositeimage": {
   "min": 5,
   "max": 8
@@ -858,6 +862,14 @@
  "canvascreate": {
   "min": 3,
   "max": 4
+ },
+ "canvascrop": {
+  "min": 0,
+  "max": 5
+ },
+ "canvasdataurl": {
+  "min": 0,
+  "max": 2
  },
  "canvasdrawcircle": {
   "min": 5,
@@ -910,6 +922,10 @@
  "canvastilegrid": {
   "min": 6,
   "max": 8
+ },
+ "canvastrim": {
+  "min": 0,
+  "max": 5
  },
  "canvasversion": {
   "min": 0,
@@ -1303,6 +1319,10 @@
   "min": 1,
   "max": 2
  },
+ "cropcanvas": {
+  "min": 0,
+  "max": 5
+ },
  "croptext": {
   "min": 3,
   "max": 3
@@ -1511,6 +1531,10 @@
   "min": 1,
   "max": 1
  },
+ "deleteimage": {
+  "min": 1,
+  "max": 1
+ },
  "deletein": {
   "min": 1,
   "max": 2
@@ -1634,6 +1658,14 @@
  "drawimage": {
   "min": 4,
   "max": 7
+ },
+ "drawimagearea": {
+  "min": 8,
+  "max": 15
+ },
+ "drawimagerect": {
+  "min": 8,
+  "max": 15
  },
  "drawrect": {
   "min": 7,
@@ -2138,6 +2170,14 @@
  "followchannel": {
   "min": 2,
   "max": 3
+ },
+ "fontfamilies": {
+  "min": 0,
+  "max": 1
+ },
+ "fontvariantcaps": {
+  "min": 0,
+  "max": 2
  },
  "footer": {
   "min": 1,
@@ -2951,6 +2991,30 @@
   "min": 1,
   "max": 2
  },
+ "imagebuffer": {
+  "min": 2,
+  "max": 2
+ },
+ "imagedimensions": {
+  "min": 1,
+  "max": 2
+ },
+ "imagesize": {
+  "min": 1,
+  "max": 2
+ },
+ "imagesmooth": {
+  "min": 0,
+  "max": 2
+ },
+ "imagesmoothing": {
+  "min": 0,
+  "max": 2
+ },
+ "imgsize": {
+  "min": 1,
+  "max": 2
+ },
  "inboundheader": {
   "min": 1,
   "max": 1
@@ -3419,6 +3483,10 @@
   "min": 2,
   "max": 2
  },
+ "letterspacing": {
+  "min": 0,
+  "max": 2
+ },
  "levelfromxp": {
   "min": 1,
   "max": 2
@@ -3559,6 +3627,10 @@
   "min": 2,
   "max": 2
  },
+ "loadimageoptions": {
+  "min": 0,
+  "max": 4
+ },
  "locale": {
   "min": 0,
   "max": 0
@@ -3622,6 +3694,10 @@
  "md5": {
   "min": 1,
   "max": 2
+ },
+ "measuretext": {
+  "min": 3,
+  "max": 4
  },
  "memberavatardecoration": {
   "min": 0,
@@ -4119,6 +4195,10 @@
   "min": 0,
   "max": 3
  },
+ "placeimagearea": {
+  "min": 8,
+  "max": 15
+ },
  "playmusic": {
   "min": 1,
   "max": 3
@@ -4132,6 +4212,10 @@
   "max": 4
  },
  "pow": {
+  "min": 2,
+  "max": 2
+ },
+ "preloadimage": {
   "min": 2,
   "max": 2
  },
@@ -4271,6 +4355,10 @@
   "min": 1,
   "max": 1
  },
+ "removeimage": {
+  "min": 1,
+  "max": 1
+ },
  "removelinks": {
   "min": 0,
   "max": 1
@@ -4378,6 +4466,10 @@
  "resetuservar": {
   "min": 1,
   "max": 2
+ },
+ "resizecanvas": {
+  "min": 2,
+  "max": 3
  },
  "restore": {
   "min": 0,
@@ -5335,6 +5427,10 @@
   "min": 2,
   "max": 2
  },
+ "trimcanvas": {
+  "min": 0,
+  "max": 5
+ },
  "trimcontent": {
   "min": 0,
   "max": 1
@@ -5678,6 +5774,10 @@
  "wordcount": {
   "min": 1,
   "max": 1
+ },
+ "wordspacing": {
+  "min": 0,
+  "max": 2
  },
  "workflowresponse": {
   "min": 0,
