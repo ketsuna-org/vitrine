@@ -2219,6 +2219,10 @@
   "min": 0,
   "max": 3
  },
+ "fetchcomponents": {
+  "min": 0,
+  "max": 2
+ },
  "fetchembeds": {
   "min": 0,
   "max": 3
@@ -2227,7 +2231,23 @@
   "min": 0,
   "max": 3
  },
+ "fetchmessage": {
+  "min": 0,
+  "max": 2
+ },
+ "fetchresponse": {
+  "min": 0,
+  "max": 2
+ },
  "fetchroles": {
+  "min": 0,
+  "max": 3
+ },
+ "fetchrows": {
+  "min": 0,
+  "max": 2
+ },
+ "fetchsnapshot": {
   "min": 0,
   "max": 3
  },
@@ -3891,6 +3911,14 @@
   "min": 0,
   "max": 1
  },
+ "loadcomponent": {
+  "min": 1,
+  "max": 1
+ },
+ "loadcomponents": {
+  "min": 1,
+  "max": 1
+ },
  "loadembeds": {
   "min": 1,
   "max": 1
@@ -4117,6 +4145,10 @@
  },
  "messagereferenceid": {
   "min": 2,
+  "max": 2
+ },
+ "messageslice": {
+  "min": 0,
   "max": 2
  },
  "messagesticker": {
@@ -5713,6 +5745,10 @@
  },
  "starttyping": {
   "min": 0,
+  "max": 1
+ },
+ "sticker": {
+  "min": 1,
   "max": 1
  },
  "stickeravailable": {
