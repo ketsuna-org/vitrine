@@ -1239,6 +1239,10 @@
   "min": 1,
   "max": 2
  },
+ "clearinterval": {
+  "min": 1,
+  "max": 1
+ },
  "clearmessages": {
   "min": 2,
   "max": 4
@@ -1254,6 +1258,10 @@
  "clearreactions": {
   "min": 3,
   "max": null
+ },
+ "cleartimeout": {
+  "min": 1,
+  "max": 1
  },
  "clearusermessages": {
   "min": 3,
@@ -1737,6 +1745,10 @@
  },
  "deleterole": {
   "min": 1,
+  "max": 2
+ },
+ "deleterolevar": {
+  "min": 2,
   "max": 2
  },
  "deletesound": {
@@ -2738,6 +2750,10 @@
  "getroletertiarycolor": {
   "min": 1,
   "max": 1
+ },
+ "getrolevar": {
+  "min": 2,
+  "max": 3
  },
  "getserverinvite": {
   "min": 0,
@@ -5451,6 +5467,14 @@
   "min": 1,
   "max": 1
  },
+ "setbotbanner": {
+  "min": 1,
+  "max": 1
+ },
+ "setbotdescription": {
+  "min": 1,
+  "max": 1
+ },
  "setbotguildavatar": {
   "min": 1,
   "max": 3
@@ -5464,6 +5488,10 @@
   "max": 3
  },
  "setbotname": {
+  "min": 1,
+  "max": 1
+ },
+ "setbottags": {
   "min": 1,
   "max": 1
  },
@@ -5599,6 +5627,10 @@
   "min": 1,
   "max": 4
  },
+ "setinterval": {
+  "min": 1,
+  "max": 3
+ },
  "setloopmode": {
   "min": 1,
   "max": 1
@@ -5651,6 +5683,10 @@
   "min": 1,
   "max": 3
  },
+ "setrolevar": {
+  "min": 3,
+  "max": 3
+ },
  "setservervar": {
   "min": 2,
   "max": 3
@@ -5673,6 +5709,10 @@
  },
  "setthreadtags": {
   "min": 2,
+  "max": 3
+ },
+ "settimeout": {
+  "min": 1,
   "max": 3
  },
  "settimezone": {
@@ -5843,6 +5883,10 @@
   "min": 2,
   "max": 2
  },
+ "soundguildid": {
+  "min": 0,
+  "max": 0
+ },
  "soundid": {
   "min": 2,
   "max": 20
@@ -5927,6 +5971,10 @@
   "min": 1,
   "max": 1
  },
+ "stickerid": {
+  "min": 0,
+  "max": 0
+ },
  "stickername": {
   "min": 1,
   "max": 1
@@ -5959,9 +6007,17 @@
   "min": 0,
   "max": 0
  },
+ "stopinterval": {
+  "min": 1,
+  "max": 1
+ },
  "stopmusic": {
   "min": 0,
   "max": 0
+ },
+ "stoptimeout": {
+  "min": 1,
+  "max": 1
  },
  "stoptrack": {
   "min": 0,

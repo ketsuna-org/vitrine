@@ -4,7 +4,7 @@ title: db — Storage API
 category: "JavaScript API"
 api_type: javascript
 sidebar_context: javascript
-description: Persistent key-value storage for BDJS scripts — global, user, guild, channel, message, and guildMember scopes.
+description: Persistent key-value storage for BDJS scripts — global, user, guild, channel, role, message, and guildMember scopes.
 permalink: /docs/javascript/db/
 ---
 
@@ -18,6 +18,7 @@ The `db` global provides async persistent storage for JavaScript command scripts
 | `db.user` | Per Discord user | `$getUserVar` / `$setUserVar` |
 | `db.guild` | Per guild (server) | `$getGuildVar` / `$setGuildVar` |
 | `db.channel` | Per channel | `$getChannelVar` / `$setChannelVar` |
+| `db.role` | Per role (ID required) | `$getRoleVar` / `$setRoleVar` |
 | `db.message` | Per message | `$getMessageVar` / `$setMessageVar` |
 | `db.guildMember` | Per user in a guild | `$getMemberVar` / `$setMemberVar` |
 
@@ -55,5 +56,6 @@ const top = await db.user.list('coins', 'desc', 10, 0);
 - [db.global](/docs/javascript/db-global/)
 - [db.guild](/docs/javascript/db-guild/)
 - [db.channel](/docs/javascript/db-channel/)
+- [db.role](/docs/javascript/db-role/)
 - [db.message](/docs/javascript/db-message/)
 - [db.guildMember](/docs/javascript/db-guild-member/)
