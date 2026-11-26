@@ -4239,6 +4239,10 @@
   "min": 2,
   "max": 3
  },
+ "newemoji": {
+  "min": 1,
+  "max": 2
+ },
  "newentitlement": {
   "min": 1,
   "max": 2
@@ -4303,6 +4307,10 @@
   "min": 1,
   "max": 2
  },
+ "newsticker": {
+  "min": 1,
+  "max": 2
+ },
  "newticket": {
   "min": 5,
   "max": 8
@@ -4363,6 +4371,10 @@
   "min": 1,
   "max": 2
  },
+ "oldemoji": {
+  "min": 1,
+  "max": 2
+ },
  "oldentitlement": {
   "min": 1,
   "max": 2
@@ -4388,6 +4400,10 @@
   "max": 2
  },
  "oldstate": {
+  "min": 1,
+  "max": 2
+ },
+ "oldsticker": {
   "min": 1,
   "max": 2
  },
