@@ -539,6 +539,14 @@
   "min": 0,
   "max": 1
  },
+ "botcustominvite": {
+  "min": 0,
+  "max": 1
+ },
+ "botdescription": {
+  "min": 0,
+  "max": 1
+ },
  "botid": {
   "min": 0,
   "max": 0
@@ -567,9 +575,53 @@
   "min": 0,
   "max": 0
  },
+ "bottags": {
+  "min": 0,
+  "max": 1
+ },
+ "botteamcreatedat": {
+  "min": 0,
+  "max": 1
+ },
+ "botteamicon": {
+  "min": 0,
+  "max": 1
+ },
+ "botteamid": {
+  "min": 0,
+  "max": 1
+ },
+ "botteammembers": {
+  "min": 0,
+  "max": 1
+ },
+ "botteamname": {
+  "min": 0,
+  "max": 1
+ },
  "bottyping": {
   "min": 0,
   "max": 0
+ },
+ "botuserauthorizationcount": {
+  "min": 0,
+  "max": 1
+ },
+ "botuserinstallcount": {
+  "min": 0,
+  "max": 1
+ },
+ "botwebhookevents": {
+  "min": 0,
+  "max": 1
+ },
+ "botwebhookstatus": {
+  "min": 0,
+  "max": 1
+ },
+ "botwebhookurl": {
+  "min": 0,
+  "max": 1
  },
  "break": {
   "min": 0,
@@ -727,6 +779,14 @@
   "min": 0,
   "max": 1
  },
+ "channelhasanyperms": {
+  "min": 3,
+  "max": 60
+ },
+ "channelhasperms": {
+  "min": 3,
+  "max": 60
+ },
  "channelid": {
   "min": 0,
   "max": 1
@@ -762,6 +822,10 @@
  "channelpermissions": {
   "min": 1,
   "max": 3
+ },
+ "channelpermissionsof": {
+  "min": 3,
+  "max": 4
  },
  "channelpinnedmessages": {
   "min": 0,
@@ -839,6 +903,10 @@
   "min": 0,
   "max": 4
  },
+ "clearchannelperms": {
+  "min": 1,
+  "max": 2
+ },
  "clearqueue": {
   "min": 0,
   "max": 0
@@ -850,6 +918,10 @@
  "clonechannel": {
   "min": 1,
   "max": 3
+ },
+ "clonechannelperms": {
+  "min": 2,
+  "max": 2
  },
  "clonerole": {
   "min": 2,
@@ -958,6 +1030,10 @@
  "createforumpost": {
   "min": 3,
   "max": 7
+ },
+ "createguildtemplate": {
+  "min": 2,
+  "max": 3
  },
  "createinvite": {
   "min": 0,
@@ -1115,6 +1191,10 @@
   "min": 1,
   "max": 2
  },
+ "deletechannelperms": {
+  "min": 3,
+  "max": 60
+ },
  "deletechannels": {
   "min": 1,
   "max": null
@@ -1132,6 +1212,14 @@
   "max": 40
  },
  "deleteevent": {
+  "min": 1,
+  "max": 1
+ },
+ "deleteforumtags": {
+  "min": 2,
+  "max": 25
+ },
+ "deleteguildtemplate": {
   "min": 1,
   "max": 1
  },
@@ -1215,6 +1303,10 @@
   "min": 1,
   "max": 2
  },
+ "editautomodrule": {
+  "min": 2,
+  "max": 6
+ },
  "editbutton": {
   "min": 3,
   "max": 6
@@ -1238,6 +1330,14 @@
  "editevent": {
   "min": 3,
   "max": 4
+ },
+ "editforumtag": {
+  "min": 2,
+  "max": 5
+ },
+ "editguildtemplate": {
+  "min": 1,
+  "max": 3
  },
  "editin": {
   "min": 2,
@@ -1475,6 +1575,10 @@
   "min": 0,
   "max": 3
  },
+ "fetchthreads": {
+  "min": 0,
+  "max": 3
+ },
  "fetchuserauditlog": {
   "min": 3,
   "max": 6
@@ -1507,9 +1611,29 @@
   "min": 1,
   "max": 2
  },
+ "findapplicationemoji": {
+  "min": 1,
+  "max": 1
+ },
  "findchannel": {
   "min": 1,
   "max": 1
+ },
+ "findemoji": {
+  "min": 1,
+  "max": 1
+ },
+ "findguildchannel": {
+  "min": 2,
+  "max": 3
+ },
+ "findguildemoji": {
+  "min": 2,
+  "max": 2
+ },
+ "findmembers": {
+  "min": 2,
+  "max": 5
  },
  "findrole": {
   "min": 1,
@@ -1530,6 +1654,10 @@
  "floordiv": {
   "min": 2,
   "max": 2
+ },
+ "followchannel": {
+  "min": 2,
+  "max": 3
  },
  "footer": {
   "min": 1,
@@ -1594,6 +1722,14 @@
  "getattachments": {
   "min": 1,
   "max": 1
+ },
+ "getautomodrule": {
+  "min": 2,
+  "max": 4
+ },
+ "getautomodruleactions": {
+  "min": 2,
+  "max": 4
  },
  "getbanreason": {
   "min": 1,
@@ -1808,6 +1944,10 @@
   "max": 3
  },
  "getvar": {
+  "min": 1,
+  "max": 2
+ },
+ "getwebhook": {
   "min": 1,
   "max": 2
  },
@@ -2251,6 +2391,10 @@
   "min": 1,
   "max": 1
  },
+ "isbannable": {
+  "min": 2,
+  "max": 2
+ },
  "isbanned": {
   "min": 1,
   "max": 1
@@ -2303,6 +2447,14 @@
   "min": 1,
   "max": 1
  },
+ "iskickable": {
+  "min": 2,
+  "max": 2
+ },
+ "ismanageable": {
+  "min": 2,
+  "max": 2
+ },
  "ismentionable": {
   "min": 1,
   "max": 1
@@ -2312,6 +2464,10 @@
   "max": 1
  },
  "ismessageedited": {
+  "min": 2,
+  "max": 2
+ },
+ "ismoderatable": {
   "min": 2,
   "max": 2
  },
@@ -2778,6 +2934,10 @@
  "memberid": {
   "min": 0,
   "max": 0
+ },
+ "memberjoinposition": {
+  "min": 2,
+  "max": 2
  },
  "memberlowestroleid": {
   "min": 0,
@@ -3295,6 +3455,10 @@
   "min": 2,
   "max": 2
  },
+ "roleeditable": {
+  "min": 2,
+  "max": 2
+ },
  "roleexists": {
   "min": 1,
   "max": 1
@@ -3326,6 +3490,10 @@
  "roleintcolor": {
   "min": 2,
   "max": 3
+ },
+ "rolemanageable": {
+  "min": 2,
+  "max": 2
  },
  "rolemembercount": {
   "min": 1,
@@ -3519,6 +3687,18 @@
   "min": 1,
   "max": 1
  },
+ "setbotguildavatar": {
+  "min": 1,
+  "max": 3
+ },
+ "setbotguildbanner": {
+  "min": 1,
+  "max": 3
+ },
+ "setbotguilddescription": {
+  "min": 1,
+  "max": 3
+ },
  "setbotname": {
   "min": 1,
   "max": 1
@@ -3575,6 +3755,10 @@
   "min": 1,
   "max": 3
  },
+ "setguilddmsdisabled": {
+  "min": 1,
+  "max": 2
+ },
  "setguildexplicitcontentfilter": {
   "min": 1,
   "max": 3
@@ -3583,13 +3767,25 @@
   "min": 1,
   "max": 3
  },
+ "setguildinvitesdisabled": {
+  "min": 1,
+  "max": 2
+ },
  "setguildmembervar": {
   "min": 2,
   "max": 4
  },
+ "setguildmfalevel": {
+  "min": 2,
+  "max": 3
+ },
  "setguildname": {
   "min": 2,
   "max": 3
+ },
+ "setguildpausedinvites": {
+  "min": 2,
+  "max": 2
  },
  "setguildpreferredlocale": {
   "min": 1,
@@ -3622,6 +3818,10 @@
  "setguildverificationlevel": {
   "min": 1,
   "max": 3
+ },
+ "setguildwidgetsettings": {
+  "min": 1,
+  "max": 4
  },
  "setmembervar": {
   "min": 2,
@@ -3893,6 +4093,10 @@
  },
  "suppresserrors": {
   "min": 0,
+  "max": 1
+ },
+ "syncguildtemplate": {
+  "min": 1,
   "max": 1
  },
  "systemchannelid": {
@@ -4279,9 +4483,21 @@
   "min": 2,
   "max": 2
  },
+ "webhookeditmessage": {
+  "min": 2,
+  "max": 4
+ },
+ "webhookexists": {
+  "min": 1,
+  "max": 1
+ },
  "webhookfooter": {
   "min": 2,
   "max": 2
+ },
+ "webhookisusercreated": {
+  "min": 1,
+  "max": 1
  },
  "webhookquick": {
   "min": 2,
@@ -4294,6 +4510,10 @@
  "webhooktitle": {
   "min": 2,
   "max": 2
+ },
+ "webhooktype": {
+  "min": 1,
+  "max": 1
  },
  "webhookusername": {
   "min": 2,
