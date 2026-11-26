@@ -11,6 +11,10 @@
   "min": 0,
   "max": 2
  },
+ "addactionrowto": {
+  "min": 3,
+  "max": 4
+ },
  "addapplicationemoji": {
   "min": 2,
   "max": 3
@@ -35,9 +39,37 @@
   "min": 1,
   "max": 7
  },
+ "addchannelselectmenu": {
+  "min": 1,
+  "max": 6
+ },
+ "addchannelselectmenuto": {
+  "min": 3,
+  "max": 40
+ },
+ "addchanneltype": {
+  "min": 1,
+  "max": 40
+ },
+ "addcheckbox": {
+  "min": 1,
+  "max": 2
+ },
+ "addcheckboxgroup": {
+  "min": 1,
+  "max": 4
+ },
  "addcheckboxgroupoption": {
   "min": 2,
   "max": 5
+ },
+ "addcheckboxoption": {
+  "min": 2,
+  "max": 4
+ },
+ "addchoice": {
+  "min": 2,
+  "max": 2
  },
  "addcmdreactions": {
   "min": 1,
@@ -46,6 +78,18 @@
  "addcontainer": {
   "min": 0,
   "max": 3
+ },
+ "adddefaultchanneloption": {
+  "min": 1,
+  "max": 25
+ },
+ "adddefaultroleoption": {
+  "min": 1,
+  "max": 25
+ },
+ "adddefaultuseroption": {
+  "min": 1,
+  "max": 25
  },
  "addemoji": {
   "min": 3,
@@ -59,6 +103,14 @@
   "min": 1,
   "max": 2
  },
+ "addfileupload": {
+  "min": 1,
+  "max": 4
+ },
+ "addlabel": {
+  "min": 3,
+  "max": 3
+ },
  "addmediagallery": {
   "min": 0,
   "max": 2
@@ -67,9 +119,21 @@
   "min": 1,
   "max": 4
  },
+ "addmediaitem": {
+  "min": 1,
+  "max": 3
+ },
  "addmentionableselect": {
   "min": 1,
   "max": 6
+ },
+ "addmentionableselectmenu": {
+  "min": 1,
+  "max": 6
+ },
+ "addmentionableselectmenuto": {
+  "min": 3,
+  "max": 40
  },
  "addmessagereactions": {
   "min": 3,
@@ -103,13 +167,25 @@
   "min": 3,
   "max": 9
  },
+ "addoption": {
+  "min": 3,
+  "max": 5
+ },
  "addposttags": {
   "min": 2,
   "max": 12
  },
+ "addradiogroup": {
+  "min": 1,
+  "max": 2
+ },
  "addradiogroupoption": {
   "min": 2,
   "max": 5
+ },
+ "addradiooption": {
+  "min": 2,
+  "max": 4
  },
  "addreactions": {
   "min": 1,
@@ -118,6 +194,14 @@
  "addroleselect": {
   "min": 1,
   "max": 6
+ },
+ "addroleselectmenu": {
+  "min": 1,
+  "max": 6
+ },
+ "addroleselectmenuto": {
+  "min": 3,
+  "max": 40
  },
  "addsection": {
   "min": 0,
@@ -138,6 +222,14 @@
  "addstringselect": {
   "min": 1,
   "max": 6
+ },
+ "addstringselectmenu": {
+  "min": 1,
+  "max": 6
+ },
+ "addstringselectmenuto": {
+  "min": 3,
+  "max": 40
  },
  "addstringselectoption": {
   "min": 2,
@@ -166,6 +258,14 @@
  "adduserselect": {
   "min": 1,
   "max": 6
+ },
+ "adduserselectmenu": {
+  "min": 1,
+  "max": 6
+ },
+ "adduserselectmenuto": {
+  "min": 3,
+  "max": 40
  },
  "addvoiceselect": {
   "min": 1,
@@ -1231,6 +1331,10 @@
   "min": 1,
   "max": 1
  },
+ "deleteactionrow": {
+  "min": 1,
+  "max": 1
+ },
  "deleteactionrowfrom": {
   "min": 3,
   "max": 3
@@ -1262,6 +1366,10 @@
  "deletecommand": {
   "min": 0,
   "max": 0
+ },
+ "deletecomponent": {
+  "min": 1,
+  "max": 1
  },
  "deletecomponentfrom": {
   "min": 3,
@@ -1331,9 +1439,17 @@
   "min": 0,
   "max": 0
  },
+ "disablebuttons": {
+  "min": 0,
+  "max": 1
+ },
  "disablebuttonsof": {
   "min": 2,
   "max": 3
+ },
+ "disablecomponents": {
+  "min": 0,
+  "max": 0
  },
  "disablecomponentsof": {
   "min": 2,
@@ -1415,6 +1531,10 @@
   "min": 3,
   "max": null
  },
+ "editchannelselectmenu": {
+  "min": 2,
+  "max": 40
+ },
  "editchannelselectmenuof": {
   "min": 4,
   "max": 40
@@ -1451,6 +1571,10 @@
   "min": 1,
   "max": 1
  },
+ "editmentionableselectmenu": {
+  "min": 2,
+  "max": 40
+ },
  "editmentionableselectmenuof": {
   "min": 4,
   "max": 40
@@ -1467,6 +1591,10 @@
    2
   ]
  },
+ "editoption": {
+  "min": 2,
+  "max": 6
+ },
  "editrolename": {
   "min": 3,
   "max": 3
@@ -1474,6 +1602,10 @@
  "editroleposition": {
   "min": 3,
   "max": 3
+ },
+ "editroleselectmenu": {
+  "min": 2,
+  "max": 40
  },
  "editroleselectmenuof": {
   "min": 4,
@@ -1511,6 +1643,10 @@
   "min": 2,
   "max": 5
  },
+ "editstringselectmenu": {
+  "min": 2,
+  "max": 6
+ },
  "editstringselectmenuof": {
   "min": 4,
   "max": 40
@@ -1526,6 +1662,10 @@
  "editthumbnail": {
   "min": 2,
   "max": 5
+ },
+ "edituserselectmenu": {
+  "min": 2,
+  "max": 40
  },
  "edituserselectmenuof": {
   "min": 4,
@@ -1603,9 +1743,17 @@
   "min": 0,
   "max": 0
  },
+ "enablebuttons": {
+  "min": 0,
+  "max": 1
+ },
  "enablebuttonsof": {
   "min": 2,
   "max": 3
+ },
+ "enablecomponents": {
+  "min": 0,
+  "max": 0
  },
  "enablecomponentsof": {
   "min": 2,
@@ -4014,6 +4162,10 @@
  "setchannelarchiveduration": {
   "min": 2,
   "max": 3
+ },
+ "setchanneltype": {
+  "min": 1,
+  "max": 40
  },
  "setchannelvar": {
   "min": 2,
