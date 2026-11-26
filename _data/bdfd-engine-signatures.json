@@ -1467,6 +1467,10 @@
   "min": 0,
   "max": 0
  },
+ "customstatus": {
+  "min": 0,
+  "max": 3
+ },
  "date": {
   "min": 0,
   "max": 0
@@ -4075,6 +4079,10 @@
   "min": 0,
   "max": 0
  },
+ "membercustomstatus": {
+  "min": 0,
+  "max": 3
+ },
  "memberdisplaycolor": {
   "min": 0,
   "max": 2
@@ -4118,6 +4126,14 @@
  "memberscount": {
   "min": 0,
   "max": 1
+ },
+ "memberstatus": {
+  "min": 0,
+  "max": 2
+ },
+ "memberstatuses": {
+  "min": 0,
+  "max": 2
  },
  "mentionchannel": {
   "min": 1,
@@ -5823,6 +5839,14 @@
   "min": 0,
   "max": 1
  },
+ "status": {
+  "min": 0,
+  "max": 2
+ },
+ "statuses": {
+  "min": 0,
+  "max": 2
+ },
  "sticker": {
   "min": 1,
   "max": 1
@@ -6214,6 +6238,10 @@
  "userbannercolor": {
   "min": 1,
   "max": 1
+ },
+ "usercustomstatus": {
+  "min": 0,
+  "max": 3
  },
  "userdefaultavatar": {
   "min": 0,
