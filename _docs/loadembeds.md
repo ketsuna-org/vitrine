@@ -2,7 +2,7 @@
 layout: doc
 title: $loadEmbeds[]
 translation_key: docs
-category: "Messages"
+category: "Responses"
 function_name: loadEmbeds
 syntax: $loadEmbeds[embeds]
 description: "Adds embeds from a JSON object or list (Discord embed format) to the response, up to 10 in all."

@@ -2,7 +2,7 @@
 layout: doc
 title: $fetchEmbeds[]
 translation_key: docs
-category: "Messages"
+category: "Responses"
 function_name: fetchEmbeds
 syntax: $fetchEmbeds[(channelID);messageID;(index)]
 description: "Copies the embeds of a message (or one of them) to the response."

@@ -2,7 +2,7 @@
 layout: doc
 title: $silent[]
 translation_key: docs
-category: "Messages"
+category: "Responses"
 function_name: silent
 syntax: $silent
 description: "Sends the response without a notification."

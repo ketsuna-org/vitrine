@@ -2,7 +2,7 @@
 layout: doc
 title: $getMessageClientTheme[]
 translation_key: docs
-category: "Messages"
+category: "Responses"
 function_name: getMessageClientTheme
 syntax: $getMessageClientTheme[(channelID);messageID;property;(separator)]
 description: "Reads the shared client theme of a message: baseMix, baseTheme, gradientAngle or colors."
