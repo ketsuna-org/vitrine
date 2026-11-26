@@ -511,6 +511,10 @@
   "min": 2,
   "max": null
  },
+ "attachcanvas": {
+  "min": 1,
+  "max": 3
+ },
  "attachimage": {
   "min": 0,
   "max": 1
@@ -879,9 +883,17 @@
   "min": 3,
   "max": 4
  },
+ "canvassize": {
+  "min": 0,
+  "max": 2
+ },
  "canvastilegrid": {
   "min": 6,
   "max": 8
+ },
+ "canvasversion": {
+  "min": 0,
+  "max": 1
  },
  "capitalize": {
   "min": 1,
@@ -1087,6 +1099,10 @@
   "min": 0,
   "max": 4
  },
+ "clearcanvascache": {
+  "min": 0,
+  "max": 0
+ },
  "clearchannelperms": {
   "min": 1,
   "max": 2
@@ -1202,6 +1218,10 @@
  "createautomodrule": {
   "min": 2,
   "max": 8
+ },
+ "createcanvas": {
+  "min": 3,
+  "max": 4
  },
  "createchannel": {
   "min": 2,
@@ -1403,6 +1423,10 @@
   "min": 1,
   "max": 2
  },
+ "deletecanvas": {
+  "min": 1,
+  "max": 1
+ },
  "deletechannelperms": {
   "min": 3,
   "max": 60
@@ -1574,6 +1598,18 @@
  "dmchannelid": {
   "min": 0,
   "max": 1
+ },
+ "drawimage": {
+  "min": 4,
+  "max": 7
+ },
+ "drawrect": {
+  "min": 7,
+  "max": 8
+ },
+ "drawtext": {
+  "min": 7,
+  "max": 14
  },
  "duration": {
   "min": 1,
@@ -2759,6 +2795,14 @@
   "min": 1,
   "max": 1
  },
+ "hextorgb": {
+  "min": 1,
+  "max": 32
+ },
+ "hextorgba": {
+  "min": 1,
+  "max": 32
+ },
  "hidechannel": {
   "min": 0,
   "max": 3
@@ -3446,6 +3490,10 @@
  "listwebhooks": {
   "min": 0,
   "max": 1
+ },
+ "loadimage": {
+  "min": 2,
+  "max": 2
  },
  "locale": {
   "min": 0,
@@ -4255,6 +4303,14 @@
   "min": 1,
   "max": 1
  },
+ "rgbatohex": {
+  "min": 1,
+  "max": 130
+ },
+ "rgbtohex": {
+  "min": 1,
+  "max": 97
+ },
  "rolecount": {
   "min": 0,
   "max": 0
@@ -5042,6 +5098,14 @@
  "tan": {
   "min": 1,
   "max": 1
+ },
+ "textalign": {
+  "min": 0,
+  "max": 2
+ },
+ "textbaseline": {
+  "min": 0,
+  "max": 2
  },
  "textsplit": {
   "min": 2,
