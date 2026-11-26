@@ -18,6 +18,7 @@ permalink: /docs/javascript/ai/
 | `await bc.ai.askWithContext(prompt, { system, maxTokens })` | `$aiWithCtx` | the answer, knowing the triggering message |
 | `await bc.ai.decide(content, question)` | `$aiDecide` | `true` or `false` |
 | `await bc.ai.decideWithContext(question)` | `$aiDecideWithCtx` | `true` or `false` |
+| `await bc.ai.translate(text, language)` | `$translate` | the translation (`''` on error). The text is data, never instructions: protocol tags are stripped, the language is a plain name or code and only the reply between `<translation>` tags is kept |
 | `await bc.ai.agent(prompt, { system, tools, functions, maxTokens })` | `$aiAgent` | the final answer |
 | `await bc.ai.quota()` | `$aiQuota` | AI credits left (number) |
 | `bc.ai.error` | `$aiError` | error code of the last call, `''` if it worked |

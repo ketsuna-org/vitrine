@@ -23,6 +23,10 @@
   "min": 2,
   "max": 6
  },
+ "addbuttonto": {
+  "min": 5,
+  "max": 7
+ },
  "addcategoryselect": {
   "min": 1,
   "max": 6
@@ -1227,6 +1231,14 @@
   "min": 1,
   "max": 1
  },
+ "deleteactionrowfrom": {
+  "min": 3,
+  "max": 3
+ },
+ "deleteallmessagereactions": {
+  "min": 2,
+  "max": 2
+ },
  "deleteapplicationemojis": {
   "min": 1,
   "max": 50
@@ -1250,6 +1262,10 @@
  "deletecommand": {
   "min": 0,
   "max": 0
+ },
+ "deletecomponentfrom": {
+  "min": 3,
+  "max": 3
  },
  "deleteemojis": {
   "min": 2,
@@ -1303,6 +1319,10 @@
   "min": 2,
   "max": 40
  },
+ "deleteusermessagereaction": {
+  "min": 4,
+  "max": 4
+ },
  "description": {
   "min": 1,
   "max": 2
@@ -1310,6 +1330,14 @@
  "disableallmentions": {
   "min": 0,
   "max": 0
+ },
+ "disablebuttonsof": {
+  "min": 2,
+  "max": 3
+ },
+ "disablecomponentsof": {
+  "min": 2,
+  "max": 2
  },
  "disableeveryonemention": {
   "min": 0,
@@ -1379,9 +1407,17 @@
   "min": 3,
   "max": 6
  },
+ "editbuttonof": {
+  "min": 4,
+  "max": 8
+ },
  "editchannelperms": {
   "min": 3,
   "max": null
+ },
+ "editchannelselectmenuof": {
+  "min": 4,
+  "max": 40
  },
  "editcontainer": {
   "min": 1,
@@ -1415,6 +1451,10 @@
   "min": 1,
   "max": 1
  },
+ "editmentionableselectmenuof": {
+  "min": 4,
+  "max": 40
+ },
  "editmessage": {
   "min": 3,
   "max": 7
@@ -1434,6 +1474,10 @@
  "editroleposition": {
   "min": 3,
   "max": 3
+ },
+ "editroleselectmenuof": {
+  "min": 4,
+  "max": 40
  },
  "editroleunicodeemoji": {
   "min": 2,
@@ -1467,6 +1511,10 @@
   "min": 2,
   "max": 5
  },
+ "editstringselectmenuof": {
+  "min": 4,
+  "max": 40
+ },
  "edittextdisplay": {
   "min": 2,
   "max": 3
@@ -1478,6 +1526,10 @@
  "editthumbnail": {
   "min": 2,
   "max": 5
+ },
+ "edituserselectmenuof": {
+  "min": 4,
+  "max": 40
  },
  "editwebhook": {
   "min": 2,
@@ -1550,6 +1602,14 @@
  "enableallmentions": {
   "min": 0,
   "max": 0
+ },
+ "enablebuttonsof": {
+  "min": 2,
+  "max": 3
+ },
+ "enablecomponentsof": {
+  "min": 2,
+  "max": 2
  },
  "enabled": {
   "min": 1,
@@ -1771,6 +1831,10 @@
   "min": 1,
   "max": 2
  },
+ "forwardmessage": {
+  "min": 2,
+  "max": 3
+ },
  "fromcharcode": {
   "min": 1,
   "max": null
@@ -1851,6 +1915,10 @@
   "min": 4,
   "max": 4
  },
+ "getembeds": {
+  "min": 2,
+  "max": 5
+ },
  "getguildmembervar": {
   "min": 1,
   "max": 3
@@ -1903,9 +1971,21 @@
   "min": 2,
   "max": 3
  },
+ "getmessagereactioncount": {
+  "min": 3,
+  "max": 4
+ },
+ "getmessagereactionusers": {
+  "min": 3,
+  "max": 4
+ },
  "getmessagevar": {
   "min": 1,
   "max": 2
+ },
+ "getpoll": {
+  "min": 3,
+  "max": 3
  },
  "getreactions": {
   "min": 4,
@@ -1962,6 +2042,10 @@
  "getslowmode": {
   "min": 0,
   "max": 1
+ },
+ "getsnapshots": {
+  "min": 2,
+  "max": 5
  },
  "getsoundboardsound": {
   "min": 2,
@@ -2311,6 +2395,14 @@
   "min": 2,
   "max": 3
  },
+ "hascomponents": {
+  "min": 2,
+  "max": 2
+ },
+ "hasembeds": {
+  "min": 2,
+  "max": 2
+ },
  "hasentitlement": {
   "min": 1,
   "max": 3
@@ -2323,11 +2415,19 @@
   "min": 2,
   "max": null
  },
+ "haspoll": {
+  "min": 2,
+  "max": 2
+ },
  "hasrole": {
   "min": 2,
   "max": 2
  },
  "hasrolenamed": {
+  "min": 2,
+  "max": 2
+ },
+ "hassnapshots": {
   "min": 2,
   "max": 2
  },
@@ -3107,13 +3207,57 @@
   "min": 0,
   "max": 2
  },
+ "messageattachment": {
+  "min": 3,
+  "max": 3
+ },
+ "messageattachmentcount": {
+  "min": 2,
+  "max": 2
+ },
+ "messageattachmentflags": {
+  "min": 3,
+  "max": 4
+ },
+ "messageattachments": {
+  "min": 2,
+  "max": 3
+ },
  "messageeditedtimestamp": {
   "min": 2,
   "max": 2
  },
+ "messageemojis": {
+  "min": 2,
+  "max": 4
+ },
+ "messageexists": {
+  "min": 2,
+  "max": 2
+ },
+ "messageflags": {
+  "min": 2,
+  "max": 3
+ },
  "messageid": {
   "min": 0,
   "max": 0
+ },
+ "messagereferenceid": {
+  "min": 2,
+  "max": 2
+ },
+ "messagesticker": {
+  "min": 3,
+  "max": 3
+ },
+ "messagestickercount": {
+  "min": 2,
+  "max": 2
+ },
+ "messagestickers": {
+  "min": 2,
+  "max": 4
  },
  "messagetimestamp": {
   "min": 0,
@@ -3125,6 +3269,10 @@
  },
  "messageurl": {
   "min": 0,
+  "max": 2
+ },
+ "messagewebhookid": {
+  "min": 2,
   "max": 2
  },
  "min": {
@@ -3458,6 +3606,10 @@
  "removeallcomponents": {
   "min": 0,
   "max": 1
+ },
+ "removeattachments": {
+  "min": 2,
+  "max": 2
  },
  "removebuttons": {
   "min": 0,
@@ -4283,6 +4435,10 @@
   "min": 1,
   "max": null
  },
+ "suppressembeds": {
+  "min": 2,
+  "max": 2
+ },
  "suppresserrorlogging": {
   "min": 0,
   "max": 0
@@ -4423,6 +4579,10 @@
   "min": 1,
   "max": 1
  },
+ "translate": {
+  "min": 2,
+  "max": 2
+ },
  "trimcontent": {
   "min": 0,
   "max": 1
@@ -4494,6 +4654,10 @@
  "unregisterguildcommands": {
   "min": 0,
   "max": null
+ },
+ "unsuppressembeds": {
+  "min": 2,
+  "max": 2
  },
  "untimeout": {
   "min": 0,
