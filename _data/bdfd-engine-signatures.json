@@ -163,9 +163,17 @@
   "min": 1,
   "max": 6
  },
+ "advancedbar": {
+  "min": 3,
+  "max": 200
+ },
  "advancedreplace": {
   "min": 3,
   "max": null
+ },
+ "advancedtextsplit": {
+  "min": 3,
+  "max": 41
  },
  "afkchannelid": {
   "min": 0,
@@ -475,6 +483,10 @@
   "min": 0,
   "max": 2
  },
+ "bar": {
+  "min": 2,
+  "max": 10
+ },
  "base": {
   "min": 2,
   "max": 3
@@ -639,6 +651,18 @@
   "min": 1,
   "max": 1
  },
+ "calendarday": {
+  "min": 0,
+  "max": 0
+ },
+ "calendarweek": {
+  "min": 0,
+  "max": 0
+ },
+ "calllocalfunction": {
+  "min": 1,
+  "max": 34
+ },
  "callworkflow": {
   "min": 1,
   "max": 100
@@ -710,6 +734,10 @@
  "capitalize": {
   "min": 1,
   "max": 1
+ },
+ "case": {
+  "min": 2,
+  "max": 2
  },
  "categorychannels": {
   "min": 2,
@@ -1263,11 +1291,23 @@
   "min": 0,
   "max": 0
  },
+ "disableeveryonemention": {
+  "min": 0,
+  "max": 0
+ },
  "disableinnerspaceremoval": {
   "min": 0,
   "max": 0
  },
+ "disablerolementions": {
+  "min": 0,
+  "max": 0
+ },
  "disablespecialescaping": {
+  "min": 0,
+  "max": 0
+ },
+ "disableusermentions": {
   "min": 0,
   "max": 0
  },
@@ -1533,6 +1573,10 @@
  },
  "error": {
   "min": 0,
+  "max": 1
+ },
+ "escapecode": {
+  "min": 1,
   "max": 1
  },
  "escapemarkdown": {
@@ -2415,6 +2459,10 @@
   "min": 0,
   "max": 1
  },
+ "ischannelmentioned": {
+  "min": 3,
+  "max": 3
+ },
  "isdeaf": {
   "min": 0,
   "max": 2
@@ -2495,6 +2543,10 @@
   "min": 0,
   "max": 1
  },
+ "isrolementioned": {
+  "min": 3,
+  "max": 3
+ },
  "isselfdeaf": {
   "min": 0,
   "max": 2
@@ -2526,6 +2578,10 @@
  "isuserdmenabled": {
   "min": 0,
   "max": 1
+ },
+ "isusermentioned": {
+  "min": 3,
+  "max": 3
  },
  "isvalidhex": {
   "min": 1,
@@ -2595,6 +2651,10 @@
   "min": 0,
   "max": 100
  },
+ "jsonfromentries": {
+  "min": 1,
+  "max": 1
+ },
  "jsonfrompairs": {
   "min": 0,
   "max": null
@@ -2614,6 +2674,10 @@
  "jsonkeys": {
   "min": 0,
   "max": 100
+ },
+ "jsonload": {
+  "min": 2,
+  "max": 2
  },
  "jsonparse": {
   "min": 1,
@@ -2847,6 +2911,10 @@
   "min": 2,
   "max": 2
  },
+ "localfunction": {
+  "min": 2,
+  "max": 34
+ },
  "lockchannel": {
   "min": 0,
   "max": 3
@@ -2963,13 +3031,25 @@
   "min": 1,
   "max": 2
  },
+ "mentionedchannelcount": {
+  "min": 0,
+  "max": 0
+ },
  "mentionedchannels": {
   "min": 1,
   "max": 2
  },
+ "mentionedrolecount": {
+  "min": 0,
+  "max": 0
+ },
  "mentionedroles": {
   "min": 1,
   "max": 1
+ },
+ "mentionedusercount": {
+  "min": 0,
+  "max": 0
  },
  "mentionrole": {
   "min": 1,
@@ -3127,6 +3207,10 @@
   "min": 2,
   "max": null
  },
+ "onlyforguilds": {
+  "min": 2,
+  "max": 25
+ },
  "onlyforids": {
   "min": 2,
   "max": null
@@ -3187,6 +3271,10 @@
   "min": 0,
   "max": 1
  },
+ "parsedate": {
+  "min": 2,
+  "max": 2
+ },
  "parseduration": {
   "min": 1,
   "max": 2
@@ -3198,6 +3286,10 @@
  "parseint": {
   "min": 1,
   "max": 2
+ },
+ "parsestring": {
+  "min": 1,
+  "max": 1
  },
  "pausemusic": {
   "min": 0,
@@ -3443,6 +3535,10 @@
   "min": 0,
   "max": 0
  },
+ "return": {
+  "min": 0,
+  "max": 1
+ },
  "reversetext": {
   "min": 1,
   "max": 1
@@ -3539,6 +3635,10 @@
   "min": 0,
   "max": 1
  },
+ "scope": {
+  "min": 1,
+  "max": 2
+ },
  "scriptlanguage": {
   "min": 0,
   "max": 0
@@ -3556,6 +3656,10 @@
   "max": 3
  },
  "seekmusic": {
+  "min": 1,
+  "max": 1
+ },
+ "segmenttextsplit": {
   "min": 1,
   "max": 1
  },
@@ -3879,6 +3983,10 @@
   "min": 2,
   "max": 3
  },
+ "settimezone": {
+  "min": 1,
+  "max": 1
+ },
  "setuserroles": {
   "min": 2,
   "max": null
@@ -3991,6 +4099,10 @@
   "min": 1,
   "max": 1
  },
+ "splittextjoin": {
+  "min": 1,
+  "max": 1
+ },
  "spoiler": {
   "min": 1,
   "max": 1
@@ -4094,6 +4206,10 @@
  "suppresserrors": {
   "min": 0,
   "max": 1
+ },
+ "switch": {
+  "min": 2,
+  "max": 2
  },
  "syncguildtemplate": {
   "min": 1,
@@ -4276,6 +4392,14 @@
   "max": 3
  },
  "unmute": {
+  "min": 1,
+  "max": 1
+ },
+ "unparsedate": {
+  "min": 1,
+  "max": 1
+ },
+ "unparsedigital": {
   "min": 1,
   "max": 1
  },
