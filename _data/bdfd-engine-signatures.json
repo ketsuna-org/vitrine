@@ -603,6 +603,10 @@
   "min": 0,
   "max": 0
  },
+ "authorizingintegrationowners": {
+  "min": 0,
+  "max": 1
+ },
  "authorofmessage": {
   "min": 2,
   "max": 2
@@ -620,6 +624,10 @@
   "max": 2
  },
  "authorusername": {
+  "min": 0,
+  "max": 0
+ },
+ "autocomplete": {
   "min": 0,
   "max": 0
  },
@@ -1239,6 +1247,10 @@
   "min": 0,
   "max": 0
  },
+ "clearqueuehistory": {
+  "min": 0,
+  "max": 0
+ },
  "clearreactions": {
   "min": 3,
   "max": null
@@ -1759,6 +1771,10 @@
   "min": 1,
   "max": 2
  },
+ "disableallfilters": {
+  "min": 0,
+  "max": 0
+ },
  "disableallmentions": {
   "min": 0,
   "max": 0
@@ -2092,6 +2108,10 @@
   "max": 1
  },
  "emotecount": {
+  "min": 0,
+  "max": 0
+ },
+ "enableallfilters": {
   "min": 0,
   "max": 0
  },
@@ -2499,6 +2519,10 @@
   "min": 2,
   "max": 4
  },
+ "getavailableproviders": {
+  "min": 0,
+  "max": 0
+ },
  "getbanreason": {
   "min": 1,
   "max": 2
@@ -2547,6 +2571,10 @@
   "min": 0,
   "max": 1
  },
+ "getdisabledfilters": {
+  "min": 0,
+  "max": 0
+ },
  "getembeddata": {
   "min": 4,
   "max": 4
@@ -2554,6 +2582,10 @@
  "getembeds": {
   "min": 2,
   "max": 5
+ },
+ "getenabledfilters": {
+  "min": 0,
+  "max": 0
  },
  "getguildleaderboardid": {
   "min": 3,
@@ -3363,6 +3395,10 @@
   "min": 0,
   "max": 0
  },
+ "interactiondelete": {
+  "min": 0,
+  "max": 0
+ },
  "interactionfollowup": {
   "min": 1,
   "max": 2
@@ -3378,6 +3414,10 @@
  "interactionreply": {
   "min": 1,
   "max": 2
+ },
+ "interactionupdate": {
+  "min": 1,
+  "max": 1
  },
  "inttohex": {
   "min": 1,
@@ -3456,6 +3496,10 @@
   "max": 1
  },
  "iseven": {
+  "min": 1,
+  "max": 1
+ },
+ "isfilterenabled": {
   "min": 1,
   "max": 1
  },
@@ -3764,6 +3808,10 @@
   "max": 0
  },
  "lastpintimestamp": {
+  "min": 0,
+  "max": 0
+ },
+ "launchactivity": {
   "min": 0,
   "max": 0
  },
@@ -4700,6 +4748,10 @@
   "max": 3
  },
  "playnext": {
+  "min": 0,
+  "max": 0
+ },
+ "playprevious": {
   "min": 0,
   "max": 0
  },
@@ -6071,6 +6123,10 @@
   "min": 1,
   "max": 1
  },
+ "togglefilters": {
+  "min": 1,
+  "max": 14
+ },
  "togglerole": {
   "min": 2,
   "max": 3
@@ -6190,6 +6246,10 @@
  "unregisterguildcommands": {
   "min": 0,
   "max": null
+ },
+ "unshufflequeue": {
+  "min": 0,
+  "max": 0
  },
  "unsuppressembeds": {
   "min": 2,
