@@ -571,6 +571,46 @@
   "min": 0,
   "max": 0
  },
+ "automodactiontype": {
+  "min": 0,
+  "max": 0
+ },
+ "automodalertsystemmessageid": {
+  "min": 0,
+  "max": 0
+ },
+ "automodchannelid": {
+  "min": 0,
+  "max": 0
+ },
+ "automodcontent": {
+  "min": 0,
+  "max": 0
+ },
+ "automodcustommessage": {
+  "min": 0,
+  "max": 0
+ },
+ "automodduration": {
+  "min": 0,
+  "max": 0
+ },
+ "automodmatchedcontent": {
+  "min": 0,
+  "max": 0
+ },
+ "automodmatchedkeyword": {
+  "min": 0,
+  "max": 0
+ },
+ "automodruleid": {
+  "min": 0,
+  "max": 0
+ },
+ "automodruletriggertype": {
+  "min": 0,
+  "max": 0
+ },
  "average": {
   "min": 1,
   "max": null
@@ -3707,6 +3747,10 @@
   "min": 1,
   "max": 1
  },
+ "newautomodrule": {
+  "min": 1,
+  "max": 2
+ },
  "newchannel": {
   "min": 1,
   "max": 2
@@ -3764,6 +3808,10 @@
   "max": 1
  },
  "numberseparator": {
+  "min": 1,
+  "max": 2
+ },
+ "oldautomodrule": {
   "min": 1,
   "max": 2
  },
@@ -4454,6 +4502,42 @@
  "setauditlogreason": {
   "min": 0,
   "max": 1
+ },
+ "setautomodaction": {
+  "min": 1,
+  "max": 4
+ },
+ "setautomodallowlist": {
+  "min": 1,
+  "max": 25
+ },
+ "setautomodexemptchannels": {
+  "min": 1,
+  "max": 50
+ },
+ "setautomodexemptroles": {
+  "min": 1,
+  "max": 20
+ },
+ "setautomodkeywordfilter": {
+  "min": 1,
+  "max": 25
+ },
+ "setautomodmentionraidprotection": {
+  "min": 1,
+  "max": 1
+ },
+ "setautomodmentiontotallimit": {
+  "min": 1,
+  "max": 1
+ },
+ "setautomodpresets": {
+  "min": 1,
+  "max": 3
+ },
+ "setautomodregexfilter": {
+  "min": 1,
+  "max": 10
  },
  "setbotavatar": {
   "min": 1,
