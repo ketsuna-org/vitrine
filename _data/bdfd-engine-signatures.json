@@ -3603,17 +3603,45 @@
   "min": 1,
   "max": 1
  },
+ "newchannel": {
+  "min": 1,
+  "max": 2
+ },
+ "newguild": {
+  "min": 1,
+  "max": 2
+ },
+ "newmember": {
+  "min": 1,
+  "max": 2
+ },
+ "newmessage": {
+  "min": 1,
+  "max": 2
+ },
  "newmodal": {
   "min": 2,
+  "max": 2
+ },
+ "newrole": {
+  "min": 1,
   "max": 2
  },
  "newselectmenu": {
   "min": 3,
   "max": 5
  },
+ "newstate": {
+  "min": 1,
+  "max": 2
+ },
  "newticket": {
   "min": 5,
   "max": 8
+ },
+ "newuser": {
+  "min": 1,
+  "max": 2
  },
  "nickname": {
   "min": 0,
@@ -3632,6 +3660,34 @@
   "max": 1
  },
  "numberseparator": {
+  "min": 1,
+  "max": 2
+ },
+ "oldchannel": {
+  "min": 1,
+  "max": 2
+ },
+ "oldguild": {
+  "min": 1,
+  "max": 2
+ },
+ "oldmember": {
+  "min": 1,
+  "max": 2
+ },
+ "oldmessage": {
+  "min": 1,
+  "max": 2
+ },
+ "oldrole": {
+  "min": 1,
+  "max": 2
+ },
+ "oldstate": {
+  "min": 1,
+  "max": 2
+ },
+ "olduser": {
   "min": 1,
   "max": 2
  },
