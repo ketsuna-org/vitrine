@@ -943,6 +943,10 @@
   "min": 2,
   "max": 2
  },
+ "channelleaderboard": {
+  "min": 1,
+  "max": 9
+ },
  "channelmessagecount": {
   "min": 1,
   "max": 3
@@ -1271,6 +1275,10 @@
   "min": 0,
   "max": 0
  },
+ "dbping": {
+  "min": 0,
+  "max": 1
+ },
  "dbpull": {
   "min": 4,
   "max": 5
@@ -1399,6 +1407,10 @@
   "min": 2,
   "max": 25
  },
+ "deleteglobalvar": {
+  "min": 1,
+  "max": 1
+ },
  "deleteguildtemplate": {
   "min": 1,
   "max": 1
@@ -1442,6 +1454,10 @@
  "deleteusermessagereaction": {
   "min": 4,
   "max": 4
+ },
+ "deletevar": {
+  "min": 2,
+  "max": 2
  },
  "description": {
   "min": 1,
@@ -2059,6 +2075,18 @@
   "min": 0,
   "max": 0
  },
+ "getchannelleaderboardid": {
+  "min": 3,
+  "max": 4
+ },
+ "getchannelleaderboardlength": {
+  "min": 1,
+  "max": 4
+ },
+ "getchannelleaderboardvalue": {
+  "min": 2,
+  "max": 4
+ },
  "getchannelselectchannelcount": {
   "min": 0,
   "max": 0
@@ -2095,6 +2123,18 @@
   "min": 2,
   "max": 5
  },
+ "getguildleaderboardid": {
+  "min": 3,
+  "max": 3
+ },
+ "getguildleaderboardlength": {
+  "min": 1,
+  "max": 3
+ },
+ "getguildleaderboardvalue": {
+  "min": 2,
+  "max": 3
+ },
  "getguildmembervar": {
   "min": 1,
   "max": 3
@@ -2122,6 +2162,18 @@
  "getleaderboardvalue": {
   "min": 4,
   "max": 5
+ },
+ "getmemberleaderboardid": {
+  "min": 3,
+  "max": 4
+ },
+ "getmemberleaderboardlength": {
+  "min": 1,
+  "max": 4
+ },
+ "getmemberleaderboardvalue": {
+  "min": 2,
+  "max": 4
  },
  "getmemberscount": {
   "min": 0,
@@ -2266,6 +2318,18 @@
  "gettimestampms": {
   "min": 0,
   "max": 0
+ },
+ "getuserleaderboardid": {
+  "min": 3,
+  "max": 3
+ },
+ "getuserleaderboardlength": {
+  "min": 1,
+  "max": 3
+ },
+ "getuserleaderboardvalue": {
+  "min": 2,
+  "max": 3
  },
  "getuserselectusercount": {
   "min": 0,
@@ -3410,6 +3474,10 @@
  "memberjoinposition": {
   "min": 2,
   "max": 2
+ },
+ "memberleaderboard": {
+  "min": 1,
+  "max": 9
  },
  "memberlowestroleid": {
   "min": 0,
