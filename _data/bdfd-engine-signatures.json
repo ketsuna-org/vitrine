@@ -111,6 +111,10 @@
   "min": 1,
   "max": 4
  },
+ "addframe": {
+  "min": 2,
+  "max": 4
+ },
  "addlabel": {
   "min": 3,
   "max": 3
@@ -534,6 +538,10 @@
  "attachcanvas": {
   "min": 1,
   "max": 3
+ },
+ "attachgif": {
+  "min": 0,
+  "max": 2
  },
  "attachimage": {
   "min": 0,
@@ -1135,6 +1143,18 @@
   "min": 1,
   "max": 100
  },
+ "checkframe": {
+  "min": 2,
+  "max": 2
+ },
+ "checkframeconsistency": {
+  "min": 2,
+  "max": 2
+ },
+ "checklzwendcode": {
+  "min": 2,
+  "max": 2
+ },
  "checkuserperms": {
   "min": 2,
   "max": null
@@ -1198,6 +1218,14 @@
  "color": {
   "min": 1,
   "max": 2
+ },
+ "colormaprgb": {
+  "min": 1,
+  "max": 1
+ },
+ "colormaprgba": {
+  "min": 1,
+  "max": 1
  },
  "colorrole": {
   "min": 1,
@@ -1291,6 +1319,10 @@
   "min": 2,
   "max": 5
  },
+ "createdecoder": {
+  "min": 2,
+  "max": 3
+ },
  "createevent": {
   "min": 5,
   "max": 7
@@ -1299,6 +1331,18 @@
   "min": 3,
   "max": 7
  },
+ "createframe": {
+  "min": 2,
+  "max": 4
+ },
+ "creategifdecoder": {
+  "min": 2,
+  "max": 3
+ },
+ "creategifframe": {
+  "min": 2,
+  "max": 4
+ },
  "createguildtemplate": {
   "min": 2,
   "max": 3
@@ -1306,6 +1350,10 @@
  "createinvite": {
   "min": 0,
   "max": 5
+ },
+ "createneuquant": {
+  "min": 4,
+  "max": 4
  },
  "createpoll": {
   "min": 5,
@@ -1443,6 +1491,26 @@
   "min": 1,
   "max": 1
  },
+ "decodeoptions": {
+  "min": 1,
+  "max": 2
+ },
+ "decoderoption": {
+  "min": 2,
+  "max": 2
+ },
+ "decoderoptions": {
+  "min": 1,
+  "max": 2
+ },
+ "decoderproperty": {
+  "min": 2,
+  "max": 2
+ },
+ "decodersize": {
+  "min": 1,
+  "max": 2
+ },
  "decodeuri": {
   "min": 1,
   "max": 1
@@ -1519,6 +1587,10 @@
   "min": 3,
   "max": 3
  },
+ "deletedecoder": {
+  "min": 1,
+  "max": 1
+ },
  "deleteemojimessagereactions": {
   "min": 3,
   "max": 40
@@ -1526,6 +1598,10 @@
  "deleteemojis": {
   "min": 2,
   "max": 40
+ },
+ "deleteencoder": {
+  "min": 1,
+  "max": 1
  },
  "deleteevent": {
   "min": 1,
@@ -1538,6 +1614,10 @@
  "deleteforumtags": {
   "min": 2,
   "max": 25
+ },
+ "deleteframe": {
+  "min": 1,
+  "max": 1
  },
  "deleteglobalvar": {
   "min": 1,
@@ -1963,6 +2043,14 @@
   "min": 1,
   "max": 1
  },
+ "encoderglobalpalette": {
+  "min": 0,
+  "max": 1
+ },
+ "encodersize": {
+  "min": 0,
+  "max": 2
+ },
  "encodeuri": {
   "min": 1,
   "max": 1
@@ -2242,6 +2330,26 @@
  "forwardmessage": {
   "min": 2,
   "max": 3
+ },
+ "frameconsistency": {
+  "min": 2,
+  "max": 2
+ },
+ "frameopt": {
+  "min": 2,
+  "max": 2
+ },
+ "frameoption": {
+  "min": 2,
+  "max": 2
+ },
+ "frameprop": {
+  "min": 2,
+  "max": 2
+ },
+ "frameproperty": {
+  "min": 2,
+  "max": 2
  },
  "fromcharcode": {
   "min": 1,
@@ -2591,6 +2699,34 @@
   "min": 1,
   "max": 2
  },
+ "gifdecoder": {
+  "min": 2,
+  "max": 3
+ },
+ "gifdecoderoption": {
+  "min": 2,
+  "max": 2
+ },
+ "gifdecoderproperty": {
+  "min": 2,
+  "max": 2
+ },
+ "gifdecodersize": {
+  "min": 1,
+  "max": 2
+ },
+ "gifencoderglobalpalette": {
+  "min": 0,
+  "max": 1
+ },
+ "gifencodersize": {
+  "min": 0,
+  "max": 2
+ },
+ "gifframeoption": {
+  "min": 2,
+  "max": 2
+ },
  "giverole": {
   "min": 1,
   "max": 4
@@ -2606,6 +2742,10 @@
  "globalcooldown": {
   "min": 2,
   "max": 2
+ },
+ "globalpalette": {
+  "min": 0,
+  "max": 1
  },
  "globaluserleaderboard": {
   "min": 1,
@@ -3727,6 +3867,10 @@
   "min": 1,
   "max": null
  },
+ "mappixel": {
+  "min": 5,
+  "max": 5
+ },
  "math": {
   "min": 1,
   "max": 1
@@ -3987,6 +4131,10 @@
   "min": 1,
   "max": 1
  },
+ "neuquant": {
+  "min": 4,
+  "max": 4
+ },
  "newautomodrule": {
   "min": 1,
   "max": 2
@@ -3998,6 +4146,26 @@
  "newconicgradient": {
   "min": 4,
   "max": 32
+ },
+ "newdecoder": {
+  "min": 2,
+  "max": 3
+ },
+ "newframe": {
+  "min": 2,
+  "max": 4
+ },
+ "newgifdecoder": {
+  "min": 2,
+  "max": 3
+ },
+ "newgifencoder": {
+  "min": 3,
+  "max": 5
+ },
+ "newgifframe": {
+  "min": 2,
+  "max": 4
  },
  "newguild": {
   "min": 1,
@@ -4018,6 +4186,10 @@
  "newmodal": {
   "min": 2,
   "max": 2
+ },
+ "newneuquant": {
+  "min": 4,
+  "max": 4
  },
  "newradialgradient": {
   "min": 7,
@@ -4043,6 +4215,10 @@
   "min": 1,
   "max": 2
  },
+ "nextframeinfo": {
+  "min": 2,
+  "max": 2
+ },
  "nickname": {
   "min": 0,
   "max": 1
@@ -4058,6 +4234,26 @@
  "nomentionmessage": {
   "min": 0,
   "max": 1
+ },
+ "nqcolormaprgb": {
+  "min": 1,
+  "max": 1
+ },
+ "nqcolormaprgba": {
+  "min": 1,
+  "max": 1
+ },
+ "nqindexof": {
+  "min": 5,
+  "max": 5
+ },
+ "nqlookup": {
+  "min": 2,
+  "max": 2
+ },
+ "nqmappixel": {
+  "min": 5,
+  "max": 5
  },
  "numberseparator": {
   "min": 1,
@@ -4415,6 +4611,10 @@
   "min": 0,
   "max": 0
  },
+ "readnextframe": {
+  "min": 2,
+  "max": 2
+ },
  "rectalign": {
   "min": 0,
   "max": 2
@@ -4447,9 +4647,21 @@
   "min": 2,
   "max": 2
  },
+ "removedecoder": {
+  "min": 1,
+  "max": 1
+ },
  "removeemoji": {
   "min": 1,
   "max": 2
+ },
+ "removeencoder": {
+  "min": 1,
+  "max": 1
+ },
+ "removeframe": {
+  "min": 1,
+  "max": 1
  },
  "removefromqueue": {
   "min": 1,
@@ -4927,6 +5139,10 @@
   "min": 2,
   "max": 3
  },
+ "setcoloroutput": {
+  "min": 2,
+  "max": 2
+ },
  "setdefaultforumlayout": {
   "min": 2,
   "max": 3
@@ -4946,6 +5162,10 @@
  "setdefaultthreadslowmode": {
   "min": 2,
   "max": 3
+ },
+ "setencoderloops": {
+  "min": 1,
+  "max": 2
  },
  "setguildafkchannel": {
   "min": 1,
@@ -5043,6 +5263,10 @@
   "min": 2,
   "max": 4
  },
+ "setmemorylimit": {
+  "min": 2,
+  "max": 2
+ },
  "setmessagevar": {
   "min": 2,
   "max": 3
@@ -5059,6 +5283,10 @@
   "min": 1,
   "max": 3
  },
+ "setoutputcolor": {
+  "min": 2,
+  "max": 2
+ },
  "setpixels": {
   "min": 6,
   "max": 7
@@ -5066,6 +5294,10 @@
  "setposttags": {
   "min": 1,
   "max": 12
+ },
+ "setramlimit": {
+  "min": 2,
+  "max": 2
  },
  "setrolecolors": {
   "min": 2,
@@ -5190,6 +5422,14 @@
  "skipactions": {
   "min": 1,
   "max": 1
+ },
+ "skipframedecode": {
+  "min": 2,
+  "max": 2
+ },
+ "skipframedecoding": {
+  "min": 2,
+  "max": 2
  },
  "skipmusic": {
   "min": 0,
