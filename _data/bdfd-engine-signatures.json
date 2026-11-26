@@ -2291,6 +2291,10 @@
   "min": 1,
   "max": 2
  },
+ "getvolume": {
+  "min": 0,
+  "max": 0
+ },
  "getwebhook": {
   "min": 1,
   "max": 2
@@ -2911,6 +2915,10 @@
   "min": 0,
   "max": 1
  },
+ "ispaused": {
+  "min": 0,
+  "max": 0
+ },
  "isrepliable": {
   "min": 0,
   "max": 0
@@ -3156,6 +3164,10 @@
   "max": null
  },
  "leavevoice": {
+  "min": 0,
+  "max": 0
+ },
+ "leavevoicechannel": {
   "min": 0,
   "max": 0
  },
@@ -3747,6 +3759,10 @@
   "min": 0,
   "max": 0
  },
+ "pausetrack": {
+  "min": 0,
+  "max": 0
+ },
  "percent": {
   "min": 2,
   "max": 3
@@ -3790,6 +3806,10 @@
  "publishmessage": {
   "min": 2,
   "max": 2
+ },
+ "queuelength": {
+  "min": 0,
+  "max": 0
  },
  "ram": {
   "min": 0,
@@ -3996,6 +4016,10 @@
   "max": 2
  },
  "resumemusic": {
+  "min": 0,
+  "max": 0
+ },
+ "resumetrack": {
   "min": 0,
   "max": 0
  },
@@ -4519,6 +4543,10 @@
   "min": 0,
   "max": 0
  },
+ "shuffletracks": {
+  "min": 0,
+  "max": 0
+ },
  "sign": {
   "min": 1,
   "max": 1
@@ -4532,6 +4560,10 @@
   "max": 1
  },
  "skipmusic": {
+  "min": 0,
+  "max": 0
+ },
+ "skiptrack": {
   "min": 0,
   "max": 0
  },
@@ -4684,6 +4716,10 @@
   "max": 0
  },
  "stopmusic": {
+  "min": 0,
+  "max": 0
+ },
+ "stoptrack": {
   "min": 0,
   "max": 0
  },
