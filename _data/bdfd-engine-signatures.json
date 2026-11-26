@@ -2999,6 +2999,10 @@
   "min": 0,
   "max": 1
  },
+ "guildfeatures": {
+  "min": 0,
+  "max": 1
+ },
  "guildhasanyfeatures": {
   "min": 2,
   "max": 64
