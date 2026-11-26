@@ -2595,6 +2595,10 @@
   "min": 4,
   "max": 5
  },
+ "getloopmode": {
+  "min": 0,
+  "max": 0
+ },
  "getmemberleaderboardid": {
   "min": 3,
   "max": 4
@@ -3540,6 +3544,14 @@
   "max": 0
  },
  "isplaying": {
+  "min": 0,
+  "max": 0
+ },
+ "isqueuehistorydisabled": {
+  "min": 0,
+  "max": 0
+ },
+ "isqueuehistoryempty": {
   "min": 0,
   "max": 0
  },
@@ -4754,6 +4766,22 @@
  "quadraticcurveto": {
   "min": 4,
   "max": 5
+ },
+ "queue": {
+  "min": 0,
+  "max": 4
+ },
+ "queueestimatedduration": {
+  "min": 0,
+  "max": 0
+ },
+ "queuehistory": {
+  "min": 0,
+  "max": 4
+ },
+ "queuehistorylength": {
+  "min": 0,
+  "max": 0
  },
  "queuelength": {
   "min": 0,
