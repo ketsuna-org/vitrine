@@ -109,4 +109,4 @@ if (interaction.isModalSubmit()) {
 
 - [interaction](/docs/javascript/interaction/) — reply, defer, followUp
 - [Autocomplete](/docs/javascript/autocomplete/) — dynamic slash suggestions
-- [Interactions overview](/docs/interactions-overview/) — BDScript component workflow
+- [Interactions overview](/docs/interactions-overview/) — BibiScript component workflow

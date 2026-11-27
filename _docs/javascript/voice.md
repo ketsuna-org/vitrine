@@ -47,7 +47,7 @@ connection.subscribe(player);
 
 ## BDFD equivalent
 
-BDScript music functions (`$playMusic`, `$joinVoice`, etc.) use Lavalink. See the [Music](/docs/#music) function category.
+BibiScript music functions (`$playMusic`, `$joinVoice`, etc.) use Lavalink. See the [Music](/docs/#music) function category.
 
 ## Restrictions
 

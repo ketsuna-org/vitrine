@@ -60,6 +60,7 @@
     "listenForModalSubmit": "Écouter une soumission de modal",
     "listenAndExecute": "Écouter et exécuter",
     "calculate": "Calculer",
+    "translate": "Traduire",
     "getMessage": "Récupérer un message",
     "unpinMessage": "Désépingler un message",
     "createPoll": "Créer un sondage",
@@ -245,7 +246,8 @@
     "whileLoop": "Répète la région `body` tant que la condition est vraie, puis suit `done`.",
     "asyncBlock": "Exécute la région `body` une fois sans faire attendre la suite du flux, puis suit `done`.",
     "breakLoop": "Sort tout de suite de la boucle englobante.",
-    "continueLoop": "Passe au tour suivant de la boucle englobante."
+    "continueLoop": "Passe au tour suivant de la boucle englobante.",
+    "translate": "Obtenir un texte des traductions du bot dans la langue de la personne (comme $t)"
   },
   "categories": {
     "Messages": "Messages",

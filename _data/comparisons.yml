@@ -30,7 +30,7 @@ items:
         - { k: "Paid", them: "Premium points bought in the app; 1 point is 7 days of premium hosting; the wiki lists no price [2]", us: "Subscriptions bought in the app stores (store prices on the pricing page)" }
       prices_title: "Prices"
       prices_them: "BDFD publishes no price for its premium points on the pages above."
-      prices_us: "Bot Creator Premium, store prices read on"
+      prices_us: "Bot Creator Premium, catalog prices read on"
       limits_title: "Where Bot Creator is limited"
       limits:
         - "The free version of the apps shows ads, and hosting time on our servers is earned by watching rewarded ads in the mobile app."
@@ -59,7 +59,7 @@ items:
         - { k: "Payant", them: "Points premium achetés dans l'application ; 1 point = 7 jours d'hébergement premium ; le wiki n'indique aucun prix [2]", us: "Abonnements achetés dans les stores (prix des stores sur la page tarifs)" }
       prices_title: "Prix"
       prices_them: "BDFD ne publie aucun prix pour ses points premium sur les pages ci-dessus."
-      prices_us: "Bot Creator Premium, prix des stores relevés le"
+      prices_us: "Bot Creator Premium, prix du catalogue relevés le"
       limits_title: "Les limites de Bot Creator"
       limits:
         - "La version gratuite des applications affiche des publicités, et le temps d'hébergement sur nos serveurs se gagne en regardant des publicités récompensées dans l'application mobile."
@@ -93,7 +93,7 @@ items:
         - { k: "Free limits", them: "Up to 5 servers per free bot, 8 custom slash commands and 3 custom events [1]", us: "The free apps show ads; see the pricing page for what is paid" }
       prices_title: "Prices"
       prices_them: "BotGhost lists, in US dollars: Free $0; Single Bot $10 per month or $60 per year; Unlimited Bots $20 per month or $120 per year [1]. Its documentation says plans are listed in USD, converted at checkout, and that prices may vary over time [2]. Premium on BotGhost applies to one bot (Single Bot) or to every bot of the account (Unlimited Bots)."
-      prices_us: "Bot Creator Premium, store prices read on"
+      prices_us: "Bot Creator Premium, catalog prices read on"
       limits_title: "Where Bot Creator is limited"
       limits:
         - "The free version of the apps shows ads, and hosting time on our servers is earned by watching rewarded ads in the mobile app."
@@ -118,7 +118,7 @@ items:
         - { k: "Limites gratuites", them: "Jusqu'à 5 serveurs par bot gratuit, 8 commandes slash personnalisées et 3 événements personnalisés [1]", us: "Les applications gratuites affichent des publicités ; voir la page tarifs pour ce qui est payant" }
       prices_title: "Prix"
       prices_them: "BotGhost indique, en dollars américains : Gratuit 0 $ ; Single Bot 10 $ par mois ou 60 $ par an ; Unlimited Bots 20 $ par mois ou 120 $ par an [1]. Sa documentation précise que les offres sont listées en USD, converties au paiement, et que les prix peuvent varier [2]. Le premium de BotGhost s'applique à un bot (Single Bot) ou à tous les bots du compte (Unlimited Bots)."
-      prices_us: "Bot Creator Premium, prix des stores relevés le"
+      prices_us: "Bot Creator Premium, prix du catalogue relevés le"
       limits_title: "Les limites de Bot Creator"
       limits:
         - "La version gratuite des applications affiche des publicités, et le temps d'hébergement sur nos serveurs se gagne en regardant des publicités récompensées dans l'application mobile."

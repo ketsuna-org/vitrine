@@ -48,6 +48,7 @@ layout: with-sidebar
     <header id="content" class="mb-8 flex flex-col gap-4">
       <div class="flex flex-wrap items-center gap-3">
         <span class="badge">{{ page.category | default: t.docs_ui.reference }}</span>
+        {% if page.premium %}{% include premium_badge.html %}{% endif %}
         {% if page.function_name and page.function_name != display_title %}<span class="font-mono text-sm text-on-surface-variant">{{ page.function_name }}</span>{% endif %}
       </div>
       <h1 class="m-0 break-words font-mono text-[1.75rem] font-medium leading-tight tracking-tight sm:text-4xl">{{ display_title }}</h1>
@@ -55,6 +56,9 @@ layout: with-sidebar
       <div class="doc-lead max-w-[46rem] text-base leading-relaxed text-on-surface-variant sm:text-lg">{{ lead_html }}</div>
       {% elsif page.description %}
       <p class="m-0 max-w-[46rem] text-base leading-relaxed text-on-surface-variant sm:text-lg">{{ page.description }}</p>
+      {% endif %}
+      {% if page.premium %}
+      <p class="premium-note m-0 max-w-[46rem] text-[15px] leading-relaxed">{% include premium_badge.html %}<span><strong>{{ t.docs_ui.premium_note | default: 'Reserved for Premium accounts.' }}</strong> <a class="text-primary underline underline-offset-2" href="{{ t.paths.pricing | default: '/pricing/' | relative_url }}">{{ t.docs_ui.premium_plans | default: 'See plans' }}</a></span></p>
       {% endif %}
       {% unless page.locale == 'fr' %}{% include ai_tools_dropdown.html %}{% endunless %}
     </header>

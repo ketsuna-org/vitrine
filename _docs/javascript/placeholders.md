@@ -4,11 +4,11 @@ title: Placeholders
 category: "JavaScript API"
 api_type: javascript
 sidebar_context: javascript
-description: Context placeholders ((author.id)) used in BDScript and available in script templates.
+description: Context placeholders ((author.id)) used in BibiScript and available in script templates.
 permalink: /docs/javascript/placeholders/
 ---
 
-Placeholders inject runtime context into BDScript templates. In BDJS you typically use the `interaction`, `message`, `guild`, and `channel` globals directly, but placeholders remain available in mixed BDScript/BDJS workflows.
+Placeholders inject runtime context into BibiScript templates. In BDJS you typically use the `interaction`, `message`, `guild`, and `channel` globals directly, but placeholders remain available in mixed BibiScript/BDJS workflows.
 
 ## Syntax
 
@@ -27,7 +27,7 @@ Placeholders inject runtime context into BDScript templates. In BDJS you typical
 | `((interaction.customId))` | Component custom ID |
 | `((interaction.stringSelect.value))` | Select menu value |
 
-## BDScript example
+## BibiScript example
 
 ```bdfd
 $sendMessage[Hello <@((author.id))>!]

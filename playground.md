@@ -29,7 +29,7 @@ Add blocks, fill their fields and see the message they would send. The blocks, f
 
 <section data-pg-panel="bdfd" hidden markdown="1">
 
-Type or paste a BDFD / BDScript snippet.
+Type or paste a BDFD / BibiScript snippet.
 
 <div id="bdfd-playground" class="bp-root"><noscript>The playground needs JavaScript.</noscript></div>
 

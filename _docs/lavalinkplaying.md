@@ -6,6 +6,7 @@ category: Music
 function_name: lavalinkPlaying
 syntax: $lavalinkPlaying[]
 description: Returns the title of the currently playing track
+premium: true
 ---
 Returns the title of the current track from the Lavalink music player. Takes no argument. If there is no active player or no current track, this returns an empty string. Use this in combination with other Lavalink info functions to build a "now playing" display.
 

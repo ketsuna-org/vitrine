@@ -4,7 +4,7 @@ title: $createChannel
 translation_key: docs
 category: "Moderation"
 function_name: createChannel
-syntax: $createChannel[name;type;(categoryID);(reason)]
+syntax: $createChannel[name;type;(categoryID);(reason);(returnID)]
 description: Creates a new channel on the server. Supports text, voice, category, stage and forum channels.
 ---
 
@@ -15,7 +15,7 @@ The `$createChannel[]` function **creates a new channel** on the Discord server.
 ## Syntax
 
 ```
-$createChannel[name;type;(categoryID);(reason)]
+$createChannel[name;type;(categoryID);(reason);(returnID)]
 ```
 
 ## Parameters
@@ -26,18 +26,19 @@ $createChannel[name;type;(categoryID);(reason)]
 | `type` | Required. One of `text`, `voice`, `category`, `stage`, `forum` (case-insensitive). Any other value raises `Invalid BDFD channel type.` |
 | `categoryID` | Optional. ID of the parent category. It must be a category of the current server; a category cannot itself have a parent (`Categories cannot have a parent category.`). If the argument is written, it cannot be empty (`Invalid channel ID.`), except when a `reason` follows: `$createChannel[name;text;;reason]` creates the channel with no parent. Omit it for no parent. |
 | `reason` | Optional. Reason recorded in the server's audit log (up to 512 characters). Empty, or absent, uses the reason set with `$auditLogReason`, if any. |
+| `returnID` | Optional. `yes`/`true`/`y` returns the ID of the created channel; `no`/`false`/`n` or empty (default) returns nothing. Any other value raises `returnID must be yes or no.` |
 
 ## Return value
 
 - **Type**: String
-- An empty string. The function does not return the ID of the created channel.
+- By default an empty string. With `returnID` set to `yes`, the ID of the created channel.
 - If the bot lacks the permission or the arguments are invalid, the function raises an error.
 
 ## Behavior
 
 - The bot must have the `Manage Channels` permission.
 - The channel is created in the current server.
-- The ID of the new channel is not returned; to find it afterwards, use `$channelID[name]` or `$findChannel[name]`.
+- The ID of the new channel is returned only when `returnID` is `yes`; otherwise use `$channelID[name]` or `$findChannel[name]` to find it.
 
 ## Examples
 
@@ -70,4 +71,4 @@ $sendMessage[Category and channels created!]
 
 ## Audit log reason
 
-The last, optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.
+The optional argument `reason` is the reason shown next to this action in the server's audit log (Discord's `X-Audit-Log-Reason`). Without it, the reason set earlier in the script with `$auditLogReason` is used; with neither, no reason is recorded.

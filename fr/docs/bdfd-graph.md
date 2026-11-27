@@ -4,7 +4,7 @@ title: BDFD et Graphe
 category: "Général"
 category_key: "Meta"
 api_type: general
-description: "Le pont entre le BDScript (BDFD) et le mode Graphe : convertir un script en graphe et un graphe en script, avec équivalence de comportement et avertissements."
+description: "Le pont entre le BibiScript (BDFD) et le mode Graphe : convertir un script en graphe et un graphe en script, avec équivalence de comportement et avertissements."
 locale: fr
 lang: fr
 content_language: fr

@@ -6,6 +6,7 @@ category: "HTTP & JSON"
 function_name: wsSend
 syntax: $wsSend[source;message]
 description: Sends a text message on an open WebSocket source. Returns an empty string
+premium: true
 ---
 $wsSend sends a text message on a WebSocket source that is open (permanent, or opened with `$wsJoin`). It returns nothing.
 

@@ -1,6 +1,6 @@
 /**
  * BDFD Visual Blocks & Discord Message Simulator Engine
- * Automatically parses BDFD / BDScript code blocks in documentation and generates:
+ * Automatically parses BDFD / BibiScript code blocks in documentation and generates:
  * 1. A syntax-highlighted script panel with a Copy button
  * 2. Realistic Discord Simulator Preview (Bot avatar, embeds, buttons, select menus, attachments)
  */
@@ -31,7 +31,7 @@
     s = s.replace(/&lt;#([0-9]+)&gt;/g, '<strong class="text-[#A78BFA] font-semibold">#ticket-channel</strong>');
     // Role mentions
     s = s.replace(/&lt;@&amp;([0-9]+)&gt;/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">@Role</span>');
-    // BDScript Placeholders
+    // BibiScript Placeholders
     s = s.replace(/\$authorID/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">@User</span>');
     s = s.replace(/\$username/g, '<span class="bg-[#5865F2]/20 text-[#A78BFA] px-1 rounded font-semibold">User</span>');
     s = s.replace(/\$guildName|\$serverName/g, '<strong>Community Server</strong>');
@@ -609,7 +609,7 @@
       nav.innerHTML = `
         <span class="dual-tab-btn active">
           <svg class="pxicon tab-accent" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none"><use href="/assets/icons/pixelarticons.svg#code"></use></svg>
-          <span>Script (BDFD / BDScript)</span>
+          <span>Script (BDFD / BibiScript)</span>
         </span>
         <div class="dual-tab-actions">
           <button class="dual-copy-btn" type="button" title="Copy code snippet">

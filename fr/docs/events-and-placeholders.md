@@ -36,7 +36,7 @@ Les variables insèrent des valeurs d'exécution dans les messages de réponse, 
 Welcome ((user.username))! You joined ((guild.name)).
 ```
 
-> **Le texte BDScript n'est pas résolu.** Le résolveur `((...))` n'est pas appliqué au texte d'un script BDFD natif (vérification : `Hi ((date))` est renvoyé inchangé). Dans un script BDFD, utilisez les `$functions`, par exemple `$username` et `$serverName`.
+> **Le texte BibiScript n'est pas résolu.** Le résolveur `((...))` n'est pas appliqué au texte d'un script BDFD natif (vérification : `Hi ((date))` est renvoyé inchangé). Dans un script BDFD, utilisez les `$functions`, par exemple `$username` et `$serverName`.
 
 ### Principales familles de variables
 
@@ -54,7 +54,7 @@ Welcome ((user.username))! You joined ((guild.name)).
 
 Lorsqu'un utilisateur clique sur un bouton ou envoie un modal, les variables d'interaction sont renseignées automatiquement.
 
-**BDScript (BDFD)** lit l'ID personnalisé avec `$customID` (valide dans une interaction de composant ou de modal) :
+**BibiScript (BDFD)** lit l'ID personnalisé avec `$customID` (valide dans une interaction de composant ou de modal) :
 ```bdfd
 $ephemeral
 Clicked: $customID
@@ -83,9 +83,11 @@ Le filtre accepte :
 |--------|---------------|
 | `verify_member` | exactement ce custom ID |
 | `forge-*` | tous les custom ID qui commencent par `forge-` (`forge-cook-7-42`) |
+| `page-*` | `page-1`, `page-1-2`, `page-èf5g4dfg5fdsg` : tout ce qui suit le préfixe, quelle que soit la longueur |
 | `npc-*,npcm-*` | une liste séparée par des virgules : l'un des motifs |
+| `*` | tous les boutons, menus et modales (jamais une commande slash) |
 
-`*` remplace n'importe quelle suite de caractères. Sans `*`, la correspondance est exacte.
+`*` remplace n'importe quelle suite de caractères (il peut être n'importe où dans le motif, par exemple `*-confirm`). Sans `*`, la correspondance est exacte. Les majuscules comptent. Une commande slash n'a pas de custom ID : un workflow qui a un filtre ne se lance jamais pour elle.
 
 **Prends un préfixe stable par fonctionnalité** et mets les données variables après (`forge-<action>-<recette>-<idUtilisateur>`). C'est surtout important pour les modales : une modale doit être la **première** réponse à un clic (`$newModal`, sans `$defer` avant). Si un autre workflow sans filtre (ou avec un filtre qui se chevauche) acquitte le clic d'abord, la modale échoue avec *A modal requires an unacknowledged interaction*. Avec un préfixe distinct par workflow, seul le bon se lance.
 
@@ -99,9 +101,9 @@ L'éditeur avertit quand deux workflows peuvent répondre au même custom ID, ou
 | [Exhaustive event variables guide](/reference-deployment/2026/05/22/available-variables-per-event-exhaustive/) | Toutes les variables pour chaque type d'événement |
 | [JavaScript placeholders](/docs/javascript/placeholders/) | Utilisation des schémas `((...))` en BDJS |
 
-## BDScript et JavaScript
+## BibiScript et JavaScript
 
-- **BDScript :** utilisez les `$functions` ; le texte `((...))` à l'intérieur d'un script BDFD est laissé tel qu'il a été saisi.
+- **BibiScript :** utilisez les `$functions` ; le texte `((...))` à l'intérieur d'un script BDFD est laissé tel qu'il a été saisi.
 - **JavaScript :** consultez [variables](/docs/javascript/variables/) et [placeholders](/docs/javascript/placeholders/).
 
 ## Étapes suivantes

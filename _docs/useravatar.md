@@ -4,7 +4,7 @@ title: $userAvatar
 translation_key: docs
 category: "Entity Info"
 function_name: userAvatar
-syntax: $userAvatar[userID]
+syntax: $userAvatar[userID;(size);(format)]
 description: Returns the global avatar URL of a user. For the author of the command, use $authorAvatar.
 ---
 
@@ -15,7 +15,7 @@ The function `$userAvatar[]` returns the **global avatar URL** of the given user
 ## Syntax
 
 ```
-$userAvatar[userID]
+$userAvatar[userID;(size);(format)]
 ```
 
 ## Parameters
@@ -23,6 +23,8 @@ $userAvatar[userID]
 | Parameter | Description |
 |---|---|
 | `userID` | Required - The ID of the user. An invalid ID, or an unknown user, raises an error. |
+| `size` | Optional - Image size in pixels: a power of two from 16 to 4096 (`16`, `32`, ..., `4096`). Empty or absent: Discord's default size. Added to the URL as `?size=`. Another value raises `Invalid image size`. |
+| `format` | Optional - `png`, `jpg`, `jpeg`, `webp` or `gif`. Empty or absent: `png`, or `gif` for an animated image. `gif` on a static image keeps its default format. Another value raises `Invalid image format`. |
 
 ## Return Value
 

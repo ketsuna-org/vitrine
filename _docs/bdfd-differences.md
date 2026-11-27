@@ -48,7 +48,7 @@ Most BDFD scripts run unchanged, but a few behaviors differ. Some are extensions
 - Conditions: finite decimal numbers are compared exactly as numbers, anything else as text. The operator is searched outside Discord tokens (`<@id>`, `<#id>`...). A condition without an operator that is not `true` or `false` is an error.
 - [`$async`](/docs/async/) / [`$endAsync`](/docs/endasync/) / [`$await`](/docs/await/): a block nobody awaits is waited for before the response is sent. 25 blocks per execution.
 - Limits: 100,000 steps per execution, 128 nested blocks, a shared time budget per invocation.
-- `$scriptLanguage` always returns `BDScript 2`.
+- `$scriptLanguage` always returns `BibiScript`.
 
 ## Extensions
 

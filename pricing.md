@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Bot Creator pricing, Premium and hosted bots
-description: "Bot Creator is free to download. Premium, Hosted Apps and AI credit packs are sold in Google Play and the App Store: store prices in euros, read on October 29, 2026."
+title: Bot Creator pricing, plans from 1 to unlimited bots
+description: "Bot Creator is free to download. Plans from 1 bot to unlimited bots, Premium, Hosted Apps and AI credit packs: prices in euros from the Bot Creator catalog, read on November 23, 2026."
 locale: en
 lang: en
 translation_key: pricing

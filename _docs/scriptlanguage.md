@@ -10,7 +10,7 @@ description: Returns the scripting language of the interpreter running the scrip
 
 # $scriptLanguage
 
-The function `$scriptLanguage` **returns the name of the scripting language** of the interpreter running the script. The native interpreter implements BDScript 2 and always returns `BDScript 2`.
+The function `$scriptLanguage` **returns the name of the scripting language** of the interpreter running the script. The native interpreter implements BibiScript and always returns `BibiScript`.
 
 ## Syntax
 
@@ -25,12 +25,12 @@ None.
 ## Return Value
 
 - **Type**: String
-- `BDScript 2`: the value returned by the native interpreter.
+- `BibiScript`: the value returned by the native interpreter.
 
 ## Behavior
 
 - Takes no argument (`$scriptLanguage[]` is the same as `$scriptLanguage`).
-- The native interpreter always returns `BDScript 2`.
+- The native interpreter always returns `BibiScript`.
 
 ## Examples
 
@@ -54,4 +54,4 @@ $color[#5865F2]
 
 ## Notes
 
-- The native interpreter implements BDScript 2 and always returns `BDScript 2`.
+- The native interpreter implements BibiScript and always returns `BibiScript`.

@@ -6,6 +6,7 @@ category: Music
 function_name: lavalinkQueueSize
 syntax: $lavalinkQueueSize[]
 description: Returns the number of tracks currently in the music queue
+premium: true
 ---
 Returns the number of tracks still waiting in the music queue after the current track. This count does not include the track that is currently playing nor the tracks already played. Takes no argument. Returns `0` if there is no active player or nothing is left to play.
 

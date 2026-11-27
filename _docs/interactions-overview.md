@@ -36,7 +36,7 @@ Every interaction exposes:
 
 Unlike standard messages, an interaction expects an acknowledgment or response within 3 seconds.
 
-### In BDScript (BDFD)
+### In BibiScript (BDFD)
 Emitting text or embed content automatically sends the interaction reply. Use `$ephemeral` to make it visible only to the interacting user. Do not append `$sendMessage` in slash commands unless you need a separate message in the channel. Inside a BDFD script, read the component ID with `$customID` (it is an error outside a component or modal interaction): `((...))` text is not resolved in BDFD scripts.
 
 ```bdfd
@@ -81,7 +81,7 @@ See [Components](/docs/javascript/components/) and [interaction](/docs/javascrip
 
 ## Slash commands
 
-Slash commands are interactions too. Read an option with `$message[name]` in BDScript (for a slash command it returns the option value), with `((opts.<name>))` in Blocks placeholders, or `interaction.options.getString('name')` in JavaScript.
+Slash commands are interactions too. Read an option with `$message[name]` in BibiScript (for a slash command it returns the option value), with `((opts.<name>))` in Blocks placeholders, or `interaction.options.getString('name')` in JavaScript.
 
 The runner acknowledges a BDFD script before running it, except when the script source contains `$newModal`, `$callWorkflow`, `$eval` or `$funcCall` (see the [execution model](/docs/execution-model/)). See also [$defer](/docs/defer/) and the `deferInteraction` block.
 

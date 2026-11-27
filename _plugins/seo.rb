@@ -101,7 +101,7 @@ Jekyll::Hooks.register :docs, :pre_render do |doc, payload|
   page['display_title'] = explicit_title || name
   page['seo_name'] = name
   if name
-    page['title'] = "#{name} — BDScript function"
+    page['title'] = "#{name} — BibiScript function"
   elsif explicit_title.nil?
     heading = Vitrine::Seo.heading_title(doc.content)
     page['title'] = heading if heading && !heading.empty?

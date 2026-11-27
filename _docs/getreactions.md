@@ -73,4 +73,4 @@ $sendMessage[Participants: $getReactions[$channelID;$messageID;, ;🎉]]
 ## Notes
 
 - To test whether one given user reacted, use `$userReacted[channelID;messageID;userID;emoji]`.
-- To count the reactions, split the result with `$textSplit[]` and read `$getTextSplitLength` (an empty result still gives one empty element).
+- To count the reactions, use `$reactionCount`: it reads the count of the message and does not list the users.

@@ -103,7 +103,7 @@ await interaction.reply({ files: [bc.canvas.attach(canvas, 'avatar')] });
 
 ## BDFD equivalent
 
-BDScript uses deferred canvas blocks (`$canvasCreate`, drawing ops, `$attachImage`). See the [Canvas functions guide](/advanced-topics/2026/06/11/image-creation-canvas-functions-in-bdfd/) and [Image & Canvas](/docs/#image-canvas) function reference.
+BibiScript uses deferred canvas blocks (`$canvasCreate`, drawing ops, `$attachImage`). See the [Canvas functions guide](/advanced-topics/2026/06/11/image-creation-canvas-functions-in-bdfd/) and [Image & Canvas](/docs/#image-canvas) function reference.
 
 ## Restrictions
 

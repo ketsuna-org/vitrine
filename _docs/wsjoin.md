@@ -6,6 +6,7 @@ category: "HTTP & JSON"
 function_name: wsJoin
 syntax: $wsJoin[source;(context)]
 description: Opens a WebSocket source declared on the bot's WebSocket page and plays its join sequence. Returns an empty string
+premium: true
 ---
 $wsJoin opens the connection of a **WebSocket source** declared on the bot's WebSocket page, plays the source's join sequence (authentication, subscription...) and returns once the connection is ready. It returns nothing itself.
 

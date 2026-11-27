@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "$slowmode — fonction BDScript"
+title: "$slowmode — fonction BibiScript"
 category: "Infos sur les entités"
 function_name: slowmode
 syntax: $slowmode[channelID;time]

@@ -6,6 +6,7 @@ category: "HTTP & JSON"
 function_name: wsStatus
 syntax: $wsStatus[source]
 description: Returns closed, connecting, open or error for a WebSocket source
+premium: true
 ---
 $wsStatus returns the state of a WebSocket source: `closed`, `connecting` (opening or reconnecting), `open`, or `error` (stopped after repeated refusals, a message that was too large, or a flood).
 

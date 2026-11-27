@@ -27,4 +27,4 @@ const res = await fetch('https://api.example.com/data');
 const data = await res.json();
 ```
 
-Use [$httpGet](/docs/httpget/) and related BDFD functions for equivalent behavior in BDScript.
+Use [$httpGet](/docs/httpget/) and related BDFD functions for equivalent behavior in BibiScript.

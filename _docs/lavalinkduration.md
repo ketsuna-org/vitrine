@@ -6,6 +6,7 @@ category: Music
 function_name: lavalinkDuration
 syntax: $lavalinkDuration[]
 description: Returns the total duration of the currently playing track in milliseconds
+premium: true
 ---
 Returns the total duration of the current track in milliseconds, as a plain number (never formatted as minutes:seconds). To display minutes and seconds you have to compute them yourself. Takes no argument. Returns `0` if there is no active player or no current track.
 

@@ -13,6 +13,7 @@
     <a href="{{ '/docs/blocks/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Blocks Guide</a>
     <a href="{{ '/docs/blocks-dictionary/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Blocks Dictionary</a>
     <a href="{{ '/playground/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Playground</a>
+    <a href="{{ '/docs/bibiscript/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">What is BibiScript?</a>
     <a href="{{ '/docs/execution-model/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">Execution &amp; compatibility</a>
     <a href="{{ '/docs/javascript/' | relative_url }}" class="block px-3 py-2 text-sm font-medium text-on-surface-variant hover:text-primary">
       JavaScript API
@@ -49,7 +50,7 @@
                   <a href="{{ doc.url | relative_url }}"
                      class="sidebar-item block px-3 py-2 rounded-md text-[13px] font-mono transition-all {% if page.url == doc.url %}bg-accent-deep text-primary{% else %}text-on-surface-variant hover:bg-surface-container hover:text-on-surface{% endif %}"
                      data-search-term="{{ doc.title | downcase }} {{ doc_label | downcase }} {{ doc.description | default: '' | downcase }} {{ doc.function_name | default: '' | downcase }}">
-                    {{ doc_label }}
+                    <span class="flex items-center justify-between gap-2">{{ doc_label }}{% if doc.premium %}{% include premium_badge.html mini=true %}{% endif %}</span>
                   </a>
                 </li>
               {% endfor %}

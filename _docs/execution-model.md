@@ -16,7 +16,7 @@ Bot Creator offers three authoring modes. Understanding how the runtime handles 
 | Mode | Format | Execution Engine | Primary Reference |
 |---|---|---|---|
 | **Blocks (Graph)** | Visual graph / JSON graph | Native Dart Engine (graph runner) | [Blocks Guide](/docs/blocks/) & [Dictionary](/docs/blocks-dictionary/) |
-| **BDScript (BDFD)** | Text & `$functions` | Native AST interpreter (Dart) | [Function Reference](/docs/) |
+| **BibiScript (BDFD)** | Text & `$functions` | Native AST interpreter (Dart) | [Function Reference](/docs/) |
 | **BDJS (JavaScript)** | JavaScript ES6+ | QuickJS / Node Sandbox | [JavaScript API](/docs/javascript/) |
 
 ---
@@ -41,7 +41,7 @@ Commands saved in the former list-of-actions format are converted to a graph whe
 Discord interactions (Slash Commands, Buttons, Select Menus, Modals) have strict protocol constraints:
 1. **Initial Acknowledgment (3-second deadline):**
    - When a BDFD script runs for an interaction, the runner acknowledges (defers) the interaction before executing the script (`interaction.acknowledge()`), unless the script source contains `$newModal`, `$callWorkflow`, `$eval` or `$funcCall`: a modal must be the immediate initial response, and those functions may open one.
-2. **Implicit Slash Response in BDScript:**
+2. **Implicit Slash Response in BibiScript:**
    - Text written outside functions is gathered into a pending response buffer, and embeds and components declared with functions are added to the same response.
    - When the script finishes, the engine sends this buffer as the interaction response.
    - **You do not need `$sendMessage` in a slash command** to reply. `$sendMessage` sends a separate message to the channel, in addition to the reply buffer (probe: `Hello!` followed by `$sendMessage[Hello2]` produces one channel message `Hello2` and one response `Hello!`).
@@ -91,8 +91,8 @@ Bot Creator distinguishes two types of variables:
 ### A. Temporary Execution Variables (`$var`)
 Scoped exclusively to the current command invocation. Lost when the command finishes. Names are case-sensitive.
 
-- **Write (BDScript):** `$var[name;value]`
-- **Read (BDScript):** `$var[name]`
+- **Write (BibiScript):** `$var[name;value]`
+- **Read (BibiScript):** `$var[name]`
 - **Blocks:** Action `setTemporaryVariable` (`name`, `value`).
 
 ```bdfd
@@ -106,17 +106,17 @@ $var[greeting] to all our $var[userCount] members!
 Saved in the bot's database across restarts.
 
 - **Global Variables:**
-  - BDScript: `$setVar[key;value]` / `$getVar[key]` (an extra user ID argument switches to the user scope)
+  - BibiScript: `$setVar[key;value]` / `$getVar[key]` (an extra user ID argument switches to the user scope)
   - Blocks: `setGlobalVariable` / `getGlobalVariable`
 - **User Variables:**
-  - BDScript: `$setUserVar[key;value]` / `$getUserVar[key]`. By default these are stored per server and user (the `guildMember` scope); when the bot's `bdfd.userVariableSemantics` setting is `1`, they are stored per user across servers unless a server ID is given.
+  - BibiScript: `$setUserVar[key;value]` / `$getUserVar[key]`. By default these are stored per server and user (the `guildMember` scope); when the bot's `bdfd.userVariableSemantics` setting is `1`, they are stored per user across servers unless a server ID is given.
   - Blocks: `setScopedVariable` / `getScopedVariable`
 - **Server Variables:**
-  - BDScript: `$setServerVar[key;value]` (or `$setGuildVar`) / `$getServerVar[key]`
+  - BibiScript: `$setServerVar[key;value]` (or `$setGuildVar`) / `$getServerVar[key]`
 - **Member Variables (Server + User):**
-  - BDScript: `$setMemberVar[key;value]` / `$getMemberVar[key]`
+  - BibiScript: `$setMemberVar[key;value]` / `$getMemberVar[key]`
 - **Channel Variables:**
-  - BDScript: `$setChannelVar[key;value]` / `$getChannelVar[key]`
+  - BibiScript: `$setChannelVar[key;value]` / `$getChannelVar[key]`
 
 ---
 

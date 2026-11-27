@@ -75,6 +75,9 @@ common:
   copied: "Copié"
 
 docs_ui:
+  premium: "Premium"
+  premium_note: "Réservé aux comptes Premium."
+  premium_plans: "Voir les offres"
   syntax: "Syntaxe"
   parameters: "Paramètres"
   required: "Obligatoire"
@@ -223,9 +226,9 @@ faq:
 
 
 pricing:
-  title: "Tarifs"
+  title: "Choisissez combien de bots faire tourner"
   eyebrow: "Tarifs"
-  subtitle: "L'app se télécharge gratuitement. Les abonnements s'achètent dans les stores : ce sont donc les prix des stores."
+  subtitle: "Bot Creator se télécharge gratuitement. L'offre fixe combien de bots tournent en même temps sur nos serveurs."
   compare_intro: "Comparé à d'autres outils :"
   note: "Devise de référence : l'euro (EUR). Le prix du store peut varier selon le pays, la devise et les taxes. Relevé sur Google Play et l'App Store le"
   free_title: "Gratuit"
@@ -245,7 +248,7 @@ pricing:
   ai_discovery: "Pack Découverte"
   ai_advanced: "Pack Avancé"
   ai_studio: "Pack Studio"
-  ai_note: "Prix de référence en euros ; le prix du store peut différer selon le pays et le store. Les crédits IA ne sont pas vendus dans la version desktop."
+  ai_note: "Prix en euros. Les crédits IA ne sont pas vendus dans la version desktop."
   steam_title: "Desktop sur Steam"
   steam_body: "La version desktop sur Steam est une app payante, environ 10 euros selon le pays, pas encore publiée. Elle exécute vos bots 100 % en local, avec les fonctions Premium débloquées, sans publicité ni achat intégré. Le Copilot IA, les crédits IA et l'hébergement cloud n'en font pas partie."
   docker_title: "Les héberger vous-même"
@@ -259,6 +262,24 @@ pricing:
   per_year: "/an"
   other_currency_note: "En dollars américains, les prix diffèrent entre les stores :"
   stores_cta: "Télécharger l'app"
+  plans_intro: "Chaque offre payante retire les publicités et débloque toutes les fonctions Premium. Les bots que vous faites tourner sur votre propre ordinateur avec l'app desktop ne sont jamais limités."
+  plan_free: "Gratuit"
+  plan_one: "1 bot"
+  plan_premium: "Premium"
+  plan_four: "4 bots"
+  plan_unlimited: "Illimité"
+  plan_premium_tag: "Offre Premium"
+  bots_one: "1 bot en marche"
+  bots_free: "1 bot hébergé"
+  bots_running: "%n bots en marche en même temps"
+  bots_unlimited: "Bots illimités"
+  credits_month: "%n crédits IA par mois"
+  credits_packs: "Packs de crédits IA à la demande"
+  free_ads: "Publicités et fenêtre de démarrage"
+  paid_noads: "Sans publicité, toutes les fonctions Premium"
+  plans_note: "Prix en euros, au mois ou à l'année, tels que publiés dans le catalogue Bot Creator le"
+  included_title: "Inclus dans chaque offre payante"
+  included_body: "Sans publicité ni fenêtre de démarrage, minutes d'hébergement illimitées, statistiques premium (taux d'erreur, percentiles de latence), relecture du débogueur visuel, musique Lavalink, tâches planifiées (jusqu'à 10 par bot), webhooks entrants (jusqu'à 5 par bot), accès MCP et stockage de variables élargi (jusqu'à 100 000 variables et 100 Mo par bot). Les futures fonctions Premium sont incluses. Sans engagement."
 
 guides:
   sidebar_help_title: "Besoin d'aide ?"

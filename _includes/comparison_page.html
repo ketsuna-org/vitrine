@@ -24,7 +24,7 @@
   <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">
     <h2 class="m-0 text-2xl font-semibold">{{ c.prices_title }}</h2>
     <p class="m-0 leading-relaxed text-on-surface-variant">{{ c.prices_them | markdownify | remove: '<p>' | remove: '</p>' }}</p>
-    <p class="m-0 leading-relaxed text-on-surface-variant">{{ c.prices_us }} {{ site.data.pricing.read_on }}: Google Play {% include price.html v=premium.google_play.eur_month %} €{{ t.pricing.per_month }} / {% include price.html v=premium.google_play.eur_year %} €{{ t.pricing.per_year }}, App Store {% include price.html v=premium.app_store.eur_month %} €{{ t.pricing.per_month }} / {% include price.html v=premium.app_store.eur_year %} €{{ t.pricing.per_year }}. <a class="text-primary underline underline-offset-2" href="{{ t.paths.pricing | relative_url }}">{{ c.pricing_cta }}</a></p>
+    <p class="m-0 leading-relaxed text-on-surface-variant">{{ c.prices_us }} {{ site.data.pricing.catalog_read_on }}: {% include price.html v=premium.eur_month %} €{{ t.pricing.per_month }} / {% include price.html v=premium.eur_year %} €{{ t.pricing.per_year }}. <a class="text-primary underline underline-offset-2" href="{{ t.paths.pricing | relative_url }}">{{ c.pricing_cta }}</a></p>
   </section>
 
   <section class="mb-10 flex flex-col gap-3 border-t border-outline pt-6">

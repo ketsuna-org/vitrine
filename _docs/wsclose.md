@@ -6,6 +6,7 @@ category: "HTTP & JSON"
 function_name: wsClose
 syntax: $wsClose[source]
 description: Closes a WebSocket source. Returns an empty string
+premium: true
 ---
 $wsClose closes the connection of a WebSocket source cleanly (code 1000). It does nothing if the source is already closed. It returns nothing.
 

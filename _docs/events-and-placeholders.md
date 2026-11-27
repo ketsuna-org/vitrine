@@ -32,7 +32,7 @@ Placeholders insert runtime values into response messages, embeds, components an
 Welcome ((user.username))! You joined ((guild.name)).
 ```
 
-> **BDScript text is not resolved.** The `((...))` resolver is not applied to the text of a native BDFD script (probe: `Hi ((date))` is returned unchanged). In a BDFD script use the `$functions`, for example `$username` and `$serverName`.
+> **BibiScript text is not resolved.** The `((...))` resolver is not applied to the text of a native BDFD script (probe: `Hi ((date))` is returned unchanged). In a BDFD script use the `$functions`, for example `$username` and `$serverName`.
 
 ### Core placeholder families
 
@@ -50,7 +50,7 @@ Welcome ((user.username))! You joined ((guild.name)).
 
 When a user clicks a button or submits a modal, interaction placeholders are populated automatically.
 
-**BDScript (BDFD)** reads the custom ID with `$customID` (valid in a component or modal interaction):
+**BibiScript (BDFD)** reads the custom ID with `$customID` (valid in a component or modal interaction):
 ```bdfd
 $ephemeral
 Clicked: $customID
@@ -77,9 +77,11 @@ The filter accepts:
 |--------|----------|
 | `verify_member` | exactly that custom ID |
 | `forge-*` | every custom ID that starts with `forge-` (`forge-cook-7-42`) |
+| `page-*` | `page-1`, `page-1-2`, `page-èf5g4dfg5fdsg`: anything after the prefix, any length |
 | `npc-*,npcm-*` | a comma-separated list: any of the patterns |
+| `*` | every button, select and modal (never a slash command) |
 
-`*` stands for any sequence of characters. Without `*`, the match is exact.
+`*` stands for any sequence of characters (it can appear anywhere in the pattern, e.g. `*-confirm`). Without `*`, the match is exact. The match is case-sensitive. A slash command has no custom ID, so a workflow with a filter never runs for it.
 
 **Use a stable prefix per feature**, and put the variable data after it (`forge-<action>-<recipe>-<userId>`). This matters most for modals: a modal must be the **first** response to a click (`$newModal`, no `$defer` before it). If another workflow without a filter (or with an overlapping one) acknowledges the click first, the modal fails with *A modal requires an unacknowledged interaction*. With one distinct prefix per workflow, only the right one runs.
 
@@ -95,9 +97,9 @@ See [Interactions overview](/docs/interactions-overview/) for component-specific
 | [Exhaustive event variables guide](/reference-deployment/2026/05/22/available-variables-per-event-exhaustive/) | Every variable per event type |
 | [JavaScript placeholders](/docs/javascript/placeholders/) | BDJS usage of `((...))` patterns |
 
-## BDScript vs JavaScript
+## BibiScript vs JavaScript
 
-- **BDScript:** use `$functions`; `((...))` text inside a BDFD script is left as typed.
+- **BibiScript:** use `$functions`; `((...))` text inside a BDFD script is left as typed.
 - **JavaScript:** see [variables](/docs/javascript/variables/) and [placeholders](/docs/javascript/placeholders/).
 
 ## Next steps

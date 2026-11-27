@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "$timeout — fonction BDScript"
+title: "$timeout — fonction BibiScript"
 category: "Modération"
 category_key: "Moderation"
 function_name: timeout

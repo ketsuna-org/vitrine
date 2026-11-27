@@ -6,6 +6,7 @@ category: Music
 function_name: joinVoice
 syntax: $joinVoice[channelID?]
 description: Joins a voice channel; if no channel ID is given, joins the user's current voice channel
+premium: true
 ---
 Joins a Discord voice channel through the Lavalink music player. Returns an empty string.
 

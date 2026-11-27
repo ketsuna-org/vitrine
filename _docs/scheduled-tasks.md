@@ -7,6 +7,7 @@ description: How scheduled tasks work in Bot Creator. Repeat every N minutes or 
 permalink: /docs/scheduled-tasks/
 locale: en
 translation_key: doc-scheduled-tasks
+premium: true
 ---
 
 A scheduled task runs a workflow on its own, at regular times, without anyone sending a command. Scheduled tasks are part of the Premium plan.

@@ -4,7 +4,7 @@ title: $userServerAvatar
 translation_key: docs
 category: "Entity Info"
 function_name: userServerAvatar
-syntax: $userServerAvatar[userID]
+syntax: $userServerAvatar[userID;(size);(format)]
 description: Returns the URL of the member's server-specific avatar, or their global avatar if none is set. The user must be a member of the server.
 ---
 
@@ -15,7 +15,7 @@ The `$userServerAvatar` function returns the **URL of the server-specific avatar
 ## Syntax
 
 ```
-$userServerAvatar[userID]
+$userServerAvatar[userID;(size);(format)]
 ```
 
 ## Parameters
@@ -23,8 +23,10 @@ $userServerAvatar[userID]
 | Parameter | Description |
 |---|---|
 | `userID` | **Required.** The ID of the user (digits only, greater than 0). Otherwise `Invalid user ID.` is raised. |
+| `size` | Optional - Image size in pixels: a power of two from 16 to 4096. Empty or absent: Discord's default size. Another value raises `Invalid image size`. |
+| `format` | Optional - `png`, `jpg`, `jpeg`, `webp` or `gif`. Empty or absent: `png`, or `gif` for an animated image. `gif` on a static image keeps its default format. |
 
-`$userServerAvatar` without brackets, or with more than one argument, is refused ("Invalid argument count").
+`$userServerAvatar` without brackets, or with more than three arguments, is refused ("Invalid argument count").
 
 ## Return Value
 

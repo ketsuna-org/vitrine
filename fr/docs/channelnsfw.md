@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "$channelNSFW — fonction BDScript"
+title: "$channelNSFW — fonction BibiScript"
 category: "Infos sur les entités"
 function_name: channelNSFW
 syntax: $channelNSFW[(channelID)]
