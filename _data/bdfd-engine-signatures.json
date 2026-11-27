@@ -215,6 +215,10 @@
   "min": 0,
   "max": 2
  },
+ "addsectionbutton": {
+  "min": 2,
+  "max": 6
+ },
  "addselectmenuoption": {
   "min": 4,
   "max": 7
@@ -326,6 +330,18 @@
  "aiwithctx": {
   "min": 1,
   "max": 3
+ },
+ "alertcount": {
+  "min": 0,
+  "max": 1
+ },
+ "alertinfo": {
+  "min": 2,
+  "max": 2
+ },
+ "alertlist": {
+  "min": 0,
+  "max": 2
  },
  "alignimage": {
   "min": 0,
@@ -640,6 +656,66 @@
   "max": 0
  },
  "autocompleteoptionvalue": {
+  "min": 0,
+  "max": 0
+ },
+ "automationauthor": {
+  "min": 0,
+  "max": 0
+ },
+ "automationchannelid": {
+  "min": 0,
+  "max": 0
+ },
+ "automationdate": {
+  "min": 0,
+  "max": 0
+ },
+ "automationgame": {
+  "min": 0,
+  "max": 0
+ },
+ "automationguildid": {
+  "min": 0,
+  "max": 0
+ },
+ "automationid": {
+  "min": 0,
+  "max": 0
+ },
+ "automationlink": {
+  "min": 0,
+  "max": 0
+ },
+ "automationname": {
+  "min": 0,
+  "max": 0
+ },
+ "automationsource": {
+  "min": 0,
+  "max": 0
+ },
+ "automationsourcekind": {
+  "min": 0,
+  "max": 0
+ },
+ "automationsummary": {
+  "min": 0,
+  "max": 0
+ },
+ "automationtext": {
+  "min": 0,
+  "max": 0
+ },
+ "automationthumbnail": {
+  "min": 0,
+  "max": 0
+ },
+ "automationtitle": {
+  "min": 0,
+  "max": 0
+ },
+ "automationviewers": {
   "min": 0,
   "max": 0
  },
@@ -1339,6 +1415,14 @@
   "min": 0,
   "max": 0
  },
+ "commandinfo": {
+  "min": 1,
+  "max": 3
+ },
+ "commandlist": {
+  "min": 0,
+  "max": 2
+ },
  "commandname": {
   "min": 0,
   "max": 0
@@ -1390,6 +1474,10 @@
  "cos": {
   "min": 1,
   "max": 1
+ },
+ "createalert": {
+  "min": 3,
+  "max": 6
  },
  "createautomodrule": {
   "min": 2,
@@ -1646,6 +1734,10 @@
  "deleteactionrowfrom": {
   "min": 3,
   "max": 3
+ },
+ "deletealert": {
+  "min": 1,
+  "max": 1
  },
  "deleteallmessagereactions": {
   "min": 2,
@@ -2178,6 +2270,10 @@
  "endpoll": {
   "min": 2,
   "max": 2
+ },
+ "endsection": {
+  "min": 0,
+  "max": 0
  },
  "endswith": {
   "min": 3,
@@ -4379,6 +4475,26 @@
   "min": 2,
   "max": null
  },
+ "modulecount": {
+  "min": 0,
+  "max": 1
+ },
+ "modulefeature": {
+  "min": 2,
+  "max": 4
+ },
+ "moduleinfo": {
+  "min": 1,
+  "max": 3
+ },
+ "modulelist": {
+  "min": 0,
+  "max": 3
+ },
+ "modulesetting": {
+  "min": 2,
+  "max": 5
+ },
  "modulo": {
   "min": 2,
   "max": 2
@@ -4748,6 +4864,10 @@
   "max": 2
  },
  "parsestring": {
+  "min": 1,
+  "max": 1
+ },
+ "pausealert": {
   "min": 1,
   "max": 1
  },
@@ -5157,6 +5277,10 @@
  },
  "restore": {
   "min": 0,
+  "max": 1
+ },
+ "resumealert": {
+  "min": 1,
   "max": 1
  },
  "resumemusic": {
@@ -5669,6 +5793,10 @@
  },
  "setmessagevar": {
   "min": 2,
+  "max": 3
+ },
+ "setmodulesetting": {
+  "min": 3,
   "max": 3
  },
  "setmusicloop": {
