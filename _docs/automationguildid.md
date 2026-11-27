@@ -27,7 +27,7 @@ $automationGuildID
 ## Behavior
 
 - Takes **no arguments**.
-- Available in workflows triggered by the **Automation alert** event. A server's admins create automations from `/config` or the server dashboard; the bot owner enables the feature on the bot.
+- Available in workflows triggered by the **Automation alert** event. Server admins create alerts with a command the bot owner writes (see [`$createAlert`]({{ '/docs/createalert/' | relative_url }})); the owner turns the feature on for the bot.
 - JavaScript reads the same value as `automation.guildId`, and blocks and texts as `((automation.guildId))`.
 
 ## Examples
